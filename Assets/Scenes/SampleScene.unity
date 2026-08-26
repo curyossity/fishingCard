@@ -420,7 +420,11 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 4850571900417999049
+    - rid: 4850571900417999049
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
 --- !u!4 &619394802
 Transform:
   m_ObjectHideFlags: 0
@@ -831,6 +835,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d7c70c1741b42a9bde0f741793d321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardView
+--- !u!1 &2039860095
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039860097}
+  - component: {fileID: 2039860096}
+  m_Layer: 0
+  m_Name: RunController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2039860096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039860095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e851b9b52e749caac2ef5b6ca5cb490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishingRunController
+  startRunOnAwake: 1
+  startingLineCapacity: 10
+  startingDepth: 0
+  startingBiomeId: Coastal
+  startingHandSize: 4
+  randomSeed: 0
+  useRandomSeed: 1
+  startingTechniqueDeck:
+  - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
+  - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
+  encounterPool:
+  - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
+  - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
+  - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
+  - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
+  - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
+  - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
+  currentEncounterView: {fileID: 0}
+  techniqueHandViews: []
+  runActive: 0
+  currentBiomeId: 
+  currentDepth: 0
+  lineCapacity: 0
+  currentEncounter: {fileID: 0}
+  catchChain: []
+  techniqueHand: []
+  techniqueDrawPile: []
+  techniqueDiscardPile: []
+--- !u!4 &2039860097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039860095}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 314.89996, y: 508.99048, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -839,3 +915,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1055148700}
   - {fileID: 173893707}
+  - {fileID: 2039860097}
