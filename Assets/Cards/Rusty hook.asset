@@ -12,8 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
   m_Name: Rusty hook
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  displayName: squid
-  cardType: 2
+  uniqueId: technique_rusty_hook
+  displayName: Rusty Hook
+  cardType: 0
   rarity: 0
+  tags:
+  - Hook
+  - LoadControl
   artwork: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: rusty hook - bad equipment
+  rulesText: The next Descend adds less Line Load from the committed catch, but the
+    hook is spent.
+  weight: 0
+  value: 0
+  biomeIds: []
+  minimumDepth: 0
+  maximumDepth: -1
+  effects:
+  - effectId: rough_load_reduction
+    effectType: 9
+    trigger: 0
+    target: 7
+    amount: -1
+    requiredTags: []
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 1
+    reminderText: Next Descend reduces committed catch load by 1.

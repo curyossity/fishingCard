@@ -5,6 +5,9 @@ public sealed class CardViewTester : MonoBehaviour
     [SerializeField] private CardView cardView;
     [SerializeField] private CardDefinition cardDefinition;
 
+    /// <summary>
+    /// Assigns the configured test card to the configured card view when the scene starts.
+    /// </summary>
     private void Start()
     {
         if (cardView == null)

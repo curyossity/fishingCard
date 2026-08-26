@@ -10,33 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Sardine
+  m_Name: Harbor Leviathan
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: creature_sardine
-  displayName: Sardine
-  cardType: 3
-  rarity: 0
+  uniqueId: apex_harbor_leviathan
+  displayName: Harbor Leviathan
+  cardType: 8
+  rarity: 3
   tags:
-  - Fish
-  - Schooling
-  - Small
-  artwork: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Small catch. While attached, slightly increases the chance of predator
-    encounters.
-  weight: 1
-  value: 1
+  - Apex
+  - Creature
+  - Predator
+  - Heavy
+  artwork: {fileID: 0}
+  rulesText: A legendary catch. Huge value and load. While attached, predator effects
+    are stronger.
+  weight: 8
+  value: 18
   biomeIds:
   - Coastal
-  minimumDepth: 0
-  maximumDepth: 3
+  minimumDepth: 7
+  maximumDepth: -1
   effects:
-  - effectId: attract_predators
-    effectType: 3
+  - effectId: apex_predator_pressure
+    effectType: 4
     trigger: 2
     target: 6
-    amount: 1
+    amount: 2
     requiredTags:
     - Predator
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Predator encounters are slightly more likely while Sardine is attached.
+    reminderText: Predator-tagged effects become more intense while attached.

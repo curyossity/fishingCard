@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Worm Bait
+  m_Name: Feeding Frenzy
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_worm_bait
-  displayName: Worm Bait
-  cardType: 0
-  rarity: 0
+  uniqueId: opportunity_feeding_frenzy
+  displayName: Feeding Frenzy
+  cardType: 7
+  rarity: 1
   tags:
-  - Bait
-  - EncounterControl
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Replace the current Hooked creature with a new Coastal creature from
-    the encounter pool.
+  - Opportunity
+  - Schooling
+  artwork: {fileID: 0}
+  rulesText: Schooling fish are easier to profit from. Caught Fish can gain value.
   weight: 0
   value: 0
-  biomeIds: []
+  biomeIds:
+  - Coastal
   minimumDepth: 0
-  maximumDepth: -1
+  maximumDepth: 4
   effects:
-  - effectId: rebait_hook
-    effectType: 6
+  - effectId: fish_value_bonus
+    effectType: 2
     trigger: 0
-    target: 2
-    amount: 1
+    target: 4
+    amount: 2
     requiredTags:
-    - Creature
+    - Fish
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Replaces the Hooked encounter.
+    reminderText: Add 2 value to a caught Fish.

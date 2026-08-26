@@ -21,6 +21,10 @@ Read this file before making code, asset, prefab, scene, or architecture changes
 - Keep scripts focused, readable, and Unity-friendly.
 - Prefer serialized fields over public mutable fields for Inspector configuration.
 - Use clear names that describe gameplay intent.
+- Integrate concise implementation comments while coding when they clarify gameplay intent, Unity wiring expectations, data flow, or non-obvious rule logic.
+- Add XML documentation comments (`/// <summary>`) for functions as they are created or changed, so their purpose is understandable from code navigation and IntelliSense.
+- Keep code comments focused on long-lived intent and behavior; avoid mentioning roadmap phases, workplan checkpoints, sprint context, or temporary implementation history unless the code specifically depends on that context.
+- Avoid comments that only restate the code; comments should help future implementation and tuning decisions.
 - Keep MonoBehaviour lifecycle methods simple and avoid hiding complex game logic inside `Update` unless frame-by-frame behavior is required.
 
 ## Gameplay Architecture
