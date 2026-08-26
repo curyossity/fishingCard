@@ -11,11 +11,14 @@ public sealed class CardView : MonoBehaviour
     [SerializeField] private Text displayNameText;
     [SerializeField] private Text cardTypeText;
     [SerializeField] private Text rarityText;
+    [SerializeField] private Text encounterStateText;
     [SerializeField] private Text statsText;
     [SerializeField] private Text tagsText;
     [SerializeField] private Text rulesText;
 
     public CardDefinition CardDefinition => cardDefinition;
+
+    private EncounterState encounterState = EncounterState.None;
 
     /// <summary>
     /// Refreshes the card UI when the view first becomes active.
@@ -39,6 +42,17 @@ public sealed class CardView : MonoBehaviour
     public void SetCard(CardDefinition newCardDefinition)
     {
         cardDefinition = newCardDefinition;
+        encounterState = EncounterState.None;
+        Refresh();
+    }
+
+    /// <summary>
+    /// Assigns a new card definition and encounter state to this view, then redraws the UI fields.
+    /// </summary>
+    public void SetCard(CardDefinition newCardDefinition, EncounterState newEncounterState)
+    {
+        cardDefinition = newCardDefinition;
+        encounterState = newEncounterState;
         Refresh();
     }
 
@@ -56,6 +70,7 @@ public sealed class CardView : MonoBehaviour
         SetText(displayNameText, cardDefinition.DisplayName);
         SetText(cardTypeText, cardDefinition.CardType.ToString());
         SetText(rarityText, cardDefinition.Rarity.ToString());
+        SetText(encounterStateText, BuildEncounterStateText(encounterState));
         SetText(statsText, BuildStatsText(cardDefinition));
         SetText(tagsText, BuildTagsText(cardDefinition));
         SetText(rulesText, cardDefinition.RulesText);
@@ -75,6 +90,7 @@ public sealed class CardView : MonoBehaviour
         SetText(displayNameText, string.Empty);
         SetText(cardTypeText, string.Empty);
         SetText(rarityText, string.Empty);
+        SetText(encounterStateText, string.Empty);
         SetText(statsText, string.Empty);
         SetText(tagsText, string.Empty);
         SetText(rulesText, string.Empty);
@@ -108,6 +124,14 @@ public sealed class CardView : MonoBehaviour
         }
 
         return $"Weight {card.Weight} / Value {card.Value}";
+    }
+
+    /// <summary>
+    /// Builds the encounter state label for card views that expose state text.
+    /// </summary>
+    private static string BuildEncounterStateText(EncounterState state)
+    {
+        return state == EncounterState.None ? string.Empty : state.ToString();
     }
 
     /// <summary>

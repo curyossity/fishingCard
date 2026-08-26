@@ -25,6 +25,9 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private CardView currentEncounterView;
     [SerializeField] private CardView[] techniqueHandViews = Array.Empty<CardView>();
 
+    [Header("Debug Actions")]
+    [SerializeField] private int debugTechniqueHandIndex;
+
     [Header("Run State")]
     // These fields are serialized so the prototype run state can be inspected during Play Mode.
     [SerializeField] private bool runActive;
@@ -32,6 +35,9 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private int currentDepth;
     [SerializeField] private int lineCapacity;
     [SerializeField] private CardDefinition currentEncounter;
+    [SerializeField] private EncounterState currentEncounterState;
+    [SerializeField] private CardDefinition hookedEncounter;
+    [SerializeField] private HookedEffectRecord[] hookedEffectRecords = Array.Empty<HookedEffectRecord>();
     [SerializeField] private CardDefinition[] catchChain = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] techniqueHand = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] techniqueDrawPile = Array.Empty<CardDefinition>();
@@ -44,6 +50,9 @@ public sealed class FishingRunController : MonoBehaviour
     public int CurrentDepth => currentDepth;
     public int LineCapacity => lineCapacity;
     public CardDefinition CurrentEncounter => currentEncounter;
+    public EncounterState CurrentEncounterState => currentEncounterState;
+    public CardDefinition HookedEncounter => hookedEncounter;
+    public HookedEffectRecord[] HookedEffectRecords => hookedEffectRecords;
     public CardDefinition[] CatchChain => catchChain;
     public CardDefinition[] TechniqueHand => techniqueHand;
     public CardDefinition[] TechniqueDrawPile => techniqueDrawPile;
@@ -93,6 +102,9 @@ public sealed class FishingRunController : MonoBehaviour
         // run starts from a clean line: no catches, no discard pile, and a fresh technique deck.
         runActive = true;
         lineCapacity = startingLineCapacity;
+        currentEncounterState = EncounterState.None;
+        hookedEncounter = null;
+        hookedEffectRecords = Array.Empty<HookedEffectRecord>();
         catchChain = Array.Empty<CardDefinition>();
         currentBiomeId = startingBiomeId;
         currentDepth = Mathf.Max(0, startingDepth);
@@ -102,9 +114,61 @@ public sealed class FishingRunController : MonoBehaviour
 
         // Revealing the first encounter gives the player an immediate decision point.
         currentEncounter = RevealFirstEncounter();
+        UpdateEncounterReactionState();
 
         RefreshViews();
         Debug.Log(BuildStartRunSummary(seed), this);
+    }
+
+    /// <summary>
+    /// Applies a Technique card from the current hand to the Hooked encounter reaction window.
+    /// </summary>
+    public bool TryUseTechniqueCard(int handIndex)
+    {
+        if (!runActive)
+        {
+            Debug.LogWarning("Cannot use a Technique card before a run has started.", this);
+            return false;
+        }
+
+        if (hookedEncounter == null)
+        {
+            Debug.LogWarning("There is no Hooked encounter for a Technique card to affect.", this);
+            return false;
+        }
+
+        if (handIndex < 0 || handIndex >= techniqueHand.Length)
+        {
+            Debug.LogWarning($"Technique hand index is out of range: {handIndex}.", this);
+            return false;
+        }
+
+        CardDefinition techniqueCard = techniqueHand[handIndex];
+
+        if (techniqueCard == null)
+        {
+            Debug.LogWarning($"Technique hand slot {handIndex} is empty.", this);
+            return false;
+        }
+
+        if (techniqueCard.CardType != CardType.Technique)
+        {
+            Debug.LogWarning($"Card is not a Technique card: {techniqueCard.DisplayName}.", this);
+            return false;
+        }
+
+        int addedEffects = AddHookedTechniqueEffects(techniqueCard);
+        Debug.Log($"Technique card used on Hooked encounter: {techniqueCard.DisplayName}. Tracked effects added: {addedEffects}.", this);
+        return true;
+    }
+
+    /// <summary>
+    /// Inspector context-menu wrapper for applying a Technique card by hand index.
+    /// </summary>
+    [ContextMenu("Run/Use Debug Technique Card")]
+    private void UseDebugTechniqueCard()
+    {
+        TryUseTechniqueCard(debugTechniqueHandIndex);
     }
 
     /// <summary>
@@ -138,6 +202,158 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         return candidates[random.Next(candidates.Count)];
+    }
+
+    /// <summary>
+    /// Updates encounter state and Hooked tracking after an encounter is revealed or replaced.
+    /// </summary>
+    private void UpdateEncounterReactionState()
+    {
+        if (currentEncounter == null)
+        {
+            hookedEncounter = null;
+            currentEncounterState = EncounterState.None;
+            RebuildHookedEffectRecords();
+            return;
+        }
+
+        if (IsCatchableEncounter(currentEncounter))
+        {
+            hookedEncounter = currentEncounter;
+            currentEncounterState = EncounterState.Hooked;
+            RebuildHookedEffectRecords();
+            return;
+        }
+
+        hookedEncounter = null;
+        currentEncounterState = EncounterState.Encountered;
+
+        RebuildHookedEffectRecords();
+    }
+
+    /// <summary>
+    /// Rebuilds the effect records that are currently attached to the Hooked reaction window.
+    /// </summary>
+    private void RebuildHookedEffectRecords()
+    {
+        if (hookedEncounter == null)
+        {
+            hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+            return;
+        }
+
+        List<HookedEffectRecord> records = new List<HookedEffectRecord>();
+        AddRelevantEffectRecords(records, hookedEncounter, HookedEffectSource.HookedEncounter);
+        hookedEffectRecords = records.ToArray();
+    }
+
+    /// <summary>
+    /// Adds relevant Technique effects to the active Hooked reaction records.
+    /// </summary>
+    private int AddHookedTechniqueEffects(CardDefinition techniqueCard)
+    {
+        List<HookedEffectRecord> records = new List<HookedEffectRecord>(hookedEffectRecords);
+        int originalCount = records.Count;
+
+        AddRelevantEffectRecords(records, techniqueCard, HookedEffectSource.TechniqueCard);
+        hookedEffectRecords = records.ToArray();
+
+        return records.Count - originalCount;
+    }
+
+    /// <summary>
+    /// Adds effects from a source card when they can affect the current Hooked encounter.
+    /// </summary>
+    private void AddRelevantEffectRecords(List<HookedEffectRecord> records, CardDefinition sourceCard, HookedEffectSource sourceType)
+    {
+        if (sourceCard == null || sourceCard.Effects == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < sourceCard.Effects.Length; i++)
+        {
+            CardEffectDefinition effect = sourceCard.Effects[i];
+
+            if (DoesEffectAffectHookedEncounter(effect, hookedEncounter))
+            {
+                records.Add(new HookedEffectRecord(sourceCard, effect, sourceType));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Checks whether an effect is relevant during the Hooked encounter reaction window.
+    /// </summary>
+    private static bool DoesEffectAffectHookedEncounter(CardEffectDefinition effect, CardDefinition targetEncounter)
+    {
+        if (effect == null || targetEncounter == null)
+        {
+            return false;
+        }
+
+        bool targetsHookedCard = effect.Target == CardEffectTarget.HookedEncounter
+            || effect.Target == CardEffectTarget.CurrentEncounter
+            || effect.Target == CardEffectTarget.NextDescend;
+
+        if (!targetsHookedCard)
+        {
+            return false;
+        }
+
+        return RequiredTagsMatch(effect.RequiredTags, targetEncounter);
+    }
+
+    /// <summary>
+    /// Checks whether all required effect tags are present on the target card's tags or card type.
+    /// </summary>
+    private static bool RequiredTagsMatch(string[] requiredTags, CardDefinition targetCard)
+    {
+        if (requiredTags == null || requiredTags.Length == 0)
+        {
+            return true;
+        }
+
+        if (targetCard == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < requiredTags.Length; i++)
+        {
+            if (string.Equals(requiredTags[i], targetCard.CardType.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
+                continue;
+            }
+
+            if (!HasTag(targetCard.Tags, requiredTags[i]))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Checks whether a tag list contains a requested tag, ignoring case.
+    /// </summary>
+    private static bool HasTag(string[] tags, string requiredTag)
+    {
+        if (tags == null || tags.Length == 0)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < tags.Length; i++)
+        {
+            if (string.Equals(requiredTag, tags[i], StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -218,7 +434,7 @@ public sealed class FishingRunController : MonoBehaviour
         // View references are optional so the run model can be tested before the full UI exists.
         if (currentEncounterView != null)
         {
-            currentEncounterView.SetCard(currentEncounter);
+            currentEncounterView.SetCard(currentEncounter, currentEncounterState);
         }
 
         if (techniqueHandViews == null)
@@ -254,6 +470,9 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine($"Technique Draw Pile: {techniqueDrawPile.Length} cards");
         summary.Append("First Encounter: ");
         summary.Append(currentEncounter == null ? "none" : currentEncounter.DisplayName);
+        summary.AppendLine();
+        summary.Append("Encounter State: ");
+        summary.Append(currentEncounterState);
         return summary.ToString();
     }
 
@@ -270,5 +489,49 @@ public sealed class FishingRunController : MonoBehaviour
             || card.CardType == CardType.Opportunity
             || card.CardType == CardType.ApexEncounter
             || card.CardType == CardType.Encounter;
+    }
+
+    /// <summary>
+    /// Checks whether an encounter should become Hooked during the reaction window.
+    /// </summary>
+    private static bool IsCatchableEncounter(CardDefinition card)
+    {
+        return card != null
+            && (card.CardType == CardType.Creature || card.CardType == CardType.ApexEncounter);
+    }
+}
+
+public enum HookedEffectSource
+{
+    HookedEncounter,
+    TechniqueCard
+}
+
+[Serializable]
+public sealed class HookedEffectRecord
+{
+    [SerializeField] private CardDefinition sourceCard;
+    [SerializeField] private CardEffectDefinition effect;
+    [SerializeField] private HookedEffectSource sourceType;
+
+    public CardDefinition SourceCard => sourceCard;
+    public CardEffectDefinition Effect => effect;
+    public HookedEffectSource SourceType => sourceType;
+
+    /// <summary>
+    /// Creates an empty record for Unity serialization.
+    /// </summary>
+    public HookedEffectRecord()
+    {
+    }
+
+    /// <summary>
+    /// Creates a runtime record for an effect that can influence the Hooked encounter.
+    /// </summary>
+    public HookedEffectRecord(CardDefinition sourceCard, CardEffectDefinition effect, HookedEffectSource sourceType)
+    {
+        this.sourceCard = sourceCard;
+        this.effect = effect;
+        this.sourceType = sourceType;
     }
 }

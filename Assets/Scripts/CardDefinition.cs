@@ -170,6 +170,14 @@ public enum CardEffectTarget
     SurfaceAttempt
 }
 
+public enum EncounterState
+{
+    None,
+    Encountered,
+    Hooked,
+    Caught
+}
+
 [Serializable]
 public sealed class CardEffectDefinition
 {
