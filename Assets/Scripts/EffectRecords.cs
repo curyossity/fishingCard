@@ -13,10 +13,12 @@ public sealed class ActiveCatchEffectRecord
     [SerializeField] private CardDefinition sourceCard;
     [SerializeField] private CardEffectDefinition effect;
     [SerializeField] private CardEffectTrigger activeTrigger;
+    [SerializeField] private int sourceCatchIndex;
 
     public CardDefinition SourceCard => sourceCard;
     public CardEffectDefinition Effect => effect;
     public CardEffectTrigger ActiveTrigger => activeTrigger;
+    public int SourceCatchIndex => sourceCatchIndex;
 
     /// <summary>
     /// Creates an empty record for Unity serialization.
@@ -28,11 +30,16 @@ public sealed class ActiveCatchEffectRecord
     /// <summary>
     /// Creates a runtime record for an effect attached to the current Catch Chain.
     /// </summary>
-    public ActiveCatchEffectRecord(CardDefinition sourceCard, CardEffectDefinition effect, CardEffectTrigger activeTrigger)
+    public ActiveCatchEffectRecord(
+        CardDefinition sourceCard,
+        CardEffectDefinition effect,
+        CardEffectTrigger activeTrigger,
+        int sourceCatchIndex)
     {
         this.sourceCard = sourceCard;
         this.effect = effect;
         this.activeTrigger = activeTrigger;
+        this.sourceCatchIndex = sourceCatchIndex;
     }
 }
 

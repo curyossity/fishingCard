@@ -170,6 +170,13 @@ public enum CardEffectTarget
     SurfaceAttempt
 }
 
+public enum CardEffectTone
+{
+    Neutral,
+    Positive,
+    Negative
+}
+
 public enum EncounterState
 {
     None,
@@ -185,6 +192,7 @@ public sealed class CardEffectDefinition
     [SerializeField] private CardEffectType effectType;
     [SerializeField] private CardEffectTrigger trigger;
     [SerializeField] private CardEffectTarget target;
+    [SerializeField] private CardEffectTone effectTone;
     [SerializeField] private int amount;
     [SerializeField] private string[] requiredTags = Array.Empty<string>();
     [SerializeField] private CardDefinition replacementCard;
@@ -196,6 +204,7 @@ public sealed class CardEffectDefinition
     public CardEffectType EffectType => effectType;
     public CardEffectTrigger Trigger => trigger;
     public CardEffectTarget Target => target;
+    public CardEffectTone EffectTone => effectTone;
     public int Amount => amount;
     public string[] RequiredTags => requiredTags;
     public CardDefinition ReplacementCard => replacementCard;
@@ -213,6 +222,12 @@ public sealed class CardEffectDefinition
         summary.Append(trigger);
         summary.Append(" -> ");
         summary.Append(target);
+
+        if (effectTone != CardEffectTone.Neutral)
+        {
+            summary.Append(" | ");
+            summary.Append(effectTone);
+        }
 
         if (amount != 0)
         {

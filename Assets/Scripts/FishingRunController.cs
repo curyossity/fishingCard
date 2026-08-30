@@ -25,6 +25,7 @@ public sealed class FishingRunController : MonoBehaviour
     [Header("Optional Views")]
     [SerializeField] private CardView currentEncounterView;
     [SerializeField] private CardView[] techniqueHandViews = Array.Empty<CardView>();
+    [SerializeField] private CatchChainView catchChainView;
 
     [Header("Debug Actions")]
     [SerializeField] private int debugTechniqueHandIndex;
@@ -321,6 +322,11 @@ public sealed class FishingRunController : MonoBehaviour
         if (currentEncounterView != null)
         {
             currentEncounterView.SetCard(encounterRuntime.CurrentEncounter, encounterRuntime.CurrentState);
+        }
+
+        if (catchChainView != null)
+        {
+            catchChainView.Refresh(catchChainRuntime.Cards, catchChainRuntime.ActiveEffectRecords);
         }
 
         if (techniqueHandViews == null)

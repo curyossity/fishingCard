@@ -34,6 +34,7 @@ MonoBehaviour:
     effectType: 5
     trigger: 2
     target: 3
+    effectTone: 2
     amount: 1
     requiredTags: []
     replacementCard: {fileID: 0}

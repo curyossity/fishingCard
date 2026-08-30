@@ -115,7 +115,7 @@ Introduce effect resolution services or handlers that execute each `CardEffectTy
 ## Active Catch Effect Tracking
 
 Current approach:
-`CatchChainRuntime` adds `WhenCaught` and `WhileAttached` effects to an Inspector-visible active effect list. Releasing a catch rebuilds that list from the cards that remain attached, but those effects do not yet mutate game state.
+`CatchChainRuntime` adds `WhenCaught` and `WhileAttached` effects to an Inspector-visible active effect list. Each record stores its current Catch Chain index for presentation. Releasing a catch rebuilds that list and its indices from the cards that remain attached, but those effects do not yet mutate game state.
 
 Why it is acceptable for MVP:
 It confirms that Descend can connect caught cards to the effect system before Release, Surface, overload, and full effect targets exist.
@@ -196,3 +196,20 @@ Line Load consequences are implemented and playtested during the Catch Chain and
 
 Likely future action:
 Resolve the approved overload rule before finalizing the successful haul, then report lost catches, failed effects, or other consequences in the Surface result.
+
+## Programmatic Catch Chain View
+
+Current approach:
+`CatchChainView` creates its compact scrolling UI at runtime and rebuilds entry GameObjects whenever Catch Chain state changes.
+
+Why it is acceptable for MVP:
+The panel is self-contained, needs one scene component, and makes ordered catches, stats, and effect tone testable before final card presentation exists.
+
+Production concern:
+Runtime-created UI is less convenient for visual authoring, and destroying/recreating every entry causes avoidable allocations as presentation complexity grows.
+
+Revisit trigger:
+The Catch Chain receives final visual design, interaction, animation, runtime card instances, or frequent effect-only refreshes.
+
+Likely future action:
+Move the entry layout into an authored prefab or UI document, bind it to a catch view model, and reuse entries through pooling or keyed updates.

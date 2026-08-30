@@ -35,6 +35,7 @@ MonoBehaviour:
     effectType: 4
     trigger: 2
     target: 6
+    effectTone: 2
     amount: 2
     requiredTags:
     - Predator

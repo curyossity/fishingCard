@@ -43,7 +43,7 @@ public sealed class CatchChainRuntime
         }
 
         cards = AppendCard(cards, caughtCard);
-        AddCatchEffects(caughtCard);
+        AddCatchEffects(caughtCard, cards.Length - 1);
     }
 
     /// <summary>
@@ -105,10 +105,10 @@ public sealed class CatchChainRuntime
     /// <summary>
     /// Tracks effects that become relevant when a card enters the Catch Chain.
     /// </summary>
-    private void AddCatchEffects(CardDefinition caughtCard)
+    private void AddCatchEffects(CardDefinition caughtCard, int catchIndex)
     {
-        AddActiveEffects(caughtCard, CardEffectTrigger.WhenCaught);
-        AddActiveEffects(caughtCard, CardEffectTrigger.WhileAttached);
+        AddActiveEffects(caughtCard, CardEffectTrigger.WhenCaught, catchIndex);
+        AddActiveEffects(caughtCard, CardEffectTrigger.WhileAttached, catchIndex);
     }
 
     /// <summary>
@@ -121,14 +121,14 @@ public sealed class CatchChainRuntime
         // Rebuilding also preserves the correct number of records for repeated card definitions.
         for (int i = 0; i < cards.Length; i++)
         {
-            AddCatchEffects(cards[i]);
+            AddCatchEffects(cards[i], i);
         }
     }
 
     /// <summary>
     /// Adds catch effects matching one active trigger.
     /// </summary>
-    private void AddActiveEffects(CardDefinition sourceCard, CardEffectTrigger trigger)
+    private void AddActiveEffects(CardDefinition sourceCard, CardEffectTrigger trigger, int catchIndex)
     {
         if (sourceCard == null || sourceCard.Effects == null)
         {
@@ -146,7 +146,7 @@ public sealed class CatchChainRuntime
                 continue;
             }
 
-            records.Add(new ActiveCatchEffectRecord(sourceCard, effect, trigger));
+            records.Add(new ActiveCatchEffectRecord(sourceCard, effect, trigger, catchIndex));
         }
 
         activeEffectRecords = records.ToArray();

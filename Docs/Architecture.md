@@ -158,6 +158,25 @@ Does not own:
 - Rewards, selling, or progression
 - Run-summary UI
 
+### `CatchChainView`
+
+Role:
+Presentation component for the visible Catch Chain panel.
+
+Owns:
+- Displaying catches in current acquisition order
+- Clearly separated weight and value labels
+- Per-catch active effect text
+- Distinct visual treatment for explicitly negative effects
+- Scrollable layout for longer chains
+- Empty Catch Chain presentation
+
+Does not own:
+- Catch Chain data or ordering rules
+- Effect classification or execution
+- Release input
+- Line Load calculations
+
 ### `HookedEffectRecord`
 
 Role:
@@ -237,6 +256,7 @@ Current Descend flow:
 6. `TechniqueDeckRuntime` refills the hand as required.
 7. `EncounterRuntime` filters candidates again using the new depth and current biome.
 8. The next valid encounter is revealed and optional `CardView` references are refreshed.
+9. `CatchChainView` rebuilds from the ordered catches and their indexed active effect records.
 
 Current Release flow:
 
@@ -244,7 +264,8 @@ Current Release flow:
 2. `CatchChainRuntime` removes the selected card, so its weight and future haul value are lost.
 3. `CatchChainRuntime` rebuilds active effects from catches that remain attached.
 4. Depth, the current encounter, and Hooked state remain unchanged.
-5. The action logs the released card and immediate Line Load change.
+5. `CatchChainView` refreshes immediately with the remaining ordered catches.
+6. The action logs the released card and immediate Line Load change.
 
 Current Surface flow:
 
@@ -281,9 +302,9 @@ Runtime state:
 
 Presentation:
 - `CardView`
+- `CatchChainView`
 - Future hand views
 - Future encounter view
-- Future Catch Chain view
 - Future Line Load view
 
 Rule of thumb:
