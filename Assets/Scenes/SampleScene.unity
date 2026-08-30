@@ -869,6 +869,7 @@ MonoBehaviour:
   startingDepth: 0
   startingBiomeId: Coastal
   startingHandSize: 4
+  depthStepPerDescend: 1
   randomSeed: 0
   useRandomSeed: 1
   startingTechniqueDeck:
@@ -883,11 +884,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
   currentEncounterView: {fileID: 0}
   techniqueHandViews: []
+  debugTechniqueHandIndex: 0
   runActive: 0
   currentBiomeId: 
   currentDepth: 0
   lineCapacity: 0
   currentEncounter: {fileID: 0}
+  currentEncounterState: 0
+  hookedEncounter: {fileID: 0}
+  hookedEffectRecords: []
+  activeCatchEffectRecords: []
   catchChain: []
   techniqueHand: []
   techniqueDrawPile: []

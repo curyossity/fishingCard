@@ -14,6 +14,8 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private string startingBiomeId = "Coastal";
     [Min(1)]
     [SerializeField] private int startingHandSize = 4;
+    [Min(1)]
+    [SerializeField] private int depthStepPerDescend = 1;
     [SerializeField] private int randomSeed;
     [SerializeField] private bool useRandomSeed = true;
 
@@ -27,6 +29,7 @@ public sealed class FishingRunController : MonoBehaviour
 
     [Header("Debug Actions")]
     [SerializeField] private int debugTechniqueHandIndex;
+    [SerializeField] private int debugCatchChainIndex;
 
     [Header("Run State")]
     // These fields are serialized so the prototype run state can be inspected during Play Mode.
@@ -38,10 +41,18 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private EncounterState currentEncounterState;
     [SerializeField] private CardDefinition hookedEncounter;
     [SerializeField] private HookedEffectRecord[] hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+    [SerializeField] private ActiveCatchEffectRecord[] activeCatchEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
     [SerializeField] private CardDefinition[] catchChain = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] techniqueHand = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] techniqueDrawPile = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] techniqueDiscardPile = Array.Empty<CardDefinition>();
+
+    [Header("Last Surface Result")]
+    [SerializeField] private CardDefinition[] lastHaul = Array.Empty<CardDefinition>();
+    [SerializeField] private int lastHaulValue;
+    [SerializeField] private int lastSurfaceDepth;
+    [SerializeField] private int lastSurfaceLineLoad;
+    [SerializeField] private bool lastSurfaceWasOverloaded;
 
     private System.Random random;
 
@@ -53,10 +64,16 @@ public sealed class FishingRunController : MonoBehaviour
     public EncounterState CurrentEncounterState => currentEncounterState;
     public CardDefinition HookedEncounter => hookedEncounter;
     public HookedEffectRecord[] HookedEffectRecords => hookedEffectRecords;
+    public ActiveCatchEffectRecord[] ActiveCatchEffectRecords => activeCatchEffectRecords;
     public CardDefinition[] CatchChain => catchChain;
     public CardDefinition[] TechniqueHand => techniqueHand;
     public CardDefinition[] TechniqueDrawPile => techniqueDrawPile;
     public CardDefinition[] TechniqueDiscardPile => techniqueDiscardPile;
+    public CardDefinition[] LastHaul => lastHaul;
+    public int LastHaulValue => lastHaulValue;
+    public int LastSurfaceDepth => lastSurfaceDepth;
+    public int LastSurfaceLineLoad => lastSurfaceLineLoad;
+    public bool LastSurfaceWasOverloaded => lastSurfaceWasOverloaded;
 
     /// <summary>
     /// Calculates the current Line Load from the cards attached to the Catch Chain.
@@ -105,15 +122,21 @@ public sealed class FishingRunController : MonoBehaviour
         currentEncounterState = EncounterState.None;
         hookedEncounter = null;
         hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+        activeCatchEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
         catchChain = Array.Empty<CardDefinition>();
         currentBiomeId = startingBiomeId;
         currentDepth = Mathf.Max(0, startingDepth);
         techniqueDiscardPile = Array.Empty<CardDefinition>();
         techniqueDrawPile = BuildShuffledDeck(startingTechniqueDeck);
         techniqueHand = DrawCards(techniqueDrawPile, startingHandSize, out techniqueDrawPile);
+        lastHaul = Array.Empty<CardDefinition>();
+        lastHaulValue = 0;
+        lastSurfaceDepth = 0;
+        lastSurfaceLineLoad = 0;
+        lastSurfaceWasOverloaded = false;
 
         // Revealing the first encounter gives the player an immediate decision point.
-        currentEncounter = RevealFirstEncounter();
+        currentEncounter = RevealEncounter();
         UpdateEncounterReactionState();
 
         RefreshViews();
@@ -163,6 +186,124 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
+    /// Resolves the Descend core action by catching a Hooked encounter, moving deeper, and revealing the next encounter.
+    /// </summary>
+    public bool TryDescend()
+    {
+        if (!runActive)
+        {
+            Debug.LogWarning("Cannot Descend before a run has started.", this);
+            return false;
+        }
+
+        CardDefinition caughtCard = null;
+
+        if (hookedEncounter != null)
+        {
+            caughtCard = CommitHookedEncounterToCatchChain();
+        }
+
+        // Depth changes before the next reveal so depth-gated cards can enter or leave the candidate pool.
+        currentDepth += Mathf.Max(1, depthStepPerDescend);
+        RefillTechniqueHand();
+
+        currentEncounter = RevealEncounter();
+        UpdateEncounterReactionState();
+        RefreshViews();
+
+        Debug.Log(BuildDescendSummary(caughtCard), this);
+        return true;
+    }
+
+    /// <summary>
+    /// Releases one caught card by Catch Chain index without advancing depth or resolving the Hooked encounter.
+    /// </summary>
+    public bool TryReleaseCatch(int catchIndex)
+    {
+        if (!runActive)
+        {
+            Debug.LogWarning("Cannot Release a catch before a run has started.", this);
+            return false;
+        }
+
+        if (catchIndex < 0 || catchIndex >= catchChain.Length)
+        {
+            Debug.LogWarning($"Catch Chain index is out of range: {catchIndex}.", this);
+            return false;
+        }
+
+        CardDefinition releasedCard = catchChain[catchIndex];
+
+        if (releasedCard == null)
+        {
+            Debug.LogWarning($"Catch Chain slot {catchIndex} is empty.", this);
+            return false;
+        }
+
+        int previousLineLoad = CurrentLineLoad;
+
+        // Removing the card also removes its future haul value because only attached catches can be surfaced.
+        catchChain = RemoveCardAt(catchChain, catchIndex);
+        RebuildActiveCatchEffectRecords();
+        RefreshViews();
+
+        Debug.Log(BuildReleaseSummary(releasedCard, previousLineLoad), this);
+        return true;
+    }
+
+    /// <summary>
+    /// Surfaces with the attached Catch Chain, records the successful haul, and ends the run.
+    /// </summary>
+    public bool TrySurface()
+    {
+        if (!runActive)
+        {
+            Debug.LogWarning("Cannot Surface before a run has started.", this);
+            return false;
+        }
+
+        // Only committed catches are eligible; the unresolved Hooked encounter is not part of the haul.
+        lastHaul = CopyCards(catchChain);
+        lastHaulValue = CalculateCardValue(lastHaul);
+        lastSurfaceDepth = currentDepth;
+        lastSurfaceLineLoad = CurrentLineLoad;
+        lastSurfaceWasOverloaded = lastSurfaceLineLoad > lineCapacity;
+
+        string surfaceSummary = BuildSurfaceSummary();
+        EndActiveRun();
+
+        Debug.Log(surfaceSummary, this);
+        return true;
+    }
+
+    /// <summary>
+    /// Inspector context-menu wrapper for testing the Descend core action.
+    /// </summary>
+    [ContextMenu("Run/Descend")]
+    private void UseDebugDescend()
+    {
+        TryDescend();
+    }
+
+    /// <summary>
+    /// Inspector context-menu wrapper for releasing a Catch Chain card by index.
+    /// </summary>
+    [ContextMenu("Run/Release Debug Catch")]
+    private void UseDebugReleaseCatch()
+    {
+        TryReleaseCatch(debugCatchChainIndex);
+    }
+
+    /// <summary>
+    /// Inspector context-menu wrapper for testing the Surface core action.
+    /// </summary>
+    [ContextMenu("Run/Surface")]
+    private void UseDebugSurface()
+    {
+        TrySurface();
+    }
+
+    /// <summary>
     /// Inspector context-menu wrapper for applying a Technique card by hand index.
     /// </summary>
     [ContextMenu("Run/Use Debug Technique Card")]
@@ -172,9 +313,9 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
-    /// Selects a valid first encounter from the configured pool for the current biome and depth.
+    /// Selects a valid encounter from the configured pool for the current biome and depth.
     /// </summary>
-    private CardDefinition RevealFirstEncounter()
+    private CardDefinition RevealEncounter()
     {
         List<CardDefinition> candidates = new List<CardDefinition>();
 
@@ -245,6 +386,71 @@ public sealed class FishingRunController : MonoBehaviour
         List<HookedEffectRecord> records = new List<HookedEffectRecord>();
         AddRelevantEffectRecords(records, hookedEncounter, HookedEffectSource.HookedEncounter);
         hookedEffectRecords = records.ToArray();
+    }
+
+    /// <summary>
+    /// Adds the current Hooked encounter to the Catch Chain and tracks its catch-related effects.
+    /// </summary>
+    private CardDefinition CommitHookedEncounterToCatchChain()
+    {
+        CardDefinition caughtCard = hookedEncounter;
+        catchChain = AppendCard(catchChain, caughtCard);
+        currentEncounterState = EncounterState.Caught;
+        hookedEncounter = null;
+        hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+
+        ApplyCatchEffects(caughtCard);
+        return caughtCard;
+    }
+
+    /// <summary>
+    /// Tracks effects that become relevant because a card entered the Catch Chain.
+    /// </summary>
+    private void ApplyCatchEffects(CardDefinition caughtCard)
+    {
+        AddActiveCatchEffects(caughtCard, CardEffectTrigger.WhenCaught);
+        AddActiveCatchEffects(caughtCard, CardEffectTrigger.WhileAttached);
+    }
+
+    /// <summary>
+    /// Rebuilds active Catch Chain effect records after a catch is removed.
+    /// </summary>
+    private void RebuildActiveCatchEffectRecords()
+    {
+        activeCatchEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
+
+        // Rebuilding from the remaining chain also handles repeated copies of the same CardDefinition.
+        for (int i = 0; i < catchChain.Length; i++)
+        {
+            ApplyCatchEffects(catchChain[i]);
+        }
+    }
+
+    /// <summary>
+    /// Adds catch effects for one trigger to the active Catch Chain effect list.
+    /// </summary>
+    private void AddActiveCatchEffects(CardDefinition sourceCard, CardEffectTrigger trigger)
+    {
+        if (sourceCard == null || sourceCard.Effects == null)
+        {
+            return;
+        }
+
+        List<ActiveCatchEffectRecord> records = new List<ActiveCatchEffectRecord>(activeCatchEffectRecords);
+
+        for (int i = 0; i < sourceCard.Effects.Length; i++)
+        {
+            CardEffectDefinition effect = sourceCard.Effects[i];
+
+            if (effect == null || effect.Trigger != trigger)
+            {
+                continue;
+            }
+
+            records.Add(new ActiveCatchEffectRecord(sourceCard, effect, trigger));
+        }
+
+        activeCatchEffectRecords = records.ToArray();
     }
 
     /// <summary>
@@ -412,7 +618,7 @@ public sealed class FishingRunController : MonoBehaviour
         CardDefinition[] hand = new CardDefinition[drawCount];
         remainingDrawPile = new CardDefinition[drawPile.Length - drawCount];
 
-        // This is only the starting draw. Discard, refill, and reshuffle rules come later.
+        // Discard and reshuffle rules come later; draws currently consume the front of the pile.
         for (int i = 0; i < drawCount; i++)
         {
             hand[i] = drawPile[i];
@@ -424,6 +630,127 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         return hand;
+    }
+
+    /// <summary>
+    /// Refills the Technique hand up to the configured hand size when draw-pile cards are available.
+    /// </summary>
+    private void RefillTechniqueHand()
+    {
+        if (techniqueHand == null)
+        {
+            techniqueHand = Array.Empty<CardDefinition>();
+        }
+
+        int missingCards = Mathf.Max(0, startingHandSize - techniqueHand.Length);
+
+        if (missingCards == 0)
+        {
+            return;
+        }
+
+        CardDefinition[] drawnCards = DrawCards(techniqueDrawPile, missingCards, out techniqueDrawPile);
+
+        for (int i = 0; i < drawnCards.Length; i++)
+        {
+            techniqueHand = AppendCard(techniqueHand, drawnCards[i]);
+        }
+    }
+
+    /// <summary>
+    /// Returns a new card array with one card appended for Inspector-visible runtime state.
+    /// </summary>
+    private static CardDefinition[] AppendCard(CardDefinition[] cards, CardDefinition card)
+    {
+        CardDefinition[] source = cards ?? Array.Empty<CardDefinition>();
+        CardDefinition[] result = new CardDefinition[source.Length + 1];
+
+        for (int i = 0; i < source.Length; i++)
+        {
+            result[i] = source[i];
+        }
+
+        result[result.Length - 1] = card;
+        return result;
+    }
+
+    /// <summary>
+    /// Returns a new card array without the card at the requested index.
+    /// </summary>
+    private static CardDefinition[] RemoveCardAt(CardDefinition[] cards, int removeIndex)
+    {
+        CardDefinition[] result = new CardDefinition[cards.Length - 1];
+        int resultIndex = 0;
+
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (i == removeIndex)
+            {
+                continue;
+            }
+
+            result[resultIndex] = cards[i];
+            resultIndex++;
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Copies a card array so the completed haul remains separate from active Catch Chain state.
+    /// </summary>
+    private static CardDefinition[] CopyCards(CardDefinition[] cards)
+    {
+        CardDefinition[] source = cards ?? Array.Empty<CardDefinition>();
+        CardDefinition[] result = new CardDefinition[source.Length];
+
+        for (int i = 0; i < source.Length; i++)
+        {
+            result[i] = source[i];
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Calculates the total base value of all non-null cards in a collection.
+    /// </summary>
+    private static int CalculateCardValue(CardDefinition[] cards)
+    {
+        int totalValue = 0;
+
+        if (cards == null)
+        {
+            return totalValue;
+        }
+
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                totalValue += cards[i].Value;
+            }
+        }
+
+        return totalValue;
+    }
+
+    /// <summary>
+    /// Clears state that only exists while a fishing run is active.
+    /// </summary>
+    private void EndActiveRun()
+    {
+        runActive = false;
+        currentEncounter = null;
+        currentEncounterState = EncounterState.None;
+        hookedEncounter = null;
+        hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+        activeCatchEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
+        catchChain = Array.Empty<CardDefinition>();
+        techniqueHand = Array.Empty<CardDefinition>();
+        techniqueDrawPile = Array.Empty<CardDefinition>();
+        techniqueDiscardPile = Array.Empty<CardDefinition>();
+        RefreshViews();
     }
 
     /// <summary>
@@ -477,6 +804,73 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
+    /// Builds the Descend log that confirms catch, depth, load, and next encounter state.
+    /// </summary>
+    private string BuildDescendSummary(CardDefinition caughtCard)
+    {
+        StringBuilder summary = new StringBuilder();
+        summary.AppendLine("Descend resolved.");
+        summary.Append("Caught: ");
+        summary.Append(caughtCard == null ? "none" : caughtCard.DisplayName);
+        summary.AppendLine();
+        summary.AppendLine($"Depth: {currentDepth}");
+        summary.AppendLine($"Line Load: {CurrentLineLoad} / {lineCapacity}");
+        summary.AppendLine($"Catch Chain: {catchChain.Length} cards");
+        summary.AppendLine($"Active Catch Effects: {activeCatchEffectRecords.Length}");
+        summary.AppendLine($"Technique Hand: {techniqueHand.Length} cards");
+        summary.Append("Next Encounter: ");
+        summary.Append(currentEncounter == null ? "none" : currentEncounter.DisplayName);
+        summary.AppendLine();
+        summary.Append("Encounter State: ");
+        summary.Append(currentEncounterState);
+        return summary.ToString();
+    }
+
+    /// <summary>
+    /// Builds a compact Release log showing the lost card, value, load change, and unchanged encounter state.
+    /// </summary>
+    private string BuildReleaseSummary(CardDefinition releasedCard, int previousLineLoad)
+    {
+        string encounterName = currentEncounter == null ? "none" : currentEncounter.DisplayName;
+
+        return $"Release resolved | Released: {releasedCard.DisplayName} | Lost Value: {releasedCard.Value} | "
+            + $"Line Load: {previousLineLoad} -> {CurrentLineLoad} / {lineCapacity} | Depth: {currentDepth} | "
+            + $"Current Encounter: {encounterName} ({currentEncounterState})";
+    }
+
+    /// <summary>
+    /// Builds the end-of-run summary from the stored Surface result.
+    /// </summary>
+    private string BuildSurfaceSummary()
+    {
+        string loadStatus = lastSurfaceWasOverloaded ? "Overloaded" : "Within Capacity";
+        StringBuilder summary = new StringBuilder();
+
+        // Keep the first line complete because Unity shows it even when the Console entry is collapsed.
+        summary.AppendLine($"Surface resolved | Haul: {lastHaul.Length} cards | Value: {lastHaulValue} | "
+            + $"Load: {lastSurfaceLineLoad} / {lineCapacity} | Depth: {lastSurfaceDepth} | {loadStatus}");
+        summary.Append("Successful Haul: ");
+
+        if (lastHaul.Length == 0)
+        {
+            summary.Append("none");
+            return summary.ToString();
+        }
+
+        for (int i = 0; i < lastHaul.Length; i++)
+        {
+            if (i > 0)
+            {
+                summary.Append(", ");
+            }
+
+            summary.Append(lastHaul[i] == null ? "unknown card" : lastHaul[i].DisplayName);
+        }
+
+        return summary.ToString();
+    }
+
+    /// <summary>
     /// Checks whether a card type belongs to the encounter-facing side of the game.
     /// </summary>
     private static bool IsEncounterCard(CardDefinition card)
@@ -505,6 +899,35 @@ public enum HookedEffectSource
 {
     HookedEncounter,
     TechniqueCard
+}
+
+[Serializable]
+public sealed class ActiveCatchEffectRecord
+{
+    [SerializeField] private CardDefinition sourceCard;
+    [SerializeField] private CardEffectDefinition effect;
+    [SerializeField] private CardEffectTrigger activeTrigger;
+
+    public CardDefinition SourceCard => sourceCard;
+    public CardEffectDefinition Effect => effect;
+    public CardEffectTrigger ActiveTrigger => activeTrigger;
+
+    /// <summary>
+    /// Creates an empty record for Unity serialization.
+    /// </summary>
+    public ActiveCatchEffectRecord()
+    {
+    }
+
+    /// <summary>
+    /// Creates a runtime record for an effect attached to the current Catch Chain.
+    /// </summary>
+    public ActiveCatchEffectRecord(CardDefinition sourceCard, CardEffectDefinition effect, CardEffectTrigger activeTrigger)
+    {
+        this.sourceCard = sourceCard;
+        this.effect = effect;
+        this.activeTrigger = activeTrigger;
+    }
 }
 
 [Serializable]
