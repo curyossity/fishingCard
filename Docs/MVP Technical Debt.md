@@ -115,7 +115,7 @@ Introduce effect resolution services or handlers that execute each `CardEffectTy
 ## Active Catch Effect Tracking
 
 Current approach:
-Caught cards add `WhenCaught` and `WhileAttached` effects to an Inspector-visible active effect list. Releasing a catch rebuilds that list from the cards that remain attached, but those effects do not yet mutate game state.
+`CatchChainRuntime` adds `WhenCaught` and `WhileAttached` effects to an Inspector-visible active effect list. Releasing a catch rebuilds that list from the cards that remain attached, but those effects do not yet mutate game state.
 
 Why it is acceptable for MVP:
 It confirms that Descend can connect caught cards to the effect system before Release, Surface, overload, and full effect targets exist.
@@ -166,7 +166,7 @@ Build a biome encounter system with weighted entries, depth tiers, chain support
 ## Array-Backed Runtime State
 
 Current approach:
-Runtime piles, hand, Catch Chain, and tracked effects are stored as arrays.
+`TechniqueDeckRuntime`, `CatchChainRuntime`, and effect-record collections store their Inspector-visible state as arrays.
 
 Why it is acceptable for MVP:
 Arrays are easy to serialize and inspect in Unity while runtime state is small.
@@ -178,7 +178,7 @@ Revisit trigger:
 Deck, hand, discard, Catch Chain, or effect state starts changing often during normal gameplay.
 
 Likely future action:
-Use `List<T>` internally or create dedicated runtime classes for deck, hand, discard pile, Catch Chain, and effect state while preserving useful Inspector/debug visibility.
+Use `List<T>` internally where state changes frequently, while preserving read-only snapshots or serialized debug views for useful Inspector visibility.
 
 ## Surface Overload Resolution
 
