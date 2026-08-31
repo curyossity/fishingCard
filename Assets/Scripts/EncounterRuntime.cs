@@ -145,9 +145,9 @@ public sealed class EncounterRuntime
     }
 
     /// <summary>
-    /// Applies encounter and Hooked state for a newly selected card.
+    /// Applies encounter and Hooked state for an explicitly supplied encounter card.
     /// </summary>
-    private void SetCurrentEncounter(CardDefinition encounter)
+    public void SetCurrentEncounter(CardDefinition encounter)
     {
         currentEncounter = encounter;
 

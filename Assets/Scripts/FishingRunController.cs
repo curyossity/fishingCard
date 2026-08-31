@@ -31,6 +31,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private int debugTechniqueHandIndex;
     [SerializeField] private int debugCatchChainIndex;
     [SerializeField] private CardDefinition debugCatchCard;
+    [SerializeField] private CatchChainScenarioDefinition debugScenario;
 
     [Header("Run State")]
     [SerializeField] private bool runActive;
@@ -242,6 +243,46 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
+    /// Replaces the current run setup with a repeatable Catch Chain decision scenario.
+    /// </summary>
+    public bool LoadDebugScenario(CatchChainScenarioDefinition scenario)
+    {
+        if (!Application.isPlaying)
+        {
+            Debug.LogWarning("Enter Play Mode before loading a debug scenario.", this);
+            return false;
+        }
+
+        if (scenario == null)
+        {
+            Debug.LogWarning("Assign a debug scenario before loading it.", this);
+            return false;
+        }
+
+        if (!runActive)
+        {
+            StartRun();
+        }
+
+        lineCapacity = Mathf.Max(0, scenario.LineCapacity);
+        currentDepth = Mathf.Max(0, scenario.Depth);
+        catchChainRuntime.Reset();
+
+        CardDefinition[] scenarioCatches = scenario.StartingCatches ?? Array.Empty<CardDefinition>();
+
+        for (int i = 0; i < scenarioCatches.Length; i++)
+        {
+            catchChainRuntime.Add(scenarioCatches[i], effectResolver);
+        }
+
+        encounterRuntime.SetCurrentEncounter(scenario.CurrentEncounter);
+        lineLoadRiskRuntime.Reset();
+        RefreshViews();
+        Debug.Log(BuildDebugScenarioSummary(scenario), this);
+        return true;
+    }
+
+    /// <summary>
     /// Inspector context-menu wrapper for testing the Descend action.
     /// </summary>
     [ContextMenu("Run/Descend")]
@@ -298,6 +339,15 @@ public sealed class FishingRunController : MonoBehaviour
         catchChainRuntime.Add(debugCatchCard, effectResolver);
         RefreshViews();
         Debug.Log($"Debug catch added: {debugCatchCard.DisplayName}. Line Load: {CurrentLineLoad} / {lineCapacity}.", this);
+    }
+
+    /// <summary>
+    /// Inspector context-menu wrapper for loading the configured decision scenario.
+    /// </summary>
+    [ContextMenu("Run/Load Debug Scenario")]
+    private void LoadConfiguredDebugScenario()
+    {
+        LoadDebugScenario(debugScenario);
     }
 
     /// <summary>
@@ -469,6 +519,21 @@ public sealed class FishingRunController : MonoBehaviour
         summary.Append("Encounter State: ");
         summary.Append(encounterRuntime.CurrentState);
         return summary.ToString();
+    }
+
+    /// <summary>
+    /// Builds a Console-friendly summary of a loaded decision scenario.
+    /// </summary>
+    private string BuildDebugScenarioSummary(CatchChainScenarioDefinition scenario)
+    {
+        string encounterName = scenario.CurrentEncounter == null
+            ? "none"
+            : scenario.CurrentEncounter.DisplayName;
+
+        return $"Debug scenario loaded: {scenario.ScenarioName}\n"
+            + $"Observe: {scenario.DecisionToObserve}\n"
+            + $"Depth: {currentDepth} | Line Load: {CurrentLineLoad} / {lineCapacity} | "
+            + $"Catches: {catchChainRuntime.Catches.Length} | Current Encounter: {encounterName}";
     }
 
     /// <summary>

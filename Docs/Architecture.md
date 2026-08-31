@@ -74,6 +74,7 @@ Owns:
 - Coordination of Descend, Release, and Surface
 - Technique-card entry point for the Hooked reaction window
 - Inspector configuration and debug action wrappers
+- Loading repeatable Catch Chain decision scenarios during Play Mode
 - Optional view refreshes and action summaries
 
 Delegates to:
@@ -119,6 +120,7 @@ Owns:
 - Encountered, Hooked, Caught, and None state transitions
 - Current Hooked encounter
 - Hooked effect records and Technique-effect relevance
+- Applying an explicitly supplied encounter through the normal state transition rules
 
 Does not own:
 - Catch Chain commitment after a Hooked card is taken
@@ -293,6 +295,23 @@ Does not own:
 - Real gameplay loop behavior
 - Production UI behavior
 
+### `CatchChainScenarioDefinition`
+
+Role:
+Data-only setup for a repeatable Catch Chain decision playtest.
+
+Owns:
+- Scenario name and decision to observe
+- Test Line Capacity and depth
+- Ordered starting catch definitions
+- Explicit current encounter
+
+Does not own:
+- Runtime catch instances
+- Effect resolution
+- Player-facing progression or encounter content
+- Whether the tested decision is fun or balanced
+
 ## Runtime Flow
 
 Current run startup flow:
@@ -339,6 +358,15 @@ Current Surface flow:
 5. An unresolved Hooked encounter is excluded because it has not entered the Catch Chain.
 6. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
 7. Last-haul fields remain Inspector-visible and a Console summary reports the result and strain outcome.
+
+Current debug scenario flow:
+
+1. `FishingRunController.LoadDebugScenario(...)` receives a scenario asset during Play Mode.
+2. The controller applies the scenario's capacity and depth and resets the current Catch Chain.
+3. `CatchChainRuntime` creates instances for the ordered starting catches and resolves their interactions.
+4. `EncounterRuntime` applies the scenario encounter through the same Hooked/Encountered state rules used by normal reveals.
+5. Views refresh and the Console reports the decision the scenario is intended to expose.
+6. Normal Descend, Release, Surface, overload, and effect behavior continue from that state.
 
 Future core loop direction:
 

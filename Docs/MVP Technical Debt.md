@@ -230,3 +230,20 @@ The Catch Chain receives final visual design, interaction, animation, runtime ca
 
 Likely future action:
 Move the entry layout into an authored prefab or UI document, bind it to a catch view model, and reuse entries through pooling or keyed updates.
+
+## Inspector-Loaded Decision Scenarios
+
+Current approach:
+`CatchChainScenarioDefinition` assets preload exact Catch Chains, capacity, depth, and a current encounter through a `FishingRunController` context-menu action.
+
+Why it is acceptable for MVP:
+Repeatable fixtures make important Release and overload decisions quick to compare without waiting for a random run to produce the required state.
+
+Production concern:
+The fixtures bypass normal encounter history and are controlled through the Unity Inspector rather than player-facing game flow.
+
+Revisit trigger:
+Automated balance tests, external playtest builds, or reproducible bug reports need scenario setup without the Unity Editor.
+
+Likely future action:
+Move reusable fixtures into test utilities or a development-only scenario runner and keep them out of production builds.

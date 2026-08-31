@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ea5574d9364c19a5cdef634667d53f, type: 3}
+  m_Name: Dangerously Heavy Prize
+  m_EditorClassIdentifier: Assembly-CSharp::CatchChainScenarioDefinition
+  scenarioName: Dangerously Heavy Prize
+  decisionToObserve: Harbor Leviathan contributes 18 value but pushes this valuable
+    Catch Chain one point over capacity. Compare its reward with the strain it creates.
+  lineCapacity: 10
+  depth: 7
+  startingCatches:
+  - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
+  - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
+  - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
+  currentEncounter: {fileID: 11400000, guid: 18d3ad07711f49909de0ac7dcc6d0e7d, type: 2}

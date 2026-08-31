@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Golden Mackerel
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: creature_golden_mackerel
+  displayName: Golden Mackerel
+  cardType: 3
+  rarity: 2
+  tags:
+  - Creature
+  - Fish
+  - Predator
+  - Valuable
+  artwork: {fileID: 0}
+  rulesText: A rare and valuable predator. Its excellent haul value is difficult to
+    justify when the line is already strained.
+  weight: 4
+  value: 11
+  biomeIds:
+  - Coastal
+  minimumDepth: 3
+  maximumDepth: 7
+  effects: []
