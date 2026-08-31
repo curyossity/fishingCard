@@ -10,12 +10,13 @@ public enum HookedEffectSource
 [Serializable]
 public sealed class ActiveCatchEffectRecord
 {
-    [SerializeField] private CardDefinition sourceCard;
+    [SerializeField] private CardInstance sourceInstance;
     [SerializeField] private CardEffectDefinition effect;
     [SerializeField] private CardEffectTrigger activeTrigger;
     [SerializeField] private int sourceCatchIndex;
 
-    public CardDefinition SourceCard => sourceCard;
+    public CardInstance SourceInstance => sourceInstance;
+    public CardDefinition SourceCard => sourceInstance?.Definition;
     public CardEffectDefinition Effect => effect;
     public CardEffectTrigger ActiveTrigger => activeTrigger;
     public int SourceCatchIndex => sourceCatchIndex;
@@ -28,15 +29,15 @@ public sealed class ActiveCatchEffectRecord
     }
 
     /// <summary>
-    /// Creates a runtime record for an effect attached to the current Catch Chain.
+    /// Creates a runtime record for an effect and the exact catch copy that provides it.
     /// </summary>
     public ActiveCatchEffectRecord(
-        CardDefinition sourceCard,
+        CardInstance sourceInstance,
         CardEffectDefinition effect,
         CardEffectTrigger activeTrigger,
         int sourceCatchIndex)
     {
-        this.sourceCard = sourceCard;
+        this.sourceInstance = sourceInstance;
         this.effect = effect;
         this.activeTrigger = activeTrigger;
         this.sourceCatchIndex = sourceCatchIndex;

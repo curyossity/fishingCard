@@ -10,6 +10,7 @@ public sealed class CatchChainView : MonoBehaviour
     private static readonly Color CardColor = new Color(0.09f, 0.12f, 0.13f, 1f);
     private static readonly Color NegativeCardColor = new Color(0.19f, 0.075f, 0.065f, 1f);
     private static readonly Color AccentColor = new Color(0.20f, 0.70f, 0.72f, 1f);
+    private static readonly Color ApproachingColor = new Color(0.95f, 0.65f, 0.24f, 1f);
     private static readonly Color NegativeColor = new Color(0.94f, 0.34f, 0.28f, 1f);
     private static readonly Color MutedTextColor = new Color(0.66f, 0.72f, 0.73f, 1f);
 
@@ -17,6 +18,9 @@ public sealed class CatchChainView : MonoBehaviour
 
     private RectTransform panelRoot;
     private RectTransform contentRoot;
+    private RectTransform lineLoadFill;
+    private Text lineLoadText;
+    private Text lineLoadStatusText;
     private Text emptyStateText;
     private Font uiFont;
 
@@ -31,12 +35,17 @@ public sealed class CatchChainView : MonoBehaviour
     /// <summary>
     /// Rebuilds the visible Catch Chain in acquisition order from current runtime state.
     /// </summary>
-    public void Refresh(CardDefinition[] catches, ActiveCatchEffectRecord[] activeEffects)
+    public void Refresh(
+        CardInstance[] catches,
+        ActiveCatchEffectRecord[] activeEffects,
+        int currentLineLoad,
+        int lineCapacity)
     {
         EnsureLayout();
         ClearEntries();
+        RefreshLineLoad(currentLineLoad, lineCapacity);
 
-        CardDefinition[] safeCatches = catches ?? Array.Empty<CardDefinition>();
+        CardInstance[] safeCatches = catches ?? Array.Empty<CardInstance>();
         ActiveCatchEffectRecord[] safeEffects = activeEffects ?? Array.Empty<ActiveCatchEffectRecord>();
         emptyStateText.gameObject.SetActive(safeCatches.Length == 0);
 
@@ -67,12 +76,43 @@ public sealed class CatchChainView : MonoBehaviour
         AddImage(panelObject, PanelColor);
 
         Text titleText = CreateText("Title", panelRoot, 20, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
-        SetAnchoredRect(titleText.rectTransform, new Vector2(0f, 1f), Vector2.one, 16f, -46f, -16f, -8f);
+        SetAnchoredRect(titleText.rectTransform, new Vector2(0f, 1f), Vector2.one, 16f, -40f, -16f, -8f);
         titleText.text = "CATCH CHAIN";
+
+        lineLoadText = CreateText(
+            "Line Load",
+            panelRoot,
+            16,
+            FontStyle.Bold,
+            TextAnchor.MiddleLeft,
+            Color.white);
+        SetAnchoredRect(lineLoadText.rectTransform, new Vector2(0f, 1f), new Vector2(0.62f, 1f), 16f, -70f, 0f, -42f);
+
+        lineLoadStatusText = CreateText(
+            "Line Load Status",
+            panelRoot,
+            12,
+            FontStyle.Bold,
+            TextAnchor.MiddleRight,
+            AccentColor);
+        SetAnchoredRect(lineLoadStatusText.rectTransform, new Vector2(0.5f, 1f), Vector2.one, 0f, -70f, -16f, -42f);
+
+        GameObject loadBarObject = CreateUiObject("Line Load Bar", panelRoot);
+        RectTransform loadBarRect = loadBarObject.GetComponent<RectTransform>();
+        SetAnchoredRect(loadBarRect, new Vector2(0f, 1f), Vector2.one, 16f, -94f, -16f, -80f);
+        AddImage(loadBarObject, new Color(0.16f, 0.20f, 0.21f, 1f));
+
+        GameObject loadFillObject = CreateUiObject("Fill", loadBarRect);
+        lineLoadFill = loadFillObject.GetComponent<RectTransform>();
+        lineLoadFill.anchorMin = Vector2.zero;
+        lineLoadFill.anchorMax = new Vector2(0f, 1f);
+        lineLoadFill.offsetMin = Vector2.zero;
+        lineLoadFill.offsetMax = Vector2.zero;
+        AddImage(loadFillObject, AccentColor);
 
         GameObject viewportObject = CreateUiObject("Viewport", panelRoot);
         RectTransform viewport = viewportObject.GetComponent<RectTransform>();
-        SetAnchoredRect(viewport, Vector2.zero, Vector2.one, 12f, 12f, -12f, -52f);
+        SetAnchoredRect(viewport, Vector2.zero, Vector2.one, 12f, 12f, -12f, -108f);
         Image viewportImage = AddImage(viewportObject, new Color(0f, 0f, 0f, 0.01f));
         viewportImage.raycastTarget = true;
         Mask mask = viewportObject.AddComponent<Mask>();
@@ -117,13 +157,46 @@ public sealed class CatchChainView : MonoBehaviour
     }
 
     /// <summary>
+    /// Updates Load/Capacity text, fill amount, and safe, approaching, or overloaded treatment.
+    /// </summary>
+    private void RefreshLineLoad(int currentLoad, int capacity)
+    {
+        int safeLoad = Mathf.Max(0, currentLoad);
+        int safeCapacity = Mathf.Max(0, capacity);
+        float loadRatio = safeCapacity > 0 ? (float)safeLoad / safeCapacity : (safeLoad > 0 ? 1f : 0f);
+        bool isOverloaded = safeLoad > safeCapacity;
+        bool isApproaching = !isOverloaded && safeCapacity > 0 && loadRatio >= 0.75f;
+
+        Color stateColor = AccentColor;
+        string status = "STABLE";
+
+        if (isOverloaded)
+        {
+            stateColor = NegativeColor;
+            status = $"OVERLOADED +{safeLoad - safeCapacity}";
+        }
+        else if (isApproaching)
+        {
+            stateColor = ApproachingColor;
+            status = "APPROACHING LIMIT";
+        }
+
+        lineLoadText.text = $"LINE LOAD  {safeLoad} / {safeCapacity}";
+        lineLoadStatusText.text = status;
+        lineLoadStatusText.color = stateColor;
+        lineLoadFill.anchorMax = new Vector2(Mathf.Clamp01(loadRatio), 1f);
+        lineLoadFill.GetComponent<Image>().color = stateColor;
+    }
+
+    /// <summary>
     /// Creates one compact catch card with order, stats, and active effect information.
     /// </summary>
     private void CreateCatchEntry(
-        CardDefinition card,
+        CardInstance caughtInstance,
         ActiveCatchEffectRecord[] activeEffects,
         int catchIndex)
     {
+        CardDefinition card = caughtInstance?.Definition;
         bool hasNegativeEffect = HasNegativeEffect(activeEffects, catchIndex);
         GameObject entryObject = CreateUiObject($"Catch {catchIndex + 1}", contentRoot);
         entryObjects.Add(entryObject);
@@ -156,9 +229,10 @@ public sealed class CatchChainView : MonoBehaviour
         Text statsText = CreateText("Stats", entryObject.transform, 14, FontStyle.Bold, TextAnchor.UpperLeft, Color.white);
         SetAnchoredRect(statsText.rectTransform, Vector2.zero, Vector2.one, 50f, 56f, -12f, -34f);
         statsText.supportRichText = true;
-        statsText.text = card == null
+        statsText.text = caughtInstance == null
             ? "WEIGHT --     VALUE --"
-            : $"<color=#F2A65A>WEIGHT {card.Weight}</color>     <color=#72D39B>VALUE {card.Value}</color>";
+            : $"<color=#F2A65A>WEIGHT {BuildModifiedStat(caughtInstance.CurrentWeight, caughtInstance.WeightModifier)}</color>     "
+                + $"<color=#72D39B>VALUE {BuildModifiedStat(caughtInstance.CurrentValue, caughtInstance.ValueModifier)}</color>";
 
         Text effectsText = CreateText(
             "Effects",
@@ -170,6 +244,20 @@ public sealed class CatchChainView : MonoBehaviour
         SetAnchoredRect(effectsText.rectTransform, Vector2.zero, Vector2.one, 50f, 8f, -12f, -58f);
         effectsText.supportRichText = true;
         effectsText.text = BuildEffectsText(activeEffects, catchIndex);
+    }
+
+    /// <summary>
+    /// Formats a resolved stat and makes any interaction modifier explicit.
+    /// </summary>
+    private static string BuildModifiedStat(int currentValue, int modifier)
+    {
+        if (modifier == 0)
+        {
+            return currentValue.ToString();
+        }
+
+        string sign = modifier > 0 ? "+" : string.Empty;
+        return $"{currentValue} ({sign}{modifier})";
     }
 
     /// <summary>

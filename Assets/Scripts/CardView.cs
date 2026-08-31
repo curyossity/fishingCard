@@ -19,6 +19,7 @@ public sealed class CardView : MonoBehaviour
     public CardDefinition CardDefinition => cardDefinition;
 
     private EncounterState encounterState = EncounterState.None;
+    private bool informationHidden;
 
     /// <summary>
     /// Refreshes the card UI when the view first becomes active.
@@ -43,6 +44,7 @@ public sealed class CardView : MonoBehaviour
     {
         cardDefinition = newCardDefinition;
         encounterState = EncounterState.None;
+        informationHidden = false;
         Refresh();
     }
 
@@ -53,6 +55,21 @@ public sealed class CardView : MonoBehaviour
     {
         cardDefinition = newCardDefinition;
         encounterState = newEncounterState;
+        informationHidden = false;
+        Refresh();
+    }
+
+    /// <summary>
+    /// Assigns encounter data and optionally conceals its gameplay details for an active catch effect.
+    /// </summary>
+    public void SetCard(
+        CardDefinition newCardDefinition,
+        EncounterState newEncounterState,
+        bool hideInformation)
+    {
+        cardDefinition = newCardDefinition;
+        encounterState = newEncounterState;
+        informationHidden = hideInformation;
         Refresh();
     }
 
@@ -71,9 +88,9 @@ public sealed class CardView : MonoBehaviour
         SetText(cardTypeText, cardDefinition.CardType.ToString());
         SetText(rarityText, cardDefinition.Rarity.ToString());
         SetText(encounterStateText, BuildEncounterStateText(encounterState));
-        SetText(statsText, BuildStatsText(cardDefinition));
-        SetText(tagsText, BuildTagsText(cardDefinition));
-        SetText(rulesText, cardDefinition.RulesText);
+        SetText(statsText, informationHidden ? "Weight ? / Value ?" : BuildStatsText(cardDefinition));
+        SetText(tagsText, informationHidden ? "Unknown" : BuildTagsText(cardDefinition));
+        SetText(rulesText, informationHidden ? "Details hidden by an attached catch effect." : cardDefinition.RulesText);
 
         if (artworkImage != null)
         {

@@ -4,14 +4,14 @@ using UnityEngine;
 [Serializable]
 public sealed class FishingRunResult
 {
-    [SerializeField] private CardDefinition[] haul = Array.Empty<CardDefinition>();
+    [SerializeField] private CardInstance[] haul = Array.Empty<CardInstance>();
     [SerializeField] private int haulValue;
     [SerializeField] private int surfaceDepth;
     [SerializeField] private int surfaceLineLoad;
     [SerializeField] private int lineCapacity;
     [SerializeField] private bool wasOverloaded;
 
-    public CardDefinition[] Haul => haul;
+    public CardInstance[] Haul => haul;
     public int HaulValue => haulValue;
     public int SurfaceDepth => surfaceDepth;
     public int SurfaceLineLoad => surfaceLineLoad;
@@ -21,7 +21,7 @@ public sealed class FishingRunResult
     /// <summary>
     /// Records the attached catches and run values present when Surface begins.
     /// </summary>
-    public void Record(CardDefinition[] successfulHaul, int depth, int load, int capacity)
+    public void Record(CardInstance[] successfulHaul, int depth, int load, int capacity)
     {
         haul = CopyCards(successfulHaul);
         haulValue = CalculateValue(haul);
@@ -36,7 +36,7 @@ public sealed class FishingRunResult
     /// </summary>
     public void Reset()
     {
-        haul = Array.Empty<CardDefinition>();
+        haul = Array.Empty<CardInstance>();
         haulValue = 0;
         surfaceDepth = 0;
         surfaceLineLoad = 0;
@@ -45,25 +45,25 @@ public sealed class FishingRunResult
     }
 
     /// <summary>
-    /// Copies card references into a separate result array.
+    /// Copies catch instances into a separate result snapshot.
     /// </summary>
-    private static CardDefinition[] CopyCards(CardDefinition[] cards)
+    private static CardInstance[] CopyCards(CardInstance[] cards)
     {
-        CardDefinition[] source = cards ?? Array.Empty<CardDefinition>();
-        CardDefinition[] result = new CardDefinition[source.Length];
+        CardInstance[] source = cards ?? Array.Empty<CardInstance>();
+        CardInstance[] result = new CardInstance[source.Length];
 
         for (int i = 0; i < source.Length; i++)
         {
-            result[i] = source[i];
+            result[i] = source[i]?.CreateSnapshot();
         }
 
         return result;
     }
 
     /// <summary>
-    /// Calculates the total base value of all non-null haul cards.
+    /// Calculates the total resolved value of all non-null haul catches.
     /// </summary>
-    private static int CalculateValue(CardDefinition[] cards)
+    private static int CalculateValue(CardInstance[] cards)
     {
         int totalValue = 0;
 
@@ -71,7 +71,7 @@ public sealed class FishingRunResult
         {
             if (cards[i] != null)
             {
-                totalValue += cards[i].Value;
+                totalValue += cards[i].CurrentValue;
             }
         }
 

@@ -5,10 +5,11 @@ using UnityEngine;
 [Serializable]
 public sealed class CatchChainRuntime
 {
-    [SerializeField] private CardDefinition[] cards = Array.Empty<CardDefinition>();
+    [SerializeField] private CardInstance[] catches = Array.Empty<CardInstance>();
     [SerializeField] private ActiveCatchEffectRecord[] activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
+    [SerializeField] private int nextInstanceId = 1;
 
-    public CardDefinition[] Cards => cards;
+    public CardInstance[] Catches => catches;
     public ActiveCatchEffectRecord[] ActiveEffectRecords => activeEffectRecords;
 
     /// <summary>
@@ -20,11 +21,11 @@ public sealed class CatchChainRuntime
         {
             int load = 0;
 
-            for (int i = 0; i < cards.Length; i++)
+            for (int i = 0; i < catches.Length; i++)
             {
-                if (cards[i] != null)
+                if (catches[i] != null)
                 {
-                    load += cards[i].Weight;
+                    load += catches[i].CurrentWeight;
                 }
             }
 
@@ -35,15 +36,18 @@ public sealed class CatchChainRuntime
     /// <summary>
     /// Adds a committed encounter and tracks its catch-related effects.
     /// </summary>
-    public void Add(CardDefinition caughtCard)
+    public void Add(CardDefinition caughtCard, EffectResolver effectResolver)
     {
         if (caughtCard == null)
         {
             return;
         }
 
-        cards = AppendCard(cards, caughtCard);
-        AddCatchEffects(caughtCard, cards.Length - 1);
+        CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard);
+        nextInstanceId++;
+        catches = AppendCatch(catches, caughtInstance);
+        RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
     }
 
     /// <summary>
@@ -51,43 +55,45 @@ public sealed class CatchChainRuntime
     /// </summary>
     public bool TryRelease(
         int catchIndex,
-        out CardDefinition releasedCard,
+        EffectResolver effectResolver,
+        out CardInstance releasedCatch,
         out int previousLineLoad,
         out string validationMessage)
     {
-        releasedCard = null;
+        releasedCatch = null;
         previousLineLoad = CurrentLineLoad;
         validationMessage = string.Empty;
 
-        if (catchIndex < 0 || catchIndex >= cards.Length)
+        if (catchIndex < 0 || catchIndex >= catches.Length)
         {
             validationMessage = $"Catch Chain index is out of range: {catchIndex}.";
             return false;
         }
 
-        releasedCard = cards[catchIndex];
+        releasedCatch = catches[catchIndex];
 
-        if (releasedCard == null)
+        if (releasedCatch == null)
         {
             validationMessage = $"Catch Chain slot {catchIndex} is empty.";
             return false;
         }
 
-        cards = RemoveCardAt(cards, catchIndex);
+        catches = RemoveCatchAt(catches, catchIndex);
         RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         return true;
     }
 
     /// <summary>
     /// Returns a separate snapshot of all catches currently attached to the line.
     /// </summary>
-    public CardDefinition[] CreateSnapshot()
+    public CardInstance[] CreateSnapshot()
     {
-        CardDefinition[] result = new CardDefinition[cards.Length];
+        CardInstance[] result = new CardInstance[catches.Length];
 
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < catches.Length; i++)
         {
-            result[i] = cards[i];
+            result[i] = catches[i]?.CreateSnapshot();
         }
 
         return result;
@@ -98,17 +104,18 @@ public sealed class CatchChainRuntime
     /// </summary>
     public void Reset()
     {
-        cards = Array.Empty<CardDefinition>();
+        catches = Array.Empty<CardInstance>();
         activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
+        nextInstanceId = 1;
     }
 
     /// <summary>
     /// Tracks effects that become relevant when a card enters the Catch Chain.
     /// </summary>
-    private void AddCatchEffects(CardDefinition caughtCard, int catchIndex)
+    private void AddCatchEffects(CardInstance caughtInstance, int catchIndex)
     {
-        AddActiveEffects(caughtCard, CardEffectTrigger.WhenCaught, catchIndex);
-        AddActiveEffects(caughtCard, CardEffectTrigger.WhileAttached, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.WhenCaught, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
     }
 
     /// <summary>
@@ -119,17 +126,19 @@ public sealed class CatchChainRuntime
         activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
 
         // Rebuilding also preserves the correct number of records for repeated card definitions.
-        for (int i = 0; i < cards.Length; i++)
+        for (int i = 0; i < catches.Length; i++)
         {
-            AddCatchEffects(cards[i], i);
+            AddCatchEffects(catches[i], i);
         }
     }
 
     /// <summary>
     /// Adds catch effects matching one active trigger.
     /// </summary>
-    private void AddActiveEffects(CardDefinition sourceCard, CardEffectTrigger trigger, int catchIndex)
+    private void AddActiveEffects(CardInstance sourceInstance, CardEffectTrigger trigger, int catchIndex)
     {
+        CardDefinition sourceCard = sourceInstance?.Definition;
+
         if (sourceCard == null || sourceCard.Effects == null)
         {
             return;
@@ -146,34 +155,34 @@ public sealed class CatchChainRuntime
                 continue;
             }
 
-            records.Add(new ActiveCatchEffectRecord(sourceCard, effect, trigger, catchIndex));
+            records.Add(new ActiveCatchEffectRecord(sourceInstance, effect, trigger, catchIndex));
         }
 
         activeEffectRecords = records.ToArray();
     }
 
     /// <summary>
-    /// Returns a new card array with one card appended.
+    /// Returns a new catch-instance array with one catch appended.
     /// </summary>
-    private static CardDefinition[] AppendCard(CardDefinition[] source, CardDefinition card)
+    private static CardInstance[] AppendCatch(CardInstance[] source, CardInstance caughtInstance)
     {
-        CardDefinition[] result = new CardDefinition[source.Length + 1];
+        CardInstance[] result = new CardInstance[source.Length + 1];
 
         for (int i = 0; i < source.Length; i++)
         {
             result[i] = source[i];
         }
 
-        result[result.Length - 1] = card;
+        result[result.Length - 1] = caughtInstance;
         return result;
     }
 
     /// <summary>
-    /// Returns a new card array without the card at the requested index.
+    /// Returns a new catch-instance array without the catch at the requested index.
     /// </summary>
-    private static CardDefinition[] RemoveCardAt(CardDefinition[] source, int removeIndex)
+    private static CardInstance[] RemoveCatchAt(CardInstance[] source, int removeIndex)
     {
-        CardDefinition[] result = new CardDefinition[source.Length - 1];
+        CardInstance[] result = new CardInstance[source.Length - 1];
         int resultIndex = 0;
 
         for (int i = 0; i < source.Length; i++)

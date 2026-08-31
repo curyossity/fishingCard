@@ -895,6 +895,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
   - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
   - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
+  - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
   currentEncounterView: {fileID: 0}
   techniqueHandViews: []
   catchChainView: {fileID: 1055148701}

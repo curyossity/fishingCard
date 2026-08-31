@@ -10,35 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: squid
+  m_Name: Clinging Crab
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: creature_squid
-  displayName: Squid
+  uniqueId: creature_clinging_crab
+  displayName: Clinging Crab
   cardType: 3
   rarity: 1
   tags:
-  - Cephalopod
-  - Predator
-  - Night
-  - Slippery
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Ink clouds the water. While attached, the next encounter can have hidden
-    information.
-  weight: 2
-  value: 3
+  - Creature
+  - Crustacean
+  - Clinging
+  artwork: {fileID: 0}
+  rulesText: While attached, clings to the previous catch and adds 2 to that catch's
+    weight.
+  weight: 1
+  value: 4
   biomeIds:
   - Coastal
-  minimumDepth: 0
-  maximumDepth: 5
+  minimumDepth: 1
+  maximumDepth: 6
   effects:
-  - effectId: ink_cloud
-    effectType: 5
+  - effectId: cling_to_previous_catch
+    effectType: 0
     trigger: 2
-    target: 3
+    target: 5
     effectTone: 2
-    amount: 1
+    amount: 2
     requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Future encounter details can be hidden while Squid is attached.
+    reminderText: The previous catch gains 2 weight while Clinging Crab is attached.

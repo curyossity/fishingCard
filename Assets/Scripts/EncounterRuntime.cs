@@ -9,18 +9,35 @@ public sealed class EncounterRuntime
     [SerializeField] private EncounterState currentState;
     [SerializeField] private CardDefinition hookedEncounter;
     [SerializeField] private HookedEffectRecord[] hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+    [SerializeField] private int lastSelectedEncounterWeight;
+    [SerializeField] private int lastTotalEncounterWeight;
+    [SerializeField] private string lastCandidateWeightSummary;
 
     public CardDefinition CurrentEncounter => currentEncounter;
     public EncounterState CurrentState => currentState;
     public CardDefinition HookedEncounter => hookedEncounter;
     public HookedEffectRecord[] HookedEffectRecords => hookedEffectRecords;
+    public int LastSelectedEncounterWeight => lastSelectedEncounterWeight;
+    public int LastTotalEncounterWeight => lastTotalEncounterWeight;
+    public string LastCandidateWeightSummary => lastCandidateWeightSummary;
 
     /// <summary>
     /// Selects and activates a valid encounter for the current biome and depth.
     /// </summary>
-    public bool Reveal(CardDefinition[] encounterPool, string biomeId, int depth, System.Random random)
+    public bool Reveal(
+        CardDefinition[] encounterPool,
+        string biomeId,
+        int depth,
+        System.Random random,
+        ActiveCatchEffectRecord[] activeCatchEffects,
+        EffectResolver effectResolver)
     {
         List<CardDefinition> candidates = new List<CardDefinition>();
+        List<int> candidateWeights = new List<int>();
+        List<string> candidateWeightLabels = new List<string>();
+        lastSelectedEncounterWeight = 0;
+        lastTotalEncounterWeight = 0;
+        lastCandidateWeightSummary = string.Empty;
 
         if (encounterPool != null)
         {
@@ -36,6 +53,10 @@ public sealed class EncounterRuntime
                 if (card.IsAvailableInBiome(biomeId) && card.IsAvailableAtDepth(depth))
                 {
                     candidates.Add(card);
+                    int selectionWeight = effectResolver.GetEncounterSelectionWeight(card, activeCatchEffects);
+                    candidateWeights.Add(selectionWeight);
+                    candidateWeightLabels.Add($"{card.DisplayName}: {selectionWeight}");
+                    lastTotalEncounterWeight += selectionWeight;
                 }
             }
         }
@@ -46,7 +67,10 @@ public sealed class EncounterRuntime
             return false;
         }
 
-        SetCurrentEncounter(candidates[random.Next(candidates.Count)]);
+        int selectedIndex = SelectWeightedIndex(candidateWeights, lastTotalEncounterWeight, random);
+        lastCandidateWeightSummary = string.Join(", ", candidateWeightLabels);
+        lastSelectedEncounterWeight = candidateWeights[selectedIndex];
+        SetCurrentEncounter(candidates[selectedIndex]);
         return true;
     }
 
@@ -89,6 +113,35 @@ public sealed class EncounterRuntime
         currentState = EncounterState.None;
         hookedEncounter = null;
         hookedEffectRecords = Array.Empty<HookedEffectRecord>();
+        lastSelectedEncounterWeight = 0;
+        lastTotalEncounterWeight = 0;
+        lastCandidateWeightSummary = string.Empty;
+    }
+
+    /// <summary>
+    /// Selects one candidate from integer weights, falling back to uniform selection when all weights are zero.
+    /// </summary>
+    private static int SelectWeightedIndex(List<int> weights, int totalWeight, System.Random random)
+    {
+        if (totalWeight <= 0)
+        {
+            return random.Next(weights.Count);
+        }
+
+        int roll = random.Next(totalWeight);
+        int cumulativeWeight = 0;
+
+        for (int i = 0; i < weights.Count; i++)
+        {
+            cumulativeWeight += weights[i];
+
+            if (roll < cumulativeWeight)
+            {
+                return i;
+            }
+        }
+
+        return weights.Count - 1;
     }
 
     /// <summary>

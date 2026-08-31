@@ -13,19 +13,19 @@ Each item should keep the same format:
 ## Runtime Card Instances
 
 Current approach:
-`CardDefinition` assets are used directly as card data during runtime.
+Each committed catch becomes a `CardInstance` that references its immutable `CardDefinition` and stores resolved current weight and value.
 
 Why it is acceptable for MVP:
-Shared card definitions are simple to author, easy to inspect in Unity, and enough while cards do not need per-copy mutations.
+The small instance model safely supports independent weight/value changes while keeping authored definitions reusable and Inspector-friendly.
 
 Production concern:
-If one specific Sardine gains modified weight, value, state, or temporary effects, changing the shared `Sardine.asset` would incorrectly affect every Sardine.
+The instance currently covers only identity, weight, and value. More complex state such as encounter state, temporary effects, disabled effects, and save/load identity is not modeled yet.
 
 Revisit trigger:
-Any gameplay system needs to modify one specific card copy during a run.
+Effects need temporary duration, stacking provenance, disabled abilities, player-selected targets, or persistence across save/load.
 
 Likely future action:
-Introduce a runtime `CardInstance` model that references a `CardDefinition` and stores per-card state such as current weight, current value, temporary modifiers, attached effects, and encounter/catch state.
+Expand `CardInstance` with explicit modifier records and lifecycle state instead of adding unrelated fields directly to the current minimal model.
 
 ## Line Load Storage
 
@@ -98,24 +98,24 @@ Build a hand UI controller that binds each visible card slot to runtime hand sta
 ## Effect Resolution
 
 Current approach:
-Effects are defined in card data and can be tracked as relevant, but most effects do not yet execute game-state changes.
+`EffectResolver` executes attached catch weight/value interactions, tag-based encounter attraction, automatic caught-card targeting, and persistent encounter concealment. Other defined effect types remain tracked but unresolved.
 
 Why it is acceptable for MVP:
-Tracking establishes the vocabulary and debugging surface before every target system exists.
+The implemented subset is enough to test the five Catch Chain interaction categories without building every Technique and encounter effect early.
 
 Production concern:
-Effects must eventually produce consistent, testable state changes across Hooked encounters, Descend, Catch Chain, Release, Surface, and future encounter generation.
+Unimplemented effect types still need consistent contexts, lifetime handling, validation, and feedback across Hooked encounters, Descend, Release, Surface, and Technique play.
 
 Revisit trigger:
-A gameplay action needs an effect to actually change state, such as replacing an encounter or modifying Line Load.
+A later phase requires replacement, avoidance, one-shot triggers, expiration, or player-selected Technique targets.
 
 Likely future action:
-Introduce effect resolution services or handlers that execute each `CardEffectType` against explicit runtime contexts.
+Split the resolver into explicit execution contexts or handlers as the supported effect vocabulary grows.
 
 ## Active Catch Effect Tracking
 
 Current approach:
-`CatchChainRuntime` adds `WhenCaught` and `WhileAttached` effects to an Inspector-visible active effect list. Each record stores its current Catch Chain index for presentation. Releasing a catch rebuilds that list and its indices from the cards that remain attached, but those effects do not yet mutate game state.
+`CatchChainRuntime` rebuilds Inspector-visible effect records after Catch and Release. Records reference the exact source instance and its current index; the resolver currently executes persistent `WhileAttached` interactions while `WhenCaught` records remain tracking-only.
 
 Why it is acceptable for MVP:
 It confirms that Descend can connect caught cards to the effect system before Release, Surface, overload, and full effect targets exist.
@@ -132,27 +132,27 @@ Move active effects into a dedicated Catch Chain or effect resolver runtime mode
 ## Card View Data Source
 
 Current approach:
-`CardView` displays `CardDefinition` data directly, with optional encounter state text.
+`CardView` displays encounter and Technique `CardDefinition` data directly, with optional concealed encounter details. `CatchChainView` displays resolved `CardInstance` stats.
 
 Why it is acceptable for MVP:
 Cards are mostly static so far, and displaying definitions directly is simple.
 
 Production concern:
-Once runtime card copies can differ from their base definition, the UI must show instance-specific weight, value, state, and effects.
+The two view paths use different data shapes, and a future reusable card presentation will need one read-only model for definitions and instances.
 
 Revisit trigger:
-The game introduces `CardInstance` or any card-specific runtime modification.
+Catch cards move into the reusable `CardView`, or more instance-specific state must be displayed consistently.
 
 Likely future action:
-Update `CardView` to display runtime card instances, or provide a read-only view model that can represent either base definitions or modified runtime cards.
+Provide a read-only card view model that can represent either base definitions or modified runtime instances.
 
 ## Encounter Selection
 
 Current approach:
-The first encounter is chosen randomly from all valid cards in the assigned encounter pool.
+Valid encounters receive one base selection ticket. Attached attraction effects add or remove tickets when the candidate matches their required tags.
 
 Why it is acceptable for MVP:
-It proves biome/depth filtering and first encounter reveal without building the full biome system.
+It makes Catch Chain attraction mechanically testable while preserving the current simple Inspector-authored pool.
 
 Production concern:
 The game needs weighted pools, rarity, encounter chains, biome identity, depth-tier evolution, repeat prevention, and Apex handling.
@@ -162,6 +162,23 @@ One biome needs to feel replayable and avoid simple random repetition.
 
 Likely future action:
 Build a biome encounter system with weighted entries, depth tiers, chain support, special encounter rules, and Apex selection outside normal pools.
+
+## Automatic Caught-Card Targeting
+
+Current approach:
+Persistent effects targeting `SpecificCaughtCard` automatically choose the previous, next, first, or last matching catch according to authored data.
+
+Why it is acceptable for MVP:
+Automatic deterministic targeting makes positional interactions testable without requiring a full selection UI.
+
+Production concern:
+The GDD has not locked physical Catch Chain position as a permanent rule, and many future effects should let the player choose a target.
+
+Revisit trigger:
+Playtesting rejects positional targeting, or Technique cards require interactive target selection.
+
+Likely future action:
+Separate automatic passive target policies from player-selected targeting contexts and add appropriate UI feedback.
 
 ## Array-Backed Runtime State
 
@@ -180,22 +197,22 @@ Deck, hand, discard, Catch Chain, or effect state starts changing often during n
 Likely future action:
 Use `List<T>` internally where state changes frequently, while preserving read-only snapshots or serialized debug views for useful Inspector visibility.
 
-## Surface Overload Resolution
+## Prototype Overload Risk Rule
 
 Current approach:
-Surface records whether Line Load exceeded capacity, but all attached catches currently return successfully as the haul.
+Overloaded Descend and Surface actions roll a configurable line-break chance. The default starts at 10% plus 8% per excess Load, capped at 65%. A failed check releases one random catch; a successful check lets the line remain overloaded.
 
 Why it is acceptable for MVP:
-The core run-ending flow, haul snapshot, and value calculation can be verified before choosing an overload penalty.
+It creates an immediate, testable push-your-luck consequence without ending the run automatically, and all tuning remains visible in the Inspector.
 
 Production concern:
-Surfacing while overloaded needs meaningful risk so exceeding capacity creates the intended push-your-luck tension.
+Randomly losing one catch may be too punishing, too mild, or insufficiently influenced by catch order, equipment, effects, depth, and the amount of overload.
 
 Revisit trigger:
-Line Load consequences are implemented and playtested during the Catch Chain and Line Load prototype work.
+Playtesting provides evidence about whether slight and severe overload create interesting decisions.
 
 Likely future action:
-Resolve the approved overload rule before finalizing the successful haul, then report lost catches, failed effects, or other consequences in the Surface result.
+Tune or replace the prototype resolver with the approved consequence model, then integrate equipment, effects, animations, and clearer probability communication.
 
 ## Programmatic Catch Chain View
 

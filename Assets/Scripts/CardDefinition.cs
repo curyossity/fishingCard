@@ -170,6 +170,14 @@ public enum CardEffectTarget
     SurfaceAttempt
 }
 
+public enum CaughtCardTargetMode
+{
+    PreviousMatching,
+    NextMatching,
+    FirstMatching,
+    LastMatching
+}
+
 public enum CardEffectTone
 {
     Neutral,
@@ -195,6 +203,7 @@ public sealed class CardEffectDefinition
     [SerializeField] private CardEffectTone effectTone;
     [SerializeField] private int amount;
     [SerializeField] private string[] requiredTags = Array.Empty<string>();
+    [SerializeField] private CaughtCardTargetMode caughtCardTargetMode;
     [SerializeField] private CardDefinition replacementCard;
     [SerializeField] private bool expiresAfterUse;
     [TextArea(1, 3)]
@@ -207,6 +216,7 @@ public sealed class CardEffectDefinition
     public CardEffectTone EffectTone => effectTone;
     public int Amount => amount;
     public string[] RequiredTags => requiredTags;
+    public CaughtCardTargetMode CaughtCardTargetMode => caughtCardTargetMode;
     public CardDefinition ReplacementCard => replacementCard;
     public bool ExpiresAfterUse => expiresAfterUse;
     public string ReminderText => reminderText;
@@ -239,6 +249,12 @@ public sealed class CardEffectDefinition
         {
             summary.Append(" | Tags: ");
             summary.Append(string.Join(", ", requiredTags));
+        }
+
+        if (target == CardEffectTarget.SpecificCaughtCard)
+        {
+            summary.Append(" | Select: ");
+            summary.Append(caughtCardTargetMode);
         }
 
         if (replacementCard != null)

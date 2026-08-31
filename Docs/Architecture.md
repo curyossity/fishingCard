@@ -52,6 +52,7 @@ Owns:
 - Amount
 - Required tags
 - Optional replacement card reference
+- Automatic caught-card target selection mode
 - Expiration hint
 - Reminder text
 
@@ -79,6 +80,8 @@ Delegates to:
 - `TechniqueDeckRuntime` for hand and pile operations
 - `EncounterRuntime` for encounter selection and Hooked state
 - `CatchChainRuntime` for catches, Line Load, and attached effects
+- `LineLoadRiskRuntime` for overload checks and tuning
+- `EffectResolver` for catch interactions, attraction, and encounter concealment
 - `FishingRunResult` for the last Surface result
 
 Does not own:
@@ -111,7 +114,8 @@ Runtime owner of encounter selection and the Hooked reaction window.
 
 Owns:
 - Filtering encounter candidates by card type, biome, and depth
-- Selecting the current encounter
+- Weighted encounter selection using attached attraction effects
+- Last candidate, selected, and total encounter weights for debugging
 - Encountered, Hooked, Caught, and None state transitions
 - Current Hooked encounter
 - Hooked effect records and Technique-effect relevance
@@ -119,7 +123,7 @@ Owns:
 Does not own:
 - Catch Chain commitment after a Hooked card is taken
 - Depth progression
-- Encounter pool authoring or weighted selection
+- Encounter pool authoring or attraction-weight calculation
 - Effect execution
 
 ### `CatchChainRuntime`
@@ -129,17 +133,18 @@ Runtime owner of catches attached to the line.
 
 Owns:
 - Catch acquisition order
+- Creating an independent `CardInstance` for each committed catch
 - Adding and releasing catches
-- Calculated Line Load
+- Calculated Line Load from resolved instance weights
 - Active caught-card effect records
-- Rebuilding effect records after Release
+- Rebuilding and resolving catch interactions after Catch or Release
 - Catch Chain reset and snapshots
 
 Does not own:
 - Line Capacity
 - Overload consequences
 - Surface result presentation
-- Effect execution or per-copy card mutations
+- Effect rule implementation
 
 ### `FishingRunResult`
 
@@ -148,7 +153,7 @@ Serializable data for the most recent Surface result.
 
 Owns:
 - Successful haul snapshot
-- Total base haul value
+- Total resolved haul value
 - Surface depth
 - Surface Line Load and capacity
 - Whether Surface began while overloaded
@@ -158,6 +163,24 @@ Does not own:
 - Rewards, selling, or progression
 - Run-summary UI
 
+### `LineLoadRiskRuntime`
+
+Role:
+Tunable prototype resolver for overload strain.
+
+Owns:
+- Base break chance
+- Additional chance per point above capacity
+- Maximum break chance
+- Last overload roll, chance, excess load, outcome, and selected catch index
+- Selecting a random catch index when strain causes a loss
+
+Does not own:
+- Catch Chain mutation
+- Line Load or capacity
+- Final overload balance
+- Visual feedback
+
 ### `CatchChainView`
 
 Role:
@@ -165,9 +188,11 @@ Presentation component for the visible Catch Chain panel.
 
 Owns:
 - Displaying catches in current acquisition order
-- Clearly separated weight and value labels
+- Clearly separated current weight and value labels, including modifiers
 - Per-catch active effect text
 - Distinct visual treatment for explicitly negative effects
+- Current Load / Capacity display
+- Stable, approaching-limit, and overloaded visual states
 - Scrollable layout for longer chains
 - Empty Catch Chain presentation
 
@@ -197,14 +222,49 @@ Role:
 Runtime record that a caught card has an effect relevant to the Catch Chain.
 
 Owns:
-- Source card
+- Exact source `CardInstance`
 - Effect definition
 - Trigger that made the effect relevant
+- Current Catch Chain index of the source
 
 Does not own:
 - Effect execution
-- Per-card modified weight, value, or state
 - Removal rules after Release
+
+### `CardInstance`
+
+Role:
+Independent runtime copy of a card attached to the Catch Chain.
+
+Owns:
+- Runtime instance ID
+- Reference to its immutable `CardDefinition`
+- Current resolved weight and value
+- Weight and value modifier reporting
+- Snapshot creation for Surface results
+
+Does not own:
+- Effect target selection
+- Encounter selection
+- Presentation
+
+### `EffectResolver`
+
+Role:
+Executes the currently supported attached-catch interactions.
+
+Owns:
+- Recalculating catch stats from base definitions
+- Applying attached value and weight modifiers
+- Selecting a previous, next, first, or last matching catch target
+- Adding tag-based attraction weight to future encounters
+- Reporting persistent encounter-information concealment
+
+Does not own:
+- Catch Chain collection mutation
+- Encounter state transitions
+- Technique-card execution
+- Final effect balance or player-selected targeting
 
 ### `CardView`
 
@@ -250,30 +310,35 @@ Current Descend flow:
 
 1. `FishingRunController.TryDescend()` resolves the always-available Descend action.
 2. `EncounterRuntime` returns the Hooked card for commitment, if one exists.
-3. `CatchChainRuntime` appends that card and tracks its catch-related effects.
-4. Current Line Load updates because `CatchChainRuntime` calculates it from attached cards.
-5. Current depth advances.
-6. `TechniqueDeckRuntime` refills the hand as required.
-7. `EncounterRuntime` filters candidates again using the new depth and current biome.
-8. The next valid encounter is revealed and optional `CardView` references are refreshed.
-9. `CatchChainView` rebuilds from the ordered catches and their indexed active effect records.
+3. `CatchChainRuntime` creates a `CardInstance`, appends it, and tracks its catch-related effects.
+4. `EffectResolver` recalculates catch weight and value interactions from base card data.
+5. Current Line Load updates because `CatchChainRuntime` calculates it from resolved instance weights.
+6. `LineLoadRiskRuntime` checks for strain when the line is overloaded.
+7. If the check fails, `CatchChainRuntime` releases the randomly selected catch; otherwise the line remains overloaded.
+8. Current depth advances.
+9. `TechniqueDeckRuntime` refills the hand as required.
+10. `EncounterRuntime` filters candidates and uses attached attraction effects as selection weights.
+11. The next valid encounter is revealed; persistent concealment can hide its details.
+12. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
 Current Release flow:
 
 1. `FishingRunController.TryReleaseCatch(int)` selects an attached card by Catch Chain index.
 2. `CatchChainRuntime` removes the selected card, so its weight and future haul value are lost.
-3. `CatchChainRuntime` rebuilds active effects from catches that remain attached.
+3. `CatchChainRuntime` rebuilds active effects and resolves all remaining interactions from base stats.
 4. Depth, the current encounter, and Hooked state remain unchanged.
 5. `CatchChainView` refreshes immediately with the remaining ordered catches.
 6. The action logs the released card and immediate Line Load change.
 
 Current Surface flow:
 
-1. `FishingRunController.TrySurface()` passes the attached Catch Chain to `FishingRunResult`.
-2. `FishingRunResult` snapshots the haul and records value, depth, Line Load, capacity, and overload state.
-3. An unresolved Hooked encounter is excluded because it has not entered the Catch Chain.
-4. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
-5. Last-haul fields remain Inspector-visible and a Console summary reports the result.
+1. `FishingRunController.TrySurface()` records the starting Surface load.
+2. `LineLoadRiskRuntime` checks for strain when the line is overloaded.
+3. A failed check releases one random catch before the successful haul is recorded; a held check preserves the overloaded chain.
+4. `FishingRunResult` snapshots the remaining haul and records value, depth, starting Line Load, capacity, and overload state.
+5. An unresolved Hooked encounter is excluded because it has not entered the Catch Chain.
+6. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
+7. Last-haul fields remain Inspector-visible and a Console summary reports the result and strain outcome.
 
 Future core loop direction:
 
@@ -295,9 +360,10 @@ Runtime state:
 - Hooked encounter
 - Hand/draw/discard piles
 - Catch Chain
+- Per-copy current catch weight and value
 - Line Load
+- Last overload-risk check
 - Last Surface result
-- Future `CardInstance` data
 - Future active effect instances
 
 Presentation:
@@ -305,7 +371,6 @@ Presentation:
 - `CatchChainView`
 - Future hand views
 - Future encounter view
-- Future Line Load view
 
 Rule of thumb:
 If the value can differ between two copies of the same card in the same run, it belongs in runtime state, not in `CardDefinition`.
@@ -313,17 +378,6 @@ If the value can differ between two copies of the same card in the same run, it 
 ## Planned Classes
 
 These are expected future directions, not required all at once.
-
-### `CardInstance`
-
-Runtime copy of a card that references a `CardDefinition` and stores per-copy state.
-
-Expected responsibilities:
-- Current weight
-- Current value
-- Current encounter/catch state
-- Temporary modifiers
-- Active effects attached to that specific copy
 
 ### Expanded Technique Runtime
 
@@ -340,10 +394,6 @@ Expected responsibilities:
 - Rarity
 - Biome identity rules
 - Apex exclusions or references
-
-### `EffectResolver`
-
-Runtime system that executes effect definitions against explicit contexts such as Hooked encounter, Descend, Catch, Release, Surface, or future encounter generation.
 
 ### UI Controllers
 
