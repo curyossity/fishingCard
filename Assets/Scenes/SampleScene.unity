@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 1055148698}
   - component: {fileID: 1055148697}
   - component: {fileID: 1055148701}
+  - component: {fileID: 1055148702}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -555,6 +556,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f46e24c8c449bba84046f5b5cc7c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatchChainView
+--- !u!114 &1055148702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055148696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807721b927c14210a0256e0234e56efa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::TechniqueHandView
 --- !u!1 &2039860095
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +608,10 @@ MonoBehaviour:
   startingTechniqueDeck:
   - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
   - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
+  - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
+  - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
+  - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
+  - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
   encounterPool:
   - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
   - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
@@ -604,6 +621,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
   currentEncounterView: {fileID: 0}
   techniqueHandViews: []
+  techniqueHandView: {fileID: 1055148702}
   catchChainView: {fileID: 1055148701}
   debugTechniqueHandIndex: 0
   debugCatchChainIndex: 0

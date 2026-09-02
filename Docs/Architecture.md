@@ -99,7 +99,9 @@ Owns:
 - Filtering the configured deck to Technique cards
 - Fisher-Yates shuffling
 - Starting hand draw
-- Hand refill
+- Removing used cards from the hand
+- Discarding used cards and automatically refilling the hand
+- Reshuffling the discard pile when the draw pile is empty
 - Draw-pile and discard-pile state
 - Clearing deck state when the run ends
 
@@ -107,6 +109,23 @@ Does not own:
 - Whether a Technique card can affect the current encounter
 - Technique effect execution
 - Player input or card views
+
+### `TechniqueHandView`
+
+Role:
+Interactive four-slot presentation of the current Technique hand.
+
+Owns:
+- Stable card-slot layout
+- Card names and rules text
+- Draw-pile and discard-pile counts
+- Playable and unavailable visual states
+- Forwarding `USE` button clicks to the controller
+
+Does not own:
+- Card-use rules
+- Deck mutations
+- Technique effect execution
 
 ### `EncounterRuntime`
 
@@ -340,6 +359,15 @@ Current Descend flow:
 11. The next valid encounter is revealed; persistent concealment can hide its details.
 12. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
+Current Technique-card use flow:
+
+1. `TechniqueHandView` forwards a slot's `USE` command to `FishingRunController`.
+2. The controller validates the run, hand slot, Hooked encounter, and applicable effects.
+3. `TechniqueDeckRuntime` moves the card from hand to discard and refills the hand.
+4. If the draw pile is empty, the discard pile is shuffled into a new draw pile before refilling.
+5. `EncounterRuntime` records the applicable Technique effects for later resolution.
+6. The controller refreshes the hand, pile counts, and playability states.
+
 Current Release flow:
 
 1. `FishingRunController.TryReleaseCatch(int)` selects an attached card by Catch Chain index.
@@ -397,7 +425,7 @@ Runtime state:
 Presentation:
 - `CardView`
 - `CatchChainView`
-- Future hand views
+- `TechniqueHandView`
 - Future encounter view
 
 Rule of thumb:
@@ -409,7 +437,7 @@ These are expected future directions, not required all at once.
 
 ### Expanded Technique Runtime
 
-As Technique play grows, `TechniqueDeckRuntime` may be split into dedicated deck and hand models for discard, reshuffle, targeting, and card-use validation.
+As Technique play grows, `TechniqueDeckRuntime` may be split into dedicated deck and hand models. Target selection and richer card-use validation may also move into dedicated rule services.
 
 ### `EncounterPoolDefinition`
 

@@ -81,19 +81,19 @@ Add authoring validation through `OnValidate`, custom editor tooling, typed pool
 ## Technique Card Interaction Wiring
 
 Current approach:
-`TryUseTechniqueCard(int handIndex)` exists as the gameplay entry point, with a debug context-menu wrapper for testing.
+`TechniqueHandView` presents four clickable slots and forwards use commands to `TryUseTechniqueCard(int handIndex)`. The controller exposes clear playable/unavailable states, while `TechniqueDeckRuntime` handles discard, refill, and discard-pile reshuffling.
 
 Why it is acceptable for MVP:
-The backend can be tested before the full hand UI exists, and future UI buttons can call the same method.
+The complete hand lifecycle and its basic restrictions can be tested through normal Play Mode interaction without requiring final card art, animation, or targeting presentation.
 
 Production concern:
-Players need clickable card slots, playable/unplayable feedback, targeting, discard, refill, reshuffle, and clear effect feedback.
+Technique effects are still recorded for later execution, and restrictions currently assume the Hooked encounter is the only target. The hand also needs final card visuals, animation, richer feedback, and interactive target selection where future rules require it.
 
 Revisit trigger:
-Technique-card use needs to be part of normal play rather than Inspector/debug testing.
+Technique effects gain selectable targets, timing choices, costs, or more detailed unavailable reasons.
 
 Likely future action:
-Build a hand UI controller that binds each visible card slot to runtime hand state and calls technique-use methods with proper validation and feedback.
+Separate target-selection rules from the controller and connect the hand to final authored card prefabs, effect previews, animation, and player-facing feedback.
 
 ## Effect Resolution
 
@@ -230,6 +230,23 @@ The Catch Chain receives final visual design, interaction, animation, runtime ca
 
 Likely future action:
 Move the entry layout into an authored prefab or UI document, bind it to a catch view model, and reuse entries through pooling or keyed updates.
+
+## Programmatic Technique Hand View
+
+Current approach:
+`TechniqueHandView` creates its four card slots, pile counter, status labels, and buttons at runtime.
+
+Why it is acceptable for MVP:
+The fixed generated layout makes the hand lifecycle and playability rules testable without depending on final card prefabs or art.
+
+Production concern:
+Runtime-created UI is harder to tune visually in the Unity Editor and does not yet provide final card art, animation, responsive targeting, or accessibility feedback.
+
+Revisit trigger:
+The Technique hand receives final visual design, additional interaction modes, animation, or platform-specific input behavior.
+
+Likely future action:
+Replace the generated slots with authored reusable prefabs or a UI document while keeping `TechniqueHandView` as the presentation boundary.
 
 ## Inspector-Loaded Decision Scenarios
 

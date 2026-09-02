@@ -26,21 +26,82 @@ public sealed class TechniqueDeckRuntime
     /// <summary>
     /// Refills the Technique hand up to the requested hand size when cards are available.
     /// </summary>
-    public void Refill(int handSize)
+    public void Refill(int handSize, System.Random random)
     {
-        int missingCards = Math.Max(0, handSize - hand.Length);
-
-        if (missingCards == 0)
+        while (hand.Length < handSize)
         {
-            return;
+            if (drawPile.Length == 0)
+            {
+                if (discardPile.Length == 0)
+                {
+                    return;
+                }
+
+                drawPile = CreateShuffledPile(discardPile, random);
+                discardPile = Array.Empty<CardDefinition>();
+            }
+
+            CardDefinition[] drawnCards = DrawCards(drawPile, 1, out drawPile);
+
+            if (drawnCards.Length == 0)
+            {
+                return;
+            }
+
+            hand = AppendCard(hand, drawnCards[0]);
+        }
+    }
+
+    /// <summary>
+    /// Returns a Technique card from a hand position without changing any pile.
+    /// </summary>
+    public bool TryGetHandCard(int handIndex, out CardDefinition card, out string validationMessage)
+    {
+        card = null;
+        validationMessage = string.Empty;
+
+        if (handIndex < 0 || handIndex >= hand.Length)
+        {
+            validationMessage = $"Technique hand index is out of range: {handIndex}.";
+            return false;
         }
 
-        CardDefinition[] drawnCards = DrawCards(drawPile, missingCards, out drawPile);
+        card = hand[handIndex];
 
-        for (int i = 0; i < drawnCards.Length; i++)
+        if (card == null)
         {
-            hand = AppendCard(hand, drawnCards[i]);
+            validationMessage = $"Technique hand slot {handIndex} is empty.";
+            return false;
         }
+
+        if (card.CardType != CardType.Technique)
+        {
+            validationMessage = $"Card is not a Technique card: {card.DisplayName}.";
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Moves a validated Technique card from hand to discard, then refills the hand.
+    /// </summary>
+    public bool TryUseCard(
+        int handIndex,
+        int handSize,
+        System.Random random,
+        out CardDefinition usedCard,
+        out string validationMessage)
+    {
+        if (!TryGetHandCard(handIndex, out usedCard, out validationMessage))
+        {
+            return false;
+        }
+
+        hand = RemoveCardAt(hand, handIndex);
+        discardPile = AppendCard(discardPile, usedCard);
+        Refill(handSize, random);
+        return true;
     }
 
     /// <summary>
@@ -85,16 +146,32 @@ public sealed class TechniqueDeckRuntime
             }
         }
 
-        // Fisher-Yates keeps fixed-seed runs deterministic while still varying random-seed runs.
-        for (int i = cards.Count - 1; i > 0; i--)
+        return CreateShuffledPile(cards.ToArray(), random);
+    }
+
+    /// <summary>
+    /// Returns a separately shuffled copy of a Technique pile using Fisher-Yates.
+    /// </summary>
+    private static CardDefinition[] CreateShuffledPile(CardDefinition[] sourcePile, System.Random random)
+    {
+        CardDefinition[] source = sourcePile ?? Array.Empty<CardDefinition>();
+        CardDefinition[] shuffled = new CardDefinition[source.Length];
+
+        for (int i = 0; i < source.Length; i++)
         {
-            int swapIndex = random.Next(i + 1);
-            CardDefinition temp = cards[i];
-            cards[i] = cards[swapIndex];
-            cards[swapIndex] = temp;
+            shuffled[i] = source[i];
         }
 
-        return cards.ToArray();
+        // Fixed seeds remain deterministic while random seeds vary the order between runs.
+        for (int i = shuffled.Length - 1; i > 0; i--)
+        {
+            int swapIndex = random.Next(i + 1);
+            CardDefinition temp = shuffled[i];
+            shuffled[i] = shuffled[swapIndex];
+            shuffled[swapIndex] = temp;
+        }
+
+        return shuffled;
     }
 
     /// <summary>
@@ -140,6 +217,28 @@ public sealed class TechniqueDeckRuntime
         }
 
         result[result.Length - 1] = card;
+        return result;
+    }
+
+    /// <summary>
+    /// Returns a new card array without the card at the requested hand index.
+    /// </summary>
+    private static CardDefinition[] RemoveCardAt(CardDefinition[] cards, int removeIndex)
+    {
+        CardDefinition[] result = new CardDefinition[cards.Length - 1];
+        int resultIndex = 0;
+
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (i == removeIndex)
+            {
+                continue;
+            }
+
+            result[resultIndex] = cards[i];
+            resultIndex++;
+        }
+
         return result;
     }
 }

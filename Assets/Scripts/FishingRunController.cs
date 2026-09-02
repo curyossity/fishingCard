@@ -25,6 +25,7 @@ public sealed class FishingRunController : MonoBehaviour
     [Header("Optional Views")]
     [SerializeField] private CardView currentEncounterView;
     [SerializeField] private CardView[] techniqueHandViews = Array.Empty<CardView>();
+    [SerializeField] private TechniqueHandView techniqueHandView;
     [SerializeField] private CatchChainView catchChainView;
 
     [Header("Debug Actions")]
@@ -118,40 +119,64 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     public bool TryUseTechniqueCard(int handIndex)
     {
+        if (!CanUseTechniqueCard(handIndex, out string restrictionReason))
+        {
+            Debug.LogWarning(restrictionReason, this);
+            return false;
+        }
+
+        techniqueDeckRuntime.TryGetHandCard(handIndex, out CardDefinition techniqueCard, out _);
+        bool consumed = techniqueDeckRuntime.TryUseCard(
+            handIndex,
+            startingHandSize,
+            random,
+            out _,
+            out string deckValidationMessage);
+
+        if (!consumed)
+        {
+            Debug.LogWarning(deckValidationMessage, this);
+            return false;
+        }
+
+        int addedEffects = encounterRuntime.AddTechniqueEffects(techniqueCard);
+        RefreshViews();
+        Debug.Log($"Technique card used on Hooked encounter: {techniqueCard.DisplayName}. "
+            + $"Tracked effects added: {addedEffects}. Draw: {techniqueDeckRuntime.DrawPile.Length}. "
+            + $"Discard: {techniqueDeckRuntime.DiscardPile.Length}.", this);
+        return true;
+    }
+
+    /// <summary>
+    /// Reports whether a Technique hand slot can affect the current Hooked encounter.
+    /// </summary>
+    public bool CanUseTechniqueCard(int handIndex, out string restrictionReason)
+    {
+        restrictionReason = string.Empty;
+
         if (!runActive)
         {
-            Debug.LogWarning("Cannot use a Technique card before a run has started.", this);
+            restrictionReason = "Run inactive";
+            return false;
+        }
+
+        if (!techniqueDeckRuntime.TryGetHandCard(handIndex, out CardDefinition techniqueCard, out restrictionReason))
+        {
             return false;
         }
 
         if (encounterRuntime.HookedEncounter == null)
         {
-            Debug.LogWarning("There is no Hooked encounter for a Technique card to affect.", this);
+            restrictionReason = "No Hooked encounter";
             return false;
         }
 
-        if (handIndex < 0 || handIndex >= techniqueDeckRuntime.Hand.Length)
+        if (encounterRuntime.CountApplicableTechniqueEffects(techniqueCard) == 0)
         {
-            Debug.LogWarning($"Technique hand index is out of range: {handIndex}.", this);
+            restrictionReason = "No valid target";
             return false;
         }
 
-        CardDefinition techniqueCard = techniqueDeckRuntime.Hand[handIndex];
-
-        if (techniqueCard == null)
-        {
-            Debug.LogWarning($"Technique hand slot {handIndex} is empty.", this);
-            return false;
-        }
-
-        if (techniqueCard.CardType != CardType.Technique)
-        {
-            Debug.LogWarning($"Card is not a Technique card: {techniqueCard.DisplayName}.", this);
-            return false;
-        }
-
-        int addedEffects = encounterRuntime.AddTechniqueEffects(techniqueCard);
-        Debug.Log($"Technique card used on Hooked encounter: {techniqueCard.DisplayName}. Tracked effects added: {addedEffects}.", this);
         return true;
     }
 
@@ -177,7 +202,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         // The next reveal uses the new depth so data-driven depth ranges take effect immediately.
         currentDepth += Mathf.Max(1, depthStepPerDescend);
-        techniqueDeckRuntime.Refill(startingHandSize);
+        techniqueDeckRuntime.Refill(startingHandSize, random);
         RevealEncounterAtCurrentDepth();
 
         RefreshViews();
@@ -472,6 +497,26 @@ public sealed class FishingRunController : MonoBehaviour
                 catchChainRuntime.ActiveEffectRecords,
                 catchChainRuntime.CurrentLineLoad,
                 lineCapacity);
+        }
+
+        if (techniqueHandView != null)
+        {
+            CardDefinition[] hand = techniqueDeckRuntime.Hand;
+            bool[] playableSlots = new bool[hand.Length];
+            string[] restrictionReasons = new string[hand.Length];
+
+            for (int i = 0; i < hand.Length; i++)
+            {
+                playableSlots[i] = CanUseTechniqueCard(i, out restrictionReasons[i]);
+            }
+
+            techniqueHandView.Refresh(
+                hand,
+                playableSlots,
+                restrictionReasons,
+                techniqueDeckRuntime.DrawPile.Length,
+                techniqueDeckRuntime.DiscardPile.Length,
+                TryUseTechniqueCard);
         }
 
         if (techniqueHandViews == null)

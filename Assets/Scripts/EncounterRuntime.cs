@@ -105,6 +105,29 @@ public sealed class EncounterRuntime
     }
 
     /// <summary>
+    /// Counts effects on a Technique card that can currently target the Hooked encounter.
+    /// </summary>
+    public int CountApplicableTechniqueEffects(CardDefinition techniqueCard)
+    {
+        if (techniqueCard == null || techniqueCard.Effects == null || hookedEncounter == null)
+        {
+            return 0;
+        }
+
+        int applicableEffects = 0;
+
+        for (int i = 0; i < techniqueCard.Effects.Length; i++)
+        {
+            if (DoesEffectAffectHookedEncounter(techniqueCard.Effects[i], hookedEncounter))
+            {
+                applicableEffects++;
+            }
+        }
+
+        return applicableEffects;
+    }
+
+    /// <summary>
     /// Clears the current encounter and its reaction-window state.
     /// </summary>
     public void Reset()
