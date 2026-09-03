@@ -152,6 +152,7 @@ public sealed class FishingRunController : MonoBehaviour
             catchChainRuntime,
             effectResolver,
             currentEncounterPool,
+            currentBiome?.EncounterChains,
             CurrentBiomeId,
             currentDepth,
             random,
@@ -464,7 +465,9 @@ public sealed class FishingRunController : MonoBehaviour
             random,
             catchChainRuntime.ActiveEffectRecords,
             effectResolver,
-            techniqueEffectRuntime.PendingEncounterEffects);
+            techniqueEffectRuntime.PendingEncounterEffects,
+            null,
+            currentBiome?.EncounterChains);
 
         techniqueEffectRuntime.CompleteEncounterReveal();
 

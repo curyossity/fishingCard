@@ -47,19 +47,53 @@ Store runtime `currentLineLoad` and update it through centralized add/remove/mod
 ## Encounter Pool Authoring
 
 Current approach:
-`BiomeDefinition` owns the stable biome identity and three depth tiers. Each tier directly stores a raw `CardDefinition[]` encounter subset.
+`BiomeDefinition` owns the stable biome identity, three depth tiers, raw `CardDefinition[]` encounter subsets, and short `EncounterChainDefinition` sequences.
 
 Why it is acceptable for MVP:
 It is transparent in the Inspector and enough to test changing Coastal encounter composition across Shallows, Mid-depth, and Deep Edge.
 
 Production concern:
-Raw tier arrays do not express base encounter weights, rarity rules, repeat prevention, encounter chains, or dedicated Apex selection.
+Raw tier arrays do not express base encounter weights, rarity rules, repeat prevention, or dedicated Apex selection. Chains are separate ordered arrays without branching, probability, cooldown, or validation tooling.
 
 Revisit trigger:
-Biome content needs weighted entries, encounter chains, repeat prevention, rare-event rules, or proper Apex selection.
+Biome content needs weighted entries, branching or conditional chains, repeat prevention, rare-event rules, or proper Apex selection.
 
 Likely future action:
 Replace each raw tier array with a referenced `EncounterPoolDefinition` that owns validated weighted entries, rarity, repetition rules, chains, and Apex-specific data.
+
+## Non-Catchable Encounter Resolution
+
+Current approach:
+Hazard, Environment, and Opportunity encounters provide pacing and can begin authored encounter chains, but their general effect payloads are not executed through a dedicated event context. Treasure encounters are catchable and enter the Catch Chain like creatures.
+
+Why it is acceptable for MVP:
+The current behavior makes encounter categories and short sequences testable before introducing another effect lifecycle and its presentation requirements.
+
+Production concern:
+Authored event cards such as `Feeding Frenzy`, `Snagged Kelp`, and `Murky Current` can describe effects that remain mechanically inert, which can mislead players and weaken encounter decisions.
+
+Revisit trigger:
+Non-catchable encounters must affect the current decision, or playtesting shows that their pacing and chain role is not meaningful by itself.
+
+Likely future action:
+Add an explicit encounter-event resolution context with supported triggers, effect handlers, lifecycle rules, and player-facing feedback while keeping gameplay decisions out of `CardView`.
+
+## Prototype Apex Selection
+
+Current approach:
+The two Coastal Apex possibilities are ordinary candidates in the Deep Edge tier at depth 7.
+
+Why it is acceptable for MVP:
+Both Apex cards can appear through the existing encounter loop, allowing their content and Catch Chain pressure to be tested without a separate climax flow.
+
+Production concern:
+Normal random selection does not guarantee one meaningful Apex climax, prevent repeats, or distinguish an Apex reveal from an ordinary encounter.
+
+Revisit trigger:
+The run needs a reliable biome ending, Apex-specific presentation, rewards, or one-per-run selection rules.
+
+Likely future action:
+Remove Apex cards from regular tier pools and add a dedicated biome-end selection and resolution flow.
 
 ## Finite Coastal Boundary
 
@@ -183,19 +217,19 @@ Provide a read-only card view model that can represent either base definitions o
 ## Encounter Selection
 
 Current approach:
-Valid encounters receive one base selection ticket. Attached attraction effects add or remove tickets when the candidate matches their required tags.
+Valid encounters receive one base selection ticket. Attached attraction effects add or remove tickets when the candidate matches their required tags. A valid queued encounter-chain follow-up is selected before this weighted process.
 
 Why it is acceptable for MVP:
 It makes Catch Chain attraction mechanically testable while preserving the current simple Inspector-authored pool.
 
 Production concern:
-The game needs weighted pools, rarity, encounter chains, biome identity, depth-tier evolution, repeat prevention, and Apex handling.
+The game needs authored base weights, rarity handling, chain branching or probabilities, repeat prevention, and dedicated Apex handling.
 
 Revisit trigger:
 One biome needs to feel replayable and avoid simple random repetition.
 
 Likely future action:
-Build a biome encounter system with weighted entries, depth tiers, chain support, special encounter rules, and Apex selection outside normal pools.
+Build a biome encounter system with weighted entries, repetition controls, richer chain rules, special encounter rules, and Apex selection outside normal pools.
 
 ## Automatic Caught-Card Targeting
 

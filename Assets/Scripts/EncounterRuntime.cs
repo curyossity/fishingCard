@@ -12,6 +12,8 @@ public sealed class EncounterRuntime
     [SerializeField] private int lastSelectedEncounterWeight;
     [SerializeField] private int lastTotalEncounterWeight;
     [SerializeField] private string lastCandidateWeightSummary;
+    [SerializeField] private EncounterChainDefinition activeEncounterChain;
+    [SerializeField] private int nextEncounterChainIndex;
 
     public CardDefinition CurrentEncounter => currentEncounter;
     public EncounterState CurrentState => currentState;
@@ -20,6 +22,8 @@ public sealed class EncounterRuntime
     public int LastSelectedEncounterWeight => lastSelectedEncounterWeight;
     public int LastTotalEncounterWeight => lastTotalEncounterWeight;
     public string LastCandidateWeightSummary => lastCandidateWeightSummary;
+    public EncounterChainDefinition ActiveEncounterChain => activeEncounterChain;
+    public int NextEncounterChainIndex => nextEncounterChainIndex;
 
     /// <summary>
     /// Selects and activates a valid encounter for the current biome and depth.
@@ -32,7 +36,8 @@ public sealed class EncounterRuntime
         ActiveCatchEffectRecord[] activeCatchEffects,
         EffectResolver effectResolver,
         CardEffectDefinition[] temporaryEncounterEffects = null,
-        CardDefinition excludedEncounter = null)
+        CardDefinition excludedEncounter = null,
+        EncounterChainDefinition[] encounterChains = null)
     {
         List<CardDefinition> candidates = new List<CardDefinition>();
         List<int> candidateWeights = new List<int>();
@@ -40,6 +45,11 @@ public sealed class EncounterRuntime
         lastSelectedEncounterWeight = 0;
         lastTotalEncounterWeight = 0;
         lastCandidateWeightSummary = string.Empty;
+
+        if (TryRevealActiveChain(biomeId, depth))
+        {
+            return true;
+        }
 
         if (encounterPool != null)
         {
@@ -76,7 +86,17 @@ public sealed class EncounterRuntime
         lastCandidateWeightSummary = string.Join(", ", candidateWeightLabels);
         lastSelectedEncounterWeight = candidateWeights[selectedIndex];
         SetCurrentEncounter(candidates[selectedIndex]);
+        BeginEncounterChain(currentEncounter, encounterChains);
         return true;
+    }
+
+    /// <summary>
+    /// Cancels a queued follow-up when the encounter that started it is avoided or replaced.
+    /// </summary>
+    public void CancelActiveEncounterChain()
+    {
+        activeEncounterChain = null;
+        nextEncounterChainIndex = 0;
     }
 
     /// <summary>
@@ -175,6 +195,7 @@ public sealed class EncounterRuntime
         lastSelectedEncounterWeight = 0;
         lastTotalEncounterWeight = 0;
         lastCandidateWeightSummary = string.Empty;
+        CancelActiveEncounterChain();
     }
 
     /// <summary>
@@ -201,6 +222,68 @@ public sealed class EncounterRuntime
         }
 
         return weights.Count - 1;
+    }
+
+    /// <summary>
+    /// Reveals the next valid card in an active short encounter sequence.
+    /// </summary>
+    private bool TryRevealActiveChain(string biomeId, int depth)
+    {
+        if (activeEncounterChain == null
+            || !activeEncounterChain.TryGetCard(nextEncounterChainIndex, out CardDefinition chainedEncounter))
+        {
+            CancelActiveEncounterChain();
+            return false;
+        }
+
+        if (!IsEncounterCard(chainedEncounter)
+            || !chainedEncounter.IsAvailableInBiome(biomeId)
+            || !chainedEncounter.IsAvailableAtDepth(depth))
+        {
+            CancelActiveEncounterChain();
+            return false;
+        }
+
+        nextEncounterChainIndex++;
+
+        if (!activeEncounterChain.TryGetCard(nextEncounterChainIndex, out _))
+        {
+            EncounterChainDefinition completedChain = activeEncounterChain;
+            CancelActiveEncounterChain();
+            lastCandidateWeightSummary = $"Chain: {completedChain.DisplayName}";
+        }
+        else
+        {
+            lastCandidateWeightSummary = $"Chain: {activeEncounterChain.DisplayName}";
+        }
+
+        lastSelectedEncounterWeight = 1;
+        lastTotalEncounterWeight = 1;
+        SetCurrentEncounter(chainedEncounter);
+        return true;
+    }
+
+    /// <summary>
+    /// Queues the second card when a randomly selected encounter starts an authored chain.
+    /// </summary>
+    private void BeginEncounterChain(CardDefinition selectedEncounter, EncounterChainDefinition[] encounterChains)
+    {
+        if (encounterChains == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < encounterChains.Length; i++)
+        {
+            EncounterChainDefinition chain = encounterChains[i];
+
+            if (chain != null && chain.StartsWith(selectedEncounter))
+            {
+                activeEncounterChain = chain;
+                nextEncounterChainIndex = 1;
+                return;
+            }
+        }
     }
 
     /// <summary>
@@ -361,6 +444,8 @@ public sealed class EncounterRuntime
     private static bool IsCatchableEncounter(CardDefinition card)
     {
         return card != null
-            && (card.CardType == CardType.Creature || card.CardType == CardType.ApexEncounter);
+            && (card.CardType == CardType.Creature
+                || card.CardType == CardType.Treasure
+                || card.CardType == CardType.ApexEncounter);
     }
 }

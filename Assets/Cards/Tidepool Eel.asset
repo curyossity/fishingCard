@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Tidepool Eel
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: creature_tidepool_eel
+  displayName: Tidepool Eel
+  cardType: 3
+  rarity: 1
+  tags:
+  - Creature
+  - Eel
+  - Slippery
+  - Downside
+  artwork: {fileID: 0}
+  rulesText: It twists against the rig. While attached, it contributes 1 additional Line Load.
+  weight: 2
+  value: 5
+  biomeIds:
+  - Coastal
+  minimumDepth: 2
+  maximumDepth: 5
+  effects:
+  - effectId: eel_line_strain
+    effectType: 0
+    trigger: 2
+    target: 1
+    effectTone: 2
+    amount: 1
+    requiredTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: Tidepool Eel contributes 1 additional Line Load.

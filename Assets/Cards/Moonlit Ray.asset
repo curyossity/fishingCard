@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Moonlit Ray
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: creature_moonlit_ray
+  displayName: Moonlit Ray
+  cardType: 3
+  rarity: 2
+  tags:
+  - Creature
+  - Ray
+  - Support
+  - Rare
+  artwork: {fileID: 0}
+  rulesText: While attached, every Small catch gains 1 Value.
+  weight: 3
+  value: 10
+  biomeIds:
+  - Coastal
+  minimumDepth: 5
+  maximumDepth: 7
+  effects:
+  - effectId: moonlit_small_value
+    effectType: 2
+    trigger: 2
+    target: 4
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Small
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: Small catches gain 1 Value while Moonlit Ray is attached.

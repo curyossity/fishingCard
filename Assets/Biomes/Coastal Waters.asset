@@ -35,6 +35,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
     - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
     - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
+    - {fileID: 11400000, guid: 34c59dc250ef41a98ab7097f67fdc6d4, type: 2}
+    - {fileID: 11400000, guid: 4c78748f96b14fe194e3f5e2c1fe620c, type: 2}
   - tierId: mid_depth
     displayName: Mid-depth
     minimumDepth: 3
@@ -51,6 +53,12 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
     - {fileID: 11400000, guid: 58b343a892134284a3064b13f76d8e05, type: 2}
     - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
+    - {fileID: 11400000, guid: 34c59dc250ef41a98ab7097f67fdc6d4, type: 2}
+    - {fileID: 11400000, guid: 4c78748f96b14fe194e3f5e2c1fe620c, type: 2}
+    - {fileID: 11400000, guid: 9499c27ba6064cbfb777a458a78c5b13, type: 2}
+    - {fileID: 11400000, guid: 7b2423ecead242df87330471df845d6e, type: 2}
+    - {fileID: 11400000, guid: 927086622d154b3da149d779810a18f7, type: 2}
+    - {fileID: 11400000, guid: fb3cb53b927d4b82980fb349b641e6e3, type: 2}
   - tierId: deep_edge
     displayName: Deep Edge
     minimumDepth: 6
@@ -66,3 +74,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 58b343a892134284a3064b13f76d8e05, type: 2}
     - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
     - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
+    - {fileID: 11400000, guid: 9499c27ba6064cbfb777a458a78c5b13, type: 2}
+    - {fileID: 11400000, guid: 7b2423ecead242df87330471df845d6e, type: 2}
+    - {fileID: 11400000, guid: 927086622d154b3da149d779810a18f7, type: 2}
+    - {fileID: 11400000, guid: fb3cb53b927d4b82980fb349b641e6e3, type: 2}
+    - {fileID: 11400000, guid: b5ccb176f3c24237b3c00a24be500a45, type: 2}
+  encounterChains:
+  - {fileID: 11400000, guid: d30c9ea4d06a44b9a6e90afb38185328, type: 2}
+  - {fileID: 11400000, guid: e5b87e266e5c40ce8c7732cd4da7b057, type: 2}

@@ -641,6 +641,8 @@ MonoBehaviour:
     lastSelectedEncounterWeight: 0
     lastTotalEncounterWeight: 0
     lastCandidateWeightSummary: 
+    activeEncounterChain: {fileID: 0}
+    nextEncounterChainIndex: 0
   catchChainRuntime:
     catches: []
     activeEffectRecords: []

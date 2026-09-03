@@ -15,6 +15,7 @@ public sealed class BiomeDefinition : ScriptableObject
 
     [Header("Depth Structure")]
     [SerializeField] private BiomeDepthTierDefinition[] depthTiers = Array.Empty<BiomeDepthTierDefinition>();
+    [SerializeField] private EncounterChainDefinition[] encounterChains = Array.Empty<EncounterChainDefinition>();
 
     public string BiomeId => biomeId;
     public string DisplayName => displayName;
@@ -22,6 +23,7 @@ public sealed class BiomeDefinition : ScriptableObject
     public string StrategicTension => strategicTension;
     public string[] SignatureTags => signatureTags;
     public BiomeDepthTierDefinition[] DepthTiers => depthTiers;
+    public EncounterChainDefinition[] EncounterChains => encounterChains;
 
     /// <summary>
     /// Returns the authored tier containing a depth, or null when the biome has ended.

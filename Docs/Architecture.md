@@ -12,7 +12,7 @@ The GDD remains the source of truth for game design. This document explains wher
 - Views display state. They should not decide gameplay rules or mutate card data.
 - Core actions (`Descend`, `Release`, `Surface`) remain always available and outside the player technique deck.
 - Technique cards modify or bend fishing actions; they do not replace fundamental actions.
-- Encounter cards represent what the ocean reveals. Creatures and Apex encounters can become `Hooked`.
+- Encounter cards represent what the ocean reveals. Creatures, treasures, and Apex encounters can become `Hooked`.
 - `BiomeDefinition` assets establish biome identity without storing per-run state.
 
 ## Current Classes
@@ -30,12 +30,29 @@ Owns:
 - Signature card tags
 - Ordered internal depth tiers and their inclusive ranges
 - Tier-specific design intent and encounter subsets
+- Short authored encounter-chain definitions available in the biome
 
 Does not own:
 - Current run depth or encounter state
 - Per-card biome and depth eligibility
 - Encounter weighting or random selection
 - Biome progression and unlock rules
+
+### `EncounterChainDefinition`
+
+Role:
+Authored data for a short ordered sequence of encounter cards.
+
+Owns:
+- Stable chain ID
+- Player-facing chain name
+- Narrative intent for authoring and review
+- Ordered encounter-card sequence
+
+Does not own:
+- Whether the chain is active in the current run
+- The current position within an active chain
+- Encounter validation, selection, or state transitions
 
 ### `CardDefinition`
 
@@ -184,6 +201,8 @@ Owns:
 - Encountered, Hooked, Caught, and None state transitions
 - Current Hooked encounter
 - Hooked effect records and Technique-effect relevance
+- Active encounter chain and the index of its next queued card
+- Prioritizing a valid queued chain card before normal weighted selection
 - Applying an explicitly supplied encounter through the normal state transition rules
 
 Does not own:
@@ -387,8 +406,9 @@ Current run startup flow:
 5. `EncounterRuntime` selects the first valid encounter and updates reaction state:
    - `None` when no encounter exists.
    - `Encountered` for non-catchable encounter cards.
-   - `Hooked` for catchable Creature and Apex encounters.
-6. Optional `CardView` references are refreshed.
+   - `Hooked` for catchable Creature, Treasure, and Apex encounters.
+6. If the selected encounter starts an authored chain, `EncounterRuntime` queues its next card.
+7. Optional `CardView` references are refreshed.
 
 Current Descend flow:
 
@@ -403,9 +423,10 @@ Current Descend flow:
 9. Current depth advances using any one-use distance modifier.
 10. `TechniqueDeckRuntime` refills the hand as required.
 11. `BiomeDefinition` supplies the tier pool at the effective selection depth.
-12. `EncounterRuntime` filters that subset using card availability, attached effects, and one-use weight modifiers.
-13. The next valid encounter is revealed; persistent concealment can hide its details.
-14. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+12. `EncounterRuntime` first reveals a valid queued chain card; otherwise it filters the subset using card availability, attached effects, and one-use weight modifiers.
+13. A normally selected chain starter queues its next authored card.
+14. The next valid encounter is revealed; persistent concealment can hide its details.
+15. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
 Current Technique-card use flow:
 
@@ -457,14 +478,16 @@ Future core loop direction:
 
 ## Data, Runtime State, And Presentation
 
-Base card data:
+Authored gameplay data:
 - `BiomeDefinition`
+- `EncounterChainDefinition`
 - `CardDefinition`
 - `CardEffectDefinition`
 
 Runtime state:
 - Current encounter state
 - Hooked encounter
+- Active encounter chain and next sequence index
 - Hand/draw/discard piles
 - Catch Chain
 - Per-copy current catch weight and value
@@ -504,7 +527,7 @@ Expected responsibilities:
 - Biome identity rules
 - Apex exclusions or references
 
-It may replace the raw tier arrays currently embedded in `BiomeDefinition` when weighted authoring and encounter chains are implemented.
+It may replace the raw tier arrays currently embedded in `BiomeDefinition` when weighted authoring, repetition rules, and dedicated Apex selection are implemented. Encounter-chain references can remain biome-owned or move into this asset if later authoring workflows benefit from pool-specific chains.
 
 ### UI Controllers
 

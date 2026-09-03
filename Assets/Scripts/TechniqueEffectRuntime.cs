@@ -62,6 +62,7 @@ public sealed class TechniqueEffectRuntime
         CatchChainRuntime catchChainRuntime,
         EffectResolver effectResolver,
         CardDefinition[] encounterPool,
+        EncounterChainDefinition[] encounterChains,
         string biomeId,
         int depth,
         System.Random random,
@@ -92,6 +93,7 @@ public sealed class TechniqueEffectRuntime
                 catchChainRuntime,
                 effectResolver,
                 encounterPool,
+                encounterChains,
                 biomeId,
                 depth,
                 random,
@@ -271,6 +273,7 @@ public sealed class TechniqueEffectRuntime
         CatchChainRuntime catchChainRuntime,
         EffectResolver effectResolver,
         CardDefinition[] encounterPool,
+        EncounterChainDefinition[] encounterChains,
         string biomeId,
         int depth,
         System.Random random,
@@ -280,6 +283,7 @@ public sealed class TechniqueEffectRuntime
         {
             string avoidedName = encounterRuntime.HookedEncounter.DisplayName;
             encounterRuntime.SetCurrentEncounter(null);
+            encounterRuntime.CancelActiveEncounterChain();
             results.Add($"Avoided {avoidedName}");
             return true;
         }
@@ -288,6 +292,7 @@ public sealed class TechniqueEffectRuntime
         {
             CardDefinition replacedEncounter = encounterRuntime.HookedEncounter;
             int selectionDepth = Math.Max(0, depth + GetNextEncounterDepthOffset());
+            encounterRuntime.CancelActiveEncounterChain();
             bool replaced = encounterRuntime.Reveal(
                 encounterPool,
                 biomeId,
@@ -296,7 +301,8 @@ public sealed class TechniqueEffectRuntime
                 catchChainRuntime.ActiveEffectRecords,
                 effectResolver,
                 pendingEncounterEffects,
-                replacedEncounter);
+                replacedEncounter,
+                encounterChains);
 
             if (replaced)
             {
