@@ -600,7 +600,7 @@ MonoBehaviour:
   startRunOnAwake: 1
   startingLineCapacity: 2
   startingDepth: 0
-  startingBiomeId: Coastal
+  startingBiome: {fileID: 11400000, guid: e104a3bb49114f2e80aebde5130a122e, type: 2}
   startingHandSize: 4
   depthStepPerDescend: 1
   randomSeed: 0
@@ -636,7 +636,7 @@ MonoBehaviour:
   debugCatchCard: {fileID: 0}
   debugScenario: {fileID: 0}
   runActive: 0
-  currentBiomeId: 
+  currentBiome: {fileID: 0}
   currentDepth: 0
   lineCapacity: 0
   currentEncounterInformationHidden: 0

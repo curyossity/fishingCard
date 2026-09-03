@@ -10,7 +10,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private int startingLineCapacity = 10;
     [Min(0)]
     [SerializeField] private int startingDepth;
-    [SerializeField] private string startingBiomeId = "Coastal";
+    [SerializeField] private BiomeDefinition startingBiome;
     [Min(1)]
     [SerializeField] private int startingHandSize = 4;
     [Min(1)]
@@ -36,7 +36,7 @@ public sealed class FishingRunController : MonoBehaviour
 
     [Header("Run State")]
     [SerializeField] private bool runActive;
-    [SerializeField] private string currentBiomeId;
+    [SerializeField] private BiomeDefinition currentBiome;
     [SerializeField] private int currentDepth;
     [SerializeField] private int lineCapacity;
     [SerializeField] private bool currentEncounterInformationHidden;
@@ -55,7 +55,8 @@ public sealed class FishingRunController : MonoBehaviour
     private EffectResolver effectResolver;
 
     public bool RunActive => runActive;
-    public string CurrentBiomeId => currentBiomeId;
+    public BiomeDefinition CurrentBiome => currentBiome;
+    public string CurrentBiomeId => currentBiome == null ? string.Empty : currentBiome.BiomeId;
     public int CurrentDepth => currentDepth;
     public int LineCapacity => lineCapacity;
     public CardDefinition CurrentEncounter => encounterRuntime.CurrentEncounter;
@@ -103,7 +104,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         runActive = true;
         lineCapacity = startingLineCapacity;
-        currentBiomeId = startingBiomeId;
+        currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);
 
         encounterRuntime.Reset();
@@ -149,7 +150,7 @@ public sealed class FishingRunController : MonoBehaviour
             catchChainRuntime,
             effectResolver,
             encounterPool,
-            currentBiomeId,
+            CurrentBiomeId,
             currentDepth,
             random,
             currentEncounterInformationHidden,
@@ -198,7 +199,7 @@ public sealed class FishingRunController : MonoBehaviour
             catchChainRuntime,
             currentEncounterInformationHidden,
             encounterPool,
-            currentBiomeId,
+            CurrentBiomeId,
             currentDepth,
             out restrictionReason);
     }
@@ -455,7 +456,7 @@ public sealed class FishingRunController : MonoBehaviour
         int selectionDepth = Mathf.Max(0, currentDepth + techniqueEffectRuntime.GetNextEncounterDepthOffset());
         bool revealed = encounterRuntime.Reveal(
             encounterPool,
-            currentBiomeId,
+            CurrentBiomeId,
             selectionDepth,
             random,
             catchChainRuntime.ActiveEffectRecords,
@@ -466,7 +467,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (!revealed)
         {
-            Debug.LogWarning($"No valid encounter found for biome '{currentBiomeId}' at depth {currentDepth}.", this);
+            Debug.LogWarning($"No valid encounter found for biome '{CurrentBiomeId}' at depth {currentDepth}.", this);
         }
     }
 
@@ -594,7 +595,7 @@ public sealed class FishingRunController : MonoBehaviour
         StringBuilder summary = new StringBuilder();
         summary.AppendLine("Run started.");
         summary.AppendLine($"Seed: {seed}");
-        summary.AppendLine($"Biome: {currentBiomeId}");
+        summary.AppendLine($"Biome: {(currentBiome == null ? "none" : currentBiome.DisplayName)}");
         summary.AppendLine($"Depth: {currentDepth}");
         summary.AppendLine($"Line Capacity: {lineCapacity}");
         summary.AppendLine($"Catch Chain: {catchChainRuntime.Catches.Length} cards");

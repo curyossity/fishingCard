@@ -13,8 +13,27 @@ The GDD remains the source of truth for game design. This document explains wher
 - Core actions (`Descend`, `Release`, `Surface`) remain always available and outside the player technique deck.
 - Technique cards modify or bend fishing actions; they do not replace fundamental actions.
 - Encounter cards represent what the ocean reveals. Creatures and Apex encounters can become `Hooked`.
+- `BiomeDefinition` assets establish biome identity without storing per-run state.
 
 ## Current Classes
+
+### `BiomeDefinition`
+
+Role:
+Authored identity asset for one biome.
+
+Owns:
+- Stable biome ID used by card availability filters
+- Player-facing biome name
+- Core mechanical identity
+- Strategic tension statement
+- Signature card tags
+
+Does not own:
+- Current run depth or encounter state
+- Depth-tier boundaries
+- Encounter-pool composition or selection
+- Biome progression and unlock rules
 
 ### `CardDefinition`
 
@@ -68,7 +87,8 @@ Current run coordinator.
 
 Owns:
 - Run active state
-- Current biome and depth
+- Starting and current biome references
+- Current depth
 - Line Capacity
 - Initial run setup and shutdown
 - Coordination of Descend, Release, and Surface
@@ -434,6 +454,7 @@ Future core loop direction:
 ## Data, Runtime State, And Presentation
 
 Base card data:
+- `BiomeDefinition`
 - `CardDefinition`
 - `CardEffectDefinition`
 
@@ -478,6 +499,8 @@ Expected responsibilities:
 - Rarity
 - Biome identity rules
 - Apex exclusions or references
+
+It may be owned by or referenced from `BiomeDefinition` once depth structure and pool authoring are implemented.
 
 ### UI Controllers
 

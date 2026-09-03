@@ -47,7 +47,7 @@ Store runtime `currentLineLoad` and update it through centralized add/remove/mod
 ## Encounter Pool Authoring
 
 Current approach:
-`FishingRunController` uses a raw `CardDefinition[] encounterPool` assigned in the Inspector.
+`BiomeDefinition` owns the stable biome identity, while `FishingRunController` still uses a raw `CardDefinition[] encounterPool` assigned in the Inspector.
 
 Why it is acceptable for MVP:
 It is fast to wire, transparent in the Inspector, and enough for manually testing early encounter reveal behavior.
@@ -59,7 +59,7 @@ Revisit trigger:
 Biome content needs weighted selection, depth-tier pools, encounter chains, rare encounters, or proper Apex rules.
 
 Likely future action:
-Create an `EncounterPoolDefinition` or biome definition asset that owns validated encounter entries, weights, depth ranges, rarity, and Apex-specific data.
+Extend biome authoring with a referenced `EncounterPoolDefinition` that owns validated entries, weights, depth tiers, rarity, and Apex-specific data.
 
 ## Runtime Card-Type Guards
 
