@@ -620,13 +620,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f80cf143fb54abeacdbf6ae86470d84, type: 2}
   - {fileID: 11400000, guid: 51ece213c4bd450f8b8fcc0854ffa64a, type: 2}
   - {fileID: 11400000, guid: afc9123a69cc4a0f91615608e0dbc968, type: 2}
-  encounterPool:
-  - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
-  - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
-  - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
-  - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
-  - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
-  - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
   currentEncounterView: {fileID: 0}
   techniqueHandViews: []
   techniqueHandView: {fileID: 1055148702}

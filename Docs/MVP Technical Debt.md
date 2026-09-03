@@ -47,19 +47,36 @@ Store runtime `currentLineLoad` and update it through centralized add/remove/mod
 ## Encounter Pool Authoring
 
 Current approach:
-`BiomeDefinition` owns the stable biome identity, while `FishingRunController` still uses a raw `CardDefinition[] encounterPool` assigned in the Inspector.
+`BiomeDefinition` owns the stable biome identity and three depth tiers. Each tier directly stores a raw `CardDefinition[]` encounter subset.
 
 Why it is acceptable for MVP:
-It is fast to wire, transparent in the Inspector, and enough for manually testing early encounter reveal behavior.
+It is transparent in the Inspector and enough to test changing Coastal encounter composition across Shallows, Mid-depth, and Deep Edge.
 
 Production concern:
-Raw arrays do not express encounter weights, depth tiers, rarity, biome rules, exclusions, encounter chains, or Apex separation.
+Raw tier arrays do not express base encounter weights, rarity rules, repeat prevention, encounter chains, or dedicated Apex selection.
 
 Revisit trigger:
-Biome content needs weighted selection, depth-tier pools, encounter chains, rare encounters, or proper Apex rules.
+Biome content needs weighted entries, encounter chains, repeat prevention, rare-event rules, or proper Apex selection.
 
 Likely future action:
-Extend biome authoring with a referenced `EncounterPoolDefinition` that owns validated entries, weights, depth tiers, rarity, and Apex-specific data.
+Replace each raw tier array with a referenced `EncounterPoolDefinition` that owns validated weighted entries, rarity, repetition rules, chains, and Apex-specific data.
+
+## Finite Coastal Boundary
+
+Current approach:
+Coastal Waters has regular tiers from depth 0 through depth 7. Reaching depth 8 produces no regular encounter, leaving the player free to Surface while automatic Apex completion and biome transition remain unimplemented.
+
+Why it is acceptable for MVP:
+The explicit boundary prevents the Deep Edge pool from repeating forever and makes the intended end of current Coastal progression visible during testing.
+
+Production concern:
+An empty encounter is not a satisfying biome climax, and continuing to Descend beyond the boundary currently remains possible.
+
+Revisit trigger:
+Biome Apex flow or transitions between regions are implemented.
+
+Likely future action:
+Replace the empty boundary with dedicated Apex selection, completion state, rewards, and a controlled transition or run-ending decision.
 
 ## Runtime Card-Type Guards
 

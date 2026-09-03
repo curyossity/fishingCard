@@ -18,9 +18,8 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private int randomSeed;
     [SerializeField] private bool useRandomSeed = true;
 
-    [Header("Starting Cards")]
+    [Header("Starting Technique Cards")]
     [SerializeField] private CardDefinition[] startingTechniqueDeck = Array.Empty<CardDefinition>();
-    [SerializeField] private CardDefinition[] encounterPool = Array.Empty<CardDefinition>();
 
     [Header("Optional Views")]
     [SerializeField] private CardView currentEncounterView;
@@ -57,6 +56,7 @@ public sealed class FishingRunController : MonoBehaviour
     public bool RunActive => runActive;
     public BiomeDefinition CurrentBiome => currentBiome;
     public string CurrentBiomeId => currentBiome == null ? string.Empty : currentBiome.BiomeId;
+    public BiomeDepthTierDefinition CurrentDepthTier => currentBiome?.GetDepthTier(currentDepth);
     public int CurrentDepth => currentDepth;
     public int LineCapacity => lineCapacity;
     public CardDefinition CurrentEncounter => encounterRuntime.CurrentEncounter;
@@ -131,6 +131,8 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         techniqueDeckRuntime.TryGetHandCard(handIndex, out CardDefinition techniqueCard, out _);
+        int encounterSelectionDepth = GetEffectiveEncounterSelectionDepth();
+        CardDefinition[] currentEncounterPool = GetEncounterPool(encounterSelectionDepth);
         bool consumed = techniqueDeckRuntime.TryUseCard(
             handIndex,
             startingHandSize,
@@ -149,7 +151,7 @@ public sealed class FishingRunController : MonoBehaviour
             encounterRuntime,
             catchChainRuntime,
             effectResolver,
-            encounterPool,
+            currentEncounterPool,
             CurrentBiomeId,
             currentDepth,
             random,
@@ -193,12 +195,13 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
+        int encounterSelectionDepth = GetEffectiveEncounterSelectionDepth();
         return techniqueEffectRuntime.CanUseCard(
             techniqueCard,
             encounterRuntime,
             catchChainRuntime,
             currentEncounterInformationHidden,
-            encounterPool,
+            GetEncounterPool(encounterSelectionDepth),
             CurrentBiomeId,
             currentDepth,
             out restrictionReason);
@@ -453,9 +456,9 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     private void RevealEncounterAtCurrentDepth()
     {
-        int selectionDepth = Mathf.Max(0, currentDepth + techniqueEffectRuntime.GetNextEncounterDepthOffset());
+        int selectionDepth = GetEffectiveEncounterSelectionDepth();
         bool revealed = encounterRuntime.Reveal(
-            encounterPool,
+            GetEncounterPool(selectionDepth),
             CurrentBiomeId,
             selectionDepth,
             random,
@@ -469,6 +472,24 @@ public sealed class FishingRunController : MonoBehaviour
         {
             Debug.LogWarning($"No valid encounter found for biome '{CurrentBiomeId}' at depth {currentDepth}.", this);
         }
+    }
+
+    /// <summary>
+    /// Calculates the depth used to choose the next tier and filter its encounter cards.
+    /// </summary>
+    private int GetEffectiveEncounterSelectionDepth()
+    {
+        return Mathf.Max(0, currentDepth + techniqueEffectRuntime.GetNextEncounterDepthOffset());
+    }
+
+    /// <summary>
+    /// Returns the current biome's encounter subset for an effective selection depth.
+    /// </summary>
+    private CardDefinition[] GetEncounterPool(int selectionDepth)
+    {
+        return currentBiome == null
+            ? Array.Empty<CardDefinition>()
+            : currentBiome.GetEncounterPool(selectionDepth);
     }
 
     /// <summary>
@@ -596,6 +617,7 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine("Run started.");
         summary.AppendLine($"Seed: {seed}");
         summary.AppendLine($"Biome: {(currentBiome == null ? "none" : currentBiome.DisplayName)}");
+        summary.AppendLine($"Depth Tier: {(CurrentDepthTier == null ? "none" : CurrentDepthTier.DisplayName)}");
         summary.AppendLine($"Depth: {currentDepth}");
         summary.AppendLine($"Line Capacity: {lineCapacity}");
         summary.AppendLine($"Catch Chain: {catchChainRuntime.Catches.Length} cards");
@@ -639,6 +661,7 @@ public sealed class FishingRunController : MonoBehaviour
         summary.Append(caughtCard == null ? "none" : caughtCard.DisplayName);
         summary.AppendLine();
         summary.AppendLine($"Depth: {currentDepth}");
+        summary.AppendLine($"Depth Tier: {(CurrentDepthTier == null ? "none" : CurrentDepthTier.DisplayName)}");
         summary.AppendLine($"Line Load: {catchChainRuntime.CurrentLineLoad} / {lineCapacity}");
         summary.AppendLine($"Catch Chain: {catchChainRuntime.Catches.Length} cards");
         summary.AppendLine($"Active Catch Effects: {catchChainRuntime.ActiveEffectRecords.Length}");

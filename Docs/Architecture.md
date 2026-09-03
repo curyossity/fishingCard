@@ -28,11 +28,13 @@ Owns:
 - Core mechanical identity
 - Strategic tension statement
 - Signature card tags
+- Ordered internal depth tiers and their inclusive ranges
+- Tier-specific design intent and encounter subsets
 
 Does not own:
 - Current run depth or encounter state
-- Depth-tier boundaries
-- Encounter-pool composition or selection
+- Per-card biome and depth eligibility
+- Encounter weighting or random selection
 - Biome progression and unlock rules
 
 ### `CardDefinition`
@@ -176,7 +178,7 @@ Role:
 Runtime owner of encounter selection and the Hooked reaction window.
 
 Owns:
-- Filtering encounter candidates by card type, biome, and depth
+- Filtering the selected biome-tier pool by card type, biome, and per-card depth limits
 - Weighted encounter selection using attached attraction effects
 - Last candidate, selected, and total encounter weights for debugging
 - Encountered, Hooked, Caught, and None state transitions
@@ -381,11 +383,12 @@ Current run startup flow:
 1. `FishingRunController.StartRun()` initializes run state.
 2. `TechniqueDeckRuntime` filters and shuffles the starting deck, then draws the hand.
 3. The current biome and depth are set.
-4. `EncounterRuntime` selects the first valid encounter and updates reaction state:
+4. `BiomeDefinition` supplies the encounter subset for the starting depth tier.
+5. `EncounterRuntime` selects the first valid encounter and updates reaction state:
    - `None` when no encounter exists.
    - `Encountered` for non-catchable encounter cards.
    - `Hooked` for catchable Creature and Apex encounters.
-5. Optional `CardView` references are refreshed.
+6. Optional `CardView` references are refreshed.
 
 Current Descend flow:
 
@@ -399,9 +402,10 @@ Current Descend flow:
 8. If the check fails, `CatchChainRuntime` releases the randomly selected catch; otherwise the line remains overloaded.
 9. Current depth advances using any one-use distance modifier.
 10. `TechniqueDeckRuntime` refills the hand as required.
-11. `EncounterRuntime` filters candidates using attached effects plus one-use pool-depth and weight modifiers.
-12. The next valid encounter is revealed; persistent concealment can hide its details.
-13. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+11. `BiomeDefinition` supplies the tier pool at the effective selection depth.
+12. `EncounterRuntime` filters that subset using card availability, attached effects, and one-use weight modifiers.
+13. The next valid encounter is revealed; persistent concealment can hide its details.
+14. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
 Current Technique-card use flow:
 
@@ -500,7 +504,7 @@ Expected responsibilities:
 - Biome identity rules
 - Apex exclusions or references
 
-It may be owned by or referenced from `BiomeDefinition` once depth structure and pool authoring are implemented.
+It may replace the raw tier arrays currently embedded in `BiomeDefinition` when weighted authoring and encounter chains are implemented.
 
 ### UI Controllers
 

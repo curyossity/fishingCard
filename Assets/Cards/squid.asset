@@ -28,8 +28,8 @@ MonoBehaviour:
   value: 3
   biomeIds:
   - Coastal
-  minimumDepth: 0
-  maximumDepth: 5
+  minimumDepth: 6
+  maximumDepth: 7
   effects:
   - effectId: ink_cloud
     effectType: 5

@@ -21,3 +21,48 @@ MonoBehaviour:
   - Schooling
   - Small
   - Predator
+  depthTiers:
+  - tierId: shallows
+    displayName: Shallows
+    minimumDepth: 0
+    maximumDepth: 2
+    designIntent: Introduce small catches, low Line Load pressure, and simple schooling
+      or support interactions.
+    encounterPool:
+    - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
+    - {fileID: 11400000, guid: 44f81e4b09c54cbbbb2fe4fc915881ce, type: 2}
+    - {fileID: 11400000, guid: bb1e829a1dd746088949e4ae0587e7da, type: 2}
+    - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
+    - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
+    - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
+  - tierId: mid_depth
+    displayName: Mid-depth
+    minimumDepth: 3
+    maximumDepth: 5
+    designIntent: Combine stronger catch synergies with hazards, opportunities, and
+      higher average weight and value.
+    encounterPool:
+    - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
+    - {fileID: 11400000, guid: 44f81e4b09c54cbbbb2fe4fc915881ce, type: 2}
+    - {fileID: 11400000, guid: bb1e829a1dd746088949e4ae0587e7da, type: 2}
+    - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
+    - {fileID: 11400000, guid: 1c2283c16571400dbe1f802fabad2813, type: 2}
+    - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
+    - {fileID: 11400000, guid: 68fe72eb1eca4da68f48668c81bfd21e, type: 2}
+    - {fileID: 11400000, guid: 58b343a892134284a3064b13f76d8e05, type: 2}
+    - {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
+  - tierId: deep_edge
+    displayName: Deep Edge
+    minimumDepth: 6
+    maximumDepth: 7
+    designIntent: Introduce predators, sharper downside effects, heavier rewards,
+      and the first Apex pressure.
+    encounterPool:
+    - {fileID: 11400000, guid: bb1e829a1dd746088949e4ae0587e7da, type: 2}
+    - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
+    - {fileID: 11400000, guid: 1c2283c16571400dbe1f802fabad2813, type: 2}
+    - {fileID: 11400000, guid: 18d3ad07711f49909de0ac7dcc6d0e7d, type: 2}
+    - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
+    - {fileID: 11400000, guid: 58b343a892134284a3064b13f76d8e05, type: 2}
+    - {fileID: 11400000, guid: 6813455f758e40b99a1f454a48124d83, type: 2}
+    - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
