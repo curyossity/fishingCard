@@ -43,6 +43,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private EncounterRuntime encounterRuntime = new EncounterRuntime();
     [SerializeField] private CatchChainRuntime catchChainRuntime = new CatchChainRuntime();
     [SerializeField] private TechniqueDeckRuntime techniqueDeckRuntime = new TechniqueDeckRuntime();
+    [SerializeField] private TechniqueEffectRuntime techniqueEffectRuntime = new TechniqueEffectRuntime();
 
     [Header("Line Load Risk")]
     [SerializeField] private LineLoadRiskRuntime lineLoadRiskRuntime = new LineLoadRiskRuntime();
@@ -66,6 +67,8 @@ public sealed class FishingRunController : MonoBehaviour
     public CardDefinition[] TechniqueHand => techniqueDeckRuntime.Hand;
     public CardDefinition[] TechniqueDrawPile => techniqueDeckRuntime.DrawPile;
     public CardDefinition[] TechniqueDiscardPile => techniqueDeckRuntime.DiscardPile;
+    public CardEffectDefinition[] PendingDescendTechniqueEffects => techniqueEffectRuntime.PendingDescendEffects;
+    public CardEffectDefinition[] PendingEncounterTechniqueEffects => techniqueEffectRuntime.PendingEncounterEffects;
     public CardInstance[] LastHaul => lastSurfaceResult.Haul;
     public int LastHaulValue => lastSurfaceResult.HaulValue;
     public int LastSurfaceDepth => lastSurfaceResult.SurfaceDepth;
@@ -106,6 +109,7 @@ public sealed class FishingRunController : MonoBehaviour
         encounterRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Initialize(startingTechniqueDeck, startingHandSize, random, LogRuntimeWarning);
+        techniqueEffectRuntime.Reset();
         lineLoadRiskRuntime.Reset();
         lastSurfaceResult.Reset();
 
@@ -139,10 +143,27 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
-        int addedEffects = encounterRuntime.AddTechniqueEffects(techniqueCard);
+        bool applied = techniqueEffectRuntime.ApplyCard(
+            techniqueCard,
+            encounterRuntime,
+            catchChainRuntime,
+            effectResolver,
+            encounterPool,
+            currentBiomeId,
+            currentDepth,
+            random,
+            currentEncounterInformationHidden,
+            out string effectSummary);
+
+        if (!applied)
+        {
+            Debug.LogWarning($"Technique card was consumed but its validated effect did not resolve: {techniqueCard.DisplayName}.", this);
+            return false;
+        }
+
         RefreshViews();
-        Debug.Log($"Technique card used on Hooked encounter: {techniqueCard.DisplayName}. "
-            + $"Tracked effects added: {addedEffects}. Draw: {techniqueDeckRuntime.DrawPile.Length}. "
+        Debug.Log($"Technique card used: {techniqueCard.DisplayName} | {effectSummary}. "
+            + $"Draw: {techniqueDeckRuntime.DrawPile.Length}. "
             + $"Discard: {techniqueDeckRuntime.DiscardPile.Length}.", this);
         return true;
     }
@@ -171,13 +192,15 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
-        if (encounterRuntime.CountApplicableTechniqueEffects(techniqueCard) == 0)
-        {
-            restrictionReason = "No valid target";
-            return false;
-        }
-
-        return true;
+        return techniqueEffectRuntime.CanUseCard(
+            techniqueCard,
+            encounterRuntime,
+            catchChainRuntime,
+            currentEncounterInformationHidden,
+            encounterPool,
+            currentBiomeId,
+            currentDepth,
+            out restrictionReason);
     }
 
     /// <summary>
@@ -192,21 +215,28 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         CardDefinition caughtCard = encounterRuntime.TakeHookedEncounter();
+        CardInstance committedCatch = null;
 
         if (caughtCard != null)
         {
-            catchChainRuntime.Add(caughtCard, effectResolver);
+            committedCatch = catchChainRuntime.Add(caughtCard, effectResolver);
         }
 
-        CardInstance strainReleasedCatch = ResolveOverloadRisk();
+        TechniqueDescendResolution techniqueResolution = techniqueEffectRuntime.ResolveNextDescend(
+            committedCatch,
+            catchChainRuntime,
+            effectResolver,
+            lineCapacity);
+        int effectiveCapacity = Mathf.Max(0, lineCapacity + techniqueResolution.CapacityBonus);
+        CardInstance strainReleasedCatch = ResolveOverloadRisk(effectiveCapacity);
 
         // The next reveal uses the new depth so data-driven depth ranges take effect immediately.
-        currentDepth += Mathf.Max(1, depthStepPerDescend);
+        currentDepth += Mathf.Max(1, depthStepPerDescend + techniqueResolution.AdditionalDepth);
         techniqueDeckRuntime.Refill(startingHandSize, random);
         RevealEncounterAtCurrentDepth();
 
         RefreshViews();
-        Debug.Log(BuildDescendSummary(caughtCard, strainReleasedCatch), this);
+        Debug.Log(BuildDescendSummary(caughtCard, strainReleasedCatch, techniqueResolution, effectiveCapacity), this);
         return true;
     }
 
@@ -251,7 +281,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         int surfaceStartingLoad = catchChainRuntime.CurrentLineLoad;
-        CardInstance strainReleasedCatch = ResolveOverloadRisk();
+        CardInstance strainReleasedCatch = ResolveOverloadRisk(lineCapacity);
 
         // The Hooked encounter is intentionally excluded because it has not entered the Catch Chain.
         lastSurfaceResult.Record(
@@ -292,6 +322,7 @@ public sealed class FishingRunController : MonoBehaviour
         lineCapacity = Mathf.Max(0, scenario.LineCapacity);
         currentDepth = Mathf.Max(0, scenario.Depth);
         catchChainRuntime.Reset();
+        techniqueEffectRuntime.Reset();
 
         CardDefinition[] scenarioCatches = scenario.StartingCatches ?? Array.Empty<CardDefinition>();
 
@@ -395,6 +426,11 @@ public sealed class FishingRunController : MonoBehaviour
             techniqueDeckRuntime = new TechniqueDeckRuntime();
         }
 
+        if (techniqueEffectRuntime == null)
+        {
+            techniqueEffectRuntime = new TechniqueEffectRuntime();
+        }
+
         if (lastSurfaceResult == null)
         {
             lastSurfaceResult = new FishingRunResult();
@@ -416,13 +452,17 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     private void RevealEncounterAtCurrentDepth()
     {
+        int selectionDepth = Mathf.Max(0, currentDepth + techniqueEffectRuntime.GetNextEncounterDepthOffset());
         bool revealed = encounterRuntime.Reveal(
             encounterPool,
             currentBiomeId,
-            currentDepth,
+            selectionDepth,
             random,
             catchChainRuntime.ActiveEffectRecords,
-            effectResolver);
+            effectResolver,
+            techniqueEffectRuntime.PendingEncounterEffects);
+
+        techniqueEffectRuntime.CompleteEncounterReveal();
 
         if (!revealed)
         {
@@ -439,17 +479,18 @@ public sealed class FishingRunController : MonoBehaviour
         encounterRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Reset();
+        techniqueEffectRuntime.Reset();
         RefreshViews();
     }
 
     /// <summary>
     /// Resolves the current overload risk and releases the randomly selected catch when the line breaks.
     /// </summary>
-    private CardInstance ResolveOverloadRisk()
+    private CardInstance ResolveOverloadRisk(int effectiveCapacity)
     {
         int releaseIndex = lineLoadRiskRuntime.Evaluate(
             catchChainRuntime.CurrentLineLoad,
-            lineCapacity,
+            effectiveCapacity,
             catchChainRuntime.Catches.Length,
             random);
 
@@ -480,7 +521,8 @@ public sealed class FishingRunController : MonoBehaviour
     private void RefreshViews()
     {
         currentEncounterInformationHidden = effectResolver != null
-            && effectResolver.HidesEncounterInformation(catchChainRuntime.ActiveEffectRecords);
+            && effectResolver.HidesEncounterInformation(catchChainRuntime.ActiveEffectRecords)
+            && !techniqueEffectRuntime.RevealsCurrentEncounter;
 
         if (currentEncounterView != null)
         {
@@ -584,7 +626,11 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>
     /// Builds the Descend log from catch, depth, load, and encounter state.
     /// </summary>
-    private string BuildDescendSummary(CardDefinition caughtCard, CardInstance strainReleasedCatch)
+    private string BuildDescendSummary(
+        CardDefinition caughtCard,
+        CardInstance strainReleasedCatch,
+        TechniqueDescendResolution techniqueResolution,
+        int effectiveCapacity)
     {
         StringBuilder summary = new StringBuilder();
         summary.AppendLine("Descend resolved.");
@@ -598,6 +644,11 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine($"Encounter Information: {(CurrentEncounterInformationHidden ? "Hidden" : "Visible")}");
         summary.AppendLine($"Encounter Selection Weight: {encounterRuntime.LastSelectedEncounterWeight} / {encounterRuntime.LastTotalEncounterWeight}");
         summary.AppendLine($"Technique Hand: {techniqueDeckRuntime.Hand.Length} cards");
+        summary.AppendLine($"Technique Depth Bonus: {techniqueResolution.AdditionalDepth}");
+        summary.AppendLine($"Temporary Capacity: {effectiveCapacity} ({techniqueResolution.CapacityBonus:+#;-#;0})");
+        summary.AppendLine($"Committed Catch: Weight {techniqueResolution.CommittedWeightChange:+#;-#;0}, "
+            + $"Value {techniqueResolution.CommittedValueChange:+#;-#;0}, "
+            + $"Overload Reward {techniqueResolution.OverloadValueReward:+#;-#;0}");
         AppendOverloadRiskSummary(summary, strainReleasedCatch);
         summary.Append("Next Encounter: ");
         summary.Append(encounterRuntime.CurrentEncounter == null ? "none" : encounterRuntime.CurrentEncounter.DisplayName);

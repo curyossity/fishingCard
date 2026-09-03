@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Worm Bait
+  m_Name: Pressure Dividend
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_worm_bait
-  displayName: Worm Bait
+  uniqueId: technique_pressure_dividend
+  displayName: Pressure Dividend
   cardType: 0
-  rarity: 0
+  rarity: 2
   tags:
-  - Bait
-  - EncounterControl
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Replace the current Hooked creature with a new Coastal creature from
-    the encounter pool.
+  - Overload
+  - Value
+  artwork: {fileID: 0}
+  rulesText: If the line is overloaded after the next catch, that catch gains 5 Value.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: rebait_hook
-    effectType: 6
+  - effectId: reward_next_overload
+    effectType: 16
     trigger: 0
-    target: 2
-    effectTone: 0
-    amount: 1
-    requiredTags:
-    - Creature
+    target: 7
+    effectTone: 1
+    amount: 5
+    requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Replaces the Hooked encounter.
+    reminderText: The next catch gains 5 Value if it overloads the line.

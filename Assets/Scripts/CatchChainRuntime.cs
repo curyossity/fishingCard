@@ -36,17 +36,120 @@ public sealed class CatchChainRuntime
     /// <summary>
     /// Adds a committed encounter and tracks its catch-related effects.
     /// </summary>
-    public void Add(CardDefinition caughtCard, EffectResolver effectResolver)
+    public CardInstance Add(CardDefinition caughtCard, EffectResolver effectResolver)
     {
         if (caughtCard == null)
         {
-            return;
+            return null;
         }
 
         CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard);
         nextInstanceId++;
         catches = AppendCatch(catches, caughtInstance);
         RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        return caughtInstance;
+    }
+
+    /// <summary>
+    /// Reports whether an immediate Technique effect has at least one valid Catch Chain target.
+    /// </summary>
+    public bool CanApplyTechniqueEffect(CardEffectDefinition effect)
+    {
+        if (effect == null)
+        {
+            return false;
+        }
+
+        if (effect.Target != CardEffectTarget.CatchChain
+            && effect.Target != CardEffectTarget.SpecificCaughtCard)
+        {
+            return false;
+        }
+
+        if (effect.EffectType == CardEffectType.ModifyCaughtCard)
+        {
+            return CountMatchingCatches(effect.RequiredTags) >= 2;
+        }
+
+        if (effect.EffectType != CardEffectType.AddLineLoadModifier
+            && effect.EffectType != CardEffectType.RemoveLineLoadModifier
+            && effect.EffectType != CardEffectType.ModifyCatchValue
+            && effect.EffectType != CardEffectType.ReleaseCatch)
+        {
+            return false;
+        }
+
+        return FindTechniqueTargetIndex(effect) >= 0;
+    }
+
+    /// <summary>
+    /// Applies an immediate Technique effect to automatically selected Catch Chain targets.
+    /// </summary>
+    public bool TryApplyTechniqueEffect(
+        CardEffectDefinition effect,
+        EffectResolver effectResolver,
+        out string resultSummary)
+    {
+        resultSummary = string.Empty;
+
+        if (!CanApplyTechniqueEffect(effect))
+        {
+            return false;
+        }
+
+        if (effect.EffectType == CardEffectType.ReleaseCatch)
+        {
+            return ReleaseTechniqueTargets(effect, effectResolver, out resultSummary);
+        }
+
+        if (effect.EffectType == CardEffectType.ModifyCaughtCard)
+        {
+            int matchingCount = CountMatchingCatches(effect.RequiredTags);
+            int valueChange = effect.Amount * (matchingCount - 1);
+
+            for (int i = 0; i < catches.Length; i++)
+            {
+                if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+                {
+                    catches[i].AddPermanentModifiers(0, valueChange);
+                }
+            }
+
+            effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+            resultSummary = $"{matchingCount} interacting catches gained {valueChange} Value each";
+            return true;
+        }
+
+        int targetIndex = FindTechniqueTargetIndex(effect);
+        CardInstance target = catches[targetIndex];
+        int weightChange = 0;
+        int valueChangeForTarget = 0;
+
+        if (effect.EffectType == CardEffectType.ModifyCatchValue)
+        {
+            valueChangeForTarget = effect.Amount;
+        }
+        else if (effect.EffectType == CardEffectType.RemoveLineLoadModifier)
+        {
+            weightChange = -Math.Abs(effect.Amount);
+        }
+        else
+        {
+            weightChange = effect.Amount;
+        }
+
+        target.AddPermanentModifiers(weightChange, valueChangeForTarget);
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        resultSummary = $"{target.Definition.DisplayName} changed by Weight {weightChange}, Value {valueChangeForTarget}";
+        return true;
+    }
+
+    /// <summary>
+    /// Recalculates catches after lasting Technique modifiers change instance base stats.
+    /// </summary>
+    public void Recalculate(EffectResolver effectResolver)
+    {
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
     }
 
@@ -159,6 +262,87 @@ public sealed class CatchChainRuntime
         }
 
         activeEffectRecords = records.ToArray();
+    }
+
+    /// <summary>
+    /// Removes the requested number of automatically selected catches for a Technique effect.
+    /// </summary>
+    private bool ReleaseTechniqueTargets(
+        CardEffectDefinition effect,
+        EffectResolver effectResolver,
+        out string resultSummary)
+    {
+        List<string> releasedNames = new List<string>();
+        int releaseCount = Math.Max(1, Math.Abs(effect.Amount));
+
+        for (int i = 0; i < releaseCount; i++)
+        {
+            int targetIndex = FindTechniqueTargetIndex(effect);
+
+            if (targetIndex < 0)
+            {
+                break;
+            }
+
+            CardInstance releasedCatch = catches[targetIndex];
+            releasedNames.Add(releasedCatch.Definition.DisplayName);
+            catches = RemoveCatchAt(catches, targetIndex);
+        }
+
+        RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        resultSummary = $"Released {string.Join(", ", releasedNames)}";
+        return releasedNames.Count > 0;
+    }
+
+    /// <summary>
+    /// Selects one Catch Chain target using the effect's automatic target direction.
+    /// </summary>
+    private int FindTechniqueTargetIndex(CardEffectDefinition effect)
+    {
+        bool searchFromStart = effect.CaughtCardTargetMode == CaughtCardTargetMode.FirstMatching
+            || effect.CaughtCardTargetMode == CaughtCardTargetMode.NextMatching;
+
+        if (searchFromStart)
+        {
+            for (int i = 0; i < catches.Length; i++)
+            {
+                if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        for (int i = catches.Length - 1; i >= 0; i--)
+        {
+            if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    /// <summary>
+    /// Counts attached catches matching an effect's required tags.
+    /// </summary>
+    private int CountMatchingCatches(string[] requiredTags)
+    {
+        int matchingCount = 0;
+
+        for (int i = 0; i < catches.Length; i++)
+        {
+            if (EffectResolver.RequiredTagsMatch(requiredTags, catches[i]?.Definition))
+            {
+                matchingCount++;
+            }
+        }
+
+        return matchingCount;
     }
 
     /// <summary>

@@ -6,6 +6,8 @@ public sealed class CardInstance
 {
     [SerializeField] private int instanceId;
     [SerializeField] private CardDefinition definition;
+    [SerializeField] private int permanentWeightModifier;
+    [SerializeField] private int permanentValueModifier;
     [SerializeField] private int currentWeight;
     [SerializeField] private int currentValue;
 
@@ -13,6 +15,8 @@ public sealed class CardInstance
     public CardDefinition Definition => definition;
     public int CurrentWeight => currentWeight;
     public int CurrentValue => currentValue;
+    public int PermanentWeightModifier => permanentWeightModifier;
+    public int PermanentValueModifier => permanentValueModifier;
     public int WeightModifier => definition == null ? 0 : currentWeight - definition.Weight;
     public int ValueModifier => definition == null ? 0 : currentValue - definition.Value;
 
@@ -38,8 +42,17 @@ public sealed class CardInstance
     /// </summary>
     public void ResetCurrentStats()
     {
-        currentWeight = definition == null ? 0 : definition.Weight;
-        currentValue = definition == null ? 0 : definition.Value;
+        currentWeight = definition == null ? 0 : Mathf.Max(0, definition.Weight + permanentWeightModifier);
+        currentValue = definition == null ? 0 : Mathf.Max(0, definition.Value + permanentValueModifier);
+    }
+
+    /// <summary>
+    /// Changes this catch copy's lasting base modifiers before persistent effects are recalculated.
+    /// </summary>
+    public void AddPermanentModifiers(int weightAmount, int valueAmount)
+    {
+        permanentWeightModifier += weightAmount;
+        permanentValueModifier += valueAmount;
     }
 
     /// <summary>
@@ -64,6 +77,8 @@ public sealed class CardInstance
     public CardInstance CreateSnapshot()
     {
         CardInstance snapshot = new CardInstance(instanceId, definition);
+        snapshot.permanentWeightModifier = permanentWeightModifier;
+        snapshot.permanentValueModifier = permanentValueModifier;
         snapshot.currentWeight = currentWeight;
         snapshot.currentValue = currentValue;
         return snapshot;

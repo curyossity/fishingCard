@@ -13,7 +13,7 @@ Each item should keep the same format:
 ## Runtime Card Instances
 
 Current approach:
-Each committed catch becomes a `CardInstance` that references its immutable `CardDefinition` and stores resolved current weight and value.
+Each committed catch becomes a `CardInstance` that references its immutable `CardDefinition` and stores lasting Technique modifiers plus resolved current weight and value.
 
 Why it is acceptable for MVP:
 The small instance model safely supports independent weight/value changes while keeping authored definitions reusable and Inspector-friendly.
@@ -25,7 +25,7 @@ Revisit trigger:
 Effects need temporary duration, stacking provenance, disabled abilities, player-selected targets, or persistence across save/load.
 
 Likely future action:
-Expand `CardInstance` with explicit modifier records and lifecycle state instead of adding unrelated fields directly to the current minimal model.
+Replace the aggregate lasting modifier fields with explicit modifier records and lifecycle state when provenance, removal, or richer stacking rules matter.
 
 ## Line Load Storage
 
@@ -98,19 +98,36 @@ Separate target-selection rules from the controller and connect the hand to fina
 ## Effect Resolution
 
 Current approach:
-`EffectResolver` executes attached catch weight/value interactions, tag-based encounter attraction, automatic caught-card targeting, and persistent encounter concealment. Other defined effect types remain tracked but unresolved.
+`EffectResolver`, `TechniqueEffectRuntime`, and the focused runtime owners execute attached catch interactions plus the initial Technique categories. A few broader effect enum values remain available without general-purpose execution.
 
 Why it is acceptable for MVP:
-The implemented subset is enough to test the five Catch Chain interaction categories without building every Technique and encounter effect early.
+The implemented contexts cover the initial Technique categories and existing Catch Chain interactions without introducing a general scripting engine.
 
 Production concern:
-Unimplemented effect types still need consistent contexts, lifetime handling, validation, and feedback across Hooked encounters, Descend, Release, Surface, and Technique play.
+Execution is split by practical context rather than a general effect pipeline. More complex durations, costs, stacking, selectable targets, and cross-action effects will need consistent lifecycle handling and feedback.
 
 Revisit trigger:
-A later phase requires replacement, avoidance, one-shot triggers, expiration, or player-selected Technique targets.
+A card requires multi-turn duration, cancellation, source provenance, player-selected targets, or a new action context.
 
 Likely future action:
-Split the resolver into explicit execution contexts or handlers as the supported effect vocabulary grows.
+Introduce explicit effect contexts or registered handlers as the supported vocabulary grows, without moving gameplay decisions into card views.
+
+## Prototype Technique Semantics
+
+Current approach:
+Immediate catch modifiers automatically select the first or last matching catch. `Schooling Rig` modifies all currently attached Schooling catches, and `Double Release` interprets efficient release as dropping up to two catches from the end of the chain in one Technique use. Delayed effects expire on the next matching Descend or encounter-selection attempt.
+
+Why it is acceptable for MVP:
+Every initial Technique category has a playable rule and visible result without first building target-selection UI, action costs, a duration engine, or final balance systems.
+
+Production concern:
+Automatic targets can remove meaningful choice, Double Release may not be valuable while the always-available Release action has no action cost, and next-action expiration may be too rigid for final card designs.
+
+Revisit trigger:
+Playtesting compares Technique cards as strategic choices, or action economy and target selection receive final rules.
+
+Likely future action:
+Add explicit target requests, formal effect durations and stacking, and redesign release Techniques after the cost and timing of the core Release action are validated.
 
 ## Active Catch Effect Tracking
 

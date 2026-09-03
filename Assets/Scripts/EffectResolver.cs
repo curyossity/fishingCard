@@ -23,12 +23,16 @@ public sealed class EffectResolver
     }
 
     /// <summary>
-    /// Calculates an encounter's weighted-selection tickets after attached attraction effects.
+    /// Calculates encounter-selection tickets after attached and one-use attraction effects.
     /// </summary>
-    public int GetEncounterSelectionWeight(CardDefinition encounter, ActiveCatchEffectRecord[] activeEffects)
+    public int GetEncounterSelectionWeight(
+        CardDefinition encounter,
+        ActiveCatchEffectRecord[] activeEffects,
+        CardEffectDefinition[] temporaryEffects)
     {
         int weight = 1;
         ActiveCatchEffectRecord[] safeEffects = activeEffects ?? Array.Empty<ActiveCatchEffectRecord>();
+        CardEffectDefinition[] safeTemporaryEffects = temporaryEffects ?? Array.Empty<CardEffectDefinition>();
 
         for (int i = 0; i < safeEffects.Length; i++)
         {
@@ -44,6 +48,19 @@ public sealed class EffectResolver
             }
 
             weight += effect.Amount;
+        }
+
+        for (int i = 0; i < safeTemporaryEffects.Length; i++)
+        {
+            CardEffectDefinition effect = safeTemporaryEffects[i];
+
+            if (effect != null
+                && effect.EffectType == CardEffectType.ModifyFutureEncounterProperties
+                && effect.Target == CardEffectTarget.FutureEncounters
+                && RequiredTagsMatch(effect.RequiredTags, encounter))
+            {
+                weight += effect.Amount;
+            }
         }
 
         return Math.Max(0, weight);
@@ -201,7 +218,7 @@ public sealed class EffectResolver
     /// <summary>
     /// Checks whether every required tag or card-type name is present on a target definition.
     /// </summary>
-    private static bool RequiredTagsMatch(string[] requiredTags, CardDefinition target)
+    public static bool RequiredTagsMatch(string[] requiredTags, CardDefinition target)
     {
         if (requiredTags == null || requiredTags.Length == 0)
         {

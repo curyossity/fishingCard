@@ -30,7 +30,9 @@ public sealed class EncounterRuntime
         int depth,
         System.Random random,
         ActiveCatchEffectRecord[] activeCatchEffects,
-        EffectResolver effectResolver)
+        EffectResolver effectResolver,
+        CardEffectDefinition[] temporaryEncounterEffects = null,
+        CardDefinition excludedEncounter = null)
     {
         List<CardDefinition> candidates = new List<CardDefinition>();
         List<int> candidateWeights = new List<int>();
@@ -45,7 +47,7 @@ public sealed class EncounterRuntime
             {
                 CardDefinition card = encounterPool[i];
 
-                if (card == null || !IsEncounterCard(card))
+                if (card == null || card == excludedEncounter || !IsEncounterCard(card))
                 {
                     continue;
                 }
@@ -53,7 +55,10 @@ public sealed class EncounterRuntime
                 if (card.IsAvailableInBiome(biomeId) && card.IsAvailableAtDepth(depth))
                 {
                     candidates.Add(card);
-                    int selectionWeight = effectResolver.GetEncounterSelectionWeight(card, activeCatchEffects);
+                    int selectionWeight = effectResolver.GetEncounterSelectionWeight(
+                        card,
+                        activeCatchEffects,
+                        temporaryEncounterEffects);
                     candidateWeights.Add(selectionWeight);
                     candidateWeightLabels.Add($"{card.DisplayName}: {selectionWeight}");
                     lastTotalEncounterWeight += selectionWeight;
@@ -72,6 +77,37 @@ public sealed class EncounterRuntime
         lastSelectedEncounterWeight = candidateWeights[selectedIndex];
         SetCurrentEncounter(candidates[selectedIndex]);
         return true;
+    }
+
+    /// <summary>
+    /// Reports whether the pool contains another valid encounter for replacement at a depth.
+    /// </summary>
+    public bool HasAlternativeEncounter(
+        CardDefinition[] encounterPool,
+        string biomeId,
+        int depth,
+        CardDefinition excludedEncounter)
+    {
+        if (encounterPool == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < encounterPool.Length; i++)
+        {
+            CardDefinition card = encounterPool[i];
+
+            if (card != null
+                && card != excludedEncounter
+                && IsEncounterCard(card)
+                && card.IsAvailableInBiome(biomeId)
+                && card.IsAvailableAtDepth(depth))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

@@ -608,10 +608,18 @@ MonoBehaviour:
   startingTechniqueDeck:
   - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
   - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
-  - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
-  - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
-  - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
-  - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
+  - {fileID: 11400000, guid: bd728b64bba44956992ce63644edce0c, type: 2}
+  - {fileID: 11400000, guid: e351d0877ab8494ea14672d1e541ee59, type: 2}
+  - {fileID: 11400000, guid: c534b46c101f421c9da5ee5beb16151f, type: 2}
+  - {fileID: 11400000, guid: bc84e87be8134cae850d4208d17f0485, type: 2}
+  - {fileID: 11400000, guid: f5bc32384e8a46de887d69ba1c6ca3ae, type: 2}
+  - {fileID: 11400000, guid: befff3671fb74e01876ed1eb743f838f, type: 2}
+  - {fileID: 11400000, guid: 1a2269a41e3b4e40b7406d1476fa377b, type: 2}
+  - {fileID: 11400000, guid: 89b9214b00b5425e86198995ed74a34d, type: 2}
+  - {fileID: 11400000, guid: a03245bf8cd746d4a0c230081389e0bb, type: 2}
+  - {fileID: 11400000, guid: 3f80cf143fb54abeacdbf6ae86470d84, type: 2}
+  - {fileID: 11400000, guid: 51ece213c4bd450f8b8fcc0854ffa64a, type: 2}
+  - {fileID: 11400000, guid: afc9123a69cc4a0f91615608e0dbc968, type: 2}
   encounterPool:
   - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
   - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
@@ -648,6 +656,10 @@ MonoBehaviour:
     hand: []
     drawPile: []
     discardPile: []
+  techniqueEffectRuntime:
+    pendingDescendEffects: []
+    pendingEncounterEffects: []
+    revealsCurrentEncounter: 0
   lineLoadRiskRuntime:
     baseBreakChance: 0.1
     breakChancePerExcessLoad: 0.08

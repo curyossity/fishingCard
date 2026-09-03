@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Worm Bait
+  m_Name: Slip Knot
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_worm_bait
-  displayName: Worm Bait
+  uniqueId: technique_slip_knot
+  displayName: Slip Knot
   cardType: 0
   rarity: 0
   tags:
-  - Bait
+  - Escape
   - EncounterControl
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Replace the current Hooked creature with a new Coastal creature from
-    the encounter pool.
+  artwork: {fileID: 0}
+  rulesText: Avoid the current Hooked creature. The next Descend catches nothing and continues deeper.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: rebait_hook
-    effectType: 6
+  - effectId: avoid_hooked_creature
+    effectType: 7
     trigger: 0
     target: 2
-    effectTone: 0
+    effectTone: 1
     amount: 1
-    requiredTags:
-    - Creature
+    requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Replaces the Hooked encounter.
+    reminderText: Avoid the current Hooked creature.

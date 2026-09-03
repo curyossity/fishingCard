@@ -79,6 +79,7 @@ Owns:
 
 Delegates to:
 - `TechniqueDeckRuntime` for hand and pile operations
+- `TechniqueEffectRuntime` for Technique validation, execution, and delayed effects
 - `EncounterRuntime` for encounter selection and Hooked state
 - `CatchChainRuntime` for catches, Line Load, and attached effects
 - `LineLoadRiskRuntime` for overload checks and tuning
@@ -126,6 +127,28 @@ Does not own:
 - Card-use rules
 - Deck mutations
 - Technique effect execution
+
+### `TechniqueEffectRuntime`
+
+Role:
+Runtime owner of Technique-card rules and effects that wait for the next Descend or encounter reveal.
+
+Owns:
+- Checking whether a Technique card has a valid target in the Hooked reaction window
+- Immediate avoidance, replacement, and information reveal
+- Queued next-Descend and next-encounter effects
+- Temporary capacity, depth, committed-catch, and overload-reward resolution
+- Clearing one-use effects after their matching action
+
+Delegates to:
+- `CatchChainRuntime` for automatic Catch Chain targeting, modification, and release
+- `EncounterRuntime` for replacement and encounter selection
+- `EffectResolver` for encounter weights and Catch Chain recalculation
+
+Does not own:
+- Hand, draw-pile, or discard-pile state
+- Core-action availability
+- Technique-card presentation
 
 ### `EncounterRuntime`
 
@@ -349,24 +372,27 @@ Current Descend flow:
 1. `FishingRunController.TryDescend()` resolves the always-available Descend action.
 2. `EncounterRuntime` returns the Hooked card for commitment, if one exists.
 3. `CatchChainRuntime` creates a `CardInstance`, appends it, and tracks its catch-related effects.
-4. `EffectResolver` recalculates catch weight and value interactions from base card data.
-5. Current Line Load updates because `CatchChainRuntime` calculates it from resolved instance weights.
-6. `LineLoadRiskRuntime` checks for strain when the line is overloaded.
-7. If the check fails, `CatchChainRuntime` releases the randomly selected catch; otherwise the line remains overloaded.
-8. Current depth advances.
-9. `TechniqueDeckRuntime` refills the hand as required.
-10. `EncounterRuntime` filters candidates and uses attached attraction effects as selection weights.
-11. The next valid encounter is revealed; persistent concealment can hide its details.
-12. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+4. `TechniqueEffectRuntime` consumes pending Descend effects for catch stats, distance, capacity, risk, and overload rewards.
+5. `EffectResolver` recalculates catch interactions from each instance's lasting base state.
+6. Current Line Load updates from the resolved instance weights.
+7. `LineLoadRiskRuntime` checks for strain using any one-use capacity bonus.
+8. If the check fails, `CatchChainRuntime` releases the randomly selected catch; otherwise the line remains overloaded.
+9. Current depth advances using any one-use distance modifier.
+10. `TechniqueDeckRuntime` refills the hand as required.
+11. `EncounterRuntime` filters candidates using attached effects plus one-use pool-depth and weight modifiers.
+12. The next valid encounter is revealed; persistent concealment can hide its details.
+13. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
 Current Technique-card use flow:
 
 1. `TechniqueHandView` forwards a slot's `USE` command to `FishingRunController`.
-2. The controller validates the run, hand slot, Hooked encounter, and applicable effects.
+2. The controller validates the run and hand slot; `TechniqueEffectRuntime` validates effect targets.
 3. `TechniqueDeckRuntime` moves the card from hand to discard and refills the hand.
-4. If the draw pile is empty, the discard pile is shuffled into a new draw pile before refilling.
-5. `EncounterRuntime` records the applicable Technique effects for later resolution.
-6. The controller refreshes the hand, pile counts, and playability states.
+4. `TechniqueEffectRuntime` executes immediate effects or queues them for the next matching action.
+5. `CatchChainRuntime` applies lasting per-copy changes and recalculates persistent interactions when required.
+6. Encounter replacement performs a weighted reveal while excluding the replaced card.
+7. If the draw pile is empty, the discard pile is shuffled into a new draw pile before refilling.
+8. The controller refreshes the hand, piles, encounter, Catch Chain, and playability states.
 
 Current Release flow:
 
@@ -417,6 +443,8 @@ Runtime state:
 - Hand/draw/discard piles
 - Catch Chain
 - Per-copy current catch weight and value
+- Per-copy lasting Technique weight and value modifiers
+- Pending next-Descend and next-encounter Technique effects
 - Line Load
 - Last overload-risk check
 - Last Surface result

@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Worm Bait
+  m_Name: Double Release
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_worm_bait
-  displayName: Worm Bait
+  uniqueId: technique_double_release
+  displayName: Double Release
   cardType: 0
-  rarity: 0
+  rarity: 1
   tags:
-  - Bait
-  - EncounterControl
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Replace the current Hooked creature with a new Coastal creature from
-    the encounter pool.
+  - Release
+  - CatchControl
+  artwork: {fileID: 0}
+  rulesText: Immediately release up to two catches from the end of the Catch Chain without changing depth.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: rebait_hook
-    effectType: 6
+  - effectId: release_last_two
+    effectType: 8
     trigger: 0
-    target: 2
+    target: 5
     effectTone: 0
-    amount: 1
-    requiredTags:
-    - Creature
-    caughtCardTargetMode: 0
+    amount: 2
+    requiredTags: []
+    caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Replaces the Hooked encounter.
+    reminderText: Release up to two catches from the end of the chain.

@@ -10,33 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Worm Bait
+  m_Name: Schooling Rig
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_worm_bait
-  displayName: Worm Bait
+  uniqueId: technique_schooling_rig
+  displayName: Schooling Rig
   cardType: 0
-  rarity: 0
+  rarity: 1
   tags:
-  - Bait
-  - EncounterControl
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Replace the current Hooked creature with a new Coastal creature from
-    the encounter pool.
+  - Synergy
+  - CatchControl
+  artwork: {fileID: 0}
+  rulesText: Each attached Schooling catch gains 1 Value for every other attached Schooling catch.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: rebait_hook
-    effectType: 6
+  - effectId: reward_schooling_chain
+    effectType: 10
     trigger: 0
-    target: 2
-    effectTone: 0
+    target: 4
+    effectTone: 1
     amount: 1
     requiredTags:
-    - Creature
+    - Schooling
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Replaces the Hooked encounter.
+    reminderText: Attached Schooling catches increase each other's Value.

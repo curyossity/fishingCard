@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Worm Bait
+  m_Name: Prize Tag
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_worm_bait
-  displayName: Worm Bait
+  uniqueId: technique_prize_tag
+  displayName: Prize Tag
   cardType: 0
   rarity: 0
   tags:
-  - Bait
-  - EncounterControl
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: Replace the current Hooked creature with a new Coastal creature from
-    the encounter pool.
+  - Value
+  - CatchControl
+  artwork: {fileID: 0}
+  rulesText: Permanently increase the last attached catch's value by 3 for this run.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: rebait_hook
-    effectType: 6
+  - effectId: improve_last_catch_value
+    effectType: 2
     trigger: 0
-    target: 2
-    effectTone: 0
-    amount: 1
-    requiredTags:
-    - Creature
-    caughtCardTargetMode: 0
+    target: 5
+    effectTone: 1
+    amount: 3
+    requiredTags: []
+    caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Replaces the Hooked encounter.
+    reminderText: The last catch gains 3 Value.

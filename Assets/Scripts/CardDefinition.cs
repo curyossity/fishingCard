@@ -144,7 +144,13 @@ public enum CardEffectType
     AvoidEncounter,
     ReleaseCatch,
     ModifyNextDescend,
-    ModifyCaughtCard
+    ModifyCaughtCard,
+    RevealEncounterInformation,
+    ModifyDescendDistance,
+    ModifyNextEncounterDepth,
+    ModifyTemporaryCapacity,
+    RiskForReward,
+    RewardOverloadedDescend
 }
 
 public enum CardEffectTrigger
