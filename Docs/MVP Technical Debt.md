@@ -217,19 +217,19 @@ Provide a read-only card view model that can represent either base definitions o
 ## Encounter Selection
 
 Current approach:
-Valid encounters receive one base selection ticket. Attached attraction effects add or remove tickets when the candidate matches their required tags. A valid queued encounter-chain follow-up is selected before this weighted process.
+Valid encounters receive one base selection ticket, and attached attraction effects modify those tickets. A valid queued chain follow-up takes priority. Otherwise, the selector avoids an immediate duplicate when another definition is valid and caps ordinary-creature streaks at two when a non-creature candidate is available.
 
 Why it is acceptable for MVP:
-It makes Catch Chain attraction mechanically testable while preserving the current simple Inspector-authored pool.
+It makes Catch Chain attraction mechanically testable and prevents the most obvious repetitive sequences while preserving simple Inspector-authored pools.
 
 Production concern:
-The game needs authored base weights, rarity handling, chain branching or probabilities, repeat prevention, and dedicated Apex handling.
+The fixed two-creature limit treats every biome identically and only remembers enough state for basic safeguards. The game still needs authored base weights, rarity handling, encounter bags or cooldowns, richer chain rules, and dedicated Apex handling.
 
 Revisit trigger:
-One biome needs to feel replayable and avoid simple random repetition.
+Playtesting needs biome-specific pacing, deliberate rarity frequency, longer repeat memory, or exceptions to the creature-streak rule.
 
 Likely future action:
-Build a biome encounter system with weighted entries, repetition controls, richer chain rules, special encounter rules, and Apex selection outside normal pools.
+Move pacing and repetition settings into biome or pool data, then add weighted entries, encounter bags or cooldowns, richer chain rules, and Apex selection outside normal pools.
 
 ## Automatic Caught-Card Targeting
 
@@ -251,7 +251,7 @@ Separate automatic passive target policies from player-selected targeting contex
 ## Array-Backed Runtime State
 
 Current approach:
-`TechniqueDeckRuntime`, `CatchChainRuntime`, and effect-record collections store their Inspector-visible state as arrays.
+`TechniqueDeckRuntime`, `CatchChainRuntime`, `EncounterVarietyRuntime`, and effect-record collections store their Inspector-visible state as arrays.
 
 Why it is acceptable for MVP:
 Arrays are easy to serialize and inspect in Unity while runtime state is small.

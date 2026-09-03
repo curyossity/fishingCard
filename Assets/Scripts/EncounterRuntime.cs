@@ -14,6 +14,7 @@ public sealed class EncounterRuntime
     [SerializeField] private string lastCandidateWeightSummary;
     [SerializeField] private EncounterChainDefinition activeEncounterChain;
     [SerializeField] private int nextEncounterChainIndex;
+    [SerializeField] private EncounterVarietyRuntime encounterVarietyRuntime = new EncounterVarietyRuntime();
 
     public CardDefinition CurrentEncounter => currentEncounter;
     public EncounterState CurrentState => currentState;
@@ -24,6 +25,18 @@ public sealed class EncounterRuntime
     public string LastCandidateWeightSummary => lastCandidateWeightSummary;
     public EncounterChainDefinition ActiveEncounterChain => activeEncounterChain;
     public int NextEncounterChainIndex => nextEncounterChainIndex;
+    public CardDefinition[] RecentEncounterHistory => encounterVarietyRuntime == null
+        ? Array.Empty<CardDefinition>()
+        : encounterVarietyRuntime.RecentEncounterHistory;
+    public string RecentEncounterSequenceSummary => encounterVarietyRuntime == null
+        ? string.Empty
+        : encounterVarietyRuntime.RecentEncounterSequenceSummary;
+    public int ConsecutiveCreatureEncounters => encounterVarietyRuntime == null
+        ? 0
+        : encounterVarietyRuntime.ConsecutiveCreatureEncounters;
+    public string LastRepetitionRuleSummary => encounterVarietyRuntime == null
+        ? string.Empty
+        : encounterVarietyRuntime.LastRepetitionRuleSummary;
 
     /// <summary>
     /// Selects and activates a valid encounter for the current biome and depth.
@@ -42,9 +55,11 @@ public sealed class EncounterRuntime
         List<CardDefinition> candidates = new List<CardDefinition>();
         List<int> candidateWeights = new List<int>();
         List<string> candidateWeightLabels = new List<string>();
+        EnsureEncounterVarietyRuntime();
         lastSelectedEncounterWeight = 0;
         lastTotalEncounterWeight = 0;
         lastCandidateWeightSummary = string.Empty;
+        encounterVarietyRuntime.BeginSelection();
 
         if (TryRevealActiveChain(biomeId, depth))
         {
@@ -65,16 +80,11 @@ public sealed class EncounterRuntime
                 if (card.IsAvailableInBiome(biomeId) && card.IsAvailableAtDepth(depth))
                 {
                     candidates.Add(card);
-                    int selectionWeight = effectResolver.GetEncounterSelectionWeight(
-                        card,
-                        activeCatchEffects,
-                        temporaryEncounterEffects);
-                    candidateWeights.Add(selectionWeight);
-                    candidateWeightLabels.Add($"{card.DisplayName}: {selectionWeight}");
-                    lastTotalEncounterWeight += selectionWeight;
                 }
             }
         }
+
+        encounterVarietyRuntime.ApplyRepetitionRules(candidates);
 
         if (candidates.Count == 0)
         {
@@ -82,10 +92,23 @@ public sealed class EncounterRuntime
             return false;
         }
 
+        for (int i = 0; i < candidates.Count; i++)
+        {
+            CardDefinition candidate = candidates[i];
+            int selectionWeight = effectResolver.GetEncounterSelectionWeight(
+                candidate,
+                activeCatchEffects,
+                temporaryEncounterEffects);
+            candidateWeights.Add(selectionWeight);
+            candidateWeightLabels.Add($"{candidate.DisplayName}: {selectionWeight}");
+            lastTotalEncounterWeight += selectionWeight;
+        }
+
         int selectedIndex = SelectWeightedIndex(candidateWeights, lastTotalEncounterWeight, random);
         lastCandidateWeightSummary = string.Join(", ", candidateWeightLabels);
         lastSelectedEncounterWeight = candidateWeights[selectedIndex];
         SetCurrentEncounter(candidates[selectedIndex]);
+        encounterVarietyRuntime.RecordSelectedEncounter(currentEncounter);
         BeginEncounterChain(currentEncounter, encounterChains);
         return true;
     }
@@ -195,7 +218,20 @@ public sealed class EncounterRuntime
         lastSelectedEncounterWeight = 0;
         lastTotalEncounterWeight = 0;
         lastCandidateWeightSummary = string.Empty;
+        EnsureEncounterVarietyRuntime();
+        encounterVarietyRuntime.Reset();
         CancelActiveEncounterChain();
+    }
+
+    /// <summary>
+    /// Restores the variety runtime when loading scene data created before it existed.
+    /// </summary>
+    private void EnsureEncounterVarietyRuntime()
+    {
+        if (encounterVarietyRuntime == null)
+        {
+            encounterVarietyRuntime = new EncounterVarietyRuntime();
+        }
     }
 
     /// <summary>
@@ -259,7 +295,9 @@ public sealed class EncounterRuntime
 
         lastSelectedEncounterWeight = 1;
         lastTotalEncounterWeight = 1;
+        encounterVarietyRuntime.RecordAuthoredChainFollowUp();
         SetCurrentEncounter(chainedEncounter);
+        encounterVarietyRuntime.RecordSelectedEncounter(chainedEncounter);
         return true;
     }
 
@@ -448,4 +486,5 @@ public sealed class EncounterRuntime
                 || card.CardType == CardType.Treasure
                 || card.CardType == CardType.ApexEncounter);
     }
+
 }

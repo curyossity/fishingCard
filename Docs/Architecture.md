@@ -205,11 +205,31 @@ Owns:
 - Prioritizing a valid queued chain card before normal weighted selection
 - Applying an explicitly supplied encounter through the normal state transition rules
 
+Delegates to:
+- `EncounterVarietyRuntime` for repetition filtering, streak state, and sequence diagnostics
+
 Does not own:
 - Catch Chain commitment after a Hooked card is taken
 - Depth progression
 - Encounter pool authoring or attraction-weight calculation
+- Repetition history or filtering policy
 - Effect execution
+
+### `EncounterVarietyRuntime`
+
+Role:
+Runtime owner of lightweight encounter repetition safeguards and recent sequence diagnostics.
+
+Owns:
+- Immediate-repeat prevention when another valid card is available
+- Capping ordinary-creature streaks at two when a non-creature candidate is available
+- The most recent eight selected encounters
+- Inspector-friendly sequence and applied-rule summaries
+
+Does not own:
+- Encounter eligibility or weighted selection
+- Authored encounter chains
+- Biome pool composition or final pacing rules
 
 ### `CatchChainRuntime`
 
@@ -423,10 +443,12 @@ Current Descend flow:
 9. Current depth advances using any one-use distance modifier.
 10. `TechniqueDeckRuntime` refills the hand as required.
 11. `BiomeDefinition` supplies the tier pool at the effective selection depth.
-12. `EncounterRuntime` first reveals a valid queued chain card; otherwise it filters the subset using card availability, attached effects, and one-use weight modifiers.
-13. A normally selected chain starter queues its next authored card.
-14. The next valid encounter is revealed; persistent concealment can hide its details.
-15. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+12. `EncounterRuntime` first reveals a valid queued chain card; otherwise it filters the subset using card availability.
+13. If alternatives exist, repetition rules remove the immediately previous card and interrupt an ordinary-creature streak after two reveals.
+14. Attached effects and one-use modifiers determine the remaining candidates' selection weights.
+15. A normally selected chain starter queues its next authored card.
+16. The next valid encounter is revealed; persistent concealment can hide its details.
+17. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
 Current Technique-card use flow:
 
@@ -488,6 +510,7 @@ Runtime state:
 - Current encounter state
 - Hooked encounter
 - Active encounter chain and next sequence index
+- `EncounterVarietyRuntime` history and consecutive ordinary-creature count
 - Hand/draw/discard piles
 - Catch Chain
 - Per-copy current catch weight and value

@@ -326,6 +326,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         lineCapacity = Mathf.Max(0, scenario.LineCapacity);
         currentDepth = Mathf.Max(0, scenario.Depth);
+        encounterRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueEffectRuntime.Reset();
 
@@ -630,7 +631,9 @@ public sealed class FishingRunController : MonoBehaviour
         summary.Append(encounterRuntime.CurrentEncounter == null ? "none" : encounterRuntime.CurrentEncounter.DisplayName);
         summary.AppendLine();
         summary.Append("Encounter State: ");
-        summary.Append(encounterRuntime.CurrentState);
+        summary.AppendLine(encounterRuntime.CurrentState.ToString());
+        summary.Append("Recent Encounter Sequence: ");
+        summary.Append(encounterRuntime.RecentEncounterSequenceSummary);
         return summary.ToString();
     }
 
@@ -681,7 +684,10 @@ public sealed class FishingRunController : MonoBehaviour
         summary.Append(encounterRuntime.CurrentEncounter == null ? "none" : encounterRuntime.CurrentEncounter.DisplayName);
         summary.AppendLine();
         summary.Append("Encounter State: ");
-        summary.Append(encounterRuntime.CurrentState);
+        summary.AppendLine(encounterRuntime.CurrentState.ToString());
+        summary.AppendLine($"Encounter Variety Rule: {encounterRuntime.LastRepetitionRuleSummary}");
+        summary.Append("Recent Encounter Sequence: ");
+        summary.Append(encounterRuntime.RecentEncounterSequenceSummary);
         return summary.ToString();
     }
 

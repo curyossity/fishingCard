@@ -643,6 +643,11 @@ MonoBehaviour:
     lastCandidateWeightSummary: 
     activeEncounterChain: {fileID: 0}
     nextEncounterChainIndex: 0
+    encounterVarietyRuntime:
+      recentEncounterHistory: []
+      recentEncounterSequenceSummary:
+      consecutiveCreatureEncounters: 0
+      lastRepetitionRuleSummary:
   catchChainRuntime:
     catches: []
     activeEffectRecords: []
