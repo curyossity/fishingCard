@@ -40,6 +40,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private int lineCapacity;
     [SerializeField] private bool currentEncounterInformationHidden;
     [SerializeField] private EncounterRuntime encounterRuntime = new EncounterRuntime();
+    [SerializeField] private BiomeApexRuntime biomeApexRuntime = new BiomeApexRuntime();
     [SerializeField] private CatchChainRuntime catchChainRuntime = new CatchChainRuntime();
     [SerializeField] private TechniqueDeckRuntime techniqueDeckRuntime = new TechniqueDeckRuntime();
     [SerializeField] private TechniqueEffectRuntime techniqueEffectRuntime = new TechniqueEffectRuntime();
@@ -77,6 +78,8 @@ public sealed class FishingRunController : MonoBehaviour
     public bool LastSurfaceWasOverloaded => lastSurfaceResult.WasOverloaded;
     public int CurrentLineLoad => catchChainRuntime.CurrentLineLoad;
     public bool CurrentEncounterInformationHidden => currentEncounterInformationHidden;
+    public BiomeApexState CurrentBiomeApexState => biomeApexRuntime.State;
+    public CardDefinition SelectedBiomeApex => biomeApexRuntime.SelectedApex;
 
     /// <summary>
     /// Initializes runtime owners and starts the run automatically when configured.
@@ -108,6 +111,7 @@ public sealed class FishingRunController : MonoBehaviour
         currentDepth = Mathf.Max(0, startingDepth);
 
         encounterRuntime.Reset();
+        biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Initialize(startingTechniqueDeck, startingHandSize, random, LogRuntimeWarning);
         techniqueEffectRuntime.Reset();
@@ -131,8 +135,9 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         techniqueDeckRuntime.TryGetHandCard(handIndex, out CardDefinition techniqueCard, out _);
+        CardDefinition encounterBeforeTechnique = encounterRuntime.CurrentEncounter;
         int encounterSelectionDepth = GetEffectiveEncounterSelectionDepth();
-        CardDefinition[] currentEncounterPool = GetEncounterPool(encounterSelectionDepth);
+        CardDefinition[] currentEncounterPool = GetTechniqueEncounterPool(encounterSelectionDepth);
         bool consumed = techniqueDeckRuntime.TryUseCard(
             handIndex,
             startingHandSize,
@@ -164,6 +169,8 @@ public sealed class FishingRunController : MonoBehaviour
             Debug.LogWarning($"Technique card was consumed but its validated effect did not resolve: {techniqueCard.DisplayName}.", this);
             return false;
         }
+
+        biomeApexRuntime.RecordTechniqueResolution(encounterBeforeTechnique, encounterRuntime.CurrentEncounter);
 
         RefreshViews();
         Debug.Log($"Technique card used: {techniqueCard.DisplayName} | {effectSummary}. "
@@ -202,7 +209,7 @@ public sealed class FishingRunController : MonoBehaviour
             encounterRuntime,
             catchChainRuntime,
             currentEncounterInformationHidden,
-            GetEncounterPool(encounterSelectionDepth),
+            GetTechniqueEncounterPool(encounterSelectionDepth),
             CurrentBiomeId,
             currentDepth,
             out restrictionReason);
@@ -225,6 +232,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (caughtCard != null)
         {
             committedCatch = catchChainRuntime.Add(caughtCard, effectResolver);
+            biomeApexRuntime.RecordCommittedApex(caughtCard);
         }
 
         TechniqueDescendResolution techniqueResolution = techniqueEffectRuntime.ResolveNextDescend(
@@ -327,6 +335,7 @@ public sealed class FishingRunController : MonoBehaviour
         lineCapacity = Mathf.Max(0, scenario.LineCapacity);
         currentDepth = Mathf.Max(0, scenario.Depth);
         encounterRuntime.Reset();
+        biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueEffectRuntime.Reset();
 
@@ -422,6 +431,11 @@ public sealed class FishingRunController : MonoBehaviour
             encounterRuntime = new EncounterRuntime();
         }
 
+        if (biomeApexRuntime == null)
+        {
+            biomeApexRuntime = new BiomeApexRuntime();
+        }
+
         if (catchChainRuntime == null)
         {
             catchChainRuntime = new CatchChainRuntime();
@@ -459,6 +473,27 @@ public sealed class FishingRunController : MonoBehaviour
     private void RevealEncounterAtCurrentDepth()
     {
         int selectionDepth = GetEffectiveEncounterSelectionDepth();
+
+        if (TryRevealBiomeApex(selectionDepth))
+        {
+            techniqueEffectRuntime.CompleteEncounterReveal();
+            return;
+        }
+
+        if (biomeApexRuntime.HasReachedBoundary
+            && selectionDepth >= biomeApexRuntime.BoundaryDepth)
+        {
+            encounterRuntime.SetCurrentEncounter(null);
+            techniqueEffectRuntime.CompleteEncounterReveal();
+
+            if (biomeApexRuntime.State == BiomeApexState.Unavailable)
+            {
+                Debug.LogWarning(biomeApexRuntime.LastSelectionSummary, this);
+            }
+
+            return;
+        }
+
         bool revealed = encounterRuntime.Reveal(
             GetEncounterPool(selectionDepth),
             CurrentBiomeId,
@@ -476,6 +511,26 @@ public sealed class FishingRunController : MonoBehaviour
         {
             Debug.LogWarning($"No valid encounter found for biome '{CurrentBiomeId}' at depth {currentDepth}.", this);
         }
+    }
+
+    /// <summary>
+    /// Selects and reveals the run's one biome Apex when the depth boundary is crossed.
+    /// </summary>
+    private bool TryRevealBiomeApex(int selectionDepth)
+    {
+        if (!biomeApexRuntime.TrySelectApex(currentBiome, selectionDepth, random, out CardDefinition apex))
+        {
+            return false;
+        }
+
+        if (!encounterRuntime.RevealApex(apex))
+        {
+            Debug.LogWarning($"Could not reveal selected biome Apex: {apex.DisplayName}.", this);
+            return false;
+        }
+
+        Debug.Log($"BIOME APEX REVEALED | {biomeApexRuntime.LastSelectionSummary}", this);
+        return true;
     }
 
     /// <summary>
@@ -497,12 +552,26 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
+    /// Returns Apex alternatives during its reaction window and the regular tier pool otherwise.
+    /// </summary>
+    private CardDefinition[] GetTechniqueEncounterPool(int selectionDepth)
+    {
+        if (currentBiome != null && biomeApexRuntime.IsCurrentApex(encounterRuntime.HookedEncounter))
+        {
+            return currentBiome.ApexEncounters ?? Array.Empty<CardDefinition>();
+        }
+
+        return GetEncounterPool(selectionDepth);
+    }
+
+    /// <summary>
     /// Clears state that exists only while a fishing run is active.
     /// </summary>
     private void EndActiveRun()
     {
         runActive = false;
         encounterRuntime.Reset();
+        biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Reset();
         techniqueEffectRuntime.Reset();
@@ -632,6 +701,7 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine();
         summary.Append("Encounter State: ");
         summary.AppendLine(encounterRuntime.CurrentState.ToString());
+        summary.AppendLine($"Biome Apex State: {biomeApexRuntime.State}");
         summary.Append("Recent Encounter Sequence: ");
         summary.Append(encounterRuntime.RecentEncounterSequenceSummary);
         return summary.ToString();
@@ -668,6 +738,7 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine();
         summary.AppendLine($"Depth: {currentDepth}");
         summary.AppendLine($"Depth Tier: {(CurrentDepthTier == null ? "none" : CurrentDepthTier.DisplayName)}");
+        summary.AppendLine($"Biome Apex State: {biomeApexRuntime.State}");
         summary.AppendLine($"Line Load: {catchChainRuntime.CurrentLineLoad} / {lineCapacity}");
         summary.AppendLine($"Catch Chain: {catchChainRuntime.Catches.Length} cards");
         summary.AppendLine($"Active Catch Effects: {catchChainRuntime.ActiveEffectRecords.Length}");

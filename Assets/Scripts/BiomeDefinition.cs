@@ -17,6 +17,9 @@ public sealed class BiomeDefinition : ScriptableObject
     [SerializeField] private BiomeDepthTierDefinition[] depthTiers = Array.Empty<BiomeDepthTierDefinition>();
     [SerializeField] private EncounterChainDefinition[] encounterChains = Array.Empty<EncounterChainDefinition>();
 
+    [Header("Apex")]
+    [SerializeField] private CardDefinition[] apexEncounters = Array.Empty<CardDefinition>();
+
     public string BiomeId => biomeId;
     public string DisplayName => displayName;
     public string CoreIdentity => coreIdentity;
@@ -24,6 +27,7 @@ public sealed class BiomeDefinition : ScriptableObject
     public string[] SignatureTags => signatureTags;
     public BiomeDepthTierDefinition[] DepthTiers => depthTiers;
     public EncounterChainDefinition[] EncounterChains => encounterChains;
+    public CardDefinition[] ApexEncounters => apexEncounters;
 
     /// <summary>
     /// Returns the authored tier containing a depth, or null when the biome has ended.
@@ -55,6 +59,39 @@ public sealed class BiomeDefinition : ScriptableObject
     {
         BiomeDepthTierDefinition tier = GetDepthTier(depth);
         return tier?.EncounterPool ?? Array.Empty<CardDefinition>();
+    }
+
+    /// <summary>
+    /// Returns the first depth after all finite tiers, or -1 when no Apex boundary exists.
+    /// </summary>
+    public int GetApexBoundaryDepth()
+    {
+        if (depthTiers == null || depthTiers.Length == 0)
+        {
+            return -1;
+        }
+
+        int deepestTierDepth = -1;
+
+        for (int i = 0; i < depthTiers.Length; i++)
+        {
+            BiomeDepthTierDefinition tier = depthTiers[i];
+
+            if (tier == null)
+            {
+                continue;
+            }
+
+            // An unlimited tier has no later boundary at which an Apex can trigger.
+            if (tier.MaximumDepth < 0)
+            {
+                return -1;
+            }
+
+            deepestTierDepth = Math.Max(deepestTierDepth, tier.MaximumDepth);
+        }
+
+        return deepestTierDepth < 0 ? -1 : deepestTierDepth + 1;
     }
 }
 

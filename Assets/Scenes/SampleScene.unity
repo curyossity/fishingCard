@@ -648,6 +648,12 @@ MonoBehaviour:
       recentEncounterSequenceSummary:
       consecutiveCreatureEncounters: 0
       lastRepetitionRuleSummary:
+  biomeApexRuntime:
+    state: 0
+    boundaryDepth: -1
+    selectedApex: {fileID: 0}
+    validPossibilityCount: 0
+    lastSelectionSummary:
   catchChainRuntime:
     catches: []
     activeEffectRecords: []

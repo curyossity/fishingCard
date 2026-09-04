@@ -31,6 +31,7 @@ Owns:
 - Ordered internal depth tiers and their inclusive ranges
 - Tier-specific design intent and encounter subsets
 - Short authored encounter-chain definitions available in the biome
+- Apex encounter possibilities selected when the run crosses the final tier boundary
 
 Does not own:
 - Current run depth or encounter state
@@ -120,6 +121,7 @@ Delegates to:
 - `TechniqueDeckRuntime` for hand and pile operations
 - `TechniqueEffectRuntime` for Technique validation, execution, and delayed effects
 - `EncounterRuntime` for encounter selection and Hooked state
+- `BiomeApexRuntime` for one-per-run Apex selection and resolution state
 - `CatchChainRuntime` for catches, Line Load, and attached effects
 - `LineLoadRiskRuntime` for overload checks and tuning
 - `EffectResolver` for catch interactions, attraction, and encounter concealment
@@ -204,6 +206,7 @@ Owns:
 - Active encounter chain and the index of its next queued card
 - Prioritizing a valid queued chain card before normal weighted selection
 - Applying an explicitly supplied encounter through the normal state transition rules
+- Activating a preselected Apex through the normal Hooked state
 
 Delegates to:
 - `EncounterVarietyRuntime` for repetition filtering, streak state, and sequence diagnostics
@@ -214,6 +217,24 @@ Does not own:
 - Encounter pool authoring or attraction-weight calculation
 - Repetition history or filtering policy
 - Effect execution
+
+### `BiomeApexRuntime`
+
+Role:
+Runtime owner of one biome's one-per-run Apex selection and resolution state.
+
+Owns:
+- Detecting the calculated boundary after all finite biome tiers
+- Uniform random selection from valid biome-authored Apex possibilities
+- Selected Apex and valid-candidate diagnostics
+- Hooked, Avoided, Caught, and Unavailable Apex states
+- Updating the selected Apex when a Technique replaces it
+
+Does not own:
+- Hooked encounter behavior or Catch Chain commitment
+- Technique-card rules
+- Apex effects after the card enters the Catch Chain
+- Transition to another biome or the end-of-biome presentation
 
 ### `EncounterVarietyRuntime`
 
@@ -443,12 +464,22 @@ Current Descend flow:
 9. Current depth advances using any one-use distance modifier.
 10. `TechniqueDeckRuntime` refills the hand as required.
 11. `BiomeDefinition` supplies the tier pool at the effective selection depth.
-12. `EncounterRuntime` first reveals a valid queued chain card; otherwise it filters the subset using card availability.
-13. If alternatives exist, repetition rules remove the immediately previous card and interrupt an ordinary-creature streak after two reveals.
-14. Attached effects and one-use modifiers determine the remaining candidates' selection weights.
-15. A normally selected chain starter queues its next authored card.
-16. The next valid encounter is revealed; persistent concealment can hide its details.
-17. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+12. At the depth after the biome's final finite tier, `BiomeApexRuntime` selects one valid Apex possibility exactly once.
+13. `EncounterRuntime` reveals that Apex as Hooked; otherwise it first reveals a valid queued chain card or filters the regular tier subset using card availability.
+14. If alternatives exist, repetition rules remove the immediately previous regular card and interrupt an ordinary-creature streak after two reveals.
+15. Attached effects and one-use modifiers determine the remaining regular candidates' selection weights.
+16. A normally selected chain starter queues its next authored card.
+17. The next valid encounter is revealed; persistent concealment can hide its details.
+18. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+
+Current Apex flow:
+
+1. Crossing the biome boundary asks `BiomeApexRuntime` to select one valid authored Apex possibility.
+2. `EncounterRuntime` presents the selected card as a Hooked encounter, and `CardView` uses distinct biome-Apex labels.
+3. Technique validation continues through the normal Hooked reaction window; replacement draws from the other Apex possibilities.
+4. Avoidance records the Apex as Avoided and prevents another boundary selection during the run.
+5. Descend commits the Hooked Apex through `CatchChainRuntime.Add(...)` and records the Apex as Caught.
+6. Further biome transition or end-of-MVP behavior remains outside this flow.
 
 Current Technique-card use flow:
 
@@ -511,6 +542,7 @@ Runtime state:
 - Hooked encounter
 - Active encounter chain and next sequence index
 - `EncounterVarietyRuntime` history and consecutive ordinary-creature count
+- `BiomeApexRuntime` boundary, selected Apex, and resolution state
 - Hand/draw/discard piles
 - Catch Chain
 - Per-copy current catch weight and value

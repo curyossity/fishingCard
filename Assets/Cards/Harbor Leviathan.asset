@@ -28,7 +28,7 @@ MonoBehaviour:
   value: 18
   biomeIds:
   - Coastal
-  minimumDepth: 7
+  minimumDepth: 8
   maximumDepth: -1
   effects:
   - effectId: apex_predator_pressure

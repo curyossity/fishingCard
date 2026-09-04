@@ -114,6 +114,27 @@ public sealed class EncounterRuntime
     }
 
     /// <summary>
+    /// Activates a preselected biome Apex through the normal Hooked encounter state.
+    /// </summary>
+    public bool RevealApex(CardDefinition apexEncounter)
+    {
+        if (apexEncounter == null || apexEncounter.CardType != CardType.ApexEncounter)
+        {
+            return false;
+        }
+
+        EnsureEncounterVarietyRuntime();
+        CancelActiveEncounterChain();
+        lastSelectedEncounterWeight = 1;
+        lastTotalEncounterWeight = 1;
+        lastCandidateWeightSummary = $"Biome Apex: {apexEncounter.DisplayName}";
+        encounterVarietyRuntime.BeginSelection();
+        SetCurrentEncounter(apexEncounter);
+        encounterVarietyRuntime.RecordSelectedEncounter(apexEncounter);
+        return true;
+    }
+
+    /// <summary>
     /// Cancels a queued follow-up when the encounter that started it is avoided or replaced.
     /// </summary>
     public void CancelActiveEncounterChain()

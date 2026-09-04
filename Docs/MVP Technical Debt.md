@@ -53,10 +53,10 @@ Why it is acceptable for MVP:
 It is transparent in the Inspector and enough to test changing Coastal encounter composition across Shallows, Mid-depth, and Deep Edge.
 
 Production concern:
-Raw tier arrays do not express base encounter weights, rarity rules, repeat prevention, or dedicated Apex selection. Chains are separate ordered arrays without branching, probability, cooldown, or validation tooling.
+Raw tier arrays do not express base encounter weights, rarity rules, or configurable repeat prevention. Chains are separate ordered arrays without branching, probability, cooldown, or validation tooling, while Apex possibilities are a separate unweighted array.
 
 Revisit trigger:
-Biome content needs weighted entries, branching or conditional chains, repeat prevention, rare-event rules, or proper Apex selection.
+Biome content needs weighted entries, branching or conditional chains, configurable repeat prevention, rare-event rules, or weighted Apex selection.
 
 Likely future action:
 Replace each raw tier array with a referenced `EncounterPoolDefinition` that owns validated weighted entries, rarity, repetition rules, chains, and Apex-specific data.
@@ -81,36 +81,36 @@ Add an explicit encounter-event resolution context with supported triggers, effe
 ## Prototype Apex Selection
 
 Current approach:
-The two Coastal Apex possibilities are ordinary candidates in the Deep Edge tier at depth 7.
+`BiomeDefinition` stores two Apex possibilities outside regular depth-tier pools. `BiomeApexRuntime` uniformly selects one when the run crosses the calculated boundary, tracks its resolution, and routes it through the normal Hooked encounter flow.
 
 Why it is acceptable for MVP:
-Both Apex cards can appear through the existing encounter loop, allowing their content and Catch Chain pressure to be tested without a separate climax flow.
+It guarantees one identifiable climax per Coastal run while preserving existing Technique and Catch Chain rules.
 
 Production concern:
-Normal random selection does not guarantee one meaningful Apex climax, prevent repeats, or distinguish an Apex reveal from an ordinary encounter.
+Selection has equal probability with no unlock, rarity, history, or run-build influence. Presentation is currently limited to distinct card labels, Inspector state, and Console feedback.
 
 Revisit trigger:
-The run needs a reliable biome ending, Apex-specific presentation, rewards, or one-per-run selection rules.
+Playtesting requires weighted Apex odds, unlock rules, richer presentation, rewards, or selection influenced by the current run.
 
 Likely future action:
-Remove Apex cards from regular tier pools and add a dedicated biome-end selection and resolution flow.
+Add authored Apex weights and eligibility rules, then connect the existing runtime state to final visual treatment, rewards, and biome transition presentation.
 
 ## Finite Coastal Boundary
 
 Current approach:
-Coastal Waters has regular tiers from depth 0 through depth 7. Reaching depth 8 produces no regular encounter, leaving the player free to Surface while automatic Apex completion and biome transition remain unimplemented.
+Coastal Waters has regular tiers from depth 0 through depth 7. Crossing into depth 8 reveals one selected Apex; after it is caught or avoided, further biome transition remains unimplemented.
 
 Why it is acceptable for MVP:
-The explicit boundary prevents the Deep Edge pool from repeating forever and makes the intended end of current Coastal progression visible during testing.
+The explicit boundary now provides a reliable Coastal climax without requiring a second biome.
 
 Production concern:
-An empty encounter is not a satisfying biome climax, and continuing to Descend beyond the boundary currently remains possible.
+After resolving the Apex, continuing to Descend produces no further encounters because the next-biome or end-of-MVP transition is not connected yet.
 
 Revisit trigger:
-Biome Apex flow or transitions between regions are implemented.
+The Apex needs to carry into a following region or the prototype needs an explicit end-of-biome decision.
 
 Likely future action:
-Replace the empty boundary with dedicated Apex selection, completion state, rewards, and a controlled transition or run-ending decision.
+Preserve the caught Apex and Catch Chain while presenting the next-waters transition, or route the prototype into a controlled Surface/end-of-MVP flow.
 
 ## Runtime Card-Type Guards
 
@@ -223,13 +223,13 @@ Why it is acceptable for MVP:
 It makes Catch Chain attraction mechanically testable and prevents the most obvious repetitive sequences while preserving simple Inspector-authored pools.
 
 Production concern:
-The fixed two-creature limit treats every biome identically and only remembers enough state for basic safeguards. The game still needs authored base weights, rarity handling, encounter bags or cooldowns, richer chain rules, and dedicated Apex handling.
+The fixed two-creature limit treats every biome identically and only remembers enough state for basic safeguards. The game still needs authored base weights, rarity handling, encounter bags or cooldowns, and richer chain rules.
 
 Revisit trigger:
 Playtesting needs biome-specific pacing, deliberate rarity frequency, longer repeat memory, or exceptions to the creature-streak rule.
 
 Likely future action:
-Move pacing and repetition settings into biome or pool data, then add weighted entries, encounter bags or cooldowns, richer chain rules, and Apex selection outside normal pools.
+Move pacing and repetition settings into biome or pool data, then add weighted entries, encounter bags or cooldowns, and richer chain rules.
 
 ## Automatic Caught-Card Targeting
 

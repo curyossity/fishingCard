@@ -85,9 +85,9 @@ public sealed class CardView : MonoBehaviour
         }
 
         SetText(displayNameText, cardDefinition.DisplayName);
-        SetText(cardTypeText, cardDefinition.CardType.ToString());
+        SetText(cardTypeText, BuildCardTypeText(cardDefinition));
         SetText(rarityText, cardDefinition.Rarity.ToString());
-        SetText(encounterStateText, BuildEncounterStateText(encounterState));
+        SetText(encounterStateText, BuildEncounterStateText(cardDefinition, encounterState));
         SetText(statsText, informationHidden ? "Weight ? / Value ?" : BuildStatsText(cardDefinition));
         SetText(tagsText, informationHidden ? "Unknown" : BuildTagsText(cardDefinition));
         SetText(rulesText, informationHidden ? "Details hidden by an attached catch effect." : cardDefinition.RulesText);
@@ -144,11 +144,31 @@ public sealed class CardView : MonoBehaviour
     }
 
     /// <summary>
+    /// Builds a distinct type label for a biome Apex card.
+    /// </summary>
+    private static string BuildCardTypeText(CardDefinition card)
+    {
+        if (card == null)
+        {
+            return string.Empty;
+        }
+
+        return card.CardType == CardType.ApexEncounter ? "BIOME APEX" : card.CardType.ToString();
+    }
+
+    /// <summary>
     /// Builds the encounter state label for card views that expose state text.
     /// </summary>
-    private static string BuildEncounterStateText(EncounterState state)
+    private static string BuildEncounterStateText(CardDefinition card, EncounterState state)
     {
-        return state == EncounterState.None ? string.Empty : state.ToString();
+        if (state == EncounterState.None)
+        {
+            return string.Empty;
+        }
+
+        return card != null && card.CardType == CardType.ApexEncounter
+            ? $"APEX - {state.ToString().ToUpperInvariant()}"
+            : state.ToString();
     }
 
     /// <summary>
