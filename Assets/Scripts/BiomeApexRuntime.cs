@@ -10,6 +10,7 @@ public sealed class BiomeApexRuntime
     [SerializeField] private CardDefinition selectedApex;
     [SerializeField] private int validPossibilityCount;
     [SerializeField] private string lastSelectionSummary;
+    [SerializeField] private bool nextWatersPresented;
 
     public BiomeApexState State => state;
     public int BoundaryDepth => boundaryDepth;
@@ -17,6 +18,9 @@ public sealed class BiomeApexRuntime
     public int ValidPossibilityCount => validPossibilityCount;
     public string LastSelectionSummary => lastSelectionSummary;
     public bool HasReachedBoundary => state != BiomeApexState.NotReached;
+    public bool NextWatersPresented => nextWatersPresented;
+    public bool CanPresentNextWaters => !nextWatersPresented
+        && (state == BiomeApexState.Avoided || state == BiomeApexState.Caught);
 
     /// <summary>
     /// Selects one valid Apex the first time the run reaches a biome's boundary.
@@ -108,6 +112,17 @@ public sealed class BiomeApexRuntime
     }
 
     /// <summary>
+    /// Records that the post-Apex next-waters encounter has been presented once.
+    /// </summary>
+    public void RecordNextWatersPresented()
+    {
+        if (CanPresentNextWaters)
+        {
+            nextWatersPresented = true;
+        }
+    }
+
+    /// <summary>
     /// Clears all one-run Apex selection and resolution state.
     /// </summary>
     public void Reset()
@@ -117,6 +132,7 @@ public sealed class BiomeApexRuntime
         selectedApex = null;
         validPossibilityCount = 0;
         lastSelectionSummary = string.Empty;
+        nextWatersPresented = false;
     }
 
     /// <summary>

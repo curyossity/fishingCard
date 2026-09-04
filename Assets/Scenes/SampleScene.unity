@@ -654,6 +654,7 @@ MonoBehaviour:
     selectedApex: {fileID: 0}
     validPossibilityCount: 0
     lastSelectionSummary: 
+    nextWatersPresented: 0
   catchChainRuntime:
     catches: []
     activeEffectRecords: []

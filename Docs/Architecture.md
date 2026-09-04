@@ -32,6 +32,7 @@ Owns:
 - Tier-specific design intent and encounter subsets
 - Short authored encounter-chain definitions available in the biome
 - Apex encounter possibilities selected when the run crosses the final tier boundary
+- The Location card presented after the biome's Apex is resolved
 
 Does not own:
 - Current run depth or encounter state
@@ -229,12 +230,13 @@ Owns:
 - Selected Apex and valid-candidate diagnostics
 - Hooked, Avoided, Caught, and Unavailable Apex states
 - Updating the selected Apex when a Technique replaces it
+- Whether the post-Apex next-waters card has been presented
 
 Does not own:
 - Hooked encounter behavior or Catch Chain commitment
 - Technique-card rules
 - Apex effects after the card enters the Catch Chain
-- Transition to another biome or the end-of-biome presentation
+- Changing the active biome or resetting run-owned systems
 
 ### `EncounterVarietyRuntime`
 
@@ -479,7 +481,9 @@ Current Apex flow:
 3. Technique validation continues through the normal Hooked reaction window; replacement draws from the other Apex possibilities.
 4. Avoidance records the Apex as Avoided and prevents another boundary selection during the run.
 5. Descend commits the Hooked Apex through `CatchChainRuntime.Add(...)` and records the Apex as Caught.
-6. Further biome transition or end-of-MVP behavior remains outside this flow.
+6. The resolving Descend advances normally, including catch effects, overload risk, depth, and Technique-hand refill.
+7. The biome-authored next-waters Location card is then presented once without resetting the Catch Chain, Line Load, active effects, or Technique piles.
+8. Further Descends are blocked because a second biome is outside the MVP; Release remains available and Surface records the preserved Catch Chain as the haul.
 
 Current Technique-card use flow:
 

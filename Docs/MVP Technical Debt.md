@@ -98,19 +98,19 @@ Add authored Apex weights and eligibility rules, then connect the existing runti
 ## Finite Coastal Boundary
 
 Current approach:
-Coastal Waters has regular tiers from depth 0 through depth 7. Crossing into depth 8 reveals one selected Apex; after it is caught or avoided, further biome transition remains unimplemented.
+Coastal Waters has regular tiers from depth 0 through depth 7. Crossing into depth 8 reveals one selected Apex. After it is caught or avoided, the next resolving Descend presents a non-catchable `The Next Waters Lie Ahead...` Location card and blocks additional Descends. Release and Surface remain available.
 
 Why it is acceptable for MVP:
-The explicit boundary now provides a reliable Coastal climax without requiring a second biome.
+The explicit boundary provides a reliable Coastal climax and demonstrates carry-forward behavior without requiring a second biome. The Catch Chain, Line Load, active effects, and Technique piles remain intact until the player Surfaces.
 
 Production concern:
-After resolving the Apex, continuing to Descend produces no further encounters because the next-biome or end-of-MVP transition is not connected yet.
+The transition is a terminal placeholder rather than a real biome change. It has no biome selection, transition reward, depth remapping, new encounter pool, or continuation flow, so effects that influence future encounters cannot demonstrate their post-Coastal value yet.
 
 Revisit trigger:
-The Apex needs to carry into a following region or the prototype needs an explicit end-of-biome decision.
+Development begins on a second playable biome or playtesting requires a richer end-of-biome decision.
 
 Likely future action:
-Preserve the caught Apex and Catch Chain while presenting the next-waters transition, or route the prototype into a controlled Surface/end-of-MVP flow.
+Replace the placeholder card with a biome-transition controller that selects and activates the next region while preserving run-owned Catch Chain, load, effect, and Technique-deck state.
 
 ## Prototype Apex Balance
 

@@ -20,6 +20,9 @@ public sealed class BiomeDefinition : ScriptableObject
     [Header("Apex")]
     [SerializeField] private CardDefinition[] apexEncounters = Array.Empty<CardDefinition>();
 
+    [Header("Transition")]
+    [SerializeField] private CardDefinition nextWatersEncounter;
+
     public string BiomeId => biomeId;
     public string DisplayName => displayName;
     public string CoreIdentity => coreIdentity;
@@ -28,6 +31,7 @@ public sealed class BiomeDefinition : ScriptableObject
     public BiomeDepthTierDefinition[] DepthTiers => depthTiers;
     public EncounterChainDefinition[] EncounterChains => encounterChains;
     public CardDefinition[] ApexEncounters => apexEncounters;
+    public CardDefinition NextWatersEncounter => nextWatersEncounter;
 
     /// <summary>
     /// Returns the authored tier containing a depth, or null when the biome has ended.

@@ -83,3 +83,4 @@ MonoBehaviour:
   apexEncounters:
   - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
   - {fileID: 11400000, guid: b5ccb176f3c24237b3c00a24be500a45, type: 2}
+  nextWatersEncounter: {fileID: 11400000, guid: 7f1d730a8573484b8627cda214b2bb37, type: 2}

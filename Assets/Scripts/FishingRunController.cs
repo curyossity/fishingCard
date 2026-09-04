@@ -80,6 +80,7 @@ public sealed class FishingRunController : MonoBehaviour
     public bool CurrentEncounterInformationHidden => currentEncounterInformationHidden;
     public BiomeApexState CurrentBiomeApexState => biomeApexRuntime.State;
     public CardDefinition SelectedBiomeApex => biomeApexRuntime.SelectedApex;
+    public bool NextWatersPresented => biomeApexRuntime.NextWatersPresented;
 
     /// <summary>
     /// Initializes runtime owners and starts the run automatically when configured.
@@ -223,6 +224,12 @@ public sealed class FishingRunController : MonoBehaviour
         if (!runActive)
         {
             Debug.LogWarning("Cannot Descend before a run has started.", this);
+            return false;
+        }
+
+        if (biomeApexRuntime.NextWatersPresented)
+        {
+            Debug.LogWarning("No further biome content is available. Release catches or Surface with the haul.", this);
             return false;
         }
 
@@ -480,6 +487,12 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
+        if (TryPresentNextWaters())
+        {
+            techniqueEffectRuntime.CompleteEncounterReveal();
+            return;
+        }
+
         if (biomeApexRuntime.HasReachedBoundary
             && selectionDepth >= biomeApexRuntime.BoundaryDepth)
         {
@@ -530,6 +543,36 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         Debug.Log($"BIOME APEX REVEALED | {biomeApexRuntime.LastSelectionSummary}", this);
+        return true;
+    }
+
+    /// <summary>
+    /// Presents the biome-authored next-waters card after the selected Apex is caught or avoided.
+    /// </summary>
+    private bool TryPresentNextWaters()
+    {
+        if (!biomeApexRuntime.CanPresentNextWaters)
+        {
+            return false;
+        }
+
+        CardDefinition nextWatersEncounter = currentBiome?.NextWatersEncounter;
+
+        if (nextWatersEncounter == null)
+        {
+            Debug.LogWarning($"Biome '{CurrentBiomeId}' has no next-waters encounter configured.", this);
+            return false;
+        }
+
+        encounterRuntime.SetCurrentEncounter(nextWatersEncounter);
+        biomeApexRuntime.RecordNextWatersPresented();
+
+        // Run-owned systems stay intact so the haul and attached effects cross the boundary together.
+        Debug.Log(
+            $"NEXT WATERS | {nextWatersEncounter.DisplayName} | "
+            + $"Catch Chain: {catchChainRuntime.Catches.Length} | "
+            + $"Line Load: {catchChainRuntime.CurrentLineLoad}/{lineCapacity}",
+            this);
         return true;
     }
 
