@@ -22,8 +22,8 @@ MonoBehaviour:
   - Predator
   - Heavy
   artwork: {fileID: 0}
-  rulesText: A legendary catch. Huge value and load. While attached, predator effects
-    are stronger.
+  rulesText: A massive but sheltering catch. While attached, every Small catch contributes
+    1 less Line Load.
   weight: 8
   value: 18
   biomeIds:
@@ -31,14 +31,15 @@ MonoBehaviour:
   minimumDepth: 8
   maximumDepth: -1
   effects:
-  - effectId: apex_predator_pressure
-    effectType: 4
+  - effectId: leviathan_shelters_small_catches
+    effectType: 1
     trigger: 2
-    target: 6
-    effectTone: 2
-    amount: 2
+    target: 4
+    effectTone: 1
+    amount: 1
     requiredTags:
-    - Predator
+    - Small
+    caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Predator-tagged effects become more intense while attached.
+    reminderText: Small catches contribute 1 less Line Load while Harbor Leviathan is attached.

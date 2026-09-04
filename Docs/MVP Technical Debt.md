@@ -112,6 +112,23 @@ The Apex needs to carry into a following region or the prototype needs an explic
 Likely future action:
 Preserve the caught Apex and Catch Chain while presenting the next-waters transition, or route the prototype into a controlled Surface/end-of-MVP flow.
 
+## Prototype Apex Balance
+
+Current approach:
+Harbor Leviathan is an 8 Load, 18 Value Apex that removes 1 Load from every Small catch while attached. Stormjaw Tuna is a 7 Load, 16 Value Apex that adds 1 Load to every Predator catch and gives future Predator encounters 2 additional selection weight.
+
+Why it is acceptable for MVP:
+The two cards create immediately different Catch Chain evaluations using effect types already supported by the runtime.
+
+Production concern:
+Harbor Leviathan can reduce 1 Load catches to zero, while Stormjaw's attraction effect only becomes relevant after encounters continue beyond the Coastal boundary. Neither card has enough playtest evidence for final values.
+
+Revisit trigger:
+Carry-forward playtesting shows that one Apex is consistently safer, more valuable, or more interesting than the other.
+
+Likely future action:
+Tune Apex weight, value, tag scope, and effect amounts together after the next-waters flow exists and both cards can be compared across complete runs.
+
 ## Runtime Card-Type Guards
 
 Current approach:

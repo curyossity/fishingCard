@@ -23,7 +23,8 @@ MonoBehaviour:
   - Predator
   - Heavy
   artwork: {fileID: 0}
-  rulesText: A violent Apex catch. While attached, every Predator contributes 1 additional Line Load.
+  rulesText: A violent Apex catch. While attached, Predators contribute 1 additional
+    Line Load and future Predator encounters gain 2 selection weight.
   weight: 7
   value: 16
   biomeIds:
@@ -43,3 +44,15 @@ MonoBehaviour:
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
     reminderText: Predator catches contribute 1 additional Line Load.
+  - effectId: stormjaw_attracts_predators
+    effectType: 3
+    trigger: 2
+    target: 6
+    effectTone: 2
+    amount: 2
+    requiredTags:
+    - Predator
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: Future Predator encounters gain 2 selection weight.
