@@ -349,3 +349,37 @@ Automated balance tests, external playtest builds, or reproducible bug reports n
 
 Likely future action:
 Move reusable fixtures into test utilities or a development-only scenario runner and keep them out of production builds.
+
+## In-Memory Gold Rewards
+
+Current approach:
+`RunRewardRuntime` converts each point of resolved haul value into one Gold by default and accumulates Gold only while the current Unity play session remains active.
+
+Why it is acceptable for MVP:
+The complete Surface-to-reward loop can be tested before save data, shops, and unlock choices are introduced.
+
+Production concern:
+Gold is not persisted, the conversion rate is provisional, and every successful haul is converted automatically without a selling or keep/use decision.
+
+Revisit trigger:
+Between-run purchases, persistent progression, save/load, or alternative uses for catches are implemented.
+
+Likely future action:
+Move the wallet into persistent player-profile data and replace automatic conversion with the approved haul-selling and progression flow.
+
+## Programmatic Run Result View
+
+Current approach:
+`RunResultView` creates a full-screen runtime overlay with Gold, Surface stats, and separate brought-home, released, and lost catch columns.
+
+Why it is acceptable for MVP:
+It makes the complete run outcome visible immediately without requiring final result-screen art or prefabs.
+
+Production concern:
+The generated layout has limited visual authoring, long-list handling, animation, input, and accessibility support.
+
+Revisit trigger:
+The end-of-run flow receives final visual design, progression choices, or larger haul histories.
+
+Likely future action:
+Replace the generated overlay with an authored result screen or UI document backed by a dedicated result view model.

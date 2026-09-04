@@ -26,6 +26,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private CardView[] techniqueHandViews = Array.Empty<CardView>();
     [SerializeField] private TechniqueHandView techniqueHandView;
     [SerializeField] private CatchChainView catchChainView;
+    [SerializeField] private RunResultView runResultView;
 
     [Header("Debug Actions")]
     [SerializeField] private int debugTechniqueHandIndex;
@@ -50,6 +51,9 @@ public sealed class FishingRunController : MonoBehaviour
 
     [Header("Last Surface Result")]
     [SerializeField] private FishingRunResult lastSurfaceResult = new FishingRunResult();
+
+    [Header("Run Rewards")]
+    [SerializeField] private RunRewardRuntime runRewardRuntime = new RunRewardRuntime();
 
     private System.Random random;
     private EffectResolver effectResolver;
@@ -81,6 +85,10 @@ public sealed class FishingRunController : MonoBehaviour
     public BiomeApexState CurrentBiomeApexState => biomeApexRuntime.State;
     public CardDefinition SelectedBiomeApex => biomeApexRuntime.SelectedApex;
     public bool NextWatersPresented => biomeApexRuntime.NextWatersPresented;
+    public CardInstance[] LastReleasedCatches => lastSurfaceResult.ReleasedCatches;
+    public CardInstance[] LastLostCatches => lastSurfaceResult.LostCatches;
+    public int LastGoldAwarded => lastSurfaceResult.GoldAwarded;
+    public int TotalGold => runRewardRuntime.TotalGold;
 
     /// <summary>
     /// Initializes runtime owners and starts the run automatically when configured.
@@ -118,6 +126,7 @@ public sealed class FishingRunController : MonoBehaviour
         techniqueEffectRuntime.Reset();
         lineLoadRiskRuntime.Reset();
         lastSurfaceResult.Reset();
+        runRewardRuntime.BeginRun();
 
         RevealEncounterAtCurrentDepth();
         RefreshViews();
@@ -306,9 +315,12 @@ public sealed class FishingRunController : MonoBehaviour
         // The Hooked encounter is intentionally excluded because it has not entered the Catch Chain.
         lastSurfaceResult.Record(
             catchChainRuntime.Catches,
+            catchChainRuntime.ReleasedCatches,
+            catchChainRuntime.LostCatches,
             currentDepth,
             surfaceStartingLoad,
             lineCapacity);
+        runRewardRuntime.AwardGold(lastSurfaceResult);
 
         string surfaceSummary = BuildSurfaceSummary(strainReleasedCatch);
         EndActiveRun();
@@ -466,6 +478,11 @@ public sealed class FishingRunController : MonoBehaviour
         if (lineLoadRiskRuntime == null)
         {
             lineLoadRiskRuntime = new LineLoadRiskRuntime();
+        }
+
+        if (runRewardRuntime == null)
+        {
+            runRewardRuntime = new RunRewardRuntime();
         }
 
         if (effectResolver == null)
@@ -642,7 +659,8 @@ public sealed class FishingRunController : MonoBehaviour
             effectResolver,
             out CardInstance releasedCatch,
             out _,
-            out string validationMessage);
+            out string validationMessage,
+            CatchRemovalReason.LineStrain);
 
         if (!released)
         {
@@ -697,6 +715,11 @@ public sealed class FishingRunController : MonoBehaviour
                 techniqueDeckRuntime.DrawPile.Length,
                 techniqueDeckRuntime.DiscardPile.Length,
                 TryUseTechniqueCard);
+        }
+
+        if (runResultView != null)
+        {
+            runResultView.Refresh(runActive, lastSurfaceResult, runRewardRuntime.TotalGold);
         }
 
         if (techniqueHandViews == null)
@@ -834,11 +857,13 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine($"Surface resolved | Haul: {lastSurfaceResult.Haul.Length} cards | "
             + $"Value: {lastSurfaceResult.HaulValue} | Load: {lastSurfaceResult.SurfaceLineLoad} / "
             + $"{lastSurfaceResult.LineCapacity} | Depth: {lastSurfaceResult.SurfaceDepth} | {loadStatus}");
+        summary.AppendLine($"Gold Awarded: {lastSurfaceResult.GoldAwarded} | Total Gold: {runRewardRuntime.TotalGold}");
         summary.Append("Successful Haul: ");
 
         if (lastSurfaceResult.Haul.Length == 0)
         {
             summary.Append("none");
+            AppendRunRemovalSummary(summary);
             AppendOverloadRiskSummary(summary, strainReleasedCatch);
             return summary.ToString();
         }
@@ -854,9 +879,49 @@ public sealed class FishingRunController : MonoBehaviour
             summary.Append(caughtInstance?.Definition == null ? "unknown card" : caughtInstance.Definition.DisplayName);
         }
 
+        AppendRunRemovalSummary(summary);
         AppendOverloadRiskSummary(summary, strainReleasedCatch);
 
         return summary.ToString();
+    }
+
+    /// <summary>
+    /// Appends the released and involuntarily lost catch histories to the Surface summary.
+    /// </summary>
+    private void AppendRunRemovalSummary(StringBuilder summary)
+    {
+        summary.AppendLine();
+        summary.Append("Released: ");
+        AppendCatchNames(summary, lastSurfaceResult.ReleasedCatches);
+        summary.AppendLine();
+        summary.Append("Lost: ");
+        AppendCatchNames(summary, lastSurfaceResult.LostCatches);
+    }
+
+    /// <summary>
+    /// Appends a comma-separated catch list, or none when the supplied history is empty.
+    /// </summary>
+    private static void AppendCatchNames(StringBuilder summary, CardInstance[] catches)
+    {
+        CardInstance[] safeCatches = catches ?? Array.Empty<CardInstance>();
+
+        if (safeCatches.Length == 0)
+        {
+            summary.Append("none");
+            return;
+        }
+
+        for (int i = 0; i < safeCatches.Length; i++)
+        {
+            if (i > 0)
+            {
+                summary.Append(", ");
+            }
+
+            summary.Append(safeCatches[i]?.Definition == null
+                ? "unknown card"
+                : safeCatches[i].Definition.DisplayName);
+        }
     }
 
     /// <summary>

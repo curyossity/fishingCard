@@ -127,6 +127,7 @@ Delegates to:
 - `LineLoadRiskRuntime` for overload checks and tuning
 - `EffectResolver` for catch interactions, attraction, and encounter concealment
 - `FishingRunResult` for the last Surface result
+- `RunRewardRuntime` for Gold conversion and the current wallet
 
 Does not own:
 - Detailed deck, encounter, Catch Chain, or result operations
@@ -263,6 +264,7 @@ Owns:
 - Catch acquisition order
 - Creating an independent `CardInstance` for each committed catch
 - Adding and releasing catches
+- Snapshot histories for voluntarily released and overload-lost catches
 - Calculated Line Load from resolved instance weights
 - Active caught-card effect records
 - Rebuilding and resolving catch interactions after Catch or Release
@@ -281,15 +283,33 @@ Serializable data for the most recent Surface result.
 
 Owns:
 - Successful haul snapshot
+- Released and overload-lost catch snapshots
 - Total resolved haul value
+- Gold awarded for the completed run
 - Surface depth
 - Surface Line Load and capacity
 - Whether Surface began while overloaded
 
 Does not own:
 - Overload consequence rules
-- Rewards, selling, or progression
+- Gold conversion, selling choices, or progression
 - Run-summary UI
+
+### `RunRewardRuntime`
+
+Role:
+In-memory owner of run-reward conversion and the current Gold wallet.
+
+Owns:
+- Configurable Gold awarded per point of resolved haul value
+- Gold awarded by the most recent completed run
+- Total Gold accumulated during the current play session
+- Recording the award on `FishingRunResult`
+
+Does not own:
+- Haul-value calculation
+- Saving currency between play sessions
+- Spending, shops, unlocks, or other progression choices
 
 ### `LineLoadRiskRuntime`
 
@@ -329,6 +349,22 @@ Does not own:
 - Effect classification or execution
 - Release input
 - Line Load calculations
+
+### `RunResultView`
+
+Role:
+Presentation component for the latest completed run outcome.
+
+Owns:
+- Hiding the result overlay while a run is active
+- Showing Gold earned and the current wallet total
+- Showing Surface depth, Line Load, capacity, and overload status
+- Separate brought-home, released, and lost catch lists
+
+Does not own:
+- Haul snapshots, value calculation, or reward conversion
+- Gold persistence or spending
+- Starting the next run
 
 ### `HookedEffectRecord`
 
@@ -510,10 +546,11 @@ Current Surface flow:
 1. `FishingRunController.TrySurface()` records the starting Surface load.
 2. `LineLoadRiskRuntime` checks for strain when the line is overloaded.
 3. A failed check releases one random catch before the successful haul is recorded; a held check preserves the overloaded chain.
-4. `FishingRunResult` snapshots the remaining haul and records value, depth, starting Line Load, capacity, and overload state.
+4. `FishingRunResult` snapshots the remaining haul, released catches, and overload-lost catches, then records value, depth, starting Line Load, capacity, and overload state.
 5. An unresolved Hooked encounter is excluded because it has not entered the Catch Chain.
-6. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
-7. Last-haul fields remain Inspector-visible and a Console summary reports the result and strain outcome.
+6. `RunRewardRuntime` converts resolved haul value to Gold, adds it to the in-memory wallet, and records the award on the result.
+7. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
+8. `RunResultView` presents the reward and separate brought-home, released, and lost lists; the same details remain Inspector-visible and appear in the Console summary.
 
 Current debug scenario flow:
 
@@ -555,12 +592,15 @@ Runtime state:
 - Line Load
 - Last overload-risk check
 - Last Surface result
+- Released and overload-lost catch histories
+- In-memory Gold wallet
 - Future active effect instances
 
 Presentation:
 - `CardView`
 - `CatchChainView`
 - `TechniqueHandView`
+- `RunResultView`
 - Future encounter view
 
 Rule of thumb:

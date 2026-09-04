@@ -454,6 +454,7 @@ GameObject:
   - component: {fileID: 1055148697}
   - component: {fileID: 1055148701}
   - component: {fileID: 1055148702}
+  - component: {fileID: 1055148703}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -568,6 +569,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807721b927c14210a0256e0234e56efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechniqueHandView
+--- !u!114 &1055148703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055148696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d482b7d531214ec795dc575f5d724639, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::RunResultView
 --- !u!1 &2039860095
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +637,7 @@ MonoBehaviour:
   techniqueHandViews: []
   techniqueHandView: {fileID: 1055148702}
   catchChainView: {fileID: 1055148701}
+  runResultView: {fileID: 1055148703}
   debugTechniqueHandIndex: 0
   debugCatchChainIndex: 0
   debugCatchCard: {fileID: 0}
@@ -658,6 +672,8 @@ MonoBehaviour:
   catchChainRuntime:
     catches: []
     activeEffectRecords: []
+    releasedCatches: []
+    lostCatches: []
     nextInstanceId: 1
   techniqueDeckRuntime:
     hand: []
@@ -678,11 +694,19 @@ MonoBehaviour:
     lastSelectedCatchIndex: -1
   lastSurfaceResult:
     haul: []
+    releasedCatches: []
+    lostCatches: []
     haulValue: 0
+    goldAwarded: 0
     surfaceDepth: 0
     surfaceLineLoad: 0
     lineCapacity: 0
     wasOverloaded: 0
+    hasResult: 0
+  runRewardRuntime:
+    goldPerHaulValue: 1
+    totalGold: 0
+    lastGoldAwarded: 0
 --- !u!4 &2039860097
 Transform:
   m_ObjectHideFlags: 0

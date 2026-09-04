@@ -5,30 +5,55 @@ using UnityEngine;
 public sealed class FishingRunResult
 {
     [SerializeField] private CardInstance[] haul = Array.Empty<CardInstance>();
+    [SerializeField] private CardInstance[] releasedCatches = Array.Empty<CardInstance>();
+    [SerializeField] private CardInstance[] lostCatches = Array.Empty<CardInstance>();
     [SerializeField] private int haulValue;
+    [SerializeField] private int goldAwarded;
     [SerializeField] private int surfaceDepth;
     [SerializeField] private int surfaceLineLoad;
     [SerializeField] private int lineCapacity;
     [SerializeField] private bool wasOverloaded;
+    [SerializeField] private bool hasResult;
 
     public CardInstance[] Haul => haul;
+    public CardInstance[] ReleasedCatches => releasedCatches;
+    public CardInstance[] LostCatches => lostCatches;
     public int HaulValue => haulValue;
+    public int GoldAwarded => goldAwarded;
     public int SurfaceDepth => surfaceDepth;
     public int SurfaceLineLoad => surfaceLineLoad;
     public int LineCapacity => lineCapacity;
     public bool WasOverloaded => wasOverloaded;
+    public bool HasResult => hasResult;
 
     /// <summary>
-    /// Records the attached catches and run values present when Surface begins.
+    /// Records the surviving haul, removal histories, and run values when Surface resolves.
     /// </summary>
-    public void Record(CardInstance[] successfulHaul, int depth, int load, int capacity)
+    public void Record(
+        CardInstance[] successfulHaul,
+        CardInstance[] releasedDuringRun,
+        CardInstance[] lostDuringRun,
+        int depth,
+        int load,
+        int capacity)
     {
         haul = CopyCards(successfulHaul);
+        releasedCatches = CopyCards(releasedDuringRun);
+        lostCatches = CopyCards(lostDuringRun);
         haulValue = CalculateValue(haul);
         surfaceDepth = depth;
         surfaceLineLoad = load;
         lineCapacity = capacity;
         wasOverloaded = surfaceLineLoad > lineCapacity;
+        hasResult = true;
+    }
+
+    /// <summary>
+    /// Stores the currency granted for this completed Surface result.
+    /// </summary>
+    public void RecordGoldAward(int amount)
+    {
+        goldAwarded = Mathf.Max(0, amount);
     }
 
     /// <summary>
@@ -37,11 +62,15 @@ public sealed class FishingRunResult
     public void Reset()
     {
         haul = Array.Empty<CardInstance>();
+        releasedCatches = Array.Empty<CardInstance>();
+        lostCatches = Array.Empty<CardInstance>();
         haulValue = 0;
+        goldAwarded = 0;
         surfaceDepth = 0;
         surfaceLineLoad = 0;
         lineCapacity = 0;
         wasOverloaded = false;
+        hasResult = false;
     }
 
     /// <summary>

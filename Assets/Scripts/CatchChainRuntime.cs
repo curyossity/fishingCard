@@ -7,10 +7,14 @@ public sealed class CatchChainRuntime
 {
     [SerializeField] private CardInstance[] catches = Array.Empty<CardInstance>();
     [SerializeField] private ActiveCatchEffectRecord[] activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
+    [SerializeField] private CardInstance[] releasedCatches = Array.Empty<CardInstance>();
+    [SerializeField] private CardInstance[] lostCatches = Array.Empty<CardInstance>();
     [SerializeField] private int nextInstanceId = 1;
 
     public CardInstance[] Catches => catches;
     public ActiveCatchEffectRecord[] ActiveEffectRecords => activeEffectRecords;
+    public CardInstance[] ReleasedCatches => releasedCatches;
+    public CardInstance[] LostCatches => lostCatches;
 
     /// <summary>
     /// Calculates the Line Load contributed by all catches still attached to the line.
@@ -154,14 +158,15 @@ public sealed class CatchChainRuntime
     }
 
     /// <summary>
-    /// Releases one catch and reports the removed card and its previous Line Load.
+    /// Removes one catch, records why it left the line, and reports its previous Line Load.
     /// </summary>
     public bool TryRelease(
         int catchIndex,
         EffectResolver effectResolver,
         out CardInstance releasedCatch,
         out int previousLineLoad,
-        out string validationMessage)
+        out string validationMessage,
+        CatchRemovalReason removalReason = CatchRemovalReason.PlayerChoice)
     {
         releasedCatch = null;
         previousLineLoad = CurrentLineLoad;
@@ -181,6 +186,7 @@ public sealed class CatchChainRuntime
             return false;
         }
 
+        RecordRemoval(releasedCatch, removalReason);
         catches = RemoveCatchAt(catches, catchIndex);
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
@@ -209,6 +215,8 @@ public sealed class CatchChainRuntime
     {
         catches = Array.Empty<CardInstance>();
         activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
+        releasedCatches = Array.Empty<CardInstance>();
+        lostCatches = Array.Empty<CardInstance>();
         nextInstanceId = 1;
     }
 
@@ -286,6 +294,7 @@ public sealed class CatchChainRuntime
 
             CardInstance releasedCatch = catches[targetIndex];
             releasedNames.Add(releasedCatch.Definition.DisplayName);
+            RecordRemoval(releasedCatch, CatchRemovalReason.Technique);
             catches = RemoveCatchAt(catches, targetIndex);
         }
 
@@ -293,6 +302,27 @@ public sealed class CatchChainRuntime
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         resultSummary = $"Released {string.Join(", ", releasedNames)}";
         return releasedNames.Count > 0;
+    }
+
+    /// <summary>
+    /// Adds a removed catch snapshot to either the released or involuntarily lost history.
+    /// </summary>
+    private void RecordRemoval(CardInstance removedCatch, CatchRemovalReason removalReason)
+    {
+        if (removedCatch == null)
+        {
+            return;
+        }
+
+        CardInstance snapshot = removedCatch.CreateSnapshot();
+
+        if (removalReason == CatchRemovalReason.LineStrain)
+        {
+            lostCatches = AppendCatch(lostCatches, snapshot);
+            return;
+        }
+
+        releasedCatches = AppendCatch(releasedCatches, snapshot);
     }
 
     /// <summary>
@@ -382,4 +412,11 @@ public sealed class CatchChainRuntime
 
         return result;
     }
+}
+
+public enum CatchRemovalReason
+{
+    PlayerChoice,
+    Technique,
+    LineStrain
 }
