@@ -353,13 +353,13 @@ Move reusable fixtures into test utilities or a development-only scenario runner
 ## In-Memory Gold Rewards
 
 Current approach:
-`RunRewardRuntime` converts each point of resolved haul value into one Gold by default and accumulates Gold only while the current Unity play session remains active.
+`RunRewardRuntime` converts each point of resolved haul value into one Gold by default, accumulates Gold only while the current Unity play session remains active, and supports validated deductions requested by progression systems.
 
 Why it is acceptable for MVP:
 The complete Surface-to-reward loop can be tested before save data, shops, and unlock choices are introduced.
 
 Production concern:
-Gold is not persisted, the conversion rate is provisional, and every successful haul is converted automatically without a selling or keep/use decision.
+Gold is not persisted, the conversion rate is provisional, and every successful haul is converted automatically without a selling or keep/use decision. Spending has no transaction history or save protection.
 
 Revisit trigger:
 Between-run purchases, persistent progression, save/load, or alternative uses for catches are implemented.
@@ -367,16 +367,33 @@ Between-run purchases, persistent progression, save/load, or alternative uses fo
 Likely future action:
 Move the wallet into persistent player-profile data and replace automatic conversion with the approved haul-selling and progression flow.
 
+## Prototype Line Capacity Progression
+
+Current approach:
+After each completed run, the player may spend 10 Gold once to add 2 starting Line Capacity to future runs, up to three purchases. Cost, benefit, and maximum purchases are Inspector-configurable.
+
+Why it is acceptable for MVP:
+It creates a complete earn, choose, spend, and replay loop without overlapping the Technique deck work or requiring a large progression tree.
+
+Production concern:
+The upgrade is a linear numerical power increase, exists only during the current play session, and offers only a buy-or-skip decision rather than strategically different options.
+
+Revisit trigger:
+Playtesting evaluates replay motivation, persistent profile saving is added, or progression needs to expand strategic possibilities rather than raw power.
+
+Likely future action:
+Replace or complement the linear upgrade with authored equipment and unlock choices, persist purchases in player-profile data, and tune costs from economy playtests.
+
 ## Programmatic Run Result View
 
 Current approach:
-`RunResultView` creates a full-screen runtime overlay with Gold, Surface stats, and separate brought-home, released, and lost catch columns.
+`RunResultView` creates a full-screen runtime overlay with Gold, Surface stats, separate brought-home, released, and lost catch columns, a Line Capacity purchase, and a next-run command.
 
 Why it is acceptable for MVP:
 It makes the complete run outcome visible immediately without requiring final result-screen art or prefabs.
 
 Production concern:
-The generated layout has limited visual authoring, long-list handling, animation, input, and accessibility support.
+The generated layout has limited visual authoring, long-list handling, animation, progression-choice space, input, and accessibility support.
 
 Revisit trigger:
 The end-of-run flow receives final visual design, progression choices, or larger haul histories.

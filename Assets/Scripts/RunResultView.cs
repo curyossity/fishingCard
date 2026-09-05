@@ -19,6 +19,11 @@ public sealed class RunResultView : MonoBehaviour
     private Text haulText;
     private Text releasedText;
     private Text lostText;
+    private Text upgradeStatusText;
+    private Button upgradeButton;
+    private Text upgradeButtonText;
+    private Func<bool> purchaseUpgradeAction;
+    private Action startNextRunAction;
     private Font uiFont;
 
     /// <summary>
@@ -33,9 +38,23 @@ public sealed class RunResultView : MonoBehaviour
     /// <summary>
     /// Shows the latest completed run result, or hides the panel while a run is active.
     /// </summary>
-    public void Refresh(bool runActive, FishingRunResult result, int totalGold)
+    public void Refresh(
+        bool runActive,
+        FishingRunResult result,
+        int totalGold,
+        int lineCapacityBonus,
+        int upgradeCost,
+        int capacityPerUpgrade,
+        int purchasedUpgrades,
+        int maximumUpgrades,
+        bool canPurchaseUpgrade,
+        string upgradeRestrictionReason,
+        Func<bool> purchaseUpgradeAction,
+        Action startNextRunAction)
     {
         EnsureLayout();
+        this.purchaseUpgradeAction = purchaseUpgradeAction;
+        this.startNextRunAction = startNextRunAction;
         bool shouldShow = !runActive && result != null && result.HasResult;
         backdropRoot.gameObject.SetActive(shouldShow);
 
@@ -51,6 +70,14 @@ public sealed class RunResultView : MonoBehaviour
         haulText.text = BuildCatchList(result.Haul, true);
         releasedText.text = BuildCatchList(result.ReleasedCatches, true);
         lostText.text = BuildCatchList(result.LostCatches, true);
+        upgradeButton.interactable = canPurchaseUpgrade;
+        upgradeButtonText.text = $"UPGRADE LINE +{capacityPerUpgrade}  |  {upgradeCost} GOLD";
+
+        string upgradeProgress = $"LINE CAPACITY BONUS +{lineCapacityBonus}     "
+            + $"UPGRADES {purchasedUpgrades}/{maximumUpgrades}";
+        upgradeStatusText.text = canPurchaseUpgrade || string.IsNullOrWhiteSpace(upgradeRestrictionReason)
+            ? upgradeProgress
+            : $"{upgradeProgress}\n{upgradeRestrictionReason}";
     }
 
     /// <summary>
@@ -90,6 +117,45 @@ public sealed class RunResultView : MonoBehaviour
         CreateResultColumn(panelRect, "BROUGHT HOME", 0.04f, 0.35f, HaulColor, out haulText);
         CreateResultColumn(panelRect, "RELEASED", 0.36f, 0.67f, ReleasedColor, out releasedText);
         CreateResultColumn(panelRect, "LOST", 0.68f, 0.96f, LostColor, out lostText);
+
+        upgradeStatusText = CreateText(
+            "Upgrade Status",
+            panelRect,
+            12,
+            FontStyle.Bold,
+            TextAnchor.MiddleLeft,
+            MutedTextColor);
+        SetAnchoredRect(
+            upgradeStatusText.rectTransform,
+            new Vector2(0.04f, 0f),
+            new Vector2(0.66f, 0f),
+            0f,
+            66f,
+            0f,
+            104f);
+
+        upgradeButton = CreateButton(
+            "Upgrade Line",
+            panelRect,
+            new Vector2(0.04f, 0f),
+            new Vector2(0.66f, 0f),
+            18f,
+            60f,
+            GoldColor,
+            InvokePurchaseUpgrade,
+            out upgradeButtonText);
+
+        CreateButton(
+            "Start Next Run",
+            panelRect,
+            new Vector2(0.68f, 0f),
+            new Vector2(0.96f, 0f),
+            18f,
+            60f,
+            HaulColor,
+            InvokeStartNextRun,
+            out Text startButtonText);
+        startButtonText.text = "START NEXT RUN";
     }
 
     /// <summary>
@@ -120,7 +186,7 @@ public sealed class RunResultView : MonoBehaviour
             new Vector2(anchorMinX, 0f),
             new Vector2(anchorMaxX, 1f),
             0f,
-            24f,
+            112f,
             0f,
             -194f);
         contentText.resizeTextForBestFit = true;
@@ -160,6 +226,53 @@ public sealed class RunResultView : MonoBehaviour
         }
 
         return summary.ToString();
+    }
+
+    /// <summary>
+    /// Forwards the Line Capacity purchase command to the current controller callback.
+    /// </summary>
+    private void InvokePurchaseUpgrade()
+    {
+        purchaseUpgradeAction?.Invoke();
+    }
+
+    /// <summary>
+    /// Starts the next run through the current controller callback.
+    /// </summary>
+    private void InvokeStartNextRun()
+    {
+        startNextRunAction?.Invoke();
+    }
+
+    /// <summary>
+    /// Creates a fixed-height command button and its centered label.
+    /// </summary>
+    private Button CreateButton(
+        string objectName,
+        Transform parent,
+        Vector2 anchorMin,
+        Vector2 anchorMax,
+        float bottom,
+        float top,
+        Color color,
+        UnityEngine.Events.UnityAction clickAction,
+        out Text label)
+    {
+        GameObject buttonObject = CreateUiObject(objectName, parent);
+        RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
+        SetAnchoredRect(buttonRect, anchorMin, anchorMax, 0f, bottom, 0f, top);
+        Image buttonImage = AddImage(buttonObject, color);
+        buttonImage.raycastTarget = true;
+        Button button = buttonObject.AddComponent<Button>();
+        button.targetGraphic = buttonImage;
+        button.onClick.AddListener(clickAction);
+
+        label = CreateText("Label", buttonObject.transform, 13, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+        SetAnchoredRect(label.rectTransform, Vector2.zero, Vector2.one, 8f, 0f, -8f, 0f);
+        label.resizeTextForBestFit = true;
+        label.resizeTextMinSize = 10;
+        label.resizeTextMaxSize = 13;
+        return button;
     }
 
     /// <summary>

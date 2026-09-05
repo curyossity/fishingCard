@@ -31,6 +31,22 @@ public sealed class RunRewardRuntime
     }
 
     /// <summary>
+    /// Spends Gold when the wallet can cover the requested non-negative amount.
+    /// </summary>
+    public bool TrySpendGold(int amount)
+    {
+        int safeAmount = Mathf.Max(0, amount);
+
+        if (totalGold < safeAmount)
+        {
+            return false;
+        }
+
+        totalGold -= safeAmount;
+        return true;
+    }
+
+    /// <summary>
     /// Clears the previous run's award while preserving accumulated Gold.
     /// </summary>
     public void BeginRun()

@@ -54,6 +54,7 @@ public sealed class FishingRunController : MonoBehaviour
 
     [Header("Run Rewards")]
     [SerializeField] private RunRewardRuntime runRewardRuntime = new RunRewardRuntime();
+    [SerializeField] private RunProgressionRuntime runProgressionRuntime = new RunProgressionRuntime();
 
     private System.Random random;
     private EffectResolver effectResolver;
@@ -89,6 +90,7 @@ public sealed class FishingRunController : MonoBehaviour
     public CardInstance[] LastLostCatches => lastSurfaceResult.LostCatches;
     public int LastGoldAwarded => lastSurfaceResult.GoldAwarded;
     public int TotalGold => runRewardRuntime.TotalGold;
+    public int ProgressionLineCapacityBonus => runProgressionRuntime.CurrentLineCapacityBonus;
 
     /// <summary>
     /// Initializes runtime owners and starts the run automatically when configured.
@@ -115,7 +117,7 @@ public sealed class FishingRunController : MonoBehaviour
         random = new System.Random(seed);
 
         runActive = true;
-        lineCapacity = startingLineCapacity;
+        lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus);
         currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);
 
@@ -127,6 +129,7 @@ public sealed class FishingRunController : MonoBehaviour
         lineLoadRiskRuntime.Reset();
         lastSurfaceResult.Reset();
         runRewardRuntime.BeginRun();
+        runProgressionRuntime.BeginRun();
 
         RevealEncounterAtCurrentDepth();
         RefreshViews();
@@ -330,6 +333,28 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
+    /// Purchases the between-run Line Capacity upgrade when the completed run and wallet allow it.
+    /// </summary>
+    public bool TryPurchaseLineCapacityUpgrade()
+    {
+        bool purchased = runProgressionRuntime.TryPurchaseLineCapacityUpgrade(
+            runRewardRuntime,
+            runActive,
+            lastSurfaceResult.HasResult,
+            out string resultSummary);
+
+        if (!purchased)
+        {
+            Debug.LogWarning(resultSummary, this);
+            return false;
+        }
+
+        RefreshViews();
+        Debug.Log($"PROGRESSION PURCHASED | {resultSummary} | Gold Remaining: {runRewardRuntime.TotalGold}", this);
+        return true;
+    }
+
+    /// <summary>
     /// Replaces the current run setup with a repeatable Catch Chain decision scenario.
     /// </summary>
     public bool LoadDebugScenario(CatchChainScenarioDefinition scenario)
@@ -483,6 +508,11 @@ public sealed class FishingRunController : MonoBehaviour
         if (runRewardRuntime == null)
         {
             runRewardRuntime = new RunRewardRuntime();
+        }
+
+        if (runProgressionRuntime == null)
+        {
+            runProgressionRuntime = new RunProgressionRuntime();
         }
 
         if (effectResolver == null)
@@ -719,7 +749,24 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (runResultView != null)
         {
-            runResultView.Refresh(runActive, lastSurfaceResult, runRewardRuntime.TotalGold);
+            bool canPurchaseUpgrade = runProgressionRuntime.CanPurchaseLineCapacityUpgrade(
+                runRewardRuntime,
+                runActive,
+                lastSurfaceResult.HasResult,
+                out string upgradeRestrictionReason);
+            runResultView.Refresh(
+                runActive,
+                lastSurfaceResult,
+                runRewardRuntime.TotalGold,
+                runProgressionRuntime.CurrentLineCapacityBonus,
+                runProgressionRuntime.LineCapacityUpgradeCost,
+                runProgressionRuntime.LineCapacityPerUpgrade,
+                runProgressionRuntime.PurchasedLineCapacityUpgrades,
+                runProgressionRuntime.MaximumLineCapacityUpgrades,
+                canPurchaseUpgrade,
+                upgradeRestrictionReason,
+                TryPurchaseLineCapacityUpgrade,
+                StartRun);
         }
 
         if (techniqueHandViews == null)

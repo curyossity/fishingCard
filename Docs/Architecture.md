@@ -128,6 +128,7 @@ Delegates to:
 - `EffectResolver` for catch interactions, attraction, and encounter concealment
 - `FishingRunResult` for the last Surface result
 - `RunRewardRuntime` for Gold conversion and the current wallet
+- `RunProgressionRuntime` for the between-run Line Capacity upgrade
 
 Does not own:
 - Detailed deck, encounter, Catch Chain, or result operations
@@ -305,11 +306,30 @@ Owns:
 - Gold awarded by the most recent completed run
 - Total Gold accumulated during the current play session
 - Recording the award on `FishingRunResult`
+- Validated wallet deductions requested by progression systems
 
 Does not own:
 - Haul-value calculation
 - Saving currency between play sessions
-- Spending, shops, unlocks, or other progression choices
+- Purchase eligibility, shops, unlocks, or other progression choices
+
+### `RunProgressionRuntime`
+
+Role:
+In-memory owner of the minimal between-run Line Capacity upgrade.
+
+Owns:
+- Upgrade cost, capacity increase, and purchase limit tuning
+- Number of purchased Line Capacity upgrades
+- Total cumulative Line Capacity bonus for future runs in the current session
+- Validation that a purchase happens after a completed run, at most once per run, with enough Gold
+- Purchase summaries and Gold-spend requests
+
+Does not own:
+- The Gold wallet
+- Current-run Line Capacity
+- Save/load persistence
+- Technique deck modification or broader progression content
 
 ### `LineLoadRiskRuntime`
 
@@ -360,11 +380,13 @@ Owns:
 - Showing Gold earned and the current wallet total
 - Showing Surface depth, Line Load, capacity, and overload status
 - Separate brought-home, released, and lost catch lists
+- Showing Line Capacity upgrade progress and purchase availability
+- Forwarding upgrade and next-run commands to the controller
 
 Does not own:
 - Haul snapshots, value calculation, or reward conversion
-- Gold persistence or spending
-- Starting the next run
+- Gold persistence, spending rules, or upgrade rules
+- Starting-run logic
 
 ### `HookedEffectRecord`
 
@@ -552,6 +574,15 @@ Current Surface flow:
 7. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
 8. `RunResultView` presents the reward and separate brought-home, released, and lost lists; the same details remain Inspector-visible and appear in the Console summary.
 
+Current between-run progression flow:
+
+1. A completed Surface result opens `RunResultView` with the wallet total and Line Capacity upgrade state.
+2. The player may start the next run immediately or request one Line Capacity purchase.
+3. `RunProgressionRuntime` validates completed-run state, the once-per-run limit, maximum purchases, and available Gold.
+4. `RunRewardRuntime` deducts the configured cost after validation succeeds.
+5. The result view refreshes with the new wallet total and cumulative capacity bonus.
+6. Starting the next run adds the cumulative progression bonus to the authored starting Line Capacity without resetting purchased upgrades.
+
 Current debug scenario flow:
 
 1. `FishingRunController.LoadDebugScenario(...)` receives a scenario asset during Play Mode.
@@ -594,6 +625,7 @@ Runtime state:
 - Last Surface result
 - Released and overload-lost catch histories
 - In-memory Gold wallet
+- In-memory Line Capacity upgrade state
 - Future active effect instances
 
 Presentation:

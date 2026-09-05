@@ -707,6 +707,13 @@ MonoBehaviour:
     goldPerHaulValue: 1
     totalGold: 0
     lastGoldAwarded: 0
+  runProgressionRuntime:
+    lineCapacityUpgradeCost: 10
+    lineCapacityPerUpgrade: 2
+    maximumLineCapacityUpgrades: 3
+    purchasedLineCapacityUpgrades: 0
+    purchasedUpgradeAfterLastRun: 0
+    lastPurchaseSummary:
 --- !u!4 &2039860097
 Transform:
   m_ObjectHideFlags: 0
