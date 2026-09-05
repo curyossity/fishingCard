@@ -27,6 +27,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private TechniqueHandView techniqueHandView;
     [SerializeField] private CatchChainView catchChainView;
     [SerializeField] private RunResultView runResultView;
+    [SerializeField] private FishingRunView fishingRunView;
 
     [Header("Debug Actions")]
     [SerializeField] private int debugTechniqueHandIndex;
@@ -39,6 +40,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private BiomeDefinition currentBiome;
     [SerializeField] private int currentDepth;
     [SerializeField] private int lineCapacity;
+    [SerializeField] private int selectedCatchIndex = -1;
     [SerializeField] private bool currentEncounterInformationHidden;
     [SerializeField] private EncounterRuntime encounterRuntime = new EncounterRuntime();
     [SerializeField] private BiomeApexRuntime biomeApexRuntime = new BiomeApexRuntime();
@@ -93,6 +95,7 @@ public sealed class FishingRunController : MonoBehaviour
     public int ProgressionLineCapacityBonus => runProgressionRuntime.CurrentLineCapacityBonus;
     public CardDefinition[] SavedTechniqueDeck => runProgressionRuntime.SavedTechniqueDeck;
     public bool UnlockableTechniqueCardUnlocked => runProgressionRuntime.TechniqueCardUnlocked;
+    public int SelectedCatchIndex => selectedCatchIndex;
 
     /// <summary>
     /// Initializes runtime owners and starts the run automatically when configured.
@@ -123,6 +126,7 @@ public sealed class FishingRunController : MonoBehaviour
         lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus);
         currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);
+        selectedCatchIndex = -1;
 
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
@@ -268,6 +272,7 @@ public sealed class FishingRunController : MonoBehaviour
             lineCapacity);
         int effectiveCapacity = Mathf.Max(0, lineCapacity + techniqueResolution.CapacityBonus);
         CardInstance strainReleasedCatch = ResolveOverloadRisk(effectiveCapacity);
+        selectedCatchIndex = -1;
 
         // The next reveal uses the new depth so data-driven depth ranges take effect immediately.
         currentDepth += Mathf.Max(1, depthStepPerDescend + techniqueResolution.AdditionalDepth);
@@ -303,9 +308,40 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
+        selectedCatchIndex = -1;
         RefreshViews();
         Debug.Log(BuildReleaseSummary(releasedCatch, previousLineLoad), this);
         return true;
+    }
+
+    /// <summary>
+    /// Selects or deselects an attached catch for the player-facing Release action.
+    /// </summary>
+    public void SelectCatchForRelease(int catchIndex)
+    {
+        if (!runActive || catchIndex < 0 || catchIndex >= catchChainRuntime.Catches.Length)
+        {
+            selectedCatchIndex = -1;
+            RefreshViews();
+            return;
+        }
+
+        selectedCatchIndex = selectedCatchIndex == catchIndex ? -1 : catchIndex;
+        RefreshViews();
+    }
+
+    /// <summary>
+    /// Releases the catch currently selected in the player-facing Catch Chain.
+    /// </summary>
+    public bool TryReleaseSelectedCatch()
+    {
+        if (selectedCatchIndex < 0 || selectedCatchIndex >= catchChainRuntime.Catches.Length)
+        {
+            Debug.LogWarning("Select an attached catch before using Release.", this);
+            return false;
+        }
+
+        return TryReleaseCatch(selectedCatchIndex);
     }
 
     /// <summary>
@@ -407,6 +443,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         lineCapacity = Mathf.Max(0, scenario.LineCapacity);
         currentDepth = Mathf.Max(0, scenario.Depth);
+        selectedCatchIndex = -1;
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
@@ -689,6 +726,7 @@ public sealed class FishingRunController : MonoBehaviour
     private void EndActiveRun()
     {
         runActive = false;
+        selectedCatchIndex = -1;
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
@@ -753,7 +791,28 @@ public sealed class FishingRunController : MonoBehaviour
                 catchChainRuntime.Catches,
                 catchChainRuntime.ActiveEffectRecords,
                 catchChainRuntime.CurrentLineLoad,
-                lineCapacity);
+                lineCapacity,
+                selectedCatchIndex,
+                SelectCatchForRelease);
+        }
+
+        if (fishingRunView != null)
+        {
+            fishingRunView.Refresh(
+                runActive,
+                currentBiome,
+                CurrentDepthTier,
+                currentDepth,
+                encounterRuntime.CurrentEncounter,
+                encounterRuntime.CurrentState,
+                CurrentEncounterInformationHidden,
+                lineCapacity,
+                catchChainRuntime.Catches.Length,
+                selectedCatchIndex,
+                runActive && !biomeApexRuntime.NextWatersPresented,
+                TryDescend,
+                TryReleaseSelectedCatch,
+                TrySurface);
         }
 
         if (techniqueHandView != null)

@@ -455,6 +455,7 @@ GameObject:
   - component: {fileID: 1055148701}
   - component: {fileID: 1055148702}
   - component: {fileID: 1055148703}
+  - component: {fileID: 1055148704}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -581,6 +582,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d482b7d531214ec795dc575f5d724639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunResultView
+--- !u!114 &1055148704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055148696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce4c58dce7b4bd3ad3c1d90752645bf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::FishingRunView
 --- !u!1 &2039860095
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,6 +651,7 @@ MonoBehaviour:
   techniqueHandView: {fileID: 1055148702}
   catchChainView: {fileID: 1055148701}
   runResultView: {fileID: 1055148703}
+  fishingRunView: {fileID: 1055148704}
   debugTechniqueHandIndex: 0
   debugCatchChainIndex: 0
   debugCatchCard: {fileID: 0}
@@ -646,6 +660,7 @@ MonoBehaviour:
   currentBiome: {fileID: 0}
   currentDepth: 0
   lineCapacity: 0
+  selectedCatchIndex: -1
   currentEncounterInformationHidden: 0
   encounterRuntime:
     currentEncounter: {fileID: 0}

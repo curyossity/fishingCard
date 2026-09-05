@@ -434,3 +434,20 @@ Players unlock it across repeated runs or additional Technique rewards create me
 
 Likely future action:
 Tune its economy and effect alongside final deck-size rules and player-selected targeting.
+
+## Programmatic Main Gameplay View
+
+Current approach:
+`FishingRunView`, `CatchChainView`, and `TechniqueHandView` generate the main gameplay composition at runtime with legacy Unity UI components. The view presents the boat/start card, current Encounter, location, core actions, fishing rig, Line Load, selectable Catch Chain, and four-card hand.
+
+Why it is acceptable for MVP:
+The complete fishing loop is now playable and readable without committing to final card frames, artwork, animation, or an authored prefab hierarchy before the screen composition has been playtested.
+
+Production concern:
+The generated layout is optimized around the current 800 by 600 reference resolution and has limited art-direction, localization, accessibility, navigation, and animation support. Encounter artwork also falls back to a flat card region when no sprite is authored.
+
+Revisit trigger:
+Gameplay composition testing is complete, representative card artwork exists, or final input and accessibility requirements are defined.
+
+Likely future action:
+Replace the generated hierarchy with authored prefabs or UI documents backed by dedicated view models, responsive breakpoints, input navigation, animation, and final card visual assets.

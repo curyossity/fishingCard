@@ -9,6 +9,7 @@ public sealed class CatchChainView : MonoBehaviour
     private static readonly Color PanelColor = new Color(0.035f, 0.055f, 0.065f, 0.96f);
     private static readonly Color CardColor = new Color(0.09f, 0.12f, 0.13f, 1f);
     private static readonly Color NegativeCardColor = new Color(0.19f, 0.075f, 0.065f, 1f);
+    private static readonly Color SelectedCardColor = new Color(0.12f, 0.29f, 0.30f, 1f);
     private static readonly Color AccentColor = new Color(0.20f, 0.70f, 0.72f, 1f);
     private static readonly Color ApproachingColor = new Color(0.95f, 0.65f, 0.24f, 1f);
     private static readonly Color NegativeColor = new Color(0.94f, 0.34f, 0.28f, 1f);
@@ -23,6 +24,7 @@ public sealed class CatchChainView : MonoBehaviour
     private Text lineLoadStatusText;
     private Text emptyStateText;
     private Font uiFont;
+    private Action<int> selectCatchAction;
 
     /// <summary>
     /// Creates the runtime layout before the first Catch Chain refresh.
@@ -39,9 +41,12 @@ public sealed class CatchChainView : MonoBehaviour
         CardInstance[] catches,
         ActiveCatchEffectRecord[] activeEffects,
         int currentLineLoad,
-        int lineCapacity)
+        int lineCapacity,
+        int selectedCatchIndex,
+        Action<int> selectCatchAction)
     {
         EnsureLayout();
+        this.selectCatchAction = selectCatchAction;
         ClearEntries();
         RefreshLineLoad(currentLineLoad, lineCapacity);
 
@@ -51,7 +56,7 @@ public sealed class CatchChainView : MonoBehaviour
 
         for (int i = 0; i < safeCatches.Length; i++)
         {
-            CreateCatchEntry(safeCatches[i], safeEffects, i);
+            CreateCatchEntry(safeCatches[i], safeEffects, i, i == selectedCatchIndex);
         }
     }
 
@@ -70,7 +75,7 @@ public sealed class CatchChainView : MonoBehaviour
         GameObject panelObject = CreateUiObject("Catch Chain Panel", transform);
         panelRoot = panelObject.GetComponent<RectTransform>();
         panelRoot.anchorMin = new Vector2(0.62f, 0.06f);
-        panelRoot.anchorMax = new Vector2(0.98f, 0.94f);
+        panelRoot.anchorMax = new Vector2(0.98f, 0.78f);
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
         AddImage(panelObject, PanelColor);
@@ -194,14 +199,22 @@ public sealed class CatchChainView : MonoBehaviour
     private void CreateCatchEntry(
         CardInstance caughtInstance,
         ActiveCatchEffectRecord[] activeEffects,
-        int catchIndex)
+        int catchIndex,
+        bool isSelected)
     {
         CardDefinition card = caughtInstance?.Definition;
         bool hasNegativeEffect = HasNegativeEffect(activeEffects, catchIndex);
         GameObject entryObject = CreateUiObject($"Catch {catchIndex + 1}", contentRoot);
         entryObjects.Add(entryObject);
 
-        AddImage(entryObject, hasNegativeEffect ? NegativeCardColor : CardColor);
+        Image background = AddImage(
+            entryObject,
+            isSelected ? SelectedCardColor : hasNegativeEffect ? NegativeCardColor : CardColor);
+        background.raycastTarget = true;
+        Button selectButton = entryObject.AddComponent<Button>();
+        selectButton.targetGraphic = background;
+        int capturedCatchIndex = catchIndex;
+        selectButton.onClick.AddListener(() => SelectCatch(capturedCatchIndex));
         LayoutElement layoutElement = entryObject.AddComponent<LayoutElement>();
         layoutElement.minHeight = 116f;
         layoutElement.preferredHeight = 116f;
@@ -210,7 +223,7 @@ public sealed class CatchChainView : MonoBehaviour
         GameObject accentObject = CreateUiObject("Line", entryObject.transform);
         RectTransform accentRect = accentObject.GetComponent<RectTransform>();
         SetAnchoredRect(accentRect, Vector2.zero, new Vector2(0f, 1f), 0f, 0f, 5f, 0f);
-        AddImage(accentObject, hasNegativeEffect ? NegativeColor : AccentColor);
+        AddImage(accentObject, isSelected ? Color.white : hasNegativeEffect ? NegativeColor : AccentColor);
 
         Text orderText = CreateText(
             "Order",
@@ -244,6 +257,14 @@ public sealed class CatchChainView : MonoBehaviour
         SetAnchoredRect(effectsText.rectTransform, Vector2.zero, Vector2.one, 50f, 8f, -12f, -58f);
         effectsText.supportRichText = true;
         effectsText.text = BuildEffectsText(activeEffects, catchIndex);
+    }
+
+    /// <summary>
+    /// Forwards a catch-card click to the gameplay controller for Release selection.
+    /// </summary>
+    private void SelectCatch(int catchIndex)
+    {
+        selectCatchAction?.Invoke(catchIndex);
     }
 
     /// <summary>

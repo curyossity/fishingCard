@@ -640,7 +640,11 @@ Presentation:
 - `CatchChainView`
 - `TechniqueHandView`
 - `RunResultView`
-- Future encounter view
+- `FishingRunView`
+
+`FishingRunView` owns the main run composition: boat/start card, location header, current Encounter card, fishing rig, and core action controls. It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules.
+
+`CatchChainView` renders catches in acquisition order and reports the selected catch index to `FishingRunController`. Selection is controller-owned because Release validity and execution are gameplay concerns, while the view owns only the selected visual treatment.
 
 Rule of thumb:
 If the value can differ between two copies of the same card in the same run, it belongs in runtime state, not in `CardDefinition`.
