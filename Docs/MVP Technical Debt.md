@@ -400,3 +400,37 @@ The end-of-run flow receives final visual design, progression choices, or larger
 
 Likely future action:
 Replace the generated overlay with an authored result screen or UI document backed by a dedicated result view model.
+
+## Session-Saved Technique Deck
+
+Current approach:
+`RunProgressionRuntime` copies the 14 authored starting Technique cards into a session deck once. Spending 12 Gold unlocks Counterweight Rig and appends it, producing a 15-card deck used by future runs in the same Play session.
+
+Why it is acceptable for MVP:
+The unlocked card changes later shuffles through the existing deck lifecycle, and 15 cards remains inside the established 12–20 card target without requiring a deck-removal interface.
+
+Production concern:
+The deck and unlock are not persisted after leaving Play mode. There is only one unlock candidate, no deck-size rule, no duplicate-count policy, and no player choice to remove or replace cards.
+
+Revisit trigger:
+More unlockable cards are added, deck construction becomes a meaningful decision, or save/load work begins.
+
+Likely future action:
+Move unlocked-card ownership and the equipped deck into persistent player-profile data, define deck construction limits, and add a dedicated deck-editing interface with add, remove, and replace operations.
+
+## Counterweight Rig Unlock Balance
+
+Current approach:
+Counterweight Rig is a 12 Gold Rare Technique that permanently reduces the last attached Predator catch's weight by 3 for the current run.
+
+Why it is acceptable for MVP:
+It uses existing target and weight-modification rules while giving the first unlock an immediately recognizable Coastal Predator use case.
+
+Production concern:
+Its cost, rarity, reduction amount, automatic last-target selection, and comparative strength have not been playtested.
+
+Revisit trigger:
+Players unlock it across repeated runs or additional Technique rewards create meaningful comparisons.
+
+Likely future action:
+Tune its economy and effect alongside final deck-size rules and player-selected targeting.

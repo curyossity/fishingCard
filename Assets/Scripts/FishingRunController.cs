@@ -91,6 +91,8 @@ public sealed class FishingRunController : MonoBehaviour
     public int LastGoldAwarded => lastSurfaceResult.GoldAwarded;
     public int TotalGold => runRewardRuntime.TotalGold;
     public int ProgressionLineCapacityBonus => runProgressionRuntime.CurrentLineCapacityBonus;
+    public CardDefinition[] SavedTechniqueDeck => runProgressionRuntime.SavedTechniqueDeck;
+    public bool UnlockableTechniqueCardUnlocked => runProgressionRuntime.TechniqueCardUnlocked;
 
     /// <summary>
     /// Initializes runtime owners and starts the run automatically when configured.
@@ -115,6 +117,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         int seed = useRandomSeed ? Environment.TickCount : randomSeed;
         random = new System.Random(seed);
+        runProgressionRuntime.InitializeTechniqueDeck(startingTechniqueDeck);
 
         runActive = true;
         lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus);
@@ -124,7 +127,11 @@ public sealed class FishingRunController : MonoBehaviour
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
-        techniqueDeckRuntime.Initialize(startingTechniqueDeck, startingHandSize, random, LogRuntimeWarning);
+        techniqueDeckRuntime.Initialize(
+            runProgressionRuntime.SavedTechniqueDeck,
+            startingHandSize,
+            random,
+            LogRuntimeWarning);
         techniqueEffectRuntime.Reset();
         lineLoadRiskRuntime.Reset();
         lastSurfaceResult.Reset();
@@ -351,6 +358,28 @@ public sealed class FishingRunController : MonoBehaviour
 
         RefreshViews();
         Debug.Log($"PROGRESSION PURCHASED | {resultSummary} | Gold Remaining: {runRewardRuntime.TotalGold}", this);
+        return true;
+    }
+
+    /// <summary>
+    /// Unlocks the configured Technique card and adds it to the saved deck for future runs.
+    /// </summary>
+    public bool TryUnlockTechniqueCard()
+    {
+        bool unlocked = runProgressionRuntime.TryUnlockTechniqueCard(
+            runRewardRuntime,
+            runActive,
+            lastSurfaceResult.HasResult,
+            out string resultSummary);
+
+        if (!unlocked)
+        {
+            Debug.LogWarning(resultSummary, this);
+            return false;
+        }
+
+        RefreshViews();
+        Debug.Log($"TECHNIQUE UNLOCKED | {resultSummary} | Gold Remaining: {runRewardRuntime.TotalGold}", this);
         return true;
     }
 
@@ -754,18 +783,22 @@ public sealed class FishingRunController : MonoBehaviour
                 runActive,
                 lastSurfaceResult.HasResult,
                 out string upgradeRestrictionReason);
+            bool canUnlockTechnique = runProgressionRuntime.CanUnlockTechniqueCard(
+                runRewardRuntime,
+                runActive,
+                lastSurfaceResult.HasResult,
+                out string techniqueRestrictionReason);
             runResultView.Refresh(
                 runActive,
                 lastSurfaceResult,
                 runRewardRuntime.TotalGold,
-                runProgressionRuntime.CurrentLineCapacityBonus,
-                runProgressionRuntime.LineCapacityUpgradeCost,
-                runProgressionRuntime.LineCapacityPerUpgrade,
-                runProgressionRuntime.PurchasedLineCapacityUpgrades,
-                runProgressionRuntime.MaximumLineCapacityUpgrades,
+                runProgressionRuntime,
                 canPurchaseUpgrade,
                 upgradeRestrictionReason,
+                canUnlockTechnique,
+                techniqueRestrictionReason,
                 TryPurchaseLineCapacityUpgrade,
+                TryUnlockTechniqueCard,
                 StartRun);
         }
 

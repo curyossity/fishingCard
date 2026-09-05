@@ -22,7 +22,11 @@ public sealed class RunResultView : MonoBehaviour
     private Text upgradeStatusText;
     private Button upgradeButton;
     private Text upgradeButtonText;
+    private Text techniqueStatusText;
+    private Button techniqueUnlockButton;
+    private Text techniqueUnlockButtonText;
     private Func<bool> purchaseUpgradeAction;
+    private Func<bool> unlockTechniqueAction;
     private Action startNextRunAction;
     private Font uiFont;
 
@@ -42,18 +46,18 @@ public sealed class RunResultView : MonoBehaviour
         bool runActive,
         FishingRunResult result,
         int totalGold,
-        int lineCapacityBonus,
-        int upgradeCost,
-        int capacityPerUpgrade,
-        int purchasedUpgrades,
-        int maximumUpgrades,
+        RunProgressionRuntime progression,
         bool canPurchaseUpgrade,
         string upgradeRestrictionReason,
+        bool canUnlockTechnique,
+        string techniqueRestrictionReason,
         Func<bool> purchaseUpgradeAction,
+        Func<bool> unlockTechniqueAction,
         Action startNextRunAction)
     {
         EnsureLayout();
         this.purchaseUpgradeAction = purchaseUpgradeAction;
+        this.unlockTechniqueAction = unlockTechniqueAction;
         this.startNextRunAction = startNextRunAction;
         bool shouldShow = !runActive && result != null && result.HasResult;
         backdropRoot.gameObject.SetActive(shouldShow);
@@ -71,13 +75,23 @@ public sealed class RunResultView : MonoBehaviour
         releasedText.text = BuildCatchList(result.ReleasedCatches, true);
         lostText.text = BuildCatchList(result.LostCatches, true);
         upgradeButton.interactable = canPurchaseUpgrade;
-        upgradeButtonText.text = $"UPGRADE LINE +{capacityPerUpgrade}  |  {upgradeCost} GOLD";
+        upgradeButtonText.text = $"UPGRADE LINE +{progression.LineCapacityPerUpgrade}  |  "
+            + $"{progression.LineCapacityUpgradeCost} GOLD";
 
-        string upgradeProgress = $"LINE CAPACITY BONUS +{lineCapacityBonus}     "
-            + $"UPGRADES {purchasedUpgrades}/{maximumUpgrades}";
+        string upgradeProgress = $"LINE CAPACITY BONUS +{progression.CurrentLineCapacityBonus}     "
+            + $"UPGRADES {progression.PurchasedLineCapacityUpgrades}/{progression.MaximumLineCapacityUpgrades}";
         upgradeStatusText.text = canPurchaseUpgrade || string.IsNullOrWhiteSpace(upgradeRestrictionReason)
             ? upgradeProgress
             : $"{upgradeProgress}\n{upgradeRestrictionReason}";
+
+        CardDefinition unlockableCard = progression.UnlockableTechniqueCard;
+        string unlockName = unlockableCard == null ? "TECHNIQUE UNAVAILABLE" : unlockableCard.DisplayName.ToUpperInvariant();
+        string unlockRules = unlockableCard == null ? string.Empty : unlockableCard.RulesText;
+        techniqueUnlockButton.interactable = canUnlockTechnique;
+        techniqueUnlockButtonText.text = $"UNLOCK {unlockName}  |  {progression.TechniqueUnlockCost} GOLD";
+        techniqueStatusText.text = string.IsNullOrWhiteSpace(techniqueRestrictionReason)
+            ? $"{unlockRules}\nSAVED DECK {progression.SavedTechniqueDeck.Length} CARDS"
+            : $"{unlockRules}\n{techniqueRestrictionReason}     SAVED DECK {progression.SavedTechniqueDeck.Length} CARDS";
     }
 
     /// <summary>
@@ -128,30 +142,57 @@ public sealed class RunResultView : MonoBehaviour
         SetAnchoredRect(
             upgradeStatusText.rectTransform,
             new Vector2(0.04f, 0f),
-            new Vector2(0.66f, 0f),
+            new Vector2(0.48f, 0f),
             0f,
-            66f,
+            90f,
             0f,
-            104f);
+            136f);
 
         upgradeButton = CreateButton(
             "Upgrade Line",
             panelRect,
             new Vector2(0.04f, 0f),
-            new Vector2(0.66f, 0f),
-            18f,
-            60f,
+            new Vector2(0.48f, 0f),
+            48f,
+            86f,
             GoldColor,
             InvokePurchaseUpgrade,
             out upgradeButtonText);
 
+        techniqueStatusText = CreateText(
+            "Technique Unlock Status",
+            panelRect,
+            11,
+            FontStyle.Bold,
+            TextAnchor.MiddleLeft,
+            MutedTextColor);
+        SetAnchoredRect(
+            techniqueStatusText.rectTransform,
+            new Vector2(0.50f, 0f),
+            new Vector2(0.96f, 0f),
+            0f,
+            90f,
+            0f,
+            136f);
+
+        techniqueUnlockButton = CreateButton(
+            "Unlock Technique",
+            panelRect,
+            new Vector2(0.50f, 0f),
+            new Vector2(0.96f, 0f),
+            48f,
+            86f,
+            ReleasedColor,
+            InvokeUnlockTechnique,
+            out techniqueUnlockButtonText);
+
         CreateButton(
             "Start Next Run",
             panelRect,
-            new Vector2(0.68f, 0f),
+            new Vector2(0.04f, 0f),
             new Vector2(0.96f, 0f),
-            18f,
-            60f,
+            8f,
+            42f,
             HaulColor,
             InvokeStartNextRun,
             out Text startButtonText);
@@ -186,7 +227,7 @@ public sealed class RunResultView : MonoBehaviour
             new Vector2(anchorMinX, 0f),
             new Vector2(anchorMaxX, 1f),
             0f,
-            112f,
+            144f,
             0f,
             -194f);
         contentText.resizeTextForBestFit = true;
@@ -234,6 +275,14 @@ public sealed class RunResultView : MonoBehaviour
     private void InvokePurchaseUpgrade()
     {
         purchaseUpgradeAction?.Invoke();
+    }
+
+    /// <summary>
+    /// Forwards the Technique unlock command to the current controller callback.
+    /// </summary>
+    private void InvokeUnlockTechnique()
+    {
+        unlockTechniqueAction?.Invoke();
     }
 
     /// <summary>

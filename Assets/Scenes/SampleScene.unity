@@ -579,7 +579,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d482b7d531214ec795dc575f5d724639, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RunResultView
 --- !u!1 &2039860095
 GameObject:
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunController
   startRunOnAwake: 1
   startingLineCapacity: 30
-  startingDepth: 7
+  startingDepth: 0
   startingBiome: {fileID: 11400000, guid: e104a3bb49114f2e80aebde5130a122e, type: 2}
   startingHandSize: 4
   depthStepPerDescend: 1
@@ -713,7 +713,12 @@ MonoBehaviour:
     maximumLineCapacityUpgrades: 3
     purchasedLineCapacityUpgrades: 0
     purchasedUpgradeAfterLastRun: 0
-    lastPurchaseSummary:
+    lastPurchaseSummary: 
+    unlockableTechniqueCard: {fileID: 11400000, guid: 6b7a6e8416124f5ea88870396c364f3a, type: 2}
+    techniqueUnlockCost: 12
+    techniqueCardUnlocked: 0
+    techniqueDeckInitialized: 0
+    savedTechniqueDeck: []
 --- !u!4 &2039860097
 Transform:
   m_ObjectHideFlags: 0

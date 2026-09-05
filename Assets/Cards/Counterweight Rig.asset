@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Counterweight Rig
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: technique_counterweight_rig
+  displayName: Counterweight Rig
+  cardType: 0
+  rarity: 2
+  tags:
+  - Rigging
+  - LoadControl
+  - Predator
+  artwork: {fileID: 0}
+  rulesText: Permanently reduce the last attached Predator catch's weight by 3 for
+    this run.
+  weight: 0
+  value: 0
+  biomeIds: []
+  minimumDepth: 0
+  maximumDepth: -1
+  effects:
+  - effectId: counterweight_last_predator
+    effectType: 1
+    trigger: 0
+    target: 5
+    effectTone: 1
+    amount: 3
+    requiredTags:
+    - Predator
+    caughtCardTargetMode: 3
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 1
+    reminderText: The last attached Predator contributes 3 less Line Load.

@@ -316,7 +316,7 @@ Does not own:
 ### `RunProgressionRuntime`
 
 Role:
-In-memory owner of the minimal between-run Line Capacity upgrade.
+In-memory owner of the minimal between-run Line Capacity upgrade and Technique deck progression.
 
 Owns:
 - Upgrade cost, capacity increase, and purchase limit tuning
@@ -324,12 +324,15 @@ Owns:
 - Total cumulative Line Capacity bonus for future runs in the current session
 - Validation that a purchase happens after a completed run, at most once per run, with enough Gold
 - Purchase summaries and Gold-spend requests
+- A session-saved Technique deck initialized once from the authored starting deck
+- The configured Technique unlock, its cost, and unlocked state
+- Appending an unlocked valid Technique card without duplicating its stable card ID
 
 Does not own:
 - The Gold wallet
 - Current-run Line Capacity
 - Save/load persistence
-- Technique deck modification or broader progression content
+- Deck-size limits, card removal/replacement choices, or broader progression content
 
 ### `LineLoadRiskRuntime`
 
@@ -381,7 +384,8 @@ Owns:
 - Showing Surface depth, Line Load, capacity, and overload status
 - Separate brought-home, released, and lost catch lists
 - Showing Line Capacity upgrade progress and purchase availability
-- Forwarding upgrade and next-run commands to the controller
+- Showing the configured Technique unlock, rules, cost, and saved deck size
+- Forwarding progression and next-run commands to the controller
 
 Does not own:
 - Haul snapshots, value calculation, or reward conversion
@@ -582,6 +586,8 @@ Current between-run progression flow:
 4. `RunRewardRuntime` deducts the configured cost after validation succeeds.
 5. The result view refreshes with the new wallet total and cumulative capacity bonus.
 6. Starting the next run adds the cumulative progression bonus to the authored starting Line Capacity without resetting purchased upgrades.
+7. The player may instead spend Gold to unlock the configured Technique card; the runtime appends it to the session-saved deck once.
+8. Starting a later run shuffles the saved deck, so the unlocked card can enter the normal hand, discard, and reshuffle lifecycle.
 
 Current debug scenario flow:
 
@@ -626,6 +632,7 @@ Runtime state:
 - Released and overload-lost catch histories
 - In-memory Gold wallet
 - In-memory Line Capacity upgrade state
+- Session-saved Technique deck and unlock state
 - Future active effect instances
 
 Presentation:
