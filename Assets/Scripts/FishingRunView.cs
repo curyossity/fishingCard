@@ -205,7 +205,7 @@ public sealed class FishingRunView : MonoBehaviour
     {
         GameObject rigObject = CreateUiObject("Fishing Rig", gameplayRoot);
         RectTransform rigRect = rigObject.GetComponent<RectTransform>();
-        SetAnchoredRect(rigRect, new Vector2(0.795f, 0.765f), new Vector2(0.805f, 0.835f), 0f, 0f, 0f, 0f);
+        SetAnchoredRect(rigRect, new Vector2(0.66f, 0.765f), new Vector2(0.665f, 0.835f), 0f, 0f, 0f, 0f);
         AddImage(rigObject, new Color(0.76f, 0.88f, 0.84f, 1f));
 
         GameObject boatObject = CreateUiObject("Boat Start Card", gameplayRoot);

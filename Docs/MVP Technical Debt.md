@@ -302,10 +302,10 @@ Tune or replace the prototype resolver with the approved consequence model, then
 ## Programmatic Catch Chain View
 
 Current approach:
-`CatchChainView` creates its compact scrolling UI at runtime and rebuilds entry GameObjects whenever Catch Chain state changes.
+`CatchChainView` creates its compact scrolling UI at runtime and rebuilds entry GameObjects whenever Catch Chain state changes. Each entry is an independent card attached to a generated central rig by a branch line and state-colored knot.
 
 Why it is acceptable for MVP:
-The panel is self-contained, needs one scene component, and makes ordered catches, stats, and effect tone testable before final card presentation exists.
+The panel is self-contained, needs one scene component, and makes ordered catches, physical attachment, stats, and effect tone testable before final card presentation exists.
 
 Production concern:
 Runtime-created UI is less convenient for visual authoring, and destroying/recreating every entry causes avoidable allocations as presentation complexity grows.

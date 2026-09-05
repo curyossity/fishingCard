@@ -362,6 +362,9 @@ Owns:
 - Clearly separated current weight and value labels, including modifiers
 - Per-catch active effect text
 - Distinct visual treatment for explicitly negative effects
+- Continuous fishing rig with per-catch branch lines and attachment knots
+- Independent catch-card frames separated from the rig and neighboring cards
+- Catch selection feedback and forwarding the selected index to the controller
 - Current Load / Capacity display
 - Stable, approaching-limit, and overloaded visual states
 - Scrollable layout for longer chains
@@ -370,7 +373,7 @@ Owns:
 Does not own:
 - Catch Chain data or ordering rules
 - Effect classification or execution
-- Release input
+- Release validation or execution
 - Line Load calculations
 
 ### `RunResultView`
