@@ -798,13 +798,32 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (fishingRunView != null)
         {
+            CardDefinition currentEncounter = encounterRuntime.CurrentEncounter;
+            CardInstance encounterPreview = catchChainRuntime.CreateResolvedCatchPreview(
+                currentEncounter,
+                effectResolver);
+            int resolvedEncounterWeight = 0;
+            int resolvedEncounterValue = 0;
+
+            if (encounterPreview != null)
+            {
+                resolvedEncounterWeight = encounterPreview.CurrentWeight;
+                resolvedEncounterValue = encounterPreview.CurrentValue;
+            }
+            else if (currentEncounter != null)
+            {
+                resolvedEncounterWeight = currentEncounter.Weight;
+                resolvedEncounterValue = currentEncounter.Value;
+            }
+
             fishingRunView.Refresh(
                 runActive,
                 currentBiome,
                 CurrentDepthTier,
                 currentDepth,
-                encounterRuntime.CurrentEncounter,
-                encounterRuntime.CurrentState,
+                currentEncounter,
+                resolvedEncounterWeight,
+                resolvedEncounterValue,
                 CurrentEncounterInformationHidden,
                 lineCapacity,
                 catchChainRuntime.Catches.Length,

@@ -209,6 +209,26 @@ public sealed class CatchChainRuntime
     }
 
     /// <summary>
+    /// Resolves a temporary catch copy against the current chain without mutating the active run.
+    /// </summary>
+    public CardInstance CreateResolvedCatchPreview(CardDefinition card, EffectResolver effectResolver)
+    {
+        if (card == null || effectResolver == null)
+        {
+            return null;
+        }
+
+        CardInstance[] previewCatches = CreateSnapshot();
+        CardInstance previewCatch = new CardInstance(0, card);
+        previewCatches = AppendCatch(previewCatches, previewCatch);
+
+        List<ActiveCatchEffectRecord> previewEffects = new List<ActiveCatchEffectRecord>(activeEffectRecords);
+        AppendPreviewEffects(previewEffects, previewCatch, previewCatches.Length - 1);
+        effectResolver.ResolveCatchChain(previewCatches, previewEffects.ToArray());
+        return previewCatch;
+    }
+
+    /// <summary>
     /// Clears all Catch Chain cards and active effect records.
     /// </summary>
     public void Reset()
@@ -227,6 +247,36 @@ public sealed class CatchChainRuntime
     {
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenCaught, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
+    }
+
+    /// <summary>
+    /// Adds the temporary catch's own catch-time and attached effects to a preview effect list.
+    /// </summary>
+    private static void AppendPreviewEffects(
+        List<ActiveCatchEffectRecord> previewEffects,
+        CardInstance previewCatch,
+        int catchIndex)
+    {
+        CardDefinition card = previewCatch?.Definition;
+
+        if (card == null || card.Effects == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < card.Effects.Length; i++)
+        {
+            CardEffectDefinition effect = card.Effects[i];
+
+            if (effect == null
+                || (effect.Trigger != CardEffectTrigger.WhenCaught
+                    && effect.Trigger != CardEffectTrigger.WhileAttached))
+            {
+                continue;
+            }
+
+            previewEffects.Add(new ActiveCatchEffectRecord(previewCatch, effect, effect.Trigger, catchIndex));
+        }
     }
 
     /// <summary>

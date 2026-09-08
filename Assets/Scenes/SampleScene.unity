@@ -594,6 +594,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce4c58dce7b4bd3ad3c1d90752645bf, type: 3}
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunView
+  fallbackCreatureCardFace: {fileID: 23488869973362483, guid: e7cf0efd897c5c94e8a0e2eb043e830b, type: 3}
+  rarityHookSprite: {fileID: -5538518875732326902, guid: 6ed5cd1f3b3ff7d44ae31e0f26d8bc0d, type: 3}
 --- !u!1 &2039860095
 GameObject:
   m_ObjectHideFlags: 0

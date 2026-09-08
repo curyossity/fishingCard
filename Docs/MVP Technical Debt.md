@@ -438,16 +438,50 @@ Tune its economy and effect alongside final deck-size rules and player-selected 
 ## Programmatic Main Gameplay View
 
 Current approach:
-`FishingRunView`, `CatchChainView`, and `TechniqueHandView` generate the main gameplay composition at runtime with legacy Unity UI components. The view presents the boat/start card, current Encounter, location, core actions, fishing rig, Line Load, selectable Catch Chain, and four-card hand.
+`FishingRunView`, `CreatureCardView`, `CatchChainView`, and `TechniqueHandView` generate the main gameplay composition at runtime with legacy Unity UI components. The current Encounter is presented only as a portrait card. `CreatureCardView` layers runtime type, name, resolved Weight, resolved Value, effect text, and rarity hooks over either dedicated supplied card art or the generic creature template.
 
 Why it is acceptable for MVP:
 The complete fishing loop is now playable and readable without committing to final card frames, artwork, animation, or an authored prefab hierarchy before the screen composition has been playtested.
 
 Production concern:
-The generated layout is optimized around the current 800 by 600 reference resolution and has limited art-direction, localization, accessibility, navigation, and animation support. Encounter artwork also falls back to a flat card region when no sprite is authored.
+The generated layout is optimized around the current 800 by 600 reference resolution and has limited art-direction, localization, accessibility, navigation, and animation support. Card overlay positions are normalized to the current 1024 by 1536 art format, and encounters without dedicated faces use the generic template with legacy creature artwork.
 
 Revisit trigger:
 Gameplay composition testing is complete, representative card artwork exists, or final input and accessibility requirements are defined.
 
 Likely future action:
 Replace the generated hierarchy with authored prefabs or UI documents backed by dedicated view models, responsive breakpoints, input navigation, animation, and final card visual assets.
+
+## Hooked Catch Stat Preview
+
+Current approach:
+`CatchChainRuntime` creates a temporary `CardInstance` and resolves it against snapshots of the current Catch Chain and attached catch effects. `FishingRunController` gives the projected Weight and Value to `CreatureCardView` without committing the encounter to the run.
+
+Why it is acceptable for MVP:
+The Hooked card reflects modifiers from catches that are already attached while keeping the real Catch Chain unchanged until Descend.
+
+Production concern:
+The preview does not yet include pending next-Descend Technique effects or overload-dependent rewards, and some effect-resolution setup is duplicated from catch commitment.
+
+Revisit trigger:
+More effects can alter a Hooked card before it is committed, or the preview and committed values can disagree.
+
+Likely future action:
+Introduce one authoritative encounter-decision preview service shared by presentation and final commitment.
+
+## Supplied Card Face Name Exception
+
+Current approach:
+Card names are normally rendered at runtime, but `CardDefinition.CardFaceIncludesName` can suppress that layer. The supplied Squid card uses this exception because its name is already baked into the image.
+
+Why it is acceptable for MVP:
+It prevents duplicate text while allowing the supplied example art to be used immediately.
+
+Production concern:
+A baked name cannot be localized or changed independently from the artwork and does not follow the blank-field card specification.
+
+Revisit trigger:
+The Squid art is revised, localization begins, or another supplied card includes baked dynamic information.
+
+Likely future action:
+Replace the Squid face with artwork that leaves the name region blank, then remove the exception when no assets depend on it.

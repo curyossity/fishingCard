@@ -269,6 +269,7 @@ Owns:
 - Calculated Line Load from resolved instance weights
 - Active caught-card effect records
 - Rebuilding and resolving catch interactions after Catch or Release
+- Building a non-mutating resolved preview of a possible catch against the current Catch Chain
 - Catch Chain reset and snapshots
 
 Does not own:
@@ -640,12 +641,15 @@ Runtime state:
 
 Presentation:
 - `CardView`
+- `CreatureCardView`
 - `CatchChainView`
 - `TechniqueHandView`
 - `RunResultView`
 - `FishingRunView`
 
-`FishingRunView` owns the main run composition: boat/start card, location header, current Encounter card, fishing rig, and core action controls. It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules.
+`FishingRunView` owns the main run composition: boat/start card, location header, current Encounter card, fishing rig, and core action controls. It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules. The current Encounter region contains only a `CreatureCardView`; it does not repeat encounter state, tags, or statistics outside the card.
+
+`CreatureCardView` composes a supplied portrait card face with runtime type, name, resolved Weight, resolved Value, rules text, and one-to-four rarity hooks. A card-specific face is preferred, while the generic creature template and legacy creature artwork provide the fallback for cards that do not yet have a dedicated face. Hidden-information effects conceal dynamic details in place without adding a visible state label.
 
 `CatchChainView` renders catches in acquisition order and reports the selected catch index to `FishingRunController`. Selection is controller-owned because Release validity and execution are gameplay concerns, while the view owns only the selected visual treatment.
 

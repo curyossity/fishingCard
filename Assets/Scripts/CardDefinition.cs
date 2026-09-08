@@ -14,6 +14,8 @@ public class CardDefinition : ScriptableObject
 
     [Header("Presentation")]
     [SerializeField] private Sprite artwork;
+    [SerializeField] private Sprite cardFaceArtwork;
+    [SerializeField] private bool cardFaceIncludesName;
     [TextArea(2, 5)]
     [SerializeField] private string rulesText;
 
@@ -38,6 +40,8 @@ public class CardDefinition : ScriptableObject
     public CardRarity Rarity => rarity;
     public string[] Tags => tags;
     public Sprite Artwork => artwork;
+    public Sprite CardFaceArtwork => cardFaceArtwork;
+    public bool CardFaceIncludesName => cardFaceIncludesName;
     public string RulesText => rulesText;
     public int Weight => weight;
     public int Value => value;
