@@ -54,6 +54,19 @@ These files are approved reference/specification assets. They document the visua
 | Description | Source Serif 4 | Regular |
 | Small status text | Source Serif 4 | Medium |
 
+## Task 1.2 Base Materials
+
+These assets establish repeatable material surfaces and reusable atmospheric overlays. They are source sprites/material textures, not complete UI components.
+
+| Filename | Native size | Intended use | Transparency | Pivot | PPU | Nine-slice | Tint | Runtime dependencies | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `Backgrounds/teal-paper-tile.png` | 1254 x 1254 | Dark teal seamless paper texture | Opaque | Center | 100 | No | No | UI material/panel backgrounds | Supplied. No obvious directional motif on visual inspection. |
+| `Backgrounds/ivory-paper-tile.png` | 1254 x 1254 | Warm ivory seamless paper texture | Opaque | Center | 100 | No | No | UI material/panel backgrounds | Supplied. No obvious directional motif on visual inspection. |
+| `Frames/oxidized-teal-tile.png` | 1254 x 1254 | Oxidized teal metal/material texture | Opaque | Center | 100 | No | No | Frame and panel material references | Supplied. No obvious directional motif on visual inspection. |
+| `Frames/aged-brass-tile.png` | 1254 x 1254 | Aged brass material tile for borders, ornaments, and metal surfaces | Opaque | Center | 100 | No | No | Frame and ornament sprites/materials | Supplied. No obvious directional motif on visual inspection. |
+| `Effects/print-noise-overlay.png` | 1024 x 1024 | Restrained print-noise overlay | Alpha | Center | 100 | No | Optional opacity tint only | Panel/card/background overlay layers | Supplied. Use at low opacity only. |
+| `Effects/contact-shadow-soft.png` | 1024 x 512 | Soft contact shadow layer under cards and panels | Alpha | Center | 100 | No | Optional opacity tint only | Card/panel hover and placement feedback | Supplied. |
+
 ## Phase 1 Asset Entries To Complete Later
 
 The following groups require per-file native dimensions, pivot, pixels per unit, transparency, nine-slice borders, tint permission, and runtime dependencies when the assets are supplied:

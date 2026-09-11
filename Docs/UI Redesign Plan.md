@@ -312,12 +312,14 @@ Do not bake creature names, technique names, weight values, value numbers, effec
 
 #### Assets to create in Task 1.2
 
-- [x] `Backgrounds/teal-paper-tile.png` — already created before this task breakdown.
-- [x] `Backgrounds/ivory-paper-tile.png` — already created before this task breakdown.
-- [x] `Frames/oxidized-teal-tile.png` — already created before this task breakdown.
-- [ ] `Frames/aged-brass-tile.png`
-- [ ] `Effects/print-noise-overlay.png`
-- [ ] `Effects/contact-shadow-soft.png`
+- [x] `Backgrounds/teal-paper-tile.png`
+- [x] `Backgrounds/ivory-paper-tile.png`
+- [x] `Frames/oxidized-teal-tile.png`
+- [x] `Frames/aged-brass-tile.png`
+- [x] `Effects/print-noise-overlay.png`
+- [x] `Effects/contact-shadow-soft.png`
+
+Task 1.2 integration note: all required base material assets are now present in the project and recorded in `Reference/asset-manifest.md`.
 
 #### Assets reused from previous tasks
 

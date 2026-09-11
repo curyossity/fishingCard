@@ -17,3 +17,7 @@ Remaining integration work:
 
 - Generate TextMeshPro font assets inside Unity.
 - Validate whether the Unity/TextMeshPro version in this project handles Source Serif 4 variable font weights as needed. If not, fetch static Source Serif 4 weight files under the same OFL license and record them in `Reference/asset-manifest.md`.
+
+## Task 1.2
+
+No missing base material assets remain for Task 1.2.
