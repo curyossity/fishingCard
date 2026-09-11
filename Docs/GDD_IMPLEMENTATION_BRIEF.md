@@ -102,22 +102,22 @@ Value is realized primarily after surfacing, not immediately when a creature is 
 
 The haul can be sold or used for progression such as equipment improvements, new cards, deck upgrades, and unlocks. Long-term progression should expand strategic possibilities rather than only increasing raw power.
 
-## Prototype Scope
+## Full-Game Development Scope
 
-Build the first prototype around:
+The project is no longer in MVP/prototype mode. Use the following as the minimum gameplay foundation that must remain clean enough for the full game:
 
 - 3 permanent core actions: `Descend`, `Release`, `Surface`.
-- A 4-card technique hand and small technique deck.
-- A small encounter pool of roughly 15-20 cards across creatures, hazards, opportunities, treasure, and at least one short encounter chain.
-- 2-3 downside creatures.
-- Several technique cards that manage bad Hooked encounters.
+- A 4-card technique hand and expandable technique deck.
+- Encounter pools across creatures, hazards, opportunities, treasure, rare encounters, biome-specific cards, and encounter chains.
+- Downside creatures and pressure cards that are meaningful in different run states.
+- Technique cards that manage bad Hooked encounters without becoming a universal Skip button.
 - A visible vertical Catch Chain.
 - Line Load and capacity with overload risk.
-- Simple passive effects on selected catches.
-- A few depth bands with different encounter pools.
-- A basic end-of-run haul and sell screen.
+- Passive and active catch effects with clean runtime ownership.
+- Multiple depth bands and biome-ready encounter selection.
+- End-of-run haul, reward, and progression systems that can grow into the final game.
 
-Prototype success criterion: is it fun to build an increasingly valuable and mechanically useful Catch Chain while deciding whether to release something, keep descending, or surface?
+Development success criterion: each shipped increment should strengthen the final game rather than create temporary scaffolding. Do not accept "good enough for MVP" as a reason to postpone known architecture, content, UI, persistence, or validation work.
 
 ## Open Questions
 

@@ -295,8 +295,8 @@ Do not bake creature names, technique names, weight values, value numbers, effec
 - [x] `Reference/visual-states.png` — initial direction sheet; it will be validated and finalized in Task 1.8.
 - [x] `Reference/gameplay-layout-1920x1080.png` — approved populated composition reference, not a gameplay background.
 - [x] `Reference/asset-manifest.md` — initial manifest containing filenames, native dimensions, transparency, pivots, safe regions, tint rules, and nine-slice borders.
-- [ ] Approved decorative display font files in `Fonts/`.
-- [ ] Approved readable body font files in `Fonts/`.
+- [x] Approved decorative display font files in `Fonts/`.
+- [x] Approved readable body font files in `Fonts/`.
 
 #### Assets reused from previous tasks
 

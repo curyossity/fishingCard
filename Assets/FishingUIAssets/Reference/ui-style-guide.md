@@ -68,11 +68,30 @@ Body, value, and status roles:
 | Status label | `TENSION: LOW` | 27 px |
 | Small data | `0-200 m - DECK 12` | 22 px |
 
-Font intent:
+Approved font pairing:
 
-- Display: condensed serif with engraved nautical weight.
-- Body: clear sans serif for rules, values, and status text.
-- Approved font files have not yet been supplied. See `../MissingVisualAssets.md`.
+- Display: Marcellus Regular.
+- Body: Source Serif 4.
+
+Font role mapping:
+
+- Creature and technique names: Marcellus Regular.
+- Location names: Marcellus Regular.
+- Panel headings: Marcellus Regular.
+- Large action buttons: Marcellus Regular.
+- Short decorative labels: Marcellus Regular.
+- Card descriptions: Source Serif 4 Regular.
+- Creature effects: Source Serif 4 Regular or Semibold for effect headings.
+- Weight and value numbers: Source Serif 4 Bold.
+- Depth and tension information: Source Serif 4 Medium or Bold depending on hierarchy.
+- Tooltips and status text: Source Serif 4 Regular or Medium.
+
+License note:
+
+- Both families are licensed under the SIL Open Font License 1.1.
+- Include each family's `OFL.txt` when distributing the game or its asset bundle.
+- Do not sell the font files by themselves.
+- If a modified font build is ever produced, do not use reserved font names without permission.
 
 Text rules:
 
@@ -158,6 +177,7 @@ Locked by this task:
 
 - Initial palette and material direction.
 - Typography roles and reference sizes.
+- Official font pairing: Marcellus for display, Source Serif 4 for body, value, and status text.
 - 1920 x 1080 composition, safe margins, and major panel proportions.
 - Shared state language for buttons, cards, meters, and focus.
 - Static-art/runtime-data boundary.
@@ -167,4 +187,4 @@ Deferred to later Phase 1 tasks:
 - Exact native dimensions for every individual sprite not yet supplied.
 - Final nine-slice border values for stretchable sprites.
 - Final pivot values for rig connectors, slots, markers, and meters.
-- Final font file names after display/body font files are supplied.
+- TextMeshPro font asset generation inside Unity.

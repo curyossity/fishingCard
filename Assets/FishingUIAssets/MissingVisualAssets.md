@@ -4,18 +4,16 @@ This file records required visual assets that are not yet supplied. Use obvious 
 
 ## Task 1.1
 
-### Approved display font
+No missing font files remain for Task 1.1.
 
-- Required path: `Assets/FishingUIAssets/Fonts/`
-- Required filename: TBD by supplied font file
-- Intended location: TextMeshPro display font asset for biome names, card titles, panel headings, primary actions, and small plates
-- Required metadata: license/usage approval, font style, fallback behavior
-- Production concern: typography cannot be locked in Unity until the actual font file is supplied
+Supplied fonts:
 
-### Approved body font
+- `Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf`
+- `Assets/FishingUIAssets/Fonts/Marcellus/OFL.txt`
+- `Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf`
+- `Assets/FishingUIAssets/Fonts/SourceSerif4/OFL.txt`
 
-- Required path: `Assets/FishingUIAssets/Fonts/`
-- Required filename: TBD by supplied font file
-- Intended location: TextMeshPro body font asset for rules text, values, status labels, and small data
-- Required metadata: license/usage approval, font style, fallback behavior
-- Production concern: text fitting and final readability cannot be fully validated until the actual font file is supplied
+Remaining integration work:
+
+- Generate TextMeshPro font assets inside Unity.
+- Validate whether the Unity/TextMeshPro version in this project handles Source Serif 4 variable font weights as needed. If not, fetch static Source Serif 4 weight files under the same OFL license and record them in `Reference/asset-manifest.md`.

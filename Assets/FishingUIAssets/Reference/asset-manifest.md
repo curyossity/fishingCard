@@ -35,8 +35,24 @@ These files are approved reference/specification assets. They document the visua
 
 | Filename | Native size | Intended use | Transparency | Pivot | PPU | Nine-slice | Tint | Runtime dependencies | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `Fonts/<approved-display-font>` | Font file | Display, navigation, card titles, panel headings, primary actions | N/A | N/A | N/A | N/A | Runtime text color | TextMeshPro font asset | Missing. |
-| `Fonts/<approved-body-font>` | Font file | Body, values, rules, small data, status labels | N/A | N/A | N/A | N/A | Runtime text color | TextMeshPro font asset | Missing. |
+| `Fonts/Marcellus/Marcellus-Regular.ttf` | 46,004 bytes | Display, navigation, card titles, panel headings, primary actions | N/A | N/A | N/A | N/A | Runtime text color | TextMeshPro font asset | Supplied. Licensed under SIL OFL 1.1. |
+| `Fonts/Marcellus/OFL.txt` | 4,430 bytes | Marcellus license and copyright notice | N/A | N/A | N/A | N/A | N/A | Distribution notices | Supplied. Include with distribution notices. |
+| `Fonts/SourceSerif4/SourceSerif4-Variable.ttf` | 1,209,508 bytes | Body, values, rules, small data, status labels | N/A | N/A | N/A | N/A | Runtime text color | TextMeshPro font asset | Supplied. Licensed under SIL OFL 1.1. |
+| `Fonts/SourceSerif4/OFL.txt` | 4,400 bytes | Source Serif 4 license and copyright notice | N/A | N/A | N/A | N/A | N/A | Distribution notices | Supplied. Include with distribution notices. |
+
+## Approved Font Usage
+
+| UI role | Font | Weight |
+| --- | --- | --- |
+| Main card title | Marcellus | Regular |
+| Panel heading | Marcellus | Regular |
+| Button label | Marcellus | Regular |
+| Location name | Marcellus | Regular |
+| Short decorative label | Marcellus | Regular |
+| Stat number | Source Serif 4 | Bold |
+| Effect heading | Source Serif 4 | Semibold |
+| Description | Source Serif 4 | Regular |
+| Small status text | Source Serif 4 | Medium |
 
 ## Phase 1 Asset Entries To Complete Later
 
