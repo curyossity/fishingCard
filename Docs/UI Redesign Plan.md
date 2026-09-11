@@ -289,12 +289,12 @@ Do not bake creature names, technique names, weight values, value numbers, effec
 #### Assets to create or prepare in Task 1.1
 
 - [x] `Reference/theme-palette.png` — already created before this task breakdown; treat it as the approved starting palette.
-- [ ] `Reference/ui-style-guide.md`
+- [x] `Reference/ui-style-guide.md`
 - [x] `Reference/typography-reference.png`
 - [x] `Reference/component-dimensions.png`
 - [x] `Reference/visual-states.png` — initial direction sheet; it will be validated and finalized in Task 1.8.
 - [x] `Reference/gameplay-layout-1920x1080.png` — approved populated composition reference, not a gameplay background.
-- [ ] `Reference/asset-manifest.md` — initial manifest containing filenames, native dimensions, transparency, pivots, safe regions, tint rules, and nine-slice borders.
+- [x] `Reference/asset-manifest.md` — initial manifest containing filenames, native dimensions, transparency, pivots, safe regions, tint rules, and nine-slice borders.
 - [ ] Approved decorative display font files in `Fonts/`.
 - [ ] Approved readable body font files in `Fonts/`.
 
