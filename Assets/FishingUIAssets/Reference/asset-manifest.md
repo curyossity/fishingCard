@@ -95,6 +95,75 @@ Nine-slice values below are implementation values derived from the supplied pixe
 - The divider contains end and center ornaments. Preserve its aspect ratio rather than stretching it independently in height and width.
 - Visual inspection found no baked gameplay text, creatures, boats, underwater scene, directional arrows, or current indicators. Contours and chart geometry leave the central encounter region clear. Final contrast with runtime text must be checked in the assembled Canvas.
 
+## Task 1.4 Reusable Panels And Frames
+
+Created with the built-in image generation tool at the user's explicit request on 2026-09-13. Prompt provenance is in `Docs/Task 1.4 Image Generation.md`. These are individual blank sprites, not flattened gameplay screens. Art creation is complete; final Unity scale validation remains open.
+
+All entries use centered pivots, 100 PPU, Single mode, Full Rect mesh, bilinear filtering, Clamp wrapping, no mipmaps, no compression, and no NPOT resizing. Header and tray allow a 4096 maximum import size to retain their 2172 px width; other entries use 2048. Do not apply color tints; opacity transitions are permitted.
+
+Borders are source pixels in left/bottom/right/top order. Safe content insets include transparent gutters and protected corner details. Use sliced Images and adjust `pixelsPerUnitMultiplier` with the shared UI scale so source-resolution borders do not become oversized at final display size. Do not scale the corner axes independently. Hollow card frames should use `fillCenter = false`.
+
+| Filename under Frames/ | Native size | Intended prefab | Transparency | Slice L/B/R/T | Safe inset on each edge | Runtime dependencies |
+| --- | --- | --- | --- | --- | --- | --- |
+| `maritime-panel-9slice.png` | 1254 x 1254 | MaritimePanel | Alpha exterior; textured teal center | 160/160/160/160 | 176 px | Content and layout |
+| `panel-header-strip-9slice.png` | 2172 x 724 | MaritimePanel header | Alpha exterior; textured teal center | 200/200/200/200 | 216 px | Separate heading text |
+| `encounter-panel-9slice.png` | 1122 x 1402 | EncounterPanel | Alpha exterior; textured teal center | 112/112/112/112 | 128 px | Separate encounter holder/card |
+| `catch-rig-panel-9slice.png` | 887 x 1774 | CatchRigPanel | Alpha exterior; textured teal center | 136/136/136/136 | 152 px | Separate rail, catches, title, meter |
+| `run-controls-panel-9slice.png` | 887 x 1774 | RunControlsPanel | Alpha exterior; textured teal center | 128/128/128/128 | 144 px | Separate depth, tension and controls |
+| `technique-hand-tray-9slice.png` | 2172 x 724 | TechniqueHand tray | Alpha exterior; textured teal center | 184/184/184/184 | 200 px | Separate four-card hand |
+| `compact-card-frame-9slice.png` | 1536 x 1024 | CompactCatchCard | Alpha exterior and hollow center | 160/160/160/160 | 176 px | Separate card base, artwork and fields |
+| `creature-card-frame-9slice.png` | 1024 x 1536 | CreatureCardView | Alpha exterior and hollow center | 160/160/160/160 | 176 px | Separate card base, artwork and fields |
+| `technique-card-frame-9slice.png` | 1024 x 1536 | TechniqueCardView | Alpha exterior and hollow center | 144/144/144/144 | 160 px | Separate card base, artwork and fields |
+
+### Validation And Assembly Notes
+
+- All nine selected files were visually inspected and checked for native dimensions and actual alpha. Transparent corners have alpha 0; card-frame center pixels have alpha 0. Panel center sample alpha is 253/255, so their supplied near-opaque paper should be composited over the tabletop.
+- Card-frame RGB previews may show colored haze where alpha is zero or near zero. Preserve the alpha and do not convert these assets to opaque RGB. An attempted compact-frame correction introduced a baked checkerboard and was rejected.
+- All changing information is absent from the artwork. All corner ornament is inside the protected slice rectangles; separate corner exports are unnecessary for these designs because nine-slicing preserves those rectangles.
+- Slice values are derived from actual output dimensions, not requested generation sizes. AI output dimensions differ from prompt targets and are recorded above without resampling.
+- Source-level inspection confirms the shared teal/brass family and empty content areas. Verification of border weight, corner shape, texture stretching, and readability at every target Unity resolution is still required. Do not mark that Task 1.4 validation checkbox complete before rendering it.
+
+## Task 1.5 Blank Card Systems
+
+Generated with the built-in image generation tool at the user's request. Canonical paths use the existing card-family subfolders; the plan's shorter `Cards/` names refer to these entries. Selected output provenance and prompt specifications are in `Docs/Task 1.5 Image Generation.md`.
+
+All sprites: centered pivot, 100 PPU, Single mode, Full Rect mesh, bilinear filtering, Clamp wrapping, alpha preserved, no compression, no mipmaps, no NPOT resizing. Title plates use a 4096 maximum import size; other assets use 2048. All dimensions below are actual output dimensions. Borders are L/B/R/T source pixels and protect complete corner shapes. Tint permission: no recoloring of artwork; opacity only for transitions and the disabled overlay. Masks use alpha only and are not visible artwork.
+
+| Path relative to FishingUIAssets | Native size | Alpha / intended use | Nine-slice L/B/R/T |
+| --- | --- | --- | --- |
+| `Cards/Creature/creature-card-base.png` | 1024 x 1536 | CreatureCardView backing; fixed WEIGHT and VALUE labels, no numbers; alpha exterior | None |
+| `Cards/Creature/creature-art-mask.png` | 1448 x 1086 | CreatureCardView alpha mask; solid red RGB is hidden; alpha exterior | None |
+| `Cards/Creature/creature-title-plate-9slice.png` | 2172 x 724 | CreatureCardView blank title plate; alpha exterior | 240/240/240/240 |
+| `Cards/Creature/creature-effect-panel-9slice.png` | 1536 x 1024 | CreatureCardView blank ivory effect panel; alpha exterior | 176/176/176/176 |
+| `Cards/Creature/creature-stat-plate-9slice.png` | 1536 x 1024 | CreatureCardView reusable blank numeric plate; alpha exterior | 192/192/192/192 |
+| `Cards/Creature/creature-card-back.png` | 1024 x 1536 | CreatureCardView complete compass-pattern back; alpha exterior | None |
+| `Cards/CompactCatch/compact-catch-card-base.png` | 1536 x 1024 | CompactCatchCard blank backing; alpha exterior | None |
+| `Cards/Technique/technique-card-base.png` | 1024 x 1536 | TechniqueCardView blank backing; alpha exterior | None |
+| `Cards/Technique/technique-art-mask.png` | 1536 x 1024 | TechniqueCardView alpha mask; solid red RGB is hidden; alpha exterior | None |
+| `Cards/Technique/technique-title-plate-9slice.png` | 2172 x 724 | TechniqueCardView blank title plate; alpha exterior | 208/208/208/208 |
+| `Cards/Technique/technique-rules-panel-9slice.png` | 1536 x 1024 | TechniqueCardView blank ivory rules panel; alpha exterior | 160/160/160/160 |
+| `Cards/Technique/technique-card-back.png` | 1024 x 1536 | TechniqueCardView complete knot-pattern back; alpha exterior | None |
+| `Cards/card-disabled-overlay.png` | 1024 x 1536 | Shared low-opacity hatch overlay; no text; alpha exterior | None |
+| `Markers/anchor-socket-empty.png` | 1254 x 1254 | Round rarity socket; empty teal center; alpha exterior | None |
+| `Markers/anchor-filled.png` | 1254 x 1254 | Rarity anchor glyph; no backing disk; alpha exterior | None |
+| `Markers/status-socket-empty.png` | 1254 x 1254 | Empty status socket; no implied gameplay effect; alpha exterior | None |
+
+### Card Assembly Contract
+
+- Bases, masks, text plates, artwork, and markers remain separate components. Card backs are complete images: do not add a second frame over them or nine-slice their central emblems.
+- Creature base keeps only the fixed WEIGHT and VALUE labels baked into its pixels. Names, numeric values, effect text, card type, and active rarity count stay dynamic. Labels are near x=350 and x=675, y=910 on the 1024 x 1536 source (origin top-left); keep numeric plates below y=950 so they do not cover these labels.
+- Reserve the region inside the Task 1.4 frame's protected corners for content. Creature source placement guidance: title above y=280; artwork within x=176..848 and y=300..860; numeric plates below the fixed labels; effect panel below the numeric plates. Final text fitting belongs to card-prefab assembly, not to the backing texture.
+- For sliced text plates keep text at least slice-border + 16 source pixels from every canvas edge. Scale this inset with the plate's border scale. Straight edge profiles stretch; corner geometry does not.
+- Mask RGB is red solely to obtain a reliable filled alpha silhouette. Configure Unity `Mask.showMaskGraphic = false`; do not display the red Image or use RGB as mask coverage. Sampled mask interior alpha is 253..254/255 with no sampled holes. Validate stencil clipping at the edge during prefab assembly; no in-Unity stencil test has been run.
+- Preserve the supplied mask aspect ratios; do not stretch corner axes independently. Transparent padding is part of the mask and must be included when aligning artwork.
+- Compact base includes a thin brass hairline. Align its outer silhouette beneath the separate compact frame so the two do not appear as offset double borders.
+- The disabled overlay has sampled alpha 0..48/255. Start at full Image opacity, clip to the owning card silhouette, and keep text above it. Its final legibility and hatch visibility require an assembled-card check. Do not add forbidden runtime-state labels to creature faces.
+- Rarity uses four round sockets, with anchor glyphs activated according to the existing rarity contract; these images do not introduce an anchor-count mechanic. Maintain glyph and socket aspect ratios. Status sockets do not authorize additional creature-face state indicators.
+
+### Validation
+
+All sixteen selected PNGs were visually inspected. Dimensions, transparent corner samples, mask interior samples, alpha ranges, and slice bounds were checked. No changing names, numbers, rules text or creature/technique illustrations are baked in. The first white mask was rejected for holes and edge artifacts; red alpha silhouettes replaced it. Art files are copied from selected generated outputs without procedural repainting. Unity rendering, text fitting, marker legibility at final size, and stencil-edge validation remain part of integration; these checks are not claimed complete.
+
 ## Phase 1 Asset Entries To Complete Later
 
 The following groups require per-file native dimensions, pivot, pixels per unit, transparency, nine-slice borders, tint permission, and runtime dependencies when the assets are supplied:

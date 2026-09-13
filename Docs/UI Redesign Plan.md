@@ -369,15 +369,15 @@ Task 1.3 integration note: all seven supplied images are sorted into `Background
 
 #### Assets to create in Task 1.4
 
-- [ ] `Frames/maritime-panel-9slice.png`
-- [ ] `Frames/panel-header-strip-9slice.png`
-- [ ] `Frames/encounter-panel-9slice.png`
-- [ ] `Frames/catch-rig-panel-9slice.png`
-- [ ] `Frames/run-controls-panel-9slice.png`
-- [ ] `Frames/technique-hand-tray-9slice.png`
-- [ ] `Frames/compact-card-frame-9slice.png`
-- [ ] `Frames/creature-card-frame-9slice.png`
-- [ ] `Frames/technique-card-frame-9slice.png`
+- [x] `Frames/maritime-panel-9slice.png`
+- [x] `Frames/panel-header-strip-9slice.png`
+- [x] `Frames/encounter-panel-9slice.png`
+- [x] `Frames/catch-rig-panel-9slice.png`
+- [x] `Frames/run-controls-panel-9slice.png`
+- [x] `Frames/technique-hand-tray-9slice.png`
+- [x] `Frames/compact-card-frame-9slice.png`
+- [x] `Frames/creature-card-frame-9slice.png`
+- [x] `Frames/technique-card-frame-9slice.png`
 
 #### Assets reused from previous tasks
 
@@ -396,10 +396,12 @@ Task 1.3 integration note: all seven supplied images are sorted into `Background
 - `Frames/main-column-divider.png` — created in Task 1.3; reuse its line weight.
 - `Frames/top-navigation-base-9slice.png` — created in Task 1.3; reuse its corner and border system.
 
-- [ ] Create every panel and frame in the Phase 1 inventory.
-- [ ] Keep center regions clean enough for nine-slicing and runtime content.
-- [ ] Export ornamental corners separately when they must not stretch.
+- [x] Create every panel and frame in the Phase 1 inventory.
+- [x] Keep center regions clean enough for nine-slicing and runtime content.
+- [x] Export ornamental corners separately when they must not stretch. These designs protect all ornament within nine-slice corner regions, so separate exports are unnecessary.
 - [ ] Verify that brass and oxidized-teal treatments remain consistent at every scale.
+
+Task 1.4 creation note: the user explicitly authorized image generation for this task. All nine individual PNGs were generated, visually inspected, saved in `Assets/FishingUIAssets/Frames/`, and given Unity sprite import settings. Native dimensions, alpha, safe regions and slice borders are recorded in the manifest; prompts are in `Docs/Task 1.4 Image Generation.md`. Source-level checks are complete. The final scale-validation checkbox remains open until sliced rendering is checked in Unity. No gameplay scene or runtime mechanics were changed.
 
 ### Task 1.5 — Produce blank card systems
 
@@ -407,31 +409,31 @@ Task 1.3 integration note: all seven supplied images are sorted into `Background
 
 ##### Creature card
 
-- [ ] `Cards/creature-card-base.png`
-- [ ] `Cards/creature-art-mask.png`
-- [ ] `Cards/creature-title-plate-9slice.png`
-- [ ] `Cards/creature-effect-panel-9slice.png`
-- [ ] `Cards/creature-stat-plate-9slice.png`
-- [ ] `Cards/creature-card-back.png`
+- [x] `Cards/Creature/creature-card-base.png`
+- [x] `Cards/Creature/creature-art-mask.png`
+- [x] `Cards/Creature/creature-title-plate-9slice.png`
+- [x] `Cards/Creature/creature-effect-panel-9slice.png`
+- [x] `Cards/Creature/creature-stat-plate-9slice.png`
+- [x] `Cards/Creature/creature-card-back.png`
 
 ##### Compact catch card
 
-- [ ] `Cards/compact-catch-card-base.png`
+- [x] `Cards/CompactCatch/compact-catch-card-base.png`
 
 ##### Technique card
 
-- [ ] `Cards/technique-card-base.png`
-- [ ] `Cards/technique-art-mask.png`
-- [ ] `Cards/technique-title-plate-9slice.png`
-- [ ] `Cards/technique-rules-panel-9slice.png`
-- [ ] `Cards/technique-card-back.png`
+- [x] `Cards/Technique/technique-card-base.png`
+- [x] `Cards/Technique/technique-art-mask.png`
+- [x] `Cards/Technique/technique-title-plate-9slice.png`
+- [x] `Cards/Technique/technique-rules-panel-9slice.png`
+- [x] `Cards/Technique/technique-card-back.png`
 
 ##### Shared card and marker layers
 
-- [ ] `Cards/card-disabled-overlay.png`
-- [ ] `Markers/anchor-socket-empty.png`
-- [ ] `Markers/anchor-filled.png`
-- [ ] `Markers/status-socket-empty.png`
+- [x] `Cards/card-disabled-overlay.png`
+- [x] `Markers/anchor-socket-empty.png`
+- [x] `Markers/anchor-filled.png`
+- [x] `Markers/status-socket-empty.png`
 
 #### Assets reused from previous tasks
 
@@ -448,10 +450,12 @@ Task 1.3 integration note: all seven supplied images are sorted into `Background
 - `Frames/technique-card-frame-9slice.png` — created in Task 1.4.
 - `Frames/panel-header-strip-9slice.png` — created in Task 1.4; reuse its title-plate treatment.
 
-- [ ] Create blank creature, compact catch, and technique card bases.
-- [ ] Create separate masks, title plates, stat plates, rules/effect panels, sockets, and card backs.
-- [ ] Leave all changing names, numbers, descriptions, effects, and artwork absent.
-- [ ] Preserve the flat, tactile, shadowless engraved maritime presentation.
+- [x] Create blank creature, compact catch, and technique card bases.
+- [x] Create separate masks, title plates, stat plates, rules/effect panels, sockets, and card backs.
+- [x] Leave all changing names, numbers, descriptions, effects, and artwork absent.
+- [x] Preserve the flat, tactile, shadowless engraved maritime presentation.
+
+Task 1.5 asset creation is complete: sixteen individual generated PNGs and their sprite import metadata are present. The user authorized generation for this task. Canonical family subfolders are shown above. The creature base includes only the fixed WEIGHT and VALUE labels. Alpha, native dimensions and slice settings were checked at source level; card assembly, live text fit, stencil clipping and final-size legibility have not been tested in Unity. See the asset manifest and `Docs/Task 1.5 Image Generation.md`.
 
 ### Task 1.6 — Produce meters, Catch Rig components, and controls
 
