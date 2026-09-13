@@ -21,3 +21,9 @@ Remaining integration work:
 ## Task 1.2
 
 No missing base material assets remain for Task 1.2.
+
+## Task 1.3
+
+No missing background package images remain for Task 1.3. All seven images are supplied and have Unity sprite import metadata.
+
+The drop did not include creator-authored nine-slice values. Implementation boundaries derived from the artwork and their resizing constraints are recorded in `Reference/asset-manifest.md`. Verify them during Task 2.2 Canvas assembly, together with final overlay contrast and text readability.

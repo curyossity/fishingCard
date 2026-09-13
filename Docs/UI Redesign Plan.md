@@ -337,13 +337,13 @@ Task 1.2 integration note: all required base material assets are now present in 
 
 #### Assets to create in Task 1.3
 
-- [ ] `Backgrounds/gameplay-tabletop-16x9.png`
-- [ ] `Backgrounds/bathymetric-overlay.png`
-- [ ] `Backgrounds/navigation-chart-overlay.png`
-- [ ] `Backgrounds/edge-vignette.png`
-- [ ] `Frames/screen-border-9slice.png`
-- [ ] `Frames/main-column-divider.png`
-- [ ] `Frames/top-navigation-base-9slice.png`
+- [x] `Backgrounds/gameplay-tabletop-16x9.png`
+- [x] `Backgrounds/bathymetric-overlay.png`
+- [x] `Backgrounds/navigation-chart-overlay.png`
+- [x] `Backgrounds/edge-vignette.png`
+- [x] `Frames/screen-border-9slice.png`
+- [x] `Frames/main-column-divider.png`
+- [x] `Frames/top-navigation-base-9slice.png`
 
 #### Assets reused from previous tasks
 
@@ -358,10 +358,12 @@ Task 1.2 integration note: all required base material assets are now present in 
 - `Effects/print-noise-overlay.png` — created in Task 1.2.
 - `Effects/contact-shadow-soft.png` — created in Task 1.2.
 
-- [ ] Create the complete `1920 × 1080` tabletop background.
-- [ ] Export bathymetric, navigation-chart, vignette, and border elements as separate layers.
-- [ ] Keep background geometry low contrast and away from important text zones.
-- [ ] Do not add literal underwater scenery, boats, creatures, arrows, or current lines.
+- [x] Create the complete `1920 × 1080` tabletop background.
+- [x] Export bathymetric, navigation-chart, vignette, and border elements as separate layers.
+- [x] Keep background geometry low contrast and away from important text zones.
+- [x] Do not add literal underwater scenery, boats, creatures, arrows, or current lines.
+
+Task 1.3 integration note: all seven supplied images are sorted into `Backgrounds/` and `Frames/`, inspected, and recorded in `Reference/asset-manifest.md`. Committed sprite metadata preserves native size and alpha without compression or mipmaps. Slice boundaries are derived from the artwork because the drop supplied no slice metadata. Canvas assembly, rendered slice validation, and final contrast with runtime text remain in Task 2.2; Task 1.3 does not change the gameplay scene.
 
 ### Task 1.4 — Produce reusable frames and panels
 

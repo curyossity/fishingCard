@@ -67,6 +67,34 @@ These assets establish repeatable material surfaces and reusable atmospheric ove
 | `Effects/print-noise-overlay.png` | 1024 x 1024 | Restrained print-noise overlay | Alpha | Center | 100 | No | Optional opacity tint only | Panel/card/background overlay layers | Supplied. Use at low opacity only. |
 | `Effects/contact-shadow-soft.png` | 1024 x 512 | Soft contact shadow layer under cards and panels | Alpha | Center | 100 | No | Optional opacity tint only | Card/panel hover and placement feedback | Supplied. |
 
+## Task 1.3 Gameplay Background Package
+
+All seven supplied PNGs were moved without changing their contents. Their committed Unity import settings use Single sprites, Full Rect meshes, centered pivots, 100 PPU, bilinear filtering, Clamp wrapping, no mipmaps, no compression, and a 2048 maximum texture size. NPOT scaling is disabled to preserve native dimensions.
+
+Nine-slice values below are implementation values derived from the supplied pixels, not creator-supplied metadata. Border order is left, bottom, right, top in source pixels. Confirm their rendered appearance during Task 2.2 assembly.
+
+| Filename | Native size | Intended prefab/use | Transparency | Pivot | PPU | Nine-slice | Tint | Runtime dependencies |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `Backgrounds/gameplay-tabletop-16x9.png` | 1920 x 1080 | FishingRunView / Background base | Opaque RGB | Center | 100 | None | No | Background layout |
+| `Backgrounds/bathymetric-overlay.png` | 1920 x 1080 | FishingRunView / Background contours | Alpha; sampled maximum 34/255 | Center | 100 | None | Opacity only | Layer visibility |
+| `Backgrounds/navigation-chart-overlay.png` | 1920 x 1080 | FishingRunView / Background chart | Alpha; sampled maximum 30/255 | Center | 100 | None | Opacity only | Layer visibility |
+| `Backgrounds/edge-vignette.png` | 1920 x 1080 | FishingRunView / Background vignette | Alpha; clear center, sampled maximum 150/255 | Center | 100 | None | Opacity only | Layer visibility |
+| `Frames/screen-border-9slice.png` | 1920 x 1080 | FishingRunView / ScreenBorder | Alpha; clear center | Center | 100 | 72, 72, 72, 72 | No | Sliced Image; screen bounds |
+| `Frames/main-column-divider.png` | 64 x 960 | FishingRunView / MainContent dividers | Alpha | Center | 100 | None | No | Column boundaries; preserve ornament proportions |
+| `Frames/top-navigation-base-9slice.png` | 1200 x 144 | TopNavigationBar / Base | Alpha around opaque teal panel | Center | 100 | 64, 24, 64, 24 | No | Horizontal slicing; separate runtime navigation fields |
+
+### Background Assembly Contract
+
+- Task 2.2 assembles these separate sprites; Task 1.3 prepares the asset package and import metadata only.
+- Back-to-front background order: tabletop, restrained print noise from Task 1.2, bathymetric overlay, navigation-chart overlay, edge vignette. Keep navigation surfaces, dividers, and the screen border separate from the background layers.
+- Start supplied chart overlays at white tint with full Image opacity: their low contrast is already encoded in source alpha. Do not treat their transparent pixels as a black background.
+- Keep all decorative Images non-raycastable. No background sprite owns gameplay data or text.
+- Preserve the 16:9 aspect of the tabletop and chart layers together. Keep the screen border independently anchored and sliced; responsive layout and final readability checks belong to Phase 2.
+- Screen-border slices preserve the complete corner medallions. Keep content at least 72 source pixels inside the border artwork.
+- Top-navigation slices preserve end details during horizontal resizing. Keep its source height at 144 while slicing horizontally, and scale the complete presentation uniformly to the 72 px navigation target. Do not vertically stretch its central end ornaments. Keep text within the panel interior, clear of the end ornaments.
+- The divider contains end and center ornaments. Preserve its aspect ratio rather than stretching it independently in height and width.
+- Visual inspection found no baked gameplay text, creatures, boats, underwater scene, directional arrows, or current indicators. Contours and chart geometry leave the central encounter region clear. Final contrast with runtime text must be checked in the assembled Canvas.
+
 ## Phase 1 Asset Entries To Complete Later
 
 The following groups require per-file native dimensions, pivot, pixels per unit, transparency, nine-slice borders, tint permission, and runtime dependencies when the assets are supplied:
