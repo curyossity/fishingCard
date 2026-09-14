@@ -1,5 +1,11 @@
 # Missing Visual Assets
 
+## Task 1.6
+
+No image files are missing: all 23 Rig, Meters and Controls PNGs have sprite import metadata. Source transparency and artwork bounds passed validation. See the manifest for imported sub-sprite rectangles, slice borders and runtime dependencies.
+
+Task acceptance is still pending final-size state readability, sliced rendering and input-focus compatibility checks in Unity. Generated button corner geometry varies slightly between states; verify stable visual alignment before accepting the state set. These are validation requirements, not permission to ship unchecked assets.
+
 ## Task 1.5
 
 No Task 1.5 image files are missing. Sixteen generated assets and their Unity import metadata are present under the card-family folders, `Cards/`, and `Markers/`.

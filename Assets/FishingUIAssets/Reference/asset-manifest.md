@@ -164,6 +164,55 @@ All sprites: centered pivot, 100 PPU, Single mode, Full Rect mesh, bilinear filt
 
 All sixteen selected PNGs were visually inspected. Dimensions, transparent corner samples, mask interior samples, alpha ranges, and slice bounds were checked. No changing names, numbers, rules text or creature/technique illustrations are baked in. The first white mask was rejected for holes and edge artifacts; red alpha silhouettes replaced it. Art files are copied from selected generated outputs without procedural repainting. Unity rendering, text fitting, marker legibility at final size, and stencil-edge validation remain part of integration; these checks are not claimed complete.
 
+## Task 1.6 Rig, Meters, And Controls
+
+All 23 generated PNGs are present. Exact prompts, selected source paths and import rectangles are recorded in `Docs/Task 1.6 Image Generation.json`. Artwork is copied unchanged from the built-in generator.
+
+Import settings: Multiple mode with one named sprite per PNG, Full Rect mesh, centered pivot, 100 PPU, bilinear, Clamp, uncompressed, no mipmaps, no NPOT resizing, maximum size 4096. Drag the named sub-sprite into Image fields. Import rectangles remove excess padding using the alpha >= 128 artwork bounds plus eight source pixels; this is metadata only, not pixel editing. Rectangles below use bottom-left x/y/width/height. Borders are L/B/R/T relative to the imported sprite, not the original PNG.
+
+All assets require transparent exteriors. Focus/hover/selected frame centers are transparent. Tint permission: preserve authored colors; opacity-only transitions. The ivory tension fill includes a brass rim, so it is not a color-neutral tint mask.
+
+| Path relative to FishingUIAssets | Native pixels | Sprite rect x/y/w/h | Borders L/B/R/T | Intended prefab role |
+| --- | --- | --- | --- | --- |
+| `Rig/main-line-segment.png` | 724 x 2172 | 319/0/86/2172 | 0/0/0/0 | CatchRig |
+| `Rig/branch-line-segment.png` | 2172 x 724 | 0/305/2172/114 | 0/0/0/0 | CatchRig |
+| `Rig/attachment-clasp.png` | 1254 x 1254 | 193/100/879/1072 | 0/0/0/0 | CatchRig |
+| `Rig/catch-slot-empty.png` | 1536 x 1024 | 83/137/1370/779 | 0/0/0/0 | CatchRig |
+| `Rig/hook-terminal.png` | 1254 x 1254 | 312/36/633/1190 | 0/0/0/0 | CatchRig |
+| `Meters/line-load-track-9slice.png` | 2172 x 724 | 10/149/2153/433 | 96/96/96/96 | LineLoadMeter |
+| `Meters/line-load-fill-safe-9slice.png` | 2172 x 724 | 13/185/2143/354 | 96/96/96/96 | LineLoadMeter |
+| `Meters/line-load-fill-warning-9slice.png` | 2172 x 724 | 46/253/2080/217 | 72/72/72/72 | LineLoadMeter |
+| `Meters/line-load-fill-critical-9slice.png` | 2172 x 724 | 15/198/2142/328 | 96/96/96/96 | LineLoadMeter |
+| `Meters/depth-track-9slice.png` | 724 x 2172 | 219/4/286/2164 | 48/160/48/160 | DepthTracker |
+| `Meters/depth-marker.png` | 1254 x 1254 | 181/32/891/1192 | 0/0/0/0 | DepthTracker |
+| `Meters/tension-track-9slice.png` | 2172 x 724 | 17/171/2137/380 | 96/96/96/96 | TensionMeter |
+| `Meters/tension-fill-9slice.png` | 2172 x 724 | 14/219/2145/287 | 96/96/96/96 | TensionMeter |
+| `Controls/action-button-normal-9slice.png` | 2172 x 724 | 32/81/2110/566 | 180/180/180/180 | Action/confirmation button |
+| `Controls/action-button-hover-9slice.png` | 2172 x 724 | 35/117/2101/496 | 180/180/180/180 | Action/confirmation button |
+| `Controls/action-button-pressed-9slice.png` | 2172 x 724 | 24/105/2124/537 | 180/180/180/180 | Action/confirmation button |
+| `Controls/action-button-disabled-9slice.png` | 2172 x 724 | 46/118/2081/496 | 180/180/180/180 | Action/confirmation button |
+| `Controls/action-button-destructive-9slice.png` | 2172 x 724 | 43/117/2086/501 | 180/180/180/180 | Action/confirmation button |
+| `Controls/confirm-button-9slice.png` | 2172 x 724 | 38/106/2096/522 | 180/180/180/180 | Action/confirmation button |
+| `Controls/cancel-button-9slice.png` | 2172 x 724 | 34/75/2104/578 | 180/180/180/180 | Action/confirmation button |
+| `Controls/controller-focus-frame-9slice.png` | 1254 x 1254 | 18/22/1218/1207 | 128/128/128/128 | Selectable focus overlay |
+| `Controls/card-hover-frame-9slice.png` | 1024 x 1536 | 48/48/928/1439 | 128/128/128/128 | Card interaction overlay |
+| `Controls/card-selected-frame-9slice.png` | 1024 x 1536 | 42/47/941/1443 | 128/128/128/128 | Card interaction overlay |
+
+### Binding And Layout Contract
+
+- Rig line/branch pieces, clasp, hook and empty catch slot remain separate Images. Preserve clasp and hook aspect ratios; extend rails along their long axis. Catch order, attachment visibility and slot occupancy come from runtime data.
+- Load fill amount, capacity, risk state, depth position and tension remain runtime-owned. There are no baked numbers, zone boundaries or gameplay thresholds.
+- Use a stable track container and fixed inset fill rectangle for all three load states. Plain turquoise, diagonal gold hatching and coral crosshatching provide distinct source treatments. Clip a full-sized sliced fill to represent progress, rather than shrinking corners toward zero width. Keep the authored fill rims inside the track.
+- Button labels, availability and commands remain runtime fields. Keep the owning RectTransform and text layout fixed during sprite swaps; do not call SetNativeSize. The source silhouettes and corner details differ slightly between generated states, so check their alignment at the final display size.
+- Hover adds an ivory keyline; pressed uses an inset rim; disabled has diagonal hatching; selected uses a double frame and diamond corner fittings. Destructive actions also require an explicit runtime command label; coral alone must not carry meaning.
+- Use the independent controller-focus outline for keyboard and controller navigation, including when hover or selection is also active. Overlays must have raycastTarget disabled and leave the underlying button as the input target. The sprites contain no device-specific glyphs.
+- Keep interaction frames outside creature-card information regions. No new status text, badges or gameplay mechanics are authorized by these assets.
+- Nine-slice borders protect source corners, but their on-screen scale must be set during prefab assembly. Keep labels within the sliced center with additional text padding.
+
+### Verification Status
+
+All 23 sources passed full-image alpha-range and visible-art bounds checks. Frame center pixels are transparent. Metadata and slice bounds are checked by the validation script. Final-size slicing, pattern readability, state-swap alignment, simultaneous selection/focus and mouse/keyboard/controller interaction have not been tested in Unity. Task 1.6's final two visual acceptance checks remain open until that validation; asset presence is not full task acceptance.
+
 ## Phase 1 Asset Entries To Complete Later
 
 The following groups require per-file native dimensions, pivot, pixels per unit, transparency, nine-slice borders, tint permission, and runtime dependencies when the assets are supplied:

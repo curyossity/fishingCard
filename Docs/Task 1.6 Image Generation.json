@@ -1,0 +1,604 @@
+{
+  "tool": "Built-in image generation",
+  "status": "assets_created_source_checks_passed_rendering_pending",
+  "assets": [
+    {
+      "path": "Rig/main-line-segment.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Portrait 1:3 canvas. Single straight vertical narrow aged-brass rail segment, constant width, flat squared ends. Centered, extends from top to bottom so segments join seamlessly, no end caps, rivets, knots or ornament. Transparent either side. Fine engraved edge lines. This is the repeatable main fishing rig line.",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-a45aba3f-5e46-43e6-ab5a-725fa461d264.png",
+      "rect": {
+        "x": 319,
+        "y": 0,
+        "width": 86,
+        "height": 2172
+      },
+      "nativeSize": [
+        724,
+        2172
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "guid": "7f160000000040008000000000000001"
+    },
+    {
+      "path": "Rig/branch-line-segment.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 canvas. Single horizontal narrow aged-brass connector segment with constant width, flat squared ends at left and right edges so it joins a rail and clasp. Transparent above and below. No end caps, rivets, curls, knots or ornaments. Match main rail brass profile.",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-ff04fde0-56f6-4e95-95ce-9cb6bd1eb2db.png",
+      "rect": {
+        "x": 0,
+        "y": 305,
+        "width": 2172,
+        "height": 114
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000002"
+    },
+    {
+      "path": "Rig/attachment-clasp.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Square canvas. One small centered closed oval aged-brass attachment clasp with a small understated seam at one side, clear hollow transparent center. Bold clean silhouette readable at small sizes, engraved details restrained. No rope, rail, card or shadows. Outer clasp fills 75 percent of canvas.",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-9fc18c1c-76e1-4b15-85b5-3ee54c716ee1.png",
+      "rect": {
+        "x": 193,
+        "y": 100,
+        "width": 879,
+        "height": 1072
+      },
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000003"
+    },
+    {
+      "path": "Rig/catch-slot-empty.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:2 blank empty catch-card slot, thin muted brass rectangular outline with small clipped corners over a dark translucent teal inner field. Four tiny corner fittings, no center icon, labels, card, hooks or illustration. Blank interior, small even transparent margin. Compatible with existing compact catch frames.",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-e20ab3f5-a5ac-49ad-b84e-32b0a014671d.png",
+      "rect": {
+        "x": 83,
+        "y": 137,
+        "width": 1370,
+        "height": 779
+      },
+      "nativeSize": [
+        1536,
+        1024
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "guid": "7f160000000040008000000000000004"
+    },
+    {
+      "path": "Rig/hook-terminal.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Square canvas. One upright J-shaped fishing hook terminal in muted aged brass, circular eye at top, clean curved shank, one pointed hook end, no extra barbs. Transparent hole in eye and around hook. No rope, chain, fish, ornaments or text. Strong simple silhouette fills 75 percent of canvas.",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-0d4a5367-c3ce-4439-a9d1-35a2a083ccfa.png",
+      "rect": {
+        "x": 312,
+        "y": 36,
+        "width": 633,
+        "height": 1190
+      },
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000005"
+    },
+    {
+      "path": "Meters/line-load-track-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank meter track. Dark teal empty inset channel enclosed by very thin brass double rim. Simple slightly rounded rectangular silhouette almost fills canvas, only small uniform transparent gutter. No divisions, ticks, marker, fill, text or end ornament. Constant straight edge spans and simple corners for nine slicing.",
+      "border": [
+        96,
+        96,
+        96,
+        96
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-d7559ef1-6b22-4f64-b128-5f577631184f.png",
+      "rect": {
+        "x": 10,
+        "y": 149,
+        "width": 2153,
+        "height": 433
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000006"
+    },
+    {
+      "path": "Meters/line-load-fill-safe-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 solid muted turquoise meter fill strip, thin subtle dark-teal outline, tiny rounded corners, fills canvas with small uniform transparent gutter. Fine uniform paper grain, NO gradient, brass frame, marks, divisions or numbers. Nine-slice-ready uniform center and straight edge profile. Safe state plain unpatterned surface.",
+      "border": [
+        96,
+        96,
+        96,
+        96
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-6086b3dc-3642-4111-8fe0-1c5588ebc392.png",
+      "rect": {
+        "x": 13,
+        "y": 185,
+        "width": 2143,
+        "height": 354
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000007"
+    },
+    {
+      "path": "Meters/line-load-fill-warning-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 muted aged-gold meter fill strip. Tiny rounded corners and thin dark-teal outline, small uniform transparent gutter. Distinct sparse diagonal dark hatch pattern as non-color warning cue. Uniform repeated hatch, no icons, numbers, ticks, frame or gradient. Straight edges with simple corners for nine slicing.",
+      "border": [
+        72,
+        72,
+        72,
+        72
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-d74a79ca-361f-4178-8552-554102cfd5ea.png",
+      "rect": {
+        "x": 46,
+        "y": 253,
+        "width": 2080,
+        "height": 217
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000008"
+    },
+    {
+      "path": "Meters/line-load-fill-critical-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 muted coral meter fill strip. Tiny rounded corners and thin dark-teal outline, small uniform transparent gutter. Distinct dark crosshatch pattern as non-color critical cue; clearer and denser than warning single diagonal hatching. No icons, numbers, ticks, frame or gradient. Uniform straight edges for nine slicing.",
+      "border": [
+        96,
+        96,
+        96,
+        96
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-100f1fa8-8833-4cab-a2ae-33a9ac7eacbc.png",
+      "rect": {
+        "x": 15,
+        "y": 198,
+        "width": 2142,
+        "height": 328
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000009"
+    },
+    {
+      "path": "Meters/depth-track-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Portrait 1:3 blank vertical depth tracker channel, very dark teal interior and slim muted aged-brass rim. Simple tiny rounded ends, almost fills canvas with small uniform transparent gutter. No ticks, nodes, labels, ranges, text, fills, symbols or ornament. Vertical straight edge spans suitable for nine slicing.",
+      "border": [
+        48,
+        160,
+        48,
+        160
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-9053e17a-65bb-4913-a594-fd81bab19bf9.png",
+      "rect": {
+        "x": 219,
+        "y": 4,
+        "width": 286,
+        "height": 2164
+      },
+      "nativeSize": [
+        724,
+        2172
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000010"
+    },
+    {
+      "path": "Meters/depth-marker.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Square canvas. Single centered flat ivory lozenge-shaped depth marker with a narrow worn brass outline and small solid teal central disk. Simple bold readable silhouette, true transparent exterior, no arrows, text, numbers, glow or shadow. Marker fills about 70 percent of canvas.",
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-978e4f43-146b-4239-b1ad-5e3e57d03ef1.png",
+      "rect": {
+        "x": 181,
+        "y": 32,
+        "width": 891,
+        "height": 1192
+      },
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000011"
+    },
+    {
+      "path": "Meters/tension-track-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank tension meter track, very dark teal empty interior, slim worn brass single rim, tiny clipped corners. Almost fills canvas with small even transparent gutter. No ticks, label, numeric value, fill, divisions or ornaments. Constant straight edges for nine slicing. Same visual weight as line-load track.",
+      "border": [
+        96,
+        96,
+        96,
+        96
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-9f3870cb-fe23-4f09-95aa-7264de1b9c46.png",
+      "rect": {
+        "x": 17,
+        "y": 171,
+        "width": 2137,
+        "height": 380
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000012"
+    },
+    {
+      "path": "Meters/tension-fill-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 neutral warm-ivory meter fill strip with very subtle paper grain, small rounded corners, thin dark-teal outline and tiny uniform transparent gutter. No marks, text, symbols, divisions, shadows or gradient. Uniform center and straight edges for nine slicing. Neutral tintable fill for runtime tension states.",
+      "border": [
+        96,
+        96,
+        96,
+        96
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-61ddd536-b161-4561-b605-a17901a3e3d7.png",
+      "rect": {
+        "x": 14,
+        "y": 219,
+        "width": 2145,
+        "height": 287
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000013"
+    },
+    {
+      "path": "Controls/action-button-normal-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank action button. Muted turquoise paper face with very thin aged brass double rim, small clipped corners, tiny round corner rivets wholly within corner squares. Small even transparent gutter; button nearly fills canvas. Straight uniform edge spans, no centered edge ornaments, no icons or text. Normal state.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-d570dc25-068b-4e64-8812-2f37a21bc6a4.png",
+      "rect": {
+        "x": 32,
+        "y": 81,
+        "width": 2110,
+        "height": 566
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000014"
+    },
+    {
+      "path": "Controls/action-button-hover-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank action button with EXACT SAME silhouette and small transparent gutter as normal action button: muted turquoise paper face, aged-brass double rim, small clipped corners, four tiny corner rivets. HOVER state: one extra thin ivory inner outline running parallel to brass edge as a clear non-color cue. No size enlargement, glow, icons or text. Straight spans for nine slicing.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-4707a850-ede6-411b-902f-ef6874983e8b.png",
+      "rect": {
+        "x": 35,
+        "y": 117,
+        "width": 2101,
+        "height": 496
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000015"
+    },
+    {
+      "path": "Controls/action-button-pressed-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank action button, same silhouette and margin as normal button, small clipped corners, four small corner rivets. PRESSED state: darker desaturated turquoise face and closely spaced inset brass inner outline to suggest compression using flat linework, no cast shadow or 3D bevel. No icons or text, same dimensions and corners, straight uniform edges for nine slicing.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-5b390a1a-3195-43b5-ad9f-68af65ea9820.png",
+      "rect": {
+        "x": 24,
+        "y": 105,
+        "width": 2124,
+        "height": 537
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000016"
+    },
+    {
+      "path": "Controls/action-button-disabled-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank action button, same silhouette and small even margin as normal button, clipped corners, four tiny corner rivets. DISABLED state: muted desaturated gray-teal paper face, subdued brass border and restrained diagonal charcoal hatching across face. Hatching gives non-color disabled cue but center remains usable for readable text. No text or icons. Constant straight edges for nine slicing.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-191bb24f-0604-4271-afd8-24dced5e153c.png",
+      "rect": {
+        "x": 46,
+        "y": 118,
+        "width": 2081,
+        "height": 496
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000017"
+    },
+    {
+      "path": "Controls/action-button-destructive-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank destructive action button, same outline and margin as normal button: small clipped corners, thin worn aged-brass double rim, four small corner rivets. Muted CORAL paper face with a subtle second dark inner keyline. No text, icon, numbers or centered ornament. Clean blank center, uniform straight edges for nine slicing.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-5a4609ed-e8e7-43b7-90de-4ebedeb52b90.png",
+      "rect": {
+        "x": 43,
+        "y": 117,
+        "width": 2086,
+        "height": 501
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000018"
+    },
+    {
+      "path": "Controls/confirm-button-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank confirm button, same family geometry as action buttons: muted turquoise face, thin worn brass rim, small clipped corners, four tiny corner rivets, small even transparent gutter. Extra fine ivory inner keyline, restrained blank paper center, no text, checkmark or icon. Uniform straight edges for nine slicing.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-32bfe527-8be3-401f-a97e-d2ae3c27f100.png",
+      "rect": {
+        "x": 38,
+        "y": 106,
+        "width": 2096,
+        "height": 522
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000019"
+    },
+    {
+      "path": "Controls/cancel-button-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Landscape 3:1 blank cancel button, same family silhouette as action buttons: muted warm ivory paper face, thin worn brass double rim, small clipped corners, four tiny corner rivets, small even transparent gutter. No text, cross symbol or icon. Clean blank center with fine grain, uniform straight edge spans for nine slicing.",
+      "border": [
+        180,
+        180,
+        180,
+        180
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-4c0f229f-760d-4d6d-9edc-520f6b82a933.png",
+      "rect": {
+        "x": 34,
+        "y": 75,
+        "width": 2104,
+        "height": 578
+      },
+      "nativeSize": [
+        2172,
+        724
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000020"
+    },
+    {
+      "path": "Controls/controller-focus-frame-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Square canvas. Hollow controller-focus border overlay ONLY, transparent center and exterior. Two thin parallel warm ivory and turquoise outlines around a subtly rounded rectangle, with distinct small right-angle corner brackets confined to corner squares. No fill, haze, glow, shadow, text or symbols. Constant straight edge spans for nine slicing. Strong non-color double-outline and brackets distinguish focus from hover. Almost fills canvas, tiny transparent gutter.",
+      "border": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-b9c9a41d-52bb-4db7-8a9c-241c9a7c0bf1.png",
+      "rect": {
+        "x": 18,
+        "y": 22,
+        "width": 1218,
+        "height": 1207
+      },
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "guid": "7f160000000040008000000000000021"
+    },
+    {
+      "path": "Controls/card-hover-frame-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Portrait 2:3 hollow card-hover border overlay ONLY. Single thin warm ivory outline with slim aged-brass companion edge, tiny clipped corners, transparent empty center and exterior. No fill, haze, glow, shadows or symbols. No corner brackets. Match existing card frames with restrained emphasis, uniform straight spans for nine slicing, tiny even transparent gutter.",
+      "border": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-12239322-0837-420d-9d78-0aac4b9fc1bc.png",
+      "rect": {
+        "x": 48,
+        "y": 48,
+        "width": 928,
+        "height": 1439
+      },
+      "nativeSize": [
+        1024,
+        1536
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "guid": "7f160000000040008000000000000022"
+    },
+    {
+      "path": "Controls/card-selected-frame-9slice.png",
+      "prompt": "ONE production Unity 2D UI sprite PNG, matching the established engraved maritime game assets: muted oxidized dark teal, restrained worn aged brass, fine paper/metal grain. Flat front-on orthographic graphic, shadowless, no perspective, no glow or 3D extrusion. True alpha transparency outside the object, never paint a checkerboard. No text, letters, numbers, creatures, scene or watermark. Portrait 2:3 hollow card-selected border overlay ONLY. Two distinct thin turquoise outlines separated by a narrow transparent gap, fine aged-brass edge. Small diamond-shaped corner fittings entirely inside corner squares. Clear double-border non-color distinction from single hover frame. Genuinely transparent empty center and exterior, no fill, haze, glow, shadows, text or icons. Constant edge spans for nine slicing; tiny transparent gutter.",
+      "border": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-0c4ef8fc-c06d-4d88-bf38-19aac1c6a2af.png",
+      "rect": {
+        "x": 42,
+        "y": 47,
+        "width": 941,
+        "height": 1443
+      },
+      "nativeSize": [
+        1024,
+        1536
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "guid": "7f160000000040008000000000000023"
+    }
+  ]
+}

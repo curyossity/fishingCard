@@ -463,35 +463,35 @@ Task 1.5 asset creation is complete: sixteen individual generated PNGs and their
 
 ##### Catch Rig
 
-- [ ] `Rig/main-line-segment.png`
-- [ ] `Rig/branch-line-segment.png`
-- [ ] `Rig/attachment-clasp.png`
-- [ ] `Rig/catch-slot-empty.png`
-- [ ] `Rig/hook-terminal.png`
+- [x] `Rig/main-line-segment.png`
+- [x] `Rig/branch-line-segment.png`
+- [x] `Rig/attachment-clasp.png`
+- [x] `Rig/catch-slot-empty.png`
+- [x] `Rig/hook-terminal.png`
 
 ##### Line Load, depth, and tension
 
-- [ ] `Meters/line-load-track-9slice.png`
-- [ ] `Meters/line-load-fill-safe-9slice.png`
-- [ ] `Meters/line-load-fill-warning-9slice.png`
-- [ ] `Meters/line-load-fill-critical-9slice.png`
-- [ ] `Meters/depth-track-9slice.png`
-- [ ] `Meters/depth-marker.png`
-- [ ] `Meters/tension-track-9slice.png`
-- [ ] `Meters/tension-fill-9slice.png`
+- [x] `Meters/line-load-track-9slice.png`
+- [x] `Meters/line-load-fill-safe-9slice.png`
+- [x] `Meters/line-load-fill-warning-9slice.png`
+- [x] `Meters/line-load-fill-critical-9slice.png`
+- [x] `Meters/depth-track-9slice.png`
+- [x] `Meters/depth-marker.png`
+- [x] `Meters/tension-track-9slice.png`
+- [x] `Meters/tension-fill-9slice.png`
 
 ##### Controls and interaction frames
 
-- [ ] `Controls/action-button-normal-9slice.png`
-- [ ] `Controls/action-button-hover-9slice.png`
-- [ ] `Controls/action-button-pressed-9slice.png`
-- [ ] `Controls/action-button-disabled-9slice.png`
-- [ ] `Controls/action-button-destructive-9slice.png`
-- [ ] `Controls/confirm-button-9slice.png`
-- [ ] `Controls/cancel-button-9slice.png`
-- [ ] `Controls/controller-focus-frame-9slice.png`
-- [ ] `Controls/card-hover-frame-9slice.png`
-- [ ] `Controls/card-selected-frame-9slice.png`
+- [x] `Controls/action-button-normal-9slice.png`
+- [x] `Controls/action-button-hover-9slice.png`
+- [x] `Controls/action-button-pressed-9slice.png`
+- [x] `Controls/action-button-disabled-9slice.png`
+- [x] `Controls/action-button-destructive-9slice.png`
+- [x] `Controls/confirm-button-9slice.png`
+- [x] `Controls/cancel-button-9slice.png`
+- [x] `Controls/controller-focus-frame-9slice.png`
+- [x] `Controls/card-hover-frame-9slice.png`
+- [x] `Controls/card-selected-frame-9slice.png`
 
 #### Assets reused from previous tasks
 
@@ -510,10 +510,12 @@ Task 1.5 asset creation is complete: sixteen individual generated PNGs and their
 - `Markers/status-socket-empty.png` — created in Task 1.5.
 - `Cards/card-disabled-overlay.png` — created in Task 1.5; reuse its disabled-state texture language.
 
-- [ ] Create line, clasp, hook, slot, load, depth, tension, and marker assets as separate PNGs.
-- [ ] Create normal, hover, pressed, disabled, destructive, selected, and controller-focus surfaces.
+- [x] Create line, clasp, hook, slot, load, depth, tension, and marker assets as separate PNGs.
+- [x] Create normal, hover, pressed, disabled, destructive, selected, and controller-focus surfaces.
 - [ ] Ensure state differences remain readable without relying on color alone.
 - [ ] Keep all controls visually compatible with mouse, keyboard, and controller focus.
+
+All 23 generated PNGs and their import metadata are present. Source alpha and bounds checks passed. The final two checks remain open: final-size readability, state alignment and focus compatibility have not been verified in Unity. See the asset manifest and `Docs/Task 1.6 Image Generation.json`.
 
 ### Task 1.7 — Produce overlays and icon set
 
