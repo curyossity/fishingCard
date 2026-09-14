@@ -213,6 +213,62 @@ All assets require transparent exteriors. Focus/hover/selected frame centers are
 
 All 23 sources passed full-image alpha-range and visible-art bounds checks. Frame center pixels are transparent. Metadata and slice bounds are checked by the validation script. Final-size slicing, pattern readability, state-swap alignment, simultaneous selection/focus and mouse/keyboard/controller interaction have not been tested in Unity. Task 1.6's final two visual acceptance checks remain open until that validation; asset presence is not full task acceptance.
 
+## Task 1.7 Overlays And Icons
+
+Twenty-seven individual PNGs were generated at the user's request using the built-in image tool. Exact selected prompts, original source paths, rejected sources and metadata are preserved in `Docs/Task 1.7 Image Generation.json`. No source pixels were procedurally repainted. No gameplay code or scene was changed.
+
+All imports: Single sprite, Full Rect mesh, whole source canvas, centered pivot, 100 PPU, bilinear filtering, Clamp wrapping, no mipmaps, no compression, no NPOT resizing, maximum size 2048. All eighteen icons use the same 1254 x 1254 canvas and retain transparent padding. Do not nine-slice icons, hatches or the vignette. Borders below are L/B/R/T source pixels, including original transparent gutters. Preserve icon aspect ratios. Tint permission is opacity only; retain the authored colors.
+
+| Path relative to FishingUIAssets | Native pixels | Slice L/B/R/T | Source alpha range | Initial Image opacity | Intended role and runtime dependencies |
+| --- | --- | --- | --- | --- | --- |
+| `Overlays/tooltip-panel-9slice.png` | 1536 x 1024 | 192/192/192/192 | 0..254 | 1 | TooltipView; runtime title, description and values |
+| `Overlays/modal-dim.png` | 1254 x 1254 | 0/0/0/0 | 255..255 | 0.6 | ConfirmationModal; visibility and opacity |
+| `Overlays/release-mode-vignette.png` | 1672 x 941 | 0/0/0/0 | 0..226 | 0.2 | ReleaseModeOverlay; release-mode visibility |
+| `Overlays/release-valid-frame.png` | 1536 x 1024 | 176/176/176/176 | 0..254 | 1 | CompactCatch interaction layer; release eligibility |
+| `Overlays/release-invalid-overlay.png` | 1536 x 1024 | 0/0/0/0 | 0..89 | 0.5 | CompactCatch interaction layer; unavailable state |
+| `Overlays/surface-summary-panel-9slice.png` | 1536 x 1024 | 192/192/192/192 | 0..254 | 1 | SurfaceSummary; runtime haul rows and totals |
+| `Overlays/warning-glow-9slice.png` | 1254 x 1254 | 176/176/176/176 | 0..255 | 0.45 | Risk feedback layer; runtime warning state |
+| `Overlays/critical-glow-9slice.png` | 1254 x 1254 | 192/192/192/192 | 0..255 | 0.45 | Risk feedback layer; runtime critical state |
+| `Overlays/unavailable-hatch.png` | 1254 x 1254 | 0/0/0/0 | 0..194 | 0.23 | Unavailable interaction layer; eligibility |
+| `Icons/weight.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; weight label/value/state supplied at runtime |
+| `Icons/value.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; value label/value/state supplied at runtime |
+| `Icons/depth.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; depth label/value/state supplied at runtime |
+| `Icons/tension.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; tension label/value/state supplied at runtime |
+| `Icons/load.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; load label/value/state supplied at runtime |
+| `Icons/descend.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; descend label/value/state supplied at runtime |
+| `Icons/catch.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; catch label/value/state supplied at runtime |
+| `Icons/release.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; release label/value/state supplied at runtime |
+| `Icons/surface.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; surface label/value/state supplied at runtime |
+| `Icons/value-loss.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; value-loss label/value/state supplied at runtime |
+| `Icons/weight-removed.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; weight-removed label/value/state supplied at runtime |
+| `Icons/effect-lost.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; effect-lost label/value/state supplied at runtime |
+| `Icons/haul-value.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; haul-value label/value/state supplied at runtime |
+| `Icons/creature-count.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; creature-count label/value/state supplied at runtime |
+| `Icons/warning.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; warning label/value/state supplied at runtime |
+| `Icons/critical.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; critical label/value/state supplied at runtime |
+| `Icons/locked.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; locked label/value/state supplied at runtime |
+| `Icons/info.png` | 1254 x 1254 | 0/0/0/0 | 0..255 | 1 | Shared icon Image; info label/value/state supplied at runtime |
+
+### Overlay Assembly Contract
+
+- Modal dim is a fully opaque dark source; set Image alpha to 0.6 when shown, not 1. Stretch it across the whole canvas behind modal content. It may block raycasts while a modal is active; visual-only feedback overlays must not.
+- Vignette alpha peaks at 226/255, so use Image opacity 0.2 initially (effective peak about 18 percent). Its broad center is transparent. Preserve its aspect ratio and cover the viewport without tiling.
+- Unavailable hatch peaks at 194/255; Image opacity 0.23 limits effective strokes to about 18 percent. Release-invalid peaks at 89/255; opacity 0.5 gives a similar limit. Clip these to their owning interaction surface, do not stretch into heavily distorted diagonal patterns.
+- Warning and critical are perimeter treatments with transparent centers, not complete filled panels. They include visible outlines as well as edge feathering; their filenames do not imply additive blending. Use ordinary alpha blending and start at opacity 0.45. Preserve corners with Image.Type.Sliced.
+- Release-valid is a reusable sliced frame despite lacking a nine-slice suffix. Keep it outside the creature-card information region; release feedback does not authorize new card-face badges or modifier labels.
+- Tooltip and summary plates leave all text blank. Use TextMeshPro fields within slice borders plus at least 16 source pixels of content inset; scale insets with border scale. Reuse Task 1.6 confirm/cancel surfaces for confirmation commands.
+- Icons describe existing UI data and actions, not new mechanics. In particular, catch.png does not introduce a new Catch action. Value-loss, weight-removed and effect-lost belong in confirmation/summary context, not on creature faces.
+- Use explanatory runtime labels/tooltips for the icon meaning. Warning triangle versus critical diamond, minus/slash loss cues, and edge hatching supplement color.
+- Keep icon slots fixed. Narrow depth and horizontal tension silhouettes intentionally occupy different portions of the common square. Their final optical scale must be checked together, not normalized by stretching their axes independently.
+
+### Validation And Remaining Acceptance
+
+Full-source alpha checks passed for all 27 files. The dim source covers every pixel at alpha 255. All icon corners are transparent, all icon canvas sizes match, and the release/risk frame center pixels are transparent. Source hashes, metadata GUID uniqueness and border bounds are validated by `Docs/Validate Task 1.7 Assets.ps1 -ValidateMetadata`.
+
+Rejected generations included a decorated Release vignette, an ornamented critical frame, an unrelated emblem instead of hatch, and an almost-invisible dim texture. They are not the imported outputs.
+
+Final-size optical balance, engraved line weight, texture clarity, overlay compositing and sliced rendering remain unverified in Unity. Task 1.7's matching/optical-size checkbox stays open; these assets are generated source deliverables, not a claim of final visual acceptance.
+
 ## Phase 1 Asset Entries To Complete Later
 
 The following groups require per-file native dimensions, pivot, pixels per unit, transparency, nine-slice borders, tint permission, and runtime dependencies when the assets are supplied:

@@ -523,36 +523,36 @@ All 23 generated PNGs and their import metadata are present. Source alpha and bo
 
 ##### Overlays
 
-- [ ] `Overlays/tooltip-panel-9slice.png`
-- [ ] `Overlays/modal-dim.png`
-- [ ] `Overlays/release-mode-vignette.png`
-- [ ] `Overlays/release-valid-frame.png`
-- [ ] `Overlays/release-invalid-overlay.png`
-- [ ] `Overlays/surface-summary-panel-9slice.png`
-- [ ] `Overlays/warning-glow-9slice.png`
-- [ ] `Overlays/critical-glow-9slice.png`
-- [ ] `Overlays/unavailable-hatch.png`
+- [x] `Overlays/tooltip-panel-9slice.png`
+- [x] `Overlays/modal-dim.png`
+- [x] `Overlays/release-mode-vignette.png`
+- [x] `Overlays/release-valid-frame.png`
+- [x] `Overlays/release-invalid-overlay.png`
+- [x] `Overlays/surface-summary-panel-9slice.png`
+- [x] `Overlays/warning-glow-9slice.png`
+- [x] `Overlays/critical-glow-9slice.png`
+- [x] `Overlays/unavailable-hatch.png`
 
 ##### Generic gameplay icons
 
-- [ ] `Icons/weight.png`
-- [ ] `Icons/value.png`
-- [ ] `Icons/depth.png`
-- [ ] `Icons/tension.png`
-- [ ] `Icons/load.png`
-- [ ] `Icons/descend.png`
-- [ ] `Icons/catch.png`
-- [ ] `Icons/release.png`
-- [ ] `Icons/surface.png`
-- [ ] `Icons/value-loss.png`
-- [ ] `Icons/weight-removed.png`
-- [ ] `Icons/effect-lost.png`
-- [ ] `Icons/haul-value.png`
-- [ ] `Icons/creature-count.png`
-- [ ] `Icons/warning.png`
-- [ ] `Icons/critical.png`
-- [ ] `Icons/locked.png`
-- [ ] `Icons/info.png`
+- [x] `Icons/weight.png`
+- [x] `Icons/value.png`
+- [x] `Icons/depth.png`
+- [x] `Icons/tension.png`
+- [x] `Icons/load.png`
+- [x] `Icons/descend.png`
+- [x] `Icons/catch.png`
+- [x] `Icons/release.png`
+- [x] `Icons/surface.png`
+- [x] `Icons/value-loss.png`
+- [x] `Icons/weight-removed.png`
+- [x] `Icons/effect-lost.png`
+- [x] `Icons/haul-value.png`
+- [x] `Icons/creature-count.png`
+- [x] `Icons/warning.png`
+- [x] `Icons/critical.png`
+- [x] `Icons/locked.png`
+- [x] `Icons/info.png`
 
 #### Assets reused from previous tasks
 
@@ -570,10 +570,12 @@ All 23 generated PNGs and their import metadata are present. Source alpha and bo
 - All control-state surfaces — created in Task 1.6.
 - All safe, warning, and critical meter fills — created in Task 1.6; reuse their state colors and textures.
 
-- [ ] Create tooltip, confirmation, Release, Surface, warning, critical, and unavailable layers.
-- [ ] Create every generic gameplay icon listed in the inventory.
+- [x] Create tooltip, confirmation, Release, Surface, warning, critical, and unavailable layers.
+- [x] Create every generic gameplay icon listed in the inventory.
 - [ ] Match icon line weight, engraving texture, silhouette clarity, and optical size.
-- [ ] Export each icon separately with transparent padding and a consistent canvas size.
+- [x] Export each icon separately with transparent padding and a consistent canvas size.
+
+All 27 generated PNGs and their import metadata are present. Source transparency, icon canvas consistency and border bounds were checked. The optical-matching checkbox remains open pending final-size visual validation; no Unity compositing or sliced-rendering acceptance is claimed. See the asset manifest and `Docs/Task 1.7 Image Generation.json`.
 
 ### Task 1.8 — Export, document, and validate the package
 

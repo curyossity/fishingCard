@@ -1,5 +1,11 @@
 # Missing Visual Assets
 
+## Task 1.7
+
+All nine overlay and eighteen icon images are present with Unity sprite metadata. No Task 1.7 file is missing. Exact prompts and selected sources are recorded in `Docs/Task 1.7 Image Generation.json`.
+
+Final-size optical balance, line weight, compositing and nine-slice rendering remain acceptance checks. The dim source requires runtime alpha 0.6; the hatch and vignette layers also have documented starting opacity settings. See `Reference/asset-manifest.md` before assembly. Generated file presence does not close the outstanding optical-consistency check.
+
 ## Task 1.6
 
 No image files are missing: all 23 Rig, Meters and Controls PNGs have sprite import metadata. Source transparency and artwork bounds passed validation. See the manifest for imported sub-sprite rectangles, slice borders and runtime dependencies.

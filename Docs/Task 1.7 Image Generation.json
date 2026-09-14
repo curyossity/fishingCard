@@ -1,0 +1,766 @@
+{
+  "tool": "Built-in image generation",
+  "status": "assets_created_source_checks_passed_visual_acceptance_pending",
+  "assets": [
+    {
+      "path": "Overlays/tooltip-panel-9slice.png",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Landscape 3:2 blank warm ivory tooltip paper panel, very thin aged brass rim with dark teal hairline, tiny rounded corners. Small even transparent gutter. No pointer tail or ornaments. Uniform straight edge spans for nine slicing.",
+      "kind": "panel",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-07222db2-15a8-4f44-9445-68178877c794.png",
+      "guid": "7f170000000040008000000000000001",
+      "nativeSize": [
+        1536,
+        1024
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "border": [
+        192,
+        192,
+        192,
+        192
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Overlays/modal-dim.png",
+      "prompt": "Generate a square PNG containing ONLY one completely flat uniform opaque dark charcoal color RGB 20,28,29 across EVERY pixel. No transparency, no alpha fade, no margin, no frame, no texture, no pattern, no objects, no letters. Full solid dark color swatch. This is a UI dim-layer source whose opacity is set at runtime; source must be fully filled and opaque.",
+      "kind": "scrim",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-bae6cd88-a4c3-4dd5-a970-6b400e45b16c.png",
+      "rejectedSource": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-2c5b1886-3f73-4aac-9ef3-d8430d43cdbc.png",
+      "guid": "7f170000000040008000000000000002",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        255,
+        255
+      ],
+      "initialOpacity": 0.6
+    },
+    {
+      "path": "Overlays/release-mode-vignette.png",
+      "prompt": "Generate ONLY a plain translucent muted coral edge vignette texture PNG, landscape 16:9. No illustration whatsoever. No maritime objects, waves, coral plants, symbols, lines, frame or ornament. Only a smooth soft colored alpha fade confined to outer 10 percent, broad fully transparent center. Low opacity, suitable as a subtle fullscreen UI overlay. Genuine alpha, no solid background.",
+      "kind": "vignette",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-3468170f-12c3-4b41-b589-904c4565451e.png",
+      "rejectedSource": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-fc086c94-dbc5-4a97-aff5-587e3b9558e6.png",
+      "guid": "7f170000000040008000000000000003",
+      "nativeSize": [
+        1672,
+        941
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1672,
+        "height": 941
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        226
+      ],
+      "initialOpacity": 0.2
+    },
+    {
+      "path": "Overlays/release-valid-frame.png",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Landscape 3:2 hollow slim rectangular turquoise and aged brass double outline for a compact catch card, tiny clipped corners, four understated ivory corner brackets. Transparent center and exterior, no backing, haze or glow. Small even outer gutter. Straight edges, corners contained in 12 percent corner squares.",
+      "kind": "frame",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-8208d638-a7eb-4e50-82c3-c89707a7bef9.png",
+      "guid": "7f170000000040008000000000000004",
+      "nativeSize": [
+        1536,
+        1024
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "border": [
+        176,
+        176,
+        176,
+        176
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Overlays/release-invalid-overlay.png",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Landscape 3:2 low opacity charcoal diagonal hatch strokes across slightly rounded rectangle, alpha approximately 45/255 on strokes, fully transparent gaps and exterior. No fill, icons, words, borders, glow or shadow. Subtle unavailable treatment, underlying card remains readable.",
+      "kind": "hatch",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-71866ae9-590b-44c3-ba3d-70db13ab1f57.png",
+      "guid": "7f170000000040008000000000000005",
+      "nativeSize": [
+        1536,
+        1024
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        89
+      ],
+      "initialOpacity": 0.5
+    },
+    {
+      "path": "Overlays/surface-summary-panel-9slice.png",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Landscape 3:2 blank dark oxidized teal paper panel, thin aged brass double rim and four tiny corner rivets; small rounded corners matching prior maritime panel. Small even transparent margin. Entire interior blank for runtime haul text and rows. Uniform straight edge spans for nine slicing.",
+      "kind": "panel",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-47d80748-a14f-4882-945a-817e19545261.png",
+      "guid": "7f170000000040008000000000000006",
+      "nativeSize": [
+        1536,
+        1024
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1536,
+        "height": 1024
+      },
+      "border": [
+        192,
+        192,
+        192,
+        192
+      ],
+      "alpha": [
+        0,
+        254
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Overlays/warning-glow-9slice.png",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square hollow soft muted aged-gold perimeter highlight, thin restrained gold inner keyline with subtle SINGLE diagonal hatch along edge. Broad fully transparent center, transparent exterior margin. No opaque backing, text, icons, marks or discrete light blobs. Gentle low-alpha feather within narrow edge only, no excessive glow. Simple rectangular tiny rounded corners, straight edges for nine slicing.",
+      "kind": "frame",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-e4963d32-91af-42f2-a2ef-756460fbcb48.png",
+      "guid": "7f170000000040008000000000000007",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        176,
+        176,
+        176,
+        176
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 0.45
+    },
+    {
+      "path": "Overlays/critical-glow-9slice.png",
+      "prompt": "Generate ONLY a simple hollow rounded rectangular coral outline on a square transparent PNG. TWO thin parallel lines, a restrained crosshatch within the narrow border, tiny soft alpha feather. Fully transparent interior and exterior. Nine-slice-ready straight uninterrupted edges. Absolutely NO objects, nautical motifs, stars, compass, ornaments or symbols. Minimal UI risk-highlight layer, NOT a decorative picture frame.",
+      "kind": "frame",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-1da676e7-062b-4442-ae43-40d25def18de.png",
+      "rejectedSource": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-2f18d86b-a42d-4838-b909-5a49429f2be3.png",
+      "guid": "7f170000000040008000000000000008",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        192,
+        192,
+        192,
+        192
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 0.45
+    },
+    {
+      "path": "Overlays/unavailable-hatch.png",
+      "prompt": "Generate ONLY evenly spaced thin diagonal charcoal parallel lines on a square genuinely transparent PNG. Low opacity lines about 40/255 alpha, completely transparent gaps. No shape other than repeated diagonal straight lines. NO illustration, anchor, wheel, compass, icon, frame, ornament, objects or background. This is a hatch overlay texture, not an emblem.",
+      "kind": "hatch",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-d6a7b650-860e-482d-9856-70478cb0ecbc.png",
+      "rejectedSource": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-f353a9bb-7a9b-422c-8704-07a1c2cd4eab.png",
+      "guid": "7f170000000040008000000000000009",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        194
+      ],
+      "initialOpacity": 0.23
+    },
+    {
+      "path": "Icons/weight.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One classic flat trapezoidal scale weight with rounded ring handle and a transparent handle hole. No kg label. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-a27dcf37-3a3b-4021-a922-901ead41155e.png",
+      "guid": "7f170000000040008000000000000010",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/value.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One plain round brass coin with a small engraved concentric circle, no currency sign or portrait. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-883014d3-44b9-4b19-801e-c3cb6d9c33c2.png",
+      "guid": "7f170000000040008000000000000011",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/depth.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One vertical sounding ruler with three clear side ticks and a small centered diamond depth node, no numbers or arrow. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-9aa2c636-6a46-4efc-8dd1-140e8b72d0e6.png",
+      "guid": "7f170000000040008000000000000012",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/tension.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One taut rope pulled between two simple opposed angular brackets, bold horizontal silhouette; no arrowheads. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-dd0472c0-2796-4ad0-b7be-05bbe2d6c8dc.png",
+      "guid": "7f170000000040008000000000000013",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/load.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One short horizontal balance beam supporting two small hanging scale weights, simple load-bearing symbol. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-8e57cd95-0738-407c-b587-acbc3ded2e3b.png",
+      "guid": "7f170000000040008000000000000014",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/descend.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One bold downward arrow passing below a single thin horizontal waterline. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-8885de59-7d6f-4345-aead-eb3a6429407a.png",
+      "guid": "7f170000000040008000000000000015",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/catch.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One simple J fishing hook with a small circle eye and a short horizontal shank notch, no fish or line. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-19c82ff4-c14d-4578-8883-2755d6394f6a.png",
+      "guid": "7f170000000040008000000000000016",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/release.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One open attachment ring with a clear gap at lower right and a short detached curved segment separated beneath it, representing detachment. No arrows. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-d144882a-aaf3-4d80-8067-f034b4c23de2.png",
+      "guid": "7f170000000040008000000000000017",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/surface.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One bold upward arrow rising above a single thin horizontal waterline. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-028a9e19-0167-4181-b9a5-f7d8ebd28624.png",
+      "guid": "7f170000000040008000000000000018",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/value-loss.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One plain coin at upper left with a prominent separate horizontal minus at lower right; minus is coral, coin brass. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-755acedb-e71e-4bdb-b70b-2d519faa175d.png",
+      "guid": "7f170000000040008000000000000019",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/weight-removed.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One trapezoidal scale weight with ring handle, plus a prominent separate coral minus at lower right; no letters. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-b0f5a8cd-0866-4702-b344-ce43e7481c22.png",
+      "guid": "7f170000000040008000000000000020",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/effect-lost.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One simple four-point ivory spark crossed by a bold single coral diagonal slash. No circles or extra stars. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-09a53e0f-9484-4078-ba75-9743847541c7.png",
+      "guid": "7f170000000040008000000000000021",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/haul-value.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: Three overlapping brass coins in a compact triangular group, simple engraved rims, no currency symbols. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-fe8c4dbd-dfd3-4fd9-be63-c45ae2b545db.png",
+      "guid": "7f170000000040008000000000000022",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/creature-count.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: Two small overlapping simple fish silhouettes facing right, offset diagonally, brass with transparent separating gap, no scales or scene. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-24c33a09-00d3-4614-8076-7e3d088c1b92.png",
+      "guid": "7f170000000040008000000000000023",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/warning.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One hollow aged-gold warning triangle with bold ivory exclamation mark centered inside, transparent hole around mark. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-3f52587f-5e8d-4c13-bcf6-b80844519b20.png",
+      "guid": "7f170000000040008000000000000024",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/critical.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One hollow coral diamond with TWO bold ivory exclamation marks centered inside, transparent hole around marks. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-35b088a1-8ca2-49b1-a198-c6622beb835e.png",
+      "guid": "7f170000000040008000000000000025",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/locked.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One closed brass padlock, broad solid body, open transparent shackle hole, small dark teal keyhole. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-487dd68d-6d51-4043-be55-a9e460a2c3f9.png",
+      "guid": "7f170000000040008000000000000026",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    },
+    {
+      "path": "Icons/info.png",
+      "kind": "icon",
+      "prompt": "Use case: stylized-concept. One production Unity 2D UI PNG. Flat front-on engraved maritime graphic matching muted worn brass, oxidized dark teal, warm ivory, turquoise and restrained coral. Fine restrained grain, crisp simple silhouettes. No perspective, extruded bevel, cast shadows, scenery, watermark, numbers or words. Genuine alpha transparency, never paint a checkerboard. Square 1024x1024 canvas. Isolated gameplay icon: One thin brass circular ring surrounding a bold ivory lowercase information i, transparent interior around the i. Centered glyph fills central 70 percent of square with generous even transparent padding. Optical weight like a 64 pixel UI glyph: bold strokes around 6 percent of canvas, very restrained engraving, clear simple silhouette readable small. Brass dominant unless specified otherwise. No backing plate, enclosing decorative border or added ornaments. One icon only, not a sheet.",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a09048-1ab9-7282-b63f-461aeee96ec9\\exec-8eaf3f1f-012d-49ff-891c-46fcf994df19.png",
+      "guid": "7f170000000040008000000000000027",
+      "nativeSize": [
+        1254,
+        1254
+      ],
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 1254,
+        "height": 1254
+      },
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "initialOpacity": 1
+    }
+  ]
+}
