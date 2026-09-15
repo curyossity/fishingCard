@@ -302,11 +302,11 @@ Do not bake creature names, technique names, weight values, value numbers, effec
 
 - None. This is the first Phase 1 task.
 
-- [ ] Finalize the palette, typography, dimensions, spacing, border widths, and corner radii.
-- [ ] Define the native pixel dimensions and pivot for every Phase 1 asset.
-- [ ] Define which assets are opaque, translucent, tintable, tiled, masked, or nine-sliced.
-- [ ] Define the safe text and artwork regions for all card and panel bases.
-- [ ] Ensure the visual system is original and does not reproduce the stacked illustrated-scene composition associated with *Spire's End: Hildegard*.
+- [x] Finalize the palette, typography, dimensions, spacing, border widths, and corner radii.
+- [x] Define the native pixel dimensions and pivot for every Phase 1 asset.
+- [x] Define which assets are opaque, translucent, tintable, tiled, masked, or nine-sliced.
+- [x] Define the safe text and artwork regions for all card and panel bases.
+- [x] Ensure the visual system is original and does not reproduce the stacked illustrated-scene composition associated with *Spire's End: Hildegard*.
 
 ### Task 1.2 — Produce base materials
 
@@ -328,10 +328,10 @@ Task 1.2 integration note: all required base material assets are now present in 
 - `Reference/component-dimensions.png` — created in Task 1.1.
 - `Reference/asset-manifest.md` — created in Task 1.1 and updated with the material assets from this task.
 
-- [ ] Create the dark teal and ivory seamless paper textures.
-- [ ] Create oxidized teal and aged-brass material tiles.
-- [ ] Create restrained print-noise and contact-shadow layers.
-- [ ] Verify that tiled textures do not contain visible seams or directional motifs.
+- [x] Create the dark teal and ivory seamless paper textures.
+- [x] Create oxidized teal and aged-brass material tiles.
+- [x] Create restrained print-noise and contact-shadow layers.
+- [x] Verify that tiled textures do not contain visible seams or directional motifs.
 
 ### Task 1.3 — Produce the gameplay background package
 
