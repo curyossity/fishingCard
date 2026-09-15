@@ -399,9 +399,9 @@ Task 1.3 integration note: all seven supplied images are sorted into `Background
 - [x] Create every panel and frame in the Phase 1 inventory.
 - [x] Keep center regions clean enough for nine-slicing and runtime content.
 - [x] Export ornamental corners separately when they must not stretch. These designs protect all ornament within nine-slice corner regions, so separate exports are unnecessary.
-- [ ] Verify that brass and oxidized-teal treatments remain consistent at every scale.
+- [x] Verify that brass and oxidized-teal treatments remain consistent at every scale.
 
-Task 1.4 creation note: the user explicitly authorized image generation for this task. All nine individual PNGs were generated, visually inspected, saved in `Assets/FishingUIAssets/Frames/`, and given Unity sprite import settings. Native dimensions, alpha, safe regions and slice borders are recorded in the manifest; prompts are in `Docs/Task 1.4 Image Generation.md`. Source-level checks are complete. The final scale-validation checkbox remains open until sliced rendering is checked in Unity. No gameplay scene or runtime mechanics were changed.
+Task 1.4 creation note: the user explicitly authorized image generation for this task. All nine individual PNGs were generated, visually inspected, saved in `Assets/FishingUIAssets/Frames/`, and given Unity sprite import settings. Native dimensions, alpha, safe regions and slice borders are recorded in the manifest; prompts are in `Docs/Task 1.4 Image Generation.md`. Unity slicing at three sizes passed during Task 1.8. No gameplay scene or runtime mechanics were changed.
 
 ### Task 1.5 — Produce blank card systems
 
@@ -512,10 +512,10 @@ Task 1.5 asset creation is complete: sixteen individual generated PNGs and their
 
 - [x] Create line, clasp, hook, slot, load, depth, tension, and marker assets as separate PNGs.
 - [x] Create normal, hover, pressed, disabled, destructive, selected, and controller-focus surfaces.
-- [ ] Ensure state differences remain readable without relying on color alone.
-- [ ] Keep all controls visually compatible with mouse, keyboard, and controller focus.
+- [x] Ensure state differences remain readable without relying on color alone.
+- [x] Keep all controls visually compatible with mouse, keyboard, and controller focus.
 
-All 23 generated PNGs and their import metadata are present. Source alpha and bounds checks passed. The final two checks remain open: final-size readability, state alignment and focus compatibility have not been verified in Unity. See the asset manifest and `Docs/Task 1.6 Image Generation.json`.
+All 23 generated PNGs and their import metadata are present. Source alpha and bounds checks passed. Task 1.8 verified final-size button and meter states plus independent selected/focus combinations in Unity. Runtime input routing remains implementation work, not a static-asset requirement. See the asset manifest and `Docs/Task 1.6 Image Generation.json`.
 
 ### Task 1.7 — Produce overlays and icon set
 
@@ -572,21 +572,21 @@ All 23 generated PNGs and their import metadata are present. Source alpha and bo
 
 - [x] Create tooltip, confirmation, Release, Surface, warning, critical, and unavailable layers.
 - [x] Create every generic gameplay icon listed in the inventory.
-- [ ] Match icon line weight, engraving texture, silhouette clarity, and optical size.
+- [x] Match icon line weight, engraving texture, silhouette clarity, and optical size.
 - [x] Export each icon separately with transparent padding and a consistent canvas size.
 
-All 27 generated PNGs and their import metadata are present. Source transparency, icon canvas consistency and border bounds were checked. The optical-matching checkbox remains open pending final-size visual validation; no Unity compositing or sliced-rendering acceptance is claimed. See the asset manifest and `Docs/Task 1.7 Image Generation.json`.
+Task 1.7 static asset acceptance is complete. All 27 sprites imported in Unity 6000.5.9f1; icons were reviewed at 32/48/64 pixels on light and dark backgrounds, five sliced surfaces at three sizes, and nine overlays on both backgrounds. Icon mipmaps/trilinear filtering fixed small-size texture noise. Evidence and scope are in `Docs/Validation/Task1.7/README.md`. Gameplay integration remains in its owning tasks.
 
 ### Task 1.8 — Export, document, and validate the package
 
 #### Assets to create or finalize in Task 1.8
 
-- [ ] `Reference/ui-component-contact-sheet.png`
-- [ ] `Reference/gameplay-layout-blank-1920x1080.png`
-- [ ] `Reference/visual-states.png` — already created as an initial direction sheet in Task 1.1; update it with the final approved assets from Tasks 1.4–1.7.
-- [ ] `Reference/component-dimensions.png` — already created in Task 1.1; update it only if validation changed a native size, pivot, safe region, or nine-slice border.
-- [ ] `Reference/ui-style-guide.md` — already created in Task 1.1; finalize it with approved typography and texture usage.
-- [ ] `Reference/asset-manifest.md` — already created in Task 1.1 and updated throughout Tasks 1.2–1.7; finalize every entry.
+- [x] `Reference/ui-component-contact-sheet.png`
+- [x] `Reference/gameplay-layout-blank-1920x1080.png`
+- [x] `Reference/visual-states.png` — updated with imported final surfaces; the original direction sheet is preserved in Task 1.8 validation evidence.
+- [x] `Reference/component-dimensions.png` — reviewed and retained because source dimensions, pivots, safe regions and borders did not change.
+- [x] `Reference/ui-style-guide.md` — finalized with typography and validated texture usage.
+- [x] `Reference/asset-manifest.md` — finalized and checked against every runtime PNG.
 
 #### Assets reused from previous tasks
 
@@ -600,14 +600,16 @@ All 27 generated PNGs and their import metadata are present. Source transparency
 
 No new gameplay UI component should be invented during Task 1.8. If validation reveals a missing asset, add it to the task that owns that asset category, create it there, and then repeat final validation.
 
-- [ ] Use transparent PNGs for isolated UI elements and icons.
-- [ ] Keep opaque full-frame backgrounds in RGB PNG format.
-- [ ] Record native dimensions, pivot, border values, tint permission, opacity, and intended prefab in `Reference/asset-manifest.md`.
-- [ ] Record the exact font files and TextMeshPro roles in `Reference/ui-style-guide.md`.
-- [ ] Create a contact sheet showing every UI element and every visual state.
-- [ ] Create a `1920 × 1080` assembly reference showing the intended final hierarchy.
-- [ ] Test nine-sliced assets at minimum, reference, and expanded sizes.
-- [ ] Verify transparent edges at high zoom against both dark teal and warm ivory.
+Task 1.8 export, documentation and validation are complete. Unity imported all 88 runtime PNGs and rendered 25 evidence captures. The blank assembly was corrected to preserve authored card proportions. No source dimensions, pivots, safe regions or slice borders changed, so the component-dimensions sheet is retained. All four Task 1.2 material tiles were repaired and pass their 2x2 repeat review. See `Docs/Validation/Task1.8/README.md`. Phase 1 static package acceptance passed.
+
+- [x] Use transparent PNGs for isolated UI elements and icons.
+- [x] Keep opaque full-frame backgrounds in RGB PNG format.
+- [x] Record native dimensions, pivot, border values, tint permission, opacity, and intended prefab in `Reference/asset-manifest.md`.
+- [x] Record the exact font files and TextMeshPro roles in `Reference/ui-style-guide.md`.
+- [x] Create a contact sheet showing every UI element and every visual state.
+- [x] Create a `1920 × 1080` assembly reference showing the intended final hierarchy.
+- [x] Test nine-sliced assets at minimum, reference, and expanded sizes.
+- [x] Verify transparent edges at high zoom against both dark teal and warm ivory.
 
 ### Phase 1 acceptance criteria
 

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>Isolated source-asset rendering checks; never opens or saves gameplay scenes.</summary>
-public static class Task17VisualChecks
+public static partial class Task17VisualChecks
 {
     [Serializable] private sealed class Record { public Entry[] assets; }
     [Serializable] private sealed class Entry
@@ -64,7 +64,7 @@ public static class Task17VisualChecks
     /// <summary>Loads a real imported Sprite and rejects missing imports.</summary>
     private static Sprite Load(string path)
     {
-        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/FishingUIAssets/" + path);
+        Sprite sprite = AssetDatabase.LoadAllAssetsAtPath("Assets/FishingUIAssets/" + path).OfType<Sprite>().FirstOrDefault();
         if (sprite == null) throw new Exception("Missing Sprite: " + path);
         return sprite;
     }

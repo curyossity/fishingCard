@@ -1,6 +1,6 @@
 {
   "tool": "Built-in image generation",
-  "status": "assets_created_source_checks_passed_visual_acceptance_pending",
+  "status": "static_asset_acceptance_passed",
   "assets": [
     {
       "path": "Overlays/tooltip-panel-9slice.png",
@@ -28,7 +28,10 @@
         0,
         254
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "8126CF70F94EC43C8FB4FE41E622DE9C89AD2E0CBA292077C8FFA312F9AD14FA",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/modal-dim.png",
@@ -57,7 +60,10 @@
         255,
         255
       ],
-      "initialOpacity": 0.6
+      "initialOpacity": 0.6,
+      "sha256": "679AA318519D1CF3D04EFBB08DA025E6B8EB8268FECF0036E5A1F80E2DD77855",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/release-mode-vignette.png",
@@ -86,7 +92,10 @@
         0,
         226
       ],
-      "initialOpacity": 0.2
+      "initialOpacity": 0.2,
+      "sha256": "5D69C8F611CB95A19F2490E29311D67C93D57A958DEED3F651A1409BAB651A17",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/release-valid-frame.png",
@@ -114,7 +123,10 @@
         0,
         254
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "96936EA8694098A2DCA9FCFA946CBAC019AE542822AB0B8B272FFBA574FE68FE",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/release-invalid-overlay.png",
@@ -142,7 +154,10 @@
         0,
         89
       ],
-      "initialOpacity": 0.5
+      "initialOpacity": 0.5,
+      "sha256": "199AD09B31A9EB9FD729C884B74A1ABA0A2B54D51EDADB474F410F0F79BFC0E7",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/surface-summary-panel-9slice.png",
@@ -170,7 +185,10 @@
         0,
         254
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "E3BC4C3E81A808316A65A0F8A1DF99D5E88BCEC7FBD346CDD320CB0C0ED10F51",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/warning-glow-9slice.png",
@@ -198,7 +216,10 @@
         0,
         255
       ],
-      "initialOpacity": 0.45
+      "initialOpacity": 0.45,
+      "sha256": "C7ED513BDEB89DDD0550C45F83DE5A6E6DD353E530AAB6048170B77561D48B1C",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/critical-glow-9slice.png",
@@ -227,7 +248,10 @@
         0,
         255
       ],
-      "initialOpacity": 0.45
+      "initialOpacity": 0.45,
+      "sha256": "6ADF9E66B7BA64AEC5BE6E7B61925821894AA29BEA0D3AEAC26A4F95A37520CD",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Overlays/unavailable-hatch.png",
@@ -256,7 +280,10 @@
         0,
         194
       ],
-      "initialOpacity": 0.23
+      "initialOpacity": 0.23,
+      "sha256": "8504242E341740EB1DF9FC1C4580DD4A2766A36B48F9B7916A7B7F1676478A17",
+      "mipmaps": false,
+      "filterMode": "Bilinear"
     },
     {
       "path": "Icons/weight.png",
@@ -284,7 +311,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "CA6483B32EFE230514DBCF0E8F320D2437DE55FC721003BB9FE637009714405D",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/value.png",
@@ -312,7 +342,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "ABBDF8A6CFEE0B2E84A0C0C456C51CDAC59E412EF58B901DBFB58C23A7C0695C",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/depth.png",
@@ -340,7 +373,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "A86511DB5936B22DCEF144929ECD45A3D5FEA55F72C5DADB1EDA9394B223A5C7",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/tension.png",
@@ -368,7 +404,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "163A29974A51F087708132B197DE092D2DB8827F7FDB60A5BBE9A7C306958C16",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/load.png",
@@ -396,7 +435,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "ED3706D6F64579A2F45F31C32854ED03B3CC42DD37FF516FDFEF6E77AE98A188",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/descend.png",
@@ -424,7 +466,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "50BB3CFC5C0AE9C9FB5B595E687859EA872A3024ADC7A4395E01CCECF09E8890",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/catch.png",
@@ -452,7 +497,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "E595C0F8AE96FEDF37596AC0FD5125B68A7B4CDF89F7A67841E6A5907246BC9A",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/release.png",
@@ -480,7 +528,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "4C6ADAEB88FCA0A98CB04C23990B4F61BA9B32242F0DFD2C3B1B7E4E040AAFE4",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/surface.png",
@@ -508,7 +559,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "78AC0DA61F92C84D7F01FE41C7E48A94F5FA08C53DC629D5FC9CE24C3203CA45",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/value-loss.png",
@@ -536,7 +590,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "9819DF63F581C53D13DDD616DE200808ED9A9B8DFBD2AE641A038CFC7DC68350",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/weight-removed.png",
@@ -564,7 +621,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "210BF9EFCB5528E167625BA8DDA9032C142C144D7A9D57C5E6C5CCF1118469CD",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/effect-lost.png",
@@ -592,7 +652,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "C6D078BB931FE231171E9FD09EDE527EC43669385FAD02D3564BD9EE4D97D0D0",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/haul-value.png",
@@ -620,7 +683,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "DBDD3A13F6CB770CB138DFA985B0E6D3FDFEF12A1C5EA828BE801BA72882CED8",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/creature-count.png",
@@ -648,7 +714,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "1D0C9F17626C4BFBCA7DFB88995169F16E7E7C2406F077FB22D9A8F46F6D733C",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/warning.png",
@@ -676,7 +745,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "DE7AEBBCA296FB7BBE6576865D4FFB6571541D72F0FDA6183269BBF49A7384CF",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/critical.png",
@@ -704,7 +776,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "A6708F0D95CC24C91587E5705EF69651C21017797872DF1874CCFE806AC5401A",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/locked.png",
@@ -732,7 +807,10 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "5C6115DDA13F68EC0459877452146018D91B69A6B9B97AFEEB90F13BED527963",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     },
     {
       "path": "Icons/info.png",
@@ -760,7 +838,11 @@
         0,
         255
       ],
-      "initialOpacity": 1
+      "initialOpacity": 1,
+      "sha256": "3A2164E3872F44F8647D6FE953BC41092CFAA76221076D2966B70241E544B95A",
+      "mipmaps": true,
+      "filterMode": "Trilinear"
     }
-  ]
+  ],
+  "validation": "Docs/Validation/Task1.7/README.md"
 }

@@ -1,8 +1,6 @@
 # Deepwater UI Asset Manifest
 
-This manifest starts the approved asset record for the gameplay UI asset package. It will be expanded as Phase 1 assets are supplied.
-
-Values marked `TBD` are intentionally unresolved because the source asset has not been supplied yet. Do not replace missing final artwork with generated or hand-drawn substitutes.
+This is the finalized metadata and usage record for the supplied Phase 1 gameplay UI package. Validation status is recorded at the end of this document.
 
 ## Import Defaults
 
@@ -26,7 +24,9 @@ These files are approved reference/specification assets. They document the visua
 | `Reference/theme-palette.png` | 1672 x 941 | Palette and material reference | Opaque | N/A | N/A | N/A | No | None | Approved starting palette. |
 | `Reference/typography-reference.png` | 1920 x 1080 | Runtime text hierarchy reference | Opaque | N/A | N/A | N/A | No | TextMeshPro styles | Runtime text must remain editable. |
 | `Reference/component-dimensions.png` | 1920 x 1080 | Layout proportions and safe regions | Opaque | N/A | N/A | N/A | No | Canvas layout | Use for 16:9 composition targets. |
-| `Reference/visual-states.png` | 1920 x 1080 | Interaction-state reference | Opaque | N/A | N/A | N/A | No | State layer visibility | Initial direction sheet; final state sprites arrive later. |
+| `Reference/visual-states.png` | 1600 x 1000 | Imported interaction-state surfaces | Opaque RGB | N/A | N/A | N/A | No | State layer visibility | Task 1.8 Unity render; original direction preserved in Docs/Validation/Task1.8. |
+| `Reference/ui-component-contact-sheet.png` | 2048 x 2250 | All 88 runtime PNGs | Opaque RGB | N/A | N/A | N/A | No | None | Unity-rendered documentation only. |
+| `Reference/gameplay-layout-blank-1920x1080.png` | 1920 x 1080 | Blank assembly reference | Opaque RGB | N/A | N/A | N/A | No | Future gameplay view | Existing art assembled without dynamic text or creature illustrations; not a production prefab. |
 | `Reference/gameplay-layout-1920x1080.png` | 1920 x 1080 | Populated gameplay composition reference | Opaque | N/A | N/A | N/A | No | All gameplay UI prefabs | Do not use as a background. |
 | `Reference/ui-style-guide.md` | Text | Implementation rules and style lock | N/A | N/A | N/A | N/A | N/A | All UI prefabs | Created in Task 1.1. |
 | `Reference/asset-manifest.md` | Text | Asset metadata and import contract | N/A | N/A | N/A | N/A | N/A | All supplied assets | Created in Task 1.1; updated throughout Phase 1. |
@@ -58,12 +58,14 @@ These files are approved reference/specification assets. They document the visua
 
 These assets establish repeatable material surfaces and reusable atmospheric overlays. They are source sprites/material textures, not complete UI components.
 
+The four opaque material tiles were repaired with the built-in image-generation tool on 2026-09-15. Selected generation IDs and prompts are recorded in `Docs/Task 1.2 Seamless Texture Repair.md`.
+
 | Filename | Native size | Intended use | Transparency | Pivot | PPU | Nine-slice | Tint | Runtime dependencies | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `Backgrounds/teal-paper-tile.png` | 1254 x 1254 | Dark teal seamless paper texture | Opaque | Center | 100 | No | No | UI material/panel backgrounds | Supplied. No obvious directional motif on visual inspection. |
-| `Backgrounds/ivory-paper-tile.png` | 1254 x 1254 | Warm ivory seamless paper texture | Opaque | Center | 100 | No | No | UI material/panel backgrounds | Supplied. No obvious directional motif on visual inspection. |
-| `Frames/oxidized-teal-tile.png` | 1254 x 1254 | Oxidized teal metal/material texture | Opaque | Center | 100 | No | No | Frame and panel material references | Supplied. No obvious directional motif on visual inspection. |
-| `Frames/aged-brass-tile.png` | 1254 x 1254 | Aged brass material tile for borders, ornaments, and metal surfaces | Opaque | Center | 100 | No | No | Frame and ornament sprites/materials | Supplied. No obvious directional motif on visual inspection. |
+| `Backgrounds/teal-paper-tile.png` | 1254 x 1254 | Dark teal repeating paper texture | Opaque | Center | 100 | No | No | UI material/panel backgrounds | Seamless replacement accepted in Unity 2x2 review; Repeat import enabled. |
+| `Backgrounds/ivory-paper-tile.png` | 1254 x 1254 | Warm ivory repeating paper texture | Opaque | Center | 100 | No | No | UI material/panel backgrounds | Seamless replacement accepted in Unity 2x2 review; Repeat import enabled. |
+| `Frames/oxidized-teal-tile.png` | 1254 x 1254 | Oxidized teal repeating material texture | Opaque | Center | 100 | No | No | Frame and panel material references | Seamless replacement accepted in Unity 2x2 review; Repeat import enabled. |
+| `Frames/aged-brass-tile.png` | 1254 x 1254 | Aged brass repeating material texture | Opaque | Center | 100 | No | No | Frame and ornament sprites/materials | Seamless replacement accepted in Unity 2x2 review; Repeat import enabled. |
 | `Effects/print-noise-overlay.png` | 1024 x 1024 | Restrained print-noise overlay | Alpha | Center | 100 | No | Optional opacity tint only | Panel/card/background overlay layers | Supplied. Use at low opacity only. |
 | `Effects/contact-shadow-soft.png` | 1024 x 512 | Soft contact shadow layer under cards and panels | Alpha | Center | 100 | No | Optional opacity tint only | Card/panel hover and placement feedback | Supplied. |
 
@@ -97,7 +99,7 @@ Nine-slice values below are implementation values derived from the supplied pixe
 
 ## Task 1.4 Reusable Panels And Frames
 
-Created with the built-in image generation tool at the user's explicit request on 2026-09-13. Prompt provenance is in `Docs/Task 1.4 Image Generation.md`. These are individual blank sprites, not flattened gameplay screens. Art creation is complete; final Unity scale validation remains open.
+Created with the built-in image generation tool at the user's explicit request on 2026-09-13. Prompt provenance is in `Docs/Task 1.4 Image Generation.md`. These are individual blank sprites, not flattened gameplay screens. Art creation and Unity slice-scale review are complete; evidence is in `Docs/Validation/Task1.8/package-slices-*.png`.
 
 All entries use centered pivots, 100 PPU, Single mode, Full Rect mesh, bilinear filtering, Clamp wrapping, no mipmaps, no compression, and no NPOT resizing. Header and tray allow a 4096 maximum import size to retain their 2172 px width; other entries use 2048. Do not apply color tints; opacity transitions are permitted.
 
@@ -211,13 +213,13 @@ All assets require transparent exteriors. Focus/hover/selected frame centers are
 
 ### Verification Status
 
-All 23 sources passed full-image alpha-range and visible-art bounds checks. Frame center pixels are transparent. Metadata and slice bounds are checked by the validation script. Final-size slicing, pattern readability, state-swap alignment, simultaneous selection/focus and mouse/keyboard/controller interaction have not been tested in Unity. Task 1.6's final two visual acceptance checks remain open until that validation; asset presence is not full task acceptance.
+All 23 sources passed full-image alpha-range and visible-art bounds checks. Frame center pixels are transparent. Metadata and slice bounds are checked by the validation script. Unity-rendered final-size button/meter states and normal, hover, selected and selected-plus-focus card combinations remain distinguishable without color alone. Runtime pointer, keyboard and controller behavior belongs to the gameplay integration tasks and was not simulated by this static package check.
 
 ## Task 1.7 Overlays And Icons
 
 Twenty-seven individual PNGs were generated at the user's request using the built-in image tool. Exact selected prompts, original source paths, rejected sources and metadata are preserved in `Docs/Task 1.7 Image Generation.json`. No source pixels were procedurally repainted. No gameplay code or scene was changed.
 
-All imports: Single sprite, Full Rect mesh, whole source canvas, centered pivot, 100 PPU, bilinear filtering, Clamp wrapping, no mipmaps, no compression, no NPOT resizing, maximum size 2048. All eighteen icons use the same 1254 x 1254 canvas and retain transparent padding. Do not nine-slice icons, hatches or the vignette. Borders below are L/B/R/T source pixels, including original transparent gutters. Preserve icon aspect ratios. Tint permission is opacity only; retain the authored colors.
+All imports: Single sprite, Full Rect mesh, whole source canvas, centered pivot, 100 PPU, Clamp wrapping, no compression, no NPOT resizing, maximum size 2048. Icons use mipmaps and trilinear filtering to prevent minification noise; overlays use bilinear filtering without mipmaps. All eighteen icons use the same 1254 x 1254 canvas and retain transparent padding. Do not nine-slice icons, hatches or the vignette. Borders below are L/B/R/T source pixels, including original transparent gutters. Preserve icon aspect ratios. Tint permission is opacity only; retain the authored colors.
 
 | Path relative to FishingUIAssets | Native pixels | Slice L/B/R/T | Source alpha range | Initial Image opacity | Intended role and runtime dependencies |
 | --- | --- | --- | --- | --- | --- |
@@ -267,28 +269,15 @@ Full-source alpha checks passed for all 27 files. The dim source covers every pi
 
 Rejected generations included a decorated Release vignette, an ornamented critical frame, an unrelated emblem instead of hatch, and an almost-invisible dim texture. They are not the imported outputs.
 
-Final-size optical balance, engraved line weight, texture clarity, overlay compositing and sliced rendering remain unverified in Unity. Task 1.7's matching/optical-size checkbox stays open; these assets are generated source deliverables, not a claim of final visual acceptance.
+Task 1.7 static asset acceptance passed in Unity 6000.5.9f1. Icons were reviewed at 32/48/64 pixels on teal and ivory; five sliced surfaces at 240x130, 360x155 and 600x170 using pixelsPerUnitMultiplier = 8; and all nine overlays on both backgrounds. See `Docs/Validation/Task1.7/README.md` and its six captures. Prefab assembly, input behavior and screen-wide layout are separate integration checks.
 
-## Phase 1 Asset Entries To Complete Later
+## Task 1.8 Package Validation
 
-The following groups require per-file native dimensions, pivot, pixels per unit, transparency, nine-slice borders, tint permission, and runtime dependencies when the assets are supplied:
+All 88 runtime PNGs were imported by Unity 6000.5.9f1. The measured texture sizes, sprite rectangles, borders, PPU and filtering are recorded in `Docs/Validation/Task1.8/imported-inventory.md`; per-task entries above retain the safe-region, usage, tint and opacity contracts. `Docs/Validate Task 1.8 Assets.ps1` verifies all 88 manifest entries, unique GUIDs, source PNG formats, import metadata, seven reference files, fonts and licenses.
 
-- `Backgrounds/`
-- `Frames/`
-- `Cards/Creature/`
-- `Cards/CompactCatch/`
-- `Cards/Technique/`
-- `Creatures/`
-- `Techniques/`
-- `CatchRig/`
-- `Rig/`
-- `Controls/`
-- `Meters/`
-- `Markers/`
-- `Icons/`
-- `Overlays/`
-- `Effects/`
-- `Fonts/`
+The new reference exports use Default texture import, 4096 maximum size, no mipmaps and no compression. They must not be bound as runtime UI sprites. Source artwork, pivot and slice values were not changed by Task 1.8; the component-dimensions direction sheet therefore remains unchanged.
+
+Task 1.8 export, documentation and validation are complete. Unity produced 25 nonblank captures: the package/contact references, all sliced surfaces at three sizes, every alpha-bearing source at high zoom on teal and ivory, card/button/meter states, 2x2 material repeats and real TMP typography at both target resolutions. The four repaired Task 1.2 material tiles pass the final 2x2 review. Phase 1 static package acceptance passed; see `Docs/Validation/Task1.8/README.md`.
 
 ## Layout Contract From Task 1.1
 

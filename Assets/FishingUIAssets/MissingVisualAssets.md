@@ -4,13 +4,13 @@
 
 All nine overlay and eighteen icon images are present with Unity sprite metadata. No Task 1.7 file is missing. Exact prompts and selected sources are recorded in `Docs/Task 1.7 Image Generation.json`.
 
-Final-size optical balance, line weight, compositing and nine-slice rendering remain acceptance checks. The dim source requires runtime alpha 0.6; the hatch and vignette layers also have documented starting opacity settings. See `Reference/asset-manifest.md` before assembly. Generated file presence does not close the outstanding optical-consistency check.
+Task 1.7 asset acceptance passed in Unity: 32/48/64-pixel icon comparisons, three slice sizes and both compositing backgrounds were reviewed. See `Docs/Validation/Task1.7/README.md`. Icons now use mipmaps and trilinear filtering. The dim source still requires runtime alpha 0.6; use the manifest's other opacity settings during assembly.
 
 ## Task 1.6
 
 No image files are missing: all 23 Rig, Meters and Controls PNGs have sprite import metadata. Source transparency and artwork bounds passed validation. See the manifest for imported sub-sprite rectangles, slice borders and runtime dependencies.
 
-Task acceptance is still pending final-size state readability, sliced rendering and input-focus compatibility checks in Unity. Generated button corner geometry varies slightly between states; verify stable visual alignment before accepting the state set. These are validation requirements, not permission to ship unchecked assets.
+Task 1.8 verified final-size state readability, sliced rendering, stable state alignment and independent selected/focus combinations in Unity. Runtime input routing remains Phase 2 implementation work.
 
 ## Task 1.5
 
@@ -22,9 +22,13 @@ The first white artwork mask was rejected; the selected masks have solid red RGB
 
 All nine required frame and panel images have been generated at the user's request and saved in `Frames/`, with sprite import metadata. No Task 1.4 image is missing. Corner details are retained within nine-slice corner regions and need no independent exports for these designs.
 
-Remaining validation: inspect sliced rendering and material consistency at the target Unity display sizes. This is a rendering check, not a missing-art requirement. See `Reference/asset-manifest.md` for native dimensions, slices and safe regions, and `Docs/Task 1.4 Image Generation.md` for prompts.
+Task 1.8 verified sliced rendering and material consistency at the target Unity display sizes. See `Reference/asset-manifest.md` for native dimensions, slices and safe regions, and `Docs/Task 1.4 Image Generation.md` for prompts.
 
 This file records required visual assets that are not yet supplied. Use obvious temporary placeholders only when implementation cannot continue without a visible object, and replace them once the approved asset is available.
+
+## Task 1.8
+
+The contact sheet, corrected blank assembly and updated state reference are present. All Task 1.8 checks and Phase 1 static package acceptance passed. See `Docs/Validation/Task1.8/README.md`.
 
 ## Task 1.1
 
@@ -44,7 +48,7 @@ Remaining integration work:
 
 ## Task 1.2
 
-No missing base material assets remain for Task 1.2.
+All six base-material files are present. The four repeating material sources were repaired and pass the Unity 2x2 seam review.
 
 ## Task 1.3
 

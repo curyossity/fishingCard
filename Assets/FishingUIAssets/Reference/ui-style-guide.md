@@ -160,6 +160,10 @@ State rules:
 
 ## Asset Import Defaults
 
+Validated icon exception: the eighteen generic gameplay icons use mipmaps with trilinear filtering. This removes texture noise when their 1254-pixel source canvases are displayed in 32-64 pixel slots. Keep their aspect ratios and padded square canvases; use 48-64 pixel slots when space permits, with labels/tooltips rather than relying on engraved detail for meaning. Overlay surfaces retain bilinear filtering without mipmaps.
+
+Exact bundled font files: `Fonts/Marcellus/Marcellus-Regular.ttf` and `Fonts/SourceSerif4/SourceSerif4-Variable.ttf`. Marcellus maps to display TMP roles; Source Serif 4 maps to body Regular, status Medium, effect-heading Semibold and numeric Bold roles. Font asset/weight generation and actual TMP text fitting are integration work, not something the source-font inventory proves.
+
 Use these defaults unless a later manifest entry overrides them:
 
 - Texture type: Sprite (2D and UI).
@@ -170,6 +174,7 @@ Use these defaults unless a later manifest entry overrides them:
 - Compression: None or high quality for UI source sprites during visual implementation.
 - Alpha is required for icons, overlays, masks, card artwork, and non-rectangular frames.
 - Reference sheets are non-runtime documentation assets and should not be used as UI sprites.
+- The four material tiles use Repeat wrapping and their repaired sources pass the Unity 2x2 seam review.
 
 ## Task 1.1 Lock Status
 
@@ -182,9 +187,9 @@ Locked by this task:
 - Shared state language for buttons, cards, meters, and focus.
 - Static-art/runtime-data boundary.
 
-Deferred to later Phase 1 tasks:
+Package validation status:
 
-- Exact native dimensions for every individual sprite not yet supplied.
-- Final nine-slice border values for stretchable sprites.
-- Final pivot values for rig connectors, slots, markers, and meters.
-- TextMeshPro font asset generation inside Unity.
+- Source assets from Tasks 1.2-1.7 are present; per-task manifest tables define their dimensions, borders and pivots.
+- Task 1.8 contact and state sheets show imported assets, not replacement artwork. Their validation labels use Unity's diagnostic font and do not demonstrate approved game typography.
+- Task 1.8 package checks and Phase 1 static package acceptance are complete as recorded in `Docs/Validation/Task1.8/README.md`.
+- Both bundled font files successfully generated transient dynamic TMP assets and rendered representative fields at 1366x768 and 1920x1080. Production TMP assets and final content-specific fitting remain integration work.

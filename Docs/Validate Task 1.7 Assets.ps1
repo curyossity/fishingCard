@@ -50,7 +50,10 @@ $results = foreach ($asset in $record.assets) {
         if ($rect.x -lt 0 -or $rect.y -lt 0 -or ($rect.x + $rect.width) -gt $p[0] -or ($rect.y + $rect.height) -gt $p[1]) { throw "Sprite rectangle out of bounds: $path" }
         if (($border[0] + $border[2]) -ge $rect.width -or ($border[1] + $border[3]) -ge $rect.height) { throw "Slice borders overlap: $path" }
 
-        if ((Get-FileHash $path).Hash -ne (Get-FileHash $asset.source).Hash) { throw "Source artwork was modified: $path" }
+        $mipmaps = if ($asset.kind -eq 'icon') { 1 } else { 0 }
+        $filter = if ($asset.kind -eq 'icon') { 2 } else { 1 }
+        if ($meta -notmatch "enableMipMap: $mipmaps" -or $meta -notmatch "filterMode: $filter") { throw "Filtering mismatch: $path" }
+        if ((Get-FileHash $path -Algorithm SHA256).Hash -ne $asset.sha256) { throw "Source artwork was modified: $path" }
     }
     [pscustomobject]@{path=$asset.path; width=$p[0]; height=$p[1]; alphaMin=$p[2]; alphaMax=$p[3]; left=$p[4]; top=$p[5]; right=$p[6]; bottom=$p[7]; center=$p[8]; corner=$p[9]}
 }
