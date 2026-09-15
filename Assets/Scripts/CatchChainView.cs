@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public sealed class CatchChainView : MonoBehaviour
 {
+    [SerializeField] private bool fillParentRegion;
+
     private static readonly Color PanelColor = new Color(0.035f, 0.055f, 0.065f, 0.96f);
     private static readonly Color CardColor = new Color(0.09f, 0.12f, 0.13f, 1f);
     private static readonly Color NegativeCardColor = new Color(0.19f, 0.075f, 0.065f, 1f);
@@ -75,8 +77,8 @@ public sealed class CatchChainView : MonoBehaviour
 
         GameObject panelObject = CreateUiObject("Catch Chain Panel", transform);
         panelRoot = panelObject.GetComponent<RectTransform>();
-        panelRoot.anchorMin = new Vector2(0.62f, 0.06f);
-        panelRoot.anchorMax = new Vector2(0.98f, 0.78f);
+        panelRoot.anchorMin = fillParentRegion ? Vector2.zero : new Vector2(0.62f, 0.06f);
+        panelRoot.anchorMax = fillParentRegion ? Vector2.one : new Vector2(0.98f, 0.78f);
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
         AddImage(panelObject, PanelColor);

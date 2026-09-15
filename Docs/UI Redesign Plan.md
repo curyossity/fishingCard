@@ -638,11 +638,11 @@ Task 1.8 export, documentation and validation are complete. Unity imported all 8
 
 ### Task 2.1 — Create the root gameplay view
 
-- [ ] Create a scene or prefab named `FishingRunView`.
-- [ ] Add the complete screen hierarchy shown above.
-- [ ] Configure the Canvas Scaler with reference resolution `1920 × 1080`.
-- [ ] Use `Scale With Screen Size` and start with Match set to approximately `0.5`.
-- [ ] Create separate sorting layers for normal UI, tooltips, transitions, and modals.
+- [x] Create a scene or prefab named `FishingRunView`.
+- [x] Add the complete screen hierarchy shown above.
+- [x] Configure the Canvas Scaler with reference resolution `1920 × 1080`.
+- [x] Use `Scale With Screen Size` and start with Match set to approximately `0.5`.
+- [x] Create separate sorting layers for normal UI, tooltips, transitions, and modals.
 
 #### Acceptance criteria
 
@@ -652,11 +652,11 @@ Task 1.8 export, documentation and validation are complete. Unity imported all 8
 
 ### Task 2.2 — Assemble the supplied background
 
-- [ ] Add the supplied deep desaturated teal tabletop/map surface.
-- [ ] Layer the supplied paper grain.
-- [ ] Layer the supplied bathymetric and brass navigation artwork.
-- [ ] Add the supplied restrained edge vignette.
-- [ ] Keep the center clear enough for the encounter card.
+- [x] Add the supplied deep desaturated teal tabletop/map surface.
+- [x] Layer the supplied paper grain.
+- [x] Layer the supplied bathymetric and brass navigation artwork.
+- [x] Add the supplied restrained edge vignette.
+- [x] Keep the center clear enough for the encounter card.
 
 #### Acceptance criteria
 
@@ -666,18 +666,20 @@ Task 1.8 export, documentation and validation are complete. Unity imported all 8
 
 ### Task 2.3 — Implement the main responsive layout
 
-- [ ] Reserve approximately 7% of the screen height for the top bar.
-- [ ] Allocate approximately 22% of screen width to the Catch Rig.
-- [ ] Allocate approximately 43% to the encounter area.
-- [ ] Allocate approximately 22% to the controls.
-- [ ] Reserve the lower portion for the four-card technique hand.
-- [ ] Add consistent margins and gutters between sections.
+- [x] Reserve approximately 7% of the screen height for the top bar.
+- [x] Allocate approximately 22% of screen width to the Catch Rig.
+- [x] Allocate approximately 43% to the encounter area.
+- [x] Allocate approximately 22% to the controls.
+- [x] Reserve the lower portion for the four-card technique hand.
+- [x] Add consistent margins and gutters between sections.
 
 #### Acceptance criteria
 
 - The encounter card and technique hand form the strongest hierarchy.
 - Side panels remain visually secondary.
 - No section overlaps another at supported resolutions.
+
+Phase 2 implementation and validation are complete. `Assets/Prefabs/UI/FishingRunView.prefab` owns the stable hierarchy and is installed in `SampleScene`. The approved background stack preserves its 16:9 artwork through aspect-safe cropping while the nine-sliced screen frame remains viewport-bound. Gameplay, tooltip, transition, and modal rendering use separate project sorting layers plus deterministic nested Canvas orders. Unity 6000.5.9f1 passed prefab validation, three resolution captures, and a Play Mode controller/view binding check; see `Docs/Validation/Phase2/README.md`.
 
 ## Phase 3 — Create reusable visual components
 

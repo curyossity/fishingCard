@@ -6,6 +6,8 @@ public sealed class TechniqueHandView : MonoBehaviour
 {
     private const int SlotCount = 4;
 
+    [SerializeField] private bool fillParentRegion;
+
     private static readonly Color PanelColor = new Color(0.055f, 0.075f, 0.085f, 0.96f);
     private static readonly Color PlayableCardColor = new Color(0.09f, 0.18f, 0.19f, 1f);
     private static readonly Color LockedCardColor = new Color(0.105f, 0.115f, 0.12f, 1f);
@@ -85,8 +87,8 @@ public sealed class TechniqueHandView : MonoBehaviour
 
         GameObject panelObject = CreateUiObject("Technique Hand Panel", transform);
         panelRoot = panelObject.GetComponent<RectTransform>();
-        panelRoot.anchorMin = new Vector2(0.02f, 0.04f);
-        panelRoot.anchorMax = new Vector2(0.60f, 0.42f);
+        panelRoot.anchorMin = fillParentRegion ? Vector2.zero : new Vector2(0.02f, 0.04f);
+        panelRoot.anchorMax = fillParentRegion ? Vector2.one : new Vector2(0.60f, 0.42f);
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
         AddImage(panelObject, PanelColor);

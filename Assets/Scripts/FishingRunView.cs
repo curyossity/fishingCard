@@ -2,11 +2,37 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum FishingRunSection
+{
+    Background,
+    TopNavigation,
+    MainContent,
+    TechniqueHand
+}
+
 public sealed class FishingRunView : MonoBehaviour
 {
     [Header("Creature Card Art")]
     [SerializeField] private Sprite fallbackCreatureCardFace;
     [SerializeField] private Sprite rarityHookSprite;
+
+    [Header("Stable Layout Regions")]
+    [SerializeField] private RectTransform backgroundRegion;
+    [SerializeField] private RectTransform topNavigationBar;
+    [SerializeField] private RectTransform mainContent;
+    [SerializeField] private RectTransform catchRigPanel;
+    [SerializeField] private RectTransform encounterPanel;
+    [SerializeField] private RectTransform runControlsPanel;
+    [SerializeField] private RectTransform techniqueHand;
+    [SerializeField] private Canvas tooltipLayer;
+    [SerializeField] private Canvas transitionLayer;
+    [SerializeField] private Canvas modalLayer;
+
+    [Header("Independent Section Visibility")]
+    [SerializeField] private CanvasGroup backgroundGroup;
+    [SerializeField] private CanvasGroup topNavigationGroup;
+    [SerializeField] private CanvasGroup mainContentGroup;
+    [SerializeField] private CanvasGroup techniqueHandGroup;
 
     private static readonly Color PanelColor = new Color(0.045f, 0.065f, 0.075f, 0.98f);
     private static readonly Color BoatColor = new Color(0.12f, 0.20f, 0.22f, 1f);
@@ -31,6 +57,18 @@ public sealed class FishingRunView : MonoBehaviour
     private Func<bool> releaseAction;
     private Func<bool> surfaceAction;
     private Font uiFont;
+    private bool? lastRunActive;
+
+    public RectTransform BackgroundRegion => backgroundRegion;
+    public RectTransform TopNavigationBar => topNavigationBar;
+    public RectTransform MainContent => mainContent;
+    public RectTransform CatchRigPanel => catchRigPanel;
+    public RectTransform EncounterPanel => encounterPanel;
+    public RectTransform RunControlsPanel => runControlsPanel;
+    public RectTransform TechniqueHand => techniqueHand;
+    public Canvas TooltipLayer => tooltipLayer;
+    public Canvas TransitionLayer => transitionLayer;
+    public Canvas ModalLayer => modalLayer;
 
     /// <summary>
     /// Builds the runtime gameplay composition before its first state refresh.
@@ -64,7 +102,11 @@ public sealed class FishingRunView : MonoBehaviour
         this.descendAction = descendAction;
         this.releaseAction = releaseAction;
         this.surfaceAction = surfaceAction;
-        gameplayRoot.gameObject.SetActive(runActive);
+        if (!lastRunActive.HasValue || lastRunActive.Value != runActive)
+        {
+            SetRunContentVisible(runActive);
+            lastRunActive = runActive;
+        }
 
         if (!runActive)
         {
@@ -102,9 +144,16 @@ public sealed class FishingRunView : MonoBehaviour
         }
 
         uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-        GameObject rootObject = CreateUiObject("Fishing Run View", transform);
-        gameplayRoot = rootObject.GetComponent<RectTransform>();
-        SetAnchoredRect(gameplayRoot, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        if (mainContent != null)
+        {
+            gameplayRoot = mainContent;
+        }
+        else
+        {
+            GameObject rootObject = CreateUiObject("Fishing Run View", transform);
+            gameplayRoot = rootObject.GetComponent<RectTransform>();
+            SetAnchoredRect(gameplayRoot, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        }
 
         CreateLocationHeader();
         CreateEncounterCard();
@@ -117,9 +166,17 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void CreateLocationHeader()
     {
-        GameObject headerObject = CreateUiObject("Location Header", gameplayRoot);
+        RectTransform parent = topNavigationBar != null ? topNavigationBar : gameplayRoot;
+        GameObject headerObject = CreateUiObject("Location Header", parent);
         RectTransform headerRect = headerObject.GetComponent<RectTransform>();
-        SetAnchoredRect(headerRect, new Vector2(0.02f, 0.92f), new Vector2(0.60f, 0.98f), 0f, 0f, 0f, 0f);
+        if (topNavigationBar != null)
+        {
+            SetAnchoredRect(headerRect, Vector2.zero, Vector2.one, 24f, 8f, -24f, -8f);
+        }
+        else
+        {
+            SetAnchoredRect(headerRect, new Vector2(0.02f, 0.92f), new Vector2(0.60f, 0.98f), 0f, 0f, 0f, 0f);
+        }
         AddImage(headerObject, PanelColor);
 
         biomeText = CreateText("Biome", headerRect, 19, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
@@ -137,9 +194,17 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void CreateEncounterCard()
     {
-        GameObject regionObject = CreateUiObject("Current Encounter Region", gameplayRoot);
+        RectTransform parent = encounterPanel != null ? encounterPanel : gameplayRoot;
+        GameObject regionObject = CreateUiObject("Current Encounter Region", parent);
         RectTransform regionRect = regionObject.GetComponent<RectTransform>();
-        SetAnchoredRect(regionRect, new Vector2(0.02f, 0.44f), new Vector2(0.39f, 0.91f), 0f, 0f, 0f, 0f);
+        if (encounterPanel != null)
+        {
+            SetAnchoredRect(regionRect, Vector2.zero, Vector2.one, 12f, 12f, -12f, -12f);
+        }
+        else
+        {
+            SetAnchoredRect(regionRect, new Vector2(0.02f, 0.44f), new Vector2(0.39f, 0.91f), 0f, 0f, 0f, 0f);
+        }
 
         GameObject cardObject = CreateUiObject("Current Encounter Card", regionRect);
         RectTransform cardRect = cardObject.GetComponent<RectTransform>();
@@ -157,9 +222,17 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void CreateCoreActions()
     {
-        GameObject actionsObject = CreateUiObject("Core Actions", gameplayRoot);
+        RectTransform parent = runControlsPanel != null ? runControlsPanel : gameplayRoot;
+        GameObject actionsObject = CreateUiObject("Core Actions", parent);
         RectTransform actionsRect = actionsObject.GetComponent<RectTransform>();
-        SetAnchoredRect(actionsRect, new Vector2(0.41f, 0.46f), new Vector2(0.60f, 0.90f), 0f, 0f, 0f, 0f);
+        if (runControlsPanel != null)
+        {
+            SetAnchoredRect(actionsRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        }
+        else
+        {
+            SetAnchoredRect(actionsRect, new Vector2(0.41f, 0.46f), new Vector2(0.60f, 0.90f), 0f, 0f, 0f, 0f);
+        }
         AddImage(actionsObject, PanelColor);
 
         Text titleText = CreateText("Title", actionsRect, 15, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
@@ -176,14 +249,29 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void CreateBoatCardAndRig()
     {
-        GameObject rigObject = CreateUiObject("Fishing Rig", gameplayRoot);
+        RectTransform parent = catchRigPanel != null ? catchRigPanel : gameplayRoot;
+        GameObject rigObject = CreateUiObject("Fishing Rig", parent);
         RectTransform rigRect = rigObject.GetComponent<RectTransform>();
-        SetAnchoredRect(rigRect, new Vector2(0.66f, 0.765f), new Vector2(0.665f, 0.835f), 0f, 0f, 0f, 0f);
+        SetAnchoredRect(
+            rigRect,
+            catchRigPanel != null ? new Vector2(0.10f, 0.76f) : new Vector2(0.66f, 0.765f),
+            catchRigPanel != null ? new Vector2(0.115f, 0.84f) : new Vector2(0.665f, 0.835f),
+            0f,
+            0f,
+            0f,
+            0f);
         AddImage(rigObject, new Color(0.76f, 0.88f, 0.84f, 1f));
 
-        GameObject boatObject = CreateUiObject("Boat Start Card", gameplayRoot);
+        GameObject boatObject = CreateUiObject("Boat Start Card", parent);
         RectTransform boatRect = boatObject.GetComponent<RectTransform>();
-        SetAnchoredRect(boatRect, new Vector2(0.66f, 0.83f), new Vector2(0.94f, 0.97f), 0f, 0f, 0f, 0f);
+        SetAnchoredRect(
+            boatRect,
+            catchRigPanel != null ? new Vector2(0f, 0.82f) : new Vector2(0.66f, 0.83f),
+            catchRigPanel != null ? Vector2.one : new Vector2(0.94f, 0.97f),
+            0f,
+            0f,
+            0f,
+            0f);
         AddImage(boatObject, BoatColor);
 
         GameObject accentObject = CreateUiObject("Boat Accent", boatRect);
@@ -228,6 +316,54 @@ public sealed class FishingRunView : MonoBehaviour
     private void InvokeSurface()
     {
         surfaceAction?.Invoke();
+    }
+
+    /// <summary>
+    /// Shows or hides one major gameplay section without changing its runtime state.
+    /// </summary>
+    public void SetSectionVisible(FishingRunSection section, bool visible)
+    {
+        CanvasGroup group = section switch
+        {
+            FishingRunSection.Background => backgroundGroup,
+            FishingRunSection.TopNavigation => topNavigationGroup,
+            FishingRunSection.MainContent => mainContentGroup,
+            FishingRunSection.TechniqueHand => techniqueHandGroup,
+            _ => null
+        };
+
+        SetCanvasGroupVisible(group, visible);
+    }
+
+    /// <summary>
+    /// Applies run-level visibility while leaving modal, tooltip, and transition layers available.
+    /// </summary>
+    private void SetRunContentVisible(bool visible)
+    {
+        SetSectionVisible(FishingRunSection.Background, visible);
+        SetSectionVisible(FishingRunSection.TopNavigation, visible);
+        SetSectionVisible(FishingRunSection.MainContent, visible);
+        SetSectionVisible(FishingRunSection.TechniqueHand, visible);
+
+        if (backgroundGroup == null && topNavigationGroup == null && mainContentGroup == null && techniqueHandGroup == null)
+        {
+            gameplayRoot.gameObject.SetActive(visible);
+        }
+    }
+
+    /// <summary>
+    /// Updates visual, input, and navigation participation for a section group.
+    /// </summary>
+    private static void SetCanvasGroupVisible(CanvasGroup group, bool visible)
+    {
+        if (group == null)
+        {
+            return;
+        }
+
+        group.alpha = visible ? 1f : 0f;
+        group.interactable = visible;
+        group.blocksRaycasts = visible;
     }
 
     /// <summary>
