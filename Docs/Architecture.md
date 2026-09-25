@@ -377,6 +377,23 @@ Does not own:
 - Release validation or execution
 - Line Load calculations
 
+### `MaritimePanel`
+
+Role:
+Reusable presentation shell for framed run-interface regions.
+
+Owns:
+- Dark teal, ivory, turquoise, and coral interior presentation variants
+- Aged-brass and oxidized-teal material-border selection
+- Stable serialized content padding
+- Optional header text, header icon, and four corner ornament slots
+- Applying supplied nine-sliced frame artwork without recoloring it
+
+Does not own:
+- Gameplay data or interaction rules
+- Child-content layout beyond its safe content root
+- Panel-specific labels, values, controls, or state transitions
+
 ### `RunResultView`
 
 Role:
@@ -642,6 +659,9 @@ Runtime state:
 Presentation:
 - `CardView`
 - `CreatureCardView`
+- `CompactCatchCardView`
+- `TechniqueCardView`
+- `RunActionButton`
 - `CatchChainView`
 - `TechniqueHandView`
 - `RunResultView`
@@ -653,7 +673,13 @@ It renders state supplied by `FishingRunController` and forwards player commands
 
 `CatchChainView`, `TechniqueHandView`, and `RunResultView` are installed in their owning prefab regions and continue to build their internal dynamic content. Their model/controller boundaries are unchanged; the prefab owns placement and render-layer context.
 
-`CreatureCardView` composes a supplied portrait card face with runtime type, name, resolved Weight, resolved Value, rules text, and one-to-four rarity hooks. A card-specific face is preferred, while the generic creature template and legacy creature artwork provide the fallback for cards that do not yet have a dedicated face. Hidden-information effects conceal dynamic details in place without adding a visible state label.
+`CreatureCardView` is a serialized layered prefab that composes the supplied blank creature base, hidden stencil artwork mask, optional approved overflow layer, safe title/stat/rules regions, hollow sliced frame, and exactly four rarity sockets. Runtime fields use TextMesh Pro and update the type, name, resolved Weight, resolved Value, rules text, and one-to-four filled anchors without changing authored geometry. A complete user-supplied card face remains supported and replaces the generic base/artwork/frame combination; hidden-information effects conceal dynamic details in place without adding a visible state label.
+
+`CompactCatchCardView` is the Catch Rig's serialized horizontal card. It displays only a catch name, portrait, resolved Weight and Value, and an optional passive-effect icon; it deliberately has no full rules field. It owns a stable left-side rig attachment transform, click forwarding, pointer hover, and visually distinct selected, disabled, and release-candidate layers. It does not decide whether a catch may be selected or released.
+
+`TechniqueCardView` is a serialized portrait card with a fixed slot root and a separately animated visual root. It owns masked equipment artwork, TMP name/rules/keyword fields, normal/hovered/selected/playable/disabled presentation, and forwarding a use command. Hover elevation is bounded inside the visual root; hand layout and effect resolution remain outside this component. Playable and disabled states carry explicit text/icon cues in addition to color and frame changes.
+
+`RunActionButton` is the reusable Descend, Release, and Surface command surface. It owns theme icon/label selection, fixed-geometry sprite feedback for normal/hover/pressed/disabled/dangerous states, controller focus presentation, and forwarding a button command. It does not determine action availability or execute gameplay rules.
 
 `CatchChainView` renders catches in acquisition order and reports the selected catch index to `FishingRunController`. Selection is controller-owned because Release validity and execution are gameplay concerns, while the view owns only the selected visual treatment.
 

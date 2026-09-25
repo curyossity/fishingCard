@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public static class FishingRunViewPrefabBuilder
 {
     private const string PrefabPath = "Assets/Prefabs/UI/FishingRunView.prefab";
+    private const string CreatureCardPrefabPath = "Assets/Prefabs/UI/Components/CreatureCardView.prefab";
     private const string ScenePath = "Assets/Scenes/SampleScene.unity";
     private const string ValidationDirectory = "Docs/Validation/Phase2";
 
@@ -350,6 +351,10 @@ public static class FishingRunViewPrefabBuilder
         CanvasGroup techniqueHandGroup)
     {
         SerializedObject serializedView = new SerializedObject(runView);
+        SetObjectReference(
+            serializedView,
+            "creatureCardPrefab",
+            AssetDatabase.LoadAssetAtPath<CreatureCardView>(CreatureCardPrefabPath));
         SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/creature-card-base.png"));
         SetObjectReference(serializedView, "rarityHookSprite", LoadSprite("Markers/anchor-filled.png"));
         SetObjectReference(serializedView, "backgroundRegion", background);

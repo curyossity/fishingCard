@@ -685,34 +685,48 @@ Phase 2 implementation and validation are complete. `Assets/Prefabs/UI/FishingRu
 
 ### Supplied UI elements required for Phase 3
 
-- `Frames/maritime-panel-dark-9slice.png`
-- `Frames/maritime-panel-ivory-9slice.png`
-- `Frames/maritime-panel-turquoise-9slice.png`
-- `Frames/maritime-panel-coral-9slice.png`
-- `Frames/header-plaque-ivory-9slice.png`
+- `Frames/maritime-panel-9slice.png`
+- `Frames/panel-header-strip-9slice.png`
+- `Frames/aged-brass-tile.png`
+- `Frames/oxidized-teal-tile.png`
+- `Backgrounds/teal-paper-tile.png`
+- `Backgrounds/ivory-paper-tile.png`
+- `Effects/print-noise-overlay.png`
 - `Cards/Creature/creature-card-base.png`
 - `Cards/Creature/creature-art-mask.png`
-- `Cards/Creature/creature-art-overflow-mask.png`
+- `Cards/Creature/creature-title-plate-9slice.png`
+- `Cards/Creature/creature-stat-plate-9slice.png`
+- `Cards/Creature/creature-effect-panel-9slice.png`
 - `Cards/Creature/creature-card-back.png`
 - `Cards/CompactCatch/compact-catch-card-base.png`
+- `Frames/compact-card-frame-9slice.png`
+- `Frames/creature-card-frame-9slice.png`
 - `Cards/Technique/technique-card-base.png`
+- `Cards/Technique/technique-art-mask.png`
+- `Cards/Technique/technique-title-plate-9slice.png`
+- `Cards/Technique/technique-rules-panel-9slice.png`
 - `Cards/Technique/technique-card-back.png`
-- `Overlays/card-hover-border.png`
-- `Overlays/card-selected-border.png`
-- `Overlays/card-disabled-overlay.png`
-- `Controls/action-button-turquoise-9slice.png`
-- `Controls/action-button-coral-9slice.png`
-- `Controls/action-button-ivory-9slice.png`
-- `Controls/action-button-disabled-overlay.png`
+- `Frames/technique-card-frame-9slice.png`
+- `Cards/card-disabled-overlay.png`
+- `Markers/anchor-socket-empty.png`
+- `Markers/anchor-filled.png`
+- `Markers/status-socket-empty.png`
+- `Controls/card-hover-frame-9slice.png`
+- `Controls/card-selected-frame-9slice.png`
+- `Controls/action-button-normal-9slice.png`
+- `Controls/action-button-hover-9slice.png`
+- `Controls/action-button-pressed-9slice.png`
+- `Controls/action-button-disabled-9slice.png`
+- `Controls/action-button-destructive-9slice.png`
 
 ### Task 3.1 — Assemble `MaritimePanel` from supplied sprites
 
-- [ ] Build a reusable framed panel component.
-- [ ] Support dark teal, ivory, turquoise, and coral interior variants.
-- [ ] Support an optional header and icon.
-- [ ] Support brass and oxidized-teal nested borders.
-- [ ] Support optional corner ornament sprites.
-- [ ] Expose padding and accent color through serialized fields.
+- [x] Build a reusable framed panel component.
+- [x] Support dark teal, ivory, turquoise, and coral interior variants.
+- [x] Support an optional header and icon.
+- [x] Support brass and oxidized-teal nested borders.
+- [x] Support optional corner ornament sprites.
+- [x] Expose padding and accent color through serialized fields.
 
 #### Acceptance criteria
 
@@ -720,15 +734,17 @@ Phase 2 implementation and validation are complete. `Assets/Prefabs/UI/FishingRu
 - Borders remain crisp when panels are resized.
 - Nine-slicing does not distort corner ornaments.
 
+Task 3.1 implementation and validation are complete. `Assets/Prefabs/UI/Components/MaritimePanel.prefab` provides four independently colored interiors, two supplied material borders, optional header/icon and corner ornament slots, and a serialized safe-content inset. Unity 6000.5.9f1 passed prefab structure and slice-border checks; the varied-size render is stored in `Docs/Validation/Phase3/task-3.1-maritime-panel.png`.
+
 ### Task 3.2 — Assemble `CreatureCardView` from supplied layers
 
-- [ ] Build the creature card from layered UI elements.
-- [ ] Use the blank Sea Creature Template as its base artwork.
-- [ ] Add dynamic creature artwork.
-- [ ] Add dynamic creature name, weight, value, and effect text.
-- [ ] Add exactly four dynamic anchor-marker slots.
-- [ ] Create explicit safe regions for title, stats, rules, and markers.
-- [ ] Allow creature artwork to overlap only approved decorative boundaries.
+- [x] Build the creature card from layered UI elements.
+- [x] Use the blank Sea Creature Template as its base artwork.
+- [x] Add dynamic creature artwork.
+- [x] Add dynamic creature name, weight, value, and effect text.
+- [x] Add exactly four dynamic anchor-marker slots.
+- [x] Create explicit safe regions for title, stats, rules, and markers.
+- [x] Allow creature artwork to overlap only approved decorative boundaries.
 
 Suggested hierarchy:
 
@@ -757,13 +773,15 @@ CreatureCardView
 - Creature artwork never blocks essential text or markers.
 - All creature cards share identical geometry.
 
+Task 3.2 implementation and validation are complete. `Assets/Prefabs/UI/Components/CreatureCardView.prefab` uses the supplied blank base, hidden stencil mask, hollow sliced frame, separate TMP fields and exactly four socket/anchor pairs. It supports both dynamic artwork and complete user-supplied card faces without exposing forbidden runtime-state labels. Unity validation and the common/legendary size render are stored under `Docs/Validation/Phase3/`.
+
 ### Task 3.3 — Assemble `CompactCatchCard` from supplied layers
 
-- [ ] Create a compact creature-card variant for the Catch Rig.
-- [ ] Display creature name, portrait, weight, value, and optional passive-effect icon.
-- [ ] Hide the full effect description.
-- [ ] Add an attachment point for the rig.
-- [ ] Add selectable, disabled, and release-candidate states.
+- [x] Create a compact creature-card variant for the Catch Rig.
+- [x] Display creature name, portrait, weight, value, and optional passive-effect icon.
+- [x] Hide the full effect description.
+- [x] Add an attachment point for the rig.
+- [x] Add selectable, disabled, and release-candidate states.
 
 #### Acceptance criteria
 
@@ -771,12 +789,14 @@ CreatureCardView
 - Three or more catches can appear without hiding important information.
 - The compact card remains recognizably part of the creature-card family.
 
+Task 3.3 implementation and validation are complete. `Assets/Prefabs/UI/Components/CompactCatchCard.prefab` presents a horizontal 3:2 catch summary with dynamic portrait/name/resolved stats, an optional passive icon socket, a fixed rig attachment point, and selectable, selected, disabled, hover, and release-candidate feedback. No full effect-description field exists. Unity validated four simultaneous cards and all required states; evidence is under `Docs/Validation/Phase3/`.
+
 ### Task 3.4 — Assemble `TechniqueCardView` from supplied layers
 
-- [ ] Create the technique-card frame using the shared theme.
-- [ ] Add technique name, equipment illustration, rules text, and optional keyword area.
-- [ ] Add normal, hovered, selected, playable, and disabled states.
-- [ ] Keep the design simpler than a creature card.
+- [x] Create the technique-card frame using the shared theme.
+- [x] Add technique name, equipment illustration, rules text, and optional keyword area.
+- [x] Add normal, hovered, selected, playable, and disabled states.
+- [x] Keep the design simpler than a creature card.
 
 #### Acceptance criteria
 
@@ -784,17 +804,23 @@ CreatureCardView
 - Hovering one card does not hide the other cards completely.
 - Playability is understandable without relying only on color.
 
+Task 3.4 implementation and validation are complete. `Assets/Prefabs/UI/Components/TechniqueCardView.prefab` provides masked equipment artwork, independent title/rules/keyword regions and five authored interaction states. A stable slot root contains the slightly elevated hover animation, so adjacent hand cards do not reflow or disappear. Playable and disabled states include explicit plaques/icons in addition to frame and hatch changes. Unity's five-card final-scale render is stored under `Docs/Validation/Phase3/`.
+
 ### Task 3.5 — Assemble `RunActionButton` from supplied layers
 
-- [ ] Create a reusable large action button with brass frame, icon, and label.
-- [ ] Add normal, hover, pressed, disabled, and dangerous states.
-- [ ] Create theme variants for Descend, Release, and Surface.
+- [x] Create a reusable large action button with brass frame, icon, and label.
+- [x] Add normal, hover, pressed, disabled, and dangerous states.
+- [x] Create theme variants for Descend, Release, and Surface.
 
 #### Acceptance criteria
 
 - Every action is readable at a glance.
 - Disabled actions remain legible but clearly unavailable.
 - Buttons share consistent geometry and feedback.
+
+Task 3.5 implementation and validation are complete. `Assets/Prefabs/UI/Components/RunActionButton.prefab` owns a fixed sliced command surface, theme icon, TMP label, controller-focus frame, and normal/hover/pressed/disabled/dangerous sprite states. Descend, Release, and Surface themes update content without resizing the control; Release defaults to the explicit destructive treatment. Unity's three-theme/five-state render is stored under `Docs/Validation/Phase3/`.
+
+Phase 3 implementation is complete. All five reusable prefabs are stored under `Assets/Prefabs/UI/Components/`. The run-view prefab now serializes and instantiates `CreatureCardView` instead of constructing the retired prototype card layout at runtime. Catch Rig and Technique-hand replacement remain in their panel-specific redesign phases, where their surrounding rig/tray composition is rebuilt as a unit.
 
 ## Phase 4 — Build the top navigation bar
 

@@ -13,6 +13,7 @@ public enum FishingRunSection
 public sealed class FishingRunView : MonoBehaviour
 {
     [Header("Creature Card Art")]
+    [SerializeField] private CreatureCardView creatureCardPrefab;
     [SerializeField] private Sprite fallbackCreatureCardFace;
     [SerializeField] private Sprite rarityHookSprite;
 
@@ -206,14 +207,19 @@ public sealed class FishingRunView : MonoBehaviour
             SetAnchoredRect(regionRect, new Vector2(0.02f, 0.44f), new Vector2(0.39f, 0.91f), 0f, 0f, 0f, 0f);
         }
 
-        GameObject cardObject = CreateUiObject("Current Encounter Card", regionRect);
-        RectTransform cardRect = cardObject.GetComponent<RectTransform>();
+        if (creatureCardPrefab == null)
+        {
+            Debug.LogError("FishingRunView requires a serialized CreatureCardView prefab.", this);
+            return;
+        }
+
+        encounterCardView = Instantiate(creatureCardPrefab, regionRect);
+        encounterCardView.name = "Current Encounter Card";
+        RectTransform cardRect = encounterCardView.GetComponent<RectTransform>();
         SetAnchoredRect(cardRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
-        AspectRatioFitter aspectRatio = cardObject.AddComponent<AspectRatioFitter>();
+        AspectRatioFitter aspectRatio = encounterCardView.gameObject.AddComponent<AspectRatioFitter>();
         aspectRatio.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
         aspectRatio.aspectRatio = 2f / 3f;
-
-        encounterCardView = cardObject.AddComponent<CreatureCardView>();
         encounterCardView.Initialize(fallbackCreatureCardFace, rarityHookSprite);
     }
 
