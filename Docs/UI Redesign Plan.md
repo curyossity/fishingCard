@@ -18,6 +18,10 @@ The current full-screen background is `Backgrounds/fishing-ui-background-1920x10
 
 The current top-navigation frame is `Frames/fishing-ui-top-bar-1920x80.png`. Display it edge-to-edge across the top 80 reference pixels as a complete unsliced image. Region, depth, deck count, icons, and buttons remain separate runtime children above the frame, and child buttons own their interaction states. The supplied PNG is 2172 x 102 source pixels despite its delivery name and 1920 x 80 display contract; retain those source pixels and apply the authored display size in the prefab.
 
+The top-navigation content uses three supplied blank plaques: `Frames/fishing-ui-region-plaque-blank.png` at 520 x 72 on the left, `Frames/fishing-ui-depth-plaque-blank.png` at 395 x 70 in the center, and `Frames/fishing-ui-deck-plaque-blank.png` at 245 x 68 on the right. Render each at native reference size without slicing. TextMeshPro adds the active biome name, `DEPTH <value> m`, and the remaining Technique draw-pile count. Do not bake these values into the sprites. Optional region icons and low-depth/deck warning treatments remain separate runtime layers.
+
+Top-navigation icons use `Icons/fishing-ui-icon-compass-256.png`, `Icons/fishing-ui-icon-deck-256.png`, and `Icons/fishing-ui-icon-gear-256.png`. Preserve aspect ratio and use mipmapped UI imports for clean minification. The compass is a non-interactive sibling beside the region plaque. The deck icon is a non-interactive child inside the deck plaque, with the runtime count inset to avoid overlap. The gear occupies a dedicated far-right button area; Unity `Button` color transitions provide normal, hover/selected, pressed, and disabled feedback, and activation is forwarded through `FishingRunView.SettingsRequested`. No settings behavior or modal is implied by the icon itself.
+
 The visual assets will be produced separately and supplied to you. You must not generate, redraw, reinterpret, or replace the supplied artwork. Your job is to import the assets, assemble prefabs, implement layout and interaction states, and bind runtime data.
 
 ## Asset ownership contract

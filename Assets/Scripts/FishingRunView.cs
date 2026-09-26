@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,15 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private CreatureCardView creatureCardPrefab;
     [SerializeField] private Sprite fallbackCreatureCardFace;
     [SerializeField] private Sprite rarityHookSprite;
+
+    [Header("Top Navigation Art")]
+    [SerializeField] private Sprite regionPlaqueSprite;
+    [SerializeField] private Sprite depthPlaqueSprite;
+    [SerializeField] private Sprite deckPlaqueSprite;
+    [SerializeField] private Sprite compassIconSprite;
+    [SerializeField] private Sprite deckIconSprite;
+    [SerializeField] private Sprite settingsIconSprite;
+    [SerializeField] private TMP_FontAsset navigationFont;
 
     [Header("Stable Layout Regions")]
     [SerializeField] private RectTransform backgroundRegion;
@@ -38,21 +48,21 @@ public sealed class FishingRunView : MonoBehaviour
     private static readonly Color PanelColor = new Color(0.045f, 0.065f, 0.075f, 0.98f);
     private static readonly Color BoatColor = new Color(0.12f, 0.20f, 0.22f, 1f);
     private static readonly Color AccentColor = new Color(0.24f, 0.74f, 0.70f, 1f);
-    private static readonly Color DepthColor = new Color(0.42f, 0.70f, 0.88f, 1f);
     private static readonly Color SurfaceColor = new Color(0.88f, 0.67f, 0.25f, 1f);
     private static readonly Color ReleaseColor = new Color(0.78f, 0.32f, 0.28f, 1f);
     private static readonly Color MutedTextColor = new Color(0.65f, 0.71f, 0.73f, 1f);
 
     private RectTransform gameplayRoot;
-    private Text biomeText;
-    private Text depthText;
-    private Text tierText;
+    private TMP_Text biomeText;
+    private TMP_Text depthText;
+    private TMP_Text deckText;
     private CreatureCardView encounterCardView;
     private Text boatCapacityText;
     private Text boatCatchCountText;
     private Button descendButton;
     private Button releaseButton;
     private Button surfaceButton;
+    private Button settingsButton;
     private Text releaseButtonText;
     private Func<bool> descendAction;
     private Func<bool> releaseAction;
@@ -70,6 +80,7 @@ public sealed class FishingRunView : MonoBehaviour
     public Canvas TooltipLayer => tooltipLayer;
     public Canvas TransitionLayer => transitionLayer;
     public Canvas ModalLayer => modalLayer;
+    public event Action SettingsRequested;
 
     /// <summary>
     /// Builds the runtime gameplay composition before its first state refresh.
@@ -85,7 +96,6 @@ public sealed class FishingRunView : MonoBehaviour
     public void Refresh(
         bool runActive,
         BiomeDefinition biome,
-        BiomeDepthTierDefinition depthTier,
         int depth,
         CardDefinition encounter,
         int resolvedEncounterWeight,
@@ -93,6 +103,7 @@ public sealed class FishingRunView : MonoBehaviour
         bool encounterInformationHidden,
         int lineCapacity,
         int catchCount,
+        int remainingDeckCount,
         int selectedCatchIndex,
         bool canDescend,
         Func<bool> descendAction,
@@ -115,8 +126,8 @@ public sealed class FishingRunView : MonoBehaviour
         }
 
         biomeText.text = biome == null ? "UNCHARTED WATERS" : biome.DisplayName.ToUpperInvariant();
-        depthText.text = $"DEPTH {Mathf.Max(0, depth)}";
-        tierText.text = depthTier == null ? "BIOME EDGE" : depthTier.DisplayName.ToUpperInvariant();
+        depthText.text = $"DEPTH  {Mathf.Max(0, depth)} m";
+        deckText.text = $"DECK  {Mathf.Max(0, remainingDeckCount)}";
         boatCapacityText.text = $"LINE CAPACITY  {Mathf.Max(0, lineCapacity)}";
         boatCatchCountText.text = $"ATTACHED  {Mathf.Max(0, catchCount)}";
 
@@ -163,7 +174,7 @@ public sealed class FishingRunView : MonoBehaviour
     }
 
     /// <summary>
-    /// Creates the compact biome, depth, and depth-tier header.
+    /// Creates the three supplied navigation plaques and their runtime-owned labels.
     /// </summary>
     private void CreateLocationHeader()
     {
@@ -172,22 +183,178 @@ public sealed class FishingRunView : MonoBehaviour
         RectTransform headerRect = headerObject.GetComponent<RectTransform>();
         if (topNavigationBar != null)
         {
-            SetAnchoredRect(headerRect, Vector2.zero, Vector2.one, 24f, 8f, -24f, -8f);
+            SetAnchoredRect(headerRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
         }
         else
         {
-            SetAnchoredRect(headerRect, new Vector2(0.02f, 0.92f), new Vector2(0.60f, 0.98f), 0f, 0f, 0f, 0f);
+            SetAnchoredRect(headerRect, new Vector2(0f, 0.9259259f), Vector2.one, 0f, 0f, 0f, 0f);
         }
-        AddImage(headerObject, PanelColor);
 
-        biomeText = CreateText("Biome", headerRect, 19, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
-        SetAnchoredRect(biomeText.rectTransform, Vector2.zero, new Vector2(0.48f, 1f), 14f, 0f, 0f, 0f);
+        biomeText = CreateNavigationPlaque(
+            "Region Plaque",
+            headerRect,
+            regionPlaqueSprite,
+            new Vector2(0f, 0.5f),
+            new Vector2(92f, 0f),
+            new Vector2(520f, 72f),
+            TextAlignmentOptions.Center,
+            30f);
+        depthText = CreateNavigationPlaque(
+            "Depth Plaque",
+            headerRect,
+            depthPlaqueSprite,
+            new Vector2(0.5f, 0.5f),
+            Vector2.zero,
+            new Vector2(395f, 70f),
+            TextAlignmentOptions.Center,
+            28f);
+        deckText = CreateNavigationPlaque(
+            "Deck Plaque",
+            headerRect,
+            deckPlaqueSprite,
+            new Vector2(1f, 0.5f),
+            new Vector2(-96f, 0f),
+            new Vector2(245f, 68f),
+            TextAlignmentOptions.Center,
+            27f);
 
-        tierText = CreateText("Depth Tier", headerRect, 12, FontStyle.Bold, TextAnchor.MiddleCenter, MutedTextColor);
-        SetAnchoredRect(tierText.rectTransform, new Vector2(0.45f, 0f), new Vector2(0.76f, 1f), 0f, 0f, 0f, 0f);
+        CreateNavigationIcon(
+            "Region Compass Icon",
+            headerRect,
+            compassIconSprite,
+            new Vector2(0f, 0.5f),
+            new Vector2(20f, 0f),
+            new Vector2(0f, 0.5f),
+            new Vector2(56f, 56f));
 
-        depthText = CreateText("Depth", headerRect, 15, FontStyle.Bold, TextAnchor.MiddleRight, DepthColor);
-        SetAnchoredRect(depthText.rectTransform, new Vector2(0.72f, 0f), Vector2.one, 0f, 0f, -14f, 0f);
+        RectTransform deckPlaqueRect = deckText.rectTransform.parent as RectTransform;
+        CreateNavigationIcon(
+            "Deck Icon",
+            deckPlaqueRect,
+            deckIconSprite,
+            new Vector2(0f, 0.5f),
+            new Vector2(34f, 0f),
+            new Vector2(0.5f, 0.5f),
+            new Vector2(46f, 46f));
+        deckText.rectTransform.offsetMin = new Vector2(68f, 10f);
+
+        settingsButton = CreateSettingsButton(headerRect);
+    }
+
+    /// <summary>
+    /// Creates a non-interactive navigation icon without assigning gameplay meaning to it.
+    /// </summary>
+    private static Image CreateNavigationIcon(
+        string objectName,
+        RectTransform parent,
+        Sprite sprite,
+        Vector2 anchor,
+        Vector2 anchoredPosition,
+        Vector2 pivot,
+        Vector2 size)
+    {
+        GameObject iconObject = CreateUiObject(objectName, parent);
+        RectTransform iconRect = iconObject.GetComponent<RectTransform>();
+        iconRect.anchorMin = anchor;
+        iconRect.anchorMax = anchor;
+        iconRect.pivot = pivot;
+        iconRect.anchoredPosition = anchoredPosition;
+        iconRect.sizeDelta = size;
+        Image icon = AddImage(iconObject, Color.white);
+        icon.sprite = sprite;
+        icon.type = Image.Type.Simple;
+        icon.preserveAspect = true;
+        return icon;
+    }
+
+    /// <summary>
+    /// Creates the settings command surface and forwards activation without owning settings behavior.
+    /// </summary>
+    private Button CreateSettingsButton(RectTransform parent)
+    {
+        GameObject buttonObject = CreateUiObject("Settings Button", parent);
+        RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
+        buttonRect.anchorMin = new Vector2(1f, 0.5f);
+        buttonRect.anchorMax = new Vector2(1f, 0.5f);
+        buttonRect.pivot = new Vector2(1f, 0.5f);
+        buttonRect.anchoredPosition = new Vector2(-16f, 0f);
+        buttonRect.sizeDelta = new Vector2(58f, 58f);
+
+        Image icon = AddImage(buttonObject, Color.white);
+        icon.sprite = settingsIconSprite;
+        icon.type = Image.Type.Simple;
+        icon.preserveAspect = true;
+        icon.raycastTarget = true;
+
+        Button button = buttonObject.AddComponent<Button>();
+        button.targetGraphic = icon;
+        button.transition = Selectable.Transition.ColorTint;
+        button.navigation = new Navigation { mode = Navigation.Mode.Automatic };
+        ColorBlock colors = button.colors;
+        colors.normalColor = new Color(0.90f, 0.90f, 0.90f, 1f);
+        colors.highlightedColor = Color.white;
+        colors.selectedColor = Color.white;
+        colors.pressedColor = new Color(0.68f, 0.68f, 0.68f, 1f);
+        colors.disabledColor = new Color(0.38f, 0.38f, 0.38f, 0.55f);
+        colors.colorMultiplier = 1f;
+        colors.fadeDuration = 0.08f;
+        button.colors = colors;
+        button.onClick.AddListener(InvokeSettings);
+        return button;
+    }
+
+    /// <summary>
+    /// Forwards the settings request to a future settings controller or modal owner.
+    /// </summary>
+    private void InvokeSettings()
+    {
+        SettingsRequested?.Invoke();
+    }
+
+    /// <summary>
+    /// Creates one fixed-size supplied plaque with an independent TextMeshPro runtime label.
+    /// </summary>
+    private TMP_Text CreateNavigationPlaque(
+        string objectName,
+        RectTransform parent,
+        Sprite sprite,
+        Vector2 anchor,
+        Vector2 anchoredPosition,
+        Vector2 size,
+        TextAlignmentOptions alignment,
+        float fontSize)
+    {
+        GameObject plaqueObject = CreateUiObject(objectName, parent);
+        RectTransform plaqueRect = plaqueObject.GetComponent<RectTransform>();
+        plaqueRect.anchorMin = anchor;
+        plaqueRect.anchorMax = anchor;
+        plaqueRect.pivot = anchor.x < 0.5f
+            ? new Vector2(0f, 0.5f)
+            : anchor.x > 0.5f
+                ? new Vector2(1f, 0.5f)
+                : new Vector2(0.5f, 0.5f);
+        plaqueRect.anchoredPosition = anchoredPosition;
+        plaqueRect.sizeDelta = size;
+
+        Image plaqueImage = AddImage(plaqueObject, Color.white);
+        plaqueImage.sprite = sprite;
+        plaqueImage.type = Image.Type.Simple;
+
+        GameObject labelObject = CreateUiObject("Label", plaqueRect);
+        TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
+        label.font = navigationFont != null ? navigationFont : TMP_Settings.defaultFontAsset;
+        label.fontSize = fontSize;
+        label.fontStyle = FontStyles.Normal;
+        label.alignment = alignment;
+        label.color = new Color(0.075f, 0.12f, 0.12f, 1f);
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 18f;
+        label.fontSizeMax = fontSize;
+        label.textWrappingMode = TextWrappingModes.NoWrap;
+        label.overflowMode = TextOverflowModes.Ellipsis;
+        label.raycastTarget = false;
+        SetAnchoredRect(label.rectTransform, Vector2.zero, Vector2.one, 28f, 10f, -28f, -10f);
+        return label;
     }
 
     /// <summary>

@@ -819,7 +819,6 @@ public sealed class FishingRunController : MonoBehaviour
             fishingRunView.Refresh(
                 runActive,
                 currentBiome,
-                CurrentDepthTier,
                 currentDepth,
                 currentEncounter,
                 resolvedEncounterWeight,
@@ -827,6 +826,7 @@ public sealed class FishingRunController : MonoBehaviour
                 CurrentEncounterInformationHidden,
                 lineCapacity,
                 catchChainRuntime.Catches.Length,
+                techniqueDeckRuntime.DrawPile.Length,
                 selectedCatchIndex,
                 runActive && !biomeApexRuntime.NextWatersPresented,
                 TryDescend,

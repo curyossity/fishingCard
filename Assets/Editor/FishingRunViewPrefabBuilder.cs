@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -11,6 +12,7 @@ public static class FishingRunViewPrefabBuilder
 {
     private const string PrefabPath = "Assets/Prefabs/UI/FishingRunView.prefab";
     private const string CreatureCardPrefabPath = "Assets/Prefabs/UI/Components/CreatureCardView.prefab";
+    private const string NavigationFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SDF.asset";
     private const string ScenePath = "Assets/Scenes/SampleScene.unity";
     private const string ValidationDirectory = "Docs/Validation/Phase2";
 
@@ -353,6 +355,16 @@ public static class FishingRunViewPrefabBuilder
             AssetDatabase.LoadAssetAtPath<CreatureCardView>(CreatureCardPrefabPath));
         SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/creature-card-base.png"));
         SetObjectReference(serializedView, "rarityHookSprite", LoadSprite("Markers/anchor-filled.png"));
+        SetObjectReference(serializedView, "regionPlaqueSprite", LoadSprite("Frames/fishing-ui-region-plaque-blank.png"));
+        SetObjectReference(serializedView, "depthPlaqueSprite", LoadSprite("Frames/fishing-ui-depth-plaque-blank.png"));
+        SetObjectReference(serializedView, "deckPlaqueSprite", LoadSprite("Frames/fishing-ui-deck-plaque-blank.png"));
+        SetObjectReference(serializedView, "compassIconSprite", LoadSprite("Icons/fishing-ui-icon-compass-256.png"));
+        SetObjectReference(serializedView, "deckIconSprite", LoadSprite("Icons/fishing-ui-icon-deck-256.png"));
+        SetObjectReference(serializedView, "settingsIconSprite", LoadSprite("Icons/fishing-ui-icon-gear-256.png"));
+        SetObjectReference(
+            serializedView,
+            "navigationFont",
+            AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(NavigationFontPath));
         SetObjectReference(serializedView, "backgroundRegion", background);
         SetObjectReference(serializedView, "topNavigationBar", topNavigation);
         SetObjectReference(serializedView, "mainContent", mainContent);

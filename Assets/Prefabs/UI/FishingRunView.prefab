@@ -823,6 +823,13 @@ MonoBehaviour:
   creatureCardPrefab: {fileID: 583446137711959576, guid: 4ce16b59d2e209a4cbf765cdffc547f2, type: 3}
   fallbackCreatureCardFace: {fileID: 21300000, guid: 7f150000000040008000000000000001, type: 3}
   rarityHookSprite: {fileID: 21300000, guid: 7f150000000040008000000000000015, type: 3}
+  regionPlaqueSprite: {fileID: 21300000, guid: 81c8a5d8a2bfaa640aea3f1bda4a5fb9, type: 3}
+  depthPlaqueSprite: {fileID: 21300000, guid: a662786d594d07d4390e9738ab00f7db, type: 3}
+  deckPlaqueSprite: {fileID: 21300000, guid: 0442f2d77a9fd6347a7bc617601ec7ad, type: 3}
+  compassIconSprite: {fileID: 21300000, guid: 22eef95c61564498b52e563d092e28c9, type: 3}
+  deckIconSprite: {fileID: 21300000, guid: 1acbe9b4e3da46fb96418038cc9af0da, type: 3}
+  settingsIconSprite: {fileID: 21300000, guid: 534c2c637c154406914ce614debc6fc9, type: 3}
+  navigationFont: {fileID: 11400000, guid: 4af60e6e765e8154ba3e484ffdcd9aa6, type: 2}
   backgroundRegion: {fileID: 8970681617962850680}
   topNavigationBar: {fileID: 6421211931801953882}
   mainContent: {fileID: 2435481836457471633}
