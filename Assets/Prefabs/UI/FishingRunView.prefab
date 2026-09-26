@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 780865879041473758}
   - component: {fileID: 5129961665697547689}
   m_Layer: 5
-  m_Name: Paper Grain
+  m_Name: Legacy Paper Grain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3403068771677099589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 7090169980189997367}
   - component: {fileID: 2805214174340983898}
   m_Layer: 5
-  m_Name: Tabletop
+  m_Name: Nautical Chart Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: af31e0678bd1466cae1ad5df6b6b1381, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9492dfc5b59266046b059fd586312529, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -485,12 +485,12 @@ GameObject:
   - component: {fileID: 2852271842899207317}
   - component: {fileID: 3903909231789189334}
   m_Layer: 5
-  m_Name: Bathymetric Overlay
+  m_Name: Legacy Bathymetric Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3410038138108821648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -560,12 +560,12 @@ GameObject:
   - component: {fileID: 8309311873683385776}
   - component: {fileID: 1926535373698381649}
   m_Layer: 5
-  m_Name: Navigation Chart Overlay
+  m_Name: Legacy Navigation Chart Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3737686885347663838
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1300,12 +1300,12 @@ GameObject:
   - component: {fileID: 7432697501126154219}
   - component: {fileID: 6774136459970235251}
   m_Layer: 5
-  m_Name: Edge Vignette
+  m_Name: Legacy Edge Vignette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8006979279425703222
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1669,12 +1669,12 @@ GameObject:
   - component: {fileID: 7869040480099252703}
   - component: {fileID: 2966529158660047360}
   m_Layer: 5
-  m_Name: Screen Border
+  m_Name: Legacy Screen Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &236504636760076159
 RectTransform:
   m_ObjectHideFlags: 0

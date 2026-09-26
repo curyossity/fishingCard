@@ -667,9 +667,9 @@ Presentation:
 - `RunResultView`
 - `FishingRunView`
 
-`FishingRunView` owns the reusable root gameplay prefab and its stable presentation regions: background, top navigation, Catch Rig, current Encounter, run controls, Technique hand, tooltips, transitions, and modals. Its root Canvas scales from 1920 x 1080 with equal width/height matching. Major gameplay regions expose independent visibility through `CanvasGroup` state, while tooltip, transition, and modal canvases have deterministic render order above gameplay.
+`FishingRunView` owns the reusable root gameplay prefab and its stable presentation regions: background, top navigation, Catch Rig, current Encounter, run controls, Technique hand, tooltips, transitions, and modals. Its root Canvas scales from 1920 x 1080 with equal width/height matching. The background is one user-supplied complete 1920 x 1080 nautical-chart image with all gameplay UI layered above it; screen-wide warning, release, and modal feedback remain separate overlays. Major gameplay regions expose independent visibility through `CanvasGroup` state, while tooltip, transition, and modal canvases have deterministic render order above gameplay.
 
-It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules. The current Encounter region contains only a `CreatureCardView`; it does not repeat encounter state, tags, or statistics outside the card. `FishingRunViewPrefabBuilder` is the editor-owned assembly path for the prefab, approved background stack, scene installation, project sorting layers, and static responsive captures.
+It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules. The current Encounter region contains only a `CreatureCardView`; it does not repeat encounter state, tags, or statistics outside the card. `FishingRunViewPrefabBuilder` is the editor-owned assembly path for the prefab, supplied complete background, scene installation, project sorting layers, and static responsive captures.
 
 `CatchChainView`, `TechniqueHandView`, and `RunResultView` are installed in their owning prefab regions and continue to build their internal dynamic content. Their model/controller boundaries are unchanged; the prefab owns placement and render-layer context.
 

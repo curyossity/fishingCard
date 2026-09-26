@@ -306,7 +306,7 @@ public static class FishingRunViewPrefabBuilder
     }
 
     /// <summary>
-    /// Adds the approved layered maritime background inside a protected 16:9 frame.
+    /// Adds the supplied complete nautical-chart background at its authored 16:9 aspect ratio.
     /// </summary>
     private static void BuildBackground(RectTransform parent)
     {
@@ -315,19 +315,11 @@ public static class FishingRunViewPrefabBuilder
         fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
         fitter.aspectRatio = 16f / 9f;
 
-        AddSimpleImage(artwork, "Tabletop", "Backgrounds/gameplay-tabletop-16x9.png", Color.white);
-
-        GameObject paperObject = CreateStretchRegion("Paper Grain", artwork).gameObject;
-        RawImage paper = paperObject.AddComponent<RawImage>();
-        paper.texture = LoadTexture("Backgrounds/teal-paper-tile.png");
-        paper.uvRect = new Rect(0f, 0f, 2f, 2f);
-        paper.color = new Color(1f, 1f, 1f, 0.16f);
-        paper.raycastTarget = false;
-
-        AddSimpleImage(artwork, "Bathymetric Overlay", "Backgrounds/bathymetric-overlay.png", new Color(1f, 1f, 1f, 0.42f));
-        AddSimpleImage(artwork, "Navigation Chart Overlay", "Backgrounds/navigation-chart-overlay.png", new Color(1f, 1f, 1f, 0.32f));
-        AddSimpleImage(artwork, "Edge Vignette", "Backgrounds/edge-vignette.png", Color.white);
-        AddSlicedImage(parent, "Screen Border", "Frames/screen-border-9slice.png", Color.white);
+        AddSimpleImage(
+            artwork,
+            "Nautical Chart Background",
+            "Backgrounds/fishing-ui-background-1920x1080.png",
+            Color.white);
     }
 
     /// <summary>
@@ -512,17 +504,6 @@ public static class FishingRunViewPrefabBuilder
         }
 
         return sprite;
-    }
-
-    private static Texture2D LoadTexture(string relativePath)
-    {
-        Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/FishingUIAssets/" + relativePath);
-        if (texture == null)
-        {
-            throw new InvalidOperationException("Missing UI texture: " + relativePath);
-        }
-
-        return texture;
     }
 
     private static void SetObjectReference(SerializedObject target, string propertyName, UnityEngine.Object value)

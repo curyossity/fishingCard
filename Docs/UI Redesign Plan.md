@@ -4,11 +4,17 @@
 
 Implement the complete 16:9 gameplay presentation for the fishing card roguelike in Unity by assembling a supplied visual asset pack and binding it to runtime game data.
 
-The visual reference is:
+The sole visual reference is:
 
-`fishing-roguelike-gameplay-ui-16x9.png`
+`Assets/FishingUIAssets/Reference/gameplay-layout-1920x1080.png`
 
 Use the reference for composition, visual hierarchy, colors, materials, card scale, and spacing. Build the interface from reusable Unity UI components rather than using the reference screenshot as a background.
+
+## Current supplied-image replacement workflow
+
+The populated reference currently retained in the project is `Assets/FishingUIAssets/Reference/gameplay-layout-1920x1080.png`. New user-supplied images may replace one or several earlier assets and do not need to preserve the Phase 1 file count or decomposition. Stage each delivery in `Assets/FishingUIAssets/_incoming`, inspect its authored ownership boundary, then move it into the appropriate runtime folder and update the prefab assembly path.
+
+The current full-screen background is `Backgrounds/fishing-ui-background-1920x1080.png`. It is a complete opaque 1920 x 1080 nautical-chart surface with no dynamic fields or alternate state. Render it as one aspect-preserved background image; do not combine it with the earlier paper grain, bathymetric, navigation-chart, vignette, or screen-border layers. Warning, release-mode, transition, and modal overlays remain separate runtime layers above it.
 
 The visual assets will be produced separately and supplied to you. You must not generate, redraw, reinterpret, or replace the supplied artwork. Your job is to import the assets, assemble prefabs, implement layout and interaction states, and bind runtime data.
 
