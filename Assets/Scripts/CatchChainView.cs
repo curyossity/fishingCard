@@ -1,19 +1,24 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class CatchChainView : MonoBehaviour
 {
     [SerializeField] private bool fillParentRegion;
+    [SerializeField] private Sprite headingSprite;
+    [SerializeField] private TMP_FontAsset headingFont;
+    [SerializeField] private string headingLabel = "CATCH RIG";
+    [SerializeField] private Sprite rodSprite;
+    [SerializeField] private Sprite ringSprite;
+    [SerializeField] private Sprite clipSprite;
+    [SerializeField] private Sprite medallionSprite;
+    [SerializeField] private CompactCatchCardView compactCatchCardPrefab;
+    [SerializeField] private Sprite passiveEffectSprite;
 
     private static readonly Color PanelColor = new Color(0.035f, 0.055f, 0.065f, 0.96f);
-    private static readonly Color CardColor = new Color(0.09f, 0.12f, 0.13f, 1f);
-    private static readonly Color NegativeCardColor = new Color(0.19f, 0.075f, 0.065f, 1f);
-    private static readonly Color SelectedCardColor = new Color(0.12f, 0.29f, 0.30f, 1f);
     private static readonly Color AccentColor = new Color(0.20f, 0.70f, 0.72f, 1f);
-    private static readonly Color RigColor = new Color(0.76f, 0.88f, 0.84f, 1f);
     private static readonly Color ApproachingColor = new Color(0.95f, 0.65f, 0.24f, 1f);
     private static readonly Color NegativeColor = new Color(0.94f, 0.34f, 0.28f, 1f);
     private static readonly Color MutedTextColor = new Color(0.66f, 0.72f, 0.73f, 1f);
@@ -23,6 +28,7 @@ public sealed class CatchChainView : MonoBehaviour
     private RectTransform panelRoot;
     private RectTransform contentRoot;
     private RectTransform lineLoadFill;
+    private TMP_Text headingText;
     private Text lineLoadText;
     private Text lineLoadStatusText;
     private Text emptyStateText;
@@ -83,15 +89,7 @@ public sealed class CatchChainView : MonoBehaviour
         panelRoot.offsetMax = Vector2.zero;
         AddImage(panelObject, PanelColor);
 
-        // Keep the same line visible through the panel chrome so the boat and catches read as one rig.
-        GameObject panelRigObject = CreateUiObject("Panel Rig Continuation", panelRoot);
-        RectTransform panelRigRect = panelRigObject.GetComponent<RectTransform>();
-        SetAnchoredRect(panelRigRect, Vector2.zero, new Vector2(0f, 1f), 32f, 0f, 36f, 0f);
-        AddImage(panelRigObject, RigColor);
-
-        Text titleText = CreateText("Title", panelRoot, 20, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
-        SetAnchoredRect(titleText.rectTransform, new Vector2(0f, 1f), Vector2.one, 48f, -40f, -16f, -8f);
-        titleText.text = "CATCH CHAIN";
+        CreateHeading();
 
         lineLoadText = CreateText(
             "Line Load",
@@ -100,7 +98,7 @@ public sealed class CatchChainView : MonoBehaviour
             FontStyle.Bold,
             TextAnchor.MiddleLeft,
             Color.white);
-        SetAnchoredRect(lineLoadText.rectTransform, new Vector2(0f, 1f), new Vector2(0.67f, 1f), 48f, -70f, 0f, -42f);
+        SetAnchoredRect(lineLoadText.rectTransform, new Vector2(0f, 1f), new Vector2(0.67f, 1f), 48f, -92f, 0f, -66f);
 
         lineLoadStatusText = CreateText(
             "Line Load Status",
@@ -109,11 +107,11 @@ public sealed class CatchChainView : MonoBehaviour
             FontStyle.Bold,
             TextAnchor.MiddleRight,
             AccentColor);
-        SetAnchoredRect(lineLoadStatusText.rectTransform, new Vector2(0.5f, 1f), Vector2.one, 0f, -70f, -16f, -42f);
+        SetAnchoredRect(lineLoadStatusText.rectTransform, new Vector2(0.5f, 1f), Vector2.one, 0f, -92f, -16f, -66f);
 
         GameObject loadBarObject = CreateUiObject("Line Load Bar", panelRoot);
         RectTransform loadBarRect = loadBarObject.GetComponent<RectTransform>();
-        SetAnchoredRect(loadBarRect, new Vector2(0f, 1f), Vector2.one, 48f, -94f, -16f, -80f);
+        SetAnchoredRect(loadBarRect, new Vector2(0f, 1f), Vector2.one, 48f, -116f, -16f, -102f);
         AddImage(loadBarObject, new Color(0.16f, 0.20f, 0.21f, 1f));
 
         GameObject loadFillObject = CreateUiObject("Fill", loadBarRect);
@@ -126,7 +124,7 @@ public sealed class CatchChainView : MonoBehaviour
 
         GameObject viewportObject = CreateUiObject("Viewport", panelRoot);
         RectTransform viewport = viewportObject.GetComponent<RectTransform>();
-        SetAnchoredRect(viewport, Vector2.zero, Vector2.one, 12f, 12f, -12f, -108f);
+        SetAnchoredRect(viewport, Vector2.zero, Vector2.one, 12f, 12f, -12f, -130f);
         Image viewportImage = AddImage(viewportObject, new Color(0f, 0f, 0f, 0.01f));
         viewportImage.raycastTarget = true;
         Mask mask = viewportObject.AddComponent<Mask>();
@@ -134,8 +132,10 @@ public sealed class CatchChainView : MonoBehaviour
 
         GameObject rigObject = CreateUiObject("Central Fishing Rig", viewport);
         RectTransform rigRect = rigObject.GetComponent<RectTransform>();
-        SetAnchoredRect(rigRect, new Vector2(0f, 0f), new Vector2(0f, 1f), 20f, 0f, 24f, 0f);
-        AddImage(rigObject, RigColor);
+        SetAnchoredRect(rigRect, new Vector2(0f, 0f), new Vector2(0f, 1f), 21f, 0f, 43f, 0f);
+        Image rigImage = AddImage(rigObject, Color.white);
+        rigImage.sprite = rodSprite;
+        rigImage.type = Image.Type.Tiled;
 
         GameObject contentObject = CreateUiObject("Content", viewport);
         contentRoot = contentObject.GetComponent<RectTransform>();
@@ -171,8 +171,56 @@ public sealed class CatchChainView : MonoBehaviour
             FontStyle.Italic,
             TextAnchor.MiddleCenter,
             MutedTextColor);
-        SetAnchoredRect(emptyStateText.rectTransform, Vector2.zero, Vector2.one, 48f, 18f, -18f, -18f);
+        SetAnchoredRect(emptyStateText.rectTransform, Vector2.zero, Vector2.one, 112f, 18f, -18f, -18f);
         emptyStateText.text = "No catches attached";
+    }
+
+    /// <summary>
+    /// Creates the supplied Catch Rig heading plate with independently localizable text.
+    /// </summary>
+    private void CreateHeading()
+    {
+        GameObject headingObject = CreateUiObject("Catch Rig Heading", panelRoot);
+        RectTransform headingRect = headingObject.GetComponent<RectTransform>();
+        headingRect.anchorMin = new Vector2(0.5f, 1f);
+        headingRect.anchorMax = new Vector2(0.5f, 1f);
+        headingRect.pivot = new Vector2(0.5f, 1f);
+        headingRect.anchoredPosition = new Vector2(0f, -4f);
+        headingRect.sizeDelta = new Vector2(360f, 60f);
+
+        Image headingImage = AddImage(headingObject, Color.white);
+        headingImage.sprite = headingSprite;
+        headingImage.type = Image.Type.Simple;
+
+        GameObject labelObject = CreateUiObject("Label", headingRect);
+        TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
+        headingText = label;
+        label.font = headingFont != null ? headingFont : TMP_Settings.defaultFontAsset;
+        label.fontSize = 28f;
+        label.fontStyle = FontStyles.Normal;
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = new Color(0.93f, 0.84f, 0.61f, 1f);
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 20f;
+        label.fontSizeMax = 28f;
+        label.textWrappingMode = TextWrappingModes.NoWrap;
+        label.overflowMode = TextOverflowModes.Ellipsis;
+        label.raycastTarget = false;
+        SetAnchoredRect(label.rectTransform, Vector2.zero, Vector2.one, 54f, 10f, -54f, -10f);
+        label.text = string.IsNullOrWhiteSpace(headingLabel) ? "CATCH RIG" : headingLabel;
+    }
+
+    /// <summary>
+    /// Updates the heading independently of its supplied frame for localization.
+    /// </summary>
+    public void SetHeading(string localizedHeading)
+    {
+        headingLabel = string.IsNullOrWhiteSpace(localizedHeading) ? "CATCH RIG" : localizedHeading;
+
+        if (headingText != null)
+        {
+            headingText.text = headingLabel;
+        }
     }
 
     /// <summary>
@@ -216,81 +264,78 @@ public sealed class CatchChainView : MonoBehaviour
         int catchIndex,
         bool isSelected)
     {
-        CardDefinition card = caughtInstance?.Definition;
-        bool hasNegativeEffect = HasNegativeEffect(activeEffects, catchIndex);
         GameObject rowObject = CreateUiObject($"Catch Rig Row {catchIndex + 1}", contentRoot);
         entryObjects.Add(rowObject);
 
         LayoutElement layoutElement = rowObject.AddComponent<LayoutElement>();
-        layoutElement.minHeight = 124f;
-        layoutElement.preferredHeight = 124f;
+        layoutElement.minHeight = 196f;
+        layoutElement.preferredHeight = 196f;
         layoutElement.flexibleHeight = 0f;
 
-        GameObject rigSegmentObject = CreateUiObject("Rig Segment", rowObject.transform);
-        RectTransform rigSegmentRect = rigSegmentObject.GetComponent<RectTransform>();
-        SetAnchoredRect(rigSegmentRect, new Vector2(0f, 0f), new Vector2(0f, 1f), 20f, 0f, 24f, 0f);
-        AddImage(rigSegmentObject, RigColor);
+        CreateCatchRigPart(
+            "Rig Ring",
+            rowObject.transform,
+            ringSprite,
+            new Vector2(32f, 0f),
+            new Vector2(46f, 46f),
+            0f);
+        CreateCatchRigPart(
+            "Attachment Clip",
+            rowObject.transform,
+            clipSprite,
+            new Vector2(65f, 0f),
+            new Vector2(48f, 48f),
+            52f);
+        CreateCatchRigPart(
+            "Anchor Medallion",
+            rowObject.transform,
+            medallionSprite,
+            new Vector2(96f, 0f),
+            new Vector2(48f, 48f),
+            0f);
 
-        GameObject connectorObject = CreateUiObject("Attachment Line", rowObject.transform);
-        RectTransform connectorRect = connectorObject.GetComponent<RectTransform>();
-        SetAnchoredRect(connectorRect, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), 22f, -2f, 54f, 2f);
-        AddImage(connectorObject, RigColor);
+        if (compactCatchCardPrefab == null)
+        {
+            Debug.LogError("CatchChainView requires a serialized CompactCatchCardView prefab.", this);
+            return;
+        }
 
-        GameObject knotObject = CreateUiObject("Attachment Knot", rowObject.transform);
-        RectTransform knotRect = knotObject.GetComponent<RectTransform>();
-        SetAnchoredRect(knotRect, new Vector2(0f, 0.5f), new Vector2(0f, 0.5f), 16f, -6f, 28f, 6f);
-        AddImage(knotObject, isSelected ? Color.white : hasNegativeEffect ? NegativeColor : AccentColor);
-
-        GameObject cardObject = CreateUiObject($"Catch Card {catchIndex + 1}", rowObject.transform);
-        RectTransform cardRect = cardObject.GetComponent<RectTransform>();
-        SetAnchoredRect(cardRect, Vector2.zero, Vector2.one, 52f, 4f, -4f, -4f);
-
-        Image background = AddImage(
-            cardObject,
-            isSelected ? SelectedCardColor : hasNegativeEffect ? NegativeCardColor : CardColor);
-        background.raycastTarget = true;
-        Button selectButton = cardObject.AddComponent<Button>();
-        selectButton.targetGraphic = background;
+        CompactCatchCardView cardView = Instantiate(compactCatchCardPrefab, rowObject.transform);
+        cardView.name = $"Catch Card {catchIndex + 1}";
+        RectTransform cardRect = cardView.GetComponent<RectTransform>();
+        SetAnchoredRect(cardRect, Vector2.zero, Vector2.one, 112f, 8f, -4f, -8f);
+        cardView.SetCard(
+            caughtInstance,
+            HasActiveEffect(activeEffects, catchIndex) ? passiveEffectSprite : null);
+        cardView.SetState(isSelected ? CompactCatchCardState.Selected : CompactCatchCardState.Normal);
         int capturedCatchIndex = catchIndex;
-        selectButton.onClick.AddListener(() => SelectCatch(capturedCatchIndex));
+        cardView.SetSelectionHandler(() => SelectCatch(capturedCatchIndex));
+    }
 
-        GameObject accentObject = CreateUiObject("Card Accent", cardObject.transform);
-        RectTransform accentRect = accentObject.GetComponent<RectTransform>();
-        SetAnchoredRect(accentRect, Vector2.zero, new Vector2(0f, 1f), 0f, 0f, 5f, 0f);
-        AddImage(accentObject, isSelected ? Color.white : hasNegativeEffect ? NegativeColor : AccentColor);
+    /// <summary>
+    /// Creates one authored connector part for a catch row without applying selection-state tint.
+    /// </summary>
+    private static void CreateCatchRigPart(
+        string objectName,
+        Transform parent,
+        Sprite sprite,
+        Vector2 anchoredPosition,
+        Vector2 size,
+        float rotationDegrees)
+    {
+        GameObject partObject = CreateUiObject(objectName, parent);
+        RectTransform partRect = partObject.GetComponent<RectTransform>();
+        partRect.anchorMin = new Vector2(0f, 0.5f);
+        partRect.anchorMax = new Vector2(0f, 0.5f);
+        partRect.pivot = new Vector2(0.5f, 0.5f);
+        partRect.anchoredPosition = anchoredPosition;
+        partRect.sizeDelta = size;
+        partRect.localRotation = Quaternion.Euler(0f, 0f, rotationDegrees);
 
-        Text orderText = CreateText(
-            "Order",
-            cardObject.transform,
-            15,
-            FontStyle.Bold,
-            TextAnchor.UpperCenter,
-            MutedTextColor);
-        SetAnchoredRect(orderText.rectTransform, Vector2.zero, new Vector2(0f, 1f), 10f, 8f, 42f, -8f);
-        orderText.text = (catchIndex + 1).ToString("00");
-
-        Text nameText = CreateText("Name", cardObject.transform, 17, FontStyle.Bold, TextAnchor.UpperLeft, Color.white);
-        SetAnchoredRect(nameText.rectTransform, Vector2.zero, Vector2.one, 50f, 82f, -12f, -8f);
-        nameText.text = card == null ? "Unknown Catch" : card.DisplayName;
-
-        Text statsText = CreateText("Stats", cardObject.transform, 14, FontStyle.Bold, TextAnchor.UpperLeft, Color.white);
-        SetAnchoredRect(statsText.rectTransform, Vector2.zero, Vector2.one, 50f, 56f, -12f, -34f);
-        statsText.supportRichText = true;
-        statsText.text = caughtInstance == null
-            ? "WEIGHT --     VALUE --"
-            : $"<color=#F2A65A>WEIGHT {BuildModifiedStat(caughtInstance.CurrentWeight, caughtInstance.WeightModifier)}</color>     "
-                + $"<color=#72D39B>VALUE {BuildModifiedStat(caughtInstance.CurrentValue, caughtInstance.ValueModifier)}</color>";
-
-        Text effectsText = CreateText(
-            "Effects",
-            cardObject.transform,
-            12,
-            FontStyle.Normal,
-            TextAnchor.UpperLeft,
-            MutedTextColor);
-        SetAnchoredRect(effectsText.rectTransform, Vector2.zero, Vector2.one, 50f, 8f, -12f, -58f);
-        effectsText.supportRichText = true;
-        effectsText.text = BuildEffectsText(activeEffects, catchIndex);
+        Image partImage = AddImage(partObject, Color.white);
+        partImage.sprite = sprite;
+        partImage.type = Image.Type.Simple;
+        partImage.preserveAspect = true;
     }
 
     /// <summary>
@@ -299,20 +344,6 @@ public sealed class CatchChainView : MonoBehaviour
     private void SelectCatch(int catchIndex)
     {
         selectCatchAction?.Invoke(catchIndex);
-    }
-
-    /// <summary>
-    /// Formats a resolved stat and makes any interaction modifier explicit.
-    /// </summary>
-    private static string BuildModifiedStat(int currentValue, int modifier)
-    {
-        if (modifier == 0)
-        {
-            return currentValue.ToString();
-        }
-
-        string sign = modifier > 0 ? "+" : string.Empty;
-        return $"{currentValue} ({sign}{modifier})";
     }
 
     /// <summary>
@@ -332,51 +363,9 @@ public sealed class CatchChainView : MonoBehaviour
     }
 
     /// <summary>
-    /// Builds readable effect lines for one Catch Chain position.
+    /// Checks whether the compact card should show its optional passive-effect icon.
     /// </summary>
-    private static string BuildEffectsText(ActiveCatchEffectRecord[] activeEffects, int catchIndex)
-    {
-        StringBuilder summary = new StringBuilder();
-
-        for (int i = 0; i < activeEffects.Length; i++)
-        {
-            ActiveCatchEffectRecord record = activeEffects[i];
-
-            if (record == null || record.SourceCatchIndex != catchIndex || record.Effect == null)
-            {
-                continue;
-            }
-
-            if (summary.Length > 0)
-            {
-                summary.AppendLine();
-            }
-
-            bool isNegative = record.Effect.EffectTone == CardEffectTone.Negative;
-            string label = isNegative ? "DOWNSIDE" : BuildEffectLabel(record.ActiveTrigger);
-            string color = isNegative ? "#EF675B" : "#58C5C7";
-            string description = string.IsNullOrWhiteSpace(record.Effect.ReminderText)
-                ? record.Effect.EffectType.ToString()
-                : record.Effect.ReminderText;
-
-            summary.Append($"<color={color}><b>{label}</b></color>  {description}");
-        }
-
-        return summary.Length == 0 ? "No active effect" : summary.ToString();
-    }
-
-    /// <summary>
-    /// Returns the display label for an active effect trigger.
-    /// </summary>
-    private static string BuildEffectLabel(CardEffectTrigger trigger)
-    {
-        return trigger == CardEffectTrigger.WhenCaught ? "ON CATCH" : "ACTIVE";
-    }
-
-    /// <summary>
-    /// Checks whether one catch has an explicitly negative tracked effect.
-    /// </summary>
-    private static bool HasNegativeEffect(ActiveCatchEffectRecord[] activeEffects, int catchIndex)
+    private static bool HasActiveEffect(ActiveCatchEffectRecord[] activeEffects, int catchIndex)
     {
         for (int i = 0; i < activeEffects.Length; i++)
         {
@@ -384,8 +373,7 @@ public sealed class CatchChainView : MonoBehaviour
 
             if (record != null
                 && record.SourceCatchIndex == catchIndex
-                && record.Effect != null
-                && record.Effect.EffectTone == CardEffectTone.Negative)
+                && record.Effect != null)
             {
                 return true;
             }

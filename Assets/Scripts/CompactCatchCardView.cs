@@ -15,6 +15,9 @@ public enum CompactCatchCardState
 /// <summary>Displays one catch in the rig without reproducing the full creature rules face.</summary>
 public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    private static readonly Color TitleColor = new Color(0.937f, 0.886f, 0.761f, 1f);
+    private static readonly Color StatColor = new Color(0.082f, 0.239f, 0.239f, 1f);
+
     [Header("Content")]
     [SerializeField] private Image portraitImage;
     [SerializeField] private TMP_Text nameText;
@@ -103,8 +106,31 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         SetText(nameText, displayName);
         SetText(weightText, weight);
         SetText(valueText, value);
+        ConfigureTextPresentation();
         SetImage(portraitImage, portrait);
         SetImage(passiveEffectIcon, passiveIcon);
+    }
+
+    /// <summary>Aligns runtime text with the master card's authored title and stat regions.</summary>
+    private void ConfigureTextPresentation()
+    {
+        if (nameText != null)
+        {
+            nameText.alignment = TextAlignmentOptions.Center;
+            nameText.color = TitleColor;
+        }
+
+        if (weightText != null)
+        {
+            weightText.alignment = TextAlignmentOptions.Center;
+            weightText.color = StatColor;
+        }
+
+        if (valueText != null)
+        {
+            valueText.alignment = TextAlignmentOptions.Center;
+            valueText.color = StatColor;
+        }
     }
 
     private void ApplyState()

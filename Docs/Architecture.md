@@ -359,11 +359,13 @@ Role:
 Presentation component for the visible Catch Chain panel.
 
 Owns:
+- Displaying the supplied blank Catch Rig heading with independently localizable TextMeshPro text
 - Displaying catches in current acquisition order
 - Clearly separated current weight and value labels, including modifiers
-- Per-catch active effect text
+- Optional passive-effect icon when the catch has an active tracked effect
 - Distinct visual treatment for explicitly negative effects
-- Continuous fishing rig with per-catch branch lines and attachment knots
+- Continuous authored brass rod tiled through the chain viewport
+- Separate authored ring, rotated clip, and anchor medallion instances for every catch row
 - Independent catch-card frames separated from the rig and neighboring cards
 - Catch selection feedback and forwarding the selected index to the controller
 - Current Load / Capacity display
@@ -675,7 +677,7 @@ It renders state supplied by `FishingRunController` and forwards player commands
 
 `CreatureCardView` is a serialized layered prefab that composes the supplied blank creature base, hidden stencil artwork mask, optional approved overflow layer, safe title/stat/rules regions, hollow sliced frame, and exactly four rarity sockets. Runtime fields use TextMesh Pro and update the type, name, resolved Weight, resolved Value, rules text, and one-to-four filled anchors without changing authored geometry. A complete user-supplied card face remains supported and replaces the generic base/artwork/frame combination; hidden-information effects conceal dynamic details in place without adding a visible state label.
 
-`CompactCatchCardView` is the Catch Rig's serialized horizontal card. It displays only a catch name, portrait, resolved Weight and Value, and an optional passive-effect icon; it deliberately has no full rules field. It owns a stable left-side rig attachment transform, click forwarding, pointer hover, and visually distinct selected, disabled, and release-candidate layers. It does not decide whether a catch may be selected or released.
+`CompactCatchCardView` is the Catch Rig's serialized horizontal card. Its normal surface is the supplied `fishing-ui-catch-chain-card-master.png`; Unity places the catch name, creature artwork, resolved Weight and Value, and an optional passive-effect icon into the authored blank regions. It deliberately has no full rules field. `CatchChainView` instantiates one compact-card prefab per caught creature beyond the separate rig connector gutter. The view owns a stable left-side rig attachment transform, click forwarding, pointer hover, and visually distinct selected, disabled, and release-candidate layers. It does not decide whether a catch may be selected or released.
 
 `TechniqueCardView` is a serialized portrait card with a fixed slot root and a separately animated visual root. It owns masked equipment artwork, TMP name/rules/keyword fields, normal/hovered/selected/playable/disabled presentation, and forwarding a use command. Hover elevation is bounded inside the visual root; hand layout and effect resolution remain outside this component. Playable and disabled states carry explicit text/icon cues in addition to color and frame changes.
 

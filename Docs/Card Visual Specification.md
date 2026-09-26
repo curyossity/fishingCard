@@ -68,3 +68,7 @@ Keep gameplay rules out of the card view. The view reads supplied card data and 
 This specification currently applies to creature/catch cards. Technique cards, hazards, opportunities, treasure, locations, and core action cards may reuse parts of this language, but their final card-face contracts require their own supplied references or explicit user approval.
 
 This user-approved card-face contract overrides earlier prototype assumptions that tags or runtime-state labels must be printed directly on creature cards.
+
+## Compact Catch Chain Cards
+
+Catch Chain summaries use the reusable supplied master `Assets/FishingUIAssets/Cards/CompactCatch/fishing-ui-catch-chain-card-master.png`, rather than the full per-creature encounter face. Unity owns the compact card's creature name, creature artwork, resolved Weight, resolved Value, and optional passive-effect icon. Do not add full rules text, tags, modifier deltas, catch order, or internal runtime-state labels to this compact face. The rig ring, clip, and medallion remain separate sibling images and must not be merged into the card sprite. Valid-release, invalid-release, focus, warning, and critical presentation remains in separate overlays.

@@ -689,16 +689,16 @@ public static class Phase3ComponentPrefabBuilder
     {
         GameObject root = CreateUiObject("CompactCatchCard", null);
         RectTransform rootRect = root.GetComponent<RectTransform>();
-        rootRect.sizeDelta = new Vector2(480f, 320f);
+        rootRect.sizeDelta = new Vector2(480f, 322f);
         Image background = root.AddComponent<Image>();
-        background.sprite = LoadSprite("Cards/CompactCatch/compact-catch-card-base.png");
+        background.sprite = LoadSprite("Cards/CompactCatch/fishing-ui-catch-chain-card-master.png");
         background.raycastTarget = true;
         Button button = root.AddComponent<Button>();
         button.targetGraphic = background;
         CompactCatchCardView view = root.AddComponent<CompactCatchCardView>();
 
         Image portrait = CreateImage("Portrait", rootRect, null, Image.Type.Simple);
-        SetAnchoredRect(portrait.rectTransform, new Vector2(0.075f, 0.18f), new Vector2(0.34f, 0.82f));
+        SetAnchoredRect(portrait.rectTransform, new Vector2(0.08f, 0.29f), new Vector2(0.92f, 0.76f));
         portrait.preserveAspect = true;
 
         Image disabled = CreateImage(
@@ -708,21 +708,21 @@ public static class Phase3ComponentPrefabBuilder
             Image.Type.Simple);
         disabled.gameObject.SetActive(false);
 
-        TextMeshProUGUI nameText = CreateText("Name", rootRect, displayFont, 29f, TextAlignmentOptions.MidlineLeft);
-        SetAnchoredRect(nameText.rectTransform, new Vector2(0.37f, 0.66f), new Vector2(0.91f, 0.88f));
+        TextMeshProUGUI nameText = CreateText("Name", rootRect, displayFont, 29f, TextAlignmentOptions.Center);
+        SetAnchoredRect(nameText.rectTransform, new Vector2(0.19f, 0.80f), new Vector2(0.81f, 0.94f));
         nameText.color = new Color32(239, 226, 194, 255);
         nameText.textWrappingMode = TextWrappingModes.NoWrap;
         nameText.fontSizeMin = 14f;
 
-        CreateStatIcon("Weight Icon", rootRect, "Icons/weight.png", new Vector2(0.38f, 0.39f), new Vector2(0.48f, 0.59f));
-        TextMeshProUGUI weightText = CreateText("Weight", rootRect, bodyFont, 30f, TextAlignmentOptions.MidlineLeft);
-        SetAnchoredRect(weightText.rectTransform, new Vector2(0.48f, 0.39f), new Vector2(0.61f, 0.59f));
-        weightText.color = new Color32(239, 226, 194, 255);
+        CreateStatIcon("Weight Icon", rootRect, "Icons/weight.png", new Vector2(0.08f, 0.07f), new Vector2(0.18f, 0.24f));
+        TextMeshProUGUI weightText = CreateText("Weight", rootRect, bodyFont, 30f, TextAlignmentOptions.Center);
+        SetAnchoredRect(weightText.rectTransform, new Vector2(0.18f, 0.07f), new Vector2(0.46f, 0.24f));
+        weightText.color = new Color32(21, 61, 61, 255);
         weightText.fontStyle = FontStyles.Bold;
 
-        CreateStatIcon("Value Icon", rootRect, "Icons/value.png", new Vector2(0.64f, 0.39f), new Vector2(0.74f, 0.59f));
-        TextMeshProUGUI valueText = CreateText("Value", rootRect, bodyFont, 30f, TextAlignmentOptions.MidlineLeft);
-        SetAnchoredRect(valueText.rectTransform, new Vector2(0.74f, 0.39f), new Vector2(0.88f, 0.59f));
+        CreateStatIcon("Value Icon", rootRect, "Icons/value.png", new Vector2(0.55f, 0.07f), new Vector2(0.65f, 0.24f));
+        TextMeshProUGUI valueText = CreateText("Value", rootRect, bodyFont, 30f, TextAlignmentOptions.Center);
+        SetAnchoredRect(valueText.rectTransform, new Vector2(0.65f, 0.07f), new Vector2(0.93f, 0.24f));
         valueText.color = weightText.color;
         valueText.fontStyle = FontStyles.Bold;
 
@@ -731,7 +731,7 @@ public static class Phase3ComponentPrefabBuilder
             rootRect,
             LoadSprite("Markers/status-socket-empty.png"),
             Image.Type.Simple);
-        SetAnchoredRect(passiveSocket.rectTransform, new Vector2(0.80f, 0.12f), new Vector2(0.90f, 0.32f));
+        SetAnchoredRect(passiveSocket.rectTransform, new Vector2(0.84f, 0.66f), new Vector2(0.94f, 0.83f));
         passiveSocket.preserveAspect = true;
         Image passiveIcon = CreateImage("Passive Effect Icon", passiveSocket.rectTransform, null, Image.Type.Simple);
         SetStretchOffsets(passiveIcon.rectTransform, 8f, 8f, -8f, -8f);
@@ -744,14 +744,7 @@ public static class Phase3ComponentPrefabBuilder
             new Vector2(0f, 0.5f),
             new Vector2(0f, 0.5f));
         attachment.sizeDelta = new Vector2(40f, 40f);
-        Image attachmentKnot = CreateImage(
-            "Attachment Knot",
-            attachment,
-            LoadSprite("Markers/status-socket-empty.png"),
-            Image.Type.Simple);
-        attachmentKnot.preserveAspect = true;
 
-        Image frame = CreateStateFrame("Card Frame", rootRect, "Frames/compact-card-frame-9slice.png", 3.2f);
         Image hover = CreateStateFrame("Hover Frame", rootRect, "Controls/card-hover-frame-9slice.png", 3.2f);
         Image selected = CreateStateFrame("Selected Frame", rootRect, "Controls/card-selected-frame-9slice.png", 3.2f);
         Image releaseCandidate = CreateStateFrame("Release Candidate Frame", rootRect, "Overlays/release-valid-frame.png", 3.2f);

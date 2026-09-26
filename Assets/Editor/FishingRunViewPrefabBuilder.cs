@@ -12,6 +12,7 @@ public static class FishingRunViewPrefabBuilder
 {
     private const string PrefabPath = "Assets/Prefabs/UI/FishingRunView.prefab";
     private const string CreatureCardPrefabPath = "Assets/Prefabs/UI/Components/CreatureCardView.prefab";
+    private const string CompactCatchCardPrefabPath = "Assets/Prefabs/UI/Components/CompactCatchCard.prefab";
     private const string NavigationFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SDF.asset";
     private const string ScenePath = "Assets/Scenes/SampleScene.unity";
     private const string ValidationDirectory = "Docs/Validation/Phase2";
@@ -143,7 +144,7 @@ public static class FishingRunViewPrefabBuilder
         TechniqueHandView techniqueHandView = techniqueHand.gameObject.AddComponent<TechniqueHandView>();
         RunResultView runResultView = modalLayer.gameObject.AddComponent<RunResultView>();
 
-        SetSerializedBoolean(catchChainView, "fillParentRegion", true);
+        ConfigureCatchChainView(catchChainView);
         SetSerializedBoolean(techniqueHandView, "fillParentRegion", true);
         ConfigureRunView(
             runView,
@@ -379,6 +380,38 @@ public static class FishingRunViewPrefabBuilder
         SetObjectReference(serializedView, "topNavigationGroup", topNavigationGroup);
         SetObjectReference(serializedView, "mainContentGroup", mainContentGroup);
         SetObjectReference(serializedView, "techniqueHandGroup", techniqueHandGroup);
+        serializedView.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    /// <summary>
+    /// Configures the Catch Rig's supplied heading while leaving its localized text runtime-owned.
+    /// </summary>
+    private static void ConfigureCatchChainView(CatchChainView catchChainView)
+    {
+        SerializedObject serializedView = new SerializedObject(catchChainView);
+        SerializedProperty fillParent = serializedView.FindProperty("fillParentRegion");
+        Require(fillParent != null, "CatchChainView fill-parent property is unavailable.");
+        fillParent.boolValue = true;
+        SetObjectReference(
+            serializedView,
+            "headingSprite",
+            LoadSprite("Frames/fishing-ui-catch-rig-heading-blank.png"));
+        SetObjectReference(
+            serializedView,
+            "headingFont",
+            AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(NavigationFontPath));
+        SetObjectReference(serializedView, "rodSprite", LoadSprite("Rig/fishing-ui-rig-rod.png"));
+        SetObjectReference(serializedView, "ringSprite", LoadSprite("Rig/fishing-ui-rig-ring.png"));
+        SetObjectReference(serializedView, "clipSprite", LoadSprite("Rig/fishing-ui-rig-clip.png"));
+        SetObjectReference(serializedView, "medallionSprite", LoadSprite("Rig/fishing-ui-rig-medallion.png"));
+        SetObjectReference(
+            serializedView,
+            "compactCatchCardPrefab",
+            AssetDatabase.LoadAssetAtPath<CompactCatchCardView>(CompactCatchCardPrefabPath));
+        SetObjectReference(serializedView, "passiveEffectSprite", LoadSprite("Icons/info.png"));
+        SerializedProperty headingLabel = serializedView.FindProperty("headingLabel");
+        Require(headingLabel != null, "CatchChainView heading label property is unavailable.");
+        headingLabel.stringValue = "CATCH RIG";
         serializedView.ApplyModifiedPropertiesWithoutUndo();
     }
 
