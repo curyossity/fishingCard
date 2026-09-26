@@ -85,10 +85,14 @@ public static class FishingRunViewPrefabBuilder
         RectTransform topNavigation = CreateRegion(
             "TopNavigationBar",
             rootRect,
-            new Vector2(0.015f, 0.915f),
-            new Vector2(0.985f, 0.985f));
+            new Vector2(0f, 0.9259259f),
+            Vector2.one);
         CanvasGroup topNavigationGroup = topNavigation.gameObject.AddComponent<CanvasGroup>();
-        AddSlicedImage(topNavigation, "Top Navigation Surface", "Frames/top-navigation-base-9slice.png", Color.white);
+        AddSimpleImage(
+            topNavigation,
+            "Top Navigation Frame",
+            "Frames/fishing-ui-top-bar-1920x80.png",
+            Color.white);
 
         RectTransform mainContent = CreateRegion(
             "MainContent",

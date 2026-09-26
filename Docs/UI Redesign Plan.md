@@ -16,6 +16,8 @@ The populated reference currently retained in the project is `Assets/FishingUIAs
 
 The current full-screen background is `Backgrounds/fishing-ui-background-1920x1080.png`. It is a complete opaque 1920 x 1080 nautical-chart surface with no dynamic fields or alternate state. Render it as one aspect-preserved background image; do not combine it with the earlier paper grain, bathymetric, navigation-chart, vignette, or screen-border layers. Warning, release-mode, transition, and modal overlays remain separate runtime layers above it.
 
+The current top-navigation frame is `Frames/fishing-ui-top-bar-1920x80.png`. Display it edge-to-edge across the top 80 reference pixels as a complete unsliced image. Region, depth, deck count, icons, and buttons remain separate runtime children above the frame, and child buttons own their interaction states. The supplied PNG is 2172 x 102 source pixels despite its delivery name and 1920 x 80 display contract; retain those source pixels and apply the authored display size in the prefab.
+
 The visual assets will be produced separately and supplied to you. You must not generate, redraw, reinterpret, or replace the supplied artwork. Your job is to import the assets, assemble prefabs, implement layout and interaction states, and bind runtime data.
 
 ## Asset ownership contract
