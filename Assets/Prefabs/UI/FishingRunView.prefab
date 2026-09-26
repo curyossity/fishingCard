@@ -131,6 +131,10 @@ MonoBehaviour:
   medallionSprite: {fileID: 21300000, guid: 41ad0c8a5d4f4d79bcfc2ae843ed045e, type: 3}
   compactCatchCardPrefab: {fileID: 3052709924166712642, guid: c08b7e360eb85484e99deff54601ccc5, type: 3}
   passiveEffectSprite: {fileID: 21300000, guid: 7f170000000040008000000000000027, type: 3}
+  lineLoadPanelSprite: {fileID: 21300000, guid: fdb2b632c28a7dd448fa4442a3b671dc, type: 3}
+  lineLoadEmptySprite: {fileID: 21300000, guid: 48d144611f0c3f343b20c766e5ff001e, type: 3}
+  lineLoadFilledSprite: {fileID: 21300000, guid: 33057e5b2b9eded459eb3787994739c8, type: 3}
+  lineLoadDangerSprite: {fileID: 21300000, guid: 2b786cd80109d724ebefe64a4973fd5f, type: 3}
 --- !u!1 &1096638076699676020
 GameObject:
   m_ObjectHideFlags: 0

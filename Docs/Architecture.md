@@ -368,8 +368,9 @@ Owns:
 - Separate authored ring, rotated clip, and anchor medallion instances for every catch row
 - Independent catch-card frames separated from the rig and neighboring cards
 - Catch selection feedback and forwarding the selected index to the controller
-- Current Load / Capacity display
-- Stable, approaching-limit, and overloaded visual states
+- Supplied blank Line Load panel positioned below the scrolling Catch Rig contents
+- Runtime-owned Load / Capacity label and one pip per capacity slot
+- Supplied empty, filled, and danger pip sprites for stable, approaching-limit, and overloaded visual states
 - Scrollable layout for longer chains
 - Empty Catch Chain presentation
 

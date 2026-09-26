@@ -28,6 +28,8 @@ The current Catch Rig structure uses `Rig/fishing-ui-rig-rod.png`, `Rig/fishing-
 
 The current compact Catch Chain card is `Cards/CompactCatch/fishing-ui-catch-chain-card-master.png` at 1342 x 900. Use it as the complete normal-state surface for the reusable `CompactCatchCardView`; do not add the earlier compact frame or attachment knot over it. Runtime children fill the authored title, artwork, Weight, Value, and optional-icon regions. `CatchChainView` instantiates one prefab per caught creature at the master aspect ratio and gives interaction feedback through separate valid-release, invalid-release, focus, warning, and critical overlays.
 
+The current Line Load display uses `Meters/fishing-ui-line-load-panel-blank.png` at its native 390 x 100 size below the Catch Rig. Its label and values remain dynamic TextMeshPro content. `CatchChainView` creates one pip per capacity slot using the supplied empty, filled, and danger sprites; occupied slots turn coral in the reference-matched approaching range and every occupied capacity slot turns coral when overloaded. The numeric label continues to show load beyond capacity even though the pip row represents capacity slots only.
+
 The visual assets will be produced separately and supplied to you. You must not generate, redraw, reinterpret, or replace the supplied artwork. Your job is to import the assets, assemble prefabs, implement layout and interaction states, and bind runtime data.
 
 ## Asset ownership contract

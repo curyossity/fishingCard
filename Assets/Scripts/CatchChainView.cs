@@ -16,21 +16,23 @@ public sealed class CatchChainView : MonoBehaviour
     [SerializeField] private Sprite medallionSprite;
     [SerializeField] private CompactCatchCardView compactCatchCardPrefab;
     [SerializeField] private Sprite passiveEffectSprite;
+    [SerializeField] private Sprite lineLoadPanelSprite;
+    [SerializeField] private Sprite lineLoadEmptySprite;
+    [SerializeField] private Sprite lineLoadFilledSprite;
+    [SerializeField] private Sprite lineLoadDangerSprite;
 
     private static readonly Color PanelColor = new Color(0.035f, 0.055f, 0.065f, 0.96f);
-    private static readonly Color AccentColor = new Color(0.20f, 0.70f, 0.72f, 1f);
-    private static readonly Color ApproachingColor = new Color(0.95f, 0.65f, 0.24f, 1f);
-    private static readonly Color NegativeColor = new Color(0.94f, 0.34f, 0.28f, 1f);
     private static readonly Color MutedTextColor = new Color(0.66f, 0.72f, 0.73f, 1f);
+    private static readonly Color LineLoadTextColor = new Color(0.19f, 0.22f, 0.20f, 1f);
 
     private readonly List<GameObject> entryObjects = new List<GameObject>();
+    private readonly List<Image> lineLoadPips = new List<Image>();
 
     private RectTransform panelRoot;
     private RectTransform contentRoot;
-    private RectTransform lineLoadFill;
+    private RectTransform lineLoadPipRoot;
     private TMP_Text headingText;
-    private Text lineLoadText;
-    private Text lineLoadStatusText;
+    private TMP_Text lineLoadText;
     private Text emptyStateText;
     private Font uiFont;
     private Action<int> selectCatchAction;
@@ -90,41 +92,11 @@ public sealed class CatchChainView : MonoBehaviour
         AddImage(panelObject, PanelColor);
 
         CreateHeading();
-
-        lineLoadText = CreateText(
-            "Line Load",
-            panelRoot,
-            16,
-            FontStyle.Bold,
-            TextAnchor.MiddleLeft,
-            Color.white);
-        SetAnchoredRect(lineLoadText.rectTransform, new Vector2(0f, 1f), new Vector2(0.67f, 1f), 48f, -92f, 0f, -66f);
-
-        lineLoadStatusText = CreateText(
-            "Line Load Status",
-            panelRoot,
-            12,
-            FontStyle.Bold,
-            TextAnchor.MiddleRight,
-            AccentColor);
-        SetAnchoredRect(lineLoadStatusText.rectTransform, new Vector2(0.5f, 1f), Vector2.one, 0f, -92f, -16f, -66f);
-
-        GameObject loadBarObject = CreateUiObject("Line Load Bar", panelRoot);
-        RectTransform loadBarRect = loadBarObject.GetComponent<RectTransform>();
-        SetAnchoredRect(loadBarRect, new Vector2(0f, 1f), Vector2.one, 48f, -116f, -16f, -102f);
-        AddImage(loadBarObject, new Color(0.16f, 0.20f, 0.21f, 1f));
-
-        GameObject loadFillObject = CreateUiObject("Fill", loadBarRect);
-        lineLoadFill = loadFillObject.GetComponent<RectTransform>();
-        lineLoadFill.anchorMin = Vector2.zero;
-        lineLoadFill.anchorMax = new Vector2(0f, 1f);
-        lineLoadFill.offsetMin = Vector2.zero;
-        lineLoadFill.offsetMax = Vector2.zero;
-        AddImage(loadFillObject, AccentColor);
+        CreateLineLoadPanel();
 
         GameObject viewportObject = CreateUiObject("Viewport", panelRoot);
         RectTransform viewport = viewportObject.GetComponent<RectTransform>();
-        SetAnchoredRect(viewport, Vector2.zero, Vector2.one, 12f, 12f, -12f, -130f);
+        SetAnchoredRect(viewport, Vector2.zero, Vector2.one, 12f, 112f, -12f, -70f);
         Image viewportImage = AddImage(viewportObject, new Color(0f, 0f, 0f, 0.01f));
         viewportImage.raycastTarget = true;
         Mask mask = viewportObject.AddComponent<Mask>();
@@ -176,6 +148,44 @@ public sealed class CatchChainView : MonoBehaviour
     }
 
     /// <summary>
+    /// Creates the supplied blank Line Load panel with runtime-owned text and pip content.
+    /// </summary>
+    private void CreateLineLoadPanel()
+    {
+        GameObject panelObject = CreateUiObject("Line Load Panel", panelRoot);
+        RectTransform loadPanelRect = panelObject.GetComponent<RectTransform>();
+        loadPanelRect.anchorMin = new Vector2(0.5f, 0f);
+        loadPanelRect.anchorMax = new Vector2(0.5f, 0f);
+        loadPanelRect.pivot = new Vector2(0.5f, 0f);
+        loadPanelRect.anchoredPosition = new Vector2(0f, 4f);
+        loadPanelRect.sizeDelta = new Vector2(390f, 100f);
+
+        Image panelImage = AddImage(panelObject, Color.white);
+        panelImage.sprite = lineLoadPanelSprite;
+        panelImage.type = Image.Type.Simple;
+
+        GameObject labelObject = CreateUiObject("Label", loadPanelRect);
+        TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
+        lineLoadText = label;
+        label.font = headingFont != null ? headingFont : TMP_Settings.defaultFontAsset;
+        label.fontSize = 23f;
+        label.fontStyle = FontStyles.Normal;
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = LineLoadTextColor;
+        label.enableAutoSizing = true;
+        label.fontSizeMin = 16f;
+        label.fontSizeMax = 23f;
+        label.textWrappingMode = TextWrappingModes.NoWrap;
+        label.overflowMode = TextOverflowModes.Ellipsis;
+        label.raycastTarget = false;
+        SetAnchoredRect(label.rectTransform, Vector2.zero, Vector2.one, 40f, 46f, -40f, -12f);
+
+        GameObject pipRootObject = CreateUiObject("Capacity Pips", loadPanelRect);
+        lineLoadPipRoot = pipRootObject.GetComponent<RectTransform>();
+        SetAnchoredRect(lineLoadPipRoot, Vector2.zero, Vector2.one, 26f, 13f, -26f, -54f);
+    }
+
+    /// <summary>
     /// Creates the supplied Catch Rig heading plate with independently localizable text.
     /// </summary>
     private void CreateHeading()
@@ -224,35 +234,59 @@ public sealed class CatchChainView : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates Load/Capacity text, fill amount, and safe, approaching, or overloaded treatment.
+    /// Updates Load/Capacity text and the authored empty, filled, or danger sprite for every capacity slot.
     /// </summary>
     private void RefreshLineLoad(int currentLoad, int capacity)
     {
         int safeLoad = Mathf.Max(0, currentLoad);
         int safeCapacity = Mathf.Max(0, capacity);
-        float loadRatio = safeCapacity > 0 ? (float)safeLoad / safeCapacity : (safeLoad > 0 ? 1f : 0f);
         bool isOverloaded = safeLoad > safeCapacity;
-        bool isApproaching = !isOverloaded && safeCapacity > 0 && loadRatio >= 0.75f;
-
-        Color stateColor = AccentColor;
-        string status = "STABLE";
-
-        if (isOverloaded)
-        {
-            stateColor = NegativeColor;
-            status = $"OVERLOADED +{safeLoad - safeCapacity}";
-        }
-        else if (isApproaching)
-        {
-            stateColor = ApproachingColor;
-            status = "APPROACHING LIMIT";
-        }
+        int approachingThreshold = Mathf.CeilToInt(safeCapacity * (2f / 3f));
+        bool isApproaching = !isOverloaded && safeCapacity > 0 && safeLoad >= approachingThreshold;
+        int dangerStartIndex = Mathf.FloorToInt(safeCapacity * 0.5f);
 
         lineLoadText.text = $"LINE LOAD  {safeLoad} / {safeCapacity}";
-        lineLoadStatusText.text = status;
-        lineLoadStatusText.color = stateColor;
-        lineLoadFill.anchorMax = new Vector2(Mathf.Clamp01(loadRatio), 1f);
-        lineLoadFill.GetComponent<Image>().color = stateColor;
+
+        while (lineLoadPips.Count < safeCapacity)
+        {
+            GameObject pipObject = CreateUiObject($"Capacity Pip {lineLoadPips.Count + 1}", lineLoadPipRoot);
+            Image pipImage = AddImage(pipObject, Color.white);
+            pipImage.preserveAspect = true;
+            lineLoadPips.Add(pipImage);
+        }
+
+        const float availableWidth = 338f;
+        float spacing = safeCapacity > 1 ? Mathf.Clamp(6f - safeCapacity * 0.2f, 2f, 5f) : 0f;
+        float pipSize = safeCapacity > 0
+            ? Mathf.Max(4f, Mathf.Min(24f, (availableWidth - spacing * (safeCapacity - 1)) / safeCapacity))
+            : 0f;
+        float rowWidth = safeCapacity > 0 ? pipSize * safeCapacity + spacing * (safeCapacity - 1) : 0f;
+
+        for (int i = 0; i < lineLoadPips.Count; i++)
+        {
+            Image pip = lineLoadPips[i];
+            bool isVisibleSlot = i < safeCapacity;
+            pip.gameObject.SetActive(isVisibleSlot);
+            if (!isVisibleSlot)
+            {
+                continue;
+            }
+
+            bool isOccupied = i < safeLoad;
+            bool isDanger = isOccupied && (isOverloaded || (isApproaching && i >= dangerStartIndex));
+            pip.sprite = isDanger
+                ? lineLoadDangerSprite
+                : (isOccupied ? lineLoadFilledSprite : lineLoadEmptySprite);
+
+            RectTransform pipRect = pip.rectTransform;
+            pipRect.anchorMin = new Vector2(0.5f, 0.5f);
+            pipRect.anchorMax = new Vector2(0.5f, 0.5f);
+            pipRect.pivot = new Vector2(0.5f, 0.5f);
+            pipRect.sizeDelta = new Vector2(pipSize, pipSize);
+            pipRect.anchoredPosition = new Vector2(
+                -rowWidth * 0.5f + pipSize * 0.5f + i * (pipSize + spacing),
+                0f);
+        }
     }
 
     /// <summary>

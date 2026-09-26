@@ -409,6 +409,22 @@ public static class FishingRunViewPrefabBuilder
             "compactCatchCardPrefab",
             AssetDatabase.LoadAssetAtPath<CompactCatchCardView>(CompactCatchCardPrefabPath));
         SetObjectReference(serializedView, "passiveEffectSprite", LoadSprite("Icons/info.png"));
+        SetObjectReference(
+            serializedView,
+            "lineLoadPanelSprite",
+            LoadSprite("Meters/fishing-ui-line-load-panel-blank.png"));
+        SetObjectReference(
+            serializedView,
+            "lineLoadEmptySprite",
+            LoadSprite("Meters/fishing-ui-line-load-indicator-empty.png"));
+        SetObjectReference(
+            serializedView,
+            "lineLoadFilledSprite",
+            LoadSprite("Meters/fishing-ui-line-load-indicator-filled.png"));
+        SetObjectReference(
+            serializedView,
+            "lineLoadDangerSprite",
+            LoadSprite("Meters/fishing-ui-line-load-indicator-danger.png"));
         SerializedProperty headingLabel = serializedView.FindProperty("headingLabel");
         Require(headingLabel != null, "CatchChainView heading label property is unavailable.");
         headingLabel.stringValue = "CATCH RIG";
