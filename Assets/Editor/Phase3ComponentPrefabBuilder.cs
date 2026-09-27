@@ -689,6 +689,10 @@ public static class Phase3ComponentPrefabBuilder
         Image background = root.AddComponent<Image>();
         background.sprite = LoadSprite("Cards/CompactCatch/fishing-ui-catch-chain-card-master.png");
         background.raycastTarget = true;
+        Shadow cardShadow = root.AddComponent<Shadow>();
+        cardShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.62f);
+        cardShadow.effectDistance = new Vector2(8f, -10f);
+        cardShadow.useGraphicAlpha = true;
         Button button = root.AddComponent<Button>();
         button.targetGraphic = background;
         CompactCatchCardView view = root.AddComponent<CompactCatchCardView>();

@@ -826,7 +826,6 @@ public sealed class FishingRunController : MonoBehaviour
                 CurrentEncounterInformationHidden,
                 lineCapacity,
                 catchChainRuntime.CurrentLineLoad,
-                catchChainRuntime.Catches.Length,
                 techniqueDeckRuntime.DrawPile.Length,
                 selectedCatchIndex,
                 runActive && !biomeApexRuntime.NextWatersPresented,

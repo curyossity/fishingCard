@@ -109,7 +109,6 @@ public static class FishingRunViewPrefabBuilder
             mainContent,
             Vector2.zero,
             new Vector2(0.22f, 1f));
-        AddContactShadow(catchRigPanel);
 
         RectTransform encounterPanel = CreateRegion(
             "EncounterPanel",

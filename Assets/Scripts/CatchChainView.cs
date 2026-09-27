@@ -21,8 +21,6 @@ public sealed class CatchChainView : MonoBehaviour
     [SerializeField] private Sprite lineLoadFilledSprite;
     [SerializeField] private Sprite lineLoadDangerSprite;
 
-    private static readonly Color PanelColor = new Color(0.035f, 0.055f, 0.065f, 0.96f);
-    private static readonly Color MutedTextColor = new Color(0.66f, 0.72f, 0.73f, 1f);
     private static readonly Color LineLoadTextColor = new Color(0.19f, 0.22f, 0.20f, 1f);
 
     private readonly List<GameObject> entryObjects = new List<GameObject>();
@@ -33,8 +31,6 @@ public sealed class CatchChainView : MonoBehaviour
     private RectTransform lineLoadPipRoot;
     private TMP_Text headingText;
     private TMP_Text lineLoadText;
-    private Text emptyStateText;
-    private Font uiFont;
     private Action<int> selectCatchAction;
 
     /// <summary>
@@ -63,8 +59,6 @@ public sealed class CatchChainView : MonoBehaviour
 
         CardInstance[] safeCatches = catches ?? Array.Empty<CardInstance>();
         ActiveCatchEffectRecord[] safeEffects = activeEffects ?? Array.Empty<ActiveCatchEffectRecord>();
-        emptyStateText.gameObject.SetActive(safeCatches.Length == 0);
-
         for (int i = 0; i < safeCatches.Length; i++)
         {
             CreateCatchEntry(safeCatches[i], safeEffects, i, i == selectedCatchIndex);
@@ -81,16 +75,12 @@ public sealed class CatchChainView : MonoBehaviour
             return;
         }
 
-        uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-
         GameObject panelObject = CreateUiObject("Catch Chain Panel", transform);
         panelRoot = panelObject.GetComponent<RectTransform>();
         panelRoot.anchorMin = fillParentRegion ? Vector2.zero : new Vector2(0.62f, 0.06f);
         panelRoot.anchorMax = fillParentRegion ? Vector2.one : new Vector2(0.98f, 0.78f);
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
-        AddImage(panelObject, PanelColor);
-
         CreateHeading();
         CreateLineLoadPanel();
 
@@ -108,6 +98,7 @@ public sealed class CatchChainView : MonoBehaviour
         Image rigImage = AddImage(rigObject, Color.white);
         rigImage.sprite = rodSprite;
         rigImage.type = Image.Type.Tiled;
+        AddDropShadow(rigObject, new Vector2(5f, -7f), 0.58f);
 
         GameObject contentObject = CreateUiObject("Content", viewport);
         contentRoot = contentObject.GetComponent<RectTransform>();
@@ -136,15 +127,6 @@ public sealed class CatchChainView : MonoBehaviour
         scrollRect.movementType = ScrollRect.MovementType.Clamped;
         scrollRect.scrollSensitivity = 28f;
 
-        emptyStateText = CreateText(
-            "Empty State",
-            viewport,
-            15,
-            FontStyle.Italic,
-            TextAnchor.MiddleCenter,
-            MutedTextColor);
-        SetAnchoredRect(emptyStateText.rectTransform, Vector2.zero, Vector2.one, 112f, 18f, -18f, -18f);
-        emptyStateText.text = "No catches attached";
     }
 
     /// <summary>
@@ -163,6 +145,7 @@ public sealed class CatchChainView : MonoBehaviour
         Image panelImage = AddImage(panelObject, Color.white);
         panelImage.sprite = lineLoadPanelSprite;
         panelImage.type = Image.Type.Simple;
+        AddDropShadow(panelObject, new Vector2(8f, -10f), 0.62f);
 
         GameObject labelObject = CreateUiObject("Label", loadPanelRect);
         TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
@@ -201,6 +184,7 @@ public sealed class CatchChainView : MonoBehaviour
         Image headingImage = AddImage(headingObject, Color.white);
         headingImage.sprite = headingSprite;
         headingImage.type = Image.Type.Simple;
+        AddDropShadow(headingObject, new Vector2(8f, -10f), 0.62f);
 
         GameObject labelObject = CreateUiObject("Label", headingRect);
         TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
@@ -252,6 +236,7 @@ public sealed class CatchChainView : MonoBehaviour
             GameObject pipObject = CreateUiObject($"Capacity Pip {lineLoadPips.Count + 1}", lineLoadPipRoot);
             Image pipImage = AddImage(pipObject, Color.white);
             pipImage.preserveAspect = true;
+            AddDropShadow(pipObject, new Vector2(2f, -3f), 0.48f);
             lineLoadPips.Add(pipImage);
         }
 
@@ -370,6 +355,7 @@ public sealed class CatchChainView : MonoBehaviour
         partImage.sprite = sprite;
         partImage.type = Image.Type.Simple;
         partImage.preserveAspect = true;
+        AddDropShadow(partObject, new Vector2(4f, -5f), 0.58f);
     }
 
     /// <summary>
@@ -439,27 +425,14 @@ public sealed class CatchChainView : MonoBehaviour
     }
 
     /// <summary>
-    /// Creates a configured legacy UI Text element.
+    /// Adds an alpha-following drop shadow sized for the supplied Catch Rig element.
     /// </summary>
-    private Text CreateText(
-        string objectName,
-        Transform parent,
-        int fontSize,
-        FontStyle fontStyle,
-        TextAnchor alignment,
-        Color color)
+    private static void AddDropShadow(GameObject target, Vector2 distance, float alpha)
     {
-        GameObject textObject = CreateUiObject(objectName, parent);
-        Text text = textObject.AddComponent<Text>();
-        text.font = uiFont;
-        text.fontSize = fontSize;
-        text.fontStyle = fontStyle;
-        text.alignment = alignment;
-        text.color = color;
-        text.raycastTarget = false;
-        text.horizontalOverflow = HorizontalWrapMode.Wrap;
-        text.verticalOverflow = VerticalWrapMode.Truncate;
-        return text;
+        Shadow shadow = target.AddComponent<Shadow>();
+        shadow.effectColor = new Color(0.015f, 0.025f, 0.025f, alpha);
+        shadow.effectDistance = distance;
+        shadow.useGraphicAlpha = true;
     }
 
     /// <summary>

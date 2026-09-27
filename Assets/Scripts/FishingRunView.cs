@@ -124,7 +124,6 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private CanvasGroup mainContentGroup;
     [SerializeField] private CanvasGroup techniqueHandGroup;
 
-    private static readonly Color BoatColor = new Color(0.12f, 0.20f, 0.22f, 1f);
     private static readonly Color AccentColor = new Color(0.24f, 0.74f, 0.70f, 1f);
     private static readonly Color SurfaceColor = new Color(0.88f, 0.67f, 0.25f, 1f);
     private static readonly Color ReleaseColor = new Color(0.78f, 0.32f, 0.28f, 1f);
@@ -143,8 +142,6 @@ public sealed class FishingRunView : MonoBehaviour
     private TMP_Text tensionText;
     private Image tensionFill;
     private CreatureCardView encounterCardView;
-    private Text boatCapacityText;
-    private Text boatCatchCountText;
     private Button descendButton;
     private Button releaseButton;
     private Button surfaceButton;
@@ -177,7 +174,7 @@ public sealed class FishingRunView : MonoBehaviour
     }
 
     /// <summary>
-    /// Redraws the boat, run location, encounter, and permanent action controls from current run state.
+    /// Redraws the run location, encounter, and permanent action controls from current run state.
     /// </summary>
     public void Refresh(
         bool runActive,
@@ -189,7 +186,6 @@ public sealed class FishingRunView : MonoBehaviour
         bool encounterInformationHidden,
         int lineCapacity,
         int currentLineLoad,
-        int catchCount,
         int remainingDeckCount,
         int selectedCatchIndex,
         bool canDescend,
@@ -215,8 +211,6 @@ public sealed class FishingRunView : MonoBehaviour
         biomeText.text = biome == null ? "UNCHARTED WATERS" : biome.DisplayName.ToUpperInvariant();
         depthText.text = $"DEPTH  {Mathf.Max(0, depth)} m";
         deckText.text = $"DECK  {Mathf.Max(0, remainingDeckCount)}";
-        boatCapacityText.text = $"LINE CAPACITY  {Mathf.Max(0, lineCapacity)}";
-        boatCatchCountText.text = $"ATTACHED  {Mathf.Max(0, catchCount)}";
         RefreshDepthZones(biome, depth);
         RefreshTension(currentLineLoad, lineCapacity);
 
@@ -259,7 +253,6 @@ public sealed class FishingRunView : MonoBehaviour
         CreateLocationHeader();
         CreateEncounterCard();
         CreateCoreActions();
-        CreateBoatCardAndRig();
     }
 
     /// <summary>
@@ -763,56 +756,6 @@ public sealed class FishingRunView : MonoBehaviour
         text.overflowMode = TextOverflowModes.Ellipsis;
         text.raycastTarget = false;
         return text;
-    }
-
-    /// <summary>
-    /// Creates the boat/start card and the visible line that joins it to the Catch Chain.
-    /// </summary>
-    private void CreateBoatCardAndRig()
-    {
-        RectTransform parent = catchRigPanel != null ? catchRigPanel : gameplayRoot;
-        GameObject rigObject = CreateUiObject("Fishing Rig", parent);
-        RectTransform rigRect = rigObject.GetComponent<RectTransform>();
-        SetAnchoredRect(
-            rigRect,
-            catchRigPanel != null ? new Vector2(0.10f, 0.76f) : new Vector2(0.66f, 0.765f),
-            catchRigPanel != null ? new Vector2(0.115f, 0.84f) : new Vector2(0.665f, 0.835f),
-            0f,
-            0f,
-            0f,
-            0f);
-        AddImage(rigObject, new Color(0.76f, 0.88f, 0.84f, 1f));
-
-        GameObject boatObject = CreateUiObject("Boat Start Card", parent);
-        RectTransform boatRect = boatObject.GetComponent<RectTransform>();
-        SetAnchoredRect(
-            boatRect,
-            catchRigPanel != null ? new Vector2(0f, 0.82f) : new Vector2(0.66f, 0.83f),
-            catchRigPanel != null ? Vector2.one : new Vector2(0.94f, 0.97f),
-            0f,
-            0f,
-            0f,
-            0f);
-        AddImage(boatObject, BoatColor);
-
-        GameObject accentObject = CreateUiObject("Boat Accent", boatRect);
-        RectTransform accentRect = accentObject.GetComponent<RectTransform>();
-        SetAnchoredRect(accentRect, Vector2.zero, new Vector2(0f, 1f), 0f, 0f, 6f, 0f);
-        AddImage(accentObject, SurfaceColor);
-
-        Text labelText = CreateText("Label", boatRect, 10, FontStyle.Bold, TextAnchor.UpperLeft, SurfaceColor);
-        SetAnchoredRect(labelText.rectTransform, new Vector2(0f, 0.64f), new Vector2(1f, 1f), 14f, 0f, -10f, -6f);
-        labelText.text = "START CARD";
-
-        Text nameText = CreateText("Name", boatRect, 18, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
-        SetAnchoredRect(nameText.rectTransform, new Vector2(0f, 0.32f), new Vector2(1f, 0.78f), 14f, 0f, -10f, 0f);
-        nameText.text = "FISHING BOAT";
-
-        boatCapacityText = CreateText("Capacity", boatRect, 11, FontStyle.Bold, TextAnchor.LowerLeft, MutedTextColor);
-        SetAnchoredRect(boatCapacityText.rectTransform, Vector2.zero, new Vector2(0.62f, 0.38f), 14f, 7f, 0f, 0f);
-
-        boatCatchCountText = CreateText("Catch Count", boatRect, 11, FontStyle.Bold, TextAnchor.LowerRight, MutedTextColor);
-        SetAnchoredRect(boatCatchCountText.rectTransform, new Vector2(0.55f, 0f), new Vector2(1f, 0.38f), 0f, 7f, -10f, 0f);
     }
 
     /// <summary>
