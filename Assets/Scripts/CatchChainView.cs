@@ -81,6 +81,7 @@ public sealed class CatchChainView : MonoBehaviour
         panelRoot.anchorMax = fillParentRegion ? Vector2.one : new Vector2(0.98f, 0.78f);
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
+        CreateRigRod();
         CreateHeading();
         CreateLineLoadPanel();
 
@@ -91,14 +92,6 @@ public sealed class CatchChainView : MonoBehaviour
         viewportImage.raycastTarget = true;
         Mask mask = viewportObject.AddComponent<Mask>();
         mask.showMaskGraphic = false;
-
-        GameObject rigObject = CreateUiObject("Central Fishing Rig", viewport);
-        RectTransform rigRect = rigObject.GetComponent<RectTransform>();
-        SetAnchoredRect(rigRect, new Vector2(0f, 0f), new Vector2(0f, 1f), 21f, 0f, 43f, 0f);
-        Image rigImage = AddImage(rigObject, Color.white);
-        rigImage.sprite = rodSprite;
-        rigImage.type = Image.Type.Tiled;
-        AddDropShadow(rigObject, new Vector2(5f, -7f), 0.58f);
 
         GameObject contentObject = CreateUiObject("Content", viewport);
         contentRoot = contentObject.GetComponent<RectTransform>();
@@ -127,6 +120,28 @@ public sealed class CatchChainView : MonoBehaviour
         scrollRect.movementType = ScrollRect.MovementType.Clamped;
         scrollRect.scrollSensitivity = 28f;
 
+    }
+
+    /// <summary>
+    /// Creates the continuous rod behind the heading and Line Load frames, overlapping each frame edge.
+    /// </summary>
+    private void CreateRigRod()
+    {
+        GameObject rigObject = CreateUiObject("Central Fishing Rig", panelRoot);
+        RectTransform rigRect = rigObject.GetComponent<RectTransform>();
+        SetAnchoredRect(
+            rigRect,
+            new Vector2(0f, 0f),
+            new Vector2(0f, 1f),
+            31f,
+            80f,
+            53f,
+            -40f);
+
+        Image rigImage = AddImage(rigObject, Color.white);
+        rigImage.sprite = rodSprite;
+        rigImage.type = Image.Type.Tiled;
+        AddDropShadow(rigObject, new Vector2(5f, -7f), 0.58f);
     }
 
     /// <summary>

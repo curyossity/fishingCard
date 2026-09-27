@@ -278,7 +278,7 @@ public sealed class FishingRunView : MonoBehaviour
             regionPlaqueSprite,
             new Vector2(0f, 0.5f),
             new Vector2(92f, 0f),
-            new Vector2(520f, 72f),
+            new Vector2(520f, 64f),
             TextAlignmentOptions.Center,
             30f);
         depthText = CreateNavigationPlaque(
@@ -287,7 +287,7 @@ public sealed class FishingRunView : MonoBehaviour
             depthPlaqueSprite,
             new Vector2(0.5f, 0.5f),
             Vector2.zero,
-            new Vector2(395f, 70f),
+            new Vector2(395f, 62f),
             TextAlignmentOptions.Center,
             28f);
         deckText = CreateNavigationPlaque(
@@ -296,7 +296,7 @@ public sealed class FishingRunView : MonoBehaviour
             deckPlaqueSprite,
             new Vector2(1f, 0.5f),
             new Vector2(-96f, 0f),
-            new Vector2(245f, 68f),
+            new Vector2(245f, 60f),
             TextAlignmentOptions.Center,
             27f);
 
