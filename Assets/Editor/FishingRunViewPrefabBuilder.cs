@@ -131,8 +131,8 @@ public static class FishingRunViewPrefabBuilder
         RectTransform techniqueHand = CreateRegion(
             "TechniqueHand",
             rootRect,
-            new Vector2(0.225f, 0.02f),
-            new Vector2(0.775f, 0.275f));
+            new Vector2(0f, 0.02f),
+            new Vector2(1f, 0.275f));
         CanvasGroup techniqueHandGroup = techniqueHand.gameObject.AddComponent<CanvasGroup>();
 
         Canvas tooltipLayer = CreateOrderedLayer("TooltipLayer", rootRect, TooltipSortingLayer, 100, true);
@@ -502,7 +502,16 @@ public static class FishingRunViewPrefabBuilder
         SetObjectReference(
             serializedView,
             "handPadSprite",
-            LoadSprite("Frames/fishing-ui-technique-hand-pad-1280x494.png"));
+            LoadSprite("Frames/fishing-ui-technique-hand-pad-1920x494.png"));
+        SetObjectReference(
+            serializedView,
+            "leftDecorationSprite",
+            LoadSprite("Decorations/fishing-ui-decoration-left-map-dividers-1536x1024.png"));
+        SetObjectReference(
+            serializedView,
+            "rightDecorationSprite",
+            AssetDatabase.LoadAssetAtPath<Sprite>(
+                "Assets/FishingUIAssets/Decorations/fishing-ui-decoration-right-rope-compass-1536x1024.png"));
         serializedView.ApplyModifiedPropertiesWithoutUndo();
     }
 

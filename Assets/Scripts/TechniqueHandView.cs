@@ -8,6 +8,8 @@ public sealed class TechniqueHandView : MonoBehaviour
 
     [SerializeField] private bool fillParentRegion;
     [SerializeField] private Sprite handPadSprite;
+    [SerializeField] private Sprite leftDecorationSprite;
+    [SerializeField] private Sprite rightDecorationSprite;
 
     private static readonly Color PlayableCardColor = new Color(0.09f, 0.18f, 0.19f, 1f);
     private static readonly Color LockedCardColor = new Color(0.105f, 0.115f, 0.12f, 1f);
@@ -17,6 +19,7 @@ public sealed class TechniqueHandView : MonoBehaviour
     private static readonly Color LockedTextColor = new Color(0.76f, 0.49f, 0.43f, 1f);
 
     private RectTransform panelRoot;
+    private RectTransform handContentRoot;
     private RectTransform slotsRoot;
     private Text pileCountText;
     private Font uiFont;
@@ -92,10 +95,18 @@ public sealed class TechniqueHandView : MonoBehaviour
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
         CreateHandPad();
+        CreateHandDecorations();
+
+        GameObject contentObject = CreateUiObject("Hand Content", panelObject.transform);
+        handContentRoot = contentObject.GetComponent<RectTransform>();
+        handContentRoot.anchorMin = new Vector2(0.225f, 0f);
+        handContentRoot.anchorMax = new Vector2(0.775f, 1f);
+        handContentRoot.offsetMin = Vector2.zero;
+        handContentRoot.offsetMax = Vector2.zero;
 
         Text titleText = CreateText(
             "Title",
-            panelObject.transform,
+            handContentRoot,
             17,
             FontStyle.Bold,
             TextAnchor.MiddleLeft,
@@ -112,7 +123,7 @@ public sealed class TechniqueHandView : MonoBehaviour
 
         pileCountText = CreateText(
             "Pile Counts",
-            panelObject.transform,
+            handContentRoot,
             12,
             FontStyle.Bold,
             TextAnchor.MiddleRight,
@@ -126,7 +137,7 @@ public sealed class TechniqueHandView : MonoBehaviour
             -12f,
             -4f);
 
-        GameObject slotsObject = CreateUiObject("Slots", panelObject.transform);
+        GameObject slotsObject = CreateUiObject("Slots", handContentRoot);
         slotsRoot = slotsObject.GetComponent<RectTransform>();
         SetAnchoredRect(slotsRoot, Vector2.zero, Vector2.one, 10f, 10f, -10f, -40f);
 
@@ -154,17 +165,82 @@ public sealed class TechniqueHandView : MonoBehaviour
         padRect.anchorMin = new Vector2(0f, 0f);
         padRect.anchorMax = new Vector2(1f, 0f);
         padRect.pivot = new Vector2(0.5f, 0f);
-        padRect.anchoredPosition = Vector2.zero;
+        padRect.anchoredPosition = new Vector2(0f, -240f);
         padRect.sizeDelta = Vector2.zero;
 
         Image padImage = AddImage(padObject, Color.white);
         padImage.sprite = handPadSprite;
         padImage.type = Image.Type.Simple;
         padImage.preserveAspect = true;
+        padImage.raycastTarget = false;
 
         AspectRatioFitter fitter = padObject.AddComponent<AspectRatioFitter>();
         fitter.aspectMode = AspectRatioFitter.AspectMode.WidthControlsHeight;
-        fitter.aspectRatio = 1280f / 494f;
+        fitter.aspectRatio = 1920f / 494f;
+    }
+
+    /// <summary>
+    /// Places optional supplied decorative clusters above the pad and below interactive hand content.
+    /// </summary>
+    private void CreateHandDecorations()
+    {
+        CreateDecoration(
+            "Left Map and Dividers",
+            leftDecorationSprite,
+            new Vector2(0f, 0f),
+            new Vector2(54f, -100),
+            false);
+        CreateDecoration(
+            "Right Rope and Compass",
+            rightDecorationSprite,
+            new Vector2(1f, 0f),
+            new Vector2(-100f, -200),
+            false);
+    }
+
+    /// <summary>
+    /// Creates one non-interactive, uncropped decoration at its authored 3:2 aspect ratio.
+    /// </summary>
+    private void CreateDecoration(
+        string objectName,
+        Sprite sprite,
+        Vector2 anchor,
+        Vector2 anchoredPosition,
+        bool useCenteredShadow)
+    {
+        if (sprite == null)
+        {
+            return;
+        }
+
+        GameObject decorationObject = CreateUiObject(objectName, panelRoot);
+        RectTransform decorationRect = decorationObject.GetComponent<RectTransform>();
+        decorationRect.anchorMin = anchor;
+        decorationRect.anchorMax = anchor;
+        decorationRect.pivot = new Vector2(0.5f, 0f);
+        decorationRect.anchoredPosition = anchoredPosition;
+        decorationRect.sizeDelta = new Vector2(690f, 460f);
+
+        Image decorationImage = AddImage(decorationObject, Color.white);
+        decorationImage.sprite = sprite;
+        decorationImage.type = Image.Type.Simple;
+        decorationImage.preserveAspect = true;
+        decorationImage.raycastTarget = false;
+
+        if (useCenteredShadow)
+        {
+            Outline decorationShadow = decorationObject.AddComponent<Outline>();
+            decorationShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.52f);
+            decorationShadow.effectDistance = new Vector2(5f, 5f);
+            decorationShadow.useGraphicAlpha = true;
+        }
+        else
+        {
+            Shadow decorationShadow = decorationObject.AddComponent<Shadow>();
+            decorationShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.72f);
+            decorationShadow.effectDistance = new Vector2(8f, -10f);
+            decorationShadow.useGraphicAlpha = true;
+        }
     }
 
     /// <summary>

@@ -36,7 +36,9 @@ The current right status column uses `Frames/fishing-ui-right-status-outer-blank
 
 The right-column actions use the supplied `Controls/fishing-ui-action-*-plate.png` backgrounds and matching `Icons/fishing-ui-action-*-icon.png` artwork. They are displayed at the source aspect ratio, with runtime TextMeshPro labels and the existing gameplay callbacks. Plate, icon, and label share hover, selection, press, and disabled transitions; future focus-frame or unavailable-hatch sprites remain separate overlays rather than alternate baked button plates.
 
-The Technique Hand uses `Frames/fishing-ui-technique-hand-pad-1280x494.png` as its static bottom-center backing. It is a Simple Image behind all runtime cards and text, anchored at the bottom and scaled uniformly with width controlling height. Technique count, spacing, overlap, ordering, card states, visibility, and future entrance/exit animation remain runtime-owned.
+The Technique Hand uses `Frames/fishing-ui-technique-hand-pad-1920x494.png` as its static bottom-center backing. It is a Simple Image behind all runtime cards and text, anchored at the bottom and scaled uniformly with width controlling height. Technique count, spacing, overlap, ordering, card states, visibility, and future entrance/exit animation remain runtime-owned.
+
+Two independent 1536 x 1024 hand decorations sit above that pad and below the cards: `Decorations/fishing-ui-decoration-left-map-dividers-1536x1024.png` at the lower-left and `Decorations/fishing-ui-decoration-right-rope-compass-1536x1024.png` at the lower-right. They preserve their 3:2 aspect ratio, never receive raycasts, and follow the Technique Hand CanvasGroup. Either may be omitted on a layout or build where its supplied asset is unavailable.
 
 The visual assets will be produced separately and supplied to you. You must not generate, redraw, reinterpret, or replace the supplied artwork. Your job is to import the assets, assemble prefabs, implement layout and interaction states, and bind runtime data.
 
