@@ -463,6 +463,10 @@ public static class Phase3ComponentPrefabBuilder
             rootRect,
             LoadSprite("Cards/Creature/sea-creature-empty-card-base.png"),
             Image.Type.Simple);
+        Shadow cardShadow = background.gameObject.AddComponent<Shadow>();
+        cardShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.68f);
+        cardShadow.effectDistance = new Vector2(12f, -14f);
+        cardShadow.useGraphicAlpha = true;
 
         RectTransform artworkMaskRect = CreateRect(
             "CreatureArtworkMask",
