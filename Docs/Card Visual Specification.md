@@ -4,11 +4,9 @@ This document defines the current approved presentation contract for creature an
 
 ## Source Card Art
 
-The user supplies a separate card image for each creature. This is not a generic blank template: the supplied image already contains the creature illustration together with the decorative frame and other fixed visual artwork.
+The production Encounter card uses the reusable supplied empty master `Assets/FishingUIAssets/Cards/Creature/sea-creature-empty-card-base.png` at 873 x 1358. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, and four empty marker sockets.
 
-The supplied image should leave the runtime-owned information regions blank. Unity must not bake creature-specific gameplay text or numbers into the source image.
-
-Use the Giant Octopus example in `Assets/examples/Giant_octopus_example.png` as the current layout reference. Future supplied card art or explicit user direction may refine that reference.
+Unity layers each creature's illustration and runtime-owned information over this master. A precomposed per-creature card face must not replace the production Encounter master, even when legacy card data still contains one.
 
 ## Unity-Owned Fields
 
@@ -58,8 +56,8 @@ If interaction feedback for these concepts becomes necessary, keep it outside th
 
 Build the card presentation from two ownership layers:
 
-1. Supplied visual layer: creature illustration, frame, ornament, fixed labels or icons, and other non-changing artwork.
-2. Unity UI layer: type, name, resolved Weight, resolved Value, Effect text, and four rarity-hook states.
+1. Supplied visual layer: the reusable empty master with frame, ornament, fixed labels, icons, and empty sockets.
+2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Effect text, and four filled marker states.
 
 Keep gameplay rules out of the card view. The view reads supplied card data and resolved runtime values, then updates only its visual fields.
 

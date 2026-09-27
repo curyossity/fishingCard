@@ -469,10 +469,10 @@ More effects can alter a Hooked card before it is committed, or the preview and 
 Likely future action:
 Introduce one authoritative encounter-decision preview service shared by presentation and final commitment.
 
-## Supplied Card Face Name Exception
+## Resolved: Supplied Card Face Name Exception
 
 Current approach:
-Card names are normally rendered at runtime, but `CardDefinition.CardFaceIncludesName` can suppress that layer. The supplied Squid card uses this exception because its name is already baked into the image.
+The production Encounter view always uses the reusable empty master and renders card names at runtime. Legacy `CardDefinition.CardFaceArtwork` and `CardFaceIncludesName` data no longer replace or suppress production Encounter-card layers.
 
 Why it is acceptable for MVP:
 It prevents duplicate text while allowing the supplied example art to be used immediately.
@@ -483,5 +483,5 @@ A baked name cannot be localized or changed independently from the artwork and d
 Revisit trigger:
 The Squid art is revised, localization begins, or another supplied card includes baked dynamic information.
 
-Likely future action:
-Replace the Squid face with artwork that leaves the name region blank, then remove the exception when no assets depend on it.
+Resolution:
+The supplied `sea-creature-empty-card-base.png` established a reusable blank production master. The legacy serialized fields may be removed in a later data migration once no tooling reads them.

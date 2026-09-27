@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TechniqueHandView
   fillParentRegion: 1
+  handPadSprite: {fileID: 21300000, guid: c8ca65c2ba4b409fa480e23a6c2a6e85, type: 3}
 --- !u!1 &2130583072865305726
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunView
   creatureCardPrefab: {fileID: 583446137711959576, guid: 4ce16b59d2e209a4cbf765cdffc547f2, type: 3}
-  fallbackCreatureCardFace: {fileID: 21300000, guid: 7f150000000040008000000000000001, type: 3}
+  fallbackCreatureCardFace: {fileID: 21300000, guid: e82b08f444e646638e343cb2358ef8d5, type: 3}
   rarityHookSprite: {fileID: 21300000, guid: 7f150000000040008000000000000015, type: 3}
   regionPlaqueSprite: {fileID: 21300000, guid: 81c8a5d8a2bfaa640aea3f1bda4a5fb9, type: 3}
   depthPlaqueSprite: {fileID: 21300000, guid: a662786d594d07d4390e9738ab00f7db, type: 3}
@@ -1115,7 +1116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7703681240697975005
 RectTransform:
   m_ObjectHideFlags: 0

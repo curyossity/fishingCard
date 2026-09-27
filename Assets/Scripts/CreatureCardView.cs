@@ -58,18 +58,15 @@ public sealed class CreatureCardView : MonoBehaviour
 
         gameObject.SetActive(true);
 
-        bool usesCompleteSuppliedFace = card.CardFaceArtwork != null;
         SetContent(
             card.DisplayName,
             BuildCardTypeText(card.CardType),
-            usesCompleteSuppliedFace ? null : card.Artwork,
-            usesCompleteSuppliedFace ? card.CardFaceArtwork : fallbackCardFace,
+            card.Artwork,
+            fallbackCardFace,
             informationHidden ? "?" : Mathf.Max(0, resolvedWeight).ToString(),
             informationHidden ? "?" : Mathf.Max(0, resolvedValue).ToString(),
             informationHidden ? string.Empty : card.RulesText,
-            card.Rarity,
-            card.CardFaceIncludesName,
-            usesCompleteSuppliedFace);
+            card.Rarity);
     }
 
     /// <summary>Populates the visual contract directly for editor previews and UI tests.</summary>
@@ -91,9 +88,7 @@ public sealed class CreatureCardView : MonoBehaviour
             Mathf.Max(0, weight).ToString(),
             Mathf.Max(0, value).ToString(),
             rules,
-            rarity,
-            false,
-            false);
+            rarity);
     }
 
     /// <summary>Shows the authored blank template with no runtime values or filled rarity anchors.</summary>
@@ -109,7 +104,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(effectText, string.Empty);
         if (cardFrame != null)
         {
-            cardFrame.enabled = true;
+            cardFrame.enabled = false;
         }
 
         if (anchorMarkers != null)
@@ -133,9 +128,7 @@ public sealed class CreatureCardView : MonoBehaviour
         string weight,
         string value,
         string rules,
-        CardRarity rarity,
-        bool sourceIncludesName,
-        bool usesCompleteSuppliedFace)
+        CardRarity rarity)
     {
         SetImage(cardBackground, background);
         SetImage(creatureArtwork, artwork);
@@ -148,11 +141,11 @@ public sealed class CreatureCardView : MonoBehaviour
 
         if (cardFrame != null)
         {
-            cardFrame.enabled = !usesCompleteSuppliedFace;
+            cardFrame.enabled = false;
         }
 
         SetText(cardTypeText, cardType);
-        SetText(cardNameText, sourceIncludesName ? string.Empty : displayName);
+        SetText(cardNameText, displayName);
         SetText(weightText, weight);
         SetText(valueText, value);
         SetText(effectText, rules);

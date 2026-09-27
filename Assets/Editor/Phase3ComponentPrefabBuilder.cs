@@ -455,20 +455,20 @@ public static class Phase3ComponentPrefabBuilder
     {
         GameObject root = CreateUiObject("CreatureCardView", null);
         RectTransform rootRect = root.GetComponent<RectTransform>();
-        rootRect.sizeDelta = new Vector2(400f, 600f);
+        rootRect.sizeDelta = new Vector2(393f, 611f);
         CreatureCardView view = root.AddComponent<CreatureCardView>();
 
         Image background = CreateImage(
             "CardBackground",
             rootRect,
-            LoadSprite("Cards/Creature/creature-card-base.png"),
+            LoadSprite("Cards/Creature/sea-creature-empty-card-base.png"),
             Image.Type.Simple);
 
         RectTransform artworkMaskRect = CreateRect(
             "CreatureArtworkMask",
             rootRect,
-            new Vector2(0.165f, 0.455f),
-            new Vector2(0.835f, 0.79f));
+            new Vector2(0.11f, 0.47f),
+            new Vector2(0.89f, 0.815f));
         Image artworkMaskImage = artworkMaskRect.gameObject.AddComponent<Image>();
         artworkMaskImage.sprite = LoadSprite("Cards/Creature/creature-art-mask.png");
         artworkMaskImage.preserveAspect = true;
@@ -486,10 +486,10 @@ public static class Phase3ComponentPrefabBuilder
         Image titlePlate = CreateImage(
             "Title Safe Region",
             rootRect,
-            LoadSprite("Cards/Creature/creature-title-plate-9slice.png"),
-            Image.Type.Sliced);
-        SetAnchoredRect(titlePlate.rectTransform, new Vector2(0.075f, 0.825f), new Vector2(0.925f, 0.965f));
-        titlePlate.pixelsPerUnitMultiplier = 8f;
+            null,
+            Image.Type.Simple);
+        SetAnchoredRect(titlePlate.rectTransform, new Vector2(0.11f, 0.81f), new Vector2(0.89f, 0.96f));
+        titlePlate.enabled = false;
 
         TextMeshProUGUI typeText = CreateText(
             "Card Type Text",
@@ -497,8 +497,8 @@ public static class Phase3ComponentPrefabBuilder
             bodyFont,
             14f,
             TextAlignmentOptions.Center);
-        SetAnchoredRect(typeText.rectTransform, new Vector2(0.27f, 0.58f), new Vector2(0.73f, 0.9f));
-        typeText.color = new Color32(212, 185, 123, 255);
+        SetAnchoredRect(typeText.rectTransform, new Vector2(0.27f, 0.67f), new Vector2(0.77f, 0.97f));
+        typeText.color = new Color32(27, 56, 54, 255);
         typeText.fontWeight = FontWeight.SemiBold;
         typeText.textWrappingMode = TextWrappingModes.NoWrap;
 
@@ -508,29 +508,29 @@ public static class Phase3ComponentPrefabBuilder
             displayFont,
             30f,
             TextAlignmentOptions.Center);
-        SetAnchoredRect(nameText.rectTransform, new Vector2(0.24f, 0.1f), new Vector2(0.76f, 0.62f));
+        SetAnchoredRect(nameText.rectTransform, new Vector2(0.05f, 0.06f), new Vector2(0.95f, 0.62f));
         nameText.color = new Color32(239, 226, 194, 255);
         nameText.fontSizeMin = 14f;
         nameText.textWrappingMode = TextWrappingModes.NoWrap;
 
-        Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.15f, 0.31f), new Vector2(0.47f, 0.38f));
-        Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.53f, 0.31f), new Vector2(0.85f, 0.38f));
-        TextMeshProUGUI weightText = CreateText("Weight Text", weightPlate.rectTransform, bodyFont, 36f, TextAlignmentOptions.Center);
-        TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 36f, TextAlignmentOptions.Center);
+        Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.24f, 0.33f), new Vector2(0.50f, 0.46f));
+        Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.52f, 0.33f), new Vector2(0.79f, 0.46f));
+        TextMeshProUGUI weightText = CreateText("Weight Text", weightPlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
+        TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
         weightText.color = new Color32(26, 60, 59, 255);
         valueText.color = weightText.color;
         weightText.fontStyle = FontStyles.Bold;
         valueText.fontStyle = FontStyles.Bold;
-        SetStretchOffsets(weightText.rectTransform, 22f, 5f, -22f, -5f);
-        SetStretchOffsets(valueText.rectTransform, 22f, 5f, -22f, -5f);
+        SetStretchOffsets(weightText.rectTransform, 12f, 5f, -12f, -24f);
+        SetStretchOffsets(valueText.rectTransform, 12f, 5f, -12f, -24f);
 
         Image effectPanel = CreateImage(
             "Rules Safe Region",
             rootRect,
-            LoadSprite("Cards/Creature/creature-effect-panel-9slice.png"),
-            Image.Type.Sliced);
-        SetAnchoredRect(effectPanel.rectTransform, new Vector2(0.16f, 0.13f), new Vector2(0.84f, 0.285f));
-        effectPanel.pixelsPerUnitMultiplier = 6f;
+            null,
+            Image.Type.Simple);
+        SetAnchoredRect(effectPanel.rectTransform, new Vector2(0.11f, 0.15f), new Vector2(0.89f, 0.305f));
+        effectPanel.enabled = false;
         TextMeshProUGUI effectText = CreateText(
             "Effect Text",
             effectPanel.rectTransform,
@@ -538,29 +538,31 @@ public static class Phase3ComponentPrefabBuilder
             18f,
             TextAlignmentOptions.Center);
         effectText.color = new Color32(25, 55, 54, 255);
-        SetStretchOffsets(effectText.rectTransform, 30f, 18f, -30f, -18f);
+        SetStretchOffsets(effectText.rectTransform, 22f, 10f, -22f, -10f);
 
         RectTransform anchorRoot = CreateRect(
             "AnchorSlots",
             rootRect,
-            new Vector2(0.22f, 0.09f),
-            new Vector2(0.78f, 0.16f));
+            new Vector2(0f, 0.055f),
+            new Vector2(1f, 0.14f));
         Image[] sockets = new Image[4];
         Image[] markers = new Image[4];
+        float[] markerCenters = { 0.227f, 0.418f, 0.606f, 0.798f };
         for (int i = 0; i < 4; i++)
         {
-            float center = (i + 0.5f) / 4f;
+            float center = markerCenters[i];
             RectTransform slot = CreateRect(
                 "Anchor0" + (i + 1),
                 anchorRoot,
                 new Vector2(center, 0.5f),
                 new Vector2(center, 0.5f));
-            slot.sizeDelta = new Vector2(46f, 46f);
+            slot.sizeDelta = new Vector2(48f, 48f);
             sockets[i] = CreateImage(
                 "Socket",
                 slot,
-                LoadSprite("Markers/anchor-socket-empty.png"),
+                null,
                 Image.Type.Simple);
+            sockets[i].enabled = false;
             sockets[i].preserveAspect = true;
             markers[i] = CreateImage(
                 "Filled Anchor",
@@ -570,13 +572,8 @@ public static class Phase3ComponentPrefabBuilder
             markers[i].preserveAspect = true;
         }
 
-        Image frame = CreateImage(
-            "Card Frame",
-            rootRect,
-            LoadSprite("Frames/creature-card-frame-9slice.png"),
-            Image.Type.Sliced);
-        frame.fillCenter = false;
-        frame.pixelsPerUnitMultiplier = 2f;
+        Image frame = CreateImage("Card Frame", rootRect, null, Image.Type.Simple);
+        frame.enabled = false;
 
         Image interaction = CreateImage("InteractionOverlay", rootRect, null, Image.Type.Simple);
         interaction.enabled = false;
@@ -605,13 +602,9 @@ public static class Phase3ComponentPrefabBuilder
 
     private static Image CreateStatPlate(string name, Transform parent, Vector2 anchorMin, Vector2 anchorMax)
     {
-        Image plate = CreateImage(
-            name,
-            parent,
-            LoadSprite("Cards/Creature/creature-stat-plate-9slice.png"),
-            Image.Type.Sliced);
+        Image plate = CreateImage(name, parent, null, Image.Type.Simple);
         SetAnchoredRect(plate.rectTransform, anchorMin, anchorMax);
-        plate.pixelsPerUnitMultiplier = 8f;
+        plate.enabled = false;
         return plate;
     }
 
@@ -629,10 +622,9 @@ public static class Phase3ComponentPrefabBuilder
         Require(prefab.transform.Find("Weight Safe Region") != null, "Weight safe region is missing.");
         Require(prefab.transform.Find("Value Safe Region") != null, "Value safe region is missing.");
         Require(prefab.transform.Find("Rules Safe Region") != null, "Rules safe region is missing.");
-        Require(prefab.transform.Find("ArtworkOverflowLayer") != null, "Approved artwork overflow layer is missing.");
         Require(prefab.transform.Find("InteractionOverlay") != null, "Interaction overlay is missing.");
         Image frame = prefab.transform.Find("Card Frame").GetComponent<Image>();
-        Require(frame.type == Image.Type.Sliced && !frame.fillCenter, "Creature frame must be hollow and sliced.");
+        Require(frame != null && !frame.enabled, "The supplied master must not receive a second card frame.");
     }
 
     /// <summary>Renders representative common and legendary cards at gameplay sizes.</summary>

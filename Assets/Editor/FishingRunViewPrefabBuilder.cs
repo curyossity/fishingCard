@@ -134,7 +134,6 @@ public static class FishingRunViewPrefabBuilder
             new Vector2(0.225f, 0.02f),
             new Vector2(0.775f, 0.275f));
         CanvasGroup techniqueHandGroup = techniqueHand.gameObject.AddComponent<CanvasGroup>();
-        AddContactShadow(techniqueHand);
 
         Canvas tooltipLayer = CreateOrderedLayer("TooltipLayer", rootRect, TooltipSortingLayer, 100, true);
         Canvas transitionLayer = CreateOrderedLayer("TransitionLayer", rootRect, TransitionSortingLayer, 200, false);
@@ -145,7 +144,7 @@ public static class FishingRunViewPrefabBuilder
         RunResultView runResultView = modalLayer.gameObject.AddComponent<RunResultView>();
 
         ConfigureCatchChainView(catchChainView);
-        SetSerializedBoolean(techniqueHandView, "fillParentRegion", true);
+        ConfigureTechniqueHandView(techniqueHandView);
         ConfigureRunView(
             runView,
             background,
@@ -354,7 +353,7 @@ public static class FishingRunViewPrefabBuilder
             serializedView,
             "creatureCardPrefab",
             AssetDatabase.LoadAssetAtPath<CreatureCardView>(CreatureCardPrefabPath));
-        SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/creature-card-base.png"));
+        SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/sea-creature-empty-card-base.png"));
         SetObjectReference(serializedView, "rarityHookSprite", LoadSprite("Markers/anchor-filled.png"));
         SetObjectReference(serializedView, "regionPlaqueSprite", LoadSprite("Frames/fishing-ui-region-plaque-blank.png"));
         SetObjectReference(serializedView, "depthPlaqueSprite", LoadSprite("Frames/fishing-ui-depth-plaque-blank.png"));
@@ -488,6 +487,22 @@ public static class FishingRunViewPrefabBuilder
         SerializedProperty headingLabel = serializedView.FindProperty("headingLabel");
         Require(headingLabel != null, "CatchChainView heading label property is unavailable.");
         headingLabel.stringValue = "CATCH RIG";
+        serializedView.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    /// <summary>
+    /// Configures the Technique Hand's supplied backing while leaving cards and state runtime-owned.
+    /// </summary>
+    private static void ConfigureTechniqueHandView(TechniqueHandView techniqueHandView)
+    {
+        SerializedObject serializedView = new SerializedObject(techniqueHandView);
+        SerializedProperty fillParent = serializedView.FindProperty("fillParentRegion");
+        Require(fillParent != null, "TechniqueHandView fill-parent property is unavailable.");
+        fillParent.boolValue = true;
+        SetObjectReference(
+            serializedView,
+            "handPadSprite",
+            LoadSprite("Frames/fishing-ui-technique-hand-pad-1280x494.png"));
         serializedView.ApplyModifiedPropertiesWithoutUndo();
     }
 

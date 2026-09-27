@@ -7,8 +7,8 @@ public sealed class TechniqueHandView : MonoBehaviour
     private const int SlotCount = 4;
 
     [SerializeField] private bool fillParentRegion;
+    [SerializeField] private Sprite handPadSprite;
 
-    private static readonly Color PanelColor = new Color(0.055f, 0.075f, 0.085f, 0.96f);
     private static readonly Color PlayableCardColor = new Color(0.09f, 0.18f, 0.19f, 1f);
     private static readonly Color LockedCardColor = new Color(0.105f, 0.115f, 0.12f, 1f);
     private static readonly Color EmptyCardColor = new Color(0.075f, 0.085f, 0.09f, 1f);
@@ -91,7 +91,7 @@ public sealed class TechniqueHandView : MonoBehaviour
         panelRoot.anchorMax = fillParentRegion ? Vector2.one : new Vector2(0.60f, 0.42f);
         panelRoot.offsetMin = Vector2.zero;
         panelRoot.offsetMax = Vector2.zero;
-        AddImage(panelObject, PanelColor);
+        CreateHandPad();
 
         Text titleText = CreateText(
             "Title",
@@ -142,6 +142,29 @@ public sealed class TechniqueHandView : MonoBehaviour
         {
             slots[i] = CreateSlot(i);
         }
+    }
+
+    /// <summary>
+    /// Creates the supplied bottom-center hand backing without stretching its authored proportions.
+    /// </summary>
+    private void CreateHandPad()
+    {
+        GameObject padObject = CreateUiObject("Technique Hand Pad", panelRoot);
+        RectTransform padRect = padObject.GetComponent<RectTransform>();
+        padRect.anchorMin = new Vector2(0f, 0f);
+        padRect.anchorMax = new Vector2(1f, 0f);
+        padRect.pivot = new Vector2(0.5f, 0f);
+        padRect.anchoredPosition = Vector2.zero;
+        padRect.sizeDelta = Vector2.zero;
+
+        Image padImage = AddImage(padObject, Color.white);
+        padImage.sprite = handPadSprite;
+        padImage.type = Image.Type.Simple;
+        padImage.preserveAspect = true;
+
+        AspectRatioFitter fitter = padObject.AddComponent<AspectRatioFitter>();
+        fitter.aspectMode = AspectRatioFitter.AspectMode.WidthControlsHeight;
+        fitter.aspectRatio = 1280f / 494f;
     }
 
     /// <summary>
