@@ -402,6 +402,30 @@ public static class FishingRunViewPrefabBuilder
             serializedView,
             "tensionFillCoralSprite",
             LoadSprite("Meters/fishing-ui-tension-fill-coral.png"));
+        SetObjectReference(
+            serializedView,
+            "descendPlateSprite",
+            LoadSprite("Controls/fishing-ui-action-descend-plate.png"));
+        SetObjectReference(
+            serializedView,
+            "descendIconSprite",
+            LoadSprite("Icons/fishing-ui-action-descend-icon.png"));
+        SetObjectReference(
+            serializedView,
+            "releasePlateSprite",
+            LoadSprite("Controls/fishing-ui-action-release-plate.png"));
+        SetObjectReference(
+            serializedView,
+            "releaseIconSprite",
+            LoadSprite("Icons/fishing-ui-action-release-icon.png"));
+        SetObjectReference(
+            serializedView,
+            "surfacePlateSprite",
+            LoadSprite("Controls/fishing-ui-action-surface-plate.png"));
+        SetObjectReference(
+            serializedView,
+            "surfaceIconSprite",
+            LoadSprite("Icons/fishing-ui-action-surface-icon.png"));
         SetObjectReference(serializedView, "backgroundRegion", background);
         SetObjectReference(serializedView, "topNavigationBar", topNavigation);
         SetObjectReference(serializedView, "mainContent", mainContent);

@@ -852,6 +852,12 @@ MonoBehaviour:
   tensionTrackSprite: {fileID: 21300000, guid: 47bfd95f98216e04d900870978596eb3, type: 3}
   tensionFillTealSprite: {fileID: 21300000, guid: b0f7584a8c1b74c47883e366b8c0c985, type: 3}
   tensionFillCoralSprite: {fileID: 21300000, guid: fea2c42b4805b6b44bf32665531d296f, type: 3}
+  descendPlateSprite: {fileID: 21300000, guid: 11b0ef4a928e4838a6a3940d87bb6371, type: 3}
+  descendIconSprite: {fileID: 21300000, guid: 22c198f180f54e22984f9b489e571d3c, type: 3}
+  releasePlateSprite: {fileID: 21300000, guid: 33d6aae74cc943afa0f278f017540c55, type: 3}
+  releaseIconSprite: {fileID: 21300000, guid: 44e9eb24c07b4cdfbc7c537526b79fb4, type: 3}
+  surfacePlateSprite: {fileID: 21300000, guid: 55fa18c731004785889128264abbde8b, type: 3}
+  surfaceIconSprite: {fileID: 21300000, guid: 66ac39d855bf4934aa6468096f9b2dbe, type: 3}
   backgroundRegion: {fileID: 8970681617962850680}
   topNavigationBar: {fileID: 6421211931801953882}
   mainContent: {fileID: 2435481836457471633}

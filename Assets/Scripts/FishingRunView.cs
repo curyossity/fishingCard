@@ -3,6 +3,68 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Extends a standard Unity Button transition to child graphics such as an icon and runtime label.
+/// </summary>
+[AddComponentMenu("")]
+public sealed class LinkedGraphicButton : Button
+{
+    private Graphic[] linkedGraphics = Array.Empty<Graphic>();
+    private Color[] linkedBaseColors = Array.Empty<Color>();
+
+    /// <summary>
+    /// Registers child graphics that must follow this button's visual state.
+    /// </summary>
+    public void SetLinkedGraphics(params Graphic[] graphics)
+    {
+        linkedGraphics = graphics ?? Array.Empty<Graphic>();
+        linkedBaseColors = new Color[linkedGraphics.Length];
+
+        for (int i = 0; i < linkedGraphics.Length; i++)
+        {
+            linkedBaseColors[i] = linkedGraphics[i] == null ? Color.white : linkedGraphics[i].color;
+        }
+
+        DoStateTransition(currentSelectionState, true);
+    }
+
+    /// <summary>
+    /// Applies the configured ColorBlock transition to both the plate and registered child graphics.
+    /// </summary>
+    protected override void DoStateTransition(SelectionState state, bool instant)
+    {
+        base.DoStateTransition(state, instant);
+
+        Color stateColor = state switch
+        {
+            SelectionState.Normal => colors.normalColor,
+            SelectionState.Highlighted => colors.highlightedColor,
+            SelectionState.Pressed => colors.pressedColor,
+            SelectionState.Selected => colors.selectedColor,
+            SelectionState.Disabled => colors.disabledColor,
+            _ => Color.white
+        };
+        float duration = instant ? 0f : colors.fadeDuration;
+
+        for (int i = 0; i < linkedGraphics.Length; i++)
+        {
+            Graphic graphic = linkedGraphics[i];
+            if (graphic == null)
+            {
+                continue;
+            }
+
+            Color baseColor = linkedBaseColors[i];
+            Color targetColor = new Color(
+                baseColor.r * stateColor.r * colors.colorMultiplier,
+                baseColor.g * stateColor.g * colors.colorMultiplier,
+                baseColor.b * stateColor.b * colors.colorMultiplier,
+                baseColor.a * stateColor.a);
+            graphic.CrossFadeColor(targetColor, duration, true, true);
+        }
+    }
+}
+
 public enum FishingRunSection
 {
     Background,
@@ -37,6 +99,12 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private Sprite tensionTrackSprite;
     [SerializeField] private Sprite tensionFillTealSprite;
     [SerializeField] private Sprite tensionFillCoralSprite;
+    [SerializeField] private Sprite descendPlateSprite;
+    [SerializeField] private Sprite descendIconSprite;
+    [SerializeField] private Sprite releasePlateSprite;
+    [SerializeField] private Sprite releaseIconSprite;
+    [SerializeField] private Sprite surfacePlateSprite;
+    [SerializeField] private Sprite surfaceIconSprite;
 
     [Header("Stable Layout Regions")]
     [SerializeField] private RectTransform backgroundRegion;
@@ -81,7 +149,7 @@ public sealed class FishingRunView : MonoBehaviour
     private Button releaseButton;
     private Button surfaceButton;
     private Button settingsButton;
-    private Text releaseButtonText;
+    private TMP_Text releaseButtonText;
     private Func<bool> descendAction;
     private Func<bool> releaseAction;
     private Func<bool> surfaceAction;
@@ -447,13 +515,39 @@ public sealed class FishingRunView : MonoBehaviour
         RectTransform actionsRect = actionsObject.GetComponent<RectTransform>();
         SetAnchoredRect(actionsRect, Vector2.zero, Vector2.one, 24f, 22f, -24f, -386f);
 
-        Text titleText = CreateText("Title", actionsRect, 15, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
-        SetAnchoredRect(titleText.rectTransform, new Vector2(0f, 0.84f), Vector2.one, 12f, 0f, -8f, 0f);
-        titleText.text = "CORE ACTIONS";
-
-        descendButton = CreateActionButton("Descend", actionsRect, new Vector2(0.08f, 0.58f), new Vector2(0.92f, 0.80f), AccentColor, "DESCEND", InvokeDescend, out _);
-        releaseButton = CreateActionButton("Release", actionsRect, new Vector2(0.08f, 0.32f), new Vector2(0.92f, 0.54f), ReleaseColor, "RELEASE", InvokeRelease, out releaseButtonText);
-        surfaceButton = CreateActionButton("Surface", actionsRect, new Vector2(0.08f, 0.06f), new Vector2(0.92f, 0.28f), SurfaceColor, "SURFACE", InvokeSurface, out _);
+        descendButton = CreateActionButton(
+            "Descend",
+            actionsRect,
+            new Vector2(0.02f, 0.68f),
+            new Vector2(0.98f, 0.96f),
+            descendPlateSprite,
+            descendIconSprite,
+            Color.white,
+            "DESCEND",
+            InvokeDescend,
+            out _);
+        releaseButton = CreateActionButton(
+            "Release",
+            actionsRect,
+            new Vector2(0.02f, 0.36f),
+            new Vector2(0.98f, 0.64f),
+            releasePlateSprite,
+            releaseIconSprite,
+            Color.white,
+            "RELEASE",
+            InvokeRelease,
+            out releaseButtonText);
+        surfaceButton = CreateActionButton(
+            "Surface",
+            actionsRect,
+            new Vector2(0.02f, 0.04f),
+            new Vector2(0.98f, 0.32f),
+            surfacePlateSprite,
+            surfaceIconSprite,
+            new Color(0.08f, 0.13f, 0.12f, 1f),
+            "SURFACE",
+            InvokeSurface,
+            out _);
     }
 
     /// <summary>
@@ -801,33 +895,51 @@ public sealed class FishingRunView : MonoBehaviour
         Transform parent,
         Vector2 anchorMin,
         Vector2 anchorMax,
-        Color color,
+        Sprite plateSprite,
+        Sprite iconSprite,
+        Color labelColor,
         string label,
         UnityEngine.Events.UnityAction clickAction,
-        out Text labelText)
+        out TMP_Text labelText)
     {
         GameObject buttonObject = CreateUiObject(objectName, parent);
         RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
         SetAnchoredRect(buttonRect, anchorMin, anchorMax, 0f, 0f, 0f, 0f);
-        Image buttonImage = AddImage(buttonObject, color);
+        Image buttonImage = AddImage(buttonObject, Color.white);
+        buttonImage.sprite = plateSprite;
+        buttonImage.type = Image.Type.Simple;
+        buttonImage.preserveAspect = true;
         buttonImage.raycastTarget = true;
-        Button button = buttonObject.AddComponent<Button>();
+        LinkedGraphicButton button = buttonObject.AddComponent<LinkedGraphicButton>();
         button.targetGraphic = buttonImage;
         button.onClick.AddListener(clickAction);
 
         ColorBlock colors = button.colors;
         colors.normalColor = Color.white;
-        colors.highlightedColor = new Color(1f, 1f, 1f, 0.86f);
-        colors.pressedColor = new Color(0.72f, 0.72f, 0.72f, 1f);
-        colors.disabledColor = new Color(0.38f, 0.40f, 0.41f, 0.75f);
+        colors.highlightedColor = new Color(1f, 1f, 1f, 0.92f);
+        colors.selectedColor = Color.white;
+        colors.pressedColor = new Color(0.76f, 0.76f, 0.76f, 1f);
+        colors.disabledColor = new Color(0.42f, 0.44f, 0.44f, 0.62f);
+        colors.fadeDuration = 0.08f;
         button.colors = colors;
 
-        labelText = CreateText("Label", buttonRect, 13, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
-        SetAnchoredRect(labelText.rectTransform, Vector2.zero, Vector2.one, 4f, 0f, -4f, 0f);
+        GameObject iconObject = CreateUiObject("Icon", buttonRect);
+        RectTransform iconRect = iconObject.GetComponent<RectTransform>();
+        iconRect.anchorMin = new Vector2(0f, 0.5f);
+        iconRect.anchorMax = new Vector2(0f, 0.5f);
+        iconRect.pivot = new Vector2(0.5f, 0.5f);
+        iconRect.anchoredPosition = new Vector2(54f, 0f);
+        iconRect.sizeDelta = new Vector2(62f, 62f);
+        Image iconImage = AddImage(iconObject, Color.white);
+        iconImage.sprite = iconSprite;
+        iconImage.type = Image.Type.Simple;
+        iconImage.preserveAspect = true;
+
+        labelText = CreateStatusText("Label", buttonRect, 24f, TextAlignmentOptions.Center, labelColor);
+        SetAnchoredRect(labelText.rectTransform, Vector2.zero, Vector2.one, 88f, 8f, -22f, -8f);
+        labelText.fontStyle = FontStyles.Bold;
         labelText.text = label;
-        labelText.resizeTextForBestFit = true;
-        labelText.resizeTextMinSize = 9;
-        labelText.resizeTextMaxSize = 13;
+        button.SetLinkedGraphics(iconImage, labelText);
         return button;
     }
 
