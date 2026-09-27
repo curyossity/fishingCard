@@ -825,6 +825,7 @@ public sealed class FishingRunController : MonoBehaviour
                 resolvedEncounterValue,
                 CurrentEncounterInformationHidden,
                 lineCapacity,
+                catchChainRuntime.CurrentLineLoad,
                 catchChainRuntime.Catches.Length,
                 techniqueDeckRuntime.DrawPile.Length,
                 selectedCatchIndex,

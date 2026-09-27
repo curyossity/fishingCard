@@ -27,6 +27,17 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private Sprite settingsIconSprite;
     [SerializeField] private TMP_FontAsset navigationFont;
 
+    [Header("Right Status Art")]
+    [SerializeField] private Sprite rightStatusOuterSprite;
+    [SerializeField] private Sprite rightStatusDepthSprite;
+    [SerializeField] private Sprite rightStatusTensionSprite;
+    [SerializeField] private Sprite depthTrackSprite;
+    [SerializeField] private Sprite depthNodeActiveSprite;
+    [SerializeField] private Sprite depthNodeInactiveSprite;
+    [SerializeField] private Sprite tensionTrackSprite;
+    [SerializeField] private Sprite tensionFillTealSprite;
+    [SerializeField] private Sprite tensionFillCoralSprite;
+
     [Header("Stable Layout Regions")]
     [SerializeField] private RectTransform backgroundRegion;
     [SerializeField] private RectTransform topNavigationBar;
@@ -45,7 +56,6 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private CanvasGroup mainContentGroup;
     [SerializeField] private CanvasGroup techniqueHandGroup;
 
-    private static readonly Color PanelColor = new Color(0.045f, 0.065f, 0.075f, 0.98f);
     private static readonly Color BoatColor = new Color(0.12f, 0.20f, 0.22f, 1f);
     private static readonly Color AccentColor = new Color(0.24f, 0.74f, 0.70f, 1f);
     private static readonly Color SurfaceColor = new Color(0.88f, 0.67f, 0.25f, 1f);
@@ -56,6 +66,14 @@ public sealed class FishingRunView : MonoBehaviour
     private TMP_Text biomeText;
     private TMP_Text depthText;
     private TMP_Text deckText;
+    private RectTransform depthZoneRowsRoot;
+    private Image depthTrackImage;
+    private GameObject[] depthZoneRows = Array.Empty<GameObject>();
+    private Image[] depthZoneNodeImages = Array.Empty<Image>();
+    private TMP_Text[] depthZoneNameTexts = Array.Empty<TMP_Text>();
+    private TMP_Text[] depthZoneRangeTexts = Array.Empty<TMP_Text>();
+    private TMP_Text tensionText;
+    private Image tensionFill;
     private CreatureCardView encounterCardView;
     private Text boatCapacityText;
     private Text boatCatchCountText;
@@ -102,6 +120,7 @@ public sealed class FishingRunView : MonoBehaviour
         int resolvedEncounterValue,
         bool encounterInformationHidden,
         int lineCapacity,
+        int currentLineLoad,
         int catchCount,
         int remainingDeckCount,
         int selectedCatchIndex,
@@ -130,6 +149,8 @@ public sealed class FishingRunView : MonoBehaviour
         deckText.text = $"DECK  {Mathf.Max(0, remainingDeckCount)}";
         boatCapacityText.text = $"LINE CAPACITY  {Mathf.Max(0, lineCapacity)}";
         boatCatchCountText.text = $"ATTACHED  {Mathf.Max(0, catchCount)}";
+        RefreshDepthZones(biome, depth);
+        RefreshTension(currentLineLoad, lineCapacity);
 
         encounterCardView.SetCard(
             encounter,
@@ -396,17 +417,35 @@ public sealed class FishingRunView : MonoBehaviour
     private void CreateCoreActions()
     {
         RectTransform parent = runControlsPanel != null ? runControlsPanel : gameplayRoot;
-        GameObject actionsObject = CreateUiObject("Core Actions", parent);
-        RectTransform actionsRect = actionsObject.GetComponent<RectTransform>();
+        GameObject statusObject = CreateUiObject("Right Status", parent);
+        RectTransform statusRect = statusObject.GetComponent<RectTransform>();
         if (runControlsPanel != null)
         {
-            SetAnchoredRect(actionsRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+            statusRect.anchorMin = new Vector2(0.5f, 0.5f);
+            statusRect.anchorMax = new Vector2(0.5f, 0.5f);
+            statusRect.pivot = new Vector2(0.5f, 0.5f);
+            statusRect.anchoredPosition = new Vector2(0f, -22f);
+            statusRect.sizeDelta = new Vector2(416f, 748f);
         }
         else
         {
-            SetAnchoredRect(actionsRect, new Vector2(0.41f, 0.46f), new Vector2(0.60f, 0.90f), 0f, 0f, 0f, 0f);
+            statusRect.anchorMin = new Vector2(1f, 0.5f);
+            statusRect.anchorMax = new Vector2(1f, 0.5f);
+            statusRect.pivot = new Vector2(1f, 0.5f);
+            statusRect.anchoredPosition = new Vector2(-24f, 0f);
+            statusRect.sizeDelta = new Vector2(416f, 748f);
         }
-        AddImage(actionsObject, PanelColor);
+
+        Image outerImage = AddImage(statusObject, Color.white);
+        outerImage.sprite = rightStatusOuterSprite;
+        outerImage.type = Image.Type.Simple;
+
+        CreateDepthStatus(statusRect);
+        CreateTensionStatus(statusRect);
+
+        GameObject actionsObject = CreateUiObject("Core Actions", statusRect);
+        RectTransform actionsRect = actionsObject.GetComponent<RectTransform>();
+        SetAnchoredRect(actionsRect, Vector2.zero, Vector2.one, 24f, 22f, -24f, -386f);
 
         Text titleText = CreateText("Title", actionsRect, 15, FontStyle.Bold, TextAnchor.MiddleLeft, Color.white);
         SetAnchoredRect(titleText.rectTransform, new Vector2(0f, 0.84f), Vector2.one, 12f, 0f, -8f, 0f);
@@ -415,6 +454,221 @@ public sealed class FishingRunView : MonoBehaviour
         descendButton = CreateActionButton("Descend", actionsRect, new Vector2(0.08f, 0.58f), new Vector2(0.92f, 0.80f), AccentColor, "DESCEND", InvokeDescend, out _);
         releaseButton = CreateActionButton("Release", actionsRect, new Vector2(0.08f, 0.32f), new Vector2(0.92f, 0.54f), ReleaseColor, "RELEASE", InvokeRelease, out releaseButtonText);
         surfaceButton = CreateActionButton("Surface", actionsRect, new Vector2(0.08f, 0.06f), new Vector2(0.92f, 0.28f), SurfaceColor, "SURFACE", InvokeSurface, out _);
+    }
+
+    /// <summary>
+    /// Creates the supplied Depth Zone subsection and its runtime-authored tier rows.
+    /// </summary>
+    private void CreateDepthStatus(RectTransform statusRect)
+    {
+        GameObject depthObject = CreateUiObject("Depth Zone", statusRect);
+        RectTransform depthRect = depthObject.GetComponent<RectTransform>();
+        depthRect.anchorMin = new Vector2(0.5f, 1f);
+        depthRect.anchorMax = new Vector2(0.5f, 1f);
+        depthRect.pivot = new Vector2(0.5f, 1f);
+        depthRect.anchoredPosition = new Vector2(0f, -8f);
+        depthRect.sizeDelta = new Vector2(416f, 256f);
+
+        Image depthImage = AddImage(depthObject, Color.white);
+        depthImage.sprite = rightStatusDepthSprite;
+        depthImage.type = Image.Type.Simple;
+
+        TMP_Text heading = CreateStatusText("Heading", depthRect, 25f, TextAlignmentOptions.Center, Color.white);
+        SetAnchoredRect(heading.rectTransform, Vector2.zero, Vector2.one, 28f, 201f, -28f, -14f);
+        heading.text = "DEPTH ZONE";
+
+        GameObject rowsObject = CreateUiObject("Zone Rows", depthRect);
+        depthZoneRowsRoot = rowsObject.GetComponent<RectTransform>();
+        SetAnchoredRect(depthZoneRowsRoot, Vector2.zero, Vector2.one, 34f, 22f, -34f, -58f);
+
+        GameObject trackObject = CreateUiObject("Depth Track", depthZoneRowsRoot);
+        depthTrackImage = AddImage(trackObject, Color.white);
+        depthTrackImage.sprite = depthTrackSprite;
+        depthTrackImage.type = Image.Type.Tiled;
+    }
+
+    /// <summary>
+    /// Creates the supplied Tension subsection with a dynamic line-strain fill.
+    /// </summary>
+    private void CreateTensionStatus(RectTransform statusRect)
+    {
+        GameObject tensionObject = CreateUiObject("Tension", statusRect);
+        RectTransform tensionRect = tensionObject.GetComponent<RectTransform>();
+        tensionRect.anchorMin = new Vector2(0.5f, 1f);
+        tensionRect.anchorMax = new Vector2(0.5f, 1f);
+        tensionRect.pivot = new Vector2(0.5f, 1f);
+        tensionRect.anchoredPosition = new Vector2(0f, -270f);
+        tensionRect.sizeDelta = new Vector2(416f, 108f);
+
+        Image tensionImage = AddImage(tensionObject, Color.white);
+        tensionImage.sprite = rightStatusTensionSprite;
+        tensionImage.type = Image.Type.Simple;
+
+        tensionText = CreateStatusText("Label", tensionRect, 21f, TextAlignmentOptions.Center, Color.white);
+        SetAnchoredRect(tensionText.rectTransform, Vector2.zero, Vector2.one, 30f, 51f, -30f, -13f);
+
+        GameObject trackObject = CreateUiObject("Track", tensionRect);
+        RectTransform trackRect = trackObject.GetComponent<RectTransform>();
+        trackRect.anchorMin = new Vector2(0.5f, 0f);
+        trackRect.anchorMax = new Vector2(0.5f, 0f);
+        trackRect.pivot = new Vector2(0.5f, 0f);
+        trackRect.anchoredPosition = new Vector2(0f, 11f);
+        trackRect.sizeDelta = new Vector2(352f, 40f);
+        Image trackImage = AddImage(trackObject, Color.white);
+        trackImage.sprite = tensionTrackSprite;
+        trackImage.type = Image.Type.Simple;
+
+        GameObject fillObject = CreateUiObject("Fill", trackRect);
+        RectTransform fillRect = fillObject.GetComponent<RectTransform>();
+        fillRect.anchorMin = new Vector2(0.5f, 0.5f);
+        fillRect.anchorMax = new Vector2(0.5f, 0.5f);
+        fillRect.pivot = new Vector2(0.5f, 0.5f);
+        fillRect.anchoredPosition = Vector2.zero;
+        fillRect.sizeDelta = new Vector2(338f, 24f);
+        tensionFill = AddImage(fillObject, Color.white);
+        tensionFill.sprite = tensionFillTealSprite;
+        tensionFill.type = Image.Type.Filled;
+        tensionFill.fillMethod = Image.FillMethod.Horizontal;
+        tensionFill.fillOrigin = 0;
+    }
+
+    /// <summary>
+    /// Reconciles the authored biome tiers and emphasizes the tier containing the current depth.
+    /// </summary>
+    private void RefreshDepthZones(BiomeDefinition biome, int depth)
+    {
+        BiomeDepthTierDefinition[] tiers = biome?.DepthTiers ?? Array.Empty<BiomeDepthTierDefinition>();
+        EnsureDepthZoneRowCount(tiers.Length);
+
+        for (int i = 0; i < depthZoneRows.Length; i++)
+        {
+            bool visible = i < tiers.Length && tiers[i] != null;
+            depthZoneRows[i].SetActive(visible);
+            if (!visible)
+            {
+                continue;
+            }
+
+            BiomeDepthTierDefinition tier = tiers[i];
+            bool isActive = tier.ContainsDepth(depth);
+            Color rowColor = isActive ? AccentColor : MutedTextColor;
+            depthZoneNodeImages[i].sprite = isActive ? depthNodeActiveSprite : depthNodeInactiveSprite;
+            depthZoneNameTexts[i].text = tier.DisplayName.ToUpperInvariant();
+            depthZoneNameTexts[i].color = rowColor;
+            depthZoneNameTexts[i].fontStyle = isActive ? FontStyles.Bold : FontStyles.Normal;
+            depthZoneRangeTexts[i].text = tier.MaximumDepth < 0
+                ? $"{tier.MinimumDepth}+ m"
+                : $"{tier.MinimumDepth}–{tier.MaximumDepth} m";
+            depthZoneRangeTexts[i].color = rowColor;
+        }
+    }
+
+    /// <summary>
+    /// Creates enough reusable text rows for the biome's authored depth tiers.
+    /// </summary>
+    private void EnsureDepthZoneRowCount(int requiredCount)
+    {
+        float rowHeight = requiredCount > 0 ? 176f / requiredCount : 0f;
+        RectTransform trackRect = depthTrackImage.rectTransform;
+        trackRect.anchorMin = new Vector2(0f, 1f);
+        trackRect.anchorMax = new Vector2(0f, 1f);
+        trackRect.pivot = new Vector2(0.5f, 1f);
+        trackRect.anchoredPosition = new Vector2(22f, -rowHeight * 0.5f);
+        trackRect.sizeDelta = new Vector2(8f, Mathf.Max(0f, rowHeight * (requiredCount - 1)));
+        depthTrackImage.gameObject.SetActive(requiredCount > 1);
+
+        if (depthZoneRows.Length == requiredCount)
+        {
+            return;
+        }
+
+        for (int i = 0; i < depthZoneRows.Length; i++)
+        {
+            if (depthZoneRows[i] != null)
+            {
+                Destroy(depthZoneRows[i]);
+            }
+        }
+
+        depthZoneRows = new GameObject[requiredCount];
+        depthZoneNodeImages = new Image[requiredCount];
+        depthZoneNameTexts = new TMP_Text[requiredCount];
+        depthZoneRangeTexts = new TMP_Text[requiredCount];
+
+        for (int i = 0; i < requiredCount; i++)
+        {
+            GameObject rowObject = CreateUiObject($"Zone {i + 1}", depthZoneRowsRoot);
+            RectTransform rowRect = rowObject.GetComponent<RectTransform>();
+            rowRect.anchorMin = new Vector2(0f, 1f);
+            rowRect.anchorMax = new Vector2(1f, 1f);
+            rowRect.pivot = new Vector2(0.5f, 1f);
+            rowRect.anchoredPosition = new Vector2(0f, -i * rowHeight);
+            rowRect.sizeDelta = new Vector2(0f, rowHeight);
+
+            GameObject nodeObject = CreateUiObject("Node", rowRect);
+            RectTransform nodeRect = nodeObject.GetComponent<RectTransform>();
+            nodeRect.anchorMin = new Vector2(0f, 0.5f);
+            nodeRect.anchorMax = new Vector2(0f, 0.5f);
+            nodeRect.pivot = new Vector2(0.5f, 0.5f);
+            nodeRect.anchoredPosition = new Vector2(22f, 0f);
+            nodeRect.sizeDelta = new Vector2(44f, 44f);
+            Image nodeImage = AddImage(nodeObject, Color.white);
+            nodeImage.sprite = depthNodeInactiveSprite;
+            nodeImage.type = Image.Type.Simple;
+            nodeImage.preserveAspect = true;
+
+            TMP_Text nameText = CreateStatusText("Name", rowRect, 17f, TextAlignmentOptions.MidlineLeft, MutedTextColor);
+            SetAnchoredRect(nameText.rectTransform, Vector2.zero, new Vector2(0.66f, 1f), 50f, 0f, 0f, 0f);
+            TMP_Text rangeText = CreateStatusText("Range", rowRect, 15f, TextAlignmentOptions.MidlineRight, MutedTextColor);
+            SetAnchoredRect(rangeText.rectTransform, new Vector2(0.60f, 0f), Vector2.one, 0f, 0f, -16f, 0f);
+
+            depthZoneRows[i] = rowObject;
+            depthZoneNodeImages[i] = nodeImage;
+            depthZoneNameTexts[i] = nameText;
+            depthZoneRangeTexts[i] = rangeText;
+        }
+    }
+
+    /// <summary>
+    /// Presents Line Load ratio as line tension without changing gameplay state or thresholds.
+    /// </summary>
+    private void RefreshTension(int currentLineLoad, int lineCapacity)
+    {
+        int safeLoad = Mathf.Max(0, currentLineLoad);
+        int safeCapacity = Mathf.Max(0, lineCapacity);
+        float ratio = safeCapacity > 0 ? (float)safeLoad / safeCapacity : (safeLoad > 0 ? 1f : 0f);
+        string state = ratio > 1f ? "CRITICAL" : ratio >= 0.75f ? "HIGH" : ratio >= 0.5f ? "MODERATE" : "LOW";
+        bool warning = ratio >= 0.75f;
+
+        tensionText.text = $"TENSION: {state}";
+        tensionText.color = warning ? ReleaseColor : Color.white;
+        tensionFill.fillAmount = Mathf.Clamp01(ratio);
+        tensionFill.sprite = warning ? tensionFillCoralSprite : tensionFillTealSprite;
+    }
+
+    /// <summary>
+    /// Creates TextMeshPro content using the navigation typeface shared by supplied UI frames.
+    /// </summary>
+    private TMP_Text CreateStatusText(
+        string objectName,
+        Transform parent,
+        float fontSize,
+        TextAlignmentOptions alignment,
+        Color color)
+    {
+        GameObject textObject = CreateUiObject(objectName, parent);
+        TextMeshProUGUI text = textObject.AddComponent<TextMeshProUGUI>();
+        text.font = navigationFont != null ? navigationFont : TMP_Settings.defaultFontAsset;
+        text.fontSize = fontSize;
+        text.alignment = alignment;
+        text.color = color;
+        text.enableAutoSizing = true;
+        text.fontSizeMin = 11f;
+        text.fontSizeMax = fontSize;
+        text.textWrappingMode = TextWrappingModes.NoWrap;
+        text.overflowMode = TextOverflowModes.Ellipsis;
+        text.raycastTarget = false;
+        return text;
     }
 
     /// <summary>

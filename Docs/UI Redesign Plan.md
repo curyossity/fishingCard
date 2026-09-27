@@ -30,6 +30,8 @@ The current compact Catch Chain card is `Cards/CompactCatch/fishing-ui-catch-cha
 
 The current Line Load display uses `Meters/fishing-ui-line-load-panel-blank.png` at its native 390 x 100 size below the Catch Rig. Its label and values remain dynamic TextMeshPro content. `CatchChainView` creates one pip per capacity slot using the supplied empty, filled, and danger sprites; occupied slots turn coral in the reference-matched approaching range and every occupied capacity slot turns coral when overloaded. The numeric label continues to show load beyond capacity even though the pip row represents capacity slots only.
 
+The current right status column uses `Frames/fishing-ui-right-status-outer-blank.png` at 416 x 748, with the supplied 416 x 256 Depth Zone and 416 x 108 Tension subsection sprites placed inside it. Biome tier names, depth ranges, active-tier emphasis, tension label, and tension fill are runtime-owned. The depth structure uses `Meters/fishing-ui-depth-track.png` tiled to connect the configured tier positions and one active or inactive supplied node sprite per tier. The tension meter uses `Meters/fishing-ui-tension-track.png` at 352 x 40 and the supplied 338 x 24 teal/coral fills at native size; `Image.fillAmount` follows the existing Line Load ratio and the sprite changes at the warning threshold. It does not add a gameplay mechanic. Descend, Release, and Surface remain functional children in the lower part of the outer frame.
+
 The visual assets will be produced separately and supplied to you. You must not generate, redraw, reinterpret, or replace the supplied artwork. Your job is to import the assets, assemble prefabs, implement layout and interaction states, and bind runtime data.
 
 ## Asset ownership contract

@@ -366,6 +366,42 @@ public static class FishingRunViewPrefabBuilder
             serializedView,
             "navigationFont",
             AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(NavigationFontPath));
+        SetObjectReference(
+            serializedView,
+            "rightStatusOuterSprite",
+            LoadSprite("Frames/fishing-ui-right-status-outer-blank.png"));
+        SetObjectReference(
+            serializedView,
+            "rightStatusDepthSprite",
+            LoadSprite("Frames/fishing-ui-right-status-depth-blank.png"));
+        SetObjectReference(
+            serializedView,
+            "rightStatusTensionSprite",
+            LoadSprite("Frames/fishing-ui-right-status-tension-blank.png"));
+        SetObjectReference(
+            serializedView,
+            "depthTrackSprite",
+            LoadSprite("Meters/fishing-ui-depth-track.png"));
+        SetObjectReference(
+            serializedView,
+            "depthNodeActiveSprite",
+            LoadSprite("Meters/fishing-ui-depth-node-active.png"));
+        SetObjectReference(
+            serializedView,
+            "depthNodeInactiveSprite",
+            LoadSprite("Meters/fishing-ui-depth-node-inactive.png"));
+        SetObjectReference(
+            serializedView,
+            "tensionTrackSprite",
+            LoadSprite("Meters/fishing-ui-tension-track.png"));
+        SetObjectReference(
+            serializedView,
+            "tensionFillTealSprite",
+            LoadSprite("Meters/fishing-ui-tension-fill-teal.png"));
+        SetObjectReference(
+            serializedView,
+            "tensionFillCoralSprite",
+            LoadSprite("Meters/fishing-ui-tension-fill-coral.png"));
         SetObjectReference(serializedView, "backgroundRegion", background);
         SetObjectReference(serializedView, "topNavigationBar", topNavigation);
         SetObjectReference(serializedView, "mainContent", mainContent);
