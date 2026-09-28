@@ -350,7 +350,7 @@ public static class FishingRunViewPrefabBuilder
             "creatureCardPrefab",
             AssetDatabase.LoadAssetAtPath<CreatureCardView>(CreatureCardPrefabPath));
         SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/sea-creature-empty-card-base.png"));
-        SetObjectReference(serializedView, "rarityHookSprite", LoadSprite("Markers/anchor-filled.png"));
+        SetObjectReference(serializedView, "rarityHookSprite", LoadSprite("Icons/catch.png"));
         SetObjectReference(serializedView, "regionPlaqueSprite", LoadSprite("Frames/fishing-ui-region-plaque-blank.png"));
         SetObjectReference(serializedView, "depthPlaqueSprite", LoadSprite("Frames/fishing-ui-depth-plaque-blank.png"));
         SetObjectReference(serializedView, "deckPlaqueSprite", LoadSprite("Frames/fishing-ui-deck-plaque-blank.png"));

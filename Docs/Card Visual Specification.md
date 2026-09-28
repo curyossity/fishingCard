@@ -19,6 +19,12 @@ Unity fills these fields from card data:
 - Effect text
 - Rarity hooks
 
+The upper card-type field separates catchable encounters from event encounters:
+
+- `Creature` and `Treasure`: `CATCH CARD`
+- `ApexEncounter`: `APEX CATCH`
+- Non-catchable encounter categories, including `Hazard`, `Environment`, `Opportunity`, and generic `Encounter`: `EVENT CARD`
+
 These fields must remain separate UI elements layered over the supplied card image so they can be changed without editing the artwork.
 
 Weight and Value display the currently resolved values. When gameplay modifiers change either value, update the number in place. Do not add modifier deltas, arrows, badges, or separate base-value text unless the user explicitly requests them.
@@ -27,7 +33,7 @@ Text must fit its authored region at supported resolutions. Use wrapping and bou
 
 ## Rarity Hooks
 
-Creature/catch card art provides four hook positions. Unity displays the card rarity by activating the corresponding number of hooks:
+Creature/catch card art provides four circular rarity sockets. Unity fills them with `Assets/FishingUIAssets/Icons/catch.png`, activating the corresponding number of catch icons:
 
 - `Common`: 1 active hook
 - `Uncommon`: 2 active hooks

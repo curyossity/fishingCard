@@ -213,6 +213,15 @@ public sealed class CreatureCardView : MonoBehaviour
 
     private static string BuildCardTypeText(CardType cardType)
     {
-        return cardType == CardType.ApexEncounter ? "APEX CATCH" : "CATCH CARD";
+        switch (cardType)
+        {
+            case CardType.ApexEncounter:
+                return "APEX CATCH";
+            case CardType.Creature:
+            case CardType.Treasure:
+                return "CATCH CARD";
+            default:
+                return "EVENT CARD";
+        }
     }
 }

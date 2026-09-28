@@ -552,6 +552,7 @@ public static class Phase3ComponentPrefabBuilder
         Image[] sockets = new Image[4];
         Image[] markers = new Image[4];
         float[] markerCenters = { 0.227f, 0.418f, 0.606f, 0.798f };
+        float[] markerHorizontalOffsets = { 0f, -1f, 2f, 0f };
         for (int i = 0; i < 4; i++)
         {
             float center = markerCenters[i];
@@ -560,7 +561,8 @@ public static class Phase3ComponentPrefabBuilder
                 anchorRoot,
                 new Vector2(center, 0.5f),
                 new Vector2(center, 0.5f));
-            slot.sizeDelta = new Vector2(48f, 48f);
+            slot.anchoredPosition = new Vector2(markerHorizontalOffsets[i], 5f);
+            slot.sizeDelta = new Vector2(47f, 47f);
             sockets[i] = CreateImage(
                 "Socket",
                 slot,
@@ -571,7 +573,7 @@ public static class Phase3ComponentPrefabBuilder
             markers[i] = CreateImage(
                 "Filled Anchor",
                 slot,
-                LoadSprite("Markers/anchor-filled.png"),
+                LoadSprite("Icons/fishing-ui-rarity-icon-anchor-512.png"),
                 Image.Type.Simple);
             markers[i].preserveAspect = true;
         }
@@ -594,7 +596,7 @@ public static class Phase3ComponentPrefabBuilder
         SetReference(serializedView, "valueText", valueText);
         SetReference(serializedView, "effectText", effectText);
         SetReference(serializedView, "fallbackCardFace", background.sprite);
-        SetReference(serializedView, "rarityHookSprite", LoadSprite("Markers/anchor-filled.png"));
+        SetReference(serializedView, "rarityHookSprite", LoadSprite("Icons/fishing-ui-rarity-icon-anchor-512.png"));
         SetReferenceArray(serializedView, "anchorSockets", sockets);
         SetReferenceArray(serializedView, "anchorMarkers", markers);
         serializedView.ApplyModifiedPropertiesWithoutUndo();
