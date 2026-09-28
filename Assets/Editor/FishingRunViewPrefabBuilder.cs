@@ -124,9 +124,6 @@ public static class FishingRunViewPrefabBuilder
             Vector2.one);
         AddContactShadow(runControlsPanel);
 
-        AddDivider(mainContent, "Left Column Divider", 0.2525f);
-        AddDivider(mainContent, "Right Column Divider", 0.7475f);
-
         RectTransform techniqueHand = CreateRegion(
             "TechniqueHand",
             rootRect,
@@ -622,16 +619,6 @@ public static class FishingRunViewPrefabBuilder
         Image image = AddSimpleImage(parent, name, relativePath, color);
         image.type = Image.Type.Sliced;
         return image;
-    }
-
-    private static void AddDivider(RectTransform parent, string name, float anchorX)
-    {
-        RectTransform rect = CreateRegion(name, parent, new Vector2(anchorX, 0f), new Vector2(anchorX, 1f));
-        rect.sizeDelta = new Vector2(18f, 0f);
-        Image image = rect.gameObject.AddComponent<Image>();
-        image.sprite = LoadSprite("Frames/main-column-divider.png");
-        image.preserveAspect = false;
-        image.raycastTarget = false;
     }
 
     private static void AddContactShadow(RectTransform parent)
