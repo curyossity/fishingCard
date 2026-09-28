@@ -848,11 +848,21 @@ public sealed class FishingRunView : MonoBehaviour
         GameObject buttonObject = CreateUiObject(objectName, parent);
         RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
         SetAnchoredRect(buttonRect, anchorMin, anchorMax, 0f, 0f, 0f, 0f);
-        Image buttonImage = AddImage(buttonObject, Color.white);
+
+        Image hitArea = AddImage(buttonObject, Color.clear);
+        hitArea.raycastTarget = true;
+
+        GameObject plateObject = CreateUiObject("Plate", buttonRect);
+        RectTransform plateRect = plateObject.GetComponent<RectTransform>();
+        plateRect.anchorMin = new Vector2(0f, -0.25f);
+        plateRect.anchorMax = new Vector2(1f, 1.25f);
+        plateRect.offsetMin = Vector2.zero;
+        plateRect.offsetMax = Vector2.zero;
+        Image buttonImage = AddImage(plateObject, Color.white);
         buttonImage.sprite = plateSprite;
         buttonImage.type = Image.Type.Simple;
-        buttonImage.preserveAspect = true;
-        buttonImage.raycastTarget = true;
+        buttonImage.preserveAspect = false;
+        buttonImage.raycastTarget = false;
         LinkedGraphicButton button = buttonObject.AddComponent<LinkedGraphicButton>();
         button.targetGraphic = buttonImage;
         button.onClick.AddListener(clickAction);
