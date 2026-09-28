@@ -455,7 +455,7 @@ public static class Phase3ComponentPrefabBuilder
     {
         GameObject root = CreateUiObject("CreatureCardView", null);
         RectTransform rootRect = root.GetComponent<RectTransform>();
-        rootRect.sizeDelta = new Vector2(393f, 611f);
+        rootRect.sizeDelta = new Vector2(470.756f, 611f);
         CreatureCardView view = root.AddComponent<CreatureCardView>();
 
         Image background = CreateImage(
@@ -471,8 +471,8 @@ public static class Phase3ComponentPrefabBuilder
         RectTransform artworkMaskRect = CreateRect(
             "CreatureArtworkMask",
             rootRect,
-            new Vector2(0.11f, 0.47f),
-            new Vector2(0.89f, 0.815f));
+            new Vector2(0.115f, 0.475f),
+            new Vector2(0.885f, 0.805f));
         Image artworkMaskImage = artworkMaskRect.gameObject.AddComponent<Image>();
         artworkMaskImage.sprite = LoadSprite("Cards/Creature/creature-art-mask.png");
         artworkMaskImage.preserveAspect = true;
@@ -492,7 +492,7 @@ public static class Phase3ComponentPrefabBuilder
             rootRect,
             null,
             Image.Type.Simple);
-        SetAnchoredRect(titlePlate.rectTransform, new Vector2(0.11f, 0.81f), new Vector2(0.89f, 0.96f));
+        SetAnchoredRect(titlePlate.rectTransform, new Vector2(0.10f, 0.805f), new Vector2(0.90f, 0.95f));
         titlePlate.enabled = false;
 
         TextMeshProUGUI typeText = CreateText(
@@ -501,7 +501,7 @@ public static class Phase3ComponentPrefabBuilder
             bodyFont,
             14f,
             TextAlignmentOptions.Center);
-        SetAnchoredRect(typeText.rectTransform, new Vector2(0.27f, 0.67f), new Vector2(0.77f, 0.97f));
+        SetAnchoredRect(typeText.rectTransform, new Vector2(0.23f, 0.55f), new Vector2(0.77f, 0.92f));
         typeText.color = new Color32(27, 56, 54, 255);
         typeText.fontWeight = FontWeight.SemiBold;
         typeText.textWrappingMode = TextWrappingModes.NoWrap;
@@ -512,13 +512,13 @@ public static class Phase3ComponentPrefabBuilder
             displayFont,
             30f,
             TextAlignmentOptions.Center);
-        SetAnchoredRect(nameText.rectTransform, new Vector2(0.05f, 0.06f), new Vector2(0.95f, 0.62f));
+        SetAnchoredRect(nameText.rectTransform, new Vector2(0.02f, 0.03f), new Vector2(0.98f, 0.53f));
         nameText.color = new Color32(239, 226, 194, 255);
         nameText.fontSizeMin = 14f;
         nameText.textWrappingMode = TextWrappingModes.NoWrap;
 
-        Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.24f, 0.33f), new Vector2(0.50f, 0.46f));
-        Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.52f, 0.33f), new Vector2(0.79f, 0.46f));
+        Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.222f, 0.34f), new Vector2(0.491f, 0.48f));
+        Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.510f, 0.34f), new Vector2(0.781f, 0.48f));
         TextMeshProUGUI weightText = CreateText("Weight Text", weightPlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
         TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
         weightText.color = new Color32(26, 60, 59, 255);
@@ -533,7 +533,7 @@ public static class Phase3ComponentPrefabBuilder
             rootRect,
             null,
             Image.Type.Simple);
-        SetAnchoredRect(effectPanel.rectTransform, new Vector2(0.11f, 0.15f), new Vector2(0.89f, 0.305f));
+        SetAnchoredRect(effectPanel.rectTransform, new Vector2(0.085f, 0.175f), new Vector2(0.915f, 0.315f));
         effectPanel.enabled = false;
         TextMeshProUGUI effectText = CreateText(
             "Effect Text",
@@ -547,12 +547,11 @@ public static class Phase3ComponentPrefabBuilder
         RectTransform anchorRoot = CreateRect(
             "AnchorSlots",
             rootRect,
-            new Vector2(0f, 0.055f),
-            new Vector2(1f, 0.14f));
+            new Vector2(0f, 0.105f),
+            new Vector2(1f, 0.19f));
         Image[] sockets = new Image[4];
         Image[] markers = new Image[4];
-        float[] markerCenters = { 0.227f, 0.418f, 0.606f, 0.798f };
-        float[] markerHorizontalOffsets = { 0f, -1f, 2f, 0f };
+        float[] markerCenters = { 0.194f, 0.393f, 0.606f, 0.807f };
         for (int i = 0; i < 4; i++)
         {
             float center = markerCenters[i];
@@ -561,8 +560,8 @@ public static class Phase3ComponentPrefabBuilder
                 anchorRoot,
                 new Vector2(center, 0.5f),
                 new Vector2(center, 0.5f));
-            slot.anchoredPosition = new Vector2(markerHorizontalOffsets[i], 5f);
-            slot.sizeDelta = new Vector2(47f, 47f);
+            slot.anchoredPosition = Vector2.zero;
+            slot.sizeDelta = new Vector2(54f, 54f);
             sockets[i] = CreateImage(
                 "Socket",
                 slot,

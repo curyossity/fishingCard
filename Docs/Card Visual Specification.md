@@ -4,7 +4,7 @@ This document defines the current approved presentation contract for creature an
 
 ## Source Card Art
 
-The production Encounter card uses the reusable supplied empty master `Assets/FishingUIAssets/Cards/Creature/sea-creature-empty-card-base.png` at 873 x 1358. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, and four empty marker sockets.
+The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/sea-creature-empty-card-base.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, and four empty marker sockets.
 
 Unity layers each creature's illustration and runtime-owned information over this master. A precomposed per-creature card face must not replace the production Encounter master, even when legacy card data still contains one.
 

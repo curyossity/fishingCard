@@ -468,7 +468,7 @@ public sealed class FishingRunView : MonoBehaviour
         SetAnchoredRect(cardRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
         AspectRatioFitter aspectRatio = encounterCardView.gameObject.AddComponent<AspectRatioFitter>();
         aspectRatio.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
-        aspectRatio.aspectRatio = 873f / 1358f;
+        aspectRatio.aspectRatio = CreatureCardView.ReferenceAspectRatio;
         encounterCardView.Initialize(fallbackCreatureCardFace, rarityHookSprite);
     }
 

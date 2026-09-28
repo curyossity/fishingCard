@@ -5,6 +5,8 @@ using UnityEngine.UI;
 /// <summary>Renders a creature card from supplied visual layers and runtime-owned fields.</summary>
 public sealed class CreatureCardView : MonoBehaviour
 {
+    public const float ReferenceAspectRatio = 1101f / 1429f;
+
     [Header("Supplied Visual Layers")]
     [SerializeField] private Image cardBackground;
     [SerializeField] private Image creatureArtwork;
