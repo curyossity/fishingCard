@@ -180,7 +180,7 @@ public sealed class CatchChainView : MonoBehaviour
 
         GameObject pipRootObject = CreateUiObject("Capacity Pips", loadPanelRect);
         lineLoadPipRoot = pipRootObject.GetComponent<RectTransform>();
-        SetAnchoredRect(lineLoadPipRoot, Vector2.zero, Vector2.one, 26f, 13f, -26f, -54f);
+        SetAnchoredRect(lineLoadPipRoot, Vector2.zero, Vector2.one, 26f, 17f, -26f, -50f);
     }
 
     /// <summary>
