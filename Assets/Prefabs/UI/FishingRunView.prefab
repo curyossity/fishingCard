@@ -763,8 +763,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunView
   creatureCardPrefab: {fileID: 583446137711959576, guid: 4ce16b59d2e209a4cbf765cdffc547f2, type: 3}
-  fallbackCreatureCardFace: {fileID: 21300000, guid: e82b08f444e646638e343cb2358ef8d5, type: 3}
-  rarityHookSprite: {fileID: 21300000, guid: 7f170000000040008000000000000016, type: 3}
+  fallbackCreatureCardFace: {fileID: 21300000, guid: 897dddfe3e974a3ba3573187d3299192, type: 3}
+  rarityHookSprite: {fileID: 21300000, guid: f509f339672a46149eed48b915a35749, type: 3}
   regionPlaqueSprite: {fileID: 21300000, guid: 81c8a5d8a2bfaa640aea3f1bda4a5fb9, type: 3}
   depthPlaqueSprite: {fileID: 21300000, guid: a662786d594d07d4390e9738ab00f7db, type: 3}
   deckPlaqueSprite: {fileID: 21300000, guid: 0442f2d77a9fd6347a7bc617601ec7ad, type: 3}

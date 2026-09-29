@@ -461,7 +461,7 @@ public static class Phase3ComponentPrefabBuilder
         Image background = CreateImage(
             "CardBackground",
             rootRect,
-            LoadSprite("Cards/Creature/sea-creature-empty-card-base.png"),
+            LoadSprite("Cards/Creature/catch-card-base-1101x1429.png"),
             Image.Type.Simple);
         Shadow cardShadow = background.gameObject.AddComponent<Shadow>();
         cardShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.68f);
@@ -519,14 +519,14 @@ public static class Phase3ComponentPrefabBuilder
 
         Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.222f, 0.34f), new Vector2(0.491f, 0.48f));
         Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.510f, 0.34f), new Vector2(0.781f, 0.48f));
-        TextMeshProUGUI weightText = CreateText("Weight Text", weightPlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
-        TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
-        weightText.color = new Color32(26, 60, 59, 255);
-        valueText.color = weightText.color;
+        TextMeshProUGUI weightText = CreateText("Weight Text", weightPlate.rectTransform, bodyFont, 48f, TextAlignmentOptions.Center);
+        TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 48f, TextAlignmentOptions.Center);
+        weightText.color = new Color32(130, 175, 156, 255);
+        valueText.color = new Color32(235, 214, 192, 255);
         weightText.fontWeight = FontWeight.Bold;
         valueText.fontWeight = FontWeight.Bold;
-        SetStretchOffsets(weightText.rectTransform, 12f, 5f, -12f, -24f);
-        SetStretchOffsets(valueText.rectTransform, 12f, 5f, -12f, -24f);
+        SetStretchOffsets(weightText.rectTransform, 11f, 16f, -13f, -13f);
+        SetStretchOffsets(valueText.rectTransform, 11f, 16f, -13f, -13f);
 
         Image effectPanel = CreateImage(
             "Rules Safe Region",
@@ -547,11 +547,11 @@ public static class Phase3ComponentPrefabBuilder
         RectTransform anchorRoot = CreateRect(
             "AnchorSlots",
             rootRect,
-            new Vector2(0f, 0.105f),
-            new Vector2(1f, 0.19f));
+            new Vector2(0f, 0.07f),
+            new Vector2(1f, 0.152f));
         Image[] sockets = new Image[4];
         Image[] markers = new Image[4];
-        float[] markerCenters = { 0.194f, 0.393f, 0.606f, 0.807f };
+        float[] markerCenters = { 0.359f, 0.456f, 0.556f, 0.656f };
         for (int i = 0; i < 4; i++)
         {
             float center = markerCenters[i];
@@ -560,8 +560,8 @@ public static class Phase3ComponentPrefabBuilder
                 anchorRoot,
                 new Vector2(center, 0.5f),
                 new Vector2(center, 0.5f));
-            slot.anchoredPosition = Vector2.zero;
-            slot.sizeDelta = new Vector2(54f, 54f);
+            slot.anchoredPosition = new Vector2(-4f, 10f);
+            slot.sizeDelta = new Vector2(35f, 35f);
             sockets[i] = CreateImage(
                 "Socket",
                 slot,
