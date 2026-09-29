@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -152,6 +153,26 @@ public sealed class WaveWipeMaskGraphic : MaskableGraphic
 
 public sealed class FishingRunView : MonoBehaviour
 {
+    private sealed class EncounterPresentationSnapshot
+    {
+        public CardDefinition Card { get; }
+        public int Weight { get; }
+        public int Value { get; }
+        public bool InformationHidden { get; }
+
+        public EncounterPresentationSnapshot(
+            CardDefinition card,
+            int weight,
+            int value,
+            bool informationHidden)
+        {
+            Card = card;
+            Weight = weight;
+            Value = value;
+            InformationHidden = informationHidden;
+        }
+    }
+
     [Header("Creature Card Art")]
     [SerializeField] private CreatureCardView creatureCardPrefab;
     [SerializeField] private Sprite fallbackCreatureCardFace;
@@ -231,6 +252,7 @@ public sealed class FishingRunView : MonoBehaviour
     private WaveWipeMaskGraphic standbyEncounterCardWipeMask;
     private RectMask2D standbyEncounterCardSoftMask;
     private Coroutine encounterTransitionCoroutine;
+    private Coroutine surfaceTransitionCoroutine;
     private Button descendButton;
     private Button releaseButton;
     private Button surfaceButton;
@@ -244,11 +266,14 @@ public sealed class FishingRunView : MonoBehaviour
     private bool hasPresentedEncounter;
     private int lastPresentedDepth;
     private bool latestCanDescend;
+    private readonly List<EncounterPresentationSnapshot> encounterHistory = new List<EncounterPresentationSnapshot>();
 
     private const float EncounterTransitionDuration = 0.7f;
     private const float EncounterTransitionOvershoot = 40f;
     private const int EncounterFadeSoftness = 64;
     private const float EncounterWaveFadeOverlap = 20f;
+    private const float SurfaceMinimumTransitionDuration = 0.28f;
+    private const float SurfaceTransitionAcceleration = 0.82f;
 
     public RectTransform BackgroundRegion => backgroundRegion;
     public RectTransform TopNavigationBar => topNavigationBar;
@@ -260,7 +285,9 @@ public sealed class FishingRunView : MonoBehaviour
     public Canvas TooltipLayer => tooltipLayer;
     public Canvas TransitionLayer => transitionLayer;
     public Canvas ModalLayer => modalLayer;
+    public bool IsSurfaceTransitionPlaying => surfaceTransitionCoroutine != null;
     public event Action SettingsRequested;
+    public event Action SurfaceTransitionCompleted;
 
     /// <summary>
     /// Builds the runtime gameplay composition before its first state refresh.
@@ -297,18 +324,35 @@ public sealed class FishingRunView : MonoBehaviour
         bool runStateChanged = !lastRunActive.HasValue || lastRunActive.Value != runActive;
         if (runStateChanged)
         {
-            SetRunContentVisible(runActive);
             lastRunActive = runActive;
             if (runActive)
             {
+                CancelSurfaceTransition();
+                SetRunContentVisible(true);
                 hasPresentedEncounter = false;
+                encounterHistory.Clear();
+            }
+            else if (encounterHistory.Count > 0)
+            {
+                BeginSurfaceTransition();
+                return;
+            }
+            else
+            {
+                SetRunContentVisible(false);
             }
         }
 
         if (!runActive)
         {
+            if (surfaceTransitionCoroutine != null)
+            {
+                return;
+            }
+
             CancelEncounterTransition();
             hasPresentedEncounter = false;
+            SetRunContentVisible(false);
             return;
         }
 
@@ -319,6 +363,12 @@ public sealed class FishingRunView : MonoBehaviour
         RefreshTension(currentLineLoad, lineCapacity);
 
         bool shouldTransitionEncounter = hasPresentedEncounter && depth > lastPresentedDepth;
+        RecordEncounterPresentation(
+            encounter,
+            resolvedEncounterWeight,
+            resolvedEncounterValue,
+            encounterInformationHidden,
+            shouldTransitionEncounter);
         if (shouldTransitionEncounter)
         {
             BeginEncounterTransition(
@@ -654,6 +704,37 @@ public sealed class FishingRunView : MonoBehaviour
 
     }
 
+    /// <summary>Stores one presentation snapshot per visited depth for the later Surface journey.</summary>
+    private void RecordEncounterPresentation(
+        CardDefinition encounter,
+        int resolvedWeight,
+        int resolvedValue,
+        bool informationHidden,
+        bool enteredNewDepth)
+    {
+        EncounterPresentationSnapshot snapshot = new EncounterPresentationSnapshot(
+            encounter,
+            resolvedWeight,
+            resolvedValue,
+            informationHidden);
+        if (encounterHistory.Count == 0 || enteredNewDepth)
+        {
+            encounterHistory.Add(snapshot);
+            return;
+        }
+
+        encounterHistory[encounterHistory.Count - 1] = snapshot;
+    }
+
+    /// <summary>Matches the card-face distinction between catch cards and event cards.</summary>
+    private static bool IsCatchCard(CardDefinition card)
+    {
+        return card != null
+            && (card.CardType == CardType.Creature
+                || card.CardType == CardType.Treasure
+                || card.CardType == CardType.ApexEncounter);
+    }
+
     /// <summary>Slides the previous encounter upward while the next encounter rises from below.</summary>
     private void BeginEncounterTransition(
         CardDefinition encounter,
@@ -671,10 +752,36 @@ public sealed class FishingRunView : MonoBehaviour
             resolvedEncounterValue,
             encounterInformationHidden);
 
-        RectTransform outgoingRoot = encounterCardMotionRoot;
-        CanvasGroup outgoingGroup = encounterCardCanvasGroup;
-        WaveWipeMaskGraphic outgoingMask = encounterCardWipeMask;
-        RectMask2D outgoingSoftMask = encounterCardSoftMask;
+        SwapEncounterCardSlots(
+            out RectTransform outgoingRoot,
+            out CanvasGroup outgoingGroup,
+            out WaveWipeMaskGraphic outgoingMask,
+            out RectMask2D outgoingSoftMask);
+
+        encounterTransitionCoroutine = StartCoroutine(AnimateEncounterTransition(
+            outgoingRoot,
+            outgoingGroup,
+            outgoingMask,
+            outgoingSoftMask,
+            encounterCardMotionRoot,
+            encounterCardCanvasGroup,
+            encounterCardWipeMask,
+            encounterCardSoftMask,
+            true,
+            EncounterTransitionDuration));
+    }
+
+    /// <summary>Promotes the prepared standby slot and returns the previously visible slot.</summary>
+    private void SwapEncounterCardSlots(
+        out RectTransform outgoingRoot,
+        out CanvasGroup outgoingGroup,
+        out WaveWipeMaskGraphic outgoingMask,
+        out RectMask2D outgoingSoftMask)
+    {
+        outgoingRoot = encounterCardMotionRoot;
+        outgoingGroup = encounterCardCanvasGroup;
+        outgoingMask = encounterCardWipeMask;
+        outgoingSoftMask = encounterCardSoftMask;
         CreatureCardView outgoingView = encounterCardView;
 
         encounterCardMotionRoot = standbyEncounterCardMotionRoot;
@@ -687,16 +794,6 @@ public sealed class FishingRunView : MonoBehaviour
         standbyEncounterCardWipeMask = outgoingMask;
         standbyEncounterCardSoftMask = outgoingSoftMask;
         standbyEncounterCardView = outgoingView;
-
-        encounterTransitionCoroutine = StartCoroutine(AnimateEncounterTransition(
-            outgoingRoot,
-            outgoingGroup,
-            outgoingMask,
-            outgoingSoftMask,
-            encounterCardMotionRoot,
-            encounterCardCanvasGroup,
-            encounterCardWipeMask,
-            encounterCardSoftMask));
     }
 
     /// <summary>Runs presentation-only motion after gameplay has already supplied the next encounter.</summary>
@@ -708,45 +805,58 @@ public sealed class FishingRunView : MonoBehaviour
         RectTransform incomingRoot,
         CanvasGroup incomingGroup,
         WaveWipeMaskGraphic incomingMask,
-        RectMask2D incomingSoftMask)
+        RectMask2D incomingSoftMask,
+        bool descending,
+        float transitionDuration)
     {
         Canvas.ForceUpdateCanvases();
         float travelDistance = Mathf.Max(1f, encounterRegion.rect.height) + EncounterTransitionOvershoot;
-        Vector2 incomingStart = Vector2.down * travelDistance;
-        Vector2 outgoingEnd = Vector2.up * travelDistance;
+        Vector2 incomingStart = (descending ? Vector2.down : Vector2.up) * travelDistance;
+        Vector2 outgoingEnd = (descending ? Vector2.up : Vector2.down) * travelDistance;
         outgoingRoot.anchoredPosition = Vector2.zero;
         incomingRoot.anchoredPosition = incomingStart;
         outgoingGroup.alpha = 1f;
         incomingGroup.alpha = 1f;
-        outgoingMask.SetWipe(0f, 0f, true, true);
-        incomingMask.SetWipe(0f, Mathf.PI, false, true);
+        outgoingMask.SetWipe(descending ? 0f : 1f, 0f, descending, true);
+        incomingMask.SetWipe(descending ? 0f : 1f, Mathf.PI, !descending, true);
         outgoingSoftMask.enabled = true;
         incomingSoftMask.enabled = true;
         outgoingSoftMask.padding = Vector4.zero;
-        incomingSoftMask.padding = new Vector4(0f, travelDistance, 0f, 0f);
+        incomingSoftMask.padding = descending
+            ? new Vector4(0f, travelDistance, 0f, 0f)
+            : new Vector4(0f, 0f, 0f, travelDistance);
 
         float elapsed = 0f;
-        while (elapsed < EncounterTransitionDuration)
+        while (elapsed < transitionDuration)
         {
             elapsed += Time.unscaledDeltaTime;
-            float normalizedTime = Mathf.Clamp01(elapsed / EncounterTransitionDuration);
-            float easedTime = normalizedTime * normalizedTime * (3f - (2f * normalizedTime));
-            float wipeTime = easedTime;
+            float normalizedTime = Mathf.Clamp01(elapsed / transitionDuration);
+            // Descend settles each newly revealed encounter for readability. Surface remains linear so
+            // consecutive cards cross the centre without braking and appearing to pause there.
+            float motionTime = descending
+                ? normalizedTime * normalizedTime * (3f - (2f * normalizedTime))
+                : normalizedTime;
+            float wipeTime = motionTime;
             float wavePhase = normalizedTime * Mathf.PI * 2f;
-            outgoingRoot.anchoredPosition = Vector2.LerpUnclamped(Vector2.zero, outgoingEnd, easedTime);
-            incomingRoot.anchoredPosition = Vector2.LerpUnclamped(incomingStart, Vector2.zero, easedTime);
-            outgoingMask.SetWipe(wipeTime, wavePhase, true, true);
-            incomingMask.SetWipe(wipeTime, wavePhase + Mathf.PI, false, true);
-            float outgoingTopPadding = Mathf.Clamp(
+            outgoingRoot.anchoredPosition = Vector2.LerpUnclamped(Vector2.zero, outgoingEnd, motionTime);
+            incomingRoot.anchoredPosition = Vector2.LerpUnclamped(incomingStart, Vector2.zero, motionTime);
+            float directionalWipeTime = descending ? wipeTime : 1f - wipeTime;
+            outgoingMask.SetWipe(directionalWipeTime, wavePhase, descending, true);
+            incomingMask.SetWipe(directionalWipeTime, wavePhase + Mathf.PI, !descending, true);
+            float outgoingPadding = Mathf.Clamp(
                 (travelDistance * wipeTime) - EncounterWaveFadeOverlap,
                 0f,
                 travelDistance);
-            float incomingBottomPadding = Mathf.Clamp(
+            float incomingPadding = Mathf.Clamp(
                 (travelDistance * (1f - wipeTime)) - EncounterWaveFadeOverlap,
                 0f,
                 travelDistance);
-            outgoingSoftMask.padding = new Vector4(0f, 0f, 0f, outgoingTopPadding);
-            incomingSoftMask.padding = new Vector4(0f, incomingBottomPadding, 0f, 0f);
+            outgoingSoftMask.padding = descending
+                ? new Vector4(0f, 0f, 0f, outgoingPadding)
+                : new Vector4(0f, outgoingPadding, 0f, 0f);
+            incomingSoftMask.padding = descending
+                ? new Vector4(0f, incomingPadding, 0f, 0f)
+                : new Vector4(0f, 0f, 0f, incomingPadding);
             yield return null;
         }
 
@@ -761,11 +871,109 @@ public sealed class FishingRunView : MonoBehaviour
         incomingMask.SetWipe(0f, 0f, false, false);
         incomingSoftMask.padding = Vector4.zero;
         incomingSoftMask.enabled = false;
-        encounterTransitionCoroutine = null;
+        if (descending)
+        {
+            encounterTransitionCoroutine = null;
+            if (descendButton != null)
+            {
+                descendButton.interactable = latestCanDescend;
+            }
+        }
+    }
+
+    /// <summary>Starts the reverse encounter journey before the completed-run result is revealed.</summary>
+    private void BeginSurfaceTransition()
+    {
+        CancelEncounterTransition();
         if (descendButton != null)
         {
-            descendButton.interactable = latestCanDescend;
+            descendButton.interactable = false;
+            releaseButton.interactable = false;
+            surfaceButton.interactable = false;
         }
+
+        surfaceTransitionCoroutine = StartCoroutine(PlaySurfaceTransition());
+    }
+
+    /// <summary>Replays visited encounters from deepest to shallowest, then clears the gameplay presentation.</summary>
+    private IEnumerator PlaySurfaceTransition()
+    {
+        float transitionDuration = EncounterTransitionDuration;
+        for (int historyIndex = encounterHistory.Count - 2; historyIndex >= 0; historyIndex--)
+        {
+            EncounterPresentationSnapshot snapshot = encounterHistory[historyIndex];
+            if (!IsCatchCard(snapshot.Card))
+            {
+                continue;
+            }
+
+            standbyEncounterCardMotionRoot.SetAsLastSibling();
+            standbyEncounterCardMotionRoot.gameObject.SetActive(true);
+            standbyEncounterCardView.SetCard(
+                snapshot.Card,
+                snapshot.Weight,
+                snapshot.Value,
+                snapshot.InformationHidden);
+            SwapEncounterCardSlots(
+                out RectTransform outgoingRoot,
+                out CanvasGroup outgoingGroup,
+                out WaveWipeMaskGraphic outgoingMask,
+                out RectMask2D outgoingSoftMask);
+
+            yield return AnimateEncounterTransition(
+                outgoingRoot,
+                outgoingGroup,
+                outgoingMask,
+                outgoingSoftMask,
+                encounterCardMotionRoot,
+                encounterCardCanvasGroup,
+                encounterCardWipeMask,
+                encounterCardSoftMask,
+                false,
+                transitionDuration);
+            transitionDuration = Mathf.Max(
+                SurfaceMinimumTransitionDuration,
+                transitionDuration * SurfaceTransitionAcceleration);
+        }
+
+        standbyEncounterCardMotionRoot.SetAsLastSibling();
+        standbyEncounterCardMotionRoot.gameObject.SetActive(true);
+        standbyEncounterCardView.SetCard(null, 0, 0, false);
+        SwapEncounterCardSlots(
+            out RectTransform finalOutgoingRoot,
+            out CanvasGroup finalOutgoingGroup,
+            out WaveWipeMaskGraphic finalOutgoingMask,
+            out RectMask2D finalOutgoingSoftMask);
+        yield return AnimateEncounterTransition(
+            finalOutgoingRoot,
+            finalOutgoingGroup,
+            finalOutgoingMask,
+            finalOutgoingSoftMask,
+            encounterCardMotionRoot,
+            encounterCardCanvasGroup,
+            encounterCardWipeMask,
+            encounterCardSoftMask,
+            false,
+            transitionDuration);
+
+        surfaceTransitionCoroutine = null;
+        hasPresentedEncounter = false;
+        encounterHistory.Clear();
+        SetRunContentVisible(false);
+        SurfaceTransitionCompleted?.Invoke();
+    }
+
+    /// <summary>Stops a presentation-only Surface replay when a new run takes ownership of the screen.</summary>
+    private void CancelSurfaceTransition()
+    {
+        if (surfaceTransitionCoroutine == null)
+        {
+            return;
+        }
+
+        StopCoroutine(surfaceTransitionCoroutine);
+        surfaceTransitionCoroutine = null;
+        CancelEncounterTransition();
     }
 
     /// <summary>Returns both reusable card slots to a deterministic resting state.</summary>

@@ -103,11 +103,29 @@ public sealed class FishingRunController : MonoBehaviour
     private void Awake()
     {
         EnsureRuntimeObjects();
+        if (fishingRunView != null)
+        {
+            fishingRunView.SurfaceTransitionCompleted += HandleSurfaceTransitionCompleted;
+        }
 
         if (startRunOnAwake)
         {
             StartRun();
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (fishingRunView != null)
+        {
+            fishingRunView.SurfaceTransitionCompleted -= HandleSurfaceTransitionCompleted;
+        }
+    }
+
+    /// <summary>Refreshes result presentation after the view finishes replaying the ascent.</summary>
+    private void HandleSurfaceTransitionCompleted()
+    {
+        RefreshViews();
     }
 
     /// <summary>
@@ -856,6 +874,8 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (runResultView != null)
         {
+            bool resultPresentationBlocked = fishingRunView != null
+                && fishingRunView.IsSurfaceTransitionPlaying;
             bool canPurchaseUpgrade = runProgressionRuntime.CanPurchaseLineCapacityUpgrade(
                 runRewardRuntime,
                 runActive,
@@ -867,7 +887,7 @@ public sealed class FishingRunController : MonoBehaviour
                 lastSurfaceResult.HasResult,
                 out string techniqueRestrictionReason);
             runResultView.Refresh(
-                runActive,
+                runActive || resultPresentationBlocked,
                 lastSurfaceResult,
                 runRewardRuntime.TotalGold,
                 runProgressionRuntime,
