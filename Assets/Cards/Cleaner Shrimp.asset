@@ -21,7 +21,9 @@ MonoBehaviour:
   - Crustacean
   - Small
   - Support
-  artwork: {fileID: 0}
+  artwork: {fileID: 2157674157209873347, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
+  encounterArtwork: {fileID: 6483912047753102011, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
+  artworkLayout: 1
   rulesText: While attached, cleans and steadies the previous catch, reducing that
     catch's weight by 2.
   weight: 1

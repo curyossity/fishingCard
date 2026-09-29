@@ -8,6 +8,8 @@ The production Encounter card uses the reusable supplied wide master `Assets/Fis
 
 Unity layers each creature's illustration and runtime-owned information over this master. A precomposed per-creature card face must not replace the production Encounter master, even when legacy card data still contains one.
 
+Creature artwork supports two explicitly authored layouts on `CardDefinition`: `MaskedRegion` for a cropped illustration clipped to the chart field, and `FullCardOverlay` for a transparent image authored at the base card's full native dimensions. Full-card overlays are aligned one-to-one over the supplied base but remain below all Unity-owned text, stats, rules, and rarity markers. A definition may provide a dedicated `EncounterArtwork` overlay while retaining a cropped `Artwork` sprite for compact cards and other portrait consumers. Do not infer layout from filenames or image dimensions.
+
 ## Unity-Owned Fields
 
 Unity fills these fields from card data:

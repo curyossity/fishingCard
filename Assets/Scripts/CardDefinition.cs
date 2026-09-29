@@ -14,6 +14,8 @@ public class CardDefinition : ScriptableObject
 
     [Header("Presentation")]
     [SerializeField] private Sprite artwork;
+    [SerializeField] private Sprite encounterArtwork;
+    [SerializeField] private CardArtworkLayout artworkLayout;
     [SerializeField] private Sprite cardFaceArtwork;
     [SerializeField] private bool cardFaceIncludesName;
     [TextArea(2, 5)]
@@ -40,6 +42,8 @@ public class CardDefinition : ScriptableObject
     public CardRarity Rarity => rarity;
     public string[] Tags => tags;
     public Sprite Artwork => artwork;
+    public Sprite EncounterArtwork => encounterArtwork;
+    public CardArtworkLayout ArtworkLayout => artworkLayout;
     public Sprite CardFaceArtwork => cardFaceArtwork;
     public bool CardFaceIncludesName => cardFaceIncludesName;
     public string RulesText => rulesText;
@@ -111,6 +115,12 @@ public class CardDefinition : ScriptableObject
 
         return summary.ToString();
     }
+}
+
+public enum CardArtworkLayout
+{
+    MaskedRegion = 0,
+    FullCardOverlay = 1
 }
 
 public enum CardType

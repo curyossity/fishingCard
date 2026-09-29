@@ -59,11 +59,13 @@ public sealed class CreatureCardView : MonoBehaviour
         }
 
         gameObject.SetActive(true);
+        Sprite encounterArtwork = card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
 
         SetContent(
             card.DisplayName,
             BuildCardTypeText(card.CardType),
-            card.Artwork,
+            encounterArtwork,
+            card.ArtworkLayout,
             fallbackCardFace,
             informationHidden ? "?" : Mathf.Max(0, resolvedWeight).ToString(),
             informationHidden ? "?" : Mathf.Max(0, resolvedValue).ToString(),
@@ -86,6 +88,7 @@ public sealed class CreatureCardView : MonoBehaviour
             displayName,
             cardType,
             artwork,
+            CardArtworkLayout.MaskedRegion,
             fallbackCardFace,
             Mathf.Max(0, weight).ToString(),
             Mathf.Max(0, value).ToString(),
@@ -99,6 +102,7 @@ public sealed class CreatureCardView : MonoBehaviour
         gameObject.SetActive(true);
         SetImage(cardBackground, fallbackCardFace);
         SetImage(creatureArtwork, null);
+        SetImage(artworkOverflowLayer, null);
         SetText(cardTypeText, string.Empty);
         SetText(cardNameText, string.Empty);
         SetText(weightText, string.Empty);
@@ -126,6 +130,7 @@ public sealed class CreatureCardView : MonoBehaviour
         string displayName,
         string cardType,
         Sprite artwork,
+        CardArtworkLayout artworkLayout,
         Sprite background,
         string weight,
         string value,
@@ -133,13 +138,9 @@ public sealed class CreatureCardView : MonoBehaviour
         CardRarity rarity)
     {
         SetImage(cardBackground, background);
-        SetImage(creatureArtwork, artwork);
-
-        if (artworkOverflowLayer != null)
-        {
-            artworkOverflowLayer.sprite = null;
-            artworkOverflowLayer.enabled = false;
-        }
+        bool usesFullCardOverlay = artwork != null && artworkLayout == CardArtworkLayout.FullCardOverlay;
+        SetImage(creatureArtwork, usesFullCardOverlay ? null : artwork);
+        SetImage(artworkOverflowLayer, usesFullCardOverlay ? artwork : null);
 
         if (cardFrame != null)
         {
