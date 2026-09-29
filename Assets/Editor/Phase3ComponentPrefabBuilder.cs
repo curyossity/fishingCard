@@ -506,6 +506,7 @@ public static class Phase3ComponentPrefabBuilder
             14f,
             TextAlignmentOptions.Center);
         SetAnchoredRect(typeText.rectTransform, new Vector2(0.23f, 0.55f), new Vector2(0.77f, 0.92f));
+        typeText.rectTransform.anchoredPosition = new Vector2(0f, 4f);
         typeText.color = new Color32(27, 56, 54, 255);
         typeText.fontWeight = FontWeight.SemiBold;
         typeText.textWrappingMode = TextWrappingModes.NoWrap;
@@ -517,6 +518,7 @@ public static class Phase3ComponentPrefabBuilder
             30f,
             TextAlignmentOptions.Center);
         SetAnchoredRect(nameText.rectTransform, new Vector2(0.02f, 0.03f), new Vector2(0.98f, 0.53f));
+        nameText.rectTransform.anchoredPosition = new Vector2(0f, 5f);
         nameText.color = new Color32(239, 226, 194, 255);
         nameText.fontSizeMin = 14f;
         nameText.textWrappingMode = TextWrappingModes.NoWrap;

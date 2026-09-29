@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -142,7 +143,14 @@ public sealed class FishingRunView : MonoBehaviour
     private TMP_Text[] depthZoneRangeTexts = Array.Empty<TMP_Text>();
     private TMP_Text tensionText;
     private Image tensionFill;
+    private RectTransform encounterRegion;
     private CreatureCardView encounterCardView;
+    private RectTransform encounterCardMotionRoot;
+    private CanvasGroup encounterCardCanvasGroup;
+    private CreatureCardView standbyEncounterCardView;
+    private RectTransform standbyEncounterCardMotionRoot;
+    private CanvasGroup standbyEncounterCardCanvasGroup;
+    private Coroutine encounterTransitionCoroutine;
     private Button descendButton;
     private Button releaseButton;
     private Button surfaceButton;
@@ -153,6 +161,12 @@ public sealed class FishingRunView : MonoBehaviour
     private Func<bool> surfaceAction;
     private Font uiFont;
     private bool? lastRunActive;
+    private bool hasPresentedEncounter;
+    private int lastPresentedDepth;
+    private bool latestCanDescend;
+
+    private const float EncounterTransitionDuration = 0.6f;
+    private const float EncounterTransitionOvershoot = 40f;
 
     public RectTransform BackgroundRegion => backgroundRegion;
     public RectTransform TopNavigationBar => topNavigationBar;
@@ -198,14 +212,21 @@ public sealed class FishingRunView : MonoBehaviour
         this.descendAction = descendAction;
         this.releaseAction = releaseAction;
         this.surfaceAction = surfaceAction;
-        if (!lastRunActive.HasValue || lastRunActive.Value != runActive)
+        bool runStateChanged = !lastRunActive.HasValue || lastRunActive.Value != runActive;
+        if (runStateChanged)
         {
             SetRunContentVisible(runActive);
             lastRunActive = runActive;
+            if (runActive)
+            {
+                hasPresentedEncounter = false;
+            }
         }
 
         if (!runActive)
         {
+            CancelEncounterTransition();
+            hasPresentedEncounter = false;
             return;
         }
 
@@ -215,13 +236,29 @@ public sealed class FishingRunView : MonoBehaviour
         RefreshDepthZones(biome, depth);
         RefreshTension(currentLineLoad, lineCapacity);
 
-        encounterCardView.SetCard(
-            encounter,
-            resolvedEncounterWeight,
-            resolvedEncounterValue,
-            encounterInformationHidden);
+        bool shouldTransitionEncounter = hasPresentedEncounter && depth > lastPresentedDepth;
+        if (shouldTransitionEncounter)
+        {
+            BeginEncounterTransition(
+                encounter,
+                resolvedEncounterWeight,
+                resolvedEncounterValue,
+                encounterInformationHidden);
+        }
+        else
+        {
+            encounterCardView.SetCard(
+                encounter,
+                resolvedEncounterWeight,
+                resolvedEncounterValue,
+                encounterInformationHidden);
+        }
 
-        descendButton.interactable = canDescend;
+        hasPresentedEncounter = true;
+        lastPresentedDepth = depth;
+
+        latestCanDescend = canDescend;
+        descendButton.interactable = canDescend && encounterTransitionCoroutine == null;
         releaseButton.interactable = selectedCatchIndex >= 0;
         releaseButtonText.text = selectedCatchIndex >= 0
             ? $"RELEASE CATCH {selectedCatchIndex + 1:00}"
@@ -254,6 +291,10 @@ public sealed class FishingRunView : MonoBehaviour
         CreateLocationHeader();
         CreateEncounterCard();
         CreateCoreActions();
+        if (topNavigationBar != null)
+        {
+            topNavigationBar.SetAsLastSibling();
+        }
     }
 
     /// <summary>
@@ -473,14 +514,144 @@ public sealed class FishingRunView : MonoBehaviour
             return;
         }
 
-        encounterCardView = Instantiate(creatureCardPrefab, regionRect);
-        encounterCardView.name = "Current Encounter Card";
-        RectTransform cardRect = encounterCardView.GetComponent<RectTransform>();
+        encounterRegion = regionRect;
+        CreateEncounterCardSlot(
+            "Current Encounter",
+            regionRect,
+            out encounterCardView,
+            out encounterCardMotionRoot,
+            out encounterCardCanvasGroup);
+        CreateEncounterCardSlot(
+            "Standby Encounter",
+            regionRect,
+            out standbyEncounterCardView,
+            out standbyEncounterCardMotionRoot,
+            out standbyEncounterCardCanvasGroup);
+        standbyEncounterCardMotionRoot.gameObject.SetActive(false);
+    }
+
+    /// <summary>Creates one reusable card slot so encounter transitions do not allocate during play.</summary>
+    private void CreateEncounterCardSlot(
+        string slotName,
+        RectTransform parent,
+        out CreatureCardView cardView,
+        out RectTransform motionRoot,
+        out CanvasGroup canvasGroup)
+    {
+        GameObject motionObject = CreateUiObject(slotName + " Motion Root", parent);
+        motionRoot = motionObject.GetComponent<RectTransform>();
+        SetAnchoredRect(motionRoot, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        canvasGroup = motionObject.AddComponent<CanvasGroup>();
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
+        cardView = Instantiate(creatureCardPrefab, motionRoot);
+        cardView.name = slotName + " Card";
+        RectTransform cardRect = cardView.GetComponent<RectTransform>();
         SetAnchoredRect(cardRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
-        AspectRatioFitter aspectRatio = encounterCardView.gameObject.AddComponent<AspectRatioFitter>();
+        AspectRatioFitter aspectRatio = cardView.gameObject.AddComponent<AspectRatioFitter>();
         aspectRatio.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
         aspectRatio.aspectRatio = CreatureCardView.ReferenceAspectRatio;
-        encounterCardView.Initialize(fallbackCreatureCardFace, rarityHookSprite);
+        cardView.Initialize(fallbackCreatureCardFace, rarityHookSprite);
+    }
+
+    /// <summary>Slides the previous encounter upward while the next encounter rises from below.</summary>
+    private void BeginEncounterTransition(
+        CardDefinition encounter,
+        int resolvedEncounterWeight,
+        int resolvedEncounterValue,
+        bool encounterInformationHidden)
+    {
+        CancelEncounterTransition();
+
+        standbyEncounterCardMotionRoot.SetAsLastSibling();
+        standbyEncounterCardMotionRoot.gameObject.SetActive(true);
+        standbyEncounterCardView.SetCard(
+            encounter,
+            resolvedEncounterWeight,
+            resolvedEncounterValue,
+            encounterInformationHidden);
+
+        RectTransform outgoingRoot = encounterCardMotionRoot;
+        CanvasGroup outgoingGroup = encounterCardCanvasGroup;
+        CreatureCardView outgoingView = encounterCardView;
+
+        encounterCardMotionRoot = standbyEncounterCardMotionRoot;
+        encounterCardCanvasGroup = standbyEncounterCardCanvasGroup;
+        encounterCardView = standbyEncounterCardView;
+        standbyEncounterCardMotionRoot = outgoingRoot;
+        standbyEncounterCardCanvasGroup = outgoingGroup;
+        standbyEncounterCardView = outgoingView;
+
+        encounterTransitionCoroutine = StartCoroutine(AnimateEncounterTransition(
+            outgoingRoot,
+            outgoingGroup,
+            encounterCardMotionRoot,
+            encounterCardCanvasGroup));
+    }
+
+    /// <summary>Runs presentation-only motion after gameplay has already supplied the next encounter.</summary>
+    private IEnumerator AnimateEncounterTransition(
+        RectTransform outgoingRoot,
+        CanvasGroup outgoingGroup,
+        RectTransform incomingRoot,
+        CanvasGroup incomingGroup)
+    {
+        Canvas.ForceUpdateCanvases();
+        float travelDistance = Mathf.Max(1f, encounterRegion.rect.height) + EncounterTransitionOvershoot;
+        Vector2 incomingStart = Vector2.down * travelDistance;
+        Vector2 outgoingEnd = Vector2.up * travelDistance;
+        outgoingRoot.anchoredPosition = Vector2.zero;
+        incomingRoot.anchoredPosition = incomingStart;
+        outgoingGroup.alpha = 1f;
+        incomingGroup.alpha = 0f;
+
+        float elapsed = 0f;
+        while (elapsed < EncounterTransitionDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float normalizedTime = Mathf.Clamp01(elapsed / EncounterTransitionDuration);
+            float easedTime = normalizedTime * normalizedTime * (3f - (2f * normalizedTime));
+            outgoingRoot.anchoredPosition = Vector2.LerpUnclamped(Vector2.zero, outgoingEnd, easedTime);
+            incomingRoot.anchoredPosition = Vector2.LerpUnclamped(incomingStart, Vector2.zero, easedTime);
+            outgoingGroup.alpha = 1f - Mathf.SmoothStep(0.25f, 0.85f, normalizedTime);
+            incomingGroup.alpha = Mathf.SmoothStep(0.15f, 0.75f, normalizedTime);
+            yield return null;
+        }
+
+        outgoingRoot.anchoredPosition = Vector2.zero;
+        outgoingGroup.alpha = 1f;
+        outgoingRoot.gameObject.SetActive(false);
+        incomingRoot.anchoredPosition = Vector2.zero;
+        incomingGroup.alpha = 1f;
+        encounterTransitionCoroutine = null;
+        if (descendButton != null)
+        {
+            descendButton.interactable = latestCanDescend;
+        }
+    }
+
+    /// <summary>Returns both reusable card slots to a deterministic resting state.</summary>
+    private void CancelEncounterTransition()
+    {
+        if (encounterTransitionCoroutine != null)
+        {
+            StopCoroutine(encounterTransitionCoroutine);
+            encounterTransitionCoroutine = null;
+        }
+
+        if (encounterCardMotionRoot != null)
+        {
+            encounterCardMotionRoot.anchoredPosition = Vector2.zero;
+            encounterCardCanvasGroup.alpha = 1f;
+        }
+
+        if (standbyEncounterCardMotionRoot != null)
+        {
+            standbyEncounterCardMotionRoot.anchoredPosition = Vector2.zero;
+            standbyEncounterCardCanvasGroup.alpha = 1f;
+            standbyEncounterCardMotionRoot.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -820,7 +991,17 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void InvokeDescend()
     {
-        descendAction?.Invoke();
+        if (encounterTransitionCoroutine != null)
+        {
+            return;
+        }
+
+        descendButton.interactable = false;
+        bool descended = descendAction?.Invoke() ?? false;
+        if (!descended)
+        {
+            descendButton.interactable = latestCanDescend;
+        }
     }
 
     /// <summary>

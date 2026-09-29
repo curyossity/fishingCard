@@ -159,6 +159,9 @@ public static class FishingRunViewPrefabBuilder
             mainContentGroup,
             techniqueHandGroup);
 
+        // Keep the top frame above base-canvas gameplay content while ordered overlay canvases remain authoritative.
+        topNavigation.SetAsLastSibling();
+
         PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         UnityEngine.Object.DestroyImmediate(root);
     }
