@@ -147,9 +147,11 @@ public sealed class FishingRunView : MonoBehaviour
     private CreatureCardView encounterCardView;
     private RectTransform encounterCardMotionRoot;
     private CanvasGroup encounterCardCanvasGroup;
+    private RectMask2D encounterCardWipeMask;
     private CreatureCardView standbyEncounterCardView;
     private RectTransform standbyEncounterCardMotionRoot;
     private CanvasGroup standbyEncounterCardCanvasGroup;
+    private RectMask2D standbyEncounterCardWipeMask;
     private Coroutine encounterTransitionCoroutine;
     private Button descendButton;
     private Button releaseButton;
@@ -165,8 +167,9 @@ public sealed class FishingRunView : MonoBehaviour
     private int lastPresentedDepth;
     private bool latestCanDescend;
 
-    private const float EncounterTransitionDuration = 0.6f;
+    private const float EncounterTransitionDuration = 0.7f;
     private const float EncounterTransitionOvershoot = 40f;
+    private const int EncounterWipeSoftness = 48;
 
     public RectTransform BackgroundRegion => backgroundRegion;
     public RectTransform TopNavigationBar => topNavigationBar;
@@ -520,13 +523,15 @@ public sealed class FishingRunView : MonoBehaviour
             regionRect,
             out encounterCardView,
             out encounterCardMotionRoot,
-            out encounterCardCanvasGroup);
+            out encounterCardCanvasGroup,
+            out encounterCardWipeMask);
         CreateEncounterCardSlot(
             "Standby Encounter",
             regionRect,
             out standbyEncounterCardView,
             out standbyEncounterCardMotionRoot,
-            out standbyEncounterCardCanvasGroup);
+            out standbyEncounterCardCanvasGroup,
+            out standbyEncounterCardWipeMask);
         standbyEncounterCardMotionRoot.gameObject.SetActive(false);
     }
 
@@ -536,7 +541,8 @@ public sealed class FishingRunView : MonoBehaviour
         RectTransform parent,
         out CreatureCardView cardView,
         out RectTransform motionRoot,
-        out CanvasGroup canvasGroup)
+        out CanvasGroup canvasGroup,
+        out RectMask2D wipeMask)
     {
         GameObject motionObject = CreateUiObject(slotName + " Motion Root", parent);
         motionRoot = motionObject.GetComponent<RectTransform>();
@@ -544,6 +550,9 @@ public sealed class FishingRunView : MonoBehaviour
         canvasGroup = motionObject.AddComponent<CanvasGroup>();
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
+        wipeMask = motionObject.AddComponent<RectMask2D>();
+        wipeMask.softness = new Vector2Int(0, EncounterWipeSoftness);
+        wipeMask.enabled = false;
 
         cardView = Instantiate(creatureCardPrefab, motionRoot);
         cardView.name = slotName + " Card";
@@ -574,28 +583,35 @@ public sealed class FishingRunView : MonoBehaviour
 
         RectTransform outgoingRoot = encounterCardMotionRoot;
         CanvasGroup outgoingGroup = encounterCardCanvasGroup;
+        RectMask2D outgoingMask = encounterCardWipeMask;
         CreatureCardView outgoingView = encounterCardView;
 
         encounterCardMotionRoot = standbyEncounterCardMotionRoot;
         encounterCardCanvasGroup = standbyEncounterCardCanvasGroup;
+        encounterCardWipeMask = standbyEncounterCardWipeMask;
         encounterCardView = standbyEncounterCardView;
         standbyEncounterCardMotionRoot = outgoingRoot;
         standbyEncounterCardCanvasGroup = outgoingGroup;
+        standbyEncounterCardWipeMask = outgoingMask;
         standbyEncounterCardView = outgoingView;
 
         encounterTransitionCoroutine = StartCoroutine(AnimateEncounterTransition(
             outgoingRoot,
             outgoingGroup,
+            outgoingMask,
             encounterCardMotionRoot,
-            encounterCardCanvasGroup));
+            encounterCardCanvasGroup,
+            encounterCardWipeMask));
     }
 
     /// <summary>Runs presentation-only motion after gameplay has already supplied the next encounter.</summary>
     private IEnumerator AnimateEncounterTransition(
         RectTransform outgoingRoot,
         CanvasGroup outgoingGroup,
+        RectMask2D outgoingMask,
         RectTransform incomingRoot,
-        CanvasGroup incomingGroup)
+        CanvasGroup incomingGroup,
+        RectMask2D incomingMask)
     {
         Canvas.ForceUpdateCanvases();
         float travelDistance = Mathf.Max(1f, encounterRegion.rect.height) + EncounterTransitionOvershoot;
@@ -604,7 +620,11 @@ public sealed class FishingRunView : MonoBehaviour
         outgoingRoot.anchoredPosition = Vector2.zero;
         incomingRoot.anchoredPosition = incomingStart;
         outgoingGroup.alpha = 1f;
-        incomingGroup.alpha = 0f;
+        incomingGroup.alpha = 1f;
+        outgoingMask.enabled = true;
+        incomingMask.enabled = true;
+        outgoingMask.padding = Vector4.zero;
+        incomingMask.padding = new Vector4(0f, travelDistance, 0f, 0f);
 
         float elapsed = 0f;
         while (elapsed < EncounterTransitionDuration)
@@ -612,18 +632,23 @@ public sealed class FishingRunView : MonoBehaviour
             elapsed += Time.unscaledDeltaTime;
             float normalizedTime = Mathf.Clamp01(elapsed / EncounterTransitionDuration);
             float easedTime = normalizedTime * normalizedTime * (3f - (2f * normalizedTime));
+            float wipeTime = easedTime;
             outgoingRoot.anchoredPosition = Vector2.LerpUnclamped(Vector2.zero, outgoingEnd, easedTime);
             incomingRoot.anchoredPosition = Vector2.LerpUnclamped(incomingStart, Vector2.zero, easedTime);
-            outgoingGroup.alpha = 1f - Mathf.SmoothStep(0.25f, 0.85f, normalizedTime);
-            incomingGroup.alpha = Mathf.SmoothStep(0.15f, 0.75f, normalizedTime);
+            outgoingMask.padding = new Vector4(0f, 0f, 0f, travelDistance * wipeTime);
+            incomingMask.padding = new Vector4(0f, travelDistance * (1f - wipeTime), 0f, 0f);
             yield return null;
         }
 
         outgoingRoot.anchoredPosition = Vector2.zero;
         outgoingGroup.alpha = 1f;
+        outgoingMask.padding = Vector4.zero;
+        outgoingMask.enabled = false;
         outgoingRoot.gameObject.SetActive(false);
         incomingRoot.anchoredPosition = Vector2.zero;
         incomingGroup.alpha = 1f;
+        incomingMask.padding = Vector4.zero;
+        incomingMask.enabled = false;
         encounterTransitionCoroutine = null;
         if (descendButton != null)
         {
@@ -644,12 +669,16 @@ public sealed class FishingRunView : MonoBehaviour
         {
             encounterCardMotionRoot.anchoredPosition = Vector2.zero;
             encounterCardCanvasGroup.alpha = 1f;
+            encounterCardWipeMask.padding = Vector4.zero;
+            encounterCardWipeMask.enabled = false;
         }
 
         if (standbyEncounterCardMotionRoot != null)
         {
             standbyEncounterCardMotionRoot.anchoredPosition = Vector2.zero;
             standbyEncounterCardCanvasGroup.alpha = 1f;
+            standbyEncounterCardWipeMask.padding = Vector4.zero;
+            standbyEncounterCardWipeMask.enabled = false;
             standbyEncounterCardMotionRoot.gameObject.SetActive(false);
         }
     }
