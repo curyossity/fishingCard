@@ -18,6 +18,7 @@ public static class Phase3ComponentPrefabBuilder
     private const string RunActionButtonPath = ComponentDirectory + "/RunActionButton.prefab";
     private const string DisplayFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SC SDF.asset";
     private const string BodyFontPath = "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 SDF.asset";
+    private const string BodyBoldFontPath = "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 Bold SDF.asset";
     /// <summary>Imports Unity's bundled TMP resources before Phase 3 prefab generation.</summary>
     public static void PrepareTmpResources()
     {
@@ -453,6 +454,9 @@ public static class Phase3ComponentPrefabBuilder
     /// <summary>Creates the portrait card prefab from independently owned visual and data layers.</summary>
     private static void BuildCreatureCard(TMP_FontAsset displayFont, TMP_FontAsset bodyFont)
     {
+        TMP_FontAsset bodyBoldFont = EnsureFontAsset(
+            "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Bold.ttf",
+            BodyBoldFontPath);
         GameObject root = CreateUiObject("CreatureCardView", null);
         RectTransform rootRect = root.GetComponent<RectTransform>();
         rootRect.sizeDelta = new Vector2(470.756f, 611f);
@@ -525,8 +529,8 @@ public static class Phase3ComponentPrefabBuilder
         valueText.color = new Color32(235, 214, 192, 255);
         weightText.fontWeight = FontWeight.Bold;
         valueText.fontWeight = FontWeight.Bold;
-        SetStretchOffsets(weightText.rectTransform, 11f, 16f, -13f, -13f);
-        SetStretchOffsets(valueText.rectTransform, 11f, 16f, -13f, -13f);
+        SetStretchOffsets(weightText.rectTransform, 11f, 18f, -13f, -11f);
+        SetStretchOffsets(valueText.rectTransform, 11f, 18f, -13f, -11f);
 
         Image effectPanel = CreateImage(
             "Rules Safe Region",
@@ -538,10 +542,11 @@ public static class Phase3ComponentPrefabBuilder
         TextMeshProUGUI effectText = CreateText(
             "Effect Text",
             effectPanel.rectTransform,
-            bodyFont,
+            bodyBoldFont,
             18f,
             TextAlignmentOptions.Center);
         effectText.color = new Color32(25, 55, 54, 255);
+        effectText.fontWeight = FontWeight.Regular;
         SetStretchOffsets(effectText.rectTransform, 22f, 10f, -22f, -10f);
 
         RectTransform anchorRoot = CreateRect(

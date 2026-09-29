@@ -79,7 +79,7 @@ public sealed class CreatureCardView : MonoBehaviour
             card.ArtworkLayout,
             background,
             informationHidden ? "?" : FormatWeight(Mathf.Max(0, resolvedWeight)),
-            informationHidden ? "?" : Mathf.Max(0, resolvedValue).ToString(),
+            informationHidden ? "?" : FormatValue(Mathf.Max(0, resolvedValue)),
             informationHidden ? string.Empty : card.RulesText,
             card.Rarity,
             usesCatchLayout);
@@ -103,7 +103,7 @@ public sealed class CreatureCardView : MonoBehaviour
             CardArtworkLayout.MaskedRegion,
             fallbackCardFace,
             FormatWeight(Mathf.Max(0, weight)),
-            Mathf.Max(0, value).ToString(),
+            FormatValue(Mathf.Max(0, value)),
             rules,
             rarity,
             true);
@@ -112,6 +112,11 @@ public sealed class CreatureCardView : MonoBehaviour
     private static string FormatWeight(int weight)
     {
         return $"{weight}<size=50%>KG</size>";
+    }
+
+    private static string FormatValue(int value)
+    {
+        return $"{value}<size=50%>SL</size>";
     }
 
     /// <summary>Shows the authored blank template with no runtime values or filled rarity anchors.</summary>
