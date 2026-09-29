@@ -74,6 +74,82 @@ public enum FishingRunSection
     TechniqueHand
 }
 
+/// <summary>Provides the actual animated wavy stencil used by the encounter-card transition.</summary>
+[AddComponentMenu("")]
+[RequireComponent(typeof(Mask))]
+public sealed class WaveWipeMaskGraphic : MaskableGraphic
+{
+    private const int SegmentCount = 56;
+    private const float WaveAmplitude = 20f;
+    private const float WaveCycles = 3f;
+
+    private float progress;
+    private float wavePhase;
+    private bool keepAreaBelowWave;
+    private Mask stencilMask;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        stencilMask = GetComponent<Mask>();
+        stencilMask.showMaskGraphic = false;
+        raycastTarget = false;
+    }
+
+    /// <summary>Updates which side of the moving wave remains visible through the stencil.</summary>
+    public void SetWipe(float normalizedProgress, float phase, bool keepBelow, bool active)
+    {
+        if (stencilMask == null)
+        {
+            stencilMask = GetComponent<Mask>();
+            stencilMask.showMaskGraphic = false;
+        }
+
+        progress = Mathf.Clamp01(normalizedProgress);
+        wavePhase = phase;
+        keepAreaBelowWave = keepBelow;
+        stencilMask.enabled = active;
+        enabled = active;
+        if (active)
+        {
+            SetVerticesDirty();
+        }
+    }
+
+    protected override void OnPopulateMesh(VertexHelper vertexHelper)
+    {
+        vertexHelper.Clear();
+        Rect rect = rectTransform.rect;
+        float waveEnvelope = Mathf.Sin(progress * Mathf.PI);
+
+        for (int segment = 0; segment <= SegmentCount; segment++)
+        {
+            float normalizedX = segment / (float)SegmentCount;
+            float x = Mathf.Lerp(rect.xMin, rect.xMax, normalizedX);
+            float wave = Mathf.Sin((normalizedX * WaveCycles * Mathf.PI * 2f) + wavePhase);
+            float boundary = Mathf.Lerp(rect.yMax, rect.yMin, progress)
+                + (wave * WaveAmplitude * waveEnvelope);
+            float outerEdge = keepAreaBelowWave ? rect.yMin : rect.yMax;
+
+            AddMaskVertex(vertexHelper, x, outerEdge);
+            AddMaskVertex(vertexHelper, x, boundary);
+        }
+
+        for (int segment = 0; segment < SegmentCount; segment++)
+        {
+            int current = segment * 2;
+            int next = (segment + 1) * 2;
+            vertexHelper.AddTriangle(current, next + 1, next);
+            vertexHelper.AddTriangle(current, current + 1, next + 1);
+        }
+    }
+
+    private static void AddMaskVertex(VertexHelper vertexHelper, float x, float y)
+    {
+        vertexHelper.AddVert(new Vector3(x, y), Color.white, Vector2.zero);
+    }
+}
+
 public sealed class FishingRunView : MonoBehaviour
 {
     [Header("Creature Card Art")]
@@ -147,11 +223,13 @@ public sealed class FishingRunView : MonoBehaviour
     private CreatureCardView encounterCardView;
     private RectTransform encounterCardMotionRoot;
     private CanvasGroup encounterCardCanvasGroup;
-    private RectMask2D encounterCardWipeMask;
+    private WaveWipeMaskGraphic encounterCardWipeMask;
+    private RectMask2D encounterCardSoftMask;
     private CreatureCardView standbyEncounterCardView;
     private RectTransform standbyEncounterCardMotionRoot;
     private CanvasGroup standbyEncounterCardCanvasGroup;
-    private RectMask2D standbyEncounterCardWipeMask;
+    private WaveWipeMaskGraphic standbyEncounterCardWipeMask;
+    private RectMask2D standbyEncounterCardSoftMask;
     private Coroutine encounterTransitionCoroutine;
     private Button descendButton;
     private Button releaseButton;
@@ -169,7 +247,8 @@ public sealed class FishingRunView : MonoBehaviour
 
     private const float EncounterTransitionDuration = 0.7f;
     private const float EncounterTransitionOvershoot = 40f;
-    private const int EncounterWipeSoftness = 48;
+    private const int EncounterFadeSoftness = 64;
+    private const float EncounterWaveFadeOverlap = 20f;
 
     public RectTransform BackgroundRegion => backgroundRegion;
     public RectTransform TopNavigationBar => topNavigationBar;
@@ -524,14 +603,16 @@ public sealed class FishingRunView : MonoBehaviour
             out encounterCardView,
             out encounterCardMotionRoot,
             out encounterCardCanvasGroup,
-            out encounterCardWipeMask);
+            out encounterCardWipeMask,
+            out encounterCardSoftMask);
         CreateEncounterCardSlot(
             "Standby Encounter",
             regionRect,
             out standbyEncounterCardView,
             out standbyEncounterCardMotionRoot,
             out standbyEncounterCardCanvasGroup,
-            out standbyEncounterCardWipeMask);
+            out standbyEncounterCardWipeMask,
+            out standbyEncounterCardSoftMask);
         standbyEncounterCardMotionRoot.gameObject.SetActive(false);
     }
 
@@ -542,7 +623,8 @@ public sealed class FishingRunView : MonoBehaviour
         out CreatureCardView cardView,
         out RectTransform motionRoot,
         out CanvasGroup canvasGroup,
-        out RectMask2D wipeMask)
+        out WaveWipeMaskGraphic wipeMask,
+        out RectMask2D softMask)
     {
         GameObject motionObject = CreateUiObject(slotName + " Motion Root", parent);
         motionRoot = motionObject.GetComponent<RectTransform>();
@@ -550,11 +632,18 @@ public sealed class FishingRunView : MonoBehaviour
         canvasGroup = motionObject.AddComponent<CanvasGroup>();
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-        wipeMask = motionObject.AddComponent<RectMask2D>();
-        wipeMask.softness = new Vector2Int(0, EncounterWipeSoftness);
-        wipeMask.enabled = false;
+        softMask = motionObject.AddComponent<RectMask2D>();
+        softMask.softness = new Vector2Int(0, EncounterFadeSoftness);
+        softMask.enabled = false;
 
-        cardView = Instantiate(creatureCardPrefab, motionRoot);
+        GameObject wipeObject = CreateUiObject("Wavy Wipe Root", motionRoot);
+        RectTransform wipeRect = wipeObject.GetComponent<RectTransform>();
+        SetAnchoredRect(wipeRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        wipeObject.AddComponent<CanvasRenderer>();
+        wipeMask = wipeObject.AddComponent<WaveWipeMaskGraphic>();
+        wipeMask.SetWipe(0f, 0f, true, false);
+
+        cardView = Instantiate(creatureCardPrefab, wipeRect);
         cardView.name = slotName + " Card";
         RectTransform cardRect = cardView.GetComponent<RectTransform>();
         SetAnchoredRect(cardRect, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
@@ -562,6 +651,7 @@ public sealed class FishingRunView : MonoBehaviour
         aspectRatio.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
         aspectRatio.aspectRatio = CreatureCardView.ReferenceAspectRatio;
         cardView.Initialize(fallbackCreatureCardFace, rarityHookSprite);
+
     }
 
     /// <summary>Slides the previous encounter upward while the next encounter rises from below.</summary>
@@ -583,35 +673,42 @@ public sealed class FishingRunView : MonoBehaviour
 
         RectTransform outgoingRoot = encounterCardMotionRoot;
         CanvasGroup outgoingGroup = encounterCardCanvasGroup;
-        RectMask2D outgoingMask = encounterCardWipeMask;
+        WaveWipeMaskGraphic outgoingMask = encounterCardWipeMask;
+        RectMask2D outgoingSoftMask = encounterCardSoftMask;
         CreatureCardView outgoingView = encounterCardView;
 
         encounterCardMotionRoot = standbyEncounterCardMotionRoot;
         encounterCardCanvasGroup = standbyEncounterCardCanvasGroup;
         encounterCardWipeMask = standbyEncounterCardWipeMask;
+        encounterCardSoftMask = standbyEncounterCardSoftMask;
         encounterCardView = standbyEncounterCardView;
         standbyEncounterCardMotionRoot = outgoingRoot;
         standbyEncounterCardCanvasGroup = outgoingGroup;
         standbyEncounterCardWipeMask = outgoingMask;
+        standbyEncounterCardSoftMask = outgoingSoftMask;
         standbyEncounterCardView = outgoingView;
 
         encounterTransitionCoroutine = StartCoroutine(AnimateEncounterTransition(
             outgoingRoot,
             outgoingGroup,
             outgoingMask,
+            outgoingSoftMask,
             encounterCardMotionRoot,
             encounterCardCanvasGroup,
-            encounterCardWipeMask));
+            encounterCardWipeMask,
+            encounterCardSoftMask));
     }
 
     /// <summary>Runs presentation-only motion after gameplay has already supplied the next encounter.</summary>
     private IEnumerator AnimateEncounterTransition(
         RectTransform outgoingRoot,
         CanvasGroup outgoingGroup,
-        RectMask2D outgoingMask,
+        WaveWipeMaskGraphic outgoingMask,
+        RectMask2D outgoingSoftMask,
         RectTransform incomingRoot,
         CanvasGroup incomingGroup,
-        RectMask2D incomingMask)
+        WaveWipeMaskGraphic incomingMask,
+        RectMask2D incomingSoftMask)
     {
         Canvas.ForceUpdateCanvases();
         float travelDistance = Mathf.Max(1f, encounterRegion.rect.height) + EncounterTransitionOvershoot;
@@ -621,10 +718,12 @@ public sealed class FishingRunView : MonoBehaviour
         incomingRoot.anchoredPosition = incomingStart;
         outgoingGroup.alpha = 1f;
         incomingGroup.alpha = 1f;
-        outgoingMask.enabled = true;
-        incomingMask.enabled = true;
-        outgoingMask.padding = Vector4.zero;
-        incomingMask.padding = new Vector4(0f, travelDistance, 0f, 0f);
+        outgoingMask.SetWipe(0f, 0f, true, true);
+        incomingMask.SetWipe(0f, Mathf.PI, false, true);
+        outgoingSoftMask.enabled = true;
+        incomingSoftMask.enabled = true;
+        outgoingSoftMask.padding = Vector4.zero;
+        incomingSoftMask.padding = new Vector4(0f, travelDistance, 0f, 0f);
 
         float elapsed = 0f;
         while (elapsed < EncounterTransitionDuration)
@@ -633,22 +732,35 @@ public sealed class FishingRunView : MonoBehaviour
             float normalizedTime = Mathf.Clamp01(elapsed / EncounterTransitionDuration);
             float easedTime = normalizedTime * normalizedTime * (3f - (2f * normalizedTime));
             float wipeTime = easedTime;
+            float wavePhase = normalizedTime * Mathf.PI * 2f;
             outgoingRoot.anchoredPosition = Vector2.LerpUnclamped(Vector2.zero, outgoingEnd, easedTime);
             incomingRoot.anchoredPosition = Vector2.LerpUnclamped(incomingStart, Vector2.zero, easedTime);
-            outgoingMask.padding = new Vector4(0f, 0f, 0f, travelDistance * wipeTime);
-            incomingMask.padding = new Vector4(0f, travelDistance * (1f - wipeTime), 0f, 0f);
+            outgoingMask.SetWipe(wipeTime, wavePhase, true, true);
+            incomingMask.SetWipe(wipeTime, wavePhase + Mathf.PI, false, true);
+            float outgoingTopPadding = Mathf.Clamp(
+                (travelDistance * wipeTime) - EncounterWaveFadeOverlap,
+                0f,
+                travelDistance);
+            float incomingBottomPadding = Mathf.Clamp(
+                (travelDistance * (1f - wipeTime)) - EncounterWaveFadeOverlap,
+                0f,
+                travelDistance);
+            outgoingSoftMask.padding = new Vector4(0f, 0f, 0f, outgoingTopPadding);
+            incomingSoftMask.padding = new Vector4(0f, incomingBottomPadding, 0f, 0f);
             yield return null;
         }
 
         outgoingRoot.anchoredPosition = Vector2.zero;
         outgoingGroup.alpha = 1f;
-        outgoingMask.padding = Vector4.zero;
-        outgoingMask.enabled = false;
+        outgoingMask.SetWipe(0f, 0f, true, false);
+        outgoingSoftMask.padding = Vector4.zero;
+        outgoingSoftMask.enabled = false;
         outgoingRoot.gameObject.SetActive(false);
         incomingRoot.anchoredPosition = Vector2.zero;
         incomingGroup.alpha = 1f;
-        incomingMask.padding = Vector4.zero;
-        incomingMask.enabled = false;
+        incomingMask.SetWipe(0f, 0f, false, false);
+        incomingSoftMask.padding = Vector4.zero;
+        incomingSoftMask.enabled = false;
         encounterTransitionCoroutine = null;
         if (descendButton != null)
         {
@@ -669,16 +781,18 @@ public sealed class FishingRunView : MonoBehaviour
         {
             encounterCardMotionRoot.anchoredPosition = Vector2.zero;
             encounterCardCanvasGroup.alpha = 1f;
-            encounterCardWipeMask.padding = Vector4.zero;
-            encounterCardWipeMask.enabled = false;
+            encounterCardWipeMask.SetWipe(0f, 0f, false, false);
+            encounterCardSoftMask.padding = Vector4.zero;
+            encounterCardSoftMask.enabled = false;
         }
 
         if (standbyEncounterCardMotionRoot != null)
         {
             standbyEncounterCardMotionRoot.anchoredPosition = Vector2.zero;
             standbyEncounterCardCanvasGroup.alpha = 1f;
-            standbyEncounterCardWipeMask.padding = Vector4.zero;
-            standbyEncounterCardWipeMask.enabled = false;
+            standbyEncounterCardWipeMask.SetWipe(0f, 0f, true, false);
+            standbyEncounterCardSoftMask.padding = Vector4.zero;
+            standbyEncounterCardSoftMask.enabled = false;
             standbyEncounterCardMotionRoot.gameObject.SetActive(false);
         }
     }
