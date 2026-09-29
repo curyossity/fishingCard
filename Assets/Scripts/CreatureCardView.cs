@@ -2,10 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>Renders a creature card from supplied visual layers and runtime-owned fields.</summary>
+/// <summary>Renders catchable and event encounters from supplied visual layers and runtime-owned fields.</summary>
 public sealed class CreatureCardView : MonoBehaviour
 {
     public const float ReferenceAspectRatio = 1101f / 1429f;
+
+    private static readonly Color32 CatchNameColor = new Color32(239, 226, 194, 255);
+    private static readonly Color32 CatchRulesColor = new Color32(25, 55, 54, 255);
+    private static readonly Color32 EventContentColor = new Color32(78, 30, 34, 255);
 
     [Header("Supplied Visual Layers")]
     [SerializeField] private Image cardBackground;
@@ -21,12 +25,17 @@ public sealed class CreatureCardView : MonoBehaviour
     [SerializeField] private TMP_Text valueText;
     [SerializeField] private TMP_Text effectText;
 
+    [Header("Runtime Layout")]
+    [SerializeField] private RectTransform rulesRegion;
+    [SerializeField] private RectTransform rarityAnchorRoot;
+
     [Header("Rarity Anchors")]
     [SerializeField] private Image[] anchorSockets = new Image[4];
     [SerializeField] private Image[] anchorMarkers = new Image[4];
 
     [Header("Fallback Assets")]
     [SerializeField] private Sprite fallbackCardFace;
+    [SerializeField] private Sprite eventCardFace;
     [SerializeField] private Sprite rarityHookSprite;
 
     public int AnchorSlotCount => anchorMarkers == null ? 0 : anchorMarkers.Length;
@@ -48,7 +57,7 @@ public sealed class CreatureCardView : MonoBehaviour
         ApplyAnchorSprites();
     }
 
-    /// <summary>Displays one creature card using resolved runtime values.</summary>
+    /// <summary>Displays one encounter using its card-type layout and resolved runtime values.</summary>
     public void SetCard(CardDefinition card, int resolvedWeight, int resolvedValue, bool informationHidden)
     {
         if (card == null)
@@ -60,17 +69,20 @@ public sealed class CreatureCardView : MonoBehaviour
 
         gameObject.SetActive(true);
         Sprite encounterArtwork = card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
+        bool usesCatchLayout = UsesCatchCardLayout(card.CardType);
+        Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(
             card.DisplayName,
             BuildCardTypeText(card.CardType),
             encounterArtwork,
             card.ArtworkLayout,
-            fallbackCardFace,
+            background,
             informationHidden ? "?" : Mathf.Max(0, resolvedWeight).ToString(),
             informationHidden ? "?" : Mathf.Max(0, resolvedValue).ToString(),
             informationHidden ? string.Empty : card.RulesText,
-            card.Rarity);
+            card.Rarity,
+            usesCatchLayout);
     }
 
     /// <summary>Populates the visual contract directly for editor previews and UI tests.</summary>
@@ -93,7 +105,8 @@ public sealed class CreatureCardView : MonoBehaviour
             Mathf.Max(0, weight).ToString(),
             Mathf.Max(0, value).ToString(),
             rules,
-            rarity);
+            rarity,
+            true);
     }
 
     /// <summary>Shows the authored blank template with no runtime values or filled rarity anchors.</summary>
@@ -103,6 +116,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SetImage(cardBackground, fallbackCardFace);
         SetImage(creatureArtwork, null);
         SetImage(artworkOverflowLayer, null);
+        ApplyCardLayout(true);
         SetText(cardTypeText, string.Empty);
         SetText(cardNameText, string.Empty);
         SetText(weightText, string.Empty);
@@ -135,8 +149,10 @@ public sealed class CreatureCardView : MonoBehaviour
         string weight,
         string value,
         string rules,
-        CardRarity rarity)
+        CardRarity rarity,
+        bool usesCatchLayout)
     {
+        ApplyCardLayout(usesCatchLayout);
         SetImage(cardBackground, background);
         bool usesFullCardOverlay = artwork != null && artworkLayout == CardArtworkLayout.FullCardOverlay;
         SetImage(creatureArtwork, usesFullCardOverlay ? null : artwork);
@@ -152,7 +168,60 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(weightText, weight);
         SetText(valueText, value);
         SetText(effectText, rules);
-        RefreshRarityAnchors(rarity);
+        if (usesCatchLayout)
+        {
+            RefreshRarityAnchors(rarity);
+        }
+        else
+        {
+            HideRarityAnchors();
+        }
+    }
+
+    /// <summary>Switches between catch-only stats and the expanded event rules region.</summary>
+    private void ApplyCardLayout(bool usesCatchLayout)
+    {
+        SetParentActive(weightText, usesCatchLayout);
+        SetParentActive(valueText, usesCatchLayout);
+
+        if (rarityAnchorRoot != null)
+        {
+            rarityAnchorRoot.gameObject.SetActive(usesCatchLayout);
+        }
+
+        if (rulesRegion != null)
+        {
+            rulesRegion.anchorMin = new Vector2(0.085f, usesCatchLayout ? 0.175f : 0.055f);
+            rulesRegion.anchorMax = new Vector2(0.915f, 0.315f);
+            rulesRegion.offsetMin = Vector2.zero;
+            rulesRegion.offsetMax = Vector2.zero;
+        }
+
+        if (cardNameText != null)
+        {
+            cardNameText.color = usesCatchLayout ? CatchNameColor : EventContentColor;
+        }
+
+        if (effectText != null)
+        {
+            effectText.color = usesCatchLayout ? CatchRulesColor : EventContentColor;
+        }
+    }
+
+    private void HideRarityAnchors()
+    {
+        if (anchorMarkers == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < anchorMarkers.Length; i++)
+        {
+            if (anchorMarkers[i] != null)
+            {
+                anchorMarkers[i].gameObject.SetActive(false);
+            }
+        }
     }
 
     /// <summary>Shows one through four filled anchors while keeping all four sockets visible.</summary>
@@ -212,6 +281,21 @@ public sealed class CreatureCardView : MonoBehaviour
         {
             text.text = value ?? string.Empty;
         }
+    }
+
+    private static void SetParentActive(TMP_Text text, bool active)
+    {
+        if (text != null && text.transform.parent != null)
+        {
+            text.transform.parent.gameObject.SetActive(active);
+        }
+    }
+
+    private static bool UsesCatchCardLayout(CardType cardType)
+    {
+        return cardType == CardType.Creature
+            || cardType == CardType.Treasure
+            || cardType == CardType.ApexEncounter;
     }
 
     private static string BuildCardTypeText(CardType cardType)

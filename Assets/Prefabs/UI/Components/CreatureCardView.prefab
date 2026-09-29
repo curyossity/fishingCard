@@ -1334,6 +1334,8 @@ MonoBehaviour:
   weightText: {fileID: 7294112444309207933}
   valueText: {fileID: 3644162033132682454}
   effectText: {fileID: 92090510654540071}
+  rulesRegion: {fileID: 8306136783259726295}
+  rarityAnchorRoot: {fileID: 8691031539477706662}
   anchorSockets:
   - {fileID: 55967998734404885}
   - {fileID: 1996480345935858308}
@@ -1345,6 +1347,7 @@ MonoBehaviour:
   - {fileID: 3865274552168174066}
   - {fileID: 2078649420739238934}
   fallbackCardFace: {fileID: 21300000, guid: e82b08f444e646638e343cb2358ef8d5, type: 3}
+  eventCardFace: {fileID: 21300000, guid: 6a2cdb987752f5247b64a5868acaefea, type: 3}
   rarityHookSprite: {fileID: 21300000, guid: f509f339672a46149eed48b915a35749, type: 3}
 --- !u!1 &5498105112410896610
 GameObject:

@@ -594,7 +594,10 @@ public static class Phase3ComponentPrefabBuilder
         SetReference(serializedView, "weightText", weightText);
         SetReference(serializedView, "valueText", valueText);
         SetReference(serializedView, "effectText", effectText);
+        SetReference(serializedView, "rulesRegion", effectPanel.rectTransform);
+        SetReference(serializedView, "rarityAnchorRoot", anchorRoot);
         SetReference(serializedView, "fallbackCardFace", background.sprite);
+        SetReference(serializedView, "eventCardFace", LoadSprite("Cards/Event/event-card-base-storm-purple-1101x1429.png"));
         SetReference(serializedView, "rarityHookSprite", LoadSprite("Icons/fishing-ui-rarity-icon-anchor-512.png"));
         SetReferenceArray(serializedView, "anchorSockets", sockets);
         SetReferenceArray(serializedView, "anchorMarkers", markers);

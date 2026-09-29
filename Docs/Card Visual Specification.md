@@ -6,6 +6,8 @@ This document defines the current approved presentation contract for creature an
 
 The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/sea-creature-empty-card-base.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, and four empty marker sockets.
 
+Non-catchable encounters currently use the storm-purple `Assets/FishingUIAssets/Cards/Event/event-card-base-storm-purple-1101x1429.png` at 1101 x 1429. This event master owns its frame, blank type and title plaques, chart field, and expanded ivory rules panel. It intentionally has no Weight, Value, or rarity-socket presentation. The earlier red/silver `event-card-base-empty-with-type-1101x1429.png` remains available as an alternate visual treatment.
+
 Unity layers each creature's illustration and runtime-owned information over this master. A precomposed per-creature card face must not replace the production Encounter master, even when legacy card data still contains one.
 
 Creature artwork supports two explicitly authored layouts on `CardDefinition`: `MaskedRegion` for a cropped illustration clipped to the chart field, and `FullCardOverlay` for a transparent image authored at the base card's full native dimensions. Full-card overlays are aligned one-to-one over the supplied base but remain below all Unity-owned text, stats, rules, and rarity markers. A definition may provide a dedicated `EncounterArtwork` overlay while retaining a cropped `Artwork` sprite for compact cards and other portrait consumers. Do not infer layout from filenames or image dimensions.
@@ -26,6 +28,8 @@ The upper card-type field separates catchable encounters from event encounters:
 - `Creature` and `Treasure`: `CATCH CARD`
 - `ApexEncounter`: `APEX CATCH`
 - Non-catchable encounter categories, including `Hazard`, `Environment`, `Opportunity`, and generic `Encounter`: `EVENT CARD`
+
+`Creature`, `Treasure`, and `ApexEncounter` use the catch master. All other encounter categories use the event master. Event cards hide the catch-only Weight, Value, and rarity-marker objects and expand the rules field into the space available on the event artwork.
 
 These fields must remain separate UI elements layered over the supplied card image so they can be changed without editing the artwork.
 
@@ -71,7 +75,7 @@ Keep gameplay rules out of the card view. The view reads supplied card data and 
 
 ## Scope
 
-This specification currently applies to creature/catch cards. Technique cards, hazards, opportunities, treasure, locations, and core action cards may reuse parts of this language, but their final card-face contracts require their own supplied references or explicit user approval.
+This specification applies to catchable Encounter cards and to non-catchable event cards using the supplied event master. Technique cards, locations, and core action cards require their own supplied references or explicit user approval.
 
 This user-approved card-face contract overrides earlier prototype assumptions that tags or runtime-state labels must be printed directly on creature cards.
 
