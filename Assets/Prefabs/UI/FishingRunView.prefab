@@ -361,6 +361,8 @@ MonoBehaviour:
   handPadSprite: {fileID: 21300000, guid: c8ca65c2ba4b409fa480e23a6c2a6e85, type: 3}
   leftDecorationSprite: {fileID: 21300000, guid: 3dfc828e334a4fb29cfad9cfd978cb51, type: 3}
   rightDecorationSprite: {fileID: 21300000, guid: dc2437ab3f144d879d19cf25f052c8af, type: 3}
+  displayFont: {fileID: 11400000, guid: 4af60e6e765e8154ba3e484ffdcd9aa6, type: 2}
+  bodyFont: {fileID: 11400000, guid: c2b381464df818d4db472b73f33f3d35, type: 2}
 --- !u!1 &2130583072865305726
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +772,7 @@ MonoBehaviour:
   deckIconSprite: {fileID: 21300000, guid: 1acbe9b4e3da46fb96418038cc9af0da, type: 3}
   settingsIconSprite: {fileID: 21300000, guid: 534c2c637c154406914ce614debc6fc9, type: 3}
   navigationFont: {fileID: 11400000, guid: 4af60e6e765e8154ba3e484ffdcd9aa6, type: 2}
+  bodyFont: {fileID: 11400000, guid: c2b381464df818d4db472b73f33f3d35, type: 2}
   rightStatusOuterSprite: {fileID: 21300000, guid: 6a91f831dcf849b985b6e9f985265a31, type: 3}
   rightStatusDepthSprite: {fileID: 21300000, guid: be847159d4a941a2a890ce12943a4dc2, type: 3}
   rightStatusTensionSprite: {fileID: 21300000, guid: c71c57d95ac34e6ea0c043dc301618bc, type: 3}

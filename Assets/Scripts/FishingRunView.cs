@@ -88,6 +88,7 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private Sprite deckIconSprite;
     [SerializeField] private Sprite settingsIconSprite;
     [SerializeField] private TMP_FontAsset navigationFont;
+    [SerializeField] private TMP_FontAsset bodyFont;
 
     [Header("Right Status Art")]
     [SerializeField] private Sprite rightStatusOuterSprite;
@@ -280,7 +281,9 @@ public sealed class FishingRunView : MonoBehaviour
             new Vector2(92f, 0f),
             new Vector2(520f, 64f),
             TextAlignmentOptions.Center,
-            30f);
+            30f,
+            navigationFont,
+            FontWeight.Regular);
         depthText = CreateNavigationPlaque(
             "Depth Plaque",
             headerRect,
@@ -289,7 +292,9 @@ public sealed class FishingRunView : MonoBehaviour
             Vector2.zero,
             new Vector2(395f, 62f),
             TextAlignmentOptions.Center,
-            28f);
+            28f,
+            bodyFont,
+            FontWeight.Bold);
         deckText = CreateNavigationPlaque(
             "Deck Plaque",
             headerRect,
@@ -298,7 +303,9 @@ public sealed class FishingRunView : MonoBehaviour
             new Vector2(-96f, 0f),
             new Vector2(245f, 60f),
             TextAlignmentOptions.Center,
-            27f);
+            27f,
+            bodyFont,
+            FontWeight.Bold);
 
         CreateNavigationIcon(
             "Region Compass Icon",
@@ -404,7 +411,9 @@ public sealed class FishingRunView : MonoBehaviour
         Vector2 anchoredPosition,
         Vector2 size,
         TextAlignmentOptions alignment,
-        float fontSize)
+        float fontSize,
+        TMP_FontAsset font,
+        FontWeight fontWeight)
     {
         GameObject plaqueObject = CreateUiObject(objectName, parent);
         RectTransform plaqueRect = plaqueObject.GetComponent<RectTransform>();
@@ -424,9 +433,10 @@ public sealed class FishingRunView : MonoBehaviour
 
         GameObject labelObject = CreateUiObject("Label", plaqueRect);
         TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
-        label.font = navigationFont != null ? navigationFont : TMP_Settings.defaultFontAsset;
+        label.font = font != null ? font : TMP_Settings.defaultFontAsset;
         label.fontSize = fontSize;
         label.fontStyle = FontStyles.Normal;
+        label.fontWeight = fontWeight;
         label.alignment = alignment;
         label.color = new Color(0.075f, 0.12f, 0.12f, 1f);
         label.enableAutoSizing = true;
@@ -435,6 +445,7 @@ public sealed class FishingRunView : MonoBehaviour
         label.textWrappingMode = TextWrappingModes.NoWrap;
         label.overflowMode = TextOverflowModes.Ellipsis;
         label.raycastTarget = false;
+        ConfigureDisplayTypography(label);
         SetAnchoredRect(label.rectTransform, Vector2.zero, Vector2.one, 28f, 10f, -28f, -10f);
         return label;
     }
@@ -560,7 +571,14 @@ public sealed class FishingRunView : MonoBehaviour
         depthImage.sprite = rightStatusDepthSprite;
         depthImage.type = Image.Type.Simple;
 
-        TMP_Text heading = CreateStatusText("Heading", depthRect, 25f, TextAlignmentOptions.Center, Color.white);
+        TMP_Text heading = CreateStatusText(
+            "Heading",
+            depthRect,
+            navigationFont,
+            FontWeight.Regular,
+            25f,
+            TextAlignmentOptions.Center,
+            Color.white);
         SetAnchoredRect(heading.rectTransform, Vector2.zero, Vector2.one, 28f, 201f, -28f, -14f);
         heading.text = "DEPTH ZONE";
 
@@ -591,7 +609,14 @@ public sealed class FishingRunView : MonoBehaviour
         tensionImage.sprite = rightStatusTensionSprite;
         tensionImage.type = Image.Type.Simple;
 
-        tensionText = CreateStatusText("Label", tensionRect, 21f, TextAlignmentOptions.Center, Color.white);
+        tensionText = CreateStatusText(
+            "Label",
+            tensionRect,
+            bodyFont,
+            FontWeight.SemiBold,
+            21f,
+            TextAlignmentOptions.Center,
+            Color.white);
         SetAnchoredRect(tensionText.rectTransform, Vector2.zero, Vector2.one, 30f, 51f, -30f, -13f);
 
         GameObject trackObject = CreateUiObject("Track", tensionRect);
@@ -642,7 +667,7 @@ public sealed class FishingRunView : MonoBehaviour
             depthZoneNodeImages[i].sprite = isActive ? depthNodeActiveSprite : depthNodeInactiveSprite;
             depthZoneNameTexts[i].text = tier.DisplayName.ToUpperInvariant();
             depthZoneNameTexts[i].color = rowColor;
-            depthZoneNameTexts[i].fontStyle = isActive ? FontStyles.Bold : FontStyles.Normal;
+            depthZoneNameTexts[i].fontStyle = FontStyles.Normal;
             depthZoneRangeTexts[i].text = tier.MaximumDepth < 0
                 ? $"{tier.MinimumDepth}+ m"
                 : $"{tier.MinimumDepth}–{tier.MaximumDepth} m";
@@ -704,9 +729,23 @@ public sealed class FishingRunView : MonoBehaviour
             nodeImage.type = Image.Type.Simple;
             nodeImage.preserveAspect = true;
 
-            TMP_Text nameText = CreateStatusText("Name", rowRect, 17f, TextAlignmentOptions.MidlineLeft, MutedTextColor);
+            TMP_Text nameText = CreateStatusText(
+                "Name",
+                rowRect,
+                navigationFont,
+                FontWeight.Regular,
+                17f,
+                TextAlignmentOptions.MidlineLeft,
+                MutedTextColor);
             SetAnchoredRect(nameText.rectTransform, Vector2.zero, new Vector2(0.66f, 1f), 50f, 0f, 0f, 0f);
-            TMP_Text rangeText = CreateStatusText("Range", rowRect, 15f, TextAlignmentOptions.MidlineRight, MutedTextColor);
+            TMP_Text rangeText = CreateStatusText(
+                "Range",
+                rowRect,
+                bodyFont,
+                FontWeight.Regular,
+                15f,
+                TextAlignmentOptions.MidlineRight,
+                MutedTextColor);
             SetAnchoredRect(rangeText.rectTransform, new Vector2(0.60f, 0f), Vector2.one, 0f, 0f, -16f, 0f);
 
             depthZoneRows[i] = rowObject;
@@ -739,14 +778,17 @@ public sealed class FishingRunView : MonoBehaviour
     private TMP_Text CreateStatusText(
         string objectName,
         Transform parent,
+        TMP_FontAsset font,
+        FontWeight fontWeight,
         float fontSize,
         TextAlignmentOptions alignment,
         Color color)
     {
         GameObject textObject = CreateUiObject(objectName, parent);
         TextMeshProUGUI text = textObject.AddComponent<TextMeshProUGUI>();
-        text.font = navigationFont != null ? navigationFont : TMP_Settings.defaultFontAsset;
+        text.font = font != null ? font : TMP_Settings.defaultFontAsset;
         text.fontSize = fontSize;
+        text.fontWeight = fontWeight;
         text.alignment = alignment;
         text.color = color;
         text.enableAutoSizing = true;
@@ -755,7 +797,22 @@ public sealed class FishingRunView : MonoBehaviour
         text.textWrappingMode = TextWrappingModes.NoWrap;
         text.overflowMode = TextOverflowModes.Ellipsis;
         text.raycastTarget = false;
+        ConfigureDisplayTypography(text);
         return text;
+    }
+
+    private void ConfigureDisplayTypography(TMP_Text text)
+    {
+        if (text.font != navigationFont)
+        {
+            return;
+        }
+
+        text.fontStyle = FontStyles.Normal;
+        text.fontWeight = FontWeight.Regular;
+        text.characterSpacing = 2f;
+        text.outlineColor = new Color32(9, 44, 43, 150);
+        text.outlineWidth = 0.06f;
     }
 
     /// <summary>
@@ -888,9 +945,15 @@ public sealed class FishingRunView : MonoBehaviour
         iconImage.type = Image.Type.Simple;
         iconImage.preserveAspect = true;
 
-        labelText = CreateStatusText("Label", buttonRect, 24f, TextAlignmentOptions.Center, labelColor);
+        labelText = CreateStatusText(
+            "Label",
+            buttonRect,
+            navigationFont,
+            FontWeight.Regular,
+            24f,
+            TextAlignmentOptions.Center,
+            labelColor);
         SetAnchoredRect(labelText.rectTransform, Vector2.zero, Vector2.one, 88f, 8f, -22f, -8f);
-        labelText.fontStyle = FontStyles.Bold;
         labelText.text = label;
         button.SetLinkedGraphics(iconImage, labelText);
         return button;

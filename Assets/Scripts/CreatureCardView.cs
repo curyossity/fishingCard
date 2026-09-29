@@ -73,7 +73,7 @@ public sealed class CreatureCardView : MonoBehaviour
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(
-            card.DisplayName,
+            card.DisplayName.ToUpperInvariant(),
             BuildCardTypeText(card.CardType),
             encounterArtwork,
             card.ArtworkLayout,

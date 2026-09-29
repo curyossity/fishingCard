@@ -14,6 +14,17 @@ The full license text is included at:
 
 Assets/FishingUIAssets/Fonts/Marcellus/OFL.txt
 
+Marcellus SC
+------------
+
+Copyright (c) 2012, Brian J. Bonislawsky DBA Astigmatic (AOETI) (astigma@astigmatic.com), with Reserved Font Names "Marcellus" and "Marcellus SC"
+
+License: SIL Open Font License, Version 1.1.
+
+The full license text is included at:
+
+Assets/FishingUIAssets/Fonts/MarcellusSC/OFL.txt
+
 Source Serif 4
 --------------
 

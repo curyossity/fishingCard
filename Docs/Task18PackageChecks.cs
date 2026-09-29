@@ -181,8 +181,8 @@ public static partial class Task17VisualChecks
     {
         Begin(width, height);
         float scale = width / 1920f;
-        TMP_FontAsset display = CreateFont("Fonts/Marcellus/Marcellus-Regular.ttf");
-        TMP_FontAsset body = CreateFont("Fonts/SourceSerif4/SourceSerif4-Variable.ttf");
+        TMP_FontAsset display = CreateFont("Fonts/MarcellusSC/MarcellusSC-Regular.ttf");
+        TMP_FontAsset body = CreateFont("Fonts/SourceSerif4/SourceSerif4-Regular.ttf");
         Draw("Backgrounds/gameplay-tabletop-16x9.png", new Rect(0, 0, width, height));
         TMPLine("ABYSSAL LANTERNFISH", new Rect(90 * scale, 80 * scale, 620 * scale, 90 * scale),
             display, 64 * scale, 26 * scale, Ivory);

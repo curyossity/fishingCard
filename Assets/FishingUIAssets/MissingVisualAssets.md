@@ -36,15 +36,18 @@ No missing font files remain for Task 1.1.
 
 Supplied fonts:
 
-- `Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf`
-- `Assets/FishingUIAssets/Fonts/Marcellus/OFL.txt`
-- `Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf`
+- `Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf`
+- `Assets/FishingUIAssets/Fonts/MarcellusSC/OFL.txt`
+- `Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf`
+- `Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Semibold.ttf`
+- `Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Bold.ttf`
 - `Assets/FishingUIAssets/Fonts/SourceSerif4/OFL.txt`
 
-Remaining integration work:
+Integrated TextMeshPro assets:
 
-- Generate TextMeshPro font assets inside Unity.
-- Validate whether the Unity/TextMeshPro version in this project handles Source Serif 4 variable font weights as needed. If not, fetch static Source Serif 4 weight files under the same OFL license and record them in `Reference/asset-manifest.md`.
+- `Assets/FishingUIAssets/Fonts/TMP/Marcellus SC SDF.asset`
+- `Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 SDF.asset`
+- Source Serif 4 Semibold and Bold SDF assets are generated and linked to the base asset by `TypographyAssetSynchronizer` after Unity imports the static source files.
 
 ## Task 1.2
 

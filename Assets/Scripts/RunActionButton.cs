@@ -95,7 +95,7 @@ public sealed class RunActionButton : MonoBehaviour,
     {
         if (label != null)
         {
-            label.text = text ?? string.Empty;
+            label.text = string.IsNullOrWhiteSpace(text) ? string.Empty : text.ToUpperInvariant();
         }
     }
 

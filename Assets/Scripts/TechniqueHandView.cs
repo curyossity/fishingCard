@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public sealed class TechniqueHandView : MonoBehaviour
     [SerializeField] private Sprite handPadSprite;
     [SerializeField] private Sprite leftDecorationSprite;
     [SerializeField] private Sprite rightDecorationSprite;
+    [SerializeField] private TMP_FontAsset displayFont;
+    [SerializeField] private TMP_FontAsset bodyFont;
 
     private static readonly Color PlayableCardColor = new Color(0.09f, 0.18f, 0.19f, 1f);
     private static readonly Color LockedCardColor = new Color(0.105f, 0.115f, 0.12f, 1f);
@@ -21,8 +24,7 @@ public sealed class TechniqueHandView : MonoBehaviour
     private RectTransform panelRoot;
     private RectTransform handContentRoot;
     private RectTransform slotsRoot;
-    private Text pileCountText;
-    private Font uiFont;
+    private TextMeshProUGUI pileCountText;
     private readonly SlotView[] slots = new SlotView[SlotCount];
     private Func<int, bool> useCardAction;
 
@@ -30,11 +32,11 @@ public sealed class TechniqueHandView : MonoBehaviour
     {
         public Image Background;
         public Image Accent;
-        public Text Name;
-        public Text Rules;
-        public Text Status;
+        public TextMeshProUGUI Name;
+        public TextMeshProUGUI Rules;
+        public TextMeshProUGUI Status;
         public Button UseButton;
-        public Text UseButtonText;
+        public TextMeshProUGUI UseButtonText;
     }
 
     /// <summary>
@@ -86,8 +88,6 @@ public sealed class TechniqueHandView : MonoBehaviour
             return;
         }
 
-        uiFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-
         GameObject panelObject = CreateUiObject("Technique Hand Panel", transform);
         panelRoot = panelObject.GetComponent<RectTransform>();
         panelRoot.anchorMin = fillParentRegion ? Vector2.zero : new Vector2(0.02f, 0.04f);
@@ -104,12 +104,13 @@ public sealed class TechniqueHandView : MonoBehaviour
         handContentRoot.offsetMin = Vector2.zero;
         handContentRoot.offsetMax = Vector2.zero;
 
-        Text titleText = CreateText(
+        TextMeshProUGUI titleText = CreateText(
             "Title",
             handContentRoot,
+            displayFont,
             17,
-            FontStyle.Bold,
-            TextAnchor.MiddleLeft,
+            FontWeight.Regular,
+            TextAlignmentOptions.MidlineLeft,
             Color.white);
         SetAnchoredRect(
             titleText.rectTransform,
@@ -124,9 +125,10 @@ public sealed class TechniqueHandView : MonoBehaviour
         pileCountText = CreateText(
             "Pile Counts",
             handContentRoot,
+            bodyFont,
             12,
-            FontStyle.Bold,
-            TextAnchor.MiddleRight,
+            FontWeight.SemiBold,
+            TextAlignmentOptions.MidlineRight,
             MutedTextColor);
         SetAnchoredRect(
             pileCountText.rectTransform,
@@ -255,7 +257,7 @@ public sealed class TechniqueHandView : MonoBehaviour
             ? EmptyCardColor
             : isPlayable ? PlayableCardColor : LockedCardColor;
         slot.Accent.color = isPlayable ? AccentColor : MutedTextColor;
-        slot.Name.text = hasCard ? card.DisplayName : "EMPTY";
+        slot.Name.text = hasCard ? card.DisplayName.ToUpperInvariant() : "EMPTY";
         slot.Name.color = hasCard ? Color.white : MutedTextColor;
         slot.Rules.text = hasCard ? card.RulesText : string.Empty;
         slot.Status.text = !hasCard
@@ -288,9 +290,10 @@ public sealed class TechniqueHandView : MonoBehaviour
         slot.Name = CreateText(
             "Name",
             slotObject.transform,
+            displayFont,
             16,
-            FontStyle.Bold,
-            TextAnchor.UpperLeft,
+            FontWeight.Regular,
+            TextAlignmentOptions.TopLeft,
             Color.white);
         SetAnchoredRect(
             slot.Name.rectTransform,
@@ -300,28 +303,30 @@ public sealed class TechniqueHandView : MonoBehaviour
             -40f,
             -8f,
             -8f);
-        slot.Name.resizeTextForBestFit = true;
-        slot.Name.resizeTextMinSize = 11;
-        slot.Name.resizeTextMaxSize = 16;
+        slot.Name.enableAutoSizing = true;
+        slot.Name.fontSizeMin = 11;
+        slot.Name.fontSizeMax = 16;
 
         slot.Rules = CreateText(
             "Rules",
             slotObject.transform,
+            bodyFont,
             12,
-            FontStyle.Normal,
-            TextAnchor.UpperLeft,
+            FontWeight.Regular,
+            TextAlignmentOptions.TopLeft,
             MutedTextColor);
         SetAnchoredRect(slot.Rules.rectTransform, Vector2.zero, Vector2.one, 12f, 62f, -8f, -46f);
-        slot.Rules.resizeTextForBestFit = true;
-        slot.Rules.resizeTextMinSize = 9;
-        slot.Rules.resizeTextMaxSize = 12;
+        slot.Rules.enableAutoSizing = true;
+        slot.Rules.fontSizeMin = 9;
+        slot.Rules.fontSizeMax = 12;
 
         slot.Status = CreateText(
             "Status",
             slotObject.transform,
+            bodyFont,
             10,
-            FontStyle.Bold,
-            TextAnchor.MiddleLeft,
+            FontWeight.SemiBold,
+            TextAlignmentOptions.MidlineLeft,
             LockedTextColor);
         SetAnchoredRect(
             slot.Status.rectTransform,
@@ -331,9 +336,9 @@ public sealed class TechniqueHandView : MonoBehaviour
             36f,
             -8f,
             58f);
-        slot.Status.resizeTextForBestFit = true;
-        slot.Status.resizeTextMinSize = 8;
-        slot.Status.resizeTextMaxSize = 10;
+        slot.Status.enableAutoSizing = true;
+        slot.Status.fontSizeMin = 8;
+        slot.Status.fontSizeMax = 10;
 
         GameObject buttonObject = CreateUiObject("Use", slotObject.transform);
         RectTransform buttonRect = buttonObject.GetComponent<RectTransform>();
@@ -348,9 +353,10 @@ public sealed class TechniqueHandView : MonoBehaviour
         slot.UseButtonText = CreateText(
             "Label",
             buttonObject.transform,
+            displayFont,
             12,
-            FontStyle.Bold,
-            TextAnchor.MiddleCenter,
+            FontWeight.Regular,
+            TextAlignmentOptions.Center,
             Color.white);
         SetAnchoredRect(slot.UseButtonText.rectTransform, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
 
@@ -388,26 +394,35 @@ public sealed class TechniqueHandView : MonoBehaviour
     }
 
     /// <summary>
-    /// Creates configured legacy UI text for the generated hand layout.
+    /// Creates configured TextMeshPro text for the generated hand layout.
     /// </summary>
-    private Text CreateText(
+    private TextMeshProUGUI CreateText(
         string objectName,
         Transform parent,
-        int fontSize,
-        FontStyle fontStyle,
-        TextAnchor alignment,
+        TMP_FontAsset font,
+        float fontSize,
+        FontWeight fontWeight,
+        TextAlignmentOptions alignment,
         Color color)
     {
         GameObject textObject = CreateUiObject(objectName, parent);
-        Text text = textObject.AddComponent<Text>();
-        text.font = uiFont;
+        TextMeshProUGUI text = textObject.AddComponent<TextMeshProUGUI>();
+        text.font = font;
         text.fontSize = fontSize;
-        text.fontStyle = fontStyle;
+        text.fontWeight = fontWeight;
         text.alignment = alignment;
         text.color = color;
-        text.horizontalOverflow = HorizontalWrapMode.Wrap;
-        text.verticalOverflow = VerticalWrapMode.Truncate;
+        text.textWrappingMode = TextWrappingModes.Normal;
+        text.overflowMode = TextOverflowModes.Ellipsis;
         text.raycastTarget = false;
+        if (font == displayFont)
+        {
+            text.fontStyle = FontStyles.Normal;
+            text.characterSpacing = 2f;
+            text.outlineColor = new Color32(9, 44, 43, 150);
+            text.outlineWidth = 0.06f;
+        }
+
         return text;
     }
 

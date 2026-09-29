@@ -13,7 +13,8 @@ public static class FishingRunViewPrefabBuilder
     private const string PrefabPath = "Assets/Prefabs/UI/FishingRunView.prefab";
     private const string CreatureCardPrefabPath = "Assets/Prefabs/UI/Components/CreatureCardView.prefab";
     private const string CompactCatchCardPrefabPath = "Assets/Prefabs/UI/Components/CompactCatchCard.prefab";
-    private const string NavigationFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SDF.asset";
+    private const string NavigationFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SC SDF.asset";
+    private const string BodyFontPath = "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 SDF.asset";
     private const string ScenePath = "Assets/Scenes/SampleScene.unity";
     private const string ValidationDirectory = "Docs/Validation/Phase2";
 
@@ -363,6 +364,10 @@ public static class FishingRunViewPrefabBuilder
             AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(NavigationFontPath));
         SetObjectReference(
             serializedView,
+            "bodyFont",
+            AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(BodyFontPath));
+        SetObjectReference(
+            serializedView,
             "rightStatusOuterSprite",
             LoadSprite("Frames/fishing-ui-right-status-outer-blank.png"));
         SetObjectReference(
@@ -508,6 +513,14 @@ public static class FishingRunViewPrefabBuilder
             "rightDecorationSprite",
             AssetDatabase.LoadAssetAtPath<Sprite>(
                 "Assets/FishingUIAssets/Decorations/fishing-ui-decoration-right-rope-compass-1536x1024.png"));
+        SetObjectReference(
+            serializedView,
+            "displayFont",
+            AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(NavigationFontPath));
+        SetObjectReference(
+            serializedView,
+            "bodyFont",
+            AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(BodyFontPath));
         serializedView.ApplyModifiedPropertiesWithoutUndo();
     }
 

@@ -63,7 +63,7 @@ public sealed class TechniqueCardView : MonoBehaviour, IPointerEnterHandler, IPo
     {
         hasCard = card != null;
         SetContent(
-            card == null ? string.Empty : card.DisplayName,
+            card == null ? string.Empty : card.DisplayName.ToUpperInvariant(),
             card == null ? null : card.Artwork,
             card == null ? string.Empty : card.RulesText,
             keyword);

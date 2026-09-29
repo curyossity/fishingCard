@@ -16,7 +16,7 @@ public static class Phase3ComponentPrefabBuilder
     private const string CompactCatchCardPath = ComponentDirectory + "/CompactCatchCard.prefab";
     private const string TechniqueCardPath = ComponentDirectory + "/TechniqueCardView.prefab";
     private const string RunActionButtonPath = ComponentDirectory + "/RunActionButton.prefab";
-    private const string DisplayFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SDF.asset";
+    private const string DisplayFontPath = "Assets/FishingUIAssets/Fonts/TMP/Marcellus SC SDF.asset";
     private const string BodyFontPath = "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 SDF.asset";
     /// <summary>Imports Unity's bundled TMP resources before Phase 3 prefab generation.</summary>
     public static void PrepareTmpResources()
@@ -54,10 +54,10 @@ public static class Phase3ComponentPrefabBuilder
                 Resources.Load<TMP_Settings>("TMP Settings") != null,
                 "TMP Essential Resources are missing. Run PrepareTmpResources first.");
             TMP_FontAsset displayFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf",
+                "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf",
                 DisplayFontPath);
             TMP_FontAsset bodyFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf",
+                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf",
                 BodyFontPath);
             BuildMaritimePanel(displayFont);
             ValidateMaritimePanel();
@@ -99,10 +99,10 @@ public static class Phase3ComponentPrefabBuilder
                 Resources.Load<TMP_Settings>("TMP Settings") != null,
                 "TMP Essential Resources are missing. Run PrepareTmpResources first.");
             TMP_FontAsset displayFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf",
+                "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf",
                 DisplayFontPath);
             TMP_FontAsset bodyFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf",
+                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf",
                 BodyFontPath);
             BuildCreatureCard(displayFont, bodyFont);
             ValidateCreatureCard();
@@ -142,10 +142,10 @@ public static class Phase3ComponentPrefabBuilder
             EnsureDirectories();
             Require(Resources.Load<TMP_Settings>("TMP Settings") != null, "TMP Essential Resources are missing.");
             TMP_FontAsset displayFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf",
+                "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf",
                 DisplayFontPath);
             TMP_FontAsset bodyFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf",
+                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf",
                 BodyFontPath);
             BuildCompactCatchCard(displayFont, bodyFont);
             ValidateCompactCatchCard();
@@ -184,10 +184,10 @@ public static class Phase3ComponentPrefabBuilder
             EnsureDirectories();
             Require(Resources.Load<TMP_Settings>("TMP Settings") != null, "TMP Essential Resources are missing.");
             TMP_FontAsset displayFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf",
+                "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf",
                 DisplayFontPath);
             TMP_FontAsset bodyFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf",
+                "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf",
                 BodyFontPath);
             BuildTechniqueCard(displayFont, bodyFont);
             ValidateTechniqueCard();
@@ -226,7 +226,7 @@ public static class Phase3ComponentPrefabBuilder
             EnsureDirectories();
             Require(Resources.Load<TMP_Settings>("TMP Settings") != null, "TMP Essential Resources are missing.");
             TMP_FontAsset displayFont = EnsureFontAsset(
-                "Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf",
+                "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf",
                 DisplayFontPath);
             BuildRunActionButton(displayFont);
             ValidateRunActionButton();
@@ -523,8 +523,8 @@ public static class Phase3ComponentPrefabBuilder
         TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 32f, TextAlignmentOptions.Center);
         weightText.color = new Color32(26, 60, 59, 255);
         valueText.color = weightText.color;
-        weightText.fontStyle = FontStyles.Bold;
-        valueText.fontStyle = FontStyles.Bold;
+        weightText.fontWeight = FontWeight.Bold;
+        valueText.fontWeight = FontWeight.Bold;
         SetStretchOffsets(weightText.rectTransform, 12f, 5f, -12f, -24f);
         SetStretchOffsets(valueText.rectTransform, 12f, 5f, -12f, -24f);
 
@@ -722,13 +722,13 @@ public static class Phase3ComponentPrefabBuilder
         TextMeshProUGUI weightText = CreateText("Weight", rootRect, bodyFont, 30f, TextAlignmentOptions.Center);
         SetAnchoredRect(weightText.rectTransform, new Vector2(0.18f, 0.07f), new Vector2(0.46f, 0.24f));
         weightText.color = new Color32(21, 61, 61, 255);
-        weightText.fontStyle = FontStyles.Bold;
+        weightText.fontWeight = FontWeight.Bold;
 
         CreateStatIcon("Value Icon", rootRect, "Icons/value.png", new Vector2(0.55f, 0.07f), new Vector2(0.65f, 0.24f));
         TextMeshProUGUI valueText = CreateText("Value", rootRect, bodyFont, 30f, TextAlignmentOptions.Center);
         SetAnchoredRect(valueText.rectTransform, new Vector2(0.65f, 0.07f), new Vector2(0.93f, 0.24f));
         valueText.color = weightText.color;
-        valueText.fontStyle = FontStyles.Bold;
+        valueText.fontWeight = FontWeight.Bold;
 
         Image passiveSocket = CreateImage(
             "Passive Effect Socket",
@@ -1330,6 +1330,15 @@ public static class Phase3ComponentPrefabBuilder
         text.textWrappingMode = TextWrappingModes.Normal;
         text.overflowMode = TextOverflowModes.Ellipsis;
         text.raycastTarget = false;
+        if (font != null && AssetDatabase.GetAssetPath(font) == DisplayFontPath)
+        {
+            text.fontStyle = FontStyles.Normal;
+            text.fontWeight = FontWeight.Regular;
+            text.characterSpacing = 2f;
+            text.outlineColor = new Color32(9, 44, 43, 150);
+            text.outlineWidth = 0.06f;
+        }
+
         return text;
     }
 
