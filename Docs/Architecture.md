@@ -79,6 +79,24 @@ Does not own:
 - UI state
 - Effect execution
 
+### `CreatureCatalogWindow`
+
+Role:
+Editor-only content-authoring workspace for creature and catch-card definitions.
+
+Owns:
+- Searchable overview of creature definitions and optional Treasure/Apex catch cards
+- Editing every serialized `CardDefinition` field through Unity's serialized-property workflow
+- Aspect-preserving previews of compact, encounter-overlay, and legacy complete-face artwork
+- Editing actual membership in each biome's depth-tier encounter pools
+- Editing Apex possibility membership for Apex cards
+
+Does not own:
+- Runtime card state or resolved Weight/Value
+- Encounter selection rules
+- Automatic synchronization between card eligibility constraints and biome pool membership
+- Import settings or source artwork generation
+
 ### `CardEffectDefinition`
 
 Role:
