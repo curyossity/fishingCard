@@ -20,7 +20,11 @@ MonoBehaviour:
   - Creature
   - Crustacean
   - Clinging
-  artwork: {fileID: 0}
+  artwork: {fileID: 759678386672775755, guid: 64dad54472d3bde4ca5be151b04256c7, type: 3}
+  encounterArtwork: {fileID: -4829037146183527712, guid: 64dad54472d3bde4ca5be151b04256c7, type: 3}
+  artworkLayout: 1
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   rulesText: While attached, clings to the previous catch and adds 2 to that catch's
     weight.
   weight: 1

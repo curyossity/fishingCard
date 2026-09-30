@@ -22,7 +22,11 @@ MonoBehaviour:
   - Schooling
   - Small
   artwork: {fileID: 0}
-  rulesText: A nearly weightless schooling catch. While attached, it slightly attracts Predators.
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: While attached, it slightly attracts Predators
   weight: 1
   value: 2
   biomeIds:

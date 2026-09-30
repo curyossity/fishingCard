@@ -15,8 +15,8 @@ MonoBehaviour:
   biomeId: Coastal
   displayName: Coastal Waters
   coreIdentity: Schools + small catches + predator attraction.
-  strategicTension: Build an efficient school of low-load catches while deciding whether
-    their growing value is worth attracting heavier predators.
+  strategicTension: Build an efficient school of low-load catches while deciding
+    whether their growing value is worth attracting heavier predators.
   signatureTags:
   - Schooling
   - Small
@@ -66,7 +66,6 @@ MonoBehaviour:
     designIntent: Introduce predators, sharper downside effects, heavier rewards,
       and the first Apex pressure.
     encounterPool:
-    - {fileID: 11400000, guid: bb1e829a1dd746088949e4ae0587e7da, type: 2}
     - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
     - {fileID: 11400000, guid: 1c2283c16571400dbe1f802fabad2813, type: 2}
     - {fileID: 11400000, guid: 18d3ad07711f49909de0ac7dcc6d0e7d, type: 2}
@@ -77,6 +76,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7b2423ecead242df87330471df845d6e, type: 2}
     - {fileID: 11400000, guid: 927086622d154b3da149d779810a18f7, type: 2}
     - {fileID: 11400000, guid: fb3cb53b927d4b82980fb349b641e6e3, type: 2}
+    - {fileID: 11400000, guid: bb1e829a1dd746088949e4ae0587e7da, type: 2}
   encounterChains:
   - {fileID: 11400000, guid: d30c9ea4d06a44b9a6e90afb38185328, type: 2}
   - {fileID: 11400000, guid: e5b87e266e5c40ce8c7732cd4da7b057, type: 2}

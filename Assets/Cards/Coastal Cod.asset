@@ -13,16 +13,19 @@ MonoBehaviour:
   m_Name: Coastal Cod
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
   uniqueId: creature_coastal_cod
-  displayName: Coastal Cod
+  displayName: Cod
   cardType: 3
   rarity: 0
   tags:
   - Creature
   - Fish
   - Schooling
-  artwork: {fileID: 0}
-  rulesText: A dependable medium catch. It provides a baseline for judging more
-    specialized Catch Chain effects.
+  artwork: {fileID: -6506108666410769293, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
+  encounterArtwork: {fileID: 3164928710328421175, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
+  artworkLayout: 1
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: A cold-water fish known for its mild flavor, flaky white flesh.
   weight: 3
   value: 5
   biomeIds:
