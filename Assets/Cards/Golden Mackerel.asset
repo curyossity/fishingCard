@@ -21,7 +21,11 @@ MonoBehaviour:
   - Fish
   - Predator
   - Valuable
-  artwork: {fileID: 0}
+  artwork: {fileID: -1726895074981326407, guid: 29f58547088278642bed18cf0b9f0d57, type: 3}
+  encounterArtwork: {fileID: 6831962317458024601, guid: 29f58547088278642bed18cf0b9f0d57, type: 3}
+  artworkLayout: 1
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}

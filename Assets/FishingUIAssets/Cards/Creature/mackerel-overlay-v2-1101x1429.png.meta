@@ -3,8 +3,11 @@ guid: 29f58547088278642bed18cf0b9f0d57
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7862184543652183004
-    second: mackerel-overlay-v2-1101x1429_0
+      213: 6831962317458024601
+    second: mackerel-overlay-full
+  - first:
+      213: -1726895074981326407
+    second: mackerel-overlay-cropped
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -48,7 +51,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -100,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mackerel-overlay-v2-1101x1429_0
+      name: mackerel-overlay-full
       rect:
         serializedVersion: 2
-        x: 155
-        y: 768
-        width: 792
-        height: 337
+        x: 0
+        y: 0
+        width: 1101
+        height: 1429
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4248b0d20d8e3e290800000000000000
-      internalID: -7862184543652183004
+      spriteID: 9b31c2e32c794c13a300000000000000
+      internalID: 6831962317458024601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mackerel-overlay-cropped
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 769
+        width: 790
+        height: 335
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d42c08733af4504b500000000000000
+      internalID: -1726895074981326407
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mackerel-overlay-v2-1101x1429_0: -7862184543652183004
+      mackerel-overlay-cropped: -1726895074981326407
+      mackerel-overlay-full: 6831962317458024601
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
