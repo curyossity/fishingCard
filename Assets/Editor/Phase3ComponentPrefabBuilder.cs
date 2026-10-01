@@ -465,7 +465,7 @@ public static class Phase3ComponentPrefabBuilder
         Image background = CreateImage(
             "CardBackground",
             rootRect,
-            LoadSprite("Cards/Creature/catch-card-base-five-tag-rail-1101x1429.png"),
+            LoadSprite("Cards/Creature/catch-card-base-four-large-tag-rail-1101x1429.png"),
             Image.Type.Simple);
         Shadow cardShadow = background.gameObject.AddComponent<Shadow>();
         cardShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.68f);
@@ -588,16 +588,16 @@ public static class Phase3ComponentPrefabBuilder
         }
 
         RectTransform tagRoot = CreateRect("Tag Icons", rootRect, Vector2.zero, Vector2.one);
-        Image[] tagMarkers = new Image[5];
-        float[] tagVerticalAnchors = { 0.681f, 0.615f, 0.549f, 0.483f, 0.417f };
+        Image[] tagMarkers = new Image[4];
+        float[] tagVerticalAnchors = { 0.669f, 0.585f, 0.502f, 0.419f };
         for (int i = 0; i < tagMarkers.Length; i++)
         {
             RectTransform markerRect = CreateRect(
                 "Tag " + (i + 1).ToString("00"),
                 tagRoot,
-                new Vector2(0.908f, tagVerticalAnchors[i]),
-                new Vector2(0.908f, tagVerticalAnchors[i]));
-            markerRect.sizeDelta = new Vector2(27f, 27f);
+                new Vector2(0.910f, tagVerticalAnchors[i]),
+                new Vector2(0.910f, tagVerticalAnchors[i]));
+            markerRect.sizeDelta = new Vector2(32f, 32f);
             tagMarkers[i] = markerRect.gameObject.AddComponent<Image>();
             tagMarkers[i].preserveAspect = true;
             tagMarkers[i].raycastTarget = false;
@@ -654,7 +654,7 @@ public static class Phase3ComponentPrefabBuilder
         CreatureCardView view = prefab.GetComponent<CreatureCardView>();
         Require(view != null, "CreatureCardView component is missing.");
         Require(view.AnchorSlotCount == 4, "CreatureCardView must expose exactly four anchor slots.");
-        Require(prefab.transform.Find("Tag Icons") != null, "CreatureCardView must expose the five-slot tag rail.");
+        Require(prefab.transform.Find("Tag Icons") != null, "CreatureCardView must expose the four-slot tag rail.");
         Require(prefab.transform.Find("CreatureArtworkMask")?.GetComponent<Mask>() != null, "Creature artwork mask is missing.");
         Require(!prefab.transform.Find("CreatureArtworkMask").GetComponent<Mask>().showMaskGraphic, "Creature mask RGB must remain hidden.");
         Require(prefab.transform.Find("Title Safe Region") != null, "Title safe region is missing.");

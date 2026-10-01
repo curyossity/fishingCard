@@ -8,11 +8,11 @@ using UnityEngine.UI;
 public sealed class CreatureCardView : MonoBehaviour
 {
     public const float ReferenceAspectRatio = 1101f / 1429f;
-    private const int TagMarkerCount = 5;
+    private const int TagMarkerCount = 4;
     private const float EffectFontSizeMin = 10f;
     private const float EffectFontSizeMax = 18f;
 
-    private static readonly float[] TagMarkerVerticalAnchors = { 0.681f, 0.615f, 0.549f, 0.483f, 0.417f };
+    private static readonly float[] TagMarkerVerticalAnchors = { 0.669f, 0.585f, 0.502f, 0.419f };
 
     private static readonly Color32 CatchNameColor = new Color32(239, 226, 194, 255);
     private static readonly Color32 CatchRulesColor = new Color32(25, 55, 54, 255);
@@ -474,7 +474,7 @@ public sealed class CreatureCardView : MonoBehaviour
         return false;
     }
 
-    /// <summary>Creates the five runtime markers for older prefabs that predate the supplied tag rail.</summary>
+    /// <summary>Creates the four runtime markers for older prefabs that predate the supplied tag rail.</summary>
     private void EnsureTagMarkers()
     {
         bool hasCompleteMarkerSet = tagMarkers != null && tagMarkers.Length == TagMarkerCount;
@@ -518,10 +518,10 @@ public sealed class CreatureCardView : MonoBehaviour
             markerObject.layer = gameObject.layer;
             RectTransform markerRect = markerObject.GetComponent<RectTransform>();
             markerRect.SetParent(tagIconRoot, false);
-            markerRect.anchorMin = new Vector2(0.908f, TagMarkerVerticalAnchors[i]);
+            markerRect.anchorMin = new Vector2(0.910f, TagMarkerVerticalAnchors[i]);
             markerRect.anchorMax = markerRect.anchorMin;
             markerRect.anchoredPosition = Vector2.zero;
-            markerRect.sizeDelta = new Vector2(27f, 27f);
+            markerRect.sizeDelta = new Vector2(32f, 32f);
 
             Image marker = markerObject.GetComponent<Image>();
             marker.preserveAspect = true;

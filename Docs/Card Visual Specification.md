@@ -4,7 +4,7 @@ This document defines the current approved presentation contract for creature an
 
 ## Source Card Art
 
-The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/catch-card-base-five-tag-rail-1101x1429.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, four empty rarity-marker sockets, and five empty tag-rail sockets. Earlier catch-card masters remain preserved as visual alternatives.
+The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/catch-card-base-four-large-tag-rail-1101x1429.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, four empty rarity-marker sockets, and four large tag-rail sockets. The superseded five-socket tag-rail master was removed when this replacement was approved.
 
 Non-catchable encounters currently use the storm-purple `Assets/FishingUIAssets/Cards/Event/event-card-base-storm-purple-1101x1429.png` at 1101 x 1429. This event master owns its frame, blank type and title plaques, chart field, and expanded ivory rules panel. It intentionally has no Weight, Value, or rarity-socket presentation. The earlier red/silver `event-card-base-empty-with-type-1101x1429.png` remains available as an alternate visual treatment.
 
@@ -23,7 +23,7 @@ Unity fills these fields from card data:
 - Effect text
 - Rarity hooks
 
-The supplied five-socket rail displays Unity-owned tag indicators without reducing the existing content regions. Creature tags use the closed vocabulary `Fish`, `Predator`, `Schooling`, `Small`, `Heavy`, `Anchored`, `Armored`, and `Elusive`. Supported icons are matched case-insensitively to the card's authored tags and filled from top to bottom in canonical vocabulary order. Unsupported icon artwork and unused sockets remain empty. The currently supplied icon mappings are `Predator` and `Small`. Event cards do not display the catch-card tag rail.
+The supplied four-socket rail displays Unity-owned tag indicators without reducing the existing content regions. Creature tags use the closed vocabulary `Fish`, `Predator`, `Schooling`, `Small`, `Heavy`, `Anchored`, `Armored`, and `Elusive`. Supported icons are matched case-insensitively to the card's authored tags and filled from top to bottom in canonical vocabulary order. Unsupported icon artwork and unused sockets remain empty. The currently supplied icon mappings are `Predator` and `Small`. Event cards do not display the catch-card tag rail.
 
 The upper card-type field separates catchable encounters from event encounters:
 
