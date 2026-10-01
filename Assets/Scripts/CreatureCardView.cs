@@ -1,3 +1,5 @@
+using System;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -80,7 +82,9 @@ public sealed class CreatureCardView : MonoBehaviour
             background,
             informationHidden ? "?" : FormatWeight(Mathf.Max(0, resolvedWeight)),
             informationHidden ? "?" : FormatValue(Mathf.Max(0, resolvedValue)),
-            informationHidden ? string.Empty : card.RulesText,
+            informationHidden
+                ? string.Empty
+                : BuildHighlightedRulesText(card.RulesText, card.RulesTextHighlights),
             card.Rarity,
             usesCatchLayout);
     }
@@ -214,8 +218,97 @@ public sealed class CreatureCardView : MonoBehaviour
 
         if (effectText != null)
         {
+            effectText.richText = true;
             effectText.color = usesCatchLayout ? CatchRulesColor : EventContentColor;
         }
+    }
+
+    /// <summary>Applies authored TMP color and relative-size tags to matching rules-text phrases.</summary>
+    private static string BuildHighlightedRulesText(
+        string rules,
+        CardTextHighlightDefinition[] highlights)
+    {
+        if (string.IsNullOrEmpty(rules) || highlights == null || highlights.Length == 0)
+        {
+            return rules ?? string.Empty;
+        }
+
+        StringBuilder formatted = new StringBuilder(rules.Length + 32);
+        int position = 0;
+        while (position < rules.Length)
+        {
+            if (rules[position] == '<')
+            {
+                int tagEnd = rules.IndexOf('>', position);
+                if (tagEnd >= position)
+                {
+                    formatted.Append(rules, position, tagEnd - position + 1);
+                    position = tagEnd + 1;
+                    continue;
+                }
+            }
+
+            CardTextHighlightDefinition selectedHighlight = null;
+            int selectedLength = 0;
+            for (int highlightIndex = 0; highlightIndex < highlights.Length; highlightIndex++)
+            {
+                CardTextHighlightDefinition highlight = highlights[highlightIndex];
+                string highlightedText = highlight?.Text;
+                if (string.IsNullOrEmpty(highlightedText)
+                    || highlightedText.Length <= selectedLength
+                    || position + highlightedText.Length > rules.Length
+                    || string.Compare(
+                        rules,
+                        position,
+                        highlightedText,
+                        0,
+                        highlightedText.Length,
+                        StringComparison.OrdinalIgnoreCase) != 0
+                    || (highlight.MatchWholeWord
+                        && !IsWholeWordMatch(rules, position, highlightedText.Length)))
+                {
+                    continue;
+                }
+
+                selectedHighlight = highlight;
+                selectedLength = highlightedText.Length;
+            }
+
+            if (selectedHighlight == null)
+            {
+                formatted.Append(rules[position]);
+                position++;
+                continue;
+            }
+
+            string colorHex = ColorUtility.ToHtmlStringRGB(selectedHighlight.Color);
+            int sizePercent = selectedHighlight.SizePercent;
+            formatted.Append("<color=#");
+            formatted.Append(colorHex);
+            formatted.Append("><size=");
+            formatted.Append(sizePercent);
+            formatted.Append("%>");
+            formatted.Append(rules, position, selectedLength);
+            formatted.Append("</size></color>");
+            position += selectedLength;
+        }
+
+        return formatted.ToString();
+    }
+
+    /// <summary>Prevents a word highlight from matching inside a longer letter/number identifier.</summary>
+    private static bool IsWholeWordMatch(string rules, int startIndex, int length)
+    {
+        bool startsAtBoundary = startIndex == 0 || !IsWordCharacter(rules[startIndex - 1]);
+        int endIndex = startIndex + length;
+        bool endsAtBoundary = endIndex >= rules.Length || !IsWordCharacter(rules[endIndex]);
+        return startsAtBoundary && endsAtBoundary;
+    }
+
+    /// <summary>Defines the characters considered part of one highlightable word.</summary>
+    private static bool IsWordCharacter(char value)
+    {
+        return char.IsLetterOrDigit(value) || value == '_';
     }
 
     private void HideRarityAnchors()

@@ -37,6 +37,8 @@ Weight and Value display the currently resolved values. When gameplay modifiers 
 
 Text must fit its authored region at supported resolutions. Use wrapping and bounded best-fit sizing where necessary, while preserving the visual hierarchy shown by the reference card.
 
+Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.
+
 ## Rarity Hooks
 
 Creature/catch card art provides four circular rarity sockets. Unity fills them with `Assets/FishingUIAssets/Icons/catch.png`, activating the corresponding number of catch icons:

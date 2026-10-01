@@ -27,6 +27,11 @@ MonoBehaviour:
   cardFaceIncludesName: 0
   rulesText: While attached, clings to the previous catch and adds 2 to that catch's
     weight.
+  rulesTextHighlights:
+  - text: 2
+    color: {r: 0.50980395, g: 0.6862745, b: 0.6117647, a: 1}
+    sizePercent: 150
+    matchWholeWord: 1
   weight: 1
   value: 4
   biomeIds:

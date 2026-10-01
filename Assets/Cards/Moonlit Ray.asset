@@ -22,7 +22,16 @@ MonoBehaviour:
   - Support
   - Rare
   artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   rulesText: While attached, every Small catch gains 1 Value.
+  rulesTextHighlights:
+  - text: 1
+    color: {r: 0.50980395, g: 0.6862745, b: 0.6117647, a: 1}
+    sizePercent: 150
+    matchWholeWord: 1
   weight: 3
   value: 10
   biomeIds:

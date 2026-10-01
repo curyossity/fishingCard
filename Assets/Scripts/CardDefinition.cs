@@ -20,6 +20,8 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private bool cardFaceIncludesName;
     [TextArea(2, 5)]
     [SerializeField] private string rulesText;
+    [SerializeField] private CardTextHighlightDefinition[] rulesTextHighlights =
+        Array.Empty<CardTextHighlightDefinition>();
 
     [Header("Catch Stats")]
     [Min(0)]
@@ -47,6 +49,7 @@ public class CardDefinition : ScriptableObject
     public Sprite CardFaceArtwork => cardFaceArtwork;
     public bool CardFaceIncludesName => cardFaceIncludesName;
     public string RulesText => rulesText;
+    public CardTextHighlightDefinition[] RulesTextHighlights => rulesTextHighlights;
     public int Weight => weight;
     public int Value => value;
     public string[] BiomeIds => biomeIds;
@@ -56,6 +59,21 @@ public class CardDefinition : ScriptableObject
 
     public bool HasWeight => weight > 0;
     public bool HasValue => value > 0;
+
+    /// <summary>Keeps newly added rules-text highlights visible when Unity initializes array entries with zeroed values.</summary>
+    private void OnValidate()
+    {
+        if (rulesTextHighlights == null)
+        {
+            rulesTextHighlights = Array.Empty<CardTextHighlightDefinition>();
+            return;
+        }
+
+        for (int i = 0; i < rulesTextHighlights.Length; i++)
+        {
+            rulesTextHighlights[i]?.EnsureValid();
+        }
+    }
 
     /// <summary>
     /// Checks whether this card can appear or be used at the given run depth.
@@ -114,6 +132,48 @@ public class CardDefinition : ScriptableObject
         }
 
         return summary.ToString();
+    }
+}
+
+[Serializable]
+public sealed class CardTextHighlightDefinition
+{
+    private static readonly Color DefaultColor = new Color(0.62f, 0.25f, 0.21f, 1f);
+    private const int DefaultSizePercent = 120;
+
+    [SerializeField] private string text;
+    [ColorUsage(false)]
+    [SerializeField] private Color color = new Color(0.62f, 0.25f, 0.21f, 1f);
+    [Range(50, 200)]
+    [SerializeField] private int sizePercent = DefaultSizePercent;
+    [SerializeField] private bool matchWholeWord = true;
+
+    public string Text => text;
+    public Color Color => GetVisibleColor();
+    public int SizePercent => sizePercent <= 0 ? DefaultSizePercent : Mathf.Clamp(sizePercent, 50, 200);
+    public bool MatchWholeWord => matchWholeWord;
+
+    /// <summary>Repairs zero-initialized serialized values created when a new catalog array entry is added.</summary>
+    public void EnsureValid()
+    {
+        if (color == default)
+        {
+            color = DefaultColor;
+        }
+        else
+        {
+            color.a = 1f;
+        }
+
+        sizePercent = SizePercent;
+    }
+
+    /// <summary>Returns an opaque highlight color so matched text cannot disappear through alpha.</summary>
+    private Color GetVisibleColor()
+    {
+        Color visibleColor = color == default ? DefaultColor : color;
+        visibleColor.a = 1f;
+        return visibleColor;
     }
 }
 

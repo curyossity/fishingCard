@@ -21,8 +21,21 @@ MonoBehaviour:
   - Schooling
   - Small
   artwork: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   rulesText: Predator bait. While attached, attracts Predators. A later Sardine also
     makes the previous Sardine more valuable.
+  rulesTextHighlights:
+  - text: Predators
+    color: {r: 0.8113208, g: 0.36634004, b: 0.32529372, a: 1}
+    sizePercent: 150
+    matchWholeWord: 1
+  - text: Sardine
+    color: {r: 0.8113208, g: 0.36634004, b: 0.32529372, a: 1}
+    sizePercent: 150
+    matchWholeWord: 0
   weight: 1
   value: 1
   biomeIds:
@@ -53,4 +66,5 @@ MonoBehaviour:
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: The previous Schooling catch gains 1 value while this Sardine is attached.
+    reminderText: The previous Schooling catch gains 1 value while this Sardine is
+      attached.

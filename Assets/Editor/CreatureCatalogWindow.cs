@@ -231,7 +231,7 @@ public sealed class CreatureCatalogWindow : EditorWindow
         EditorGUI.BeginChangeCheck();
         DrawSection("Identity", cardObject, "uniqueId", "displayName", "cardType", "rarity", "tags");
         DrawArtworkSection(cardObject);
-        DrawSection("Rules Text", cardObject, "rulesText");
+        DrawRulesTextSection(cardObject);
         DrawSection("Catch Stats", cardObject, "weight", "value");
         DrawSection("Availability Constraints", cardObject, "biomeIds", "minimumDepth", "maximumDepth");
         DrawSection("Effects", cardObject, "effects");
@@ -249,6 +249,21 @@ public sealed class CreatureCatalogWindow : EditorWindow
 
         DrawBiomeMembershipSection();
         EditorGUILayout.EndScrollView();
+        EditorGUILayout.EndVertical();
+    }
+
+    /// <summary>Draws rules copy and its central-card word/phrase emphasis metadata.</summary>
+    private static void DrawRulesTextSection(SerializedObject cardObject)
+    {
+        EditorGUILayout.Space(6f);
+        EditorGUILayout.LabelField("Rules Text", EditorStyles.boldLabel);
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        EditorGUILayout.PropertyField(cardObject.FindProperty("rulesText"), true);
+        EditorGUILayout.Space(4f);
+        EditorGUILayout.HelpBox(
+            "Add a highlighted word or phrase, then choose its color and relative size. Every matching occurrence is styled on the central encounter card. Whole Word prevents partial matches inside longer words.",
+            MessageType.None);
+        EditorGUILayout.PropertyField(cardObject.FindProperty("rulesTextHighlights"), true);
         EditorGUILayout.EndVertical();
     }
 
