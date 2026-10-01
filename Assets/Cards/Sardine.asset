@@ -25,16 +25,16 @@ MonoBehaviour:
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Predator bait. While attached, attracts Predators. A later Sardine also
-    makes the previous Sardine more valuable.
+  rulesText: "Predator bait. While attached, attracts Predators. \nmakes the previous
+    Sardine more valuable."
   rulesTextHighlights:
   - text: Predators
     color: {r: 0.8113208, g: 0.36634004, b: 0.32529372, a: 1}
-    sizePercent: 150
+    sizePercent: 120
     matchWholeWord: 1
   - text: Sardine
     color: {r: 0.8113208, g: 0.36634004, b: 0.32529372, a: 1}
-    sizePercent: 150
+    sizePercent: 120
     matchWholeWord: 0
   weight: 1
   value: 1

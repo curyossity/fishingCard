@@ -35,9 +35,9 @@ These fields must remain separate UI elements layered over the supplied card ima
 
 Weight and Value display the currently resolved values. When gameplay modifiers change either value, update the number in place. Do not add modifier deltas, arrows, badges, or separate base-value text unless the user explicitly requests them.
 
-Text must fit its authored region at supported resolutions. Use wrapping and bounded best-fit sizing where necessary, while preserving the visual hierarchy shown by the reference card.
+Text must fit its authored region at supported resolutions while preserving the visual hierarchy shown by the reference card. Main-card rules text uses 18 points whenever the content fits, with bounded automatic sizing allowed to reduce the text only when required by the authored region.
 
-Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.
+Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size calculated from the fitted base size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.
 
 ## Rarity Hooks
 

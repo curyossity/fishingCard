@@ -549,6 +549,9 @@ public static class Phase3ComponentPrefabBuilder
             TextAlignmentOptions.Center);
         effectText.color = new Color32(25, 55, 54, 255);
         effectText.fontWeight = FontWeight.Regular;
+        effectText.enableAutoSizing = true;
+        effectText.fontSizeMin = 10f;
+        effectText.fontSizeMax = 18f;
         SetStretchOffsets(effectText.rectTransform, 22f, 10f, -22f, -10f);
 
         RectTransform anchorRoot = CreateRect(

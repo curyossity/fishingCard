@@ -29,8 +29,8 @@ MonoBehaviour:
   rulesText: "While attached, reduces the previous catch\u2019s weight by 2"
   rulesTextHighlights:
   - text: 2
-    color: {r: 0.50980395, g: 0.6862745, b: 0.6117647, a: 1}
-    sizePercent: 150
+    color: {r: 0.8117648, g: 0.3647059, b: 0.3254902, a: 1}
+    sizePercent: 120
     matchWholeWord: 1
   weight: 1
   value: 1

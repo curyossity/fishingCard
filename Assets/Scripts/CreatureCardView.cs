@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public sealed class CreatureCardView : MonoBehaviour
 {
     public const float ReferenceAspectRatio = 1101f / 1429f;
+    private const float EffectFontSizeMin = 10f;
+    private const float EffectFontSizeMax = 18f;
 
     private static readonly Color32 CatchNameColor = new Color32(239, 226, 194, 255);
     private static readonly Color32 CatchRulesColor = new Color32(25, 55, 54, 255);
@@ -219,6 +221,10 @@ public sealed class CreatureCardView : MonoBehaviour
         if (effectText != null)
         {
             effectText.richText = true;
+            effectText.fontSize = EffectFontSizeMax;
+            effectText.fontSizeMin = EffectFontSizeMin;
+            effectText.fontSizeMax = EffectFontSizeMax;
+            effectText.enableAutoSizing = true;
             effectText.color = usesCatchLayout ? CatchRulesColor : EventContentColor;
         }
     }
