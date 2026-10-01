@@ -4,7 +4,7 @@ This document defines the current approved presentation contract for creature an
 
 ## Source Card Art
 
-The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/sea-creature-empty-card-base.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, and four empty marker sockets.
+The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/catch-card-base-five-tag-rail-1101x1429.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, four empty rarity-marker sockets, and five empty tag-rail sockets. Earlier catch-card masters remain preserved as visual alternatives.
 
 Non-catchable encounters currently use the storm-purple `Assets/FishingUIAssets/Cards/Event/event-card-base-storm-purple-1101x1429.png` at 1101 x 1429. This event master owns its frame, blank type and title plaques, chart field, and expanded ivory rules panel. It intentionally has no Weight, Value, or rarity-socket presentation. The earlier red/silver `event-card-base-empty-with-type-1101x1429.png` remains available as an alternate visual treatment.
 
@@ -22,6 +22,8 @@ Unity fills these fields from card data:
 - Value
 - Effect text
 - Rarity hooks
+
+The supplied five-socket rail displays Unity-owned tag indicators without reducing the existing content regions. Supported icons are matched case-insensitively to the card's authored tags and filled from top to bottom in authored tag order. Unsupported tags are skipped, duplicate icons are not repeated, and unused sockets remain empty. The currently supplied mappings are `Predator` and `Small`. Event cards do not display the catch-card tag rail.
 
 The upper card-type field separates catchable encounters from event encounters:
 
@@ -60,7 +62,6 @@ Do not add dedicated card-face labels, badges, icons, colors, or text for these 
 - Active modifier state
 - Positive or negative modifier indicators
 - Base-versus-modified value comparisons
-- Relevant tags
 
 These concepts may still exist and affect gameplay internally. Runtime modifiers may change the displayed Weight, Value, or Effect text in place, but the card face should not explain or expose the internal state that produced the final displayed value.
 
@@ -71,7 +72,7 @@ If interaction feedback for these concepts becomes necessary, keep it outside th
 Build the card presentation from two ownership layers:
 
 1. Supplied visual layer: the reusable empty master with frame, ornament, fixed labels, icons, and empty sockets.
-2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Effect text, and four filled marker states.
+2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Effect text, four filled rarity-marker states, and supported tag icons.
 
 Keep gameplay rules out of the card view. The view reads supplied card data and resolved runtime values, then updates only its visual fields.
 

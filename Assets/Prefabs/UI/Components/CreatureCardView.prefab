@@ -1346,7 +1346,14 @@ MonoBehaviour:
   - {fileID: 8775704132975522423}
   - {fileID: 3865274552168174066}
   - {fileID: 2078649420739238934}
-  fallbackCardFace: {fileID: 21300000, guid: 897dddfe3e974a3ba3573187d3299192, type: 3}
+  tagIconRoot: {fileID: 0}
+  tagMarkers: []
+  tagIconDefinitions:
+  - tag: Predator
+    icon: {fileID: 21300000, guid: a181e36cb5cc4ec2a2b1fb20e14bb6ad, type: 3}
+  - tag: Small
+    icon: {fileID: 21300000, guid: b29f2d51858442c6a67206c1a2ed26d2, type: 3}
+  fallbackCardFace: {fileID: 21300000, guid: 4e9f95f8a13c4fc5aa1951a650d9c747, type: 3}
   eventCardFace: {fileID: 21300000, guid: 2e07010b9a8b420a910b65eef1e2d021, type: 3}
   rarityHookSprite: {fileID: 21300000, guid: f509f339672a46149eed48b915a35749, type: 3}
 --- !u!1 &5498105112410896610
@@ -2316,7 +2323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 897dddfe3e974a3ba3573187d3299192, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e9f95f8a13c4fc5aa1951a650d9c747, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -465,7 +465,7 @@ public static class Phase3ComponentPrefabBuilder
         Image background = CreateImage(
             "CardBackground",
             rootRect,
-            LoadSprite("Cards/Creature/catch-card-base-1101x1429.png"),
+            LoadSprite("Cards/Creature/catch-card-base-five-tag-rail-1101x1429.png"),
             Image.Type.Simple);
         Shadow cardShadow = background.gameObject.AddComponent<Shadow>();
         cardShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.68f);
@@ -587,6 +587,23 @@ public static class Phase3ComponentPrefabBuilder
             markers[i].preserveAspect = true;
         }
 
+        RectTransform tagRoot = CreateRect("Tag Icons", rootRect, Vector2.zero, Vector2.one);
+        Image[] tagMarkers = new Image[5];
+        float[] tagVerticalAnchors = { 0.681f, 0.615f, 0.549f, 0.483f, 0.417f };
+        for (int i = 0; i < tagMarkers.Length; i++)
+        {
+            RectTransform markerRect = CreateRect(
+                "Tag " + (i + 1).ToString("00"),
+                tagRoot,
+                new Vector2(0.908f, tagVerticalAnchors[i]),
+                new Vector2(0.908f, tagVerticalAnchors[i]));
+            markerRect.sizeDelta = new Vector2(27f, 27f);
+            tagMarkers[i] = markerRect.gameObject.AddComponent<Image>();
+            tagMarkers[i].preserveAspect = true;
+            tagMarkers[i].raycastTarget = false;
+            tagMarkers[i].gameObject.SetActive(false);
+        }
+
         Image frame = CreateImage("Card Frame", rootRect, null, Image.Type.Simple);
         frame.enabled = false;
 
@@ -606,11 +623,14 @@ public static class Phase3ComponentPrefabBuilder
         SetReference(serializedView, "effectText", effectText);
         SetReference(serializedView, "rulesRegion", effectPanel.rectTransform);
         SetReference(serializedView, "rarityAnchorRoot", anchorRoot);
+        SetReference(serializedView, "tagIconRoot", tagRoot);
         SetReference(serializedView, "fallbackCardFace", background.sprite);
         SetReference(serializedView, "eventCardFace", LoadSprite("Cards/Event/event-card-base-empty-with-type-1101x1429.png"));
         SetReference(serializedView, "rarityHookSprite", LoadSprite("Icons/fishing-ui-rarity-icon-anchor-512.png"));
         SetReferenceArray(serializedView, "anchorSockets", sockets);
         SetReferenceArray(serializedView, "anchorMarkers", markers);
+        SetReferenceArray(serializedView, "tagMarkers", tagMarkers);
+        SetTagIconDefinitions(serializedView);
         serializedView.ApplyModifiedPropertiesWithoutUndo();
 
         view.SetBlank();
@@ -634,6 +654,7 @@ public static class Phase3ComponentPrefabBuilder
         CreatureCardView view = prefab.GetComponent<CreatureCardView>();
         Require(view != null, "CreatureCardView component is missing.");
         Require(view.AnchorSlotCount == 4, "CreatureCardView must expose exactly four anchor slots.");
+        Require(prefab.transform.Find("Tag Icons") != null, "CreatureCardView must expose the five-slot tag rail.");
         Require(prefab.transform.Find("CreatureArtworkMask")?.GetComponent<Mask>() != null, "Creature artwork mask is missing.");
         Require(!prefab.transform.Find("CreatureArtworkMask").GetComponent<Mask>().showMaskGraphic, "Creature mask RGB must remain hidden.");
         Require(prefab.transform.Find("Title Safe Region") != null, "Title safe region is missing.");
@@ -1408,6 +1429,22 @@ public static class Phase3ComponentPrefabBuilder
         {
             property.GetArrayElementAtIndex(i).objectReferenceValue = values[i];
         }
+    }
+
+    /// <summary>Registers the supplied creature-tag artwork used by the main-card tag rail.</summary>
+    private static void SetTagIconDefinitions(SerializedObject target)
+    {
+        SerializedProperty definitions = target.FindProperty("tagIconDefinitions");
+        definitions.arraySize = 2;
+        SetTagIconDefinition(definitions.GetArrayElementAtIndex(0), "Predator", LoadSprite("Icons/Tags/tag-predator-256.png"));
+        SetTagIconDefinition(definitions.GetArrayElementAtIndex(1), "Small", LoadSprite("Icons/Tags/tag-small-256.png"));
+    }
+
+    /// <summary>Writes one tag-to-sprite entry through Unity's serialized-property API.</summary>
+    private static void SetTagIconDefinition(SerializedProperty definition, string tag, Sprite icon)
+    {
+        definition.FindPropertyRelative("tag").stringValue = tag;
+        definition.FindPropertyRelative("icon").objectReferenceValue = icon;
     }
 
     private static void EnsureDirectories()

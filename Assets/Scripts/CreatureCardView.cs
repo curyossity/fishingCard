@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public sealed class CreatureCardView : MonoBehaviour
 {
     public const float ReferenceAspectRatio = 1101f / 1429f;
+    private const int TagMarkerCount = 5;
     private const float EffectFontSizeMin = 10f;
     private const float EffectFontSizeMax = 18f;
+
+    private static readonly float[] TagMarkerVerticalAnchors = { 0.681f, 0.615f, 0.549f, 0.483f, 0.417f };
 
     private static readonly Color32 CatchNameColor = new Color32(239, 226, 194, 255);
     private static readonly Color32 CatchRulesColor = new Color32(25, 55, 54, 255);
@@ -36,6 +39,12 @@ public sealed class CreatureCardView : MonoBehaviour
     [Header("Rarity Anchors")]
     [SerializeField] private Image[] anchorSockets = new Image[4];
     [SerializeField] private Image[] anchorMarkers = new Image[4];
+
+    [Header("Tag Rail")]
+    [SerializeField] private RectTransform tagIconRoot;
+    [SerializeField] private Image[] tagMarkers = new Image[TagMarkerCount];
+    [SerializeField] private CardTagIconDefinition[] tagIconDefinitions =
+        Array.Empty<CardTagIconDefinition>();
 
     [Header("Fallback Assets")]
     [SerializeField] private Sprite fallbackCardFace;
@@ -87,6 +96,7 @@ public sealed class CreatureCardView : MonoBehaviour
             informationHidden
                 ? string.Empty
                 : BuildHighlightedRulesText(card.RulesText, card.RulesTextHighlights),
+            card.Tags,
             card.Rarity,
             usesCatchLayout);
     }
@@ -111,6 +121,7 @@ public sealed class CreatureCardView : MonoBehaviour
             FormatWeight(Mathf.Max(0, weight)),
             FormatValue(Mathf.Max(0, value)),
             rules,
+            Array.Empty<string>(),
             rarity,
             true);
     }
@@ -138,6 +149,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(weightText, string.Empty);
         SetText(valueText, string.Empty);
         SetText(effectText, string.Empty);
+        HideTagIcons();
         if (cardFrame != null)
         {
             cardFrame.enabled = false;
@@ -165,6 +177,7 @@ public sealed class CreatureCardView : MonoBehaviour
         string weight,
         string value,
         string rules,
+        string[] tags,
         CardRarity rarity,
         bool usesCatchLayout)
     {
@@ -187,10 +200,12 @@ public sealed class CreatureCardView : MonoBehaviour
         if (usesCatchLayout)
         {
             RefreshRarityAnchors(rarity);
+            RefreshTagIcons(tags);
         }
         else
         {
             HideRarityAnchors();
+            HideTagIcons();
         }
     }
 
@@ -203,6 +218,11 @@ public sealed class CreatureCardView : MonoBehaviour
         if (rarityAnchorRoot != null)
         {
             rarityAnchorRoot.gameObject.SetActive(usesCatchLayout);
+        }
+
+        if (tagIconRoot != null)
+        {
+            tagIconRoot.gameObject.SetActive(usesCatchLayout);
         }
 
         if (rulesRegion != null)
@@ -368,6 +388,148 @@ public sealed class CreatureCardView : MonoBehaviour
         }
     }
 
+    /// <summary>Displays supported authored tags in rail order while leaving unsupported and unused sockets empty.</summary>
+    private void RefreshTagIcons(string[] tags)
+    {
+        EnsureTagMarkers();
+        HideTagIcons();
+        if (tagIconRoot != null)
+        {
+            tagIconRoot.gameObject.SetActive(true);
+        }
+
+        if (tags == null || tagIconDefinitions == null)
+        {
+            return;
+        }
+
+        int markerIndex = 0;
+        for (int tagIndex = 0; tagIndex < tags.Length && markerIndex < tagMarkers.Length; tagIndex++)
+        {
+            Sprite icon = FindTagIcon(tags[tagIndex]);
+            if (icon == null || IsTagIconAlreadyShown(icon, markerIndex))
+            {
+                continue;
+            }
+
+            Image marker = tagMarkers[markerIndex];
+            marker.sprite = icon;
+            marker.enabled = true;
+            marker.gameObject.SetActive(true);
+            markerIndex++;
+        }
+    }
+
+    /// <summary>Hides all populated tag icons without changing the supplied empty sockets in the card artwork.</summary>
+    private void HideTagIcons()
+    {
+        if (tagMarkers == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < tagMarkers.Length; i++)
+        {
+            if (tagMarkers[i] != null)
+            {
+                tagMarkers[i].enabled = false;
+                tagMarkers[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
+    /// <summary>Finds an icon mapping for an authored tag without requiring capitalization to match.</summary>
+    private Sprite FindTagIcon(string tag)
+    {
+        if (string.IsNullOrWhiteSpace(tag))
+        {
+            return null;
+        }
+
+        for (int i = 0; i < tagIconDefinitions.Length; i++)
+        {
+            CardTagIconDefinition definition = tagIconDefinitions[i];
+            if (definition != null
+                && definition.Icon != null
+                && string.Equals(definition.Tag, tag, StringComparison.OrdinalIgnoreCase))
+            {
+                return definition.Icon;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>Prevents duplicate tag artwork from occupying multiple rail sockets.</summary>
+    private bool IsTagIconAlreadyShown(Sprite icon, int populatedCount)
+    {
+        for (int i = 0; i < populatedCount; i++)
+        {
+            if (tagMarkers[i] != null && tagMarkers[i].sprite == icon)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>Creates the five runtime markers for older prefabs that predate the supplied tag rail.</summary>
+    private void EnsureTagMarkers()
+    {
+        bool hasCompleteMarkerSet = tagMarkers != null && tagMarkers.Length == TagMarkerCount;
+        if (hasCompleteMarkerSet)
+        {
+            for (int i = 0; i < tagMarkers.Length; i++)
+            {
+                if (tagMarkers[i] == null)
+                {
+                    hasCompleteMarkerSet = false;
+                    break;
+                }
+            }
+        }
+
+        if (hasCompleteMarkerSet)
+        {
+            return;
+        }
+
+        if (tagIconRoot == null)
+        {
+            GameObject rootObject = new GameObject("Tag Icons", typeof(RectTransform));
+            rootObject.layer = gameObject.layer;
+            tagIconRoot = rootObject.GetComponent<RectTransform>();
+            tagIconRoot.SetParent(transform, false);
+            tagIconRoot.anchorMin = Vector2.zero;
+            tagIconRoot.anchorMax = Vector2.one;
+            tagIconRoot.offsetMin = Vector2.zero;
+            tagIconRoot.offsetMax = Vector2.zero;
+            if (cardFrame != null)
+            {
+                tagIconRoot.SetSiblingIndex(cardFrame.transform.GetSiblingIndex());
+            }
+        }
+
+        tagMarkers = new Image[TagMarkerCount];
+        for (int i = 0; i < tagMarkers.Length; i++)
+        {
+            GameObject markerObject = new GameObject($"Tag {i + 1:00}", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            markerObject.layer = gameObject.layer;
+            RectTransform markerRect = markerObject.GetComponent<RectTransform>();
+            markerRect.SetParent(tagIconRoot, false);
+            markerRect.anchorMin = new Vector2(0.908f, TagMarkerVerticalAnchors[i]);
+            markerRect.anchorMax = markerRect.anchorMin;
+            markerRect.anchoredPosition = Vector2.zero;
+            markerRect.sizeDelta = new Vector2(27f, 27f);
+
+            Image marker = markerObject.GetComponent<Image>();
+            marker.preserveAspect = true;
+            marker.raycastTarget = false;
+            tagMarkers[i] = marker;
+        }
+    }
+
     private void ClearFields()
     {
         SetBlank();
@@ -420,4 +582,14 @@ public sealed class CreatureCardView : MonoBehaviour
                 return "EVENT CARD";
         }
     }
+}
+
+[Serializable]
+public sealed class CardTagIconDefinition
+{
+    [SerializeField] private string tag;
+    [SerializeField] private Sprite icon;
+
+    public string Tag => tag;
+    public Sprite Icon => icon;
 }
