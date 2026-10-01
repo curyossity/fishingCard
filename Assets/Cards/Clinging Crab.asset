@@ -17,9 +17,9 @@ MonoBehaviour:
   cardType: 3
   rarity: 1
   tags:
-  - Creature
-  - Crustacean
-  - Clinging
+  - Small
+  - Anchored
+  - Armored
   artwork: {fileID: 759678386672775755, guid: 64dad54472d3bde4ca5be151b04256c7, type: 3}
   encounterArtwork: {fileID: -4829037146183527712, guid: 64dad54472d3bde4ca5be151b04256c7, type: 3}
   artworkLayout: 1

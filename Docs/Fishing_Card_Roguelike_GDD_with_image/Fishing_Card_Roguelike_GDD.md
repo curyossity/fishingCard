@@ -193,6 +193,8 @@ and a mechanical system.
 
 ## Creature interaction principle
 
+Creature and creature-like Apex cards use a closed gameplay tag vocabulary: **Fish**, **Predator**, **Schooling**, **Small**, **Heavy**, **Anchored**, **Armored**, and **Elusive**. These tags exist to support readable synergies and targeting rules. Biological taxonomy, rarity, card type, flavor, role, and runtime state should not be added as creature tags; those concepts belong in their dedicated data or presentation fields. A card may have multiple applicable tags.
+
 Creatures can join or interact with the line for different thematic reasons:
 
 - Predators may be attracted to previously caught prey.

@@ -52,6 +52,21 @@ Caught creatures/items remain attached to the fishing rig while the player conti
 - Releasing a catch removes its weight, value, passive effects, attraction modifiers, and synergies.
 - The line visually connects the boat/start card to caught cards below it.
 
+### Creature Tag Vocabulary
+
+Creature and creature-like Apex cards use only this closed gameplay vocabulary:
+
+- `Fish`: broad biological fish group.
+- `Predator`: hunts other creatures and supports attraction/value synergies.
+- `Schooling`: commonly appears or behaves in groups.
+- `Small`: low-weight or physically small catches.
+- `Heavy`: large or high-load catches.
+- `Anchored`: naturally clings, anchors, grabs, or remains fixed.
+- `Armored`: protected by shells, spines, or a hard body.
+- `Elusive`: slippery, camouflaged, fast, or difficult to control.
+
+Do not add taxonomy, rarity, role, flavor, card-type, or state labels to creature `Tags`. Card type and rarity already have dedicated fields. Effects may still use a card-type name such as `Creature` as a type selector; that is not a creature tag.
+
 ## Line Load
 
 Line Load is the main pressure system.

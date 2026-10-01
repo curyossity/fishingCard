@@ -67,6 +67,7 @@ Owns:
 - Card type
 - Rarity
 - Tags
+- Canonical creature tags constrained to `Fish`, `Predator`, `Schooling`, `Small`, `Heavy`, `Anchored`, `Armored`, and `Elusive`
 - Artwork reference
 - Rules text
 - Authored rules-text word/phrase highlights for central-card color and relative size
@@ -88,6 +89,7 @@ Editor-only content-authoring workspace for creature and catch-card definitions.
 Owns:
 - Searchable overview of creature definitions and optional Treasure/Apex catch cards
 - Editing every serialized `CardDefinition` field through Unity's serialized-property workflow
+- Editing creature and creature-like Apex tags through the controlled canonical tag selector
 - Editing per-card rules-text highlights with a phrase, color, relative size, and whole-word option
 - Aspect-preserving previews of compact, encounter-overlay, and legacy complete-face artwork
 - Editing actual membership in each biome's depth-tier encounter pools

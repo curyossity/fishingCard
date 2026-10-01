@@ -17,7 +17,6 @@ MonoBehaviour:
   cardType: 3
   rarity: 0
   tags:
-  - Creature
   - Fish
   - Schooling
   artwork: {fileID: -6506108666410769293, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}

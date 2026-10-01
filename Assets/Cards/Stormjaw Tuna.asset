@@ -17,8 +17,6 @@ MonoBehaviour:
   cardType: 8
   rarity: 3
   tags:
-  - Apex
-  - Creature
   - Fish
   - Predator
   - Heavy

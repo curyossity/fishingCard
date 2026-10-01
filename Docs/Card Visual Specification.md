@@ -23,7 +23,7 @@ Unity fills these fields from card data:
 - Effect text
 - Rarity hooks
 
-The supplied five-socket rail displays Unity-owned tag indicators without reducing the existing content regions. Supported icons are matched case-insensitively to the card's authored tags and filled from top to bottom in authored tag order. Unsupported tags are skipped, duplicate icons are not repeated, and unused sockets remain empty. The currently supplied mappings are `Predator` and `Small`. Event cards do not display the catch-card tag rail.
+The supplied five-socket rail displays Unity-owned tag indicators without reducing the existing content regions. Creature tags use the closed vocabulary `Fish`, `Predator`, `Schooling`, `Small`, `Heavy`, `Anchored`, `Armored`, and `Elusive`. Supported icons are matched case-insensitively to the card's authored tags and filled from top to bottom in canonical vocabulary order. Unsupported icon artwork and unused sockets remain empty. The currently supplied icon mappings are `Predator` and `Small`. Event cards do not display the catch-card tag rail.
 
 The upper card-type field separates catchable encounters from event encounters:
 

@@ -229,7 +229,8 @@ public sealed class CreatureCatalogWindow : EditorWindow
         EditorGUILayout.Space(6f);
 
         EditorGUI.BeginChangeCheck();
-        DrawSection("Identity", cardObject, "uniqueId", "displayName", "cardType", "rarity", "tags");
+        DrawSection("Identity", cardObject, "uniqueId", "displayName", "cardType", "rarity");
+        DrawTagsSection(cardObject);
         DrawArtworkSection(cardObject);
         DrawRulesTextSection(cardObject);
         DrawSection("Catch Stats", cardObject, "weight", "value");
@@ -249,6 +250,69 @@ public sealed class CreatureCatalogWindow : EditorWindow
 
         DrawBiomeMembershipSection();
         EditorGUILayout.EndScrollView();
+        EditorGUILayout.EndVertical();
+    }
+
+    /// <summary>Uses the closed creature vocabulary while preserving free-form tags for non-creature card groups.</summary>
+    private static void DrawTagsSection(SerializedObject cardObject)
+    {
+        SerializedProperty cardTypeProperty = cardObject.FindProperty("cardType");
+        CardType cardType = (CardType)cardTypeProperty.enumValueIndex;
+        if (!CreatureTagVocabulary.AppliesTo(cardType))
+        {
+            DrawSection("Tags", cardObject, "tags");
+            return;
+        }
+
+        SerializedProperty tagsProperty = cardObject.FindProperty("tags");
+        int currentMask = 0;
+        for (int tagIndex = 0; tagIndex < CreatureTagVocabulary.All.Length; tagIndex++)
+        {
+            for (int authoredIndex = 0; authoredIndex < tagsProperty.arraySize; authoredIndex++)
+            {
+                if (string.Equals(
+                    tagsProperty.GetArrayElementAtIndex(authoredIndex).stringValue,
+                    CreatureTagVocabulary.All[tagIndex],
+                    StringComparison.OrdinalIgnoreCase))
+                {
+                    currentMask |= 1 << tagIndex;
+                    break;
+                }
+            }
+        }
+
+        EditorGUILayout.Space(6f);
+        EditorGUILayout.LabelField("Creature Tags", EditorStyles.boldLabel);
+        EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        EditorGUILayout.HelpBox(
+            "Creature and Apex creature cards use the controlled gameplay tag vocabulary. Choose every applicable trait.",
+            MessageType.None);
+        int updatedMask = EditorGUILayout.MaskField("Tags", currentMask, CreatureTagVocabulary.All);
+        if (updatedMask != currentMask)
+        {
+            int selectedCount = 0;
+            for (int i = 0; i < CreatureTagVocabulary.All.Length; i++)
+            {
+                if ((updatedMask & (1 << i)) != 0)
+                {
+                    selectedCount++;
+                }
+            }
+
+            tagsProperty.arraySize = selectedCount;
+            int destinationIndex = 0;
+            for (int i = 0; i < CreatureTagVocabulary.All.Length; i++)
+            {
+                if ((updatedMask & (1 << i)) == 0)
+                {
+                    continue;
+                }
+
+                tagsProperty.GetArrayElementAtIndex(destinationIndex).stringValue = CreatureTagVocabulary.All[i];
+                destinationIndex++;
+            }
+        }
+
         EditorGUILayout.EndVertical();
     }
 

@@ -17,9 +17,8 @@ MonoBehaviour:
   cardType: 3
   rarity: 1
   tags:
-  - Creature
-  - Crustacean
   - Heavy
+  - Armored
   artwork: {fileID: 0}
   rulesText: A solid valuable catch whose weight competes directly with more
     specialized creatures for limited line capacity.

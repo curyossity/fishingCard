@@ -17,10 +17,8 @@ MonoBehaviour:
   cardType: 3
   rarity: 1
   tags:
-  - Cephalopod
   - Predator
-  - Night
-  - Slippery
+  - Elusive
   artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   cardFaceArtwork: {fileID: 3466943956296948973, guid: 6203ac7bacb22c14abe91448771598be, type: 3}
   cardFaceIncludesName: 1

@@ -17,10 +17,8 @@ MonoBehaviour:
   cardType: 3
   rarity: 2
   tags:
-  - Creature
-  - Ray
-  - Support
-  - Rare
+  - Fish
+  - Elusive
   artwork: {fileID: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0

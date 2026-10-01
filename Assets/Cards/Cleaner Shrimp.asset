@@ -17,10 +17,8 @@ MonoBehaviour:
   cardType: 3
   rarity: 1
   tags:
-  - Creature
-  - Crustacean
   - Small
-  - Support
+  - Armored
   artwork: {fileID: 2157674157209873347, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
   encounterArtwork: {fileID: 6483912047753102011, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
   artworkLayout: 1

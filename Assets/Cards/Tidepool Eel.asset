@@ -17,10 +17,8 @@ MonoBehaviour:
   cardType: 3
   rarity: 1
   tags:
-  - Creature
-  - Eel
-  - Slippery
-  - Downside
+  - Fish
+  - Elusive
   artwork: {fileID: 0}
   rulesText: It twists against the rig. While attached, it contributes 1 additional Line Load.
   weight: 2

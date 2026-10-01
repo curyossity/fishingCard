@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -66,12 +67,18 @@ public class CardDefinition : ScriptableObject
         if (rulesTextHighlights == null)
         {
             rulesTextHighlights = Array.Empty<CardTextHighlightDefinition>();
-            return;
+        }
+        else
+        {
+            for (int i = 0; i < rulesTextHighlights.Length; i++)
+            {
+                rulesTextHighlights[i]?.EnsureValid();
+            }
         }
 
-        for (int i = 0; i < rulesTextHighlights.Length; i++)
+        if (CreatureTagVocabulary.AppliesTo(cardType))
         {
-            rulesTextHighlights[i]?.EnsureValid();
+            tags = CreatureTagVocabulary.Normalize(tags);
         }
     }
 
@@ -132,6 +139,61 @@ public class CardDefinition : ScriptableObject
         }
 
         return summary.ToString();
+    }
+}
+
+/// <summary>Defines the closed gameplay vocabulary available to creature and creature-like Apex cards.</summary>
+public static class CreatureTagVocabulary
+{
+    public const string Fish = "Fish";
+    public const string Predator = "Predator";
+    public const string Schooling = "Schooling";
+    public const string Small = "Small";
+    public const string Heavy = "Heavy";
+    public const string Anchored = "Anchored";
+    public const string Armored = "Armored";
+    public const string Elusive = "Elusive";
+
+    public static readonly string[] All =
+    {
+        Fish,
+        Predator,
+        Schooling,
+        Small,
+        Heavy,
+        Anchored,
+        Armored,
+        Elusive
+    };
+
+    /// <summary>Reports whether a card type uses the controlled creature-tag vocabulary.</summary>
+    public static bool AppliesTo(CardType cardType)
+    {
+        return cardType == CardType.Creature || cardType == CardType.ApexEncounter;
+    }
+
+    /// <summary>Returns supported tags once each and in canonical display order.</summary>
+    public static string[] Normalize(string[] authoredTags)
+    {
+        if (authoredTags == null || authoredTags.Length == 0)
+        {
+            return Array.Empty<string>();
+        }
+
+        List<string> normalized = new List<string>(All.Length);
+        for (int allowedIndex = 0; allowedIndex < All.Length; allowedIndex++)
+        {
+            for (int authoredIndex = 0; authoredIndex < authoredTags.Length; authoredIndex++)
+            {
+                if (string.Equals(All[allowedIndex], authoredTags[authoredIndex], StringComparison.OrdinalIgnoreCase))
+                {
+                    normalized.Add(All[allowedIndex]);
+                    break;
+                }
+            }
+        }
+
+        return normalized.ToArray();
     }
 }
 

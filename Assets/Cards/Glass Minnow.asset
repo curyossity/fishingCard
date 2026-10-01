@@ -17,7 +17,6 @@ MonoBehaviour:
   cardType: 3
   rarity: 0
   tags:
-  - Creature
   - Fish
   - Schooling
   - Small
