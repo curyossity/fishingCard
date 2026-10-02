@@ -19,9 +19,9 @@ MonoBehaviour:
   tags:
   - Predator
   - Elusive
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
-  artworkLayout: 0
+  artwork: {fileID: -4311028475029301001, guid: c2f4a3b0d8e9427e8b32610c11b948a2, type: 3}
+  encounterArtwork: {fileID: 3125584908192654001, guid: c2f4a3b0d8e9427e8b32610c11b948a2, type: 3}
+  artworkLayout: 1
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: 'Effect: its value is hidden for the rest of the run'
