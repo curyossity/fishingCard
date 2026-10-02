@@ -41,7 +41,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 3
+  maximumDepth: 10
   effects:
   - effectId: attract_predators
     effectType: 3

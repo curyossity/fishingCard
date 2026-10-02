@@ -36,8 +36,8 @@ MonoBehaviour:
   value: 4
   biomeIds:
   - Coastal
-  minimumDepth: 1
-  maximumDepth: 6
+  minimumDepth: 3
+  maximumDepth: 17
   effects:
   - effectId: cling_to_previous_catch
     effectType: 0

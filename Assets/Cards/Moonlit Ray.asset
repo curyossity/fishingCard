@@ -34,8 +34,8 @@ MonoBehaviour:
   value: 10
   biomeIds:
   - Coastal
-  minimumDepth: 5
-  maximumDepth: 7
+  minimumDepth: 13
+  maximumDepth: 20
   effects:
   - effectId: moonlit_small_value
     effectType: 2

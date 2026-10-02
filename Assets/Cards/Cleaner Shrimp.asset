@@ -34,8 +34,8 @@ MonoBehaviour:
   value: 1
   biomeIds:
   - Coastal
-  minimumDepth: 1
-  maximumDepth: 6
+  minimumDepth: 3
+  maximumDepth: 17
   effects:
   - effectId: steady_previous_catch
     effectType: 1

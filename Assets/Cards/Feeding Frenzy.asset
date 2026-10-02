@@ -26,7 +26,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 4
+  maximumDepth: 12
   effects:
   - effectId: fish_value_bonus
     effectType: 2

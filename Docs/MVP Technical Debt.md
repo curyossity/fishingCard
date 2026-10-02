@@ -98,7 +98,7 @@ Add authored Apex weights and eligibility rules, then connect the existing runti
 ## Finite Coastal Boundary
 
 Current approach:
-Coastal Waters has regular tiers from depth 0 through depth 7. Crossing into depth 8 reveals one selected Apex. After it is caught or avoided, the next resolving Descend presents a non-catchable `The Next Waters Lie Ahead...` Location card and blocks additional Descends. Release and Surface remain available.
+Coastal Waters has regular tiers from depth 0 through depth 20. Crossing into depth 21 reveals one selected Apex. After it is caught or avoided, the next resolving Descend presents a non-catchable `The Next Waters Lie Ahead...` Location card and blocks additional Descends. Release and Surface remain available.
 
 Why it is acceptable for MVP:
 The explicit boundary provides a reliable Coastal climax and demonstrates carry-forward behavior without requiring a second biome. The Catch Chain, Line Load, active effects, and Technique piles remain intact until the player Surfaces.

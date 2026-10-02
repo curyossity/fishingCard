@@ -27,6 +27,6 @@ MonoBehaviour:
   value: 9
   biomeIds:
   - Coastal
-  minimumDepth: 4
-  maximumDepth: 7
+  minimumDepth: 11
+  maximumDepth: 20
   effects: []

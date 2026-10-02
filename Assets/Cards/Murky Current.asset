@@ -25,8 +25,8 @@ MonoBehaviour:
   value: 0
   biomeIds:
   - Coastal
-  minimumDepth: 1
-  maximumDepth: 6
+  minimumDepth: 3
+  maximumDepth: 17
   effects:
   - effectId: conceal_next_encounter
     effectType: 5

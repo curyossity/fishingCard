@@ -39,8 +39,8 @@ MonoBehaviour:
   value: 18
   biomeIds:
   - Coastal
-  minimumDepth: 5
-  maximumDepth: 7
+  minimumDepth: 13
+  maximumDepth: 20
   effects:
   - effectId: lionfish_venomous_value_loss
     effectType: 2

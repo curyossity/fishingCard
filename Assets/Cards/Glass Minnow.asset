@@ -36,7 +36,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 5
+  maximumDepth: 15
   effects:
   - effectId: minnow_attracts_predators
     effectType: 3

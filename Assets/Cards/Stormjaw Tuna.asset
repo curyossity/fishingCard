@@ -27,7 +27,7 @@ MonoBehaviour:
   value: 16
   biomeIds:
   - Coastal
-  minimumDepth: 8
+  minimumDepth: 21
   maximumDepth: -1
   effects:
   - effectId: stormjaw_predator_strain

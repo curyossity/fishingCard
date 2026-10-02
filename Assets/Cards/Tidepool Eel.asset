@@ -25,8 +25,8 @@ MonoBehaviour:
   value: 5
   biomeIds:
   - Coastal
-  minimumDepth: 2
-  maximumDepth: 5
+  minimumDepth: 5
+  maximumDepth: 15
   effects:
   - effectId: eel_line_strain
     effectType: 0
