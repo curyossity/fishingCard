@@ -394,6 +394,7 @@ Owns:
 - Supplied blank Line Load panel positioned below the scrolling Catch Rig contents
 - Runtime-owned Load / Capacity label and one pip per capacity slot
 - Supplied empty, filled, and danger pip sprites for stable, approaching-limit, and overloaded visual states
+- Rapid presentation-only shake on red Line Load pips while the line is overloaded, with stable positions restored immediately when overload ends
 - Scrollable layout for longer chains
 - Empty Catch Chain presentation
 

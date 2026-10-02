@@ -540,9 +540,25 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4388189951955723140, guid: e706b4fd14440604d9fa5adec2990f77, type: 3}
+      propertyPath: overloadShakeDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388189951955723140, guid: e706b4fd14440604d9fa5adec2990f77, type: 3}
+      propertyPath: overloadShakeFrequency
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5400164726589433305, guid: e706b4fd14440604d9fa5adec2990f77, type: 3}
       propertyPath: m_Name
       value: FishingRunView
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556266349755193823, guid: e706b4fd14440604d9fa5adec2990f77, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556266349755193823, guid: e706b4fd14440604d9fa5adec2990f77, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -623,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunController
   startRunOnAwake: 1
-  startingLineCapacity: 10
+  startingLineCapacity: 5
   startingDepth: 0
   startingBiome: {fileID: 11400000, guid: e104a3bb49114f2e80aebde5130a122e, type: 2}
   startingHandSize: 4
@@ -705,7 +721,6 @@ MonoBehaviour:
     lastExcessLoad: 0
     lastBreakChance: 0
     lastRoll: 0
-    lastSelectedCatchIndex: -1
   lastSurfaceResult:
     haul: []
     releasedCatches: []
@@ -716,6 +731,7 @@ MonoBehaviour:
     surfaceLineLoad: 0
     lineCapacity: 0
     wasOverloaded: 0
+    endedByLineBreak: 0
     hasResult: 0
   runRewardRuntime:
     goldPerHaulValue: 1

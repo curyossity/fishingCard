@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public sealed class CatchChainView : MonoBehaviour
@@ -21,10 +22,23 @@ public sealed class CatchChainView : MonoBehaviour
     [SerializeField] private Sprite lineLoadFilledSprite;
     [SerializeField] private Sprite lineLoadDangerSprite;
 
+    [Header("Line Load Warning Shake")]
+    [Min(0f)]
+    [FormerlySerializedAs("overloadWiggleDistance")]
+    [SerializeField] private float overloadShakeDistance = 2f;
+    [Min(0f)]
+    [FormerlySerializedAs("overloadWiggleFrequency")]
+    [SerializeField] private float overloadShakeFrequency = 5f;
+    [Min(0f)]
+    [FormerlySerializedAs("overloadWiggleRotation")]
+    [SerializeField] private float overloadShakeRotation = 3f;
+
     private static readonly Color LineLoadTextColor = new Color(0.19f, 0.22f, 0.20f, 1f);
 
     private readonly List<GameObject> entryObjects = new List<GameObject>();
     private readonly List<Image> lineLoadPips = new List<Image>();
+    private readonly List<Vector2> lineLoadPipBasePositions = new List<Vector2>();
+    private readonly List<bool> lineLoadPipDangerStates = new List<bool>();
 
     private RectTransform panelRoot;
     private RectTransform contentRoot;
@@ -32,6 +46,7 @@ public sealed class CatchChainView : MonoBehaviour
     private TMP_Text headingText;
     private TMP_Text lineLoadText;
     private Action<int> selectCatchAction;
+    private bool lineLoadOverloaded;
 
     /// <summary>
     /// Creates the runtime layout before the first Catch Chain refresh.
@@ -39,6 +54,18 @@ public sealed class CatchChainView : MonoBehaviour
     private void Awake()
     {
         EnsureLayout();
+    }
+
+    /// <summary>Animates overloaded danger pips without changing their authored layout positions.</summary>
+    private void Update()
+    {
+        AnimateLineLoadWarning();
+    }
+
+    /// <summary>Returns animated pips to their stable layout when this view is hidden.</summary>
+    private void OnDisable()
+    {
+        ResetLineLoadPipTransforms();
     }
 
     /// <summary>
@@ -240,6 +267,7 @@ public sealed class CatchChainView : MonoBehaviour
         int safeLoad = Mathf.Max(0, currentLoad);
         int safeCapacity = Mathf.Max(0, capacity);
         bool isOverloaded = safeLoad > safeCapacity;
+        lineLoadOverloaded = isOverloaded;
         int approachingThreshold = Mathf.CeilToInt(safeCapacity * (2f / 3f));
         bool isApproaching = !isOverloaded && safeCapacity > 0 && safeLoad >= approachingThreshold;
         int dangerStartIndex = Mathf.FloorToInt(safeCapacity * 0.5f);
@@ -253,6 +281,8 @@ public sealed class CatchChainView : MonoBehaviour
             pipImage.preserveAspect = true;
             AddDropShadow(pipObject, new Vector2(2f, -3f), 0.48f);
             lineLoadPips.Add(pipImage);
+            lineLoadPipBasePositions.Add(Vector2.zero);
+            lineLoadPipDangerStates.Add(false);
         }
 
         const float availableWidth = 338f;
@@ -269,11 +299,13 @@ public sealed class CatchChainView : MonoBehaviour
             pip.gameObject.SetActive(isVisibleSlot);
             if (!isVisibleSlot)
             {
+                lineLoadPipDangerStates[i] = false;
                 continue;
             }
 
             bool isOccupied = i < safeLoad;
             bool isDanger = isOccupied && (isOverloaded || (isApproaching && i >= dangerStartIndex));
+            lineLoadPipDangerStates[i] = isDanger;
             pip.sprite = isDanger
                 ? lineLoadDangerSprite
                 : (isOccupied ? lineLoadFilledSprite : lineLoadEmptySprite);
@@ -283,9 +315,79 @@ public sealed class CatchChainView : MonoBehaviour
             pipRect.anchorMax = new Vector2(0.5f, 0.5f);
             pipRect.pivot = new Vector2(0.5f, 0.5f);
             pipRect.sizeDelta = new Vector2(pipSize, pipSize);
-            pipRect.anchoredPosition = new Vector2(
+            Vector2 basePosition = new Vector2(
                 -rowWidth * 0.5f + pipSize * 0.5f + i * (pipSize + spacing),
                 0f);
+            lineLoadPipBasePositions[i] = basePosition;
+            pipRect.anchoredPosition = basePosition;
+            pipRect.localRotation = Quaternion.identity;
+        }
+    }
+
+    /// <summary>Applies irregular warning jitter only to red pips while capacity is exceeded.</summary>
+    private void AnimateLineLoadWarning()
+    {
+        int shakeStep = Mathf.FloorToInt(Time.unscaledTime * overloadShakeFrequency);
+
+        for (int i = 0; i < lineLoadPips.Count; i++)
+        {
+            Image pip = lineLoadPips[i];
+            if (pip == null || i >= lineLoadPipBasePositions.Count)
+            {
+                continue;
+            }
+
+            RectTransform pipRect = pip.rectTransform;
+            bool shouldWiggle = lineLoadOverloaded
+                && pip.gameObject.activeInHierarchy
+                && i < lineLoadPipDangerStates.Count
+                && lineLoadPipDangerStates[i];
+
+            if (!shouldWiggle)
+            {
+                pipRect.anchoredPosition = lineLoadPipBasePositions[i];
+                pipRect.localRotation = Quaternion.identity;
+                continue;
+            }
+
+            float horizontalOffset = GetShakeValue(shakeStep, i, 0) * overloadShakeDistance;
+            float verticalOffset = GetShakeValue(shakeStep, i, 1) * overloadShakeDistance * 0.7f;
+            float rotation = GetShakeValue(shakeStep, i, 2) * overloadShakeRotation;
+            pipRect.anchoredPosition = lineLoadPipBasePositions[i] + new Vector2(horizontalOffset, verticalOffset);
+            pipRect.localRotation = Quaternion.Euler(0f, 0f, rotation);
+        }
+    }
+
+    /// <summary>Produces deterministic per-pip jitter without consuming Unity or gameplay random state.</summary>
+    private static float GetShakeValue(int step, int pipIndex, int channel)
+    {
+        unchecked
+        {
+            uint value = (uint)(step + 1);
+            value ^= (uint)(pipIndex + 1) * 0x9E3779B9u;
+            value ^= (uint)(channel + 1) * 0x85EBCA6Bu;
+            value ^= value >> 16;
+            value *= 0x7FEB352Du;
+            value ^= value >> 15;
+            value *= 0x846CA68Bu;
+            value ^= value >> 16;
+            return (value & 0x00FFFFFFu) / 8388607.5f - 1f;
+        }
+    }
+
+    /// <summary>Clears presentation-only offsets so refreshes and disabled views remain deterministic.</summary>
+    private void ResetLineLoadPipTransforms()
+    {
+        for (int i = 0; i < lineLoadPips.Count && i < lineLoadPipBasePositions.Count; i++)
+        {
+            if (lineLoadPips[i] == null)
+            {
+                continue;
+            }
+
+            RectTransform pipRect = lineLoadPips[i].rectTransform;
+            pipRect.anchoredPosition = lineLoadPipBasePositions[i];
+            pipRect.localRotation = Quaternion.identity;
         }
     }
 
