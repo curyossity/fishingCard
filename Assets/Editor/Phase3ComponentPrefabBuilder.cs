@@ -600,7 +600,12 @@ public static class Phase3ComponentPrefabBuilder
             markerRect.sizeDelta = new Vector2(32f, 32f);
             tagMarkers[i] = markerRect.gameObject.AddComponent<Image>();
             tagMarkers[i].preserveAspect = true;
-            tagMarkers[i].raycastTarget = false;
+            tagMarkers[i].raycastTarget = true;
+            CanvasGroup hoverGroup = tagMarkers[i].gameObject.AddComponent<CanvasGroup>();
+            hoverGroup.interactable = true;
+            hoverGroup.blocksRaycasts = true;
+            hoverGroup.ignoreParentGroups = true;
+            tagMarkers[i].gameObject.AddComponent<CardTagTooltipTrigger>();
             tagMarkers[i].gameObject.SetActive(false);
         }
 

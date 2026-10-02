@@ -11,12 +11,19 @@ public sealed class CreatureCardView : MonoBehaviour
     private const int TagMarkerCount = 4;
     private const float EffectFontSizeMin = 10f;
     private const float EffectFontSizeMax = 18f;
+    private const float TagTooltipHeight = 32f;
+    private const float TagTooltipMinimumWidth = 88f;
+    private const float TagTooltipHorizontalPadding = 22f;
+    private const float TagTooltipCardGap = 5f;
 
     private static readonly float[] TagMarkerVerticalAnchors = { 0.669f, 0.585f, 0.502f, 0.419f };
 
     private static readonly Color32 CatchNameColor = new Color32(239, 226, 194, 255);
     private static readonly Color32 CatchRulesColor = new Color32(25, 55, 54, 255);
     private static readonly Color32 EventContentColor = new Color32(78, 30, 34, 255);
+    private static readonly Color32 TagTooltipBackgroundColor = new Color32(14, 50, 52, 245);
+    private static readonly Color32 TagTooltipBorderColor = new Color32(196, 157, 82, 255);
+    private static readonly Color32 TagTooltipTextColor = new Color32(239, 226, 194, 255);
 
     [Header("Supplied Visual Layers")]
     [SerializeField] private Image cardBackground;
@@ -45,6 +52,10 @@ public sealed class CreatureCardView : MonoBehaviour
     [SerializeField] private Image[] tagMarkers = new Image[TagMarkerCount];
     [SerializeField] private CardTagIconDefinition[] tagIconDefinitions =
         Array.Empty<CardTagIconDefinition>();
+
+    private RectTransform tagTooltipRoot;
+    private TMP_Text tagTooltipText;
+    private CardTagTooltipTrigger activeTagTooltipTrigger;
 
     [Header("Fallback Assets")]
     [SerializeField] private Sprite fallbackCardFace;
@@ -415,6 +426,8 @@ public sealed class CreatureCardView : MonoBehaviour
             Image marker = tagMarkers[markerIndex];
             marker.sprite = icon;
             marker.enabled = true;
+            marker.raycastTarget = true;
+            EnsureTagTooltipTrigger(marker).Configure(this, tags[tagIndex]);
             marker.gameObject.SetActive(true);
             markerIndex++;
         }
@@ -432,6 +445,12 @@ public sealed class CreatureCardView : MonoBehaviour
         {
             if (tagMarkers[i] != null)
             {
+                CardTagTooltipTrigger trigger = tagMarkers[i].GetComponent<CardTagTooltipTrigger>();
+                if (trigger != null)
+                {
+                    trigger.Configure(this, string.Empty);
+                }
+
                 tagMarkers[i].enabled = false;
                 tagMarkers[i].gameObject.SetActive(false);
             }
@@ -525,14 +544,233 @@ public sealed class CreatureCardView : MonoBehaviour
 
             Image marker = markerObject.GetComponent<Image>();
             marker.preserveAspect = true;
-            marker.raycastTarget = false;
+            marker.raycastTarget = true;
+            EnsureTagTooltipTrigger(marker);
             tagMarkers[i] = marker;
         }
+    }
+
+    /// <summary>Shows a non-interactive tag-name tooltip on the run's ordered tooltip canvas.</summary>
+    public void ShowTagTooltip(
+        string tagName,
+        RectTransform source,
+        CardTagTooltipTrigger sourceTrigger)
+    {
+        if (string.IsNullOrWhiteSpace(tagName) || source == null)
+        {
+            return;
+        }
+
+        EnsureTagTooltip();
+        if (tagTooltipRoot == null || tagTooltipText == null)
+        {
+            return;
+        }
+
+        activeTagTooltipTrigger = sourceTrigger;
+        tagTooltipText.text = tagName.Trim().ToUpperInvariant();
+        tagTooltipText.ForceMeshUpdate();
+        float tooltipWidth = Mathf.Max(
+            TagTooltipMinimumWidth,
+            tagTooltipText.preferredWidth + TagTooltipHorizontalPadding);
+        tagTooltipRoot.sizeDelta = new Vector2(tooltipWidth, TagTooltipHeight);
+        PositionTagTooltip(source);
+        tagTooltipRoot.SetAsLastSibling();
+        tagTooltipRoot.gameObject.SetActive(true);
+    }
+
+    /// <summary>Hides the tag tooltip only when its currently hovered icon requests it.</summary>
+    public void HideTagTooltip(CardTagTooltipTrigger sourceTrigger)
+    {
+        if (activeTagTooltipTrigger != sourceTrigger)
+        {
+            return;
+        }
+
+        activeTagTooltipTrigger = null;
+        if (tagTooltipRoot != null)
+        {
+            tagTooltipRoot.gameObject.SetActive(false);
+        }
+    }
+
+    /// <summary>Adds or returns the pointer-event bridge for a tag marker.</summary>
+    private CardTagTooltipTrigger EnsureTagTooltipTrigger(Image marker)
+    {
+        CanvasGroup hoverGroup = marker.GetComponent<CanvasGroup>();
+        if (hoverGroup == null)
+        {
+            hoverGroup = marker.gameObject.AddComponent<CanvasGroup>();
+        }
+
+        // Encounter motion roots intentionally reject input during presentation. Tag icons opt out
+        // so their hover-only affordance remains available without making the card interactive.
+        hoverGroup.interactable = true;
+        hoverGroup.blocksRaycasts = true;
+        hoverGroup.ignoreParentGroups = true;
+
+        CardTagTooltipTrigger trigger = marker.GetComponent<CardTagTooltipTrigger>();
+        if (trigger == null)
+        {
+            trigger = marker.gameObject.AddComponent<CardTagTooltipTrigger>();
+        }
+
+        return trigger;
+    }
+
+    /// <summary>Creates the shared tooltip panel beneath the run's dedicated tooltip canvas.</summary>
+    private void EnsureTagTooltip()
+    {
+        if (tagTooltipRoot != null)
+        {
+            return;
+        }
+
+        FishingRunView runView = GetComponentInParent<FishingRunView>();
+        Canvas tooltipCanvas = runView != null ? runView.TooltipLayer : null;
+        RectTransform tooltipParent = tooltipCanvas != null
+            ? tooltipCanvas.transform as RectTransform
+            : GetComponentInParent<Canvas>()?.transform as RectTransform;
+        if (tooltipParent == null)
+        {
+            return;
+        }
+
+        GameObject tooltipObject = new GameObject(
+            "Tag Tooltip",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(Image),
+            typeof(Outline));
+        tooltipObject.layer = gameObject.layer;
+        tagTooltipRoot = tooltipObject.GetComponent<RectTransform>();
+        tagTooltipRoot.SetParent(tooltipParent, false);
+        tagTooltipRoot.anchorMin = new Vector2(0.5f, 0.5f);
+        tagTooltipRoot.anchorMax = tagTooltipRoot.anchorMin;
+        tagTooltipRoot.pivot = new Vector2(0.5f, 0.5f);
+        tagTooltipRoot.sizeDelta = new Vector2(TagTooltipMinimumWidth, TagTooltipHeight);
+
+        Image background = tooltipObject.GetComponent<Image>();
+        background.color = TagTooltipBackgroundColor;
+        background.raycastTarget = false;
+
+        Outline border = tooltipObject.GetComponent<Outline>();
+        border.effectColor = TagTooltipBorderColor;
+        border.effectDistance = new Vector2(1f, -1f);
+        border.useGraphicAlpha = false;
+
+        GameObject textObject = new GameObject(
+            "Label",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(TextMeshProUGUI));
+        textObject.layer = gameObject.layer;
+        RectTransform textRect = textObject.GetComponent<RectTransform>();
+        textRect.SetParent(tagTooltipRoot, false);
+        textRect.anchorMin = Vector2.zero;
+        textRect.anchorMax = Vector2.one;
+        textRect.offsetMin = new Vector2(8f, 3f);
+        textRect.offsetMax = new Vector2(-8f, -3f);
+
+        tagTooltipText = textObject.GetComponent<TextMeshProUGUI>();
+        tagTooltipText.alignment = TextAlignmentOptions.Center;
+        tagTooltipText.color = TagTooltipTextColor;
+        tagTooltipText.fontSize = 16f;
+        tagTooltipText.fontStyle = FontStyles.Bold;
+        tagTooltipText.enableAutoSizing = false;
+        tagTooltipText.raycastTarget = false;
+        if (effectText != null)
+        {
+            tagTooltipText.font = effectText.font;
+        }
+
+        tooltipObject.SetActive(false);
+    }
+
+    /// <summary>Positions the tooltip to the icon's right, falling back left at the screen edge.</summary>
+    private void PositionTagTooltip(RectTransform source)
+    {
+        RectTransform parent = tagTooltipRoot.parent as RectTransform;
+        if (parent == null)
+        {
+            return;
+        }
+
+        Canvas sourceCanvas = source.GetComponentInParent<Canvas>();
+        Camera sourceCamera = sourceCanvas != null && sourceCanvas.renderMode != RenderMode.ScreenSpaceOverlay
+            ? sourceCanvas.worldCamera
+            : null;
+        Canvas tooltipCanvas = parent.GetComponentInParent<Canvas>();
+        Camera tooltipCamera = tooltipCanvas != null && tooltipCanvas.renderMode != RenderMode.ScreenSpaceOverlay
+            ? tooltipCanvas.worldCamera
+            : null;
+        Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(sourceCamera, source.position);
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parent,
+                screenPoint,
+                tooltipCamera,
+                out Vector2 localPoint))
+        {
+            return;
+        }
+
+        RectTransform cardRect = transform as RectTransform;
+        if (cardRect == null)
+        {
+            return;
+        }
+
+        Vector3[] cardCorners = new Vector3[4];
+        cardRect.GetWorldCorners(cardCorners);
+        Vector3 rightEdgeWorld = (cardCorners[2] + cardCorners[3]) * 0.5f;
+        Vector3 leftEdgeWorld = (cardCorners[0] + cardCorners[1]) * 0.5f;
+        Vector2 rightEdgeScreen = RectTransformUtility.WorldToScreenPoint(sourceCamera, rightEdgeWorld);
+        Vector2 leftEdgeScreen = RectTransformUtility.WorldToScreenPoint(sourceCamera, leftEdgeWorld);
+        if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parent,
+                rightEdgeScreen,
+                tooltipCamera,
+                out Vector2 rightEdgeLocal)
+            || !RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                parent,
+                leftEdgeScreen,
+                tooltipCamera,
+                out Vector2 leftEdgeLocal))
+        {
+            return;
+        }
+
+        Rect bounds = parent.rect;
+        float halfWidth = tagTooltipRoot.rect.width * 0.5f;
+        float halfHeight = tagTooltipRoot.rect.height * 0.5f;
+        Vector2 position = new Vector2(
+            rightEdgeLocal.x + TagTooltipCardGap + halfWidth,
+            localPoint.y);
+        if (position.x + halfWidth > bounds.xMax)
+        {
+            position.x = leftEdgeLocal.x - TagTooltipCardGap - halfWidth;
+        }
+
+        position.x = Mathf.Clamp(position.x, bounds.xMin + halfWidth, bounds.xMax - halfWidth);
+        position.y = Mathf.Clamp(
+            position.y,
+            bounds.yMin + halfHeight,
+            bounds.yMax - halfHeight);
+        tagTooltipRoot.anchoredPosition = position;
     }
 
     private void ClearFields()
     {
         SetBlank();
+    }
+
+    /// <summary>Removes the externally parented tooltip when this card view is destroyed.</summary>
+    private void OnDestroy()
+    {
+        if (tagTooltipRoot != null)
+        {
+            Destroy(tagTooltipRoot.gameObject);
+        }
     }
 
     private static void SetImage(Image image, Sprite sprite)
