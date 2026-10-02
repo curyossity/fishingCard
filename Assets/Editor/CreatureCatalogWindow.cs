@@ -233,7 +233,14 @@ public sealed class CreatureCatalogWindow : EditorWindow
         DrawTagsSection(cardObject);
         DrawArtworkSection(cardObject);
         DrawRulesTextSection(cardObject);
-        DrawSection("Catch Stats", cardObject, "weight", "value");
+        DrawSection(
+            "Catch Stats",
+            cardObject,
+            "weight",
+            "value",
+            "randomizeValueWhenCaught",
+            "minimumCaughtValue",
+            "maximumCaughtValue");
         DrawSection("Availability Constraints", cardObject, "biomeIds", "minimumDepth", "maximumDepth");
         DrawSection("Effects", cardObject, "effects");
         bool cardFieldsChanged = EditorGUI.EndChangeCheck();

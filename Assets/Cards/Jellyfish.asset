@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Jellyfish
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: creature_jellyfish
+  displayName: Jellyfish
+  cardType: 3
+  rarity: 0
+  tags:
+  - Small
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: Next caught creature gains +2 Weight.
+  rulesTextHighlights:
+  - text: +2
+    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
+    sizePercent: 120
+    matchWholeWord: 1
+  weight: 1
+  value: 8
+  biomeIds:
+  - Coastal
+  minimumDepth: 0
+  maximumDepth: 18
+  effects:
+  - effectId: jellyfish_next_creature_weight
+    effectType: 0
+    trigger: 7
+    target: 5
+    effectTone: 2
+    amount: 2
+    requiredTags:
+    - Creature
+    caughtCardTargetMode: 1
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 1
+    reminderText: The next caught Creature permanently gains 2 Weight.

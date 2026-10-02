@@ -94,6 +94,7 @@ public sealed class CreatureCardView : MonoBehaviour
         gameObject.SetActive(true);
         Sprite encounterArtwork = card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
         bool usesCatchLayout = UsesCatchCardLayout(card.CardType);
+        bool hideOwnValue = card.HidesOwnValueDuringRun;
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(
@@ -103,7 +104,7 @@ public sealed class CreatureCardView : MonoBehaviour
             card.ArtworkLayout,
             background,
             informationHidden ? "?" : FormatWeight(Mathf.Max(0, resolvedWeight)),
-            informationHidden ? "?" : FormatValue(Mathf.Max(0, resolvedValue)),
+            informationHidden || hideOwnValue ? "?" : FormatValue(Mathf.Max(0, resolvedValue)),
             informationHidden
                 ? string.Empty
                 : BuildHighlightedRulesText(card.RulesText, card.RulesTextHighlights),

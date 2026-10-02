@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Sea Bass
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: creature_sea_bass
+  displayName: Sea Bass
+  cardType: 3
+  rarity: 0
+  tags:
+  - Fish
+  - Predator
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: A reliable coastal predator with solid weight-to-value efficiency.
+  rulesTextHighlights: []
+  weight: 2
+  value: 12
+  biomeIds:
+  - Coastal
+  minimumDepth: 0
+  maximumDepth: 15
+  effects: []

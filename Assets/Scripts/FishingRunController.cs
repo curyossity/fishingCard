@@ -283,7 +283,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (caughtCard != null)
         {
-            committedCatch = catchChainRuntime.Add(caughtCard, effectResolver);
+            committedCatch = catchChainRuntime.Add(caughtCard, effectResolver, random);
             biomeApexRuntime.RecordCommittedApex(caughtCard);
         }
 
@@ -474,7 +474,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         for (int i = 0; i < scenarioCatches.Length; i++)
         {
-            catchChainRuntime.Add(scenarioCatches[i], effectResolver);
+            catchChainRuntime.Add(scenarioCatches[i], effectResolver, random);
         }
 
         encounterRuntime.SetCurrentEncounter(scenario.CurrentEncounter);
@@ -538,7 +538,7 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
-        catchChainRuntime.Add(debugCatchCard, effectResolver);
+        catchChainRuntime.Add(debugCatchCard, effectResolver, random);
         RefreshViews();
         Debug.Log($"Debug catch added: {debugCatchCard.DisplayName}. Line Load: {CurrentLineLoad} / {lineCapacity}.", this);
     }
@@ -1043,7 +1043,9 @@ public sealed class FishingRunController : MonoBehaviour
             : encounterRuntime.CurrentEncounter.DisplayName;
 
         string releasedName = releasedCatch?.Definition == null ? "unknown catch" : releasedCatch.Definition.DisplayName;
-        int releasedValue = releasedCatch == null ? 0 : releasedCatch.CurrentValue;
+        string releasedValue = releasedCatch?.Definition != null && releasedCatch.Definition.HidesOwnValueDuringRun
+            ? "?"
+            : (releasedCatch?.CurrentValue ?? 0).ToString();
 
         return $"Release resolved | Released: {releasedName} | Lost Value: {releasedValue} | "
             + $"Line Load: {previousLineLoad} -> {catchChainRuntime.CurrentLineLoad} / {lineCapacity} | Depth: {currentDepth} | "

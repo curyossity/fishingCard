@@ -9,6 +9,7 @@ public sealed class CatchChainRuntime
     [SerializeField] private ActiveCatchEffectRecord[] activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
     [SerializeField] private CardInstance[] releasedCatches = Array.Empty<CardInstance>();
     [SerializeField] private CardInstance[] lostCatches = Array.Empty<CardInstance>();
+    [SerializeField] private string[] consumedNextCatchEffectKeys = Array.Empty<string>();
     [SerializeField] private int nextInstanceId = 1;
 
     public CardInstance[] Catches => catches;
@@ -40,15 +41,19 @@ public sealed class CatchChainRuntime
     /// <summary>
     /// Adds a committed encounter and tracks its catch-related effects.
     /// </summary>
-    public CardInstance Add(CardDefinition caughtCard, EffectResolver effectResolver)
+    public CardInstance Add(
+        CardDefinition caughtCard,
+        EffectResolver effectResolver,
+        System.Random random = null)
     {
         if (caughtCard == null)
         {
             return null;
         }
 
-        CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard);
+        CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard, random);
         nextInstanceId++;
+        ApplyPendingNextCatchEffects(caughtInstance, true);
         catches = AppendCatch(catches, caughtInstance);
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
@@ -186,6 +191,15 @@ public sealed class CatchChainRuntime
             return false;
         }
 
+        if (removalReason != CatchRemovalReason.LineStrain
+            && releasedCatch.Definition != null
+            && releasedCatch.Definition.PreventsReleaseWhileCaught)
+        {
+            validationMessage = $"{releasedCatch.Definition.DisplayName} cannot be released once caught.";
+            releasedCatch = null;
+            return false;
+        }
+
         ApplyAnotherCatchReleasedEffects(releasedCatch, removalReason);
         RecordRemoval(releasedCatch, removalReason);
         catches = RemoveCatchAt(catches, catchIndex);
@@ -251,6 +265,7 @@ public sealed class CatchChainRuntime
 
         CardInstance[] previewCatches = CreateSnapshot();
         CardInstance previewCatch = new CardInstance(0, card);
+        ApplyPendingNextCatchEffects(previewCatch, false);
         previewCatches = AppendCatch(previewCatches, previewCatch);
 
         List<ActiveCatchEffectRecord> previewEffects = new List<ActiveCatchEffectRecord>(activeEffectRecords);
@@ -268,6 +283,7 @@ public sealed class CatchChainRuntime
         activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
         releasedCatches = Array.Empty<CardInstance>();
         lostCatches = Array.Empty<CardInstance>();
+        consumedNextCatchEffectKeys = Array.Empty<string>();
         nextInstanceId = 1;
     }
 
@@ -279,6 +295,7 @@ public sealed class CatchChainRuntime
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenCaught, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenAnotherCatchReleased, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.WhenNextMatchingCatchCaught, catchIndex);
     }
 
     /// <summary>
@@ -349,10 +366,96 @@ public sealed class CatchChainRuntime
                 continue;
             }
 
+            if (trigger == CardEffectTrigger.WhenNextMatchingCatchCaught
+                && IsNextCatchEffectConsumed(sourceInstance, i))
+            {
+                continue;
+            }
+
             records.Add(new ActiveCatchEffectRecord(sourceInstance, effect, trigger, catchIndex));
         }
 
         activeEffectRecords = records.ToArray();
+    }
+
+    /// <summary>Applies each attached source's unused one-shot bonus to the next matching catch.</summary>
+    private void ApplyPendingNextCatchEffects(CardInstance newCatch, bool consumeEffects)
+    {
+        if (newCatch?.Definition == null)
+        {
+            return;
+        }
+
+        for (int catchIndex = 0; catchIndex < catches.Length; catchIndex++)
+        {
+            CardInstance source = catches[catchIndex];
+            CardEffectDefinition[] effects = source?.Definition?.Effects;
+            if (effects == null)
+            {
+                continue;
+            }
+
+            for (int effectIndex = 0; effectIndex < effects.Length; effectIndex++)
+            {
+                CardEffectDefinition effect = effects[effectIndex];
+                if (effect == null
+                    || effect.Trigger != CardEffectTrigger.WhenNextMatchingCatchCaught
+                    || effect.Target != CardEffectTarget.SpecificCaughtCard
+                    || IsNextCatchEffectConsumed(source, effectIndex)
+                    || !EffectResolver.RequiredTagsMatch(effect.RequiredTags, newCatch.Definition))
+                {
+                    continue;
+                }
+
+                int weightChange = 0;
+                int valueChange = 0;
+                if (effect.EffectType == CardEffectType.ModifyCatchValue)
+                {
+                    valueChange = effect.Amount;
+                }
+                else if (effect.EffectType == CardEffectType.AddLineLoadModifier)
+                {
+                    weightChange = effect.Amount;
+                }
+                else if (effect.EffectType == CardEffectType.RemoveLineLoadModifier)
+                {
+                    weightChange = -Math.Abs(effect.Amount);
+                }
+                else
+                {
+                    continue;
+                }
+
+                newCatch.AddPermanentModifiers(weightChange, valueChange);
+                if (consumeEffects)
+                {
+                    consumedNextCatchEffectKeys = AppendEffectKey(
+                        consumedNextCatchEffectKeys,
+                        BuildNextCatchEffectKey(source, effectIndex));
+                }
+            }
+        }
+    }
+
+    /// <summary>Reports whether one source instance already spent its future-catch effect.</summary>
+    private bool IsNextCatchEffectConsumed(CardInstance source, int effectIndex)
+    {
+        string key = BuildNextCatchEffectKey(source, effectIndex);
+        return Array.IndexOf(consumedNextCatchEffectKeys, key) >= 0;
+    }
+
+    private static string BuildNextCatchEffectKey(CardInstance source, int effectIndex)
+    {
+        return $"{source?.InstanceId ?? 0}:{effectIndex}";
+    }
+
+    private static string[] AppendEffectKey(string[] source, string key)
+    {
+        string[] safeSource = source ?? Array.Empty<string>();
+        string[] result = new string[safeSource.Length + 1];
+        Array.Copy(safeSource, result, safeSource.Length);
+        result[result.Length - 1] = key;
+        return result;
     }
 
     /// <summary>
@@ -467,7 +570,8 @@ public sealed class CatchChainRuntime
         {
             for (int i = 0; i < catches.Length; i++)
             {
-                if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+                if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition)
+                    && IsValidTechniqueTarget(effect, catches[i]))
                 {
                     return i;
                 }
@@ -478,13 +582,22 @@ public sealed class CatchChainRuntime
 
         for (int i = catches.Length - 1; i >= 0; i--)
         {
-            if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+            if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition)
+                && IsValidTechniqueTarget(effect, catches[i]))
             {
                 return i;
             }
         }
 
         return -1;
+    }
+
+    /// <summary>Excludes release-locked catches only when a Technique is trying to release its target.</summary>
+    private static bool IsValidTechniqueTarget(CardEffectDefinition effect, CardInstance candidate)
+    {
+        return effect.EffectType != CardEffectType.ReleaseCatch
+            || candidate?.Definition == null
+            || !candidate.Definition.PreventsReleaseWhileCaught;
     }
 
     /// <summary>

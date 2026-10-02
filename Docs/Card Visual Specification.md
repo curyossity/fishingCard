@@ -37,6 +37,8 @@ These fields must remain separate UI elements layered over the supplied card ima
 
 Weight and Value display the currently resolved values. When gameplay modifiers change either value, update the number in place. Do not add modifier deltas, arrows, badges, or separate base-value text unless the user explicitly requests them.
 
+A card-authored self-concealment effect may replace only that card's Value with `?` during the run. Weight, name, tags, rules, and other encounter information remain visible unless a separate global concealment effect applies. End-of-run results reveal the resolved Value normally. If a card has an authored random caught-Value range, each committed runtime copy rolls once, retains that base Value through recalculation, and then receives normal interaction modifiers.
+
 Text must fit its authored region at supported resolutions while preserving the visual hierarchy shown by the reference card. Main-card rules text uses 18 points whenever the content fits, with bounded automatic sizing allowed to reduce the text only when required by the authored region.
 
 Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size calculated from the fitted base size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.

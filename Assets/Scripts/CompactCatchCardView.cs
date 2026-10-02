@@ -66,7 +66,9 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
             definition == null ? string.Empty : definition.DisplayName.ToUpperInvariant(),
             definition == null ? null : definition.Artwork,
             caughtInstance == null ? string.Empty : caughtInstance.CurrentWeight.ToString(),
-            caughtInstance == null ? string.Empty : caughtInstance.CurrentValue.ToString(),
+            caughtInstance == null
+                ? string.Empty
+                : definition.HidesOwnValueDuringRun ? "?" : caughtInstance.CurrentValue.ToString(),
             optionalPassiveIcon);
     }
 

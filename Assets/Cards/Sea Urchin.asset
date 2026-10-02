@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Sea Urchin
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: creature_sea_urchin
+  displayName: Sea Urchin
+  cardType: 3
+  rarity: 0
+  tags:
+  - Anchored
+  - Armored
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: Armored catches gain +3 Value while this remains attached.
+  rulesTextHighlights:
+  - text: Armored
+    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
+    sizePercent: 120
+    matchWholeWord: 1
+  - text: +3
+    color: {r: 0.5058824, g: 0.6862745, b: 0.6117647, a: 1}
+    sizePercent: 120
+    matchWholeWord: 1
+  weight: 2
+  value: 0
+  biomeIds:
+  - Coastal
+  minimumDepth: 0
+  maximumDepth: 14
+  effects:
+  - effectId: sea_urchin_armored_value
+    effectType: 2
+    trigger: 2
+    target: 4
+    effectTone: 1
+    amount: 3
+    requiredTags:
+    - Armored
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: Every attached Armored catch gains 3 Value, including Sea Urchin.

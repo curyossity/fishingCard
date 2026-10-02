@@ -29,6 +29,11 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private int weight;
     [Min(0)]
     [SerializeField] private int value;
+    [SerializeField] private bool randomizeValueWhenCaught;
+    [Min(0)]
+    [SerializeField] private int minimumCaughtValue;
+    [Min(0)]
+    [SerializeField] private int maximumCaughtValue;
 
     [Header("Encounter Availability")]
     [SerializeField] private string[] biomeIds = Array.Empty<string>();
@@ -53,17 +58,45 @@ public class CardDefinition : ScriptableObject
     public CardTextHighlightDefinition[] RulesTextHighlights => rulesTextHighlights;
     public int Weight => weight;
     public int Value => value;
+    public bool RandomizesValueWhenCaught => randomizeValueWhenCaught;
+    public int MinimumCaughtValue => minimumCaughtValue;
+    public int MaximumCaughtValue => maximumCaughtValue;
     public string[] BiomeIds => biomeIds;
     public int MinimumDepth => minimumDepth;
     public int MaximumDepth => maximumDepth;
     public CardEffectDefinition[] Effects => effects;
 
     public bool HasWeight => weight > 0;
-    public bool HasValue => value > 0;
+    public bool HasValue => value > 0 || (randomizeValueWhenCaught && maximumCaughtValue > 0);
+    public bool HidesOwnValueDuringRun => HasEffect(CardEffectType.HideEncounterInformation, CardEffectTarget.Self);
+    public bool PreventsReleaseWhileCaught => HasEffect(CardEffectType.PreventRelease, CardEffectTarget.Self);
+
+    /// <summary>Reports whether this definition contains one effect with the requested type and target.</summary>
+    private bool HasEffect(CardEffectType effectType, CardEffectTarget target)
+    {
+        if (effects == null)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < effects.Length; i++)
+        {
+            CardEffectDefinition effect = effects[i];
+            if (effect != null && effect.EffectType == effectType && effect.Target == target)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     /// <summary>Keeps newly added rules-text highlights visible when Unity initializes array entries with zeroed values.</summary>
     private void OnValidate()
     {
+        minimumCaughtValue = Mathf.Max(0, minimumCaughtValue);
+        maximumCaughtValue = Mathf.Max(minimumCaughtValue, maximumCaughtValue);
+
         if (rulesTextHighlights == null)
         {
             rulesTextHighlights = Array.Empty<CardTextHighlightDefinition>();
@@ -80,6 +113,19 @@ public class CardDefinition : ScriptableObject
         {
             tags = CreatureTagVocabulary.Normalize(tags);
         }
+    }
+
+    /// <summary>Returns the starting Value for one caught copy, including any authored random range.</summary>
+    public int RollCaughtValue(System.Random random)
+    {
+        if (!randomizeValueWhenCaught || random == null)
+        {
+            return Mathf.Max(0, value);
+        }
+
+        int safeMinimum = Mathf.Max(0, minimumCaughtValue);
+        int safeMaximum = Mathf.Max(safeMinimum, maximumCaughtValue);
+        return random.Next(safeMinimum, safeMaximum + 1);
     }
 
     /// <summary>
@@ -286,7 +332,9 @@ public enum CardEffectType
     ModifyNextEncounterDepth,
     ModifyTemporaryCapacity,
     RiskForReward,
-    RewardOverloadedDescend
+    RewardOverloadedDescend,
+    PreventRelease,
+    ModifySelfValuePerOtherMatchingCatch
 }
 
 public enum CardEffectTrigger
@@ -297,7 +345,8 @@ public enum CardEffectTrigger
     WhenReleased,
     OnDescend,
     WhenSurfaceBegins,
-    WhenAnotherCatchReleased
+    WhenAnotherCatchReleased,
+    WhenNextMatchingCatchCaught
 }
 
 public enum CardEffectTarget

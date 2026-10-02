@@ -102,6 +102,12 @@ public sealed class EffectResolver
 
         CardEffectDefinition effect = record.Effect;
 
+        if (effect.EffectType == CardEffectType.ModifySelfValuePerOtherMatchingCatch)
+        {
+            ApplySelfValuePerOtherMatchingCatch(catches, record.SourceCatchIndex, effect);
+            return;
+        }
+
         if (effect.EffectType != CardEffectType.AddLineLoadModifier
             && effect.EffectType != CardEffectType.RemoveLineLoadModifier
             && effect.EffectType != CardEffectType.ModifyCatchValue)
@@ -110,6 +116,30 @@ public sealed class EffectResolver
         }
 
         ApplyToTargets(catches, record.SourceCatchIndex, effect);
+    }
+
+    /// <summary>Changes the source catch's Value once for every other attached catch matching the authored tags.</summary>
+    private static void ApplySelfValuePerOtherMatchingCatch(
+        CardInstance[] catches,
+        int sourceIndex,
+        CardEffectDefinition effect)
+    {
+        CardInstance source = GetCatch(catches, sourceIndex);
+        if (source == null || effect.Target != CardEffectTarget.Self)
+        {
+            return;
+        }
+
+        int matchingOthers = 0;
+        for (int i = 0; i < catches.Length; i++)
+        {
+            if (i != sourceIndex && RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+            {
+                matchingOthers++;
+            }
+        }
+
+        source.ModifyValue(effect.Amount * matchingOthers);
     }
 
     /// <summary>

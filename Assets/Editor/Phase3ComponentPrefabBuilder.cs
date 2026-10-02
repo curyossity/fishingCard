@@ -1440,9 +1440,11 @@ public static class Phase3ComponentPrefabBuilder
     private static void SetTagIconDefinitions(SerializedObject target)
     {
         SerializedProperty definitions = target.FindProperty("tagIconDefinitions");
-        definitions.arraySize = 2;
+        definitions.arraySize = 4;
         SetTagIconDefinition(definitions.GetArrayElementAtIndex(0), "Predator", LoadSprite("Icons/Tags/tag-predator-256.png"));
         SetTagIconDefinition(definitions.GetArrayElementAtIndex(1), "Small", LoadSprite("Icons/Tags/tag-small-256.png"));
+        SetTagIconDefinition(definitions.GetArrayElementAtIndex(2), "Schooling", LoadSprite("Icons/Tags/tag-schooling-pastel-256.png"));
+        SetTagIconDefinition(definitions.GetArrayElementAtIndex(3), "Elusive", LoadSprite("Icons/Tags/tag-elusive-pastel-256.png"));
     }
 
     /// <summary>Writes one tag-to-sprite entry through Unity's serialized-property API.</summary>

@@ -140,7 +140,8 @@ public sealed class CardView : MonoBehaviour
             return string.Empty;
         }
 
-        return $"Weight {card.Weight} / Value {card.Value}";
+        string value = card.HidesOwnValueDuringRun ? "?" : card.Value.ToString();
+        return $"Weight {card.Weight} / Value {value}";
     }
 
     /// <summary>

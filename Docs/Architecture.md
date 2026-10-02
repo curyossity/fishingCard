@@ -72,6 +72,7 @@ Owns:
 - Rules text
 - Authored rules-text word/phrase highlights for central-card color and relative size
 - Base weight and value
+- Optional inclusive random starting-Value range rolled independently for each caught copy
 - Biome/depth availability
 - Effect definitions
 
@@ -292,6 +293,8 @@ Owns:
 - Active caught-card effect records
 - Rebuilding and resolving catch interactions after Catch or Release
 - Applying authored `WhenAnotherCatchReleased` self-value reactions after deliberate player or Technique releases
+- Consuming authored `WhenNextMatchingCatchCaught` effects once and applying their lasting modifier to the first later catch whose tags match
+- Enforcing attached-card release locks for player and Technique releases while leaving involuntary line-break losses valid
 - Building a non-mutating resolved preview of a possible catch against the current Catch Chain
 - Catch Chain reset and snapshots
 
@@ -478,6 +481,7 @@ Owns:
 - Runtime instance ID
 - Reference to its immutable `CardDefinition`
 - Current resolved weight and value
+- The independently rolled base Value for cards with an authored random catch-value range
 - Weight and value modifier reporting
 - Snapshot creation for Surface results
 
@@ -494,6 +498,7 @@ Executes the currently supported attached-catch interactions.
 Owns:
 - Recalculating catch stats from base definitions
 - Applying attached value and weight modifiers
+- Recalculating self-Value bonuses based on the number of other attached catches matching authored tags
 - Selecting a previous, next, first, or last matching catch target
 - Adding tag-based attraction weight to future encounters
 - Reporting persistent encounter-information concealment
@@ -567,7 +572,7 @@ Current Descend flow:
 
 1. `FishingRunController.TryDescend()` resolves the always-available Descend action.
 2. `EncounterRuntime` returns the Hooked card for commitment, if one exists.
-3. `CatchChainRuntime` creates a `CardInstance`, appends it, and tracks its catch-related effects.
+3. `CatchChainRuntime` creates a `CardInstance`, resolves any pending next-matching-catch bonuses onto it, appends it, and tracks its catch-related effects.
 4. `TechniqueEffectRuntime` consumes pending Descend effects for catch stats, distance, capacity, risk, and overload rewards.
 5. `EffectResolver` recalculates catch interactions from each instance's lasting base state.
 6. Current Line Load updates from the resolved instance weights.
@@ -712,9 +717,9 @@ It renders state supplied by `FishingRunController` and forwards player commands
 
 The hand view also supports separate 1536 x 1024 decorative clusters for the lower-left map/dividers and lower-right rope/compass. Each is a non-raycast Simple Image at a uniform 3:2 display ratio, layered above the pad but below card content. Missing optional decoration bindings are omitted cleanly; both inherit whole-hand visibility and opacity from the owning CanvasGroup.
 
-`CreatureCardView` is a serialized layered prefab that composes the supplied blank creature base, hidden stencil artwork mask, optional approved overflow layer, safe title/stat/rules regions, hollow sliced frame, exactly four rarity sockets, and a four-socket tag rail. Runtime fields use TextMesh Pro and update the type, name, resolved Weight, resolved Value, rules text, and one-to-four filled rarity anchors without changing authored geometry. The tag rail maps authored card tags to supplied icon sprites, fills recognized tags in canonical order, and leaves unsupported or unused sockets empty. Each populated icon is a hover target that presents its authored tag name through the run's ordered, non-interactive tooltip layer. A complete user-supplied card face remains supported and replaces the generic base/artwork/frame combination; hidden-information effects conceal dynamic details in place without adding a visible state label.
+`CreatureCardView` is a serialized layered prefab that composes the supplied blank creature base, hidden stencil artwork mask, optional approved overflow layer, safe title/stat/rules regions, hollow sliced frame, exactly four rarity sockets, and a four-socket tag rail. Runtime fields use TextMesh Pro and update the type, name, resolved Weight, resolved Value, rules text, and one-to-four filled rarity anchors without changing authored geometry. The tag rail maps authored card tags to supplied icon sprites, fills recognized tags in canonical order, and leaves unsupported or unused sockets empty. Each populated icon is a hover target that presents its authored tag name through the run's ordered, non-interactive tooltip layer. A complete user-supplied card face remains supported and replaces the generic base/artwork/frame combination; global hidden-information effects conceal dynamic details in place, while a self-concealing card replaces only its Value with `?` until results, without adding a visible state label.
 
-`CompactCatchCardView` is the Catch Rig's serialized horizontal card. Its normal surface is the supplied `fishing-ui-catch-chain-card-master.png`; Unity places the catch name, creature artwork, resolved Weight and Value, and an optional passive-effect icon into the authored blank regions. It deliberately has no full rules field. `CatchChainView` instantiates one compact-card prefab per caught creature beyond the separate rig connector gutter. The view owns a stable left-side rig attachment transform, click forwarding, pointer hover, and visually distinct selected, disabled, and release-candidate layers. It does not decide whether a catch may be selected or released.
+`CompactCatchCardView` is the Catch Rig's serialized horizontal card. Its normal surface is the supplied `fishing-ui-catch-chain-card-master.png`; Unity places the catch name, creature artwork, resolved Weight and Value, and an optional passive-effect icon into the authored blank regions. A self-concealing card displays `?` instead of its Value for the rest of the run. It deliberately has no full rules field. `CatchChainView` instantiates one compact-card prefab per caught creature beyond the separate rig connector gutter. The view owns a stable left-side rig attachment transform, click forwarding, pointer hover, and visually distinct selected, disabled, and release-candidate layers. It does not decide whether a catch may be selected or released.
 
 `CreatureCardView` is the production current-Encounter card. It selects the supplied 1101 x 1429 catch master for `Creature`, `Treasure`, and `ApexEncounter`, and the supplied 1101 x 1429 event master for every non-catchable encounter category. Event presentation hides the catch-only Weight, Value, rarity, and tag-rail objects, switches text colors for the ivory title field, and expands the rules region. Unity renders each card's explicitly authored `EncounterArtwork` (falling back to `Artwork`) either inside the chart-field mask or as a transparent full-card overlay. `CardDefinition.ArtworkLayout` selects the artwork path without runtime size heuristics, while `Artwork` remains the cropped image used by compact-card consumers. Legacy precomposed per-creature faces do not replace these masters.
 
