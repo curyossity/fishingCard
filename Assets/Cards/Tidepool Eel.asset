@@ -20,22 +20,30 @@ MonoBehaviour:
   - Fish
   - Elusive
   artwork: {fileID: 0}
-  rulesText: It twists against the rig. While attached, it contributes 1 additional Line Load.
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: 'Effect: Gain +10 value if nothing is released afterward'
+  rulesTextHighlights: []
   weight: 2
   value: 5
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 5
   maximumDepth: 15
   effects:
-  - effectId: eel_line_strain
-    effectType: 0
-    trigger: 2
+  - effectId: eel_unbroken_haul_value
+    effectType: 2
+    trigger: 9
     target: 1
-    effectTone: 2
-    amount: 1
+    effectTone: 1
+    amount: 10
     requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Tidepool Eel contributes 1 additional Line Load.
+    reminderText: Tidepool Eel retains 10 bonus Value unless another catch is released afterward.

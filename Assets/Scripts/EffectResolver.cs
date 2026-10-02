@@ -242,7 +242,9 @@ public sealed class EffectResolver
     {
         return record != null
             && record.Effect != null
-            && record.ActiveTrigger == CardEffectTrigger.WhileAttached;
+            && (record.ActiveTrigger == CardEffectTrigger.WhileAttached
+                || record.ActiveTrigger == CardEffectTrigger.UntilNextEncounterResolved
+                || record.ActiveTrigger == CardEffectTrigger.WhileAttachedUntilAnotherCatchReleased);
     }
 
     /// <summary>

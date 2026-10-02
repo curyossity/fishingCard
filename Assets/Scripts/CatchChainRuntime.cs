@@ -10,6 +10,8 @@ public sealed class CatchChainRuntime
     [SerializeField] private CardInstance[] releasedCatches = Array.Empty<CardInstance>();
     [SerializeField] private CardInstance[] lostCatches = Array.Empty<CardInstance>();
     [SerializeField] private string[] consumedNextCatchEffectKeys = Array.Empty<string>();
+    [SerializeField] private string[] consumedNextEncounterEffectKeys = Array.Empty<string>();
+    [SerializeField] private string[] invalidatedNoReleaseEffectKeys = Array.Empty<string>();
     [SerializeField] private int nextInstanceId = 1;
 
     public CardInstance[] Catches => catches;
@@ -274,6 +276,32 @@ public sealed class CatchChainRuntime
         return previewCatch;
     }
 
+    /// <summary>Consumes attached effects that last through exactly one encounter resolution.</summary>
+    public void CompleteEncounter(EffectResolver effectResolver)
+    {
+        for (int i = 0; i < activeEffectRecords.Length; i++)
+        {
+            ActiveCatchEffectRecord record = activeEffectRecords[i];
+            if (record?.Effect == null
+                || record.SourceInstance == null
+                || record.ActiveTrigger != CardEffectTrigger.UntilNextEncounterResolved)
+            {
+                continue;
+            }
+
+            int effectIndex = Array.IndexOf(record.SourceInstance.Definition.Effects, record.Effect);
+            if (effectIndex >= 0)
+            {
+                consumedNextEncounterEffectKeys = AppendEffectKey(
+                    consumedNextEncounterEffectKeys,
+                    BuildEffectKey(record.SourceInstance, effectIndex));
+            }
+        }
+
+        RebuildActiveEffectRecords();
+        effectResolver?.ResolveCatchChain(catches, activeEffectRecords);
+    }
+
     /// <summary>
     /// Clears all Catch Chain cards and active effect records.
     /// </summary>
@@ -284,6 +312,8 @@ public sealed class CatchChainRuntime
         releasedCatches = Array.Empty<CardInstance>();
         lostCatches = Array.Empty<CardInstance>();
         consumedNextCatchEffectKeys = Array.Empty<string>();
+        consumedNextEncounterEffectKeys = Array.Empty<string>();
+        invalidatedNoReleaseEffectKeys = Array.Empty<string>();
         nextInstanceId = 1;
     }
 
@@ -296,6 +326,8 @@ public sealed class CatchChainRuntime
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenAnotherCatchReleased, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenNextMatchingCatchCaught, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.UntilNextEncounterResolved, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttachedUntilAnotherCatchReleased, catchIndex);
     }
 
     /// <summary>
@@ -320,7 +352,9 @@ public sealed class CatchChainRuntime
             if (effect == null
                 || (effect.Trigger != CardEffectTrigger.WhenCaught
                     && effect.Trigger != CardEffectTrigger.WhileAttached
-                    && effect.Trigger != CardEffectTrigger.WhenAnotherCatchReleased))
+                    && effect.Trigger != CardEffectTrigger.WhenAnotherCatchReleased
+                    && effect.Trigger != CardEffectTrigger.UntilNextEncounterResolved
+                    && effect.Trigger != CardEffectTrigger.WhileAttachedUntilAnotherCatchReleased))
             {
                 continue;
             }
@@ -368,6 +402,18 @@ public sealed class CatchChainRuntime
 
             if (trigger == CardEffectTrigger.WhenNextMatchingCatchCaught
                 && IsNextCatchEffectConsumed(sourceInstance, i))
+            {
+                continue;
+            }
+
+            if (trigger == CardEffectTrigger.UntilNextEncounterResolved
+                && IsEffectKeyTracked(consumedNextEncounterEffectKeys, sourceInstance, i))
+            {
+                continue;
+            }
+
+            if (trigger == CardEffectTrigger.WhileAttachedUntilAnotherCatchReleased
+                && IsEffectKeyTracked(invalidatedNoReleaseEffectKeys, sourceInstance, i))
             {
                 continue;
             }
@@ -431,7 +477,7 @@ public sealed class CatchChainRuntime
                 {
                     consumedNextCatchEffectKeys = AppendEffectKey(
                         consumedNextCatchEffectKeys,
-                        BuildNextCatchEffectKey(source, effectIndex));
+                        BuildEffectKey(source, effectIndex));
                 }
             }
         }
@@ -440,11 +486,18 @@ public sealed class CatchChainRuntime
     /// <summary>Reports whether one source instance already spent its future-catch effect.</summary>
     private bool IsNextCatchEffectConsumed(CardInstance source, int effectIndex)
     {
-        string key = BuildNextCatchEffectKey(source, effectIndex);
+        string key = BuildEffectKey(source, effectIndex);
         return Array.IndexOf(consumedNextCatchEffectKeys, key) >= 0;
     }
 
-    private static string BuildNextCatchEffectKey(CardInstance source, int effectIndex)
+    /// <summary>Reports whether a per-instance effect key exists in one lifecycle-state collection.</summary>
+    private static bool IsEffectKeyTracked(string[] keys, CardInstance source, int effectIndex)
+    {
+        return Array.IndexOf(keys ?? Array.Empty<string>(), BuildEffectKey(source, effectIndex)) >= 0;
+    }
+
+    /// <summary>Builds a stable per-run key for one effect on one caught card instance.</summary>
+    private static string BuildEffectKey(CardInstance source, int effectIndex)
     {
         return $"{source?.InstanceId ?? 0}:{effectIndex}";
     }
@@ -501,6 +554,8 @@ public sealed class CatchChainRuntime
             return;
         }
 
+        InvalidateNoReleaseEffects(releasedCatch);
+
         for (int i = 0; i < activeEffectRecords.Length; i++)
         {
             ActiveCatchEffectRecord record = activeEffectRecords[i];
@@ -520,6 +575,32 @@ public sealed class CatchChainRuntime
             }
 
             source.AddPermanentModifiers(0, effect.Amount);
+        }
+    }
+
+    /// <summary>Forfeits conditional Value effects when another catch is deliberately released later.</summary>
+    private void InvalidateNoReleaseEffects(CardInstance releasedCatch)
+    {
+        for (int i = 0; i < activeEffectRecords.Length; i++)
+        {
+            ActiveCatchEffectRecord record = activeEffectRecords[i];
+            CardInstance source = record?.SourceInstance;
+            if (record?.Effect == null
+                || source == null
+                || ReferenceEquals(source, releasedCatch)
+                || !IsCatchAttached(source)
+                || record.ActiveTrigger != CardEffectTrigger.WhileAttachedUntilAnotherCatchReleased)
+            {
+                continue;
+            }
+
+            int effectIndex = Array.IndexOf(source.Definition.Effects, record.Effect);
+            if (effectIndex >= 0)
+            {
+                invalidatedNoReleaseEffectKeys = AppendEffectKey(
+                    invalidatedNoReleaseEffectKeys,
+                    BuildEffectKey(source, effectIndex));
+            }
         }
     }
 

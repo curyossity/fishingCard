@@ -24,11 +24,13 @@ MonoBehaviour:
   artworkLayout: 0
   cardFaceArtwork: {fileID: 3466943956296948973, guid: 6203ac7bacb22c14abe91448771598be, type: 3}
   cardFaceIncludesName: 1
-  rulesText: Ink clouds the water. While attached, the next encounter can have hidden
-    information.
+  rulesText: 'Effect: While attached, the next encounter have hidden information.'
   rulesTextHighlights: []
   weight: 2
-  value: 3
+  value: 5
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 16
@@ -36,12 +38,12 @@ MonoBehaviour:
   effects:
   - effectId: ink_cloud
     effectType: 5
-    trigger: 2
+    trigger: 8
     target: 3
     effectTone: 2
     amount: 1
     requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    reminderText: Future encounter details can be hidden while Squid is attached.
+    expiresAfterUse: 1
+    reminderText: The next encounter after Squid is caught has hidden information.

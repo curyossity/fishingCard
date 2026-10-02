@@ -295,6 +295,8 @@ Owns:
 - Applying authored `WhenAnotherCatchReleased` self-value reactions after deliberate player or Technique releases
 - Consuming authored `WhenNextMatchingCatchCaught` effects once and applying their lasting modifier to the first later catch whose tags match
 - Enforcing attached-card release locks for player and Technique releases while leaving involuntary line-break losses valid
+- Consuming one-encounter attached effects after their affected encounter resolves
+- Invalidating conditional attached effects when another catch is deliberately released later
 - Building a non-mutating resolved preview of a possible catch against the current Catch Chain
 - Catch Chain reset and snapshots
 

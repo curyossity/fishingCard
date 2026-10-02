@@ -280,6 +280,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         CardDefinition caughtCard = encounterRuntime.TakeHookedEncounter();
         CardInstance committedCatch = null;
+        catchChainRuntime.CompleteEncounter(effectResolver);
 
         if (caughtCard != null)
         {

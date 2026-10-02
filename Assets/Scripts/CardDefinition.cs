@@ -346,7 +346,9 @@ public enum CardEffectTrigger
     OnDescend,
     WhenSurfaceBegins,
     WhenAnotherCatchReleased,
-    WhenNextMatchingCatchCaught
+    WhenNextMatchingCatchCaught,
+    UntilNextEncounterResolved,
+    WhileAttachedUntilAnotherCatchReleased
 }
 
 public enum CardEffectTarget

@@ -24,7 +24,7 @@ MonoBehaviour:
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Reduce another catch's Weight by 2 while this remains attached.
+  rulesText: 'Effect: Reduce another catch''s Weight by 2 while this remains attached.'
   rulesTextHighlights:
   - text: 2
     color: {r: 0.5058824, g: 0.6862745, b: 0.6117647, a: 1}
@@ -32,6 +32,9 @@ MonoBehaviour:
     matchWholeWord: 1
   weight: 2
   value: 5
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 4

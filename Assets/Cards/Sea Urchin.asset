@@ -15,7 +15,7 @@ MonoBehaviour:
   uniqueId: creature_sea_urchin
   displayName: Sea Urchin
   cardType: 3
-  rarity: 0
+  rarity: 2
   tags:
   - Anchored
   - Armored
@@ -24,7 +24,7 @@ MonoBehaviour:
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Armored catches gain +3 Value while this remains attached.
+  rulesText: 'Effect: Armored catches gain +3 Value while this remains attached'
   rulesTextHighlights:
   - text: Armored
     color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
@@ -36,6 +36,9 @@ MonoBehaviour:
     matchWholeWord: 1
   weight: 2
   value: 0
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 0

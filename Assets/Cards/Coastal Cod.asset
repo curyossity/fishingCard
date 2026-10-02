@@ -25,8 +25,12 @@ MonoBehaviour:
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: A cold-water fish known for its mild flavor, flaky white flesh.
+  rulesTextHighlights: []
   weight: 3
-  value: 5
+  value: 11
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 3

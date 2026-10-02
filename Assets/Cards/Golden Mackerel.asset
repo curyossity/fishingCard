@@ -15,7 +15,7 @@ MonoBehaviour:
   uniqueId: creature_mackerel
   displayName: Mackerel
   cardType: 3
-  rarity: 2
+  rarity: 1
   tags:
   - Fish
   - Predator
@@ -25,13 +25,13 @@ MonoBehaviour:
   artworkLayout: 1
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  encounterArtwork: {fileID: 0}
-  artworkLayout: 0
-  cardFaceArtwork: {fileID: 0}
-  cardFaceIncludesName: 0
   rulesText: A fast, restless predator that roams through coastal waters
+  rulesTextHighlights: []
   weight: 4
   value: 11
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 8

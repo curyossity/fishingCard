@@ -31,7 +31,10 @@ MonoBehaviour:
     sizePercent: 120
     matchWholeWord: 1
   weight: 1
-  value: 1
+  value: 4
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 3
