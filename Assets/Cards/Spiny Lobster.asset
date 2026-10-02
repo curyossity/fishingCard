@@ -20,8 +20,12 @@ MonoBehaviour:
   - Heavy
   - Armored
   artwork: {fileID: 0}
-  rulesText: A solid valuable catch whose weight competes directly with more
-    specialized creatures for limited line capacity.
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: A heavy creature, protected by a spiny shell and long, powerful antennae
+  rulesTextHighlights: []
   weight: 4
   value: 7
   biomeIds:

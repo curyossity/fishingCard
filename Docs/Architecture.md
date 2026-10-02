@@ -291,6 +291,7 @@ Owns:
 - Calculated Line Load from resolved instance weights
 - Active caught-card effect records
 - Rebuilding and resolving catch interactions after Catch or Release
+- Applying authored `WhenAnotherCatchReleased` self-value reactions after deliberate player or Technique releases
 - Building a non-mutating resolved preview of a possible catch against the current Catch Chain
 - Catch Chain reset and snapshots
 

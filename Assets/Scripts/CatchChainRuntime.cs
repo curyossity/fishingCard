@@ -186,6 +186,7 @@ public sealed class CatchChainRuntime
             return false;
         }
 
+        ApplyAnotherCatchReleasedEffects(releasedCatch, removalReason);
         RecordRemoval(releasedCatch, removalReason);
         catches = RemoveCatchAt(catches, catchIndex);
         RebuildActiveEffectRecords();
@@ -247,6 +248,7 @@ public sealed class CatchChainRuntime
     {
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenCaught, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.WhenAnotherCatchReleased, catchIndex);
     }
 
     /// <summary>
@@ -270,7 +272,8 @@ public sealed class CatchChainRuntime
 
             if (effect == null
                 || (effect.Trigger != CardEffectTrigger.WhenCaught
-                    && effect.Trigger != CardEffectTrigger.WhileAttached))
+                    && effect.Trigger != CardEffectTrigger.WhileAttached
+                    && effect.Trigger != CardEffectTrigger.WhenAnotherCatchReleased))
             {
                 continue;
             }
@@ -344,6 +347,7 @@ public sealed class CatchChainRuntime
 
             CardInstance releasedCatch = catches[targetIndex];
             releasedNames.Add(releasedCatch.Definition.DisplayName);
+            ApplyAnotherCatchReleasedEffects(releasedCatch, CatchRemovalReason.Technique);
             RecordRemoval(releasedCatch, CatchRemovalReason.Technique);
             catches = RemoveCatchAt(catches, targetIndex);
         }
@@ -352,6 +356,52 @@ public sealed class CatchChainRuntime
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         resultSummary = $"Released {string.Join(", ", releasedNames)}";
         return releasedNames.Count > 0;
+    }
+
+    /// <summary>Applies lasting self-value reactions when a different catch is deliberately released.</summary>
+    private void ApplyAnotherCatchReleasedEffects(
+        CardInstance releasedCatch,
+        CatchRemovalReason removalReason)
+    {
+        if (removalReason == CatchRemovalReason.LineStrain)
+        {
+            return;
+        }
+
+        for (int i = 0; i < activeEffectRecords.Length; i++)
+        {
+            ActiveCatchEffectRecord record = activeEffectRecords[i];
+            CardEffectDefinition effect = record?.Effect;
+            CardInstance source = record?.SourceInstance;
+
+            if (record == null
+                || source == null
+                || ReferenceEquals(source, releasedCatch)
+                || !IsCatchAttached(source)
+                || effect == null
+                || record.ActiveTrigger != CardEffectTrigger.WhenAnotherCatchReleased
+                || effect.EffectType != CardEffectType.ModifyCatchValue
+                || effect.Target != CardEffectTarget.Self)
+            {
+                continue;
+            }
+
+            source.AddPermanentModifiers(0, effect.Amount);
+        }
+    }
+
+    /// <summary>Checks whether an effect source still belongs to the current Catch Chain.</summary>
+    private bool IsCatchAttached(CardInstance candidate)
+    {
+        for (int i = 0; i < catches.Length; i++)
+        {
+            if (ReferenceEquals(catches[i], candidate))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// <summary>

@@ -59,6 +59,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7b2423ecead242df87330471df845d6e, type: 2}
     - {fileID: 11400000, guid: 927086622d154b3da149d779810a18f7, type: 2}
     - {fileID: 11400000, guid: fb3cb53b927d4b82980fb349b641e6e3, type: 2}
+    - {fileID: 11400000, guid: c7f47e9d119b4db7974af424ef9f23b7, type: 2}
   - tierId: deep_edge
     displayName: Deep Edge
     minimumDepth: 6
@@ -77,6 +78,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 927086622d154b3da149d779810a18f7, type: 2}
     - {fileID: 11400000, guid: fb3cb53b927d4b82980fb349b641e6e3, type: 2}
     - {fileID: 11400000, guid: bb1e829a1dd746088949e4ae0587e7da, type: 2}
+    - {fileID: 11400000, guid: c7f47e9d119b4db7974af424ef9f23b7, type: 2}
   encounterChains:
   - {fileID: 11400000, guid: d30c9ea4d06a44b9a6e90afb38185328, type: 2}
   - {fileID: 11400000, guid: e5b87e266e5c40ce8c7732cd4da7b057, type: 2}
