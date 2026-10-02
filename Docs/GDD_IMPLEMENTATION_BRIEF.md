@@ -75,7 +75,9 @@ Line Load is the main pressure system.
 - Equipment defines safe line capacity.
 - Over capacity is allowed.
 - Overload increases risk rather than causing immediate automatic failure.
-- The further above capacity the player goes, the more dangerous descent, catching, and surfacing can become.
+- Descend and Surface perform a break check while overloaded; the chance rises with excess load.
+- When the break check succeeds, the run ends, one to half of the attached catches are lost at random, and the player is forced through the normal Surface ascent.
+- When the line holds, an overloaded Descend continues normally and an overloaded Surface retains the full haul.
 
 ## Depth, Biomes, And Encounters
 
@@ -138,7 +140,7 @@ Development success criterion: each shipped increment should strengthen the fina
 
 Do not lock these without explicit design approval or prototype evidence:
 
-- Exact overload consequences.
+- Exact overload probability tuning and loss-count balance within the locked one-to-half range.
 - Whether catch-chain order/position has rules.
 - Exact draw count, deck size, discard/shuffle rules, and rarity structure.
 - How locations/biomes are selected.

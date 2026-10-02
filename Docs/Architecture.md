@@ -571,17 +571,18 @@ Current Descend flow:
 5. `EffectResolver` recalculates catch interactions from each instance's lasting base state.
 6. Current Line Load updates from the resolved instance weights.
 7. `LineLoadRiskRuntime` checks for strain using any one-use capacity bonus.
-8. If the check fails, `CatchChainRuntime` releases the randomly selected catch; otherwise the line remains overloaded.
-9. Current depth advances using any one-use distance modifier.
-10. `TechniqueDeckRuntime` refills the hand as required.
-11. `BiomeDefinition` supplies the tier pool at the effective selection depth.
-12. At the depth after the biome's final finite tier, `BiomeApexRuntime` selects one valid Apex possibility exactly once.
-13. `EncounterRuntime` reveals that Apex as Hooked; otherwise it first reveals a valid queued chain card or filters the regular tier subset using card availability.
-14. If alternatives exist, repetition rules remove the immediately previous regular card and interrupt an ordinary-creature streak after two reveals.
-15. Attached effects and one-use modifiers determine the remaining regular candidates' selection weights.
-16. A normally selected chain starter queues its next authored card.
-17. The next valid encounter is revealed; persistent concealment can hide its details.
-18. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
+8. If the break check succeeds, `CatchChainRuntime` randomly loses between one catch and half of the attached chain, records those cards as Line Strain losses, and the run ends immediately.
+9. A line-break ending uses the shared accelerated Surface replay while retaining the surviving Catch Chain on screen; active run state is cleared only after that presentation completes.
+10. If the line holds, current depth advances using any one-use distance modifier.
+11. `TechniqueDeckRuntime` refills the hand as required.
+12. `BiomeDefinition` supplies the tier pool at the effective selection depth.
+13. At the depth after the biome's final finite tier, `BiomeApexRuntime` selects one valid Apex possibility exactly once.
+14. `EncounterRuntime` reveals that Apex as Hooked; otherwise it first reveals a valid queued chain card or filters the regular tier subset using card availability.
+15. If alternatives exist, repetition rules remove the immediately previous regular card and interrupt an ordinary-creature streak after two reveals.
+16. Attached effects and one-use modifiers determine the remaining regular candidates' selection weights.
+17. A normally selected chain starter queues its next authored card.
+18. The next valid encounter is revealed; persistent concealment can hide its details.
+19. `CatchChainView` rebuilds from catch instances, effects, current Load, and capacity.
 
 Current Apex flow:
 
@@ -590,7 +591,7 @@ Current Apex flow:
 3. Technique validation continues through the normal Hooked reaction window; replacement draws from the other Apex possibilities.
 4. Avoidance records the Apex as Avoided and prevents another boundary selection during the run.
 5. Descend commits the Hooked Apex through `CatchChainRuntime.Add(...)` and records the Apex as Caught.
-6. The resolving Descend advances normally, including catch effects, overload risk, depth, and Technique-hand refill.
+6. The resolving Descend advances normally after catch effects and overload risk unless a line break ends the run.
 7. The biome-authored next-waters Location card is then presented once without resetting the Catch Chain, Line Load, active effects, or Technique piles.
 8. Further Descends are blocked because a second biome is outside the MVP; Release remains available and Surface records the preserved Catch Chain as the haul.
 
@@ -618,12 +619,13 @@ Current Surface flow:
 
 1. `FishingRunController.TrySurface()` records the starting Surface load.
 2. `LineLoadRiskRuntime` checks for strain when the line is overloaded.
-3. A failed check releases one random catch before the successful haul is recorded; a held check preserves the overloaded chain.
-4. `FishingRunResult` snapshots the remaining haul, released catches, and overload-lost catches, then records value, depth, starting Line Load, capacity, and overload state.
+3. A successful break check randomly loses between one catch and half of the attached chain; a held check preserves the overloaded chain.
+4. `FishingRunResult` snapshots the remaining haul, released catches, and overload-lost catches, then records value, depth, starting Line Load, capacity, overload state, and whether a line break forced the ending.
 5. An unresolved Hooked encounter is excluded because it has not entered the Catch Chain.
 6. `RunRewardRuntime` converts resolved haul value to Gold, adds it to the in-memory wallet, and records the award on the result.
-7. The active run ends and transient encounter, Catch Chain, effect, and Technique deck state is cleared.
-8. `RunResultView` presents the reward and separate brought-home, released, and lost lists; the same details remain Inspector-visible and appear in the Console summary.
+7. The active run ends and the accelerated Surface replay begins while the surviving Catch Chain remains visible.
+8. Transient encounter, Catch Chain, effect, and Technique-deck state is cleared after the replay completes.
+9. `RunResultView` presents the reward and separate brought-home, released, and lost lists; line-break endings are identified explicitly, and the same details remain Inspector-visible and appear in the Console summary.
 
 Current between-run progression flow:
 

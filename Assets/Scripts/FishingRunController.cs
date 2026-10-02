@@ -60,6 +60,7 @@ public sealed class FishingRunController : MonoBehaviour
 
     private System.Random random;
     private EffectResolver effectResolver;
+    private bool runEndCleanupPending;
 
     public bool RunActive => runActive;
     public BiomeDefinition CurrentBiome => currentBiome;
@@ -83,6 +84,7 @@ public sealed class FishingRunController : MonoBehaviour
     public int LastSurfaceDepth => lastSurfaceResult.SurfaceDepth;
     public int LastSurfaceLineLoad => lastSurfaceResult.SurfaceLineLoad;
     public bool LastSurfaceWasOverloaded => lastSurfaceResult.WasOverloaded;
+    public bool LastRunEndedByLineBreak => lastSurfaceResult.EndedByLineBreak;
     public int CurrentLineLoad => catchChainRuntime.CurrentLineLoad;
     public bool CurrentEncounterInformationHidden => currentEncounterInformationHidden;
     public BiomeApexState CurrentBiomeApexState => biomeApexRuntime.State;
@@ -125,6 +127,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Refreshes result presentation after the view finishes replaying the ascent.</summary>
     private void HandleSurfaceTransitionCompleted()
     {
+        ClearEndedRunState();
         RefreshViews();
     }
 
@@ -141,6 +144,7 @@ public sealed class FishingRunController : MonoBehaviour
         runProgressionRuntime.InitializeTechniqueDeck(startingTechniqueDeck);
 
         runActive = true;
+        runEndCleanupPending = false;
         lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus);
         currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);
@@ -289,8 +293,16 @@ public sealed class FishingRunController : MonoBehaviour
             effectResolver,
             lineCapacity);
         int effectiveCapacity = Mathf.Max(0, lineCapacity + techniqueResolution.CapacityBonus);
-        CardInstance strainReleasedCatch = ResolveOverloadRisk(effectiveCapacity);
+        int overloadStartingLoad = catchChainRuntime.CurrentLineLoad;
+        CardInstance[] strainLostCatches = ResolveOverloadRisk(effectiveCapacity);
         selectedCatchIndex = -1;
+
+        if (lineLoadRiskRuntime.LastOutcome == LineLoadRiskOutcome.LineBroken)
+        {
+            CompleteRun(overloadStartingLoad, effectiveCapacity, true);
+            Debug.Log(BuildSurfaceSummary(strainLostCatches), this);
+            return true;
+        }
 
         // The next reveal uses the new depth so data-driven depth ranges take effect immediately.
         currentDepth += Mathf.Max(1, depthStepPerDescend + techniqueResolution.AdditionalDepth);
@@ -298,7 +310,7 @@ public sealed class FishingRunController : MonoBehaviour
         RevealEncounterAtCurrentDepth();
 
         RefreshViews();
-        Debug.Log(BuildDescendSummary(caughtCard, strainReleasedCatch, techniqueResolution, effectiveCapacity), this);
+        Debug.Log(BuildDescendSummary(caughtCard, strainLostCatches, techniqueResolution, effectiveCapacity), this);
         return true;
     }
 
@@ -374,20 +386,11 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         int surfaceStartingLoad = catchChainRuntime.CurrentLineLoad;
-        CardInstance strainReleasedCatch = ResolveOverloadRisk(lineCapacity);
+        CardInstance[] strainLostCatches = ResolveOverloadRisk(lineCapacity);
+        bool lineBroke = lineLoadRiskRuntime.LastOutcome == LineLoadRiskOutcome.LineBroken;
 
-        // The Hooked encounter is intentionally excluded because it has not entered the Catch Chain.
-        lastSurfaceResult.Record(
-            catchChainRuntime.Catches,
-            catchChainRuntime.ReleasedCatches,
-            catchChainRuntime.LostCatches,
-            currentDepth,
-            surfaceStartingLoad,
-            lineCapacity);
-        runRewardRuntime.AwardGold(lastSurfaceResult);
-
-        string surfaceSummary = BuildSurfaceSummary(strainReleasedCatch);
-        EndActiveRun();
+        CompleteRun(surfaceStartingLoad, lineCapacity, lineBroke);
+        string surfaceSummary = BuildSurfaceSummary(strainLostCatches);
 
         Debug.Log(surfaceSummary, this);
         return true;
@@ -745,45 +748,69 @@ public sealed class FishingRunController : MonoBehaviour
     {
         runActive = false;
         selectedCatchIndex = -1;
+        runEndCleanupPending = true;
+        RefreshViews();
+
+        if (fishingRunView == null || !fishingRunView.IsSurfaceTransitionPlaying)
+        {
+            ClearEndedRunState();
+            RefreshViews();
+        }
+    }
+
+    /// <summary>
+    /// Clears active-run ownership after the ascent presentation no longer needs the visible Catch Chain.
+    /// </summary>
+    private void ClearEndedRunState()
+    {
+        if (!runEndCleanupPending)
+        {
+            return;
+        }
+
+        runEndCleanupPending = false;
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Reset();
         techniqueEffectRuntime.Reset();
-        RefreshViews();
     }
 
     /// <summary>
-    /// Resolves the current overload risk and releases the randomly selected catch when the line breaks.
+    /// Resolves overload risk and randomly loses up to half of the Catch Chain when the line breaks.
     /// </summary>
-    private CardInstance ResolveOverloadRisk(int effectiveCapacity)
+    private CardInstance[] ResolveOverloadRisk(int effectiveCapacity)
     {
-        int releaseIndex = lineLoadRiskRuntime.Evaluate(
+        bool lineBroke = lineLoadRiskRuntime.Evaluate(
             catchChainRuntime.CurrentLineLoad,
             effectiveCapacity,
             catchChainRuntime.Catches.Length,
             random);
 
-        if (releaseIndex < 0)
+        if (!lineBroke)
         {
-            return null;
+            return Array.Empty<CardInstance>();
         }
 
-        bool released = catchChainRuntime.TryRelease(
-            releaseIndex,
+        return catchChainRuntime.LoseRandomCatchesAfterLineBreak(
             effectResolver,
-            out CardInstance releasedCatch,
-            out _,
-            out string validationMessage,
-            CatchRemovalReason.LineStrain);
+            random);
+    }
 
-        if (!released)
-        {
-            Debug.LogWarning($"Overload strain could not release a catch: {validationMessage}", this);
-            return null;
-        }
-
-        return releasedCatch;
+    /// <summary>Snapshots rewards and begins the shared ascent presentation for any run-ending outcome.</summary>
+    private void CompleteRun(int startingLoad, int evaluatedCapacity, bool endedByLineBreak)
+    {
+        // The Hooked encounter is intentionally excluded because it has not entered the Catch Chain.
+        lastSurfaceResult.Record(
+            catchChainRuntime.Catches,
+            catchChainRuntime.ReleasedCatches,
+            catchChainRuntime.LostCatches,
+            currentDepth,
+            startingLoad,
+            evaluatedCapacity,
+            endedByLineBreak);
+        runRewardRuntime.AwardGold(lastSurfaceResult);
+        EndActiveRun();
     }
 
     /// <summary>
@@ -971,7 +998,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     private string BuildDescendSummary(
         CardDefinition caughtCard,
-        CardInstance strainReleasedCatch,
+        CardInstance[] strainLostCatches,
         TechniqueDescendResolution techniqueResolution,
         int effectiveCapacity)
     {
@@ -994,7 +1021,7 @@ public sealed class FishingRunController : MonoBehaviour
         summary.AppendLine($"Committed Catch: Weight {techniqueResolution.CommittedWeightChange:+#;-#;0}, "
             + $"Value {techniqueResolution.CommittedValueChange:+#;-#;0}, "
             + $"Overload Reward {techniqueResolution.OverloadValueReward:+#;-#;0}");
-        AppendOverloadRiskSummary(summary, strainReleasedCatch);
+        AppendOverloadRiskSummary(summary, strainLostCatches);
         summary.Append("Next Encounter: ");
         summary.Append(encounterRuntime.CurrentEncounter == null ? "none" : encounterRuntime.CurrentEncounter.DisplayName);
         summary.AppendLine();
@@ -1026,13 +1053,14 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>
     /// Builds the end-of-run summary from the stored Surface result.
     /// </summary>
-    private string BuildSurfaceSummary(CardInstance strainReleasedCatch)
+    private string BuildSurfaceSummary(CardInstance[] strainLostCatches)
     {
         string loadStatus = lastSurfaceResult.WasOverloaded ? "Overloaded" : "Within Capacity";
+        string completionLabel = lastSurfaceResult.EndedByLineBreak ? "Line break resolved" : "Surface resolved";
         StringBuilder summary = new StringBuilder();
 
         // Unity shows this complete first line even while the Console entry is collapsed.
-        summary.AppendLine($"Surface resolved | Haul: {lastSurfaceResult.Haul.Length} cards | "
+        summary.AppendLine($"{completionLabel} | Haul: {lastSurfaceResult.Haul.Length} cards | "
             + $"Value: {lastSurfaceResult.HaulValue} | Load: {lastSurfaceResult.SurfaceLineLoad} / "
             + $"{lastSurfaceResult.LineCapacity} | Depth: {lastSurfaceResult.SurfaceDepth} | {loadStatus}");
         summary.AppendLine($"Gold Awarded: {lastSurfaceResult.GoldAwarded} | Total Gold: {runRewardRuntime.TotalGold}");
@@ -1042,7 +1070,7 @@ public sealed class FishingRunController : MonoBehaviour
         {
             summary.Append("none");
             AppendRunRemovalSummary(summary);
-            AppendOverloadRiskSummary(summary, strainReleasedCatch);
+            AppendOverloadRiskSummary(summary, strainLostCatches);
             return summary.ToString();
         }
 
@@ -1058,7 +1086,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         AppendRunRemovalSummary(summary);
-        AppendOverloadRiskSummary(summary, strainReleasedCatch);
+        AppendOverloadRiskSummary(summary, strainLostCatches);
 
         return summary.ToString();
     }
@@ -1103,9 +1131,9 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
-    /// Appends the most recent overload check and any lost catch to an action summary.
+    /// Appends the most recent overload check and any lost catches to an action summary.
     /// </summary>
-    private void AppendOverloadRiskSummary(StringBuilder summary, CardInstance strainReleasedCatch)
+    private void AppendOverloadRiskSummary(StringBuilder summary, CardInstance[] strainLostCatches)
     {
         if (lineLoadRiskRuntime.LastOutcome == LineLoadRiskOutcome.NotOverloaded)
         {
@@ -1125,9 +1153,9 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
-        string releasedName = strainReleasedCatch?.Definition == null
-            ? "unknown catch"
-            : strainReleasedCatch.Definition.DisplayName;
-        summary.AppendLine($"Line strain released {releasedName} at {lineLoadRiskRuntime.LastBreakChance:P0} break chance");
+        CardInstance[] safeLosses = strainLostCatches ?? Array.Empty<CardInstance>();
+        summary.Append($"Line broke at {lineLoadRiskRuntime.LastBreakChance:P0} break chance; lost ");
+        AppendCatchNames(summary, safeLosses);
+        summary.AppendLine("; forced Surface");
     }
 }

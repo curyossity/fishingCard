@@ -14,6 +14,7 @@ public sealed class RunResultView : MonoBehaviour
     private static readonly Color MutedTextColor = new Color(0.68f, 0.73f, 0.74f, 1f);
 
     private RectTransform backdropRoot;
+    private Text titleText;
     private Text goldText;
     private Text runStatsText;
     private Text haulText;
@@ -67,7 +68,10 @@ public sealed class RunResultView : MonoBehaviour
             return;
         }
 
-        string loadStatus = result.WasOverloaded ? "OVERLOADED AT SURFACE" : "LINE HELD WITHIN CAPACITY";
+        titleText.text = result.EndedByLineBreak ? "LINE BREAK" : "RUN COMPLETE";
+        string loadStatus = result.EndedByLineBreak
+            ? "LINE BROKE — FORCED SURFACE"
+            : result.WasOverloaded ? "OVERLOADED AT SURFACE" : "LINE HELD WITHIN CAPACITY";
         goldText.text = $"+{result.GoldAwarded} GOLD     TOTAL {Mathf.Max(0, totalGold)}";
         runStatsText.text = $"HAUL VALUE {result.HaulValue}     DEPTH {result.SurfaceDepth}\n"
             + $"LINE LOAD {result.SurfaceLineLoad} / {result.LineCapacity}     {loadStatus}";
@@ -118,7 +122,7 @@ public sealed class RunResultView : MonoBehaviour
         panelRect.offsetMax = Vector2.zero;
         AddImage(panelObject, PanelColor);
 
-        Text titleText = CreateText("Title", panelRect, 30, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
+        titleText = CreateText("Title", panelRect, 30, FontStyle.Bold, TextAnchor.MiddleCenter, Color.white);
         SetAnchoredRect(titleText.rectTransform, new Vector2(0f, 1f), Vector2.one, 24f, -62f, -24f, -14f);
         titleText.text = "RUN COMPLETE";
 

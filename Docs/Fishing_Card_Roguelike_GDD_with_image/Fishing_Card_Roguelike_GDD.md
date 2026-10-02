@@ -244,6 +244,20 @@ Load.
   actions can become: continuing to descend, catching another heavy
   creature, or beginning the return/surface process.
 
+- Descend and Surface perform a break check while overloaded. The chance
+  increases with each point of excess Line Load.
+
+- If the break check succeeds, the line breaks and the run ends. The
+  player loses a random number of attached catches from one up to half of
+  the Catch Chain, selected randomly without replacement.
+
+- A line-break ending uses the normal accelerated Surface ascent. The
+  surviving Catch Chain remains visible during the ascent, then becomes
+  the final haul.
+
+- If the check holds during Descend, the run continues while overloaded.
+  If it holds during Surface, the full attached Catch Chain is retained.
+
 - This creates intentional greed states where the player knows the rig
   is unsafe but may still chase one more valuable encounter.
 
@@ -553,8 +567,8 @@ descending, or surface?</p></th>
 
 # 14. Still open / not locked
 
-- Exact overload consequences and whether failure happens during
-  descent, catching, surfacing, or a combination.
+- Exact overload probability tuning and loss-count balance within the
+  locked one-to-half loss range.
 
 - Whether physical position/order in the catch chain has rules of its
   own (for example, only releasing the lowest catch freely). This is

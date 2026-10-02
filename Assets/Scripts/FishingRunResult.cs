@@ -13,6 +13,7 @@ public sealed class FishingRunResult
     [SerializeField] private int surfaceLineLoad;
     [SerializeField] private int lineCapacity;
     [SerializeField] private bool wasOverloaded;
+    [SerializeField] private bool endedByLineBreak;
     [SerializeField] private bool hasResult;
 
     public CardInstance[] Haul => haul;
@@ -24,10 +25,11 @@ public sealed class FishingRunResult
     public int SurfaceLineLoad => surfaceLineLoad;
     public int LineCapacity => lineCapacity;
     public bool WasOverloaded => wasOverloaded;
+    public bool EndedByLineBreak => endedByLineBreak;
     public bool HasResult => hasResult;
 
     /// <summary>
-    /// Records the surviving haul, removal histories, and run values when Surface resolves.
+    /// Records the surviving haul, removal histories, and run values when a run reaches Surface or the line breaks.
     /// </summary>
     public void Record(
         CardInstance[] successfulHaul,
@@ -35,7 +37,8 @@ public sealed class FishingRunResult
         CardInstance[] lostDuringRun,
         int depth,
         int load,
-        int capacity)
+        int capacity,
+        bool lineBroke)
     {
         haul = CopyCards(successfulHaul);
         releasedCatches = CopyCards(releasedDuringRun);
@@ -45,6 +48,7 @@ public sealed class FishingRunResult
         surfaceLineLoad = load;
         lineCapacity = capacity;
         wasOverloaded = surfaceLineLoad > lineCapacity;
+        endedByLineBreak = lineBroke;
         hasResult = true;
     }
 
@@ -70,6 +74,7 @@ public sealed class FishingRunResult
         surfaceLineLoad = 0;
         lineCapacity = 0;
         wasOverloaded = false;
+        endedByLineBreak = false;
         hasResult = false;
     }
 

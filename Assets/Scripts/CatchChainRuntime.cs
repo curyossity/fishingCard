@@ -195,6 +195,36 @@ public sealed class CatchChainRuntime
     }
 
     /// <summary>
+    /// Randomly loses between one catch and half of the attached chain after an overload line break.
+    /// </summary>
+    public CardInstance[] LoseRandomCatchesAfterLineBreak(
+        EffectResolver effectResolver,
+        System.Random random)
+    {
+        if (catches.Length == 0 || random == null)
+        {
+            return Array.Empty<CardInstance>();
+        }
+
+        int maximumLossCount = Mathf.Max(1, catches.Length / 2);
+        int lossCount = random.Next(1, maximumLossCount + 1);
+        CardInstance[] losses = new CardInstance[lossCount];
+
+        for (int i = 0; i < lossCount; i++)
+        {
+            int lossIndex = random.Next(catches.Length);
+            CardInstance lostCatch = catches[lossIndex];
+            losses[i] = lostCatch;
+            RecordRemoval(lostCatch, CatchRemovalReason.LineStrain);
+            catches = RemoveCatchAt(catches, lossIndex);
+        }
+
+        RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        return losses;
+    }
+
+    /// <summary>
     /// Returns a separate snapshot of all catches currently attached to the line.
     /// </summary>
     public CardInstance[] CreateSnapshot()

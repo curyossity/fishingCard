@@ -5,7 +5,7 @@ public enum LineLoadRiskOutcome
 {
     NotOverloaded,
     Held,
-    CatchLost
+    LineBroken
 }
 
 [Serializable]
@@ -24,28 +24,25 @@ public sealed class LineLoadRiskRuntime
     [SerializeField] private int lastExcessLoad;
     [SerializeField] private float lastBreakChance;
     [SerializeField] private float lastRoll;
-    [SerializeField] private int lastSelectedCatchIndex = -1;
 
     public LineLoadRiskOutcome LastOutcome => lastOutcome;
     public int LastExcessLoad => lastExcessLoad;
     public float LastBreakChance => lastBreakChance;
     public float LastRoll => lastRoll;
-    public int LastSelectedCatchIndex => lastSelectedCatchIndex;
 
     /// <summary>
-    /// Evaluates overload strain and returns the Catch Chain index that breaks free, or -1 when the line holds.
+    /// Evaluates overload strain and reports whether the line breaks.
     /// </summary>
-    public int Evaluate(int currentLoad, int capacity, int catchCount, System.Random random)
+    public bool Evaluate(int currentLoad, int capacity, int catchCount, System.Random random)
     {
         lastExcessLoad = Mathf.Max(0, currentLoad - capacity);
-        lastSelectedCatchIndex = -1;
 
         if (lastExcessLoad == 0 || catchCount <= 0)
         {
             lastOutcome = LineLoadRiskOutcome.NotOverloaded;
             lastBreakChance = 0f;
             lastRoll = 0f;
-            return -1;
+            return false;
         }
 
         float configuredMaximum = Mathf.Clamp01(maximumBreakChance);
@@ -56,12 +53,11 @@ public sealed class LineLoadRiskRuntime
         if (lastRoll >= lastBreakChance)
         {
             lastOutcome = LineLoadRiskOutcome.Held;
-            return -1;
+            return false;
         }
 
-        lastOutcome = LineLoadRiskOutcome.CatchLost;
-        lastSelectedCatchIndex = random.Next(catchCount);
-        return lastSelectedCatchIndex;
+        lastOutcome = LineLoadRiskOutcome.LineBroken;
+        return true;
     }
 
     /// <summary>
@@ -73,6 +69,5 @@ public sealed class LineLoadRiskRuntime
         lastExcessLoad = 0;
         lastBreakChance = 0f;
         lastRoll = 0f;
-        lastSelectedCatchIndex = -1;
     }
 }
