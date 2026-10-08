@@ -74,7 +74,7 @@ If interaction feedback for these concepts becomes necessary, keep it outside th
 Build the card presentation from two ownership layers:
 
 1. Supplied visual layer: the reusable empty master with frame, ornament, fixed labels, icons, and empty sockets.
-2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Effect text, four filled rarity-marker states, and supported tag icons.
+2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Effect text, four filled rarity-marker states, and supported tag icons. A creature may author a central-card-only scale, rotation, and offset for its encounter illustration; this must not alter its separately framed compact Catch Chain portrait.
 
 Keep gameplay rules out of the card view. The view reads supplied card data and resolved runtime values, then updates only its visual fields.
 

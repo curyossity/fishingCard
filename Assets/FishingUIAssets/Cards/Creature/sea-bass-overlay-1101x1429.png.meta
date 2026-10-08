@@ -1,0 +1,114 @@
+fileFormatVersion: 2
+guid: 5fc29ed061a34eb4e750cf829b14d635
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4311028475029301000
+    second: sea-bass-portrait
+  - first:
+      213: 3125584908192654000
+    second: sea-bass-overlay
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+  isReadable: 0
+  streamingMipmaps: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  compressionQuality: 100
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  textureShape: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sea-bass-portrait
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 748
+        width: 790
+        height: 377
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1dbc42104984d60a900000000000000
+      internalID: -4311028475029301000
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sea-bass-overlay
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1101
+        height: 1429
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2ecd53215a94e71b900000000000000
+      internalID: 3125584908192654000
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      sea-bass-portrait: -4311028475029301000
+      sea-bass-overlay: 3125584908192654000
+  userData:
+  assetBundleName:
+  assetBundleVariant:

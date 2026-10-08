@@ -23,6 +23,9 @@ MonoBehaviour:
   artwork: {fileID: 5600405312459905378, guid: b3b1d74850bebcf47819b3d9dfdf5b1a, type: 3}
   encounterArtwork: {fileID: -8324558239660995817, guid: b3b1d74850bebcf47819b3d9dfdf5b1a, type: 3}
   artworkLayout: 1
+  encounterArtworkScale: 0.6
+  encounterArtworkRotation: -20
+  encounterArtworkOffset: {x: -10, y: 5}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: "While attached, attracts Predators. \nmakes the previous Sardine more

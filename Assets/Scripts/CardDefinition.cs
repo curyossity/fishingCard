@@ -17,6 +17,10 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private Sprite artwork;
     [SerializeField] private Sprite encounterArtwork;
     [SerializeField] private CardArtworkLayout artworkLayout;
+    [Min(0.1f)]
+    [SerializeField] private float encounterArtworkScale = 1f;
+    [SerializeField] private float encounterArtworkRotation;
+    [SerializeField] private Vector2 encounterArtworkOffset;
     [SerializeField] private Sprite cardFaceArtwork;
     [SerializeField] private bool cardFaceIncludesName;
     [TextArea(2, 5)]
@@ -52,6 +56,9 @@ public class CardDefinition : ScriptableObject
     public Sprite Artwork => artwork;
     public Sprite EncounterArtwork => encounterArtwork;
     public CardArtworkLayout ArtworkLayout => artworkLayout;
+    public float EncounterArtworkScale => Mathf.Max(0.1f, encounterArtworkScale);
+    public float EncounterArtworkRotation => encounterArtworkRotation;
+    public Vector2 EncounterArtworkOffset => encounterArtworkOffset;
     public Sprite CardFaceArtwork => cardFaceArtwork;
     public bool CardFaceIncludesName => cardFaceIncludesName;
     public string RulesText => rulesText;
@@ -96,6 +103,7 @@ public class CardDefinition : ScriptableObject
     {
         minimumCaughtValue = Mathf.Max(0, minimumCaughtValue);
         maximumCaughtValue = Mathf.Max(minimumCaughtValue, maximumCaughtValue);
+        encounterArtworkScale = Mathf.Max(0.1f, encounterArtworkScale);
 
         if (rulesTextHighlights == null)
         {

@@ -19,9 +19,12 @@ MonoBehaviour:
   tags:
   - Fish
   - Predator
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
-  artworkLayout: 0
+  artwork: {fileID: -4311028475029301000, guid: 5fc29ed061a34eb4e750cf829b14d635, type: 3}
+  encounterArtwork: {fileID: 3125584908192654000, guid: 5fc29ed061a34eb4e750cf829b14d635, type: 3}
+  artworkLayout: 1
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: A reliable coastal predator with solid weight-to-value efficiency.

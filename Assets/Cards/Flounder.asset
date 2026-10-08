@@ -20,19 +20,22 @@ MonoBehaviour:
   - Fish
   - Small
   - Elusive
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
-  artworkLayout: 0
+  artwork: {fileID: -4311028475029301003, guid: e63a95dcb7a14b4b917c652f7c09f14d, type: 3}
+  encounterArtwork: {fileID: 3125584908192654003, guid: e63a95dcb7a14b4b917c652f7c09f14d, type: 3}
+  artworkLayout: 1
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Next Elusive catch gains +1 Value'
+  rulesText: Next Elusive catch gains +1 Value
   rulesTextHighlights:
   - text: Elusive
-    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
+    color: {r: 0.35942525, g: 0.32549018, b: 0.8117647, a: 1}
     sizePercent: 120
     matchWholeWord: 1
   - text: +1
-    color: {r: 0.5058824, g: 0.6862745, b: 0.6117647, a: 1}
+    color: {r: 0, g: 0.14509805, b: 0.15294118, a: 1}
     sizePercent: 120
     matchWholeWord: 1
   weight: 3

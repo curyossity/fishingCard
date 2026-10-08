@@ -69,6 +69,7 @@ Owns:
 - Tags
 - Canonical creature tags constrained to `Fish`, `Predator`, `Schooling`, `Small`, `Heavy`, `Anchored`, `Armored`, and `Elusive`
 - Artwork reference
+- Optional central encounter-art scale, rotation, and offset independent of compact Catch Chain portrait framing
 - Rules text
 - Authored rules-text word/phrase highlights for central-card color and relative size
 - Base weight and value

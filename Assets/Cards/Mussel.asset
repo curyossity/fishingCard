@@ -20,15 +20,18 @@ MonoBehaviour:
   - Small
   - Anchored
   - Armored
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
-  artworkLayout: 0
+  artwork: {fileID: -4311028475029301000, guid: 4eb18dcf50924da3d64fbe718a03c524, type: 3}
+  encounterArtwork: {fileID: 3125584908192654000, guid: 4eb18dcf50924da3d64fbe718a03c524, type: 3}
+  artworkLayout: 1
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Cannot be released once caught'
+  rulesText: Cannot be released once caught
   rulesTextHighlights:
-  - text: Cannot be released
-    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
+  - text: released
+    color: {r: 0.36078432, g: 0.3254902, b: 0.8117647, a: 1}
     sizePercent: 120
     matchWholeWord: 0
   weight: 1

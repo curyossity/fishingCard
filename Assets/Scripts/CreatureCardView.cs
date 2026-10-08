@@ -110,7 +110,10 @@ public sealed class CreatureCardView : MonoBehaviour
                 : BuildHighlightedRulesText(card.RulesText, card.RulesTextHighlights),
             card.Tags,
             card.Rarity,
-            usesCatchLayout);
+            usesCatchLayout,
+            card.EncounterArtworkScale,
+            card.EncounterArtworkRotation,
+            card.EncounterArtworkOffset);
     }
 
     /// <summary>Populates the visual contract directly for editor previews and UI tests.</summary>
@@ -191,13 +194,20 @@ public sealed class CreatureCardView : MonoBehaviour
         string rules,
         string[] tags,
         CardRarity rarity,
-        bool usesCatchLayout)
+        bool usesCatchLayout,
+        float encounterArtworkScale = 1f,
+        float encounterArtworkRotation = 0f,
+        Vector2 encounterArtworkOffset = default)
     {
         ApplyCardLayout(usesCatchLayout);
         SetImage(cardBackground, background);
         bool usesFullCardOverlay = artwork != null && artworkLayout == CardArtworkLayout.FullCardOverlay;
         SetImage(creatureArtwork, usesFullCardOverlay ? null : artwork);
         SetImage(artworkOverflowLayer, usesFullCardOverlay ? artwork : null);
+        ApplyEncounterArtworkTransform(
+            usesFullCardOverlay ? encounterArtworkScale : 1f,
+            usesFullCardOverlay ? encounterArtworkRotation : 0f,
+            usesFullCardOverlay ? encounterArtworkOffset : Vector2.zero);
 
         if (cardFrame != null)
         {
@@ -783,6 +793,21 @@ public sealed class CreatureCardView : MonoBehaviour
 
         image.sprite = sprite;
         image.enabled = sprite != null;
+    }
+
+    /// <summary>Applies a card-authored transform only to the central full-card artwork overlay.</summary>
+    private void ApplyEncounterArtworkTransform(float scale, float rotation, Vector2 offset)
+    {
+        if (artworkOverflowLayer == null)
+        {
+            return;
+        }
+
+        RectTransform artworkTransform = artworkOverflowLayer.rectTransform;
+        float safeScale = Mathf.Max(0.1f, scale);
+        artworkTransform.localScale = new Vector3(safeScale, safeScale, 1f);
+        artworkTransform.localEulerAngles = new Vector3(0f, 0f, rotation);
+        artworkTransform.anchoredPosition = offset;
     }
 
     private static void SetText(TMP_Text text, string value)

@@ -1,0 +1,114 @@
+fileFormatVersion: 2
+guid: 4d78f812a1eb4e90823d907ca17a6c24
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4311028475029301004
+    second: garfish-portrait
+  - first:
+      213: 3125584908192654004
+    second: garfish-overlay
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+  isReadable: 0
+  streamingMipmaps: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  compressionQuality: 100
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  textureType: 8
+  textureShape: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 100
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: garfish-portrait
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 867
+        width: 790
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07312a876afe4bc9a300000000000000
+      internalID: -4311028475029301004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: garfish-overlay
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1101
+        height: 1429
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18423b987b0f4cdaa400000000000000
+      internalID: 3125584908192654004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID:
+    internalID: 0
+    vertices: []
+    indices:
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      garfish-portrait: -4311028475029301004
+      garfish-overlay: 3125584908192654004
+  userData:
+  assetBundleName:
+  assetBundleVariant:

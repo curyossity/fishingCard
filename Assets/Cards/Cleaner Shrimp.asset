@@ -22,12 +22,15 @@ MonoBehaviour:
   artwork: {fileID: 2157674157209873347, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
   encounterArtwork: {fileID: 6483912047753102011, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
   artworkLayout: 1
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: "While attached, reduces the previous catch\u2019s weight by 2"
   rulesTextHighlights:
   - text: 2
-    color: {r: 0.8117648, g: 0.3647059, b: 0.3254902, a: 1}
+    color: {r: 0, g: 0.14509805, b: 0.15294118, a: 1}
     sizePercent: 120
     matchWholeWord: 1
   weight: 1

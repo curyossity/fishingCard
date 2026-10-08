@@ -369,6 +369,9 @@ public sealed class CreatureCatalogWindow : EditorWindow
         EditorGUILayout.PropertyField(artwork);
         EditorGUILayout.PropertyField(encounterArtwork);
         EditorGUILayout.PropertyField(cardObject.FindProperty("artworkLayout"));
+        EditorGUILayout.PropertyField(cardObject.FindProperty("encounterArtworkScale"));
+        EditorGUILayout.PropertyField(cardObject.FindProperty("encounterArtworkRotation"));
+        EditorGUILayout.PropertyField(cardObject.FindProperty("encounterArtworkOffset"));
         EditorGUILayout.PropertyField(cardFaceArtwork);
         EditorGUILayout.PropertyField(cardObject.FindProperty("cardFaceIncludesName"));
 
