@@ -28,7 +28,7 @@ Do not put fundamental actions into the player deck. Bad draws should create tac
 
 ## Core Actions
 
-- `Descend`: always available. Advances deeper and normally commits the current Hooked creature to the Catch Chain unless a technique or special effect avoids, redirects, or replaces it.
+- `Descend`: always available. Advances deeper and normally commits the current Hooked creature to the Catch Chain unless a technique or special effect avoids, redirects, or replaces it. Before commitment, the player selects the card's Catch or Bait effect; only that selected effect set activates.
 - `Release`: always available. Drops an existing caught creature/item from the Catch Chain, immediately reducing Line Load but losing value and passive/run effects. Release does not advance depth and does not resolve the current Hooked encounter.
 - `Surface`: always available. Ends the descent and attempts to bring the remaining Catch Chain home as the haul.
 
@@ -47,6 +47,8 @@ There is no free universal Skip action. Avoiding an unwanted catch requires a te
 Caught creatures/items remain attached to the fishing rig while the player continues descending. The chain is both a visible vertical record and a mechanical system.
 
 - Every caught card usually contributes value and Line Load.
+- Every attached card records whether it was committed as a Catch or as Bait. Bait cards remain in the same chain and are visibly marked.
+- Only the effect set matching the card's stored Catch/Bait role is active.
 - Many caught cards can provide passive effects while attached.
 - Existing catches can influence future encounters.
 - Releasing a catch removes its weight, value, passive effects, attraction modifiers, and synergies.

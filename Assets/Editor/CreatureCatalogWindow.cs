@@ -242,7 +242,11 @@ public sealed class CreatureCatalogWindow : EditorWindow
             "minimumCaughtValue",
             "maximumCaughtValue");
         DrawSection("Availability Constraints", cardObject, "biomeIds", "minimumDepth", "maximumDepth");
-        DrawSection("Effects", cardObject, "effects");
+        DrawSection("Catch Effects", cardObject, "effects");
+        EditorGUILayout.HelpBox(
+            "When Bait Effects is empty, the card temporarily uses its Catch Effects as the Bait fallback. Add any Bait Effect entry to replace that fallback.",
+            MessageType.None);
+        DrawSection("Bait Effects", cardObject, "baitEffects");
         bool cardFieldsChanged = EditorGUI.EndChangeCheck();
 
         if (cardObject.ApplyModifiedProperties())
@@ -327,14 +331,22 @@ public sealed class CreatureCatalogWindow : EditorWindow
     private static void DrawRulesTextSection(SerializedObject cardObject)
     {
         EditorGUILayout.Space(6f);
-        EditorGUILayout.LabelField("Rules Text", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Catch / Bait Rules Text", EditorStyles.boldLabel);
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+        EditorGUILayout.LabelField("Catch", EditorStyles.miniBoldLabel);
         EditorGUILayout.PropertyField(cardObject.FindProperty("rulesText"), true);
         EditorGUILayout.Space(4f);
         EditorGUILayout.HelpBox(
             "Add a highlighted word or phrase, then choose its color and relative size. Every matching occurrence is styled on the central encounter card. Whole Word prevents partial matches inside longer words.",
             MessageType.None);
         EditorGUILayout.PropertyField(cardObject.FindProperty("rulesTextHighlights"), true);
+        EditorGUILayout.Space(8f);
+        EditorGUILayout.LabelField("Bait", EditorStyles.miniBoldLabel);
+        EditorGUILayout.HelpBox(
+            "Leave Bait Rules Text and highlights empty to mirror the Catch presentation until a distinct Bait effect is authored.",
+            MessageType.None);
+        EditorGUILayout.PropertyField(cardObject.FindProperty("baitRulesText"), true);
+        EditorGUILayout.PropertyField(cardObject.FindProperty("baitRulesTextHighlights"), true);
         EditorGUILayout.EndVertical();
     }
 

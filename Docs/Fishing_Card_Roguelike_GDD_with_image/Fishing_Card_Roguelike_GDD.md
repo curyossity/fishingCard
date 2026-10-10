@@ -90,7 +90,7 @@ The game is structured around **actions**, not a separate turn system. A core ac
 
 | **Core action** | **Purpose**                                                                                                                   | **Design rule**                                                                                                                                                                                                            |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Descend         | Move deeper and commit the current Hooked catch to the Catch Chain unless a technique card avoids, redirects, or replaces it. | Always available. Descending is the default way to accept the current catch and continue. Technique cards can alter how far or how safely the player descends, or allow the player to pass an encounter without taking it. |
+| Descend         | Move deeper and commit the current Hooked card to the Catch Chain in its selected Catch or Bait role unless a technique card avoids, redirects, or replaces it. | Always available. Descending is the default way to accept the current card and continue. Only the selected Catch/Bait effect set activates. Technique cards can alter how far or how safely the player descends, or allow the player to pass an encounter without taking it. |
 | Release         | Drop a previously caught creature or item from the line.                                                                      | Reduces load immediately, but permanently loses that card's sale value and any passive/run effect. Release does not advance the descent; the player remains at the current depth and must still resolve the current encounter afterward. |
 | Surface         | End the descent and attempt to bring the remaining catch home.                                                                | Everything that successfully returns becomes the player's haul and can be sold/used in progression.                                                                                                                        |
 
@@ -107,9 +107,11 @@ descent commits that card to the Catch Chain.
 - Hooked: the creature is attached to the rig as the current unresolved
   encounter. This is the player's reaction window.
 
-- Caught: when the player Descends without avoiding or replacing the
-  Hooked creature, it becomes a permanent part of the current Catch
-  Chain.
+- Attached: before Descend, the player selects the Hooked card's Catch
+  or Bait effect. When committed, the card records that role and becomes
+  a permanent part of the current Catch Chain. Only the selected role's
+  effects activate. Bait-role cards remain visible in the chain with a
+  distinct marker.
 
 - There is no free universal Skip action. Avoiding an unwanted catch
   requires a technique card, equipment effect, creature effect, or
@@ -136,11 +138,11 @@ descent commits that card to the Catch Chain.
     prepare the line, or alter the next descent.
 
 5.  If the player Descends without an avoidance/replacement effect, the
-    Hooked creature is automatically committed to the Catch Chain before
-    the next encounter is reached.
+    Hooked creature is automatically committed to the Catch Chain in its
+    selected Catch or Bait role before the next encounter is reached.
 
-6.  The new catch increases Line Load and any passive or downside effect
-    may immediately change the run.
+6.  The new attached card increases Line Load and only its selected role's
+    passive or downside effects may immediately change the run.
 
 7.  Choose whether to keep descending, release an existing catch to
     reduce load or remove its effect, or surface with the current haul.

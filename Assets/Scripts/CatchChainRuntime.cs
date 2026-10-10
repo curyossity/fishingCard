@@ -48,12 +48,22 @@ public sealed class CatchChainRuntime
         EffectResolver effectResolver,
         System.Random random = null)
     {
+        return Add(caughtCard, effectResolver, CatchAttachmentRole.Catch, random);
+    }
+
+    /// <summary>Adds a committed encounter in the selected Catch or Bait role.</summary>
+    public CardInstance Add(
+        CardDefinition caughtCard,
+        EffectResolver effectResolver,
+        CatchAttachmentRole attachmentRole,
+        System.Random random = null)
+    {
         if (caughtCard == null)
         {
             return null;
         }
 
-        CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard, random);
+        CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard, random, attachmentRole);
         nextInstanceId++;
         ApplyPendingNextCatchEffects(caughtInstance, true);
         catches = AppendCatch(catches, caughtInstance);
@@ -194,8 +204,7 @@ public sealed class CatchChainRuntime
         }
 
         if (removalReason != CatchRemovalReason.LineStrain
-            && releasedCatch.Definition != null
-            && releasedCatch.Definition.PreventsReleaseWhileCaught)
+            && releasedCatch.PreventsReleaseWhileAttached)
         {
             validationMessage = $"{releasedCatch.Definition.DisplayName} cannot be released once caught.";
             releasedCatch = null;
@@ -258,7 +267,10 @@ public sealed class CatchChainRuntime
     /// <summary>
     /// Resolves a temporary catch copy against the current chain without mutating the active run.
     /// </summary>
-    public CardInstance CreateResolvedCatchPreview(CardDefinition card, EffectResolver effectResolver)
+    public CardInstance CreateResolvedCatchPreview(
+        CardDefinition card,
+        EffectResolver effectResolver,
+        CatchAttachmentRole attachmentRole = CatchAttachmentRole.Catch)
     {
         if (card == null || effectResolver == null)
         {
@@ -266,7 +278,7 @@ public sealed class CatchChainRuntime
         }
 
         CardInstance[] previewCatches = CreateSnapshot();
-        CardInstance previewCatch = new CardInstance(0, card);
+        CardInstance previewCatch = new CardInstance(0, card, null, attachmentRole);
         ApplyPendingNextCatchEffects(previewCatch, false);
         previewCatches = AppendCatch(previewCatches, previewCatch);
 
@@ -289,7 +301,7 @@ public sealed class CatchChainRuntime
                 continue;
             }
 
-            int effectIndex = Array.IndexOf(record.SourceInstance.Definition.Effects, record.Effect);
+            int effectIndex = Array.IndexOf(record.SourceInstance.ActiveEffects, record.Effect);
             if (effectIndex >= 0)
             {
                 consumedNextEncounterEffectKeys = AppendEffectKey(
@@ -338,16 +350,16 @@ public sealed class CatchChainRuntime
         CardInstance previewCatch,
         int catchIndex)
     {
-        CardDefinition card = previewCatch?.Definition;
+        CardEffectDefinition[] effects = previewCatch?.ActiveEffects;
 
-        if (card == null || card.Effects == null)
+        if (effects == null)
         {
             return;
         }
 
-        for (int i = 0; i < card.Effects.Length; i++)
+        for (int i = 0; i < effects.Length; i++)
         {
-            CardEffectDefinition effect = card.Effects[i];
+            CardEffectDefinition effect = effects[i];
 
             if (effect == null
                 || (effect.Trigger != CardEffectTrigger.WhenCaught
@@ -382,18 +394,18 @@ public sealed class CatchChainRuntime
     /// </summary>
     private void AddActiveEffects(CardInstance sourceInstance, CardEffectTrigger trigger, int catchIndex)
     {
-        CardDefinition sourceCard = sourceInstance?.Definition;
+        CardEffectDefinition[] effects = sourceInstance?.ActiveEffects;
 
-        if (sourceCard == null || sourceCard.Effects == null)
+        if (effects == null)
         {
             return;
         }
 
         List<ActiveCatchEffectRecord> records = new List<ActiveCatchEffectRecord>(activeEffectRecords);
 
-        for (int i = 0; i < sourceCard.Effects.Length; i++)
+        for (int i = 0; i < effects.Length; i++)
         {
-            CardEffectDefinition effect = sourceCard.Effects[i];
+            CardEffectDefinition effect = effects[i];
 
             if (effect == null || effect.Trigger != trigger)
             {
@@ -435,7 +447,7 @@ public sealed class CatchChainRuntime
         for (int catchIndex = 0; catchIndex < catches.Length; catchIndex++)
         {
             CardInstance source = catches[catchIndex];
-            CardEffectDefinition[] effects = source?.Definition?.Effects;
+            CardEffectDefinition[] effects = source?.ActiveEffects;
             if (effects == null)
             {
                 continue;
@@ -594,7 +606,7 @@ public sealed class CatchChainRuntime
                 continue;
             }
 
-            int effectIndex = Array.IndexOf(source.Definition.Effects, record.Effect);
+            int effectIndex = Array.IndexOf(source.ActiveEffects, record.Effect);
             if (effectIndex >= 0)
             {
                 invalidatedNoReleaseEffectKeys = AppendEffectKey(
@@ -677,8 +689,8 @@ public sealed class CatchChainRuntime
     private static bool IsValidTechniqueTarget(CardEffectDefinition effect, CardInstance candidate)
     {
         return effect.EffectType != CardEffectType.ReleaseCatch
-            || candidate?.Definition == null
-            || !candidate.Definition.PreventsReleaseWhileCaught;
+            || candidate == null
+            || !candidate.PreventsReleaseWhileAttached;
     }
 
     /// <summary>

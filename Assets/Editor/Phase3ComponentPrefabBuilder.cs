@@ -865,6 +865,7 @@ public static class Phase3ComponentPrefabBuilder
         Require(prefab.transform.Find("Effect Text") == null, "Compact cards must not show full effect descriptions.");
         Require(prefab.transform.Find("Passive Effect Icon") == null, "Passive icon must remain inside its fixed socket.");
         Require(prefab.transform.Find("Passive Effect Socket/Passive Effect Icon") != null, "Passive effect icon slot is missing.");
+        Require(prefab.transform.Find("Bait Marker") != null, "Compact catch card has no Bait role marker.");
         Require(prefab.transform.Find("Selected Frame") != null, "Selected state frame is missing.");
         Require(prefab.transform.Find("Disabled Hatch") != null, "Disabled hatch state is missing.");
         Require(prefab.transform.Find("Release Candidate Frame") != null, "Release candidate frame is missing.");

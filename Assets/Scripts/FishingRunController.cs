@@ -108,6 +108,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (fishingRunView != null)
         {
             fishingRunView.SurfaceTransitionCompleted += HandleSurfaceTransitionCompleted;
+            fishingRunView.EncounterEffectChoiceChanged += HandleEncounterEffectChoiceChanged;
         }
 
         if (startRunOnAwake)
@@ -121,6 +122,16 @@ public sealed class FishingRunController : MonoBehaviour
         if (fishingRunView != null)
         {
             fishingRunView.SurfaceTransitionCompleted -= HandleSurfaceTransitionCompleted;
+            fishingRunView.EncounterEffectChoiceChanged -= HandleEncounterEffectChoiceChanged;
+        }
+    }
+
+    /// <summary>Refreshes the selected role's preview without resolving either effect before Descend.</summary>
+    private void HandleEncounterEffectChoiceChanged(EncounterEffectChoice choice)
+    {
+        if (runActive)
+        {
+            RefreshViews();
         }
     }
 
@@ -278,13 +289,17 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
+        CatchAttachmentRole attachmentRole = fishingRunView != null
+            && fishingRunView.SelectedEncounterEffectChoice == EncounterEffectChoice.Bait
+                ? CatchAttachmentRole.Bait
+                : CatchAttachmentRole.Catch;
         CardDefinition caughtCard = encounterRuntime.TakeHookedEncounter();
         CardInstance committedCatch = null;
         catchChainRuntime.CompleteEncounter(effectResolver);
 
         if (caughtCard != null)
         {
-            committedCatch = catchChainRuntime.Add(caughtCard, effectResolver, random);
+            committedCatch = catchChainRuntime.Add(caughtCard, effectResolver, attachmentRole, random);
             biomeApexRuntime.RecordCommittedApex(caughtCard);
         }
 
@@ -311,7 +326,7 @@ public sealed class FishingRunController : MonoBehaviour
         RevealEncounterAtCurrentDepth();
 
         RefreshViews();
-        Debug.Log(BuildDescendSummary(caughtCard, strainLostCatches, techniqueResolution, effectiveCapacity), this);
+        Debug.Log(BuildDescendSummary(committedCatch, strainLostCatches, techniqueResolution, effectiveCapacity), this);
         return true;
     }
 
@@ -845,9 +860,13 @@ public sealed class FishingRunController : MonoBehaviour
         if (fishingRunView != null)
         {
             CardDefinition currentEncounter = encounterRuntime.CurrentEncounter;
+            CatchAttachmentRole previewRole = fishingRunView.SelectedEncounterEffectChoice == EncounterEffectChoice.Bait
+                ? CatchAttachmentRole.Bait
+                : CatchAttachmentRole.Catch;
             CardInstance encounterPreview = catchChainRuntime.CreateResolvedCatchPreview(
                 currentEncounter,
-                effectResolver);
+                effectResolver,
+                previewRole);
             int resolvedEncounterWeight = 0;
             int resolvedEncounterValue = 0;
 
@@ -998,7 +1017,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// Builds the Descend log from catch, depth, load, and encounter state.
     /// </summary>
     private string BuildDescendSummary(
-        CardDefinition caughtCard,
+        CardInstance committedCatch,
         CardInstance[] strainLostCatches,
         TechniqueDescendResolution techniqueResolution,
         int effectiveCapacity)
@@ -1006,7 +1025,11 @@ public sealed class FishingRunController : MonoBehaviour
         StringBuilder summary = new StringBuilder();
         summary.AppendLine("Descend resolved.");
         summary.Append("Caught: ");
-        summary.Append(caughtCard == null ? "none" : caughtCard.DisplayName);
+        summary.Append(committedCatch?.Definition == null ? "none" : committedCatch.Definition.DisplayName);
+        if (committedCatch != null)
+        {
+            summary.Append($" ({committedCatch.AttachmentRole})");
+        }
         summary.AppendLine();
         summary.AppendLine($"Depth: {currentDepth}");
         summary.AppendLine($"Depth Tier: {(CurrentDepthTier == null ? "none" : CurrentDepthTier.DisplayName)}");
@@ -1044,7 +1067,7 @@ public sealed class FishingRunController : MonoBehaviour
             : encounterRuntime.CurrentEncounter.DisplayName;
 
         string releasedName = releasedCatch?.Definition == null ? "unknown catch" : releasedCatch.Definition.DisplayName;
-        string releasedValue = releasedCatch?.Definition != null && releasedCatch.Definition.HidesOwnValueDuringRun
+        string releasedValue = releasedCatch != null && releasedCatch.HidesOwnValueDuringRun
             ? "?"
             : (releasedCatch?.CurrentValue ?? 0).ToString();
 

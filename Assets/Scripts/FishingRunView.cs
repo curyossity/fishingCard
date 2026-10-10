@@ -286,8 +286,12 @@ public sealed class FishingRunView : MonoBehaviour
     public Canvas TransitionLayer => transitionLayer;
     public Canvas ModalLayer => modalLayer;
     public bool IsSurfaceTransitionPlaying => surfaceTransitionCoroutine != null;
+    public EncounterEffectChoice SelectedEncounterEffectChoice => encounterCardView == null
+        ? EncounterEffectChoice.Catch
+        : encounterCardView.SelectedEffectChoice;
     public event Action SettingsRequested;
     public event Action SurfaceTransitionCompleted;
+    public event Action<EncounterEffectChoice> EncounterEffectChoiceChanged;
 
     /// <summary>
     /// Builds the runtime gameplay composition before its first state refresh.
@@ -379,6 +383,11 @@ public sealed class FishingRunView : MonoBehaviour
         }
         else
         {
+            if (!hasPresentedEncounter && IsCatchCard(encounter))
+            {
+                encounterCardView.SelectEffectChoice(EncounterEffectChoice.Catch, false);
+            }
+
             encounterCardView.SetCard(
                 encounter,
                 resolvedEncounterWeight,
@@ -701,7 +710,18 @@ public sealed class FishingRunView : MonoBehaviour
         aspectRatio.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
         aspectRatio.aspectRatio = CreatureCardView.ReferenceAspectRatio;
         cardView.Initialize(fallbackCreatureCardFace, rarityHookSprite);
+        cardView.EffectChoiceChanged += HandleEncounterEffectChoiceChanged;
 
+    }
+
+    private void HandleEncounterEffectChoiceChanged(
+        CreatureCardView source,
+        EncounterEffectChoice choice)
+    {
+        if (source == encounterCardView)
+        {
+            EncounterEffectChoiceChanged?.Invoke(choice);
+        }
     }
 
     /// <summary>Stores one presentation snapshot per visited depth for the later Surface journey.</summary>
@@ -746,6 +766,7 @@ public sealed class FishingRunView : MonoBehaviour
 
         standbyEncounterCardMotionRoot.SetAsLastSibling();
         standbyEncounterCardMotionRoot.gameObject.SetActive(true);
+        standbyEncounterCardView.SelectEffectChoice(EncounterEffectChoice.Catch, false);
         standbyEncounterCardView.SetCard(
             encounter,
             resolvedEncounterWeight,

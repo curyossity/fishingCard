@@ -1,6 +1,12 @@
 using System;
 using UnityEngine;
 
+public enum CatchAttachmentRole
+{
+    Catch,
+    Bait
+}
+
 [Serializable]
 public sealed class CardInstance
 {
@@ -11,6 +17,7 @@ public sealed class CardInstance
     [SerializeField] private int baseValue;
     [SerializeField] private int currentWeight;
     [SerializeField] private int currentValue;
+    [SerializeField] private CatchAttachmentRole attachmentRole;
 
     public int InstanceId => instanceId;
     public CardDefinition Definition => definition;
@@ -21,6 +28,17 @@ public sealed class CardInstance
     public int BaseValue => baseValue;
     public int WeightModifier => definition == null ? 0 : currentWeight - definition.Weight;
     public int ValueModifier => definition == null ? 0 : currentValue - baseValue;
+    public CatchAttachmentRole AttachmentRole => attachmentRole;
+    public bool IsBait => attachmentRole == CatchAttachmentRole.Bait;
+    public CardEffectDefinition[] ActiveEffects => definition == null
+        ? Array.Empty<CardEffectDefinition>()
+        : definition.GetEffects(attachmentRole);
+    public bool HidesOwnValueDuringRun => HasActiveEffect(
+        CardEffectType.HideEncounterInformation,
+        CardEffectTarget.Self);
+    public bool PreventsReleaseWhileAttached => HasActiveEffect(
+        CardEffectType.PreventRelease,
+        CardEffectTarget.Self);
 
     /// <summary>
     /// Creates an empty runtime card for Unity serialization.
@@ -32,10 +50,15 @@ public sealed class CardInstance
     /// <summary>
     /// Creates one independently mutable runtime copy of a card definition.
     /// </summary>
-    public CardInstance(int instanceId, CardDefinition definition, System.Random random = null)
+    public CardInstance(
+        int instanceId,
+        CardDefinition definition,
+        System.Random random = null,
+        CatchAttachmentRole attachmentRole = CatchAttachmentRole.Catch)
     {
         this.instanceId = instanceId;
         this.definition = definition;
+        this.attachmentRole = attachmentRole;
         baseValue = definition == null ? 0 : definition.RollCaughtValue(random);
         ResetCurrentStats();
     }
@@ -79,12 +102,27 @@ public sealed class CardInstance
     /// </summary>
     public CardInstance CreateSnapshot()
     {
-        CardInstance snapshot = new CardInstance(instanceId, definition);
+        CardInstance snapshot = new CardInstance(instanceId, definition, null, attachmentRole);
         snapshot.baseValue = baseValue;
         snapshot.permanentWeightModifier = permanentWeightModifier;
         snapshot.permanentValueModifier = permanentValueModifier;
         snapshot.currentWeight = currentWeight;
         snapshot.currentValue = currentValue;
         return snapshot;
+    }
+
+    private bool HasActiveEffect(CardEffectType effectType, CardEffectTarget target)
+    {
+        CardEffectDefinition[] activeEffects = ActiveEffects;
+        for (int i = 0; i < activeEffects.Length; i++)
+        {
+            CardEffectDefinition effect = activeEffects[i];
+            if (effect != null && effect.EffectType == effectType && effect.Target == target)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

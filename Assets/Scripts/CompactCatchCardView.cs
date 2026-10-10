@@ -24,6 +24,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     [SerializeField] private TMP_Text weightText;
     [SerializeField] private TMP_Text valueText;
     [SerializeField] private Image passiveEffectIcon;
+    [SerializeField] private GameObject baitMarker;
     [SerializeField] private RectTransform rigAttachmentPoint;
 
     [Header("Interaction")]
@@ -68,14 +69,21 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
             caughtInstance == null ? string.Empty : caughtInstance.CurrentWeight.ToString(),
             caughtInstance == null
                 ? string.Empty
-                : definition.HidesOwnValueDuringRun ? "?" : caughtInstance.CurrentValue.ToString(),
-            optionalPassiveIcon);
+                : caughtInstance.HidesOwnValueDuringRun ? "?" : caughtInstance.CurrentValue.ToString(),
+            optionalPassiveIcon,
+            caughtInstance?.IsBait == true);
     }
 
     /// <summary>Populates direct values for editor previews and presentation tests.</summary>
-    public void SetPreview(string displayName, Sprite portrait, int weight, int value, Sprite optionalPassiveIcon)
+    public void SetPreview(
+        string displayName,
+        Sprite portrait,
+        int weight,
+        int value,
+        Sprite optionalPassiveIcon,
+        bool isBait = false)
     {
-        SetContent(displayName, portrait, weight.ToString(), value.ToString(), optionalPassiveIcon);
+        SetContent(displayName, portrait, weight.ToString(), value.ToString(), optionalPassiveIcon, isBait);
     }
 
     /// <summary>Assigns the controller-owned catch-selection command.</summary>
@@ -103,7 +111,13 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         ApplyState();
     }
 
-    private void SetContent(string displayName, Sprite portrait, string weight, string value, Sprite passiveIcon)
+    private void SetContent(
+        string displayName,
+        Sprite portrait,
+        string weight,
+        string value,
+        Sprite passiveIcon,
+        bool isBait)
     {
         SetText(nameText, displayName);
         SetText(weightText, weight);
@@ -111,6 +125,70 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         ConfigureTextPresentation();
         SetImage(portraitImage, portrait);
         SetImage(passiveEffectIcon, passiveIcon);
+        EnsureBaitMarker();
+        baitMarker.SetActive(isBait);
+    }
+
+    /// <summary>Creates a compact role badge for prefabs authored before Bait attachments existed.</summary>
+    private void EnsureBaitMarker()
+    {
+        if (baitMarker != null)
+        {
+            return;
+        }
+
+        baitMarker = new GameObject(
+            "Bait Marker",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(Image),
+            typeof(Outline));
+        baitMarker.layer = gameObject.layer;
+        RectTransform markerRect = baitMarker.GetComponent<RectTransform>();
+        markerRect.SetParent(transform, false);
+        markerRect.anchorMin = new Vector2(0.065f, 0.60f);
+        markerRect.anchorMax = new Vector2(0.235f, 0.71f);
+        markerRect.offsetMin = Vector2.zero;
+        markerRect.offsetMax = Vector2.zero;
+
+        Image markerBackground = baitMarker.GetComponent<Image>();
+        markerBackground.color = new Color32(13, 57, 58, 238);
+        markerBackground.raycastTarget = false;
+
+        Outline markerOutline = baitMarker.GetComponent<Outline>();
+        markerOutline.effectColor = new Color32(207, 163, 72, 255);
+        markerOutline.effectDistance = new Vector2(1.5f, -1.5f);
+        markerOutline.useGraphicAlpha = false;
+
+        GameObject labelObject = new GameObject(
+            "Label",
+            typeof(RectTransform),
+            typeof(CanvasRenderer),
+            typeof(TextMeshProUGUI));
+        labelObject.layer = gameObject.layer;
+        RectTransform labelRect = labelObject.GetComponent<RectTransform>();
+        labelRect.SetParent(markerRect, false);
+        labelRect.anchorMin = Vector2.zero;
+        labelRect.anchorMax = Vector2.one;
+        labelRect.offsetMin = new Vector2(3f, 1f);
+        labelRect.offsetMax = new Vector2(-3f, -1f);
+
+        TextMeshProUGUI label = labelObject.GetComponent<TextMeshProUGUI>();
+        label.text = "BAIT";
+        label.alignment = TextAlignmentOptions.Center;
+        label.color = new Color32(239, 226, 194, 255);
+        label.fontSize = 20f;
+        label.fontWeight = FontWeight.Bold;
+        label.raycastTarget = false;
+        if (nameText != null)
+        {
+            label.font = nameText.font;
+        }
+
+        if (hoverFrame != null)
+        {
+            markerRect.SetSiblingIndex(hoverFrame.transform.GetSiblingIndex());
+        }
     }
 
     /// <summary>Aligns runtime text with the master card's authored title and stat regions.</summary>

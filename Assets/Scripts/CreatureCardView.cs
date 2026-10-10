@@ -4,6 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum EncounterEffectChoice
+{
+    Catch,
+    Bait
+}
+
 /// <summary>Renders catchable and event encounters from supplied visual layers and runtime-owned fields.</summary>
 public sealed class CreatureCardView : MonoBehaviour
 {
@@ -25,6 +31,8 @@ public sealed class CreatureCardView : MonoBehaviour
     private static readonly Color32 TagTooltipBackgroundColor = new Color32(14, 50, 52, 245);
     private static readonly Color32 TagTooltipBorderColor = new Color32(196, 157, 82, 255);
     private static readonly Color32 TagTooltipTextColor = new Color32(239, 226, 194, 255);
+    private static readonly Color32 SelectedEffectOverlayColor = new Color32(21, 91, 85, 30);
+    private static readonly Color32 SelectedEffectBorderColor = new Color32(197, 151, 62, 235);
 
     [Header("Supplied Visual Layers")]
     [SerializeField] private Image cardBackground;
@@ -59,6 +67,14 @@ public sealed class CreatureCardView : MonoBehaviour
     private RectTransform tagTooltipRoot;
     private TMP_Text tagTooltipText;
     private CardTagTooltipTrigger activeTagTooltipTrigger;
+    private Button catchEffectButton;
+    private Button baitEffectButton;
+    private Image catchEffectSelectionImage;
+    private Image baitEffectSelectionImage;
+    private Outline catchEffectSelectionOutline;
+    private Outline baitEffectSelectionOutline;
+    private CardDefinition displayedCard;
+    private EncounterEffectChoice selectedEffectChoice = EncounterEffectChoice.Catch;
 
     [Header("Fallback Assets")]
     [SerializeField] private Sprite fallbackCardFace;
@@ -67,6 +83,8 @@ public sealed class CreatureCardView : MonoBehaviour
 
     public int AnchorSlotCount => anchorMarkers == null ? 0 : anchorMarkers.Length;
     public Image InteractionOverlay => interactionOverlay;
+    public EncounterEffectChoice SelectedEffectChoice => selectedEffectChoice;
+    public event Action<CreatureCardView, EncounterEffectChoice> EffectChoiceChanged;
 
     /// <summary>Preserves the existing setup API while prefab references own the card geometry.</summary>
     public void Initialize(Sprite newFallbackCardFace, Sprite newRarityHookSprite)
@@ -89,16 +107,27 @@ public sealed class CreatureCardView : MonoBehaviour
     {
         if (card == null)
         {
+            displayedCard = null;
             ClearFields();
             gameObject.SetActive(false);
             return;
         }
 
         gameObject.SetActive(true);
+        bool isNewCard = displayedCard != card;
+        displayedCard = card;
         Sprite encounterArtwork = card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
         bool usesCatchLayout = UsesCatchCardLayout(card.CardType);
+        if (isNewCard && usesCatchLayout)
+        {
+            SelectEffectChoice(EncounterEffectChoice.Catch, false);
+        }
+
         ApplyReferenceAspectRatio(usesCatchLayout);
-        bool hideOwnValue = card.HidesOwnValueDuringRun;
+        CatchAttachmentRole previewRole = selectedEffectChoice == EncounterEffectChoice.Bait
+            ? CatchAttachmentRole.Bait
+            : CatchAttachmentRole.Catch;
+        bool hideOwnValue = card.HidesOwnValueDuringRunForRole(previewRole);
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(
@@ -112,6 +141,9 @@ public sealed class CreatureCardView : MonoBehaviour
             informationHidden
                 ? string.Empty
                 : BuildHighlightedRulesText(card.RulesText, card.RulesTextHighlights),
+            informationHidden
+                ? string.Empty
+                : BuildHighlightedRulesText(card.BaitRulesText, card.BaitRulesTextHighlights),
             card.Tags,
             card.Rarity,
             usesCatchLayout,
@@ -140,6 +172,7 @@ public sealed class CreatureCardView : MonoBehaviour
             fallbackCardFace,
             FormatWeight(Mathf.Max(0, weight)),
             FormatValue(Mathf.Max(0, value)),
+            rules,
             rules,
             Array.Empty<string>(),
             rarity,
@@ -198,7 +231,8 @@ public sealed class CreatureCardView : MonoBehaviour
         Sprite background,
         string weight,
         string value,
-        string rules,
+        string catchRules,
+        string baitRules,
         string[] tags,
         CardRarity rarity,
         bool usesCatchLayout,
@@ -225,8 +259,8 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(cardNameText, displayName);
         SetText(weightText, weight);
         SetText(valueText, value);
-        SetText(effectText, rules);
-        SetText(baitEffectText, rules);
+        SetText(effectText, catchRules);
+        SetText(baitEffectText, baitRules);
         if (usesCatchLayout)
         {
             RefreshRarityAnchors(rarity);
@@ -243,6 +277,7 @@ public sealed class CreatureCardView : MonoBehaviour
     private void ApplyCardLayout(bool usesCatchLayout)
     {
         EnsureDualEffectFields();
+        EnsureEffectChoiceButtons();
         SetParentActive(weightText, usesCatchLayout);
         SetParentActive(valueText, usesCatchLayout);
 
@@ -284,6 +319,7 @@ public sealed class CreatureCardView : MonoBehaviour
 
         ConfigureEffectText(effectText, usesCatchLayout);
         ConfigureEffectText(baitEffectText, usesCatchLayout);
+        SetEffectChoiceButtonsActive(usesCatchLayout);
     }
 
     /// <summary>Supports existing prefabs while the editor builder authors both supplied effect regions.</summary>
@@ -325,6 +361,165 @@ public sealed class CreatureCardView : MonoBehaviour
         text.rectTransform.offsetMax = usesCatchLayout
             ? new Vector2(-12f, -8f)
             : new Vector2(-22f, -10f);
+    }
+
+    /// <summary>Turns the two supplied effect panels into separate reusable selection controls.</summary>
+    private void EnsureEffectChoiceButtons()
+    {
+        if (catchEffectButton == null)
+        {
+            ConfigureEffectChoiceButton(
+                rulesRegion,
+                EncounterEffectChoice.Catch,
+                out catchEffectButton,
+                out catchEffectSelectionImage,
+                out catchEffectSelectionOutline);
+        }
+
+        if (baitEffectButton == null)
+        {
+            ConfigureEffectChoiceButton(
+                baitRulesRegion,
+                EncounterEffectChoice.Bait,
+                out baitEffectButton,
+                out baitEffectSelectionImage,
+                out baitEffectSelectionOutline);
+        }
+    }
+
+    private void ConfigureEffectChoiceButton(
+        RectTransform region,
+        EncounterEffectChoice choice,
+        out Button button,
+        out Image selectionImage,
+        out Outline selectionOutline)
+    {
+        button = null;
+        selectionImage = null;
+        selectionOutline = null;
+        if (region == null)
+        {
+            return;
+        }
+
+        selectionImage = region.GetComponent<Image>();
+        if (selectionImage == null)
+        {
+            selectionImage = region.gameObject.AddComponent<Image>();
+        }
+
+        selectionImage.sprite = null;
+        selectionImage.type = Image.Type.Simple;
+        selectionImage.raycastTarget = true;
+
+        CanvasGroup raycastGroup = region.GetComponent<CanvasGroup>();
+        if (raycastGroup == null)
+        {
+            raycastGroup = region.gameObject.AddComponent<CanvasGroup>();
+        }
+
+        raycastGroup.interactable = true;
+        raycastGroup.blocksRaycasts = true;
+        raycastGroup.ignoreParentGroups = true;
+
+        selectionOutline = region.GetComponent<Outline>();
+        if (selectionOutline == null)
+        {
+            selectionOutline = region.gameObject.AddComponent<Outline>();
+        }
+
+        selectionOutline.effectColor = SelectedEffectBorderColor;
+        selectionOutline.effectDistance = new Vector2(2f, -2f);
+        selectionOutline.useGraphicAlpha = false;
+
+        button = region.GetComponent<Button>();
+        if (button == null)
+        {
+            button = region.gameObject.AddComponent<Button>();
+        }
+
+        button.targetGraphic = selectionImage;
+        button.transition = Selectable.Transition.None;
+        if (choice == EncounterEffectChoice.Catch)
+        {
+            button.onClick.RemoveListener(SelectCatchEffect);
+            button.onClick.AddListener(SelectCatchEffect);
+        }
+        else
+        {
+            button.onClick.RemoveListener(SelectBaitEffect);
+            button.onClick.AddListener(SelectBaitEffect);
+        }
+    }
+
+    private void SelectCatchEffect()
+    {
+        SelectEffectChoice(EncounterEffectChoice.Catch, true);
+    }
+
+    private void SelectBaitEffect()
+    {
+        SelectEffectChoice(EncounterEffectChoice.Bait, true);
+    }
+
+    private void SetEffectChoiceButtonsActive(bool active)
+    {
+        if (catchEffectButton != null)
+        {
+            catchEffectButton.enabled = active;
+            catchEffectButton.interactable = active;
+        }
+
+        if (baitEffectButton != null)
+        {
+            baitEffectButton.enabled = active;
+            baitEffectButton.interactable = active;
+        }
+
+        ApplyEffectChoiceVisuals(active);
+    }
+
+    /// <summary>Selects one built-in effect panel without assigning gameplay behavior to it.</summary>
+    public void SelectEffectChoice(EncounterEffectChoice choice, bool notify = true)
+    {
+        selectedEffectChoice = choice;
+        ApplyEffectChoiceVisuals(true);
+        if (notify)
+        {
+            EffectChoiceChanged?.Invoke(this, choice);
+        }
+    }
+
+    private void ApplyEffectChoiceVisuals(bool active)
+    {
+        ApplyEffectChoiceVisual(
+            catchEffectSelectionImage,
+            catchEffectSelectionOutline,
+            active && selectedEffectChoice == EncounterEffectChoice.Catch,
+            active);
+        ApplyEffectChoiceVisual(
+            baitEffectSelectionImage,
+            baitEffectSelectionOutline,
+            active && selectedEffectChoice == EncounterEffectChoice.Bait,
+            active);
+    }
+
+    private static void ApplyEffectChoiceVisual(
+        Image image,
+        Outline outline,
+        bool selected,
+        bool active)
+    {
+        if (image != null)
+        {
+            image.enabled = active;
+            image.color = selected ? SelectedEffectOverlayColor : Color.clear;
+        }
+
+        if (outline != null)
+        {
+            outline.enabled = active && selected;
+        }
     }
 
     /// <summary>Applies authored TMP color and relative-size tags to matching rules-text phrases.</summary>

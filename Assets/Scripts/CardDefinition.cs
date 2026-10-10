@@ -27,6 +27,10 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private string rulesText;
     [SerializeField] private CardTextHighlightDefinition[] rulesTextHighlights =
         Array.Empty<CardTextHighlightDefinition>();
+    [TextArea(2, 5)]
+    [SerializeField] private string baitRulesText;
+    [SerializeField] private CardTextHighlightDefinition[] baitRulesTextHighlights =
+        Array.Empty<CardTextHighlightDefinition>();
 
     [Header("Catch Stats")]
     [Min(0)]
@@ -45,8 +49,10 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private int minimumDepth;
     [SerializeField] private int maximumDepth = -1;
 
-    [Header("Effects")]
+    [Header("Catch Effects")]
     [SerializeField] private CardEffectDefinition[] effects = Array.Empty<CardEffectDefinition>();
+    [Header("Bait Effects")]
+    [SerializeField] private CardEffectDefinition[] baitEffects = Array.Empty<CardEffectDefinition>();
 
     public string UniqueId => uniqueId;
     public string DisplayName => displayName;
@@ -63,6 +69,11 @@ public class CardDefinition : ScriptableObject
     public bool CardFaceIncludesName => cardFaceIncludesName;
     public string RulesText => rulesText;
     public CardTextHighlightDefinition[] RulesTextHighlights => rulesTextHighlights;
+    public string BaitRulesText => string.IsNullOrWhiteSpace(baitRulesText) ? rulesText : baitRulesText;
+    public CardTextHighlightDefinition[] BaitRulesTextHighlights =>
+        baitRulesTextHighlights != null && baitRulesTextHighlights.Length > 0
+            ? baitRulesTextHighlights
+            : rulesTextHighlights;
     public int Weight => weight;
     public int Value => value;
     public bool RandomizesValueWhenCaught => randomizeValueWhenCaught;
@@ -72,23 +83,38 @@ public class CardDefinition : ScriptableObject
     public int MinimumDepth => minimumDepth;
     public int MaximumDepth => maximumDepth;
     public CardEffectDefinition[] Effects => effects;
+    public CardEffectDefinition[] BaitEffects =>
+        baitEffects != null && baitEffects.Length > 0 ? baitEffects : effects;
 
     public bool HasWeight => weight > 0;
     public bool HasValue => value > 0 || (randomizeValueWhenCaught && maximumCaughtValue > 0);
     public bool HidesOwnValueDuringRun => HasEffect(CardEffectType.HideEncounterInformation, CardEffectTarget.Self);
     public bool PreventsReleaseWhileCaught => HasEffect(CardEffectType.PreventRelease, CardEffectTarget.Self);
 
+    public bool HidesOwnValueDuringRunForRole(CatchAttachmentRole role)
+    {
+        return HasEffect(GetEffects(role), CardEffectType.HideEncounterInformation, CardEffectTarget.Self);
+    }
+
     /// <summary>Reports whether this definition contains one effect with the requested type and target.</summary>
     private bool HasEffect(CardEffectType effectType, CardEffectTarget target)
     {
-        if (effects == null)
+        return HasEffect(effects, effectType, target);
+    }
+
+    private static bool HasEffect(
+        CardEffectDefinition[] sourceEffects,
+        CardEffectType effectType,
+        CardEffectTarget target)
+    {
+        if (sourceEffects == null)
         {
             return false;
         }
 
-        for (int i = 0; i < effects.Length; i++)
+        for (int i = 0; i < sourceEffects.Length; i++)
         {
-            CardEffectDefinition effect = effects[i];
+            CardEffectDefinition effect = sourceEffects[i];
             if (effect != null && effect.EffectType == effectType && effect.Target == target)
             {
                 return true;
@@ -117,6 +143,17 @@ public class CardDefinition : ScriptableObject
             }
         }
 
+        if (baitRulesTextHighlights == null)
+        {
+            baitRulesTextHighlights = Array.Empty<CardTextHighlightDefinition>();
+        }
+        else
+        {
+            for (int i = 0; i < baitRulesTextHighlights.Length; i++)
+            {
+                baitRulesTextHighlights[i]?.EnsureValid();
+            }
+        }
         if (CreatureTagVocabulary.AppliesTo(cardType))
         {
             tags = CreatureTagVocabulary.Normalize(tags);
@@ -134,6 +171,12 @@ public class CardDefinition : ScriptableObject
         int safeMinimum = Mathf.Max(0, minimumCaughtValue);
         int safeMaximum = Mathf.Max(safeMinimum, maximumCaughtValue);
         return random.Next(safeMinimum, safeMaximum + 1);
+    }
+
+    /// <summary>Returns exactly one authored effect set for the role selected before Descend.</summary>
+    public CardEffectDefinition[] GetEffects(CatchAttachmentRole role)
+    {
+        return role == CatchAttachmentRole.Bait ? BaitEffects : Effects;
     }
 
     /// <summary>
