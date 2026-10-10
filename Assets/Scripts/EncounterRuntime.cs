@@ -113,6 +113,52 @@ public sealed class EncounterRuntime
         return true;
     }
 
+    /// <summary>Samples distinct eligible ordinary creatures without advancing encounter chains or repetition history.</summary>
+    public CardDefinition[] OfferCreatures(
+        CardDefinition[] pool,
+        string biomeId,
+        int depth,
+        int count,
+        System.Random random,
+        ActiveCatchEffectRecord[] attachedEffects,
+        EffectResolver resolver,
+        CardEffectDefinition[] temporaryEffects = null)
+    {
+        List<CardDefinition> candidates = new List<CardDefinition>();
+        List<int> weights = new List<int>();
+        HashSet<string> ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (CardDefinition card in pool ?? Array.Empty<CardDefinition>())
+        {
+            if (card == null || card.CardType != CardType.Creature
+                || !card.IsAvailableInBiome(biomeId) || !card.IsAvailableAtDepth(depth)
+                || candidates.Contains(card)
+                || (!string.IsNullOrEmpty(card.UniqueId) && !ids.Add(card.UniqueId)))
+            {
+                continue;
+            }
+
+            candidates.Add(card);
+            weights.Add(resolver.GetEncounterSelectionWeight(card, attachedEffects, temporaryEffects));
+        }
+
+        List<CardDefinition> offers = new List<CardDefinition>();
+        while (offers.Count < count && candidates.Count > 0)
+        {
+            int total = 0;
+            foreach (int weight in weights)
+            {
+                total += weight;
+            }
+
+            int selected = SelectWeightedIndex(weights, total, random);
+            offers.Add(candidates[selected]);
+            candidates.RemoveAt(selected);
+            weights.RemoveAt(selected);
+        }
+
+        return offers.ToArray();
+    }
+
     /// <summary>
     /// Activates a preselected biome Apex through the normal Hooked encounter state.
     /// </summary>
@@ -225,6 +271,21 @@ public sealed class EncounterRuntime
         }
 
         return applicableEffects;
+    }
+
+    /// <summary>Removes one active negative reaction-window record without modifying its definition.</summary>
+    public bool TryRemoveNegativeEffect(int index)
+    {
+        if (index < 0 || index >= hookedEffectRecords.Length
+            || hookedEffectRecords[index]?.Effect?.EffectTone != CardEffectTone.Negative)
+        {
+            return false;
+        }
+
+        List<HookedEffectRecord> remaining = new List<HookedEffectRecord>(hookedEffectRecords);
+        remaining.RemoveAt(index);
+        hookedEffectRecords = remaining.ToArray();
+        return true;
     }
 
     /// <summary>

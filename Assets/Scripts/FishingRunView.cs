@@ -228,6 +228,7 @@ public sealed class FishingRunView : MonoBehaviour
     private static readonly Color ReleaseColor = new Color(0.78f, 0.32f, 0.28f, 1f);
     private static readonly Color MutedTextColor = new Color(0.65f, 0.71f, 0.73f, 1f);
 
+    private CreatureEffectChoiceView creatureEffectChoiceView;
     private RectTransform gameplayRoot;
     private TMP_Text biomeText;
     private TMP_Text depthText;
@@ -292,6 +293,28 @@ public sealed class FishingRunView : MonoBehaviour
     public event Action SettingsRequested;
     public event Action SurfaceTransitionCompleted;
     public event Action<EncounterEffectChoice> EncounterEffectChoiceChanged;
+
+    /// <summary>Shows a runtime-owned creature choice above the existing gameplay composition.</summary>
+    public void ShowCreatureEffectChoice(string title, string prompt, string[] labels, string[] details, Sprite[] portraits, Action<int> select)
+    {
+        EnsureLayout();
+        if (creatureEffectChoiceView == null)
+        {
+            Transform parent = modalLayer != null ? modalLayer.transform : transform;
+            GameObject obj = CreateUiObject("Creature Effect Choice", parent);
+            creatureEffectChoiceView = obj.AddComponent<CreatureEffectChoiceView>();
+            creatureEffectChoiceView.Initialize(bodyFont);
+        }
+
+        creatureEffectChoiceView.transform.SetAsLastSibling();
+        creatureEffectChoiceView.Show(title, prompt, labels, details, portraits, select);
+    }
+
+    /// <summary>Dismisses creature-choice presentation after the runtime queue is resolved.</summary>
+    public void HideCreatureEffectChoice()
+    {
+        creatureEffectChoiceView?.Hide();
+    }
 
     /// <summary>
     /// Builds the runtime gameplay composition before its first state refresh.

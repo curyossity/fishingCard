@@ -33,6 +33,7 @@ Owns:
 - Short authored encounter-chain definitions available in the biome
 - Apex encounter possibilities selected when the run crosses the final tier boundary
 - The Location card presented after the biome's Apex is resolved
+- Optional authored destination biome and the starting depth derived from its shallowest tier
 
 Does not own:
 - Current run depth or encounter state
@@ -110,6 +111,7 @@ Serializable data describing what an effect is and when/where it can apply.
 
 Owns:
 - Effect ID
+- Optional player-facing ability name
 - Effect type
 - Trigger
 - Target
@@ -137,6 +139,9 @@ Owns:
 - Line Capacity
 - Initial run setup and shutdown
 - Coordination of Descend, Release, and Surface
+- Suspending Descend after attachment until immediate creature choices finish
+- Entering an authored destination biome after next-waters presentation without resetting the run build
+- Deferring the first new-biome encounter until entry choices finish
 - Technique-card entry point for the Hooked reaction window
 - Inspector configuration and debug action wrappers
 - Loading repeatable Catch Chain decision scenarios during Play Mode
@@ -148,6 +153,8 @@ Delegates to:
 - `EncounterRuntime` for encounter selection and Hooked state
 - `BiomeApexRuntime` for one-per-run Apex selection and resolution state
 - `CatchChainRuntime` for catches, Line Load, and attached effects
+- `CreatureEffectRuntime` for ordered creature attachment/biome-entry choices
+- `NegativeEffectRuntime` for exact removable negative occurrences
 - `LineLoadRiskRuntime` for overload checks and tuning
 - `EffectResolver` for catch interactions, attraction, and encounter concealment
 - `FishingRunResult` for the last Surface result
@@ -158,6 +165,39 @@ Does not own:
 - Detailed deck, encounter, Catch Chain, or result operations
 - Full effect execution
 - Final UI composition
+
+### CreatureEffectRuntime
+
+Role:
+Runtime owner of ordered creature attachment and later-biome choice requests.
+
+Owns:
+- Run-local biome visit ordinal and attachment-origin stamps
+- Immediate selected-role attachment choices
+- Pre-entry creature Catch instance-ID snapshots
+- Sequential later-biome Bait swap requests in chain order
+- Offers generated once per request and skipped without two distinct eligible creatures
+- Replacement on-attach choices resolved before the next queued Bait source
+
+Does not own:
+- Encounter pool eligibility/weight calculation or normal encounter draws
+- Catch collection mutation, negative-effect removal, or presentation
+
+### NegativeEffectRuntime and NegativeEffectOption
+
+Role:
+Collect exact removable active negative occurrences across attached effects,
+lasting applied stat modifiers, Hooked records, and queued Technique effects.
+Options delegate removal to each owning runtime; they do not mutate authored
+assets. Completed information/actions and base statistics are not candidates.
+
+### CreatureEffectChoiceView
+
+Role:
+Reusable modal-layer presentation for negative-effect choices and two-stage
+Catch/replacement selection. Owns scrolling option rows, typography, portraits,
+input blocking, and callback forwarding. Eligibility, ordering, and resolution
+remain in runtime owners. Choice information does not alter card-face layouts.
 
 ### `TechniqueDeckRuntime`
 
@@ -206,6 +246,7 @@ Owns:
 - Immediate avoidance, replacement, and information reveal
 - Queued next-Descend and next-encounter effects
 - Temporary capacity, depth, committed-catch, and overload-reward resolution
+- Removing exact queued negative occurrences and retaining resolved stat-effect provenance
 - Clearing one-use effects after their matching action
 
 Delegates to:
@@ -227,6 +268,7 @@ Owns:
 - Filtering the selected biome-tier pool by card type, biome, and per-card depth limits
 - Weighted encounter selection using attached attraction effects
 - Last candidate, selected, and total encounter weights for debugging
+- Sampling distinct eligible ordinary-creature offers without advancing normal encounter/history state
 - Encountered, Hooked, Caught, and None state transitions
 - Current Hooked encounter
 - Hooked effect records and Technique-effect relevance
@@ -300,6 +342,8 @@ Owns:
 - Invalidating conditional attached effects when another catch is deliberately released later
 - Building a non-mutating resolved preview of a possible catch against the current Catch Chain
 - Catch Chain reset and snapshots
+- Per-instance cleansing followed by persistent-effect recalculation
+- Replacing a creature Catch in place without Release reactions, old modifiers, or release/loss accounting
 
 Does not own:
 - Line Capacity
@@ -485,6 +529,8 @@ Owns:
 - Reference to its immutable `CardDefinition`
 - Current resolved weight and value
 - The independently rolled base Value for cards with an authored random catch-value range
+- Attachment biome-visit origin and per-copy removed effect indices
+- AppliedCatchModifier records retaining each lasting stat effect's source and exact contribution for cleansing
 - Weight and value modifier reporting
 - Snapshot creation for Surface results
 
@@ -575,7 +621,7 @@ Current Descend flow:
 
 1. `FishingRunController.TryDescend()` resolves the always-available Descend action.
 2. `EncounterRuntime` returns the Hooked card for commitment, if one exists.
-3. `CatchChainRuntime` creates a `CardInstance`, resolves any pending next-matching-catch bonuses onto it, appends it, and tracks its catch-related effects.
+3. `CatchChainRuntime` creates a `CardInstance` in the selected Catch/Bait role, resolves any pending next-matching-catch bonuses onto it, appends it, and tracks its catch-related effects. `CreatureEffectRuntime` stamps its biome origin and queues immediate attachment choices. Descend pauses here until those choices finish; completed cleanup effects are not tracked as ongoing passive effects.
 4. `TechniqueEffectRuntime` consumes pending Descend effects for catch stats, distance, capacity, risk, and overload rewards.
 5. `EffectResolver` recalculates catch interactions from each instance's lasting base state.
 6. Current Line Load updates from the resolved instance weights.
@@ -602,7 +648,16 @@ Current Apex flow:
 5. Descend commits the Hooked Apex through `CatchChainRuntime.Add(...)` and records the Apex as Caught.
 6. The resolving Descend advances normally after catch effects and overload risk unless a line break ends the run.
 7. The biome-authored next-waters Location card is then presented once without resetting the Catch Chain, Line Load, active effects, or Technique piles.
-8. Further Descends are blocked because a second biome is outside the MVP; Release remains available and Surface records the preserved Catch Chain as the haul.
+8. With an authored destination biome, the next Descend enters it at its starting depth, resets only encounter/Apex state, and resolves ordered biome-entry choices before the first normal reveal. Without an authored destination, Descend stops at the boundary; Release and Surface remain available.
+
+Current biome-entry choice flow:
+
+1. CreatureEffectRuntime snapshots original pre-entry creature Catch instance IDs and queues later-biome Bait sources in chain order.
+2. EncounterRuntime samples two distinct eligible ordinary creatures with normal encounter weights without consuming normal encounter/history state. Requests with no original Catch or fewer than two offers are skipped.
+3. CreatureEffectChoiceView forwards the player's Catch and replacement selections through the controller.
+4. CatchChainRuntime replaces the selected creature in place, ending its ongoing effects without firing Release reactions or copying modifiers.
+5. The replacement's immediate Catch choices resolve before the next queued Shrimp. New replacements are not eligible again at the same entry.
+6. The first normal encounter is revealed after the queue finishes; run build, capacity, and Technique piles persist.
 
 Current Technique-card use flow:
 

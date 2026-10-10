@@ -1,0 +1,33 @@
+{
+  "runtimeCompile": "passed against Unity 6000.5.9f1 project references",
+  "editorCompile": "passed against Unity project references",
+  "rules": {
+    "status": "passed",
+    "assertions": 40,
+    "method": "Actual gameplay sources compiled and executed with minimal Unity API adapters; includes controller action flow"
+  },
+  "unityEditor": {
+    "status": "blocked",
+    "reason": "Isolated Unity batch startup failed: no com.unity.editor.headless entitlement; Package Manager IPC startup failure and sandbox access errors"
+  },
+  "modalRender": {
+    "status": "not run",
+    "reason": "Unity editor startup blocked"
+  },
+  "cardData": {
+    "status": "passed",
+    "checks": {
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "depth": true,
+      "tags": true,
+      "artPreserved": true,
+      "catchType": true,
+      "baitType": true,
+      "oldEffectRemoved": true,
+      "coastalPoolMembership": true
+    }
+  },
+  "scope": "Cleaner Shrimp only; other creatures await their new designs"
+}

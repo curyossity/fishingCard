@@ -22,6 +22,7 @@ public sealed class BiomeDefinition : ScriptableObject
 
     [Header("Transition")]
     [SerializeField] private CardDefinition nextWatersEncounter;
+    [SerializeField] private BiomeDefinition nextBiome;
 
     public string BiomeId => biomeId;
     public string DisplayName => displayName;
@@ -32,6 +33,25 @@ public sealed class BiomeDefinition : ScriptableObject
     public EncounterChainDefinition[] EncounterChains => encounterChains;
     public CardDefinition[] ApexEncounters => apexEncounters;
     public CardDefinition NextWatersEncounter => nextWatersEncounter;
+    public BiomeDefinition NextBiome => nextBiome;
+
+    /// <summary>Returns the shallowest authored tier depth for entry into this biome.</summary>
+    public int StartingDepth
+    {
+        get
+        {
+            int start = int.MaxValue;
+            foreach (BiomeDepthTierDefinition tier in depthTiers ?? Array.Empty<BiomeDepthTierDefinition>())
+            {
+                if (tier != null)
+                {
+                    start = Math.Min(start, tier.MinimumDepth);
+                }
+            }
+
+            return start == int.MaxValue ? 0 : Math.Max(0, start);
+        }
+    }
 
     /// <summary>
     /// Returns the authored tier containing a depth, or null when the biome has ended.

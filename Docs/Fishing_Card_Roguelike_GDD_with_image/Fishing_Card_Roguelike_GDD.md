@@ -337,6 +337,59 @@ Before accepting a card design, check:
   Compact Catch Chain cards retain their existing visual contract and do
   not gain full rules text.
 
+## Approved creature refactor: Cleaner Shrimp
+
+Cleaner Shrimp is a Coastal Waters creature: Weight **1**, Value **8**, rarity
+**Uncommon**, inclusive depth range **1–14**, and tag **Small**. Its previous
+weight-reduction effect is replaced by the two role effects below.
+
+### Catch — Quick Clean
+
+**Card text:** “Remove one negative effect.” Immediately after commitment as
+Catch, the player chooses one active lasting or temporary negative effect
+created by a card and affecting the run, another card, or Line Load. Remove
+that exact runtime occurrence completely; if none is eligible, do nothing.
+
+Eligible effects include ongoing attached effects, pending effects, and
+lasting stat modifiers already applied to a card. Removing a lasting modifier
+reverses that modifier's own contribution while preserving other modifiers.
+Authored negative-effect classification identifies eligible card effects;
+normal base Weight and overload are not themselves effects to remove.
+Completed actions such as revealing information are not undone. Cleansing
+one effect does not remove its source card, alter its other effects, affect
+other copies, or modify shared card definitions. The removal remains resolved
+if Cleaner Shrimp is later released.
+
+### Bait — Cleaning Station
+
+**Card text:** “At later biome starts, swap a Catch for one of two creatures.”
+Automatically trigger once at the start of each later biome visit while this
+Bait attachment survives. Do not trigger in the biome where it was attached.
+Resolve multiple Cleaner Shrimp in Catch Chain order, one after another.
+
+1. Snapshot eligible creature Catch attachments before entering the biome.
+   Bait cannot be selected. A replacement created during this entry is not
+   eligible for another swap during the same entry.
+2. Reveal two distinct non-Apex creatures eligible in the new biome's normal
+   starting-depth pool, using normal encounter weights. Offers do not consume
+   normal encounters, advance encounter chains, or alter repetition history.
+   Skip if no eligible Catch survives or fewer than two distinct creatures
+   can be offered.
+3. The player chooses an eligible Catch and one offered replacement. Remove
+   the old attachment and end its ongoing effects. This replacement is a swap,
+   not a Release action, and does not trigger Release reactions.
+4. Attach the replacement as Catch with its normal starting Weight and Value,
+   without inheriting the old attachment's modifiers. Activate its Catch
+   on-attach effect, if any, before resolving the next Shrimp. Both normal
+   persistent interactions and the replacement's own Catch effects apply.
+5. Finish biome-entry choices before drawing the new biome's first normal
+   encounter. The Catch Chain, Line Load, technique deck, and run state
+   otherwise continue across the boundary.
+
+Biome destinations are authored links, not invented content. Coastal Waters
+currently has no authored destination biome; its next-waters presentation
+remains the boundary until that content is provided.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

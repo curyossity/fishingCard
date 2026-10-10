@@ -13,6 +13,29 @@ public sealed class TechniqueEffectRuntime
     public CardEffectDefinition[] PendingEncounterEffects => pendingEncounterEffects;
     public bool RevealsCurrentEncounter => revealsCurrentEncounter;
 
+    /// <summary>Removes one queued negative effect occurrence without changing shared authored card data.</summary>
+    public bool TryRemoveNegativeEffect(bool encounterEffect, int index)
+    {
+        CardEffectDefinition[] effects = encounterEffect ? pendingEncounterEffects : pendingDescendEffects;
+        if (index < 0 || index >= effects.Length || effects[index]?.EffectTone != CardEffectTone.Negative)
+        {
+            return false;
+        }
+
+        List<CardEffectDefinition> remaining = new List<CardEffectDefinition>(effects);
+        remaining.RemoveAt(index);
+        if (encounterEffect)
+        {
+            pendingEncounterEffects = remaining.ToArray();
+        }
+        else
+        {
+            pendingDescendEffects = remaining.ToArray();
+        }
+
+        return true;
+    }
+
     /// <summary>
     /// Reports whether at least one effect on a Technique card has a valid current or pending target.
     /// </summary>
@@ -140,10 +163,13 @@ public sealed class TechniqueEffectRuntime
                 continue;
             }
 
+            int effectWeightChange = 0;
+            int effectValueChange = 0;
             switch (effect.EffectType)
             {
                 case CardEffectType.ModifyNextDescend:
                     weightChange += effect.Amount;
+                    effectWeightChange = effect.Amount;
                     break;
                 case CardEffectType.ModifyDescendDistance:
                     additionalDepth += effect.Amount;
@@ -154,25 +180,38 @@ public sealed class TechniqueEffectRuntime
                 case CardEffectType.RiskForReward:
                     weightChange += Math.Abs(effect.Amount);
                     valueChange += Math.Abs(effect.Amount) * 2;
+                    effectWeightChange = Math.Abs(effect.Amount);
+                    effectValueChange = Math.Abs(effect.Amount) * 2;
                     break;
                 case CardEffectType.RewardOverloadedDescend:
                     overloadReward += effect.Amount;
                     break;
             }
+
+            if (committedCatch != null && (effectWeightChange != 0 || effectValueChange != 0))
+            {
+                committedCatch.AddPermanentModifiers(effectWeightChange, effectValueChange, effect, null);
+            }
         }
 
         if (committedCatch != null && (weightChange != 0 || valueChange != 0))
         {
-            committedCatch.AddPermanentModifiers(weightChange, valueChange);
             catchChainRuntime.Recalculate(effectResolver);
         }
 
         int effectiveCapacity = Math.Max(0, baseLineCapacity + capacityBonus);
         bool overloaded = catchChainRuntime.CurrentLineLoad > effectiveCapacity;
 
-        if (committedCatch != null && overloaded && overloadReward != 0)
+        if (committedCatch != null && overloaded)
         {
-            committedCatch.AddPermanentModifiers(0, overloadReward);
+            foreach (CardEffectDefinition effect in pendingDescendEffects)
+            {
+                if (effect?.EffectType == CardEffectType.RewardOverloadedDescend && effect.Amount != 0)
+                {
+                    committedCatch.AddPermanentModifiers(0, effect.Amount, effect, null);
+                }
+            }
+
             catchChainRuntime.Recalculate(effectResolver);
         }
 

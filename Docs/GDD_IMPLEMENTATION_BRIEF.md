@@ -65,6 +65,13 @@ Caught creatures/items remain attached to the fishing rig while the player conti
 - Preserve Line Load, Catch Chain, core actions, and technique decisions. Keep rules text suitable for the supplied effect panels; compact chain cards do not display full rules text.
 - The full GDD section 6 contains the authoring checklist and illustrative pairs. Copying, encounter choice, role changes, and example values require precise rules and design approval before finalized content; examples do not establish implemented capabilities.
 
+### Approved Cleaner Shrimp Refactor
+
+- Coastal Waters; Weight 1, Value 8, Uncommon, depth 1–14 inclusive, Small.
+- Catch / Quick Clean: on attachment, choose and remove one active negative card effect, including lasting applied penalties. Reverse only the selected modifier; preserve other effects and completed information/actions. No eligible effect means no choice.
+- Bait / Cleaning Station: at each later biome entry while attached, offer two distinct eligible non-Apex starting-depth creatures using normal weights. The player replaces one pre-entry creature Catch; skip without an eligible Catch or two offers. Resolve multiple Shrimp in chain order; new replacements cannot be swapped again at that entry. Swaps do not trigger Release reactions or consume normal encounter draws. Resolve the replacement's Catch on-attach effect before continuing.
+- The GDD section 6 contains the complete rules. Later biome content is still authored separately; do not invent a destination biome.
+
 ### Creature Tag Vocabulary
 
 Creature and creature-like Apex cards use only this closed gameplay vocabulary:

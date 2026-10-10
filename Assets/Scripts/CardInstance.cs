@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum CatchAttachmentRole
@@ -18,6 +19,9 @@ public sealed class CardInstance
     [SerializeField] private int currentWeight;
     [SerializeField] private int currentValue;
     [SerializeField] private CatchAttachmentRole attachmentRole;
+    [SerializeField] private int attachmentBiomeVisit;
+    [SerializeField] private int[] removedEffectIndices = Array.Empty<int>();
+    [SerializeField] private List<AppliedCatchModifier> appliedModifiers = new List<AppliedCatchModifier>();
 
     public int InstanceId => instanceId;
     public CardDefinition Definition => definition;
@@ -31,9 +35,53 @@ public sealed class CardInstance
     public int ValueModifier => definition == null ? 0 : currentValue - baseValue;
     public CatchAttachmentRole AttachmentRole => attachmentRole;
     public bool IsBait => attachmentRole == CatchAttachmentRole.Bait;
-    public CardEffectDefinition[] ActiveEffects => definition == null
-        ? Array.Empty<CardEffectDefinition>()
-        : definition.GetEffects(attachmentRole);
+    public AppliedCatchModifier[] AppliedModifiers => appliedModifiers.ToArray();
+    public int AttachmentBiomeVisit => attachmentBiomeVisit;
+    public CardEffectDefinition[] ActiveEffects
+    {
+        get
+        {
+            CardEffectDefinition[] authored = definition?.GetEffects(attachmentRole) ?? Array.Empty<CardEffectDefinition>();
+            if (removedEffectIndices.Length == 0)
+            {
+                return authored;
+            }
+
+            CardEffectDefinition[] active = (CardEffectDefinition[])authored.Clone();
+            for (int i = 0; i < active.Length; i++)
+            {
+                if (Array.IndexOf(removedEffectIndices, i) >= 0)
+                {
+                    active[i] = null;
+                }
+            }
+
+            return active;
+        }
+    }
+
+    /// <summary>Records which biome visit committed this copy, independent of depth and biome identity.</summary>
+    public void SetAttachmentBiomeVisit(int visit)
+    {
+        attachmentBiomeVisit = visit;
+    }
+
+    /// <summary>Removes one exact authored effect from this copy for the rest of its attached lifetime.</summary>
+    public bool TryRemoveEffect(CardEffectDefinition effect)
+    {
+        CardEffectDefinition[] active = ActiveEffects;
+        int index = Array.IndexOf(active, effect);
+        if (effect == null || index < 0)
+        {
+            return false;
+        }
+
+        int[] updated = new int[removedEffectIndices.Length + 1];
+        Array.Copy(removedEffectIndices, updated, removedEffectIndices.Length);
+        updated[updated.Length - 1] = index;
+        removedEffectIndices = updated;
+        return true;
+    }
     public bool HidesOwnValueDuringRun => HasActiveEffect(
         CardEffectType.HideEncounterInformation,
         CardEffectTarget.Self);
@@ -82,6 +130,30 @@ public sealed class CardInstance
         permanentValueModifier += valueAmount;
     }
 
+    /// <summary>Applies a lasting authored modifier while retaining its origin for later cleansing.</summary>
+    public void AddPermanentModifiers(int weightAmount, int valueAmount, CardEffectDefinition effect, CardDefinition source)
+    {
+        AddPermanentModifiers(weightAmount, valueAmount);
+        if (effect != null && (weightAmount != 0 || valueAmount != 0))
+        {
+            appliedModifiers.Add(new AppliedCatchModifier(effect, source, weightAmount, valueAmount));
+        }
+    }
+
+    /// <summary>Removes one exact lasting modifier contribution while preserving all other mutations.</summary>
+    public bool TryRemoveAppliedModifier(AppliedCatchModifier modifier)
+    {
+        if (modifier == null || modifier.Effect?.EffectTone != CardEffectTone.Negative
+            || !appliedModifiers.Remove(modifier))
+        {
+            return false;
+        }
+
+        permanentWeightModifier -= modifier.WeightAmount;
+        permanentValueModifier -= modifier.ValueAmount;
+        return true;
+    }
+
     /// <summary>
     /// Applies a runtime weight change without allowing Line Load contribution below zero.
     /// </summary>
@@ -110,9 +182,13 @@ public sealed class CardInstance
         snapshot.permanentValueModifier = permanentValueModifier;
         snapshot.currentWeight = currentWeight;
         snapshot.currentValue = currentValue;
+        snapshot.attachmentBiomeVisit = attachmentBiomeVisit;
+        snapshot.removedEffectIndices = (int[])removedEffectIndices.Clone();
+        snapshot.appliedModifiers = new List<AppliedCatchModifier>(appliedModifiers);
         return snapshot;
     }
 
+    /// <summary>Checks this copy's surviving role effects, including cleansed self restrictions.</summary>
     private bool HasActiveEffect(CardEffectType effectType, CardEffectTarget target)
     {
         CardEffectDefinition[] activeEffects = ActiveEffects;
@@ -126,5 +202,28 @@ public sealed class CardInstance
         }
 
         return false;
+    }
+}
+
+/// <summary>Records one resolved lasting stat effect independently of its source remaining attached.</summary>
+[Serializable]
+public sealed class AppliedCatchModifier
+{
+    [SerializeField] private CardEffectDefinition effect;
+    [SerializeField] private CardDefinition sourceCard;
+    [SerializeField] private int weightAmount;
+    [SerializeField] private int valueAmount;
+    public CardEffectDefinition Effect => effect;
+    public CardDefinition SourceCard => sourceCard;
+    public int WeightAmount => weightAmount;
+    public int ValueAmount => valueAmount;
+
+    /// <summary>Captures one effect's actual applied contribution for exact removal and snapshots.</summary>
+    public AppliedCatchModifier(CardEffectDefinition effect, CardDefinition sourceCard, int weightAmount, int valueAmount)
+    {
+        this.effect = effect;
+        this.sourceCard = sourceCard;
+        this.weightAmount = weightAmount;
+        this.valueAmount = valueAmount;
     }
 }

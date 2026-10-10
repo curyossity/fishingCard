@@ -385,7 +385,9 @@ public enum CardEffectType
     RiskForReward,
     RewardOverloadedDescend,
     PreventRelease,
-    ModifySelfValuePerOtherMatchingCatch
+    ModifySelfValuePerOtherMatchingCatch,
+    RemoveNegativeEffect,
+    SwapCatchAtBiomeStart
 }
 
 public enum CardEffectTrigger
@@ -399,7 +401,8 @@ public enum CardEffectTrigger
     WhenAnotherCatchReleased,
     WhenNextMatchingCatchCaught,
     UntilNextEncounterResolved,
-    WhileAttachedUntilAnotherCatchReleased
+    WhileAttachedUntilAnotherCatchReleased,
+    OnLaterBiomeStart
 }
 
 public enum CardEffectTarget
@@ -442,6 +445,7 @@ public enum EncounterState
 public sealed class CardEffectDefinition
 {
     [SerializeField] private string effectId;
+    [SerializeField] private string displayName;
     [SerializeField] private CardEffectType effectType;
     [SerializeField] private CardEffectTrigger trigger;
     [SerializeField] private CardEffectTarget target;
@@ -455,6 +459,7 @@ public sealed class CardEffectDefinition
     [SerializeField] private string reminderText;
 
     public string EffectId => effectId;
+    public string DisplayName => displayName;
     public CardEffectType EffectType => effectType;
     public CardEffectTrigger Trigger => trigger;
     public CardEffectTarget Target => target;

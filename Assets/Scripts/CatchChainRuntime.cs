@@ -133,7 +133,7 @@ public sealed class CatchChainRuntime
             {
                 if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
                 {
-                    catches[i].AddPermanentModifiers(0, valueChange);
+                    catches[i].AddPermanentModifiers(0, valueChange, effect, null);
                 }
             }
 
@@ -160,10 +160,62 @@ public sealed class CatchChainRuntime
             weightChange = effect.Amount;
         }
 
-        target.AddPermanentModifiers(weightChange, valueChangeForTarget);
+        target.AddPermanentModifiers(weightChange, valueChangeForTarget, effect, null);
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         resultSummary = $"{target.Definition.DisplayName} changed by Weight {weightChange}, Value {valueChangeForTarget}";
         return true;
+    }
+
+    /// <summary>Reverses one lasting negative stat contribution and then reapplies remaining attached effects.</summary>
+    public bool TryRemoveAppliedNegativeModifier(CardInstance target, AppliedCatchModifier modifier, EffectResolver resolver)
+    {
+        if (!IsCatchAttached(target) || !target.TryRemoveAppliedModifier(modifier))
+        {
+            return false;
+        }
+
+        resolver.ResolveCatchChain(catches, activeEffectRecords);
+        return true;
+    }
+
+    /// <summary>Removes one active negative effect from its source copy and recalculates the entire chain.</summary>
+    public bool TryRemoveNegativeEffect(ActiveCatchEffectRecord record, EffectResolver effectResolver)
+    {
+        if (record?.Effect == null || record.Effect.EffectTone != CardEffectTone.Negative
+            || Array.IndexOf(activeEffectRecords, record) < 0
+            || !IsCatchAttached(record.SourceInstance)
+            || !record.SourceInstance.TryRemoveEffect(record.Effect))
+        {
+            return false;
+        }
+
+        RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        return true;
+    }
+
+    /// <summary>Replaces a creature Catch in place without firing Release reactions or transferring its mutations.</summary>
+    public CardInstance ReplaceCreatureCatch(
+        int instanceId,
+        CardDefinition replacement,
+        int biomeVisit,
+        EffectResolver effectResolver,
+        System.Random random)
+    {
+        int index = Array.FindIndex(catches, c => c != null && c.InstanceId == instanceId);
+        if (index < 0 || catches[index].IsBait || catches[index].Definition?.CardType != CardType.Creature
+            || replacement == null || replacement.CardType != CardType.Creature)
+        {
+            return null;
+        }
+
+        // A swap removes the old source, but is not a deliberate Release or line-break loss.
+        CardInstance next = new CardInstance(nextInstanceId++, replacement, random, CatchAttachmentRole.Catch);
+        next.SetAttachmentBiomeVisit(biomeVisit);
+        catches[index] = next;
+        RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        return next;
     }
 
     /// <summary>
@@ -335,6 +387,7 @@ public sealed class CatchChainRuntime
     private void AddCatchEffects(CardInstance caughtInstance, int catchIndex)
     {
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenCaught, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.OnLaterBiomeStart, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenAnotherCatchReleased, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenNextMatchingCatchCaught, catchIndex);
@@ -407,7 +460,9 @@ public sealed class CatchChainRuntime
         {
             CardEffectDefinition effect = effects[i];
 
-            if (effect == null || effect.Trigger != trigger)
+            if (effect == null || effect.Trigger != trigger
+                || (trigger == CardEffectTrigger.WhenCaught
+                    && effect.EffectType == CardEffectType.RemoveNegativeEffect))
             {
                 continue;
             }
@@ -484,7 +539,7 @@ public sealed class CatchChainRuntime
                     continue;
                 }
 
-                newCatch.AddPermanentModifiers(weightChange, valueChange);
+                newCatch.AddPermanentModifiers(weightChange, valueChange, effect, source.Definition);
                 if (consumeEffects)
                 {
                     consumedNextCatchEffectKeys = AppendEffectKey(
@@ -586,7 +641,7 @@ public sealed class CatchChainRuntime
                 continue;
             }
 
-            source.AddPermanentModifiers(0, effect.Amount);
+            source.AddPermanentModifiers(0, effect.Amount, effect, source.Definition);
         }
     }
 

@@ -18,7 +18,6 @@ MonoBehaviour:
   rarity: 1
   tags:
   - Small
-  - Armored
   artwork: {fileID: 2157674157209873347, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
   encounterArtwork: {fileID: 6483912047753102011, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
   artworkLayout: 1
@@ -27,31 +26,43 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "While attached, reduces the previous catch\u2019s weight by 2"
-  rulesTextHighlights:
-  - text: 2
-    color: {r: 0, g: 0.14509805, b: 0.15294118, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
+  rulesText: "Quick Clean: When attached as Catch, remove one negative effect."
+  rulesTextHighlights: []
+  baitRulesText: "Cleaning Station: At later biome starts, swap a Catch for one of two creatures."
+  baitRulesTextHighlights: []
   weight: 1
-  value: 4
+  value: 8
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 3
-  maximumDepth: 17
+  minimumDepth: 1
+  maximumDepth: 14
   effects:
-  - effectId: steady_previous_catch
-    effectType: 1
-    trigger: 2
-    target: 5
+  - effectId: cleaner_shrimp_quick_clean
+    displayName: Quick Clean
+    effectType: 19
+    trigger: 1
+    target: 0
     effectTone: 1
-    amount: 2
+    amount: 1
     requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
+    expiresAfterUse: 1
+    reminderText: Immediately after attachment as Catch, choose and remove one active negative effect. Completed actions are unchanged; lasting negative stat modifiers can be removed.
+  baitEffects:
+  - effectId: cleaner_shrimp_cleaning_station
+    displayName: Cleaning Station
+    effectType: 20
+    trigger: 10
+    target: 4
+    effectTone: 1
+    amount: 2
+    requiredTags:
+    - Creature
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: The previous catch contributes 2 less Line Load while Cleaner Shrimp
-      is attached.
+    reminderText: At each later biome start, replace one pre-entry creature Catch with a weighted creature offer; keep normal Weight, Value, and Catch effects.
