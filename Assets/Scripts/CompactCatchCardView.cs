@@ -69,7 +69,9 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
             caughtInstance == null ? string.Empty : caughtInstance.CurrentWeight.ToString(),
             caughtInstance == null
                 ? string.Empty
-                : caughtInstance.HidesOwnValueDuringRun ? "?" : caughtInstance.CurrentValue.ToString(),
+                : caughtInstance.IsBait
+                    ? "0"
+                    : caughtInstance.HidesOwnValueDuringRun ? "?" : caughtInstance.HaulValueContribution.ToString(),
             optionalPassiveIcon,
             caughtInstance?.IsBait == true);
     }

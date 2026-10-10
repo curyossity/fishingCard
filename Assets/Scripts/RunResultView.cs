@@ -264,9 +264,14 @@ public sealed class RunResultView : MonoBehaviour
             string catchName = caughtInstance?.Definition == null ? "Unknown catch" : caughtInstance.Definition.DisplayName;
             summary.Append(catchName);
 
+            if (caughtInstance?.IsBait == true)
+            {
+                summary.Append(" [BAIT]");
+            }
+
             if (includeValue && caughtInstance != null)
             {
-                summary.Append($"  ({caughtInstance.CurrentValue} Value)");
+                summary.Append($"  ({caughtInstance.HaulValueContribution} Value)");
             }
         }
 

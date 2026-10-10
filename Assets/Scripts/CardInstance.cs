@@ -23,6 +23,7 @@ public sealed class CardInstance
     public CardDefinition Definition => definition;
     public int CurrentWeight => currentWeight;
     public int CurrentValue => currentValue;
+    public int HaulValueContribution => IsBait ? 0 : currentValue;
     public int PermanentWeightModifier => permanentWeightModifier;
     public int PermanentValueModifier => permanentValueModifier;
     public int BaseValue => baseValue;
@@ -90,7 +91,8 @@ public sealed class CardInstance
     }
 
     /// <summary>
-    /// Applies a runtime value change without allowing haul value below zero.
+    /// Applies a runtime value change without allowing the resolved card value below zero.
+    /// Bait retains this resolved value for effect calculations but contributes zero haul value.
     /// </summary>
     public void ModifyValue(int amount)
     {

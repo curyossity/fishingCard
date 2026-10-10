@@ -873,12 +873,12 @@ public sealed class FishingRunController : MonoBehaviour
             if (encounterPreview != null)
             {
                 resolvedEncounterWeight = encounterPreview.CurrentWeight;
-                resolvedEncounterValue = encounterPreview.CurrentValue;
+                resolvedEncounterValue = encounterPreview.HaulValueContribution;
             }
             else if (currentEncounter != null)
             {
                 resolvedEncounterWeight = currentEncounter.Weight;
-                resolvedEncounterValue = currentEncounter.Value;
+                resolvedEncounterValue = previewRole == CatchAttachmentRole.Bait ? 0 : currentEncounter.Value;
             }
 
             fishingRunView.Refresh(
@@ -1067,9 +1067,9 @@ public sealed class FishingRunController : MonoBehaviour
             : encounterRuntime.CurrentEncounter.DisplayName;
 
         string releasedName = releasedCatch?.Definition == null ? "unknown catch" : releasedCatch.Definition.DisplayName;
-        string releasedValue = releasedCatch != null && releasedCatch.HidesOwnValueDuringRun
+        string releasedValue = releasedCatch != null && !releasedCatch.IsBait && releasedCatch.HidesOwnValueDuringRun
             ? "?"
-            : (releasedCatch?.CurrentValue ?? 0).ToString();
+            : (releasedCatch?.HaulValueContribution ?? 0).ToString();
 
         return $"Release resolved | Released: {releasedName} | Lost Value: {releasedValue} | "
             + $"Line Load: {previousLineLoad} -> {catchChainRuntime.CurrentLineLoad} / {lineCapacity} | Depth: {currentDepth} | "

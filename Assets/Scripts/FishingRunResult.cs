@@ -95,7 +95,7 @@ public sealed class FishingRunResult
     }
 
     /// <summary>
-    /// Calculates the total resolved value of all non-null haul catches.
+    /// Calculates the role-aware haul value of all non-null attachments.
     /// </summary>
     private static int CalculateValue(CardInstance[] cards)
     {
@@ -105,7 +105,7 @@ public sealed class FishingRunResult
         {
             if (cards[i] != null)
             {
-                totalValue += cards[i].CurrentValue;
+                totalValue += cards[i].HaulValueContribution;
             }
         }
 

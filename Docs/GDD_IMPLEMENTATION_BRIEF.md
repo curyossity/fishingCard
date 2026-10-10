@@ -46,12 +46,13 @@ There is no free universal Skip action. Avoiding an unwanted catch requires a te
 
 Caught creatures/items remain attached to the fishing rig while the player continues descending. The chain is both a visible vertical record and a mechanical system.
 
-- Every caught card usually contributes value and Line Load.
+- Every attached card contributes its resolved Weight to Line Load.
 - Every attached card records whether it was committed as a Catch or as Bait. Bait cards remain in the same chain and are visibly marked.
 - Only the effect set matching the card's stored Catch/Bait role is active.
+- Catch attachments contribute their resolved Value to the haul. Bait attachments contribute zero haul Value.
 - Many caught cards can provide passive effects while attached.
 - Existing catches can influence future encounters.
-- Releasing a catch removes its weight, value, passive effects, attraction modifiers, and synergies.
+- Releasing an attachment removes its weight, any Catch-role haul value, active effects, attraction modifiers, and synergies.
 - The line visually connects the boat/start card to caught cards below it.
 
 ### Creature Tag Vocabulary

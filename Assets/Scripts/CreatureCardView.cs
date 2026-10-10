@@ -127,7 +127,8 @@ public sealed class CreatureCardView : MonoBehaviour
         CatchAttachmentRole previewRole = selectedEffectChoice == EncounterEffectChoice.Bait
             ? CatchAttachmentRole.Bait
             : CatchAttachmentRole.Catch;
-        bool hideOwnValue = card.HidesOwnValueDuringRunForRole(previewRole);
+        bool hideOwnValue = previewRole == CatchAttachmentRole.Catch
+            && card.HidesOwnValueDuringRunForRole(previewRole);
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(

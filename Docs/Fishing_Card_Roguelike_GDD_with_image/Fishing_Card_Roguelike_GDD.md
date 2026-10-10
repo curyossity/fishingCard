@@ -111,7 +111,9 @@ descent commits that card to the Catch Chain.
   or Bait effect. When committed, the card records that role and becomes
   a permanent part of the current Catch Chain. Only the selected role's
   effects activate. Bait-role cards remain visible in the chain with a
-  distinct marker.
+  distinct marker. Both roles contribute their resolved Weight to Line
+  Load. Catch-role cards contribute their resolved Value to the final
+  haul; Bait-role cards contribute zero haul Value.
 
 - There is no free universal Skip action. Avoiding an unwanted catch
   requires a technique card, equipment effect, creature effect, or
