@@ -4,13 +4,13 @@ This document defines the current approved presentation contract for creature an
 
 ## Source Card Art
 
-The production Encounter card uses the reusable supplied wide master `Assets/FishingUIAssets/Cards/Creature/catch-card-base-four-large-tag-rail-1101x1429.png` at its native 1101 x 1429 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, ivory rules panel, four empty rarity-marker sockets, and four large tag-rail sockets. The superseded five-socket tag-rail master was removed when this replacement was approved.
+The production Encounter card uses the reusable supplied dual-effect master `Assets/FishingUIAssets/Cards/Creature/catch-card-base-dual-effect-1122x1402.png` at its native 1122 x 1402 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, separate built-in `CATCH` and `BAIT` effect panels, four lower rarity sockets, and four large tag-rail sockets. Previous catch masters remain available as alternate source art and are not deleted when the active master changes.
 
 Non-catchable encounters currently use the storm-purple `Assets/FishingUIAssets/Cards/Event/event-card-base-storm-purple-1101x1429.png` at 1101 x 1429. This event master owns its frame, blank type and title plaques, chart field, and expanded ivory rules panel. It intentionally has no Weight, Value, or rarity-socket presentation. The earlier red/silver `event-card-base-empty-with-type-1101x1429.png` remains available as an alternate visual treatment.
 
 Unity layers each creature's illustration and runtime-owned information over this master. A precomposed per-creature card face must not replace the production Encounter master, even when legacy card data still contains one.
 
-Creature artwork supports two explicitly authored layouts on `CardDefinition`: `MaskedRegion` for a cropped illustration clipped to the chart field, and `FullCardOverlay` for a transparent image authored at the base card's full native dimensions. Full-card overlays are aligned one-to-one over the supplied base but remain below all Unity-owned text, stats, rules, and rarity markers. A definition may provide a dedicated `EncounterArtwork` overlay while retaining a cropped `Artwork` sprite for compact cards and other portrait consumers. Do not infer layout from filenames or image dimensions.
+Creature artwork supports two explicitly authored layouts on `CardDefinition`: `MaskedRegion` for a cropped illustration clipped to the chart field, and `FullCardOverlay` for a transparent image authored on the established full-card canvas. Full-card overlays fill the current catch master so previously supplied 1101 x 1429 transparent artwork is normalized to the new 1122 x 1402 face geometry, while remaining below all Unity-owned text, stats, rules, and rarity markers. A definition may provide a dedicated `EncounterArtwork` overlay while retaining a cropped `Artwork` sprite for compact cards and other portrait consumers. Do not infer layout from filenames or image dimensions.
 
 ## Unity-Owned Fields
 
@@ -20,7 +20,8 @@ Unity fills these fields from card data:
 - Card name
 - Weight
 - Value
-- Effect text
+- Catch effect text
+- Bait effect text
 - Rarity hooks
 
 The supplied four-socket rail displays Unity-owned tag indicators without reducing the existing content regions. Creature tags use the closed vocabulary `Fish`, `Predator`, `Schooling`, `Small`, `Heavy`, `Anchored`, `Armored`, and `Elusive`. Supported icons are matched case-insensitively to the card's authored tags and filled from top to bottom in canonical vocabulary order. Hovering a populated icon shows its tag name on the dedicated tooltip layer; the tooltip does not intercept input. Unsupported icon artwork and unused sockets remain empty and non-interactive. The currently supplied icon mappings are `Predator` and `Small`. Event cards do not display the catch-card tag rail.
@@ -39,13 +40,13 @@ Weight and Value display the currently resolved values. When gameplay modifiers 
 
 A card-authored self-concealment effect may replace only that card's Value with `?` during the run. Weight, name, tags, rules, and other encounter information remain visible unless a separate global concealment effect applies. End-of-run results reveal the resolved Value normally. If a card has an authored random caught-Value range, each committed runtime copy rolls once, retains that base Value through recalculation, and then receives normal interaction modifiers.
 
-Text must fit its authored region at supported resolutions while preserving the visual hierarchy shown by the reference card. Main-card rules text uses 18 points whenever the content fits, with bounded automatic sizing allowed to reduce the text only when required by the authored region.
+Text must fit its authored region at supported resolutions while preserving the visual hierarchy shown by the reference card. Catch-card rules use dark-teal text inside each of the master's two ivory effect panels. Until separate bait-effect data and gameplay behavior are explicitly introduced, both panels display the card's existing rules text as presentation placeholders. Main-card rules text uses 18 points whenever the content fits, with bounded automatic sizing allowed to reduce the text only when required by each authored region. Event-card rules remain in the event master's single ivory panel.
 
 Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size calculated from the fitted base size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.
 
 ## Rarity Hooks
 
-Creature/catch card art provides four circular rarity sockets. Unity fills them with `Assets/FishingUIAssets/Icons/catch.png`, activating the corresponding number of catch icons:
+Creature/catch card art exposes four lower rarity sockets. Unity fills them with `Assets/FishingUIAssets/Icons/catch.png`, activating the corresponding number of catch icons:
 
 - `Common`: 1 active hook
 - `Uncommon`: 2 active hooks
@@ -74,7 +75,7 @@ If interaction feedback for these concepts becomes necessary, keep it outside th
 Build the card presentation from two ownership layers:
 
 1. Supplied visual layer: the reusable empty master with frame, ornament, fixed labels, icons, and empty sockets.
-2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Effect text, four filled rarity-marker states, and supported tag icons. A creature may author a central-card-only scale, rotation, and offset for its encounter illustration; this must not alter its separately framed compact Catch Chain portrait.
+2. Unity UI layer: creature illustration, type, name, resolved Weight, resolved Value, Catch/Bait effect text, four filled rarity-marker states, and supported tag icons. A creature may author a central-card-only scale, rotation, and offset for its encounter illustration; this must not alter its separately framed compact Catch Chain portrait.
 
 Keep gameplay rules out of the card view. The view reads supplied card data and resolved runtime values, then updates only its visual fields.
 

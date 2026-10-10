@@ -353,7 +353,7 @@ public static class FishingRunViewPrefabBuilder
             serializedView,
             "creatureCardPrefab",
             AssetDatabase.LoadAssetAtPath<CreatureCardView>(CreatureCardPrefabPath));
-        SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/catch-card-base-four-large-tag-rail-1101x1429.png"));
+        SetObjectReference(serializedView, "fallbackCreatureCardFace", LoadSprite("Cards/Creature/catch-card-base-dual-effect-1122x1402.png"));
         SetObjectReference(serializedView, "rarityHookSprite", LoadSprite("Icons/fishing-ui-rarity-icon-anchor-512.png"));
         SetObjectReference(serializedView, "regionPlaqueSprite", LoadSprite("Frames/fishing-ui-region-plaque-blank.png"));
         SetObjectReference(serializedView, "depthPlaqueSprite", LoadSprite("Frames/fishing-ui-depth-plaque-blank.png"));
@@ -648,7 +648,13 @@ public static class FishingRunViewPrefabBuilder
 
     private static Sprite LoadSprite(string relativePath)
     {
-        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/FishingUIAssets/" + relativePath);
+        string assetPath = "Assets/FishingUIAssets/" + relativePath;
+        Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(assetPath);
+        if (sprite == null)
+        {
+            sprite = AssetDatabase.LoadAllAssetsAtPath(assetPath).OfType<Sprite>().FirstOrDefault();
+        }
+
         if (sprite == null)
         {
             throw new InvalidOperationException("Missing UI sprite: " + relativePath);

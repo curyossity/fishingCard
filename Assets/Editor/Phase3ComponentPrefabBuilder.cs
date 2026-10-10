@@ -459,13 +459,13 @@ public static class Phase3ComponentPrefabBuilder
             BodyBoldFontPath);
         GameObject root = CreateUiObject("CreatureCardView", null);
         RectTransform rootRect = root.GetComponent<RectTransform>();
-        rootRect.sizeDelta = new Vector2(470.756f, 611f);
+        rootRect.sizeDelta = new Vector2(489.04f, 611f);
         CreatureCardView view = root.AddComponent<CreatureCardView>();
 
         Image background = CreateImage(
             "CardBackground",
             rootRect,
-            LoadSprite("Cards/Creature/catch-card-base-four-large-tag-rail-1101x1429.png"),
+            LoadSprite("Cards/Creature/catch-card-base-dual-effect-1122x1402.png"),
             Image.Type.Simple);
         Shadow cardShadow = background.gameObject.AddComponent<Shadow>();
         cardShadow.effectColor = new Color(0.015f, 0.025f, 0.025f, 0.68f);
@@ -489,7 +489,7 @@ public static class Phase3ComponentPrefabBuilder
 
         Image overflow = CreateImage("ArtworkOverflowLayer", rootRect, null, Image.Type.Simple);
         overflow.enabled = false;
-        overflow.preserveAspect = true;
+        overflow.preserveAspect = false;
 
         Image titlePlate = CreateImage(
             "Title Safe Region",
@@ -523,8 +523,8 @@ public static class Phase3ComponentPrefabBuilder
         nameText.fontSizeMin = 14f;
         nameText.textWrappingMode = TextWrappingModes.NoWrap;
 
-        Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.222f, 0.34f), new Vector2(0.491f, 0.48f));
-        Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.510f, 0.34f), new Vector2(0.781f, 0.48f));
+        Image weightPlate = CreateStatPlate("Weight Safe Region", rootRect, new Vector2(0.222f, 0.34f), new Vector2(0.491f, 0.44f));
+        Image valuePlate = CreateStatPlate("Value Safe Region", rootRect, new Vector2(0.510f, 0.34f), new Vector2(0.781f, 0.44f));
         TextMeshProUGUI weightText = CreateText("Weight Text", weightPlate.rectTransform, bodyFont, 48f, TextAlignmentOptions.Center);
         TextMeshProUGUI valueText = CreateText("Value Text", valuePlate.rectTransform, bodyFont, 48f, TextAlignmentOptions.Center);
         weightText.color = new Color32(130, 175, 156, 255);
@@ -535,14 +535,14 @@ public static class Phase3ComponentPrefabBuilder
         SetStretchOffsets(valueText.rectTransform, 11f, 18f, -13f, -11f);
 
         Image effectPanel = CreateImage(
-            "Rules Safe Region",
+            "Catch Rules Safe Region",
             rootRect,
             null,
             Image.Type.Simple);
-        SetAnchoredRect(effectPanel.rectTransform, new Vector2(0.085f, 0.175f), new Vector2(0.915f, 0.315f));
+        SetAnchoredRect(effectPanel.rectTransform, new Vector2(0.095f, 0.14f), new Vector2(0.477f, 0.258f));
         effectPanel.enabled = false;
         TextMeshProUGUI effectText = CreateText(
-            "Effect Text",
+            "Catch Effect Text",
             effectPanel.rectTransform,
             bodyBoldFont,
             18f,
@@ -552,16 +552,36 @@ public static class Phase3ComponentPrefabBuilder
         effectText.enableAutoSizing = true;
         effectText.fontSizeMin = 10f;
         effectText.fontSizeMax = 18f;
-        SetStretchOffsets(effectText.rectTransform, 22f, 10f, -22f, -10f);
+        SetStretchOffsets(effectText.rectTransform, 12f, 8f, -12f, -8f);
+
+        Image baitEffectPanel = CreateImage(
+            "Bait Rules Safe Region",
+            rootRect,
+            null,
+            Image.Type.Simple);
+        SetAnchoredRect(baitEffectPanel.rectTransform, new Vector2(0.523f, 0.14f), new Vector2(0.905f, 0.258f));
+        baitEffectPanel.enabled = false;
+        TextMeshProUGUI baitEffectText = CreateText(
+            "Bait Effect Text",
+            baitEffectPanel.rectTransform,
+            bodyBoldFont,
+            18f,
+            TextAlignmentOptions.Center);
+        baitEffectText.color = new Color32(25, 55, 54, 255);
+        baitEffectText.fontWeight = FontWeight.Regular;
+        baitEffectText.enableAutoSizing = true;
+        baitEffectText.fontSizeMin = 10f;
+        baitEffectText.fontSizeMax = 18f;
+        SetStretchOffsets(baitEffectText.rectTransform, 12f, 8f, -12f, -8f);
 
         RectTransform anchorRoot = CreateRect(
             "AnchorSlots",
             rootRect,
-            new Vector2(0f, 0.07f),
-            new Vector2(1f, 0.152f));
+            new Vector2(0f, 0.058f),
+            new Vector2(1f, 0.138f));
         Image[] sockets = new Image[4];
         Image[] markers = new Image[4];
-        float[] markerCenters = { 0.359f, 0.456f, 0.556f, 0.656f };
+        float[] markerCenters = { 0.348f, 0.442f, 0.558f, 0.649f };
         for (int i = 0; i < 4; i++)
         {
             float center = markerCenters[i];
@@ -570,7 +590,7 @@ public static class Phase3ComponentPrefabBuilder
                 anchorRoot,
                 new Vector2(center, 0.5f),
                 new Vector2(center, 0.5f));
-            slot.anchoredPosition = new Vector2(-4f, 10f);
+            slot.anchoredPosition = Vector2.zero;
             slot.sizeDelta = new Vector2(35f, 35f);
             sockets[i] = CreateImage(
                 "Socket",
@@ -626,7 +646,9 @@ public static class Phase3ComponentPrefabBuilder
         SetReference(serializedView, "weightText", weightText);
         SetReference(serializedView, "valueText", valueText);
         SetReference(serializedView, "effectText", effectText);
+        SetReference(serializedView, "baitEffectText", baitEffectText);
         SetReference(serializedView, "rulesRegion", effectPanel.rectTransform);
+        SetReference(serializedView, "baitRulesRegion", baitEffectPanel.rectTransform);
         SetReference(serializedView, "rarityAnchorRoot", anchorRoot);
         SetReference(serializedView, "tagIconRoot", tagRoot);
         SetReference(serializedView, "fallbackCardFace", background.sprite);
@@ -665,7 +687,8 @@ public static class Phase3ComponentPrefabBuilder
         Require(prefab.transform.Find("Title Safe Region") != null, "Title safe region is missing.");
         Require(prefab.transform.Find("Weight Safe Region") != null, "Weight safe region is missing.");
         Require(prefab.transform.Find("Value Safe Region") != null, "Value safe region is missing.");
-        Require(prefab.transform.Find("Rules Safe Region") != null, "Rules safe region is missing.");
+        Require(prefab.transform.Find("Catch Rules Safe Region") != null, "Catch rules safe region is missing.");
+        Require(prefab.transform.Find("Bait Rules Safe Region") != null, "Bait rules safe region is missing.");
         Require(prefab.transform.Find("InteractionOverlay") != null, "Interaction overlay is missing.");
         Image frame = prefab.transform.Find("Card Frame").GetComponent<Image>();
         Require(frame != null && !frame.enabled, "The supplied master must not receive a second card frame.");

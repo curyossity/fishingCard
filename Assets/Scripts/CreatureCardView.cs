@@ -7,7 +7,8 @@ using UnityEngine.UI;
 /// <summary>Renders catchable and event encounters from supplied visual layers and runtime-owned fields.</summary>
 public sealed class CreatureCardView : MonoBehaviour
 {
-    public const float ReferenceAspectRatio = 1101f / 1429f;
+    public const float ReferenceAspectRatio = 1122f / 1402f;
+    public const float EventReferenceAspectRatio = 1101f / 1429f;
     private const int TagMarkerCount = 4;
     private const float EffectFontSizeMin = 10f;
     private const float EffectFontSizeMax = 18f;
@@ -38,9 +39,11 @@ public sealed class CreatureCardView : MonoBehaviour
     [SerializeField] private TMP_Text weightText;
     [SerializeField] private TMP_Text valueText;
     [SerializeField] private TMP_Text effectText;
+    [SerializeField] private TMP_Text baitEffectText;
 
     [Header("Runtime Layout")]
     [SerializeField] private RectTransform rulesRegion;
+    [SerializeField] private RectTransform baitRulesRegion;
     [SerializeField] private RectTransform rarityAnchorRoot;
 
     [Header("Rarity Anchors")]
@@ -94,6 +97,7 @@ public sealed class CreatureCardView : MonoBehaviour
         gameObject.SetActive(true);
         Sprite encounterArtwork = card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
         bool usesCatchLayout = UsesCatchCardLayout(card.CardType);
+        ApplyReferenceAspectRatio(usesCatchLayout);
         bool hideOwnValue = card.HidesOwnValueDuringRun;
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
@@ -127,6 +131,7 @@ public sealed class CreatureCardView : MonoBehaviour
         CardRarity rarity)
     {
         gameObject.SetActive(true);
+        ApplyReferenceAspectRatio(true);
         SetContent(
             displayName,
             cardType,
@@ -155,6 +160,7 @@ public sealed class CreatureCardView : MonoBehaviour
     public void SetBlank()
     {
         gameObject.SetActive(true);
+        ApplyReferenceAspectRatio(true);
         SetImage(cardBackground, fallbackCardFace);
         SetImage(creatureArtwork, null);
         SetImage(artworkOverflowLayer, null);
@@ -164,6 +170,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(weightText, string.Empty);
         SetText(valueText, string.Empty);
         SetText(effectText, string.Empty);
+        SetText(baitEffectText, string.Empty);
         HideTagIcons();
         if (cardFrame != null)
         {
@@ -219,6 +226,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(weightText, weight);
         SetText(valueText, value);
         SetText(effectText, rules);
+        SetText(baitEffectText, rules);
         if (usesCatchLayout)
         {
             RefreshRarityAnchors(rarity);
@@ -234,6 +242,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Switches between catch-only stats and the expanded event rules region.</summary>
     private void ApplyCardLayout(bool usesCatchLayout)
     {
+        EnsureDualEffectFields();
         SetParentActive(weightText, usesCatchLayout);
         SetParentActive(valueText, usesCatchLayout);
 
@@ -249,10 +258,23 @@ public sealed class CreatureCardView : MonoBehaviour
 
         if (rulesRegion != null)
         {
-            rulesRegion.anchorMin = new Vector2(0.085f, usesCatchLayout ? 0.175f : 0.055f);
-            rulesRegion.anchorMax = new Vector2(0.915f, 0.315f);
+            rulesRegion.anchorMin = usesCatchLayout
+                ? new Vector2(0.095f, 0.14f)
+                : new Vector2(0.085f, 0.055f);
+            rulesRegion.anchorMax = usesCatchLayout
+                ? new Vector2(0.477f, 0.258f)
+                : new Vector2(0.915f, 0.315f);
             rulesRegion.offsetMin = Vector2.zero;
             rulesRegion.offsetMax = Vector2.zero;
+        }
+
+        if (baitRulesRegion != null)
+        {
+            baitRulesRegion.gameObject.SetActive(usesCatchLayout);
+            baitRulesRegion.anchorMin = new Vector2(0.523f, 0.14f);
+            baitRulesRegion.anchorMax = new Vector2(0.905f, 0.258f);
+            baitRulesRegion.offsetMin = Vector2.zero;
+            baitRulesRegion.offsetMax = Vector2.zero;
         }
 
         if (cardNameText != null)
@@ -260,15 +282,49 @@ public sealed class CreatureCardView : MonoBehaviour
             cardNameText.color = usesCatchLayout ? CatchNameColor : EventContentColor;
         }
 
-        if (effectText != null)
+        ConfigureEffectText(effectText, usesCatchLayout);
+        ConfigureEffectText(baitEffectText, usesCatchLayout);
+    }
+
+    /// <summary>Supports existing prefabs while the editor builder authors both supplied effect regions.</summary>
+    private void EnsureDualEffectFields()
+    {
+        if (baitRulesRegion != null || rulesRegion == null)
         {
-            effectText.richText = true;
-            effectText.fontSize = EffectFontSizeMax;
-            effectText.fontSizeMin = EffectFontSizeMin;
-            effectText.fontSizeMax = EffectFontSizeMax;
-            effectText.enableAutoSizing = true;
-            effectText.color = usesCatchLayout ? CatchRulesColor : EventContentColor;
+            return;
         }
+
+        GameObject clone = Instantiate(rulesRegion.gameObject, rulesRegion.parent);
+        clone.name = "Bait Rules Safe Region";
+        baitRulesRegion = clone.GetComponent<RectTransform>();
+        baitEffectText = clone.GetComponentInChildren<TMP_Text>(true);
+        if (baitEffectText != null)
+        {
+            baitEffectText.name = "Bait Effect Text";
+        }
+    }
+
+    private static void ConfigureEffectText(TMP_Text text, bool usesCatchLayout)
+    {
+        if (text == null)
+        {
+            return;
+        }
+
+        text.richText = true;
+        text.fontSize = EffectFontSizeMax;
+        text.fontSizeMin = EffectFontSizeMin;
+        text.fontSizeMax = EffectFontSizeMax;
+        text.enableAutoSizing = true;
+        text.color = usesCatchLayout ? CatchRulesColor : EventContentColor;
+        text.outlineColor = new Color32(0, 0, 0, 0);
+        text.outlineWidth = 0f;
+        text.rectTransform.offsetMin = usesCatchLayout
+            ? new Vector2(12f, 8f)
+            : new Vector2(22f, 10f);
+        text.rectTransform.offsetMax = usesCatchLayout
+            ? new Vector2(-12f, -8f)
+            : new Vector2(-22f, -10f);
     }
 
     /// <summary>Applies authored TMP color and relative-size tags to matching rules-text phrases.</summary>
@@ -558,6 +614,16 @@ public sealed class CreatureCardView : MonoBehaviour
             marker.raycastTarget = true;
             EnsureTagTooltipTrigger(marker);
             tagMarkers[i] = marker;
+        }
+    }
+
+    /// <summary>Keeps the differently sized catch and event masters at their native aspect ratios.</summary>
+    private void ApplyReferenceAspectRatio(bool usesCatchLayout)
+    {
+        AspectRatioFitter fitter = GetComponent<AspectRatioFitter>();
+        if (fitter != null)
+        {
+            fitter.aspectRatio = usesCatchLayout ? ReferenceAspectRatio : EventReferenceAspectRatio;
         }
     }
 
