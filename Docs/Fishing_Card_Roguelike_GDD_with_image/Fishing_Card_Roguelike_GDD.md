@@ -91,7 +91,7 @@ The game is structured around **actions**, not a separate turn system. A core ac
 | **Core action** | **Purpose**                                                                                                                   | **Design rule**                                                                                                                                                                                                            |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Descend         | Move deeper and commit the current Hooked card to the Catch Chain in its selected Catch or Bait role unless a technique card avoids, redirects, or replaces it. | Always available. Descending is the default way to accept the current card and continue. Only the selected Catch/Bait effect set activates. Technique cards can alter how far or how safely the player descends, or allow the player to pass an encounter without taking it. |
-| Release         | Drop a previously caught creature or item from the line.                                                                      | Reduces load immediately, but permanently loses that card's sale value and any passive/run effect. Release does not advance the descent; the player remains at the current depth and must still resolve the current encounter afterward. |
+| Release         | Drop a previously caught creature or item from the line.                                                                      | Reduces load immediately, forfeits any Catch-role haul Value, and ends ongoing attached effects. Completed one-time triggered effects are not automatically undone. Release does not advance the descent; the player remains at the current depth and must still resolve the current encounter afterward. |
 | Surface         | End the descent and attempt to bring the remaining catch home.                                                                | Everything that successfully returns becomes the player's haul and can be sold/used in progression.                                                                                                                        |
 
 ## 4.1 Encounter commitment and Hooked state
@@ -181,7 +181,9 @@ and a mechanical system.
   player continues descending; avoiding it requires a specific technique
   or effect.
 
-- Every caught card contributes value and usually contributes weight.
+- Every attached card contributes its resolved Weight to Line Load. Catch-role
+  cards contribute their resolved Value to the haul; Bait-role cards contribute
+  zero haul Value.
 
 - Many caught cards can provide passive effects while they remain
   attached.
@@ -192,8 +194,9 @@ and a mechanical system.
 - The player is rewarded for assembling useful interactions, but every
   additional catch makes the line harder to manage.
 
-- When a card is released, its weight, value, and active/passive run
-  effect are all lost.
+- Releasing a card removes its Weight, any Catch-role haul Value, and ongoing
+  attached effects. Completed one-time triggered effects are not automatically
+  undone by releasing their source.
 
 ## Creature interaction principle
 
@@ -217,6 +220,122 @@ Creatures can join or interact with the line for different thematic reasons:
 
 The goal is thematic plausibility, not strict simulation, while supporting
 a wide range of creature behaviors and interactions.
+
+## Catch and Bait Effect Design
+
+These guidelines govern creature effect authoring across biomes, including
+Coastal Waters creature YAML. They define design principles, not a finalized
+card set or an implementation catalog.
+
+### Role tradeoff
+
+Both Catch and Bait remain attached until released or surfaced; Bait is not
+temporary by default. Each role contributes the card's full resolved Weight
+to Line Load, including any explicitly authored weight modifiers. Only the
+selected role's effect set activates, if it has effects.
+
+- **Catch:** contributes its resolved sale Value when successfully surfaced.
+  Its main purpose is collecting value with modest utility or synergy.
+- **Bait:** contributes zero haul Value even when successfully surfaced.
+  Its main purpose is sacrificing sale value and occupying capacity for
+  greater utility, build potential, or tactical advantage.
+
+The central decision is: “Do I spend limited Line Capacity on profit or
+on power?” The design target is: **Catch builds the haul; Bait builds the
+engine.**
+
+### Effect design principles
+
+1. **Thematic grounding:** Connect both effects to the creature's anatomy,
+   behavior, appearance, or ecological role. Ink, camouflage, venom, shells,
+   spines, gripping tentacles, schooling, and anchoring are useful inspirations.
+2. **Mechanical freedom:** Catch and Bait can serve entirely different
+   strategic purposes. They need not share a target, statistic, or trigger.
+   Numerical pairs such as Catch granting Predators +2 Value and Bait granting
+   +5 Value are occasionally valid, but should not define the card set.
+3. **Bait generally stronger:** Zero sale value and full load should usually
+   buy greater utility or build potential. Stronger need not mean a larger number.
+4. **Interesting tradeoffs:** Either role should sometimes be right depending
+   on the Catch Chain, Line Load, depth, technique hand, and desired build.
+5. **Build synergy:** Favor meaningful interactions with creatures and the
+   closed tag vocabulary above over universal, always-good bonuses. Tags
+   connect creatures; not every effect must explicitly mention a tag.
+6. **Downsides allowed:** Catch effects may be inconvenient or risky, with
+   high sale value compensating. Effects need not all be beneficial.
+7. **Deliberate simplicity:** Common creatures may have no Catch effect,
+   no Bait effect, or only one simple effect. Do not add complexity for its own sake.
+8. **Distinctiveness:** Mix straightforward cards, synergy cards, and surprising
+   effects rather than many small variations of Value, Weight, or attraction.
+9. **Persistent power needs limits:** Early attachments can affect many
+   encounters. Prefer conditional, tag-specific, or situational power over
+   unlimited universal bonuses.
+10. **Preserve core decisions:** Effects should enrich Catch/Bait choice,
+    Catch Chain management, Line Load, Release, Descend, Surface, and technique
+    play rather than routinely bypassing them.
+
+Possible design directions include Catch Chain manipulation, information
+reveal, encounter control, Release interactions, effective Weight changes,
+conditional bonuses, and distinctive downsides. Ability copying and role
+changes are also exploratory directions. These directions do not authorize
+unspecified mechanics: each proposed effect needs precise rules and design
+approval before becoming finalized content.
+
+### Effect behavior and timing
+
+Distinguish ongoing attached effects from effects that resolve at a specific
+moment. Only the selected role supplies its effects.
+
+- **Persistent example:** “Small catches gain +3 Value while attached.”
+  The bonus ends when its source is released.
+- **Triggered example:** “When caught, reveal the next two encounters.”
+  A completed reveal is not undone by releasing its source. This example
+  illustrates lifetime, not a finalized encounter-preview mechanic.
+
+Releasing either role removes its Weight and ongoing attached effects.
+Releasing Catch also forfeits its haul Value; Bait already has zero haul
+Value. Completed one-time triggered effects are not automatically undone
+when their source is released. Explicit effect rules must define any
+continuing dependency on the source.
+
+Candidate trigger moments include commitment as Catch or Bait, Descend,
+another creature's commitment, Release, entering a depth zone, and Surface.
+Define each effect's timing, target, duration, and Release interaction.
+If an effect refers to role assignment, specify whether it means selecting
+a Hooked role or committing the card; selecting a panel must not be assumed
+to resolve a commitment effect. Avoid “next creature” unless it clearly means
+the next encountered, Hooked, or committed creature. Trigger examples are
+not a promise that all such behaviors are currently implemented.
+
+### Illustrative effect pairs
+
+These examples illustrate variety and simplicity. They are not finalized
+card effects, balance values, or approval to implement new systems. Target
+selection, timing, duration, and interactions must be specified before use.
+
+| Creature | Catch example | Bait example | Design intent |
+|----------|---------------|--------------|---------------|
+| Small Octopus | **Grip:** Reduce another attached catch's effective Weight by 1. | **Tentacle Trick:** When releasing a creature, choose the next encounter from two revealed options. | Load efficiency versus encounter control. The choice mechanic requires defined selection and encounter rules. |
+| Cuttlefish | **Ink Cloud:** Hide the next encounter. | **Mimicry:** The next caught creature copies an attached creature's effect. | An information downside versus combinations. Concealment duration and copying eligibility, role, trigger, lifetime, and stacking require exact rules. |
+| Snapper | **Fresh Prey:** Predators become slightly more common while attached. | **Blood Trail:** Predator encounters become significantly more common while attached. | A valid occasional numerical pair; not the default for the whole set. |
+| Sea Bass | No effect; keep normal sale Value. | **Live Prey:** Predator encounters become more likely. | Deliberate simplicity; not every common creature needs two abilities. |
+
+### Creature effect quality checklist
+
+Before accepting a card design, check:
+
+- Both effects, if present, fit the creature's characteristics or theme.
+- Catch and Bait offer distinct strategic reasons to choose them; a numerical
+  pair is a deliberate occasional exception.
+- Bait is generally compelling enough to sacrifice sale value and carry
+  the creature's full resolved Weight.
+- Catch remains attractive in plausible game states.
+- Timing, target, duration, and Release interactions are understandable.
+- The card interacts meaningfully with creatures or tags, or fills a useful
+  simple role.
+- Line Load and Catch Chain decisions remain meaningful.
+- Rules text is short enough for the supplied Catch and Bait effect panels.
+  Compact Catch Chain cards retain their existing visual contract and do
+  not gain full rules text.
 
 # 7. Line load and overload
 
@@ -274,10 +393,12 @@ costly enough that overload still matters.
 
 - Released cards immediately reduce Line Load.
 
-- The player permanently loses the released card's end-of-run value.
+- The player permanently loses a released Catch-role card's end-of-run Value.
+  Bait-role cards already contribute zero haul Value.
 
-- Any passive effect, attraction modifier, synergy, or other run benefit
-  from that card disappears immediately.
+- Ongoing attached effects, attraction modifiers, and source-dependent synergies
+  from that card end immediately. Completed one-time triggered effects are not
+  automatically undone; any continuing dependency must be defined by the effect.
 
 - Release is not a free inventory operation. Choosing Release does **not**
   advance the descent. The player stays at the current depth, the current
