@@ -1,0 +1,9 @@
+{
+  "runtimeCompile": "passed",
+  "editorCompile": "passed",
+  "crabCodRuleAssertions": 34,
+  "cleanerShrimpRegressionAssertions": 40,
+  "harness": "actual gameplay sources with minimal Unity API adapters",
+  "unityExecution": "not run; existing isolated-editor startup blocked by licensing and Package Manager IPC",
+  "uiRendering": "unverified"
+}

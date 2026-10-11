@@ -18,21 +18,38 @@ MonoBehaviour:
   rarity: 0
   tags:
   - Fish
-  - Schooling
+  - Predator
   artwork: {fileID: -6506108666410769293, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
   encounterArtwork: {fileID: 3164928710328421175, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
   artworkLayout: 1
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: A cold-water fish known for its mild flavor, flaky white flesh.
+  rulesText:
   rulesTextHighlights: []
-  weight: 3
-  value: 11
+  baitRulesText: "Bottom Feeder: After releasing an Armored creature, recover one discarded technique."
+  baitRulesTextHighlights: []
+  weight: 2
+  value: 12
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 3
-  maximumDepth: 15
+  maximumDepth: 20
   effects: []
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: bottom_feeder
+    displayName: Bottom Feeder
+    effectType: 21
+    trigger: 6
+    target: 0
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Armored
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "After deliberately releasing another attached Armored creature in either role, choose a discarded technique after the releasing ability finishes, including the technique just used. First eligible Release per encounter only, even with an empty discard; all Cod Bait copies share this limit. Encounter replacements do not reset it. Forced removal and exchanges do not trigger it."

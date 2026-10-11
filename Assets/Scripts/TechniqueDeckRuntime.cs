@@ -84,14 +84,15 @@ public sealed class TechniqueDeckRuntime
     }
 
     /// <summary>
-    /// Moves a validated Technique card from hand to discard, then refills the hand.
+    /// Moves a validated Technique to discard; refill may wait until all resulting effect choices finish.
     /// </summary>
     public bool TryUseCard(
         int handIndex,
         int handSize,
         System.Random random,
         out CardDefinition usedCard,
-        out string validationMessage)
+        out string validationMessage,
+        bool refillAfterUse = true)
     {
         if (!TryGetHandCard(handIndex, out usedCard, out validationMessage))
         {
@@ -100,7 +101,24 @@ public sealed class TechniqueDeckRuntime
 
         hand = RemoveCardAt(hand, handIndex);
         discardPile = AppendCard(discardPile, usedCard);
-        Refill(handSize, random);
+        if (refillAfterUse)
+        {
+            Refill(handSize, random);
+        }
+        return true;
+    }
+
+    /// <summary>Returns one selected discard occurrence to hand, allowing recovery beyond the normal hand size.</summary>
+    public bool TryRecoverDiscardedTechnique(int discardIndex)
+    {
+        if (discardIndex < 0 || discardIndex >= discardPile.Length
+            || discardPile[discardIndex]?.CardType != CardType.Technique)
+        {
+            return false;
+        }
+
+        hand = AppendCard(hand, discardPile[discardIndex]);
+        discardPile = RemoveCardAt(discardPile, discardIndex);
         return true;
     }
 

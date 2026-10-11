@@ -52,6 +52,7 @@ MonoBehaviour:
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
     reminderText: Immediately after attachment as Catch, choose and remove one active negative effect. Completed actions are unchanged; lasting negative stat modifiers can be removed.
+  hasExplicitBaitData: 1
   baitEffects:
   - effectId: cleaner_shrimp_cleaning_station
     displayName: Cleaning Station

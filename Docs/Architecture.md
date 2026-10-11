@@ -209,7 +209,8 @@ Owns:
 - Fisher-Yates shuffling
 - Starting hand draw
 - Removing used cards from the hand
-- Discarding used cards and automatically refilling the hand
+- Discarding used cards before effect resolution; controller-deferred refill after resulting creature choices
+- Recovering one selected discard occurrence to hand without imposing a recovery hand cap
 - Reshuffling the discard pile when the draw pile is empty
 - Draw-pile and discard-pile state
 - Clearing deck state when the run ends
@@ -222,7 +223,7 @@ Does not own:
 ### `TechniqueHandView`
 
 Role:
-Interactive four-slot presentation of the current Technique hand.
+Interactive four-card pages of the current Technique hand, including recovered cards beyond the normal hand size.
 
 Owns:
 - Stable card-slot layout
@@ -663,11 +664,11 @@ Current Technique-card use flow:
 
 1. `TechniqueHandView` forwards a slot's `USE` command to `FishingRunController`.
 2. The controller validates the run and hand slot; `TechniqueEffectRuntime` validates effect targets.
-3. `TechniqueDeckRuntime` moves the card from hand to discard and refills the hand.
+3. `TechniqueDeckRuntime` moves the card from hand to discard without refilling yet.
 4. `TechniqueEffectRuntime` executes immediate effects or queues them for the next matching action.
 5. `CatchChainRuntime` applies lasting per-copy changes and recalculates persistent interactions when required.
 6. Encounter replacement performs a weighted reveal while excluding the replaced card.
-7. If the draw pile is empty, the discard pile is shuffled into a new draw pile before refilling.
+7. After the entire ability and any creature recovery choices finish, refill up to the normal hand size. If the draw pile is empty, shuffle the remaining discard pile before refilling.
 8. The controller refreshes the hand, piles, encounter, Catch Chain, and playability states.
 
 Current Release flow:
@@ -779,7 +780,7 @@ The hand view also supports separate 1536 x 1024 decorative clusters for the low
 
 `CompactCatchCardView` is the Catch Rig's serialized horizontal card. Its normal surface is the supplied `fishing-ui-catch-chain-card-master.png`; Unity places the catch name, creature artwork, resolved Weight and Value, an optional passive-effect icon, and a small `BAIT` marker driven by `CardInstance.AttachmentRole` into the authored presentation. A self-concealing card displays `?` instead of its Value for the rest of the run when that concealment belongs to its selected role. It deliberately has no full rules field. `CatchChainView` instantiates one compact-card prefab per attached creature beyond the separate rig connector gutter. The view owns a stable left-side rig attachment transform, click forwarding, pointer hover, and visually distinct selected, disabled, and release-candidate layers. It does not decide whether a catch may be selected or released.
 
-`CardInstance` owns the immutable per-attachment role (`Catch` or `Bait`) chosen at commit time. `CatchChainRuntime` builds active records only from `CardInstance.ActiveEffects`, which selects exactly one definition-owned effect array. Both roles retain their resolved Weight for Line Load. `CardInstance.HaulValueContribution` is the canonical reward boundary: it returns the resolved Value for Catch attachments and zero for Bait attachments, and result/reward/presentation consumers use it instead of raw `CurrentValue`. Role state is preserved in chain snapshots and run results. Definitions without authored Bait effects currently fall back to their Catch effect array so existing content remains functional while the catalog is migrated; once a Bait array is populated it replaces that fallback for Bait attachments.
+`CardInstance` owns the immutable per-attachment role (`Catch` or `Bait`) chosen at commit time. `CatchChainRuntime` builds active records only from `CardInstance.ActiveEffects`, which selects exactly one definition-owned effect array. Both roles retain their resolved Weight for Line Load. `CardInstance.HaulValueContribution` is the canonical reward boundary: it returns the resolved Value for Catch attachments and zero for Bait attachments, and result/reward/presentation consumers use it instead of raw `CurrentValue`. Role state is preserved in chain snapshots and run results. Refactored definitions set `hasExplicitBaitData`, making empty role arrays and text authoritative. Unrefactored definitions retain legacy Bait fallback until their approved redesign arrives.
 
 `CreatureCardView` is the production current-Encounter card. It selects the supplied 1122 x 1402 dual-effect catch master for `Creature`, `Treasure`, and `ApexEncounter`, and the supplied 1101 x 1429 event master for every non-catchable encounter category. Event presentation hides the catch-only Weight, Value, rarity, tag rail, and Bait effect region, switches text colors for the ivory title field, and expands the Catch rules region to the event master's single rules panel. Unity renders each card's explicitly authored `EncounterArtwork` (falling back to `Artwork`) either inside the chart-field mask or as a transparent full-card overlay. `CardDefinition.ArtworkLayout` selects the artwork path without runtime size heuristics, while `Artwork` remains the cropped image used by compact-card consumers. Legacy precomposed per-creature faces do not replace these masters.
 
@@ -846,3 +847,7 @@ Do not:
 Use this file to describe the intended structure.
 
 Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally uses a simpler approach than this architecture ultimately wants.
+
+### Deliberate Release and recovery coordination
+
+`CatchChainRuntime.DeliberatelyReleased` reports each completed deliberate removal (player, Technique, or creature) with its exact released instance. Forced losses and swaps bypass this event. `CreatureEffectRuntime` owns immediate Release choices, a shared encounter recovery-consumed flag, and a deferred recovery request. It records eligibility while the source is attached, consumes the opportunity even with no discard, and exposes the request only after the releasing ability completes. A completed recovery trigger survives source removal. `FishingRunController` resets this flag only on normal encounter advancement; Technique replacements never reset it. The controller suspends actions and normal Technique refill until queued choices finish. `TechniqueHandView` presents overflow through four-card pages and forwards the actual hand index.

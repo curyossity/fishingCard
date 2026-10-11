@@ -244,8 +244,9 @@ public sealed class CreatureCatalogWindow : EditorWindow
         DrawSection("Availability Constraints", cardObject, "biomeIds", "minimumDepth", "maximumDepth");
         DrawSection("Catch Effects", cardObject, "effects");
         EditorGUILayout.HelpBox(
-            "When Bait Effects is empty, the card temporarily uses its Catch Effects as the Bait fallback. Add any Bait Effect entry to replace that fallback.",
+            "Enable explicit Bait data for refactored cards. Empty effects then mean no Bait effect; unrefactored cards retain the legacy Catch fallback.",
             MessageType.None);
+        EditorGUILayout.PropertyField(cardObject.FindProperty("hasExplicitBaitData"));
         DrawSection("Bait Effects", cardObject, "baitEffects");
         bool cardFieldsChanged = EditorGUI.EndChangeCheck();
 

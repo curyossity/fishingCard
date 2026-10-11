@@ -52,6 +52,7 @@ public class CardDefinition : ScriptableObject
     [Header("Catch Effects")]
     [SerializeField] private CardEffectDefinition[] effects = Array.Empty<CardEffectDefinition>();
     [Header("Bait Effects")]
+    [SerializeField] private bool hasExplicitBaitData;
     [SerializeField] private CardEffectDefinition[] baitEffects = Array.Empty<CardEffectDefinition>();
 
     public string UniqueId => uniqueId;
@@ -69,9 +70,9 @@ public class CardDefinition : ScriptableObject
     public bool CardFaceIncludesName => cardFaceIncludesName;
     public string RulesText => rulesText;
     public CardTextHighlightDefinition[] RulesTextHighlights => rulesTextHighlights;
-    public string BaitRulesText => string.IsNullOrWhiteSpace(baitRulesText) ? rulesText : baitRulesText;
+    public string BaitRulesText => hasExplicitBaitData ? baitRulesText : string.IsNullOrWhiteSpace(baitRulesText) ? rulesText : baitRulesText;
     public CardTextHighlightDefinition[] BaitRulesTextHighlights =>
-        baitRulesTextHighlights != null && baitRulesTextHighlights.Length > 0
+        hasExplicitBaitData || (baitRulesTextHighlights != null && baitRulesTextHighlights.Length > 0)
             ? baitRulesTextHighlights
             : rulesTextHighlights;
     public int Weight => weight;
@@ -84,7 +85,8 @@ public class CardDefinition : ScriptableObject
     public int MaximumDepth => maximumDepth;
     public CardEffectDefinition[] Effects => effects;
     public CardEffectDefinition[] BaitEffects =>
-        baitEffects != null && baitEffects.Length > 0 ? baitEffects : effects;
+        hasExplicitBaitData ? baitEffects ?? Array.Empty<CardEffectDefinition>()
+            : baitEffects != null && baitEffects.Length > 0 ? baitEffects : effects;
 
     public bool HasWeight => weight > 0;
     public bool HasValue => value > 0 || (randomizeValueWhenCaught && maximumCaughtValue > 0);
@@ -387,7 +389,8 @@ public enum CardEffectType
     PreventRelease,
     ModifySelfValuePerOtherMatchingCatch,
     RemoveNegativeEffect,
-    SwapCatchAtBiomeStart
+    SwapCatchAtBiomeStart,
+    RecoverDiscardedTechnique
 }
 
 public enum CardEffectTrigger

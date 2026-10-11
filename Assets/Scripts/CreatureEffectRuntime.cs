@@ -6,7 +6,9 @@ public enum CreatureEffectChoiceKind
 {
     None,
     RemoveNegativeEffect,
-    SwapCatch
+    SwapCatch,
+    ReleaseAttachedCard,
+    RecoverTechnique
 }
 
 /// <summary>Owns ordered creature attachment and later-biome choices without owning their presentation.</summary>
@@ -27,6 +29,8 @@ public sealed class CreatureEffectRuntime
 
     [SerializeField] private List<Request> requests = new List<Request>();
     [SerializeField] private int biomeVisit;
+    [SerializeField] private bool encounterRecoveryConsumed;
+    [SerializeField] private Request pendingRecovery;
 
     public int BiomeVisit => biomeVisit;
     public CreatureEffectChoiceKind ChoiceKind => requests.Count == 0
@@ -47,6 +51,8 @@ public sealed class CreatureEffectRuntime
     {
         requests.Clear();
         biomeVisit = 0;
+        encounterRecoveryConsumed = false;
+        pendingRecovery = null;
     }
 
     /// <summary>Stamps a new attachment and queues its selected role's immediate choice effects.</summary>
@@ -64,14 +70,17 @@ public sealed class CreatureEffectRuntime
         {
             CardEffectDefinition effect = effects[effectIndex];
             if (effect?.Trigger == CardEffectTrigger.WhenCaught
-                && effect.EffectType == CardEffectType.RemoveNegativeEffect)
+                && (effect.EffectType == CardEffectType.RemoveNegativeEffect
+                    || effect.EffectType == CardEffectType.ReleaseCatch))
             {
                 immediate.Add(new Request
                 {
                     SourceInstanceId = instance.InstanceId,
                     EffectIndex = effectIndex,
                     AbilityName = effect.DisplayName,
-                    Kind = CreatureEffectChoiceKind.RemoveNegativeEffect
+                    Kind = effect.EffectType == CardEffectType.ReleaseCatch
+                        ? CreatureEffectChoiceKind.ReleaseAttachedCard
+                        : CreatureEffectChoiceKind.RemoveNegativeEffect
                 });
             }
         }
@@ -155,11 +164,23 @@ public sealed class CreatureEffectRuntime
         TechniqueEffectRuntime techniques,
         EffectResolver resolver,
         System.Random random,
-        Func<int> negativeEffectCount)
+        Func<int> negativeEffectCount,
+        TechniqueDeckRuntime deck = null)
     {
         while (requests.Count > 0)
         {
             Request request = requests[0];
+            // A completed Release trigger survives later removal of its Bait source.
+            if (request.Kind == CreatureEffectChoiceKind.RecoverTechnique)
+            {
+                if (deck != null && Array.Exists(deck.DiscardPile, c => c?.CardType == CardType.Technique))
+                {
+                    return;
+                }
+                requests.RemoveAt(0);
+                continue;
+            }
+
             CardInstance source = GetChoiceSource(chain.Catches);
             CardEffectDefinition[] active = source?.ActiveEffects;
             if (source == null || request.EffectIndex < 0 || request.EffectIndex >= active.Length
@@ -176,6 +197,16 @@ public sealed class CreatureEffectRuntime
                     return;
                 }
 
+                requests.RemoveAt(0);
+                continue;
+            }
+
+            if (request.Kind == CreatureEffectChoiceKind.ReleaseAttachedCard)
+            {
+                if (GetReleaseTargets(chain.Catches).Length > 0)
+                {
+                    return;
+                }
                 requests.RemoveAt(0);
                 continue;
             }
@@ -201,6 +232,90 @@ public sealed class CreatureEffectRuntime
 
             requests.RemoveAt(0);
         }
+    }
+
+    /// <summary>Starts a new encounter window; replacing the Hooked card does not call this.</summary>
+    public void BeginEncounter()
+    {
+        encounterRecoveryConsumed = false;
+    }
+
+    /// <summary>Records the first qualifying deliberate Release while an eligible Bait source is attached.</summary>
+    public void RecordDeliberateRelease(CardInstance released, CatchRemovalReason reason, CardInstance[] survivors)
+    {
+        if (encounterRecoveryConsumed || reason == CatchRemovalReason.LineStrain
+            || released?.Definition?.CardType != CardType.Creature)
+        {
+            return;
+        }
+
+        foreach (CardInstance source in survivors ?? Array.Empty<CardInstance>())
+        {
+            if (source == null || !source.IsBait || source.InstanceId == released.InstanceId)
+            {
+                continue;
+            }
+            CardEffectDefinition[] effects = source.ActiveEffects;
+            for (int index = 0; index < effects.Length; index++)
+            {
+                CardEffectDefinition effect = effects[index];
+                if (effect?.EffectType != CardEffectType.RecoverDiscardedTechnique
+                    || effect.Trigger != CardEffectTrigger.WhenAnotherCatchReleased
+                    || !EffectResolver.RequiredTagsMatch(effect.RequiredTags, released.Definition))
+                {
+                    continue;
+                }
+
+                // Consume before checking the discard pile: an empty pile still spends this window.
+                encounterRecoveryConsumed = true;
+                pendingRecovery = new Request
+                {
+                    SourceInstanceId = source.InstanceId,
+                    EffectIndex = index,
+                    AbilityName = effect.DisplayName,
+                    Kind = CreatureEffectChoiceKind.RecoverTechnique
+                };
+                return;
+            }
+        }
+    }
+
+    /// <summary>Exposes recovery only after the entire releasing technique or creature ability finishes.</summary>
+    public void FinishReleaseResolution()
+    {
+        if (pendingRecovery != null)
+        {
+            requests.Insert(0, pendingRecovery);
+            pendingRecovery = null;
+        }
+    }
+
+    /// <summary>Returns legal deliberate Release targets other than the ability source, in either role.</summary>
+    public CardInstance[] GetReleaseTargets(CardInstance[] catches)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.ReleaseAttachedCard)
+        {
+            return Array.Empty<CardInstance>();
+        }
+        return Array.FindAll(catches ?? Array.Empty<CardInstance>(), c => c != null
+            && c.InstanceId != requests[0].SourceInstanceId && !c.PreventsReleaseWhileAttached);
+    }
+
+    /// <summary>Resolves the one-use attachment Release and then exposes any resulting recovery.</summary>
+    public bool TryRelease(int targetInstanceId, CatchChainRuntime chain, EffectResolver resolver)
+    {
+        if (!Array.Exists(GetReleaseTargets(chain.Catches), c => c.InstanceId == targetInstanceId))
+        {
+            return false;
+        }
+        int index = Array.FindIndex(chain.Catches, c => c?.InstanceId == targetInstanceId);
+        if (!chain.TryRelease(index, resolver, out _, out _, out _, CatchRemovalReason.Creature))
+        {
+            return false;
+        }
+        CompleteChoice();
+        FinishReleaseResolution();
+        return true;
     }
 
     /// <summary>Completes one resolved choice, leaving subsequent sources queued.</summary>

@@ -14,6 +14,9 @@ public sealed class CatchChainRuntime
     [SerializeField] private string[] invalidatedNoReleaseEffectKeys = Array.Empty<string>();
     [SerializeField] private int nextInstanceId = 1;
 
+    /// <summary>Reports each completed deliberate removal without firing for forced loss or exchange.</summary>
+    public event Action<CardInstance, CatchRemovalReason> DeliberatelyReleased;
+
     public CardInstance[] Catches => catches;
     public ActiveCatchEffectRecord[] ActiveEffectRecords => activeEffectRecords;
     public CardInstance[] ReleasedCatches => releasedCatches;
@@ -266,6 +269,10 @@ public sealed class CatchChainRuntime
         ApplyAnotherCatchReleasedEffects(releasedCatch, removalReason);
         RecordRemoval(releasedCatch, removalReason);
         catches = RemoveCatchAt(catches, catchIndex);
+        if (removalReason != CatchRemovalReason.LineStrain)
+        {
+            DeliberatelyReleased?.Invoke(releasedCatch, removalReason);
+        }
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         return true;
@@ -462,7 +469,8 @@ public sealed class CatchChainRuntime
 
             if (effect == null || effect.Trigger != trigger
                 || (trigger == CardEffectTrigger.WhenCaught
-                    && effect.EffectType == CardEffectType.RemoveNegativeEffect))
+                    && (effect.EffectType == CardEffectType.RemoveNegativeEffect
+                        || effect.EffectType == CardEffectType.ReleaseCatch)))
             {
                 continue;
             }
@@ -603,6 +611,7 @@ public sealed class CatchChainRuntime
             ApplyAnotherCatchReleasedEffects(releasedCatch, CatchRemovalReason.Technique);
             RecordRemoval(releasedCatch, CatchRemovalReason.Technique);
             catches = RemoveCatchAt(catches, targetIndex);
+            DeliberatelyReleased?.Invoke(releasedCatch, CatchRemovalReason.Technique);
         }
 
         RebuildActiveEffectRecords();
@@ -809,5 +818,6 @@ public enum CatchRemovalReason
 {
     PlayerChoice,
     Technique,
-    LineStrain
+    LineStrain,
+    Creature
 }

@@ -65,6 +65,12 @@ Caught creatures/items remain attached to the fishing rig while the player conti
 - Preserve Line Load, Catch Chain, core actions, and technique decisions. Keep rules text suitable for the supplied effect panels; compact chain cards do not display full rules text.
 - The full GDD section 6 contains the authoring checklist and illustrative pairs. Copying, encounter choice, role changes, and example values require precise rules and design approval before finalized content; examples do not establish implemented capabilities.
 
+### Approved Clinging Crab and Cod Refactors
+
+- Clinging Crab: Weight 2, Value 14, Uncommon, depth 0–12, Anchored/Armored. Catch Iron Grip prevents all deliberate Releases but permits forced removal and exchanges. Bait Claw Cut immediately chooses and deliberately releases one other legal attached Catch or Bait; skip without a target and never save the use.
+- Cod: Weight 2, Value 12, Common, depth 3–20, Fish/Predator. Catch has no effect. Bait Bottom Feeder offers one discarded Technique after the first deliberate Release of another Armored creature in either role, after the whole releasing ability resolves (including its just-used Technique). Empty discard still consumes the shared one-per-encounter limit; all Cod copies share it. Encounter replacements do not reset it; forced removal and exchanges do not trigger it.
+- Technique refill waits for recovery choices, then fills up to the normal hand size. Recovery can exceed that size; all hand cards remain accessible through four-card pages. Explicitly empty refactored roles stay empty.
+
 ### Approved Cleaner Shrimp Refactor
 
 - Coastal Waters; Weight 1, Value 8, Uncommon, depth 1–14 inclusive, Small.

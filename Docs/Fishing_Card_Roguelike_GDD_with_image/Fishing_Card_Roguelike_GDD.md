@@ -390,6 +390,41 @@ Biome destinations are authored links, not invented content. Coastal Waters
 currently has no authored destination biome; its next-waters presentation
 remains the boundary until that content is provided.
 
+## Approved creature refactors: Clinging Crab and Cod
+
+**Clinging Crab** — Coastal Waters, Weight **2**, Value **14**, Uncommon,
+depth **0–12**, tags **Anchored, Armored**.
+
+- **Catch / Iron Grip:** cannot be deliberately released by the core action,
+  Techniques, or creature abilities. Forced removal and exchanges can still
+  remove it. The restriction applies only in the Catch role.
+- **Bait / Claw Cut:** immediately after attachment, the player chooses one
+  other legally releasable attached Catch or Bait and releases it immediately.
+  This is a deliberate Release caused by a creature effect and can trigger
+  Release reactions. Resolve once; skip without a legal target and never save
+  the unused release for later.
+
+**Cod** — Coastal Waters, Weight **2**, Value **12**, Common, depth **3–20**,
+tags **Fish, Predator**. **Catch has no effect.**
+
+**Bait / Bottom Feeder:** while attached, the first deliberate Release of
+another attached **Armored creature**, in either role, offers one discarded
+Technique to return to hand. The player chooses after the entire releasing
+Technique or ability finishes, including the Technique just used. An empty
+discard pile recovers nothing but still consumes the opportunity. All Cod
+Bait copies share **one opportunity per encounter**; replacing the current
+encounter does not reset it. Forced removals and exchanges do not trigger it.
+A completed trigger survives later removal of its source during that ability.
+
+Used Techniques enter discard before resolving their effects. Their normal
+hand refill waits for resulting recovery choices to finish, then fills only
+up to the normal hand size. Recovery itself does not discard or cap excess
+hand cards; every recovered card remains accessible in the hand UI.
+
+An explicitly empty Catch or Bait role remains effectless. It must not copy
+another role's text or effects. Legacy role fallback exists only for creature
+cards that have not yet received their approved refactor.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

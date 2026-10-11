@@ -27,6 +27,13 @@ public sealed class TechniqueHandView : MonoBehaviour
     private TextMeshProUGUI pileCountText;
     private readonly SlotView[] slots = new SlotView[SlotCount];
     private Func<int, bool> useCardAction;
+    private int pageIndex;
+    private CardDefinition[] displayedHand = Array.Empty<CardDefinition>();
+    private bool[] displayedPlayable = Array.Empty<bool>();
+    private string[] displayedRestrictions = Array.Empty<string>();
+    private Button previousPageButton;
+    private Button nextPageButton;
+    private TextMeshProUGUI pageText;
 
     private sealed class SlotView
     {
@@ -48,7 +55,7 @@ public sealed class TechniqueHandView : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays four stable hand slots, pile counts, and current playability state.
+    /// Displays the hand in stable four-card pages, with pile counts and current playability state.
     /// </summary>
     public void Refresh(
         CardDefinition[] hand,
@@ -62,19 +69,29 @@ public sealed class TechniqueHandView : MonoBehaviour
         this.useCardAction = useCardAction;
         pileCountText.text = $"DRAW {drawPileCount}     DISCARD {discardPileCount}";
 
-        CardDefinition[] safeHand = hand ?? Array.Empty<CardDefinition>();
-        bool[] safePlayableSlots = playableSlots ?? Array.Empty<bool>();
-        string[] safeRestrictionReasons = restrictionReasons ?? Array.Empty<string>();
+        displayedHand = hand ?? Array.Empty<CardDefinition>();
+        displayedPlayable = playableSlots ?? Array.Empty<bool>();
+        displayedRestrictions = restrictionReasons ?? Array.Empty<string>();
+        pageIndex = Mathf.Clamp(pageIndex, 0, Math.Max(0, (displayedHand.Length - 1) / SlotCount));
+        RefreshPage();
+    }
 
+    /// <summary>Displays a readable four-card page, keeping every recovered hand card accessible.</summary>
+    private void RefreshPage()
+    {
+        int pageCount = Math.Max(1, (displayedHand.Length + SlotCount - 1) / SlotCount);
+        previousPageButton.gameObject.SetActive(pageCount > 1);
+        nextPageButton.gameObject.SetActive(pageCount > 1);
+        pageText.gameObject.SetActive(pageCount > 1);
+        previousPageButton.interactable = pageIndex > 0;
+        nextPageButton.interactable = pageIndex + 1 < pageCount;
+        pageText.text = (pageIndex + 1) + " / " + pageCount;
         for (int i = 0; i < SlotCount; i++)
         {
-            CardDefinition card = i < safeHand.Length ? safeHand[i] : null;
-            bool isPlayable = i < safePlayableSlots.Length && safePlayableSlots[i];
-            string restrictionReason = i < safeRestrictionReasons.Length
-                ? safeRestrictionReasons[i]
-                : string.Empty;
-
-            RefreshSlot(i, card, isPlayable, restrictionReason);
+            int handIndex = pageIndex * SlotCount + i;
+            RefreshSlot(i, handIndex < displayedHand.Length ? displayedHand[handIndex] : null,
+                handIndex < displayedPlayable.Length && displayedPlayable[handIndex],
+                handIndex < displayedRestrictions.Length ? displayedRestrictions[handIndex] : string.Empty);
         }
     }
 
@@ -155,6 +172,35 @@ public sealed class TechniqueHandView : MonoBehaviour
         {
             slots[i] = CreateSlot(i);
         }
+        previousPageButton = CreatePageButton("Previous", false);
+        nextPageButton = CreatePageButton("Next", true);
+        pageText = CreateText("Hand Page", handContentRoot, bodyFont, 12, FontWeight.Regular,
+            TextAlignmentOptions.Center, Color.white);
+        SetAnchoredRect(pageText.rectTransform, new Vector2(0.5f, 0f), new Vector2(0.5f, 0f),
+            -35f, -18f, 35f, 6f);
+    }
+
+    /// <summary>Creates navigation beside the hand without shrinking its established card slots.</summary>
+    private Button CreatePageButton(string label, bool next)
+    {
+        GameObject target = CreateUiObject(label + " Hand Page", handContentRoot);
+        float edge = next ? 1f : 0f;
+        SetAnchoredRect(target.GetComponent<RectTransform>(), new Vector2(edge, 0.5f),
+            new Vector2(edge, 0.5f), next ? 4f : -38f, -20f, next ? 38f : -4f, 20f);
+        Image background = AddImage(target, PlayableCardColor);
+        background.raycastTarget = true;
+        Button button = target.AddComponent<Button>();
+        button.targetGraphic = background;
+        button.onClick.AddListener(() =>
+        {
+            pageIndex += next ? 1 : -1;
+            RefreshPage();
+        });
+        TextMeshProUGUI text = CreateText("Label", target.transform, bodyFont, 20,
+            FontWeight.SemiBold, TextAlignmentOptions.Center, Color.white);
+        text.text = next ? ">" : "<";
+        SetAnchoredRect(text.rectTransform, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        return button;
     }
 
     /// <summary>
@@ -368,7 +414,7 @@ public sealed class TechniqueHandView : MonoBehaviour
     /// </summary>
     private void InvokeUse(int slotIndex)
     {
-        useCardAction?.Invoke(slotIndex);
+        useCardAction?.Invoke(pageIndex * SlotCount + slotIndex);
     }
 
     /// <summary>

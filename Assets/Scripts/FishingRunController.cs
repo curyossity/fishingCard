@@ -66,6 +66,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private bool biomeEntryRevealPending;
     [SerializeField] private int pendingCommittedCatchId = -1;
     private int selectedSwapTargetId = -1;
+    [SerializeField] private bool techniqueRefillPending;
 
     public CreatureEffectChoiceKind PendingCreatureChoice => creatureEffectRuntime.ChoiceKind;
     public CardDefinition[] OfferedCreatures => creatureEffectRuntime.OfferedCreatures;
@@ -131,6 +132,10 @@ public sealed class FishingRunController : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (catchChainRuntime != null)
+        {
+            catchChainRuntime.DeliberatelyReleased -= HandleDeliberateRelease;
+        }
         if (fishingRunView != null)
         {
             fishingRunView.SurfaceTransitionCompleted -= HandleSurfaceTransitionCompleted;
@@ -170,6 +175,7 @@ public sealed class FishingRunController : MonoBehaviour
         runEndCleanupPending = false;
         creatureEffectRuntime.Reset();
         descendCompletionPending = false;
+        techniqueRefillPending = false;
         biomeEntryRevealPending = false;
         pendingCommittedCatchId = -1;
         selectedSwapTargetId = -1;
@@ -217,7 +223,8 @@ public sealed class FishingRunController : MonoBehaviour
             startingHandSize,
             random,
             out _,
-            out string deckValidationMessage);
+            out string deckValidationMessage,
+            false);
 
         if (!consumed)
         {
@@ -237,6 +244,11 @@ public sealed class FishingRunController : MonoBehaviour
             random,
             currentEncounterInformationHidden,
             out string effectSummary);
+
+        techniqueRefillPending = true;
+        creatureEffectRuntime.FinishReleaseResolution();
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
 
         if (!applied)
         {
@@ -434,6 +446,41 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
+    /// <summary>Chooses a legal target for an immediate creature Release.</summary>
+    public bool TryChooseCreatureRelease(int targetInstanceId)
+    {
+        if (!runActive || !creatureEffectRuntime.TryRelease(targetInstanceId, catchChainRuntime, effectResolver))
+        {
+            return false;
+        }
+        selectedCatchIndex = -1;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Returns the selected discard occurrence to hand before normal refill resumes.</summary>
+    public bool TryChooseRecoveredTechnique(int discardIndex)
+    {
+        if (!runActive || PendingCreatureChoice != CreatureEffectChoiceKind.RecoverTechnique
+            || !techniqueDeckRuntime.TryRecoverDiscardedTechnique(discardIndex))
+        {
+            return false;
+        }
+        creatureEffectRuntime.CompleteChoice();
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Records Release reactions without interrupting the resolving ability.</summary>
+    private void HandleDeliberateRelease(CardInstance released, CatchRemovalReason reason)
+    {
+        creatureEffectRuntime.RecordDeliberateRelease(released, reason, catchChainRuntime.Catches);
+    }
+
     /// <summary>Prepares queued choices once, skipping requests with no eligible targets or offers.</summary>
     private void PrepareCreatureChoice()
     {
@@ -443,7 +490,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         creatureEffectRuntime.PrepareChoice(catchChainRuntime, encounterRuntime, currentBiome,
-            techniqueEffectRuntime, effectResolver, random, () => RemovableNegativeEffects.Length);
+            techniqueEffectRuntime, effectResolver, random, () => RemovableNegativeEffects.Length, techniqueDeckRuntime);
     }
 
     /// <summary>Resumes either attachment resolution or the first biome reveal after all choices finish.</summary>
@@ -452,6 +499,12 @@ public sealed class FishingRunController : MonoBehaviour
         if (HasPendingCreatureChoice || !runActive)
         {
             return;
+        }
+
+        if (techniqueRefillPending)
+        {
+            techniqueRefillPending = false;
+            techniqueDeckRuntime.Refill(startingHandSize, random);
         }
 
         if (descendCompletionPending)
@@ -480,7 +533,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         string abilityName = string.IsNullOrWhiteSpace(creatureEffectRuntime.ChoiceName)
-            ? creatureEffectRuntime.GetChoiceSource(catchChainRuntime.Catches).Definition.DisplayName
+            ? creatureEffectRuntime.GetChoiceSource(catchChainRuntime.Catches)?.Definition?.DisplayName ?? "Creature effect"
             : creatureEffectRuntime.ChoiceName;
         if (PendingCreatureChoice == CreatureEffectChoiceKind.RemoveNegativeEffect)
         {
@@ -490,6 +543,29 @@ public sealed class FishingRunController : MonoBehaviour
             Sprite[] art = Array.ConvertAll(options, option => option.SourceCard?.Artwork);
             fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose one negative effect to remove.",
                 labels, details, art, index => TryChooseNegativeEffect(index));
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.ReleaseAttachedCard)
+        {
+            CardInstance[] releases = creatureEffectRuntime.GetReleaseTargets(catchChainRuntime.Catches);
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose another attached card to release.",
+                Array.ConvertAll(releases, card => card.Definition.DisplayName + " (" + card.AttachmentRole + ")"),
+                Array.ConvertAll(releases, card => "Weight " + card.CurrentWeight + " · Value "
+                    + (card.HidesOwnValueDuringRun && !card.IsBait ? "?" : card.HaulValueContribution.ToString())),
+                Array.ConvertAll(releases, card => card.Definition.Artwork),
+                index => TryChooseCreatureRelease(releases[index].InstanceId));
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique)
+        {
+            CardDefinition[] discarded = techniqueDeckRuntime.DiscardPile;
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose a discarded technique to return to hand.",
+                Array.ConvertAll(discarded, card => card.DisplayName),
+                Array.ConvertAll(discarded, card => card.RulesText),
+                Array.ConvertAll(discarded, card => card.Artwork),
+                index => TryChooseRecoveredTechnique(index));
             return;
         }
 
@@ -576,6 +652,9 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         selectedCatchIndex = -1;
+        creatureEffectRuntime.FinishReleaseResolution();
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
         RefreshViews();
         Debug.Log(BuildReleaseSummary(releasedCatch, previousLineLoad), this);
         return true;
@@ -854,6 +933,9 @@ public sealed class FishingRunController : MonoBehaviour
             creatureEffectRuntime = new CreatureEffectRuntime();
         }
 
+        catchChainRuntime.DeliberatelyReleased -= HandleDeliberateRelease;
+        catchChainRuntime.DeliberatelyReleased += HandleDeliberateRelease;
+
         if (effectResolver == null)
         {
             effectResolver = new EffectResolver();
@@ -865,6 +947,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     private void RevealEncounterAtCurrentDepth()
     {
+        creatureEffectRuntime.BeginEncounter();
         int selectionDepth = GetEffectiveEncounterSelectionDepth();
 
         if (TryRevealBiomeApex(selectionDepth))
