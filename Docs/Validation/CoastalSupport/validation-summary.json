@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-11",
+  "unityVersion": "6000.5.9f1",
+  "runtimeCompile": "passed",
+  "editorCompile": "passed",
+  "newRuleAssertions": 61,
+  "regressionAssertions": 74,
+  "totalAssertions": 135,
+  "harness": "actual gameplay source files with minimal Unity API adapters",
+  "authoredCards": [
+    {
+      "card": "Garfish",
+      "identityAndArt": "preserved",
+      "stats": "passed",
+      "tiers": [
+        "shallows",
+        "mid_depth"
+      ]
+    },
+    {
+      "card": "Glass Minnow",
+      "identityAndArt": "preserved",
+      "stats": "passed",
+      "tiers": [
+        "shallows",
+        "mid_depth"
+      ]
+    },
+    {
+      "card": "Jellyfish",
+      "identityAndArt": "preserved",
+      "stats": "passed",
+      "tiers": [
+        "shallows",
+        "mid_depth",
+        "deep_edge"
+      ]
+    }
+  ],
+  "unityExecution": "unverified; earlier isolated editor startup blocked by headless licensing and Package Manager IPC",
+  "uiRendering": "unverified"
+}

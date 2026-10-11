@@ -17,6 +17,8 @@ public sealed class CatchChainRuntime
     /// <summary>Reports each completed deliberate removal without firing for forced loss or exchange.</summary>
     public event Action<CardInstance, CatchRemovalReason> DeliberatelyReleased;
 
+    [SerializeField] private List<PendingCreatureCatchEffect> pendingCreatureCatchEffects = new List<PendingCreatureCatchEffect>();
+    public PendingCreatureCatchEffect[] PendingCreatureCatchEffects => pendingCreatureCatchEffects.ToArray();
     public CardInstance[] Catches => catches;
     public ActiveCatchEffectRecord[] ActiveEffectRecords => activeEffectRecords;
     public CardInstance[] ReleasedCatches => releasedCatches;
@@ -68,10 +70,10 @@ public sealed class CatchChainRuntime
 
         CardInstance caughtInstance = new CardInstance(nextInstanceId, caughtCard, random, attachmentRole);
         nextInstanceId++;
-        ApplyPendingNextCatchEffects(caughtInstance, true);
         catches = AppendCatch(catches, caughtInstance);
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        ResolveNewAttachment(caughtInstance, effectResolver);
         return caughtInstance;
     }
 
@@ -134,7 +136,7 @@ public sealed class CatchChainRuntime
 
             for (int i = 0; i < catches.Length; i++)
             {
-                if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+                if (EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, catches[i]))
                 {
                     catches[i].AddPermanentModifiers(0, valueChange, effect, null);
                 }
@@ -218,7 +220,18 @@ public sealed class CatchChainRuntime
         catches[index] = next;
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        ResolveNewAttachment(next, effectResolver);
         return next;
+    }
+
+    /// <summary>Changes an attached creature's per-copy base tags and immediately rebuilds all tag-dependent interactions.</summary>
+    public bool TrySetCreatureBaseTags(int instanceId, string[] tags, EffectResolver resolver)
+    {
+        CardInstance target = Array.Find(catches, c => c?.InstanceId == instanceId);
+        if (target?.Definition?.CardType != CardType.Creature) return false;
+        target.SetRuntimeBaseTags(tags);
+        resolver.ResolveCatchChain(catches, activeEffectRecords);
+        return true;
     }
 
     /// <summary>
@@ -269,12 +282,12 @@ public sealed class CatchChainRuntime
         ApplyAnotherCatchReleasedEffects(releasedCatch, removalReason);
         RecordRemoval(releasedCatch, removalReason);
         catches = RemoveCatchAt(catches, catchIndex);
+        RebuildActiveEffectRecords();
+        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         if (removalReason != CatchRemovalReason.LineStrain)
         {
             DeliberatelyReleased?.Invoke(releasedCatch, removalReason);
         }
-        RebuildActiveEffectRecords();
-        effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         return true;
     }
 
@@ -338,11 +351,18 @@ public sealed class CatchChainRuntime
 
         CardInstance[] previewCatches = CreateSnapshot();
         CardInstance previewCatch = new CardInstance(0, card, null, attachmentRole);
-        ApplyPendingNextCatchEffects(previewCatch, false);
         previewCatches = AppendCatch(previewCatches, previewCatch);
 
-        List<ActiveCatchEffectRecord> previewEffects = new List<ActiveCatchEffectRecord>(activeEffectRecords);
+        List<ActiveCatchEffectRecord> previewEffects = new List<ActiveCatchEffectRecord>();
+        foreach (ActiveCatchEffectRecord record in activeEffectRecords)
+        {
+            CardInstance sourceCopy = Array.Find(previewCatches, c => c?.InstanceId == record.SourceInstance?.InstanceId);
+            previewEffects.Add(new ActiveCatchEffectRecord(sourceCopy, record.Effect, record.ActiveTrigger, record.SourceCatchIndex));
+        }
         AppendPreviewEffects(previewEffects, previewCatch, previewCatches.Length - 1);
+        effectResolver.ResolveCatchChain(previewCatches, previewEffects.ToArray());
+        ApplyPendingNextCatchEffects(previewCatch, false);
+        ApplyPendingCreatureCatchEffects(previewCatch, false);
         effectResolver.ResolveCatchChain(previewCatches, previewEffects.ToArray());
         return previewCatch;
     }
@@ -385,6 +405,7 @@ public sealed class CatchChainRuntime
         consumedNextCatchEffectKeys = Array.Empty<string>();
         consumedNextEncounterEffectKeys = Array.Empty<string>();
         invalidatedNoReleaseEffectKeys = Array.Empty<string>();
+        pendingCreatureCatchEffects.Clear();
         nextInstanceId = 1;
     }
 
@@ -394,6 +415,7 @@ public sealed class CatchChainRuntime
     private void AddCatchEffects(CardInstance caughtInstance, int catchIndex)
     {
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenCaught, catchIndex);
+        AddActiveEffects(caughtInstance, CardEffectTrigger.AfterAnotherCatchAttached, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.OnLaterBiomeStart, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhileAttached, catchIndex);
         AddActiveEffects(caughtInstance, CardEffectTrigger.WhenAnotherCatchReleased, catchIndex);
@@ -470,7 +492,8 @@ public sealed class CatchChainRuntime
             if (effect == null || effect.Trigger != trigger
                 || (trigger == CardEffectTrigger.WhenCaught
                     && (effect.EffectType == CardEffectType.RemoveNegativeEffect
-                        || effect.EffectType == CardEffectType.ReleaseCatch)))
+                        || effect.EffectType == CardEffectType.ReleaseCatch
+                        || effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight)))
             {
                 continue;
             }
@@ -499,6 +522,40 @@ public sealed class CatchChainRuntime
         activeEffectRecords = records.ToArray();
     }
 
+    /// <summary>Applies old queued attachment effects after tags resolve, then records this card's independent one-shot effects.</summary>
+    private void ResolveNewAttachment(CardInstance instance, EffectResolver resolver)
+    {
+        ApplyPendingNextCatchEffects(instance, true);
+        ApplyPendingCreatureCatchEffects(instance, true);
+        foreach (CardEffectDefinition effect in instance.ActiveEffects)
+        {
+            if (effect?.Trigger == CardEffectTrigger.WhenCaught
+                && effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight)
+            {
+                pendingCreatureCatchEffects.Add(new PendingCreatureCatchEffect(effect, instance.Definition));
+            }
+        }
+        RebuildActiveEffectRecords();
+        resolver.ResolveCatchChain(catches, activeEffectRecords);
+    }
+
+    /// <summary>Consumes independent pending penalties only on creature Catch attachments; previews leave the queue intact.</summary>
+    private void ApplyPendingCreatureCatchEffects(CardInstance instance, bool consume)
+    {
+        if (instance.IsBait || instance.Definition?.CardType != CardType.Creature) return;
+        foreach (PendingCreatureCatchEffect pending in pendingCreatureCatchEffects)
+        {
+            instance.AddPermanentModifiers(pending.Effect.Amount, 0, pending.Effect, pending.SourceCard);
+        }
+        if (consume) pendingCreatureCatchEffects.Clear();
+    }
+
+    /// <summary>Removes an exact pending negative occurrence even after its original source left the chain.</summary>
+    public bool TryRemovePendingCreatureCatchEffect(PendingCreatureCatchEffect pending)
+    {
+        return pending?.Effect?.EffectTone == CardEffectTone.Negative && pendingCreatureCatchEffects.Remove(pending);
+    }
+
     /// <summary>Applies each attached source's unused one-shot bonus to the next matching catch.</summary>
     private void ApplyPendingNextCatchEffects(CardInstance newCatch, bool consumeEffects)
     {
@@ -511,7 +568,7 @@ public sealed class CatchChainRuntime
         {
             CardInstance source = catches[catchIndex];
             CardEffectDefinition[] effects = source?.ActiveEffects;
-            if (effects == null)
+            if (source == newCatch || effects == null)
             {
                 continue;
             }
@@ -523,7 +580,7 @@ public sealed class CatchChainRuntime
                     || effect.Trigger != CardEffectTrigger.WhenNextMatchingCatchCaught
                     || effect.Target != CardEffectTarget.SpecificCaughtCard
                     || IsNextCatchEffectConsumed(source, effectIndex)
-                    || !EffectResolver.RequiredTagsMatch(effect.RequiredTags, newCatch.Definition))
+                    || !EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, newCatch))
                 {
                     continue;
                 }
@@ -611,6 +668,8 @@ public sealed class CatchChainRuntime
             ApplyAnotherCatchReleasedEffects(releasedCatch, CatchRemovalReason.Technique);
             RecordRemoval(releasedCatch, CatchRemovalReason.Technique);
             catches = RemoveCatchAt(catches, targetIndex);
+            RebuildActiveEffectRecords();
+            effectResolver.ResolveCatchChain(catches, activeEffectRecords);
             DeliberatelyReleased?.Invoke(releasedCatch, CatchRemovalReason.Technique);
         }
 
@@ -727,7 +786,7 @@ public sealed class CatchChainRuntime
         {
             for (int i = 0; i < catches.Length; i++)
             {
-                if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition)
+                if (EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, catches[i])
                     && IsValidTechniqueTarget(effect, catches[i]))
                 {
                     return i;
@@ -739,7 +798,7 @@ public sealed class CatchChainRuntime
 
         for (int i = catches.Length - 1; i >= 0; i--)
         {
-            if (EffectResolver.RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition)
+            if (EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, catches[i])
                 && IsValidTechniqueTarget(effect, catches[i]))
             {
                 return i;
@@ -766,7 +825,7 @@ public sealed class CatchChainRuntime
 
         for (int i = 0; i < catches.Length; i++)
         {
-            if (EffectResolver.RequiredTagsMatch(requiredTags, catches[i]?.Definition))
+            if (EffectResolver.RequiredTagsMatchInstance(requiredTags, catches[i]))
             {
                 matchingCount++;
             }
@@ -820,4 +879,21 @@ public enum CatchRemovalReason
     Technique,
     LineStrain,
     Creature
+}
+
+/// <summary>An independent queued creature Catch penalty whose lifetime does not depend on its source attachment.</summary>
+[Serializable]
+public sealed class PendingCreatureCatchEffect
+{
+    [SerializeField] private CardEffectDefinition effect;
+    [SerializeField] private CardDefinition sourceCard;
+    public CardEffectDefinition Effect => effect;
+    public CardDefinition SourceCard => sourceCard;
+
+    /// <summary>Captures the effect and authored origin without retaining an attached source.</summary>
+    public PendingCreatureCatchEffect(CardEffectDefinition effect, CardDefinition sourceCard)
+    {
+        this.effect = effect;
+        this.sourceCard = sourceCard;
+    }
 }

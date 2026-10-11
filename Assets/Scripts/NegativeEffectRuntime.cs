@@ -68,6 +68,15 @@ public static class NegativeEffectRuntime
             }
         }
 
+        foreach (PendingCreatureCatchEffect pending in chain.PendingCreatureCatchEffects)
+        {
+            if (pending.Effect?.EffectTone != CardEffectTone.Negative) continue;
+            PendingCreatureCatchEffect selected = pending;
+            options.Add(new NegativeEffectOption(Label(pending.SourceCard, pending.Effect),
+                "Pending: " + Describe(pending.Effect), pending.SourceCard,
+                () => chain.TryRemovePendingCreatureCatchEffect(selected)));
+        }
+
         HookedEffectRecord[] hooked = encounters.HookedEffectRecords;
         for (int i = 0; i < hooked.Length; i++)
         {

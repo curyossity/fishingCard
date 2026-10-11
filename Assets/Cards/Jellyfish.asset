@@ -26,12 +26,10 @@ MonoBehaviour:
   encounterArtworkOffset: {x: -48, y: -24}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Next caught creature gains +2 Weight'
-  rulesTextHighlights:
-  - text: +2
-    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
+  rulesText: "Tangle: The next creature attached as Catch gains +1 weight."
+  rulesTextHighlights: []
+  baitRulesText: "Buoyant Bell: Reduce two other Armored creatures’ weight by 1 each."
+  baitRulesTextHighlights: []
   weight: 1
   value: 8
   randomizeValueWhenCaught: 0
@@ -42,15 +40,33 @@ MonoBehaviour:
   minimumDepth: 0
   maximumDepth: 18
   effects:
-  - effectId: jellyfish_next_creature_weight
-    effectType: 0
-    trigger: 7
+  - effectId: tangle
+    displayName: Tangle
+    effectType: 24
+    trigger: 1
     target: 5
     effectTone: 2
-    amount: 2
+    amount: 1
     requiredTags:
     - Creature
-    caughtCardTargetMode: 1
+    grantedTag:
+    caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
-    expiresAfterUse: 1
-    reminderText: The next caught Creature permanently gains 2 Weight.
+    expiresAfterUse: 0
+    reminderText: "Queue +1 effective weight for the next other creature attached as Catch. Bait does not consume it. The pending penalty survives Jellyfish removal; applied weight lasts until the recipient leaves, even if its mode changes. Pending Tangles stack."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: buoyant_bell
+    displayName: Buoyant Bell
+    effectType: 25
+    trigger: 1
+    target: 5
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Armored
+    grantedTag:
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "On Bait attachment, optionally choose up to two distinct other attached Armored creatures in either role. Reduce each weight by 1, minimum 0, while this source is Bait and the target remains attached and Armored. Loss of Armored suspends the reduction; regaining it restores it. Freeze targets once; no replacements. Multiple Jellyfish reductions stack."

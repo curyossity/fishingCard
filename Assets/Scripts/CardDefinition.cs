@@ -390,7 +390,12 @@ public enum CardEffectType
     ModifySelfValuePerOtherMatchingCatch,
     RemoveNegativeEffect,
     SwapCatchAtBiomeStart,
-    RecoverDiscardedTechnique
+    RecoverDiscardedTechnique,
+    ModifySelfValuePerOtherCreatureCatch,
+    GrantTagToOtherCreatures,
+    QueueNextCreatureCatchWeight,
+    SelectAttachedWeightTargets,
+    RedrawTechniqueAfterCatch
 }
 
 public enum CardEffectTrigger
@@ -405,7 +410,8 @@ public enum CardEffectTrigger
     WhenNextMatchingCatchCaught,
     UntilNextEncounterResolved,
     WhileAttachedUntilAnotherCatchReleased,
-    OnLaterBiomeStart
+    OnLaterBiomeStart,
+    AfterAnotherCatchAttached
 }
 
 public enum CardEffectTarget
@@ -455,6 +461,7 @@ public sealed class CardEffectDefinition
     [SerializeField] private CardEffectTone effectTone;
     [SerializeField] private int amount;
     [SerializeField] private string[] requiredTags = Array.Empty<string>();
+    [SerializeField] private string grantedTag;
     [SerializeField] private CaughtCardTargetMode caughtCardTargetMode;
     [SerializeField] private CardDefinition replacementCard;
     [SerializeField] private bool expiresAfterUse;
@@ -469,6 +476,7 @@ public sealed class CardEffectDefinition
     public CardEffectTone EffectTone => effectTone;
     public int Amount => amount;
     public string[] RequiredTags => requiredTags;
+    public string GrantedTag => grantedTag;
     public CaughtCardTargetMode CaughtCardTargetMode => caughtCardTargetMode;
     public CardDefinition ReplacementCard => replacementCard;
     public bool ExpiresAfterUse => expiresAfterUse;

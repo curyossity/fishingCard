@@ -122,6 +122,22 @@ public sealed class TechniqueDeckRuntime
         return true;
     }
 
+    /// <summary>Discards a selected hand occurrence and draws exactly one replacement, including for oversized hands.</summary>
+    public bool TryRedrawTechnique(int handIndex, System.Random random)
+    {
+        if (!TryGetHandCard(handIndex, out CardDefinition chosen, out _)) return false;
+        hand = RemoveCardAt(hand, handIndex);
+        discardPile = AppendCard(discardPile, chosen);
+        if (drawPile.Length == 0)
+        {
+            drawPile = CreateShuffledPile(discardPile, random);
+            discardPile = Array.Empty<CardDefinition>();
+        }
+        CardDefinition[] replacement = DrawCards(drawPile, 1, out drawPile);
+        if (replacement.Length > 0) hand = AppendCard(hand, replacement[0]);
+        return true;
+    }
+
     /// <summary>
     /// Clears all Technique deck state for an inactive run.
     /// </summary>

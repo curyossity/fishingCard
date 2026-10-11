@@ -28,14 +28,12 @@ MonoBehaviour:
   encounterArtworkOffset: {x: -15, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: While attached, it slightly attracts Predators
-  rulesTextHighlights:
-  - text: Predators
-    color: {r: 0.36078432, g: 0.3254902, b: 0.8117647, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
+  rulesText: ""
+  rulesTextHighlights: []
+  baitRulesText: "Shoal Signal: After catching a Schooling creature, redraw 1 technique card."
+  baitRulesTextHighlights: []
   weight: 1
-  value: 2
+  value: 5
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
@@ -43,16 +41,20 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: 15
-  effects:
-  - effectId: minnow_attracts_predators
-    effectType: 3
-    trigger: 2
-    target: 6
-    effectTone: 2
+  effects: []
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: shoal_signal
+    displayName: Shoal Signal
+    effectType: 26
+    trigger: 11
+    target: 0
+    effectTone: 1
     amount: 1
     requiredTags:
-    - Predator
+    - Schooling
+    grantedTag:
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Predator encounters gain 1 selection weight.
+    reminderText: "After another Schooling creature is attached as Catch and its on-attach effects finish, optionally discard one hand technique and draw one replacement. Decline or skip with an empty hand. Multiple Minnow Bait copies offer one redraw per eligible attachment; never save it."

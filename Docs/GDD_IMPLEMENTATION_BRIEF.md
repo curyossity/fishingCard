@@ -78,6 +78,12 @@ Caught creatures/items remain attached to the fishing rig while the player conti
 - Bait / Cleaning Station: at each later biome entry while attached, offer two distinct eligible non-Apex starting-depth creatures using normal weights. The player replaces one pre-entry creature Catch; skip without an eligible Catch or two offers. Resolve multiple Shrimp in chain order; new replacements cannot be swapped again at that entry. Swaps do not trigger Release reactions or consume normal encounter draws. Resolve the replacement's Catch on-attach effect before continuing.
 - The GDD section 6 contains the complete rules. Later biome content is still authored separately; do not invent a destination biome.
 
+### Approved Garfish, Glass Minnow, and Jellyfish Refactors
+
+- Garfish: Weight 1, Value 9, Common, depth 0–9, Fish/Small/Elusive. Catch Swift adds 3 Value per other Elusive creature Catch, using effective tags; Bait never counts. Bait Slipstream grants Elusive to every other attached Fish creature in either role before attachment triggers. Grants do not duplicate or erase native/other-source tags.
+- Glass Minnow: Weight 1, Value 5, Common, depth 0–15, Fish/Small/Schooling. Catch has no effect. Bait Shoal Signal offers one optional, immediate hand-Technique discard/draw after another Schooling creature Catch finishes its on-attach effects. Empty hand or declining skips; multiple Minnow copies offer only one redraw per eligible attachment. Draw exactly one, including for oversized hands; normal reshuffle applies.
+- Jellyfish: Weight 1, Value 8, Common, depth 0–18, Small. Catch Tangle queues +1 Weight for the next other creature Catch, survives source removal, ignores Bait, stacks, and then lasts on the recipient until removal regardless of later role. Quick Clean can remove pending or applied penalties. Bait Buoyant Bell selects up to two distinct other Armored creatures in either role once, reducing each Weight by 1 while the Bait source remains and the target is attached/Armored. Losing Armored suspends; regaining restores. Source copies stack with a zero floor. Unused/removed targets cannot be replaced; target role changes do not cancel reductions.
+
 ### Creature Tag Vocabulary
 
 Creature and creature-like Apex cards use only this closed gameplay vocabulary:

@@ -425,6 +425,54 @@ An explicitly empty Catch or Bait role remains effectless. It must not copy
 another role's text or effects. Legacy role fallback exists only for creature
 cards that have not yet received their approved refactor.
 
+## Approved creature refactors: Garfish, Glass Minnow, and Jellyfish
+
+All three are Common Coastal Waters creatures.
+
+**Garfish** — Weight **1**, Value **9**, depth **0–9**, tags **Fish, Small, Elusive**.
+
+- **Catch / Swift:** gains +3 sale Value per other attached creature that is
+  Elusive and in Catch mode. Bait and non-creature cards do not count.
+  Recalculate whenever eligible creatures or their effective tags change.
+- **Bait / Slipstream:** every other attached Fish creature, in either role,
+  gains Elusive while this source remains attached as Bait. Newly attached Fish
+  receive the grant before their on-attach and other attachment-triggered effects.
+  Multiple grants never duplicate tags. Ending a grant preserves native tags and
+  tags still supplied by another active source.
+
+**Glass Minnow** — Weight **1**, Value **5**, depth **0–15**, tags
+**Fish, Small, Schooling**. **Catch has no effect.**
+
+**Bait / Shoal Signal:** after another Schooling creature is attached as Catch
+and its on-attach effects finish, while a Minnow Bait remains attached, the player
+may discard one Technique from hand and draw exactly one replacement. This is a
+redraw, not playing the discarded card. An empty hand or declining does nothing.
+The choice is immediate and cannot be saved. Multiple Minnow Bait copies offer
+only one redraw per eligible attachment. The normal deck/discard reshuffle rules
+apply, including the just-discarded card when the draw pile is empty.
+
+**Jellyfish** — Weight **1**, Value **8**, depth **0–18**, tag **Small**.
+
+- **Catch / Tangle:** on attachment, queue +1 effective Weight for the next other
+  creature attached as Catch. Bait attachments do not consume it. The pending
+  effect survives Jellyfish removal and multiple pending Tangles add together.
+  Once applied, the extra Weight lasts until the recipient leaves the chain,
+  including if its mode later changes. Pending and applied penalties remain
+  removable negative effects for Quick Clean.
+- **Bait / Buoyant Bell:** immediately choose up to two distinct other attached
+  Armored creatures, in either role. Reduce each selected creature's Weight by 1
+  (minimum 0) while this source remains attached as Bait and that target remains
+  attached and Armored. Losing Armored suspends its reduction; regaining Armored
+  restores it. Target role changes do not end the reduction. Freeze targets once:
+  unused selections and removed targets cannot be replaced. Multiple Jellyfish
+  can select the same creature; reductions stack and clamp at zero.
+
+Rebuild effective attached tags from runtime/native base tags and surviving grants
+before calculating tag-dependent statistics and attachment triggers. Do not mutate
+shared card definitions. Attachment exchanges create a new creature Catch, consume
+eligible pending Tangles, and resolve on-attach effects before Shoal Signal; they
+still do not count as Releases.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

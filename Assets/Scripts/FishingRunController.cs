@@ -340,7 +340,7 @@ public sealed class FishingRunController : MonoBehaviour
         {
             committedCatch = catchChainRuntime.Add(caughtCard, effectResolver, attachmentRole, random);
             biomeApexRuntime.RecordCommittedApex(caughtCard);
-            creatureEffectRuntime.RecordAttachment(committedCatch);
+            creatureEffectRuntime.RecordAttachment(committedCatch, false, catchChainRuntime.Catches);
         }
 
         pendingCommittedCatchId = committedCatch?.InstanceId ?? -1;
@@ -475,6 +475,26 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
+    /// <summary>Chooses one Buoyant Bell recipient or finishes the optional selection.</summary>
+    public bool TryChooseCreatureWeightTarget(int targetInstanceId)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseWeightTarget(targetInstanceId, catchChainRuntime, effectResolver)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Resolves or declines Shoal Signal before the suspended attachment action resumes.</summary>
+    public bool TryChooseCreatureRedraw(int handIndex)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseRedraw(handIndex, techniqueDeckRuntime, random)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
     /// <summary>Records Release reactions without interrupting the resolving ability.</summary>
     private void HandleDeliberateRelease(CardInstance released, CatchRemovalReason reason)
     {
@@ -566,6 +586,44 @@ public sealed class FishingRunController : MonoBehaviour
                 Array.ConvertAll(discarded, card => card.RulesText),
                 Array.ConvertAll(discarded, card => card.Artwork),
                 index => TryChooseRecoveredTechnique(index));
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.RedrawTechnique)
+        {
+            CardDefinition[] hand = techniqueDeckRuntime.Hand;
+            string[] labels = new string[hand.Length + 1];
+            string[] details = new string[hand.Length + 1];
+            Sprite[] art = new Sprite[hand.Length + 1];
+            labels[0] = "Decline redraw";
+            details[0] = "Keep your current hand.";
+            for (int i = 0; i < hand.Length; i++)
+            {
+                labels[i + 1] = hand[i].DisplayName;
+                details[i + 1] = hand[i].RulesText;
+                art[i + 1] = hand[i].Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "You may discard one technique and draw its replacement.",
+                labels, details, art, index => TryChooseCreatureRedraw(index - 1));
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.SelectWeightTargets)
+        {
+            CardInstance[] eligible = creatureEffectRuntime.GetWeightTargets(catchChainRuntime.Catches);
+            string[] labels = new string[eligible.Length + 1];
+            string[] details = new string[eligible.Length + 1];
+            Sprite[] art = new Sprite[eligible.Length + 1];
+            labels[0] = "Finish selection (" + creatureEffectRuntime.SelectedWeightTargetCount + "/2)";
+            details[0] = "Unused selections cannot be saved.";
+            for (int i = 0; i < eligible.Length; i++)
+            {
+                labels[i + 1] = eligible[i].Definition.DisplayName + " (" + eligible[i].AttachmentRole + ")";
+                details[i + 1] = "Weight " + eligible[i].CurrentWeight + " · Reduce by 1 while attached and Armored.";
+                art[i + 1] = eligible[i].Definition.Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose up to two distinct Armored creatures.",
+                labels, details, art, index => TryChooseCreatureWeightTarget(index == 0 ? -1 : eligible[index - 1].InstanceId));
             return;
         }
 

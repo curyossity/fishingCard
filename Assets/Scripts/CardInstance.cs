@@ -23,6 +23,12 @@ public sealed class CardInstance
     [SerializeField] private int[] removedEffectIndices = Array.Empty<int>();
     [SerializeField] private List<AppliedCatchModifier> appliedModifiers = new List<AppliedCatchModifier>();
 
+    [SerializeField] private bool hasRuntimeTagOverride;
+    [SerializeField] private string[] runtimeBaseTags = Array.Empty<string>();
+    [SerializeField] private string[] effectiveTags = Array.Empty<string>();
+    [SerializeField] private List<SelectedEffectTargets> selectedEffectTargets = new List<SelectedEffectTargets>();
+
+    public string[] Tags => effectiveTags;
     public int InstanceId => instanceId;
     public CardDefinition Definition => definition;
     public int CurrentWeight => currentWeight;
@@ -110,6 +116,55 @@ public sealed class CardInstance
         this.attachmentRole = attachmentRole;
         baseValue = definition == null ? 0 : definition.RollCaughtValue(random);
         ResetCurrentStats();
+        ResetEffectiveTags();
+    }
+
+    /// <summary>Changes this copy's base tags without modifying its authored definition; the chain must then recalculate.</summary>
+    public void SetRuntimeBaseTags(string[] tags)
+    {
+        hasRuntimeTagOverride = true;
+        runtimeBaseTags = CreatureTagVocabulary.Normalize(tags);
+        ResetEffectiveTags();
+    }
+
+    /// <summary>Rebuilds effective tags from native/runtime base tags before applying surviving grants.</summary>
+    public void ResetEffectiveTags()
+    {
+        effectiveTags = (string[])(hasRuntimeTagOverride ? runtimeBaseTags
+            : definition?.Tags ?? Array.Empty<string>()).Clone();
+    }
+
+    /// <summary>Grants a tag once, preserving native tags and grants from other active sources on rebuild.</summary>
+    public void GrantTag(string tag)
+    {
+        if (string.IsNullOrWhiteSpace(tag) || HasTag(tag)) return;
+        List<string> tags = new List<string>(effectiveTags) { tag };
+        effectiveTags = CreatureTagVocabulary.Normalize(tags.ToArray());
+    }
+
+    /// <summary>Reports whether this attached copy currently has the requested effective tag.</summary>
+    public bool HasTag(string tag)
+    {
+        return Array.Exists(effectiveTags, t => string.Equals(t, tag, StringComparison.OrdinalIgnoreCase));
+    }
+
+    /// <summary>Stores a one-time selection by stable target instance IDs for one role effect.</summary>
+    public void SetEffectTargets(int effectIndex, int[] targetIds)
+    {
+        selectedEffectTargets.RemoveAll(t => t.EffectIndex == effectIndex && t.Role == attachmentRole);
+        selectedEffectTargets.Add(new SelectedEffectTargets
+        {
+            EffectIndex = effectIndex, Role = attachmentRole,
+            TargetIds = (int[])(targetIds ?? Array.Empty<int>()).Clone()
+        });
+    }
+
+    /// <summary>Tests the frozen target selection for the currently active role effect.</summary>
+    public bool IsSelectedEffectTarget(CardEffectDefinition effect, int targetId)
+    {
+        int index = Array.IndexOf(ActiveEffects, effect);
+        return selectedEffectTargets.Exists(t => t.EffectIndex == index && t.Role == attachmentRole
+            && Array.IndexOf(t.TargetIds, targetId) >= 0);
     }
 
     /// <summary>
@@ -177,6 +232,17 @@ public sealed class CardInstance
     public CardInstance CreateSnapshot()
     {
         CardInstance snapshot = new CardInstance(instanceId, definition, null, attachmentRole);
+        snapshot.hasRuntimeTagOverride = hasRuntimeTagOverride;
+        snapshot.runtimeBaseTags = (string[])runtimeBaseTags.Clone();
+        snapshot.effectiveTags = (string[])effectiveTags.Clone();
+        foreach (SelectedEffectTargets selection in selectedEffectTargets)
+        {
+            snapshot.selectedEffectTargets.Add(new SelectedEffectTargets
+            {
+                EffectIndex = selection.EffectIndex, Role = selection.Role,
+                TargetIds = (int[])selection.TargetIds.Clone()
+            });
+        }
         snapshot.baseValue = baseValue;
         snapshot.permanentWeightModifier = permanentWeightModifier;
         snapshot.permanentValueModifier = permanentValueModifier;
@@ -186,6 +252,14 @@ public sealed class CardInstance
         snapshot.removedEffectIndices = (int[])removedEffectIndices.Clone();
         snapshot.appliedModifiers = new List<AppliedCatchModifier>(appliedModifiers);
         return snapshot;
+    }
+
+    [Serializable]
+    private sealed class SelectedEffectTargets
+    {
+        public int EffectIndex;
+        public CatchAttachmentRole Role;
+        public int[] TargetIds = Array.Empty<int>();
     }
 
     /// <summary>Checks this copy's surviving role effects, including cleansed self restrictions.</summary>

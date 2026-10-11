@@ -28,18 +28,12 @@ MonoBehaviour:
   encounterArtworkOffset: {x: -14, y: -10}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Gains +3 Value for each other Elusive catch'
-  rulesTextHighlights:
-  - text: +3
-    color: {r: 0, g: 0.14509805, b: 0.15294118, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  - text: Elusive
-    color: {r: 0.36078432, g: 0.3254902, b: 0.8117647, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  weight: 2
-  value: 3
+  rulesText: "Swift: Gain +3 value per other Elusive Catch."
+  rulesTextHighlights: []
+  baitRulesText: "Slipstream: Your other attached Fish gain Elusive."
+  baitRulesTextHighlights: []
+  weight: 1
+  value: 9
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
@@ -48,15 +42,33 @@ MonoBehaviour:
   minimumDepth: 0
   maximumDepth: 9
   effects:
-  - effectId: garfish_other_elusive_value
-    effectType: 18
+  - effectId: swift
+    displayName: Swift
+    effectType: 22
     trigger: 2
     target: 1
     effectTone: 1
     amount: 3
     requiredTags:
     - Elusive
+    grantedTag:
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Garfish gains 3 Value for every other attached Elusive catch.
+    reminderText: "Gain 3 sale value for each other attached Elusive creature in Catch mode. Bait does not count; recalculate as eligible creatures or tags change."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: slipstream
+    displayName: Slipstream
+    effectType: 23
+    trigger: 2
+    target: 4
+    effectTone: 1
+    amount: 0
+    requiredTags:
+    - Fish
+    grantedTag: Elusive
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Every other attached Fish creature in either role gains Elusive while this Garfish is Bait. Apply before attachment triggers. Ending this effect preserves native tags and other active grants."

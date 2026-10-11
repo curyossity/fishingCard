@@ -14,11 +14,33 @@ public sealed class EffectResolver
         for (int i = 0; i < safeCatches.Length; i++)
         {
             safeCatches[i]?.ResetCurrentStats();
+            safeCatches[i]?.ResetEffectiveTags();
+        }
+
+        // Tags are available before all tag-dependent stat and attachment-trigger calculations.
+        foreach (ActiveCatchEffectRecord record in safeEffects)
+        {
+            if (!IsPersistent(record) || record.Effect.EffectType != CardEffectType.GrantTagToOtherCreatures) continue;
+            foreach (CardInstance target in safeCatches)
+            {
+                if (target != null && target != record.SourceInstance && target.Definition?.CardType == CardType.Creature
+                    && RequiredTagsMatchInstance(record.Effect.RequiredTags, target))
+                {
+                    target.GrantTag(record.Effect.GrantedTag);
+                }
+            }
         }
 
         for (int i = 0; i < safeEffects.Length; i++)
         {
-            ResolvePersistentStatEffect(safeCatches, safeEffects[i]);
+            if (safeEffects[i]?.Effect?.EffectType != CardEffectType.SelectAttachedWeightTargets)
+                ResolvePersistentStatEffect(safeCatches, safeEffects[i]);
+        }
+        // Selected reductions stack against the final pre-reduction weight, then clamp at zero.
+        foreach (ActiveCatchEffectRecord record in safeEffects)
+        {
+            if (record?.Effect?.EffectType == CardEffectType.SelectAttachedWeightTargets)
+                ResolvePersistentStatEffect(safeCatches, record);
         }
     }
 
@@ -95,6 +117,20 @@ public sealed class EffectResolver
     /// </summary>
     private static void ResolvePersistentStatEffect(CardInstance[] catches, ActiveCatchEffectRecord record)
     {
+        if (record?.Effect?.EffectType == CardEffectType.SelectAttachedWeightTargets)
+        {
+            foreach (CardInstance target in catches)
+            {
+                if (target != null && target != record.SourceInstance && target.Definition?.CardType == CardType.Creature
+                    && record.SourceInstance.IsBait && record.SourceInstance.IsSelectedEffectTarget(record.Effect, target.InstanceId)
+                    && RequiredTagsMatchInstance(record.Effect.RequiredTags, target))
+                {
+                    target.ModifyWeight(-Math.Abs(record.Effect.Amount));
+                }
+            }
+            return;
+        }
+
         if (!IsPersistent(record))
         {
             return;
@@ -102,7 +138,8 @@ public sealed class EffectResolver
 
         CardEffectDefinition effect = record.Effect;
 
-        if (effect.EffectType == CardEffectType.ModifySelfValuePerOtherMatchingCatch)
+        if (effect.EffectType == CardEffectType.ModifySelfValuePerOtherMatchingCatch
+            || effect.EffectType == CardEffectType.ModifySelfValuePerOtherCreatureCatch)
         {
             ApplySelfValuePerOtherMatchingCatch(catches, record.SourceCatchIndex, effect);
             return;
@@ -133,7 +170,9 @@ public sealed class EffectResolver
         int matchingOthers = 0;
         for (int i = 0; i < catches.Length; i++)
         {
-            if (i != sourceIndex && RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+            if (i != sourceIndex && RequiredTagsMatchInstance(effect.RequiredTags, catches[i])
+                && (effect.EffectType != CardEffectType.ModifySelfValuePerOtherCreatureCatch
+                    || (!catches[i].IsBait && catches[i].Definition?.CardType == CardType.Creature)))
             {
                 matchingOthers++;
             }
@@ -157,7 +196,7 @@ public sealed class EffectResolver
         {
             for (int i = 0; i < catches.Length; i++)
             {
-                if (RequiredTagsMatch(effect.RequiredTags, catches[i]?.Definition))
+                if (RequiredTagsMatchInstance(effect.RequiredTags, catches[i]))
                 {
                     ApplyStatChange(catches[i], effect);
                 }
@@ -204,7 +243,7 @@ public sealed class EffectResolver
     {
         for (int i = start; i != endExclusive; i += step)
         {
-            if (i != sourceIndex && RequiredTagsMatch(requiredTags, GetCatch(catches, i)?.Definition))
+            if (i != sourceIndex && RequiredTagsMatchInstance(requiredTags, GetCatch(catches, i)))
             {
                 return i;
             }
@@ -275,6 +314,18 @@ public sealed class EffectResolver
             }
         }
 
+        return true;
+    }
+
+    /// <summary>Checks effective attached-card tags while preserving definition-based encounter eligibility.</summary>
+    public static bool RequiredTagsMatchInstance(string[] requiredTags, CardInstance target)
+    {
+        if (target?.Definition == null) return false;
+        foreach (string tag in requiredTags ?? Array.Empty<string>())
+        {
+            if (!string.Equals(tag, target.Definition.CardType.ToString(), StringComparison.OrdinalIgnoreCase)
+                && !target.HasTag(tag)) return false;
+        }
         return true;
     }
 

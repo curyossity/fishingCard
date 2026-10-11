@@ -8,7 +8,9 @@ public enum CreatureEffectChoiceKind
     RemoveNegativeEffect,
     SwapCatch,
     ReleaseAttachedCard,
-    RecoverTechnique
+    RecoverTechnique,
+    SelectWeightTargets,
+    RedrawTechnique
 }
 
 /// <summary>Owns ordered creature attachment and later-biome choices without owning their presentation.</summary>
@@ -25,6 +27,9 @@ public sealed class CreatureEffectRuntime
         public int[] EligibleCatchIds = Array.Empty<int>();
         public CardDefinition[] Offers = Array.Empty<CardDefinition>();
         public bool OffersGenerated;
+        public int AttachedInstanceId;
+        public int[] EligibleSourceIds = Array.Empty<int>();
+        public List<int> SelectedTargetIds = new List<int>();
     }
 
     [SerializeField] private List<Request> requests = new List<Request>();
@@ -56,7 +61,7 @@ public sealed class CreatureEffectRuntime
     }
 
     /// <summary>Stamps a new attachment and queues its selected role's immediate choice effects.</summary>
-    public void RecordAttachment(CardInstance instance, bool beforePendingChoices = false)
+    public void RecordAttachment(CardInstance instance, bool beforePendingChoices = false, CardInstance[] catches = null)
     {
         if (instance == null)
         {
@@ -71,18 +76,39 @@ public sealed class CreatureEffectRuntime
             CardEffectDefinition effect = effects[effectIndex];
             if (effect?.Trigger == CardEffectTrigger.WhenCaught
                 && (effect.EffectType == CardEffectType.RemoveNegativeEffect
-                    || effect.EffectType == CardEffectType.ReleaseCatch))
+                    || effect.EffectType == CardEffectType.ReleaseCatch
+                    || effect.EffectType == CardEffectType.SelectAttachedWeightTargets))
             {
                 immediate.Add(new Request
                 {
                     SourceInstanceId = instance.InstanceId,
                     EffectIndex = effectIndex,
                     AbilityName = effect.DisplayName,
-                    Kind = effect.EffectType == CardEffectType.ReleaseCatch
+                    Kind = effect.EffectType == CardEffectType.SelectAttachedWeightTargets
+                        ? CreatureEffectChoiceKind.SelectWeightTargets
+                        : effect.EffectType == CardEffectType.ReleaseCatch
                         ? CreatureEffectChoiceKind.ReleaseAttachedCard
                         : CreatureEffectChoiceKind.RemoveNegativeEffect
                 });
             }
+        }
+
+        // Append one deferred reaction after this attachment's on-attach choices.
+        List<int> redrawSources = new List<int>();
+        foreach (CardInstance source in catches ?? Array.Empty<CardInstance>())
+        {
+            if (source == null || !source.IsBait || source.InstanceId == instance.InstanceId) continue;
+            if (Array.Exists(source.ActiveEffects, effect => effect?.EffectType == CardEffectType.RedrawTechniqueAfterCatch
+                && effect.Trigger == CardEffectTrigger.AfterAnotherCatchAttached)) redrawSources.Add(source.InstanceId);
+        }
+        if (!instance.IsBait && instance.Definition?.CardType == CardType.Creature && redrawSources.Count > 0)
+        {
+            immediate.Add(new Request
+            {
+                Kind = CreatureEffectChoiceKind.RedrawTechnique,
+                AttachedInstanceId = instance.InstanceId,
+                EligibleSourceIds = redrawSources.ToArray()
+            });
         }
 
         if (beforePendingChoices)
@@ -181,6 +207,13 @@ public sealed class CreatureEffectRuntime
                 continue;
             }
 
+            if (request.Kind == CreatureEffectChoiceKind.RedrawTechnique)
+            {
+                if (PrepareRedraw(request, chain.Catches) && deck != null && deck.Hand.Length > 0) return;
+                requests.RemoveAt(0);
+                continue;
+            }
+
             CardInstance source = GetChoiceSource(chain.Catches);
             CardEffectDefinition[] active = source?.ActiveEffects;
             if (source == null || request.EffectIndex < 0 || request.EffectIndex >= active.Length
@@ -197,6 +230,15 @@ public sealed class CreatureEffectRuntime
                     return;
                 }
 
+                requests.RemoveAt(0);
+                continue;
+            }
+
+            if (request.Kind == CreatureEffectChoiceKind.SelectWeightTargets)
+            {
+                if (GetWeightTargets(chain.Catches).Length > 0) return;
+                source.SetEffectTargets(request.EffectIndex, request.SelectedTargetIds.ToArray());
+                chain.Recalculate(resolver);
                 requests.RemoveAt(0);
                 continue;
             }
@@ -234,6 +276,80 @@ public sealed class CreatureEffectRuntime
         }
     }
 
+    /// <summary>Evaluates a single redraw after the recipient's attachment effects, using only surviving original Bait sources.</summary>
+    private static bool PrepareRedraw(Request request, CardInstance[] catches)
+    {
+        CardInstance attached = Array.Find(catches, c => c?.InstanceId == request.AttachedInstanceId);
+        if (attached == null || attached.IsBait || attached.Definition?.CardType != CardType.Creature) return false;
+        foreach (CardInstance source in catches)
+        {
+            if (source == null || !source.IsBait || Array.IndexOf(request.EligibleSourceIds, source.InstanceId) < 0) continue;
+            CardEffectDefinition[] effects = source.ActiveEffects;
+            for (int i = 0; i < effects.Length; i++)
+            {
+                CardEffectDefinition effect = effects[i];
+                if (effect?.EffectType == CardEffectType.RedrawTechniqueAfterCatch
+                    && effect.Trigger == CardEffectTrigger.AfterAnotherCatchAttached
+                    && EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, attached))
+                {
+                    request.SourceInstanceId = source.InstanceId;
+                    request.EffectIndex = i;
+                    request.AbilityName = effect.DisplayName;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public int SelectedWeightTargetCount => ChoiceKind == CreatureEffectChoiceKind.SelectWeightTargets
+        ? requests[0].SelectedTargetIds.Count : 0;
+
+    /// <summary>Returns eligible distinct recipients for the remaining one-time target selections.</summary>
+    public CardInstance[] GetWeightTargets(CardInstance[] catches)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SelectWeightTargets) return Array.Empty<CardInstance>();
+        Request request = requests[0];
+        CardInstance source = GetChoiceSource(catches);
+        CardEffectDefinition[] active = source?.ActiveEffects;
+        CardEffectDefinition effect = active != null && request.EffectIndex >= 0 && request.EffectIndex < active.Length
+            ? active[request.EffectIndex] : null;
+        return Array.FindAll(catches, target => target != null && target != source
+            && target.Definition?.CardType == CardType.Creature
+            && !request.SelectedTargetIds.Contains(target.InstanceId)
+            && effect != null && EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, target));
+    }
+
+    /// <summary>Selects up to two distinct recipients, or finishes early, without allowing later retargeting.</summary>
+    public bool TryChooseWeightTarget(int targetInstanceId, CatchChainRuntime chain, EffectResolver resolver)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SelectWeightTargets) return false;
+        Request request = requests[0];
+        if (targetInstanceId >= 0)
+        {
+            if (!Array.Exists(GetWeightTargets(chain.Catches), c => c.InstanceId == targetInstanceId)) return false;
+            request.SelectedTargetIds.Add(targetInstanceId);
+        }
+        if (targetInstanceId < 0 || request.SelectedTargetIds.Count == 2 || GetWeightTargets(chain.Catches).Length == 0)
+        {
+            CardInstance source = GetChoiceSource(chain.Catches);
+            if (source == null) return false;
+            source.SetEffectTargets(request.EffectIndex, request.SelectedTargetIds.ToArray());
+            CompleteChoice();
+            chain.Recalculate(resolver);
+        }
+        return true;
+    }
+
+    /// <summary>Resolves an optional redraw immediately; declining never discards or draws.</summary>
+    public bool TryChooseRedraw(int handIndex, TechniqueDeckRuntime deck, System.Random random)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.RedrawTechnique
+            || (handIndex >= 0 && !deck.TryRedrawTechnique(handIndex, random))) return false;
+        CompleteChoice();
+        return true;
+    }
+
     /// <summary>Starts a new encounter window; replacing the Hooked card does not call this.</summary>
     public void BeginEncounter()
     {
@@ -261,7 +377,7 @@ public sealed class CreatureEffectRuntime
                 CardEffectDefinition effect = effects[index];
                 if (effect?.EffectType != CardEffectType.RecoverDiscardedTechnique
                     || effect.Trigger != CardEffectTrigger.WhenAnotherCatchReleased
-                    || !EffectResolver.RequiredTagsMatch(effect.RequiredTags, released.Definition))
+                    || !EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, released))
                 {
                     continue;
                 }
@@ -350,7 +466,7 @@ public sealed class CreatureEffectRuntime
         }
 
         CompleteChoice();
-        RecordAttachment(replacement, true);
+        RecordAttachment(replacement, true, chain.Catches);
         return true;
     }
 }
