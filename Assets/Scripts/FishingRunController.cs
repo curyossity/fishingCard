@@ -552,6 +552,47 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
+    /// <summary>Activates or declines the shared Predator-triggered Sardine sacrifice.</summary>
+    public bool TryActivateFeedingFrenzy(int sourceId)
+    {
+        if (!runActive || !creatureEffectRuntime.TryActivateFeedingFrenzy(sourceId, catchChainRuntime, effectResolver)) return false;
+        selectedCatchIndex = -1;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Discards one technique for room, or finishes the activated capacity-limited draw.</summary>
+    public bool TryChooseFeedingDraw(int handIndex)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseFeedingDraw(handIndex, techniqueDeckRuntime, random)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Selects the hand half of a sheltered exchange without moving a card, or declines it.</summary>
+    public bool TryChooseExchangeHand(int handIndex)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseExchangeHand(handIndex, techniqueDeckRuntime)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Completes both validated exchange selections atomically before the suspended attachment action resumes.</summary>
+    public bool TryChooseExchangeDiscard(int discardIndex)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseExchangeDiscard(discardIndex, techniqueDeckRuntime)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
     /// <summary>Records Release reactions without interrupting the resolving ability.</summary>
     private void HandleDeliberateRelease(CardInstance released, CatchRemovalReason reason)
     {
@@ -728,6 +769,69 @@ public sealed class FishingRunController : MonoBehaviour
                 Array.ConvertAll(eligible, card => "Value " + (card.HidesOwnValueDuringRun ? "?" : card.CurrentValue.ToString())),
                 Array.ConvertAll(eligible, card => card.Definition.Artwork),
                 index => TryChooseCreatureValueTransfer(eligible[index].InstanceId));
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.FeedingFrenzy)
+        {
+            CardInstance[] sources = creatureEffectRuntime.GetFeedingFrenzySources(catchChainRuntime.Catches);
+            string[] labels = new string[sources.Length + 1];
+            string[] details = new string[sources.Length + 1];
+            Sprite[] art = new Sprite[sources.Length + 1];
+            labels[0] = "Decline sacrifice";
+            details[0] = "Keep your Sardine Baits.";
+            for (int i = 0; i < sources.Length; i++)
+            {
+                labels[i + 1] = sources[i].Definition.DisplayName + " · Bait " + (i + 1);
+                details[i + 1] = "Release this Bait, then draw up to 2 techniques. You may discard for room.";
+                art[i + 1] = sources[i].Definition.Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Release one Sardine Bait to draw techniques?",
+                labels, details, art, index => TryActivateFeedingFrenzy(index == 0 ? -1 : sources[index - 1].InstanceId));
+            return;
+        }
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.DrawTechniques)
+        {
+            CardDefinition[] cards = techniqueDeckRuntime.Hand;
+            string[] labels = new string[cards.Length + 1];
+            string[] details = new string[cards.Length + 1];
+            Sprite[] art = new Sprite[cards.Length + 1];
+            int room = Math.Min(2, Math.Max(0, 4 - cards.Length));
+            labels[0] = "Finish · draw up to " + room;
+            details[0] = "Draw only as many techniques as fit in four slots.";
+            for (int i = 0; i < cards.Length; i++)
+            {
+                labels[i + 1] = "Discard " + cards[i].DisplayName;
+                details[i + 1] = "Make room without playing this technique.";
+                art[i + 1] = cards[i].Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "You may discard techniques before drawing 2.",
+                labels, details, art, index => TryChooseFeedingDraw(index - 1));
+            return;
+        }
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.ExchangeTechniques)
+        {
+            bool choosingHand = creatureEffectRuntime.SelectedExchangeHandIndex < 0;
+            CardDefinition[] cards = choosingHand ? techniqueDeckRuntime.Hand : techniqueDeckRuntime.DiscardPile;
+            string[] labels = new string[cards.Length + 1];
+            string[] details = new string[cards.Length + 1];
+            Sprite[] art = new Sprite[cards.Length + 1];
+            labels[0] = "Decline exchange";
+            details[0] = "Keep your hand and discard pile.";
+            for (int i = 0; i < cards.Length; i++)
+            {
+                labels[i + 1] = cards[i].DisplayName;
+                details[i + 1] = choosingHand ? "Choose this hand card to discard." : "Return this already-discarded technique to hand.";
+                art[i + 1] = cards[i].Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName,
+                choosingHand ? "Choose a technique in hand." : "Choose a technique in your discard pile.",
+                labels, details, art, index =>
+                {
+                    if (index == 0) TryChooseExchangeHand(-1);
+                    else if (choosingHand) TryChooseExchangeHand(index - 1);
+                    else TryChooseExchangeDiscard(index - 1);
+                });
             return;
         }
 
@@ -1097,6 +1201,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         catchChainRuntime.DeliberatelyReleased -= HandleDeliberateRelease;
         catchChainRuntime.DeliberatelyReleased += HandleDeliberateRelease;
+        encounterRuntime.HazardCancellation = catchChainRuntime.TryCancelHazard;
 
         if (effectResolver == null)
         {

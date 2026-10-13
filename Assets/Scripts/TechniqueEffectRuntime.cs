@@ -345,7 +345,7 @@ public sealed class TechniqueEffectRuntime
 
             if (replaced)
             {
-                results.Add($"Replaced {replacedEncounter.DisplayName} with {encounterRuntime.CurrentEncounter.DisplayName}");
+                results.Add($"Replaced {replacedEncounter.DisplayName} with {encounterRuntime.CurrentEncounter?.DisplayName ?? "a cancelled Hazard"}");
                 CompleteEncounterReveal();
             }
 

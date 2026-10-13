@@ -30,6 +30,9 @@ public sealed class CardInstance
 
     [SerializeField] private List<string> consumedAttachmentActivations = new List<string>();
 
+    [SerializeField] private bool hazardProtectionInitialized;
+    [SerializeField] private bool hazardProtectionAvailable;
+
     public string[] Tags => effectiveTags;
     public int InstanceId => instanceId;
     public CardDefinition Definition => definition;
@@ -99,6 +102,42 @@ public sealed class CardInstance
         removedEffectIndices = updated;
         return true;
     }
+    /// <summary>Changes role state while preserving permanent modifiers and expiring one-use Bait protection; the chain must recalculate.</summary>
+    public void SetAttachmentRole(CatchAttachmentRole role)
+    {
+        RefreshHazardProtection();
+        attachmentRole = role;
+        RefreshHazardProtection();
+    }
+
+    /// <summary>Initializes one protection on first Bait attachment and expires it immediately outside Bait mode.</summary>
+    public void RefreshHazardProtection()
+    {
+        bool protectedBait = IsBait && HasActiveEffect(CardEffectType.CancelNextHazard, CardEffectTarget.Self);
+        if (hazardProtectionInitialized)
+        {
+            if (!protectedBait) hazardProtectionAvailable = false;
+        }
+        else if (protectedBait)
+        {
+            hazardProtectionInitialized = true;
+            hazardProtectionAvailable = true;
+        }
+    }
+
+    /// <summary>Consumes the single unused protection without allowing role changes to restore it.</summary>
+    public bool TryConsumeHazardProtection()
+    {
+        RefreshHazardProtection();
+        if (!hazardProtectionAvailable) return false;
+        hazardProtectionAvailable = false;
+        return true;
+    }
+
+    public bool HasUnusedHazardProtection => hazardProtectionAvailable && IsBait
+        && HasActiveEffect(CardEffectType.CancelNextHazard, CardEffectTarget.Self);
+    public bool PreventsTechniqueTargeting => !IsBait
+        && HasActiveEffect(CardEffectType.PreventTechniqueTargeting, CardEffectTarget.Self);
     public bool HidesOwnValueDuringRun => HasActiveEffect(
         CardEffectType.HideEncounterInformation,
         CardEffectTarget.Self);
@@ -128,6 +167,7 @@ public sealed class CardInstance
         baseValue = definition == null ? 0 : definition.RollCaughtValue(random);
         ResetCurrentStats();
         ResetEffectiveTags();
+        RefreshHazardProtection();
     }
 
     /// <summary>Changes this copy's base tags without modifying its authored definition; the chain must then recalculate.</summary>
@@ -255,6 +295,8 @@ public sealed class CardInstance
             });
         }
         snapshot.consumedAttachmentActivations = new List<string>(consumedAttachmentActivations);
+        snapshot.hazardProtectionInitialized = hazardProtectionInitialized;
+        snapshot.hazardProtectionAvailable = hazardProtectionAvailable;
         snapshot.baseValue = baseValue;
         snapshot.permanentWeightModifier = permanentWeightModifier;
         snapshot.permanentValueModifier = permanentValueModifier;

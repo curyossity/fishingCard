@@ -15,44 +15,56 @@ MonoBehaviour:
   uniqueId: creature_sea_anemone
   displayName: Sea Anemone
   cardType: 3
-  rarity: 0
+  rarity: 1
   tags:
-  - Anchored
   - Small
+  - Predator
+  - Anchored
   artwork: {fileID: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Small catches gain +2 Value while this remains attached.
-  rulesTextHighlights:
-  - text: Small
-    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  - text: +2
-    color: {r: 0.5058824, g: 0.6862745, b: 0.6117647, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
+  rulesText: "Stinging Tentacles: Techniques cannot target this Catch."
+  rulesTextHighlights: []
+  baitRulesText: "Sheltered Exchange: After catching a Small creature, you may swap a technique in hand with one in your discard pile."
+  baitRulesTextHighlights: []
   weight: 1
-  value: 9
+  value: 8
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 1
-  maximumDepth: 13
+  minimumDepth: 0
+  maximumDepth: 16
   effects:
-  - effectId: sea_anemone_small_value
-    effectType: 2
+  - effectId: stinging_tentacles
+    displayName: Stinging Tentacles
+    effectType: 36
     trigger: 2
-    target: 4
-    effectTone: 1
-    amount: 2
-    requiredTags:
-    - Small
+    target: 1
+    effectTone: 2
+    amount: 0
+    requiredTags: []
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Every attached Small catch gains 2 Value, including Sea Anemone.
+    reminderText: "While in Catch mode, cannot be selected as a technique's target. Untargeted effects still apply; creature effects may target this card. Restriction ends immediately outside Catch mode."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: sheltered_exchange
+    displayName: Sheltered Exchange
+    effectType: 37
+    trigger: 11
+    target: 0
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Small
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "After a Small creature Catch finishes on-attach effects, optionally choose one technique in hand and one already in discard before moving either. Discard the hand occurrence and return the selected discarded occurrence to hand; do not play or draw, and preserve hand size. Requires both piles to contain a technique. Shared one swap per Small creature caught; declining spends this immediate opportunity."

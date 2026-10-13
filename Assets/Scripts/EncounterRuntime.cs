@@ -16,6 +16,10 @@ public sealed class EncounterRuntime
     [SerializeField] private int nextEncounterChainIndex;
     [SerializeField] private EncounterVarietyRuntime encounterVarietyRuntime = new EncounterVarietyRuntime();
 
+    [SerializeField] private CardDefinition lastCancelledHazard;
+    public CardDefinition LastCancelledHazard => lastCancelledHazard;
+    public Func<CardDefinition, bool> HazardCancellation { get; set; }
+
     public CardDefinition CurrentEncounter => currentEncounter;
     public EncounterState CurrentState => currentState;
     public CardDefinition HookedEncounter => hookedEncounter;
@@ -107,9 +111,10 @@ public sealed class EncounterRuntime
         int selectedIndex = SelectWeightedIndex(candidateWeights, lastTotalEncounterWeight, random);
         lastCandidateWeightSummary = string.Join(", ", candidateWeightLabels);
         lastSelectedEncounterWeight = candidateWeights[selectedIndex];
-        SetCurrentEncounter(candidates[selectedIndex]);
-        encounterVarietyRuntime.RecordSelectedEncounter(currentEncounter);
-        BeginEncounterChain(currentEncounter, encounterChains);
+        CardDefinition selected = candidates[selectedIndex];
+        SetCurrentEncounter(selected);
+        encounterVarietyRuntime.RecordSelectedEncounter(selected);
+        BeginEncounterChain(selected, encounterChains);
         return true;
     }
 
@@ -313,6 +318,7 @@ public sealed class EncounterRuntime
     /// </summary>
     public void Reset()
     {
+        lastCancelledHazard = null;
         currentEncounter = null;
         currentState = EncounterState.None;
         hookedEncounter = null;
@@ -427,10 +433,16 @@ public sealed class EncounterRuntime
     }
 
     /// <summary>
-    /// Applies encounter and Hooked state for an explicitly supplied encounter card.
+    /// Cancels protected Hazards before activating encounter state or building any effect records.
     /// </summary>
     public void SetCurrentEncounter(CardDefinition encounter)
     {
+        lastCancelledHazard = null;
+        if (encounter?.CardType == CardType.Hazard && HazardCancellation?.Invoke(encounter) == true)
+        {
+            lastCancelledHazard = encounter;
+            encounter = null;
+        }
         currentEncounter = encounter;
 
         if (currentEncounter == null)

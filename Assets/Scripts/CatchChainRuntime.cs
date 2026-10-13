@@ -234,11 +234,27 @@ public sealed class CatchChainRuntime
         return true;
     }
 
+    /// <summary>Cancels only a revealed Hazard using the oldest attached Bait with unused protection.</summary>
+    public bool TryCancelHazard(CardDefinition encounter)
+    {
+        foreach (CardInstance card in catches) card?.RefreshHazardProtection();
+        if (encounter?.CardType != CardType.Hazard) return false;
+        CardInstance oldest = null;
+        foreach (CardInstance card in catches)
+        {
+            if (card != null && card.HasUnusedHazardProtection
+                && (oldest == null || card.InstanceId < oldest.InstanceId)) oldest = card;
+        }
+        return oldest != null && oldest.TryConsumeHazardProtection();
+    }
+
     /// <summary>
-    /// Recalculates catches after lasting Technique modifiers change instance base stats.
+    /// Rebuilds selected-role effect records and recalculates catches after role, tag, or lasting-stat changes.
     /// </summary>
     public void Recalculate(EffectResolver effectResolver)
     {
+        foreach (CardInstance card in catches) card?.RefreshHazardProtection();
+        RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
     }
 
@@ -494,7 +510,8 @@ public sealed class CatchChainRuntime
                     && (effect.EffectType == CardEffectType.RemoveNegativeEffect
                         || effect.EffectType == CardEffectType.ReleaseCatch
                         || effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight
-                        || effect.EffectType == CardEffectType.ChooseNextSchoolingEncounter)))
+                        || effect.EffectType == CardEffectType.ChooseNextSchoolingEncounter
+                        || effect.EffectType == CardEffectType.CancelNextHazard)))
             {
                 continue;
             }
@@ -820,12 +837,11 @@ public sealed class CatchChainRuntime
         return -1;
     }
 
-    /// <summary>Excludes release-locked catches only when a Technique is trying to release its target.</summary>
+    /// <summary>Excludes technique-target immune cards and, for deliberate releases, release-locked cards.</summary>
     private static bool IsValidTechniqueTarget(CardEffectDefinition effect, CardInstance candidate)
     {
-        return effect.EffectType != CardEffectType.ReleaseCatch
-            || candidate == null
-            || !candidate.PreventsReleaseWhileAttached;
+        return candidate != null && !candidate.PreventsTechniqueTargeting
+            && (effect.EffectType != CardEffectType.ReleaseCatch || !candidate.PreventsReleaseWhileAttached);
     }
 
     /// <summary>

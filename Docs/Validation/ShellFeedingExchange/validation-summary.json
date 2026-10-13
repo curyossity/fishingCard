@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-13",
+  "cards": [
+    "Mussel",
+    "Sardine",
+    "Sea Anemone"
+  ],
+  "newGameplayAssertions": 86,
+  "existingGameplayAssertions": 222,
+  "totalGameplayAssertions": 308,
+  "gameplayExecution": "Actual runtime sources with minimal Unity API adapters; not Unity Play Mode",
+  "runtimeUnityReferenceCompilation": "passed",
+  "editorUnityReferenceCompilation": "passed",
+  "assetChecks": [
+    {
+      "path": "Assets/Cards/Mussel.asset",
+      "identityAndArtwork": "preserved",
+      "approvedStatsAndTags": "passed",
+      "eligibleTiers": [
+        "shallows",
+        "mid_depth"
+      ]
+    },
+    {
+      "path": "Assets/Cards/Sardine.asset",
+      "identityAndArtwork": "preserved",
+      "approvedStatsAndTags": "passed",
+      "eligibleTiers": [
+        "shallows",
+        "mid_depth"
+      ]
+    },
+    {
+      "path": "Assets/Cards/Sea Anemone.asset",
+      "identityAndArtwork": "preserved",
+      "approvedStatsAndTags": "passed",
+      "eligibleTiers": [
+        "shallows",
+        "mid_depth",
+        "deep_edge"
+      ]
+    }
+  ],
+  "playMode": "unverified",
+  "visualChecks": "unverified",
+  "editorMenu": "Fishing Cards/Validation/Mussel Sardine and Sea Anemone",
+  "unityEnvironment": "Prior isolated Unity startup failed with headless entitlement and Package Manager IPC errors. Current process inspection was denied by the environment."
+}

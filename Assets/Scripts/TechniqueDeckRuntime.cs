@@ -138,6 +138,50 @@ public sealed class TechniqueDeckRuntime
         return true;
     }
 
+    /// <summary>Discards one exact hand occurrence without playing it or drawing a replacement.</summary>
+    public bool TryDiscardTechnique(int handIndex)
+    {
+        if (!TryGetHandCard(handIndex, out CardDefinition card, out _)) return false;
+        hand = RemoveCardAt(hand, handIndex);
+        discardPile = AppendCard(discardPile, card);
+        return true;
+    }
+
+    /// <summary>Draws only the requested number that fits the supplied capacity, using the normal reshuffle rule.</summary>
+    public int DrawTechniques(int count, int capacity, System.Random random)
+    {
+        int drawn = 0;
+        int available = Math.Min(Math.Max(0, count), Math.Max(0, capacity - hand.Length));
+        while (drawn < available)
+        {
+            if (drawPile.Length == 0)
+            {
+                if (discardPile.Length == 0) break;
+                drawPile = CreateShuffledPile(discardPile, random);
+                discardPile = Array.Empty<CardDefinition>();
+            }
+            CardDefinition[] cards = DrawCards(drawPile, 1, out drawPile);
+            if (cards.Length == 0) break;
+            hand = AppendCard(hand, cards[0]);
+            drawn++;
+        }
+        return drawn;
+    }
+
+    /// <summary>Validates both existing occurrences before exchanging them without playing, drawing, or changing hand size.</summary>
+    public bool TryExchangeTechniques(int handIndex, int discardIndex)
+    {
+        if (!TryGetHandCard(handIndex, out CardDefinition handCard, out _)
+            || discardIndex < 0 || discardIndex >= discardPile.Length
+            || discardPile[discardIndex]?.CardType != CardType.Technique) return false;
+        CardDefinition discardedCard = discardPile[discardIndex];
+        CardDefinition[] updatedHand = (CardDefinition[])hand.Clone();
+        updatedHand[handIndex] = discardedCard;
+        discardPile = AppendCard(RemoveCardAt(discardPile, discardIndex), handCard);
+        hand = updatedHand;
+        return true;
+    }
+
     /// <summary>
     /// Clears all Technique deck state for an inactive run.
     /// </summary>

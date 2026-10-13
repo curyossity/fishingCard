@@ -494,6 +494,27 @@ All three are Coastal Waters creatures. Only the selected role's effects operate
 - **Bait / Moonlit Reflection:** each deliberate Release of an Elusive Catch records its sale Value, including modifiers, immediately before that individual removal. After the entire Release action finishes, choose a remaining Catch and add the recorded amount as a lasting Value bonus. Forced removals, exchanges, and released Bait do not trigger it.
 - All Ray Bait copies share one transfer per released Elusive Catch. Multi-release actions record and transfer each separately. Resolve recipient choices immediately after the action; no remaining Catch skips the transfer. A completed trigger survives later source removal during the action. The bonus lasts until recipient removal, survives original Ray removal and recipient mode changes, and still contributes no sale Value while the recipient is Bait.
 
+## Approved creature refactors: Mussel, Sardine, and Sea Anemone
+
+All three are Coastal Waters creatures. Only the selected attachment role's effects operate.
+
+**Mussel** — Weight **1**, Value **6**, Common, depth **0–12**, tags **Small, Armored, Anchored**.
+
+- **Catch / Shell Growth:** after another Armored creature attaches as Catch and finishes its on-attach effects, add 2 sale Value to each surviving Mussel Catch once. Armored Bait does not trigger it; the newly attached Mussel does not count itself. Each bonus stays on that Mussel until it leaves the chain, including across mode changes.
+- **Bait / Shelter Shell:** on first Bait attachment, gain one protection against the next revealed encounter classified as Hazard, before any Hazard effects resolve. Automatically discard that Hazard without resolving effects and consume the protection. Cancelling neither advances depth nor immediately reveals a replacement; the next Descend advances and reveals normally. Apex and other encounter classifications never qualify.
+- Protection survives biome changes but expires on leaving Bait mode. Each card has one protection; returning to Bait restores neither used nor expired protection. Multiple protected Mussels cancel consecutive Hazards. Each Hazard consumes only the oldest attached Mussel's unused protection; others retain theirs. Attachment age is independent of a replaced card's chain slot.
+
+**Sardine** — Weight **1**, Value **7**, Common, depth **0–14**, tags **Fish, Schooling, Small**. **Catch has no effect.**
+
+- **Bait / Feeding Frenzy:** after a Predator attaches as Catch and finishes its on-attach effects, optionally deliberately Release one Sardine Bait, obeying normal Release restrictions. At most one Sardine Bait activates per Predator caught, shared across copies. Declining spends the immediate opportunity; a failed or prohibited Release grants no draws. Forced removal and Releases caused by other effects do not activate Feeding Frenzy.
+- On successful activation, resolve all resulting Release effects first, then draw up to two Techniques that fit the four-card hand. Before drawing, the player may discard Techniques without playing them to make room. Draw only as many as fit, using normal reshuffle rules. Removing the activating Sardine does not cancel the completed draw request. Recovery may leave an oversized hand; drawing cannot increase it beyond four, and optional discards can make room.
+
+**Sea Anemone** — Weight **1**, Value **8**, Uncommon, depth **0–16**, tags **Small, Predator, Anchored**.
+
+- **Catch / Stinging Tentacles:** while in Catch mode, cannot be selected as a Technique's target, including automatic individual targeting and targeted Releases. Untargeted effects still apply, and creature effects may target it. The restriction ends immediately outside Catch mode.
+- **Bait / Sheltered Exchange:** after a Small creature attaches as Catch and finishes its on-attach effects, optionally choose one Technique in hand and one already in the Technique discard pile. Choose both before moving either. Discard the selected hand occurrence and return the selected discarded occurrence to hand. This exchanges exact occurrences, does not play or draw, and preserves hand size.
+- At most one swap per Small creature caught, shared across all Anemone Bait copies. Require a Technique in each pile before selection. Declining spends the immediate opportunity and moves neither card; no swap can be saved.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

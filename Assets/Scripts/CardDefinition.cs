@@ -401,7 +401,12 @@ public enum CardEffectType
     ReduceSelfWeightWithMatchingCreatureBait,
     ReleaseCreatureAfterCatch,
     ChooseNextSchoolingEncounter,
-    TransferReleasedCatchValue
+    TransferReleasedCatchValue,
+    GainSelfValueAfterCatch,
+    CancelNextHazard,
+    ReleaseSelfToDrawTechniques,
+    PreventTechniqueTargeting,
+    ExchangeTechniqueAfterCatch
 }
 
 public enum CardEffectTrigger
