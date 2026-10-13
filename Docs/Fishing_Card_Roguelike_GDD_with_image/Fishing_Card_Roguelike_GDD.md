@@ -515,6 +515,31 @@ All three are Coastal Waters creatures. Only the selected attachment role's effe
 - **Bait / Sheltered Exchange:** after a Small creature attaches as Catch and finishes its on-attach effects, optionally choose one Technique in hand and one already in the Technique discard pile. Choose both before moving either. Discard the selected hand occurrence and return the selected discarded occurrence to hand. This exchanges exact occurrences, does not play or draw, and preserves hand size.
 - At most one swap per Small creature caught, shared across all Anemone Bait copies. Require a Technique in each pile before selection. Declining spends the immediate opportunity and moves neither card; no swap can be saved.
 
+## Approved creature refactors: Sea Bass, Sea Urchin, and Small Octopus
+
+All three are Coastal Waters creatures. Only the selected role's ongoing effects operate; completed bonuses and pending effects follow their own durations.
+
+**Sea Bass** — Weight **2**, Value **16**, Uncommon, depth **4–20**, tags **Fish, Predator**.
+
+- **Catch / Thrashing Catch:** immediately after Catch attachment, choose and discard one Technique from hand without playing or drawing it. Empty hand does nothing. This resolves each time the Catch on-attach effect is activated.
+- **Bait / Shoal Scatter:** once per card on first Bait attachment, optionally choose up to two distinct other attached Small creatures, in either role, obeying normal Release restrictions. Choose every target before removing either. Deliberately Release the selected creatures together, then resolve their Release reactions after all selected removals. No Technique is required, and the Hooked encounter is never eligible.
+- Record each selected creature's effective tags and modified sale Value before the simultaneous group removal. Reaction sources must survive that removal. Each removed creature counts as a separate Release for surviving effects, but no reaction may observe only half of the group removed. Selecting fewer than two or declining spends the activation; changing modes never refreshes it.
+
+**Sea Urchin** — Weight **1**, Value **9**, Common, depth **0–16**, tags **Small, Armored, Anchored**.
+
+- **Catch / Bristling Spines:** add exactly 1 effective Weight while any Predator creature is attached in Catch or Bait mode. Additional Predators do not increase it. Recalculate immediately when creatures, roles, or effective tags change. This is an ongoing negative effect eligible for Quick Clean.
+- **Bait / Spiny Grip:** once per card on first Bait attachment, grant one independent pending Technique recovery. Source removal and role changes do not cancel it or grant another. Multiple grants apply to consecutive qualifying plays, oldest first; a play consumes only one.
+- The next Technique played that selects at least one attached Armored creature as an individual target receives recovery. Use effective tags at play time. Automatic individual targeting qualifies; untargeted effects and targeting only the Hooked encounter do not. Releasing the target does not prevent recovery.
+- After that Technique and every triggered effect/choice finish, return the exact played occurrence from discard to hand. If the four-card hand is full, optionally discard one hand Technique for room or decline. The grant is consumed by that play even when recovery is declined or the played occurrence is no longer in discard. Never substitute another card or an identical unplayed copy. Resolve this recovery before normal Technique refill.
+
+**Small Octopus** — Weight **1**, Value **9**, Uncommon, depth **6–20**, tags **Small, Predator, Elusive**.
+
+- **Catch / Clever Catch:** immediately draw one Technique if it fits the four-card hand. If full, optionally discard one Technique first for room or decline. This immediate draw cannot be saved.
+- **Bait / Helping Arms:** once per card on first Bait attachment, optionally choose another attached creature Catch and another attached creature Bait. Require both legal targets; exclude the activating Octopus, non-creatures, and the Hooked encounter. Declining or no eligible pair spends the use; returning to Bait never refreshes it. Release restrictions alone do not prohibit changing modes.
+- Switch both chosen roles together, preserving positions, instance IDs, and resolved bonuses. End old ongoing effects and activate new ongoing effects. Resolve the new Catch's own on-attach effect first, including its resulting choices; then resolve the new Bait's own on-attach effect only if that card remains attached in Bait mode. Respect each effect's activation limits.
+- This is not a Release, a new encounter, or a new physical attachment. Per the user-confirmed rule, only the two swapped cards' own on-attach effects activate; other cards' after-catching reactions do not trigger. Another source's next-attachment effects are not consumed by the role swap. Existing pending effects follow their own durations.
+- Cleansing and one-use lifecycle state remain specific to the affected card role/effect. A removed Catch effect does not suppress a Bait effect at the same index, and returning to a role never restores its cleansed effects or spent one-use activations.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

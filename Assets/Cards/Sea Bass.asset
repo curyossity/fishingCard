@@ -15,7 +15,7 @@ MonoBehaviour:
   uniqueId: creature_sea_bass
   displayName: Sea Bass
   cardType: 3
-  rarity: 0
+  rarity: 1
   tags:
   - Fish
   - Predator
@@ -27,12 +27,43 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: A reliable coastal predator with solid weight-to-value efficiency.
+  rulesText: "Thrashing Catch: When caught, discard 1 technique from your hand."
   rulesTextHighlights: []
+  baitRulesText: "Shoal Scatter: When attached as Bait, you may release up to 2 other Small creatures."
+  baitRulesTextHighlights: []
   weight: 2
-  value: 12
+  value: 16
   biomeIds:
   - Coastal
-  minimumDepth: 0
-  maximumDepth: 15
-  effects: []
+  minimumDepth: 4
+  maximumDepth: 20
+  effects:
+  - effectId: thrashing_catch
+    displayName: Thrashing Catch
+    effectType: 38
+    trigger: 1
+    target: 0
+    effectTone: 2
+    amount: 1
+    requiredTags: []
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Immediately after Catch attachment, choose and discard one technique without playing it. Empty hand does nothing."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: shoal_scatter
+    displayName: Shoal Scatter
+    effectType: 39
+    trigger: 1
+    target: 5
+    effectTone: 1
+    amount: 2
+    requiredTags:
+    - Small
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Once per card on first Bait attachment: optionally choose up to two distinct other legal attached Small creatures in either mode. Choose all before either removal, then release together and resolve Release reactions after both leave. The Hooked encounter is not eligible. No technique is required. Mode changes, declining, or unused selections cannot refresh or save this activation."

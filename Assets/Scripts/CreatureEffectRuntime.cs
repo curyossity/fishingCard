@@ -17,7 +17,12 @@ public enum CreatureEffectChoiceKind
     GainAttachmentValue,
     FeedingFrenzy,
     DrawTechniques,
-    ExchangeTechniques
+    ExchangeTechniques,
+    DiscardTechnique,
+    SelectReleaseTargets,
+    SwapCreatureModes,
+    ActivateChangedRole,
+    RecoverPlayedTechnique
 }
 
 /// <summary>Owns ordered creature choices, deferred Release reactions, and a queued encounter without owning presentation.</summary>
@@ -42,6 +47,13 @@ public sealed class CreatureEffectRuntime
         public CardDefinition TransferSource;
         public int DrawCount;
         public int SelectedHandIndex = -1;
+        public int SelectedCatchId = -1;
+        public CatchAttachmentRole ExpectedRole;
+        public bool RequireSourceRole;
+        public int MaxDiscards = -1;
+        public int DiscardCount;
+        public CardDefinition PlayedTechnique;
+        public int PlayedDiscardOccurrenceId;
     }
 
     [SerializeField] private List<Request> requests = new List<Request>();
@@ -50,6 +62,15 @@ public sealed class CreatureEffectRuntime
     [SerializeField] private Request pendingRecovery;
     [SerializeField] private List<Request> pendingTransfers = new List<Request>();
     [SerializeField] private CardDefinition queuedEncounter;
+    [SerializeField] private List<CardEffectDefinition> pendingSelectedTechniqueRecoveries = new List<CardEffectDefinition>();
+    [SerializeField] private CardDefinition resolvingTechnique;
+    [SerializeField] private int resolvingDiscardOccurrenceId;
+    [SerializeField] private int[] eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
+    [SerializeField] private Request pendingPlayedTechniqueRecovery;
+    public int PendingSelectedTechniqueRecoveryCount => pendingSelectedTechniqueRecoveries.Count;
+    public int PendingDrawCount => ChoiceKind == CreatureEffectChoiceKind.DrawTechniques ? requests[0].DrawCount : 0;
+    public int SelectedReleaseCount => ChoiceKind == CreatureEffectChoiceKind.SelectReleaseTargets ? requests[0].SelectedTargetIds.Count : 0;
+    public int SelectedModeSwapCatchId => ChoiceKind == CreatureEffectChoiceKind.SwapCreatureModes ? requests[0].SelectedCatchId : -1;
 
     public int SelectedExchangeHandIndex => ChoiceKind == CreatureEffectChoiceKind.ExchangeTechniques
         ? requests[0].SelectedHandIndex : -1;
@@ -78,10 +99,16 @@ public sealed class CreatureEffectRuntime
         pendingRecovery = null;
         pendingTransfers.Clear();
         queuedEncounter = null;
+        pendingSelectedTechniqueRecoveries.Clear();
+        resolvingTechnique = null;
+        resolvingDiscardOccurrenceId = 0;
+        eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
+        pendingPlayedTechniqueRecovery = null;
     }
 
     /// <summary>Stamps a new attachment and queues its selected role's immediate choice effects.</summary>
-    public void RecordAttachment(CardInstance instance, bool beforePendingChoices = false, CardInstance[] catches = null)
+    public void RecordAttachment(CardInstance instance, bool beforePendingChoices = false, CardInstance[] catches = null,
+        bool isRoleChange = false)
     {
         if (instance == null)
         {
@@ -104,10 +131,34 @@ public sealed class CreatureEffectRuntime
                     AbilityName = effect.DisplayName, Kind = CreatureEffectChoiceKind.ChooseNextEncounter
                 });
             }
+            if (effect?.Trigger == CardEffectTrigger.WhenCaught)
+            {
+                if (effect.EffectType == CardEffectType.DiscardTechniqueOnAttach && !instance.IsBait)
+                    immediate.Add(new Request { SourceInstanceId = instance.InstanceId, EffectIndex = effectIndex,
+                        AbilityName = effect.DisplayName, Kind = CreatureEffectChoiceKind.DiscardTechnique });
+                if (effect.EffectType == CardEffectType.DrawTechniqueOnAttach && !instance.IsBait)
+                    immediate.Add(new Request { SourceInstanceId = instance.InstanceId, EffectIndex = effectIndex,
+                        AbilityName = effect.DisplayName, Kind = CreatureEffectChoiceKind.DrawTechniques,
+                        DrawCount = effect.Amount, MaxDiscards = 1 });
+                if (instance.IsBait && (effect.EffectType == CardEffectType.ReleaseSelectedCreaturesOnAttach
+                    || effect.EffectType == CardEffectType.SwapCreatureModesOnAttach
+                    || effect.EffectType == CardEffectType.GrantSelectedTechniqueRecovery)
+                    && instance.TryConsumeAttachmentActivation(effectIndex))
+                {
+                    if (effect.EffectType == CardEffectType.GrantSelectedTechniqueRecovery)
+                        pendingSelectedTechniqueRecoveries.Add(effect);
+                    else
+                        immediate.Add(new Request { SourceInstanceId = instance.InstanceId, EffectIndex = effectIndex,
+                            AbilityName = effect.DisplayName, Kind = effect.EffectType == CardEffectType.ReleaseSelectedCreaturesOnAttach
+                                ? CreatureEffectChoiceKind.SelectReleaseTargets : CreatureEffectChoiceKind.SwapCreatureModes });
+                }
+            }
             if (effect?.Trigger == CardEffectTrigger.WhenCaught
                 && (effect.EffectType == CardEffectType.RemoveNegativeEffect
                     || effect.EffectType == CardEffectType.ReleaseCatch
-                    || effect.EffectType == CardEffectType.SelectAttachedWeightTargets))
+                    || effect.EffectType == CardEffectType.SelectAttachedWeightTargets)
+                && (!instance.IsBait || effect.EffectType == CardEffectType.RemoveNegativeEffect
+                    || instance.TryConsumeAttachmentActivation(effectIndex)))
             {
                 immediate.Add(new Request
                 {
@@ -123,46 +174,56 @@ public sealed class CreatureEffectRuntime
             }
         }
 
-        // Group each shared reaction once, ordered by the first source's position in the chain.
-        foreach (CardEffectType type in new[] { CardEffectType.RedrawTechniqueAfterCatch, CardEffectType.ReleaseCreatureAfterCatch,
-            CardEffectType.GainSelfValueAfterCatch, CardEffectType.ReleaseSelfToDrawTechniques, CardEffectType.ExchangeTechniqueAfterCatch })
+        foreach (Request request in immediate)
         {
-            List<int> sources = new List<int>();
-            foreach (CardInstance source in catches ?? Array.Empty<CardInstance>())
-            {
-                bool catchSource = type == CardEffectType.GainSelfValueAfterCatch;
-                if (source == null || source.IsBait == catchSource || source.InstanceId == instance.InstanceId) continue;
-                if (Array.Exists(source.ActiveEffects, effect => effect?.EffectType == type
-                    && effect.Trigger == CardEffectTrigger.AfterAnotherCatchAttached)) sources.Add(source.InstanceId);
-            }
-            bool eligibleType = type == CardEffectType.ReleaseCreatureAfterCatch || type == CardEffectType.ReleaseSelfToDrawTechniques
-                || instance.Definition?.CardType == CardType.Creature;
-            if (!instance.IsBait && eligibleType && sources.Count > 0)
-            {
-                immediate.Add(new Request
-                {
-                    Kind = type == CardEffectType.RedrawTechniqueAfterCatch ? CreatureEffectChoiceKind.RedrawTechnique
-                        : type == CardEffectType.GainSelfValueAfterCatch ? CreatureEffectChoiceKind.GainAttachmentValue
-                        : type == CardEffectType.ReleaseSelfToDrawTechniques ? CreatureEffectChoiceKind.FeedingFrenzy
-                        : type == CardEffectType.ExchangeTechniqueAfterCatch ? CreatureEffectChoiceKind.ExchangeTechniques
-                        : CreatureEffectChoiceKind.OptionalPredatorRelease,
-                    AttachedInstanceId = instance.InstanceId, EligibleSourceIds = sources.ToArray()
-                });
-            }
+            request.ExpectedRole = instance.AttachmentRole;
+            request.RequireSourceRole = true;
         }
-        // Immediate attachment choices finish before all shared after-attachment reactions.
-        int reactionStart = immediate.FindIndex(r => r.Kind == CreatureEffectChoiceKind.RedrawTechnique
-            || r.Kind == CreatureEffectChoiceKind.OptionalPredatorRelease
-            || r.Kind == CreatureEffectChoiceKind.GainAttachmentValue
-            || r.Kind == CreatureEffectChoiceKind.FeedingFrenzy
-            || r.Kind == CreatureEffectChoiceKind.ExchangeTechniques);
-        if (reactionStart >= 0)
+        // A role exchange activates only the swapped cards' own on-attach abilities, not a new catch.
+        if (!isRoleChange)
         {
-            List<Request> reactions = immediate.GetRange(reactionStart, immediate.Count - reactionStart);
-            reactions.Sort((a, b) => Array.FindIndex(catches, c => c?.InstanceId == a.EligibleSourceIds[0])
-                .CompareTo(Array.FindIndex(catches, c => c?.InstanceId == b.EligibleSourceIds[0])));
-            immediate.RemoveRange(reactionStart, immediate.Count - reactionStart);
-            immediate.AddRange(reactions);
+            // Group each shared reaction once, ordered by the first source's position in the chain.
+            foreach (CardEffectType type in new[] { CardEffectType.RedrawTechniqueAfterCatch, CardEffectType.ReleaseCreatureAfterCatch,
+                CardEffectType.GainSelfValueAfterCatch, CardEffectType.ReleaseSelfToDrawTechniques, CardEffectType.ExchangeTechniqueAfterCatch })
+            {
+                List<int> sources = new List<int>();
+                foreach (CardInstance source in catches ?? Array.Empty<CardInstance>())
+                {
+                    bool catchSource = type == CardEffectType.GainSelfValueAfterCatch;
+                    if (source == null || source.IsBait == catchSource || source.InstanceId == instance.InstanceId) continue;
+                    if (Array.Exists(source.ActiveEffects, effect => effect?.EffectType == type
+                        && effect.Trigger == CardEffectTrigger.AfterAnotherCatchAttached)) sources.Add(source.InstanceId);
+                }
+                bool eligibleType = type == CardEffectType.ReleaseCreatureAfterCatch || type == CardEffectType.ReleaseSelfToDrawTechniques
+                    || instance.Definition?.CardType == CardType.Creature;
+                if (!instance.IsBait && eligibleType && sources.Count > 0)
+                {
+                    immediate.Add(new Request
+                    {
+                        Kind = type == CardEffectType.RedrawTechniqueAfterCatch ? CreatureEffectChoiceKind.RedrawTechnique
+                            : type == CardEffectType.GainSelfValueAfterCatch ? CreatureEffectChoiceKind.GainAttachmentValue
+                            : type == CardEffectType.ReleaseSelfToDrawTechniques ? CreatureEffectChoiceKind.FeedingFrenzy
+                            : type == CardEffectType.ExchangeTechniqueAfterCatch ? CreatureEffectChoiceKind.ExchangeTechniques
+                            : CreatureEffectChoiceKind.OptionalPredatorRelease,
+                        AttachedInstanceId = instance.InstanceId, EligibleSourceIds = sources.ToArray()
+                    });
+                }
+            }
+            // Immediate attachment choices finish before all shared after-attachment reactions.
+            int reactionStart = immediate.FindIndex(r => r.Kind == CreatureEffectChoiceKind.RedrawTechnique
+                || r.Kind == CreatureEffectChoiceKind.OptionalPredatorRelease
+                || r.Kind == CreatureEffectChoiceKind.GainAttachmentValue
+                || r.Kind == CreatureEffectChoiceKind.FeedingFrenzy
+                || r.Kind == CreatureEffectChoiceKind.ExchangeTechniques);
+            if (reactionStart >= 0)
+            {
+                List<Request> reactions = immediate.GetRange(reactionStart, immediate.Count - reactionStart);
+                reactions.Sort((a, b) => Array.FindIndex(catches, c => c?.InstanceId == a.EligibleSourceIds[0])
+                    .CompareTo(Array.FindIndex(catches, c => c?.InstanceId == b.EligibleSourceIds[0])));
+                immediate.RemoveRange(reactionStart, immediate.Count - reactionStart);
+                immediate.AddRange(reactions);
+            }
+
         }
 
         if (beforePendingChoices)
@@ -207,7 +268,7 @@ public sealed class CreatureEffectRuntime
                         SourceInstanceId = source.InstanceId,
                         EffectIndex = effectIndex,
                         AbilityName = effect.DisplayName,
-                        Kind = CreatureEffectChoiceKind.SwapCatch,
+                        Kind = CreatureEffectChoiceKind.SwapCatch, ExpectedRole = CatchAttachmentRole.Bait, RequireSourceRole = true,
                         EligibleCatchIds = eligible.ToArray()
                     });
                 }
@@ -251,6 +312,30 @@ public sealed class CreatureEffectRuntime
         while (requests.Count > 0)
         {
             Request request = requests[0];
+            if (request.Kind == CreatureEffectChoiceKind.ActivateChangedRole)
+            {
+                CardInstance changed = GetChoiceSource(chain.Catches);
+                requests.RemoveAt(0);
+                if (changed != null && changed.AttachmentRole == request.ExpectedRole)
+                {
+                    chain.ActivateRoleOnAttach(changed, resolver);
+                    RecordAttachment(changed, true, chain.Catches, true);
+                }
+                continue;
+            }
+            if (request.Kind == CreatureEffectChoiceKind.RecoverPlayedTechnique)
+            {
+                if (deck == null || !deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique))
+                {
+                    requests.RemoveAt(0);
+                    continue;
+                }
+                if (deck.Hand.Length < 4)
+                    deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique, 4);
+                else if (deck.Hand.Length == 4 && request.DiscardCount == 0) return;
+                requests.RemoveAt(0);
+                continue;
+            }
             if (request.Kind == CreatureEffectChoiceKind.GainAttachmentValue)
             {
                 ApplyAttachmentValue(request, chain, resolver);
@@ -279,7 +364,10 @@ public sealed class CreatureEffectRuntime
                     requests.RemoveAt(0);
                     continue;
                 }
-                if (deck.Hand.Length > 4 - request.DrawCount) return;
+                bool canMakeRoom = request.MaxDiscards < 0
+                    || deck.Hand.Length - (request.MaxDiscards - request.DiscardCount) <= 4 - request.DrawCount;
+                if (deck.Hand.Length > 4 - request.DrawCount && canMakeRoom
+                    && (request.MaxDiscards < 0 || request.DiscardCount < request.MaxDiscards)) return;
                 deck.DrawTechniques(request.DrawCount, 4, random);
                 requests.RemoveAt(0);
                 continue;
@@ -318,9 +406,29 @@ public sealed class CreatureEffectRuntime
 
             CardInstance source = GetChoiceSource(chain.Catches);
             CardEffectDefinition[] active = source?.ActiveEffects;
-            if (source == null || request.EffectIndex < 0 || request.EffectIndex >= active.Length
+            if (source == null || (request.RequireSourceRole && source.AttachmentRole != request.ExpectedRole)
+                || request.EffectIndex < 0 || request.EffectIndex >= active.Length
                 || active[request.EffectIndex] == null)
             {
+                requests.RemoveAt(0);
+                continue;
+            }
+
+            if (request.Kind == CreatureEffectChoiceKind.DiscardTechnique)
+            {
+                if (deck != null && Array.Exists(deck.Hand, c => c?.CardType == CardType.Technique)) return;
+                requests.RemoveAt(0);
+                continue;
+            }
+            if (request.Kind == CreatureEffectChoiceKind.SelectReleaseTargets)
+            {
+                if (GetSelectedReleaseTargets(chain.Catches).Length > 0) return;
+                if (!ResolveSelectedReleases(chain, resolver)) requests.RemoveAt(0);
+                continue;
+            }
+            if (request.Kind == CreatureEffectChoiceKind.SwapCreatureModes)
+            {
+                if (GetModeSwapTargets(chain, false).Length > 0 && GetModeSwapTargets(chain, true).Length > 0) return;
                 requests.RemoveAt(0);
                 continue;
             }
@@ -426,6 +534,137 @@ public sealed class CreatureEffectRuntime
         return false;
     }
 
+    /// <summary>Discards the chosen hand occurrence for the mandatory Catch downside without playing or drawing it.</summary>
+    public bool TryChooseRequiredDiscard(int handIndex, TechniqueDeckRuntime deck)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.DiscardTechnique || deck == null || !deck.TryDiscardTechnique(handIndex)) return false;
+        CompleteChoice();
+        return true;
+    }
+
+    /// <summary>Returns distinct legal Small creature selections without exposing the Hooked encounter.</summary>
+    public CardInstance[] GetSelectedReleaseTargets(CardInstance[] catches)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SelectReleaseTargets) return Array.Empty<CardInstance>();
+        Request request = requests[0];
+        CardInstance source = GetChoiceSource(catches);
+        CardEffectDefinition effect = source?.ActiveEffects[request.EffectIndex];
+        return Array.FindAll(catches, c => c != null && c != source && c.Definition?.CardType == CardType.Creature
+            && !c.PreventsReleaseWhileAttached && !request.SelectedTargetIds.Contains(c.InstanceId)
+            && effect != null && EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, c));
+    }
+
+    /// <summary>Collects all choices before any removal, then completes the one-use shared removal window.</summary>
+    public bool TryChooseSelectedRelease(int targetId, CatchChainRuntime chain, EffectResolver resolver)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SelectReleaseTargets) return false;
+        if (targetId >= 0)
+        {
+            if (!Array.Exists(GetSelectedReleaseTargets(chain.Catches), c => c.InstanceId == targetId)) return false;
+            requests[0].SelectedTargetIds.Add(targetId);
+        }
+        if (targetId < 0 || requests[0].SelectedTargetIds.Count == 2 || GetSelectedReleaseTargets(chain.Catches).Length == 0)
+            return ResolveSelectedReleases(chain, resolver);
+        return true;
+    }
+
+    /// <summary>Removes the completed selection together and prioritizes all resulting Release reactions.</summary>
+    private bool ResolveSelectedReleases(CatchChainRuntime chain, EffectResolver resolver)
+    {
+        int[] ids = requests[0].SelectedTargetIds.ToArray();
+        if (ids.Length > 0 && !chain.TryReleaseTogether(ids, resolver)) return false;
+        CompleteChoice();
+        FinishReleaseResolution();
+        return true;
+    }
+
+    /// <summary>Returns ordinary attached creatures of the required role, excluding the activating Octopus.</summary>
+    public CardInstance[] GetModeSwapTargets(CatchChainRuntime chain, bool bait)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SwapCreatureModes) return Array.Empty<CardInstance>();
+        return Array.FindAll(chain.Catches, c => c != null && c.InstanceId != requests[0].SourceInstanceId
+            && c.IsBait == bait && chain.CanChangeCreatureMode(c));
+    }
+
+    /// <summary>Chooses a Catch without changing any role, or declines the entire activation.</summary>
+    public bool TryChooseModeSwapCatch(int catchId, CatchChainRuntime chain)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SwapCreatureModes) return false;
+        if (catchId < 0)
+        {
+            CompleteChoice();
+            return true;
+        }
+        if (!Array.Exists(GetModeSwapTargets(chain, false), c => c.InstanceId == catchId)) return false;
+        requests[0].SelectedCatchId = catchId;
+        return true;
+    }
+
+    /// <summary>Swaps both validated roles together, then activates the new Catch before the surviving new Bait.</summary>
+    public bool TryChooseModeSwapBait(int baitId, CatchChainRuntime chain, EffectResolver resolver)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.SwapCreatureModes
+            || !Array.Exists(GetModeSwapTargets(chain, true), c => c.InstanceId == baitId)) return false;
+        int catchId = requests[0].SelectedCatchId;
+        if (!Array.Exists(GetModeSwapTargets(chain, false), c => c.InstanceId == catchId)
+            || !chain.TrySwapCreatureModes(catchId, baitId, resolver)) return false;
+        CompleteChoice();
+        requests.InsertRange(0, new[]
+        {
+            new Request { Kind = CreatureEffectChoiceKind.ActivateChangedRole, SourceInstanceId = baitId, ExpectedRole = CatchAttachmentRole.Catch },
+            new Request { Kind = CreatureEffectChoiceKind.ActivateChangedRole, SourceInstanceId = catchId, ExpectedRole = CatchAttachmentRole.Bait }
+        });
+        return true;
+    }
+
+    /// <summary>Captures attached Armored eligibility at play time before any Technique targets are changed or released.</summary>
+    public void BeginTechniquePlay(CardDefinition technique, int discardOccurrenceId, CardInstance[] catches)
+    {
+        resolvingTechnique = technique;
+        resolvingDiscardOccurrenceId = discardOccurrenceId;
+        eligibleAttachedIdsAtTechniquePlay = Array.ConvertAll(Array.FindAll(catches, c => c?.Definition?.CardType == CardType.Creature
+            && pendingSelectedTechniqueRecoveries.Count > 0
+            && EffectResolver.RequiredTagsMatchInstance(pendingSelectedTechniqueRecoveries[0].RequiredTags, c)), c => c.InstanceId);
+        pendingPlayedTechniqueRecovery = null;
+    }
+
+    /// <summary>Consumes only the oldest pending recovery when this play selects an initially Armored attached creature.</summary>
+    public void RecordSelectedTechniqueTarget(CardInstance target)
+    {
+        if (resolvingTechnique == null || pendingPlayedTechniqueRecovery != null || target == null
+            || pendingSelectedTechniqueRecoveries.Count == 0 || Array.IndexOf(eligibleAttachedIdsAtTechniquePlay, target.InstanceId) < 0) return;
+        pendingPlayedTechniqueRecovery = new Request
+        {
+            Kind = CreatureEffectChoiceKind.RecoverPlayedTechnique, AbilityName = pendingSelectedTechniqueRecoveries[0].DisplayName,
+            PlayedTechnique = resolvingTechnique, PlayedDiscardOccurrenceId = resolvingDiscardOccurrenceId, MaxDiscards = 1
+        };
+        pendingSelectedTechniqueRecoveries.RemoveAt(0);
+    }
+
+    /// <summary>Waits until every Technique-triggered choice finishes before attempting the exact played-card recovery.</summary>
+    public void FinishTechniquePlay()
+    {
+        if (pendingPlayedTechniqueRecovery != null) requests.Add(pendingPlayedTechniqueRecovery);
+        pendingPlayedTechniqueRecovery = null;
+        resolvingTechnique = null;
+        eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
+    }
+
+    /// <summary>Discards at most one hand technique for room, or declines this already-consumed exact recovery.</summary>
+    public bool TryChoosePlayedTechniqueRecovery(int handIndex, TechniqueDeckRuntime deck)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.RecoverPlayedTechnique || deck == null) return false;
+        if (handIndex < 0)
+        {
+            CompleteChoice();
+            return true;
+        }
+        Request request = requests[0];
+        if (request.DiscardCount != 0 || !deck.TryDiscardTechnique(handIndex)) return false;
+        request.DiscardCount++;
+        return true;
+    }
+
     /// <summary>Applies one lasting bonus to every original surviving qualifying Catch after on-attach effects finish.</summary>
     private static void ApplyAttachmentValue(Request request, CatchChainRuntime chain, EffectResolver resolver)
     {
@@ -485,7 +724,14 @@ public sealed class CreatureEffectRuntime
     public bool TryChooseFeedingDraw(int discardHandIndex, TechniqueDeckRuntime deck, System.Random random)
     {
         if (ChoiceKind != CreatureEffectChoiceKind.DrawTechniques || deck == null) return false;
-        if (discardHandIndex >= 0) return deck.TryDiscardTechnique(discardHandIndex);
+        if (discardHandIndex >= 0)
+        {
+            Request request = requests[0];
+            if (request.MaxDiscards >= 0 && request.DiscardCount >= request.MaxDiscards
+                || !deck.TryDiscardTechnique(discardHandIndex)) return false;
+            request.DiscardCount++;
+            return true;
+        }
         deck.DrawTechniques(requests[0].DrawCount, 4, random);
         CompleteChoice();
         return true;

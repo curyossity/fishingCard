@@ -406,7 +406,13 @@ public enum CardEffectType
     CancelNextHazard,
     ReleaseSelfToDrawTechniques,
     PreventTechniqueTargeting,
-    ExchangeTechniqueAfterCatch
+    ExchangeTechniqueAfterCatch,
+    DiscardTechniqueOnAttach,
+    ReleaseSelectedCreaturesOnAttach,
+    IncreaseSelfWeightWithMatchingAttachedCreature,
+    GrantSelectedTechniqueRecovery,
+    DrawTechniqueOnAttach,
+    SwapCreatureModesOnAttach
 }
 
 public enum CardEffectTrigger

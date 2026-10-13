@@ -87,6 +87,7 @@ MonoBehaviour:
     designIntent: Introduce predators, sharper downside effects, heavier rewards,
       and the first Apex pressure.
     encounterPool:
+    - {fileID: 11400000, guid: 1cca2759c2ed489ead60cbb54dfce191, type: 2}
     - {fileID: 11400000, guid: 3478ec4dfb8c4b80a22b2617b11a1b67, type: 2}
     - {fileID: 11400000, guid: 44f81e4b09c54cbbbb2fe4fc915881ce, type: 2}
     - {fileID: 11400000, guid: 1c2283c16571400dbe1f802fabad2813, type: 2}

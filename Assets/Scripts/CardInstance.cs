@@ -21,6 +21,7 @@ public sealed class CardInstance
     [SerializeField] private CatchAttachmentRole attachmentRole;
     [SerializeField] private int attachmentBiomeVisit;
     [SerializeField] private int[] removedEffectIndices = Array.Empty<int>();
+    [SerializeField] private List<string> removedRoleEffectKeys = new List<string>();
     [SerializeField] private List<AppliedCatchModifier> appliedModifiers = new List<AppliedCatchModifier>();
 
     [SerializeField] private bool hasRuntimeTagOverride;
@@ -53,7 +54,7 @@ public sealed class CardInstance
         get
         {
             CardEffectDefinition[] authored = definition?.GetEffects(attachmentRole) ?? Array.Empty<CardEffectDefinition>();
-            if (removedEffectIndices.Length == 0)
+            if (removedEffectIndices.Length == 0 && removedRoleEffectKeys.Count == 0)
             {
                 return authored;
             }
@@ -61,7 +62,8 @@ public sealed class CardInstance
             CardEffectDefinition[] active = (CardEffectDefinition[])authored.Clone();
             for (int i = 0; i < active.Length; i++)
             {
-                if (Array.IndexOf(removedEffectIndices, i) >= 0)
+                if (Array.IndexOf(removedEffectIndices, i) >= 0
+                    || removedRoleEffectKeys.Contains(attachmentRole + ":" + i))
                 {
                     active[i] = null;
                 }
@@ -86,7 +88,7 @@ public sealed class CardInstance
         attachmentBiomeVisit = visit;
     }
 
-    /// <summary>Removes one exact authored effect from this copy for the rest of its attached lifetime.</summary>
+    /// <summary>Removes one exact authored effect from this copy's current role for the rest of its attached lifetime.</summary>
     public bool TryRemoveEffect(CardEffectDefinition effect)
     {
         CardEffectDefinition[] active = ActiveEffects;
@@ -96,15 +98,21 @@ public sealed class CardInstance
             return false;
         }
 
-        int[] updated = new int[removedEffectIndices.Length + 1];
-        Array.Copy(removedEffectIndices, updated, removedEffectIndices.Length);
-        updated[updated.Length - 1] = index;
-        removedEffectIndices = updated;
+        MigrateRemovedRoleEffects();
+        removedRoleEffectKeys.Add(attachmentRole + ":" + index);
         return true;
     }
+    /// <summary>Associates legacy cleansed indices with their current role before any role mutation.</summary>
+    private void MigrateRemovedRoleEffects()
+    {
+        foreach (int index in removedEffectIndices) removedRoleEffectKeys.Add(attachmentRole + ":" + index);
+        removedEffectIndices = Array.Empty<int>();
+    }
+
     /// <summary>Changes role state while preserving permanent modifiers and expiring one-use Bait protection; the chain must recalculate.</summary>
     public void SetAttachmentRole(CatchAttachmentRole role)
     {
+        MigrateRemovedRoleEffects();
         RefreshHazardProtection();
         attachmentRole = role;
         RefreshHazardProtection();
@@ -304,6 +312,7 @@ public sealed class CardInstance
         snapshot.currentValue = currentValue;
         snapshot.attachmentBiomeVisit = attachmentBiomeVisit;
         snapshot.removedEffectIndices = (int[])removedEffectIndices.Clone();
+        snapshot.removedRoleEffectKeys = new List<string>(removedRoleEffectKeys);
         snapshot.appliedModifiers = new List<AppliedCatchModifier>(appliedModifiers);
         return snapshot;
     }

@@ -9,6 +9,10 @@ public sealed class TechniqueDeckRuntime
     [SerializeField] private CardDefinition[] drawPile = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] discardPile = Array.Empty<CardDefinition>();
 
+    [SerializeField] private int[] discardOccurrenceIds = Array.Empty<int>();
+    [SerializeField] private int nextDiscardOccurrenceId = 1;
+    [SerializeField] private int lastDiscardOccurrenceId;
+    public int LastDiscardOccurrenceId => lastDiscardOccurrenceId;
     public CardDefinition[] Hand => hand;
     public CardDefinition[] DrawPile => drawPile;
     public CardDefinition[] DiscardPile => discardPile;
@@ -19,6 +23,9 @@ public sealed class TechniqueDeckRuntime
     public void Initialize(CardDefinition[] startingDeck, int startingHandSize, System.Random random, Action<string> warningLogger)
     {
         discardPile = Array.Empty<CardDefinition>();
+        discardOccurrenceIds = Array.Empty<int>();
+        nextDiscardOccurrenceId = 1;
+        lastDiscardOccurrenceId = 0;
         drawPile = BuildShuffledDeck(startingDeck, random, warningLogger);
         hand = DrawCards(drawPile, startingHandSize, out drawPile);
     }
@@ -39,6 +46,7 @@ public sealed class TechniqueDeckRuntime
 
                 drawPile = CreateShuffledPile(discardPile, random);
                 discardPile = Array.Empty<CardDefinition>();
+                discardOccurrenceIds = Array.Empty<int>();
             }
 
             CardDefinition[] drawnCards = DrawCards(drawPile, 1, out drawPile);
@@ -100,7 +108,7 @@ public sealed class TechniqueDeckRuntime
         }
 
         hand = RemoveCardAt(hand, handIndex);
-        discardPile = AppendCard(discardPile, usedCard);
+        AppendDiscard(usedCard);
         if (refillAfterUse)
         {
             Refill(handSize, random);
@@ -117,8 +125,9 @@ public sealed class TechniqueDeckRuntime
             return false;
         }
 
+        EnsureDiscardOccurrenceIds();
         hand = AppendCard(hand, discardPile[discardIndex]);
-        discardPile = RemoveCardAt(discardPile, discardIndex);
+        RemoveDiscardAt(discardIndex);
         return true;
     }
 
@@ -127,11 +136,12 @@ public sealed class TechniqueDeckRuntime
     {
         if (!TryGetHandCard(handIndex, out CardDefinition chosen, out _)) return false;
         hand = RemoveCardAt(hand, handIndex);
-        discardPile = AppendCard(discardPile, chosen);
+        AppendDiscard(chosen);
         if (drawPile.Length == 0)
         {
             drawPile = CreateShuffledPile(discardPile, random);
             discardPile = Array.Empty<CardDefinition>();
+            discardOccurrenceIds = Array.Empty<int>();
         }
         CardDefinition[] replacement = DrawCards(drawPile, 1, out drawPile);
         if (replacement.Length > 0) hand = AppendCard(hand, replacement[0]);
@@ -143,7 +153,7 @@ public sealed class TechniqueDeckRuntime
     {
         if (!TryGetHandCard(handIndex, out CardDefinition card, out _)) return false;
         hand = RemoveCardAt(hand, handIndex);
-        discardPile = AppendCard(discardPile, card);
+        AppendDiscard(card);
         return true;
     }
 
@@ -159,6 +169,7 @@ public sealed class TechniqueDeckRuntime
                 if (discardPile.Length == 0) break;
                 drawPile = CreateShuffledPile(discardPile, random);
                 discardPile = Array.Empty<CardDefinition>();
+                discardOccurrenceIds = Array.Empty<int>();
             }
             CardDefinition[] cards = DrawCards(drawPile, 1, out drawPile);
             if (cards.Length == 0) break;
@@ -174,12 +185,59 @@ public sealed class TechniqueDeckRuntime
         if (!TryGetHandCard(handIndex, out CardDefinition handCard, out _)
             || discardIndex < 0 || discardIndex >= discardPile.Length
             || discardPile[discardIndex]?.CardType != CardType.Technique) return false;
+        EnsureDiscardOccurrenceIds();
         CardDefinition discardedCard = discardPile[discardIndex];
         CardDefinition[] updatedHand = (CardDefinition[])hand.Clone();
         updatedHand[handIndex] = discardedCard;
-        discardPile = AppendCard(RemoveCardAt(discardPile, discardIndex), handCard);
+        RemoveDiscardAt(discardIndex);
+        AppendDiscard(handCard);
         hand = updatedHand;
         return true;
+    }
+
+    /// <summary>Checks that the exact played discard occurrence still exists; identical definitions are insufficient.</summary>
+    public bool HasDiscardedTechniqueOccurrence(int occurrenceId, CardDefinition expected)
+    {
+        EnsureDiscardOccurrenceIds();
+        int index = Array.IndexOf(discardOccurrenceIds, occurrenceId);
+        return index >= 0 && discardPile[index] == expected && expected?.CardType == CardType.Technique;
+    }
+
+    /// <summary>Returns only the played occurrence, subject to available capacity, without recovering another copy.</summary>
+    public bool TryRecoverPlayedTechnique(int occurrenceId, CardDefinition expected, int capacity)
+    {
+        if (hand.Length >= capacity || !HasDiscardedTechniqueOccurrence(occurrenceId, expected)) return false;
+        return TryRecoverDiscardedTechnique(Array.IndexOf(discardOccurrenceIds, occurrenceId));
+    }
+
+    /// <summary>Gives previously serialized or fixture discard entries stable IDs before any identity-sensitive operation.</summary>
+    private void EnsureDiscardOccurrenceIds()
+    {
+        if (discardOccurrenceIds.Length == discardPile.Length) return;
+        discardOccurrenceIds = new int[discardPile.Length];
+        for (int i = 0; i < discardOccurrenceIds.Length; i++) discardOccurrenceIds[i] = nextDiscardOccurrenceId++;
+    }
+
+    /// <summary>Assigns a fresh discard occurrence whenever a technique enters the pile.</summary>
+    private void AppendDiscard(CardDefinition card)
+    {
+        EnsureDiscardOccurrenceIds();
+        discardPile = AppendCard(discardPile, card);
+        int[] updated = new int[discardOccurrenceIds.Length + 1];
+        Array.Copy(discardOccurrenceIds, updated, discardOccurrenceIds.Length);
+        lastDiscardOccurrenceId = nextDiscardOccurrenceId++;
+        updated[updated.Length - 1] = lastDiscardOccurrenceId;
+        discardOccurrenceIds = updated;
+    }
+
+    /// <summary>Removes one definition and its exact discard identity together.</summary>
+    private void RemoveDiscardAt(int index)
+    {
+        EnsureDiscardOccurrenceIds();
+        discardPile = RemoveCardAt(discardPile, index);
+        List<int> ids = new List<int>(discardOccurrenceIds);
+        ids.RemoveAt(index);
+        discardOccurrenceIds = ids.ToArray();
     }
 
     /// <summary>
@@ -190,6 +248,7 @@ public sealed class TechniqueDeckRuntime
         hand = Array.Empty<CardDefinition>();
         drawPile = Array.Empty<CardDefinition>();
         discardPile = Array.Empty<CardDefinition>();
+        discardOccurrenceIds = Array.Empty<int>();
     }
 
     /// <summary>

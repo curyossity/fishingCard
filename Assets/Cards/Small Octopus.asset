@@ -17,8 +17,9 @@ MonoBehaviour:
   cardType: 3
   rarity: 1
   tags:
+  - Small
   - Predator
-  - Anchored
+  - Elusive
   artwork: {fileID: -4311028475029301000, guid: 60d3afe172b44fc5f861d093ac25e746, type: 3}
   encounterArtwork: {fileID: 3125584908192654000, guid: 60d3afe172b44fc5f861d093ac25e746, type: 3}
   artworkLayout: 1
@@ -27,30 +28,45 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Reduce another catch''s Weight by 2 while this remains attached.'
-  rulesTextHighlights:
-  - text: 2
-    color: {r: 0.5058824, g: 0.6862745, b: 0.6117647, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  weight: 2
-  value: 5
+  rulesText: "Clever Catch: When caught, draw 1 technique."
+  rulesTextHighlights: []
+  baitRulesText: "Helping Arms: When attached as Bait, you may swap the modes of another Catch and another Bait."
+  baitRulesTextHighlights: []
+  weight: 1
+  value: 9
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 4
-  maximumDepth: 16
+  minimumDepth: 6
+  maximumDepth: 20
   effects:
-  - effectId: small_octopus_reduce_other_weight
-    effectType: 1
-    trigger: 2
-    target: 5
+  - effectId: clever_catch
+    displayName: Clever Catch
+    effectType: 42
+    trigger: 1
+    target: 0
     effectTone: 1
-    amount: 2
+    amount: 1
     requiredTags: []
-    caughtCardTargetMode: 2
+    targetTags: []
+    caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: The first other attached catch contributes 2 less Weight.
+    reminderText: "Immediately after Catch attachment, draw one technique if it fits the four-card hand. If full, optionally discard one hand technique first to make room, or decline. Resolve immediately; the draw cannot be saved."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: helping_arms
+    displayName: Helping Arms
+    effectType: 43
+    trigger: 1
+    target: 5
+    effectTone: 1
+    amount: 1
+    requiredTags: []
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Once per card on first Bait attachment, optionally choose another creature Catch and another creature Bait that can legally change modes. Require both. Switch together without changing positions, IDs, or resolved bonuses. End old ongoing effects and activate new ongoing effects. Resolve the new Catch own on-attach ability first, then the new Bait own on-attach ability only if it survives in Bait; respect activation limits. This is not a Release or a new encounter. Pending effects follow their own durations. Decline or no eligible pair spends the use; returning to Bait never refreshes it."

@@ -17,6 +17,9 @@ public sealed class CatchChainRuntime
     /// <summary>Reports each completed deliberate removal without firing for forced loss or exchange.</summary>
     public event Action<CardInstance, CatchRemovalReason> DeliberatelyReleased;
 
+    /// <summary>Reports individual Technique targets before applying changes or removing their attachment.</summary>
+    public event Action<CardInstance> TechniqueTargetSelected;
+
     [SerializeField] private List<PendingCreatureCatchEffect> pendingCreatureCatchEffects = new List<PendingCreatureCatchEffect>();
     public PendingCreatureCatchEffect[] PendingCreatureCatchEffects => pendingCreatureCatchEffects.ToArray();
     public CardInstance[] Catches => catches;
@@ -149,6 +152,7 @@ public sealed class CatchChainRuntime
 
         int targetIndex = FindTechniqueTargetIndex(effect);
         CardInstance target = catches[targetIndex];
+        TechniqueTargetSelected?.Invoke(target);
         int weightChange = 0;
         int valueChangeForTarget = 0;
 
@@ -305,6 +309,77 @@ public sealed class CatchChainRuntime
             DeliberatelyReleased?.Invoke(releasedCatch, removalReason);
         }
         return true;
+    }
+
+    /// <summary>Validates every selected release before mutation, removes them together, then resolves survivor Release reactions.</summary>
+    public bool TryReleaseTogether(int[] instanceIds, EffectResolver resolver)
+    {
+        if (instanceIds == null || instanceIds.Length == 0) return false;
+        List<CardInstance> selected = new List<CardInstance>();
+        foreach (int id in instanceIds)
+        {
+            CardInstance card = Array.Find(catches, c => c?.InstanceId == id);
+            if (card == null || card.PreventsReleaseWhileAttached || selected.Contains(card)) return false;
+            selected.Add(card);
+        }
+        CardInstance[] snapshots = selected.ConvertAll(c => c.CreateSnapshot()).ToArray();
+        catches = Array.FindAll(catches, c => !selected.Contains(c));
+        Recalculate(resolver);
+        foreach (CardInstance released in snapshots)
+        {
+            ApplyAnotherCatchReleasedEffects(released, CatchRemovalReason.Creature);
+            RecordRemoval(released, CatchRemovalReason.Creature);
+            Recalculate(resolver);
+            DeliberatelyReleased?.Invoke(released, CatchRemovalReason.Creature);
+        }
+        return true;
+    }
+
+    /// <summary>Checks the existing creature/role boundary without treating a Release lock as a mode lock.</summary>
+    public bool CanChangeCreatureMode(CardInstance card)
+    {
+        return card != null && IsCatchAttached(card) && card.Definition?.CardType == CardType.Creature;
+    }
+
+    /// <summary>Switches a validated Catch/Bait creature pair atomically, preserving IDs, positions, and resolved modifiers.</summary>
+    public bool TrySwapCreatureModes(int catchId, int baitId, EffectResolver resolver)
+    {
+        CardInstance catchCard = Array.Find(catches, c => c?.InstanceId == catchId);
+        CardInstance baitCard = Array.Find(catches, c => c?.InstanceId == baitId);
+        if (!CanChangeCreatureMode(catchCard) || !CanChangeCreatureMode(baitCard)
+            || catchCard == baitCard || catchCard.IsBait || !baitCard.IsBait) return false;
+        MigrateLegacyEffectKeys(catchCard);
+        MigrateLegacyEffectKeys(baitCard);
+        catchCard.SetAttachmentRole(CatchAttachmentRole.Bait);
+        baitCard.SetAttachmentRole(CatchAttachmentRole.Catch);
+        Recalculate(resolver);
+        return true;
+    }
+
+    /// <summary>Runs the new role's own immediate chain effects without consuming another card's next-attachment bonuses.</summary>
+    public void ActivateRoleOnAttach(CardInstance instance, EffectResolver resolver)
+    {
+        if (!IsCatchAttached(instance)) return;
+        foreach (CardEffectDefinition effect in instance.ActiveEffects)
+        {
+            if (effect?.Trigger == CardEffectTrigger.WhenCaught && effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight)
+                pendingCreatureCatchEffects.Add(new PendingCreatureCatchEffect(effect, instance.Definition));
+        }
+        Recalculate(resolver);
+    }
+
+    /// <summary>Associates legacy lifecycle keys with their pre-swap role so another role's index cannot inherit them.</summary>
+    private void MigrateLegacyEffectKeys(CardInstance source)
+    {
+        foreach (string[] keys in new[] { consumedNextCatchEffectKeys, consumedNextEncounterEffectKeys, invalidatedNoReleaseEffectKeys })
+        {
+            for (int i = 0; i < keys.Length; i++)
+            {
+                string[] parts = keys[i].Split(':');
+                if (parts.Length == 2 && parts[0] == source.InstanceId.ToString())
+                    keys[i] = parts[0] + ":" + source.AttachmentRole + ":" + parts[1];
+            }
+        }
     }
 
     /// <summary>
@@ -511,7 +586,12 @@ public sealed class CatchChainRuntime
                         || effect.EffectType == CardEffectType.ReleaseCatch
                         || effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight
                         || effect.EffectType == CardEffectType.ChooseNextSchoolingEncounter
-                        || effect.EffectType == CardEffectType.CancelNextHazard)))
+                        || effect.EffectType == CardEffectType.CancelNextHazard
+                        || effect.EffectType == CardEffectType.DiscardTechniqueOnAttach
+                        || effect.EffectType == CardEffectType.ReleaseSelectedCreaturesOnAttach
+                        || effect.EffectType == CardEffectType.GrantSelectedTechniqueRecovery
+                        || effect.EffectType == CardEffectType.DrawTechniqueOnAttach
+                        || effect.EffectType == CardEffectType.SwapCreatureModesOnAttach)))
             {
                 continue;
             }
@@ -636,20 +716,20 @@ public sealed class CatchChainRuntime
     /// <summary>Reports whether one source instance already spent its future-catch effect.</summary>
     private bool IsNextCatchEffectConsumed(CardInstance source, int effectIndex)
     {
-        string key = BuildEffectKey(source, effectIndex);
-        return Array.IndexOf(consumedNextCatchEffectKeys, key) >= 0;
+        return IsEffectKeyTracked(consumedNextCatchEffectKeys, source, effectIndex);
     }
 
     /// <summary>Reports whether a per-instance effect key exists in one lifecycle-state collection.</summary>
     private static bool IsEffectKeyTracked(string[] keys, CardInstance source, int effectIndex)
     {
-        return Array.IndexOf(keys ?? Array.Empty<string>(), BuildEffectKey(source, effectIndex)) >= 0;
+        return Array.IndexOf(keys ?? Array.Empty<string>(), BuildEffectKey(source, effectIndex)) >= 0
+            || Array.IndexOf(keys ?? Array.Empty<string>(), $"{source?.InstanceId ?? 0}:{effectIndex}") >= 0;
     }
 
     /// <summary>Builds a stable per-run key for one effect on one caught card instance.</summary>
     private static string BuildEffectKey(CardInstance source, int effectIndex)
     {
-        return $"{source?.InstanceId ?? 0}:{effectIndex}";
+        return $"{source?.InstanceId ?? 0}:{source?.AttachmentRole}:{effectIndex}";
     }
 
     private static string[] AppendEffectKey(string[] source, string key)
@@ -682,6 +762,7 @@ public sealed class CatchChainRuntime
             }
 
             CardInstance releasedCatch = catches[targetIndex];
+            TechniqueTargetSelected?.Invoke(releasedCatch);
             releasedNames.Add(releasedCatch.Definition.DisplayName);
             ApplyAnotherCatchReleasedEffects(releasedCatch, CatchRemovalReason.Technique);
             RecordRemoval(releasedCatch, CatchRemovalReason.Technique);

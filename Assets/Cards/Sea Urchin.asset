@@ -15,44 +15,57 @@ MonoBehaviour:
   uniqueId: creature_sea_urchin
   displayName: Sea Urchin
   cardType: 3
-  rarity: 2
+  rarity: 0
   tags:
-  - Anchored
+  - Small
   - Armored
+  - Anchored
   artwork: {fileID: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Armored catches gain +3 Value while this remains attached'
-  rulesTextHighlights:
-  - text: Armored
-    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  - text: +3
-    color: {r: 0.5058824, g: 0.6862745, b: 0.6117647, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  weight: 2
-  value: 0
+  rulesText: "Bristling Spines: This Catch weighs 1 more while you have a Predator attached."
+  rulesTextHighlights: []
+  baitRulesText: "Spiny Grip: Your next technique targeting an attached Armored creature returns to hand."
+  baitRulesTextHighlights: []
+  weight: 1
+  value: 9
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 14
+  maximumDepth: 16
   effects:
-  - effectId: sea_urchin_armored_value
-    effectType: 2
+  - effectId: bristling_spines
+    displayName: Bristling Spines
+    effectType: 40
     trigger: 2
-    target: 4
-    effectTone: 1
-    amount: 3
+    target: 1
+    effectTone: 2
+    amount: 1
     requiredTags:
-    - Armored
+    - Predator
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Every attached Armored catch gains 3 Value, including Sea Urchin.
+    reminderText: "Add exactly 1 effective weight while any Predator creature is attached in Catch or Bait mode. More Predators do not increase the penalty. Recalculate immediately on creature, role, or effective tag changes."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: spiny_grip
+    displayName: Spiny Grip
+    effectType: 41
+    trigger: 1
+    target: 0
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Armored
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Once per card on first Bait attachment, grant one independent pending recovery. The next technique played with an attached Armored creature selected as a target consumes the oldest recovery. Check eligibility at play time. After the technique and every triggered effect finish, return that exact played discard occurrence, even if the target left. If full, optionally discard one hand technique or decline. No selected target and Hooked-only targeting do not qualify. Source removal or mode changes do not cancel the grant. A declined recovery or missing played occurrence still consumes it and never substitutes another copy. One recovery per qualifying play; multiple grants cover consecutive plays."

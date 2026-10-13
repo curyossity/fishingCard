@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-14",
+  "cards": [
+    "Sea Bass",
+    "Sea Urchin",
+    "Small Octopus"
+  ],
+  "newGameplayAssertions": 100,
+  "existingGameplayAssertions": 308,
+  "totalGameplayAssertions": 408,
+  "gameplayExecution": "Actual runtime sources with minimal Unity API adapters; not Unity Play Mode",
+  "runtimeUnityReferenceCompilation": "passed",
+  "editorUnityReferenceCompilation": "passed",
+  "assetChecks": [
+    {
+      "path": "Assets/Cards/Sea Bass.asset",
+      "identityAndArtwork": "preserved",
+      "statsRarityTagsAndEffects": "passed",
+      "eligibleTiers": [
+        "shallows",
+        "mid_depth",
+        "deep_edge"
+      ]
+    },
+    {
+      "path": "Assets/Cards/Sea Urchin.asset",
+      "identityAndArtwork": "preserved",
+      "statsRarityTagsAndEffects": "passed",
+      "eligibleTiers": [
+        "shallows",
+        "mid_depth",
+        "deep_edge"
+      ]
+    },
+    {
+      "path": "Assets/Cards/Small Octopus.asset",
+      "identityAndArtwork": "preserved",
+      "statsRarityTagsAndEffects": "passed",
+      "eligibleTiers": [
+        "shallows",
+        "mid_depth",
+        "deep_edge"
+      ]
+    }
+  ],
+  "serializedEffectEnumCompatibility": "passed; existing ordinals preserved",
+  "confirmedHelpingArmsRule": "Only the swapped cards own on-attach effects; no other after-catching reactions",
+  "playMode": "unverified",
+  "visualChecks": "unverified",
+  "editorMenu": "Fishing Cards/Validation/Sea Bass Urchin and Small Octopus"
+}
