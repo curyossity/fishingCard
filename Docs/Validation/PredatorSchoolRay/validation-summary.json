@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-11",
+  "cards": [
+    "Lionfish",
+    "Mackerel",
+    "Moonlit Ray"
+  ],
+  "newRuntimeAssertions": 87,
+  "existingRuntimeAssertions": 135,
+  "totalRuntimeAssertions": 222,
+  "execution": "Actual gameplay sources executed with minimal Unity API adapters; not Unity Play Mode",
+  "unityVersion": "6000.5.9f1",
+  "runtimeAssemblyCompile": "passed against Unity references",
+  "editorAssemblyCompile": "passed against Unity references",
+  "assetChecks": [
+    {
+      "file": "Assets/Cards/Lionfish.asset",
+      "stableIdentityAndArtwork": true,
+      "statsAndTags": true,
+      "eligibleDepthTiers": true
+    },
+    {
+      "file": "Assets/Cards/Golden Mackerel.asset",
+      "stableIdentityAndArtwork": true,
+      "statsAndTags": true,
+      "eligibleDepthTiers": true
+    },
+    {
+      "file": "Assets/Cards/Moonlit Ray.asset",
+      "stableIdentityAndArtwork": true,
+      "statsAndTags": true,
+      "eligibleDepthTiers": true
+    }
+  ],
+  "sourceOfTruthUpdated": [
+    "GDD section 6",
+    "GDD_IMPLEMENTATION_BRIEF.md",
+    "Architecture.md"
+  ],
+  "rayDescriptionResolution": "Flat one-point reduction for any Elusive creature Bait, following supplied resolution and stacking rules",
+  "playMode": "unverified",
+  "visualChecks": "unverified",
+  "unityExecutionLimitation": "Prior isolated Unity startup failed with missing headless entitlement and Package Manager IPC errors",
+  "editorMenu": "Fishing Cards/Validation/Lionfish Mackerel and Moonlit Ray"
+}

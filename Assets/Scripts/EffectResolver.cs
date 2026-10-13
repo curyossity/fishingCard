@@ -33,14 +33,36 @@ public sealed class EffectResolver
 
         for (int i = 0; i < safeEffects.Length; i++)
         {
-            if (safeEffects[i]?.Effect?.EffectType != CardEffectType.SelectAttachedWeightTargets)
+            if (safeEffects[i]?.Effect?.EffectType != CardEffectType.SelectAttachedWeightTargets
+                && safeEffects[i]?.Effect?.EffectType != CardEffectType.SetSelfWeightZeroWithOtherCreatureCatches
+                && safeEffects[i]?.Effect?.EffectType != CardEffectType.ReduceSelfWeightWithMatchingCreatureBait)
                 ResolvePersistentStatEffect(safeCatches, safeEffects[i]);
         }
+        foreach (ActiveCatchEffectRecord record in safeEffects)
+        {
+            if (!IsPersistent(record) || record.Effect.EffectType != CardEffectType.ReduceSelfWeightWithMatchingCreatureBait
+                || record.SourceInstance == null || record.SourceInstance.IsBait) continue;
+            if (Array.Exists(safeCatches, c => c != null && c != record.SourceInstance && c.IsBait
+                && c.Definition?.CardType == CardType.Creature && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)))
+            {
+                record.SourceInstance.ModifyWeight(-Math.Abs(record.Effect.Amount));
+            }
+        }
+
         // Selected reductions stack against the final pre-reduction weight, then clamp at zero.
         foreach (ActiveCatchEffectRecord record in safeEffects)
         {
             if (record?.Effect?.EffectType == CardEffectType.SelectAttachedWeightTargets)
                 ResolvePersistentStatEffect(safeCatches, record);
+        }
+        // An eligible Packed Shoal sets final effective Weight to zero, regardless of other weight modifiers.
+        foreach (ActiveCatchEffectRecord record in safeEffects)
+        {
+            if (!IsPersistent(record) || record.Effect.EffectType != CardEffectType.SetSelfWeightZeroWithOtherCreatureCatches
+                || record.SourceInstance == null || record.SourceInstance.IsBait) continue;
+            int count = Array.FindAll(safeCatches, c => c != null && c != record.SourceInstance && !c.IsBait
+                && c.Definition?.CardType == CardType.Creature && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)).Length;
+            if (count >= Math.Max(1, record.Effect.Amount)) record.SourceInstance.ModifyWeight(-record.SourceInstance.CurrentWeight);
         }
     }
 

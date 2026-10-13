@@ -18,6 +18,7 @@ MonoBehaviour:
   rarity: 2
   tags:
   - Fish
+  - Predator
   - Elusive
   artwork: {fileID: -4311028475029301000, guid: 3da07cbe4f814c92c53ead6079f2b413, type: 3}
   encounterArtwork: {fileID: 3125584908192654000, guid: 3da07cbe4f814c92c53ead6079f2b413, type: 3}
@@ -27,31 +28,47 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: While attached, every Small catch gains 1 Value.'
-  rulesTextHighlights:
-  - text: 1
-    color: {r: 0.8117647, g: 0.3647059, b: 0.3254902, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
+  rulesText: "Graceful Glide: This Catch weighs 1 less while any Elusive Bait is attached."
+  rulesTextHighlights: []
+  baitRulesText: "Moonlit Reflection: After releasing an Elusive Catch, add its value to another Catch."
+  baitRulesTextHighlights: []
   weight: 3
-  value: 10
+  value: 24
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 13
+  minimumDepth: 9
   maximumDepth: 20
   effects:
-  - effectId: moonlit_small_value
-    effectType: 2
+  - effectId: graceful_glide
+    displayName: Graceful Glide
+    effectType: 29
     trigger: 2
-    target: 4
+    target: 1
     effectTone: 1
     amount: 1
     requiredTags:
-    - Small
+    - Elusive
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Small catches gain 1 Value while Moonlit Ray is attached.
+    reminderText: "Reduce effective weight by 1, minimum 0, while at least one Elusive creature is attached as Bait. Extra qualifying Bait does not increase the reduction. Recalculate immediately on changes to creatures, modes or tags."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: moonlit_reflection
+    displayName: Moonlit Reflection
+    effectType: 32
+    trigger: 6
+    target: 5
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Elusive
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Capture each deliberately released Elusive Catch sale value including modifiers immediately before removal. After the entire release action, choose one remaining Catch per release and grant that value as a lasting bonus. All Moonlit Ray Bait copies share one transfer per released Catch. Forced removal and exchanges do not trigger. With no remaining Catch, skip. Bonuses survive source removal and recipient mode changes; Bait has no sale value. Resolve immediately, never save."

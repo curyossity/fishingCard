@@ -493,7 +493,8 @@ public sealed class CatchChainRuntime
                 || (trigger == CardEffectTrigger.WhenCaught
                     && (effect.EffectType == CardEffectType.RemoveNegativeEffect
                         || effect.EffectType == CardEffectType.ReleaseCatch
-                        || effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight)))
+                        || effect.EffectType == CardEffectType.QueueNextCreatureCatchWeight
+                        || effect.EffectType == CardEffectType.ChooseNextSchoolingEncounter)))
             {
                 continue;
             }
@@ -703,13 +704,24 @@ public sealed class CatchChainRuntime
                 || !IsCatchAttached(source)
                 || effect == null
                 || record.ActiveTrigger != CardEffectTrigger.WhenAnotherCatchReleased
-                || effect.EffectType != CardEffectType.ModifyCatchValue
+                || (effect.EffectType != CardEffectType.ModifyCatchValue
+                    && effect.EffectType != CardEffectType.LoseValueOnCreatureRelease)
                 || effect.Target != CardEffectTarget.Self)
             {
                 continue;
             }
 
-            source.AddPermanentModifiers(0, effect.Amount, effect, source.Definition);
+            if (effect.EffectType == CardEffectType.LoseValueOnCreatureRelease)
+            {
+                if (source.IsBait || releasedCatch.Definition?.CardType != CardType.Creature) continue;
+                // Store only the loss actually taken; reaching zero must not create hidden value debt.
+                int loss = Math.Min(source.CurrentValue, Math.Abs(effect.Amount));
+                source.AddPermanentModifiers(0, -loss, effect, source.Definition);
+            }
+            else
+            {
+                source.AddPermanentModifiers(0, effect.Amount, effect, source.Definition);
+            }
         }
     }
 

@@ -495,6 +495,63 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
+    /// <summary>Previews the next reveal destination without advancing depth or consuming queued Technique modifiers.</summary>
+    private NextEncounterDestination GetNextEncounterDestination()
+    {
+        int depth = currentDepth;
+        if (descendCompletionPending)
+        {
+            int additional = 0;
+            foreach (CardEffectDefinition effect in techniqueEffectRuntime.PendingDescendEffects)
+            {
+                if (effect?.EffectType == CardEffectType.ModifyDescendDistance) additional += effect.Amount;
+            }
+            depth += Mathf.Max(1, depthStepPerDescend + additional);
+        }
+        int selectionDepth = Mathf.Max(0, depth + techniqueEffectRuntime.GetNextEncounterDepthOffset());
+        return GetRevealDestination(selectionDepth);
+    }
+
+    /// <summary>Reserves Apex and next-waters scheduling before any creature's chosen normal encounter can be used.</summary>
+    private NextEncounterDestination GetRevealDestination(int selectionDepth)
+    {
+        int boundary = currentBiome?.GetApexBoundaryDepth() ?? -1;
+        bool scheduled = biomeApexRuntime.CanPresentNextWaters
+            || (boundary >= 0 && selectionDepth >= boundary);
+        return new NextEncounterDestination(currentBiome, selectionDepth, !scheduled);
+    }
+
+    /// <summary>Resolves or declines the shared optional Lionfish release.</summary>
+    public bool TryChoosePredatorRelease(int targetId)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChoosePredatorRelease(targetId, catchChainRuntime, effectResolver)) return false;
+        selectedCatchIndex = -1;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Queues the School Call choice and resumes the current action at its normal reveal time.</summary>
+    public bool TryChooseNextCreatureEncounter(int offerIndex)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseNextEncounter(offerIndex)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Transfers a released Catch's captured Value after the entire releasing ability completes.</summary>
+    public bool TryChooseCreatureValueTransfer(int targetId)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseValueTransfer(targetId, catchChainRuntime, effectResolver)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
     /// <summary>Records Release reactions without interrupting the resolving ability.</summary>
     private void HandleDeliberateRelease(CardInstance released, CatchRemovalReason reason)
     {
@@ -510,7 +567,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         creatureEffectRuntime.PrepareChoice(catchChainRuntime, encounterRuntime, currentBiome,
-            techniqueEffectRuntime, effectResolver, random, () => RemovableNegativeEffects.Length, techniqueDeckRuntime);
+            techniqueEffectRuntime, effectResolver, random, () => RemovableNegativeEffects.Length, techniqueDeckRuntime, GetNextEncounterDestination());
     }
 
     /// <summary>Resumes either attachment resolution or the first biome reveal after all choices finish.</summary>
@@ -624,6 +681,53 @@ public sealed class FishingRunController : MonoBehaviour
             }
             fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose up to two distinct Armored creatures.",
                 labels, details, art, index => TryChooseCreatureWeightTarget(index == 0 ? -1 : eligible[index - 1].InstanceId));
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.OptionalPredatorRelease)
+        {
+            CardInstance[] eligible = creatureEffectRuntime.GetPredatorReleaseTargets(catchChainRuntime.Catches);
+            string[] labels = new string[eligible.Length + 1];
+            string[] details = new string[eligible.Length + 1];
+            Sprite[] art = new Sprite[eligible.Length + 1];
+            labels[0] = "Decline release";
+            details[0] = "Keep all attached creatures.";
+            for (int i = 0; i < eligible.Length; i++)
+            {
+                labels[i + 1] = eligible[i].Definition.DisplayName + " (" + eligible[i].AttachmentRole + ")";
+                details[i + 1] = "Weight " + eligible[i].CurrentWeight + " · Deliberately release this Small creature.";
+                art[i + 1] = eligible[i].Definition.Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "You may release another Small creature.",
+                labels, details, art, index => TryChoosePredatorRelease(index == 0 ? -1 : eligible[index - 1].InstanceId));
+            return;
+        }
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.ChooseNextEncounter)
+        {
+            CardDefinition[] schoolOffers = OfferedCreatures;
+            string[] labels = new string[schoolOffers.Length + 1];
+            string[] details = new string[schoolOffers.Length + 1];
+            Sprite[] art = new Sprite[schoolOffers.Length + 1];
+            labels[0] = "Decline selection";
+            details[0] = "Keep the next encounter draw or earlier selection.";
+            for (int i = 0; i < schoolOffers.Length; i++)
+            {
+                labels[i + 1] = schoolOffers[i].DisplayName;
+                details[i + 1] = "Choose as your next encounter · Weight " + schoolOffers[i].Weight;
+                art[i + 1] = schoolOffers[i].Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose your next Schooling encounter.",
+                labels, details, art, index => TryChooseNextCreatureEncounter(index - 1));
+            return;
+        }
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.TransferValue)
+        {
+            CardInstance[] eligible = creatureEffectRuntime.GetTransferTargets(catchChainRuntime.Catches);
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose a Catch to gain " + creatureEffectRuntime.TransferValue + " Value.",
+                Array.ConvertAll(eligible, card => card.Definition.DisplayName),
+                Array.ConvertAll(eligible, card => "Value " + (card.HidesOwnValueDuringRun ? "?" : card.CurrentValue.ToString())),
+                Array.ConvertAll(eligible, card => card.Definition.Artwork),
+                index => TryChooseCreatureValueTransfer(eligible[index].InstanceId));
             return;
         }
 
@@ -1007,6 +1111,7 @@ public sealed class FishingRunController : MonoBehaviour
     {
         creatureEffectRuntime.BeginEncounter();
         int selectionDepth = GetEffectiveEncounterSelectionDepth();
+        CardDefinition chosen = creatureEffectRuntime.TakeQueuedEncounter(GetRevealDestination(selectionDepth));
 
         if (TryRevealBiomeApex(selectionDepth))
         {
@@ -1034,7 +1139,11 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
-        bool revealed = encounterRuntime.Reveal(
+        bool revealed = chosen != null
+            ? encounterRuntime.RevealSelectedCreature(chosen, CurrentBiomeId, selectionDepth,
+                catchChainRuntime.ActiveEffectRecords, effectResolver, techniqueEffectRuntime.PendingEncounterEffects,
+                currentBiome?.EncounterChains)
+            : encounterRuntime.Reveal(
             GetEncounterPool(selectionDepth),
             CurrentBiomeId,
             selectionDepth,

@@ -122,7 +122,8 @@ public sealed class EncounterRuntime
         System.Random random,
         ActiveCatchEffectRecord[] attachedEffects,
         EffectResolver resolver,
-        CardEffectDefinition[] temporaryEffects = null)
+        CardEffectDefinition[] temporaryEffects = null,
+        string[] requiredTags = null)
     {
         List<CardDefinition> candidates = new List<CardDefinition>();
         List<int> weights = new List<int>();
@@ -130,6 +131,7 @@ public sealed class EncounterRuntime
         foreach (CardDefinition card in pool ?? Array.Empty<CardDefinition>())
         {
             if (card == null || card.CardType != CardType.Creature
+                || !EffectResolver.RequiredTagsMatch(requiredTags, card)
                 || !card.IsAvailableInBiome(biomeId) || !card.IsAvailableAtDepth(depth)
                 || candidates.Contains(card)
                 || (!string.IsNullOrEmpty(card.UniqueId) && !ids.Add(card.UniqueId)))
@@ -157,6 +159,24 @@ public sealed class EncounterRuntime
         }
 
         return offers.ToArray();
+    }
+
+    /// <summary>Reveals a queued chosen creature at the normal time through the same Hooked and on-reveal state as a draw.</summary>
+    public bool RevealSelectedCreature(CardDefinition chosen, string biomeId, int depth,
+        ActiveCatchEffectRecord[] effects, EffectResolver resolver,
+        CardEffectDefinition[] temporaryEffects = null, EncounterChainDefinition[] chains = null)
+    {
+        if (chosen?.CardType != CardType.Creature || !chosen.IsAvailableInBiome(biomeId) || !chosen.IsAvailableAtDepth(depth)) return false;
+        EnsureEncounterVarietyRuntime();
+        CancelActiveEncounterChain();
+        encounterVarietyRuntime.BeginSelection();
+        lastSelectedEncounterWeight = resolver.GetEncounterSelectionWeight(chosen, effects, temporaryEffects);
+        lastTotalEncounterWeight = lastSelectedEncounterWeight;
+        lastCandidateWeightSummary = "Chosen next encounter: " + chosen.DisplayName;
+        SetCurrentEncounter(chosen);
+        encounterVarietyRuntime.RecordSelectedEncounter(chosen);
+        BeginEncounterChain(chosen, chains);
+        return true;
     }
 
     /// <summary>

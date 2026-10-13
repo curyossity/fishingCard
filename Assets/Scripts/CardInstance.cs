@@ -28,6 +28,8 @@ public sealed class CardInstance
     [SerializeField] private string[] effectiveTags = Array.Empty<string>();
     [SerializeField] private List<SelectedEffectTargets> selectedEffectTargets = new List<SelectedEffectTargets>();
 
+    [SerializeField] private List<string> consumedAttachmentActivations = new List<string>();
+
     public string[] Tags => effectiveTags;
     public int InstanceId => instanceId;
     public CardDefinition Definition => definition;
@@ -64,6 +66,15 @@ public sealed class CardInstance
 
             return active;
         }
+    }
+
+    /// <summary>Consumes a card's one-time role ability even when no offer exists or the player declines.</summary>
+    public bool TryConsumeAttachmentActivation(int effectIndex)
+    {
+        string key = attachmentRole + ":" + effectIndex;
+        if (consumedAttachmentActivations.Contains(key)) return false;
+        consumedAttachmentActivations.Add(key);
+        return true;
     }
 
     /// <summary>Records which biome visit committed this copy, independent of depth and biome identity.</summary>
@@ -243,6 +254,7 @@ public sealed class CardInstance
                 TargetIds = (int[])selection.TargetIds.Clone()
             });
         }
+        snapshot.consumedAttachmentActivations = new List<string>(consumedAttachmentActivations);
         snapshot.baseValue = baseValue;
         snapshot.permanentWeightModifier = permanentWeightModifier;
         snapshot.permanentValueModifier = permanentValueModifier;

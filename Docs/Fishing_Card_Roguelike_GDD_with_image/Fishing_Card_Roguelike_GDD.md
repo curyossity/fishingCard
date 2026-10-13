@@ -473,6 +473,27 @@ shared card definitions. Attachment exchanges create a new creature Catch, consu
 eligible pending Tangles, and resolve on-attach effects before Shoal Signal; they
 still do not count as Releases.
 
+## Approved creature refactors: Lionfish, Mackerel, and Moonlit Ray
+
+All three are Coastal Waters creatures. Only the selected role's effects operate.
+
+**Lionfish** — Weight **2**, Value **30**, Rare, depth **10–20**, tags **Fish, Predator, Armored**.
+
+- **Catch / Venomous Spines:** each deliberate Release of another attached creature in either role removes 5 current sale Value, minimum 0. Each creature released by a multi-release action causes its own penalty. The loss persists until this Lionfish leaves the chain, including across mode changes. Do not accumulate debt below zero. Forced removals and exchanges do not trigger it.
+- **Bait / Venomous Lure:** after a Predator is attached as Catch and its on-attach effects finish, optionally Release one other attached Small creature in either role. Exclude the Predator just caught and obey normal Release restrictions. Successful removal is a deliberate creature-effect Release and triggers other Release effects. All Lionfish Bait copies share at most one Release opportunity per Predator attachment. No legal target or declining skips it immediately; it cannot be saved.
+
+**Mackerel** — Weight **1**, Value **10**, Common, depth **0–16**, tags **Fish, Schooling**.
+
+- **Catch / Packed Shoal:** effective Weight is exactly 0 while at least two other Schooling creatures are attached as Catch. Bait does not count. Recalculate immediately as eligible creatures, roles, or effective tags change.
+- **Bait / School Call:** on this card's first Bait attachment, immediately offer up to two distinct non-Apex Schooling species eligible at the next encounter's biome and depth, using normal encounter weights. Choose one to replace the next normal draw, or decline. One eligible species is a valid offer; with none, draw normally. Selection does not reveal the encounter or advance depth; reveal at normal time with normal on-reveal effects. Scheduled Apex encounters cannot be replaced.
+- School Call activates once per card; mode and biome changes do not refresh it. The decision cannot be saved. One selection can be queued: a new selection replaces the earlier one, while declining leaves it intact. Removing the source does not cancel its selection. Revalidate at the actual next destination; an ineligible selection is discarded and the normal draw is used.
+
+**Moonlit Ray** — Weight **3**, Value **24**, Rare, depth **9–20**, tags **Fish, Predator, Elusive**.
+
+- **Catch / Graceful Glide:** reduce effective Weight by exactly 1, minimum 0, while any Elusive creature is attached as Bait. Additional Elusive Bait do not increase the reduction. Eligibility updates immediately with creatures, roles, and tags. This follows the approved detailed resolution and stacking rule; the short description is normalized to the same flat reduction.
+- **Bait / Moonlit Reflection:** each deliberate Release of an Elusive Catch records its sale Value, including modifiers, immediately before that individual removal. After the entire Release action finishes, choose a remaining Catch and add the recorded amount as a lasting Value bonus. Forced removals, exchanges, and released Bait do not trigger it.
+- All Ray Bait copies share one transfer per released Elusive Catch. Multi-release actions record and transfer each separately. Resolve recipient choices immediately after the action; no remaining Catch skips the transfer. A completed trigger survives later source removal during the action. The bonus lasts until recipient removal, survives original Ray removal and recipient mode changes, and still contributes no sale Value while the recipient is Bait.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

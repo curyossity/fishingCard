@@ -395,7 +395,13 @@ public enum CardEffectType
     GrantTagToOtherCreatures,
     QueueNextCreatureCatchWeight,
     SelectAttachedWeightTargets,
-    RedrawTechniqueAfterCatch
+    RedrawTechniqueAfterCatch,
+    LoseValueOnCreatureRelease,
+    SetSelfWeightZeroWithOtherCreatureCatches,
+    ReduceSelfWeightWithMatchingCreatureBait,
+    ReleaseCreatureAfterCatch,
+    ChooseNextSchoolingEncounter,
+    TransferReleasedCatchValue
 }
 
 public enum CardEffectTrigger
@@ -462,6 +468,7 @@ public sealed class CardEffectDefinition
     [SerializeField] private int amount;
     [SerializeField] private string[] requiredTags = Array.Empty<string>();
     [SerializeField] private string grantedTag;
+    [SerializeField] private string[] targetTags = Array.Empty<string>();
     [SerializeField] private CaughtCardTargetMode caughtCardTargetMode;
     [SerializeField] private CardDefinition replacementCard;
     [SerializeField] private bool expiresAfterUse;
@@ -477,6 +484,7 @@ public sealed class CardEffectDefinition
     public int Amount => amount;
     public string[] RequiredTags => requiredTags;
     public string GrantedTag => grantedTag;
+    public string[] TargetTags => targetTags;
     public CaughtCardTargetMode CaughtCardTargetMode => caughtCardTargetMode;
     public CardDefinition ReplacementCard => replacementCard;
     public bool ExpiresAfterUse => expiresAfterUse;
