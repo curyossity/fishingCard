@@ -154,6 +154,14 @@ Each biome should introduce a recognizable gameplay idea, not only higher-value 
 
 Biome Apex Encounters are high-value, mechanically significant climax cards that carry pressure. Catching one should feel like a legendary reward, a run-changing build component, and a new source of risk.
 
+## Event Cards
+
+- Hazard, Environment, Opportunity, and generic Encounter events show name/type/artwork/description only. They have no Weight, sale Value, or Catch/Bait modes, and never attach to the Catch Chain.
+- Reveal the event and finish automatic reveal reactions, including Hazard cancellation, before event consequences. Then allow legal Techniques until confirming Descend or Surface, even if the event was cancelled; this window does not depend on a Hooked creature.
+- Unless the card states otherwise, resolve the event once, including resulting creature reactions, before performing the confirmed action. Once resolution starts, do not reopen the Technique window until that action finishes. Descend advances normally and reveals the next encounter; event resolution adds no extra depth advance. Surface resolves the event before returning the haul.
+- Cancelling a revealed Hazard discards it without effects and triggers Hazard-cancellation reactions, including Weathered Shell. Replacing an unresolved event prevents its effects but is not Hazard cancellation. No eligible target means resolution without effect, not cancellation. No event in this batch forces a Release.
+- Discard resolved event cards; pending effects/modifiers follow their stated durations. A target's mode change does not reset a modifier. Run ending clears all unfinished event effects and encounter trails. Full rules are in GDD section 9, Event cards and resolution window.
+
 ## Player Deck
 
 The player has approximately a 4-card technique hand. After using a technique card, a replacement is drawn according to final deck rules.
@@ -164,7 +172,7 @@ Technique cards should interact with:
 - Line Load
 - Creature tags
 - Catch Chain state
-- Current Hooked encounter
+- Current Hooked encounter or unresolved event during its pre-action Technique window
 - Risk
 
 Some technique cards should act as escape valves for mandatory catches by bypassing, replacing, cleansing, neutralizing, or otherwise managing Hooked encounters.

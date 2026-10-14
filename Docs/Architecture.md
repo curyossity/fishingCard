@@ -84,25 +84,42 @@ Does not own:
 - UI state
 - Effect execution
 
+### `CardCatalogWindow`
+
+Role:
+Shared editor-only authoring workspace for card catalogs.
+
+Owns:
+- Asset discovery under Assets/Cards and Assets/Biomes, name sorting, search by rules/name/ID/type/rarity/tags/biome, and category filtering
+- Selection and scroll/filter state retained through editor reloads, with visible selection reconciled after filtering/deletion/type edits
+- Serialized editing of every CardDefinition field with Undo/Redo, dirty tracking, Save Changes, and Locate Asset
+- Controlled creature/Apex tags and free-form event tags
+- Rules-text highlighting metadata and aspect-preserving artwork previews
+- Actual biome depth-tier pool membership, including complete removal of duplicate references when unchecked
+- Apex possibility membership for Apex cards
+
+Does not own:
+- Runtime card state, resolved Weight/Value, encounter rules, or effect execution
+- Automatic synchronization between eligibility constraints and pool membership
+- Import settings or source artwork generation
+
 ### `CreatureCatalogWindow`
 
 Role:
-Editor-only content-authoring workspace for creature and catch-card definitions.
+Concrete creature/catch catalog using CardCatalogWindow. Keeps the existing Creature Catalog menus and default Creature scope; All Catch Cards additionally includes Treasure and Apex. Displays Catch/Bait rules, stats, effects, and membership using the shared authoring surface.
+
+### `EventCatalogWindow`
+
+Role:
+Concrete Events Collector using CardCatalogWindow. Opens from Fishing Cards/Data/Events Collector or Window/Fishing Cards/Events Collector.
 
 Owns:
-- Searchable overview of creature definitions and optional Treasure/Apex catch cards
-- Editing every serialized `CardDefinition` field through Unity's serialized-property workflow
-- Editing creature and creature-like Apex tags through the controlled canonical tag selector
-- Editing per-card rules-text highlights with a phrase, color, relative size, and whole-word option
-- Aspect-preserving previews of compact, encounter-overlay, and legacy complete-face artwork
-- Editing actual membership in each biome's depth-tier encounter pools
-- Editing Apex possibility membership for Apex cards
+- All Events, Hazards, Environments, Opportunities, and Other Events category filters
+- Inclusion of Hazard, Environment, Opportunity, and generic Encounter definitions
+- Event-focused overview without Catch Weight/Value columns, single event rules/effects sections, free-form tags, artwork and availability editing
+- Optional Catch-only fields foldout preserving access to the shared definition's remaining fields
 
-Does not own:
-- Runtime card state or resolved Weight/Value
-- Encounter selection rules
-- Automatic synchronization between card eligibility constraints and biome pool membership
-- Import settings or source artwork generation
+Treasure, creatures, Apex, player-deck cards, and Location progression cards remain outside this event catalog. Event editing does not add Catch/Bait behavior or new runtime mechanics.
 
 ### `CardEffectDefinition`
 
@@ -143,6 +160,7 @@ Owns:
 - Entering an authored destination biome after next-waters presentation without resetting the run build
 - Deferring the first new-biome encounter until entry choices finish
 - Technique-card entry point for the Hooked reaction window
+- Required event coordination: legal Techniques after reveal reactions even following cancellation, confirmed Descend/Surface locked through event consequences and creature reactions, then the action
 - Inspector configuration and debug action wrappers
 - Loading repeatable Catch Chain decision scenarios during Play Mode
 - Optional view refreshes and action summaries
@@ -255,6 +273,7 @@ Runtime owner of Technique-card rules and effects that wait for the next Descend
 
 Owns:
 - Checking whether a Technique card has a valid target in the Hooked reaction window
+- Required event validation: legal Technique targets during an event's pre-action window, including after cancellation; no blanket Hooked-only prerequisite and no new Technique plays after resolution starts
 - Immediate avoidance, replacement, and information reveal
 - Queued next-Descend and next-encounter effects
 - Temporary capacity, depth, committed-catch, and overload-reward resolution
@@ -283,6 +302,7 @@ Owns:
 - Sampling distinct eligible ordinary-creature offers without advancing normal encounter/history state
 - Encountered, Hooked, Caught, and None state transitions
 - Current Hooked encounter
+- Required event lifecycle: distinguish an unresolved event, a cancelled/replaced event, resolution begun, and resolution completed independently of whether a visible card remains
 - Hooked effect records and Technique-effect relevance
 - Active encounter chain and the index of its next queued card
 - Prioritizing a valid queued chain card before normal weighted selection
@@ -624,6 +644,18 @@ Does not own:
 
 ## Runtime Flow
 
+### Approved event lifecycle contract
+
+This is the required contract for the upcoming event-card implementation. The current flow descriptions below describe existing runtime paths and do not establish that this expanded event window is implemented.
+
+1. EncounterRuntime owns the revealed event and its per-occurrence lifecycle. Resolve automatic reveal reactions, including full Hazard cancellation and creature cancellation rewards, before event consequences. Events never become Catch Chain attachments and have no Catch/Bait role, Weight, or sale Value.
+2. FishingRunController keeps the pre-action Technique window open after reveal reactions, even when cancellation has discarded the visible card. TechniqueEffectRuntime validates each Technique against its own legal targets/conditions; an event window must not require a Hooked card.
+3. Confirming Descend or Surface commits that action and closes Technique input. Unless the event specifies another timing, resolve its consequences once, then finish all resulting creature reactions before performing the committed action. Do not reopen Technique input between event resolution and action completion.
+4. Full cancellation of a revealed Hazard discards it without effects and emits Hazard-cancellation reactions such as Weathered Shell. Replacement prevents the unresolved event's effects without emitting cancellation for that event; a replacement reveal still follows its normal rules. No eligible target is resolution without effect, not cancellation. No event in this batch forces a Release.
+5. Discard a resolved event without attaching it. Its pending effects/modifiers belong to runtime state for their stated durations; target mode changes do not reset them. Descend advances normally and reveals the next encounter with no extra advance for event resolution. Surface performs event resolution before the return/haul action.
+6. Run shutdown clears unfinished event effects and encounter trails. Authored CardDefinition assets never store per-run lifecycle or modifiers; views only render state and forward decisions.
+
+
 Current run startup flow:
 
 1. `FishingRunController.StartRun()` initializes run state.
@@ -896,7 +928,7 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 ### Shell protection, sacrifice draws, and technique targeting/exchanges
 
 - CardInstance owns serialized protection initialization and availability, copied independently into snapshots. SetAttachmentRole preserves permanent modifiers while expiring unused Bait protection; returning to Bait never refreshes it. This is a runtime mutation boundary for approved effects, not a new player mode-switch action. CatchChainRuntime.Recalculate rebuilds selected-role active records before resolving tags and stats.
-- CatchChainRuntime.TryCancelHazard checks only Hazard classification and consumes the eligible protection with the oldest attachment instance ID, independently of replaced chain slots. EncounterRuntime.HazardCancellation is rebound by the controller at runtime setup and intercepts every SetCurrentEncounter before active state/effect records, covering normal, authored-chain, and Technique-replacement reveals. Cancelled draws retain selection history and expose LastCancelledHazard, leave no active encounter, and do not request another reveal or depth change.
+- CatchChainRuntime.TryCancelHazard checks only Hazard classification and consumes the eligible protection with the oldest attachment instance ID, independently of replaced chain slots. EncounterRuntime.HazardCancellation is rebound by the controller at runtime setup and intercepts every SetCurrentEncounter before active state/effect records, covering normal, authored-chain, and Technique-replacement reveals. Cancelled draws retain selection history and expose LastCancelledHazard, leave no active encounter, and do not request another reveal or depth change. The approved event contract additionally requires preserving the pre-action Technique window after this visible-card removal; an empty encounter reference must not imply that the window is closed.
 - CreatureEffectRuntime groups original source IDs for post-attachment reactions, resolving on-attach choices before chain-ordered reaction groups. Shell Growth automatically applies one lasting bonus per surviving Mussel Catch and uses the newly attached creature's effective Armored tag. Bait attachments and non-creatures do not trigger growth.
 - Feeding Frenzy presents one shared optional legal-source selection. A successful deliberate creature Release queues a source-independent DrawTechniques request behind all resulting recovery/transfer requests. It then offers optional exact hand discards while two draws cannot fit four slots. Drawing consumes only the requested count that fits, including after oversized recovery; normal suspended Descend/refill resumes after the whole queue. Other-effect Releases and forced losses never activate this sacrifice.
 - TechniqueDeckRuntime.TryDiscardTechnique does not play or refill. DrawTechniques owns exact capacity-limited draws and normal reshuffling. TryExchangeTechniques validates both existing indexed occurrences before atomically exchanging them, preserving hand size and draw pile state. Duplicate definitions remain separate occurrences.

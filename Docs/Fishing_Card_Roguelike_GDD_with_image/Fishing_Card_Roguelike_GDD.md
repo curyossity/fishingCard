@@ -135,13 +135,19 @@ descent commits that card to the Catch Chain.
     active modifiers. A catchable creature becomes the current Hooked
     encounter.
 
-4.  Use technique cards during the reaction window to manipulate the
-    Hooked encounter, avoid or replace it, change its consequences,
-    prepare the line, or alter the next descent.
+4.  Resolve automatic reveal reactions first. Use legal technique cards
+    during the reaction window to manipulate the current encounter, avoid
+    or replace it, change its consequences, prepare the line, or alter the
+    next descent. Non-catchable events retain this window even if cancelled.
 
 5.  If the player Descends without an avoidance/replacement effect, the
     Hooked creature is automatically committed to the Catch Chain in its
     selected Catch or Bait role before the next encounter is reached.
+    For an event, confirming Descend or Surface instead resolves its
+    consequences once (unless the card states otherwise), including
+    resulting creature reactions, before that action. The Technique window
+    stays closed until the confirmed action finishes; event resolution
+    never grants an extra depth advance.
 
 6.  The new attached card increases Line Load and only its selected role's
     passive or downside effects may immediately change the run.
@@ -676,6 +682,29 @@ or skip another fish.”
 - Biome-specific cards: encounters that exist mainly to express the
   unique mechanic and identity of that region.
 
+## Event cards and resolution window
+
+Event cards are non-catchable Hazard, Environment, Opportunity, and generic Encounter cards. They show **name, type, artwork, and description**. They have no Weight, sale Value, or Catch/Bait modes and never attach to the Catch Chain. Creature, Treasure, and Apex commitment rules remain separate.
+
+### Event timing
+
+1. Reveal the event and resolve automatic reveal reactions, including Hazard cancellation and any resulting creature reactions, **before any event consequences**.
+2. After reveal reactions finish, the player may use legal Techniques until confirming **Descend** or **Surface**. This window exists whether or not the event was cancelled; it does not require a Hooked creature. Each Technique still requires its own legal targets and conditions.
+3. Unless the card states otherwise, resolve the event **once before performing the confirmed action**, including any resulting creature reactions. A cancelled or replaced event has no consequences to resolve.
+4. Once event resolution begins, do not reopen the Technique window before the confirmed action finishes. Resolving resulting choices/reactions is part of completing that resolution, not another opportunity to play Techniques.
+5. Descend advances depth normally and reveals the next encounter. Resolving the event never adds an extra depth advance. Surface resolves the event before performing the return/haul action.
+
+### Cancellation and replacement
+
+- Cancelling a **revealed Hazard** discards it without its effects and triggers Hazard-cancellation reactions, including **Weathered Shell**. Cancellation does not remove the player's pre-action Technique window.
+- Replacing an unresolved event prevents that event's effects but is **not Hazard cancellation** and does not itself trigger Weathered Shell. Any replacement card follows its own normal reveal rules.
+- An event with no eligible target resolves without effect. It was **not cancelled** and does not trigger Hazard-cancellation reactions.
+- **No event in this batch forces a Release.** This restriction applies to the upcoming event-card batch; it does not alter existing deliberate-Release creature or Technique effects.
+
+### Event persistence and run cleanup
+
+Discard resolved event cards. Pending effects and modifiers remain in runtime state for their stated durations rather than keeping the event card in the Catch Chain. A target's mode change does not reset a modifier. Ending the run clears all unfinished event effects and encounter trails.
+
 ## Biome identity
 
 Each biome should introduce a recognizable gameplay idea, not merely
@@ -817,6 +846,11 @@ card is used, a replacement is drawn according to the final deck rules.
 
 - Fundamental actions should remain outside the deck so bad draws create
   interesting limitations, not basic-function lockouts.
+
+- Legal Techniques can also be used after event reveal reactions and before
+  confirming Descend or Surface, including after Hazard cancellation.
+  This window closes once event resolution begins and stays closed until
+  the confirmed action finishes.
 
 - Some technique cards should specifically provide escape valves for
   mandatory catches: bypassing a Hooked creature, replacing it,

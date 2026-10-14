@@ -34,6 +34,8 @@ The upper card-type field separates catchable encounters from event encounters:
 
 `Creature`, `Treasure`, and `ApexEncounter` use the catch master. All other encounter categories use the event master. Event cards hide the catch-only Weight, Value, and rarity-marker objects and expand the rules field into the space available on the event artwork.
 
+Event cards show their name, type, artwork, and description in the event master. They have no Weight, sale Value, Catch/Bait selection panels, or Catch Chain attachment/compact-card presentation. The single rules panel presents the event description; it does not imply a Catch role.
+
 These fields must remain separate UI elements layered over the supplied card image so they can be changed without editing the artwork.
 
 Weight and Value display the currently resolved values. When gameplay modifiers change either value, update the number in place. Do not add modifier deltas, arrows, badges, or separate base-value text unless the user explicitly requests them.
@@ -45,6 +47,12 @@ Text must fit its authored region at supported resolutions while preserving the 
 The built-in Catch and Bait panels are separate click targets. Catch is selected when a new catchable encounter is presented. Clicking either panel keeps it selected, applies a restrained teal selection wash and gold outline, and deselects the other panel. On Descend, the committed `CardInstance` records the selected role. Only that role's effect array becomes active: Catch effects never activate for a Bait attachment, and Bait effects never activate for a Catch attachment. Both roles remain cards in the Catch Chain and contribute their resolved Weight to Line Load. Catch attachments contribute their resolved Value to the haul; Bait attachments contribute zero haul Value. Compact Catch Chain cards display an explicit `BAIT` marker and zero Value when their stored role is Bait.
 
 Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size calculated from the fitted base size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.
+
+## Event interaction timing
+
+Event reveal reactions, including Hazard cancellation, finish before event consequences. After those reactions the surrounding run UI allows legal Techniques until the player confirms Descend or Surface, even when the event has been cancelled and discarded. The cancelled card need not remain visible to preserve that window. Technique availability still follows legal targets and conditions.
+
+Unless an event states otherwise, its consequences and resulting creature reactions resolve once before the confirmed action. Once resolution begins, keep Technique input closed until that action finishes. Event resolution adds no extra depth advance. Views forward commands and display runtime-owned state; they do not decide cancellation, event timing, or modifier duration. Do not add card-face runtime badges for these phases.
 
 ## Squid Ink Veil concealment
 
