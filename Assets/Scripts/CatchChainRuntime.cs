@@ -252,6 +252,20 @@ public sealed class CatchChainRuntime
         return oldest != null && oldest.TryConsumeHazardProtection();
     }
 
+    /// <summary>Applies one lasting bonus per surviving Lobster Catch after a complete revealed Hazard cancellation.</summary>
+    public void RecordHazardCancelled(CardDefinition hazard, EffectResolver resolver)
+    {
+        if (hazard?.CardType != CardType.Hazard) return;
+        foreach (CardInstance source in catches)
+        {
+            if (source == null || source.IsBait) continue;
+            CardEffectDefinition effect = Array.Find(source.ActiveEffects, e => e?.EffectType == CardEffectType.GainValueOnHazardCancelled
+                && e.Trigger == CardEffectTrigger.AfterHazardCancelled);
+            if (effect != null) source.AddPermanentModifiers(0, effect.Amount, effect, source.Definition);
+        }
+        Recalculate(resolver);
+    }
+
     /// <summary>
     /// Rebuilds selected-role effect records and recalculates catches after role, tag, or lasting-stat changes.
     /// </summary>
@@ -591,7 +605,10 @@ public sealed class CatchChainRuntime
                         || effect.EffectType == CardEffectType.ReleaseSelectedCreaturesOnAttach
                         || effect.EffectType == CardEffectType.GrantSelectedTechniqueRecovery
                         || effect.EffectType == CardEffectType.DrawTechniqueOnAttach
-                        || effect.EffectType == CardEffectType.SwapCreatureModesOnAttach)))
+                        || effect.EffectType == CardEffectType.SwapCreatureModesOnAttach
+                        || effect.EffectType == CardEffectType.QueueCreatureEncounterConcealment
+                        || effect.EffectType == CardEffectType.GrantNextCreatureSkip
+                        || effect.EffectType == CardEffectType.ReleaseMatchingBaitOnAttach)))
             {
                 continue;
             }

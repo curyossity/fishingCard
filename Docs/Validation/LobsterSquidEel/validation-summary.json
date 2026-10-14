@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "unityReferenceVersion": "6000.5.9f1",
+  "runtimeCompilation": "passed",
+  "editorCompilation": "passed",
+  "newRuntimeAssertions": 80,
+  "priorRuntimeAssertions": 408,
+  "totalRuntimeAssertions": 488,
+  "execution": "Actual runtime sources with minimal Unity API adapters; not Unity Play Mode",
+  "assetChecks": [
+    {
+      "card": "Spiny Lobster",
+      "statsTagsEffects": "passed",
+      "stableIdentityAndArtwork": "passed",
+      "guid": "1c2283c16571400dbe1f802fabad2813"
+    },
+    {
+      "card": "squid",
+      "statsTagsEffects": "passed",
+      "stableIdentityAndArtwork": "passed",
+      "guid": "880457168a2f05748aabf45d63bafa05"
+    },
+    {
+      "card": "Tidepool Eel",
+      "statsTagsEffects": "passed",
+      "stableIdentityAndArtwork": "passed",
+      "guid": "4c78748f96b14fe194e3f5e2c1fe620c"
+    }
+  ],
+  "biomeTierCoverage": "passed",
+  "enumCompatibility": "existing effects 0-43 preserved; 44-49 and trigger 12 appended",
+  "presentationSourceReview": "identity flag covers current, transition, and history/ascent; both panels selectable",
+  "unityPlayMode": "unverified",
+  "unityMenuExecution": "unverified",
+  "renderedVisualChecks": "unverified"
+}

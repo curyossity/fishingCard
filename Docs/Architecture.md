@@ -147,6 +147,10 @@ Owns:
 - Loading repeatable Catch Chain decision scenarios during Play Mode
 - Optional view refreshes and action summaries
 
+- Binding encounter reveal reservations and complete Hazard cancellation notifications to their runtime owners
+- Revealing committed Ink identity before selected-role on-attach effects, forwarding separate information/identity masks to views
+- Suspending new actions until immediate skip/release/draw choices resolve; preserving unused encounter concealment on biome entry
+
 Delegates to:
 - `TechniqueDeckRuntime` for hand and pile operations
 - `TechniqueEffectRuntime` for Technique validation, execution, and delayed effects
@@ -160,6 +164,7 @@ Delegates to:
 - `FishingRunResult` for the last Surface result
 - `RunRewardRuntime` for Gold conversion and the current wallet
 - `RunProgressionRuntime` for the between-run Line Capacity upgrade
+
 
 Does not own:
 - Detailed deck, encounter, Catch Chain, or result operations
@@ -179,6 +184,11 @@ Owns:
 - Offers generated once per request and skipped without two distinct eligible creatures
 - Replacement on-attach choices resolved before the next queued Bait source
 
+- Binding independent Ink grants to EncounterRuntime rather than the source card lifetime
+- FIFO next-creature skip grants, once-per-card activation, original encounter revision validation, and immediate skip choices
+- Optional Elusive Bait release choices and per-released-creature Eel eligibility snapshots
+- Shared Eel draws deferred until the entire release action and prior Release choices finish, checking observing Bait survival before drawing
+- Optional hand discards completed before any shared release draws, with four-slot capacity
 Does not own:
 - Encounter pool eligibility/weight calculation or normal encounter draws
 - Catch collection mutation, negative-effect removal, or presentation
@@ -187,7 +197,8 @@ Does not own:
 
 Role:
 Collect exact removable active negative occurrences across attached effects,
-lasting applied stat modifiers, Hooked records, and queued Technique effects.
+lasting applied stat modifiers, Hooked records, queued Technique effects, and
+exact independent pending/current Ink concealment occurrences.
 Options delegate removal to each owning runtime; they do not mutate authored
 assets. Completed information/actions and base statistics are not candidates.
 
@@ -278,8 +289,15 @@ Owns:
 - Applying an explicitly supplied encounter through the normal state transition rules
 - Activating a preselected Apex through the normal Hooked state
 
+- Independent pending Ink occurrences and a single assigned concealment per ordinary creature reveal
+- Exact pending/current Ink cleansing and commitment/removal consumption, excluding Apex/non-creatures
+- Monotonic encounter revisions preventing skip offers from acting on replacements
+- Complete cancelled-Hazard notifications after discard, and creature reveal reservations before the reveal-effect window
+- Resetting encounter state at biome entry while preserving unused concealment; full new-run reset clears it
+
 Delegates to:
 - `EncounterVarietyRuntime` for repetition filtering, streak state, and sequence diagnostics
+
 
 Does not own:
 - Catch Chain commitment after a Hooked card is taken
@@ -346,6 +364,7 @@ Owns:
 - Per-instance cleansing followed by persistent-effect recalculation
 - Replacing a creature Catch in place without Release reactions, old modifiers, or release/loss accounting
 
+- Lasting per-Lobster Catch Value awards on fully cancelled revealed Hazards; the resolver owns live other-Armored-creature support
 Does not own:
 - Line Capacity
 - Overload consequences
@@ -897,3 +916,7 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 - Helping Arms queues two deferred role activations: new Catch first, then new Bait only if still attached in the expected mode. ActivateRoleOnAttach runs only the card's own immediate chain effects, and RecordAttachment skips shared after-catching reactions for a role change. No next-attachment bonus is consumed by the swap. New ongoing effects are already recalculated after both role changes.
 - Existing one-time Bait abilities retain their activation keys across mode swaps. Crab release and frozen Jellyfish target selection spend their first Bait activation even without targets. Mussel protection expires when leaving Bait, while independent Tangle/Spiny Grip queues and completed Value bonuses retain their authored durations.
 - FishingRunController presents mandatory discard, simultaneous release selection/finish, two-stage mode pairing/decline, and exact recovery discard/decline through the existing creature-choice modal. Source-role validation prevents stale on-attach requests from operating in a different role. Gameplay actions remain blocked until the ordered queue completes. New effect enum values append after existing serialized entries.
+
+### Squid concealment presentation boundary
+
+`CreatureCardView` and legacy `CardView` accept separate information and identity masks. Identity concealment replaces the name, removes both art layers, tags/tooltips and rarity markers, and masks stats/both rules while leaving Catch/Bait selection available. `FishingRunView` carries both masks through standby transitions and encounter-history snapshots. Views never consume charges or decide skips. Ordinary Technique reveal applies only to the prior information-only concealment contract; it cannot override Ink commitment concealment.

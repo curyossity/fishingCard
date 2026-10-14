@@ -77,6 +77,15 @@ public static class NegativeEffectRuntime
                 () => chain.TryRemovePendingCreatureCatchEffect(selected)));
         }
 
+        foreach (EncounterRuntime.PendingConcealment concealment in encounters.PendingConcealments)
+        {
+            if (concealment.Effect?.EffectTone != CardEffectTone.Negative) continue;
+            EncounterRuntime.PendingConcealment selected = concealment;
+            options.Add(new NegativeEffectOption(Label(concealment.Source, concealment.Effect),
+                "Pending or current: " + Describe(concealment.Effect), concealment.Source,
+                () => encounters.TryRemoveCreatureConcealment(selected)));
+        }
+
         HookedEffectRecord[] hooked = encounters.HookedEffectRecords;
         for (int i = 0; i < hooked.Length; i++)
         {

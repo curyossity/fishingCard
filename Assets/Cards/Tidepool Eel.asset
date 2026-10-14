@@ -18,32 +18,51 @@ MonoBehaviour:
   rarity: 1
   tags:
   - Fish
+  - Predator
   - Elusive
   artwork: {fileID: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Effect: Gain +10 value if nothing is released afterward'
+  rulesText: "Slippery Exit: When caught, you may release another Elusive Bait."
   rulesTextHighlights: []
+  baitRulesText: "Escape Current: After releasing another Elusive creature, draw 1 technique."
+  baitRulesTextHighlights: []
   weight: 2
-  value: 5
-  randomizeValueWhenCaught: 0
-  minimumCaughtValue: 0
-  maximumCaughtValue: 0
+  value: 14
   biomeIds:
   - Coastal
-  minimumDepth: 5
-  maximumDepth: 15
+  minimumDepth: 0
+  maximumDepth: 14
   effects:
-  - effectId: eel_unbroken_haul_value
-    effectType: 2
-    trigger: 9
-    target: 1
+  - effectId: slippery_exit
+    displayName: Slippery Exit
+    effectType: 48
+    trigger: 1
+    target: 5
     effectTone: 1
-    amount: 10
-    requiredTags: []
+    amount: 1
+    requiredTags:
+    - Elusive
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Tidepool Eel retains 10 bonus Value unless another catch is released afterward.
+    reminderText: "Immediately on Catch attachment, optionally deliberately release one other attached Elusive creature in Bait mode subject to normal restrictions. Resolve Release reactions normally. Declining or no legal target does not save this choice."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: escape_current
+    displayName: Escape Current
+    effectType: 49
+    trigger: 6
+    target: 0
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Elusive
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "After the whole deliberate Release action, while an eligible Eel remains Bait, draw one technique per other Elusive creature released from either mode, checking Elusive before removal. Multiple Eels share one draw per released creature. Before drawing, optionally discard to make room in the four-card hand; draw only as many as fit. Forced removal and exchanges do not qualify; draws cannot be saved."

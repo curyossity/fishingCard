@@ -100,6 +100,10 @@ public sealed class FishingRunController : MonoBehaviour
     public bool LastRunEndedByLineBreak => lastSurfaceResult.EndedByLineBreak;
     public int CurrentLineLoad => catchChainRuntime.CurrentLineLoad;
     public bool CurrentEncounterInformationHidden => currentEncounterInformationHidden;
+    public bool CurrentEncounterIdentityHidden => encounterRuntime.IsCreatureConcealed;
+    private bool TechniqueRevealInformationHidden => effectResolver != null
+        && effectResolver.HidesEncounterInformation(catchChainRuntime.ActiveEffectRecords)
+        && !techniqueEffectRuntime.RevealsCurrentEncounter;
     public BiomeApexState CurrentBiomeApexState => biomeApexRuntime.State;
     public CardDefinition SelectedBiomeApex => biomeApexRuntime.SelectedApex;
     public bool NextWatersPresented => biomeApexRuntime.NextWatersPresented;
@@ -137,6 +141,11 @@ public sealed class FishingRunController : MonoBehaviour
             catchChainRuntime.DeliberatelyReleased -= HandleDeliberateRelease;
             if (creatureEffectRuntime != null)
                 catchChainRuntime.TechniqueTargetSelected -= creatureEffectRuntime.RecordSelectedTechniqueTarget;
+        }
+        if (encounterRuntime != null)
+        {
+            encounterRuntime.HazardCancelled -= HandleHazardCancelled;
+            if (creatureEffectRuntime != null) encounterRuntime.CreatureRevealed -= creatureEffectRuntime.RecordCreatureReveal;
         }
         if (fishingRunView != null)
         {
@@ -245,7 +254,7 @@ public sealed class FishingRunController : MonoBehaviour
             CurrentBiomeId,
             currentDepth,
             random,
-            currentEncounterInformationHidden,
+            TechniqueRevealInformationHidden,
             out string effectSummary);
 
         techniqueRefillPending = true;
@@ -304,7 +313,7 @@ public sealed class FishingRunController : MonoBehaviour
             techniqueCard,
             encounterRuntime,
             catchChainRuntime,
-            currentEncounterInformationHidden,
+            TechniqueRevealInformationHidden,
             GetTechniqueEncounterPool(encounterSelectionDepth),
             CurrentBiomeId,
             currentDepth,
@@ -336,7 +345,9 @@ public sealed class FishingRunController : MonoBehaviour
             && fishingRunView.SelectedEncounterEffectChoice == EncounterEffectChoice.Bait
                 ? CatchAttachmentRole.Bait
                 : CatchAttachmentRole.Catch;
+        bool concealedCommit = encounterRuntime.IsCreatureConcealed;
         CardDefinition caughtCard = encounterRuntime.TakeHookedEncounter();
+        if (concealedCommit) RefreshViews();
         CardInstance committedCatch = null;
         catchChainRuntime.CompleteEncounter(effectResolver);
 
@@ -401,7 +412,7 @@ public sealed class FishingRunController : MonoBehaviour
         currentDepth = next.StartingDepth;
         selectedCatchIndex = -1;
         selectedSwapTargetId = -1;
-        encounterRuntime.Reset();
+        encounterRuntime.Reset(true);
         biomeApexRuntime.Reset();
         creatureEffectRuntime.BeginBiome(catchChainRuntime.Catches);
         biomeEntryRevealPending = true;
@@ -643,6 +654,33 @@ public sealed class FishingRunController : MonoBehaviour
     public bool TryChoosePlayedTechniqueRecovery(int handIndex)
     {
         if (!runActive || !creatureEffectRuntime.TryChoosePlayedTechniqueRecovery(handIndex, techniqueDeckRuntime)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Records the complete Hazard cancellation only after its reveal has been discarded without effects.</summary>
+    private void HandleHazardCancelled(CardDefinition hazard)
+    {
+        catchChainRuntime.RecordHazardCancelled(hazard, effectResolver);
+    }
+
+    /// <summary>Resolves the immediate Squid skip decision before any new Technique or core action can be played.</summary>
+    public bool TryChooseEncounterSkip(bool skip)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseEncounterSkip(skip, encounterRuntime)) return false;
+        PrepareCreatureChoice();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Releases a chosen legal Elusive Bait for Slippery Exit, or declines the immediate opportunity.</summary>
+    public bool TryChooseMatchingBaitRelease(int targetId)
+    {
+        if (!runActive || !creatureEffectRuntime.TryChooseMatchingBaitRelease(targetId, catchChainRuntime, effectResolver)) return false;
+        selectedCatchIndex = -1;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
         RefreshViews();
@@ -966,6 +1004,33 @@ public sealed class FishingRunController : MonoBehaviour
                     else if (choosingCatch) TryChooseModeSwapCatch(targets[index - 1].InstanceId);
                     else TryChooseModeSwapBait(targets[index - 1].InstanceId);
                 });
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.EncounterSkip)
+        {
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Skip this creature before playing techniques?",
+                new[] { "Skip creature", "Keep creature" },
+                new[] { "Discard without attaching; depth stays unchanged.", "Continue with this creature. The skip offer is spent." },
+                new Sprite[2], index => TryChooseEncounterSkip(index == 0));
+            return;
+        }
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.ReleaseMatchingBait)
+        {
+            CardInstance[] eligible = creatureEffectRuntime.GetMatchingBaitReleaseTargets(catchChainRuntime.Catches);
+            string[] labels = new string[eligible.Length + 1];
+            string[] details = new string[labels.Length];
+            Sprite[] art = new Sprite[labels.Length];
+            labels[0] = "Decline release";
+            details[0] = "Keep your Elusive Baits.";
+            for (int i = 0; i < eligible.Length; i++)
+            {
+                labels[i + 1] = eligible[i].Definition.DisplayName;
+                details[i + 1] = "Release this Elusive Bait · Weight " + eligible[i].CurrentWeight;
+                art[i + 1] = eligible[i].Definition.Artwork;
+            }
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "You may release another Elusive Bait.",
+                labels, details, art, index => TryChooseMatchingBaitRelease(index == 0 ? -1 : eligible[index - 1].InstanceId));
             return;
         }
 
@@ -1337,7 +1402,12 @@ public sealed class FishingRunController : MonoBehaviour
         catchChainRuntime.DeliberatelyReleased += HandleDeliberateRelease;
         catchChainRuntime.TechniqueTargetSelected -= creatureEffectRuntime.RecordSelectedTechniqueTarget;
         catchChainRuntime.TechniqueTargetSelected += creatureEffectRuntime.RecordSelectedTechniqueTarget;
+        creatureEffectRuntime.EncounterEffects = encounterRuntime;
         encounterRuntime.HazardCancellation = catchChainRuntime.TryCancelHazard;
+        encounterRuntime.HazardCancelled -= HandleHazardCancelled;
+        encounterRuntime.HazardCancelled += HandleHazardCancelled;
+        encounterRuntime.CreatureRevealed -= creatureEffectRuntime.RecordCreatureReveal;
+        encounterRuntime.CreatureRevealed += creatureEffectRuntime.RecordCreatureReveal;
 
         if (effectResolver == null)
         {
@@ -1568,16 +1638,16 @@ public sealed class FishingRunController : MonoBehaviour
     {
         PrepareCreatureChoice();
         RefreshCreatureChoiceView();
-        currentEncounterInformationHidden = effectResolver != null
+        currentEncounterInformationHidden = CurrentEncounterIdentityHidden || (effectResolver != null
             && effectResolver.HidesEncounterInformation(catchChainRuntime.ActiveEffectRecords)
-            && !techniqueEffectRuntime.RevealsCurrentEncounter;
+            && !techniqueEffectRuntime.RevealsCurrentEncounter);
 
         if (currentEncounterView != null)
         {
             currentEncounterView.SetCard(
                 encounterRuntime.CurrentEncounter,
                 encounterRuntime.CurrentState,
-                CurrentEncounterInformationHidden);
+                CurrentEncounterInformationHidden, CurrentEncounterIdentityHidden);
         }
 
         if (catchChainView != null)
@@ -1631,7 +1701,8 @@ public sealed class FishingRunController : MonoBehaviour
                     && (!biomeApexRuntime.NextWatersPresented || currentBiome?.NextBiome != null),
                 TryDescend,
                 TryReleaseSelectedCatch,
-                TrySurface);
+                TrySurface,
+                CurrentEncounterIdentityHidden);
         }
 
         if (techniqueHandView != null)

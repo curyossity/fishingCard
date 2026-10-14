@@ -412,7 +412,13 @@ public enum CardEffectType
     IncreaseSelfWeightWithMatchingAttachedCreature,
     GrantSelectedTechniqueRecovery,
     DrawTechniqueOnAttach,
-    SwapCreatureModesOnAttach
+    SwapCreatureModesOnAttach,
+    GainValueOnHazardCancelled,
+    ReduceOtherMatchingCreatureWeight,
+    QueueCreatureEncounterConcealment,
+    GrantNextCreatureSkip,
+    ReleaseMatchingBaitOnAttach,
+    DrawTechniqueAfterCreatureRelease
 }
 
 public enum CardEffectTrigger
@@ -428,7 +434,8 @@ public enum CardEffectTrigger
     UntilNextEncounterResolved,
     WhileAttachedUntilAnotherCatchReleased,
     OnLaterBiomeStart,
-    AfterAnotherCatchAttached
+    AfterAnotherCatchAttached,
+    AfterHazardCancelled
 }
 
 public enum CardEffectTarget

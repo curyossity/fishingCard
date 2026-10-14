@@ -20,6 +20,7 @@ public sealed class CardView : MonoBehaviour
 
     private EncounterState encounterState = EncounterState.None;
     private bool informationHidden;
+    private bool identityHidden;
 
     /// <summary>
     /// Refreshes the card UI when the view first becomes active.
@@ -45,6 +46,7 @@ public sealed class CardView : MonoBehaviour
         cardDefinition = newCardDefinition;
         encounterState = EncounterState.None;
         informationHidden = false;
+        identityHidden = false;
         Refresh();
     }
 
@@ -56,6 +58,7 @@ public sealed class CardView : MonoBehaviour
         cardDefinition = newCardDefinition;
         encounterState = newEncounterState;
         informationHidden = false;
+        identityHidden = false;
         Refresh();
     }
 
@@ -65,11 +68,12 @@ public sealed class CardView : MonoBehaviour
     public void SetCard(
         CardDefinition newCardDefinition,
         EncounterState newEncounterState,
-        bool hideInformation)
+        bool hideInformation, bool hideIdentity = false)
     {
         cardDefinition = newCardDefinition;
         encounterState = newEncounterState;
-        informationHidden = hideInformation;
+        informationHidden = hideInformation || hideIdentity;
+        identityHidden = hideIdentity;
         Refresh();
     }
 
@@ -84,9 +88,9 @@ public sealed class CardView : MonoBehaviour
             return;
         }
 
-        SetText(displayNameText, cardDefinition.DisplayName);
+        SetText(displayNameText, identityHidden ? "Unknown Creature" : cardDefinition.DisplayName);
         SetText(cardTypeText, BuildCardTypeText(cardDefinition));
-        SetText(rarityText, cardDefinition.Rarity.ToString());
+        SetText(rarityText, identityHidden ? string.Empty : cardDefinition.Rarity.ToString());
         SetText(encounterStateText, BuildEncounterStateText(cardDefinition, encounterState));
         SetText(statsText, informationHidden ? "Weight ? / Value ?" : BuildStatsText(cardDefinition));
         SetText(tagsText, informationHidden ? "Unknown" : BuildTagsText(cardDefinition));
@@ -94,8 +98,8 @@ public sealed class CardView : MonoBehaviour
 
         if (artworkImage != null)
         {
-            artworkImage.sprite = cardDefinition.Artwork;
-            artworkImage.enabled = cardDefinition.Artwork != null;
+            artworkImage.sprite = identityHidden ? null : cardDefinition.Artwork;
+            artworkImage.enabled = !identityHidden && cardDefinition.Artwork != null;
         }
     }
 

@@ -36,7 +36,8 @@ public sealed class EffectResolver
             if (safeEffects[i]?.Effect?.EffectType != CardEffectType.SelectAttachedWeightTargets
                 && safeEffects[i]?.Effect?.EffectType != CardEffectType.SetSelfWeightZeroWithOtherCreatureCatches
                 && safeEffects[i]?.Effect?.EffectType != CardEffectType.ReduceSelfWeightWithMatchingCreatureBait
-                && safeEffects[i]?.Effect?.EffectType != CardEffectType.IncreaseSelfWeightWithMatchingAttachedCreature)
+                && safeEffects[i]?.Effect?.EffectType != CardEffectType.IncreaseSelfWeightWithMatchingAttachedCreature
+                && safeEffects[i]?.Effect?.EffectType != CardEffectType.ReduceOtherMatchingCreatureWeight)
                 ResolvePersistentStatEffect(safeCatches, safeEffects[i]);
         }
         foreach (ActiveCatchEffectRecord record in safeEffects)
@@ -57,6 +58,18 @@ public sealed class EffectResolver
             if (Array.Exists(safeCatches, c => c != null && c.Definition?.CardType == CardType.Creature
                 && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)))
                 record.SourceInstance.ModifyWeight(Math.Abs(record.Effect.Amount));
+        }
+
+        foreach (ActiveCatchEffectRecord record in safeEffects)
+        {
+            if (!IsPersistent(record) || record.Effect.EffectType != CardEffectType.ReduceOtherMatchingCreatureWeight
+                || record.SourceInstance == null || !record.SourceInstance.IsBait) continue;
+            foreach (CardInstance target in safeCatches)
+            {
+                if (target != null && target != record.SourceInstance && target.Definition?.CardType == CardType.Creature
+                    && RequiredTagsMatchInstance(record.Effect.RequiredTags, target))
+                    target.ModifyWeight(-Math.Abs(record.Effect.Amount));
+            }
         }
 
         // Selected reductions stack against the final pre-reduction weight, then clamp at zero.

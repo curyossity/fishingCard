@@ -22,13 +22,22 @@ public enum CreatureEffectChoiceKind
     SelectReleaseTargets,
     SwapCreatureModes,
     ActivateChangedRole,
-    RecoverPlayedTechnique
+    RecoverPlayedTechnique,
+    ReleaseMatchingBait,
+    EncounterSkip,
+    ResolveReleaseDraws
 }
 
 /// <summary>Owns ordered creature choices, deferred Release reactions, and a queued encounter without owning presentation.</summary>
 [Serializable]
 public sealed class CreatureEffectRuntime
 {
+    [Serializable]
+    private sealed class ReleaseDrawEligibility
+    {
+        public int[] SourceIds = Array.Empty<int>();
+    }
+
     [Serializable]
     private sealed class Request
     {
@@ -54,6 +63,9 @@ public sealed class CreatureEffectRuntime
         public int DiscardCount;
         public CardDefinition PlayedTechnique;
         public int PlayedDiscardOccurrenceId;
+        public int EncounterRevision;
+        public CardDefinition Encounter;
+        public List<ReleaseDrawEligibility> ReleaseDrawSourceGroups = new List<ReleaseDrawEligibility>();
     }
 
     [SerializeField] private List<Request> requests = new List<Request>();
@@ -67,6 +79,11 @@ public sealed class CreatureEffectRuntime
     [SerializeField] private int resolvingDiscardOccurrenceId;
     [SerializeField] private int[] eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
     [SerializeField] private Request pendingPlayedTechniqueRecovery;
+    public EncounterRuntime EncounterEffects { get; set; }
+    [SerializeField] private List<string> pendingCreatureSkips = new List<string>();
+    [SerializeField] private List<ReleaseDrawEligibility> pendingReleaseDrawSourceGroups = new List<ReleaseDrawEligibility>();
+    [SerializeField] private string pendingReleaseDrawName;
+    public int PendingCreatureSkipCount => pendingCreatureSkips.Count;
     public int PendingSelectedTechniqueRecoveryCount => pendingSelectedTechniqueRecoveries.Count;
     public int PendingDrawCount => ChoiceKind == CreatureEffectChoiceKind.DrawTechniques ? requests[0].DrawCount : 0;
     public int SelectedReleaseCount => ChoiceKind == CreatureEffectChoiceKind.SelectReleaseTargets ? requests[0].SelectedTargetIds.Count : 0;
@@ -104,6 +121,9 @@ public sealed class CreatureEffectRuntime
         resolvingDiscardOccurrenceId = 0;
         eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
         pendingPlayedTechniqueRecovery = null;
+        pendingCreatureSkips.Clear();
+        pendingReleaseDrawSourceGroups.Clear();
+        pendingReleaseDrawName = null;
     }
 
     /// <summary>Stamps a new attachment and queues its selected role's immediate choice effects.</summary>
@@ -133,6 +153,17 @@ public sealed class CreatureEffectRuntime
             }
             if (effect?.Trigger == CardEffectTrigger.WhenCaught)
             {
+                if (effect.EffectType == CardEffectType.QueueCreatureEncounterConcealment && !instance.IsBait)
+                {
+                    if (EncounterEffects == null) throw new InvalidOperationException("Encounter runtime must be bound before concealment activation.");
+                    EncounterEffects.GrantCreatureConcealment(effect, instance.Definition);
+                }
+                if (effect.EffectType == CardEffectType.GrantNextCreatureSkip && instance.IsBait
+                    && instance.TryConsumeAttachmentActivation(effectIndex))
+                    pendingCreatureSkips.Add(effect.DisplayName);
+                if (effect.EffectType == CardEffectType.ReleaseMatchingBaitOnAttach && !instance.IsBait)
+                    immediate.Add(new Request { SourceInstanceId = instance.InstanceId, EffectIndex = effectIndex,
+                        AbilityName = effect.DisplayName, Kind = CreatureEffectChoiceKind.ReleaseMatchingBait });
                 if (effect.EffectType == CardEffectType.DiscardTechniqueOnAttach && !instance.IsBait)
                     immediate.Add(new Request { SourceInstanceId = instance.InstanceId, EffectIndex = effectIndex,
                         AbilityName = effect.DisplayName, Kind = CreatureEffectChoiceKind.DiscardTechnique });
@@ -312,6 +343,26 @@ public sealed class CreatureEffectRuntime
         while (requests.Count > 0)
         {
             Request request = requests[0];
+            if (request.Kind == CreatureEffectChoiceKind.EncounterSkip)
+            {
+                if (encounters.EncounterRevision == request.EncounterRevision
+                    && encounters.HookedEncounter == request.Encounter) return;
+                requests.RemoveAt(0);
+                continue;
+            }
+            if (request.Kind == CreatureEffectChoiceKind.ResolveReleaseDraws)
+            {
+                request.DrawCount = request.ReleaseDrawSourceGroups.FindAll(group => Array.Exists(chain.Catches,
+                    c => c != null && c.IsBait && Array.IndexOf(group.SourceIds, c.InstanceId) >= 0
+                        && Array.Exists(c.ActiveEffects, e => e?.EffectType == CardEffectType.DrawTechniqueAfterCreatureRelease))).Count;
+                if (request.DrawCount == 0)
+                {
+                    requests.RemoveAt(0);
+                    continue;
+                }
+                request.Kind = CreatureEffectChoiceKind.DrawTechniques;
+                continue;
+            }
             if (request.Kind == CreatureEffectChoiceKind.ActivateChangedRole)
             {
                 CardInstance changed = GetChoiceSource(chain.Catches);
@@ -365,8 +416,8 @@ public sealed class CreatureEffectRuntime
                     continue;
                 }
                 bool canMakeRoom = request.MaxDiscards < 0
-                    || deck.Hand.Length - (request.MaxDiscards - request.DiscardCount) <= 4 - request.DrawCount;
-                if (deck.Hand.Length > 4 - request.DrawCount && canMakeRoom
+                    || deck.Hand.Length - (request.MaxDiscards - request.DiscardCount) <= 4 - Math.Min(4, request.DrawCount);
+                if (deck.Hand.Length > 4 - Math.Min(4, request.DrawCount) && canMakeRoom
                     && (request.MaxDiscards < 0 || request.DiscardCount < request.MaxDiscards)) return;
                 deck.DrawTechniques(request.DrawCount, 4, random);
                 requests.RemoveAt(0);
@@ -414,6 +465,12 @@ public sealed class CreatureEffectRuntime
                 continue;
             }
 
+            if (request.Kind == CreatureEffectChoiceKind.ReleaseMatchingBait)
+            {
+                if (GetMatchingBaitReleaseTargets(chain.Catches).Length > 0) return;
+                requests.RemoveAt(0);
+                continue;
+            }
             if (request.Kind == CreatureEffectChoiceKind.DiscardTechnique)
             {
                 if (deck != null && Array.Exists(deck.Hand, c => c?.CardType == CardType.Technique)) return;
@@ -532,6 +589,75 @@ public sealed class CreatureEffectRuntime
             }
         }
         return false;
+    }
+
+    /// <summary>Reserves the oldest skip at reveal before on-reveal effects can remove or replace the original encounter.</summary>
+    public void RecordCreatureReveal(CardDefinition creature, int revision)
+    {
+        if (creature?.CardType != CardType.Creature || pendingCreatureSkips.Count == 0) return;
+        string name = pendingCreatureSkips[0];
+        pendingCreatureSkips.RemoveAt(0);
+        requests.Insert(0, new Request { Kind = CreatureEffectChoiceKind.EncounterSkip,
+            AbilityName = name, Encounter = creature, EncounterRevision = revision });
+    }
+
+    /// <summary>Immediately skips or declines the original offered creature without attaching or dispatching Release effects.</summary>
+    public bool TryChooseEncounterSkip(bool skip, EncounterRuntime encounters)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.EncounterSkip) return false;
+        Request request = requests[0];
+        if (encounters.EncounterRevision != request.EncounterRevision || encounters.HookedEncounter != request.Encounter) return false;
+        CompleteChoice();
+        if (skip)
+        {
+            encounters.SetCurrentEncounter(null);
+            encounters.CancelActiveEncounterChain();
+        }
+        return true;
+    }
+
+    /// <summary>Returns only another legally releasable attached Elusive creature Bait.</summary>
+    public CardInstance[] GetMatchingBaitReleaseTargets(CardInstance[] catches)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.ReleaseMatchingBait) return Array.Empty<CardInstance>();
+        CardInstance source = GetChoiceSource(catches);
+        CardEffectDefinition effect = source?.ActiveEffects[requests[0].EffectIndex];
+        return Array.FindAll(catches, c => c != null && c != source && c.IsBait
+            && c.Definition?.CardType == CardType.Creature && !c.PreventsReleaseWhileAttached
+            && effect != null && EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, c));
+    }
+
+    /// <summary>Resolves the optional Eel Catch Release, then exposes ordinary completed Release reactions.</summary>
+    public bool TryChooseMatchingBaitRelease(int targetId, CatchChainRuntime chain, EffectResolver resolver)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.ReleaseMatchingBait) return false;
+        if (targetId >= 0)
+        {
+            CardInstance target = Array.Find(GetMatchingBaitReleaseTargets(chain.Catches), c => c.InstanceId == targetId);
+            if (target == null || !chain.TryRelease(Array.IndexOf(chain.Catches, target), resolver,
+                out _, out _, out _, CatchRemovalReason.Creature)) return false;
+        }
+        CompleteChoice();
+        FinishReleaseResolution();
+        return true;
+    }
+
+    /// <summary>Records one draw per released Elusive creature and the original Eel Baits that may survive its whole action.</summary>
+    private void RecordReleaseDraw(CardInstance released, CatchRemovalReason reason, CardInstance[] survivors)
+    {
+        if (reason == CatchRemovalReason.LineStrain || released?.Definition?.CardType != CardType.Creature) return;
+        List<int> sources = new List<int>();
+        foreach (CardInstance source in survivors)
+        {
+            if (source == null || !source.IsBait || source.InstanceId == released.InstanceId) continue;
+            CardEffectDefinition effect = Array.Find(source.ActiveEffects, e => e?.EffectType == CardEffectType.DrawTechniqueAfterCreatureRelease
+                && e.Trigger == CardEffectTrigger.WhenAnotherCatchReleased
+                && EffectResolver.RequiredTagsMatchInstance(e.RequiredTags, released));
+            if (effect == null) continue;
+            sources.Add(source.InstanceId);
+            pendingReleaseDrawName = effect.DisplayName;
+        }
+        if (sources.Count > 0) pendingReleaseDrawSourceGroups.Add(new ReleaseDrawEligibility { SourceIds = sources.ToArray() });
     }
 
     /// <summary>Discards the chosen hand occurrence for the mandatory Catch downside without playing or drawing it.</summary>
@@ -818,6 +944,7 @@ public sealed class CreatureEffectRuntime
     public void RecordDeliberateRelease(CardInstance released, CatchRemovalReason reason, CardInstance[] survivors)
     {
         RecordValueTransfer(released, reason, survivors);
+        RecordReleaseDraw(released, reason, survivors ?? Array.Empty<CardInstance>());
         if (encounterRecoveryConsumed || reason == CatchRemovalReason.LineStrain
             || released?.Definition?.CardType != CardType.Creature)
         {
@@ -866,6 +993,12 @@ public sealed class CreatureEffectRuntime
         }
         completed.AddRange(pendingTransfers);
         pendingTransfers.Clear();
+        if (pendingReleaseDrawSourceGroups.Count > 0)
+        {
+            completed.Add(new Request { Kind = CreatureEffectChoiceKind.ResolveReleaseDraws, AbilityName = pendingReleaseDrawName,
+                ReleaseDrawSourceGroups = new List<ReleaseDrawEligibility>(pendingReleaseDrawSourceGroups) });
+            pendingReleaseDrawSourceGroups.Clear();
+        }
         requests.InsertRange(0, completed);
     }
 

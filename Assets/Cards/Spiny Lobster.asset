@@ -15,21 +15,52 @@ MonoBehaviour:
   uniqueId: creature_spiny_lobster
   displayName: Spiny Lobster
   cardType: 3
-  rarity: 1
+  rarity: 2
   tags:
-  - Heavy
   - Armored
+  - Heavy
   artwork: {fileID: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: A heavy creature, protected by a spiny shell and long, powerful antennae
+  rulesText: "Weathered Shell: This Catch gains 4 value each time a Hazard is cancelled."
   rulesTextHighlights: []
-  weight: 4
-  value: 7
+  baitRulesText: "Shell Support: Your other attached Armored creatures weigh 1 less."
+  baitRulesTextHighlights: []
+  weight: 3
+  value: 24
   biomeIds:
   - Coastal
-  minimumDepth: 5
+  minimumDepth: 8
   maximumDepth: 20
-  effects: []
+  effects:
+  - effectId: weathered_shell
+    displayName: Weathered Shell
+    effectType: 44
+    trigger: 12
+    target: 1
+    effectTone: 1
+    amount: 4
+    requiredTags: []
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "After a revealed Hazard is fully cancelled without resolving its effects, each Lobster Catch gains 4 sale value. Partial prevention and replacement before reveal do not qualify. The bonus persists across modes until this card leaves the chain."
+  hasExplicitBaitData: 1
+  baitEffects:
+  - effectId: shell_support
+    displayName: Shell Support
+    effectType: 45
+    trigger: 2
+    target: 4
+    effectTone: 1
+    amount: 1
+    requiredTags:
+    - Armored
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    reminderText: "Other attached Armored creatures in either mode weigh 1 less while this Lobster remains Bait. Tags and attachments update immediately. Sources stack, minimum effective weight 0; a Lobster never supports itself."

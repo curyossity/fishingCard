@@ -159,17 +159,19 @@ public sealed class FishingRunView : MonoBehaviour
         public int Weight { get; }
         public int Value { get; }
         public bool InformationHidden { get; }
+        public bool IdentityHidden { get; }
 
         public EncounterPresentationSnapshot(
             CardDefinition card,
             int weight,
             int value,
-            bool informationHidden)
+            bool informationHidden, bool identityHidden = false)
         {
             Card = card;
             Weight = weight;
             Value = value;
             InformationHidden = informationHidden;
+            IdentityHidden = identityHidden;
         }
     }
 
@@ -342,7 +344,8 @@ public sealed class FishingRunView : MonoBehaviour
         bool canDescend,
         Func<bool> descendAction,
         Func<bool> releaseAction,
-        Func<bool> surfaceAction)
+        Func<bool> surfaceAction,
+        bool encounterIdentityHidden = false)
     {
         EnsureLayout();
         this.descendAction = descendAction;
@@ -395,14 +398,15 @@ public sealed class FishingRunView : MonoBehaviour
             resolvedEncounterWeight,
             resolvedEncounterValue,
             encounterInformationHidden,
-            shouldTransitionEncounter);
+            shouldTransitionEncounter,
+            encounterIdentityHidden);
         if (shouldTransitionEncounter)
         {
             BeginEncounterTransition(
                 encounter,
                 resolvedEncounterWeight,
                 resolvedEncounterValue,
-                encounterInformationHidden);
+                encounterInformationHidden, encounterIdentityHidden);
         }
         else
         {
@@ -415,7 +419,7 @@ public sealed class FishingRunView : MonoBehaviour
                 encounter,
                 resolvedEncounterWeight,
                 resolvedEncounterValue,
-                encounterInformationHidden);
+                encounterInformationHidden, encounterIdentityHidden);
         }
 
         hasPresentedEncounter = true;
@@ -753,13 +757,13 @@ public sealed class FishingRunView : MonoBehaviour
         int resolvedWeight,
         int resolvedValue,
         bool informationHidden,
-        bool enteredNewDepth)
+        bool enteredNewDepth, bool identityHidden = false)
     {
         EncounterPresentationSnapshot snapshot = new EncounterPresentationSnapshot(
             encounter,
             resolvedWeight,
             resolvedValue,
-            informationHidden);
+            informationHidden, identityHidden);
         if (encounterHistory.Count == 0 || enteredNewDepth)
         {
             encounterHistory.Add(snapshot);
@@ -783,7 +787,7 @@ public sealed class FishingRunView : MonoBehaviour
         CardDefinition encounter,
         int resolvedEncounterWeight,
         int resolvedEncounterValue,
-        bool encounterInformationHidden)
+        bool encounterInformationHidden, bool encounterIdentityHidden = false)
     {
         CancelEncounterTransition();
 
@@ -794,7 +798,7 @@ public sealed class FishingRunView : MonoBehaviour
             encounter,
             resolvedEncounterWeight,
             resolvedEncounterValue,
-            encounterInformationHidden);
+            encounterInformationHidden, encounterIdentityHidden);
 
         SwapEncounterCardSlots(
             out RectTransform outgoingRoot,
@@ -957,7 +961,7 @@ public sealed class FishingRunView : MonoBehaviour
                 snapshot.Card,
                 snapshot.Weight,
                 snapshot.Value,
-                snapshot.InformationHidden);
+                snapshot.InformationHidden, snapshot.IdentityHidden);
             SwapEncounterCardSlots(
                 out RectTransform outgoingRoot,
                 out CanvasGroup outgoingGroup,

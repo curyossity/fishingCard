@@ -20,6 +20,49 @@ public sealed class EncounterRuntime
     public CardDefinition LastCancelledHazard => lastCancelledHazard;
     public Func<CardDefinition, bool> HazardCancellation { get; set; }
 
+    [Serializable]
+    public sealed class PendingConcealment
+    {
+        public int Id;
+        public CardEffectDefinition Effect;
+        public CardDefinition Source;
+        public int Remaining;
+    }
+
+    [SerializeField] private List<PendingConcealment> pendingConcealments = new List<PendingConcealment>();
+    [SerializeField] private int assignedConcealmentId = -1;
+    [SerializeField] private int nextConcealmentId = 1;
+    [SerializeField] private int encounterRevision;
+    public int EncounterRevision => encounterRevision;
+    public bool IsCreatureConcealed => assignedConcealmentId >= 0;
+    public PendingConcealment[] PendingConcealments => pendingConcealments.ToArray();
+    public event Action<CardDefinition> HazardCancelled;
+    public event Action<CardDefinition, int> CreatureRevealed;
+    public event Action<CardDefinition> EncounterRevealEffects;
+
+    /// <summary>Queues independent negative concealment charges without tying them to source lifetime.</summary>
+    public void GrantCreatureConcealment(CardEffectDefinition effect, CardDefinition source)
+    {
+        if (effect == null || effect.Amount <= 0) return;
+        pendingConcealments.Add(new PendingConcealment { Id = nextConcealmentId++, Effect = effect, Source = source, Remaining = effect.Amount });
+    }
+
+    /// <summary>Removes an exact pending/assigned concealment occurrence, preserving all other sources' charges.</summary>
+    public bool TryRemoveCreatureConcealment(PendingConcealment concealment)
+    {
+        if (concealment?.Effect?.EffectTone != CardEffectTone.Negative || !pendingConcealments.Remove(concealment)) return false;
+        if (assignedConcealmentId == concealment.Id) assignedConcealmentId = -1;
+        return true;
+    }
+
+    /// <summary>Consumes only the concealment reserved for the current committed or removed encounter.</summary>
+    private void CompleteConcealedEncounter()
+    {
+        int completed = assignedConcealmentId;
+        assignedConcealmentId = -1;
+        pendingConcealments.RemoveAll(c => c.Id == completed && c.Remaining == 0);
+    }
+
     public CardDefinition CurrentEncounter => currentEncounter;
     public EncounterState CurrentState => currentState;
     public CardDefinition HookedEncounter => hookedEncounter;
@@ -255,6 +298,7 @@ public sealed class EncounterRuntime
             return null;
         }
 
+        CompleteConcealedEncounter();
         CardDefinition caughtCard = hookedEncounter;
         hookedEncounter = null;
         hookedEffectRecords = Array.Empty<HookedEffectRecord>();
@@ -316,8 +360,15 @@ public sealed class EncounterRuntime
     /// <summary>
     /// Clears the current encounter and its reaction-window state.
     /// </summary>
-    public void Reset()
+    public void Reset(bool preservePendingConcealments = false)
     {
+        CompleteConcealedEncounter();
+        if (!preservePendingConcealments)
+        {
+            pendingConcealments.Clear();
+            nextConcealmentId = 1;
+        }
+        encounterRevision++;
         lastCancelledHazard = null;
         currentEncounter = null;
         currentState = EncounterState.None;
@@ -437,6 +488,8 @@ public sealed class EncounterRuntime
     /// </summary>
     public void SetCurrentEncounter(CardDefinition encounter)
     {
+        CompleteConcealedEncounter();
+        encounterRevision++;
         lastCancelledHazard = null;
         if (encounter?.CardType == CardType.Hazard && HazardCancellation?.Invoke(encounter) == true)
         {
@@ -444,12 +497,22 @@ public sealed class EncounterRuntime
             encounter = null;
         }
         currentEncounter = encounter;
+        if (encounter?.CardType == CardType.Creature)
+        {
+            PendingConcealment concealment = pendingConcealments.Find(c => c.Remaining > 0);
+            if (concealment != null)
+            {
+                concealment.Remaining--;
+                assignedConcealmentId = concealment.Id;
+            }
+        }
 
         if (currentEncounter == null)
         {
             hookedEncounter = null;
             currentState = EncounterState.None;
             RebuildHookedEffectRecords();
+            if (lastCancelledHazard != null) HazardCancelled?.Invoke(lastCancelledHazard);
             return;
         }
 
@@ -458,12 +521,15 @@ public sealed class EncounterRuntime
             hookedEncounter = currentEncounter;
             currentState = EncounterState.Hooked;
             RebuildHookedEffectRecords();
+            if (encounter.CardType == CardType.Creature) CreatureRevealed?.Invoke(encounter, encounterRevision);
+            EncounterRevealEffects?.Invoke(encounter);
             return;
         }
 
         hookedEncounter = null;
         currentState = EncounterState.Encountered;
         RebuildHookedEffectRecords();
+        EncounterRevealEffects?.Invoke(encounter);
     }
 
     /// <summary>

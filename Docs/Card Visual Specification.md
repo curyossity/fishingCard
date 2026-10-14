@@ -46,6 +46,12 @@ The built-in Catch and Bait panels are separate click targets. Catch is selected
 
 Rules text may include per-definition highlighted words or phrases authored through the Creature Catalog. The central Encounter card renders each configured match with its authored color and relative font size calculated from the fitted base size while preserving the surrounding rules style. Highlighting is presentation metadata only: it must not change effect resolution, and it does not appear on compact Catch Chain cards.
 
+## Squid Ink Veil concealment
+
+The approved Squid effect conceals an ordinary creature until its Catch/Bait choice is committed. Use the existing supplied catch master: replace the dynamic name with `UNKNOWN CREATURE`, remove both illustration layers, display `?` for Weight and Value, leave both effect texts blank, and suppress populated tag icons/tooltips and rarity hooks. Keep the existing Catch and Bait panels selectable with their normal selection feedback. Do not add a hidden-state badge or alter supplied artwork.
+
+Reveal identity and the normal fields before the committed role's on-attach effects resolve. An immediate Ink Escape choice exposes no species name, art, tags, stats, or effects while concealment applies. Carry the identity mask through incoming-card transitions and encounter-history/ascent snapshots. Existing information-only concealment and self-hidden Value retain their own behavior.
+
 ## Rarity Hooks
 
 Creature/catch card art exposes four lower rarity sockets. Unity fills them with `Assets/FishingUIAssets/Icons/catch.png`, activating the corresponding number of catch icons:

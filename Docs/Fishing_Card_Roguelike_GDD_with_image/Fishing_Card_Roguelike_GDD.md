@@ -540,6 +540,25 @@ All three are Coastal Waters creatures. Only the selected role's ongoing effects
 - This is not a Release, a new encounter, or a new physical attachment. Per the user-confirmed rule, only the two swapped cards' own on-attach effects activate; other cards' after-catching reactions do not trigger. Another source's next-attachment effects are not consumed by the role swap. Existing pending effects follow their own durations.
 - Cleansing and one-use lifecycle state remain specific to the affected card role/effect. A removed Catch effect does not suppress a Bait effect at the same index, and returning to a role never restores its cleansed effects or spent one-use activations.
 
+## Approved creature refactors: Spiny Lobster, Squid, and Tidepool Eel
+
+These approved definitions replace the prior designs for these species. They use separate Catch and Bait effects and the existing deliberate-Release, mode-change, four-card hand, and creature-eligibility contracts.
+
+**Spiny Lobster** — Weight **3**, Value **24**, Rare, depth **8–20**, tags **Armored, Heavy**.
+
+- **Catch — Weathered Shell:** After a revealed Hazard is fully cancelled without resolving any of its effects, each attached Lobster Catch gains **4 sale Value** once. Preventing only some Hazard effects or replacing an encounter before reveal does not qualify. Each bonus persists on its recipient until it leaves the chain, including mode changes.
+- **Bait — Shell Support:** Every other attached Armored creature, in Catch or Bait mode, weighs **1 less**, minimum effective Weight **0**, while this Lobster remains Bait. Attachment and effective-tag changes update support immediately. Losing Armored suspends support; regaining it restores support. Sources stack. Lobsters can support each other but never themselves; non-creature attachments do not qualify.
+
+**Squid** — Weight **2**, Value **20**, Rare, depth **8–20**, tags **Predator, Elusive**.
+
+- **Catch — Ink Veil:** On Catch attachment, conceal the next **two non-Apex creature encounters**. Conceal identity, artwork, Weight, Value, effective visible tags, and both effect texts until the Catch/Bait choice is committed; reveal before resolving the chosen role's on-attach effects. Both role panels remain selectable while concealed. Concealment is assigned once per eligible reveal and consumed by commitment or removal without attachment, including avoidance/replacement/skip. Non-creatures and Apex do not consume charges. Unused charges survive removal or mode changes of their source and persist across biomes; a new run clears them. Stacked grants conceal consecutive eligible creatures and never the same encounter twice. Quick Clean may remove an exact still-active negative Ink occurrence, including its assigned/current concealment and unused charges, without affecting other grants. A normal information-reveal Technique does not bypass commit-only Ink concealment.
+- **Bait — Ink Escape:** First Bait attachment grants one optional skip of the next non-Apex creature, once per card; mode changes never refresh the grant. Resolve normal reveal effects first, then offer the decision immediately, before any new Technique or core action. Concealed information stays concealed during the decision. Accepting discards without attachment, Catch/Bait effects, or Release reactions, and consumes concealment assigned to that encounter. The skip itself does not advance depth; the next Descend advances normally and reveals the next encounter. The offer is consumed when made, including a decline, and cannot wait until after techniques. If reveal effects already remove the creature, consume that offer without carrying it to a later creature. Non-creatures and Apex do not consume offers. Pending grants survive source removal/mode changes and biome transitions, and apply oldest first to consecutive eligible encounters. Skipping breaks the skipped encounter's active authored chain.
+
+**Tidepool Eel** — Weight **2**, Value **14**, Uncommon, depth **0–14**, tags **Fish, Predator, Elusive**.
+
+- **Catch — Slippery Exit:** Immediately after Catch attachment, optionally choose one other attached creature that is both Elusive and Bait. Deliberately Release it subject to normal restrictions and resolve Release reactions normally. Declining or having no legal target does not save the choice.
+- **Bait — Escape Current:** After a whole deliberate Release action removes another Elusive creature in either role, draw **one Technique per qualifying creature**, checking Elusive immediately before removal. An eligible observing Eel must remain attached as Bait through the action's completion. Multiple Eel Baits share one draw per released creature. Before any drawing, optionally discard Techniques to make room in the four-card hand, then draw only as many cards as fit. Forced removals and exchanges do not qualify. Resolve these draws after the releasing action and its preceding Release choices; they cannot be saved.
+
 # 7. Line load and overload
 
 Weight is the main pressure system. The current working term is Line

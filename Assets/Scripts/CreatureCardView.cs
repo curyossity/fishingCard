@@ -103,7 +103,7 @@ public sealed class CreatureCardView : MonoBehaviour
     }
 
     /// <summary>Displays one encounter using its card-type layout and resolved runtime values.</summary>
-    public void SetCard(CardDefinition card, int resolvedWeight, int resolvedValue, bool informationHidden)
+    public void SetCard(CardDefinition card, int resolvedWeight, int resolvedValue, bool informationHidden, bool identityHidden = false)
     {
         if (card == null)
         {
@@ -113,6 +113,7 @@ public sealed class CreatureCardView : MonoBehaviour
             return;
         }
 
+        informationHidden |= identityHidden;
         gameObject.SetActive(true);
         bool isNewCard = displayedCard != card;
         displayedCard = card;
@@ -132,10 +133,10 @@ public sealed class CreatureCardView : MonoBehaviour
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(
-            card.DisplayName.ToUpperInvariant(),
+            identityHidden ? "UNKNOWN CREATURE" : card.DisplayName.ToUpperInvariant(),
             BuildCardTypeText(card.CardType),
-            encounterArtwork,
-            card.ArtworkLayout,
+            identityHidden ? null : encounterArtwork,
+            identityHidden ? CardArtworkLayout.MaskedRegion : card.ArtworkLayout,
             background,
             informationHidden ? "?" : FormatWeight(Mathf.Max(0, resolvedWeight)),
             informationHidden || hideOwnValue ? "?" : FormatValue(Mathf.Max(0, resolvedValue)),
@@ -145,12 +146,13 @@ public sealed class CreatureCardView : MonoBehaviour
             informationHidden
                 ? string.Empty
                 : BuildHighlightedRulesText(card.BaitRulesText, card.BaitRulesTextHighlights),
-            card.Tags,
+            identityHidden ? Array.Empty<string>() : card.Tags,
             card.Rarity,
             usesCatchLayout,
             card.EncounterArtworkScale,
             card.EncounterArtworkRotation,
             card.EncounterArtworkOffset);
+        if (identityHidden) HideRarityAnchors();
     }
 
     /// <summary>Populates the visual contract directly for editor previews and UI tests.</summary>
