@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Fresh Shell Fragments
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: fresh_shell_fragments
+  displayName: Fresh Shell Fragments
+  cardType: 7
+  rarity: 2
+  tags: []
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  rulesText: "A Spiny Lobster awaits 3 depths below."
+  rulesTextHighlights: []
+  weight: 0
+  value: 0
+  biomeIds:
+  - Coastal
+  minimumDepth: 5
+  maximumDepth: 13
+  effects:
+  - effectId: fresh_shell_fragments_effect
+    displayName: Fresh Shell Fragments
+    effectType: 53
+    trigger: 13
+    target: 6
+    effectTone: 1
+    amount: 3
+    requiredTags: []
+    targetTags: []
+    grantedTag: ''
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 11400000, guid: 1c2283c16571400dbe1f802fabad2813, type: 2}
+    expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId:
+      boundaryCount: 0
+    reminderText: "One biome-local trail to Spiny Lobster at current depth +3. Queued replacement takes precedence and consumes the promise. Passed destinations move to the first legal normal slot; never displace Apex. Reveal normal identity and stats in preview."
+  hasExplicitBaitData: 1
+  baitEffects: []
+  baitRulesText: ''
+  baitRulesTextHighlights: []

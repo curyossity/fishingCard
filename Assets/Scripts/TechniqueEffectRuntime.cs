@@ -51,6 +51,12 @@ public sealed class TechniqueEffectRuntime
     {
         restrictionReason = string.Empty;
 
+        if (encounterRuntime == null || !encounterRuntime.HasTechniqueReactionWindow)
+        {
+            restrictionReason = "No open Technique window";
+            return false;
+        }
+
         if (techniqueCard == null || techniqueCard.Effects == null || techniqueCard.Effects.Length == 0)
         {
             restrictionReason = "No usable effect";
@@ -92,6 +98,9 @@ public sealed class TechniqueEffectRuntime
         bool encounterInformationHidden,
         out string resultSummary)
     {
+        resultSummary = string.Empty;
+        if (techniqueCard?.Effects == null || encounterRuntime == null
+            || !encounterRuntime.HasTechniqueReactionWindow) return false;
         List<string> results = new List<string>();
 
         for (int i = 0; i < techniqueCard.Effects.Length; i++)
@@ -272,27 +281,30 @@ public sealed class TechniqueEffectRuntime
     {
         CardDefinition hookedEncounter = encounterRuntime.HookedEncounter;
 
-        if (effect == null || hookedEncounter == null)
+        if (effect == null || !encounterRuntime.HasTechniqueReactionWindow) return false;
+        CardDefinition visibleTarget = encounterRuntime.CurrentEventOccurrence?.State == EventOccurrenceState.Unresolved
+            ? encounterRuntime.CurrentEncounter : hookedEncounter;
+        if (effect.Target == CardEffectTarget.HookedEncounter && (hookedEncounter == null
+            || !EffectResolver.RequiredTagsMatch(effect.RequiredTags, hookedEncounter))) return false;
+        if (effect.Target == CardEffectTarget.CurrentEncounter && (visibleTarget == null
+            || !EffectResolver.RequiredTagsMatch(effect.RequiredTags, visibleTarget))) return false;
+        if (effect.EffectType == CardEffectType.ReplaceEncounter)
         {
-            return false;
+            CardDefinition target = effect.Target == CardEffectTarget.CurrentEncounter ? visibleTarget : hookedEncounter;
+            int selectionDepth = Math.Max(0, depth + GetNextEncounterDepthOffset());
+            return target != null && EffectResolver.RequiredTagsMatch(effect.RequiredTags, target)
+                && encounterRuntime.HasAlternativeEncounter(encounterPool, biomeId, selectionDepth, target);
         }
 
         if (effect.EffectType == CardEffectType.AvoidEncounter)
         {
-            return EffectResolver.RequiredTagsMatch(effect.RequiredTags, hookedEncounter);
-        }
-
-        if (effect.EffectType == CardEffectType.ReplaceEncounter)
-        {
-            int selectionDepth = Math.Max(0, depth + GetNextEncounterDepthOffset());
-            return EffectResolver.RequiredTagsMatch(effect.RequiredTags, hookedEncounter)
-                && encounterRuntime.HasAlternativeEncounter(encounterPool, biomeId, selectionDepth, hookedEncounter);
+            return hookedEncounter != null && EffectResolver.RequiredTagsMatch(effect.RequiredTags, hookedEncounter);
         }
 
         if (effect.EffectType == CardEffectType.RevealEncounterInformation)
         {
-            return encounterInformationHidden
-                && EffectResolver.RequiredTagsMatch(effect.RequiredTags, hookedEncounter);
+            return visibleTarget != null && encounterInformationHidden
+                && EffectResolver.RequiredTagsMatch(effect.RequiredTags, visibleTarget);
         }
 
         if (catchChainRuntime.CanApplyTechniqueEffect(effect))
@@ -329,10 +341,11 @@ public sealed class TechniqueEffectRuntime
 
         if (effect.EffectType == CardEffectType.ReplaceEncounter)
         {
-            CardDefinition replacedEncounter = encounterRuntime.HookedEncounter;
+            CardDefinition replacedEncounter = encounterRuntime.HookedEncounter ?? encounterRuntime.CurrentEncounter;
             int selectionDepth = Math.Max(0, depth + GetNextEncounterDepthOffset());
-            encounterRuntime.CancelActiveEncounterChain();
-            bool replaced = encounterRuntime.Reveal(
+            bool replaced = encounterRuntime.TryReplaceEncounter(
+                encounterRuntime.EncounterRevision,
+                replacedEncounter,
                 encounterPool,
                 biomeId,
                 selectionDepth,
@@ -340,7 +353,6 @@ public sealed class TechniqueEffectRuntime
                 catchChainRuntime.ActiveEffectRecords,
                 effectResolver,
                 pendingEncounterEffects,
-                replacedEncounter,
                 encounterChains);
 
             if (replaced)
@@ -355,7 +367,7 @@ public sealed class TechniqueEffectRuntime
         if (effect.EffectType == CardEffectType.RevealEncounterInformation)
         {
             revealsCurrentEncounter = true;
-            results.Add($"Revealed {encounterRuntime.HookedEncounter.DisplayName}");
+            results.Add($"Revealed {encounterRuntime.CurrentEncounter.DisplayName}");
             return true;
         }
 

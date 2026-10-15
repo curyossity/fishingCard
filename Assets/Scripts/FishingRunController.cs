@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -47,6 +48,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private CatchChainRuntime catchChainRuntime = new CatchChainRuntime();
     [SerializeField] private TechniqueDeckRuntime techniqueDeckRuntime = new TechniqueDeckRuntime();
     [SerializeField] private TechniqueEffectRuntime techniqueEffectRuntime = new TechniqueEffectRuntime();
+    [SerializeField] private EventPersistenceRuntime eventPersistenceRuntime = new EventPersistenceRuntime();
 
     [Header("Line Load Risk")]
     [SerializeField] private LineLoadRiskRuntime lineLoadRiskRuntime = new LineLoadRiskRuntime();
@@ -58,9 +60,27 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private RunRewardRuntime runRewardRuntime = new RunRewardRuntime();
     [SerializeField] private RunProgressionRuntime runProgressionRuntime = new RunProgressionRuntime();
 
+    [SerializeField] private EventEffectRuntime eventEffectRuntime = new EventEffectRuntime();
+    [SerializeField] private ConfirmedEventAction confirmedEventAction;
+    [SerializeField] private long confirmedEventOccurrenceId;
+    [SerializeField] private bool eventConsequencesComplete;
+    [SerializeField] private string eventActionFailure;
+    private bool eventActionConfirmationInProgress;
+    private bool eventActionAdvanceInProgress;
+    public ConfirmedEventAction PendingEventAction => confirmedEventAction;
+    public bool HasConfirmedEventAction => confirmedEventAction != ConfirmedEventAction.None;
+    public string EventActionFailure => eventActionFailure;
+    private bool EventActionInputLocked => HasConfirmedEventAction || eventActionConfirmationInProgress || eventActionAdvanceInProgress;
+
     private System.Random random;
     private EffectResolver effectResolver;
     private bool runEndCleanupPending;
+    private CardInstance[] endedRunPresentationCatches = Array.Empty<CardInstance>();
+    private ActiveCatchEffectRecord[] endedRunPresentationEffects = Array.Empty<ActiveCatchEffectRecord>();
+    private int endedRunPresentationLoad;
+    private CardInstance[] DisplayedCatches => !runActive && runEndCleanupPending ? endedRunPresentationCatches : catchChainRuntime.Catches;
+    private ActiveCatchEffectRecord[] DisplayedCatchEffects => !runActive && runEndCleanupPending ? endedRunPresentationEffects : catchChainRuntime.ActiveEffectRecords;
+    private int DisplayedLineLoad => !runActive && runEndCleanupPending ? endedRunPresentationLoad : catchChainRuntime.CurrentLineLoad;
     [SerializeField] private CreatureEffectRuntime creatureEffectRuntime = new CreatureEffectRuntime();
     [SerializeField] private bool descendCompletionPending;
     [SerializeField] private bool biomeEntryRevealPending;
@@ -68,12 +88,31 @@ public sealed class FishingRunController : MonoBehaviour
     private int selectedSwapTargetId = -1;
     [SerializeField] private bool techniqueRefillPending;
 
-    public CreatureEffectChoiceKind PendingCreatureChoice => creatureEffectRuntime.ChoiceKind;
+    private bool IsFailedConfirmedEventAction => HasConfirmedEventAction && !string.IsNullOrEmpty(eventActionFailure);
+    public CreatureEffectChoiceKind PendingCreatureChoice => IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching
+        ? CreatureEffectChoiceKind.None : creatureEffectRuntime.ChoiceKind;
     public CardDefinition[] OfferedCreatures => creatureEffectRuntime.OfferedCreatures;
     public CardInstance[] EligibleSwapCatches => creatureEffectRuntime.GetSwapTargets(catchChainRuntime.Catches);
     public NegativeEffectOption[] RemovableNegativeEffects => NegativeEffectRuntime.GetOptions(
-        catchChainRuntime, encounterRuntime, techniqueEffectRuntime, effectResolver);
+        catchChainRuntime, encounterRuntime, techniqueEffectRuntime, effectResolver, eventPersistenceRuntime);
     public bool HasPendingCreatureChoice => PendingCreatureChoice != CreatureEffectChoiceKind.None;
+
+    private bool CoreActionInputReady => runActive && !EventActionInputLocked
+        && !encounterRuntime.IsRevealReactionInProgress && !techniqueRefillPending
+        && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
+
+    public bool CanDescend => CoreActionInputReady && (!biomeApexRuntime.NextWatersPresented
+        || currentBiome?.NextBiome?.GetDepthTier(currentBiome.NextBiome.StartingDepth) != null);
+    public bool CanSurface => CoreActionInputReady;
+    public bool CanReleaseSelectedCatch => CanReleaseCatch(selectedCatchIndex);
+
+    /// <summary>Reports legal Release availability without mutating an attached card or resolving reactions.</summary>
+    public bool CanReleaseCatch(int catchIndex)
+    {
+        CardInstance[] catches = catchChainRuntime.Catches;
+        return CoreActionInputReady && catchIndex >= 0 && catchIndex < catches.Length
+            && catches[catchIndex] != null && !catches[catchIndex].PreventsReleaseWhileAttached;
+    }
 
     public bool RunActive => runActive;
     public BiomeDefinition CurrentBiome => currentBiome;
@@ -176,7 +215,10 @@ public sealed class FishingRunController : MonoBehaviour
     [ContextMenu("Run/Start Run")]
     public void StartRun()
     {
+        if (eventActionConfirmationInProgress || eventActionAdvanceInProgress) return;
         EnsureRuntimeObjects();
+        ResetEventActionState();
+        ClearEndedRunState();
 
         int seed = useRandomSeed ? Environment.TickCount : randomSeed;
         random = new System.Random(seed);
@@ -197,6 +239,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
+        eventPersistenceRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Initialize(
             runProgressionRuntime.SavedTechniqueDeck,
@@ -215,7 +258,7 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
-    /// Applies a Technique card from the current hand to the Hooked reaction window.
+    /// Applies a legal Technique in the catchable/event reaction window, then finishes reactions before hand refill.
     /// </summary>
     public bool TryUseTechniqueCard(int handIndex)
     {
@@ -243,6 +286,7 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
+        techniqueRefillPending = true;
         creatureEffectRuntime.BeginTechniquePlay(techniqueCard, techniqueDeckRuntime.LastDiscardOccurrenceId, catchChainRuntime.Catches);
         bool applied = techniqueEffectRuntime.ApplyCard(
             techniqueCard,
@@ -257,7 +301,6 @@ public sealed class FishingRunController : MonoBehaviour
             TechniqueRevealInformationHidden,
             out string effectSummary);
 
-        techniqueRefillPending = true;
         creatureEffectRuntime.FinishReleaseResolution();
         creatureEffectRuntime.FinishTechniquePlay();
         PrepareCreatureChoice();
@@ -270,6 +313,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         biomeApexRuntime.RecordTechniqueResolution(encounterBeforeTechnique, encounterRuntime.CurrentEncounter);
+        if (encounterBeforeTechnique != encounterRuntime.CurrentEncounter) eventActionFailure = string.Empty;
 
         RefreshViews();
         Debug.Log($"Technique card used: {techniqueCard.DisplayName} | {effectSummary}. "
@@ -279,7 +323,7 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
-    /// Reports whether a Technique hand slot can affect the current Hooked encounter.
+    /// Validates an open catchable/event Technique window and the selected card's actual targets.
     /// </summary>
     public bool CanUseTechniqueCard(int handIndex, out string restrictionReason)
     {
@@ -302,9 +346,15 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
-        if (encounterRuntime.HookedEncounter == null)
+        if (EventActionInputLocked || descendCompletionPending || biomeEntryRevealPending || techniqueRefillPending)
         {
-            restrictionReason = "No Hooked encounter";
+            restrictionReason = "Finish the current action first";
+            return false;
+        }
+
+        if (!encounterRuntime.HasTechniqueReactionWindow)
+        {
+            restrictionReason = "No open Technique window";
             return false;
         }
 
@@ -331,7 +381,7 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
-        if (HasPendingCreatureChoice || descendCompletionPending || biomeEntryRevealPending)
+        if (!CanDescend)
         {
             return false;
         }
@@ -341,6 +391,17 @@ public sealed class FishingRunController : MonoBehaviour
             return TryEnterNextBiome();
         }
 
+        if (!TryConfirmEventAction(ConfirmedEventAction.Descend, out bool handled)) return false;
+        if (handled) return true;
+        CommitCurrentEncounterForDescend();
+        ResumeAfterCreatureChoices();
+        RefreshViews();
+        return true;
+    }
+
+    /// <summary>Commits only a catchable encounter, preserving the normal attachment and suspended Descend path.</summary>
+    private void CommitCurrentEncounterForDescend()
+    {
         CatchAttachmentRole attachmentRole = fishingRunView != null
             && fishingRunView.SelectedEncounterEffectChoice == EncounterEffectChoice.Bait
                 ? CatchAttachmentRole.Bait
@@ -361,9 +422,6 @@ public sealed class FishingRunController : MonoBehaviour
         pendingCommittedCatchId = committedCatch?.InstanceId ?? -1;
         descendCompletionPending = true;
         PrepareCreatureChoice();
-        ResumeAfterCreatureChoices();
-        RefreshViews();
-        return true;
     }
 
     /// <summary>Finishes the suspended Descend only after immediate attachment choices are resolved.</summary>
@@ -402,12 +460,13 @@ public sealed class FishingRunController : MonoBehaviour
     public bool TryEnterNextBiome()
     {
         BiomeDefinition next = currentBiome?.NextBiome;
-        if (!runActive || HasPendingCreatureChoice || !biomeApexRuntime.NextWatersPresented
+        if (!CoreActionInputReady || !biomeApexRuntime.NextWatersPresented
             || next == null || next.GetDepthTier(next.StartingDepth) == null)
         {
             return false;
         }
 
+        EndBiomeEventEffects();
         currentBiome = next;
         currentDepth = next.StartingDepth;
         selectedCatchIndex = -1;
@@ -425,6 +484,8 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Removes the selected active negative occurrence and continues the suspended action.</summary>
     public bool TryChooseNegativeEffect(int optionIndex)
     {
+        if (IsFailedConfirmedEventAction || eventActionConfirmationInProgress
+            || eventActionAdvanceInProgress || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || PendingCreatureChoice != CreatureEffectChoiceKind.RemoveNegativeEffect)
         {
             return false;
@@ -447,6 +508,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Resolves an offered replacement for an original pre-entry creature Catch.</summary>
     public bool TryChooseCreatureSwap(int catchInstanceId, int offerIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TrySwap(
             catchInstanceId, offerIndex, catchChainRuntime, effectResolver, random))
         {
@@ -461,9 +523,23 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
+    /// <summary>Resolves an event tie or optional Release while the confirmed action stays locked.</summary>
+    public bool TryChooseEventTarget(int targetId)
+    {
+        if (!runActive || IsFailedConfirmedEventAction || eventActionConfirmationInProgress
+            || eventActionAdvanceInProgress || eventEffectRuntime.IsDispatching) return false;
+        bool selected = PendingCreatureChoice == CreatureEffectChoiceKind.EventSnagTarget
+            ? creatureEffectRuntime.TryChooseEventSnag(targetId, catchChainRuntime)
+            : creatureEffectRuntime.TryChooseEventRelease(targetId, catchChainRuntime, effectResolver);
+        if (!selected) return false;
+        selectedCatchIndex = -1;
+        PrepareCreatureChoice(); ResumeAfterCreatureChoices(); RefreshViews(); return true;
+    }
+
     /// <summary>Chooses a legal target for an immediate creature Release.</summary>
     public bool TryChooseCreatureRelease(int targetInstanceId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryRelease(targetInstanceId, catchChainRuntime, effectResolver))
         {
             return false;
@@ -478,6 +554,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Returns the selected discard occurrence to hand before normal refill resumes.</summary>
     public bool TryChooseRecoveredTechnique(int discardIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || PendingCreatureChoice != CreatureEffectChoiceKind.RecoverTechnique
             || !techniqueDeckRuntime.TryRecoverDiscardedTechnique(discardIndex))
         {
@@ -493,6 +570,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Chooses one Buoyant Bell recipient or finishes the optional selection.</summary>
     public bool TryChooseCreatureWeightTarget(int targetInstanceId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseWeightTarget(targetInstanceId, catchChainRuntime, effectResolver)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -503,6 +581,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Resolves or declines Shoal Signal before the suspended attachment action resumes.</summary>
     public bool TryChooseCreatureRedraw(int handIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseRedraw(handIndex, techniqueDeckRuntime, random)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -539,6 +618,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Resolves or declines the shared optional Lionfish release.</summary>
     public bool TryChoosePredatorRelease(int targetId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChoosePredatorRelease(targetId, catchChainRuntime, effectResolver)) return false;
         selectedCatchIndex = -1;
         PrepareCreatureChoice();
@@ -550,6 +630,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Queues the School Call choice and resumes the current action at its normal reveal time.</summary>
     public bool TryChooseNextCreatureEncounter(int offerIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseNextEncounter(offerIndex)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -560,6 +641,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Transfers a released Catch's captured Value after the entire releasing ability completes.</summary>
     public bool TryChooseCreatureValueTransfer(int targetId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseValueTransfer(targetId, catchChainRuntime, effectResolver)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -570,6 +652,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Activates or declines the shared Predator-triggered Sardine sacrifice.</summary>
     public bool TryActivateFeedingFrenzy(int sourceId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryActivateFeedingFrenzy(sourceId, catchChainRuntime, effectResolver)) return false;
         selectedCatchIndex = -1;
         PrepareCreatureChoice();
@@ -581,6 +664,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Discards one technique for room, or finishes the activated capacity-limited draw.</summary>
     public bool TryChooseFeedingDraw(int handIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseFeedingDraw(handIndex, techniqueDeckRuntime, random)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -591,6 +675,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Selects the hand half of a sheltered exchange without moving a card, or declines it.</summary>
     public bool TryChooseExchangeHand(int handIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseExchangeHand(handIndex, techniqueDeckRuntime)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -601,6 +686,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Completes both validated exchange selections atomically before the suspended attachment action resumes.</summary>
     public bool TryChooseExchangeDiscard(int discardIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseExchangeDiscard(discardIndex, techniqueDeckRuntime)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -611,6 +697,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Resolves the mandatory Sea Bass Catch discard before the suspended attachment finishes.</summary>
     public bool TryChooseRequiredTechniqueDiscard(int handIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseRequiredDiscard(handIndex, techniqueDeckRuntime)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -621,6 +708,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Selects one Small creature without removing it, or finishes the simultaneous release selection.</summary>
     public bool TryChooseSelectedCreatureRelease(int targetId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseSelectedRelease(targetId, catchChainRuntime, effectResolver)) return false;
         selectedCatchIndex = -1;
         PrepareCreatureChoice();
@@ -632,6 +720,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Selects Helping Arms' Catch half without changing modes, or declines the activation.</summary>
     public bool TryChooseModeSwapCatch(int catchId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseModeSwapCatch(catchId, catchChainRuntime)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -642,6 +731,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Completes the Helping Arms pair and activates the new Catch before the new Bait.</summary>
     public bool TryChooseModeSwapBait(int baitId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseModeSwapBait(baitId, catchChainRuntime, effectResolver)) return false;
         selectedCatchIndex = -1;
         PrepareCreatureChoice();
@@ -653,6 +743,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Discards one hand technique for exact Spiny Grip recovery, or declines its consumed opportunity.</summary>
     public bool TryChoosePlayedTechniqueRecovery(int handIndex)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChoosePlayedTechniqueRecovery(handIndex, techniqueDeckRuntime)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -669,6 +760,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Resolves the immediate Squid skip decision before any new Technique or core action can be played.</summary>
     public bool TryChooseEncounterSkip(bool skip)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseEncounterSkip(skip, encounterRuntime)) return false;
         PrepareCreatureChoice();
         ResumeAfterCreatureChoices();
@@ -679,6 +771,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Releases a chosen legal Elusive Bait for Slippery Exit, or declines the immediate opportunity.</summary>
     public bool TryChooseMatchingBaitRelease(int targetId)
     {
+        if (IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
         if (!runActive || !creatureEffectRuntime.TryChooseMatchingBaitRelease(targetId, catchChainRuntime, effectResolver)) return false;
         selectedCatchIndex = -1;
         PrepareCreatureChoice();
@@ -696,7 +789,8 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Prepares queued choices once, skipping requests with no eligible targets or offers.</summary>
     private void PrepareCreatureChoice()
     {
-        if (!runActive || creatureEffectRuntime == null)
+        if (!runActive || creatureEffectRuntime == null || IsFailedConfirmedEventAction
+            || eventActionConfirmationInProgress || eventEffectRuntime.IsDispatching)
         {
             return;
         }
@@ -710,6 +804,13 @@ public sealed class FishingRunController : MonoBehaviour
     {
         if (HasPendingCreatureChoice || !runActive)
         {
+            return;
+        }
+
+        if (eventActionAdvanceInProgress || eventActionConfirmationInProgress) return;
+        if (HasConfirmedEventAction)
+        {
+            AdvanceConfirmedEventAction();
             return;
         }
 
@@ -730,6 +831,134 @@ public sealed class FishingRunController : MonoBehaviour
         }
     }
 
+    /// <summary>Registers a specifically approved effect implementation without guessing behavior for legacy event data.</summary>
+    public void RegisterEventEffectHandler(IEventEffectHandler handler)
+    {
+        EnsureRuntimeObjects();
+        eventEffectRuntime.RegisterHandler(handler);
+    }
+
+    /// <summary>Validates/claims an event and commits the requested action, or leaves a failed preflight unconfirmed.</summary>
+    private bool TryConfirmEventAction(ConfirmedEventAction action, out bool handled)
+    {
+        EventEncounterOccurrence occurrence = encounterRuntime.CurrentEventOccurrence;
+        handled = occurrence != null && (occurrence.State == EventOccurrenceState.Unresolved
+            || occurrence.State == EventOccurrenceState.Cancelled || occurrence.State == EventOccurrenceState.Resolving);
+        if (!handled) { eventActionFailure = string.Empty; return true; }
+        if (!encounterRuntime.HasEventReactionWindow) return false;
+        eventActionConfirmationInProgress = true;
+        try
+        {
+            eventActionFailure = string.Empty;
+            bool cancelled = occurrence.State == EventOccurrenceState.Cancelled;
+            if (cancelled)
+            {
+                if (!encounterRuntime.TryCloseCancelledEventWindow(occurrence.Id)) return false;
+            }
+            else if (!eventEffectRuntime.TryBeginResolution(CreateEventResolutionContext(), out string reason))
+            {
+                eventActionFailure = reason;
+                Debug.LogWarning("Event action was not confirmed: " + reason, this);
+                return false;
+            }
+            confirmedEventAction = action;
+            confirmedEventOccurrenceId = occurrence.Id;
+            eventConsequencesComplete = cancelled;
+        }
+        finally { eventActionConfirmationInProgress = false; }
+        AdvanceConfirmedEventAction();
+        return true;
+    }
+
+    /// <summary>Finishes event dispatch/creature work, then performs the committed action exactly once without reopening Techniques.</summary>
+    private void AdvanceConfirmedEventAction()
+    {
+        if (!runActive || !HasConfirmedEventAction || IsFailedConfirmedEventAction
+            || eventActionAdvanceInProgress || HasPendingCreatureChoice) return;
+        eventActionAdvanceInProgress = true;
+        bool actionFinished = false;
+        try
+        {
+            if (encounterRuntime.CurrentEventOccurrence?.Id != confirmedEventOccurrenceId)
+            {
+                RecordEventActionFailure("Confirmed event ownership changed");
+                return;
+            }
+            if (!eventConsequencesComplete)
+            {
+                EventResolutionContext context = CreateEventResolutionContext();
+                EventResolutionProgress progress;
+                do
+                {
+                    progress = eventEffectRuntime.AdvanceResolution(context);
+                    if (progress == EventResolutionProgress.Failed)
+                    {
+                        RecordEventActionFailure(eventEffectRuntime.FailureReason);
+                        return;
+                    }
+                    PrepareCreatureChoice();
+                    if (HasPendingCreatureChoice) return;
+                } while (progress == EventResolutionProgress.WaitingForCreatureReactions);
+                if (progress != EventResolutionProgress.Completed)
+                {
+                    RecordEventActionFailure("Event did not reach its completed boundary");
+                    return;
+                }
+                eventConsequencesComplete = true;
+            }
+            if (confirmedEventAction == ConfirmedEventAction.Descend)
+            {
+                if (!descendCompletionPending) CommitCurrentEncounterForDescend();
+                PrepareCreatureChoice();
+                if (HasPendingCreatureChoice) return;
+                CompletePendingDescend();
+                actionFinished = true;
+            }
+            else if (confirmedEventAction == ConfirmedEventAction.Surface)
+            {
+                PerformSurface();
+                actionFinished = true;
+            }
+        }
+        finally
+        {
+            if (actionFinished) ClearConfirmedEventAction();
+            eventActionAdvanceInProgress = false;
+            RefreshViews();
+        }
+    }
+
+    /// <summary>Reconstructs dispatch context using the same per-run owners, including persistence.</summary>
+    private EventResolutionContext CreateEventResolutionContext()
+    {
+        return new EventResolutionContext(encounterRuntime, catchChainRuntime, creatureEffectRuntime,
+            techniqueDeckRuntime, effectResolver, random, eventPersistenceRuntime, currentBiome, currentDepth);
+    }
+
+    /// <summary>Preserves a failed confirmed action instead of retrying partially applied event consequences.</summary>
+    private void RecordEventActionFailure(string reason)
+    {
+        if (eventActionFailure == reason) return;
+        eventActionFailure = reason;
+        Debug.LogWarning("Confirmed event action stopped: " + reason, this);
+    }
+
+    /// <summary>Clears the completed action latch without changing the next encounter's lifecycle.</summary>
+    private void ClearConfirmedEventAction()
+    {
+        confirmedEventAction = ConfirmedEventAction.None;
+        confirmedEventOccurrenceId = 0;
+        eventConsequencesComplete = false;
+    }
+
+    /// <summary>Aborts pending dispatch/action state when replacing or ending a run.</summary>
+    private void ResetEventActionState()
+    {
+        eventEffectRuntime.Reset();
+        ClearConfirmedEventAction();
+        eventActionFailure = string.Empty;
+    }
+
     /// <summary>Supplies modal labels and callbacks from the runtime queue without adding card-face state.</summary>
     private void RefreshCreatureChoiceView()
     {
@@ -741,6 +970,26 @@ public sealed class FishingRunController : MonoBehaviour
         if (!runActive || !HasPendingCreatureChoice)
         {
             fishingRunView.HideCreatureEffectChoice();
+            return;
+        }
+
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.EventSnagTarget
+            || PendingCreatureChoice == CreatureEffectChoiceKind.EventCreatureRelease)
+        {
+            bool snag = PendingCreatureChoice == CreatureEffectChoiceKind.EventSnagTarget;
+            CardInstance[] targets = snag ? creatureEffectRuntime.GetEventSnagTargets(catchChainRuntime.Catches)
+                : creatureEffectRuntime.GetEventReleaseTargets(catchChainRuntime.Catches);
+            List<string> labels = new List<string>(); List<string> details = new List<string>(); List<Sprite> art = new List<Sprite>();
+            foreach (CardInstance card in targets)
+            {
+                labels.Add(card.Definition.DisplayName + " (" + card.AttachmentRole + ")");
+                details.Add("Weight " + card.CurrentWeight); art.Add(card.Definition.Artwork);
+            }
+            if (!snag) { labels.Add("Decline"); details.Add("Keep all attached creatures."); art.Add(null); }
+            fishingRunView.ShowCreatureEffectChoice(creatureEffectRuntime.ChoiceName,
+                snag ? "Choose one of your heaviest non-Armored creatures." : "You may release one attached creature.",
+                labels.ToArray(), details.ToArray(), art.ToArray(),
+                index => TryChooseEventTarget(index < targets.Length ? targets[index].InstanceId : -1));
             return;
         }
 
@@ -1098,7 +1347,7 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
-        if (HasPendingCreatureChoice)
+        if (!CanReleaseCatch(catchIndex))
         {
             return false;
         }
@@ -1130,6 +1379,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     public void SelectCatchForRelease(int catchIndex)
     {
+        if (!CoreActionInputReady) return;
         if (!runActive || catchIndex < 0 || catchIndex >= catchChainRuntime.Catches.Length)
         {
             selectedCatchIndex = -1;
@@ -1166,11 +1416,20 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
-        if (HasPendingCreatureChoice)
+        if (!CanSurface)
         {
             return false;
         }
 
+        if (!TryConfirmEventAction(ConfirmedEventAction.Surface, out bool handled)) return false;
+        if (handled) return true;
+        PerformSurface();
+        return true;
+    }
+
+    /// <summary>Evaluates the return and records the haul only after any event consequences and reactions finish.</summary>
+    private void PerformSurface()
+    {
         int surfaceStartingLoad = catchChainRuntime.CurrentLineLoad;
         CardInstance[] strainLostCatches = ResolveOverloadRisk(lineCapacity);
         bool lineBroke = lineLoadRiskRuntime.LastOutcome == LineLoadRiskOutcome.LineBroken;
@@ -1179,7 +1438,6 @@ public sealed class FishingRunController : MonoBehaviour
         string surfaceSummary = BuildSurfaceSummary(strainLostCatches);
 
         Debug.Log(surfaceSummary, this);
-        return true;
     }
 
     /// <summary>
@@ -1248,11 +1506,14 @@ public sealed class FishingRunController : MonoBehaviour
             StartRun();
         }
 
+        if (eventActionConfirmationInProgress || eventActionAdvanceInProgress) return false;
+        ResetEventActionState();
         lineCapacity = Mathf.Max(0, scenario.LineCapacity);
         currentDepth = Mathf.Max(0, scenario.Depth);
         selectedCatchIndex = -1;
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
+        eventPersistenceRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueEffectRuntime.Reset();
 
@@ -1413,6 +1674,31 @@ public sealed class FishingRunController : MonoBehaviour
         {
             effectResolver = new EffectResolver();
         }
+        if (eventEffectRuntime == null) eventEffectRuntime = new EventEffectRuntime();
+        if (eventPersistenceRuntime == null) eventPersistenceRuntime = new EventPersistenceRuntime();
+        eventPersistenceRuntime.Bind(catchChainRuntime, effectResolver);
+        CoastalEventHandlers.Register(eventEffectRuntime);
+        creatureEffectRuntime.EventPersistence = eventPersistenceRuntime;
+        catchChainRuntime.BeforeAttachmentEffects -= eventPersistenceRuntime.ApplyPendingBaitWeightReductions;
+        catchChainRuntime.BeforeAttachmentEffects += eventPersistenceRuntime.ApplyPendingBaitWeightReductions;
+        encounterRuntime.EventAvailability = IsEventAvailable;
+    }
+
+    /// <summary>Filters conditional trail events before random selection or Technique replacement.</summary>
+    private bool IsEventAvailable(CardDefinition card, int selectionDepth)
+    {
+        CardEffectDefinition effect = Array.Find(card.Effects ?? Array.Empty<CardEffectDefinition>(),
+            e => e?.EffectType == CardEffectType.ScheduleCreatureTrail);
+        return effect == null || !encounterRuntime.Trail.HasPending && encounterRuntime.ActiveEncounterChain == null
+            && EventEncounterTrailRuntime.IsLegalSlot(currentBiome, currentDepth + effect.Amount, effect.ReplacementCard);
+    }
+
+    /// <summary>Expires biome-scoped modifiers once, retaining cross-biome pending effects.</summary>
+    private void EndBiomeEventEffects()
+    {
+        eventPersistenceRuntime.NotifyBoundary(eventPersistenceRuntime.Epoch, EventEffectLifetime.BiomeEnd,
+            creatureEffectRuntime.BiomeVisit + 1L);
+        encounterRuntime.Trail.Reset();
     }
 
     /// <summary>
@@ -1426,6 +1712,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (TryRevealBiomeApex(selectionDepth))
         {
+            encounterRuntime.Trail.Reset();
             techniqueEffectRuntime.CompleteEncounterReveal();
             return;
         }
@@ -1439,6 +1726,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (biomeApexRuntime.HasReachedBoundary
             && selectionDepth >= biomeApexRuntime.BoundaryDepth)
         {
+            encounterRuntime.Trail.Reset();
             encounterRuntime.SetCurrentEncounter(null);
             techniqueEffectRuntime.CompleteEncounterReveal();
 
@@ -1450,6 +1738,8 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
+        CardDefinition promised = encounterRuntime.Trail.TakeForSlot(currentBiome, currentDepth, selectionDepth, chosen != null);
+        if (chosen == null) chosen = promised;
         bool revealed = chosen != null
             ? encounterRuntime.RevealSelectedCreature(chosen, CurrentBiomeId, selectionDepth,
                 catchChainRuntime.ActiveEffectRecords, effectResolver, techniqueEffectRuntime.PendingEncounterEffects,
@@ -1511,6 +1801,7 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
+        EndBiomeEventEffects();
         encounterRuntime.SetCurrentEncounter(nextWatersEncounter);
         biomeApexRuntime.RecordNextWatersPresented();
 
@@ -1559,11 +1850,12 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     private void EndActiveRun()
     {
+        CaptureEndedRunPresentation();
         runActive = false;
         selectedCatchIndex = -1;
         runEndCleanupPending = true;
+        ResetEndedRunRuntimeState();
         RefreshViews();
-
         if (fishingRunView == null || !fishingRunView.IsSurfaceTransitionPlaying)
         {
             ClearEndedRunState();
@@ -1571,27 +1863,46 @@ public sealed class FishingRunController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Clears active-run ownership after the ascent presentation no longer needs the visible Catch Chain.
-    /// </summary>
-    private void ClearEndedRunState()
+    /// <summary>Freezes the visible rig before clearing gameplay owners; effect records reference only presentation copies.</summary>
+    private void CaptureEndedRunPresentation()
     {
-        if (!runEndCleanupPending)
+        endedRunPresentationLoad = catchChainRuntime.CurrentLineLoad;
+        endedRunPresentationCatches = Array.ConvertAll(catchChainRuntime.Catches, card => card?.CreateSnapshot());
+        List<ActiveCatchEffectRecord> records = new List<ActiveCatchEffectRecord>();
+        foreach (ActiveCatchEffectRecord record in catchChainRuntime.ActiveEffectRecords)
         {
-            return;
+            CardInstance snapshot = Array.Find(endedRunPresentationCatches, card => card != null
+                && card.InstanceId == record.SourceInstance?.InstanceId);
+            if (snapshot != null) records.Add(new ActiveCatchEffectRecord(snapshot, record.Effect, record.ActiveTrigger, record.SourceCatchIndex));
         }
+        endedRunPresentationEffects = records.ToArray();
+    }
 
-        runEndCleanupPending = false;
+    /// <summary>Clears all live event, trail, deck, and creature ownership immediately when the run ends.</summary>
+    private void ResetEndedRunRuntimeState()
+    {
+        ResetEventActionState();
         encounterRuntime.Reset();
         biomeApexRuntime.Reset();
+        eventPersistenceRuntime.Reset();
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Reset();
         techniqueEffectRuntime.Reset();
         creatureEffectRuntime.Reset();
         descendCompletionPending = false;
         biomeEntryRevealPending = false;
+        techniqueRefillPending = false;
         pendingCommittedCatchId = -1;
         selectedSwapTargetId = -1;
+    }
+
+    /// <summary>Releases presentation-only copies after ascent or before a new run without touching current gameplay state.</summary>
+    private void ClearEndedRunState()
+    {
+        runEndCleanupPending = false;
+        endedRunPresentationCatches = Array.Empty<CardInstance>();
+        endedRunPresentationEffects = Array.Empty<ActiveCatchEffectRecord>();
+        endedRunPresentationLoad = 0;
     }
 
     /// <summary>
@@ -1653,9 +1964,9 @@ public sealed class FishingRunController : MonoBehaviour
         if (catchChainView != null)
         {
             catchChainView.Refresh(
-                catchChainRuntime.Catches,
-                catchChainRuntime.ActiveEffectRecords,
-                catchChainRuntime.CurrentLineLoad,
+                DisplayedCatches,
+                DisplayedCatchEffects,
+                DisplayedLineLoad,
                 lineCapacity,
                 selectedCatchIndex,
                 SelectCatchForRelease);
@@ -1676,6 +1987,7 @@ public sealed class FishingRunController : MonoBehaviour
 
             if (encounterPreview != null)
             {
+                eventPersistenceRuntime.PreviewPendingBaitWeightReductions(encounterPreview);
                 resolvedEncounterWeight = encounterPreview.CurrentWeight;
                 resolvedEncounterValue = encounterPreview.HaulValueContribution;
             }
@@ -1694,15 +2006,17 @@ public sealed class FishingRunController : MonoBehaviour
                 resolvedEncounterValue,
                 CurrentEncounterInformationHidden,
                 lineCapacity,
-                catchChainRuntime.CurrentLineLoad,
+                DisplayedLineLoad,
                 techniqueDeckRuntime.DrawPile.Length,
                 selectedCatchIndex,
-                runActive && !HasPendingCreatureChoice
-                    && (!biomeApexRuntime.NextWatersPresented || currentBiome?.NextBiome != null),
+                CanDescend,
+                CanReleaseSelectedCatch,
+                CanSurface,
                 TryDescend,
                 TryReleaseSelectedCatch,
                 TrySurface,
                 CurrentEncounterIdentityHidden);
+            fishingRunView.SetTrailPreview(runActive ? encounterRuntime.Trail.Preview : string.Empty);
         }
 
         if (techniqueHandView != null)

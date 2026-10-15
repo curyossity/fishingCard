@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Silt Burst
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: silt_burst
+  displayName: Silt Burst
+  cardType: 5
+  rarity: 0
+  tags: []
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  rulesText: "Hide your next non-Apex creature until its Catch/Bait choice is committed."
+  rulesTextHighlights: []
+  weight: 0
+  value: 0
+  biomeIds:
+  - Coastal
+  minimumDepth: 4
+  maximumDepth: 17
+  effects:
+  - effectId: silt_burst_effect
+    displayName: Silt Burst
+    effectType: 46
+    trigger: 13
+    target: 6
+    effectTone: 2
+    amount: 1
+    requiredTags: []
+    targetTags: []
+    grantedTag: ''
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId:
+      boundaryCount: 0
+    reminderText: "Conceal the next ordinary creature until commitment or removal; survives biomes. Queue after existing concealment. Events and Apex do not consume it; learned preview information remains known."
+  hasExplicitBaitData: 1
+  baitEffects: []
+  baitRulesText: ''
+  baitRulesTextHighlights: []

@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-15",
+  "status": "implemented; available checks passed",
+  "cards": [
+    "reef_snag",
+    "silt_burst",
+    "gentle_upwelling",
+    "loose_knot",
+    "fresh_shell_fragments"
+  ],
+  "unityReferenceVersion": "6000.5.9f1",
+  "runtimeCompilation": "passed",
+  "editorCompilation": "passed",
+  "newRuntimeAssertions": 57,
+  "rerunRegressionAssertions": 778,
+  "totalRuntimeAssertions": 835,
+  "execution": "Actual runtime sources with minimal Unity API adapters",
+  "assetFieldAndTierAudit": "passed",
+  "unityPlayMode": "unverified",
+  "unityAssetImportAndGUI": "unverified",
+  "unityRendering": "unverified",
+  "eventSpecificArt": "not supplied; no generated placeholder art",
+  "cuttlefish": "existing self-hidden Value unchanged"
+}

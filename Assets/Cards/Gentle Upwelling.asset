@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Gentle Upwelling
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: gentle_upwelling
+  displayName: Gentle Upwelling
+  cardType: 6
+  rarity: 1
+  tags: []
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  rulesText: "The next creature attached as Bait weighs 1 less."
+  rulesTextHighlights: []
+  weight: 0
+  value: 0
+  biomeIds:
+  - Coastal
+  minimumDepth: 1
+  maximumDepth: 15
+  effects:
+  - effectId: gentle_upwelling_effect
+    displayName: Gentle Upwelling
+    effectType: 51
+    trigger: 13
+    target: 4
+    effectTone: 1
+    amount: 1
+    requiredTags: []
+    targetTags: []
+    grantedTag: ''
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    hasEventLifetime: 1
+    eventLifetime:
+      boundaryId:
+      boundaryCount: 0
+    reminderText: "All pending reductions apply to the next creature entering Bait, including a mode change, before own on-attach effects. Minimum 0 Weight; retained across modes until removal."
+  hasExplicitBaitData: 1
+  baitEffects: []
+  baitRulesText: ''
+  baitRulesTextHighlights: []

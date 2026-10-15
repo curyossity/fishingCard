@@ -16,6 +16,113 @@ public sealed class EncounterRuntime
     [SerializeField] private int nextEncounterChainIndex;
     [SerializeField] private EncounterVarietyRuntime encounterVarietyRuntime = new EncounterVarietyRuntime();
 
+    [SerializeField] private EventEncounterOccurrence currentEventOccurrence;
+    [SerializeField] private long nextEventOccurrenceId = 1;
+    [SerializeField] private long nextEventRevealReactionId = 1;
+    public EventEncounterOccurrence CurrentEventOccurrence => currentEventOccurrence;
+    private int activeRevealCallbackDepth;
+    public bool IsRevealReactionInProgress => activeRevealCallbackDepth > 0
+        || currentEventOccurrence != null && !currentEventOccurrence.RevealReactionsComplete
+            && (currentEventOccurrence.State == EventOccurrenceState.Unresolved || currentEventOccurrence.State == EventOccurrenceState.Cancelled);
+    public bool HasTechniqueReactionWindow => activeRevealCallbackDepth == 0
+        && (hookedEncounter != null || HasEventReactionWindow);
+    public bool HasEventReactionWindow => currentEventOccurrence?.IsReactionWindowOpen == true;
+
+    /// <summary>Recognizes non-catchable events without including progression Locations or player cards.</summary>
+    public static bool IsEventCard(CardDefinition card)
+    {
+        return card != null && (card.CardType == CardType.Hazard || card.CardType == CardType.Environment
+            || card.CardType == CardType.Opportunity || card.CardType == CardType.Encounter);
+    }
+
+    /// <summary>Claims only the current unresolved event after reveal reactions; stale and cancelled IDs cannot execute consequences.</summary>
+    public bool TryBeginEventResolution(long occurrenceId, out CardDefinition eventCard)
+    {
+        eventCard = null;
+        if (currentEventOccurrence?.Id != occurrenceId
+            || currentEventOccurrence.State != EventOccurrenceState.Unresolved
+            || !currentEventOccurrence.IsReactionWindowOpen) return false;
+        currentEventOccurrence.BeginResolution();
+        eventCard = currentEventOccurrence.Definition;
+        return true;
+    }
+
+    /// <summary>Completes only the claimed occurrence and discards its visible card without destroying its lifecycle record.</summary>
+    public bool TryCompleteEventResolution(long occurrenceId)
+    {
+        if (currentEventOccurrence?.Id != occurrenceId
+            || currentEventOccurrence.State != EventOccurrenceState.Resolving) return false;
+        currentEventOccurrence.CompleteResolution();
+        if (currentEncounter == currentEventOccurrence.Definition) SetCurrentEncounter(null);
+        return true;
+    }
+
+    /// <summary>Closes a cancelled occurrence at action confirmation without making its effects executable.</summary>
+    public bool TryCloseCancelledEventWindow(long occurrenceId)
+    {
+        if (currentEventOccurrence?.Id != occurrenceId
+            || currentEventOccurrence.State != EventOccurrenceState.Cancelled
+            || !currentEventOccurrence.IsReactionWindowOpen) return false;
+        currentEventOccurrence.CloseCancelledWindow();
+        return true;
+    }
+
+    /// <summary>Defers a reveal reaction during its callback phase, preserving a closed input window until its exact completion.</summary>
+    public bool TryDeferEventRevealReaction(long occurrenceId, out long reactionId)
+    {
+        reactionId = 0;
+        if (currentEventOccurrence?.Id != occurrenceId || !currentEventOccurrence.CanDeferRevealReaction
+            || (currentEventOccurrence.State != EventOccurrenceState.Unresolved
+                && currentEventOccurrence.State != EventOccurrenceState.Cancelled)) return false;
+        reactionId = nextEventRevealReactionId;
+        nextEventRevealReactionId = checked(nextEventRevealReactionId + 1);
+        currentEventOccurrence.DeferRevealReaction(reactionId);
+        return true;
+    }
+
+    /// <summary>Completes one deferred reaction only for the still-current unresolved or cancelled event.</summary>
+    public bool TryCompleteEventRevealReaction(long occurrenceId, long reactionId)
+    {
+        if (currentEventOccurrence?.Id != occurrenceId
+            || (currentEventOccurrence.State != EventOccurrenceState.Unresolved
+                && currentEventOccurrence.State != EventOccurrenceState.Cancelled)) return false;
+        return currentEventOccurrence.TryCompleteRevealReaction(reactionId);
+    }
+
+    /// <summary>Cancels only a current revealed unresolved Hazard, discarding it before notifying rewards exactly once.</summary>
+    public bool TryCancelRevealedHazard(long occurrenceId)
+    {
+        EventEncounterOccurrence occurrence = currentEventOccurrence;
+        if (occurrence?.Id != occurrenceId || occurrence.State != EventOccurrenceState.Unresolved
+            || occurrence.Definition.CardType != CardType.Hazard) return false;
+        occurrence.BeginRevealReactionPhase();
+        occurrence.Cancel();
+        SetCurrentEncounter(null);
+        lastCancelledHazard = occurrence.Definition;
+        HazardCancelled?.Invoke(occurrence.Definition);
+        if (currentEventOccurrence == occurrence) occurrence.CompleteRevealReactions();
+        return true;
+    }
+
+    /// <summary>Replaces a legal current encounter only when an alternative exists; failed replacement preserves its state and chain.</summary>
+    public bool TryReplaceEncounter(int expectedRevision, CardDefinition expectedEncounter, CardDefinition[] pool, string biomeId, int depth,
+        System.Random random, ActiveCatchEffectRecord[] effects, EffectResolver resolver,
+        CardEffectDefinition[] temporaryEffects = null, EncounterChainDefinition[] chains = null)
+    {
+        if (expectedRevision != encounterRevision || expectedEncounter == null || currentEncounter != expectedEncounter
+            || (IsEventCard(expectedEncounter) && (currentEventOccurrence?.State != EventOccurrenceState.Unresolved
+                || !HasEventReactionWindow))
+            || (!IsEventCard(expectedEncounter) && hookedEncounter != expectedEncounter)
+            || !HasAlternativeEncounter(pool, biomeId, depth, expectedEncounter)) return false;
+        Trail.MarkReplaced(expectedEncounter);
+        CancelActiveEncounterChain();
+        return Reveal(pool, biomeId, depth, random, effects, resolver, temporaryEffects, expectedEncounter, chains);
+    }
+
+    [SerializeField] private EventEncounterTrailRuntime trail = new EventEncounterTrailRuntime();
+    public EventEncounterTrailRuntime Trail => trail ?? (trail = new EventEncounterTrailRuntime());
+    public Func<CardDefinition, int, bool> EventAvailability { get; set; }
+
     [SerializeField] private CardDefinition lastCancelledHazard;
     public CardDefinition LastCancelledHazard => lastCancelledHazard;
     public Func<CardDefinition, bool> HazardCancellation { get; set; }
@@ -99,6 +206,7 @@ public sealed class EncounterRuntime
         CardDefinition excludedEncounter = null,
         EncounterChainDefinition[] encounterChains = null)
     {
+        EnsureEncounterCanBeRevealed();
         List<CardDefinition> candidates = new List<CardDefinition>();
         List<int> candidateWeights = new List<int>();
         List<string> candidateWeightLabels = new List<string>();
@@ -124,7 +232,8 @@ public sealed class EncounterRuntime
                     continue;
                 }
 
-                if (card.IsAvailableInBiome(biomeId) && card.IsAvailableAtDepth(depth))
+                if (card.IsAvailableInBiome(biomeId) && card.IsAvailableAtDepth(depth)
+                    && (EventAvailability == null || EventAvailability(card, depth)))
                 {
                     candidates.Add(card);
                 }
@@ -155,9 +264,9 @@ public sealed class EncounterRuntime
         lastCandidateWeightSummary = string.Join(", ", candidateWeightLabels);
         lastSelectedEncounterWeight = candidateWeights[selectedIndex];
         CardDefinition selected = candidates[selectedIndex];
-        SetCurrentEncounter(selected);
         encounterVarietyRuntime.RecordSelectedEncounter(selected);
         BeginEncounterChain(selected, encounterChains);
+        SetCurrentEncounter(selected);
         return true;
     }
 
@@ -215,15 +324,16 @@ public sealed class EncounterRuntime
         CardEffectDefinition[] temporaryEffects = null, EncounterChainDefinition[] chains = null)
     {
         if (chosen?.CardType != CardType.Creature || !chosen.IsAvailableInBiome(biomeId) || !chosen.IsAvailableAtDepth(depth)) return false;
+        EnsureEncounterCanBeRevealed();
         EnsureEncounterVarietyRuntime();
         CancelActiveEncounterChain();
         encounterVarietyRuntime.BeginSelection();
         lastSelectedEncounterWeight = resolver.GetEncounterSelectionWeight(chosen, effects, temporaryEffects);
         lastTotalEncounterWeight = lastSelectedEncounterWeight;
         lastCandidateWeightSummary = "Chosen next encounter: " + chosen.DisplayName;
-        SetCurrentEncounter(chosen);
         encounterVarietyRuntime.RecordSelectedEncounter(chosen);
         BeginEncounterChain(chosen, chains);
+        SetCurrentEncounter(chosen);
         return true;
     }
 
@@ -243,8 +353,8 @@ public sealed class EncounterRuntime
         lastTotalEncounterWeight = 1;
         lastCandidateWeightSummary = $"Biome Apex: {apexEncounter.DisplayName}";
         encounterVarietyRuntime.BeginSelection();
-        SetCurrentEncounter(apexEncounter);
         encounterVarietyRuntime.RecordSelectedEncounter(apexEncounter);
+        SetCurrentEncounter(apexEncounter);
         return true;
     }
 
@@ -279,7 +389,8 @@ public sealed class EncounterRuntime
                 && card != excludedEncounter
                 && IsEncounterCard(card)
                 && card.IsAvailableInBiome(biomeId)
-                && card.IsAvailableAtDepth(depth))
+                && card.IsAvailableAtDepth(depth)
+                && (EventAvailability == null || EventAvailability(card, depth)))
             {
                 return true;
             }
@@ -362,6 +473,10 @@ public sealed class EncounterRuntime
     /// </summary>
     public void Reset(bool preservePendingConcealments = false)
     {
+        Trail.Reset();
+        currentEventOccurrence?.Supersede();
+        currentEventOccurrence = null;
+        // Keep IDs monotonic across resets so callbacks from a previous run cannot claim a new event.
         CompleteConcealedEncounter();
         if (!preservePendingConcealments)
         {
@@ -455,8 +570,8 @@ public sealed class EncounterRuntime
         lastSelectedEncounterWeight = 1;
         lastTotalEncounterWeight = 1;
         encounterVarietyRuntime.RecordAuthoredChainFollowUp();
-        SetCurrentEncounter(chainedEncounter);
         encounterVarietyRuntime.RecordSelectedEncounter(chainedEncounter);
+        SetCurrentEncounter(chainedEncounter);
         return true;
     }
 
@@ -483,20 +598,51 @@ public sealed class EncounterRuntime
         }
     }
 
+    /// <summary>Rejects new reveals before selection, history, or chain state can change during active consequences.</summary>
+    private void EnsureEncounterCanBeRevealed()
+    {
+        if (currentEventOccurrence?.State == EventOccurrenceState.Resolving)
+            throw new InvalidOperationException("Cannot reveal a new encounter while event consequences are resolving.");
+    }
+
     /// <summary>
     /// Cancels protected Hazards before activating encounter state or building any effect records.
     /// </summary>
     public void SetCurrentEncounter(CardDefinition encounter)
     {
+        activeRevealCallbackDepth++;
+        try { ApplyRevealedEncounter(encounter); }
+        finally { activeRevealCallbackDepth--; }
+    }
+
+    /// <summary>Applies one reveal while all nested reveal callbacks keep Technique input closed.</summary>
+    private void ApplyRevealedEncounter(CardDefinition encounter)
+    {
+        if (encounter != null) EnsureEncounterCanBeRevealed();
+        EventEncounterOccurrence revealedEvent = null;
+        if (encounter != null)
+        {
+            currentEventOccurrence?.Supersede();
+            currentEventOccurrence = null;
+            if (IsEventCard(encounter))
+            {
+                revealedEvent = new EventEncounterOccurrence(nextEventOccurrenceId, encounter);
+                nextEventOccurrenceId = checked(nextEventOccurrenceId + 1);
+                currentEventOccurrence = revealedEvent;
+            }
+        }
+        // Clearing presentation alone must not discard an unresolved/cancelled event's action window.
+        if (encounter == null && currentState == EncounterState.Hooked) Trail.MarkReplaced(currentEncounter);
         CompleteConcealedEncounter();
         encounterRevision++;
         lastCancelledHazard = null;
+        currentEncounter = encounter;
         if (encounter?.CardType == CardType.Hazard && HazardCancellation?.Invoke(encounter) == true)
         {
-            lastCancelledHazard = encounter;
-            encounter = null;
+            TryCancelRevealedHazard(revealedEvent.Id);
+            if (revealedEvent == currentEventOccurrence) revealedEvent.CompleteRevealReactions();
+            return;
         }
-        currentEncounter = encounter;
         if (encounter?.CardType == CardType.Creature)
         {
             PendingConcealment concealment = pendingConcealments.Find(c => c.Remaining > 0);
@@ -512,7 +658,7 @@ public sealed class EncounterRuntime
             hookedEncounter = null;
             currentState = EncounterState.None;
             RebuildHookedEffectRecords();
-            if (lastCancelledHazard != null) HazardCancelled?.Invoke(lastCancelledHazard);
+            if (revealedEvent == currentEventOccurrence) revealedEvent?.CompleteRevealReactions();
             return;
         }
 
@@ -530,6 +676,7 @@ public sealed class EncounterRuntime
         currentState = EncounterState.Encountered;
         RebuildHookedEffectRecords();
         EncounterRevealEffects?.Invoke(encounter);
+        if (revealedEvent == currentEventOccurrence) revealedEvent?.CompleteRevealReactions();
     }
 
     /// <summary>

@@ -1,0 +1,20 @@
+{
+  "task": "EVT-08",
+  "date": "2026-10-15",
+  "status": "available validation complete; Unity checks unverified",
+  "unityReferenceVersion": "6000.5.9f1",
+  "runtimeCompilation": "passed",
+  "editorCompilation": "passed",
+  "newIntegrationAssertions": 44,
+  "previousAssertions": 774,
+  "totalAssertions": 818,
+  "execution": "Actual runtime sources with minimal Unity API adapters",
+  "unityStartupProbe": "failed: missing headless entitlement and Package Manager IPC",
+  "unityPlayMode": "unverified",
+  "unityEditorAuthoring": "unverified",
+  "unityUndoRedo": "unverified",
+  "unitySerializationRoundTrips": "unverified",
+  "renderedUI": "unverified",
+  "durableUnityCommand": "Fishing Cards/Validation/All Event Integration Checks",
+  "approvedEventHandlers": "Required per supplied definition; no production mechanics inferred"
+}

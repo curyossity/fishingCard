@@ -26,7 +26,6 @@ public abstract class CardCatalogWindow : EditorWindow
     [SerializeField] private Vector2 detailsScroll;
     [SerializeField] private string searchText = string.Empty;
     [SerializeField] private int scope;
-    [SerializeField] private bool showCatchOnlyFields;
     [SerializeField] private CardDefinition selectedCard;
 
     /// <summary>Loads authored cards and biome definitions whenever the window becomes active.</summary>
@@ -126,7 +125,7 @@ public abstract class CardCatalogWindow : EditorWindow
             DefinitionsLabel,
             EditorStyles.boldLabel);
         EditorGUILayout.HelpBox(
-            "Select a row to edit every authored field. Biome IDs and depth values are eligibility constraints; actual tier membership is edited in the details pane.",
+            "Select a row to edit card data. Biome IDs and depth values are eligibility constraints; actual tier membership is edited in the details pane.",
             MessageType.Info);
 
         DrawCatalogHeader();
@@ -224,22 +223,27 @@ public abstract class CardCatalogWindow : EditorWindow
         EditorGUILayout.Space(6f);
 
         EditorGUI.BeginChangeCheck();
-        DrawSection("Identity", cardObject, "uniqueId", "displayName", "cardType", "rarity");
+        DrawIdentitySection(cardObject);
         DrawTagsSection(cardObject);
         DrawArtworkSection(cardObject);
         DrawRulesTextSection(cardObject);
         DrawSection("Availability Constraints", cardObject, "biomeIds", "minimumDepth", "maximumDepth");
-        DrawSection(IsEventCatalog ? "Event Effects" : "Catch Effects", cardObject, "effects");
         if (IsEventCatalog)
         {
-            showCatchOnlyFields = EditorGUILayout.Foldout(showCatchOnlyFields, "Catch-only fields", true);
-            if (showCatchOnlyFields)
-            {
-                DrawCatchFields(cardObject);
-            }
+            EditorGUILayout.HelpBox(
+                "Events use one description and effect list. They have no Weight, sale Value, Catch/Bait modes, or chain attachment. Legacy catch fields are preserved in the asset and ignored here.",
+                MessageType.Info);
+            DrawSection("Event Effects", cardObject, "effects");
+            EditorGUILayout.HelpBox(
+                "Effects require an approved registered event handler. An enum choice alone does not enable a mechanic. The handler validates trigger, target, and duration before confirmation; unsupported data leaves the reaction window open. No event in this batch forces Release.",
+                MessageType.Info);
+            EditorGUILayout.HelpBox(
+                "For pending effects or modifiers, enable Has Event Lifetime and use the approved handler's boundary ID and positive count, or a blank ID for run-end cleanup. Expires After Use is legacy metadata and does not define an event duration.",
+                MessageType.None);
         }
         else
         {
+            DrawSection("Catch Effects", cardObject, "effects");
             DrawCatchFields(cardObject);
         }
         bool cardFieldsChanged = EditorGUI.EndChangeCheck();
@@ -259,7 +263,28 @@ public abstract class CardCatalogWindow : EditorWindow
         EditorGUILayout.EndVertical();
     }
 
-    /// <summary>Keeps the shared definition's Catch/Bait fields editable without crowding event authoring.</summary>
+    /// <summary>Draws event-only type choices while retaining rarity as encounter selection metadata.</summary>
+    private void DrawIdentitySection(SerializedObject cardObject)
+    {
+        if (!IsEventCatalog)
+        {
+            DrawSection("Identity", cardObject, "uniqueId", "displayName", "cardType", "rarity");
+            return;
+        }
+
+        DrawSection("Identity", cardObject, "uniqueId", "displayName");
+        SerializedProperty type = cardObject.FindProperty("cardType");
+        CardType[] types = { CardType.Hazard, CardType.Environment, CardType.Opportunity, CardType.Encounter };
+        string[] labels = { "Hazard", "Environment", "Opportunity", "Encounter" };
+        int current = Array.IndexOf(types, (CardType)type.intValue);
+        int selected = EditorGUILayout.Popup("Event Type", current, labels);
+        if (selected != current && selected >= 0) type.intValue = (int)types[selected];
+        EditorGUILayout.PropertyField(cardObject.FindProperty("rarity"), new GUIContent("Encounter Rarity"));
+        EditorGUILayout.HelpBox(
+            "Rarity and tags are encounter metadata. Events display no rarity hooks or tag rail.", MessageType.None);
+    }
+
+    /// <summary>Edits stats and Bait data only in the catch catalog.</summary>
     private static void DrawCatchFields(SerializedObject cardObject)
     {
         DrawSection("Catch Stats", cardObject, "weight", "value", "randomizeValueWhenCaught",
@@ -347,7 +372,7 @@ public abstract class CardCatalogWindow : EditorWindow
             "Add a highlighted word or phrase, then choose its color and relative size. Every matching occurrence is styled on the central encounter card. Whole Word prevents partial matches inside longer words.",
             MessageType.None);
         EditorGUILayout.PropertyField(cardObject.FindProperty("rulesTextHighlights"), true);
-        if (!IsEventCatalog || showCatchOnlyFields)
+        if (!IsEventCatalog)
         {
             EditorGUILayout.Space(8f);
             EditorGUILayout.LabelField("Bait", EditorStyles.miniBoldLabel);
@@ -672,7 +697,7 @@ public abstract class CardCatalogWindow : EditorWindow
         }
 
         return ContainsSearch(card.RulesText)
-            || ContainsSearch(card.BaitRulesText)
+            || (!IsEventCatalog && ContainsSearch(card.BaitRulesText))
             || ContainsSearch(card.DisplayName)
             || ContainsSearch(card.UniqueId)
             || ContainsSearch(card.CardType.ToString())

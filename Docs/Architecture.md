@@ -92,7 +92,7 @@ Shared editor-only authoring workspace for card catalogs.
 Owns:
 - Asset discovery under Assets/Cards and Assets/Biomes, name sorting, search by rules/name/ID/type/rarity/tags/biome, and category filtering
 - Selection and scroll/filter state retained through editor reloads, with visible selection reconciled after filtering/deletion/type edits
-- Serialized editing of every CardDefinition field with Undo/Redo, dirty tracking, Save Changes, and Locate Asset
+- Serialized editing of supported card-group fields with Undo/Redo, dirty tracking, Save Changes, and Locate Asset; event editing preserves but does not expose Catch/Bait stats or mode data
 - Controlled creature/Apex tags and free-form event tags
 - Rules-text highlighting metadata and aspect-preserving artwork previews
 - Actual biome depth-tier pool membership, including complete removal of duplicate references when unchecked
@@ -117,7 +117,9 @@ Owns:
 - All Events, Hazards, Environments, Opportunities, and Other Events category filters
 - Inclusion of Hazard, Environment, Opportunity, and generic Encounter definitions
 - Event-focused overview without Catch Weight/Value columns, single event rules/effects sections, free-form tags, artwork and availability editing
-- Optional Catch-only fields foldout preserving access to the shared definition's remaining fields
+- Event-only type selection; encounter rarity/tags remain clearly labelled metadata without face hooks or tag rails
+- Handler/lifetime authoring guidance: shared effect enum choices require approved registered handlers; no implied mechanics or legacy duration
+- Catch-only serialized fields remain untouched and hidden, rather than editable as event behavior
 
 Treasure, creatures, Apex, player-deck cards, and Location progression cards remain outside this event catalog. Event editing does not add Catch/Bait behavior or new runtime mechanics.
 
@@ -156,11 +158,14 @@ Owns:
 - Line Capacity
 - Initial run setup and shutdown
 - Coordination of Descend, Release, and Surface
+- Shared CanDescend, CanSurface, and CanReleaseCatch/CanReleaseSelectedCatch availability for both command validation and view controls; reveal/action/choice locks also block catch selection
 - Suspending Descend after attachment until immediate creature choices finish
 - Entering an authored destination biome after next-waters presentation without resetting the run build
 - Deferring the first new-biome encounter until entry choices finish
-- Technique-card entry point for the Hooked reaction window
-- Required event coordination: legal Techniques after reveal reactions even following cancellation, confirmed Descend/Surface locked through event consequences and creature reactions, then the action
+- Technique-card entry point for catchable and event reaction windows, including after cancelled-event discard
+- ConfirmedEventAction and occurrence identity: preflight locks reentrant input, accepted Descend/Surface stays locked through consequences and queued creature choices, then executes once
+- Registering approved event handlers and exposing preflight/dispatch failures; unsupported data leaves the pre-action window open, while partial dispatch failures stay locked until explicit run reset
+- Immediate run-ending runtime cleanup after result capture; separate catch/effect/load snapshots preserve ascent presentation without retaining live gameplay state
 - Inspector configuration and debug action wrappers
 - Loading repeatable Catch Chain decision scenarios during Play Mode
 - Optional view refreshes and action summaries
@@ -176,6 +181,8 @@ Delegates to:
 - `BiomeApexRuntime` for one-per-run Apex selection and resolution state
 - `CatchChainRuntime` for catches, Line Load, and attached effects
 - `CreatureEffectRuntime` for ordered creature attachment/biome-entry choices
+- `EventEffectRuntime` for validated event consequence dispatch and reaction suspension
+- `EventPersistenceRuntime` for pending/applied event ownership, explicit lifetimes, and cleanup
 - `NegativeEffectRuntime` for exact removable negative occurrences
 - `LineLoadRiskRuntime` for overload checks and tuning
 - `EffectResolver` for catch interactions, attraction, and encounter concealment
@@ -215,7 +222,7 @@ Does not own:
 
 Role:
 Collect exact removable active negative occurrences across attached effects,
-lasting applied stat modifiers, Hooked records, queued Technique effects, and
+lasting applied stat modifiers, Hooked records, queued Technique effects, exact event pending/applied lifetime occurrences, and
 exact independent pending/current Ink concealment occurrences.
 Options delegate removal to each owning runtime; they do not mutate authored
 assets. Completed information/actions and base statistics are not candidates.
@@ -227,6 +234,61 @@ Reusable modal-layer presentation for negative-effect choices and two-stage
 Catch/replacement selection. Owns scrolling option rows, typography, portraits,
 input blocking, and callback forwarding. Eligibility, ordering, and resolution
 remain in runtime owners. Choice information does not alter card-face layouts.
+
+### `EventEffectRuntime`
+
+Role:
+Serializable owner of an event's validated consequence plan and once-only dispatch cursor. It exposes Ready, WaitingForCreatureReactions, Completed, and Failed progress without owning depth, haul results, or a confirmed core action.
+
+Owns:
+- Registration of approved IEventEffectHandler implementations by effect type; no implicit mapping from legacy event descriptions to new behavior
+- Whole-plan validation before claiming the current unresolved/reveal-complete occurrence; unsupported, malformed, or rejected effect data leaves the event window open and executes nothing
+- A structural snapshot of the validated effect array, current occurrence identity/source, dispatch cursor, and applied/no-target counts
+- Guarded ordered effect calls, claiming each cursor step before invoking effect code to prevent callback reentry or duplicate execution
+- Waiting for CreatureEffectRuntime's queue to become empty before dispatching another effect or completing/discarding the event
+- Current event/runtime-owner validation; coincident IDs from another run cannot address the active plan
+- Fault state that preserves closed input and rejects retries after a handler partially applies mutations or throws
+- Reset of unfinished dispatch state; coordinated EncounterRuntime reset aborts the owned occurrence at run ending
+
+Delegates to:
+- EncounterRuntime for consequence claim, lifecycle guards, final resolution/discard, and Technique-window closure
+- IEventEffectHandler implementations for specifically approved effects, targeting, timing, duration validation, and mutations through existing runtime owners
+- CreatureEffectRuntime for resulting reaction/choice queue state; callers prepare and finish that queue before resuming dispatch
+
+Does not own:
+- Event-specific mechanics not yet supplied or approved
+- Confirming/resuming Descend or Surface; FishingRunController owns the confirmed action and resumes it after the reaction queue completes
+- Named duration boundary emission and specific card rules; shared lifetime ownership is provided by EventPersistenceRuntime
+- Presentation or choice UI
+
+### `IEventEffectHandler`, `EventResolutionContext`, and result enums
+
+Role:
+The handler contract validates an authored effect before execution and resolves it once as Applied or NoEligibleTarget. Handlers queue resulting creature work in the existing owner and do not reopen Techniques, attach the event itself, or grant forced Releases for this batch. EventResolutionContext binds one occurrence to the run's encounter, chain, creature, deck, resolver, and random owners. Context reconstruction is permitted for the same owners; restored serialized dispatch requires runtime setup to rebind its approved handlers and context. This rebinding simulation is tested, but Unity serialization round trips remain unverified.
+
+EventEffectRuntime is usable as a complete dispatch boundary independently of controller actions. Production event handlers are supplied with approved individual card definitions; no legacy card behavior was guessed or enabled by this task. Unknown effect types fail preflight with a reason rather than silently disappearing.
+
+### `EventPersistenceRuntime`, `PersistentEventEffect`, and `EventEffectLifetime`
+
+Role:
+Per-run owner of event-created pending effects and recipient stat modifiers after the event card is discarded. The lifetime descriptor is explicit: until run cleanup (or an applied target leaving the chain), or a named card-authored boundary counted a positive number of times. No generic encounter/biome expiry rule is inferred.
+
+Owns:
+- Independent monotonic effect IDs, source event occurrence/definition/effect provenance, pending/applied state, recipient instance IDs, and copied lifetime counters
+- Explicit pending claims or transfer to an existing recipient without restarting lifetime
+- Named boundary notifications with monotonic tokens, duplicate rejection, and run epochs rejecting old cleanup/expiry callbacks
+- Exact positive/negative expiry and negative-effect cleansing without reversing other sources or native/untracked mutations
+- Pruning removed/exchanged recipients and modifier records removed through existing APIs; historical snapshots are never mutation targets
+- Resetting pending effects, undoing live target contributions, clearing boundary history, and invalidating old epochs at run cleanup
+
+Integration:
+- CardEffectDefinition exposes EventLifetime only when hasEventLifetime is enabled. Legacy definitions have no inferred event duration. The collector's recursive effect editing exposes this descriptor; supported boundary names/counts must come from approved card definitions and handlers.
+- CardInstance.AddEventModifier stores an event effect ID on immutable AppliedCatchModifier provenance. TryRemoveTrackedModifier supports exact positive expiry as well as negative removal; legacy TryRemoveAppliedModifier retains its negative-only contract. Recalculation and mode changes retain event contributions and their counters.
+- NegativeEffectRuntime collects the persistence owner's pending/applied options once, avoiding duplicate recipient provenance. Unowned tracked negative modifiers remain cleanseable through the existing modifier path. Event persistence options delegate exact-ID removal to their owner.
+- FishingRunController binds one persistence owner to its chain/resolver at setup, includes it in Quick Clean, and resets it before clearing the chain on new runs, debug scenario replacement, and run-ending cleanup. Haul/loss snapshots retain their resolved values.
+- EventResolutionContext requires the run's explicit persistence owner; context reconstruction must reuse it. The dispatch engine checks this owner alongside the other runtime owners. Approved effect handlers choose a target and lifetime explicitly rather than inventing timing inside this store.
+
+Duration boundary emission and concrete effect handlers are supplied by action coordination/approved card definitions. This task adds the complete ownership and expiry boundary, not an automatic new gameplay clock or guessed legacy event mechanic. Unity serialization round trips remain unverified; rebuilding modifier provenance by stable IDs is covered by rule checks.
 
 ### `TechniqueDeckRuntime`
 
@@ -273,7 +335,9 @@ Runtime owner of Technique-card rules and effects that wait for the next Descend
 
 Owns:
 - Checking whether a Technique card has a valid target in the Hooked reaction window
-- Required event validation: legal Technique targets during an event's pre-action window, including after cancellation; no blanket Hooked-only prerequisite and no new Technique plays after resolution starts
+- Validation of legal attached-card/delayed effects during event windows, including after cancellation, without requiring a Hooked encounter
+- Authored HookedEncounter versus CurrentEncounter targets, effective attached-target restrictions, and missing/discarded encounter rejection
+- Backend entry checks preventing Technique execution or queuing during reveal reactions or closed/resolving/resolved windows
 - Immediate avoidance, replacement, and information reveal
 - Queued next-Descend and next-encounter effects
 - Temporary capacity, depth, committed-catch, and overload-reward resolution
@@ -302,7 +366,11 @@ Owns:
 - Sampling distinct eligible ordinary-creature offers without advancing normal encounter/history state
 - Encountered, Hooked, Caught, and None state transitions
 - Current Hooked encounter
-- Required event lifecycle: distinguish an unresolved event, a cancelled/replaced event, resolution begun, and resolution completed independently of whether a visible card remains
+- Current EventEncounterOccurrence, monotonic per-runtime occurrence IDs, event-only classification, and lifecycle ownership independent of the visible card
+- Guarded event consequence claim/completion and cancelled-window closure; stale or terminal occurrences cannot claim effects
+- Nested reveal callback phases and exact deferred-reaction tokens; the pre-action window opens only after callbacks and all registered reactions finish
+- Guarded explicit Hazard cancellation and encounter-revision-validated replacement without mutating failed replacement state
+- Selection/history/chain bookkeeping established before reveal observers; new reveals rejected before bookkeeping during active consequences
 - Hooked effect records and Technique-effect relevance
 - Active encounter chain and the index of its next queued card
 - Prioritizing a valid queued chain card before normal weighted selection
@@ -325,6 +393,22 @@ Does not own:
 - Encounter pool authoring or attraction-weight calculation
 - Repetition history or filtering policy
 - Effect execution
+
+### `EventEncounterOccurrence` and `EventOccurrenceState`
+
+Role:
+Serializable per-reveal event state owned by EncounterRuntime. Public properties expose identity, authored definition, Unresolved/Cancelled/Replaced/Resolving/Resolved state, reveal-reaction completion, and whether the pre-action window is open. It has no Catch/Bait role, Weight, sale Value, or attachment state.
+
+Lifecycle:
+- SetCurrentEncounter creates a new occurrence only for Hazard, Environment, Opportunity, or generic Encounter; the same definition revealed twice gets different IDs.
+- Full Hazard cancellation records Cancelled before cancellation observers run. After nested reveal callbacks and all deferred reactions finish, that occurrence retains a pre-action window even though CurrentEncounter is null.
+- Clearing visible presentation alone preserves current event ownership. A new non-null encounter supersedes unresolved consequences, closes the previous window, and establishes independent ownership.
+- TryBeginEventResolution claims only the current unresolved, reveal-complete occurrence, returning its authored definition and closing its window. TryCompleteEventResolution accepts only that current Resolving ID, records Resolved, and discards the visible event.
+- TryCloseCancelledEventWindow closes a cancelled occurrence without changing its outcome or allowing effects. Duplicate/stale calls return false.
+- Reset clears the current occurrence and closes its window but keeps the ID counter monotonic, including biome resets, so old callbacks cannot address new-run events.
+- New non-null encounters cannot replace an event while it is Resolving. TryDeferEventRevealReaction registers exact runtime tokens during reveal/cancellation callbacks; TryCompleteEventRevealReaction accepts each token once for its original current event. Callback depth and pending tokens prevent early reopening, including nested cancellation. Future action coordination owns confirmation, consequence dispatch, and action resumption.
+
+This is lifecycle state infrastructure. EVT-03 enables legal Technique input using HasTechniqueReactionWindow in both the controller and effect backend. EVT-04 supplies the validated consequence dispatcher and creature-queue completion boundary. EVT-05 provides pending-effect/modifier lifetime ownership and Quick Clean/cleanup. EVT-06 coordinates confirmed Descend/Surface through those owners before performing the action.
 
 ### `BiomeApexRuntime`
 
@@ -600,6 +684,8 @@ Does not own:
 
 ### `CardView`
 
+For events, the fallback view leaves rarity, stats, tags, and encounter-state fields empty; only identity, type, art, and description are presented. Production CreatureCardView uses the supplied event master and suppresses Catch/Bait interaction and feedback, including programmatic role selections.
+
 Role:
 Presentation component for showing card data in UI.
 
@@ -646,7 +732,7 @@ Does not own:
 
 ### Approved event lifecycle contract
 
-This is the required contract for the upcoming event-card implementation. The current flow descriptions below describe existing runtime paths and do not establish that this expanded event window is implemented.
+This is the required contract for the upcoming event-card implementation. EVT-01 implements per-occurrence lifecycle state and guarded transitions. EVT-02 implements reveal reaction completion, explicit Hazard cancellation, and guarded replacement paths. EVT-03 enables legal player Techniques in event windows, including after cancellation. EVT-04 supplies consequence dispatch through registered approved handlers, waiting for creature reactions before completion. EVT-05 supplies explicit lifetime tracking and precise expiry/cleanup. EVT-06 integrates confirmed actions, queue resumption, input locking, and immediate shutdown cleanup. Production handlers still require approved individual card definitions; unsupported legacy effect data fails preflight before confirmation. EVT-07 supplies controller-owned input availability and event-only collector fields. EVT-08 supplies combined runtime regressions and Unity validation/capture commands. Unity execution, authoring round trips, and screenshots remain unverified here because isolated editor startup cannot obtain its headless entitlement.
 
 1. EncounterRuntime owns the revealed event and its per-occurrence lifecycle. Resolve automatic reveal reactions, including full Hazard cancellation and creature cancellation rewards, before event consequences. Events never become Catch Chain attachments and have no Catch/Bait role, Weight, or sale Value.
 2. FishingRunController keeps the pre-action Technique window open after reveal reactions, even when cancellation has discarded the visible card. TechniqueEffectRuntime validates each Technique against its own legal targets/conditions; an event window must not require a Hooked card.
@@ -671,7 +757,7 @@ Current run startup flow:
 
 Current Descend flow:
 
-1. `FishingRunController.TryDescend()` resolves the always-available Descend action.
+1. `FishingRunController.TryDescend()` validates action availability. For an event, it confirms Descend, resolves consequences and resulting creature choices, then enters the normal action path. Cancelled events close their reaction window without consequences; unsupported effects reject confirmation without closing the window. No event resolution advances depth.
 2. `EncounterRuntime` returns the Hooked card for commitment, if one exists.
 3. `CatchChainRuntime` creates a `CardInstance` in the selected Catch/Bait role, resolves any pending next-matching-catch bonuses onto it, appends it, and tracks its catch-related effects. `CreatureEffectRuntime` stamps its biome origin and queues immediate attachment choices. Descend pauses here until those choices finish; completed cleanup effects are not tracked as ongoing passive effects.
 4. `TechniqueEffectRuntime` consumes pending Descend effects for catch stats, distance, capacity, risk, and overload rewards.
@@ -679,7 +765,7 @@ Current Descend flow:
 6. Current Line Load updates from the resolved instance weights.
 7. `LineLoadRiskRuntime` checks for strain using any one-use capacity bonus.
 8. If the break check succeeds, `CatchChainRuntime` randomly loses between one catch and half of the attached chain, records those cards as Line Strain losses, and the run ends immediately.
-9. A line-break ending uses the shared accelerated Surface replay while retaining the surviving Catch Chain on screen; active run state is cleared only after that presentation completes.
+9. A line-break ending snapshots the result and surviving chain for the shared accelerated Surface replay, then immediately clears active runtime owners and trails. Presentation snapshots retain resolved stats and copied effect-record sources; replay completion only clears those snapshots.
 10. If the line holds, current depth advances using any one-use distance modifier.
 11. `TechniqueDeckRuntime` refills the hand as required.
 12. `BiomeDefinition` supplies the tier pool at the effective selection depth.
@@ -733,14 +819,14 @@ Current Release flow:
 
 Current Surface flow:
 
-1. `FishingRunController.TrySurface()` records the starting Surface load.
+1. `FishingRunController.TrySurface()` validates availability and, for an event, confirms Surface and resolves consequences and creature choices first. Only then does it record the starting Surface load. New Techniques, Release, and alternate core actions remain blocked throughout the confirmed pipeline.
 2. `LineLoadRiskRuntime` checks for strain when the line is overloaded.
 3. A successful break check randomly loses between one catch and half of the attached chain; a held check preserves the overloaded chain.
 4. `FishingRunResult` snapshots the remaining haul, released catches, and overload-lost catches, then records value, depth, starting Line Load, capacity, overload state, and whether a line break forced the ending.
 5. An unresolved Hooked encounter is excluded because it has not entered the Catch Chain.
 6. `RunRewardRuntime` converts resolved haul value to Gold, adds it to the in-memory wallet, and records the award on the result.
-7. The active run ends and the accelerated Surface replay begins while the surviving Catch Chain remains visible.
-8. Transient encounter, Catch Chain, effect, and Technique-deck state is cleared after the replay completes.
+7. The controller captures separate presentation copies of the surviving chain, effect records, and load, ends the active run, and immediately clears event dispatch, pending effects/modifiers, encounters/trails, creature choices, Catch Chain, and Technique-deck state.
+8. The accelerated Surface replay uses the presentation copies. Replay completion clears only these copies; a new run also clears them before initialization.
 9. `RunResultView` presents the reward and separate brought-home, released, and lost lists; line-break endings are identified explicitly, and the same details remain Inspector-visible and appear in the Console summary.
 
 Current between-run progression flow:
@@ -819,7 +905,7 @@ The right status region uses the supplied 416 x 748 outer frame, 416 x 256 Depth
 
 Descend, Release, and Surface use their supplied plate and icon pairs as reusable Unity buttons. Labels and selected-catch numbering remain runtime-owned. `LinkedGraphicButton` extends the standard `Button` color transition to the icon and label so hover, controller selection, press, and disabled state remain synchronized without baking those states into the base artwork. Release keeps its destructive coral plate; Surface keeps dark label text against its ivory plate.
 
-It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules. The current Encounter region uses two reusable `CreatureCardView` presentation slots so Descend can slide the outgoing card upward while the incoming card rises from below without allocating a new card each time. Catch cards expose their supplied Catch and Bait effect panels as mutually exclusive click targets, defaulting to Catch for each newly presented encounter. `CreatureCardView` owns the selected/unselected feedback and reports `EffectChoiceChanged`; `FishingRunView` forwards the active card's choice as `EncounterEffectChoiceChanged`. `FishingRunController` reads that choice when Descend commits the Hooked encounter and passes the corresponding `CatchAttachmentRole` into `CatchChainRuntime`. A procedural wavy stencil changes the actual top-to-bottom reveal silhouette, and a separate soft mask feathers the card itself without drawing a visible wave overlay or making the entire card suddenly translucent. The inactive slot holds no independent gameplay state, and the transition is triggered only by a supplied depth increase. For presentation only, `FishingRunView` records one immutable encounter snapshot per visited depth. Surface continuously replays the previous catch-card snapshots from deepest to shallowest with linear reverse card motion and the wave fade, skipping event-card snapshots and accelerating each successive transition to a capped speed without settling on individual cards, then raises `SurfaceTransitionCompleted`; `FishingRunController` keeps `RunResultView` hidden until that signal and refreshes it afterward. These snapshots do not preserve or restore gameplay state. The region does not repeat encounter state, tags, or statistics outside the card. `FishingRunViewPrefabBuilder` is the editor-owned assembly path for the prefab, supplied complete background, scene installation, project sorting layers, and static responsive captures.
+It renders state supplied by `FishingRunController` and forwards player commands without resolving gameplay rules. Descend, Release, and Surface each receive independent controller-owned availability, including during cancelled-event windows with no visible card. Disabled command callbacks do not forward input; Descend also retains its presentation transition guard. Technique slots receive their own legal-target availability and restriction reasons. The current Encounter region uses two reusable `CreatureCardView` presentation slots so Descend can slide the outgoing card upward while the incoming card rises from below without allocating a new card each time. Catch cards expose their supplied Catch and Bait effect panels as mutually exclusive click targets, defaulting to Catch for each newly presented encounter. `CreatureCardView` owns the selected/unselected feedback and reports `EffectChoiceChanged`; `FishingRunView` forwards the active card's choice as `EncounterEffectChoiceChanged`. `FishingRunController` reads that choice when Descend commits the Hooked encounter and passes the corresponding `CatchAttachmentRole` into `CatchChainRuntime`. A procedural wavy stencil changes the actual top-to-bottom reveal silhouette, and a separate soft mask feathers the card itself without drawing a visible wave overlay or making the entire card suddenly translucent. The inactive slot holds no independent gameplay state, and the transition is triggered only by a supplied depth increase. For presentation only, `FishingRunView` records one immutable encounter snapshot per visited depth. Surface continuously replays the previous catch-card snapshots from deepest to shallowest with linear reverse card motion and the wave fade, skipping event-card snapshots and accelerating each successive transition to a capped speed without settling on individual cards, then raises `SurfaceTransitionCompleted`; `FishingRunController` keeps `RunResultView` hidden until that signal and refreshes it afterward. These snapshots do not preserve or restore gameplay state. The region does not repeat encounter state, tags, or statistics outside the card. `FishingRunViewPrefabBuilder` is the editor-owned assembly path for the prefab, supplied complete background, scene installation, project sorting layers, and static responsive captures.
 
 `CatchChainView`, `TechniqueHandView`, and `RunResultView` are installed in their owning prefab regions and continue to build their internal dynamic content. Their model/controller boundaries are unchanged; the prefab owns placement and render-layer context.
 
@@ -949,6 +1035,43 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 - Existing one-time Bait abilities retain their activation keys across mode swaps. Crab release and frozen Jellyfish target selection spend their first Bait activation even without targets. Mussel protection expires when leaving Bait, while independent Tangle/Spiny Grip queues and completed Value bonuses retain their authored durations.
 - FishingRunController presents mandatory discard, simultaneous release selection/finish, two-stage mode pairing/decline, and exact recovery discard/decline through the existing creature-choice modal. Source-role validation prevents stale on-attach requests from operating in a different role. Gameplay actions remain blocked until the ordered queue completes. New effect enum values append after existing serialized entries.
 
+### Event reveal, cancellation, and replacement integration
+
+- EncounterRuntime.TryCancelRevealedHazard accepts only a current Unresolved Hazard ID. It discards presentation, preserves the Cancelled occurrence, and dispatches HazardCancelled exactly once; non-Hazards, stale IDs, Resolving/Resolved, and already-Cancelled occurrences are rejected. Existing Mussel protection invokes this path before the event reveal-effect callbacks; Weathered Shell observes the discarded Hazard and updated cancellation state.
+- EventEncounterOccurrence tracks nested reveal callback depth and independently identified pending reveal reactions. Reveals/cancellation notifications can register deferred tokens while callbacks run. Completion rejects stale occurrence IDs, wrong tokens, and duplicate completions, and cannot release another pending reaction. No pre-action window or consequence claim opens until all callbacks/tokens complete.
+- EncounterRuntime.TryReplaceEncounter validates the current encounter revision, target, eligible event window/Hooked state, and existence of an alternative before cancelling the old chain or drawing. Failure leaves the original occurrence/chain intact. A successful reveal supersedes unresolved consequences without emitting cancellation for the replaced event; a new Hazard reveal may independently be cancelled.
+- TechniqueEffectRuntime routes replacement effects through this API, including unresolved event targets in its effect backend. FishingRunController now validates HasTechniqueReactionWindow and supports this event replacement path when the Technique targets CurrentEncounter. HookedEncounter-only Techniques retain their catchable target requirement.
+- Normal, authored-chain, selected-creature, and Apex selection history/chain state is committed before reveal observers run, preventing returning callbacks from restoring an old chain after replacement. Cancelled draws remain in normal selection history without extra draws/depth changes. Reveal entry points reject active event resolution before mutating selection state.
+- An event completing without eligible targets follows the Unresolved → Resolving → Resolved path without a cancellation notification; actual event consequence dispatch is EVT-04.
+
+### Event Technique windows
+
+- EncounterRuntime.HasTechniqueReactionWindow permits a Hooked catchable encounter or an open event occurrence, including a cancelled occurrence with no visible card. A runtime callback-depth guard closes Technique input during nested synchronous reveal callbacks; deferred event reaction tokens keep it closed afterward until completion.
+- FishingRunController.CanUseTechniqueCard also rejects pending creature choices, suspended Descend/biome entry, and an unresolved Technique/refill operation. The refill-pending flag is set before applying a consumed Technique, preventing a new Technique from interrupting effect/recovery processing. Choices and exact recovery complete before normal hand refill; afterward legal plays can continue in the same event window.
+- TechniqueEffectRuntime validates its own open-window boundary for both validation and execution. Attached-card mutations use the existing chain's target/restriction checks; delayed effects can be queued even after Hazard discard. Effects requiring CurrentEncounter or HookedEncounter reject missing targets and apply their authored required tags. Replacement targeting CurrentEncounter supports unresolved events; Hooked-target replacement and avoidance retain catchable-target restrictions. Information reveal requires a visible target and hidden information, and does not bypass Squid Ink.
+- Cancelled, resolving, and resolved event outcomes have different availability: cancellation retains a pre-action window after reactions, but its discarded card is not a target. Consequence claim closes the window; resolving/resolved occurrences accept no new Techniques. FishingRunController coordinates confirmed Descend/Surface through EventEffectRuntime and the creature queue; input stays locked until the action completes.
+- No authored Technique card or effect enum was changed, and no new event avoidance rule was introduced.
+
 ### Squid concealment presentation boundary
 
 `CreatureCardView` and legacy `CardView` accept separate information and identity masks. Identity concealment replaces the name, removes both art layers, tags/tooltips and rarity markers, and masks stats/both rules while leaving Catch/Bait selection available. `FishingRunView` carries both masks through standby transitions and encounter-history snapshots. Views never consume charges or decide skips. Ordinary Technique reveal applies only to the prior information-only concealment contract; it cannot override Ink commitment concealment.
+
+## Event foundation verification
+
+EventPresentationChecks validates controller input gates independently of a visible card. Its Editor-only checks instantiate the production prefab and exercise serialized event edits, Undo/Redo, disk reload, and actual pool membership in disposable validation assets. Readability capture uses an isolated preview scene, preserving the open scene, and checks text overflow at 1920×1080, 1366×768, and 1280×800. EventIntegrationChecks adds complete two-Technique/confirmed-action sequences for all four event categories and authored chain follow-ups. Its combined Unity menu runs event and coastal suites, Editor checks, and screenshots; Cleaner Shrimp has its separate asset/modal validation menu. See Docs/Validation/EventIntegration/README.md for executed evidence and remaining Unity checks.
+
+## Approved coastal event implementation
+
+CoastalEventHandlers registers five approved effect types at controller setup/reload without replacing explicit registrations. EventResolutionContext carries the current biome/depth and binds the shared persistence owner for event choices. Legacy shared effect types remain unsupported unless explicitly registered.
+
+CreatureEffectRuntime owns source-independent EventSnagTarget and EventCreatureRelease requests. Snag auto-resolves a unique heaviest eligible creature or waits for a mandatory tie choice; Loose Knot waits for an optional legal creature Release. Both reuse the existing modal and confirmed-action suspension. Event removals use a distinct deliberate Event reason, bypass Technique-only targeting/recovery, and still dispatch normal Cod/Eel/Ray/Lionfish reactions.
+
+CatchChainRuntime reports BeforeAttachmentEffects after new attachment or simultaneous Bait mode entry, before own on-attach execution. EventPersistenceRuntime applies all pending Upwellings at that boundary and supplies a non-consuming preview. CardInstance retains exact modifier provenance; EffectResolver adds combined event weight contributions after ongoing creature interactions, flooring at zero once. This keeps stacked reductions from being lost to an earlier base-stat clamp and makes Snag add to current effective Weight.
+
+Reef Snag uses the explicit BiomeEnd boundary. FishingRunController emits it on completed-biome next-waters presentation or biome entry, with duplicate-safe visit tokens. Surface/load/result capture precedes normal run-end cleanup. Pending Upwellings and Silt concealment survive biome entry.
+
+EventEncounterTrailRuntime, owned by EncounterRuntime, stores one promised species/biome/destination and a consumed-slot preview. It validates ordinary slots and actual species pool membership, retargets skipped depths using eligible tier intervals, yields to existing queued choices, and never creates a second draw. Random and replacement candidate filtering excludes ineligible trail events. Controller reveal arbitration reserves Apex priority before consuming a due promise. Replacement or avoidance marks a consumed promise replaced; run/biome cleanup clears it. Authored encounter chains remain separately owned, and a trail event cannot create a promise while one is active.
+
+FishingRunView displays the controller-supplied trail preview outside card faces, independent of concealment. It retains learned name/normal stats while reporting reached/replaced slots. Supplied card masters remain unchanged. New event-specific illustrations are missing inputs, not generated placeholders.
+
+CoastalEventChecks supplies runtime integration checks plus Unity asset/placement checks. The combined EventIntegrationChecks menu includes this batch. See Validation/CoastalEvents/README.md for executed checks and Unity limitations.

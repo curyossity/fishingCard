@@ -28,12 +28,13 @@ public sealed class NegativeEffectOption
 /// <summary>Collects active negative effects, including lasting stat penalties while excluding completed actions and ordinary base statistics.</summary>
 public static class NegativeEffectRuntime
 {
-    /// <summary>Builds exact per-source options for attached, Hooked, and queued negative effects.</summary>
+    /// <summary>Builds exact options for attached, Hooked, queued, and independently owned event negatives without duplicate provenance.</summary>
     public static NegativeEffectOption[] GetOptions(
         CatchChainRuntime chain,
         EncounterRuntime encounters,
         TechniqueEffectRuntime techniques,
-        EffectResolver resolver)
+        EffectResolver resolver,
+        EventPersistenceRuntime eventEffects = null)
     {
         List<NegativeEffectOption> options = new List<NegativeEffectOption>();
         foreach (ActiveCatchEffectRecord record in chain.ActiveEffectRecords)
@@ -54,7 +55,9 @@ public static class NegativeEffectRuntime
         {
             foreach (AppliedCatchModifier modifier in target.AppliedModifiers)
             {
-                if (modifier.Effect?.EffectTone != CardEffectTone.Negative)
+                if (modifier.Effect?.EffectTone != CardEffectTone.Negative
+                    || eventEffects != null && modifier.EventEffectId > 0
+                        && eventEffects.OwnsModifier(modifier.EventEffectId, target.InstanceId))
                 {
                     continue;
                 }
@@ -100,6 +103,7 @@ public static class NegativeEffectRuntime
                 () => encounters.TryRemoveNegativeEffect(selected)));
         }
 
+        if (eventEffects != null) options.AddRange(eventEffects.GetNegativeOptions());
         AddQueued(options, techniques.PendingDescendEffects, techniques, false);
         AddQueued(options, techniques.PendingEncounterEffects, techniques, true);
         return options.ToArray();

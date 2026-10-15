@@ -226,12 +226,24 @@ public sealed class CardInstance
             && Array.IndexOf(t.TargetIds, targetId) >= 0);
     }
 
+    /// <summary>Returns the combined tracked event contribution applied after ongoing weight interactions.</summary>
+    public int EventWeightModifier
+    {
+        get
+        {
+            int amount = 0;
+            foreach (AppliedCatchModifier modifier in appliedModifiers)
+                if (modifier.EventEffectId > 0) amount += modifier.WeightAmount;
+            return amount;
+        }
+    }
+
     /// <summary>
-    /// Restores current stats to the immutable values authored on the card definition.
+    /// Restores base and lasting stats; event weight contributions apply after ongoing creature interactions.
     /// </summary>
     public void ResetCurrentStats()
     {
-        currentWeight = definition == null ? 0 : Mathf.Max(0, definition.Weight + permanentWeightModifier);
+        currentWeight = definition == null ? 0 : Mathf.Max(0, definition.Weight + permanentWeightModifier - EventWeightModifier);
         currentValue = definition == null ? 0 : Mathf.Max(0, baseValue + permanentValueModifier);
     }
 
@@ -257,12 +269,26 @@ public sealed class CardInstance
     /// <summary>Removes one exact lasting modifier contribution while preserving all other mutations.</summary>
     public bool TryRemoveAppliedModifier(AppliedCatchModifier modifier)
     {
-        if (modifier == null || modifier.Effect?.EffectTone != CardEffectTone.Negative
-            || !appliedModifiers.Remove(modifier))
-        {
-            return false;
-        }
+        return modifier?.Effect?.EffectTone == CardEffectTone.Negative && TryRemoveTrackedModifier(modifier);
+    }
 
+    /// <summary>Tracks one independently expiring event modifier without changing authored stats or resetting it on role changes.</summary>
+    public AppliedCatchModifier AddEventModifier(long eventEffectId, int weightAmount, int valueAmount,
+        CardEffectDefinition effect, CardDefinition source)
+    {
+        if (eventEffectId <= 0 || effect == null || source == null) throw new ArgumentException("Event modifier provenance is required.");
+        if (Array.Exists(AppliedModifiers, m => m.EventEffectId == eventEffectId))
+            throw new InvalidOperationException("Event modifier is already present.");
+        AddPermanentModifiers(weightAmount, valueAmount);
+        AppliedCatchModifier modifier = new AppliedCatchModifier(effect, source, weightAmount, valueAmount, eventEffectId);
+        appliedModifiers.Add(modifier);
+        return modifier;
+    }
+
+    /// <summary>Expires one exact tracked contribution regardless of tone, preserving unrelated modifiers.</summary>
+    public bool TryRemoveTrackedModifier(AppliedCatchModifier modifier)
+    {
+        if (modifier == null || !appliedModifiers.Remove(modifier)) return false;
         permanentWeightModifier -= modifier.WeightAmount;
         permanentValueModifier -= modifier.ValueAmount;
         return true;
@@ -350,14 +376,17 @@ public sealed class AppliedCatchModifier
     [SerializeField] private CardDefinition sourceCard;
     [SerializeField] private int weightAmount;
     [SerializeField] private int valueAmount;
+    [SerializeField] private long eventEffectId;
+    public long EventEffectId => eventEffectId;
     public CardEffectDefinition Effect => effect;
     public CardDefinition SourceCard => sourceCard;
     public int WeightAmount => weightAmount;
     public int ValueAmount => valueAmount;
 
     /// <summary>Captures one effect's actual applied contribution for exact removal and snapshots.</summary>
-    public AppliedCatchModifier(CardEffectDefinition effect, CardDefinition sourceCard, int weightAmount, int valueAmount)
+    public AppliedCatchModifier(CardEffectDefinition effect, CardDefinition sourceCard, int weightAmount, int valueAmount, long eventEffectId = 0)
     {
+        this.eventEffectId = eventEffectId;
         this.effect = effect;
         this.sourceCard = sourceCard;
         this.weightAmount = weightAmount;

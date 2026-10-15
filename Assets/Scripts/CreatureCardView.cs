@@ -75,6 +75,7 @@ public sealed class CreatureCardView : MonoBehaviour
     private Outline baitEffectSelectionOutline;
     private CardDefinition displayedCard;
     private EncounterEffectChoice selectedEffectChoice = EncounterEffectChoice.Catch;
+    private bool usesCatchCardLayout;
 
     [Header("Fallback Assets")]
     [SerializeField] private Sprite fallbackCardFace;
@@ -279,6 +280,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Switches between catch-only stats and the expanded event rules region.</summary>
     private void ApplyCardLayout(bool usesCatchLayout)
     {
+        usesCatchCardLayout = usesCatchLayout;
         EnsureDualEffectFields();
         EnsureEffectChoiceButtons();
         SetParentActive(weightText, usesCatchLayout);
@@ -465,6 +467,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SelectEffectChoice(EncounterEffectChoice.Bait, true);
     }
 
+    /// <summary>Enables role selection only on the catch master and hides event selection feedback.</summary>
     private void SetEffectChoiceButtonsActive(bool active)
     {
         if (catchEffectButton != null)
@@ -486,8 +489,8 @@ public sealed class CreatureCardView : MonoBehaviour
     public void SelectEffectChoice(EncounterEffectChoice choice, bool notify = true)
     {
         selectedEffectChoice = choice;
-        ApplyEffectChoiceVisuals(true);
-        if (notify)
+        ApplyEffectChoiceVisuals(usesCatchCardLayout);
+        if (notify && usesCatchCardLayout)
         {
             EffectChoiceChanged?.Invoke(this, choice);
         }

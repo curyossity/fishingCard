@@ -162,6 +162,17 @@ Biome Apex Encounters are high-value, mechanically significant climax cards that
 - Cancelling a revealed Hazard discards it without effects and triggers Hazard-cancellation reactions, including Weathered Shell. Replacing an unresolved event prevents its effects but is not Hazard cancellation. No eligible target means resolution without effect, not cancellation. No event in this batch forces a Release.
 - Discard resolved event cards; pending effects/modifiers follow their stated durations. A target's mode change does not reset a modifier. Run ending clears all unfinished event effects and encounter trails. Full rules are in GDD section 9, Event cards and resolution window.
 
+Implementation status: EVT-01 through EVT-08 provide lifecycle state, reveal/cancellation/replacement handling, legal event Techniques, once-only dispatch, explicit pending/modifier lifetimes, Quick Clean, and confirmed Descend/Surface locked through creature choices before the action. Run shutdown immediately clears live effects and trails; ascent uses separate presentation snapshots. Specific handlers and named duration boundaries require approved card definitions; unsupported legacy effects reject confirmation without closing the reaction window. The run UI consumes controller-owned action/Technique availability; the Events Collector hides Catch/Bait data and explains handler/lifetime requirements. Integrated runtime checks pass; Unity UI, serialization, Undo/Redo, and screenshots remain unverified because isolated Editor startup lacks a headless entitlement. See Event Rules Implementation Tasks.md and Validation/EventIntegration/README.md.
+
+### Approved coastal event batch
+
+- Reef Snag: Common Hazard, depth 3-18. At resolution select the heaviest current non-Armored creature in either mode, player breaks ties; +1 effective Weight per Snag until removal/biome completion. Later Armored does not remove it. Surface checks before expiry.
+- Silt Burst: Common Hazard, depth 4-17. Append one ordinary-creature concealment to Squid's FIFO queue; commit/removal consumes it, including across biomes. Events/Apex do not consume it; learned preview information remains visible. Cuttlefish's existing self-hidden Value is unchanged.
+- Gentle Upwelling: Uncommon Environment, depth 1-15. All pending grants reduce the same next creature entering Bait (including mode changes), before own on-attach effects. Each reduces effective Weight by 1, floor 0; pending grants cross biomes and awarded reductions persist across modes until removal.
+- Loose Knot: Uncommon Opportunity, depth 3-18. Optional legal creature Release in either mode, followed by its full Release reactions before the confirmed action. Not a Technique; no saved use or release-lock bypass.
+- Fresh Shell Fragments: Rare Opportunity, depth 5-13. One biome-local Spiny Lobster trail to current depth +3, eligible ordinary slots only. Preview identity/stats. Queued choices take precedence and consume it; Technique replacement/avoidance marks the consumed promise replaced. Passed destinations retarget the first eligible normal slot without displacing Apex. Clear on biome/run ending.
+- These handlers register at runtime setup; unrelated legacy event definitions are not implicitly migrated. Event-specific illustrations have not been supplied; assets use the existing event master with empty artwork references.
+
 ## Player Deck
 
 The player has approximately a 4-card technique hand. After using a technique card, a replacement is drawn according to final deck rules.

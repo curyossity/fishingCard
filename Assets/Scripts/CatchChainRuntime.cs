@@ -20,6 +20,9 @@ public sealed class CatchChainRuntime
     /// <summary>Reports individual Technique targets before applying changes or removing their attachment.</summary>
     public event Action<CardInstance> TechniqueTargetSelected;
 
+    /// <summary>Runs pending role-entry effects after live stats settle and before own on-attach effects.</summary>
+    public event Action<CardInstance> BeforeAttachmentEffects;
+
     [SerializeField] private List<PendingCreatureCatchEffect> pendingCreatureCatchEffects = new List<PendingCreatureCatchEffect>();
     public PendingCreatureCatchEffect[] PendingCreatureCatchEffects => pendingCreatureCatchEffects.ToArray();
     public CardInstance[] Catches => catches;
@@ -76,6 +79,7 @@ public sealed class CatchChainRuntime
         catches = AppendCatch(catches, caughtInstance);
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        BeforeAttachmentEffects?.Invoke(caughtInstance);
         ResolveNewAttachment(caughtInstance, effectResolver);
         return caughtInstance;
     }
@@ -367,6 +371,7 @@ public sealed class CatchChainRuntime
         catchCard.SetAttachmentRole(CatchAttachmentRole.Bait);
         baitCard.SetAttachmentRole(CatchAttachmentRole.Catch);
         Recalculate(resolver);
+        BeforeAttachmentEffects?.Invoke(catchCard);
         return true;
     }
 
@@ -1004,7 +1009,8 @@ public enum CatchRemovalReason
     PlayerChoice,
     Technique,
     LineStrain,
-    Creature
+    Creature,
+    Event
 }
 
 /// <summary>An independent queued creature Catch penalty whose lifetime does not depend on its source attachment.</summary>

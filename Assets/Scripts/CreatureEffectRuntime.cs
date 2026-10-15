@@ -25,7 +25,9 @@ public enum CreatureEffectChoiceKind
     RecoverPlayedTechnique,
     ReleaseMatchingBait,
     EncounterSkip,
-    ResolveReleaseDraws
+    ResolveReleaseDraws,
+    EventSnagTarget,
+    EventCreatureRelease
 }
 
 /// <summary>Owns ordered creature choices, deferred Release reactions, and a queued encounter without owning presentation.</summary>
@@ -42,6 +44,9 @@ public sealed class CreatureEffectRuntime
     private sealed class Request
     {
         public int SourceInstanceId;
+        public CardDefinition EventSource;
+        public CardEffectDefinition EventEffect;
+        public long EventOccurrenceId;
         public int EffectIndex;
         public string AbilityName;
         public CreatureEffectChoiceKind Kind;
@@ -80,6 +85,59 @@ public sealed class CreatureEffectRuntime
     [SerializeField] private int[] eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
     [SerializeField] private Request pendingPlayedTechniqueRecovery;
     public EncounterRuntime EncounterEffects { get; set; }
+    public EventPersistenceRuntime EventPersistence { get; set; }
+
+    /// <summary>Queues a mandatory heaviest-target tie decision independently of attachment sources.</summary>
+    public void QueueEventSnag(long origin, CardDefinition source, CardEffectDefinition effect)
+    {
+        requests.Add(new Request { Kind = CreatureEffectChoiceKind.EventSnagTarget, EventSource = source,
+            EventEffect = effect, EventOccurrenceId = origin, AbilityName = source.DisplayName });
+    }
+
+    /// <summary>Queues an optional event Release without an attached source.</summary>
+    public void QueueEventRelease(string name)
+    { requests.Add(new Request { Kind = CreatureEffectChoiceKind.EventCreatureRelease, AbilityName = name }); }
+
+    /// <summary>Finds the current heaviest non-Armored creatures in either attachment role.</summary>
+    public CardInstance[] GetEventSnagTargets(CardInstance[] catches)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.EventSnagTarget) return Array.Empty<CardInstance>();
+        CardInstance[] eligible = Array.FindAll(catches, c => c?.Definition?.CardType == CardType.Creature
+            && !c.HasTag(CreatureTagVocabulary.Armored));
+        int heaviest = -1;
+        foreach (CardInstance card in eligible) heaviest = Math.Max(heaviest, card.CurrentWeight);
+        return Array.FindAll(eligible, c => c.CurrentWeight == heaviest);
+    }
+
+    /// <summary>Applies a selected Snag after Techniques, preserving its recipient through tag changes.</summary>
+    public bool TryChooseEventSnag(int targetId, CatchChainRuntime chain)
+    {
+        if (!Array.Exists(GetEventSnagTargets(chain.Catches), c => c.InstanceId == targetId)) return false;
+        Request request = requests[0];
+        if (EventPersistence == null || !EventPersistence.TryAddModifier(request.EventOccurrenceId, request.EventSource,
+            request.EventEffect, targetId, 1, 0, request.EventEffect.EventLifetime, out _)) return false;
+        CompleteChoice(); return true;
+    }
+
+    /// <summary>Finds releasable creatures without applying Technique targeting restrictions.</summary>
+    public CardInstance[] GetEventReleaseTargets(CardInstance[] catches)
+    {
+        return ChoiceKind != CreatureEffectChoiceKind.EventCreatureRelease ? Array.Empty<CardInstance>()
+            : Array.FindAll(catches, c => c?.Definition?.CardType == CardType.Creature && !c.PreventsReleaseWhileAttached);
+    }
+
+    /// <summary>Declines or performs one event Release and queues its ordinary Release reactions.</summary>
+    public bool TryChooseEventRelease(int targetId, CatchChainRuntime chain, EffectResolver resolver)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.EventCreatureRelease) return false;
+        if (targetId >= 0)
+        {
+            if (!Array.Exists(GetEventReleaseTargets(chain.Catches), c => c.InstanceId == targetId)) return false;
+            int index = Array.FindIndex(chain.Catches, c => c?.InstanceId == targetId);
+            if (!chain.TryRelease(index, resolver, out _, out _, out _, CatchRemovalReason.Event)) return false;
+        }
+        CompleteChoice(); FinishReleaseResolution(); return true;
+    }
     [SerializeField] private List<string> pendingCreatureSkips = new List<string>();
     [SerializeField] private List<ReleaseDrawEligibility> pendingReleaseDrawSourceGroups = new List<ReleaseDrawEligibility>();
     [SerializeField] private string pendingReleaseDrawName;
@@ -343,6 +401,23 @@ public sealed class CreatureEffectRuntime
         while (requests.Count > 0)
         {
             Request request = requests[0];
+            if (request.Kind == CreatureEffectChoiceKind.EventSnagTarget)
+            {
+                CardInstance[] targets = GetEventSnagTargets(chain.Catches);
+                if (targets.Length > 1) return;
+                if (targets.Length == 1)
+                {
+                    if (!TryChooseEventSnag(targets[0].InstanceId, chain))
+                        throw new InvalidOperationException("Bind event Snag persistence before resolution.");
+                }
+                else CompleteChoice();
+                continue;
+            }
+            if (request.Kind == CreatureEffectChoiceKind.EventCreatureRelease)
+            {
+                if (GetEventReleaseTargets(chain.Catches).Length > 0) return;
+                CompleteChoice(); continue;
+            }
             if (request.Kind == CreatureEffectChoiceKind.EncounterSkip)
             {
                 if (encounters.EncounterRevision == request.EncounterRevision

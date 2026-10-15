@@ -418,7 +418,11 @@ public enum CardEffectType
     QueueCreatureEncounterConcealment,
     GrantNextCreatureSkip,
     ReleaseMatchingBaitOnAttach,
-    DrawTechniqueAfterCreatureRelease
+    DrawTechniqueAfterCreatureRelease,
+    SnagHeaviestUnarmoredCreature,
+    QueueBaitWeightReduction,
+    OptionalEventCreatureRelease,
+    ScheduleCreatureTrail
 }
 
 public enum CardEffectTrigger
@@ -435,7 +439,8 @@ public enum CardEffectTrigger
     WhileAttachedUntilAnotherCatchReleased,
     OnLaterBiomeStart,
     AfterAnotherCatchAttached,
-    AfterHazardCancelled
+    AfterHazardCancelled,
+    OnEventResolution
 }
 
 public enum CardEffectTarget
@@ -490,6 +495,8 @@ public sealed class CardEffectDefinition
     [SerializeField] private CaughtCardTargetMode caughtCardTargetMode;
     [SerializeField] private CardDefinition replacementCard;
     [SerializeField] private bool expiresAfterUse;
+    [SerializeField] private bool hasEventLifetime;
+    [SerializeField] private EventEffectLifetime eventLifetime = EventEffectLifetime.UntilRunEnds();
     [TextArea(1, 3)]
     [SerializeField] private string reminderText;
 
@@ -506,6 +513,7 @@ public sealed class CardEffectDefinition
     public CaughtCardTargetMode CaughtCardTargetMode => caughtCardTargetMode;
     public CardDefinition ReplacementCard => replacementCard;
     public bool ExpiresAfterUse => expiresAfterUse;
+    public EventEffectLifetime EventLifetime => hasEventLifetime ? eventLifetime : null;
     public string ReminderText => reminderText;
 
     /// <summary>

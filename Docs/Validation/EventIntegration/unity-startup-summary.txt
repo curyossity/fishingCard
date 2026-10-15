@@ -1,0 +1,9 @@
+Isolated Unity startup probe, 2026-10-15 client date.
+Starting IPC server.
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Client] Error: Code 404 while processing request (status: Found 0 entitlement groups and 0 free entitlements matching requested entitlement ids)
+[Licensing::Module] Error: 'com.unity.editor.headless' was not found.
+[Package Manager] Could not connect to IPC stream "Upm-62780" after 30.0 seconds.
+[Package Manager] Failed to start the Unity Package Manager local server process. Make sure the process [C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Data/Resources/PackageManager/Server/UnityPackageManager.exe] is not blocked by Windows Defender or any other anti-virus configuration.
+Exiting without the bug reporter. Application will terminate with return code 1Shut down.
+Runtime/Editor tests were not executed by Unity.

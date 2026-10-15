@@ -88,12 +88,13 @@ public sealed class CardView : MonoBehaviour
             return;
         }
 
+        bool isEvent = EncounterRuntime.IsEventCard(cardDefinition);
         SetText(displayNameText, identityHidden ? "Unknown Creature" : cardDefinition.DisplayName);
         SetText(cardTypeText, BuildCardTypeText(cardDefinition));
-        SetText(rarityText, identityHidden ? string.Empty : cardDefinition.Rarity.ToString());
-        SetText(encounterStateText, BuildEncounterStateText(cardDefinition, encounterState));
-        SetText(statsText, informationHidden ? "Weight ? / Value ?" : BuildStatsText(cardDefinition));
-        SetText(tagsText, informationHidden ? "Unknown" : BuildTagsText(cardDefinition));
+        SetText(rarityText, isEvent || identityHidden ? string.Empty : cardDefinition.Rarity.ToString());
+        SetText(encounterStateText, isEvent ? string.Empty : BuildEncounterStateText(cardDefinition, encounterState));
+        SetText(statsText, isEvent ? string.Empty : informationHidden ? "Weight ? / Value ?" : BuildStatsText(cardDefinition));
+        SetText(tagsText, isEvent ? string.Empty : informationHidden ? "Unknown" : BuildTagsText(cardDefinition));
         SetText(rulesText, informationHidden ? "Details hidden by an attached catch effect." : cardDefinition.RulesText);
 
         if (artworkImage != null)

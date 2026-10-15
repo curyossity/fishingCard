@@ -269,6 +269,29 @@ public sealed class FishingRunView : MonoBehaviour
     private bool hasPresentedEncounter;
     private int lastPresentedDepth;
     private bool latestCanDescend;
+    private TMP_Text trailPreviewText;
+
+    /// <summary>Shows learned trail information outside the card face, independently of concealment.</summary>
+    public void SetTrailPreview(string preview)
+    {
+        EnsureLayout();
+        if (trailPreviewText == null)
+        {
+            GameObject obj = CreateUiObject("Encounter Trail Preview", encounterPanel != null ? encounterPanel : gameplayRoot);
+            trailPreviewText = obj.AddComponent<TextMeshProUGUI>();
+            trailPreviewText.font = bodyFont; trailPreviewText.fontSize = 18f;
+            trailPreviewText.enableAutoSizing = true;
+            trailPreviewText.fontSizeMin = 14f; trailPreviewText.fontSizeMax = 18f;
+            trailPreviewText.alignment = TextAlignmentOptions.Center;
+            trailPreviewText.color = new Color(0.92f, 0.85f, 0.65f, 1f);
+            trailPreviewText.raycastTarget = false;
+            RectTransform rect = trailPreviewText.rectTransform;
+            rect.anchorMin = new Vector2(0.05f, 0f); rect.anchorMax = new Vector2(0.95f, 0.08f);
+            rect.offsetMin = Vector2.zero; rect.offsetMax = Vector2.zero;
+        }
+        trailPreviewText.text = preview ?? string.Empty;
+        trailPreviewText.gameObject.SetActive(!string.IsNullOrEmpty(preview));
+    }
     private readonly List<EncounterPresentationSnapshot> encounterHistory = new List<EncounterPresentationSnapshot>();
 
     private const float EncounterTransitionDuration = 0.7f;
@@ -342,6 +365,8 @@ public sealed class FishingRunView : MonoBehaviour
         int remainingDeckCount,
         int selectedCatchIndex,
         bool canDescend,
+        bool canRelease,
+        bool canSurface,
         Func<bool> descendAction,
         Func<bool> releaseAction,
         Func<bool> surfaceAction,
@@ -427,11 +452,11 @@ public sealed class FishingRunView : MonoBehaviour
 
         latestCanDescend = canDescend;
         descendButton.interactable = canDescend && encounterTransitionCoroutine == null;
-        releaseButton.interactable = selectedCatchIndex >= 0;
+        releaseButton.interactable = canRelease;
         releaseButtonText.text = selectedCatchIndex >= 0
             ? $"RELEASE CATCH {selectedCatchIndex + 1:00}"
             : "RELEASE";
-        surfaceButton.interactable = true;
+        surfaceButton.interactable = canSurface;
     }
 
     /// <summary>
@@ -1390,7 +1415,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void InvokeDescend()
     {
-        if (encounterTransitionCoroutine != null)
+        if (!descendButton.interactable || encounterTransitionCoroutine != null)
         {
             return;
         }
@@ -1408,7 +1433,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void InvokeRelease()
     {
-        releaseAction?.Invoke();
+        if (releaseButton.interactable) releaseAction?.Invoke();
     }
 
     /// <summary>
@@ -1416,7 +1441,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void InvokeSurface()
     {
-        surfaceAction?.Invoke();
+        if (surfaceButton.interactable) surfaceAction?.Invoke();
     }
 
     /// <summary>

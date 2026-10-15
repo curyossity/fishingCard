@@ -87,6 +87,8 @@ public sealed class EffectResolver
                 && c.Definition?.CardType == CardType.Creature && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)).Length;
             if (count >= Math.Max(1, record.Effect.Amount)) record.SourceInstance.ModifyWeight(-record.SourceInstance.CurrentWeight);
         }
+        // Events add to effective weight; clamp their combined contribution only after ongoing interactions settle.
+        foreach (CardInstance card in safeCatches) card?.ModifyWeight(card.EventWeightModifier);
     }
 
     /// <summary>

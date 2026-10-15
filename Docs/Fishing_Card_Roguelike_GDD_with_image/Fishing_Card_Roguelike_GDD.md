@@ -705,6 +705,44 @@ Event cards are non-catchable Hazard, Environment, Opportunity, and generic Enco
 
 Discard resolved event cards. Pending effects and modifiers remain in runtime state for their stated durations rather than keeping the event card in the Catch Chain. A target's mode change does not reset a modifier. Ending the run clears all unfinished event effects and encounter trails.
 
+## Approved coastal events
+
+These five user-supplied definitions use the shared pre-action event window. They have no Weight, sale Value, Catch/Bait role, or Catch Chain attachment. Loose Knot grants an **optional deliberate Release**, never a forced Release.
+
+| ID | Name | Type | Rarity | Depth |
+| --- | --- | --- | --- | --- |
+| reef_snag | Reef Snag | Hazard | Common | 3-18 |
+| silt_burst | Silt Burst | Hazard | Common | 4-17 |
+| gentle_upwelling | Gentle Upwelling | Environment | Uncommon | 1-15 |
+| loose_knot | Loose Knot | Opportunity | Uncommon | 3-18 |
+| fresh_shell_fragments | Fresh Shell Fragments | Opportunity | Rare | 5-13 |
+
+### Reef Snag
+
+Description: **Your heaviest non-Armored creature gains 1 weight until this biome ends.** Resolve before the confirmed Descend or Surface. Among attached creatures in either Catch or Bait mode without Armored, select the greatest current effective Weight; the player breaks ties. Determine eligibility and Weight after Techniques, not on reveal. Add 1 effective Weight; no eligible creature means no effect. Stacked Snags add together. The modifier ends on recipient removal or current-biome completion; gaining Armored afterward does not remove it. A Surface now checks load with the penalty before run-end expiry. Mussel Bait can cancel the Hazard and trigger Lobster Catch rewards.
+
+### Silt Burst
+
+Description: **Hide your next non-Apex creature until its Catch/Bait choice is committed.** Resolve before the confirmed action. Conceal the next ordinary creature's identity, artwork, Weight, Value, tags, and both effects. Reveal them after commitment and before its on-attach effect. Removal without attachment consumes that concealment. Pending charges cross biomes; events and Apex do not consume them. Append one encounter after existing concealment, consuming exactly one charge per eligible creature. Previously learned trail/preview information remains available. Mussel can cancel the event; Squid Bait may skip a concealed encounter, consuming both its skip and the encounter's assigned concealment.
+
+Silt Burst uses the same FIFO concealment owner as Squid. The current Cuttlefish asset only hides its own sale Value and remains unchanged; if Cuttlefish is later given encounter concealment, it must use this same queue. This reference does not authorize redesigning Cuttlefish.
+
+### Gentle Upwelling
+
+Description: **The next creature attached as Bait weighs 1 less.** Resolution grants one pending reduction. All pending Upwellings apply together to the next creature entering Bait, including through a mode change, after entry and before its own on-attach effect. Reduce effective Weight by 1 per grant, minimum 0. Pending grants cross biomes until awarded; awarded modifiers last until recipient removal and persist through later Catch/Bait changes. They do not increase Line Capacity. Bait previews include the pending reduction without consuming it.
+
+### Loose Knot
+
+Description: **You may release 1 attached creature.** Before the confirmed action, the player may select one legally releasable attached creature in Catch or Bait mode, or decline. The event grants this deliberate Release without a Technique. Resolve all resulting Release reactions before continuing the action. No target or decline does nothing; no use can be saved. Iron Grip still blocks release. Sea Anemone Catch may be selected because this is not Technique targeting; Sea Urchin Bait's Technique recovery is not consumed. Cod recovery, Eel draws, Ray value transfers, and Lionfish's 5-Value loss follow their normal eligibility, ordering, and shared limits.
+
+### Fresh Shell Fragments
+
+Description: **A Spiny Lobster awaits 3 depths below.** Include only with no pending encounter trail and a normal eligible destination in the current biome at current depth +3. Never schedule over an Apex. At resolution, record that destination and preview the existing Spiny Lobster's identity and normal Weight/Value. Intervening encounters follow normal selection.
+
+At the destination, replace the random draw with the existing Spiny Lobster definition; normal reveal reactions, Catch/Bait choice, stats, and effects apply. Consume the trail when that slot is used. An existing valid queued replacement such as School Call takes priority and consumes the promise. Techniques may replace or avoid the revealed Lobster normally; show the consumed promise as replaced rather than rescheduling it.
+
+If a depth change passes the destination, use the first subsequent eligible normal slot in this biome and update the preview. Do not interrupt an already revealed encounter or displace an Apex. At most one pending trail exists. A forced copy while a trail is pending, or with no legal destination, creates nothing. End the promise on slot consumption, Surface/failure, or biome completion; no follow-up or penalty carries into another biome. The Lobster remains an encounter costing its normal 3 base Weight, rather than a free catch.
+
 ## Biome identity
 
 Each biome should introduce a recognizable gameplay idea, not merely

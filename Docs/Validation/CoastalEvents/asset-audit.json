@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Reef Snag",
+    "asset": "Assets\\Cards\\Reef Snag.asset",
+    "guid": "a7dd30c6e0424a0d876135fec2fe8ec1",
+    "fieldAndTierChecks": "passed",
+    "artwork": "not supplied"
+  },
+  {
+    "name": "Silt Burst",
+    "asset": "Assets\\Cards\\Silt Burst.asset",
+    "guid": "e33cf52f86f84e8b9ef184257e5784f0",
+    "fieldAndTierChecks": "passed",
+    "artwork": "not supplied"
+  },
+  {
+    "name": "Gentle Upwelling",
+    "asset": "Assets\\Cards\\Gentle Upwelling.asset",
+    "guid": "6e437a669999499c9e919c42fd0b4c8f",
+    "fieldAndTierChecks": "passed",
+    "artwork": "not supplied"
+  },
+  {
+    "name": "Loose Knot",
+    "asset": "Assets\\Cards\\Loose Knot.asset",
+    "guid": "dceb33d2a89b40399c181add7ae0a9be",
+    "fieldAndTierChecks": "passed",
+    "artwork": "not supplied"
+  },
+  {
+    "name": "Fresh Shell Fragments",
+    "asset": "Assets\\Cards\\Fresh Shell Fragments.asset",
+    "guid": "d4df0dcdf28a4b35bb43604918996b38",
+    "fieldAndTierChecks": "passed",
+    "artwork": "not supplied"
+  }
+]
