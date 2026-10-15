@@ -10,31 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Load Lifter
+  m_Name: Prize Hook
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_load_lifter
-  displayName: Load Lifter
+  uniqueId: prize_hook
+  displayName: Prize Hook
   cardType: 0
-  rarity: 0
-  tags:
-  - Rigging
-  - CatchControl
+  rarity: 1
+  backupTechnique: 0
+  techniqueRole: Risk and reward
+  tags: []
   artwork: {fileID: 0}
-  rulesText: Choose an attached creature. Reduce its weight by 2 until it leaves the chain.
+  rulesText: "Your next Catch gains 8 value and 1 weight."
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: lighten_last_catch
-    effectType: 1
+  - effectId: prize_hook
+    displayName: Prize Hook
+    effectType: 61
     trigger: 0
-    target: 5
-    effectTone: 1
-    amount: 2
+    target: 0
+    effectTone: 0
+    amount: 8
     requiredTags: []
-    caughtCardTargetMode: 3
-    replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: The selected creature contributes 2 less Line Load.
+    reminderText: "Your next Catch gains 8 value and 1 weight."

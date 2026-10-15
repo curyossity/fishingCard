@@ -16,10 +16,17 @@ public sealed class TechniqueTargetPlan
     [SerializeField] private CardDefinition card;
     [SerializeField] private CardDefinition encounterTarget;
     [SerializeField] private int encounterRevision = -1;
+    [SerializeField] private long handVersion = -1;
+    [SerializeField] private int playedHandIndex = -1;
     public const int EncounterTargetId = -1;
+    public bool CurrentIsHandTarget => CurrentEffectIndex >= 0 && IsHandEffect(card.Effects[CurrentEffectIndex]);
     public bool CurrentIsEncounterTarget => CurrentEffectIndex >= 0 && RequiresEncounterSelection(card.Effects[CurrentEffectIndex]);
     [SerializeField] private List<Selection> selections = new List<Selection>();
     public CardDefinition Card => card;
+
+    /// <summary>Requires a hand-filter plan to commit the exact original played slot, even with identical definitions.</summary>
+    public bool MatchesPlayedHandIndex(int index)
+    { return !Array.Exists(card.Effects, IsHandEffect) || playedHandIndex == index; }
     public int CurrentEffectIndex
     {
         get { Selection next = selections.Find(s => s.TargetIds.Count < s.Required); return next == null ? -1 : next.EffectIndex; }
@@ -28,9 +35,9 @@ public sealed class TechniqueTargetPlan
     public int CurrentRequired => selections.Find(s => s.EffectIndex == CurrentEffectIndex)?.Required ?? 0;
     public int CurrentSelected => selections.Find(s => s.EffectIndex == CurrentEffectIndex)?.TargetIds.Count ?? 0;
     public bool CanFinishCurrentSelection => CurrentEffectIndex >= 0 && CurrentSelected > 0
-        && card.Effects[CurrentEffectIndex].EffectType == CardEffectType.ReleaseCatch;
+        && (card.Effects[CurrentEffectIndex].EffectType == CardEffectType.ReleaseCatch || CurrentIsHandTarget);
 
-    /// <summary>Accepts fewer than the maximum recipients for an up-to-count Release effect.</summary>
+    /// <summary>Accepts fewer than the maximum recipients for an up-to-count Release or Recast effect.</summary>
     public bool TryFinishCurrentSelection()
     {
         if (!CanFinishCurrentSelection) return false;
@@ -40,20 +47,26 @@ public sealed class TechniqueTargetPlan
     }
 
     /// <summary>Creates a fresh selection request without choosing any targets automatically.</summary>
-    public TechniqueTargetPlan(CardDefinition card, CatchChainRuntime chain, EncounterRuntime encounters = null)
+    public TechniqueTargetPlan(CardDefinition card, CatchChainRuntime chain, EncounterRuntime encounters = null,
+        TechniqueDeckRuntime deck = null, int handIndex = -1)
     {
         this.card = card;
         encounterTarget = encounters?.CurrentEncounter; encounterRevision = encounters?.EncounterRevision ?? -1;
+        handVersion = deck?.HandVersion ?? -1; playedHandIndex = handIndex;
         for (int i = 0; i < (card?.Effects?.Length ?? 0); i++)
             if (NeedsPlayerTargets(card.Effects[i]))
-                selections.Add(new Selection { EffectIndex = i, Required = RequiresEncounterSelection(card.Effects[i]) ? 1 : RequiredCount(card.Effects[i], chain) });
+                selections.Add(new Selection { EffectIndex = i, Required = IsHandEffect(card.Effects[i])
+                    ? Math.Min(2, Math.Max(0, (deck?.Hand.Length ?? 0) - 1))
+                    : RequiresEncounterSelection(card.Effects[i]) ? 1 : RequiredCount(card.Effects[i], chain) });
     }
 
     /// <summary>Accepts explicitly supplied per-effect target IDs for programmatic play and validation.</summary>
-    public TechniqueTargetPlan(CardDefinition card, int[][] targets, EncounterRuntime encounters = null)
+    public TechniqueTargetPlan(CardDefinition card, int[][] targets, EncounterRuntime encounters = null,
+        TechniqueDeckRuntime deck = null, int handIndex = -1)
     {
         this.card = card;
         encounterTarget = encounters?.CurrentEncounter; encounterRevision = encounters?.EncounterRevision ?? -1;
+        handVersion = deck?.HandVersion ?? -1; playedHandIndex = handIndex;
         for (int i = 0; i < (targets?.Length ?? 0); i++)
             if (targets[i] != null && targets[i].Length > 0)
                 selections.Add(new Selection { EffectIndex = i, Required = targets[i].Length, TargetIds = new List<int>(targets[i]) });
@@ -64,6 +77,7 @@ public sealed class TechniqueTargetPlan
     {
         return effect != null && (effect.Target == CardEffectTarget.CatchChain || effect.Target == CardEffectTarget.SpecificCaughtCard)
             && (effect.EffectType == CardEffectType.ReleaseCatch || effect.EffectType == CardEffectType.ModifyCatchValue
+                || effect.EffectType == CardEffectType.ReleaseAttachedCreature || effect.EffectType == CardEffectType.SwitchCreatureMode
                 || effect.EffectType == CardEffectType.AddLineLoadModifier || effect.EffectType == CardEffectType.RemoveLineLoadModifier);
     }
 
@@ -75,7 +89,28 @@ public sealed class TechniqueTargetPlan
 
     /// <summary>Distinguishes player-targeted effects from targetless distributed or pending effects.</summary>
     public static bool NeedsPlayerTargets(CardEffectDefinition effect)
-    { return RequiresSelection(effect) || RequiresEncounterSelection(effect); }
+    { return RequiresSelection(effect) || RequiresEncounterSelection(effect) || IsHandEffect(effect); }
+
+    /// <summary>Recognizes Recast's other-hand-card targeting, independent of attached creatures.</summary>
+    public static bool IsHandEffect(CardEffectDefinition effect)
+    { return effect?.EffectType == CardEffectType.FilterTechniqueHand; }
+
+    /// <summary>Encodes a precommit physical hand slot separately from encounter and attachment target IDs.</summary>
+    public static int HandTargetId(int slot) { return -1000 - slot; }
+
+    /// <summary>Lists unselected hand slots excluding the Technique being played.</summary>
+    public int[] HandCandidates(TechniqueDeckRuntime deck)
+    {
+        if (!CurrentIsHandTarget || deck == null || deck.HandVersion != handVersion) return Array.Empty<int>();
+        List<int> slots = new List<int>();
+        for (int i = 0; i < deck.Hand.Length; i++)
+            if (i != playedHandIndex && Array.IndexOf(TargetsFor(CurrentEffectIndex), HandTargetId(i)) < 0) slots.Add(i);
+        return slots.ToArray();
+    }
+
+    /// <summary>Maps precommit hand selections to current slots after the played card has left hand.</summary>
+    public int[] ResolvingHandSlots(int effectIndex)
+    { return Array.ConvertAll(TargetsFor(effectIndex), id => { int slot = -1000 - id; return slot > playedHandIndex ? slot - 1 : slot; }); }
 
     /// <summary>Uses the existing effect's target count, capped by the available legal attachments.</summary>
     public static int RequiredCount(CardEffectDefinition effect, CatchChainRuntime chain)
@@ -93,14 +128,19 @@ public sealed class TechniqueTargetPlan
     public CardInstance[] Candidates(CatchChainRuntime chain)
     {
         int index = CurrentEffectIndex;
-        if (index < 0 || CurrentIsEncounterTarget) return Array.Empty<CardInstance>();
+        if (index < 0 || CurrentIsEncounterTarget || CurrentIsHandTarget) return Array.Empty<CardInstance>();
         int[] selected = TargetsFor(index);
         return Array.FindAll(chain.GetTechniqueTargets(card.Effects[index]), c => Array.IndexOf(selected, c.InstanceId) < 0);
     }
 
     /// <summary>Adds one legal player selection to the current effect.</summary>
-    public bool TrySelect(int instanceId, CatchChainRuntime chain, EncounterRuntime encounters = null)
+    public bool TrySelect(int instanceId, CatchChainRuntime chain, EncounterRuntime encounters = null, TechniqueDeckRuntime deck = null)
     {
+        if (CurrentIsHandTarget)
+        {
+            if (!Array.Exists(HandCandidates(deck), slot => HandTargetId(slot) == instanceId)) return false;
+            selections.Find(s => s.EffectIndex == CurrentEffectIndex).TargetIds.Add(instanceId); return true;
+        }
         if (CurrentIsEncounterTarget)
         {
             if (instanceId != EncounterTargetId || !MatchesEncounter(card.Effects[CurrentEffectIndex], encounters)) return false;
@@ -112,7 +152,8 @@ public sealed class TechniqueTargetPlan
     }
 
     /// <summary>Revalidates all required selections before commitment, rejecting duplicates and targetless selections.</summary>
-    public bool Validate(CardDefinition expected, CatchChainRuntime chain, out string reason, EncounterRuntime encounters = null)
+    public bool Validate(CardDefinition expected, CatchChainRuntime chain, out string reason, EncounterRuntime encounters = null,
+        TechniqueDeckRuntime deck = null)
     {
         reason = "Required Technique targets changed or are invalid";
         if (card == null || card != expected || !IsComplete) return false;
@@ -125,6 +166,22 @@ public sealed class TechniqueTargetPlan
         {
             if (!NeedsPlayerTargets(card.Effects[i])) continue;
             int[] ids = TargetsFor(i);
+            if (IsHandEffect(card.Effects[i]))
+            {
+                bool resolving = deck?.ResolvingCard == card;
+                if (deck == null || handVersion < 0 || deck.HandVersion != handVersion + (resolving ? 1 : 0)
+                    || resolving && deck.ResolvingOriginalHandIndex != playedHandIndex
+                    || playedHandIndex < 0 || !resolving && (playedHandIndex >= deck.Hand.Length || deck.Hand[playedHandIndex] != card)
+                    || ids.Length < 1 || ids.Length > 2) return false;
+                HashSet<int> slots = new HashSet<int>();
+                foreach (int id in ids)
+                {
+                    int slot = -1000 - id;
+                    if (!slots.Add(slot) || slot < 0 || slot == playedHandIndex
+                        || slot >= deck.Hand.Length + (resolving ? 1 : 0)) return false;
+                }
+                continue;
+            }
             if (RequiresEncounterSelection(card.Effects[i]))
             {
                 if (ids.Length != 1 || ids[0] != EncounterTargetId || !MatchesEncounter(card.Effects[i], encounters)) return false;

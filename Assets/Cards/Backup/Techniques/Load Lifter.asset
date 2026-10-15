@@ -10,31 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Spare Line
+  m_Name: Load Lifter
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_spare_line
-  displayName: Spare Line
+  uniqueId: technique_load_lifter
+  displayName: Load Lifter
   cardType: 0
+  backupTechnique: 1
   rarity: 0
   tags:
-  - Capacity
-  - LoadControl
+  - Rigging
+  - CatchControl
   artwork: {fileID: 0}
-  rulesText: Increase Line Capacity by 3 during the next Descend overload check.
+  rulesText: Choose an attached creature. Reduce its weight by 2 until it leaves the chain.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: temporary_capacity
-    effectType: 14
+  - effectId: lighten_last_catch
+    effectType: 1
     trigger: 0
-    target: 7
+    target: 5
     effectTone: 1
-    amount: 3
+    amount: 2
     requiredTags: []
-    caughtCardTargetMode: 0
+    caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Gain 3 temporary Line Capacity on the next Descend.
+    reminderText: The selected creature contributes 2 less Line Load.

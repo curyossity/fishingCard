@@ -452,7 +452,8 @@ public sealed class FishingRunView : MonoBehaviour
 
         latestCanDescend = canDescend;
         descendButton.interactable = canDescend && encounterTransitionCoroutine == null;
-        releaseButton.interactable = canRelease;
+        releaseButton.interactable = false;
+        releaseButton.gameObject.SetActive(false);
         releaseButtonText.text = selectedCatchIndex >= 0
             ? $"RELEASE CATCH {selectedCatchIndex + 1:00}"
             : "RELEASE";
@@ -1079,7 +1080,7 @@ public sealed class FishingRunView : MonoBehaviour
     }
 
     /// <summary>
-    /// Creates the permanent Descend, Release, and Surface action controls.
+    /// Creates Descend and Surface controls; the retired Release control stays hidden for serialized compatibility.
     /// </summary>
     private void CreateCoreActions()
     {
@@ -1117,7 +1118,7 @@ public sealed class FishingRunView : MonoBehaviour
         descendButton = CreateActionButton(
             "Descend",
             actionsRect,
-            new Vector2(0.02f, 0.68f),
+            new Vector2(0.02f, 0.53f),
             new Vector2(0.98f, 0.96f),
             descendPlateSprite,
             descendIconSprite,
@@ -1140,7 +1141,7 @@ public sealed class FishingRunView : MonoBehaviour
             "Surface",
             actionsRect,
             new Vector2(0.02f, 0.04f),
-            new Vector2(0.98f, 0.32f),
+            new Vector2(0.98f, 0.47f),
             surfacePlateSprite,
             surfaceIconSprite,
             new Color(0.08f, 0.13f, 0.12f, 1f),

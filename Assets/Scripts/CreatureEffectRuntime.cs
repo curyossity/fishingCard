@@ -827,6 +827,14 @@ public sealed class CreatureEffectRuntime
         return true;
     }
 
+    /// <summary>Queues only the changed card's own mode-entry effects without broadcasting a new Catch.</summary>
+    public void QueueChangedRole(CardInstance card)
+    {
+        if (card == null) return;
+        requests.Add(new Request { Kind = CreatureEffectChoiceKind.ActivateChangedRole,
+            SourceInstanceId = card.InstanceId, ExpectedRole = card.AttachmentRole });
+    }
+
     /// <summary>Captures attached Armored eligibility at play time before any Technique targets are changed or released.</summary>
     public void BeginTechniquePlay(CardDefinition technique, int discardOccurrenceId, CardInstance[] catches)
     {

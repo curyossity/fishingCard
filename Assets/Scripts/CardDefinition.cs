@@ -11,6 +11,8 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private string displayName;
     [SerializeField] private CardType cardType;
     [SerializeField] private CardRarity rarity;
+    [SerializeField] private bool backupTechnique;
+    [SerializeField] private string techniqueRole;
     [SerializeField] private string[] tags = Array.Empty<string>();
 
     [Header("Presentation")]
@@ -59,6 +61,8 @@ public class CardDefinition : ScriptableObject
     public string DisplayName => displayName;
     public CardType CardType => cardType;
     public CardRarity Rarity => rarity;
+    public bool IsBackupTechnique => cardType == CardType.Technique && backupTechnique;
+    public string TechniqueRole => techniqueRole;
     public string[] Tags => tags;
     public Sprite Artwork => artwork;
     public Sprite EncounterArtwork => encounterArtwork;
@@ -422,7 +426,15 @@ public enum CardEffectType
     SnagHeaviestUnarmoredCreature,
     QueueBaitWeightReduction,
     OptionalEventCreatureRelease,
-    ScheduleCreatureTrail
+    ScheduleCreatureTrail,
+    ReleaseAttachedCreature,
+    SkipHookedCreature,
+    ClearCreatureConcealment,
+    CancelCurrentHazard,
+    SwitchCreatureMode,
+    GrantActionLoadRelief,
+    FilterTechniqueHand,
+    QueuePrizeCatchBonus
 }
 
 public enum CardEffectTrigger

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-15",
+  "unity_reference_version": "6000.5.9f1",
+  "active_technique_designs": 8,
+  "starter_cards": 12,
+  "hand_size": 4,
+  "archived_technique_designs": 15,
+  "runtime_assertions_passed": 922,
+  "new_approved_technique_assertions_passed": 38,
+  "content_assertions_passed": 106,
+  "runtime_compilation": "passed",
+  "editor_compilation": "passed",
+  "execution_environment": "dotnet adapter harness using actual runtime rule and controller classes",
+  "editor_authored_assertions_available_but_not_executed": 33,
+  "unity_playmode_executed": false,
+  "unity_asset_import_verified": false,
+  "unity_serialization_roundtrip_verified": false,
+  "visual_modal_verification_completed": false
+}

@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Schooling Rig
+  m_Name: Prize Tag
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_schooling_rig
-  displayName: Schooling Rig
+  uniqueId: technique_prize_tag
+  displayName: Prize Tag
   cardType: 0
-  rarity: 1
+  backupTechnique: 1
+  rarity: 0
   tags:
-  - Synergy
+  - Value
   - CatchControl
   artwork: {fileID: 0}
-  rulesText: Each attached Schooling catch gains 1 Value for every other attached Schooling catch.
+  rulesText: Choose an attached creature. Increase its value by 3 until it leaves the chain.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: reward_schooling_chain
-    effectType: 10
+  - effectId: improve_last_catch_value
+    effectType: 2
     trigger: 0
-    target: 4
+    target: 5
     effectTone: 1
-    amount: 1
-    requiredTags:
-    - Schooling
-    caughtCardTargetMode: 0
+    amount: 3
+    requiredTags: []
+    caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Attached Schooling catches increase each other's Value.
+    reminderText: The selected creature gains 3 Value.

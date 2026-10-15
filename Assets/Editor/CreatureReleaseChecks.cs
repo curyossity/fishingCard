@@ -178,11 +178,11 @@ public static class CreatureReleaseChecks
         Set(deck, "hand", new[] { redirect });
         Require(TechniqueRuleChecks.Play(controller, 0), "Replacement fixture was not playable.");
         chain.Add(armored, resolver);
-        Require(controller.TryReleaseCatch(chain.Catches.Length - 1) && !controller.HasPendingCreatureChoice,
+        Require(TechniqueRuleChecks.ReleaseFixture(controller, chain.Catches.Length - 1) && !controller.HasPendingCreatureChoice,
             "Replacement reset the recovery limit.");
         Require(controller.TryDescend(), "Genuine encounter advancement failed.");
         Set(deck, "discardPile", new[] { cut }); chain.Add(armored, resolver);
-        Require(controller.TryReleaseCatch(chain.Catches.Length - 1)
+        Require(TechniqueRuleChecks.ReleaseFixture(controller, chain.Catches.Length - 1)
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique, "New encounter did not reset recovery.");
     }
 

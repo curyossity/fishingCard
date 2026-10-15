@@ -10,33 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Counterweight Rig
+  m_Name: Double Release
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_counterweight_rig
-  displayName: Counterweight Rig
+  uniqueId: technique_double_release
+  displayName: Double Release
   cardType: 0
-  rarity: 2
+  backupTechnique: 1
+  rarity: 1
   tags:
-  - Rigging
-  - LoadControl
-  - Predator
+  - Release
+  - CatchControl
   artwork: {fileID: 0}
-  rulesText: Choose an attached Predator creature. Reduce its weight by 3 until it leaves the chain.
+  rulesText: Choose and immediately release up to two attached creatures without changing depth.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: counterweight_last_predator
-    effectType: 1
+  - effectId: release_last_two
+    effectType: 8
     trigger: 0
     target: 5
-    effectTone: 1
-    amount: 3
-    requiredTags:
-    - Predator
+    effectTone: 0
+    amount: 2
+    requiredTags: []
     caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: The selected Predator contributes 3 less Line Load.
+    reminderText: Release up to two selected attached creatures.

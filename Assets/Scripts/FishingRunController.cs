@@ -121,9 +121,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Reports legal Release availability without mutating an attached card or resolving reactions.</summary>
     public bool CanReleaseCatch(int catchIndex)
     {
-        CardInstance[] catches = catchChainRuntime.Catches;
-        return CoreActionInputReady && catchIndex >= 0 && catchIndex < catches.Length
-            && catches[catchIndex] != null && !catches[catchIndex].PreventsReleaseWhileAttached;
+        return false; // Deliberate Release must be granted by a Technique, event, or creature effect.
     }
 
     public bool RunActive => runActive;
@@ -275,7 +273,7 @@ public sealed class FishingRunController : MonoBehaviour
     {
         if (!CanUseTechniqueCard(handIndex, out _)) return false;
         techniqueDeckRuntime.TryGetHandCard(handIndex, out CardDefinition card, out _);
-        TechniqueTargetPlan targets = new TechniqueTargetPlan(card, catchChainRuntime, encounterRuntime);
+        TechniqueTargetPlan targets = new TechniqueTargetPlan(card, catchChainRuntime, encounterRuntime, techniqueDeckRuntime, handIndex);
         if (targets.IsComplete) return TryUseTechniqueCardWithTargets(handIndex, targets);
         pendingTechniqueTargets = targets;
         pendingTechniqueHandIndex = handIndex;
@@ -302,12 +300,12 @@ public sealed class FishingRunController : MonoBehaviour
         if (techniqueDeckRuntime.HandVersion != pendingTechniqueHandVersion
             || encounterRuntime.EncounterRevision != pendingTechniqueEncounterRevision)
         { TryCancelTechniqueSelection(); return false; }
-        if (!pendingTechniqueTargets.TrySelect(instanceId, catchChainRuntime, encounterRuntime)) return false;
+        if (!pendingTechniqueTargets.TrySelect(instanceId, catchChainRuntime, encounterRuntime, techniqueDeckRuntime)) return false;
         if (!pendingTechniqueTargets.IsComplete) { RefreshViews(); return true; }
         return CommitPendingTechniqueSelection();
     }
 
-    /// <summary>Finishes an up-to-count Release selection without requiring every available recipient.</summary>
+    /// <summary>Finishes an up-to-count Release or Recast selection without requiring every available recipient.</summary>
     public bool TryFinishTechniqueTargets(long expectedSelectionId = -1)
     {
         if (!HasPendingTechniqueSelection || expectedSelectionId >= 0 && expectedSelectionId != techniqueSelectionId) return false;
@@ -333,7 +331,8 @@ public sealed class FishingRunController : MonoBehaviour
     {
         if (!CanUseTechniqueCard(handIndex, out string reason)) return false;
         techniqueDeckRuntime.TryGetHandCard(handIndex, out CardDefinition techniqueCard, out _);
-        if (targets == null || !targets.Validate(techniqueCard, catchChainRuntime, out reason, encounterRuntime)) return false;
+        if (targets == null || !targets.MatchesPlayedHandIndex(handIndex)
+            || !targets.Validate(techniqueCard, catchChainRuntime, out reason, encounterRuntime, techniqueDeckRuntime)) return false;
         CardDefinition encounterBeforeTechnique = encounterRuntime.CurrentEncounter;
         int encounterSelectionDepth = GetEffectiveEncounterSelectionDepth();
         CardDefinition[] pool = GetTechniqueEncounterPool(encounterSelectionDepth);
@@ -353,10 +352,11 @@ public sealed class FishingRunController : MonoBehaviour
                         creatureEffectRuntime.RecordSelectedTechniqueTarget(Array.Find(catchChainRuntime.Catches, c => c.InstanceId == id));
             applied = techniqueEffectRuntime.ApplyCard(techniqueCard, encounterRuntime, catchChainRuntime, effectResolver,
                 pool, currentBiome?.EncounterChains, CurrentBiomeId, currentDepth, random,
-                TechniqueRevealInformationHidden, out effectSummary, targets);
+                TechniqueRevealInformationHidden, out effectSummary, targets, techniqueDeckRuntime, creatureEffectRuntime);
             if (!techniqueDeckRuntime.TryCompletePlay(occurrence))
                 throw new InvalidOperationException("Resolving Technique ownership changed before discard.");
             // Completion-waiting recoveries can now see the exact played discard occurrence.
+            catchChainRuntime.FinishDeferredTechniqueReleases(effectResolver);
             creatureEffectRuntime.FinishReleaseResolution();
             creatureEffectRuntime.FinishTechniquePlay();
         }
@@ -434,7 +434,7 @@ public sealed class FishingRunController : MonoBehaviour
             GetTechniqueEncounterPool(encounterSelectionDepth),
             CurrentBiomeId,
             currentDepth,
-            out restrictionReason);
+            out restrictionReason, techniqueDeckRuntime);
     }
 
     /// <summary>
@@ -460,6 +460,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (!TryConfirmEventAction(ConfirmedEventAction.Descend, out bool handled)) return false;
         if (handled) return true;
+        techniqueEffectRuntime.Approved.BeginAction(catchChainRuntime);
         CommitCurrentEncounterForDescend();
         ResumeAfterCreatureChoices();
         RefreshViews();
@@ -517,6 +518,7 @@ public sealed class FishingRunController : MonoBehaviour
         // The next reveal uses the new depth so data-driven depth ranges take effect immediately.
         currentDepth += Mathf.Max(1, depthStepPerDescend + techniqueResolution.AdditionalDepth);
         techniqueDeckRuntime.Refill(startingHandSize, random);
+        techniqueEffectRuntime.Approved.EndAction(catchChainRuntime);
         RevealEncounterAtCurrentDepth();
 
         RefreshViews();
@@ -533,6 +535,7 @@ public sealed class FishingRunController : MonoBehaviour
             return false;
         }
 
+        techniqueEffectRuntime.Approved.BeginAction(catchChainRuntime);
         EndBiomeEventEffects();
         currentBiome = next;
         currentDepth = next.StartingDepth;
@@ -897,6 +900,7 @@ public sealed class FishingRunController : MonoBehaviour
         else if (biomeEntryRevealPending)
         {
             biomeEntryRevealPending = false;
+            techniqueEffectRuntime.Approved.EndAction(catchChainRuntime);
             RevealEncounterAtCurrentDepth();
         }
     }
@@ -931,6 +935,7 @@ public sealed class FishingRunController : MonoBehaviour
                 Debug.LogWarning("Event action was not confirmed: " + reason, this);
                 return false;
             }
+            techniqueEffectRuntime.Approved.BeginAction(catchChainRuntime);
             confirmedEventAction = action;
             confirmedEventOccurrenceId = occurrence.Id;
             eventConsequencesComplete = cancelled;
@@ -1039,6 +1044,30 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (runActive && HasPendingTechniqueSelection)
         {
+            if (pendingTechniqueTargets.CurrentIsHandTarget)
+            {
+                int[] slots = pendingTechniqueTargets.HandCandidates(techniqueDeckRuntime);
+                bool canFinishHand = pendingTechniqueTargets.CanFinishCurrentSelection;
+                long token = techniqueSelectionId;
+                int count = slots.Length + (canFinishHand ? 2 : 1);
+                string[] names = new string[count], rules = new string[count]; Sprite[] art = new Sprite[count];
+                for (int i = 0; i < slots.Length; i++)
+                {
+                    CardDefinition target = techniqueDeckRuntime.Hand[slots[i]];
+                    names[i] = target.DisplayName; rules[i] = target.RulesText; art[i] = target.Artwork;
+                }
+                names[slots.Length] = "Cancel play";
+                if (canFinishHand) names[slots.Length + 1] = "Recast selected";
+                fishingRunView.ShowCreatureEffectChoice(pendingTechniqueTargets.Card.DisplayName,
+                    "Choose one or two other Techniques to discard and replace.", names, rules, art,
+                    index =>
+                    {
+                        if (index == slots.Length) TryCancelTechniqueSelection(token);
+                        else if (canFinishHand && index == slots.Length + 1) TryFinishTechniqueTargets(token);
+                        else TryChooseTechniqueTarget(TechniqueTargetPlan.HandTargetId(slots[index]), token);
+                    });
+                return;
+            }
             if (pendingTechniqueTargets.CurrentIsEncounterTarget)
             {
                 long token = techniqueSelectionId;
@@ -1470,42 +1499,9 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>
-    /// Releases one caught card without advancing depth or resolving the Hooked encounter.
+    /// Rejects the retired universal Release command; deliberate Release requires an explicit card effect.
     /// </summary>
-    public bool TryReleaseCatch(int catchIndex)
-    {
-        if (!runActive)
-        {
-            Debug.LogWarning("Cannot Release a catch before a run has started.", this);
-            return false;
-        }
-
-        if (!CanReleaseCatch(catchIndex))
-        {
-            return false;
-        }
-
-        bool released = catchChainRuntime.TryRelease(
-            catchIndex,
-            effectResolver,
-            out CardInstance releasedCatch,
-            out int previousLineLoad,
-            out string validationMessage);
-
-        if (!released)
-        {
-            Debug.LogWarning(validationMessage, this);
-            return false;
-        }
-
-        selectedCatchIndex = -1;
-        creatureEffectRuntime.FinishReleaseResolution();
-        PrepareCreatureChoice();
-        ResumeAfterCreatureChoices();
-        RefreshViews();
-        Debug.Log(BuildReleaseSummary(releasedCatch, previousLineLoad), this);
-        return true;
-    }
+    public bool TryReleaseCatch(int catchIndex) { return false; }
 
     /// <summary>
     /// Selects or deselects an attached catch for the player-facing Release action.
@@ -1563,6 +1559,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Evaluates the return and records the haul only after any event consequences and reactions finish.</summary>
     private void PerformSurface()
     {
+        techniqueEffectRuntime.Approved.BeginAction(catchChainRuntime);
         int surfaceStartingLoad = catchChainRuntime.CurrentLineLoad;
         CardInstance[] strainLostCatches = ResolveOverloadRisk(lineCapacity);
         bool lineBroke = lineLoadRiskRuntime.LastOutcome == LineLoadRiskOutcome.LineBroken;
@@ -1816,6 +1813,8 @@ public sealed class FishingRunController : MonoBehaviour
         creatureEffectRuntime.EventPersistence = eventPersistenceRuntime;
         catchChainRuntime.BeforeAttachmentEffects -= eventPersistenceRuntime.ApplyPendingBaitWeightReductions;
         catchChainRuntime.BeforeAttachmentEffects += eventPersistenceRuntime.ApplyPendingBaitWeightReductions;
+        catchChainRuntime.BeforeAttachmentEffects -= techniqueEffectRuntime.Approved.ApplyPendingPrizes;
+        catchChainRuntime.BeforeAttachmentEffects += techniqueEffectRuntime.Approved.ApplyPendingPrizes;
         encounterRuntime.EventAvailability = IsEventAvailable;
     }
 
@@ -2117,7 +2116,7 @@ public sealed class FishingRunController : MonoBehaviour
             CardInstance encounterPreview = catchChainRuntime.CreateResolvedCatchPreview(
                 currentEncounter,
                 effectResolver,
-                previewRole);
+                previewRole, techniqueEffectRuntime.Approved.PreviewPendingPrizes);
             int resolvedEncounterWeight = 0;
             int resolvedEncounterValue = 0;
 

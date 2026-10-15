@@ -13,6 +13,11 @@ public sealed class CatchChainRuntime
     [SerializeField] private string[] consumedNextEncounterEffectKeys = Array.Empty<string>();
     [SerializeField] private string[] invalidatedNoReleaseEffectKeys = Array.Empty<string>();
     [SerializeField] private int nextInstanceId = 1;
+    [SerializeField] private int actionLoadReduction;
+    [SerializeField] private List<CardInstance> deferredTechniqueReleases = new List<CardInstance>();
+
+    /// <summary>Applies action-scoped load relief without changing creature weights or Line Capacity.</summary>
+    public void SetActionLoadReduction(int amount) { actionLoadReduction = Math.Max(0, amount); }
 
     /// <summary>Reports each completed deliberate removal without firing for forced loss or exchange.</summary>
     public event Action<CardInstance, CatchRemovalReason> DeliberatelyReleased;
@@ -47,7 +52,7 @@ public sealed class CatchChainRuntime
                 }
             }
 
-            return load;
+            return Math.Max(0, load - actionLoadReduction);
         }
     }
 
@@ -88,7 +93,11 @@ public sealed class CatchChainRuntime
     public CardInstance[] GetTechniqueTargets(CardEffectDefinition effect)
     {
         if (!TechniqueTargetPlan.RequiresSelection(effect)) return Array.Empty<CardInstance>();
-        return Array.FindAll(catches, c => IsValidTechniqueTarget(effect, c)
+        return Array.FindAll(catches, c => (effect.EffectType == CardEffectType.SwitchCreatureMode
+                ? CanChangeCreatureMode(c) && !c.PreventsTechniqueTargeting
+                : IsValidTechniqueTarget(effect, c))
+            && (effect.EffectType != CardEffectType.ReleaseAttachedCreature || c.Definition?.CardType == CardType.Creature
+                && !c.PreventsReleaseWhileAttached)
             && EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, c));
     }
 
@@ -104,9 +113,10 @@ public sealed class CatchChainRuntime
             CardInstance target = Array.Find(GetTechniqueTargets(effect), c => c.InstanceId == id);
             if (target == null) continue;
             TechniqueTargetSelected?.Invoke(target);
-            if (effect.EffectType == CardEffectType.ReleaseCatch)
+            if (effect.EffectType == CardEffectType.ReleaseCatch || effect.EffectType == CardEffectType.ReleaseAttachedCreature)
             {
-                if (!TryRelease(Array.IndexOf(catches, target), resolver, out _, out _, out _, CatchRemovalReason.Technique)) continue;
+                if (!TryRelease(Array.IndexOf(catches, target), resolver, out _, out _, out _, CatchRemovalReason.Technique,
+                    effect.EffectType == CardEffectType.ReleaseAttachedCreature)) continue;
             }
             else
             {
@@ -266,6 +276,7 @@ public sealed class CatchChainRuntime
         catches[index] = next;
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
+        BeforeAttachmentEffects?.Invoke(next);
         ResolveNewAttachment(next, effectResolver);
         return next;
     }
@@ -327,7 +338,8 @@ public sealed class CatchChainRuntime
         out CardInstance releasedCatch,
         out int previousLineLoad,
         out string validationMessage,
-        CatchRemovalReason removalReason = CatchRemovalReason.PlayerChoice)
+        CatchRemovalReason removalReason = CatchRemovalReason.PlayerChoice,
+        bool deferTechniqueReactions = false)
     {
         releasedCatch = null;
         previousLineLoad = CurrentLineLoad;
@@ -355,16 +367,30 @@ public sealed class CatchChainRuntime
             return false;
         }
 
-        ApplyAnotherCatchReleasedEffects(releasedCatch, removalReason);
+        if (!deferTechniqueReactions) ApplyAnotherCatchReleasedEffects(releasedCatch, removalReason);
         RecordRemoval(releasedCatch, removalReason);
         catches = RemoveCatchAt(catches, catchIndex);
         RebuildActiveEffectRecords();
         effectResolver.ResolveCatchChain(catches, activeEffectRecords);
         if (removalReason != CatchRemovalReason.LineStrain)
         {
-            DeliberatelyReleased?.Invoke(releasedCatch, removalReason);
+            if (deferTechniqueReactions) deferredTechniqueReleases.Add(releasedCatch);
+            else DeliberatelyReleased?.Invoke(releasedCatch, removalReason);
         }
         return true;
+    }
+
+    /// <summary>Resolves Cut Loose's creature reactions only after the played physical Technique enters discard.</summary>
+    public void FinishDeferredTechniqueReleases(EffectResolver resolver)
+    {
+        CardInstance[] released = deferredTechniqueReleases.ToArray();
+        deferredTechniqueReleases.Clear();
+        foreach (CardInstance card in released)
+        {
+            ApplyAnotherCatchReleasedEffects(card, CatchRemovalReason.Technique);
+            Recalculate(resolver);
+            DeliberatelyReleased?.Invoke(card, CatchRemovalReason.Technique);
+        }
     }
 
     /// <summary>Validates every selected release before mutation, removes them together, then resolves survivor Release reactions.</summary>
@@ -397,6 +423,19 @@ public sealed class CatchChainRuntime
         return card != null && IsCatchAttached(card) && card.Definition?.CardType == CardType.Creature;
     }
 
+    /// <summary>Switches one creature in place and notifies pending effects before own on-attach work.</summary>
+    public bool TryChangeCreatureMode(int id, EffectResolver resolver)
+    {
+        CardInstance card = Array.Find(catches, c => c.InstanceId == id);
+        if (!CanChangeCreatureMode(card)) return false;
+        MigrateLegacyEffectKeys(card);
+        card.SetAttachmentRole(card.IsBait ? CatchAttachmentRole.Catch : CatchAttachmentRole.Bait);
+        Recalculate(resolver);
+        BeforeAttachmentEffects?.Invoke(card);
+        Recalculate(resolver);
+        return true;
+    }
+
     /// <summary>Switches a validated Catch/Bait creature pair atomically, preserving IDs, positions, and resolved modifiers.</summary>
     public bool TrySwapCreatureModes(int catchId, int baitId, EffectResolver resolver)
     {
@@ -410,6 +449,8 @@ public sealed class CatchChainRuntime
         baitCard.SetAttachmentRole(CatchAttachmentRole.Catch);
         Recalculate(resolver);
         BeforeAttachmentEffects?.Invoke(catchCard);
+        BeforeAttachmentEffects?.Invoke(baitCard);
+        Recalculate(resolver);
         return true;
     }
 
@@ -490,7 +531,8 @@ public sealed class CatchChainRuntime
     public CardInstance CreateResolvedCatchPreview(
         CardDefinition card,
         EffectResolver effectResolver,
-        CatchAttachmentRole attachmentRole = CatchAttachmentRole.Catch)
+        CatchAttachmentRole attachmentRole = CatchAttachmentRole.Catch,
+        Action<CardInstance> applyPendingPreview = null)
     {
         if (card == null || effectResolver == null)
         {
@@ -499,6 +541,7 @@ public sealed class CatchChainRuntime
 
         CardInstance[] previewCatches = CreateSnapshot();
         CardInstance previewCatch = new CardInstance(0, card, null, attachmentRole);
+        applyPendingPreview?.Invoke(previewCatch);
         previewCatches = AppendCatch(previewCatches, previewCatch);
 
         List<ActiveCatchEffectRecord> previewEffects = new List<ActiveCatchEffectRecord>();
@@ -546,6 +589,8 @@ public sealed class CatchChainRuntime
     /// </summary>
     public void Reset()
     {
+        actionLoadReduction = 0;
+        deferredTechniqueReleases.Clear();
         catches = Array.Empty<CardInstance>();
         activeEffectRecords = Array.Empty<ActiveCatchEffectRecord>();
         releasedCatches = Array.Empty<CardInstance>();

@@ -38,11 +38,11 @@ public sealed class RunProgressionRuntime
     public CardDefinition[] SavedTechniqueDeck => savedTechniqueDeck;
 
     /// <summary>
-    /// Creates the session deck once from valid authored Technique cards without overwriting later changes.
+    /// Creates the session deck from active authored cards, rebuilding legacy sessions that contain archived Techniques.
     /// </summary>
     public void InitializeTechniqueDeck(CardDefinition[] authoredStartingDeck)
     {
-        if (techniqueDeckInitialized)
+        if (techniqueDeckInitialized && !Array.Exists(savedTechniqueDeck, c => c != null && c.IsBackupTechnique))
         {
             return;
         }
@@ -54,7 +54,7 @@ public sealed class RunProgressionRuntime
         {
             CardDefinition card = sourceDeck[i];
 
-            if (card != null && card.CardType == CardType.Technique)
+            if (card != null && card.CardType == CardType.Technique && !card.IsBackupTechnique)
             {
                 validCards.Add(card);
             }
@@ -157,7 +157,7 @@ public sealed class RunProgressionRuntime
             return false;
         }
 
-        if (unlockableTechniqueCard == null || unlockableTechniqueCard.CardType != CardType.Technique)
+        if (unlockableTechniqueCard == null || unlockableTechniqueCard.CardType != CardType.Technique || unlockableTechniqueCard.IsBackupTechnique)
         {
             restrictionReason = "No valid Technique unlock is configured";
             return false;

@@ -1,0 +1,207 @@
+technique_rules:
+  timing: Play only in the reaction window before confirming Descend or Surface; finish the Technique and its reactions before another play.
+  ownership: Remove the played physical card from hand into resolving ownership; discard after its effect finishes and before completion-waiting reactions.
+  targets: Select required targets before commitment. Techniques cannot target Sea Anemone Catch; deliberate Release obeys Iron Grip.
+  hand_limit: 4
+  recovery: Cod may recover the just-used occurrence; Sea Urchin follows other reactions. Discard one for room or decline when full. Never duplicate a physical card.
+  resources: No energy resource or once-per-biome counters. Normal refill and reshuffle rules still apply.
+  release: No universal free Release; a Technique, creature, or event must grant it.
+  backup_policy: Only these eight designs are active. Previous Techniques remain archived and excluded from deck initialization, play and progression unlocks.
+
+technique_cards:
+  - id: cut_loose
+    name: Cut Loose
+    type: Technique
+    rarity: Common
+    role: Release
+    description: Release 1 attached creature.
+    playable_when: At least one attached creature can legally be targeted and deliberately released.
+    effect:
+      target: Player chooses one attached creature in Catch or Bait mode that this technique can legally release.
+      resolution: Deliberately release it. Resolve resulting creature reactions after this technique is discarded.
+    design_note: >
+      The reliable core release. Can trigger Cod, Eel and Moonlit Ray while
+      still costing the released card's value and ongoing effects. Lionfish
+      Catch's release penalty applies normally.
+
+  - id: slip_past
+    name: Slip Past
+    type: Technique
+    rarity: Common
+    role: Encounter avoidance
+    description: Skip the Hooked non-Apex creature.
+    playable_when: A non-Apex creature is currently Hooked.
+    effect:
+      target: The current Hooked non-Apex creature, even if its information is hidden.
+      resolution: >
+        Remove it without attaching it or triggering Catch, Bait or Release
+        effects. Already resolved on-reveal effects are not undone. Consume
+        any concealment assigned to that creature.
+      aftermath: >
+        Reveal no replacement immediately. The next Descend advances depth
+        normally without committing the skipped creature. Surface remains
+        available; skipping does not require continuing.
+      limits: Cannot skip an event, an attached creature or an Apex encounter.
+    design_note: >
+      Avoids incoming load or a dangerous attachment effect without earning
+      the creature's value or Bait benefit. Skipping a trail's revealed Lobster
+      does not schedule another Lobster.
+
+  - id: clear_water
+    name: Clear Water
+    type: Technique
+    rarity: Common
+    role: Information
+    description: Reveal a hidden Hooked creature; otherwise remove 1 pending concealment.
+    playable_when: The Hooked creature is hidden, or at least one future concealment is pending.
+    effect:
+      resolution: >
+        If the current Hooked creature is hidden, reveal all its information
+        and end only the concealment assigned to it. Otherwise remove the
+        oldest pending concealment for one future creature encounter.
+        These are alternative uses, not two effects from one play.
+      duration: Information revealed on the current creature stays visible until it leaves the encounter.
+      limits: >
+        Does not undo effects already resolved or cancel an unresolved Hazard.
+        While Silt Burst is still unresolved, its future concealment has not
+        yet been granted and cannot be removed by this card.
+    design_note: >
+      Counters Cuttlefish, Squid or resolved Silt Burst without avoiding the
+      creature. One play removes only one encounter's concealment.
+
+  - id: hold_steady
+    name: Hold Steady
+    type: Technique
+    rarity: Common
+    role: Hazard cancellation
+    description: Cancel the current unresolved Hazard.
+    playable_when: A revealed Hazard remains unresolved and has not already been cancelled.
+    effect:
+      target: The current unresolved Hazard encounter.
+      resolution: >
+        Discard the Hazard without resolving any of its effects. This is
+        Hazard cancellation and triggers Weathered Shell on Lobster Catches.
+        Advance no depth and reveal no replacement immediately.
+      aftermath: Player may continue using techniques, then Descend normally or Surface.
+      limits: Cannot cancel creatures, Apex encounters, Environment cards or Opportunities, or undo an already resolved Hazard.
+    design_note: >
+      Provides deliberate protection after the automatic Mussel reaction
+      window. Saves Reef Snag's load penalty or prevents Silt Burst from
+      creating concealment.
+
+  - id: rerig
+    name: Re-rig
+    type: Technique
+    rarity: Uncommon
+    role: Catch and Bait manipulation
+    description: Switch 1 attached creature between Catch and Bait.
+    playable_when: An attached creature can legally be targeted and switched to its other mode.
+    effect:
+      target: Player chooses one attached creature in Catch or Bait mode.
+      resolution:
+        - Switch its mode without moving its chain position or removing it.
+        - End its old ongoing effect and activate the new mode's effect, including on-attach effects under their existing activation limits.
+        - Keep card-specific modifiers for their remaining duration. Existing instant effects are not undone, and spent one-time Bait effects are not refreshed.
+        - This is neither a Release nor a new encounter. Only the changed card's own on-attach effects activate, consistent with the existing mode-change contract.
+      limits: Sea Anemone Catch cannot be selected while its technique-targeting restriction is active.
+    design_note: >
+      Trades sale value for a Bait engine or restores Catch income. Can turn
+      Clinging Crab Catch into Bait and end Iron Grip, but does not release
+      the Crab itself; its Claw Cut still needs another legal target.
+
+  - id: steady_line
+    name: Steady Line
+    type: Technique
+    rarity: Common
+    role: Temporary load relief
+    description: Reduce Line Load by 2 for your next Descend or Surface.
+    playable_when: No Steady Line relief is already pending.
+    effect:
+      resolution: Grant one pending reduction of 2 Line Load, minimum effective load 0.
+      activation: >
+        Apply it before any load-dependent checks during the next confirmed
+        Descend or Surface, including event consequences and creature
+        commitments that occur as part of that action.
+      duration: >
+        Through that action's load-dependent checks only. On Descend, expire
+        the reduction before revealing the next encounter. On Surface, expire
+        it after haul and load consequences are determined.
+      stacking: Does not stack with itself; another copy is unplayable while relief is pending.
+      limits: >
+        Does not alter individual creature weights, tags, sale values or
+        Line Capacity. Load above the reduced amount still has normal
+        overload consequences. Remaining overloaded after expiry follows
+        normal rules.
+    design_note: >
+      Buys one action rather than permanently solving load. Helps carry a
+      Heavy creature or bring home a valuable chain, but cannot be stacked
+      repeatedly before Surface to erase arbitrary load.
+
+  - id: recast
+    name: Recast
+    type: Technique
+    rarity: Common
+    role: Hand filtering
+    description: Discard 1 or 2 other techniques, then draw that many.
+    playable_when: At least one other technique is in hand.
+    effect:
+      target: Player chooses one or two other technique cards in hand.
+      resolution: >
+        Discard the selected cards, then draw the same number from the
+        technique deck under normal reshuffle rules. Recast remains outside
+        the discard pile until these draws finish.
+      limits: >
+        Discarding is not playing the selected techniques and does not
+        activate their effects. Recast cannot discard itself as a target.
+    design_note: >
+      Exchanges situational tools for a chance at release or protection.
+      The effect draws no more cards than it discards, so it filters rather
+      than expanding the hand.
+
+  - id: prize_hook
+    name: Prize Hook
+    type: Technique
+    rarity: Uncommon
+    role: Risk and reward
+    description: Your next Catch gains 8 value and 1 weight.
+    playable_when: The run is still active and the player has not committed an action.
+    effect:
+      resolution: >
+        The next creature attached as Catch gains 8 sale value and 1 effective
+        weight. Apply both before its on-attach effect and attachment reactions.
+        Entering Catch through a mode change also qualifies.
+      duration: >
+        Pending until awarded. Attaching Bait does not consume it. Once awarded,
+        both modifiers stay on the recipient until it leaves the chain,
+        including across mode and biome changes. Bait mode still has no sale
+        value, while the extra weight remains.
+      stacking: Multiple pending Prize Hooks add both bonuses and weight to the same next eligible Catch.
+      limits: Applies to a normal creature or Apex attached as Catch. Surfacing before it is awarded grants no bonus.
+    design_note: >
+      Converts spare load into haul value. Can strengthen a lightweight
+      Schooling Catch or a prepared Elusive Catch for Moonlit Reflection,
+      but combines dangerously with Jellyfish Catch's pending extra weight.
+
+starter_deck:
+  status: Recommended initial playtest deck.
+  total_cards: 12
+  distinct_designs: 8
+  hand_size: 4
+  cards:
+    - { id: cut_loose, copies: 3 }
+    - { id: slip_past, copies: 2 }
+    - { id: clear_water, copies: 1 }
+    - { id: hold_steady, copies: 1 }
+    - { id: rerig, copies: 1 }
+    - { id: steady_line, copies: 2 }
+    - { id: recast, copies: 1 }
+    - { id: prize_hook, copies: 1 }
+  duplicate_rationale:
+    cut_loose: Three copies provide reliable legal release; there is no universal free Release.
+    slip_past: Two copies help avoid incoming creatures without an established engine.
+    steady_line: Two copies provide temporary relief when keeping valuable catches is preferable.
+  balance_watch: >
+    Watch whether Cut Loose recovery from Cod or Sea Urchin makes release
+    too abundant, and whether Steady Line becomes routine Surface insurance.
+    Adjust using actual draw and overload rules; these counts do not guarantee
+    access in every hand.

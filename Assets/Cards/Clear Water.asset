@@ -10,32 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Predator Chum
+  m_Name: Clear Water
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_predator_chum
-  displayName: Predator Chum
+  uniqueId: clear_water
+  displayName: Clear Water
   cardType: 0
-  rarity: 1
-  tags:
-  - Bait
-  - EncounterControl
+  rarity: 0
+  backupTechnique: 0
+  techniqueRole: Information
+  tags: []
   artwork: {fileID: 0}
-  rulesText: Predator encounters gain 3 selection weight for the next encounter reveal.
+  rulesText: "Reveal a hidden Hooked creature; otherwise remove 1 pending concealment."
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: attract_next_predator
-    effectType: 3
+  - effectId: clear_water
+    displayName: Clear Water
+    effectType: 56
     trigger: 0
-    target: 6
-    effectTone: 1
-    amount: 3
-    requiredTags:
-    - Predator
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
+    target: 0
+    effectTone: 0
+    amount: 0
+    requiredTags: []
     expiresAfterUse: 1
-    reminderText: Predators are more likely in the next encounter.
+    reminderText: "Reveal a hidden Hooked creature; otherwise remove 1 pending concealment."

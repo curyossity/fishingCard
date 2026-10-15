@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Re-rig
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: rerig
+  displayName: Re-rig
+  cardType: 0
+  rarity: 1
+  backupTechnique: 0
+  techniqueRole: Catch and Bait manipulation
+  tags: []
+  artwork: {fileID: 0}
+  rulesText: "Switch 1 attached creature between Catch and Bait."
+  weight: 0
+  value: 0
+  biomeIds: []
+  minimumDepth: 0
+  maximumDepth: -1
+  effects:
+  - effectId: rerig
+    displayName: Re-rig
+    effectType: 58
+    trigger: 0
+    target: 5
+    effectTone: 0
+    amount: 0
+    requiredTags: []
+    expiresAfterUse: 1
+    reminderText: "Switch 1 attached creature between Catch and Bait."

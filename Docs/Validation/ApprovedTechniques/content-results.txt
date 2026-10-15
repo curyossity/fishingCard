@@ -1,0 +1,7 @@
+Content assertions passed: 106
+Active Techniques: 8
+Starter cards: 12
+Hand size: 4
+Archived Techniques: 15
+All archived bodies preserved except backup flag; all original metadata/GUIDs preserved.
+No archived card referenced by the active build scene.

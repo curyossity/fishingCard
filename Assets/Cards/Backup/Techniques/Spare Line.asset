@@ -10,31 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Depth Sounder
+  m_Name: Spare Line
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_depth_sounder
-  displayName: Depth Sounder
+  uniqueId: technique_spare_line
+  displayName: Spare Line
   cardType: 0
-  rarity: 1
+  backupTechnique: 1
+  rarity: 0
   tags:
-  - Descent
-  - EncounterControl
+  - Capacity
+  - LoadControl
   artwork: {fileID: 0}
-  rulesText: The next encounter is selected from 2 depths deeper without changing your actual depth.
+  rulesText: Increase Line Capacity by 3 during the next Descend overload check.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: sample_deeper_pool
-    effectType: 13
+  - effectId: temporary_capacity
+    effectType: 14
     trigger: 0
-    target: 6
-    effectTone: 0
-    amount: 2
+    target: 7
+    effectTone: 1
+    amount: 3
     requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Select the next encounter from 2 depths deeper.
+    reminderText: Gain 3 temporary Line Capacity on the next Descend.

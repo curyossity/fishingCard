@@ -20,7 +20,7 @@ The core emotional tension is push-your-luck: "I should surface now, but I can p
 
 Use three functional card groups:
 
-- Core action cards: always available and not shuffled into the player deck. Prototype actions are `Descend`, `Release`, and `Surface`.
+- Core action cards: always available and not shuffled into the player deck. The permanent actions are `Descend` and `Surface`; Release requires an explicit card effect.
 - Player technique cards: the 4-card hand and deckbuilding layer. These include bait, hooks, knots, rigging tricks, line reinforcement, descent modifiers, encounter manipulation, and catch manipulation.
 - Encounter cards: generated or drawn by the game based on depth, biome, current catches, and modifiers. This group includes creatures, treasure, hazards, environment cards, opportunities, discoveries, and biome-specific cards.
 
@@ -29,7 +29,6 @@ Do not put fundamental actions into the player deck. Bad draws should create tac
 ## Core Actions
 
 - `Descend`: always available. Advances deeper and normally commits the current Hooked creature to the Catch Chain unless a technique or special effect avoids, redirects, or replaces it. Before commitment, the player selects the card's Catch or Bait effect; only that selected effect set activates.
-- `Release`: always available. Drops an existing caught creature/item from the Catch Chain, immediately reducing Line Load, forfeiting any Catch-role haul Value, and ending ongoing attached effects. Completed one-time triggered effects are not automatically undone. Release does not advance depth and does not resolve the current Hooked encounter.
 - `Surface`: always available. Ends the descent and attempts to bring the remaining Catch Chain home as the haul.
 
 The game is structured around meaningful actions, not a separate traditional turn system.
@@ -40,7 +39,7 @@ The game is structured around meaningful actions, not a separate traditional tur
 - `Hooked`: the current unresolved catchable encounter attached to the rig. This is the player's reaction window.
 - `Caught`: committed to the Catch Chain after the player Descends without avoiding or replacing the Hooked creature.
 
-There is no free universal Skip action. Avoiding an unwanted catch requires a technique, equipment effect, creature effect, or other specific rule.
+There is no universal free Release. A Technique, creature, or event must grant a deliberate Release, respecting its targeting/release restrictions. There is no free universal Skip action. Avoiding an unwanted catch requires a technique, equipment effect, creature effect, or other specific rule.
 
 ## Catch Chain
 
@@ -105,7 +104,7 @@ Caught creatures/items remain attached to the fishing rig while the player conti
 ### Approved Spiny Lobster, Squid, and Tidepool Eel Refactors
 
 - Spiny Lobster: Weight 3, Value 24, Rare, depth 8–20, Armored/Heavy. Catch Weathered Shell gains 4 lasting sale Value per completely cancelled revealed Hazard, once per Lobster Catch; partial prevention/pre-reveal replacement do not qualify. Bait Shell Support reduces every other attached Armored creature's Weight by 1 in either role, live tags/attachments, stacking with floor 0, never self-support. Bonuses persist across modes until removal.
-- Squid: Weight 2, Value 20, Rare, depth 8–20, Predator/Elusive. Catch Ink Veil conceals next two ordinary creature encounters' identity/art/stats/tags/both effects until Catch/Bait commitment, then reveals before on-attach. Both panels remain selectable. Assign one charge at reveal; commitment or removal/avoidance/replacement/skip consumes it. Apex/non-creatures do not consume. Charges stack consecutively, survive source removal and biomes, clear on new run, and are exact Quick Clean candidates. Ordinary reveal Techniques cannot bypass commit-only Ink. Bait Ink Escape grants one next-ordinary-creature skip per card on first Bait entry. Reveal effects first; decision immediately before new techniques/core actions, still hidden if Ink. Accept discards without attachment/Release/depth advance and consumes assigned Ink; next Descend advances normally. Decline or removal during reveal spends offer. Source removal/modes/biomes preserve pending FIFO grants; no refresh. Skip breaks that encounter's authored chain.
+- Squid: Weight 2, Value 20, Rare, depth 8–20, Predator/Elusive. Catch Ink Veil conceals next two ordinary creature encounters' identity/art/stats/tags/both effects until Catch/Bait commitment, then reveals before on-attach. Both panels remain selectable. Assign one charge at reveal; commitment or removal/avoidance/replacement/skip consumes it. Apex/non-creatures do not consume. Charges stack consecutively, survive source removal and biomes, clear on new run, and are exact Quick Clean candidates. Clear Water explicitly ends one assigned Ink concealment; legacy information-only reveal effects do not bypass it. Bait Ink Escape grants one next-ordinary-creature skip per card on first Bait entry. Reveal effects first; decision immediately before new techniques/core actions, still hidden if Ink. Accept discards without attachment/Release/depth advance and consumes assigned Ink; next Descend advances normally. Decline or removal during reveal spends offer. Source removal/modes/biomes preserve pending FIFO grants; no refresh. Skip breaks that encounter's authored chain.
 - Tidepool Eel: Weight 2, Value 14, Uncommon, depth 0–14, Fish/Predator/Elusive. Catch Slippery Exit immediately offers one legal deliberate Release of another Elusive creature Bait, never saved. Bait Escape Current records pre-removal Elusive and draws one Technique per other qualifying deliberately released creature in either role after the whole action; observing Eel must survive as Bait. Copies share one draw per creature. Before any drawing, optionally discard to fit four slots; draw as many as fit. Forced removals/exchanges excluded, no saved draws.
 
 ### Creature Tag Vocabulary
@@ -173,6 +172,12 @@ Implementation status: EVT-01 through EVT-08 provide lifecycle state, reveal/can
 - Fresh Shell Fragments: Rare Opportunity, depth 5-13. One biome-local Spiny Lobster trail to current depth +3, eligible ordinary slots only. Preview identity/stats. Queued choices take precedence and consume it; Technique replacement/avoidance marks the consumed promise replaced. Passed destinations retarget the first eligible normal slot without displacing Apex. Clear on biome/run ending.
 - These handlers register at runtime setup; unrelated legacy event definitions are not implicitly migrated. Event-specific illustrations have not been supplied; assets use the existing event master with empty artwork references.
 
+## Active Technique content
+
+Use only the eight designs in [Technique Card Definitions.yaml](Technique%20Card%20Definitions.yaml): Cut Loose (Release one legal creature), Slip Past (skip Hooked non-Apex creature), Clear Water (reveal current hidden creature or remove one future concealment), Hold Steady (cancel unresolved Hazard), Re-rig (one in-place mode switch and own on-attach effects), Steady Line (-2 total Load through the next confirmed action), Recast (discard/draw one or two other hand Techniques), and Prize Hook (stacking next-Catch +8 Value/+1 Weight, including mode entry and Apex).
+
+The active scene uses the recommended 12-card starter: Cut Loose ×3; Slip Past ×2; Clear Water ×1; Hold Steady ×1; Re-rig ×1; Steady Line ×2; Recast ×1; Prize Hook ×1. Hand size remains four. All 15 previous Techniques are flagged backups under `Assets/Cards/Backup/Techniques/`, retaining GUIDs. Deck setup, play, and unlock paths reject them; old session decks migrate at next run setup. The legacy unlock is disconnected. No universal free Release remains in the controller or UI.
+
 ## Player Deck
 
 The Technique hand limit is four. Play during the reaction window before confirming Descend or Surface, completing one Technique and all its reactions before another. A play itself neither advances depth nor Surfaces.
@@ -204,7 +209,7 @@ The haul can be sold or used for progression such as equipment improvements, new
 
 The project is no longer in MVP/prototype mode. Use the following as the minimum gameplay foundation that must remain clean enough for the full game:
 
-- 3 permanent core actions: `Descend`, `Release`, `Surface`.
+- 2 permanent core actions: `Descend` and `Surface`; Release requires a specific card effect.
 - A 4-card technique hand and expandable technique deck.
 - Encounter pools across creatures, hazards, opportunities, treasure, rare encounters, biome-specific cards, and encounter chains.
 - Downside creatures and pressure cards that are meaningful in different run states.

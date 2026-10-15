@@ -8,6 +8,8 @@ public sealed class TechniqueEffectRuntime
     [SerializeField] private CardEffectDefinition[] pendingDescendEffects = Array.Empty<CardEffectDefinition>();
     [SerializeField] private CardEffectDefinition[] pendingEncounterEffects = Array.Empty<CardEffectDefinition>();
     [SerializeField] private bool revealsCurrentEncounter;
+    [SerializeField] private ApprovedTechniqueRuntime approved = new ApprovedTechniqueRuntime();
+    public ApprovedTechniqueRuntime Approved => approved;
 
     public CardEffectDefinition[] PendingDescendEffects => pendingDescendEffects;
     public CardEffectDefinition[] PendingEncounterEffects => pendingEncounterEffects;
@@ -47,7 +49,8 @@ public sealed class TechniqueEffectRuntime
         CardDefinition[] encounterPool,
         string biomeId,
         int depth,
-        out string restrictionReason)
+        out string restrictionReason,
+        TechniqueDeckRuntime deck = null)
     {
         restrictionReason = string.Empty;
 
@@ -57,7 +60,7 @@ public sealed class TechniqueEffectRuntime
             return false;
         }
 
-        if (techniqueCard == null || techniqueCard.Effects == null || techniqueCard.Effects.Length == 0)
+        if (techniqueCard == null || techniqueCard.IsBackupTechnique || techniqueCard.Effects == null || techniqueCard.Effects.Length == 0)
         {
             restrictionReason = "No usable effect";
             return false;
@@ -70,6 +73,11 @@ public sealed class TechniqueEffectRuntime
         }
         for (int i = 0; i < techniqueCard.Effects.Length; i++)
         {
+            if (ApprovedTechniqueRuntime.Handles(techniqueCard.Effects[i]))
+            {
+                if (approved.CanApply(techniqueCard.Effects[i], encounterRuntime, catchChainRuntime, deck, encounterInformationHidden)) return true;
+                continue;
+            }
             if (CanApplyEffect(
                 techniqueCard.Effects[i],
                 encounterRuntime,
@@ -102,19 +110,32 @@ public sealed class TechniqueEffectRuntime
         System.Random random,
         bool encounterInformationHidden,
         out string resultSummary,
-        TechniqueTargetPlan targets = null)
+        TechniqueTargetPlan targets = null,
+        TechniqueDeckRuntime deck = null,
+        CreatureEffectRuntime creatures = null)
     {
         resultSummary = string.Empty;
-        if (techniqueCard?.Effects == null || encounterRuntime == null
+        if (techniqueCard?.Effects == null || techniqueCard.IsBackupTechnique || encounterRuntime == null
             || !encounterRuntime.HasTechniqueReactionWindow) return false;
         if (Array.Exists(techniqueCard.Effects, TechniqueTargetPlan.NeedsPlayerTargets)
-            && (targets == null || !targets.Validate(techniqueCard, catchChainRuntime, out resultSummary, encounterRuntime))) return false;
-        if (targets != null && !targets.Validate(techniqueCard, catchChainRuntime, out resultSummary, encounterRuntime)) return false;
+            && (targets == null || !targets.Validate(techniqueCard, catchChainRuntime, out resultSummary, encounterRuntime, deck))) return false;
+        if (targets != null && !targets.Validate(techniqueCard, catchChainRuntime, out resultSummary, encounterRuntime, deck)) return false;
         List<string> results = new List<string>();
 
         for (int i = 0; i < techniqueCard.Effects.Length; i++)
         {
             CardEffectDefinition effect = techniqueCard.Effects[i];
+
+            if (ApprovedTechniqueRuntime.Handles(effect))
+            {
+                if (approved.Apply(effect, i, targets, encounterRuntime, catchChainRuntime, effectResolver,
+                    creatures, deck, random, encounterInformationHidden, out bool revealCurrent))
+                {
+                    if (revealCurrent) revealsCurrentEncounter = true;
+                    results.Add(effect.ReminderText ?? effect.EffectType.ToString());
+                }
+                continue;
+            }
 
             if (!CanApplyEffect(
                 effect,
@@ -278,6 +299,7 @@ public sealed class TechniqueEffectRuntime
     /// </summary>
     public void Reset()
     {
+        approved.Reset();
         pendingDescendEffects = Array.Empty<CardEffectDefinition>();
         pendingEncounterEffects = Array.Empty<CardEffectDefinition>();
         revealsCurrentEncounter = false;

@@ -10,31 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Double Release
+  m_Name: Clear Lens
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_double_release
-  displayName: Double Release
+  uniqueId: technique_clear_lens
+  displayName: Clear Lens
   cardType: 0
-  rarity: 1
+  backupTechnique: 1
+  rarity: 0
   tags:
-  - Release
-  - CatchControl
+  - Information
+  - EncounterControl
   artwork: {fileID: 0}
-  rulesText: Choose and immediately release up to two attached creatures without changing depth.
+  rulesText: Reveal information hidden on the current Hooked encounter until it is resolved.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: release_last_two
-    effectType: 8
+  - effectId: reveal_hooked_information
+    effectType: 11
     trigger: 0
-    target: 5
-    effectTone: 0
-    amount: 2
+    target: 3
+    effectTone: 1
+    amount: 1
     requiredTags: []
-    caughtCardTargetMode: 3
+    caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Release up to two selected attached creatures.
+    reminderText: Reveal the current Hooked encounter.

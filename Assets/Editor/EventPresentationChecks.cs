@@ -38,7 +38,7 @@ public static class EventPresentationChecks
             EffectResolver resolver = Get<EffectResolver>(controller, "effectResolver");
             chain.Add(Card(CardType.Creature), resolver);
             controller.SelectCatchForRelease(0);
-            Require(controller.CanDescend && controller.CanSurface && controller.CanReleaseSelectedCatch,
+            Require(controller.CanDescend && controller.CanSurface && !controller.CanReleaseSelectedCatch,
                 "Open event did not expose core actions.");
             CardDefinition technique = Card(CardType.Technique);
             CardEffectDefinition delayed = new CardEffectDefinition();
@@ -50,7 +50,7 @@ public static class EventPresentationChecks
             EncounterRuntime encounters = Get<EncounterRuntime>(controller, "encounterRuntime");
             Require(encounters.TryCancelRevealedHazard(encounters.CurrentEventOccurrence.Id), "Cancellation fixture failed.");
             Require(controller.CurrentEncounter == null && controller.CanDescend && controller.CanSurface
-                && controller.CanReleaseSelectedCatch && controller.CanUseTechniqueCard(0, out _),
+                && !controller.CanReleaseSelectedCatch && controller.CanUseTechniqueCard(0, out _),
                 "Discarded cancelled event disabled its surrounding input window.");
             string[] locks = { "techniqueRefillPending", "descendCompletionPending", "biomeEntryRevealPending",
                 "eventActionConfirmationInProgress", "eventActionAdvanceInProgress" };
@@ -74,7 +74,7 @@ public static class EventPresentationChecks
             Require(!controller.CanDescend && !controller.CanSurface && !controller.CanReleaseSelectedCatch,
                 "Deferred reveal enabled core controls.");
             encounters.TryCompleteEventRevealReaction(encounters.CurrentEventOccurrence.Id, reaction);
-            Require(controller.CanDescend && controller.CanSurface && controller.CanReleaseSelectedCatch,
+            Require(controller.CanDescend && controller.CanSurface && !controller.CanReleaseSelectedCatch,
                 "Completed reveal did not restore controls.");
             CardDefinition locked = Card(CardType.Creature); CardEffectDefinition grip = new CardEffectDefinition();
             Set(grip, "effectType", CardEffectType.PreventRelease); Set(grip, "target", CardEffectTarget.Self);
@@ -134,7 +134,7 @@ public static class EventPresentationChecks
         view.Refresh(true, null, 0, null, 0, 0, false, 10, 1, 4, 0, true, true, true,
             () => true, () => true, () => true);
         Require(!face.gameObject.activeSelf && Get<Button>(view, "descendButton").interactable
-            && Get<Button>(view, "releaseButton").interactable && Get<Button>(view, "surfaceButton").interactable,
+            && !Get<Button>(view, "releaseButton").gameObject.activeSelf && Get<Button>(view, "surfaceButton").interactable,
             "Empty cancelled card region disabled supplied action availability.");
         view.Refresh(true, null, 0, null, 0, 0, false, 10, 1, 4, 0, false, false, false,
             () => true, () => true, () => true);

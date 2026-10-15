@@ -10,7 +10,7 @@ The GDD remains the source of truth for game design. This document explains wher
 - `CardDefinition` assets describe base card designs. They should not store per-run mutations.
 - Runtime systems own run state, encounter state, decks, hands, catches, Line Load, and effect resolution.
 - Views display state. They should not decide gameplay rules or mutate card data.
-- Core actions (`Descend`, `Release`, `Surface`) remain always available and outside the player technique deck.
+- Core actions (`Descend`, `Surface`) remain outside the player Technique deck. Release requires an explicit card effect; there is no universal free Release.
 - Technique cards modify or bend fishing actions; they do not replace fundamental actions.
 - Encounter cards represent what the ocean reveals. Creatures, treasures, and Apex encounters can become `Hooked`.
 - `BiomeDefinition` assets establish biome identity without storing per-run state.
@@ -809,14 +809,13 @@ Current Technique-card use flow:
 7. After the entire ability and all creature choices finish, refill up to the configured normal hand size, capped at four. If the draw pile is empty, shuffle the remaining discard pile before refilling. Techniques and core actions remain blocked throughout resolution and choices; a partial failure remains blocked until explicit run replacement clears it.
 8. The controller refreshes the hand, piles, encounter, Catch Chain, and playability states.
 
-Current Release flow:
+Granted Release flow:
 
-1. `FishingRunController.TryReleaseCatch(int)` selects an attached card by Catch Chain index.
-2. `CatchChainRuntime` removes the selected card, so its weight and future haul value are lost.
-3. `CatchChainRuntime` rebuilds active effects and resolves all remaining interactions from base stats.
-4. Depth, the current encounter, and Hooked state remain unchanged.
-5. `CatchChainView` refreshes immediately with the remaining ordered catches.
-6. The action logs the released card and immediate Line Load change.
+1. There is no universal free Release. The retired public controller command rejects direct requests; the player-facing control is hidden. Descend and Surface remain permanent actions.
+2. A Technique, creature, or event validates its own legal recipients and grants deliberate Release through CatchChainRuntime. Iron Grip and targeting restrictions still apply.
+3. Removal forfeits the attachment's Weight, Catch-role Value, and ongoing effects. Recalculate surviving cards; preserve completed effects with independent durations.
+4. Cut Loose defers survivor Release reactions and notifications until its physical card enters discard. CreatureEffectRuntime then resolves Cod, Eel, Ray and other queued choices before Urchin recovery and normal refill.
+5. Release does not itself advance depth or resolve the current encounter. Forced losses and exchanges remain distinct from deliberate Release.
 
 Current Surface flow:
 
@@ -1032,7 +1031,7 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 - CatchChainRuntime.TechniqueTargetSelected reports actual individual targets before modification/removal. Untargeted distributed effects emit no selection event. FishingRunController captures play-time effective-tag eligibility and the played discard token before effects, then appends exact recovery behind all resulting choices. Normal Technique refill waits for the queue to finish.
 - CreatureEffectRuntime stores FIFO recovery grants independently of Urchin lifetime, using authored required tags. At most one grant is consumed per qualifying play. A missing played occurrence or declining still consumes it. Full-hand recovery permits one discard; available-space recovery returns only the exact token.
 - CatchChainRuntime.TrySwapCreatureModes atomically changes an attached creature Catch/Bait pair, preserving IDs, positions, permanent modifiers, and pending effects. Creature eligibility governs current mode legality; Release locks do not become mode locks. Lifecycle keys include role, with legacy keys associated with the pre-swap role before mutation.
-- Helping Arms queues two deferred role activations: new Catch first, then new Bait only if still attached in the expected mode. ActivateRoleOnAttach runs only the card's own immediate chain effects, and RecordAttachment skips shared after-catching reactions for a role change. No next-attachment bonus is consumed by the swap. New ongoing effects are already recalculated after both role changes.
+- Helping Arms queues two deferred role activations: new Catch first, then new Bait only if still attached in the expected mode. ActivateRoleOnAttach runs only the card's own immediate chain effects, and RecordAttachment skips shared after-catching reactions for a role change. Pending entry effects follow their own rules: Prize Hook qualifies on Catch entry and Upwelling on Bait entry; ordinary next-attachment triggers are not consumed. New ongoing effects are already recalculated after both role changes.
 - Existing one-time Bait abilities retain their activation keys across mode swaps. Crab release and frozen Jellyfish target selection spend their first Bait activation even without targets. Mussel protection expires when leaving Bait, while independent Tangle/Spiny Grip queues and completed Value bonuses retain their authored durations.
 - FishingRunController presents mandatory discard, simultaneous release selection/finish, two-stage mode pairing/decline, and exact recovery discard/decline through the existing creature-choice modal. Source-role validation prevents stale on-attach requests from operating in a different role. Gameplay actions remain blocked until the ordered queue completes. New effect enum values append after existing serialized entries.
 
@@ -1049,13 +1048,13 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 
 - EncounterRuntime.HasTechniqueReactionWindow permits a Hooked catchable encounter or an open event occurrence, including a cancelled occurrence with no visible card. A runtime callback-depth guard closes Technique input during nested synchronous reveal callbacks; deferred event reaction tokens keep it closed afterward until completion.
 - FishingRunController.CanUseTechniqueCard also rejects pending creature choices, suspended Descend/biome entry, and an unresolved Technique/refill operation. The refill-pending flag is set before applying a consumed Technique, preventing a new Technique from interrupting effect/recovery processing. Choices and exact recovery complete before normal hand refill; afterward legal plays can continue in the same event window.
-- TechniqueEffectRuntime validates its own open-window boundary for both validation and execution. Attached-card mutations use the existing chain's target/restriction checks; delayed effects can be queued even after Hazard discard. Effects requiring CurrentEncounter or HookedEncounter reject missing targets and apply their authored required tags. Replacement targeting CurrentEncounter supports unresolved events; Hooked-target replacement and avoidance retain catchable-target restrictions. Information reveal requires a visible target and hidden information, and does not bypass Squid Ink.
+- TechniqueEffectRuntime validates its own open-window boundary for both validation and execution. Attached-card mutations use the existing chain's target/restriction checks; delayed effects can be queued even after Hazard discard. Effects requiring CurrentEncounter or HookedEncounter reject missing targets and apply their authored required tags. Replacement targeting CurrentEncounter supports unresolved events; Hooked-target replacement and avoidance retain catchable-target restrictions. Information reveal requires a visible target and hidden information, and the legacy information-only effect does not bypass Squid Ink. Clear Water explicitly ends the assigned concealment.
 - Cancelled, resolving, and resolved event outcomes have different availability: cancellation retains a pre-action window after reactions, but its discarded card is not a target. Consequence claim closes the window; resolving/resolved occurrences accept no new Techniques. FishingRunController coordinates confirmed Descend/Surface through EventEffectRuntime and the creature queue; input stays locked until the action completes.
 - No authored Technique card or effect enum was changed, and no new event avoidance rule was introduced.
 
 ### Squid concealment presentation boundary
 
-`CreatureCardView` and legacy `CardView` accept separate information and identity masks. Identity concealment replaces the name, removes both art layers, tags/tooltips and rarity markers, and masks stats/both rules while leaving Catch/Bait selection available. `FishingRunView` carries both masks through standby transitions and encounter-history snapshots. Views never consume charges or decide skips. Ordinary Technique reveal applies only to the prior information-only concealment contract; it cannot override Ink commitment concealment.
+`CreatureCardView` and legacy `CardView` accept separate information and identity masks. Identity concealment replaces the name, removes both art layers, tags/tooltips and rarity markers, and masks stats/both rules while leaving Catch/Bait selection available. `FishingRunView` carries both masks through standby transitions and encounter-history snapshots. Views never consume charges or decide skips. Legacy Technique reveal applies only to the prior information-only concealment contract. Clear Water explicitly ends one assigned concealment, including Ink, without consuming future charges.
 
 ## Event foundation verification
 
@@ -1101,3 +1100,17 @@ Ownership (2026-10-15):
 TechniqueTargetPlan contains serialized per-effect selections and required counts. It enumerates legal attached targets through CatchChainRuntime and stores the exact current encounter and revision for encounter targets. The controller owns the precommit selection token and hand version, while the backend independently validates the completed plan before mutation. Up-to-count Release effects can finish selection after one recipient instead of requiring the maximum. Existing Load Lifter, Counterweight Rig, Prize Tag, and Double Release text describes the selected recipients. Test helpers supply explicit fixture inputs; they are not a gameplay fallback for choosing targets.
 
 TechniqueRuleChecks covers these rules and is included in the combined EventIntegrationChecks menu. Runtime checks execute through a .NET adapter against the real rule classes; runtime and Editor sources also compile against Unity references. Production-prefab Editor checks are provided but have not been executed in Unity. See [Technique validation evidence](Validation/TechniqueRules/README.md) for counts, scope, and remaining PlayMode/serialization/UI verification.
+
+## Active approved Techniques and archived content
+
+The GDD section 10 and its Technique Card Definitions.yaml supplement define the eight active Techniques and 12-card starter deck. CardDefinition stores the authored Technique role and an explicit backup flag. The previous 15 definitions and their metadata retain their GUIDs under Assets/Cards/Backup/Techniques; TechniqueDeckRuntime and TechniqueEffectRuntime reject backup cards. RunProgressionRuntime rebuilds an initialized session deck containing a backup from the current authored starter and excludes backup unlocks. SampleScene references only the new starter cards and no legacy unlock. Authored assets remain outside per-run state.
+
+ApprovedTechniqueRuntime, serialized inside TechniqueEffectRuntime, owns Steady Line's pending/active grant and pending Prize Hook descriptors. Its explicit effect-family handlers validate the eight new effect types without repurposing legacy enums. EncounterRuntime clears only one assigned or oldest future concealment charge for Clear Water and retains future charges from the same source. Hold Steady uses the existing exact Hazard-cancellation path, including reveal reactions and Weathered Shell.
+
+TechniqueTargetPlan supports exact other-hand-slot selections for Recast as well as attachment and encounter targets. It excludes the played physical slot, rejects duplicate slots and stale hand versions, and remaps slots after the played card leaves hand. One or two selected cards are discarded without being played, then the same number is drawn while Recast remains in resolving ownership. The controller presents hand targets in the existing choice modal, including cancellation and finishing with one selection.
+
+CatchChainRuntime.TryChangeCreatureMode switches one creature in place, retaining modifiers and activation history. BeforeAttachmentEffects runs for new attachments, replacement Catches, and both sides of role swaps, allowing Prize Hook on Catch entry and Upwelling on Bait entry. CreatureEffectRuntime queues only the changed card's own on-attach work, after the Technique's discard, without emitting other creatures' after-catching triggers. Source-dependent effects end on the role change; spent Bait activations never refresh.
+
+Steady Line is activated by the confirmed-action coordinator after successful preflight and before event consequences or commitment. CatchChainRuntime subtracts its action-scoped reduction from total Line Load with a zero floor, so every consumer uses the same effective load while individual stats and capacity stay unchanged. Relief survives suspended event/creature choices. Expire it after Descend checks and before reveal, or on Surface/run cleanup; failed preflight does not consume it. Prize Hook awards all pending modifiers before on-attach processing and retains them on the recipient across modes/biomes until removal. All unfinished grants and deferred releases clear on run shutdown/restart.
+
+ApprovedTechniqueChecks runs the actual rule/controller classes and supplies an Editor-only asset/deck/backup check. The combined event menu includes both. Validation and remaining Unity checks are recorded under Docs/Validation/ApprovedTechniques/README.md.

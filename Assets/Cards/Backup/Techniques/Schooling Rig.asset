@@ -10,31 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Slip Knot
+  m_Name: Schooling Rig
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_slip_knot
-  displayName: Slip Knot
+  uniqueId: technique_schooling_rig
+  displayName: Schooling Rig
   cardType: 0
-  rarity: 0
+  backupTechnique: 1
+  rarity: 1
   tags:
-  - Escape
-  - EncounterControl
+  - Synergy
+  - CatchControl
   artwork: {fileID: 0}
-  rulesText: Avoid the current Hooked creature. The next Descend catches nothing and continues deeper.
+  rulesText: Each attached Schooling catch gains 1 Value for every other attached Schooling catch.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: avoid_hooked_creature
-    effectType: 7
+  - effectId: reward_schooling_chain
+    effectType: 10
     trigger: 0
-    target: 2
+    target: 4
     effectTone: 1
     amount: 1
-    requiredTags: []
+    requiredTags:
+    - Schooling
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Avoid the current Hooked creature.
+    reminderText: Attached Schooling catches increase each other's Value.

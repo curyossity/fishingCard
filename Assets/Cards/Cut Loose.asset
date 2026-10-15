@@ -10,31 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Clear Lens
+  m_Name: Cut Loose
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_clear_lens
-  displayName: Clear Lens
+  uniqueId: cut_loose
+  displayName: Cut Loose
   cardType: 0
   rarity: 0
-  tags:
-  - Information
-  - EncounterControl
+  backupTechnique: 0
+  techniqueRole: Release
+  tags: []
   artwork: {fileID: 0}
-  rulesText: Reveal information hidden on the current Hooked encounter until it is resolved.
+  rulesText: "Release 1 attached creature."
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: reveal_hooked_information
-    effectType: 11
+  - effectId: cut_loose
+    displayName: Cut Loose
+    effectType: 54
     trigger: 0
-    target: 3
-    effectTone: 1
+    target: 5
+    effectTone: 0
     amount: 1
     requiredTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Reveal the current Hooked encounter.
+    reminderText: "Release 1 attached creature."

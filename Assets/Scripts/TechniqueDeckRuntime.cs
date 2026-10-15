@@ -8,6 +8,8 @@ public sealed class TechniqueDeckRuntime
     public const int HandLimit = 4;
     [SerializeField] private CardDefinition resolvingCard;
     [SerializeField] private int resolvingOccurrenceId;
+    [SerializeField] private int resolvingOriginalHandIndex = -1;
+    public int ResolvingOriginalHandIndex => resolvingOriginalHandIndex;
     [SerializeField] private long handVersion;
     public CardDefinition ResolvingCard => resolvingCard;
     public int ResolvingOccurrenceId => resolvingOccurrenceId;
@@ -31,7 +33,7 @@ public sealed class TechniqueDeckRuntime
     {
         discardPile = Array.Empty<CardDefinition>();
         discardOccurrenceIds = Array.Empty<int>();
-        resolvingCard = null; resolvingOccurrenceId = 0;
+        resolvingCard = null; resolvingOccurrenceId = 0; resolvingOriginalHandIndex = -1;
         lastDiscardOccurrenceId = 0;
         drawPile = BuildShuffledDeck(startingDeck, random, warningLogger);
         hand = DrawCards(drawPile, Math.Min(HandLimit, Math.Max(0, startingHandSize)), out drawPile);
@@ -92,7 +94,7 @@ public sealed class TechniqueDeckRuntime
             return false;
         }
 
-        if (card.CardType != CardType.Technique)
+        if (card.CardType != CardType.Technique || card.IsBackupTechnique)
         {
             validationMessage = $"Card is not a Technique card: {card.DisplayName}.";
             return false;
@@ -109,6 +111,7 @@ public sealed class TechniqueDeckRuntime
         if (resolvingCard != null || !TryGetHandCard(handIndex, out usedCard, out validationMessage)) return false;
         EnsureDiscardOccurrenceIds();
         resolvingCard = usedCard;
+        resolvingOriginalHandIndex = handIndex;
         resolvingOccurrenceId = nextDiscardOccurrenceId++;
         hand = RemoveCardAt(hand, handIndex);
         handVersion++;
@@ -121,6 +124,7 @@ public sealed class TechniqueDeckRuntime
         if (resolvingCard == null || resolvingOccurrenceId != expectedOccurrenceId || expectedOccurrenceId <= 0) return false;
         AppendDiscard(resolvingCard, resolvingOccurrenceId);
         resolvingCard = null;
+        resolvingOriginalHandIndex = -1;
         resolvingOccurrenceId = 0;
         return true;
     }
@@ -266,7 +270,7 @@ public sealed class TechniqueDeckRuntime
     /// </summary>
     public void Reset()
     {
-        resolvingCard = null; resolvingOccurrenceId = 0; lastDiscardOccurrenceId = 0;
+        resolvingCard = null; resolvingOccurrenceId = 0; resolvingOriginalHandIndex = -1; lastDiscardOccurrenceId = 0;
         hand = Array.Empty<CardDefinition>();
         handVersion++;
         drawPile = Array.Empty<CardDefinition>();
@@ -296,7 +300,7 @@ public sealed class TechniqueDeckRuntime
                 }
 
                 // Fundamental actions and encounters never enter the player's Technique deck.
-                if (card.CardType != CardType.Technique)
+                if (card.CardType != CardType.Technique || card.IsBackupTechnique)
                 {
                     warningLogger?.Invoke($"Starting deck ignored non-technique card: {card.DisplayName}.");
                     continue;

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Hold Steady
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: hold_steady
+  displayName: Hold Steady
+  cardType: 0
+  rarity: 0
+  backupTechnique: 0
+  techniqueRole: Hazard cancellation
+  tags: []
+  artwork: {fileID: 0}
+  rulesText: "Cancel the current unresolved Hazard."
+  weight: 0
+  value: 0
+  biomeIds: []
+  minimumDepth: 0
+  maximumDepth: -1
+  effects:
+  - effectId: hold_steady
+    displayName: Hold Steady
+    effectType: 57
+    trigger: 0
+    target: 3
+    effectTone: 0
+    amount: 0
+    requiredTags: []
+    expiresAfterUse: 1
+    reminderText: "Cancel the current unresolved Hazard."

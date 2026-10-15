@@ -207,7 +207,7 @@ public static class CleanerShrimpChecks
         Require(controller.TryChooseNegativeEffect(0) && controller.CurrentDepth == 2
             && !controller.HasPendingCreatureChoice, "Descend did not resume after cleansing.");
         Require(chain.Catches[0].CurrentWeight == 1, "Controller cleansing failed.");
-        Require(controller.TryReleaseCatch(1) && chain.Catches[0].CurrentWeight == 1, "Releasing Shrimp undid its completed cleanse.");
+        Require(TechniqueRuleChecks.ReleaseFixture(controller, 1) && chain.Catches[0].CurrentWeight == 1, "Releasing Shrimp undid its completed cleanse.");
         CreatureEffectRuntime runtime = Get<CreatureEffectRuntime>(controller, "creatureEffectRuntime");
         runtime.RecordAttachment(chain.Add(shrimp, resolver, CatchAttachmentRole.Bait));
         BiomeDefinition next = Biome("Next", 5, new[] { Card("New fish"), Card("Second new fish") });

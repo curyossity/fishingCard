@@ -208,7 +208,7 @@ public static class TechniqueRuleChecks
         AddCod(chain, resolver);
         CardDefinition card = Technique(CardEffectType.ModifyDescendDistance, CardEffectTarget.NextDescend);
         TechniqueDeckRuntime deck = Deck(c); Set(deck, "hand", new[] { card, card, card, card }); Set(deck, "discardPile", new[] { card });
-        Require(c.TryReleaseCatch(0) && c.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
+        Require(TechniqueRuleChecks.ReleaseFixture(c, 0) && c.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
             "Cod did not offer recovery.");
         int reserved = deck.GetDiscardOccurrenceId(0);
         Require(c.TryChooseRecoveredTechnique(0) && deck.Hand.Length == 4
@@ -219,7 +219,7 @@ public static class TechniqueRuleChecks
             "Cod recovered the wrong identical card or duplicated completion.");
         c = Controller(); chain = Chain(c); resolver = Resolver(c); target = chain.Add(armored, resolver); AddCod(chain, resolver);
         Set(Deck(c), "hand", new[] { card, card, card, card }); Set(Deck(c), "discardPile", new[] { card });
-        c.TryReleaseCatch(0); c.TryChooseRecoveredTechnique(0);
+        TechniqueRuleChecks.ReleaseFixture(c, 0); c.TryChooseRecoveredTechnique(0);
         Require(c.TryChooseRecoveryRoom(-1) && Deck(c).Hand.Length == 4 && Deck(c).DiscardPile.Length == 1,
             "Declining Cod recovery changed the hand or spent a hand card.");
         c = Controller(); chain = Chain(c); resolver = Resolver(c); target = chain.Add(armored, resolver); AddCod(chain, resolver);
@@ -272,6 +272,16 @@ public static class TechniqueRuleChecks
         c.StartRun();
         Require(Deck(c).ResolvingCard == null && string.IsNullOrEmpty(c.TechniquePlayFailure),
             "Explicit restart retained failed resolving ownership.");
+    }
+
+    /// <summary>Supplies a granted Release directly to legacy reaction fixtures without enabling a universal player action.</summary>
+    public static bool ReleaseFixture(FishingRunController c, int index)
+    {
+        if (!Chain(c).TryRelease(index, Resolver(c), out _, out _, out _)) return false;
+        Get<CreatureEffectRuntime>(c, "creatureEffectRuntime").FinishReleaseResolution();
+        foreach (string method in new[] { "PrepareCreatureChoice", "ResumeAfterCreatureChoices", "RefreshViews" })
+            typeof(FishingRunController).GetMethod(method, BindingFlags.NonPublic | BindingFlags.Instance).Invoke(c, null);
+        return true;
     }
 
     /// <summary>Supplies explicit first-eligible fixture choices for pre-existing rule tests, not gameplay.</summary>

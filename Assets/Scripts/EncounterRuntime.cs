@@ -143,6 +143,18 @@ public sealed class EncounterRuntime
     public int EncounterRevision => encounterRevision;
     public bool IsCreatureConcealed => assignedConcealmentId >= 0;
     public PendingConcealment[] PendingConcealments => pendingConcealments.ToArray();
+    public bool HasFutureConcealment => pendingConcealments.Exists(c => c.Remaining > 0);
+
+    /// <summary>Ends only the assigned concealment, or consumes one oldest future charge when none is assigned.</summary>
+    public bool TryClearOneCreatureConcealment()
+    {
+        if (assignedConcealmentId >= 0) { CompleteConcealedEncounter(); return true; }
+        PendingConcealment next = pendingConcealments.Find(c => c.Remaining > 0);
+        if (next == null) return false;
+        next.Remaining--;
+        pendingConcealments.RemoveAll(c => c.Remaining == 0 && c.Id != assignedConcealmentId);
+        return true;
+    }
     public event Action<CardDefinition> HazardCancelled;
     public event Action<CardDefinition, int> CreatureRevealed;
     public event Action<CardDefinition> EncounterRevealEffects;

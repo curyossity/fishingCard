@@ -10,31 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Heavy Gamble
+  m_Name: Recast
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_heavy_gamble
-  displayName: Heavy Gamble
+  uniqueId: recast
+  displayName: Recast
   cardType: 0
-  rarity: 1
-  tags:
-  - Risk
-  - Value
+  rarity: 0
+  backupTechnique: 0
+  techniqueRole: Hand filtering
+  tags: []
   artwork: {fileID: 0}
-  rulesText: The next committed catch gains 2 Weight and 4 Value before overload risk is checked.
+  rulesText: "Discard 1 or 2 other techniques, then draw that many."
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: add_weight_for_value
-    effectType: 15
+  - effectId: recast
+    displayName: Recast
+    effectType: 60
     trigger: 0
-    target: 7
+    target: 0
     effectTone: 0
     amount: 2
     requiredTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: The next catch gains 2 Weight and 4 Value.
+    reminderText: "Discard 1 or 2 other techniques, then draw that many."

@@ -10,32 +10,32 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_Name: Rusty hook
+  m_Name: Heavy Gamble
   m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
-  uniqueId: technique_rusty_hook
-  displayName: Rusty Hook
+  uniqueId: technique_heavy_gamble
+  displayName: Heavy Gamble
   cardType: 0
-  rarity: 0
+  backupTechnique: 1
+  rarity: 1
   tags:
-  - Hook
-  - LoadControl
-  artwork: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  rulesText: The next Descend adds less Line Load from the committed catch, but the
-    hook is spent.
+  - Risk
+  - Value
+  artwork: {fileID: 0}
+  rulesText: The next committed catch gains 2 Weight and 4 Value before overload risk is checked.
   weight: 0
   value: 0
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: rough_load_reduction
-    effectType: 9
+  - effectId: add_weight_for_value
+    effectType: 15
     trigger: 0
     target: 7
-    effectTone: 1
-    amount: -1
+    effectTone: 0
+    amount: 2
     requiredTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Next Descend reduces committed catch load by 1.
+    reminderText: The next catch gains 2 Weight and 4 Value.

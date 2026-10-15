@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: Slip Knot
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: technique_slip_knot
+  displayName: Slip Knot
+  cardType: 0
+  backupTechnique: 1
+  rarity: 0
+  tags:
+  - Escape
+  - EncounterControl
+  artwork: {fileID: 0}
+  rulesText: Avoid the current Hooked creature. The next Descend catches nothing and continues deeper.
+  weight: 0
+  value: 0
+  biomeIds: []
+  minimumDepth: 0
+  maximumDepth: -1
+  effects:
+  - effectId: avoid_hooked_creature
+    effectType: 7
+    trigger: 0
+    target: 2
+    effectTone: 1
+    amount: 1
+    requiredTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 1
+    reminderText: Avoid the current Hooked creature.

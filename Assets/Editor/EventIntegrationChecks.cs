@@ -36,13 +36,13 @@ public static class EventIntegrationChecks
         Directory.CreateDirectory(output);
         try
         {
-            int runtime = ValidateRules() + TechniqueRuleChecks.ValidateRules() + CoastalEventChecks.ValidateRules() + EventPresentationChecks.ValidateRules() + EventActionChecks.ValidateRules()
+            int runtime = ValidateRules() + ApprovedTechniqueChecks.ValidateRules() + TechniqueRuleChecks.ValidateRules() + CoastalEventChecks.ValidateRules() + EventPresentationChecks.ValidateRules() + EventActionChecks.ValidateRules()
                 + EventPersistenceChecks.ValidateRules() + EventResolutionChecks.ValidateRules() + EventTechniqueChecks.ValidateRules()
                 + EventRevealChecks.ValidateRules() + EventLifecycleChecks.ValidateRules()
                 + LobsterSquidEelChecks.ValidateRules() + BassUrchinOctopusChecks.ValidateRules()
                 + ShellFeedingExchangeChecks.ValidateRules() + PredatorSchoolRayChecks.ValidateRules()
                 + CoastalSupportChecks.ValidateRules() + CreatureReleaseChecks.ValidateRules();
-            int editor = EventPresentationChecks.ValidateEditorContract() + CoastalEventChecks.ValidateAuthoredAssets() + TechniqueRuleChecks.ValidateEditorPresentation();
+            int editor = EventPresentationChecks.ValidateEditorContract() + CoastalEventChecks.ValidateAuthoredAssets() + TechniqueRuleChecks.ValidateEditorPresentation() + ApprovedTechniqueChecks.ValidateAuthoredAssets();
             int captures = EventPresentationChecks.CaptureReadability(output);
             File.WriteAllText(Path.Combine(output, "unity-result.json"),
                 "{\"status\":\"passed\",\"unity\":\"" + Application.unityVersion

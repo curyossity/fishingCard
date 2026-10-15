@@ -372,7 +372,7 @@ public static class PredatorSchoolRayChecks
         CardInstance baitRay = chain.Add(Ray(), resolver, CatchAttachmentRole.Bait);
         CardInstance victim = chain.Add(Card("Elusive release", new[] { "Small", "Elusive" }), resolver);
         CardInstance recipient = chain.Add(Card("Transfer recipient", Array.Empty<string>()), resolver);
-        Require(controller.TryReleaseCatch(Array.IndexOf(chain.Catches, victim))
+        Require(TechniqueRuleChecks.ReleaseFixture(controller, Array.IndexOf(chain.Catches, victim))
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.TransferValue,
             "Controller did not expose a completed release transfer.");
         Require(!controller.TryDescend() && !controller.TrySurface(), "Gameplay bypassed the transfer choice.");

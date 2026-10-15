@@ -647,20 +647,18 @@ MonoBehaviour:
   randomSeed: 0
   useRandomSeed: 1
   startingTechniqueDeck:
-  - {fileID: 11400000, guid: 298e917fc20e5ab42bfb2402e2a1bf37, type: 2}
-  - {fileID: 11400000, guid: f772ab821fbfdf244ac894c5a3ac85fa, type: 2}
-  - {fileID: 11400000, guid: bd728b64bba44956992ce63644edce0c, type: 2}
-  - {fileID: 11400000, guid: e351d0877ab8494ea14672d1e541ee59, type: 2}
-  - {fileID: 11400000, guid: c534b46c101f421c9da5ee5beb16151f, type: 2}
-  - {fileID: 11400000, guid: bc84e87be8134cae850d4208d17f0485, type: 2}
-  - {fileID: 11400000, guid: f5bc32384e8a46de887d69ba1c6ca3ae, type: 2}
-  - {fileID: 11400000, guid: befff3671fb74e01876ed1eb743f838f, type: 2}
-  - {fileID: 11400000, guid: 1a2269a41e3b4e40b7406d1476fa377b, type: 2}
-  - {fileID: 11400000, guid: 89b9214b00b5425e86198995ed74a34d, type: 2}
-  - {fileID: 11400000, guid: a03245bf8cd746d4a0c230081389e0bb, type: 2}
-  - {fileID: 11400000, guid: 3f80cf143fb54abeacdbf6ae86470d84, type: 2}
-  - {fileID: 11400000, guid: 51ece213c4bd450f8b8fcc0854ffa64a, type: 2}
-  - {fileID: 11400000, guid: afc9123a69cc4a0f91615608e0dbc968, type: 2}
+  - {fileID: 11400000, guid: e4c671812e5a49398eb6b226933a518c, type: 2}
+  - {fileID: 11400000, guid: e4c671812e5a49398eb6b226933a518c, type: 2}
+  - {fileID: 11400000, guid: e4c671812e5a49398eb6b226933a518c, type: 2}
+  - {fileID: 11400000, guid: b8d18ae5ea7b44848e43f5ea23e005ca, type: 2}
+  - {fileID: 11400000, guid: b8d18ae5ea7b44848e43f5ea23e005ca, type: 2}
+  - {fileID: 11400000, guid: c0a203e9835c4cf0876f7c61635ba54c, type: 2}
+  - {fileID: 11400000, guid: b2b0b97c985a40cab2b4a90e8ae7d50a, type: 2}
+  - {fileID: 11400000, guid: b6f499b3be95438391acf303d94b912b, type: 2}
+  - {fileID: 11400000, guid: 914fdf2d2bd748bb82385005918be122, type: 2}
+  - {fileID: 11400000, guid: 914fdf2d2bd748bb82385005918be122, type: 2}
+  - {fileID: 11400000, guid: 4e1e85806b11427b9088f08017ae26d9, type: 2}
+  - {fileID: 11400000, guid: 3df2d3c727894e0482ceb6356ddd4baa, type: 2}
   currentEncounterView: {fileID: 0}
   techniqueHandViews: []
   techniqueHandView: {fileID: 1963232732}
@@ -744,7 +742,7 @@ MonoBehaviour:
     purchasedLineCapacityUpgrades: 0
     purchasedUpgradeAfterLastRun: 0
     lastPurchaseSummary: 
-    unlockableTechniqueCard: {fileID: 11400000, guid: 6b7a6e8416124f5ea88870396c364f3a, type: 2}
+    unlockableTechniqueCard: {fileID: 0}
     techniqueUnlockCost: 12
     techniqueCardUnlocked: 0
     techniqueDeckInitialized: 0
