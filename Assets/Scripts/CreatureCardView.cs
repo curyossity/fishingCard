@@ -285,6 +285,8 @@ public sealed class CreatureCardView : MonoBehaviour
         EnsureEffectChoiceButtons();
         SetParentActive(weightText, usesCatchLayout);
         SetParentActive(valueText, usesCatchLayout);
+        ConfigureStatText(weightText);
+        ConfigureStatText(valueText);
 
         if (rarityAnchorRoot != null)
         {
@@ -325,6 +327,20 @@ public sealed class CreatureCardView : MonoBehaviour
         ConfigureEffectText(effectText, usesCatchLayout);
         ConfigureEffectText(baitEffectText, usesCatchLayout);
         SetEffectChoiceButtonsActive(usesCatchLayout);
+    }
+
+    /// <summary>Keeps stat numbers on one fitted line instead of ellipsizing an entire short stat box.</summary>
+    public static void ConfigureStatText(TMP_Text text)
+    {
+        if (text == null) return;
+        // The supplied stat boxes lose 29 layout units to padding; the generic 26.4-point minimum cannot fit.
+        text.richText = true;
+        text.fontSize = 48f;
+        text.fontSizeMin = 10f;
+        text.fontSizeMax = 48f;
+        text.enableAutoSizing = true;
+        text.textWrappingMode = TextWrappingModes.NoWrap;
+        text.overflowMode = TextOverflowModes.Overflow;
     }
 
     /// <summary>Supports existing prefabs while the editor builder authors both supplied effect regions.</summary>

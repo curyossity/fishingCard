@@ -1,0 +1,22 @@
+{
+  "prefab_stat_settings": {
+    "Weight": true,
+    "Value": true
+  },
+  "card_heights": [
+    480,
+    611,
+    800
+  ],
+  "padded_stat_heights": [
+    19.0,
+    32.1,
+    51.0
+  ],
+  "old_minimum_line_height": 36.194,
+  "new_minimum_line_height": 13.71,
+  "runtime_and_builder_use_shared_configuration": true,
+  "runtime_compilation": "passed",
+  "editor_compilation": "passed",
+  "unity_preview_executed": false
+}

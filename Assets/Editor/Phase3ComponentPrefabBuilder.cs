@@ -533,6 +533,8 @@ public static class Phase3ComponentPrefabBuilder
         valueText.fontWeight = FontWeight.Bold;
         SetStretchOffsets(weightText.rectTransform, 11f, 18f, -13f, -11f);
         SetStretchOffsets(valueText.rectTransform, 11f, 18f, -13f, -11f);
+        CreatureCardView.ConfigureStatText(weightText);
+        CreatureCardView.ConfigureStatText(valueText);
 
         Image effectPanel = CreateImage(
             "Catch Rules Safe Region",
