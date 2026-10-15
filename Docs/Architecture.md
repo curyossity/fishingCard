@@ -300,8 +300,8 @@ Owns:
 - Fisher-Yates shuffling
 - Starting hand draw
 - Removing used cards from the hand
-- Discarding used cards before effect resolution; controller-deferred refill after resulting creature choices
-- Recovering one selected discard occurrence to hand without imposing a recovery hand cap
+- Separate resolving-card ownership with a reserved occurrence ID; discard only after its effect finishes, then controller-deferred refill after resulting creature choices
+- A global four-card limit for setup, draws, refill, and recovery; exact discard-occurrence recovery without duplicating physical cards
 - Reshuffling the discard pile when the draw pile is empty
 - Draw-pile and discard-pile state
 - Clearing deck state when the run ends
@@ -314,7 +314,7 @@ Does not own:
 ### `TechniqueHandView`
 
 Role:
-Interactive four-card pages of the current Technique hand, including recovered cards beyond the normal hand size.
+Interactive presentation of the current Technique hand, capped at four by the runtime owner.
 
 Owns:
 - Stable card-slot layout
@@ -345,7 +345,8 @@ Owns:
 - Clearing one-use effects after their matching action
 
 Delegates to:
-- `CatchChainRuntime` for automatic Catch Chain targeting, modification, and release
+- `TechniqueTargetPlan` for validated player-selected targets before commitment
+- `CatchChainRuntime` for eligible-target enumeration and exact selected-target modification and release
 - `EncounterRuntime` for replacement and encounter selection
 - `EffectResolver` for encounter weights and Catch Chain recalculation
 
@@ -800,12 +801,12 @@ Current biome-entry choice flow:
 Current Technique-card use flow:
 
 1. `TechniqueHandView` forwards a slot's `USE` command to `FishingRunController`.
-2. The controller validates the run and hand slot; `TechniqueEffectRuntime` validates effect targets.
-3. `TechniqueDeckRuntime` moves the card from hand to discard without refilling yet.
-4. `TechniqueEffectRuntime` executes immediate effects or queues them for the next matching action.
-5. `CatchChainRuntime` applies lasting per-copy changes and recalculates persistent interactions when required.
-6. Encounter replacement performs a weighted reveal while excluding the replaced card.
-7. After the entire ability and any creature recovery choices finish, refill up to the normal hand size. If the draw pile is empty, shuffle the remaining discard pile before refilling.
+2. The controller validates the reaction window and collects each required target through the shared choice modal. Cancelling spends nothing. The card remains in hand until all selections validate against current hand version, encounter revision, tags, targeting immunity, and Release restrictions.
+3. `TechniqueDeckRuntime.TryBeginPlay` removes the physical card from hand into resolving ownership, reserving its eventual discard occurrence ID. It cannot be recovered or reshuffled during its effect.
+4. `TechniqueEffectRuntime` executes immediate effects against the exact selected targets or queues authored delayed effects. A target removed by an earlier effect is not replaced by an automatically selected recipient. Targetless effects emit no attached-target selection.
+5. `CatchChainRuntime` applies lasting per-copy changes and recalculates persistent interactions when required. Encounter replacement performs a weighted reveal while excluding the replaced card.
+6. `TryCompletePlay` moves the resolving occurrence to discard, then the controller finishes deferred Release and Technique reactions. Cod can recover that exact occurrence; Sea Urchin recovery follows the other reactions. Both offer discard-one-or-decline when a four-card hand is full.
+7. After the entire ability and all creature choices finish, refill up to the configured normal hand size, capped at four. If the draw pile is empty, shuffle the remaining discard pile before refilling. Techniques and core actions remain blocked throughout resolution and choices; a partial failure remains blocked until explicit run replacement clears it.
 8. The controller refreshes the hand, piles, encounter, Catch Chain, and playability states.
 
 Current Release flow:
@@ -987,7 +988,7 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 
 ### Deliberate Release and recovery coordination
 
-`CatchChainRuntime.DeliberatelyReleased` reports each completed deliberate removal (player, Technique, or creature) with its exact released instance. Forced losses and swaps bypass this event. `CreatureEffectRuntime` owns immediate Release choices, a shared encounter recovery-consumed flag, and a deferred recovery request. It records eligibility while the source is attached, consumes the opportunity even with no discard, and exposes the request only after the releasing ability completes. A completed recovery trigger survives source removal. `FishingRunController` resets this flag only on normal encounter advancement; Technique replacements never reset it. The controller suspends actions and normal Technique refill until queued choices finish. `TechniqueHandView` presents overflow through four-card pages and forwards the actual hand index.
+`CatchChainRuntime.DeliberatelyReleased` reports each completed deliberate removal (player, Technique, or creature) with its exact released instance. Forced losses and swaps bypass this event. `CreatureEffectRuntime` owns immediate Release choices, a shared encounter recovery-consumed flag, and a deferred recovery request. It records eligibility while the source is attached, consumes the opportunity even with no discard, and exposes the request only after the releasing ability completes. A completed recovery trigger survives source removal. `FishingRunController` resets this flag only on normal encounter advancement; Technique replacements never reset it. The controller suspends actions and normal Technique refill until queued choices finish. `TechniqueHandView` forwards the actual hand index; the deck owner enforces four cards. Full-hand Cod recovery reserves its exact discard occurrence before offering discard-one-or-decline.
 
 ### Effective tags, independent attachment penalties, and deferred redraws
 
@@ -1019,7 +1020,7 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 - Feeding Frenzy presents one shared optional legal-source selection. A successful deliberate creature Release queues a source-independent DrawTechniques request behind all resulting recovery/transfer requests. It then offers optional exact hand discards while two draws cannot fit four slots. Drawing consumes only the requested count that fits, including after oversized recovery; normal suspended Descend/refill resumes after the whole queue. Other-effect Releases and forced losses never activate this sacrifice.
 - TechniqueDeckRuntime.TryDiscardTechnique does not play or refill. DrawTechniques owns exact capacity-limited draws and normal reshuffling. TryExchangeTechniques validates both existing indexed occurrences before atomically exchanging them, preserving hand size and draw pile state. Duplicate definitions remain separate occurrences.
 - Sheltered Exchange records its first hand selection in the runtime request without moving it, then presents the existing discard pile. Both selections validate at completion; decline moves nothing. Multiple Anemone sources coalesce into one immediate opportunity.
-- CardInstance.PreventsTechniqueTargeting depends on current Catch role and active Stinging Tentacles. CatchChainRuntime excludes immune attachments from individual automatic Technique targeting, including release targets. Untargeted distributed ModifyCaughtCard effects, delayed Descend effects, core Releases, and creature targeting retain their existing paths.
+- CardInstance.PreventsTechniqueTargeting depends on current Catch role and active Stinging Tentacles. CatchChainRuntime excludes immune attachments from individual Technique targeting, including release targets. Untargeted distributed ModifyCaughtCard effects, delayed Descend effects, core Releases, and creature targeting retain their existing paths.
 - FishingRunController exposes explicit sacrifice, optional discard/draw, and two-stage exchange actions. Existing creature-choice presentation shows legal options and decline choices, blocks other gameplay actions, and resumes suspended actions after completion. New effect enum entries append after prior serialized values.
 
 ### Simultaneous releases, exact played recovery, and ordered role activation
@@ -1028,7 +1029,7 @@ Use `Docs/MVP Technical Debt.md` to record places where the MVP intentionally us
 - CreatureEffectRuntime owns mandatory hand discards and one-time optional Small-creature multi-selection. It records all selections before removal and spends activation even when skipped/declined. Immediate Octopus draws use the existing draw request with a one-discard limit; Sardine retains its own multi-discard policy.
 - EffectResolver applies the non-stacking Bristling Spines penalty before selected reductions, using live attached creature tags in either role. CardInstance stores removed effect keys by role/index and migrates legacy removed indices before role changes. Snapshots copy these keys independently.
 - TechniqueDeckRuntime gives every discard entry a serialized occurrence ID. Use/discard/exchange/recovery update definitions and IDs together; reshuffling invalidates discarded occurrences. Exact recovery validates both the played token and its definition, avoiding substitution of an identical copy. Existing Cod recovery still selects a discard index.
-- CatchChainRuntime.TechniqueTargetSelected reports actual individual automatic targets before modification/removal. Untargeted distributed effects emit no selection event. FishingRunController captures play-time effective-tag eligibility and the played discard token before effects, then appends exact recovery behind all resulting choices. Normal Technique refill waits for the queue to finish.
+- CatchChainRuntime.TechniqueTargetSelected reports actual individual targets before modification/removal. Untargeted distributed effects emit no selection event. FishingRunController captures play-time effective-tag eligibility and the played discard token before effects, then appends exact recovery behind all resulting choices. Normal Technique refill waits for the queue to finish.
 - CreatureEffectRuntime stores FIFO recovery grants independently of Urchin lifetime, using authored required tags. At most one grant is consumed per qualifying play. A missing played occurrence or declining still consumes it. Full-hand recovery permits one discard; available-space recovery returns only the exact token.
 - CatchChainRuntime.TrySwapCreatureModes atomically changes an attached creature Catch/Bait pair, preserving IDs, positions, permanent modifiers, and pending effects. Creature eligibility governs current mode legality; Release locks do not become mode locks. Lifecycle keys include role, with legacy keys associated with the pre-swap role before mutation.
 - Helping Arms queues two deferred role activations: new Catch first, then new Bait only if still attached in the expected mode. ActivateRoleOnAttach runs only the card's own immediate chain effects, and RecordAttachment skips shared after-catching reactions for a role change. No next-attachment bonus is consumed by the swap. New ongoing effects are already recalculated after both role changes.
@@ -1075,3 +1076,28 @@ EventEncounterTrailRuntime, owned by EncounterRuntime, stores one promised speci
 FishingRunView displays the controller-supplied trail preview outside card faces, independent of concealment. It retains learned name/normal stats while reporting reached/replaced slots. Supplied card masters remain unchanged. New event-specific illustrations are missing inputs, not generated placeholders.
 
 CoastalEventChecks supplies runtime integration checks plus Unity asset/placement checks. The combined EventIntegrationChecks menu includes this batch. See Validation/CoastalEvents/README.md for executed checks and Unity limitations.
+
+## Approved Technique rules implementation
+
+GDD section 10, Approved Technique rules, is the source of truth. The shared runtime implements the following contract; individual new Technique designs still require authored effect data and appropriate handlers.
+
+Required ownership and order:
+1. Validate the reaction window and collect player-selected required targets before commitment; validate target identity, current eligibility, Stinging Tentacles, and Release restrictions at commit.
+2. TechniqueDeckRuntime must remove the exact physical card from hand into separate resolving ownership. It must remain absent from discard and reshuffle candidates until its effect is finished.
+3. TechniqueEffectRuntime resolves the effect and any work needed to finish that effect. The controller keeps other Techniques and core actions blocked through the whole play/reaction sequence.
+4. Move the resolving occurrence to discard, then finish reactions waiting for Technique completion. Cod may select the just-used discard occurrence; exact Sea Urchin recovery follows the other triggered effects. A recovered occurrence cannot be duplicated or replaced by an identical definition.
+5. Complete additional effect draws and deferred reactions according to the card rules before normal refill. Keep all hand mutation paths within four cards. Apply only card-authored modifier durations; run shutdown clears pending effects. No new energy resource or once-per-biome counter is introduced.
+
+Ownership (2026-10-15):
+
+| Concern | Owner | Implemented behavior |
+| --- | --- | --- |
+| Played-card location | TechniqueDeckRuntime | TryBeginPlay / TryCompletePlay hold one exact resolving occurrence outside discard and reshuffle until completion |
+| Target choice | TechniqueTargetPlan and FishingRunController | Cancellable selection before commit; exact IDs per effect, duplicate rejection, stale-hand/encounter rejection, concealed-information masking, and fixed current-encounter selection |
+| Hand cap | TechniqueDeckRuntime and CreatureEffectRuntime | Four-card setup/draw/refill/recovery cap; Cod reserves an exact discard occurrence before discard-one-or-decline room selection |
+| Recovery identity/order | CreatureEffectRuntime | Capture Urchin eligibility when targets are committed; expose Cod after discard and Urchin after the other reactions; consumed occurrences cannot be duplicated |
+| Input and failure guards | FishingRunController | Block core actions, other Techniques, reentrant choices, and synchronous restart during effect dispatch; partial failure suppresses queued choices and retains resolving ownership until explicit restart |
+
+TechniqueTargetPlan contains serialized per-effect selections and required counts. It enumerates legal attached targets through CatchChainRuntime and stores the exact current encounter and revision for encounter targets. The controller owns the precommit selection token and hand version, while the backend independently validates the completed plan before mutation. Up-to-count Release effects can finish selection after one recipient instead of requiring the maximum. Existing Load Lifter, Counterweight Rig, Prize Tag, and Double Release text describes the selected recipients. Test helpers supply explicit fixture inputs; they are not a gameplay fallback for choosing targets.
+
+TechniqueRuleChecks covers these rules and is included in the combined EventIntegrationChecks menu. Runtime checks execute through a .NET adapter against the real rule classes; runtime and Editor sources also compile against Unity references. Production-prefab Editor checks are provided but have not been executed in Unity. See [Technique validation evidence](Validation/TechniqueRules/README.md) for counts, scope, and remaining PlayMode/serialization/UI verification.

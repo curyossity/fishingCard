@@ -20,7 +20,7 @@ MonoBehaviour:
   - Value
   - CatchControl
   artwork: {fileID: 0}
-  rulesText: Permanently increase the last attached catch's value by 3 for this run.
+  rulesText: Choose an attached creature. Increase its value by 3 until it leaves the chain.
   weight: 0
   value: 0
   biomeIds: []
@@ -37,4 +37,4 @@ MonoBehaviour:
     caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: The last catch gains 3 Value.
+    reminderText: The selected creature gains 3 Value.

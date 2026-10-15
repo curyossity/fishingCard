@@ -20,7 +20,7 @@ MonoBehaviour:
   - Rigging
   - CatchControl
   artwork: {fileID: 0}
-  rulesText: Permanently reduce the last attached catch's weight by 2 for this run.
+  rulesText: Choose an attached creature. Reduce its weight by 2 until it leaves the chain.
   weight: 0
   value: 0
   biomeIds: []
@@ -37,4 +37,4 @@ MonoBehaviour:
     caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: The last catch contributes 2 less Line Load.
+    reminderText: The selected creature contributes 2 less Line Load.

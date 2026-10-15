@@ -102,7 +102,7 @@ public static class EventActionChecks
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.DrawTechniques,
             "Confirmed action executed before its creature reactions finished.");
         Require(!controller.TryDescend() && !controller.TrySurface() && !controller.TryReleaseCatch(0)
-            && !controller.TryUseTechniqueCard(0) && !controller.TryEnterNextBiome(), "A pending event action was replaced/interrupted.");
+            && !TechniqueRuleChecks.Play(controller, 0) && !controller.TryEnterNextBiome(), "A pending event action was replaced/interrupted.");
         Invoke(controller, "ResumeAfterCreatureChoices"); Invoke(controller, "RefreshViews");
         Require(handler.Calls == 1 && controller.CurrentDepth == depth && deck.DrawPile.Length == 2, "Repeated callbacks replayed an effect or action.");
         Require(controller.TryChooseFeedingDraw(0), "Creature reaction could not make room for its draw.");
@@ -134,7 +134,7 @@ public static class EventActionChecks
         Handler handler = new Handler { Action = ctx => EventEffectOutcome.Applied }; controller.RegisterEventEffectHandler(handler);
         encounters.TryCancelRevealedHazard(encounters.CurrentEventOccurrence.Id);
         TechniqueDeckRuntime deck = Get<TechniqueDeckRuntime>(controller, "techniqueDeckRuntime"); Set(deck, "hand", new[] { Technique() });
-        Require(controller.CanUseTechniqueCard(0, out _) && controller.TryUseTechniqueCard(0), "Cancelled event lost its pre-confirmation Technique window.");
+        Require(controller.CanUseTechniqueCard(0, out _) && TechniqueRuleChecks.Play(controller, 0), "Cancelled event lost its pre-confirmation Technique window.");
         int depth = controller.CurrentDepth;
         Require(controller.TrySurface() && handler.Calls == 0 && !controller.RunActive && controller.CurrentDepth == depth,
             "Cancelled Hazard executed consequences or advanced on Surface.");
@@ -155,7 +155,7 @@ public static class EventActionChecks
         controller.RegisterEventEffectHandler(handler); EventEncounterOccurrence old = encounters.CurrentEventOccurrence;
         CardDefinition replace = Technique(); Set(replace, "effects", new[] { Effect(CardEffectType.ReplaceEncounter, CardEffectTarget.CurrentEncounter) });
         deck = Get<TechniqueDeckRuntime>(controller, "techniqueDeckRuntime"); Set(deck, "hand", new[] { replace });
-        Require(controller.TryUseTechniqueCard(0) && old.State == EventOccurrenceState.Replaced && encounters.CurrentEncounter == replacement,
+        Require(TechniqueRuleChecks.Play(controller, 0) && old.State == EventOccurrenceState.Replaced && encounters.CurrentEncounter == replacement,
             "Event replacement failed before confirmation.");
         depth = controller.CurrentDepth;
         Require(controller.TryDescend() && handler.Calls == 0 && controller.CurrentDepth == depth + 1,

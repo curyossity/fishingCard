@@ -106,9 +106,12 @@ public static class CreatureReleaseChecks
         runtime.FinishReleaseResolution();
         Prepare(runtime, chain, resolver, deck);
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.RecoverTechnique, "Armored Bait release failed to trigger.");
-        Require(deck.TryRecoverDiscardedTechnique(1) && deck.Hand.Length == 5 && deck.DiscardPile.Length == 1,
-            "Recovery lost an occurrence or capped the hand.");
-        runtime.CompleteChoice();
+        Require(!deck.TryRecoverDiscardedTechnique(1) && deck.Hand.Length == 4,
+            "Direct recovery bypassed the four-card cap.");
+        Require(runtime.TryChooseCodRecovery(1, deck)
+            && runtime.ChoiceKind == CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique
+            && runtime.TryChooseCodRecoveryRoom(0, deck) && deck.Hand.Length == 4 && deck.DiscardPile.Length == 2,
+            "Full-hand Cod recovery did not discard for room before returning the exact occurrence.");
         chain.Add(armored, resolver);
         chain.TryRelease(2, resolver, out _, out _, out _); runtime.FinishReleaseResolution();
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Multiple Cod copies or second release bypassed shared limit.");
@@ -159,7 +162,7 @@ public static class CreatureReleaseChecks
         CardDefinition cut = Card("Cut", Effect(CardEffectType.ReleaseCatch, CardEffectTrigger.Manual, CardEffectTarget.SpecificCaughtCard));
         Set(cut.Effects[0], "requiredTags", new[] { "Armored" }); Set(cut, "cardType", CardType.Technique);
         Set(deck, "hand", new[] { cut });
-        Require(controller.TryUseTechniqueCard(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
+        Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
             "Technique recovery did not pause refill.");
         Require(deck.DiscardPile.Length == 1 && deck.DiscardPile[0] == cut && deck.Hand.Length == 0,
             "Just-used technique reshuffled before recovery.");
@@ -173,7 +176,7 @@ public static class CreatureReleaseChecks
         Set(replace, "replacementCard", replacement);
         CardDefinition redirect = Card("Redirect", replace); Set(redirect, "cardType", CardType.Technique);
         Set(deck, "hand", new[] { redirect });
-        Require(controller.TryUseTechniqueCard(0), "Replacement fixture was not playable.");
+        Require(TechniqueRuleChecks.Play(controller, 0), "Replacement fixture was not playable.");
         chain.Add(armored, resolver);
         Require(controller.TryReleaseCatch(chain.Catches.Length - 1) && !controller.HasPendingCreatureChoice,
             "Replacement reset the recovery limit.");
@@ -202,9 +205,8 @@ public static class CreatureReleaseChecks
         CardDefinition used = Card("Multiple Releases", first, second); Set(used, "cardType", CardType.Technique);
         encounters.SetCurrentEncounter(Card("Hooked"));
         Set(deck, "hand", new[] { used });
-        Require(deck.TryUseCard(0, 4, new System.Random(1), out _, out _, false), "Deferred discard failed.");
-        Require(techniques.ApplyCard(used, encounters, chain, resolver, Array.Empty<CardDefinition>(),
-            Array.Empty<EncounterChainDefinition>(), "Test", 0, new System.Random(1), false, out _), "Multi-effect Technique failed.");
+        Require(TechniqueRuleChecks.DiscardFixture(deck, 0, out _, out _), "Deferred discard failed.");
+        Require(techniques.ApplyCard(used, encounters, chain, resolver, Array.Empty<CardDefinition>(), Array.Empty<EncounterChainDefinition>(), "Test", 0, new System.Random(1), false, out _, TechniqueRuleChecks.FirstTargets(used, chain, encounters)), "Multi-effect Technique failed.");
         Require(chain.Catches.Length == 0 && runtime.ChoiceKind == CreatureEffectChoiceKind.None,
             "Recovery interrupted the technique or prevented later Release effects.");
         runtime.FinishReleaseResolution(); Prepare(runtime, chain, resolver, deck);

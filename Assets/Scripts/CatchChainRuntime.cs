@@ -84,6 +84,44 @@ public sealed class CatchChainRuntime
         return caughtInstance;
     }
 
+    /// <summary>Lists legal individual recipients without applying an automatic targeting direction.</summary>
+    public CardInstance[] GetTechniqueTargets(CardEffectDefinition effect)
+    {
+        if (!TechniqueTargetPlan.RequiresSelection(effect)) return Array.Empty<CardInstance>();
+        return Array.FindAll(catches, c => IsValidTechniqueTarget(effect, c)
+            && EffectResolver.RequiredTagsMatchInstance(effect.RequiredTags, c));
+    }
+
+    /// <summary>Applies only explicitly selected attachments, never substituting another target after prior effects.</summary>
+    public bool TryApplyTechniqueEffectToTargets(CardEffectDefinition effect, int[] targetIds, EffectResolver resolver,
+        out string summary)
+    {
+        summary = string.Empty;
+        if (!TechniqueTargetPlan.RequiresSelection(effect) || targetIds == null || targetIds.Length == 0) return false;
+        bool applied = false;
+        foreach (int id in targetIds)
+        {
+            CardInstance target = Array.Find(GetTechniqueTargets(effect), c => c.InstanceId == id);
+            if (target == null) continue;
+            TechniqueTargetSelected?.Invoke(target);
+            if (effect.EffectType == CardEffectType.ReleaseCatch)
+            {
+                if (!TryRelease(Array.IndexOf(catches, target), resolver, out _, out _, out _, CatchRemovalReason.Technique)) continue;
+            }
+            else
+            {
+                int weight = effect.EffectType == CardEffectType.ModifyCatchValue ? 0
+                    : effect.EffectType == CardEffectType.RemoveLineLoadModifier ? -Math.Abs(effect.Amount) : effect.Amount;
+                int value = effect.EffectType == CardEffectType.ModifyCatchValue ? effect.Amount : 0;
+                target.AddPermanentModifiers(weight, value, effect, null);
+                Recalculate(resolver);
+            }
+            applied = true;
+        }
+        summary = applied ? "Applied to selected attachments" : "Selected targets no longer eligible";
+        return applied;
+    }
+
     /// <summary>
     /// Reports whether an immediate Technique effect has at least one valid Catch Chain target.
     /// </summary>

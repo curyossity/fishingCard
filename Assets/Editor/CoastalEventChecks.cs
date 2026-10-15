@@ -257,7 +257,7 @@ public static class CoastalEventChecks
         CardEffectDefinition skip = Effect(CardEffectType.AvoidEncounter, CardEffectTrigger.Manual, 1);
         Set(skip, "target", CardEffectTarget.HookedEncounter); Set(avoid, "effects", new[] { skip });
         Set(Get<TechniqueDeckRuntime>(c, "techniqueDeckRuntime"), "hand", new[] { avoid });
-        Require(c.TryUseTechniqueCard(0) && c.CurrentEncounter == null && Encounters(c).Trail.Preview.Contains("replaced")
+        Require(TechniqueRuleChecks.Play(c, 0) && c.CurrentEncounter == null && Encounters(c).Trail.Preview.Contains("replaced")
             && !Encounters(c).Trail.HasPending && Encounters(c).PendingConcealments.Length == 0,
             "Avoiding the promised concealed Lobster failed to consume trail and concealment.");
         EventEncounterTrailRuntime trail = new EventEncounterTrailRuntime(); BiomeDefinition biome = c.CurrentBiome;

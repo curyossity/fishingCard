@@ -27,7 +27,8 @@ public enum CreatureEffectChoiceKind
     EncounterSkip,
     ResolveReleaseDraws,
     EventSnagTarget,
-    EventCreatureRelease
+    EventCreatureRelease,
+    MakeRoomForRecoveredTechnique
 }
 
 /// <summary>Owns ordered creature choices, deferred Release reactions, and a queued encounter without owning presentation.</summary>
@@ -449,6 +450,14 @@ public sealed class CreatureEffectRuntime
                 }
                 continue;
             }
+            if (request.Kind == CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique)
+            {
+                if (deck == null || !deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique))
+                { requests.RemoveAt(0); continue; }
+                if (deck.Hand.Length >= TechniqueDeckRuntime.HandLimit) return;
+                deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique, TechniqueDeckRuntime.HandLimit);
+                requests.RemoveAt(0); continue;
+            }
             if (request.Kind == CreatureEffectChoiceKind.RecoverPlayedTechnique)
             {
                 if (deck == null || !deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique))
@@ -849,6 +858,40 @@ public sealed class CreatureEffectRuntime
         pendingPlayedTechniqueRecovery = null;
         resolvingTechnique = null;
         eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
+    }
+
+    /// <summary>Reserves an exact discarded Cod recovery before any optional hand discard can change the pile.</summary>
+    public bool TryChooseCodRecovery(int discardIndex, TechniqueDeckRuntime deck)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.RecoverTechnique || deck == null) return false;
+        if (discardIndex < 0)
+        {
+            if (deck.Hand.Length < TechniqueDeckRuntime.HandLimit) return false;
+            CompleteChoice(); return true;
+        }
+        int id = deck.GetDiscardOccurrenceId(discardIndex);
+        if (id <= 0 || deck.DiscardPile[discardIndex]?.CardType != CardType.Technique) return false;
+        if (deck.Hand.Length < TechniqueDeckRuntime.HandLimit)
+        {
+            if (!deck.TryRecoverDiscardedTechnique(discardIndex)) return false;
+            CompleteChoice(); return true;
+        }
+        requests[0].PlayedTechnique = deck.DiscardPile[discardIndex];
+        requests[0].PlayedDiscardOccurrenceId = id;
+        requests[0].Kind = CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique;
+        return true;
+    }
+
+    /// <summary>Creates room once or declines the reserved recovery; an identical new discard is never a substitute.</summary>
+    public bool TryChooseCodRecoveryRoom(int handIndex, TechniqueDeckRuntime deck)
+    {
+        if (ChoiceKind != CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique || deck == null) return false;
+        Request request = requests[0];
+        if (handIndex < 0) { CompleteChoice(); return true; }
+        if (!deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique)) return false;
+        if (deck.Hand.Length >= TechniqueDeckRuntime.HandLimit && !deck.TryDiscardTechnique(handIndex)) return false;
+        if (!deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique, TechniqueDeckRuntime.HandLimit)) return false;
+        CompleteChoice(); return true;
     }
 
     /// <summary>Discards at most one hand technique for room, or declines this already-consumed exact recovery.</summary>

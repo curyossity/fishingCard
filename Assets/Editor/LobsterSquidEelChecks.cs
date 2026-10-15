@@ -277,7 +277,7 @@ public static class LobsterSquidEelChecks
         encounters.SetCurrentEncounter(bass); Invoke(controller, "PrepareCreatureChoice");
         int depth = controller.CurrentDepth;
         Require(controller.PendingCreatureChoice == CreatureEffectChoiceKind.EncounterSkip
-            && !controller.TryDescend() && !controller.TrySurface() && !controller.TryUseTechniqueCard(0), "A new action bypassed immediate skip offer.");
+            && !controller.TryDescend() && !controller.TrySurface() && !TechniqueRuleChecks.Play(controller, 0), "A new action bypassed immediate skip offer.");
         Require(controller.TryChooseEncounterSkip(true) && controller.CurrentDepth == depth && controller.CurrentEncounter == null,
             "Skip advanced depth or retained encounter.");
         Require(controller.TryDescend() && controller.CurrentDepth == depth + 1 && controller.CurrentEncounter == bass,

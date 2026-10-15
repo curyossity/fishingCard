@@ -36,13 +36,13 @@ public static class EventIntegrationChecks
         Directory.CreateDirectory(output);
         try
         {
-            int runtime = ValidateRules() + CoastalEventChecks.ValidateRules() + EventPresentationChecks.ValidateRules() + EventActionChecks.ValidateRules()
+            int runtime = ValidateRules() + TechniqueRuleChecks.ValidateRules() + CoastalEventChecks.ValidateRules() + EventPresentationChecks.ValidateRules() + EventActionChecks.ValidateRules()
                 + EventPersistenceChecks.ValidateRules() + EventResolutionChecks.ValidateRules() + EventTechniqueChecks.ValidateRules()
                 + EventRevealChecks.ValidateRules() + EventLifecycleChecks.ValidateRules()
                 + LobsterSquidEelChecks.ValidateRules() + BassUrchinOctopusChecks.ValidateRules()
                 + ShellFeedingExchangeChecks.ValidateRules() + PredatorSchoolRayChecks.ValidateRules()
                 + CoastalSupportChecks.ValidateRules() + CreatureReleaseChecks.ValidateRules();
-            int editor = EventPresentationChecks.ValidateEditorContract() + CoastalEventChecks.ValidateAuthoredAssets();
+            int editor = EventPresentationChecks.ValidateEditorContract() + CoastalEventChecks.ValidateAuthoredAssets() + TechniqueRuleChecks.ValidateEditorPresentation();
             int captures = EventPresentationChecks.CaptureReadability(output);
             File.WriteAllText(Path.Combine(output, "unity-result.json"),
                 "{\"status\":\"passed\",\"unity\":\"" + Application.unityVersion
@@ -82,10 +82,10 @@ public static class EventIntegrationChecks
         Set(Get<TechniqueDeckRuntime>(controller, "techniqueDeckRuntime"), "hand", new[] { technique, technique });
         EncounterRuntime encounters = Get<EncounterRuntime>(controller, "encounterRuntime");
         EventEncounterOccurrence occurrence = encounters.CurrentEventOccurrence;
-        Require(controller.TryUseTechniqueCard(0) && controller.CanUseTechniqueCard(0, out _) && handler.Calls == 0
+        Require(TechniqueRuleChecks.Play(controller, 0) && controller.CanUseTechniqueCard(0, out _) && handler.Calls == 0
             && occurrence.State == EventOccurrenceState.Unresolved && controller.CurrentDepth == 0,
             "First Technique resolved the event or closed its window.");
-        Require(controller.TryUseTechniqueCard(0) && target.CurrentValue == 10 && handler.Calls == 0
+        Require(TechniqueRuleChecks.Play(controller, 0) && target.CurrentValue == 10 && handler.Calls == 0
             && controller.CanDescend && controller.CanSurface, "Second Technique did not remain in the event window.");
         Require((surface ? controller.TrySurface() : controller.TryDescend()) && handler.Calls == 1
             && occurrence.State == EventOccurrenceState.Resolved && !controller.HasConfirmedEventAction,

@@ -5,6 +5,13 @@ using UnityEngine;
 [Serializable]
 public sealed class TechniqueDeckRuntime
 {
+    public const int HandLimit = 4;
+    [SerializeField] private CardDefinition resolvingCard;
+    [SerializeField] private int resolvingOccurrenceId;
+    [SerializeField] private long handVersion;
+    public CardDefinition ResolvingCard => resolvingCard;
+    public int ResolvingOccurrenceId => resolvingOccurrenceId;
+    public long HandVersion => handVersion;
     [SerializeField] private CardDefinition[] hand = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] drawPile = Array.Empty<CardDefinition>();
     [SerializeField] private CardDefinition[] discardPile = Array.Empty<CardDefinition>();
@@ -24,10 +31,11 @@ public sealed class TechniqueDeckRuntime
     {
         discardPile = Array.Empty<CardDefinition>();
         discardOccurrenceIds = Array.Empty<int>();
-        nextDiscardOccurrenceId = 1;
+        resolvingCard = null; resolvingOccurrenceId = 0;
         lastDiscardOccurrenceId = 0;
         drawPile = BuildShuffledDeck(startingDeck, random, warningLogger);
-        hand = DrawCards(drawPile, startingHandSize, out drawPile);
+        hand = DrawCards(drawPile, Math.Min(HandLimit, Math.Max(0, startingHandSize)), out drawPile);
+        handVersion++;
     }
 
     /// <summary>
@@ -35,6 +43,7 @@ public sealed class TechniqueDeckRuntime
     /// </summary>
     public void Refill(int handSize, System.Random random)
     {
+        handSize = Math.Min(HandLimit, Math.Max(0, handSize));
         while (hand.Length < handSize)
         {
             if (drawPile.Length == 0)
@@ -57,6 +66,7 @@ public sealed class TechniqueDeckRuntime
             }
 
             hand = AppendCard(hand, drawnCards[0]);
+            handVersion++;
         }
     }
 
@@ -91,35 +101,41 @@ public sealed class TechniqueDeckRuntime
         return true;
     }
 
-    /// <summary>
-    /// Moves a validated Technique to discard; refill may wait until all resulting effect choices finish.
-    /// </summary>
-    public bool TryUseCard(
-        int handIndex,
-        int handSize,
-        System.Random random,
-        out CardDefinition usedCard,
-        out string validationMessage,
-        bool refillAfterUse = true)
+    /// <summary>Removes one physical card from hand into resolving ownership, reserving its future discard identity.</summary>
+    public bool TryBeginPlay(int handIndex, out CardDefinition usedCard, out string validationMessage)
     {
-        if (!TryGetHandCard(handIndex, out usedCard, out validationMessage))
-        {
-            return false;
-        }
-
+        usedCard = null;
+        validationMessage = "Finish the resolving Technique first";
+        if (resolvingCard != null || !TryGetHandCard(handIndex, out usedCard, out validationMessage)) return false;
+        EnsureDiscardOccurrenceIds();
+        resolvingCard = usedCard;
+        resolvingOccurrenceId = nextDiscardOccurrenceId++;
         hand = RemoveCardAt(hand, handIndex);
-        AppendDiscard(usedCard);
-        if (refillAfterUse)
-        {
-            Refill(handSize, random);
-        }
+        handVersion++;
         return true;
     }
 
-    /// <summary>Returns one selected discard occurrence to hand, allowing recovery beyond the normal hand size.</summary>
+    /// <summary>Discards the reserved physical occurrence only after its effect has finished; stale completions do nothing.</summary>
+    public bool TryCompletePlay(int expectedOccurrenceId)
+    {
+        if (resolvingCard == null || resolvingOccurrenceId != expectedOccurrenceId || expectedOccurrenceId <= 0) return false;
+        AppendDiscard(resolvingCard, resolvingOccurrenceId);
+        resolvingCard = null;
+        resolvingOccurrenceId = 0;
+        return true;
+    }
+
+    /// <summary>Returns the stable identity at a selected discard index without moving it.</summary>
+    public int GetDiscardOccurrenceId(int index)
+    {
+        EnsureDiscardOccurrenceIds();
+        return index >= 0 && index < discardOccurrenceIds.Length ? discardOccurrenceIds[index] : 0;
+    }
+
+    /// <summary>Returns one selected discard occurrence only when it fits the four-card hand.</summary>
     public bool TryRecoverDiscardedTechnique(int discardIndex)
     {
-        if (discardIndex < 0 || discardIndex >= discardPile.Length
+        if (hand.Length >= HandLimit || discardIndex < 0 || discardIndex >= discardPile.Length
             || discardPile[discardIndex]?.CardType != CardType.Technique)
         {
             return false;
@@ -127,15 +143,17 @@ public sealed class TechniqueDeckRuntime
 
         EnsureDiscardOccurrenceIds();
         hand = AppendCard(hand, discardPile[discardIndex]);
+        handVersion++;
         RemoveDiscardAt(discardIndex);
         return true;
     }
 
-    /// <summary>Discards a selected hand occurrence and draws exactly one replacement, including for oversized hands.</summary>
+    /// <summary>Discards a selected hand occurrence and draws one replacement without increasing hand size.</summary>
     public bool TryRedrawTechnique(int handIndex, System.Random random)
     {
         if (!TryGetHandCard(handIndex, out CardDefinition chosen, out _)) return false;
         hand = RemoveCardAt(hand, handIndex);
+        handVersion++;
         AppendDiscard(chosen);
         if (drawPile.Length == 0)
         {
@@ -153,6 +171,7 @@ public sealed class TechniqueDeckRuntime
     {
         if (!TryGetHandCard(handIndex, out CardDefinition card, out _)) return false;
         hand = RemoveCardAt(hand, handIndex);
+        handVersion++;
         AppendDiscard(card);
         return true;
     }
@@ -161,7 +180,7 @@ public sealed class TechniqueDeckRuntime
     public int DrawTechniques(int count, int capacity, System.Random random)
     {
         int drawn = 0;
-        int available = Math.Min(Math.Max(0, count), Math.Max(0, capacity - hand.Length));
+        int available = Math.Min(Math.Max(0, count), Math.Max(0, Math.Min(HandLimit, capacity) - hand.Length));
         while (drawn < available)
         {
             if (drawPile.Length == 0)
@@ -174,6 +193,7 @@ public sealed class TechniqueDeckRuntime
             CardDefinition[] cards = DrawCards(drawPile, 1, out drawPile);
             if (cards.Length == 0) break;
             hand = AppendCard(hand, cards[0]);
+            handVersion++;
             drawn++;
         }
         return drawn;
@@ -192,6 +212,7 @@ public sealed class TechniqueDeckRuntime
         RemoveDiscardAt(discardIndex);
         AppendDiscard(handCard);
         hand = updatedHand;
+        handVersion++;
         return true;
     }
 
@@ -206,7 +227,7 @@ public sealed class TechniqueDeckRuntime
     /// <summary>Returns only the played occurrence, subject to available capacity, without recovering another copy.</summary>
     public bool TryRecoverPlayedTechnique(int occurrenceId, CardDefinition expected, int capacity)
     {
-        if (hand.Length >= capacity || !HasDiscardedTechniqueOccurrence(occurrenceId, expected)) return false;
+        if (hand.Length >= Math.Min(HandLimit, capacity) || !HasDiscardedTechniqueOccurrence(occurrenceId, expected)) return false;
         return TryRecoverDiscardedTechnique(Array.IndexOf(discardOccurrenceIds, occurrenceId));
     }
 
@@ -219,13 +240,13 @@ public sealed class TechniqueDeckRuntime
     }
 
     /// <summary>Assigns a fresh discard occurrence whenever a technique enters the pile.</summary>
-    private void AppendDiscard(CardDefinition card)
+    private void AppendDiscard(CardDefinition card, int reservedOccurrenceId = 0)
     {
         EnsureDiscardOccurrenceIds();
         discardPile = AppendCard(discardPile, card);
         int[] updated = new int[discardOccurrenceIds.Length + 1];
         Array.Copy(discardOccurrenceIds, updated, discardOccurrenceIds.Length);
-        lastDiscardOccurrenceId = nextDiscardOccurrenceId++;
+        lastDiscardOccurrenceId = reservedOccurrenceId > 0 ? reservedOccurrenceId : nextDiscardOccurrenceId++;
         updated[updated.Length - 1] = lastDiscardOccurrenceId;
         discardOccurrenceIds = updated;
     }
@@ -245,7 +266,9 @@ public sealed class TechniqueDeckRuntime
     /// </summary>
     public void Reset()
     {
+        resolvingCard = null; resolvingOccurrenceId = 0; lastDiscardOccurrenceId = 0;
         hand = Array.Empty<CardDefinition>();
+        handVersion++;
         drawPile = Array.Empty<CardDefinition>();
         discardPile = Array.Empty<CardDefinition>();
         discardOccurrenceIds = Array.Empty<int>();

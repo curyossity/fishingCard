@@ -253,7 +253,7 @@ public static class BassUrchinOctopusChecks
         runtime.Reset(); first = chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait); runtime.RecordAttachment(first);
         // Two identical definitions in discard must still be distinguishable occurrences.
         deck = Deck(0, 2); Set(deck, "discardPile", new[] { technique }); Set(deck, "hand", new[] { technique });
-        deck.TryUseCard(0, 4, new System.Random(1), out _, out _, false);
+        TechniqueRuleChecks.DiscardFixture(deck, 0, out _, out _);
         int playedId = deck.LastDiscardOccurrenceId;
         runtime.BeginTechniquePlay(technique, playedId, chain.Catches);
         chain.TryApplyTechniqueEffect(technique.Effects[0], resolver, out _);
@@ -266,7 +266,7 @@ public static class BassUrchinOctopusChecks
 
         runtime.Reset(); runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));
         deck = Deck(0, 1); Set(deck, "discardPile", new[] { technique }); Set(deck, "hand", new[] { technique });
-        deck.TryUseCard(0, 4, new System.Random(1), out _, out _, false); playedId = deck.LastDiscardOccurrenceId;
+        TechniqueRuleChecks.DiscardFixture(deck, 0, out _, out _); playedId = deck.LastDiscardOccurrenceId;
         runtime.BeginTechniquePlay(technique, playedId, chain.Catches);
         chain.TryApplyTechniqueEffect(technique.Effects[0], resolver, out _);
         deck.TryRecoverDiscardedTechnique(0); // Recovering the older identical copy must preserve the played token.
@@ -276,7 +276,7 @@ public static class BassUrchinOctopusChecks
 
         runtime.Reset(); runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));
         deck = Deck(0, 0); Set(deck, "hand", new[] { technique });
-        deck.TryUseCard(0, 4, new System.Random(1), out _, out _, false); playedId = deck.LastDiscardOccurrenceId;
+        TechniqueRuleChecks.DiscardFixture(deck, 0, out _, out _); playedId = deck.LastDiscardOccurrenceId;
         runtime.BeginTechniquePlay(technique, playedId, chain.Catches); chain.TryApplyTechniqueEffect(technique.Effects[0], resolver, out _);
         deck.DrawTechniques(1, 4, new System.Random(1)); // The play has been reshuffled/drawn by an earlier effect.
         runtime.FinishTechniquePlay(); Prepare(runtime, chain, resolver, deck);
@@ -287,7 +287,7 @@ public static class BassUrchinOctopusChecks
         armor = chain.Add(Card("Eligibility", new[] { "Armored" }), resolver);
         CardDefinition anyTarget = Technique("Any target", Effect(CardEffectType.ModifyCatchValue, CardEffectTrigger.Manual,
             CardEffectTarget.SpecificCaughtCard, 1));
-        deck = Deck(0, 1); Set(deck, "hand", new[] { anyTarget }); deck.TryUseCard(0, 4, new System.Random(1), out _, out _, false);
+        deck = Deck(0, 1); Set(deck, "hand", new[] { anyTarget }); TechniqueRuleChecks.DiscardFixture(deck, 0, out _, out _);
         runtime.BeginTechniquePlay(anyTarget, deck.LastDiscardOccurrenceId, chain.Catches);
         armor.SetRuntimeBaseTags(Array.Empty<string>()); chain.Recalculate(resolver);
         chain.TryApplyTechniqueEffect(anyTarget.Effects[0], resolver, out _);
@@ -511,7 +511,7 @@ public static class BassUrchinOctopusChecks
         Set(deck, "hand", new[] { technique, Technique("A"), Technique("B"), Technique("C") });
         Set(deck, "discardPile", Array.Empty<CardDefinition>()); Set(deck, "drawPile", Deck(0, 4).DrawPile);
         int drawCount = deck.DrawPile.Length;
-        Require(controller.TryUseTechniqueCard(0) && deck.Hand.Length == 4 && deck.Hand[3] == technique
+        Require(TechniqueRuleChecks.Play(controller, 0) && deck.Hand.Length == 4 && deck.Hand[3] == technique
             && deck.DrawPile.Length == drawCount && runtime.PendingSelectedTechniqueRecoveryCount == 0,
             "Exact recovery did not precede normal Technique refill.");
         EncounterRuntime encounters = Get<EncounterRuntime>(controller, "encounterRuntime");
@@ -521,7 +521,7 @@ public static class BassUrchinOctopusChecks
         CardDefinition hookedOnly = Technique("Hooked avoidance", Effect(CardEffectType.AvoidEncounter,
             CardEffectTrigger.Manual, CardEffectTarget.HookedEncounter, 1, new[] { "Armored" }));
         Set(deck, "hand", new[] { hookedOnly }); Set(deck, "drawPile", Deck(0, 4).DrawPile);
-        Require(controller.TryUseTechniqueCard(0) && runtime.PendingSelectedTechniqueRecoveryCount == 1,
+        Require(TechniqueRuleChecks.Play(controller, 0) && runtime.PendingSelectedTechniqueRecoveryCount == 1,
             "Controller Hooked-only targeting consumed Spiny Grip.");
         encounters.SetCurrentEncounter(bass);
 
@@ -538,7 +538,7 @@ public static class BassUrchinOctopusChecks
         Set(deck, "hand", new[] { releaseTech, Technique("A"), Technique("B"), Technique("C") });
         Set(deck, "discardPile", new[] { priorDiscard }); Set(deck, "drawPile", Deck(0, 4).DrawPile);
         drawCount = deck.DrawPile.Length;
-        Require(controller.TryUseTechniqueCard(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
+        Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
             && deck.DrawPile.Length == drawCount, "Spiny Grip or normal refill ran before Cod's release reaction.");
         Require(controller.TryChooseRecoveredTechnique(0)
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique
@@ -552,7 +552,7 @@ public static class BassUrchinOctopusChecks
         chain.Add(cod, resolver, CatchAttachmentRole.Bait); chain.Add(Card("Armored target2", new[] { "Armored" }), resolver);
         Set(deck, "hand", new[] { releaseTech, Technique("D"), Technique("E"), Technique("F") });
         Set(deck, "discardPile", new[] { releaseTech }); Set(deck, "drawPile", Deck(0, 4).DrawPile);
-        Require(controller.TryUseTechniqueCard(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
+        Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
             "Duplicate-occurrence controller fixture failed.");
         Require(controller.TryChooseRecoveredTechnique(1) && !controller.HasPendingCreatureChoice
             && deck.DiscardPile.Length == 1 && deck.DiscardPile[0] == releaseTech && deck.Hand.Length == 4,
@@ -661,7 +661,7 @@ public static class BassUrchinOctopusChecks
     private static void Play(CreatureEffectRuntime runtime, TechniqueDeckRuntime deck, CatchChainRuntime chain,
         EffectResolver resolver, CardDefinition technique)
     {
-        if (!deck.TryUseCard(Array.IndexOf(deck.Hand, technique), 4, new System.Random(1), out _, out string message, false))
+        if (!TechniqueRuleChecks.DiscardFixture(deck, Array.IndexOf(deck.Hand, technique), out _, out string message))
             throw new InvalidOperationException(message);
         runtime.BeginTechniquePlay(technique, deck.LastDiscardOccurrenceId, chain.Catches);
         foreach (CardEffectDefinition effect in technique.Effects) chain.TryApplyTechniqueEffect(effect, resolver, out _);

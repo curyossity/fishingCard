@@ -159,8 +159,7 @@ public static class ShellFeedingExchangeChecks
         Set(redirect, "effects", new[] { Effect(CardEffectType.ReplaceEncounter, CardEffectTrigger.Manual,
             CardEffectTarget.CurrentEncounter, 1) });
         TechniqueEffectRuntime techniques = new TechniqueEffectRuntime();
-        Require(techniques.ApplyCard(redirect, encounters, chain, resolver, new[] { hazard }, null, "Coastal", 1,
-            new System.Random(1), false, out _) && encounters.CurrentEncounter == null
+        Require(techniques.ApplyCard(redirect, encounters, chain, resolver, new[] { hazard }, null, "Coastal", 1, new System.Random(1), false, out _, TechniqueRuleChecks.FirstTargets(redirect, chain, encounters)) && encounters.CurrentEncounter == null
             && encounters.LastCancelledHazard == hazard, "Technique replacement bypassed Hazard cancellation.");
 
         chain.Reset(); chain.Add(Mussel(), resolver, CatchAttachmentRole.Bait);
@@ -272,10 +271,11 @@ public static class ShellFeedingExchangeChecks
         Require(runtime.TryActivateFeedingFrenzy(first.InstanceId, chain, resolver)
             && runtime.ChoiceKind == CreatureEffectChoiceKind.RecoverTechnique, "Sardine draws ran before Cod Release recovery.");
         Require(deck.DrawPile.Length == 3 && deck.Hand.Length == 4, "Draw occurred during Release recovery.");
-        deck.TryRecoverDiscardedTechnique(0); runtime.CompleteChoice(); Prepare(runtime, chain, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques && deck.Hand.Length == 5,
+        Require(runtime.TryChooseCodRecovery(0, deck) && runtime.TryChooseCodRecoveryRoom(0, deck),
+            "Full-hand Cod recovery did not resolve before sacrifice draws.");
+        Prepare(runtime, chain, resolver, deck);
+        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques && deck.Hand.Length == 4,
             "Completed sacrifice draw vanished when source was removed.");
-        runtime.TryChooseFeedingDraw(0, deck, new System.Random(1));
         runtime.TryChooseFeedingDraw(0, deck, new System.Random(1));
         runtime.TryChooseFeedingDraw(0, deck, new System.Random(1)); Prepare(runtime, chain, resolver, deck);
         Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 1, "Optional discards after recovery did not make room for two draws.");

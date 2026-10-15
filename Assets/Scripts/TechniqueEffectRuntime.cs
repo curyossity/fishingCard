@@ -63,6 +63,11 @@ public sealed class TechniqueEffectRuntime
             return false;
         }
 
+        foreach (CardEffectDefinition effect in techniqueCard.Effects)
+        {
+            if (TechniqueTargetPlan.RequiresSelection(effect) && catchChainRuntime.GetTechniqueTargets(effect).Length == 0)
+            { restrictionReason = "No valid required attachment target"; return false; }
+        }
         for (int i = 0; i < techniqueCard.Effects.Length; i++)
         {
             if (CanApplyEffect(
@@ -96,11 +101,15 @@ public sealed class TechniqueEffectRuntime
         int depth,
         System.Random random,
         bool encounterInformationHidden,
-        out string resultSummary)
+        out string resultSummary,
+        TechniqueTargetPlan targets = null)
     {
         resultSummary = string.Empty;
         if (techniqueCard?.Effects == null || encounterRuntime == null
             || !encounterRuntime.HasTechniqueReactionWindow) return false;
+        if (Array.Exists(techniqueCard.Effects, TechniqueTargetPlan.NeedsPlayerTargets)
+            && (targets == null || !targets.Validate(techniqueCard, catchChainRuntime, out resultSummary, encounterRuntime))) return false;
+        if (targets != null && !targets.Validate(techniqueCard, catchChainRuntime, out resultSummary, encounterRuntime)) return false;
         List<string> results = new List<string>();
 
         for (int i = 0; i < techniqueCard.Effects.Length; i++)
@@ -131,6 +140,13 @@ public sealed class TechniqueEffectRuntime
                 random,
                 results))
             {
+                continue;
+            }
+
+            if (TechniqueTargetPlan.RequiresSelection(effect))
+            {
+                if (catchChainRuntime.TryApplyTechniqueEffectToTargets(effect, targets.TargetsFor(i), effectResolver, out string chosenResult))
+                    results.Add(chosenResult);
                 continue;
             }
 

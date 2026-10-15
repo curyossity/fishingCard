@@ -422,10 +422,12 @@ Bait copies share **one opportunity per encounter**; replacing the current
 encounter does not reset it. Forced removals and exchanges do not trigger it.
 A completed trigger survives later removal of its source during that ability.
 
-Used Techniques enter discard before resolving their effects. Their normal
-hand refill waits for resulting recovery choices to finish, then fills only
-up to the normal hand size. Recovery itself does not discard or cap excess
-hand cards; every recovered card remains accessible in the hand UI.
+A played Technique leaves hand while resolving and enters discard only
+after its effect finishes, before completion-waiting recovery reactions.
+Normal hand refill waits for those choices to finish and respects the
+four-card limit. If Cod recovery is offered while the hand is full, the player
+may discard one Technique to make room or decline; it cannot create a fifth
+hand card. See the approved Technique rules in section 10.
 
 An explicitly empty Catch or Bait role remains effectless. It must not copy
 another role's text or effects. Legacy role fallback exists only for creature
@@ -869,8 +871,9 @@ repeated cards produce different decisions.
 
 # 10. The player deck
 
-The player holds approximately four technique cards. After a technique
-card is used, a replacement is drawn according to the final deck rules.
+The player has a maximum hand size of four Technique cards. Normal play
+costs, hand refill, and deck reshuffling follow the general game rules;
+explicit card draws are additional effect draws.
 
 - Technique cards represent bait, special hooks, knots, rigging tricks,
   line reinforcement, descent modifiers, encounter manipulation, and
@@ -893,6 +896,32 @@ card is used, a replacement is drawn according to the final deck rules.
 - Some technique cards should specifically provide escape valves for
   mandatory catches: bypassing a Hooked creature, replacing it,
   neutralizing a downside, or releasing it more efficiently.
+
+## Approved Technique rules
+
+These rules govern the supplied Technique designs and supersede earlier approximate hand-size or early-discard assumptions.
+
+### Timing and play sequence
+
+Play only during the player's reaction window, before confirming Descend or Surface. Finish one Technique and its resulting reactions before another Technique can be played. A Technique play does not itself advance depth or Surface; authored modifiers may affect a later confirmed action.
+
+Select every required target before committing the play. Move the played physical Technique out of hand into resolving ownership. It is not in the discard pile while its effect resolves, and cannot be recovered or reshuffled from there during that effect. Resolve the effect, discard that physical card, then finish reactions that wait for the Technique to finish.
+
+Cod may recover the Technique just used after it enters discard. Sea Urchin recovery resolves after that Technique's other triggered effects. If one recovery has already returned the physical card, a later recovery cannot return another copy of it; a different physical copy with the same definition is not a substitute.
+
+### Targeting
+
+The player selects required targets before the play is committed. While Stinging Tentacles is active, a Technique cannot select Sea Anemone Catch. Deliberate Releases obey normal restrictions, including Clinging Crab Catch's Iron Grip. A targetless effect does not count as targeting attached creatures and cannot qualify for a targeting-based trigger merely because it affects them.
+
+### Hand and draws
+
+The hand limit is **four**. Explicit draws on the supplied cards are additional effect draws; normal play costs, hand refill, and deck reshuffling follow the general game rules. Do not silently replace an explicit effect draw with normal refill, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
+
+When Cod recovery is offered with a full four-card hand, the player may discard one Technique to make room or decline recovery. Recovery must not create a fifth hand card. Sea Urchin uses the same discard-one-to-make-room or decline policy. Recovery still follows each creature's trigger and opportunity limits.
+
+### Limits and persistence
+
+These designs add no energy resource or once-per-biome counters. Persistent modifiers and pending effects use each Technique's own duration. Ending the run clears all pending effects. This shared contract does not invent individual Technique effects, costs, refill counts, reshuffle exceptions, or duration rules.
 
 # 11. Run economy and progression
 

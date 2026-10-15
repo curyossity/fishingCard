@@ -197,12 +197,10 @@ public static class EventRevealChecks
             Effect(CardEffectType.ReplaceEncounter, CardEffectTrigger.Manual, CardEffectTarget.CurrentEncounter, 1) });
         Require(techniques.CanUseCard(technique, runtime, new CatchChainRuntime(), false, new[] { replacement }, "Coastal", 0, out _),
             "Technique backend rejected a legal unresolved event replacement.");
-        Require(techniques.ApplyCard(technique, runtime, new CatchChainRuntime(), resolver, new[] { replacement }, null, "Coastal", 0,
-            new System.Random(1), false, out _) && runtime.CurrentEncounter == replacement && old.State == EventOccurrenceState.Replaced,
+        Require(techniques.ApplyCard(technique, runtime, new CatchChainRuntime(), resolver, new[] { replacement }, null, "Coastal", 0, new System.Random(1), false, out _, TechniqueRuleChecks.FirstTargets(technique, new CatchChainRuntime(), runtime)) && runtime.CurrentEncounter == replacement && old.State == EventOccurrenceState.Replaced,
             "Technique backend bypassed replacement invalidation.");
         runtime = new EncounterRuntime(); runtime.SetCurrentEncounter(Card(CardType.Creature));
-        Require(techniques.ApplyCard(technique, runtime, new CatchChainRuntime(), resolver, new[] { replacement }, null, "Coastal", 0,
-            new System.Random(1), false, out _) && runtime.CurrentEventOccurrence.Definition == replacement,
+        Require(techniques.ApplyCard(technique, runtime, new CatchChainRuntime(), resolver, new[] { replacement }, null, "Coastal", 0, new System.Random(1), false, out _, TechniqueRuleChecks.FirstTargets(technique, new CatchChainRuntime(), runtime)) && runtime.CurrentEventOccurrence.Definition == replacement,
             "Creature-to-event Technique replacement lost event lifecycle setup.");
     }
 

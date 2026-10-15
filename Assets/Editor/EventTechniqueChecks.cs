@@ -48,9 +48,9 @@ public static class EventTechniqueChecks
         Require(!Can(techniques, tagged, encounters, chain, alternate), "Current encounter required tags were ignored.");
         Require(!Can(techniques, reveal, encounters, chain, alternate) && Can(techniques, reveal, encounters, chain, alternate, true),
             "Reveal ignored hidden information relevance.");
-        Require(techniques.ApplyCard(reveal, encounters, chain, resolver, new[] { alternate }, null, "Coastal", 0, new System.Random(1), true, out _)
+        Require(techniques.ApplyCard(reveal, encounters, chain, resolver, new[] { alternate }, null, "Coastal", 0, new System.Random(1), true, out _, TechniqueRuleChecks.FirstTargets(reveal, chain, encounters))
             && techniques.RevealsCurrentEncounter, "Information reveal dereferenced a nonexistent Hooked event.");
-        Require(techniques.ApplyCard(attached, encounters, chain, resolver, new[] { alternate }, null, "Coastal", 0, new System.Random(1), false, out _)
+        Require(techniques.ApplyCard(attached, encounters, chain, resolver, new[] { alternate }, null, "Coastal", 0, new System.Random(1), false, out _, TechniqueRuleChecks.FirstTargets(attached, chain, encounters))
             && target.CurrentValue == 11, "Event attached modifier failed its actual target.");
         encounters.SetCurrentEncounter(Event(CardType.Hazard)); encounters.TryCancelRevealedHazard(encounters.CurrentEventOccurrence.Id);
         Require(encounters.CurrentEncounter == null && Can(techniques, delayed, encounters, chain, alternate)
@@ -68,7 +68,7 @@ public static class EventTechniqueChecks
         encounters.SetCurrentEncounter(environment); long id = encounters.CurrentEventOccurrence.Id;
         encounters.TryBeginEventResolution(id, out _); int before = techniques.PendingDescendEffects.Length;
         Require(!Can(techniques, delayed, encounters, chain, alternate)
-            && !techniques.ApplyCard(delayed, encounters, chain, resolver, new[] { alternate }, null, "Coastal", 0, new System.Random(1), false, out _)
+            && !techniques.ApplyCard(delayed, encounters, chain, resolver, new[] { alternate }, null, "Coastal", 0, new System.Random(1), false, out _, TechniqueRuleChecks.FirstTargets(delayed, chain, encounters))
             && techniques.PendingDescendEffects.Length == before, "Active event consequences accepted/queued a Technique through backend entry.");
         encounters.TryCompleteEventResolution(id); Require(!Can(techniques, delayed, encounters, chain, alternate), "Resolved event reopened Technique window.");
         encounters.SetCurrentEncounter(Card("Hooked", new[] { "Fish" }));
@@ -124,19 +124,19 @@ public static class EventTechniqueChecks
         encounters.SetCurrentEncounter(environment); CardInstance target = chain.Add(Card("Target", new[] { "Armored" }), resolver);
         Set(deck, "hand", new[] { attached, delayed, replace }); Set(deck, "drawPile", Deck(0, 10).DrawPile);
         int depth = controller.CurrentDepth;
-        Require(controller.CanUseTechniqueCard(0, out _) && controller.TryUseTechniqueCard(0) && target.CurrentValue == 10
+        Require(controller.CanUseTechniqueCard(0, out _) && TechniqueRuleChecks.Play(controller, 0) && target.CurrentValue == 10
             && controller.CurrentDepth == depth && encounters.CurrentEncounter == environment && deck.Hand.Length == 4,
             "Player event Technique failed target mutation, refill, or advanced the action.");
-        Require(controller.TryUseTechniqueCard(0) && techniques.PendingDescendEffects.Length == 1 && controller.CurrentDepth == depth,
+        Require(TechniqueRuleChecks.Play(controller, 0) && techniques.PendingDescendEffects.Length == 1 && controller.CurrentDepth == depth,
             "Second legal Technique could not be played in the same event window.");
-        Require(controller.TryUseTechniqueCard(0) && encounters.CurrentEncounter == alternate
+        Require(TechniqueRuleChecks.Play(controller, 0) && encounters.CurrentEncounter == alternate
             && controller.CurrentDepth == depth, "Player replacement did not use the unresolved event path.");
         encounters.SetCurrentEncounter(Event(CardType.Hazard)); encounters.TryCancelRevealedHazard(encounters.CurrentEventOccurrence.Id);
         Set(deck, "hand", new[] { attached, delayed, replace }); Set(deck, "drawPile", Deck(0, 10).DrawPile);
-        Require(controller.CanUseTechniqueCard(0, out _) && controller.TryUseTechniqueCard(0) && target.CurrentValue == 12
+        Require(controller.CanUseTechniqueCard(0, out _) && TechniqueRuleChecks.Play(controller, 0) && target.CurrentValue == 12
             && encounters.CurrentEncounter == null && controller.CurrentDepth == depth, "Player Technique remained blocked after cancellation.");
         Set(deck, "hand", new[] { replace }); int discards = deck.DiscardPile.Length;
-        Require(!controller.TryUseTechniqueCard(0) && deck.Hand.Length == 1 && deck.Hand[0] == replace
+        Require(!TechniqueRuleChecks.Play(controller, 0) && deck.Hand.Length == 1 && deck.Hand[0] == replace
             && deck.DiscardPile.Length == discards, "Illegal missing-target play consumed a card.");
         encounters.SetCurrentEncounter(environment); Set(deck, "hand", new[] { delayed });
         foreach (string pending in new[] { "descendCompletionPending", "biomeEntryRevealPending", "techniqueRefillPending" })
@@ -145,7 +145,7 @@ public static class EventTechniqueChecks
             Set(controller, pending, false);
         }
         long id = encounters.CurrentEventOccurrence.Id; encounters.TryBeginEventResolution(id, out _);
-        Require(!controller.TryUseTechniqueCard(0) && deck.Hand[0] == delayed, "Controller accepted a Technique during event resolution.");
+        Require(!TechniqueRuleChecks.Play(controller, 0) && deck.Hand[0] == delayed, "Controller accepted a Technique during event resolution.");
         encounters.TryCompleteEventResolution(id);
         Require(!controller.CanUseTechniqueCard(0, out _), "Controller reopened Techniques after resolution but before confirmed action completion.");
 
@@ -161,9 +161,9 @@ public static class EventTechniqueChecks
             CardEffectTarget.SpecificCaughtCard, 1, new[] { "Armored" }));
         Set(deck, "hand", new[] { release, Technique("A"), Technique("B"), Technique("C") });
         Set(deck, "discardPile", new[] { Technique("Prior") }); Set(deck, "drawPile", Deck(0, 10).DrawPile);
-        Require(controller.TryUseTechniqueCard(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
+        Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
             && deck.DrawPile.Length == 10 && deck.DiscardPile[1] == release, "Event Release recovery/refill order changed.");
-        Require(!controller.TryUseTechniqueCard(0), "Pending creature recovery allowed another Technique.");
+        Require(!TechniqueRuleChecks.Play(controller, 0), "Pending creature recovery allowed another Technique.");
         Require(controller.TryChooseRecoveredTechnique(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique
             && deck.DrawPile.Length == 10, "Exact played recovery ran before Cod or normal refill ran early.");
         Require(controller.TryChoosePlayedTechniqueRecovery(0) && !controller.HasPendingCreatureChoice

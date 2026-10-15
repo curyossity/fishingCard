@@ -20,7 +20,7 @@ MonoBehaviour:
   - Release
   - CatchControl
   artwork: {fileID: 0}
-  rulesText: Immediately release up to two catches from the end of the Catch Chain without changing depth.
+  rulesText: Choose and immediately release up to two attached creatures without changing depth.
   weight: 0
   value: 0
   biomeIds: []
@@ -37,4 +37,4 @@ MonoBehaviour:
     caughtCardTargetMode: 3
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Release up to two catches from the end of the chain.
+    reminderText: Release up to two selected attached creatures.
