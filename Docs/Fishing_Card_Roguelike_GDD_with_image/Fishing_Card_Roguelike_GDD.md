@@ -710,6 +710,8 @@ Discard resolved event cards. Pending effects and modifiers remain in runtime st
 
 These five user-supplied definitions use the shared pre-action event window. They have no Weight, sale Value, Catch/Bait role, or Catch Chain attachment. Loose Knot grants an **optional deliberate Release**, never a forced Release.
 
+These are the only active coastal events. The earlier Feeding Frenzy, Ghost Net, Murky Current, Rough Current, and Snagged Kelp event definitions and their pool entries have been removed, along with the Feeding Signs and Ghost Net Salvage encounter chains. Sardine's Feeding Frenzy Bait ability is separate from the removed event and remains active.
+
 | ID | Name | Type | Rarity | Depth |
 | --- | --- | --- | --- | --- |
 | reef_snag | Reef Snag | Hazard | Common | 3-18 |

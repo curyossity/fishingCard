@@ -1,0 +1,24 @@
+{
+  "removed_events": [
+    "Feeding Frenzy",
+    "Ghost Net",
+    "Murky Current",
+    "Rough Current",
+    "Snagged Kelp"
+  ],
+  "removed_encounter_chains": [
+    "Feeding Signs",
+    "Ghost Net Salvage"
+  ],
+  "retired_guids": {
+    "Feeding Frenzy": "0f51c105631d4513b951f8d650408153",
+    "Ghost Net": "927086622d154b3da149d779810a18f7",
+    "Murky Current": "58b343a892134284a3064b13f76d8e05",
+    "Rough Current": "7b2423ecead242df87330471df845d6e",
+    "Snagged Kelp": "68fe72eb1eca4da68f48668c81bfd21e",
+    "Feeding Signs": "d30c9ea4d06a44b9a6e90afb38185328",
+    "Ghost Net Salvage": "e5b87e266e5c40ce8c7732cd4da7b057"
+  },
+  "remaining_retired_guid_references": [],
+  "scenario_replacement": "Gentle Upwelling"
+}

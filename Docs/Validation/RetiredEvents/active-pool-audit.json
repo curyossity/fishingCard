@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "active_event_count": 5,
+  "active_event_ids": [
+    "fresh_shell_fragments",
+    "gentle_upwelling",
+    "loose_knot",
+    "reef_snag",
+    "silt_burst"
+  ],
+  "events_by_tier": {
+    "shallows": [
+      "reef_snag",
+      "silt_burst",
+      "gentle_upwelling",
+      "loose_knot",
+      "fresh_shell_fragments"
+    ],
+    "mid_depth": [
+      "reef_snag",
+      "silt_burst",
+      "gentle_upwelling",
+      "loose_knot",
+      "fresh_shell_fragments"
+    ],
+    "deep_edge": [
+      "reef_snag",
+      "silt_burst",
+      "loose_knot"
+    ]
+  },
+  "all_pool_card_references_resolve": true,
+  "coastal_legacy_chains_removed": true
+}

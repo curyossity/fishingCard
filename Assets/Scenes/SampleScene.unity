@@ -639,7 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunController
   startRunOnAwake: 1
-  startingLineCapacity: 5
+  startingLineCapacity: 10
   startingDepth: 0
   startingBiome: {fileID: 11400000, guid: e104a3bb49114f2e80aebde5130a122e, type: 2}
   startingHandSize: 4
@@ -690,6 +690,27 @@ MonoBehaviour:
       recentEncounterSequenceSummary: 
       consecutiveCreatureEncounters: 0
       lastRepetitionRuleSummary: 
+    currentEventOccurrence:
+      id: 0
+      definition: {fileID: 0}
+      state: 0
+      revealCallbackDepth: 0
+      pendingRevealReactionIds: 
+      reactionWindowClosed: 0
+    nextEventOccurrenceId: 1
+    nextEventRevealReactionId: 1
+    trail:
+      creature: {fileID: 0}
+      biome: {fileID: 0}
+      destinationDepth: 0
+      lastPromisedCreature: {fileID: 0}
+      lastConsumedDepth: 0
+      lastReplaced: 0
+    lastCancelledHazard: {fileID: 0}
+    pendingConcealments: []
+    assignedConcealmentId: -1
+    nextConcealmentId: 1
+    encounterRevision: 0
   biomeApexRuntime:
     state: 0
     boundaryDepth: -1
@@ -702,15 +723,37 @@ MonoBehaviour:
     activeEffectRecords: []
     releasedCatches: []
     lostCatches: []
+    consumedNextCatchEffectKeys: []
+    consumedNextEncounterEffectKeys: []
+    invalidatedNoReleaseEffectKeys: []
     nextInstanceId: 1
+    actionLoadReduction: 0
+    deferredTechniqueReleases: []
+    pendingCreatureCatchEffects: []
   techniqueDeckRuntime:
+    resolvingCard: {fileID: 0}
+    resolvingOccurrenceId: 0
+    resolvingOriginalHandIndex: -1
+    handVersion: 0
     hand: []
     drawPile: []
     discardPile: []
+    discardOccurrenceIds: 
+    nextDiscardOccurrenceId: 1
+    lastDiscardOccurrenceId: 0
   techniqueEffectRuntime:
     pendingDescendEffects: []
     pendingEncounterEffects: []
     revealsCurrentEncounter: 0
+    approved:
+      pendingLoadRelief: 0
+      reliefActive: 0
+      pendingPrizes: []
+  eventPersistenceRuntime:
+    effects: []
+    boundaries: []
+    nextEffectId: 1
+    epoch: 1
   lineLoadRiskRuntime:
     baseBreakChance: 0.1
     breakChancePerExcessLoad: 0.08
@@ -747,6 +790,178 @@ MonoBehaviour:
     techniqueCardUnlocked: 0
     techniqueDeckInitialized: 0
     savedTechniqueDeck: []
+  eventEffectRuntime:
+    activeOccurrenceId: 0
+    source: {fileID: 0}
+    effects: []
+    nextEffectIndex: 0
+    appliedEffectCount: 0
+    noTargetEffectCount: 0
+    progress: 0
+    failureReason: 
+  confirmedEventAction: 0
+  confirmedEventOccurrenceId: 0
+  eventConsequencesComplete: 0
+  eventActionFailure: 
+  creatureEffectRuntime:
+    requests: []
+    biomeVisit: 0
+    encounterRecoveryConsumed: 0
+    pendingRecovery:
+      SourceInstanceId: 0
+      EventSource: {fileID: 0}
+      EventEffect:
+        effectId: 
+        displayName: 
+        effectType: 0
+        trigger: 0
+        target: 0
+        effectTone: 0
+        amount: 0
+        requiredTags: []
+        grantedTag: 
+        targetTags: []
+        caughtCardTargetMode: 0
+        replacementCard: {fileID: 0}
+        expiresAfterUse: 0
+        hasEventLifetime: 0
+        eventLifetime:
+          boundaryId: 
+          boundaryCount: 0
+        reminderText: 
+      EventOccurrenceId: 0
+      EffectIndex: 0
+      AbilityName: 
+      Kind: 0
+      EligibleCatchIds: 
+      Offers: []
+      OffersGenerated: 0
+      AttachedInstanceId: 0
+      EligibleSourceIds: 
+      SelectedTargetIds: 
+      CapturedValue: 0
+      TransferEffect:
+        effectId: 
+        displayName: 
+        effectType: 0
+        trigger: 0
+        target: 0
+        effectTone: 0
+        amount: 0
+        requiredTags: []
+        grantedTag: 
+        targetTags: []
+        caughtCardTargetMode: 0
+        replacementCard: {fileID: 0}
+        expiresAfterUse: 0
+        hasEventLifetime: 0
+        eventLifetime:
+          boundaryId: 
+          boundaryCount: 0
+        reminderText: 
+      TransferSource: {fileID: 0}
+      DrawCount: 0
+      SelectedHandIndex: -1
+      SelectedCatchId: -1
+      ExpectedRole: 0
+      RequireSourceRole: 0
+      MaxDiscards: -1
+      DiscardCount: 0
+      PlayedTechnique: {fileID: 0}
+      PlayedDiscardOccurrenceId: 0
+      EncounterRevision: 0
+      Encounter: {fileID: 0}
+      ReleaseDrawSourceGroups: []
+    pendingTransfers: []
+    queuedEncounter: {fileID: 0}
+    pendingSelectedTechniqueRecoveries: []
+    resolvingTechnique: {fileID: 0}
+    resolvingDiscardOccurrenceId: 0
+    eligibleAttachedIdsAtTechniquePlay: 
+    pendingPlayedTechniqueRecovery:
+      SourceInstanceId: 0
+      EventSource: {fileID: 0}
+      EventEffect:
+        effectId: 
+        displayName: 
+        effectType: 0
+        trigger: 0
+        target: 0
+        effectTone: 0
+        amount: 0
+        requiredTags: []
+        grantedTag: 
+        targetTags: []
+        caughtCardTargetMode: 0
+        replacementCard: {fileID: 0}
+        expiresAfterUse: 0
+        hasEventLifetime: 0
+        eventLifetime:
+          boundaryId: 
+          boundaryCount: 0
+        reminderText: 
+      EventOccurrenceId: 0
+      EffectIndex: 0
+      AbilityName: 
+      Kind: 0
+      EligibleCatchIds: 
+      Offers: []
+      OffersGenerated: 0
+      AttachedInstanceId: 0
+      EligibleSourceIds: 
+      SelectedTargetIds: 
+      CapturedValue: 0
+      TransferEffect:
+        effectId: 
+        displayName: 
+        effectType: 0
+        trigger: 0
+        target: 0
+        effectTone: 0
+        amount: 0
+        requiredTags: []
+        grantedTag: 
+        targetTags: []
+        caughtCardTargetMode: 0
+        replacementCard: {fileID: 0}
+        expiresAfterUse: 0
+        hasEventLifetime: 0
+        eventLifetime:
+          boundaryId: 
+          boundaryCount: 0
+        reminderText: 
+      TransferSource: {fileID: 0}
+      DrawCount: 0
+      SelectedHandIndex: -1
+      SelectedCatchId: -1
+      ExpectedRole: 0
+      RequireSourceRole: 0
+      MaxDiscards: -1
+      DiscardCount: 0
+      PlayedTechnique: {fileID: 0}
+      PlayedDiscardOccurrenceId: 0
+      EncounterRevision: 0
+      Encounter: {fileID: 0}
+      ReleaseDrawSourceGroups: []
+    pendingCreatureSkips: []
+    pendingReleaseDrawSourceGroups: []
+    pendingReleaseDrawName: 
+  descendCompletionPending: 0
+  biomeEntryRevealPending: 0
+  pendingCommittedCatchId: -1
+  techniqueRefillPending: 0
+  pendingTechniqueTargets:
+    card: {fileID: 0}
+    encounterTarget: {fileID: 0}
+    encounterRevision: 0
+    handVersion: 0
+    playedHandIndex: 0
+    selections: []
+  pendingTechniqueHandIndex: 0
+  pendingTechniqueHandVersion: 0
+  pendingTechniqueEncounterRevision: 0
+  techniqueSelectionId: 0
+  techniquePlayFailure: 
 --- !u!4 &2039860097
 Transform:
   m_ObjectHideFlags: 0

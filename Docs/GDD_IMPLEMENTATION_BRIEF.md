@@ -170,7 +170,8 @@ Implementation status: EVT-01 through EVT-08 provide lifecycle state, reveal/can
 - Gentle Upwelling: Uncommon Environment, depth 1-15. All pending grants reduce the same next creature entering Bait (including mode changes), before own on-attach effects. Each reduces effective Weight by 1, floor 0; pending grants cross biomes and awarded reductions persist across modes until removal.
 - Loose Knot: Uncommon Opportunity, depth 3-18. Optional legal creature Release in either mode, followed by its full Release reactions before the confirmed action. Not a Technique; no saved use or release-lock bypass.
 - Fresh Shell Fragments: Rare Opportunity, depth 5-13. One biome-local Spiny Lobster trail to current depth +3, eligible ordinary slots only. Preview identity/stats. Queued choices take precedence and consume it; Technique replacement/avoidance marks the consumed promise replaced. Passed destinations retarget the first eligible normal slot without displacing Apex. Clear on biome/run ending.
-- These handlers register at runtime setup; unrelated legacy event definitions are not implicitly migrated. Event-specific illustrations have not been supplied; assets use the existing event master with empty artwork references.
+- These five are the only active coastal event definitions. Feeding Frenzy, Ghost Net, Murky Current, Rough Current, and Snagged Kelp were removed from assets and every depth-tier pool, together with the Feeding Signs and Ghost Net Salvage encounter chains. The Calculated Overload debug scenario now uses Gentle Upwelling. Sardine's Feeding Frenzy ability is separate and remains unchanged.
+- These handlers register at runtime setup. Event-specific illustrations have not been supplied; assets use the existing event master with empty artwork references.
 
 ## Active Technique content
 

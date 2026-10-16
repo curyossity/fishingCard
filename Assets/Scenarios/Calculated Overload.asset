@@ -20,4 +20,4 @@ MonoBehaviour:
   startingCatches:
   - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
   - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
-  currentEncounter: {fileID: 11400000, guid: 0f51c105631d4513b951f8d650408153, type: 2}
+  currentEncounter: {fileID: 11400000, guid: 6e437a669999499c9e919c42fd0b4c8f, type: 2}
