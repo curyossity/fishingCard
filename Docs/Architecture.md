@@ -17,6 +17,10 @@ The GDD remains the source of truth for game design. This document explains wher
 
 ## Current Classes
 
+### Editor integration: Unity MCP
+
+`com.coplaydev.unity-mcp` is a release-pinned Editor package. Its Python MCP server lives in the ignored `.local-tools/unity-mcp/` environment and listens on loopback HTTP. `UnityMcpSetup` is an Editor-only bootstrap/menu command: it starts or reuses that installed server, configures the package's HTTP bridge through its public services, and records connection status under Library. It skips automatic setup on machines without the local Python installation. Gameplay runtime and authored cards do not depend on this integration. Codex registration lives in the user's configuration, outside game data. See [Unity MCP Setup](Unity%20MCP%20Setup.md) for paths, startup, and verification status.
+
 ### `BiomeDefinition`
 
 Role:

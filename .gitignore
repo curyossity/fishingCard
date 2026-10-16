@@ -68,3 +68,6 @@ ExportedObj/
 
 # Auto-generated local settings
 *.rsuser
+
+# Project-local Unity MCP Python environment, executables, and caches
+/.local-tools/

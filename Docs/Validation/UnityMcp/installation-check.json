@@ -1,0 +1,22 @@
+{
+  "server_name": "mcp-for-unity-server",
+  "server_version": "10.3.0",
+  "protocol_handshake": "passed",
+  "visible_tool_count": 48,
+  "connected_unity_instances": [
+    {
+      "session_id": "7ed28ab5-3097-4e60-aac4-69209b4b1721",
+      "project": "fishingCards",
+      "hash": "fb66824747707029",
+      "unity_version": "6000.5.9f1",
+      "connected_at": "2026-10-16T06:16:25.622917+00:00"
+    }
+  ],
+  "editor_state_resource_read": "passed",
+  "unity_package_resolved": true,
+  "resolved_commit": "aa5fc638d623f56178d50329d9ad8c541a57fe66",
+  "editor_package_assemblies_compiled": true,
+  "editor_bridge_connected": true,
+  "editor_setup_helper_compilation": "passed against Unity references",
+  "client_session_close_warning": "non-fatal incomplete chunked read after successful requests"
+}
