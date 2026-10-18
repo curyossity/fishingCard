@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "revisionRound": "Post-assembly Penpot refinements",
+  "createdDate": "2026-10-18",
+  "baseline": "UnityDesignBaseline.json",
+  "instructions": "Design Changes.md",
+  "nextRevisionId": "MFJ-R001",
+  "penpot": {
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "pageName": "Concept B — Reusable Assembly (4K)"
+  },
+  "unityThemeRoot": "Assets/UIThemes/MidnightFieldJournal/",
+  "statuses": ["in_progress", "ready_for_review", "approved", "exported", "imported", "verified", "superseded"],
+  "requiredEntryFields": [
+    "id", "date", "request", "component", "status", "supersedes",
+    "penpotSources", "affectedPenpotInstances", "changeKinds", "before", "after",
+    "unityAssetIds", "unityPaths", "dependentConsumers", "configurationChanges",
+    "exportRequirements", "approvalEvidence", "exportEvidence", "importEvidence",
+    "verificationEvidence", "remainingWork"
+  ],
+  "changes": [],
+  "synchronizationCheckpoints": [],
+  "notes": [
+    "Earlier approved iterations are already in the current Unity baseline.",
+    "No new Penpot edit or Unity import has been performed for this revision round.",
+    "Pending changes are never considered imported merely because an image was exported.",
+    "Reconcile unrecorded external Penpot edits explicitly before the next import."
+  ]
+}

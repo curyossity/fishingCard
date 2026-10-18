@@ -2,6 +2,8 @@
 
 ## Scope and coexistence
 
+For Penpot revisions after the accepted Unity assembly, use [Design Changes.md](Design%20Changes.md) and [DesignChangeLedger.json](DesignChangeLedger.json). The immutable [Unity baseline](UnityDesignBaseline.json) records the starting file hashes/GUIDs and selected sources. Record every artwork, layout, typography and interaction-visual revision with its dependent Unity consumers before a later selective import; do not mark exported work as imported or discard pending revisions.
+
 UI-02 implementation is complete. See [UI02.md](UI02.md) for the current imported paths, bundled fonts, templates and validation. Source/draft paths and font availability statements captured during UI-01 below describe that earlier snapshot; the UI-02 import catalog is authoritative for current asset locations.
 
 This is the rendering contract for the user-approved Midnight Field Journal candidate theme. It is additive to [Card Visual Specification](../../Card%20Visual%20Specification.md) and [UI Redesign Plan](../../UI%20Redesign%20Plan.md); their old-design artwork paths, colors and geometry remain valid for the existing scene. Shared gameplay/information rules remain binding in both themes.

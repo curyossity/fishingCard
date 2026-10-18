@@ -1,0 +1,1690 @@
+{
+  "schemaVersion": 1,
+  "baselineId": "MFJ-UNITY-BASELINE-001",
+  "date": "2026-10-18",
+  "scope": "Accepted current Unity assembly before further Penpot refinements. File-byte checkpoint, not standalone build certification.",
+  "referenceResolution": [
+    3840,
+    2160
+  ],
+  "comparisonScene": "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity",
+  "penpotSnapshot": "PenpotLayoutSnapshot.json",
+  "visualContract": "VisualContract.md",
+  "sourceCatalogPath": "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json",
+  "sourceSprites": [
+    {
+      "id": "PaperBackground4K",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png",
+      "cardUniqueId": "",
+      "sha256": "6449cfe256a15e4b1703f3b75063674f332542207802b09e965eabd80ba59d9c",
+      "width": 3840,
+      "height": 2160,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "designWidth": 3840,
+      "designHeight": 2160
+    },
+    {
+      "id": "Background",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png",
+      "cardUniqueId": "",
+      "sha256": "fa7fe3ad73705b8f21f78a567d3dc030bfd42ca5f57443f9c9414fce92c324e2",
+      "width": 1672,
+      "height": 941,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "designWidth": 3840,
+      "designHeight": 2160
+    },
+    {
+      "id": "CreatureTemplate",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+      "cardUniqueId": "",
+      "sha256": "3f1f9019fbd86b5ca843da21fb11336efdb1ba857e5681366d7008ad03d57713",
+      "width": 1122,
+      "height": 1402,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        34,
+        12,
+        1088,
+        1380
+      ],
+      "halfAlphaBoundsPixels": [
+        35,
+        12,
+        1087,
+        1378
+      ],
+      "designWidth": 1040,
+      "designHeight": 1300
+    },
+    {
+      "id": "EventTemplate",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+      "cardUniqueId": "",
+      "sha256": "f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa",
+      "width": 1122,
+      "height": 1402,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        57,
+        15,
+        1065,
+        1373
+      ],
+      "halfAlphaBoundsPixels": [
+        59,
+        16,
+        1064,
+        1372
+      ],
+      "designWidth": 1040,
+      "designHeight": 1300
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png",
+      "cardUniqueId": "creature_small_octopus",
+      "sha256": "297d92adcc1094a25bf65e6e7660ad88a7565a03c56c2c76e7e89f289864d570",
+      "width": 1254,
+      "height": 1254,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        20,
+        63,
+        1234,
+        1216
+      ],
+      "halfAlphaBoundsPixels": [
+        21,
+        64,
+        1233,
+        1215
+      ],
+      "designWidth": 570,
+      "designHeight": 570
+    },
+    {
+      "id": "DescendButton",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "cardUniqueId": "",
+      "sha256": "926be32b6c371ad6b124c83ec4c1602e0f25d026b1e0c9b7ad2981fd42160b12",
+      "width": 2001,
+      "height": 786,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        13,
+        136,
+        1988,
+        606
+      ],
+      "halfAlphaBoundsPixels": [
+        14,
+        136,
+        1987,
+        606
+      ],
+      "designWidth": 880,
+      "designHeight": 346
+    },
+    {
+      "id": "SurfaceButton",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "cardUniqueId": "",
+      "sha256": "bc2a6dc20888bdd0c809216ec99d85d52714122da07d05681aa698f302ec75ef",
+      "width": 1983,
+      "height": 793,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        21,
+        139,
+        1963,
+        644
+      ],
+      "halfAlphaBoundsPixels": [
+        22,
+        140,
+        1960,
+        643
+      ],
+      "designWidth": 880,
+      "designHeight": 352
+    },
+    {
+      "id": "LoadEmpty",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png",
+      "cardUniqueId": "",
+      "sha256": "590adcde5bee0361e41d25f93a6e97d89ecca131e4105cc198172e83ac8de253",
+      "width": 128,
+      "height": 96,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "halfAlphaBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "designWidth": 77,
+      "designHeight": 58
+    },
+    {
+      "id": "LoadFilled",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png",
+      "cardUniqueId": "",
+      "sha256": "ec5840cfedb4559d300c6053e062ed92f36218682fb009f47a74b49db8b2f60d",
+      "width": 128,
+      "height": 96,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "halfAlphaBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "designWidth": 77,
+      "designHeight": 58
+    },
+    {
+      "id": "LoadDanger",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png",
+      "cardUniqueId": "",
+      "sha256": "b096f866b5c814d12b2a41c3f83e225eb284c2a32e5e6219fde6c53f1d48143e",
+      "width": 128,
+      "height": 96,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "halfAlphaBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "designWidth": 77,
+      "designHeight": 58
+    },
+    {
+      "id": "CatchFrameV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch/CompactCatchFrame.png",
+      "cardUniqueId": "",
+      "sha256": "ec8e34cb3867e34835cdff5dae4ea42e712b7bde6099a8f6a86212414d94e68f",
+      "width": 1659,
+      "height": 948,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        16,
+        16,
+        1644,
+        920
+      ],
+      "halfAlphaBoundsPixels": [
+        18,
+        18,
+        1642,
+        918
+      ],
+      "designWidth": 680,
+      "designHeight": 382.022472
+    },
+    {
+      "id": "SardineV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/Sardine.png",
+      "cardUniqueId": "creature_sardine",
+      "sha256": "8a6a405719713656cfdeee06025c58aa368fa4836376fdf71a1720e0a798a6af",
+      "width": 1983,
+      "height": 793,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        43,
+        109,
+        1956,
+        689
+      ],
+      "halfAlphaBoundsPixels": [
+        44,
+        110,
+        1955,
+        688
+      ],
+      "designWidth": 552,
+      "designHeight": 221
+    },
+    {
+      "id": "CrabV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrab.png",
+      "cardUniqueId": "creature_clinging_crab",
+      "sha256": "af202d2bbffd803e7d35b6bc72268144e28958e844c4e91a2e8c094fd10b6ca5",
+      "width": 1728,
+      "height": 910,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        98,
+        73,
+        1632,
+        830
+      ],
+      "halfAlphaBoundsPixels": [
+        99,
+        74,
+        1632,
+        830
+      ],
+      "designWidth": 440,
+      "designHeight": 250
+    },
+    {
+      "id": "MinnowV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnow.png",
+      "cardUniqueId": "creature_glass_minnow",
+      "sha256": "d6530b9870de0de2d7b038eb2cd393c3f2baa9c0dc0eb118593425745f06c579",
+      "width": 1983,
+      "height": 793,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        52,
+        106,
+        1928,
+        683
+      ],
+      "halfAlphaBoundsPixels": [
+        53,
+        107,
+        1927,
+        682
+      ],
+      "designWidth": 552,
+      "designHeight": 221
+    },
+    {
+      "id": "BrassConnectorV3",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors/BrassConnector.png",
+      "cardUniqueId": "",
+      "sha256": "4caf486467a94a4748a11783a1a55e36ca50d582cbe33d6fa51b6463bb0a9b43",
+      "width": 1024,
+      "height": 1536,
+      "alphaMin": 0,
+      "alphaMax": 254,
+      "visibleBoundsPixels": [
+        382,
+        100,
+        639,
+        1412
+      ],
+      "halfAlphaBoundsPixels": [
+        383,
+        101,
+        638,
+        1412
+      ],
+      "designWidth": 104,
+      "designHeight": 156
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png",
+      "cardUniqueId": "",
+      "sha256": "15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad",
+      "width": 1224,
+      "height": 1285,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        84,
+        50,
+        1142,
+        1231
+      ],
+      "halfAlphaBoundsPixels": [
+        85,
+        51,
+        1141,
+        1230
+      ],
+      "designWidth": 620,
+      "designHeight": 640
+    },
+    {
+      "id": "CutLooseV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png",
+      "cardUniqueId": "cut_loose",
+      "sha256": "3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0",
+      "width": 1681,
+      "height": 936,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        59,
+        1681,
+        898
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        67,
+        1681,
+        894
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    },
+    {
+      "id": "SlipPastV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png",
+      "cardUniqueId": "slip_past",
+      "sha256": "284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559",
+      "width": 1681,
+      "height": 936,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        53,
+        66,
+        1675,
+        889
+      ],
+      "halfAlphaBoundsPixels": [
+        55,
+        67,
+        1669,
+        885
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    },
+    {
+      "id": "SteadyLineV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png",
+      "cardUniqueId": "steady_line",
+      "sha256": "6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49",
+      "width": 1683,
+      "height": 935,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        21,
+        87,
+        1653,
+        866
+      ],
+      "halfAlphaBoundsPixels": [
+        22,
+        89,
+        1652,
+        864
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    },
+    {
+      "id": "PrizeHookV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png",
+      "cardUniqueId": "prize_hook",
+      "sha256": "1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c",
+      "width": 1679,
+      "height": 937,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        34,
+        33,
+        1654,
+        905
+      ],
+      "halfAlphaBoundsPixels": [
+        37,
+        34,
+        1653,
+        904
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    }
+  ],
+  "files": [
+    {
+      "path": "Assets/Scripts/CatchChainPresentation.cs",
+      "sha256": "ef31e4427670d499e69d1bd714dd6f9e03fb818a5d6c25b3b251573b2f25948a",
+      "bytes": 655,
+      "guid": "4187dba0b1f33f4499ad40eee0362e90"
+    },
+    {
+      "path": "Assets/Scripts/CatchChainPresentation.cs.meta",
+      "sha256": "be175d33293ef6667b094619b56de8f69247efbd4ef2d58246903c30456dbe81",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/CatchChainView.cs",
+      "sha256": "821ec5a7c897a05769045c15a3302f4cf4a9cd3ab5804a00d91d2d6f82772f4b",
+      "bytes": 23367,
+      "guid": "c6f46e24c8c449bba84046f5b5cc7c97"
+    },
+    {
+      "path": "Assets/Scripts/CatchChainView.cs.meta",
+      "sha256": "5c8a69d20e048b035934d3c79c5cb8326fb3fa6d53cdbbbe928474ea5a7b0320",
+      "bytes": 240
+    },
+    {
+      "path": "Assets/Scripts/CompactCatchCardView.cs",
+      "sha256": "7b512431f5234d62b7ee34b9aa111cc39f8a35d049a32f6ba9df38961dbf8c3f",
+      "bytes": 11094,
+      "guid": "ff41661627ed269468e9cb2ca4cb7987"
+    },
+    {
+      "path": "Assets/Scripts/CompactCatchCardView.cs.meta",
+      "sha256": "41f3c7fd38b1891afa5a401e275a4a030ec7c9634c4b5163ee41301ba22cbb8d",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Scripts/CreatureCardView.cs",
+      "sha256": "7b87ad68eb29278371aae6645256c848237341c19691ff687e73e0d76915935d",
+      "bytes": 47880,
+      "guid": "a1194be14b1e4b97a3037b5f08674eaf"
+    },
+    {
+      "path": "Assets/Scripts/CreatureCardView.cs.meta",
+      "sha256": "22ebe5f63629ff6b83433978387e07f380fe45b9cdc683999e3ca0532d8b8dcf",
+      "bytes": 240
+    },
+    {
+      "path": "Assets/Scripts/CreatureCardVisualExtension.cs",
+      "sha256": "13b476ca82e47c8dbcd832293b2f79fadf733c7fb77192fc69569a2c60755e95",
+      "bytes": 965,
+      "guid": "000a1417cfb7ee94e8206f82686b26f7"
+    },
+    {
+      "path": "Assets/Scripts/CreatureCardVisualExtension.cs.meta",
+      "sha256": "87cc9dac639232cb10bf9acd15bdadcad64fbd3b9d91cc128eab80c8d06509ac",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/CreatureCardVisualProfile.cs",
+      "sha256": "805bfddb441e3ded957b36dbb94ac158ca928173530bc298ab47b563a2952635",
+      "bytes": 1398,
+      "guid": "426158815cf3d25479c211a5f59f7795"
+    },
+    {
+      "path": "Assets/Scripts/CreatureCardVisualProfile.cs.meta",
+      "sha256": "0e623551b8b76e3868e33a3de4dc10ce633bc6fc79fbb2d277aa0460ee285f06",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/CreatureChoicePresentation.cs",
+      "sha256": "7808cefbc775ac15375a2eb3463d1a57d5c3c97639609221ddeb481fb882c005",
+      "bytes": 581,
+      "guid": "490b909400042134e933737cc272a5e2"
+    },
+    {
+      "path": "Assets/Scripts/CreatureChoicePresentation.cs.meta",
+      "sha256": "cbe77d582a0d32f1fee9115b2e97e1939f8548ba743fcc250d4b6c3c7fcfca6a",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/FishingRunController.cs",
+      "sha256": "9ce44b4328c35225ec611a8cf7818bc6079f39e6e978c700f78a31a8ce437398",
+      "bytes": 118268,
+      "guid": "7e851b9b52e749caac2ef5b6ca5cb490"
+    },
+    {
+      "path": "Assets/Scripts/FishingRunController.cs.meta",
+      "sha256": "afff6210f9975924e72076a524a83633d045c0c0f6407a6117ed6e230c8d9c27",
+      "bytes": 243
+    },
+    {
+      "path": "Assets/Scripts/FishingRunHudPresentation.cs",
+      "sha256": "8825cd13d8c64a240c960ffb9012f1a4ce32e2e736b78079ae0424f896e41229",
+      "bytes": 952,
+      "guid": "789cc654fafd7b24bb6503ba71118106"
+    },
+    {
+      "path": "Assets/Scripts/FishingRunHudPresentation.cs.meta",
+      "sha256": "6ac2d884b226714be164d8bd08365e4017140ce6132125df8a81a924ddefec02",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/FishingRunView.cs",
+      "sha256": "b82eb99c3a5b1dd56f39cec6c0b23d522bdec9afd4c2cebff1e012f37e06ef18",
+      "bytes": 67773,
+      "guid": "4ce4c58dce7b4bd3ad3c1d90752645bf"
+    },
+    {
+      "path": "Assets/Scripts/FishingRunView.cs.meta",
+      "sha256": "8ddd6a91c995f0d9f7d40e1b022cd11ebbc3f00fe4a95fd6865b3c98f0053a25",
+      "bytes": 240
+    },
+    {
+      "path": "Assets/Scripts/RunResultPresentation.cs",
+      "sha256": "364de322de3b8d652ef03a0f845031df7d2f75da51797e60b5a5d2126116c0aa",
+      "bytes": 755,
+      "guid": "e4ef93d4f4eb30645829db39047fe9dd"
+    },
+    {
+      "path": "Assets/Scripts/RunResultPresentation.cs.meta",
+      "sha256": "a383080736f2367ab3cf4096f1d484e68a0f1fa77d6f613c1c1a484edbd3e5c0",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/RunResultView.cs",
+      "sha256": "8a9e4be1d70adb98b2d8e6d5893a4044f99a2c8a2a9f087ce70d79c634f6b2f3",
+      "bytes": 15449,
+      "guid": "d482b7d531214ec795dc575f5d724639"
+    },
+    {
+      "path": "Assets/Scripts/RunResultView.cs.meta",
+      "sha256": "e59611f0675cd6c8e500dd131f40dbe3abe4bb7923d43e151beffa714b47c587",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Scripts/TechniqueCardView.cs",
+      "sha256": "ea7deeb96d95326cce510735aa5b73cf0d4bfb316a71583f34aed5c53dc951f8",
+      "bytes": 7022,
+      "guid": "2539857cf3ee5c1418527382ae3d8401"
+    },
+    {
+      "path": "Assets/Scripts/TechniqueCardView.cs.meta",
+      "sha256": "868fc6cd8171f2df8cb7c09e076359bdd7eaa5a75ce249d9a83b423305375f9f",
+      "bytes": 60
+    },
+    {
+      "path": "Assets/Scripts/TechniqueHandPresentation.cs",
+      "sha256": "c3fc9046f8b3145a09c87735277294ecd6e444167681ada4a917c349c7b67d68",
+      "bytes": 516,
+      "guid": "41757709349825b4ba33437df87cdb73"
+    },
+    {
+      "path": "Assets/Scripts/TechniqueHandPresentation.cs.meta",
+      "sha256": "24df51fafdcf0e714daef26144033399b2023405c6df035a4ed4a5dd67b17382",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/Scripts/TechniqueHandView.cs",
+      "sha256": "44c7205916bedbabe8c5e25749aa522422146bde2e47a2fe78a1135fca49cbf6",
+      "bytes": 19311,
+      "guid": "807721b927c14210a0256e0234e56efa"
+    },
+    {
+      "path": "Assets/Scripts/TechniqueHandView.cs.meta",
+      "sha256": "e613866e44c58e1d907b06b1f86f65817a75e21e235120e32598591590c22e6b",
+      "bytes": 240
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/CompactCatchTemplate.png",
+      "sha256": "9edecf8b90e3b90c6daa3d6a23038e6175b70a5da2e15251bb8b2230c3821bfa",
+      "bytes": 2588027,
+      "guid": "912d3827dfd36144aa7ea14f5591bb3b"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/CompactCatchTemplate.png.meta",
+      "sha256": "1178fc9dbc5298794b1a2996b70bc660030513a4b21989097c28e4626f735c95",
+      "bytes": 3964
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/TechniqueTemplate.png",
+      "sha256": "522d4bb6db9599ec5c99594f29b03ebbcbd472a5d94206ea43207167be81a702",
+      "bytes": 3012456,
+      "guid": "2bd93a52a90111e469ec6799cbc46168"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/TechniqueTemplate.png.meta",
+      "sha256": "653529be830b00e878f8d55e50f2ddc796140a53df0ad0b779fd5484281ff763",
+      "bytes": 3313
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft.meta",
+      "sha256": "b33ee5dc2fce201a5ce38c04e2b6431e8afaa5249cc700940179f068cf42d228",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Archive.meta",
+      "sha256": "0165441040b6f2d3c76c7b4ba922113537de0a4a46905ad3006b55952d6d3521",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png",
+      "sha256": "fa7fe3ad73705b8f21f78a567d3dc030bfd42ca5f57443f9c9414fce92c324e2",
+      "bytes": 2778938,
+      "guid": "bb992dae08559ad46825939812da9e60"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png.meta",
+      "sha256": "dcae730513a02e28ca77271b06914c53beafc4c949055899474bccdb081d8113",
+      "bytes": 3289
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png",
+      "sha256": "6449cfe256a15e4b1703f3b75063674f332542207802b09e965eabd80ba59d9c",
+      "bytes": 6488858,
+      "guid": "e3b2fc5d2ef69de48a7bc0d41fc29af9"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png.meta",
+      "sha256": "8231cb8bdfda32ce03c2cc7b71e8058f925c88f1d3985f16318161ba3f0d2307",
+      "bytes": 3311
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds.meta",
+      "sha256": "560424ae5e524a8d7ff974cf570b7afdf27f91e334ba96560f7316853fe379fa",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch/CompactCatchFrame.png",
+      "sha256": "ec8e34cb3867e34835cdff5dae4ea42e712b7bde6099a8f6a86212414d94e68f",
+      "bytes": 3279083,
+      "guid": "6f25808744f3c1c4f8af8a9476055124"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch/CompactCatchFrame.png.meta",
+      "sha256": "c1171653b7a7c4b980a973a9078ff5b8755376d597c5998ade4cea988e4f2604",
+      "bytes": 3312
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch.meta",
+      "sha256": "c200102541e4f5ba0e6ae2df8b43ebd62406960a38afc3ada4193b888a73e982",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+      "sha256": "3f1f9019fbd86b5ca843da21fb11336efdb1ba857e5681366d7008ad03d57713",
+      "bytes": 2105782,
+      "guid": "d7f1d4a091814b040a19d18181fd9432"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png.meta",
+      "sha256": "54ecf610778cd235cc13f1ca0c44db70bfe137238dad9ecf673878f33eadc156",
+      "bytes": 3308
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature.meta",
+      "sha256": "ac68eae026b488eb1b6742cca971416300ce69cdc2bc7b0ad2d5d5fb36496021",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+      "sha256": "f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa",
+      "bytes": 2697309,
+      "guid": "220d9e474e312184e8a32c6dc6a972ec"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png.meta",
+      "sha256": "6f070b2a760da16067db4ef602ae3eab49bc363640c45043a5889e9e933e187a",
+      "bytes": 3298
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event.meta",
+      "sha256": "9722f286d21e2e4381c4058bf7a3b131fd78d03f723d3393d535d3a032020b79",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png",
+      "sha256": "15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad",
+      "bytes": 2883214,
+      "guid": "5ff200c73d38d5d45bc28d35b82e0cbc"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png.meta",
+      "sha256": "d5e1eab3540be99822a67d856c6686b1a5021b327ca1ff42f049c8faf323df54",
+      "bytes": 3299
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique.meta",
+      "sha256": "928ec6b31735e493f17c180ec04d611e42f10dff2ff40bbe78eac9324e8d1e6c",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards.meta",
+      "sha256": "75f45dfe32d36e77161909e0e8fc0f8eae225195c17c583e6957595bb57f3402",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors/BrassConnector.png",
+      "sha256": "4caf486467a94a4748a11783a1a55e36ca50d582cbe33d6fa51b6463bb0a9b43",
+      "bytes": 1452452,
+      "guid": "9623a0b508589734bb68ce300af054e8"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors/BrassConnector.png.meta",
+      "sha256": "da16c1936b8393df5278af55a10482631d512c37500c74755e14a6fcab966b93",
+      "bytes": 3931
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors.meta",
+      "sha256": "923b31e17b52822e438037e4288c0e993f1dcc4d489e7a5a531bc6a9462769c1",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "sha256": "926be32b6c371ad6b124c83ec4c1602e0f25d026b1e0c9b7ad2981fd42160b12",
+      "bytes": 2293819,
+      "guid": "40412570a891afc4b92cadb686d4892c"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png.meta",
+      "sha256": "abc5b5da3bec86f609ed64912e97378a0e3a043346f24d222bb04661597e2ffe",
+      "bytes": 5164
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "sha256": "bc2a6dc20888bdd0c809216ec99d85d52714122da07d05681aa698f302ec75ef",
+      "bytes": 2222775,
+      "guid": "98954036e3aeb2d49b76c93565a661a4"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png.meta",
+      "sha256": "17b854a33321e6b368ac684169d75b0b8240a5d804f3471ddeb425f15b192ac5",
+      "bytes": 7639
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls.meta",
+      "sha256": "7d7ca018f04d87d6f1422cf4e2536a9bfecfe57ed4256567ae56dfb4462cd08a",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrab.png",
+      "sha256": "af202d2bbffd803e7d35b6bc72268144e28958e844c4e91a2e8c094fd10b6ca5",
+      "bytes": 1842717,
+      "guid": "5f97c73f925aa6147ab002901baed6ad"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrab.png.meta",
+      "sha256": "9ad6c509ef381ac629de70742d79d17272e4b98a98cc3fe743fcd716bdc1054c",
+      "bytes": 20039
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnow.png",
+      "sha256": "d6530b9870de0de2d7b038eb2cd393c3f2baa9c0dc0eb118593425745f06c579",
+      "bytes": 1744473,
+      "guid": "eeaf4afd5c316e9468771a71032c5bb2"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnow.png.meta",
+      "sha256": "0d2eb06a3474ca51b6408cfa9e0e75791749fbde68ed93ce0748abbb1505b7ec",
+      "bytes": 9457
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/Sardine.png",
+      "sha256": "8a6a405719713656cfdeee06025c58aa368fa4836376fdf71a1720e0a798a6af",
+      "bytes": 1902532,
+      "guid": "3122a5d202218df4682e64588d809eab"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/Sardine.png.meta",
+      "sha256": "912ae57ad52049b4a480f170735d08b3d4b17cbdbd4ac57aaf3eb152fabf7d4c",
+      "bytes": 4487
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png",
+      "sha256": "297d92adcc1094a25bf65e6e7660ad88a7565a03c56c2c76e7e89f289864d570",
+      "bytes": 2700823,
+      "guid": "101808148ae3637489fb3dea69be459c"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png.meta",
+      "sha256": "d6716a1641cef9f90d3512a22a2fca0a397b4b13fd97fdc965efc177b4444936",
+      "bytes": 3957
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures.meta",
+      "sha256": "2d9c21762bec52067c9763c785195171c9a3df0e02f9485781b45594aea44f6d",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png",
+      "sha256": "b096f866b5c814d12b2a41c3f83e225eb284c2a32e5e6219fde6c53f1d48143e",
+      "bytes": 609,
+      "guid": "2365b8cfaf6ba81418c2af1df8e67389"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png.meta",
+      "sha256": "40676138ee5cc0218548cb70412698e8ed19bb9998e5b4967598d8c255823f8c",
+      "bytes": 3284
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png",
+      "sha256": "590adcde5bee0361e41d25f93a6e97d89ecca131e4105cc198172e83ac8de253",
+      "bytes": 612,
+      "guid": "56534776787df3442a9562df4269baba"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png.meta",
+      "sha256": "7fface796d7cc4b3b91c218f2d975d12bbf84133e478a4a50ac9a2d29563c5db",
+      "bytes": 3281
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png",
+      "sha256": "ec5840cfedb4559d300c6053e062ed92f36218682fb009f47a74b49db8b2f60d",
+      "bytes": 590,
+      "guid": "670c9686fa5a9c34c81392b335bfcf02"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png.meta",
+      "sha256": "08b80264f50f81292f639a476e1394b5888e6c2dce2339f7bfab65c2e2f554a8",
+      "bytes": 3287
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters.meta",
+      "sha256": "38d3211dfe6826119b5361e10390db3bd0898ec3fb1e3f83c42a4e952e8d59a3",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png",
+      "sha256": "3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0",
+      "bytes": 1877132,
+      "guid": "620ed97d28570b24580efb62e83337e7"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png.meta",
+      "sha256": "7b2b32c8a074ecd91cb77e0d1e0f203927d5e31b4149b2a3bbb5d9894aefcfae",
+      "bytes": 6319
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png",
+      "sha256": "1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c",
+      "bytes": 2334371,
+      "guid": "39cc9a9809740c44681f758e773f3fe9"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png.meta",
+      "sha256": "9b874127d5fe945c056eff537ed33914b8ab161984e8869a43b4de2f1a34fbea",
+      "bytes": 4505
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png",
+      "sha256": "284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559",
+      "bytes": 3125310,
+      "guid": "0edcf4df21fd77e469eac90017c70c3f"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png.meta",
+      "sha256": "c67a1d4046c44c6807e1b55fd72e709d2fb7601ed929e40fcc034771c152bd5f",
+      "bytes": 50153
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png",
+      "sha256": "6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49",
+      "bytes": 3360866,
+      "guid": "bcaf3b69d7a4a554889f775fcf868d44"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png.meta",
+      "sha256": "b87926d7c412c765e50cc82441b47c9cc4372e4dbbded8dfd05c444452efaaf8",
+      "bytes": 19257
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques.meta",
+      "sha256": "4ddaa26f291990e60781f99245a8ae89ca959228603318a561fe0a6cf92c357e",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art.meta",
+      "sha256": "113d15f87b89bf89830d875681ceff5a227e327db1baa272d80d4f0a7e1439c6",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCatchChainChecks.cs",
+      "sha256": "a35f0f4a44113656d3a8ab9da3a7ac6106014cb8cde0643dcb4dc3d5c558e22c",
+      "bytes": 22218,
+      "guid": "efbb16ac2bfba314c9ad4571681a0b45"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCatchChainChecks.cs.meta",
+      "sha256": "9802b379553e4b7854e5d24dac24f346b3a28a65f030b57b22289cd052bb452b",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonChecks.cs",
+      "sha256": "705cb447430568022782fedfa7fc74ecba8110a8834666c7d6f513ac164ade6e",
+      "bytes": 30233,
+      "guid": "260c3f3fe0e047d4694c61b1e0b406a2"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonChecks.cs.meta",
+      "sha256": "1e7ca9cdf2133fb8f5557b67cc5a5b4746d0e897c955ec381523e8c36b8a612c",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonSceneBuilder.cs",
+      "sha256": "ccc9d3166c2fe338c57e4b19ac4d1f3768b5f53280c3ca6ddda2ee10cb0de0c3",
+      "bytes": 4640,
+      "guid": "1fac1e8ac6d1269408e7434220397022"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonSceneBuilder.cs.meta",
+      "sha256": "99878d544179344f966cc4b96b75c8d156c101d5ee883811d98508dd5e3b0b2b",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCreatureCardChecks.cs",
+      "sha256": "0954d858ac424455abd1b8bb9c47a8b4c71a79147ac9371212f3352821093fd4",
+      "bytes": 19799,
+      "guid": "56ed2d51be5c4eb438ab0df4029a7ce9"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCreatureCardChecks.cs.meta",
+      "sha256": "f932c3785951e27c81bd87de506c146ffadb0c9e632413bdd1d5a4c972d91030",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalGameplayHudChecks.cs",
+      "sha256": "e3ea4e753a62e0798b944201236b37460543ceb05893126bc730358c65a8c1e4",
+      "bytes": 16553,
+      "guid": "4358965e5f9dac04285e504d86e7af50"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalGameplayHudChecks.cs.meta",
+      "sha256": "d455ae27994aac9e46021b964899aba0b420a7a7bc778e9194c75e50ff3490c8",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalOutputChecks.cs",
+      "sha256": "0430c25710d1ac1b041bcde49b9f3b787635ac4c71b65345af904d6862867671",
+      "bytes": 2885,
+      "guid": "a3c5ae30a27fd8a4cb6d00b914e51ab7"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalOutputChecks.cs.meta",
+      "sha256": "0c2edaac3a1c06b42eddda3197a86dceaedb3bed29e5f248a2380fb2cda737c3",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalReleaseChecks.cs",
+      "sha256": "9bbaeb18814f9dc75ce0d3451aa0cfd82efef7dfc390373978c781571c81041f",
+      "bytes": 4841,
+      "guid": "ccae63d5e26b9b04a87b7bbb93e10f10"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalReleaseChecks.cs.meta",
+      "sha256": "bc6c6f8dd07851088182c9f9e7e30968b134c61e6bee1e05ebb5392ba365a2f2",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalTechniqueHandChecks.cs",
+      "sha256": "a2790ee661efb3e80444b5285744983f9b65003a6447ac624a9d60071d948f18",
+      "bytes": 19497,
+      "guid": "2a176de326093534baca52624d823046"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/JournalTechniqueHandChecks.cs.meta",
+      "sha256": "3c5806d5af4474aa9686333e2e2ef5bceec4fc7cd98c3c9221928c6073361693",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalAssetSetup.cs",
+      "sha256": "cc577e5aeb8adedfd5054e3f822defe32a3f91f18541f97ab833a99a434967cf",
+      "bytes": 19542,
+      "guid": "c8024aaf3486aa3419f3f317f85a8309"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalAssetSetup.cs.meta",
+      "sha256": "521dbd91a6ea00aeaf7b8f3edb3593f29eb0ddbe610a2168ee38112864de31e9",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalAssetValidation.cs",
+      "sha256": "32d6098bf15ebf8c1063e892266e567499a90239ff4267007aa9001581523857",
+      "bytes": 14448,
+      "guid": "54544beff6e208f418b4654128ebca35"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalAssetValidation.cs.meta",
+      "sha256": "3131eadbc2c28e90ca08c1e41029bf9c67f614f6a140b326aaa6e92a39afba38",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs",
+      "sha256": "2ce12688172eee1ac6ecb1c948a4f7bb84645db0fee199bee0c8e98698aca2fb",
+      "bytes": 11936,
+      "guid": "23da907eb4a71b648b5e2ebf4d85bf82"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs.meta",
+      "sha256": "e8398f79373073b8b3b1aca54c34e4401c0626a4e39ed6210f7025f05ac02d2e",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+      "sha256": "beafbcad95c4e12f60c8dba18a6a95da9374a4974672ccd510de2fd6c3443f1b",
+      "bytes": 30062,
+      "guid": "32c526bbe4d2d6b4c92519493139b906"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs.meta",
+      "sha256": "97cbfba0ab08cec50134b9c002fbedb20f5725c7591b44a699d36b3313f768a6",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Editor.meta",
+      "sha256": "4a13e406a1d13a9ce67f6350f198f81dde6716c90c8e1d3a31abd06624e84dac",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/FontProvenance.json",
+      "sha256": "7ae45fb31365b10d6bb00cca4707bc9a45a4327d0c318e91d2418557cd24db55",
+      "bytes": 1232,
+      "guid": "da0ff8f2f6391124fbecf71f30e40cb9"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/FontProvenance.json.meta",
+      "sha256": "4ce1e2fdb383e3a3c70c715c6faf2b78039cf4fc6118fbbc6812607542183532",
+      "bytes": 158
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Bold.ttf",
+      "sha256": "d8bcdc7b73c6a116077a82a7d172107ab94ea71332d9283b09262f059610fccc",
+      "bytes": 77384,
+      "guid": "9ba0db3362708244c847c3956807cbd5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Bold.ttf.meta",
+      "sha256": "ea29de05be06a039e840306be0d86f151156aa32ddc876c213a16682148fa32d",
+      "bytes": 471
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-OFL.txt",
+      "sha256": "f2b3029aba64c378bf0963b62945eee15e564fe4330b934c8f2eb058282b5e83",
+      "bytes": 4383,
+      "guid": "056bdf2f9a7ac904b8b4673b64c65881"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-OFL.txt.meta",
+      "sha256": "d251ef8720b68c42469cc7e59a2fd01dfd60fdfdb128376aaa82a0f3113683b9",
+      "bytes": 158
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Regular.ttf",
+      "sha256": "16ad4f7d8f4d57ca31a94927f261c0a1983c56878c9444404b9b491523b848d6",
+      "bytes": 77000,
+      "guid": "b7a613256701ec34daa99649efd0c998"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Regular.ttf.meta",
+      "sha256": "21469830e7042b5b4b6e71a2b52c50e5699a9afa60cf02ba72b747b3d27ffbcf",
+      "bytes": 471
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-SemiBold.ttf",
+      "sha256": "45ff3688f43c7da2f88059a3b8be3c6dd3183de17506cb85e1c3d2fa4ab6e602",
+      "bytes": 77304,
+      "guid": "0994225d4106cc443b2b719ec5a273b5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-SemiBold.ttf.meta",
+      "sha256": "81d099977a28ffb3f6ac56a6fdf1be5863cecc6043be8c007314cd425eba50ef",
+      "bytes": 471
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Bold.ttf",
+      "sha256": "00441a2f2ffdad0957667668cb537faa23b3f16377713cbbe3a2c32ad2095f5a",
+      "bytes": 194760,
+      "guid": "f8e2dac4cec4c1b418c5477e633498f5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Bold.ttf.meta",
+      "sha256": "85a3c3b17bfb503000ee63a5abff943462a02cdab88fb5cad812e5eadfd2abb2",
+      "bytes": 479
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-OFL.txt",
+      "sha256": "363739f8bf0f4525297a99ca03905c84efe887a733579bb751c466bb80a302cf",
+      "bytes": 4493,
+      "guid": "793bf7e893b02c847913e2a23d1dd2b0"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-OFL.txt.meta",
+      "sha256": "df55d93e025561006f480f1aa90be610cfcb119fd896e6638bfdf9551847fd4d",
+      "bytes": 158
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Regular.ttf",
+      "sha256": "8ca4d603b02214e2723f2bdf6c83632551942c9b06702e2bdbcf07f0d8714809",
+      "bytes": 194464,
+      "guid": "c87d9b56b89a5624c9c5086d7c2da610"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Regular.ttf.meta",
+      "sha256": "b466b338c94163647c578c11b4edf9633ee7da186b85d0fd87821850dbc46ca2",
+      "bytes": 479
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Semibold.ttf",
+      "sha256": "3f471d65b233b067f5d7bfebb9b598994dd513a41f9fb4d900c20ae9d30f242c",
+      "bytes": 194800,
+      "guid": "b0fc3179c560c724ab9fdf322f84c6ff"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Semibold.ttf.meta",
+      "sha256": "bf1bf787eba7ed57bdc8e3958b3ab4e0af7f9beda0408f5e83838bc0a94c4fc0",
+      "bytes": 479
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources.meta",
+      "sha256": "3b885daa5efe232da18e20ca5ac52f8775a7b4e27edc057792e7f4a69e63c602",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Body Fallback.asset",
+      "sha256": "587ef9a2e669fc3809b9dc28ce09d1d7019cc9c59ad77073f5eb2e3598041e42",
+      "bytes": 6464,
+      "guid": "ed5199ed6a4355d4687e803ba75a90f2"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Body Fallback.asset.meta",
+      "sha256": "c04253363007431dfb592786f5d71588639bd8492f86d1ea1aaa230c456d0311",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Bold.asset",
+      "sha256": "571f86a2527d490ffeead8790149eaa8daf947ef8be0e562589a4f8d73f03a39",
+      "bytes": 12462539,
+      "guid": "59d64545055d20d40bc947bf92e58a87"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Bold.asset.meta",
+      "sha256": "e776deadcf789cbefe0c05a4a23abd634b2059531b1560796d51e66849a3e2d4",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Regular.asset",
+      "sha256": "809c333c469be77a6463663a468747e20d95855da8b16cf12c7591426ccd07c3",
+      "bytes": 11308144,
+      "guid": "c0200d7ccd1dbe6478bf62e2c7c441c0"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Regular.asset.meta",
+      "sha256": "de5b5a1671597dc409d7aa179e00c3438ad5ac465bd0b11c552ab3cfc74075c0",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Semibold.asset",
+      "sha256": "d70f97d96e14c0c68b2c3d78650c3ad9473f920e07c1e6df171e85ba49a6fea8",
+      "bytes": 12461664,
+      "guid": "1fe0de974704bb64b8d7f2e7211966d4"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Semibold.asset.meta",
+      "sha256": "378fb7ef8d27b7ee70c98805c01639893fffac5b2d1888420e0e0f406b8a6507",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Display Fallback.asset",
+      "sha256": "38d5ad85e1de7ceebaa5023d0fa51c6b7a69a531dd4ba8a5b6ab3618577f1356",
+      "bytes": 6515,
+      "guid": "825ae909b61c30b4db25973e0ee39ffa"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Display Fallback.asset.meta",
+      "sha256": "ef8dfb79691afde612e058b1393c99eadd53cadb31136241ddfac472371b5c59",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Bold.asset",
+      "sha256": "de26dd7167e540c7ab17d2dc6c61b5031b66b8d21f32736e946787a5877c5337",
+      "bytes": 14457504,
+      "guid": "a0ce11320bb710a47b0f3ae1f62636c8"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Bold.asset.meta",
+      "sha256": "cebb2f475e1978feb79fa29f2ec9b3217fcb980222d4b189d55c2c554ce0c173",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Regular.asset",
+      "sha256": "4ea70f6973ba8689c68d9873caf7b77e7c3fd5660b624bf0906095b41977639d",
+      "bytes": 13465666,
+      "guid": "eb96c5222bba3fb46b3ed91c14daad17"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Regular.asset.meta",
+      "sha256": "f97e9981425b36c47d69416bc5cc3e7edc95d2d78c68913b2a885420e9780fbd",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Semibold.asset",
+      "sha256": "0827639e758ee1de6fc1e0b589629e5a5e31a156229cb9d1817ce7fd641dc4e8",
+      "bytes": 14470482,
+      "guid": "b51181665b2239940b593388f3ecc7ef"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Semibold.asset.meta",
+      "sha256": "9106eb2d68b24d6f3c296c1b541522257eb56a0b9fc86bbc27a493df0a64b6af",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP.meta",
+      "sha256": "3b12a65754addb33cbd0e24acd8f3c0db6f2f7822ecf41f0b13cc067a2894612",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts.meta",
+      "sha256": "ad844aa0cd7f46ff30e01bd9923de823e351eb030931fcc3e9f0ed410b1972c2",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab",
+      "sha256": "61e90afc7d0d42e7367aa6f5ee646143658a1a407af1c80aa218775e926e0b9c",
+      "bytes": 18050,
+      "guid": "5dd0ca416fa273d489149b69f09659a0"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab.meta",
+      "sha256": "e92c805973e27079b361092805dad5dac1d96b4b14e6b7465934e94aba378b82",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/CompactCatchCard.prefab",
+      "sha256": "adceb053fd1d44c5b7b5cc8e0f9ee109afa1a0da87af645af85f024d2fbc744a",
+      "bytes": 52487,
+      "guid": "a74f7849ff7623c4b9ac6320f55b1183"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/CompactCatchCard.prefab.meta",
+      "sha256": "05c15d89b8609d90ce25f4dc0b504d58acf746d90a495e773eca9c9c8d25af7b",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+      "sha256": "8f86f273c80eff05b626206c042c7ebe41a6922875c34a7a7e8f8e3ecac2ab7b",
+      "bytes": 82784,
+      "guid": "452b0c27bd476af469f6e4994de69047"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab.meta",
+      "sha256": "624099a3a2d4cc7d4aa39bfe45374e2a03f4e3eda1933bcbbe5770c1c28d9678",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/DescendButton.prefab",
+      "sha256": "00e4e31e630886938055a827f61062186a27a17bee3bba187d2f385d4f85f851",
+      "bytes": 9641,
+      "guid": "67da87bb4fa9ea34aac6610799f55731"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/DescendButton.prefab.meta",
+      "sha256": "15a9155f2f05b6c7b27393899ff19005ec4b48d988752e6570bd4a87f4f7b124",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/LineLoadMeter.prefab",
+      "sha256": "8af1001a816aed739ad43433006f8c8bdbe93fb0804900545c00f90266689dac",
+      "bytes": 9257,
+      "guid": "d4217d93a6f3a56429707005130fc434"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/LineLoadMeter.prefab.meta",
+      "sha256": "3d814ed25c91cf4dc354abfad61f99c862838aeb25420f49c95e2b1871f29897",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+      "sha256": "7e10ed60329a3a858a8141a39266d038c62815b583577a20144568f073cfa3f5",
+      "bytes": 125102,
+      "guid": "644273af1c32d2a4b85ca330f14de5ea"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab.meta",
+      "sha256": "ab5b209c6f1c8860a66c572132e4181da22cae897ee4a18ae0608a843fa75a45",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/SurfaceButton.prefab",
+      "sha256": "47b984095e61f1701ea097701394a2cc28387e84979c9403addb623f083d9e11",
+      "bytes": 9644,
+      "guid": "fe6dfd07c3c7a964e9f08d3bf1b33605"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/SurfaceButton.prefab.meta",
+      "sha256": "7e67d5a9c2373a31addb183ca311193f40fc747d5c033e80ba2c93321e106a36",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueCard.prefab",
+      "sha256": "841201ecf390e12dbf69667f6b7dca9707cecae096c30772a1026de9a39573fc",
+      "bytes": 29872,
+      "guid": "3cb0260a845e9f3439e65250d4b34517"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueCard.prefab.meta",
+      "sha256": "e573f1e955c86f0feb0388b79e203c4b74dbbb62e5e03031a2ee1c0cd09ab422",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab",
+      "sha256": "67a096c5b79b2566a96c5e6e80cb4fd91b57a62676a6fccc3df177bbe6c7f471",
+      "bytes": 13377,
+      "guid": "5f589bb376c29fd479e8d1381bcd0d03"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab.meta",
+      "sha256": "05340aa7fcad8912a402eb8ff88a124404195cd5746c2793d003fb1afe045f6c",
+      "bytes": 154
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Prefabs.meta",
+      "sha256": "18118efa8bcb31996e062b2256d486aec7e452b8268c6e15b0ab1889c70219f9",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles/CreatureVisualProfile.asset",
+      "sha256": "3444f572b122c1073c56d87ba15d39dc9f6cd39fa1defa33d99592fe65a43fbf",
+      "bytes": 1613,
+      "guid": "004ab10830f63bb44af283aa61cdb019"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles/CreatureVisualProfile.asset.meta",
+      "sha256": "48be96893bdd149728d6ff4ba02355703b90fde76708491587d64726bff132ce",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset",
+      "sha256": "884bb593ea3443ae92e57df1245db511b1ee4bc22eca85129840f2132468ed3d",
+      "bytes": 13017,
+      "guid": "b437da156c4f80d45b3a25a6f2c6c7a5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset.meta",
+      "sha256": "9dd82db98f35b832e89dc06ed900fdf756c91ea352911a4722167122ea90c782",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json",
+      "sha256": "b30c73f83d47199d317c2adef3ccf5349cb5d4e5a8b0ba784b2be32b649068b1",
+      "bytes": 12592,
+      "guid": "0d98ddbca3b01c14cb1f119c517f0e04"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json.meta",
+      "sha256": "38fe544284ef5a26d11e6aeb3605da8c0b816bbed7a46df3caf89251e5110938",
+      "bytes": 158
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Profiles.meta",
+      "sha256": "50aca97b22f7931aa2920669329ff7289b5a401905043cf1d24889044e724032",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalActionFeedback.cs",
+      "sha256": "6e585d8e1eed39e5b3f848615aa71d16582fe2a623686c40a0eba8b303221542",
+      "bytes": 2031,
+      "guid": "b090b6590a66ce347bdebdee370714b5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalActionFeedback.cs.meta",
+      "sha256": "d92c53ab37f93b6c3e9569db0f27e74be1a3535e6dcaebbab54d2e64a92b2ab3",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCardOutline.cs",
+      "sha256": "9ac3fc1f5f331674c2139c05f1a42934e36119a7e5cc2b4b2c9ac465fdce42fd",
+      "bytes": 1797,
+      "guid": "73e689ddead212e408fa3be0e9fc66d8"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCardOutline.cs.meta",
+      "sha256": "76113f03afe971cd6c6c4607c5d8027e0b7080bf496da3814f783971d4de2055",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+      "sha256": "b43d6b170230dc1b628b5b60a4d6f008fa1e72a6cff67d5828f71b673b1128da",
+      "bytes": 6289,
+      "guid": "bdf40f5ef12a11646afac45cedcce3b9"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs.meta",
+      "sha256": "afd5889d86fc663e74ad760da69aed0d6019ee8f7dfa58440ee0f944456155d1",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalChoiceButton.cs",
+      "sha256": "3e866f6abdfe6b69e8018d925b6ddff944131eb377b560bb03076b6a525e25a2",
+      "bytes": 1628,
+      "guid": "e3706e8fe1e66734097a81754ffdc2a5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalChoiceButton.cs.meta",
+      "sha256": "c59e3b899c149f383d8f32c052e2c1583bd42f0f58e4108b39af9af8cb43868c",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalChoiceModal.cs",
+      "sha256": "9641b7c0b221a6486ad88376fc8291e72af3a1deac021c8a00a14351f3ca5195",
+      "bytes": 4737,
+      "guid": "d16cd87fac1b707458a32cece5a02d45"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalChoiceModal.cs.meta",
+      "sha256": "3aaf3a346f7c873d7534533d36554bb405d2eb35662900e1fcb84f777870f3db",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCreatureCardVisuals.cs",
+      "sha256": "78bf88a7fd56602d84bff7ed056c0a7d230df0f6358d056ab6508142dc4e4355",
+      "bytes": 2908,
+      "guid": "4b6c3985e77963a48b9d8a63d24f2301"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCreatureCardVisuals.cs.meta",
+      "sha256": "03355382901f2c2dfab5b46637ac2e74b72dbcd1f4120d89502d7b35474d47ee",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalGameplayHud.cs",
+      "sha256": "de03c2366b3491ca905d73420b15a1f8ea954c31cffa0cb7dd73f41f259ae3b8",
+      "bytes": 3138,
+      "guid": "bb4c65325dd0ecc42b5fc61ca79f1e85"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalGameplayHud.cs.meta",
+      "sha256": "525abce2e15385d72509906e4c275ea2e4a35b5800bdd38b00d0c9539421bdf0",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalHandRaycaster.cs",
+      "sha256": "5b493c009bfa089ed1482a6a847e06ca4f6269681c9decea9fffe3ab41b04b70",
+      "bytes": 2176,
+      "guid": "508fbf576943bc74aa2eaa1b6ce9d0dd"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalHandRaycaster.cs.meta",
+      "sha256": "78ef2512b8bb32a20e6e552b4af8c52f23aa16398aa1142ea4b462d01e3088aa",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalModalHost.cs",
+      "sha256": "584b835e51a704120aee43b03de2f6821fc243013c31ebe6f7e8d4e8d094374b",
+      "bytes": 2174,
+      "guid": "5b30960589d297c44a3c3bfe67f34210"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalModalHost.cs.meta",
+      "sha256": "534af3a761c82416b09c913aa319ace8b66fab85f2d2681dae33d224eba784c5",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalModalLayout.cs",
+      "sha256": "66b43d7f80186c4a02ebee832be7d94fe00de2743a18d94b6b82aa854c8f9ccc",
+      "bytes": 5144,
+      "guid": "03dfa5976150e044880be0718bc49573"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalModalLayout.cs.meta",
+      "sha256": "620f58ee20c56fb311e7c1bf643219e3beacf3f773f233e7cf5734ccf221c604",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalPlayerValidation.cs",
+      "sha256": "4f3eca37597cf4e0f0aeb7d83b945baa8255f8c2d49328a09ad903c57fbd0ab4",
+      "bytes": 14160,
+      "guid": "13ce46b46486aca408003fb64d285c2f"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalPlayerValidation.cs.meta",
+      "sha256": "227579429a503c31fdc5d9dfd88b4c14f00aeeeb72bd355dfa252fec182ba6a2",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalRarityHook.cs",
+      "sha256": "0feea75a1c232b0702a684518aef85e2e530f7ed8b8c2e9a693b674869b6971a",
+      "bytes": 1877,
+      "guid": "adf701206addfc746877a3fc027e8fcd"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalRarityHook.cs.meta",
+      "sha256": "bb3b8870c1983fb48b11998486a02d6ce33ee7124a2dfd179e37bd0d952704e2",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalResultModal.cs",
+      "sha256": "16445cc829eb43ef05eb1f6b254fb7fc0401484eda711efcaf15680e18365201",
+      "bytes": 6747,
+      "guid": "81b1475ef584a0b41909467aa1f8dac5"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalResultModal.cs.meta",
+      "sha256": "2273bd2b5fa595d2d3105068ea82a30cceeac0c8e85852c6b68bf4592f05f00d",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalSettingsModal.cs",
+      "sha256": "597d47380697a443fa56515f63a3ec117142e82ceca2d8bb895b3a2d64317612",
+      "bytes": 2045,
+      "guid": "64fd77be8f74c2d4d91ee22feb7c034a"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalSettingsModal.cs.meta",
+      "sha256": "5b52feb1f38e69cd891dad7c0f63418eb527b7a46168380507d97a1bed1ba0a2",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueButton.cs",
+      "sha256": "b6493125ab57d7e30c1d604aba6c595c79d627e3747d8d882c8dfab16099e12e",
+      "bytes": 1203,
+      "guid": "c44f77f9ef1f1664aae1a669bdf5e399"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueButton.cs.meta",
+      "sha256": "fa858585f35c591fd2f88b76012385f7915b029a3aaac59a6d65953e573b5fde",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueHandPresentation.cs",
+      "sha256": "ec314f7baffe14b235c68abd5e073030990d0344f9dc814d87a9c84decd08832",
+      "bytes": 13690,
+      "guid": "501682f58f3ae3f4981389864543f029"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueHandPresentation.cs.meta",
+      "sha256": "c34fee602fdd3e2f384e9d380d558530f91244f66801b3e94a885a49281ed772",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniquePose.cs",
+      "sha256": "85678b8015e757dfec5506e12cc398e957f1c9357d0c0dd605467e7556095882",
+      "bytes": 2670,
+      "guid": "b6624dd70ce40304d8a7831c0e8ed0a3"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniquePose.cs.meta",
+      "sha256": "b4807ea06bb57e505efb6f89db6a075460650b08f833f9c5f7d798b60692a504",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/LineLoadMeterView.cs",
+      "sha256": "1ab66bee9dfe674a3ff2486fa6c161a4289f84cbe75a07d44b8127a35ea3aec6",
+      "bytes": 2939,
+      "guid": "b0d76f8252a8fce4d9fb9100a28fc8e3"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/LineLoadMeterView.cs.meta",
+      "sha256": "1bed138d21afbb9cf329b023da11b4496de9db039298b646887b5c1640596ab3",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/MidnightFieldJournalTheme.cs",
+      "sha256": "7727c9d16baea3620271ff36e15eaccc09f309f4c921648462dd076184243421",
+      "bytes": 5488,
+      "guid": "4f828485eae89674ca13d02b55900fa9"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime/MidnightFieldJournalTheme.cs.meta",
+      "sha256": "496c47e735d742cf95c5130031abf86cd9c7044b85659512cbfef6e4928904ec",
+      "bytes": 59
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Runtime.meta",
+      "sha256": "4d5499b39dffc5374b49f135bb8924407c7df706a6ecd0cbcac83ed93f3032d9",
+      "bytes": 172
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity",
+      "sha256": "1844fe54ef53c177f29e6450a71070f04b1f81e681c0dd47e87a23cb6fbc2f65",
+      "bytes": 29937,
+      "guid": "07ac53b9ba280c348a28e9508855a88b"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity.meta",
+      "sha256": "6418182ceaa59c337b2a585eec4333267bddea919680b82a7238a99344615b2c",
+      "bytes": 155
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Scenes.meta",
+      "sha256": "778224c6b8b824f43e0d641771e7dfc79b13febe2278383cfa6e9e6d6e353471",
+      "bytes": 172
+    }
+  ],
+  "notes": [
+    "Immutable starting checkpoint. Add numbered future checkpoints after verified selective imports.",
+    "Existing art gaps and build blocker remain documented in UI08.md and MissingVisualAssets.md."
+  ]
+}
