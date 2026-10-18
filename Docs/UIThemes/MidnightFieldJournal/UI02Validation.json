@@ -1,0 +1,24 @@
+{
+  "task": "UI-02",
+  "passed": true,
+  "protectedFileCount": 804,
+  "changedProtectedFiles": [],
+  "allImportedImageHashesMatch": true,
+  "allRuntimeImageDestinationsIsolated": true,
+  "regenerationWithoutIgnoredStagingVerified": true,
+  "resourceSheet": {
+    "path": "Docs/UIThemes/MidnightFieldJournal/UI02Assets4K.png",
+    "size": [
+      3840,
+      2160
+    ],
+    "nonblank": true
+  },
+  "fontLicenseFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-OFL.txt",
+    "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-OFL.txt"
+  ],
+  "fontProvenance": "Assets/UIThemes/MidnightFieldJournal/Fonts/FontProvenance.json",
+  "unityReport": "UI02UnityValidation.json",
+  "scope": "Asset/font/template setup; no playable scene installed, no gameplay tests or release-build claims"
+}

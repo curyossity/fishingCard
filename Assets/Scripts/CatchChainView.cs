@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public sealed class CatchChainView : MonoBehaviour
 {
+    [SerializeField] private CatchChainPresentation presentation;
     [SerializeField] private bool fillParentRegion;
     [SerializeField] private Sprite headingSprite;
     [SerializeField] private TMP_FontAsset headingFont;
@@ -53,13 +54,13 @@ public sealed class CatchChainView : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        EnsureLayout();
+        if (presentation == null) EnsureLayout();
     }
 
     /// <summary>Animates overloaded danger pips without changing their authored layout positions.</summary>
     private void Update()
     {
-        AnimateLineLoadWarning();
+        if (presentation == null) AnimateLineLoadWarning();
     }
 
     /// <summary>Returns animated pips to their stable layout when this view is hidden.</summary>
@@ -79,6 +80,11 @@ public sealed class CatchChainView : MonoBehaviour
         int selectedCatchIndex,
         Action<int> selectCatchAction)
     {
+        if (presentation != null)
+        {
+            presentation.Refresh(catches, activeEffects, currentLineLoad, lineCapacity, selectedCatchIndex, selectCatchAction);
+            return;
+        }
         EnsureLayout();
         this.selectCatchAction = selectCatchAction;
         ClearEntries();
@@ -251,6 +257,11 @@ public sealed class CatchChainView : MonoBehaviour
     /// </summary>
     public void SetHeading(string localizedHeading)
     {
+        if (presentation != null)
+        {
+            presentation.SetHeading(localizedHeading);
+            return;
+        }
         headingLabel = string.IsNullOrWhiteSpace(localizedHeading) ? "CATCH RIG" : localizedHeading;
 
         if (headingText != null)

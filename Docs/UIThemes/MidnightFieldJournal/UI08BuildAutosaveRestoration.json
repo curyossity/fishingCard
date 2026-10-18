@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "method": "Every restored byte sequence independently matched the protected pre-task SHA256. Existing user line endings retained. Autosaved versions backed up under ignored Temp.",
+  "restoredBuildAutosaves": [
+    "Assets/FishingUIAssets/Fonts/TMP/Marcellus SC SDF.asset",
+    "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 Bold SDF.asset",
+    "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 SDF.asset",
+    "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 Semibold SDF.asset",
+    "Assets/Settings/DefaultVolumeProfile.asset",
+    "Assets/Settings/UniversalRP.asset",
+    "Assets/Settings/UniversalRenderPipelineGlobalSettings.asset",
+    "ProjectSettings/ProjectSettings.asset",
+    "ProjectSettings/UnityConnectSettings.asset"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "checkedAtUtc": "2026-10-17T17:30:57.227238+00:00",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "images": [
+    {
+      "id": "PaperBackground4K",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cdddd391182b",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cdddd3566d2b",
+      "exportSha256": "6449cfe256a15e4b1703f3b75063674f332542207802b09e965eabd80ba59d9c",
+      "unitySha256": "6449cfe256a15e4b1703f3b75063674f332542207802b09e965eabd80ba59d9c",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "Background",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cdddd13d4ac9",
+      "penpotImageId": "ce180602-f36b-8035-8008-cdddd1aa752e",
+      "exportSha256": "fa7fe3ad73705b8f21f78a567d3dc030bfd42ca5f57443f9c9414fce92c324e2",
+      "unitySha256": "fa7fe3ad73705b8f21f78a567d3dc030bfd42ca5f57443f9c9414fce92c324e2",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "CreatureTemplate",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cdddd4c9135e",
+      "penpotImageId": "ce180602-f36b-8035-8008-cdddd52c69ce",
+      "exportSha256": "3f1f9019fbd86b5ca843da21fb11336efdb1ba857e5681366d7008ad03d57713",
+      "unitySha256": "3f1f9019fbd86b5ca843da21fb11336efdb1ba857e5681366d7008ad03d57713",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "EventTemplate",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cdddd5f3afbb",
+      "penpotImageId": "ce180602-f36b-8035-8008-cdddd655bf53",
+      "exportSha256": "f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa",
+      "unitySha256": "f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cddddcd6fac0",
+      "penpotImageId": "ce180602-f36b-8035-8008-cddddd38f670",
+      "exportSha256": "297d92adcc1094a25bf65e6e7660ad88a7565a03c56c2c76e7e89f289864d570",
+      "unitySha256": "297d92adcc1094a25bf65e6e7660ad88a7565a03c56c2c76e7e89f289864d570",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "DescendButton",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cdddda4e2065",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cddddab21e32",
+      "exportSha256": "926be32b6c371ad6b124c83ec4c1602e0f25d026b1e0c9b7ad2981fd42160b12",
+      "unitySha256": "926be32b6c371ad6b124c83ec4c1602e0f25d026b1e0c9b7ad2981fd42160b12",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "SurfaceButton",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cddddb67a783",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cddddbcfb76a",
+      "exportSha256": "bc2a6dc20888bdd0c809216ec99d85d52714122da07d05681aa698f302ec75ef",
+      "unitySha256": "bc2a6dc20888bdd0c809216ec99d85d52714122da07d05681aa698f302ec75ef",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "LoadEmpty",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cddddda5ff4d",
+      "penpotImageId": "ce180602-f36b-8035-8008-cdddde69c35c",
+      "exportSha256": "590adcde5bee0361e41d25f93a6e97d89ecca131e4105cc198172e83ac8de253",
+      "unitySha256": "590adcde5bee0361e41d25f93a6e97d89ecca131e4105cc198172e83ac8de253",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "LoadFilled",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cddddd465be2",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cdddddfc1c58",
+      "exportSha256": "ec5840cfedb4559d300c6053e062ed92f36218682fb009f47a74b49db8b2f60d",
+      "unitySha256": "ec5840cfedb4559d300c6053e062ed92f36218682fb009f47a74b49db8b2f60d",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "LoadDanger",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png",
+      "penpotShapeId": null,
+      "status": "no-penpot-source"
+    },
+    {
+      "id": "CatchFrameV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch/CompactCatchFrame.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde09d522cc1",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cde09db13632",
+      "exportSha256": "ec8e34cb3867e34835cdff5dae4ea42e712b7bde6099a8f6a86212414d94e68f",
+      "unitySha256": "ec8e34cb3867e34835cdff5dae4ea42e712b7bde6099a8f6a86212414d94e68f",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "SardineV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/Sardine.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde09e750160",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cde09edb60ee",
+      "exportSha256": "8a6a405719713656cfdeee06025c58aa368fa4836376fdf71a1720e0a798a6af",
+      "unitySha256": "8a6a405719713656cfdeee06025c58aa368fa4836376fdf71a1720e0a798a6af",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "CrabV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrab.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde2681a22fa",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cde2686b6f55",
+      "exportSha256": "af202d2bbffd803e7d35b6bc72268144e28958e844c4e91a2e8c094fd10b6ca5",
+      "unitySha256": "af202d2bbffd803e7d35b6bc72268144e28958e844c4e91a2e8c094fd10b6ca5",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "MinnowV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnow.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde2691e6244",
+      "penpotImageId": "ce180602-f36b-8035-8008-cde269a26b3c",
+      "exportSha256": "d6530b9870de0de2d7b038eb2cd393c3f2baa9c0dc0eb118593425745f06c579",
+      "unitySha256": "d6530b9870de0de2d7b038eb2cd393c3f2baa9c0dc0eb118593425745f06c579",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "BrassConnectorV3",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors/BrassConnector.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde434cafe61",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cde4353d7e31",
+      "exportSha256": "4caf486467a94a4748a11783a1a55e36ca50d582cbe33d6fa51b6463bb0a9b43",
+      "unitySha256": "4caf486467a94a4748a11783a1a55e36ca50d582cbe33d6fa51b6463bb0a9b43",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde81a37c739",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cde81ab477e8",
+      "exportSha256": "15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad",
+      "unitySha256": "15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "CutLooseV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde81b4ff502",
+      "penpotImageId": "cd444aaf-0d8c-801b-8008-cde81bd5148a",
+      "exportSha256": "3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0",
+      "unitySha256": "3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "SlipPastV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde81c8d6c53",
+      "penpotImageId": "ce180602-f36b-8035-8008-cde81d0bf866",
+      "exportSha256": "284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559",
+      "unitySha256": "284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "SteadyLineV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde81e0a2de1",
+      "penpotImageId": "ce180602-f36b-8035-8008-cde81e830c0e",
+      "exportSha256": "6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49",
+      "unitySha256": "6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49",
+      "status": "exact-byte-match"
+    },
+    {
+      "id": "PrizeHookV2",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cde81f475246",
+      "penpotImageId": "ce180602-f36b-8035-8008-cde81fbe7481",
+      "exportSha256": "1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c",
+      "unitySha256": "1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c",
+      "status": "exact-byte-match"
+    }
+  ],
+  "boards": [
+    {
+      "id": "bae680cd-9225-8018-8008-cdde36733e6f",
+      "name": "GAMEPLAY \u2014 assembled reusable parts / 3840 \u00d7 2160",
+      "visibleImageSources": {
+        "PaperBackground4K": 1,
+        "Background": 1,
+        "CatchFrameV2": 3,
+        "SardineV2": 1,
+        "CrabV2": 1,
+        "MinnowV2": 1,
+        "BrassConnectorV3": 4,
+        "LoadFilled": 4,
+        "LoadEmpty": 4,
+        "CreatureTemplate": 1,
+        "SmallOctopusPortrait": 1,
+        "DescendButton": 1,
+        "SurfaceButton": 1,
+        "TechniqueFrameV2": 4,
+        "CutLooseV2": 1,
+        "SlipPastV2": 1,
+        "SteadyLineV2": 1,
+        "PrizeHookV2": 1
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cde2b511f13d",
+      "name": "CATCH CHAIN \u2014 complete assembled v2",
+      "visibleImageSources": {
+        "PaperBackground4K": 1,
+        "CatchFrameV2": 3,
+        "SardineV2": 1,
+        "CrabV2": 1,
+        "MinnowV2": 1,
+        "LoadFilled": 4,
+        "LoadEmpty": 4,
+        "BrassConnectorV3": 4
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cde85bfb5c79",
+      "name": "TECHNIQUES \u2014 engraved hand / mockup detail",
+      "visibleImageSources": {
+        "PaperBackground4K": 1,
+        "TechniqueFrameV2": 4,
+        "CutLooseV2": 1,
+        "SlipPastV2": 1,
+        "SteadyLineV2": 1,
+        "PrizeHookV2": 1
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdead5028f97",
+      "name": "GAMEPLAY B \u2014 techniques laid on table / perspective preview",
+      "visibleImageSources": {
+        "PaperBackground4K": 1,
+        "Background": 1,
+        "CatchFrameV2": 3,
+        "SardineV2": 1,
+        "CrabV2": 1,
+        "MinnowV2": 1,
+        "BrassConnectorV3": 4,
+        "LoadFilled": 4,
+        "LoadEmpty": 4,
+        "CreatureTemplate": 1,
+        "SmallOctopusPortrait": 1,
+        "DescendButton": 1,
+        "SurfaceButton": 1,
+        "TechniquePerspectiveV3": 1
+      }
+    }
+  ],
+  "passed": true,
+  "exactMatches": 19,
+  "exception": "LoadDanger is a local generated meter sprite with no Penpot source shape; unchanged from audited source.",
+  "perspective": "TechniquePerspectiveV3 is the latest visual perspective reference, not a runtime sprite. Recreate its perspective using individual dynamic cards in UI-04."
+}

@@ -1,0 +1,819 @@
+fileFormatVersion: 2
+guid: bcaf3b69d7a4a554889f775fcf868d44
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 92272652528447644
+    second: SteadyLine_0
+  - first:
+      213: 7712775331443002863
+    second: SteadyLine_1
+  - first:
+      213: -2018875522363277266
+    second: SteadyLine_2
+  - first:
+      213: -6247381667047526363
+    second: SteadyLine_3
+  - first:
+      213: -4584667782642470518
+    second: SteadyLine_4
+  - first:
+      213: -2365902724204628791
+    second: SteadyLine_5
+  - first:
+      213: -3429874481987515646
+    second: SteadyLine_6
+  - first:
+      213: 533497177149758578
+    second: SteadyLine_7
+  - first:
+      213: -6780242920117444281
+    second: SteadyLine_8
+  - first:
+      213: 8258219549475439687
+    second: SteadyLine_9
+  - first:
+      213: 7852828651912051323
+    second: SteadyLine_10
+  - first:
+      213: 5890134355676099468
+    second: SteadyLine_11
+  - first:
+      213: 4995425198002954165
+    second: SteadyLine_12
+  - first:
+      213: 2574367687829892216
+    second: SteadyLine_13
+  - first:
+      213: -3761248714522423242
+    second: SteadyLine_14
+  - first:
+      213: 3504875709601710357
+    second: SteadyLine_15
+  - first:
+      213: 7237263857512538753
+    second: SteadyLine_16
+  - first:
+      213: 3363364067936445514
+    second: SteadyLine_17
+  - first:
+      213: 1321873767198747674
+    second: SteadyLine_18
+  - first:
+      213: 988176674964472571
+    second: SteadyLine_19
+  - first:
+      213: -8892762886098207551
+    second: SteadyLine_20
+  - first:
+      213: 5078111619446913134
+    second: SteadyLine_21
+  - first:
+      213: 3366383986235194976
+    second: SteadyLine_22
+  - first:
+      213: 7488385057437054510
+    second: SteadyLine_23
+  - first:
+      213: -4914681690352654405
+    second: SteadyLine_24
+  - first:
+      213: 4756729839022835554
+    second: SteadyLine_25
+  - first:
+      213: -4581976002446803872
+    second: SteadyLine_26
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SteadyLine_0
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 886
+        width: 23
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c90f0741d71d74100800000000000000
+      internalID: 92272652528447644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_1
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 920
+        width: 63
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fed4e07cc48490b60800000000000000
+      internalID: 7712775331443002863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_2
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 889
+        width: 25
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e204ecba8638bf3e0800000000000000
+      internalID: -2018875522363277266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_3
+      rect:
+        serializedVersion: 2
+        x: 1176
+        y: 920
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 520385f4977dc49a0800000000000000
+      internalID: -6247381667047526363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_4
+      rect:
+        serializedVersion: 2
+        x: 1184
+        y: 902
+        width: 51
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a81fa6a31fcff50c0800000000000000
+      internalID: -4584667782642470518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_5
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 885
+        width: 103
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c477a6e100aa2fd0800000000000000
+      internalID: -2365902724204628791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_6
+      rect:
+        serializedVersion: 2
+        x: 1342
+        y: 903
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b05f4b453a660d0800000000000000
+      internalID: -3429874481987515646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_7
+      rect:
+        serializedVersion: 2
+        x: 1359
+        y: 923
+        width: 21
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c5fa42bdc576700800000000000000
+      internalID: 533497177149758578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1680
+        height: 919
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741ea87ccfcb7e1a0800000000000000
+      internalID: -6780242920117444281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_9
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 888
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7448ba32de61b9270800000000000000
+      internalID: 8258219549475439687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_10
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 892
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7a3a378d0adafc60800000000000000
+      internalID: 7852828651912051323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_11
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 902
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c83f56d3df5fdb150800000000000000
+      internalID: 5890134355676099468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_12
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 871
+        width: 11
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bf500d20c0535540800000000000000
+      internalID: 4995425198002954165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_13
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 894
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87c2852c5cdf9b320800000000000000
+      internalID: 2574367687829892216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_14
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 888
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6301ffad83c5dcbc0800000000000000
+      internalID: -3761248714522423242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_15
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 891
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51184b463e1d3a030800000000000000
+      internalID: 3504875709601710357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_16
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 888
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 182eecc322def6460800000000000000
+      internalID: 7237263857512538753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_17
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 861
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a442aa7ccc11dae20800000000000000
+      internalID: 3363364067936445514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_18
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 851
+        width: 46
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ce9cb003d385210800000000000000
+      internalID: 1321873767198747674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_19
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 871
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf285964375b6bd00800000000000000
+      internalID: 988176674964472571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_20
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 844
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ccb65e554f869480800000000000000
+      internalID: -8892762886098207551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_21
+      rect:
+        serializedVersion: 2
+        x: 343
+        y: 854
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e68bae6ec93197640800000000000000
+      internalID: 5078111619446913134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_22
+      rect:
+        serializedVersion: 2
+        x: 1585
+        y: 859
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06ebc1d466cc7be20800000000000000
+      internalID: 3366383986235194976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 777
+        width: 5
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e26f0e9d8861ce760800000000000000
+      internalID: 7488385057437054510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_24
+      rect:
+        serializedVersion: 2
+        x: 1348
+        y: 33
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb7e96eaa0b8bcbb0800000000000000
+      internalID: -4914681690352654405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_25
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 31
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 267057b169c430240800000000000000
+      internalID: 4756729839022835554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SteadyLine_26
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 13
+        width: 19
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c3bc42a1d8960c0800000000000000
+      internalID: -4581976002446803872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SteadyLine_0: 92272652528447644
+      SteadyLine_1: 7712775331443002863
+      SteadyLine_10: 7852828651912051323
+      SteadyLine_11: 5890134355676099468
+      SteadyLine_12: 4995425198002954165
+      SteadyLine_13: 2574367687829892216
+      SteadyLine_14: -3761248714522423242
+      SteadyLine_15: 3504875709601710357
+      SteadyLine_16: 7237263857512538753
+      SteadyLine_17: 3363364067936445514
+      SteadyLine_18: 1321873767198747674
+      SteadyLine_19: 988176674964472571
+      SteadyLine_2: -2018875522363277266
+      SteadyLine_20: -8892762886098207551
+      SteadyLine_21: 5078111619446913134
+      SteadyLine_22: 3366383986235194976
+      SteadyLine_23: 7488385057437054510
+      SteadyLine_24: -4914681690352654405
+      SteadyLine_25: 4756729839022835554
+      SteadyLine_26: -4581976002446803872
+      SteadyLine_3: -6247381667047526363
+      SteadyLine_4: -4584667782642470518
+      SteadyLine_5: -2365902724204628791
+      SteadyLine_6: -3429874481987515646
+      SteadyLine_7: 533497177149758578
+      SteadyLine_8: -6780242920117444281
+      SteadyLine_9: 8258219549475439687
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

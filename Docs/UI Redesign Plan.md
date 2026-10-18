@@ -1,5 +1,9 @@
 # Fishing Roguelike — Visual Implementation Plan
 
+## Separate candidate-theme integration
+
+This document retains the existing nautical design's implementation contract. The user-approved Midnight Field Journal alternative has a separate [integration task list](Midnight%20Field%20Journal%20Integration%20Tasks.md), [visual contract](UIThemes/MidnightFieldJournal/VisualContract.md), [asset manifest](UIThemes/MidnightFieldJournal/AssetManifest.json) and [missing-assets ledger](UIThemes/MidnightFieldJournal/MissingVisualAssets.md). Its runtime content will use `Assets/UIThemes/MidnightFieldJournal/` and a dedicated comparison scene. Preserve the current scene, default build selection, and assets until the user chooses a replacement. Earlier prohibitions in this document against generating/reinterpreting supplied art do not prohibit the new artwork explicitly requested and reviewed by the user for that separate theme; they continue to protect the existing supplied design. Shared gameplay/information constraints still apply.
+
 ## Purpose
 
 Implement the complete 16:9 gameplay presentation for the fishing card roguelike in Unity by assembling a supplied visual asset pack and binding it to runtime game data.

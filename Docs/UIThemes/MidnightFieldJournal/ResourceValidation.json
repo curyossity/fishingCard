@@ -1,0 +1,41 @@
+{
+    "passed": true,
+    "prefabGuidsStable": true,
+    "activeSceneUnchanged": true,
+    "scope": "Current isolated imports/fonts/templates; component behavior has separate validation; no full playable-scene certification",
+    "sprites": 20,
+    "fonts": 8,
+    "prefabs": 9,
+    "textureBytes": 241631804,
+    "fontAtlasBytes": 50347266,
+    "externalSharedDependencies": [
+        "Assets/Scripts/CatchChainView.cs",
+        "Assets/Scripts/CompactCatchCardView.cs",
+        "Assets/Scripts/CreatureCardView.cs",
+        "Assets/Scripts/CreatureCardVisualProfile.cs",
+        "Assets/Scripts/FishingRunView.cs",
+        "Assets/Scripts/RunResultView.cs",
+        "Assets/Scripts/TechniqueCardView.cs",
+        "Assets/Scripts/TechniqueHandView.cs",
+        "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+        "Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+        "Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+        "Packages/com.unity.ugui/Runtime/TMP/TextMeshProUGUI.cs",
+        "Packages/com.unity.ugui/Runtime/TMP/TMP_FontAsset.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Button.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/GraphicRaycaster.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Image.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/AspectRatioFitter.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/CanvasScaler.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/RawImage.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/RectMask2D.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/ScrollRect.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/VertexModifiers/Shadow.cs"
+    ],
+    "failures": [],
+    "warnings": [
+        "Illustrated kelp source remains 1672 x 941 over native 4K paper; full-screen 4K review remains UI-08.",
+        "Thirty active card identities still have no selected new-theme illustration; no wrong-card fallback was assigned.",
+        "Central card and projected-hand behavior have separate component evidence; full gameplay scene, modal composition and build validation remain later tasks."
+    ]
+}

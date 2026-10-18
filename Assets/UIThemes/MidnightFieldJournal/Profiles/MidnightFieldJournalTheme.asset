@@ -1,0 +1,416 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f828485eae89674ca13d02b55900fa9, type: 3}
+  m_Name: MidnightFieldJournalTheme
+  m_EditorClassIdentifier: Assembly-CSharp::MidnightFieldJournalTheme
+  referenceResolution: {x: 3840, y: 2160}
+  displayFont: {fileID: 11400000, guid: 1fe0de974704bb64b8d7f2e7211966d4, type: 2}
+  bodyFont: {fileID: 11400000, guid: eb96c5222bba3fb46b3ed91c14daad17, type: 2}
+  bodySemibold: {fileID: 11400000, guid: b51181665b2239940b593388f3ecc7ef, type: 2}
+  bodyBold: {fileID: 11400000, guid: a0ce11320bb710a47b0f3ae1f62636c8, type: 2}
+  parchmentInk: {r: 0.13725491, g: 0.16470589, b: 0.16078432, a: 1}
+  lightInk: {r: 0.9411765, g: 0.8784314, b: 0.7411765, a: 1}
+  copper: {r: 0.72156864, g: 0.5294118, b: 0.33333334, a: 1}
+  baitAccent: {r: 0.5568628, g: 0.8392157, b: 0.85882354, a: 1}
+  mutedInk: {r: 0.72156864, g: 0.7254902, b: 0.6666667, a: 1}
+  sprites:
+  - sourceId: PaperBackground4K
+    sprite: {fileID: 21300000, guid: e3b2fc5d2ef69de48a7bc0d41fc29af9, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    designCanvas: {x: 3840, y: 2160}
+    sourceHash: 6449cfe256a15e4b1703f3b75063674f332542207802b09e965eabd80ba59d9c
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: Background
+    sprite: {fileID: 21300000, guid: bb992dae08559ad46825939812da9e60, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    designCanvas: {x: 3840, y: 2160}
+    sourceHash: fa7fe3ad73705b8f21f78a567d3dc030bfd42ca5f57443f9c9414fce92c324e2
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: CreatureTemplate
+    sprite: {fileID: 21300000, guid: d7f1d4a091814b040a19d18181fd9432, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.030303031
+      y: 0.008559201
+      width: 0.93939394
+      height: 0.97574896
+    designCanvas: {x: 1040, y: 1300}
+    sourceHash: 3f1f9019fbd86b5ca843da21fb11336efdb1ba857e5681366d7008ad03d57713
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: EventTemplate
+    sprite: {fileID: 21300000, guid: 220d9e474e312184e8a32c6dc6a972ec, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.050802138
+      y: 0.010699001
+      width: 0.8983957
+      height: 0.96861625
+    designCanvas: {x: 1040, y: 1300}
+    sourceHash: f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: SmallOctopusPortrait
+    sprite: {fileID: 21300000, guid: 101808148ae3637489fb3dea69be459c, type: 3}
+    cardUniqueId: creature_small_octopus
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.015948962
+      y: 0.050239235
+      width: 0.9681021
+      height: 0.91945773
+    designCanvas: {x: 570, y: 570}
+    sourceHash: 297d92adcc1094a25bf65e6e7660ad88a7565a03c56c2c76e7e89f289864d570
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: DescendButton
+    sprite: {fileID: 21300000, guid: 40412570a891afc4b92cadb686d4892c, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.0064967517
+      y: 0.17302799
+      width: 0.9870065
+      height: 0.5979644
+    designCanvas: {x: 880, y: 346}
+    sourceHash: 926be32b6c371ad6b124c83ec4c1602e0f25d026b1e0c9b7ad2981fd42160b12
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: SurfaceButton
+    sprite: {fileID: 21300000, guid: 98954036e3aeb2d49b76c93565a661a4, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.010590015
+      y: 0.17528373
+      width: 0.9793243
+      height: 0.6368222
+    designCanvas: {x: 880, y: 352}
+    sourceHash: bc2a6dc20888bdd0c809216ec99d85d52714122da07d05681aa698f302ec75ef
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: LoadEmpty
+    sprite: {fileID: 21300000, guid: 56534776787df3442a9562df4269baba, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.0234375
+      y: 0.03125
+      width: 0.953125
+      height: 0.9375
+    designCanvas: {x: 77, y: 58}
+    sourceHash: 590adcde5bee0361e41d25f93a6e97d89ecca131e4105cc198172e83ac8de253
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: LoadFilled
+    sprite: {fileID: 21300000, guid: 670c9686fa5a9c34c81392b335bfcf02, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.0234375
+      y: 0.03125
+      width: 0.953125
+      height: 0.9375
+    designCanvas: {x: 77, y: 58}
+    sourceHash: ec5840cfedb4559d300c6053e062ed92f36218682fb009f47a74b49db8b2f60d
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: LoadDanger
+    sprite: {fileID: 21300000, guid: 2365b8cfaf6ba81418c2af1df8e67389, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.0234375
+      y: 0.03125
+      width: 0.953125
+      height: 0.9375
+    designCanvas: {x: 77, y: 58}
+    sourceHash: b096f866b5c814d12b2a41c3f83e225eb284c2a32e5e6219fde6c53f1d48143e
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: CatchFrameV2
+    sprite: {fileID: 21300000, guid: 6f25808744f3c1c4f8af8a9476055124, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.009644364
+      y: 0.016877636
+      width: 0.98131406
+      height: 0.9535865
+    designCanvas: {x: 680, y: 382.02246}
+    sourceHash: ec8e34cb3867e34835cdff5dae4ea42e712b7bde6099a8f6a86212414d94e68f
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: SardineV2
+    sprite: {fileID: 21300000, guid: 3122a5d202218df4682e64588d809eab, type: 3}
+    cardUniqueId: creature_sardine
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.021684317
+      y: 0.1374527
+      width: 0.9646999
+      height: 0.7313998
+    designCanvas: {x: 552, y: 221}
+    sourceHash: 8a6a405719713656cfdeee06025c58aa368fa4836376fdf71a1720e0a798a6af
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: CrabV2
+    sprite: {fileID: 21300000, guid: 5f97c73f925aa6147ab002901baed6ad, type: 3}
+    cardUniqueId: creature_clinging_crab
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.056712963
+      y: 0.08021978
+      width: 0.8877315
+      height: 0.8318681
+    designCanvas: {x: 440, y: 250}
+    sourceHash: af202d2bbffd803e7d35b6bc72268144e28958e844c4e91a2e8c094fd10b6ca5
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.1764706
+      y: 0.14926475
+      width: 0.64705884
+      height: 0.65441173
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: MinnowV2
+    sprite: {fileID: 21300000, guid: eeaf4afd5c316e9468771a71032c5bb2, type: 3}
+    cardUniqueId: creature_glass_minnow
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.026222894
+      y: 0.13366961
+      width: 0.94604135
+      height: 0.72761667
+    designCanvas: {x: 552, y: 221}
+    sourceHash: d6530b9870de0de2d7b038eb2cd393c3f2baa9c0dc0eb118593425745f06c579
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: BrassConnectorV3
+    sprite: {fileID: 21300000, guid: 9623a0b508589734bb68ce300af054e8, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.37304688
+      y: 0.065104164
+      width: 0.25097656
+      height: 0.8541667
+    designCanvas: {x: 104, y: 156}
+    sourceHash: 4caf486467a94a4748a11783a1a55e36ca50d582cbe33d6fa51b6463bb0a9b43
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: TechniqueFrameV2
+    sprite: {fileID: 21300000, guid: 5ff200c73d38d5d45bc28d35b82e0cbc, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.068627454
+      y: 0.038910504
+      width: 0.8643791
+      height: 0.91906613
+    designCanvas: {x: 620, y: 640}
+    sourceHash: 15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 0
+  - sourceId: CutLooseV2
+    sprite: {fileID: 21300000, guid: 620ed97d28570b24580efb62e83337e7, type: 3}
+    cardUniqueId: cut_loose
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0
+      y: 0.06303419
+      width: 1
+      height: 0.89636755
+    designCanvas: {x: 520.8, y: 291.2}
+    sourceHash: 3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 3
+  - sourceId: SlipPastV2
+    sprite: {fileID: 21300000, guid: 0edcf4df21fd77e469eac90017c70c3f, type: 3}
+    cardUniqueId: slip_past
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.031528853
+      y: 0.070512824
+      width: 0.96490186
+      height: 0.87927353
+    designCanvas: {x: 520.8, y: 291.2}
+    sourceHash: 284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 3
+  - sourceId: SteadyLineV2
+    sprite: {fileID: 21300000, guid: bcaf3b69d7a4a554889f775fcf868d44, type: 3}
+    cardUniqueId: steady_line
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.012477718
+      y: 0.093048126
+      width: 0.969697
+      height: 0.8331551
+    designCanvas: {x: 520.8, y: 291.2}
+    sourceHash: 6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 5
+  - sourceId: PrizeHookV2
+    sprite: {fileID: 21300000, guid: 39cc9a9809740c44681f758e773f3fe9, type: 3}
+    cardUniqueId: prize_hook
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.02025015
+      y: 0.035218783
+      width: 0.96486
+      height: 0.9306297
+    designCanvas: {x: 520.8, y: 291.2}
+    sourceHash: 1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 4
+  unillustratedCardIds:
+  - creature_cleaner_shrimp
+  - clear_water
+  - creature_coastal_cod
+  - creature_cuttlefish
+  - creature_flounder
+  - fresh_shell_fragments
+  - creature_garfish
+  - gentle_upwelling
+  - creature_mackerel
+  - apex_harbor_leviathan
+  - hold_steady
+  - creature_jellyfish
+  - creature_lionfish
+  - loose_knot
+  - creature_moonlit_ray
+  - creature_mussel
+  - treasure_pearl_cache
+  - rerig
+  - recast
+  - reef_snag
+  - creature_sea_anemone
+  - creature_sea_bass
+  - creature_sea_urchin
+  - silt_burst
+  - creature_spiny_lobster
+  - creature_squid
+  - apex_stormjaw_tuna
+  - treasure_sunken_tackle_box
+  - transition_next_waters
+  - creature_tidepool_eel

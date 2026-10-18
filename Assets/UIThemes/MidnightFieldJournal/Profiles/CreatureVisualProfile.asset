@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426158815cf3d25479c211a5f59f7795, type: 3}
+  m_Name: CreatureVisualProfile
+  m_EditorClassIdentifier: Assembly-CSharp::CreatureCardVisualProfile
+  catchRules:
+    serializedVersion: 2
+    x: 0.086538464
+    y: 0.07692308
+    width: 0.3846154
+    height: 0.23076923
+  baitRules:
+    serializedVersion: 2
+    x: 0.52884614
+    y: 0.07692308
+    width: 0.3846154
+    height: 0.23076923
+  eventRules:
+    serializedVersion: 2
+    x: 0.09
+    y: 0.07
+    width: 0.82
+    height: 0.3
+  nameInk: {r: 0.13725491, g: 0.16470589, b: 0.16078432, a: 1}
+  catchRulesInk: {r: 0.9411765, g: 0.8784314, b: 0.7411765, a: 1}
+  eventRulesInk: {r: 0.13725491, g: 0.16470589, b: 0.16078432, a: 1}
+  minimumRulesSize: 22
+  maximumRulesSize: 34
+  separateAbilityHeadings: 1
+  plainStatNumbers: 1
+  showEventCategory: 1
+  respectParentInputLocks: 1
+  catchAspectRatio: 0.8
+  eventAspectRatio: 0.8
+  minimumStatSize: 20
+  maximumStatSize: 56
+  rulesPadding: {x: 0, y: 0}
+  catchDescription:
+    serializedVersion: 2
+    x: 0.025
+    y: 0.05
+    width: 0.95
+    height: 0.52
+  baitDescription:
+    serializedVersion: 2
+    x: 0.025
+    y: 0.05
+    width: 0.95
+    height: 0.52
+  selectionWash: {r: 0.5568628, g: 0.8392157, b: 0.85882354, a: 0.10980392}
+  selectionBorder: {r: 0.72156864, g: 0.5294118, b: 0.33333334, a: 0.92156863}

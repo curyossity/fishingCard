@@ -1,0 +1,65 @@
+{
+  "generation": "New independent image_gen assets; no screenshot slices",
+  "targetScreen": [
+    3840,
+    2160
+  ],
+  "sourceAssets": [
+    {
+      "asset": "Background.png",
+      "source": "exec-03fbf0eb-37c0-428d-8986-92b64170e2bf.png",
+      "width": 1672,
+      "height": 941,
+      "pngColorType": 2
+    },
+    {
+      "asset": "CreatureTemplate.png",
+      "source": "exec-da699a05-7f62-4de9-b1df-6048dfd409dc.png",
+      "width": 1122,
+      "height": 1402,
+      "pngColorType": 6
+    },
+    {
+      "asset": "EventTemplate.png",
+      "source": "exec-30d49e77-e42e-480d-bb7b-67d111657937.png",
+      "width": 1122,
+      "height": 1402,
+      "pngColorType": 6
+    },
+    {
+      "asset": "CompactCatchTemplate.png",
+      "source": "exec-cfcd53a7-4cd0-40c1-b4f1-f79d6d70a24f.png",
+      "width": 1536,
+      "height": 1024,
+      "pngColorType": 6
+    },
+    {
+      "asset": "TechniqueTemplate.png",
+      "source": "exec-82275bde-c898-4575-b8ab-bd3b5be457e2.png",
+      "width": 1086,
+      "height": 1448,
+      "pngColorType": 6
+    },
+    {
+      "asset": "DescendButton.png",
+      "source": "exec-2aafe73a-b7d8-42ca-9f62-94db72b997da.png",
+      "width": 2001,
+      "height": 786,
+      "pngColorType": 6
+    },
+    {
+      "asset": "SurfaceButton.png",
+      "source": "exec-d84010d0-9235-4918-a574-69ce1d4cc859.png",
+      "width": 1983,
+      "height": 793,
+      "pngColorType": 6
+    },
+    {
+      "asset": "SmallOctopusPortrait.png",
+      "source": "exec-2028126a-054e-45f5-b319-8ee4a2837f10.png",
+      "width": 1254,
+      "height": 1254,
+      "pngColorType": 6
+    }
+  ]
+}

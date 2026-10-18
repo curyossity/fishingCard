@@ -81,6 +81,11 @@ public sealed class CreatureCardView : MonoBehaviour
     [SerializeField] private Sprite fallbackCardFace;
     [SerializeField] private Sprite eventCardFace;
     [SerializeField] private Sprite rarityHookSprite;
+    [SerializeField] private CreatureCardVisualProfile visualProfile;
+    [SerializeField] private GameObject catchRoleLabel;
+    [SerializeField] private TMP_Text catchAbilityText;
+    [SerializeField] private TMP_Text baitAbilityText;
+    [SerializeField] private CreatureCardVisualExtension visualExtension;
 
     public int AnchorSlotCount => anchorMarkers == null ? 0 : anchorMarkers.Length;
     public Image InteractionOverlay => interactionOverlay;
@@ -90,6 +95,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Preserves the existing setup API while prefab references own the card geometry.</summary>
     public void Initialize(Sprite newFallbackCardFace, Sprite newRarityHookSprite)
     {
+        if (visualExtension != null) return;
         if (newFallbackCardFace != null)
         {
             fallbackCardFace = newFallbackCardFace;
@@ -119,6 +125,7 @@ public sealed class CreatureCardView : MonoBehaviour
         bool isNewCard = displayedCard != card;
         displayedCard = card;
         Sprite encounterArtwork = card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
+        if (visualExtension != null) encounterArtwork = visualExtension.GetArtwork(card);
         bool usesCatchLayout = UsesCatchCardLayout(card.CardType);
         if (isNewCard && usesCatchLayout)
         {
@@ -135,18 +142,20 @@ public sealed class CreatureCardView : MonoBehaviour
 
         SetContent(
             identityHidden ? "UNKNOWN CREATURE" : card.DisplayName.ToUpperInvariant(),
-            BuildCardTypeText(card.CardType),
+            visualProfile != null && visualProfile.showEventCategory && !usesCatchLayout
+                ? (card.CardType == CardType.Location ? "LOCATION CARD" : "EVENT CARD / " + card.CardType.ToString().ToUpperInvariant())
+                : BuildCardTypeText(card.CardType),
             identityHidden ? null : encounterArtwork,
-            identityHidden ? CardArtworkLayout.MaskedRegion : card.ArtworkLayout,
+            identityHidden || visualExtension != null ? CardArtworkLayout.MaskedRegion : card.ArtworkLayout,
             background,
-            informationHidden ? "?" : FormatWeight(Mathf.Max(0, resolvedWeight)),
-            informationHidden || hideOwnValue ? "?" : FormatValue(Mathf.Max(0, resolvedValue)),
+            informationHidden ? "?" : visualProfile != null && visualProfile.plainStatNumbers ? Mathf.Max(0, resolvedWeight).ToString() : FormatWeight(Mathf.Max(0, resolvedWeight)),
+            informationHidden || hideOwnValue ? "?" : visualProfile != null && visualProfile.plainStatNumbers ? Mathf.Max(0, resolvedValue).ToString() : FormatValue(Mathf.Max(0, resolvedValue)),
             informationHidden
                 ? string.Empty
-                : BuildHighlightedRulesText(card.RulesText, card.RulesTextHighlights),
+                : BuildHighlightedRulesText(SeparateRules(card, CatchAttachmentRole.Catch), card.RulesTextHighlights),
             informationHidden
                 ? string.Empty
-                : BuildHighlightedRulesText(card.BaitRulesText, card.BaitRulesTextHighlights),
+                : BuildHighlightedRulesText(SeparateRules(card, CatchAttachmentRole.Bait), card.BaitRulesTextHighlights),
             identityHidden ? Array.Empty<string>() : card.Tags,
             card.Rarity,
             usesCatchLayout,
@@ -154,6 +163,14 @@ public sealed class CreatureCardView : MonoBehaviour
             card.EncounterArtworkRotation,
             card.EncounterArtworkOffset);
         if (identityHidden) HideRarityAnchors();
+        bool headings = visualProfile != null && visualProfile.separateAbilityHeadings && usesCatchLayout && !informationHidden;
+        SetText(catchAbilityText, headings ? BuildHighlightedRulesText(AbilityName(card, CatchAttachmentRole.Catch), card.RulesTextHighlights) : string.Empty);
+        SetText(baitAbilityText, headings ? BuildHighlightedRulesText(AbilityName(card, CatchAttachmentRole.Bait), card.BaitRulesTextHighlights) : string.Empty);
+        if (visualExtension != null)
+        {
+            ApplyMaskedArtworkTransform(card.EncounterArtworkScale, card.EncounterArtworkRotation, card.EncounterArtworkOffset);
+            visualExtension.Refresh(card, informationHidden, identityHidden, usesCatchLayout);
+        }
     }
 
     /// <summary>Populates the visual contract directly for editor previews and UI tests.</summary>
@@ -166,6 +183,9 @@ public sealed class CreatureCardView : MonoBehaviour
         string rules,
         CardRarity rarity)
     {
+        displayedCard = null;
+        SetText(catchAbilityText, string.Empty); SetText(baitAbilityText, string.Empty);
+        if (visualExtension != null) visualExtension.Clear();
         gameObject.SetActive(true);
         ApplyReferenceAspectRatio(true);
         SetContent(
@@ -174,8 +194,8 @@ public sealed class CreatureCardView : MonoBehaviour
             artwork,
             CardArtworkLayout.MaskedRegion,
             fallbackCardFace,
-            FormatWeight(Mathf.Max(0, weight)),
-            FormatValue(Mathf.Max(0, value)),
+            visualProfile != null && visualProfile.plainStatNumbers ? Mathf.Max(0, weight).ToString() : FormatWeight(Mathf.Max(0, weight)),
+            visualProfile != null && visualProfile.plainStatNumbers ? Mathf.Max(0, value).ToString() : FormatValue(Mathf.Max(0, value)),
             rules,
             rules,
             Array.Empty<string>(),
@@ -196,6 +216,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Shows the authored blank template with no runtime values or filled rarity anchors.</summary>
     public void SetBlank()
     {
+        displayedCard = null; selectedEffectChoice = EncounterEffectChoice.Catch;
         gameObject.SetActive(true);
         ApplyReferenceAspectRatio(true);
         SetImage(cardBackground, fallbackCardFace);
@@ -208,6 +229,9 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(valueText, string.Empty);
         SetText(effectText, string.Empty);
         SetText(baitEffectText, string.Empty);
+        SetText(catchAbilityText, string.Empty); SetText(baitAbilityText, string.Empty);
+        if (visualExtension != null) visualExtension.Clear();
+        SetEffectChoiceButtonsActive(false);
         HideTagIcons();
         if (cardFrame != null)
         {
@@ -265,7 +289,7 @@ public sealed class CreatureCardView : MonoBehaviour
         SetText(valueText, value);
         SetText(effectText, catchRules);
         SetText(baitEffectText, baitRules);
-        if (usesCatchLayout)
+        if (usesCatchLayout && visualExtension == null)
         {
             RefreshRarityAnchors(rarity);
             RefreshTagIcons(tags);
@@ -285,8 +309,14 @@ public sealed class CreatureCardView : MonoBehaviour
         EnsureEffectChoiceButtons();
         SetParentActive(weightText, usesCatchLayout);
         SetParentActive(valueText, usesCatchLayout);
+        if (catchRoleLabel != null) catchRoleLabel.SetActive(usesCatchLayout);
         ConfigureStatText(weightText);
         ConfigureStatText(valueText);
+        if (visualProfile != null)
+        {
+            foreach (TMP_Text stat in new[] { weightText, valueText })
+                if (stat != null) { stat.fontSize = visualProfile.maximumStatSize; stat.fontSizeMax = visualProfile.maximumStatSize; stat.fontSizeMin = visualProfile.minimumStatSize; }
+        }
 
         if (rarityAnchorRoot != null)
         {
@@ -300,10 +330,14 @@ public sealed class CreatureCardView : MonoBehaviour
 
         if (rulesRegion != null)
         {
-            rulesRegion.anchorMin = usesCatchLayout
+            rulesRegion.anchorMin = visualProfile != null
+                ? (usesCatchLayout ? visualProfile.catchRules.min : visualProfile.eventRules.min)
+                : usesCatchLayout
                 ? new Vector2(0.095f, 0.14f)
                 : new Vector2(0.085f, 0.055f);
-            rulesRegion.anchorMax = usesCatchLayout
+            rulesRegion.anchorMax = visualProfile != null
+                ? (usesCatchLayout ? visualProfile.catchRules.max : visualProfile.eventRules.max)
+                : usesCatchLayout
                 ? new Vector2(0.477f, 0.258f)
                 : new Vector2(0.915f, 0.315f);
             rulesRegion.offsetMin = Vector2.zero;
@@ -313,19 +347,24 @@ public sealed class CreatureCardView : MonoBehaviour
         if (baitRulesRegion != null)
         {
             baitRulesRegion.gameObject.SetActive(usesCatchLayout);
-            baitRulesRegion.anchorMin = new Vector2(0.523f, 0.14f);
-            baitRulesRegion.anchorMax = new Vector2(0.905f, 0.258f);
+            baitRulesRegion.anchorMin = visualProfile != null ? visualProfile.baitRules.min : new Vector2(0.523f, 0.14f);
+            baitRulesRegion.anchorMax = visualProfile != null ? visualProfile.baitRules.max : new Vector2(0.905f, 0.258f);
             baitRulesRegion.offsetMin = Vector2.zero;
             baitRulesRegion.offsetMax = Vector2.zero;
         }
 
         if (cardNameText != null)
         {
-            cardNameText.color = usesCatchLayout ? CatchNameColor : EventContentColor;
+            cardNameText.color = visualProfile != null ? visualProfile.nameInk : usesCatchLayout ? CatchNameColor : EventContentColor;
         }
 
         ConfigureEffectText(effectText, usesCatchLayout);
         ConfigureEffectText(baitEffectText, usesCatchLayout);
+        if (visualProfile != null && visualProfile.separateAbilityHeadings)
+        {
+            SetTextRegion(effectText, usesCatchLayout ? visualProfile.catchDescription : new Rect(0, 0, 1, 1));
+            SetTextRegion(baitEffectText, visualProfile.baitDescription);
+        }
         SetEffectChoiceButtonsActive(usesCatchLayout);
     }
 
@@ -361,7 +400,8 @@ public sealed class CreatureCardView : MonoBehaviour
         }
     }
 
-    private static void ConfigureEffectText(TMP_Text text, bool usesCatchLayout)
+    /// <summary>Fits live rules inside the active template's authored safe region.</summary>
+    private void ConfigureEffectText(TMP_Text text, bool usesCatchLayout)
     {
         if (text == null)
         {
@@ -369,18 +409,20 @@ public sealed class CreatureCardView : MonoBehaviour
         }
 
         text.richText = true;
-        text.fontSize = EffectFontSizeMax;
-        text.fontSizeMin = EffectFontSizeMin;
-        text.fontSizeMax = EffectFontSizeMax;
+        text.fontSize = visualProfile != null ? visualProfile.maximumRulesSize : EffectFontSizeMax;
+        text.fontSizeMin = visualProfile != null ? visualProfile.minimumRulesSize : EffectFontSizeMin;
+        text.fontSizeMax = visualProfile != null ? visualProfile.maximumRulesSize : EffectFontSizeMax;
         text.enableAutoSizing = true;
-        text.color = usesCatchLayout ? CatchRulesColor : EventContentColor;
+        text.color = visualProfile != null
+            ? (usesCatchLayout ? visualProfile.catchRulesInk : visualProfile.eventRulesInk)
+            : usesCatchLayout ? CatchRulesColor : EventContentColor;
         text.outlineColor = new Color32(0, 0, 0, 0);
         text.outlineWidth = 0f;
         text.rectTransform.offsetMin = usesCatchLayout
-            ? new Vector2(12f, 8f)
+            ? visualProfile != null ? visualProfile.rulesPadding : new Vector2(12f, 8f)
             : new Vector2(22f, 10f);
         text.rectTransform.offsetMax = usesCatchLayout
-            ? new Vector2(-12f, -8f)
+            ? visualProfile != null ? -visualProfile.rulesPadding : new Vector2(-12f, -8f)
             : new Vector2(-22f, -10f);
     }
 
@@ -408,6 +450,7 @@ public sealed class CreatureCardView : MonoBehaviour
         }
     }
 
+    /// <summary>Wires one role control while honoring the profile's input and selection treatment.</summary>
     private void ConfigureEffectChoiceButton(
         RectTransform region,
         EncounterEffectChoice choice,
@@ -441,7 +484,7 @@ public sealed class CreatureCardView : MonoBehaviour
 
         raycastGroup.interactable = true;
         raycastGroup.blocksRaycasts = true;
-        raycastGroup.ignoreParentGroups = true;
+        raycastGroup.ignoreParentGroups = visualProfile == null || !visualProfile.respectParentInputLocks;
 
         selectionOutline = region.GetComponent<Outline>();
         if (selectionOutline == null)
@@ -449,7 +492,7 @@ public sealed class CreatureCardView : MonoBehaviour
             selectionOutline = region.gameObject.AddComponent<Outline>();
         }
 
-        selectionOutline.effectColor = SelectedEffectBorderColor;
+        selectionOutline.effectColor = visualProfile != null ? visualProfile.selectionBorder : (Color)SelectedEffectBorderColor;
         selectionOutline.effectDistance = new Vector2(2f, -2f);
         selectionOutline.useGraphicAlpha = false;
 
@@ -524,9 +567,11 @@ public sealed class CreatureCardView : MonoBehaviour
             baitEffectSelectionOutline,
             active && selectedEffectChoice == EncounterEffectChoice.Bait,
             active);
+        if (visualExtension != null) visualExtension.RefreshSelection(selectedEffectChoice, active);
     }
 
-    private static void ApplyEffectChoiceVisual(
+    /// <summary>Shows selection without modifying artwork or runtime effects.</summary>
+    private void ApplyEffectChoiceVisual(
         Image image,
         Outline outline,
         bool selected,
@@ -535,12 +580,12 @@ public sealed class CreatureCardView : MonoBehaviour
         if (image != null)
         {
             image.enabled = active;
-            image.color = selected ? SelectedEffectOverlayColor : Color.clear;
+            image.color = selected ? visualProfile != null ? visualProfile.selectionWash : (Color)SelectedEffectOverlayColor : Color.clear;
         }
 
         if (outline != null)
         {
-            outline.enabled = active && selected;
+            outline.enabled = visualExtension == null && active && selected;
         }
     }
 
@@ -840,7 +885,8 @@ public sealed class CreatureCardView : MonoBehaviour
         AspectRatioFitter fitter = GetComponent<AspectRatioFitter>();
         if (fitter != null)
         {
-            fitter.aspectRatio = usesCatchLayout ? ReferenceAspectRatio : EventReferenceAspectRatio;
+            fitter.aspectRatio = visualProfile != null ? usesCatchLayout ? visualProfile.catchAspectRatio : visualProfile.eventAspectRatio
+                : usesCatchLayout ? ReferenceAspectRatio : EventReferenceAspectRatio;
         }
     }
 
@@ -1091,6 +1137,46 @@ public sealed class CreatureCardView : MonoBehaviour
         artworkTransform.localScale = new Vector3(safeScale, safeScale, 1f);
         artworkTransform.localEulerAngles = new Vector3(0f, 0f, rotation);
         artworkTransform.anchoredPosition = offset;
+    }
+
+    /// <summary>Preserves per-definition central portrait framing without changing the compact-chain portrait.</summary>
+    private void ApplyMaskedArtworkTransform(float scale, float rotation, Vector2 offset)
+    {
+        if (creatureArtwork == null) return;
+        RectTransform rect = creatureArtwork.rectTransform;
+        rect.localScale = new Vector3(Mathf.Max(.1f, scale), Mathf.Max(.1f, scale), 1);
+        rect.localEulerAngles = new Vector3(0, 0, rotation); rect.anchoredPosition = offset;
+    }
+
+    /// <summary>Applies profile-owned text anchors without changing the surrounding role hit target.</summary>
+    private static void SetTextRegion(TMP_Text text, Rect bounds)
+    {
+        if (text == null) return;
+        text.rectTransform.anchorMin = bounds.min; text.rectTransform.anchorMax = bounds.max;
+    }
+
+    /// <summary>Reads the authored ability heading while keeping effectless roles blank.</summary>
+    private static string AbilityName(CardDefinition card, CatchAttachmentRole role)
+    {
+        string name = string.Empty;
+        foreach (CardEffectDefinition effect in card.GetEffects(role))
+        {
+            if (effect == null || string.IsNullOrWhiteSpace(effect.DisplayName)) continue;
+            if (string.IsNullOrEmpty(name)) name = effect.DisplayName;
+            else if (name != effect.DisplayName) return string.Empty;
+        }
+        return name;
+    }
+
+    /// <summary>Separates only an exact authored heading prefix; the remaining live description and highlights are retained.</summary>
+    private string SeparateRules(CardDefinition card, CatchAttachmentRole role)
+    {
+        string rules = role == CatchAttachmentRole.Bait ? card.BaitRulesText : card.RulesText;
+        if (visualProfile == null || !visualProfile.separateAbilityHeadings || string.IsNullOrEmpty(rules)) return rules;
+        string name = AbilityName(card, role);
+        string prefix = name + ":";
+        return !string.IsNullOrEmpty(name) && rules.StartsWith(prefix, StringComparison.OrdinalIgnoreCase)
+            ? rules.Substring(prefix.Length).TrimStart() : rules;
     }
 
     private static void SetText(TMP_Text text, string value)

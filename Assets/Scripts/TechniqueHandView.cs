@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public sealed class TechniqueHandView : MonoBehaviour
 {
+    [SerializeField] private TechniqueHandPresentation presentation;
     private const int SlotCount = 4;
 
     [SerializeField] private bool fillParentRegion;
@@ -51,7 +52,7 @@ public sealed class TechniqueHandView : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        EnsureLayout();
+        if (presentation == null) EnsureLayout();
     }
 
     /// <summary>
@@ -63,8 +64,13 @@ public sealed class TechniqueHandView : MonoBehaviour
         string[] restrictionReasons,
         int drawPileCount,
         int discardPileCount,
-        Func<int, bool> useCardAction)
+        Func<int, bool> useCardAction, long handVersion = 0)
     {
+        if (presentation != null)
+        {
+            presentation.Refresh(hand, playableSlots, restrictionReasons, drawPileCount, discardPileCount, useCardAction, handVersion);
+            return;
+        }
         EnsureLayout();
         this.useCardAction = useCardAction;
         pileCountText.text = $"DRAW {drawPileCount}     DISCARD {discardPileCount}";

@@ -1,0 +1,140 @@
+{
+  "passed": true,
+  "protectedFilesChecked": 804,
+  "unchangedProtectedFiles": 802,
+  "expectedSharedViewExtensions": [
+    "Assets/Scripts/CatchChainView.cs",
+    "Assets/Scripts/CompactCatchCardView.cs"
+  ],
+  "unexpectedChanges": [],
+  "sceneAndBuildSettingsUnchanged": true,
+  "sourceImages": [
+    {
+      "id": "PaperBackground4K",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "Background",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CreatureTemplate",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "EventTemplate",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "DescendButton",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SurfaceButton",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadEmpty",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadFilled",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadDanger",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CatchFrameV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch/CompactCatchFrame.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SardineV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/Sardine.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CrabV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrab.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "MinnowV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnow.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "BrassConnectorV3",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors/BrassConnector.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CutLooseV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SlipPastV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SteadyLineV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "PrizeHookV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png",
+      "sourceBytesUnchanged": true
+    }
+  ],
+  "regressions": {
+    "approvedTechniqueRules": 38,
+    "sharedTechniqueRules": 47,
+    "coastalEventRules": 57,
+    "totalRuntimeAssertions": 142
+  },
+  "legacyValidator": {
+    "status": "Existing serialized-structure check fails: Compact catch card has no Bait role marker.",
+    "evidence": "The original prefab bytes match the protected baseline. Its existing runtime-created Bait badge, zero Value, uppercase defaults and disabled input passed the new component checks. No old prefab was rebuilt or changed to satisfy the historical structural assertion."
+  },
+  "componentValidation": {
+    "passed": true,
+    "activeSceneUnchanged": true,
+    "assertions": 114,
+    "scope": "Isolated real-state component checks and 4K/1080p captures; full playable-scene integration remains UI-07",
+    "captures": [
+      "UI03CatchChain4K.png",
+      "UI03CatchChain1080p.png",
+      "UI03LongChain4K.png"
+    ]
+  },
+  "playModeValidation": {
+    "passed": true,
+    "assertions": 22,
+    "scope": "Temporary chain in real Play Mode: Awake, raycast, click, wheel input, scroll retention, pooled reactivation; no full-run visual integration claim"
+  },
+  "scope": "Catch Chain component integration only; comparison-scene/full-run/build validation remains later tasks."
+}

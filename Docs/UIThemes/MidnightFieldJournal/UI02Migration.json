@@ -1,0 +1,79 @@
+{
+    "moves": [
+        {
+            "from": "Assets/FishingUIAssets/MidnightFieldJournal",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft",
+            "guid": "a43433c5148e3ec41a3bef8aefde086c"
+        },
+        {
+            "from": "Assets/Prefabs/UI/MidnightFieldJournal",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Prefabs",
+            "guid": "e88a01e0879510b42867a353cc1a0e05"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/PaperBackground4K.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png",
+            "guid": "e3b2fc5d2ef69de48a7bc0d41fc29af9"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/Background.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png",
+            "guid": "bb992dae08559ad46825939812da9e60"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/CreatureTemplate.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+            "guid": "d7f1d4a091814b040a19d18181fd9432"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/EventTemplate.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+            "guid": "220d9e474e312184e8a32c6dc6a972ec"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/SmallOctopusPortrait.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png",
+            "guid": "101808148ae3637489fb3dea69be459c"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/DescendButton.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+            "guid": "40412570a891afc4b92cadb686d4892c"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/SurfaceButton.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+            "guid": "98954036e3aeb2d49b76c93565a661a4"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/LoadEmpty.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png",
+            "guid": "56534776787df3442a9562df4269baba"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/LoadFilled.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png",
+            "guid": "670c9686fa5a9c34c81392b335bfcf02"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/LoadDanger.png",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png",
+            "guid": "2365b8cfaf6ba81418c2af1df8e67389"
+        },
+        {
+            "from": "Assets/UIThemes/MidnightFieldJournal/Art/Archive/Draft/CreatureVisualProfile.asset",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Profiles/CreatureVisualProfile.asset",
+            "guid": "004ab10830f63bb44af283aa61cdb019"
+        },
+        {
+            "from": "Assets/Editor/MidnightFieldJournalPrefabBuilder.cs",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+            "guid": "32c526bbe4d2d6b4c92519493139b906"
+        },
+        {
+            "from": "Assets/Scripts/LineLoadMeterView.cs",
+            "to": "Assets/UIThemes/MidnightFieldJournal/Runtime/LineLoadMeterView.cs",
+            "guid": "b0d76f8252a8fce4d9fb9100a28fc8e3"
+        }
+    ]
+}

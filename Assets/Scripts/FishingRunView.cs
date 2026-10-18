@@ -224,6 +224,8 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private CanvasGroup topNavigationGroup;
     [SerializeField] private CanvasGroup mainContentGroup;
     [SerializeField] private CanvasGroup techniqueHandGroup;
+    [SerializeField] private FishingRunHudPresentation hudPresentation;
+    [SerializeField] private CreatureChoicePresentation choicePresentation;
 
     private static readonly Color AccentColor = new Color(0.24f, 0.74f, 0.70f, 1f);
     private static readonly Color SurfaceColor = new Color(0.88f, 0.67f, 0.25f, 1f);
@@ -269,12 +271,14 @@ public sealed class FishingRunView : MonoBehaviour
     private bool hasPresentedEncounter;
     private int lastPresentedDepth;
     private bool latestCanDescend;
+    private bool latestCanSurface;
     private TMP_Text trailPreviewText;
 
     /// <summary>Shows learned trail information outside the card face, independently of concealment.</summary>
     public void SetTrailPreview(string preview)
     {
         EnsureLayout();
+        if (hudPresentation != null) { hudPresentation.SetTrailPreview(preview); return; }
         if (trailPreviewText == null)
         {
             GameObject obj = CreateUiObject("Encounter Trail Preview", encounterPanel != null ? encounterPanel : gameplayRoot);
@@ -312,17 +316,20 @@ public sealed class FishingRunView : MonoBehaviour
     public Canvas TransitionLayer => transitionLayer;
     public Canvas ModalLayer => modalLayer;
     public bool IsSurfaceTransitionPlaying => surfaceTransitionCoroutine != null;
+    public bool IsEncounterTransitionPlaying => encounterTransitionCoroutine != null;
     public EncounterEffectChoice SelectedEncounterEffectChoice => encounterCardView == null
         ? EncounterEffectChoice.Catch
         : encounterCardView.SelectedEffectChoice;
     public event Action SettingsRequested;
     public event Action SurfaceTransitionCompleted;
+    public event Action EncounterTransitionCompleted;
     public event Action<EncounterEffectChoice> EncounterEffectChoiceChanged;
 
     /// <summary>Shows a runtime-owned creature choice above the existing gameplay composition.</summary>
     public void ShowCreatureEffectChoice(string title, string prompt, string[] labels, string[] details, Sprite[] portraits, Action<int> select)
     {
         EnsureLayout();
+        if (choicePresentation != null) { choicePresentation.Show(title, prompt, labels, details, portraits, select); return; }
         if (creatureEffectChoiceView == null)
         {
             Transform parent = modalLayer != null ? modalLayer.transform : transform;
@@ -338,6 +345,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// <summary>Dismisses creature-choice presentation after the runtime queue is resolved.</summary>
     public void HideCreatureEffectChoice()
     {
+        if (choicePresentation != null) { choicePresentation.Hide(); return; }
         creatureEffectChoiceView?.Hide();
     }
 
@@ -370,7 +378,8 @@ public sealed class FishingRunView : MonoBehaviour
         Func<bool> descendAction,
         Func<bool> releaseAction,
         Func<bool> surfaceAction,
-        bool encounterIdentityHidden = false)
+        bool encounterIdentityHidden = false,
+        int? currentHaulValue = 0)
     {
         EnsureLayout();
         this.descendAction = descendAction;
@@ -414,8 +423,8 @@ public sealed class FishingRunView : MonoBehaviour
         biomeText.text = biome == null ? "UNCHARTED WATERS" : biome.DisplayName.ToUpperInvariant();
         depthText.text = $"DEPTH  {Mathf.Max(0, depth)} m";
         deckText.text = $"DECK  {Mathf.Max(0, remainingDeckCount)}";
-        RefreshDepthZones(biome, depth);
-        RefreshTension(currentLineLoad, lineCapacity);
+        if (hudPresentation != null) hudPresentation.Refresh(biome, depth, currentLineLoad, lineCapacity, remainingDeckCount, currentHaulValue);
+        else { RefreshDepthZones(biome, depth); RefreshTension(currentLineLoad, lineCapacity); }
 
         bool shouldTransitionEncounter = hasPresentedEncounter && depth > lastPresentedDepth;
         RecordEncounterPresentation(
@@ -452,12 +461,13 @@ public sealed class FishingRunView : MonoBehaviour
 
         latestCanDescend = canDescend;
         descendButton.interactable = canDescend && encounterTransitionCoroutine == null;
-        releaseButton.interactable = false;
-        releaseButton.gameObject.SetActive(false);
-        releaseButtonText.text = selectedCatchIndex >= 0
+        if (releaseButton != null) { releaseButton.interactable = false; releaseButton.gameObject.SetActive(false); }
+        if (releaseButtonText != null) releaseButtonText.text = selectedCatchIndex >= 0
             ? $"RELEASE CATCH {selectedCatchIndex + 1:00}"
             : "RELEASE";
-        surfaceButton.interactable = canSurface;
+        latestCanSurface = canSurface;
+        surfaceButton.interactable = canSurface && encounterTransitionCoroutine == null;
+        RefreshAuthoredRoleInput();
     }
 
     /// <summary>
@@ -482,6 +492,14 @@ public sealed class FishingRunView : MonoBehaviour
             SetAnchoredRect(gameplayRoot, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
         }
 
+        if (hudPresentation != null)
+        {
+            biomeText = hudPresentation.BiomeText; depthText = hudPresentation.DepthText; deckText = hudPresentation.DeckText;
+            descendButton = hudPresentation.DescendButton; surfaceButton = hudPresentation.SurfaceButton; settingsButton = hudPresentation.SettingsButton;
+            descendButton.onClick.AddListener(InvokeDescend); surfaceButton.onClick.AddListener(InvokeSurface); settingsButton.onClick.AddListener(InvokeSettings);
+            CreateEncounterCard();
+            return;
+        }
         CreateLocationHeader();
         CreateEncounterCard();
         CreateCoreActions();
@@ -633,6 +651,15 @@ public sealed class FishingRunView : MonoBehaviour
     private void InvokeSettings()
     {
         SettingsRequested?.Invoke();
+    }
+
+    /// <summary>Lets authored role controls honor parent locks while transitions retain exclusive input ownership.</summary>
+    private void RefreshAuthoredRoleInput()
+    {
+        if (hudPresentation == null || encounterCardCanvasGroup == null) return;
+        bool available = latestCanDescend && encounterTransitionCoroutine == null && surfaceTransitionCoroutine == null;
+        encounterCardCanvasGroup.interactable = available; encounterCardCanvasGroup.blocksRaycasts = available;
+        if (standbyEncounterCardCanvasGroup != null) { standbyEncounterCardCanvasGroup.interactable = false; standbyEncounterCardCanvasGroup.blocksRaycasts = false; }
     }
 
     /// <summary>
@@ -948,10 +975,13 @@ public sealed class FishingRunView : MonoBehaviour
         if (descending)
         {
             encounterTransitionCoroutine = null;
+            RefreshAuthoredRoleInput();
             if (descendButton != null)
             {
                 descendButton.interactable = latestCanDescend;
             }
+            if (surfaceButton != null) surfaceButton.interactable = latestCanSurface;
+            EncounterTransitionCompleted?.Invoke();
         }
     }
 
@@ -962,11 +992,12 @@ public sealed class FishingRunView : MonoBehaviour
         if (descendButton != null)
         {
             descendButton.interactable = false;
-            releaseButton.interactable = false;
+            if (releaseButton != null) releaseButton.interactable = false;
             surfaceButton.interactable = false;
         }
 
         surfaceTransitionCoroutine = StartCoroutine(PlaySurfaceTransition());
+        RefreshAuthoredRoleInput();
     }
 
     /// <summary>Replays visited encounters from deepest to shallowest, then clears the gameplay presentation.</summary>
@@ -1434,7 +1465,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// </summary>
     private void InvokeRelease()
     {
-        if (releaseButton.interactable) releaseAction?.Invoke();
+        if (releaseButton != null && releaseButton.interactable) releaseAction?.Invoke();
     }
 
     /// <summary>

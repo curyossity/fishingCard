@@ -2,6 +2,10 @@
 
 This document defines the current approved presentation contract for creature and catch cards. Read it before creating or changing card art, card prefabs, card views, or runtime card-field rendering.
 
+## Candidate theme: Midnight Field Journal
+
+The user has approved a separate design for Unity comparison. Its theme-specific artwork, geometry, typography, Catch Chain hardware and technique perspective are defined in [Midnight Field Journal Visual Contract](UIThemes/MidnightFieldJournal/VisualContract.md), with [source inventory](UIThemes/MidnightFieldJournal/AssetInventory.md) and [outstanding visual dependencies](UIThemes/MidnightFieldJournal/MissingVisualAssets.md). The artwork paths and geometry below continue to govern the existing nautical design; they must not overwrite the candidate or be silently mixed into it. Shared dynamic-field, gameplay, concealment, role and event rules remain binding. Keep the original scene and assets intact while integrating the candidate under `Assets/UIThemes/MidnightFieldJournal/`.
+
 ## Source Card Art
 
 The production Encounter card uses the reusable supplied dual-effect master `Assets/FishingUIAssets/Cards/Creature/catch-card-base-dual-effect-1122x1402.png` at its native 1122 x 1402 resolution. The master owns the decorative frame, chart field, fixed `WEIGHT` and `VALUE` labels, stat icons, separate built-in `CATCH` and `BAIT` effect panels, four lower rarity sockets, and four large tag-rail sockets. Previous catch masters remain available as alternate source art and are not deleted when the active master changes.

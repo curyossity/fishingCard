@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "protectedFilesChecked": 804,
+  "unchangedProtectedFiles": 799,
+  "expectedSharedExtensionsSinceUI02": [
+    "Assets/Scripts/CatchChainView.cs",
+    "Assets/Scripts/CompactCatchCardView.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/TechniqueCardView.cs",
+    "Assets/Scripts/TechniqueHandView.cs"
+  ],
+  "unexpectedChanges": [],
+  "UI04SharedChanges": [
+    "TechniqueHandView optional renderer/version forwarding",
+    "TechniqueCardView optional pose/inspection/content presentation",
+    "FishingRunController forwards existing HandVersion; no rule changes"
+  ],
+  "sceneAndBuildSettingsUnchanged": true,
+  "originalPrefabsImagesFontsAndCardsUnchangedFromProtectedBaseline": true,
+  "selectedImages": [
+    {
+      "id": "PaperBackground4K",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "Background",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CreatureTemplate",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "EventTemplate",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "DescendButton",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SurfaceButton",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadEmpty",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadFilled",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadDanger",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CatchFrameV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SardineV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CrabV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "MinnowV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "BrassConnectorV3",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CutLooseV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SlipPastV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SteadyLineV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "PrizeHookV2",
+      "sourceBytesUnchanged": true
+    }
+  ],
+  "regressions": {
+    "approvedTechniqueRules": 38,
+    "sharedTechniqueRules": 47,
+    "coastalEventRules": 57,
+    "totalRuntimeAssertions": 142,
+    "legacyTechniquePrefabStructure": "Passed"
+  },
+  "componentValidation": {
+    "passed": true,
+    "sceneUnchanged": true,
+    "assertions": 72,
+    "scope": "Isolated projected hand; full comparison scene remains UI-07"
+  },
+  "playModeValidation": {
+    "passed": true,
+    "sceneUnchanged": true,
+    "assertions": 39,
+    "scope": "Actual perspective-camera raycast mapping, pointer/submit callbacks, focus, stable hover, legality, stale-press rejection, resource lifetime and modal priority; saved scene file unchanged"
+  },
+  "remainingTechniqueArt": [
+    "clear_water",
+    "hold_steady",
+    "rerig",
+    "recast"
+  ],
+  "scope": "Projected Technique hand component; full comparison-scene, build and player-cost validation remain later tasks."
+}

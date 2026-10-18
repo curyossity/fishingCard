@@ -1,0 +1,11 @@
+{
+    "passed": true,
+    "activeSceneUnchanged": true,
+    "assertions": 114,
+    "scope": "Isolated real-state component checks and 4K/1080p captures; full playable-scene integration remains UI-07",
+    "captures": [
+        "UI03CatchChain4K.png",
+        "UI03CatchChain1080p.png",
+        "UI03LongChain4K.png"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "passed": true,
+    "sceneFilesUnchanged": true,
+    "assertions": 10,
+    "scope": "In-memory fixtures: all eight Techniques, 16-card scrollable overloaded chain, event, empty hand/chain. Existing per-definition fit/mask checks cover the full authored roster."
+}

@@ -1,0 +1,31 @@
+{
+  "downloadRepository": "https://github.com/google/fonts/tree/3dd78844021e948ceb633d1dcee3f7885561b5d9/ofl/cinzel",
+  "commit": "3dd78844021e948ceb633d1dcee3f7885561b5d9",
+  "license": "SIL Open Font License 1.1",
+  "originalSha256": "f4d83d34d1f6c741193e4acf4b3dff9531e5a67b6aa65228d00a7db72a4e0f34",
+  "licenseSha256": "f2b3029aba64c378bf0963b62945eee15e564fe4330b934c8f2eb058282b5e83",
+  "conversion": "FontTools 4.67.0 instantiateVariableFont, all axes pinned; static family/style/full/PostScript names explicitly labeled because upstream STAT lacks a 600 label",
+  "instances": [
+    {
+      "file": "Cinzel-Regular.ttf",
+      "weight": 400,
+      "sha256": "16ad4f7d8f4d57ca31a94927f261c0a1983c56878c9444404b9b491523b848d6",
+      "family": "Cinzel",
+      "style": "Regular"
+    },
+    {
+      "file": "Cinzel-SemiBold.ttf",
+      "weight": 600,
+      "sha256": "45ff3688f43c7da2f88059a3b8be3c6dd3183de17506cb85e1c3d2fa4ab6e602",
+      "family": "Cinzel",
+      "style": "SemiBold"
+    },
+    {
+      "file": "Cinzel-Bold.ttf",
+      "weight": 700,
+      "sha256": "d8bcdc7b73c6a116077a82a7d172107ab94ea71332d9283b09262f059610fccc",
+      "family": "Cinzel",
+      "style": "Bold"
+    }
+  ]
+}

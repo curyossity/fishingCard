@@ -1,0 +1,16 @@
+{
+    "passed": false,
+    "buildSettingsUnchanged": true,
+    "result": "Failed",
+    "player": "Builds/MidnightFieldJournal/FishingCardsJournal.exe",
+    "failure": "",
+    "errors": 2,
+    "warnings": 0,
+    "bytes": 0,
+    "seconds": 186.4961027,
+    "scenes": [
+        "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity",
+        "Assets/Scenes/SampleScene.unity"
+    ],
+    "packedAssets": []
+}

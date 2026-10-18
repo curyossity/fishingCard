@@ -1,0 +1,181 @@
+{
+  "preservationPassed": true,
+  "editorOutputChecksPassed": true,
+  "buildSmokePassed": false,
+  "readiness": "Editor validation complete; standalone build certification blocked by local generator-launch stall.",
+  "protectedFilesChecked": 804,
+  "unchangedProtectedFiles": 795,
+  "expectedSharedExtensionsSinceUI02": [
+    "Assets/Scripts/CatchChainView.cs",
+    "Assets/Scripts/CompactCatchCardView.cs",
+    "Assets/Scripts/CreatureCardView.cs",
+    "Assets/Scripts/CreatureCardVisualProfile.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/Scripts/RunResultView.cs",
+    "Assets/Scripts/TechniqueCardView.cs",
+    "Assets/Scripts/TechniqueHandView.cs"
+  ],
+  "unexpectedChanges": [],
+  "originalSceneAndDefaultBuildUnchanged": true,
+  "originalPrefabsImagesFontsAndCardDataUnchanged": true,
+  "selectedSourceImages": [
+    {
+      "id": "PaperBackground4K",
+      "unchanged": true
+    },
+    {
+      "id": "Background",
+      "unchanged": true
+    },
+    {
+      "id": "CreatureTemplate",
+      "unchanged": true
+    },
+    {
+      "id": "EventTemplate",
+      "unchanged": true
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "unchanged": true
+    },
+    {
+      "id": "DescendButton",
+      "unchanged": true
+    },
+    {
+      "id": "SurfaceButton",
+      "unchanged": true
+    },
+    {
+      "id": "LoadEmpty",
+      "unchanged": true
+    },
+    {
+      "id": "LoadFilled",
+      "unchanged": true
+    },
+    {
+      "id": "LoadDanger",
+      "unchanged": true
+    },
+    {
+      "id": "CatchFrameV2",
+      "unchanged": true
+    },
+    {
+      "id": "SardineV2",
+      "unchanged": true
+    },
+    {
+      "id": "CrabV2",
+      "unchanged": true
+    },
+    {
+      "id": "MinnowV2",
+      "unchanged": true
+    },
+    {
+      "id": "BrassConnectorV3",
+      "unchanged": true
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "unchanged": true
+    },
+    {
+      "id": "CutLooseV2",
+      "unchanged": true
+    },
+    {
+      "id": "SlipPastV2",
+      "unchanged": true
+    },
+    {
+      "id": "SteadyLineV2",
+      "unchanged": true
+    },
+    {
+      "id": "PrizeHookV2",
+      "unchanged": true
+    }
+  ],
+  "captures": [
+    {
+      "path": "UI08Assembled4K.png",
+      "width": 3840,
+      "height": 2160,
+      "sha256": "85f2be27fe609f7766e0176e16db0e6b3e807e1a4f1200a3d32fd4d6a2ba6c75"
+    },
+    {
+      "path": "UI08Empty4K.png",
+      "width": 3840,
+      "height": 2160,
+      "sha256": "c1b9cc29195363d097edab61fbb1f826f451619c80fa37b1d18c622deabe6ff7"
+    },
+    {
+      "path": "UI08Gameplay1920x1080.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "e18144bac8e2e534908bf1a14a3a5a91dfd3c47cf620a1d2583c9b5407f35c80"
+    },
+    {
+      "path": "UI08Gameplay1920x1200.png",
+      "width": 1920,
+      "height": 1200,
+      "sha256": "1256e2235ed03f136564db81898abf904ee5807345deac17db8b12b82b2d1da0"
+    },
+    {
+      "path": "UI08Gameplay3440x1440.png",
+      "width": 3440,
+      "height": 1440,
+      "sha256": "d7f631fce7552e957fc8f796206f2104ef06c267fab601fbb7c658f8e0b32ded"
+    },
+    {
+      "path": "UI08Gameplay3840x2160.png",
+      "width": 3840,
+      "height": 2160,
+      "sha256": "e593d3a2e21d22b4dee6108834555e763dc74bc120f7fccaf94388eb0be08c56"
+    },
+    {
+      "path": "UI08LongChainEvent4K.png",
+      "width": 3840,
+      "height": 2160,
+      "sha256": "96ebbda8f56b4c82820d9349b2b48072e6f40fbba68ec3b4cbc3761155ca60b7"
+    }
+  ],
+  "currentChecks": {
+    "scene": 18,
+    "HUD": 18,
+    "eventTechniqueRules": 162,
+    "integrationPlayMode": 77,
+    "stress": 10,
+    "editorOutput": 67
+  },
+  "carriedForwardComponentEvidence": {
+    "chain": 114,
+    "chainPlayMode": 22,
+    "hand": 72,
+    "handPlayMode": 39,
+    "central30Definitions": 696,
+    "centralPlayMode": 11
+  },
+  "dependencies": {
+    "candidateScene": 146,
+    "candidatePrefab": 78,
+    "sharedBetweenScenes": 84,
+    "legacyVisualsStillReferenced": 15,
+    "originalOnly": 67,
+    "retainedBackups": 15,
+    "implicitResources": 8
+  },
+  "limitations": [
+    "Thirty active cards still need new-theme illustrations.",
+    "Kelp overlay is 1672x941; central blank frame has a source blemish.",
+    "Programmatic pointer and navigation checks are not physical gamepad/device certification.",
+    "Standalone build failed twice at the build-data generator shell; player smoke was not run.",
+    "Short local Editor samples are not player, target-hardware or sustained performance certification.",
+    "Old scene is retained and shared CardDefinitions still reference fifteen legacy visual assets. No legacy deletion is authorized."
+  ]
+}

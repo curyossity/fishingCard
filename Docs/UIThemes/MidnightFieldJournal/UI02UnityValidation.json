@@ -1,0 +1,35 @@
+{
+    "passed": true,
+    "prefabGuidsStable": true,
+    "activeSceneUnchanged": true,
+    "scope": "UI-02 imports/fonts/templates only; no playable-scene integration or gameplay verification",
+    "sprites": 20,
+    "fonts": 8,
+    "prefabs": 7,
+    "textureBytes": 251941208,
+    "fontAtlasBytes": 50347266,
+    "externalSharedDependencies": [
+        "Assets/Scripts/CompactCatchCardView.cs",
+        "Assets/Scripts/CreatureCardView.cs",
+        "Assets/Scripts/CreatureCardVisualProfile.cs",
+        "Assets/Scripts/TechniqueCardView.cs",
+        "Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader",
+        "Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Font Asset Icon.psd",
+        "Packages/com.unity.ugui/Editor Resources/Gizmos/TMP - Text Component Icon.psd",
+        "Packages/com.unity.ugui/Runtime/TMP/TextMeshProUGUI.cs",
+        "Packages/com.unity.ugui/Runtime/TMP/TMP_FontAsset.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Button.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/GraphicRaycaster.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Image.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/CanvasScaler.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/HorizontalLayoutGroup.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/VerticalLayoutGroup.cs",
+        "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/RectMask2D.cs"
+    ],
+    "failures": [],
+    "warnings": [
+        "Illustrated kelp source remains 1672 x 941 over native 4K paper; full-screen 4K review remains UI-08.",
+        "Thirty active card identities still have no selected new-theme illustration; no wrong-card fallback was assigned.",
+        "Central rarity/tag geometry, state presentation, projected input and scene integration remain later tasks."
+    ]
+}

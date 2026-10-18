@@ -13,7 +13,7 @@ public enum CompactCatchCardState
 }
 
 /// <summary>Displays one catch in the rig without reproducing the full creature rules face.</summary>
-public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
     private static readonly Color TitleColor = new Color(0.937f, 0.886f, 0.761f, 1f);
     private static readonly Color StatColor = new Color(0.082f, 0.239f, 0.239f, 1f);
@@ -26,21 +26,28 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     [SerializeField] private Image passiveEffectIcon;
     [SerializeField] private GameObject baitMarker;
     [SerializeField] private RectTransform rigAttachmentPoint;
+    [SerializeField] private Color titleInk = TitleColor;
+    [SerializeField] private Color statInk = StatColor;
+    [SerializeField] private bool uppercaseName = true;
+    [SerializeField] private TextAlignmentOptions titleAlignment = TextAlignmentOptions.Center;
+    [SerializeField] private Graphic baitFrame;
 
     [Header("Interaction")]
     [SerializeField] private Button selectionButton;
-    [SerializeField] private Image hoverFrame;
-    [SerializeField] private Image selectedFrame;
-    [SerializeField] private Image disabledOverlay;
-    [SerializeField] private Image releaseCandidateFrame;
+    [SerializeField] private Graphic hoverFrame;
+    [SerializeField] private Graphic selectedFrame;
+    [SerializeField] private Graphic disabledOverlay;
+    [SerializeField] private Graphic releaseCandidateFrame;
     [SerializeField] private CompactCatchCardState state;
 
     private Action selectionAction;
     private bool pointerInside;
+    private bool focused;
 
     public RectTransform RigAttachmentPoint => rigAttachmentPoint;
     public CompactCatchCardState State => state;
 
+    /// <summary>Registers the physical card's selection callback once.</summary>
     private void Awake()
     {
         if (selectionButton != null)
@@ -51,6 +58,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         ApplyState();
     }
 
+    /// <summary>Unregisters the callback when this card view is disposed.</summary>
     private void OnDestroy()
     {
         if (selectionButton != null)
@@ -64,7 +72,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     {
         CardDefinition definition = caughtInstance?.Definition;
         SetContent(
-            definition == null ? string.Empty : definition.DisplayName.ToUpperInvariant(),
+            definition == null ? string.Empty : uppercaseName ? definition.DisplayName.ToUpperInvariant() : definition.DisplayName,
             definition == null ? null : definition.Artwork,
             caughtInstance == null ? string.Empty : caughtInstance.CurrentWeight.ToString(),
             caughtInstance == null
@@ -85,13 +93,25 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         Sprite optionalPassiveIcon,
         bool isBait = false)
     {
-        SetContent(displayName, portrait, weight.ToString(), value.ToString(), optionalPassiveIcon, isBait);
+        SetContent(displayName, portrait, weight.ToString(), isBait ? "0" : value.ToString(), optionalPassiveIcon, isBait);
     }
 
     /// <summary>Assigns the controller-owned catch-selection command.</summary>
     public void SetSelectionHandler(Action action)
     {
         selectionAction = action;
+    }
+
+    /// <summary>Overrides only this view's portrait and framing, including an explicit empty missing-art slot.</summary>
+    public void SetArtwork(Sprite artwork, Rect normalizedBounds)
+    {
+        SetImage(portraitImage, artwork);
+        if (portraitImage == null) return;
+        RectTransform region = portraitImage.transform.parent as RectTransform;
+        if (region == null) return;
+        region.anchorMin = normalizedBounds.min;
+        region.anchorMax = normalizedBounds.max;
+        region.offsetMin = region.offsetMax = Vector2.zero;
     }
 
     /// <summary>Changes interaction feedback while preserving card content and geometry.</summary>
@@ -101,18 +121,30 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         ApplyState();
     }
 
+    /// <summary>Shows pointer feedback outside the card's content fields.</summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
         pointerInside = true;
         ApplyState();
     }
 
+    /// <summary>Clears pointer feedback without clearing keyboard focus.</summary>
     public void OnPointerExit(PointerEventData eventData)
     {
         pointerInside = false;
         ApplyState();
     }
 
+    /// <summary>Shows the same focus outline for keyboard or controller selection.</summary>
+    public void OnSelect(BaseEventData eventData) { focused = true; ApplyState(); }
+
+    /// <summary>Clears navigation focus without clearing pointer hover.</summary>
+    public void OnDeselect(BaseEventData eventData) { focused = false; ApplyState(); }
+
+    /// <summary>Clears transient input state when a pooled card is hidden.</summary>
+    private void OnDisable() { pointerInside = false; focused = false; ApplyState(); }
+
+    /// <summary>Assigns independent live fields and role styling.</summary>
     private void SetContent(
         string displayName,
         Sprite portrait,
@@ -129,6 +161,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         SetImage(passiveEffectIcon, passiveIcon);
         EnsureBaitMarker();
         baitMarker.SetActive(isBait);
+        SetVisible(baitFrame, isBait);
     }
 
     /// <summary>Creates a compact role badge for prefabs authored before Bait attachments existed.</summary>
@@ -198,23 +231,24 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     {
         if (nameText != null)
         {
-            nameText.alignment = TextAlignmentOptions.Center;
-            nameText.color = TitleColor;
+            nameText.alignment = titleAlignment;
+            nameText.color = titleInk;
         }
 
         if (weightText != null)
         {
             weightText.alignment = TextAlignmentOptions.Center;
-            weightText.color = StatColor;
+            weightText.color = statInk;
         }
 
         if (valueText != null)
         {
             valueText.alignment = TextAlignmentOptions.Center;
-            valueText.color = StatColor;
+            valueText.color = statInk;
         }
     }
 
+    /// <summary>Updates only independent feedback overlays and selection availability.</summary>
     private void ApplyState()
     {
         bool disabled = state == CompactCatchCardState.Disabled;
@@ -223,17 +257,19 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
             selectionButton.interactable = !disabled;
         }
 
-        SetVisible(hoverFrame, pointerInside && !disabled);
+        SetVisible(hoverFrame, (pointerInside || focused) && !disabled);
         SetVisible(selectedFrame, state == CompactCatchCardState.Selected);
         SetVisible(disabledOverlay, disabled);
         SetVisible(releaseCandidateFrame, state == CompactCatchCardState.ReleaseCandidate);
     }
 
+    /// <summary>Forwards enabled input; the controller remains authoritative about action legality.</summary>
     private void InvokeSelection()
     {
-        selectionAction?.Invoke();
+        if (state != CompactCatchCardState.Disabled) selectionAction?.Invoke();
     }
 
+    /// <summary>Assigns text without retaining an earlier pooled value.</summary>
     private static void SetText(TMP_Text text, string value)
     {
         if (text != null)
@@ -242,6 +278,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         }
     }
 
+    /// <summary>Hides missing art rather than retaining another card's portrait.</summary>
     private static void SetImage(Image image, Sprite sprite)
     {
         if (image == null)
@@ -253,7 +290,8 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         image.enabled = sprite != null;
     }
 
-    private static void SetVisible(Image image, bool visible)
+    /// <summary>Toggles an independent presentation layer.</summary>
+    private static void SetVisible(Graphic image, bool visible)
     {
         if (image != null)
         {

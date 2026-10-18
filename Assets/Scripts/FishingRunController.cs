@@ -109,6 +109,7 @@ public sealed class FishingRunController : MonoBehaviour
     public bool HasPendingCreatureChoice => PendingCreatureChoice != CreatureEffectChoiceKind.None;
 
     private bool CoreActionInputReady => runActive && !EventActionInputLocked && !HasPendingTechniqueSelection
+        && (fishingRunView == null || !fishingRunView.IsEncounterTransitionPlaying)
         && !techniqueEffectInProgress && techniqueDeckRuntime.ResolvingCard == null && string.IsNullOrEmpty(techniquePlayFailure)
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueRefillPending
         && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
@@ -174,6 +175,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (fishingRunView != null)
         {
             fishingRunView.SurfaceTransitionCompleted += HandleSurfaceTransitionCompleted;
+            fishingRunView.EncounterTransitionCompleted += HandleEncounterTransitionCompleted;
             fishingRunView.EncounterEffectChoiceChanged += HandleEncounterEffectChoiceChanged;
         }
 
@@ -199,6 +201,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (fishingRunView != null)
         {
             fishingRunView.SurfaceTransitionCompleted -= HandleSurfaceTransitionCompleted;
+            fishingRunView.EncounterTransitionCompleted -= HandleEncounterTransitionCompleted;
             fishingRunView.EncounterEffectChoiceChanged -= HandleEncounterEffectChoiceChanged;
         }
     }
@@ -218,6 +221,9 @@ public sealed class FishingRunController : MonoBehaviour
         ClearEndedRunState();
         RefreshViews();
     }
+
+    /// <summary>Restores controller-owned action and Technique availability after encounter motion finishes.</summary>
+    private void HandleEncounterTransitionCompleted() { RefreshViews(); }
 
     /// <summary>
     /// Initializes capacity, runtime systems, biome, depth, and the first encounter.
@@ -393,6 +399,9 @@ public sealed class FishingRunController : MonoBehaviour
     public bool CanUseTechniqueCard(int handIndex, out string restrictionReason)
     {
         restrictionReason = string.Empty;
+
+        if (fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying)
+        { restrictionReason = "Wait for the encounter transition"; return false; }
 
         if (!runActive)
         {
@@ -2132,6 +2141,14 @@ public sealed class FishingRunController : MonoBehaviour
                 resolvedEncounterValue = previewRole == CatchAttachmentRole.Bait ? 0 : currentEncounter.Value;
             }
 
+            int currentHaulValue = 0;
+            bool hideCurrentHaulValue = false;
+            foreach (CardInstance attachment in DisplayedCatches)
+            {
+                if (attachment == null) continue;
+                currentHaulValue += attachment.HaulValueContribution;
+                hideCurrentHaulValue |= runActive && !attachment.IsBait && attachment.HidesOwnValueDuringRun;
+            }
             fishingRunView.Refresh(
                 runActive,
                 currentBiome,
@@ -2150,7 +2167,8 @@ public sealed class FishingRunController : MonoBehaviour
                 TryDescend,
                 TryReleaseSelectedCatch,
                 TrySurface,
-                CurrentEncounterIdentityHidden);
+                CurrentEncounterIdentityHidden,
+                hideCurrentHaulValue ? (int?)null : currentHaulValue);
             fishingRunView.SetTrailPreview(runActive ? encounterRuntime.Trail.Preview : string.Empty);
         }
 
@@ -2171,7 +2189,7 @@ public sealed class FishingRunController : MonoBehaviour
                 restrictionReasons,
                 techniqueDeckRuntime.DrawPile.Length,
                 techniqueDeckRuntime.DiscardPile.Length,
-                TryUseTechniqueCard);
+                TryUseTechniqueCard, techniqueDeckRuntime.HandVersion);
         }
 
         if (runResultView != null)

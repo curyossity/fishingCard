@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "protectedFilesChecked": 804,
+  "unchangedProtectedFiles": 795,
+  "expectedSharedExtensionsSinceUI02": [
+    "Assets/Scripts/CatchChainView.cs",
+    "Assets/Scripts/CompactCatchCardView.cs",
+    "Assets/Scripts/CreatureCardView.cs",
+    "Assets/Scripts/CreatureCardVisualProfile.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/Scripts/RunResultView.cs",
+    "Assets/Scripts/TechniqueCardView.cs",
+    "Assets/Scripts/TechniqueHandView.cs"
+  ],
+  "unexpectedChanges": [],
+  "originalSceneAndBuildSettingsUnchanged": true,
+  "originalPrefabsImagesFontsAndCardDataUnchangedFromBaseline": true,
+  "selectedImages": [
+    {
+      "id": "PaperBackground4K",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "Background",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CreatureTemplate",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "EventTemplate",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "DescendButton",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SurfaceButton",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadEmpty",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadFilled",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "LoadDanger",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CatchFrameV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SardineV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CrabV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "MinnowV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "BrassConnectorV3",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "CutLooseV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SlipPastV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "SteadyLineV2",
+      "sourceBytesUnchanged": true
+    },
+    {
+      "id": "PrizeHookV2",
+      "sourceBytesUnchanged": true
+    }
+  ],
+  "sceneValidation": {
+    "passed": true,
+    "sceneFilesUnchanged": true,
+    "assertions": 18,
+    "scope": "Saved comparison scene; original setup and isolated view bindings"
+  },
+  "playModeValidation": {
+    "passed": true,
+    "sceneFilesUnchanged": true,
+    "assertions": 77,
+    "scope": "Actual scene/controller, targeted runtime fixtures, scene reload and real short run through Surface/results/restart"
+  },
+  "regeneration": {
+    "passed": true,
+    "sceneFileUnchangedByPrefabRegeneration": true,
+    "sceneGuidPreserved": true,
+    "sceneGuid": "07ac53b9ba280c348a28e9508855a88b",
+    "bindingsAfterPrefabRegeneration": "Validated"
+  },
+  "captures": [
+    {
+      "path": "UI07Gameplay4K.png",
+      "width": 3840,
+      "height": 2160,
+      "native4K": true
+    },
+    {
+      "path": "UI07Choice4K.png",
+      "width": 3840,
+      "height": 2160,
+      "native4K": true
+    },
+    {
+      "path": "UI07Results4K.png",
+      "width": 3840,
+      "height": 2160,
+      "native4K": true
+    }
+  ],
+  "regressions": {
+    "HUDComponent": 18,
+    "eventPresentationRules": 20,
+    "coastalEventRules": 57,
+    "approvedTechniqueRules": 38,
+    "sharedTechniqueRules": 47,
+    "totalRuntimeAssertions": 162
+  },
+  "dependencyBoundary": "Candidate scene has no legacy UI prefab. Shared CardDefinition/Biome data still retains legacy artwork references; full retirement classification remains UI08.",
+  "scope": "Playable isolated comparison scene. Final visual/aspect/input stress, player performance/memory and build smoke remain UI08."
+}

@@ -1,0 +1,2145 @@
+fileFormatVersion: 2
+guid: 0edcf4df21fd77e469eac90017c70c3f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7615072905879705274
+    second: SlipPast_0
+  - first:
+      213: 8622594556269983382
+    second: SlipPast_1
+  - first:
+      213: -6679872294751064164
+    second: SlipPast_2
+  - first:
+      213: -8694643602825301069
+    second: SlipPast_3
+  - first:
+      213: 5824551106795074041
+    second: SlipPast_4
+  - first:
+      213: -3540975203651190254
+    second: SlipPast_5
+  - first:
+      213: 8722364385545830718
+    second: SlipPast_6
+  - first:
+      213: 3547459646183244724
+    second: SlipPast_7
+  - first:
+      213: -4223135251021859146
+    second: SlipPast_8
+  - first:
+      213: -1940593056423513578
+    second: SlipPast_9
+  - first:
+      213: 2351051332559665574
+    second: SlipPast_10
+  - first:
+      213: -5647217863834809651
+    second: SlipPast_11
+  - first:
+      213: -5830026317409509128
+    second: SlipPast_12
+  - first:
+      213: -1754016096056128216
+    second: SlipPast_13
+  - first:
+      213: 6444609652714678046
+    second: SlipPast_14
+  - first:
+      213: 6670591836038079173
+    second: SlipPast_15
+  - first:
+      213: 1664246077428884030
+    second: SlipPast_16
+  - first:
+      213: -72327050142005851
+    second: SlipPast_17
+  - first:
+      213: 7299259269359463824
+    second: SlipPast_18
+  - first:
+      213: -1872613826630193336
+    second: SlipPast_19
+  - first:
+      213: -4022891286504404606
+    second: SlipPast_20
+  - first:
+      213: -6501021626121391049
+    second: SlipPast_21
+  - first:
+      213: 2115094042389107936
+    second: SlipPast_22
+  - first:
+      213: 7964875792125018793
+    second: SlipPast_23
+  - first:
+      213: 3165049035672304073
+    second: SlipPast_24
+  - first:
+      213: 3724766081227494229
+    second: SlipPast_25
+  - first:
+      213: -7658190459491652675
+    second: SlipPast_26
+  - first:
+      213: 7049758161584876870
+    second: SlipPast_27
+  - first:
+      213: -7039055966791427947
+    second: SlipPast_28
+  - first:
+      213: -4416590144929700261
+    second: SlipPast_29
+  - first:
+      213: 2191216193022185458
+    second: SlipPast_30
+  - first:
+      213: 9145007499263090210
+    second: SlipPast_31
+  - first:
+      213: 8712515688812807917
+    second: SlipPast_32
+  - first:
+      213: -7777878953379824768
+    second: SlipPast_33
+  - first:
+      213: -8178441039022742898
+    second: SlipPast_34
+  - first:
+      213: -5821692266440352658
+    second: SlipPast_35
+  - first:
+      213: 2276410898935587557
+    second: SlipPast_36
+  - first:
+      213: 2785758991801086107
+    second: SlipPast_37
+  - first:
+      213: 638036214519560550
+    second: SlipPast_38
+  - first:
+      213: 1095208015044398068
+    second: SlipPast_39
+  - first:
+      213: -109621974032967353
+    second: SlipPast_40
+  - first:
+      213: -2576713598721577293
+    second: SlipPast_41
+  - first:
+      213: -2948357134056561329
+    second: SlipPast_42
+  - first:
+      213: 6731909701523537768
+    second: SlipPast_43
+  - first:
+      213: 5317228956199505393
+    second: SlipPast_44
+  - first:
+      213: 6045113299662600313
+    second: SlipPast_45
+  - first:
+      213: 996047347157950346
+    second: SlipPast_46
+  - first:
+      213: 6921859818799437173
+    second: SlipPast_47
+  - first:
+      213: 8184779707738129767
+    second: SlipPast_48
+  - first:
+      213: -2139075915831989185
+    second: SlipPast_49
+  - first:
+      213: 857763124071710248
+    second: SlipPast_50
+  - first:
+      213: 1150588869772192763
+    second: SlipPast_51
+  - first:
+      213: -5740906072515303176
+    second: SlipPast_52
+  - first:
+      213: 8191199319175108038
+    second: SlipPast_53
+  - first:
+      213: -6860486339608940662
+    second: SlipPast_54
+  - first:
+      213: 963242792367132259
+    second: SlipPast_55
+  - first:
+      213: 5747866152722349403
+    second: SlipPast_56
+  - first:
+      213: 4182208242687782251
+    second: SlipPast_57
+  - first:
+      213: 8389930016860668410
+    second: SlipPast_58
+  - first:
+      213: 3174615332915197090
+    second: SlipPast_59
+  - first:
+      213: -8828435070469069045
+    second: SlipPast_60
+  - first:
+      213: 2575384134917503793
+    second: SlipPast_61
+  - first:
+      213: 2060451803907051988
+    second: SlipPast_62
+  - first:
+      213: -8506524605767363145
+    second: SlipPast_63
+  - first:
+      213: 6637900506275134225
+    second: SlipPast_64
+  - first:
+      213: 365359792828618652
+    second: SlipPast_65
+  - first:
+      213: 1880461325980059316
+    second: SlipPast_66
+  - first:
+      213: -6909341832524111690
+    second: SlipPast_67
+  - first:
+      213: -6398481049781794203
+    second: SlipPast_68
+  - first:
+      213: 3569502229862366982
+    second: SlipPast_69
+  - first:
+      213: 5949474624752534986
+    second: SlipPast_70
+  - first:
+      213: -2234454923120805618
+    second: SlipPast_71
+  - first:
+      213: -6070192089710725048
+    second: SlipPast_72
+  - first:
+      213: -3686399497084117936
+    second: SlipPast_73
+  - first:
+      213: -5628750233667537187
+    second: SlipPast_74
+  - first:
+      213: 6005640907586514922
+    second: SlipPast_75
+  - first:
+      213: 4446333455171947027
+    second: SlipPast_76
+  - first:
+      213: -6411103314971773107
+    second: SlipPast_77
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SlipPast_0
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 884
+        width: 91
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab659a5267c2ea960800000000000000
+      internalID: 7615072905879705274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_1
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 919
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69670b0801c99a770800000000000000
+      internalID: 8622594556269983382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_2
+      rect:
+        serializedVersion: 2
+        x: 797
+        y: 889
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9fa3661a835c43a0800000000000000
+      internalID: -6679872294751064164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_3
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 925
+        width: 9
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b3b9fc95bb665780800000000000000
+      internalID: -8694643602825301069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_4
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 925
+        width: 97
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f1f0a03f56f4d050800000000000000
+      internalID: 5824551106795074041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_5
+      rect:
+        serializedVersion: 2
+        x: 1473
+        y: 882
+        width: 86
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21287eb20ddebdec0800000000000000
+      internalID: -3540975203651190254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_6
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 931
+        width: 10
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e314af112301c0970800000000000000
+      internalID: 8722364385545830718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1681
+        height: 929
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b309c1c0cb1b3130800000000000000
+      internalID: 3547459646183244724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 828
+        width: 103
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b679644dd86465c0800000000000000
+      internalID: -4223135251021859146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_9
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 864
+        width: 71
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 612794a95e0a115e0800000000000000
+      internalID: -1940593056423513578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_10
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 895
+        width: 58
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a97de50bbc90a020800000000000000
+      internalID: 2351051332559665574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_11
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 919
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcac2e8e54d01a1b0800000000000000
+      internalID: -5647217863834809651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_12
+      rect:
+        serializedVersion: 2
+        x: 784
+        y: 905
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f0a0aff3f5971fa0800000000000000
+      internalID: -5830026317409509128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_13
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 903
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82dc14067ab78a7e0800000000000000
+      internalID: -1754016096056128216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_14
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 911
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17ac1a855adf6950800000000000000
+      internalID: 6444609652714678046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_15
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 901
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c2abacbee3b29c50800000000000000
+      internalID: 6670591836038079173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_16
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 862
+        width: 23
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e326cf76df6981710800000000000000
+      internalID: 1664246077428884030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_17
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 887
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a542ac5eea0ffef0800000000000000
+      internalID: -72327050142005851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_18
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 901
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09de5a1e1ad2c4560800000000000000
+      internalID: 7299259269359463824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_19
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 840
+        width: 73
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84fe83e65a32306e0800000000000000
+      internalID: -1872613826630193336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 907
+        width: 12
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28904e960b1db28c0800000000000000
+      internalID: -4022891286504404606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 893
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 734f6e1664bb7c5a0800000000000000
+      internalID: -6501021626121391049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_22
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 889
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e4d52743d25a5d10800000000000000
+      internalID: 2115094042389107936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_23
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 856
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a248bd455ce88e60800000000000000
+      internalID: 7964875792125018793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_24
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 882
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9b0fb24538ceb20800000000000000
+      internalID: 3165049035672304073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_25
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 889
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5531df6240701b330800000000000000
+      internalID: 3724766081227494229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_26
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 856
+        width: 33
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbe6b71a54a8b590800000000000000
+      internalID: -7658190459491652675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_27
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 886
+        width: 25
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d6dad52b5c5d160800000000000000
+      internalID: 7049758161584876870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_28
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 891
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5989d4984ef305e90800000000000000
+      internalID: -7039055966791427947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_29
+      rect:
+        serializedVersion: 2
+        x: 637
+        y: 893
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5669fcc9ae15b2c0800000000000000
+      internalID: -4416590144929700261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_30
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 896
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ffcb2b9483c86e10800000000000000
+      internalID: 2191216193022185458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_31
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 884
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e1cd54ed799ee70800000000000000
+      internalID: 9145007499263090210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_32
+      rect:
+        serializedVersion: 2
+        x: 732
+        y: 882
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de684bbabd219e870800000000000000
+      internalID: 8712515688812807917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_33
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 889
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08bfec50d4c6f0490800000000000000
+      internalID: -7777878953379824768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_34
+      rect:
+        serializedVersion: 2
+        x: 1559
+        y: 882
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e82a29cc437508e80800000000000000
+      internalID: -8178441039022742898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_35
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 876
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6c1f237ab1353fa0800000000000000
+      internalID: -5821692266440352658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_36
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 854
+        width: 20
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e222e1d6af679f10800000000000000
+      internalID: 2276410898935587557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_37
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 870
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9077202b0109a620800000000000000
+      internalID: 2785758991801086107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_38
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 858
+        width: 47
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 669f5408e82cad800800000000000000
+      internalID: 638036214519560550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_39
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 871
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fbc1e313e5f23f00800000000000000
+      internalID: 1095208015044398068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_40
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 856
+        width: 15
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 749103a356b8a7ef0800000000000000
+      internalID: -109621974032967353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_41
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 786
+        width: 5
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be284c42acad3cd0800000000000000
+      internalID: -2576713598721577293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 764
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f45e191cec45517d0800000000000000
+      internalID: -2948357134056561329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_43
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 763
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86ff053d43c8c6d50800000000000000
+      internalID: 6731909701523537768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 655
+        width: 5
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fd41b350979ac940800000000000000
+      internalID: 5317228956199505393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_45
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 732
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 978f065848e84e350800000000000000
+      internalID: 6045113299662600313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_46
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 273
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8fd1d2f8cba2dd00800000000000000
+      internalID: 996047347157950346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_47
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 147
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5751794e4d26f0060800000000000000
+      internalID: 6921859818799437173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_48
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 11
+        width: 119
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7658e8487cd269170800000000000000
+      internalID: 8184779707738129767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_49
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 21
+        width: 33
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3cad31b9c97052e0800000000000000
+      internalID: -2139075915831989185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_50
+      rect:
+        serializedVersion: 2
+        x: 410
+        y: 25
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e39b7440367eb00800000000000000
+      internalID: 857763124071710248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_51
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 7
+        width: 55
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb2a412b76b7ff00800000000000000
+      internalID: 1150588869772192763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_52
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 11
+        width: 37
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f8a7daf7543450b0800000000000000
+      internalID: -5740906072515303176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_53
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 21
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c59ad7c16cfca170800000000000000
+      internalID: 8191199319175108038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_54
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 22
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8f6035c508aac0a0800000000000000
+      internalID: -6860486339608940662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_55
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 31
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36e8f7757302e5d00800000000000000
+      internalID: 963242792367132259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_56
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 13
+        width: 62
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5db189ffc584cf40800000000000000
+      internalID: 5747866152722349403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_57
+      rect:
+        serializedVersion: 2
+        x: 734
+        y: 27
+        width: 16
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6dad1a0d303a0a30800000000000000
+      internalID: 4182208242687782251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_58
+      rect:
+        serializedVersion: 2
+        x: 790
+        y: 23
+        width: 15
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af10e5906e40f6470800000000000000
+      internalID: 8389930016860668410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_59
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 21
+        width: 10
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a43be053df7e0c20800000000000000
+      internalID: 3174615332915197090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_60
+      rect:
+        serializedVersion: 2
+        x: 1017
+        y: 31
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07271614191b7580800000000000000
+      internalID: -8828435070469069045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_61
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 13
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13b3fe9c93a9db320800000000000000
+      internalID: 2575384134917503793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_62
+      rect:
+        serializedVersion: 2
+        x: 1089
+        y: 27
+        width: 11
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d151b8bff1389c10800000000000000
+      internalID: 2060451803907051988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_63
+      rect:
+        serializedVersion: 2
+        x: 1137
+        y: 19
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b5dd18c0f0c2f980800000000000000
+      internalID: -8506524605767363145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_64
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 17
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11b3ae2675f8e1c50800000000000000
+      internalID: 6637900506275134225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_65
+      rect:
+        serializedVersion: 2
+        x: 1209
+        y: 31
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9792cabbc4021500800000000000000
+      internalID: 365359792828618652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_66
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 11
+        width: 31
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6c6e4ec9db81a10800000000000000
+      internalID: 1880461325980059316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_67
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 5
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b067a8e5361d10a0800000000000000
+      internalID: -6909341832524111690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_68
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 17
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56a00b5c2670437a0800000000000000
+      internalID: -6398481049781794203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_69
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 0
+        width: 29
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60f39e3bd5b698130800000000000000
+      internalID: 3569502229862366982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_70
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 15
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac5439846a7c09250800000000000000
+      internalID: 5949474624752534986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_71
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 12
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e09f2c8061f9df0e0800000000000000
+      internalID: -2234454923120805618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_72
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 21
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 848f766a47852cba0800000000000000
+      internalID: -6070192089710725048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_73
+      rect:
+        serializedVersion: 2
+        x: 1131
+        y: 17
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05c5f14503747dcc0800000000000000
+      internalID: -3686399497084117936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_74
+      rect:
+        serializedVersion: 2
+        x: 1187
+        y: 11
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd679d02c79a2e1b0800000000000000
+      internalID: -5628750233667537187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_75
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 0
+        width: 156
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aefaf311692585350800000000000000
+      internalID: 6005640907586514922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_76
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 8
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31a857448bc84bd30800000000000000
+      internalID: 4446333455171947027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SlipPast_77
+      rect:
+        serializedVersion: 2
+        x: 1083
+        y: 7
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4737c4a08f2707a0800000000000000
+      internalID: -6411103314971773107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SlipPast_0: 7615072905879705274
+      SlipPast_1: 8622594556269983382
+      SlipPast_10: 2351051332559665574
+      SlipPast_11: -5647217863834809651
+      SlipPast_12: -5830026317409509128
+      SlipPast_13: -1754016096056128216
+      SlipPast_14: 6444609652714678046
+      SlipPast_15: 6670591836038079173
+      SlipPast_16: 1664246077428884030
+      SlipPast_17: -72327050142005851
+      SlipPast_18: 7299259269359463824
+      SlipPast_19: -1872613826630193336
+      SlipPast_2: -6679872294751064164
+      SlipPast_20: -4022891286504404606
+      SlipPast_21: -6501021626121391049
+      SlipPast_22: 2115094042389107936
+      SlipPast_23: 7964875792125018793
+      SlipPast_24: 3165049035672304073
+      SlipPast_25: 3724766081227494229
+      SlipPast_26: -7658190459491652675
+      SlipPast_27: 7049758161584876870
+      SlipPast_28: -7039055966791427947
+      SlipPast_29: -4416590144929700261
+      SlipPast_3: -8694643602825301069
+      SlipPast_30: 2191216193022185458
+      SlipPast_31: 9145007499263090210
+      SlipPast_32: 8712515688812807917
+      SlipPast_33: -7777878953379824768
+      SlipPast_34: -8178441039022742898
+      SlipPast_35: -5821692266440352658
+      SlipPast_36: 2276410898935587557
+      SlipPast_37: 2785758991801086107
+      SlipPast_38: 638036214519560550
+      SlipPast_39: 1095208015044398068
+      SlipPast_4: 5824551106795074041
+      SlipPast_40: -109621974032967353
+      SlipPast_41: -2576713598721577293
+      SlipPast_42: -2948357134056561329
+      SlipPast_43: 6731909701523537768
+      SlipPast_44: 5317228956199505393
+      SlipPast_45: 6045113299662600313
+      SlipPast_46: 996047347157950346
+      SlipPast_47: 6921859818799437173
+      SlipPast_48: 8184779707738129767
+      SlipPast_49: -2139075915831989185
+      SlipPast_5: -3540975203651190254
+      SlipPast_50: 857763124071710248
+      SlipPast_51: 1150588869772192763
+      SlipPast_52: -5740906072515303176
+      SlipPast_53: 8191199319175108038
+      SlipPast_54: -6860486339608940662
+      SlipPast_55: 963242792367132259
+      SlipPast_56: 5747866152722349403
+      SlipPast_57: 4182208242687782251
+      SlipPast_58: 8389930016860668410
+      SlipPast_59: 3174615332915197090
+      SlipPast_6: 8722364385545830718
+      SlipPast_60: -8828435070469069045
+      SlipPast_61: 2575384134917503793
+      SlipPast_62: 2060451803907051988
+      SlipPast_63: -8506524605767363145
+      SlipPast_64: 6637900506275134225
+      SlipPast_65: 365359792828618652
+      SlipPast_66: 1880461325980059316
+      SlipPast_67: -6909341832524111690
+      SlipPast_68: -6398481049781794203
+      SlipPast_69: 3569502229862366982
+      SlipPast_7: 3547459646183244724
+      SlipPast_70: 5949474624752534986
+      SlipPast_71: -2234454923120805618
+      SlipPast_72: -6070192089710725048
+      SlipPast_73: -3686399497084117936
+      SlipPast_74: -5628750233667537187
+      SlipPast_75: 6005640907586514922
+      SlipPast_76: 4446333455171947027
+      SlipPast_77: -6411103314971773107
+      SlipPast_8: -4223135251021859146
+      SlipPast_9: -1940593056423513578
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

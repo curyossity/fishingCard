@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public sealed class RunResultView : MonoBehaviour
 {
+    [SerializeField] private RunResultPresentation presentation;
     private static readonly Color BackdropColor = new Color(0.015f, 0.025f, 0.03f, 0.94f);
     private static readonly Color PanelColor = new Color(0.055f, 0.075f, 0.08f, 1f);
     private static readonly Color GoldColor = new Color(0.96f, 0.73f, 0.24f, 1f);
@@ -36,6 +37,7 @@ public sealed class RunResultView : MonoBehaviour
     /// </summary>
     private void Awake()
     {
+        if (presentation != null) { presentation.Hide(); return; }
         EnsureLayout();
         backdropRoot.gameObject.SetActive(false);
     }
@@ -56,6 +58,12 @@ public sealed class RunResultView : MonoBehaviour
         Func<bool> unlockTechniqueAction,
         Action startNextRunAction)
     {
+        if (presentation != null)
+        {
+            presentation.Refresh(runActive, result, totalGold, progression, canPurchaseUpgrade, upgradeRestrictionReason,
+                canUnlockTechnique, techniqueRestrictionReason, purchaseUpgradeAction, unlockTechniqueAction, startNextRunAction);
+            return;
+        }
         EnsureLayout();
         this.purchaseUpgradeAction = purchaseUpgradeAction;
         this.unlockTechniqueAction = unlockTechniqueAction;
