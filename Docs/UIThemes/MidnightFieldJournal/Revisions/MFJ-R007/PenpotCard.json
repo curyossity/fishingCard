@@ -1,0 +1,280 @@
+{
+  "result": {
+    "revision": "MFJ-R007",
+    "name": "Lionfish",
+    "slug": "Lionfish",
+    "id": "creature_lionfish",
+    "weight": 2,
+    "value": 30,
+    "rarity": "Rare",
+    "tags": [
+      "Fish",
+      "Predator",
+      "Armored"
+    ],
+    "depth": {
+      "min": 10,
+      "max": 20
+    },
+    "catchEffect": {
+      "name": "Venomous Spines",
+      "description": "Whenever you release another creature, this Catch loses 5 value."
+    },
+    "baitEffect": {
+      "name": "Venomous Lure",
+      "description": "After catching a Predator, you may release another Small creature."
+    },
+    "x": 8500,
+    "y": 3200,
+    "artName": "LionfishEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Lionfish.asset",
+    "authoredSha256": "017afc16bff4a1d06f15b23a957c46ea1a8b2a858ff4dd479936f5b3c2df3ca2",
+    "sourceId": "bae680cd-9225-8018-8008-cf1b7b811284",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf1b7b9c8773",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf1b7c5effd8",
+    "cardId": "bae680cd-9225-8018-8008-cf1b7bc27fec",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf1b7bc27ff0",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false,
+    "verified": true,
+    "checks": {
+      "name": true,
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "tags": true,
+      "twoImages": true,
+      "frameReused": true,
+      "templateRetained": true,
+      "CatchName": true,
+      "CatchDescription": true,
+      "BaitName": true,
+      "BaitDescription": true
+    },
+    "editableTextFields": 14,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27fed",
+        "name": "Static / engraved parchment, marine stage and neutral effect panels",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27fee",
+        "name": "Dynamic / creature type",
+        "type": "text",
+        "text": "C R E A T U R E",
+        "x": 468,
+        "y": 70,
+        "w": 324,
+        "h": 38,
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27fef",
+        "name": "Dynamic / creature name",
+        "type": "text",
+        "text": "LIONFISH",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff0",
+        "name": "Dynamic / engraved Lionfish illustration",
+        "type": "rectangle",
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.3110047846894
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff1",
+        "name": "Dynamic / creature tags",
+        "type": "text",
+        "text": "FISH  ·  PREDATOR  ·  ARMORED",
+        "x": 250,
+        "y": 752,
+        "w": 760,
+        "h": 34,
+        "fontSize": "22"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff2",
+        "name": "Static / Weight label",
+        "type": "text",
+        "text": "WEIGHT",
+        "x": 130,
+        "y": 805,
+        "w": 175,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff3",
+        "name": "Dynamic / effective Weight",
+        "type": "text",
+        "text": "2",
+        "x": 304,
+        "y": 786,
+        "w": 133,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff4",
+        "name": "Static / Value label",
+        "type": "text",
+        "text": "VALUE",
+        "x": 506,
+        "y": 805,
+        "w": 134,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff5",
+        "name": "Dynamic / sale Value",
+        "type": "text",
+        "text": "30",
+        "x": 634,
+        "y": 786,
+        "w": 115,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff6",
+        "name": "Dynamic / Rare rarity diamond",
+        "type": "group",
+        "x": 803,
+        "y": 807,
+        "w": 31,
+        "h": 31
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff7",
+        "name": "Dynamic / rarity name",
+        "type": "text",
+        "text": "RARE",
+        "x": 851,
+        "y": 805,
+        "w": 300,
+        "h": 42,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff8",
+        "name": "Dynamic / selected Catch glow — not hover",
+        "type": "rectangle",
+        "x": 82,
+        "y": 882,
+        "w": 545,
+        "h": 427
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ff9",
+        "name": "Static / Catch hook icon",
+        "type": "group",
+        "x": 109,
+        "y": 906,
+        "w": 45,
+        "h": 65
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ffa",
+        "name": "Static / Catch role label",
+        "type": "text",
+        "text": "C A T C H",
+        "x": 181,
+        "y": 916,
+        "w": 342,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ffb",
+        "name": "Static / Bait twin-spark icon",
+        "type": "group",
+        "x": 676,
+        "y": 915,
+        "w": 65,
+        "h": 52
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ffc",
+        "name": "Static / Bait role label",
+        "type": "text",
+        "text": "B A I T",
+        "x": 780,
+        "y": 916,
+        "w": 300,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ffd",
+        "name": "Dynamic / Catch effect name",
+        "type": "text",
+        "text": "Venomous Spines",
+        "x": 120,
+        "y": 1021,
+        "w": 460,
+        "h": 70,
+        "fontSize": "42"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27ffe",
+        "name": "Dynamic / Catch effect text",
+        "type": "text",
+        "text": "Whenever you release another creature, this Catch loses 5 value.",
+        "x": 180,
+        "y": 1108,
+        "w": 370,
+        "h": 180,
+        "fontSize": "34"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc27fff",
+        "name": "Dynamic / Bait effect name",
+        "type": "text",
+        "text": "Venomous Lure",
+        "x": 690,
+        "y": 1021,
+        "w": 450,
+        "h": 70,
+        "fontSize": "42"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7bc24000",
+        "name": "Dynamic / Bait effect text",
+        "type": "text",
+        "text": "After catching a Predator, you may release another Small creature.",
+        "x": 701,
+        "y": 1108,
+        "w": 414,
+        "h": 180,
+        "fontSize": "32"
+      }
+    ]
+  },
+  "log": ""
+}

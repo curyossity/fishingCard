@@ -1,0 +1,54 @@
+{
+  "result": {
+    "revision": "MFJ-R010",
+    "name": "Mussel",
+    "slug": "Mussel",
+    "id": "creature_mussel",
+    "weight": 1,
+    "value": 6,
+    "rarity": "Common",
+    "tags": [
+      "Small",
+      "Armored",
+      "Anchored"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 12
+    },
+    "catchEffect": {
+      "name": "Shell Growth",
+      "description": "This Catch gains 2 value each time you catch another Armored creature."
+    },
+    "baitEffect": {
+      "name": "Shelter Shell",
+      "description": "Cancel the next Hazard while this remains Bait."
+    },
+    "x": 15100,
+    "y": 3200,
+    "artName": "MusselEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Mussel.asset",
+    "authoredSha256": "cc290f14043b530a9627ef58a15bdf5ea81e6d791ba0fe411192448a7736dc30",
+    "sourceId": "bae680cd-9225-8018-8008-cf1c1919937a",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf1c19384688",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf1c19b520b8",
+    "cardId": "bae680cd-9225-8018-8008-cf1c195af813",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf1c195af817",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}

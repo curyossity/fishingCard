@@ -1,0 +1,53 @@
+{
+  "result": {
+    "revision": "MFJ-R013",
+    "name": "Clinging Crab",
+    "slug": "ClingingCrab",
+    "id": "creature_clinging_crab",
+    "weight": 2,
+    "value": 14,
+    "rarity": "Uncommon",
+    "tags": [
+      "Anchored",
+      "Armored"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 12
+    },
+    "catchEffect": {
+      "name": "Iron Grip",
+      "description": "Cannot be deliberately released."
+    },
+    "baitEffect": {
+      "name": "Claw Cut",
+      "description": "Instantly release another card from the Catch Chain."
+    },
+    "x": 10700,
+    "y": 6400,
+    "artName": "ClingingCrabEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Clinging Crab.asset",
+    "authoredSha256": "ea96cde441ac219f8dbe15837277de83803bcf1dfb071e46daf7e35b2f27daf1",
+    "sourceId": "bae680cd-9225-8018-8008-cf348118f616",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf3481346f34",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf34819ae5c4",
+    "cardId": "bae680cd-9225-8018-8008-cf34814be801",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf34814be805",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}

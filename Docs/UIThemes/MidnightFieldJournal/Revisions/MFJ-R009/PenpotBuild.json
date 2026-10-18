@@ -1,0 +1,54 @@
+{
+  "result": {
+    "revision": "MFJ-R009",
+    "name": "Moonlit Ray",
+    "slug": "MoonlitRay",
+    "id": "creature_moonlit_ray",
+    "weight": 3,
+    "value": 24,
+    "rarity": "Rare",
+    "tags": [
+      "Fish",
+      "Predator",
+      "Elusive"
+    ],
+    "depth": {
+      "min": 9,
+      "max": 20
+    },
+    "catchEffect": {
+      "name": "Graceful Glide",
+      "description": "This Catch weighs 1 less while any Elusive Bait is attached."
+    },
+    "baitEffect": {
+      "name": "Moonlit Reflection",
+      "description": "After releasing an Elusive Catch, add its value to another Catch."
+    },
+    "x": 12900,
+    "y": 3200,
+    "artName": "MoonlitRayEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Moonlit Ray.asset",
+    "authoredSha256": "13d675ef6d1662313500ffa5643af3c5038d2181fa22490cc17aace085c94d2f",
+    "sourceId": "bae680cd-9225-8018-8008-cf1bf61354dc",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf1bf62e7a36",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf1bf69ba01a",
+    "cardId": "bae680cd-9225-8018-8008-cf1bf647bdf1",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf1bf647bdf5",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}

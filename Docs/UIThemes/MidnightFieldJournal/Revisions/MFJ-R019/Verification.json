@@ -1,0 +1,24 @@
+{
+  "revision": "MFJ-R019",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Tidepool Eel.asset",
+    "sha256": "c4d6bf0c5c85664a9f7b43590a47f7015baf796b63387bd337e750f70d08074b",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "TidepoolEelReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "7eb6cc8657211490c7a9e84a27448393a7bc0757a851762f899f1e2d64a1e56f"
+    }
+  ]
+}

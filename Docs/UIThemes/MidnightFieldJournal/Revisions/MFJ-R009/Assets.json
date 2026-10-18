@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R009",
+  "cardId": "creature_moonlit_ray",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration, no slices",
+  "assets": [
+    {
+      "id": "MoonlitRayEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R009/Art/MoonlitRayEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-349ea3fc-90ac-4e4b-a5e3-cc7f1ec117bd.png",
+      "sha256": "7f107276e13630f9e0586abd3bb683814b081e73e616f05fb72aea4848c91222",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf1bf61354dc",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_moonlit_ray.png"
+    }
+  ],
+  "unityImported": true,
+  "penpotCardId": "bae680cd-9225-8018-8008-cf1bf647bdf1",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf1bf62e7a36",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

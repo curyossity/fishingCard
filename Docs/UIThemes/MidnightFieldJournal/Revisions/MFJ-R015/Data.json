@@ -1,0 +1,39 @@
+{
+  "revision": "MFJ-R015",
+  "name": "Sea Bass",
+  "slug": "SeaBass",
+  "id": "creature_sea_bass",
+  "weight": 2,
+  "value": 16,
+  "rarity": "Uncommon",
+  "tags": [
+    "Fish",
+    "Predator"
+  ],
+  "depth": {
+    "min": 4,
+    "max": 20
+  },
+  "catchEffect": {
+    "name": "Thrashing Catch",
+    "description": "When caught, discard 1 technique from your hand."
+  },
+  "baitEffect": {
+    "name": "Shoal Scatter",
+    "description": "When attached as Bait, you may release up to 2 other Small creatures."
+  },
+  "x": 15100,
+  "y": 6400,
+  "artName": "SeaBassEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Sea Bass.asset",
+  "authoredSha256": "39bbddb4b7cec82bd9f16f5535032d9a5b443f00fef41aa24960fc844ffe4a25",
+  "sourceId": "bae680cd-9225-8018-8008-cf3485600096"
+}

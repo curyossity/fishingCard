@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R008",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Golden Mackerel.asset",
+    "sha256": "a871ccfc703eda7308b5382d87d48fe4263540d273242e6f48272bc8eeeda413",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "MackerelCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "d71197032d77ccfc18deb76fe3c1bb3b1c83e0a043b0fbfabe810879e1a452d2"
+    },
+    {
+      "path": "MackerelReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "062807e10379fe4427fe5ee6159b8e5b79dd6a94aa22666b306637e22b27917c"
+    }
+  ]
+}

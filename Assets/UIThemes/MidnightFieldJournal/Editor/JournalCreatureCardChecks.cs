@@ -35,7 +35,7 @@ public static class JournalCreatureCardChecks
             SceneManager.MoveGameObjectToScene(root, preview);
             root.GetComponent<Canvas>().renderMode = RenderMode.WorldSpace;
             root.GetComponent<RectTransform>().sizeDelta = new Vector2(3840, 2160);
-            CreatureCardView view = Create(root.transform, -1200);
+            CreatureCardView view = Create(root.transform, -1280);
             var theme = AssetDatabase.LoadAssetAtPath<MidnightFieldJournalTheme>(MidnightFieldJournalAssetSetup.ThemePath);
             CardDefinition[] cards = AssetDatabase.FindAssets("t:CardDefinition", new[] { "Assets/Cards" })
                 .Select(g => AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(g)))
@@ -51,6 +51,7 @@ public static class JournalCreatureCardChecks
                 Require(Field<RectTransform>(view, "baitRulesRegion").gameObject.activeSelf == catchable, "Event has Bait panel.");
                 Require(view.transform.Find("Rarity Footer").gameObject.activeSelf == catchable, "Rarity visibility incorrect.");
                 theme.TryGetArtwork(card.UniqueId, out Sprite expected);
+                var central = theme.GetCentralCard(card.UniqueId); if (central != null) expected = central.sprite;
                 var art = Field<UnityEngine.UI.Image>(view, "creatureArtwork");
                 Require(art.sprite == expected && art.enabled == (expected != null), "Artwork substituted: " + card.DisplayName);
                 Require(!Field<UnityEngine.UI.Image>(view, "artworkOverflowLayer").enabled, "Old full-card overlay leaked.");
@@ -59,8 +60,8 @@ public static class JournalCreatureCardChecks
                     Glyphs(Text(view, "weightText")); Glyphs(Text(view, "valueText"));
                     Require(Text(view, "weightText").text == "0", "Zero weight missing.");
                     Require(Text(view, "valueText").text == (card.HidesOwnValueDuringRunForRole(CatchAttachmentRole.Catch) ? "?" : "9999"), "Value masking mismatch.");
-                    var hooks = view.GetComponentsInChildren<JournalRarityHook>(true);
-                    Require(hooks.Length == 4 && hooks.Count(h => h.color.a > .5f) == (int)card.Rarity + 1, "Wrong hook count.");
+                    var rarityLabel = view.transform.Find("Rarity Footer/Rarity Name").GetComponent<TMP_Text>();
+                    Require(rarityLabel.text == card.Rarity.ToString().ToUpperInvariant(), "Wrong rarity name.");
                     var tags = view.transform.Find("Creature Tags").GetComponent<TMP_Text>();
                     if (tags.text.Length > 0) Glyphs(tags);
                     RulesFit(view, "effectText"); RulesFit(view, "baitEffectText");
@@ -103,7 +104,7 @@ public static class JournalCreatureCardChecks
                 { highlights.GetArrayElementAtIndex(i).FindPropertyRelative("color").colorValue = Color.cyan; highlights.GetArrayElementAtIndex(i).FindPropertyRelative("sizePercent").intValue = 110; }
                 serialized.ApplyModifiedPropertiesWithoutUndo(); view.SetCard(clone, 1, 9, false);
                 var rect = Field<UnityEngine.UI.Image>(view, "creatureArtwork").rectTransform;
-                Require(Mathf.Approximately(rect.localScale.x, 1.2f) && Mathf.Abs(Mathf.DeltaAngle(rect.localEulerAngles.z, 12)) < .01f && rect.anchoredPosition == new Vector2(8, 4), "Central framing not preserved.");
+                Require(rect.localScale == Vector3.one && Mathf.Abs(Mathf.DeltaAngle(rect.localEulerAngles.z, 0)) < .01f && rect.anchoredPosition == Vector2.zero, "Legacy framing leaked into central-only portrait.");
                 Require(Text(view, "catchAbilityText").text.Contains("<color=") && Text(view, "effectText").text.Contains("<color="), "Authored highlighting lost in heading or description.");
                 Require(Text(view, "catchAbilityText").text.Contains("110%") && Text(view, "effectText").text.Contains("110%"), "Authored highlight size lost.");
             }
@@ -116,7 +117,7 @@ public static class JournalCreatureCardChecks
             Require(!deps.Any(p => p.StartsWith("Assets/FishingUIAssets/") || p.StartsWith("Assets/Prefabs/UI/")), "Candidate depends on old visual assets.");
             view.SetCard(octopus, 1, 9, false);
             CreatureCardView eventView = Create(root.transform, 0); eventView.SetCard(Card("Reef Snag"), 0, 0, false);
-            CreatureCardView hidden = Create(root.transform, 1200); hidden.SetCard(octopus, 1, 9, true, true);
+            CreatureCardView hidden = Create(root.transform, 1280); hidden.SetCard(octopus, 1, 9, true, true);
             Capture(root, preview, 3840, 2160, "UI05CentralCards4K.png");
             Capture(root, preview, 1920, 1080, "UI05CentralCards1080p.png");
         }
@@ -176,7 +177,7 @@ public static class JournalCreatureCardChecks
     private static CreatureCardView Create(Transform parent, float x)
     {
         var obj = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(Root + "Prefabs/CreatureCard.prefab"), parent);
-        var rect = obj.GetComponent<RectTransform>(); rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f); rect.anchoredPosition = new Vector2(x, 0); rect.sizeDelta = new Vector2(1040, 1300);
+        var rect = obj.GetComponent<RectTransform>(); rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f); rect.anchoredPosition = new Vector2(x, 0); rect.sizeDelta = new Vector2(1260, 1400);
         return obj.GetComponent<CreatureCardView>();
     }
     /// <summary>Exports a disposable camera render, never a runtime flattened card asset.</summary>

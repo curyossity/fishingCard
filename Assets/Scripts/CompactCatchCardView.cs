@@ -35,6 +35,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     [Header("Interaction")]
     [SerializeField] private Button selectionButton;
     [SerializeField] private Graphic hoverFrame;
+    [SerializeField] private bool pointerHoverFrame = true;
     [SerializeField] private Graphic selectedFrame;
     [SerializeField] private Graphic disabledOverlay;
     [SerializeField] private Graphic releaseCandidateFrame;
@@ -136,7 +137,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     }
 
     /// <summary>Shows the same focus outline for keyboard or controller selection.</summary>
-    public void OnSelect(BaseEventData eventData) { focused = true; ApplyState(); }
+    public void OnSelect(BaseEventData eventData) { focused = pointerHoverFrame || (!(eventData is PointerEventData) && !pointerInside); ApplyState(); }
 
     /// <summary>Clears navigation focus without clearing pointer hover.</summary>
     public void OnDeselect(BaseEventData eventData) { focused = false; ApplyState(); }
@@ -257,7 +258,7 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
             selectionButton.interactable = !disabled;
         }
 
-        SetVisible(hoverFrame, (pointerInside || focused) && !disabled);
+        SetVisible(hoverFrame, !disabled && (pointerHoverFrame ? pointerInside || focused : focused && !pointerInside));
         SetVisible(selectedFrame, state == CompactCatchCardState.Selected);
         SetVisible(disabledOverlay, disabled);
         SetVisible(releaseCandidateFrame, state == CompactCatchCardState.ReleaseCandidate);

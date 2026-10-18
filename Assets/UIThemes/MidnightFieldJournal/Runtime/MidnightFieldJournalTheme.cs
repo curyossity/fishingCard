@@ -8,6 +8,15 @@ using UnityEngine;
 public sealed class MidnightFieldJournalTheme : ScriptableObject
 {
     [Serializable]
+    public sealed class CentralCardEntry
+    {
+        public string cardUniqueId;
+        public Sprite sprite;
+        public Rect portraitBounds;
+        public Rect catchNameBounds, catchTextBounds, baitNameBounds, baitTextBounds;
+        public float catchNameSize, catchTextSize, baitNameSize, baitTextSize;
+    }
+    [Serializable]
     public sealed class SpriteEntry
     {
         [SerializeField] private string sourceId;
@@ -39,6 +48,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     [SerializeField] private Color baitAccent = new Color32(142, 214, 219, 255);
     [SerializeField] private Color mutedInk = new Color32(184, 185, 170, 255);
     [SerializeField] private SpriteEntry[] sprites = Array.Empty<SpriteEntry>();
+    [SerializeField] private CentralCardEntry[] centralCards = Array.Empty<CentralCardEntry>();
     [SerializeField] private string[] unillustratedCardIds = Array.Empty<string>();
 
     public Vector2 ReferenceResolution => referenceResolution;
@@ -52,6 +62,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     public Color BaitAccent => baitAccent;
     public Color MutedInk => mutedInk;
     public IReadOnlyList<SpriteEntry> Sprites => sprites;
+    public IReadOnlyList<CentralCardEntry> CentralCards => centralCards;
     public IReadOnlyList<string> UnillustratedCardIds => unillustratedCardIds;
 
     /// <summary>Applies only authored presentation line breaks, retaining every word of the live definition's rules.</summary>
@@ -111,5 +122,13 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
         }
         sprite = null;
         return false;
+    }
+
+    /// <summary>Resolves the central-only portrait and Penpot geometry without replacing compact-chain sources.</summary>
+    public CentralCardEntry GetCentralCard(string cardUniqueId)
+    {
+        foreach (CentralCardEntry entry in centralCards)
+            if (entry.cardUniqueId == cardUniqueId) return entry;
+        return null;
     }
 }

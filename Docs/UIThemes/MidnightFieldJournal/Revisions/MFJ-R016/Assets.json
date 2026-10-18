@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R016",
+  "cardId": "creature_sea_urchin",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration, no slices",
+  "assets": [
+    {
+      "id": "SeaUrchinEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R016/Art/SeaUrchinEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-04032367-14c4-499f-93eb-5d972b5563c1.png",
+      "sha256": "c348265fcc5047988af4487eb9d69e632a4877e45fa6ebaf928e07df980ac9ef",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf348871c1de",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_urchin.png"
+    }
+  ],
+  "unityImported": true,
+  "penpotCardId": "bae680cd-9225-8018-8008-cf3488b2c44b",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf348891dbf4",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

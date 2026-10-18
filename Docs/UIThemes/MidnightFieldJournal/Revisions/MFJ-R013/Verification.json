@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R013",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Clinging Crab.asset",
+    "sha256": "ea96cde441ac219f8dbe15837277de83803bcf1dfb071e46daf7e35b2f27daf1",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "ClingingCrabCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "e26975afb33f9141a8f37e30e586baa5e2de7142e6fad6db5f3d6a79d2820238"
+    },
+    {
+      "path": "ClingingCrabReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "0770e0e067623f4ec2d09bf0d31b80713b0baeabaf2caadae998285a2384849f"
+    }
+  ]
+}

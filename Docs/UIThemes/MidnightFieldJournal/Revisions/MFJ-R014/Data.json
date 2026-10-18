@@ -1,0 +1,40 @@
+{
+  "revision": "MFJ-R014",
+  "name": "Sea Anemone",
+  "slug": "SeaAnemone",
+  "id": "creature_sea_anemone",
+  "weight": 1,
+  "value": 8,
+  "rarity": "Uncommon",
+  "tags": [
+    "Small",
+    "Predator",
+    "Anchored"
+  ],
+  "depth": {
+    "min": 0,
+    "max": 16
+  },
+  "catchEffect": {
+    "name": "Stinging Tentacles",
+    "description": "Techniques cannot target this Catch."
+  },
+  "baitEffect": {
+    "name": "Sheltered Exchange",
+    "description": "After catching a Small creature, you may swap a technique in hand with one in your discard pile."
+  },
+  "x": 12900,
+  "y": 6400,
+  "artName": "SeaAnemoneEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Sea Anemone.asset",
+  "authoredSha256": "aaea4137215bbe2d60a76f25858b7292bc2582c5fb17da6a709c1eec237c3e12",
+  "sourceId": "bae680cd-9225-8018-8008-cf34835d1475"
+}

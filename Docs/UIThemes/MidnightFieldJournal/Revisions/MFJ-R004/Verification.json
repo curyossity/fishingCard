@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R004",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Garfish.asset",
+    "sha256": "ee9e2b3273581e33daf0c8a6140df9ef88391661980ef4f14110e01bbd631459",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "GarfishCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "5e255b2ecde13d1149a644a5dc22ad52002d4080d38b8d4a5ba58646099b4f8b"
+    },
+    {
+      "path": "GarfishReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "bab17bc9d79ee6a42c412297d5f90c608fadf7b5cf40ec2b96202b6c3092d882"
+    }
+  ]
+}

@@ -1,0 +1,771 @@
+{
+  "cards": [
+    {
+      "revision": "MFJ-R012",
+      "cardUniqueId": "creature_cleaner_shrimp",
+      "name": "Cleaner Shrimp",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R012/Art/CleanerShrimpEngravedV3.png",
+      "sha256": "38e32fc040b49d706409704b1785cf1de6b4b237d50f532c40881d9c95891298",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_cleaner_shrimp.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R013",
+      "cardUniqueId": "creature_clinging_crab",
+      "name": "Clinging Crab",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R013/Art/ClingingCrabEngravedV3.png",
+      "sha256": "4bfe1795cbec5f136f5e7a86ae97f840395524b8e759cdb2dcdfdaa024b4199c",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_clinging_crab.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R003",
+      "cardUniqueId": "creature_coastal_cod",
+      "name": "Cod",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R003/Art/CodEngravedV3.png",
+      "sha256": "d0b6b1613f936fc663872d5c7226bc0196e125c167619c1c401c52f1e41102a5",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_coastal_cod.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": null,
+        "catchText": null,
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1114,
+          "w": 414,
+          "h": 178,
+          "fontSize": "36"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R004",
+      "cardUniqueId": "creature_garfish",
+      "name": "Garfish",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R004/Art/GarfishEngravedV3.png",
+      "sha256": "6bfeeade2ee5f702739276cafd750c2f9c0648227629c0692b16324c29b44399",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_garfish.png",
+      "portrait": {
+        "x": 78,
+        "y": 190,
+        "w": 1104,
+        "h": 621.3301435406698
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "catchText": {
+          "x": 150,
+          "y": 1114,
+          "w": 414,
+          "h": 177.99999999999977,
+          "fontSize": "36"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1114,
+          "w": 414,
+          "h": 178,
+          "fontSize": "36"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R005",
+      "cardUniqueId": "creature_glass_minnow",
+      "name": "Glass Minnow",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R005/Art/GlassMinnowEngravedV3.png",
+      "sha256": "0a5b92e6b77e1d7e4e526f4cca6da8e60a2c5fb474897f1e90b3fe0744a908e6",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_glass_minnow.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": null,
+        "catchText": null,
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1114,
+          "w": 414,
+          "h": 178,
+          "fontSize": "36"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R006",
+      "cardUniqueId": "creature_jellyfish",
+      "name": "Jellyfish",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R006/Art/JellyfishEngravedV3.png",
+      "sha256": "75d800f3507ae5ba2426f33a27b38ea42d486b0bbf59b2c3030ece11dbc15339",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_jellyfish.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "catchText": {
+          "x": 150,
+          "y": 1114,
+          "w": 414,
+          "h": 177.99999999999977,
+          "fontSize": "36"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1114,
+          "w": 414,
+          "h": 178,
+          "fontSize": "36"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R007",
+      "cardUniqueId": "creature_lionfish",
+      "name": "Lionfish",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R007/Art/LionfishEngravedV3.png",
+      "sha256": "5ab9405a3600b05321bf276dd9d4783ac1378b7c76d296252ccd39168271afff",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_lionfish.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "32"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R008",
+      "cardUniqueId": "creature_mackerel",
+      "name": "Mackerel",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R008/Art/MackerelEngravedV3.png",
+      "sha256": "dc4cbfe1e7f28cbec92c71080fed86eee6fff42cec8d0f512daa9e676bca944b",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mackerel.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "32"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R009",
+      "cardUniqueId": "creature_moonlit_ray",
+      "name": "Moonlit Ray",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R009/Art/MoonlitRayEngravedV3.png",
+      "sha256": "7f107276e13630f9e0586abd3bb683814b081e73e616f05fb72aea4848c91222",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_moonlit_ray.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R010",
+      "cardUniqueId": "creature_mussel",
+      "name": "Mussel",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R010/Art/MusselEngravedV3.png",
+      "sha256": "0f65f5c67c33fa4b4b1e750d6c023543436a43e413c1aed29963e3c79d8fdf3b",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mussel.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "32"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R011",
+      "cardUniqueId": "creature_sardine",
+      "name": "Sardine",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R011/Art/SardineEngravedV3.png",
+      "sha256": "8d5a75f7679a479ec39e9f2e074d15332c716d74030693c6eb872fba35ca405e",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sardine.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.6612806702574
+      },
+      "geometry": {
+        "catchName": null,
+        "catchText": null,
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "32"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R014",
+      "cardUniqueId": "creature_sea_anemone",
+      "name": "Sea Anemone",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R014/Art/SeaAnemoneEngravedV3.png",
+      "sha256": "7d3a26c42d4b682d819e855c2e8d2ee680ad0d46f9b2ab8a533b4ea242891401",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_anemone.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "38"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "38"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "29"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R015",
+      "cardUniqueId": "creature_sea_bass",
+      "name": "Sea Bass",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R015/Art/SeaBassEngravedV3.png",
+      "sha256": "6f40db59ad6cd1366b1ea32347851ec35fb148cb9e33fd4d73255373ab199709",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_bass.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "32"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R016",
+      "cardUniqueId": "creature_sea_urchin",
+      "name": "Sea Urchin",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R016/Art/SeaUrchinEngravedV3.png",
+      "sha256": "c348265fcc5047988af4487eb9d69e632a4877e45fa6ebaf928e07df980ac9ef",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_urchin.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "32"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R002",
+      "cardUniqueId": "creature_small_octopus",
+      "name": "Small Octopus",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/SmallOctopusEngravedV3.png",
+      "sha256": "02cba7707d4315145da587043ca262c87a40f1448d93f69d104b177357cdbd76",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_small_octopus.png",
+      "portrait": {
+        "x": 78,
+        "y": 102,
+        "w": 1104,
+        "h": 621.3301435406702
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "48"
+        },
+        "catchText": {
+          "x": 155,
+          "y": 1118,
+          "w": 410,
+          "h": 140,
+          "fontSize": "39"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "46"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1114,
+          "w": 414,
+          "h": 178,
+          "fontSize": "33"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R017",
+      "cardUniqueId": "creature_spiny_lobster",
+      "name": "Spiny Lobster",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R017/Art/SpinyLobsterEngravedV3.png",
+      "sha256": "d07cf2fc4bbd8b2de3798a18965333f70d322f650c497d8962c9d1e4f255812c",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_spiny_lobster.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R018",
+      "cardUniqueId": "creature_squid",
+      "name": "Squid",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R018/Art/SquidEngravedV3.png",
+      "sha256": "2d19d63309d87812ef0a0024b5a4b762c6ca4c56f5cbd105c0a2e07b5315f7b1",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_squid.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "32"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    },
+    {
+      "revision": "MFJ-R019",
+      "cardUniqueId": "creature_tidepool_eel",
+      "name": "Tidepool Eel",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R019/Art/TidepoolEelEngravedV3.png",
+      "sha256": "e79c3a9a4b1743a8b5e7d5684df32e0307df99cc09cd9428085e35682a1486fb",
+      "destination": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_tidepool_eel.png",
+      "portrait": {
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 584.688995215311
+      },
+      "geometry": {
+        "catchName": {
+          "x": 120,
+          "y": 1021,
+          "w": 460,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "catchText": {
+          "x": 180,
+          "y": 1108,
+          "w": 370,
+          "h": 180,
+          "fontSize": "34"
+        },
+        "baitName": {
+          "x": 690,
+          "y": 1021,
+          "w": 450,
+          "h": 70,
+          "fontSize": "42"
+        },
+        "baitText": {
+          "x": 701,
+          "y": 1108,
+          "w": 414,
+          "h": 180,
+          "fontSize": "34"
+        }
+      }
+    }
+  ],
+  "frame": {
+    "id": "MainCreatureFrameV3",
+    "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/MainCreatureFrameV3.png",
+    "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-9da7a6d3-4185-414b-b806-9a3ba7a5981a.png",
+    "sha256": "a868c2e2d7c6b889d152a8bf4f5697cf711d7161f0e343c56dcd2643f771d442",
+    "width": 1190,
+    "height": 1322,
+    "hasAlphaChannel": true,
+    "penpotShapeId": "bae680cd-9225-8018-8008-cee19e0cf6ce",
+    "unityImported": false
+  }
+}

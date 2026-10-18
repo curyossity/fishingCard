@@ -1,0 +1,274 @@
+{
+  "result": {
+    "revision": "MFJ-R003",
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf09f3ff1e59",
+    "cardId": "bae680cd-9225-8018-8008-cf09f41c7320",
+    "portraitSourceId": "bae680cd-9225-8018-8008-cf09bf1f5d00",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf09f41c7324",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "portraitBounds": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "data": {
+      "id": "creature_coastal_cod",
+      "name": "Cod",
+      "weight": 2,
+      "value": 12,
+      "rarity": "Common",
+      "tags": [
+        "Fish",
+        "Predator"
+      ],
+      "catchEffect": null,
+      "baitEffect": {
+        "name": "Bottom Feeder",
+        "description": "After releasing an Armored creature, recover one discarded technique."
+      }
+    },
+    "unityImported": false,
+    "verified": true,
+    "checks": {
+      "name": true,
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "tags": true,
+      "catchHasNoEffect": true,
+      "baitName": true,
+      "baitRules": true,
+      "noOctopusAbilityText": true,
+      "sameFrame": true,
+      "sourceOctopusRetained": true,
+      "twoSeparateImages": true
+    },
+    "editableTextFields": 12,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7321",
+        "name": "Static / engraved parchment, marine stage and neutral effect panels",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7322",
+        "name": "Dynamic / creature type",
+        "type": "text",
+        "x": 468,
+        "y": 70,
+        "w": 324,
+        "h": 38,
+        "text": "C R E A T U R E",
+        "fontSize": "26",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7323",
+        "name": "Dynamic / creature name",
+        "type": "text",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "text": "COD",
+        "fontSize": "66",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7324",
+        "name": "Dynamic / engraved Cod illustration",
+        "type": "rectangle",
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7325",
+        "name": "Dynamic / creature tags",
+        "type": "text",
+        "x": 250,
+        "y": 752,
+        "w": 760,
+        "h": 34,
+        "text": "FISH  ·  PREDATOR",
+        "fontSize": "22",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7326",
+        "name": "Static / Weight label",
+        "type": "text",
+        "x": 130,
+        "y": 805,
+        "w": 175,
+        "h": 39,
+        "text": "WEIGHT",
+        "fontSize": "28",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7327",
+        "name": "Dynamic / effective Weight",
+        "type": "text",
+        "x": 304,
+        "y": 786,
+        "w": 133,
+        "h": 75,
+        "text": "2",
+        "fontSize": "64",
+        "fontFamily": "Source Serif 4",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7328",
+        "name": "Static / Value label",
+        "type": "text",
+        "x": 506,
+        "y": 805,
+        "w": 134,
+        "h": 39,
+        "text": "VALUE",
+        "fontSize": "28",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7329",
+        "name": "Dynamic / sale Value",
+        "type": "text",
+        "x": 634,
+        "y": 786,
+        "w": 115,
+        "h": 75,
+        "text": "12",
+        "fontSize": "64",
+        "fontFamily": "Source Serif 4",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c732a",
+        "name": "Dynamic / Common rarity diamond",
+        "type": "group",
+        "x": 803,
+        "y": 807,
+        "w": 31,
+        "h": 31,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c732b",
+        "name": "Dynamic / rarity name",
+        "type": "text",
+        "x": 851,
+        "y": 805,
+        "w": 300,
+        "h": 42,
+        "text": "COMMON",
+        "fontSize": "28",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c732c",
+        "name": "Dynamic / selected Catch glow — not hover",
+        "type": "rectangle",
+        "x": 82,
+        "y": 882,
+        "w": 545,
+        "h": 427,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c732d",
+        "name": "Static / Catch hook icon",
+        "type": "group",
+        "x": 109,
+        "y": 906,
+        "w": 45,
+        "h": 65,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c732e",
+        "name": "Static / Catch role label",
+        "type": "text",
+        "x": 181,
+        "y": 916,
+        "w": 342,
+        "h": 55,
+        "text": "C A T C H",
+        "fontSize": "36",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c732f",
+        "name": "Static / Bait twin-spark icon",
+        "type": "group",
+        "x": 676,
+        "y": 915,
+        "w": 65,
+        "h": 52,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7330",
+        "name": "Static / Bait role label",
+        "type": "text",
+        "x": 780,
+        "y": 916,
+        "w": 300,
+        "h": 55,
+        "text": "B A I T",
+        "fontSize": "36",
+        "fontFamily": "Cinzel",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7333",
+        "name": "Dynamic / Bait effect name",
+        "type": "text",
+        "x": 690,
+        "y": 1021,
+        "w": 450,
+        "h": 70,
+        "text": "Bottom Feeder",
+        "fontSize": "46",
+        "fontFamily": "Source Serif 4",
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f41c7334",
+        "name": "Dynamic / Bait effect text",
+        "type": "text",
+        "x": 701,
+        "y": 1114,
+        "w": 414,
+        "h": 178,
+        "text": "After releasing an Armored creature, recover one discarded technique.",
+        "fontSize": "36",
+        "fontFamily": "Source Serif 4",
+        "hidden": false
+      }
+    ],
+    "frameReused": true
+  },
+  "log": ""
+}

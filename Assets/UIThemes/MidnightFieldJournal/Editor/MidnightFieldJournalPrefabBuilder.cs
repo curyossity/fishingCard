@@ -35,12 +35,13 @@ public static partial class MidnightFieldJournalPrefabBuilder
             AssetDatabase.CreateAsset(profile, RootPath + "Profiles/CreatureVisualProfile.asset");
         }
         profile.nameInk = Ink; profile.catchRulesInk = Paper; profile.eventRulesInk = Ink;
-        profile.catchRules = CentralBounds(90, 900, 400, 300); profile.baitRules = CentralBounds(550, 900, 400, 300);
+        profile.catchRules = CentralBounds(82, 882, 545, 427); profile.baitRules = CentralBounds(634, 882, 545, 427);
         profile.eventRules = new Rect(.09f, .07f, .82f, .30f);
-        profile.minimumRulesSize = 22; profile.maximumRulesSize = 34; profile.rulesPadding = Vector2.zero;
+        profile.minimumRulesSize = 26; profile.maximumRulesSize = 39; profile.maximumStatSize = 64; profile.rulesPadding = Vector2.zero;
         profile.catchDescription = profile.baitDescription = new Rect(.025f, .05f, .95f, .52f);
         profile.separateAbilityHeadings = true; profile.plainStatNumbers = true; profile.showEventCategory = true;
-        profile.respectParentInputLocks = true; profile.catchAspectRatio = .8f; profile.eventAspectRatio = .8f;
+        profile.selectionWash = Color.clear;
+        profile.respectParentInputLocks = true; profile.catchAspectRatio = .9f; profile.eventAspectRatio = .8f;
         EditorUtility.SetDirty(profile);
         Creature(profile);
         Compact();
@@ -53,72 +54,6 @@ public static partial class MidnightFieldJournalPrefabBuilder
         CanvasLayout();
         AssetDatabase.SaveAssetIfDirty(profile);
         Validate();
-    }
-
-    /// <summary>Creates the existing creature presentation component with blank new art and authored safe regions.</summary>
-    private static void Creature(CreatureCardVisualProfile profile)
-    {
-        GameObject root = Root("CreatureCard", 1040, 1300);
-        CreatureCardView view = root.AddComponent<CreatureCardView>();
-        JournalCreatureCardVisuals visuals = root.AddComponent<JournalCreatureCardVisuals>();
-        Image background = Picture("Blank Creature Master", root.transform, "CreatureTemplate", new Rect(0, 0, 1, 1));
-        Image portrait = Portrait(root.transform, CentralBounds(235, 225, 570, 570));
-        Image overflow = Picture("Runtime Full Card Overlay", root.transform, null, new Rect(0, 0, 1, 1));
-        overflow.enabled = false;
-        TMP_Text type = Label("Card Type", root.transform, CentralBounds(110, 34, 820, 44), 22, Ink, true);
-        TMP_Text name = Label("Card Name", root.transform, CentralBounds(110, 65, 820, 100), 57, Ink, true);
-        name.enableAutoSizing = true; name.fontSizeMin = 30; name.textWrappingMode = TextWrappingModes.NoWrap;
-        TMP_Text weight = CentralStat(root.transform, "Weight", "WEIGHT", 130);
-        TMP_Text value = CentralStat(root.transform, "Value", "VALUE", 580);
-        RectTransform catchRegion = Region("Catch Effect Target", root.transform, profile.catchRules);
-        TMP_Text catchText = Label("Catch Effect", catchRegion, profile.catchDescription, 34, Paper);
-        TMP_Text catchRole = Label("Catch Role", catchRegion, new Rect(.05f, .8167f, .875f, .1333f), 30, Copper, true);
-        TMP_Text catchName = Label("Catch Ability Name", catchRegion, new Rect(.0425f, .5733f, .8875f, .2f), 37, Paper);
-        catchName.enableAutoSizing = true; catchName.fontSizeMin = 24; catchName.textWrappingMode = TextWrappingModes.NoWrap;
-        catchRole.text = "CATCH";
-        RectTransform baitRegion = Region("Bait Effect Target", root.transform, profile.baitRules);
-        TMP_Text baitText = Label("Bait Effect", baitRegion, profile.baitDescription, 34, Paper);
-        TMP_Text baitName = Label("Bait Ability Name", baitRegion, new Rect(.025f, .5733f, .925f, .2f), 37, Paper);
-        baitName.enableAutoSizing = true; baitName.fontSizeMin = 24; baitName.textWrappingMode = TextWrappingModes.NoWrap;
-        Label("Bait Role", baitRegion, new Rect(.075f, .8167f, .875f, .1333f), 30, Copper, true).text = "BAIT";
-        TMP_Text tags = Label("Creature Tags", root.transform, CentralBounds(160, 1210, 720, 36), 25, Ink, true);
-        tags.enableAutoSizing = true; tags.fontSizeMin = 18; tags.textWrappingMode = TextWrappingModes.NoWrap;
-        RectTransform rarity = Region("Rarity Footer", root.transform, CentralBounds(442, 1249, 156, 28));
-        JournalRarityHook[] hooks = new JournalRarityHook[4];
-        for (int i = 0; i < hooks.Length; i++)
-        { hooks[i] = Region("Rarity Hook " + (i + 1), rarity, new Rect(i * .25f, 0, .18f, 1)).gameObject.AddComponent<JournalRarityHook>(); hooks[i].raycastTarget = false; }
-        rarity.gameObject.SetActive(false);
-        SerializedObject data = new SerializedObject(view);
-        Bind(data, "cardBackground", background); Bind(data, "creatureArtwork", portrait);
-        Bind(data, "artworkOverflowLayer", overflow); Bind(data, "catchRoleLabel", catchRole.gameObject);
-        Bind(data, "cardTypeText", type); Bind(data, "cardNameText", name);
-        Bind(data, "weightText", weight); Bind(data, "valueText", value);
-        Bind(data, "rulesRegion", catchRegion); Bind(data, "baitRulesRegion", baitRegion);
-        Bind(data, "effectText", catchText); Bind(data, "baitEffectText", baitText);
-        Bind(data, "fallbackCardFace", Sprite("CreatureTemplate")); Bind(data, "eventCardFace", Sprite("EventTemplate"));
-        Bind(data, "visualProfile", profile);
-        Bind(data, "catchAbilityText", catchName); Bind(data, "baitAbilityText", baitName); Bind(data, "visualExtension", visuals);
-        data.ApplyModifiedPropertiesWithoutUndo();
-        data = new SerializedObject(visuals); Bind(data, "theme", theme); Bind(data, "tagsText", tags); Bind(data, "rarityRoot", rarity.gameObject);
-        Bind(data, "catchSelection", Edge(catchRegion, "Selected Catch Border", Copper, 2, 3, 6));
-        Bind(data, "baitSelection", Edge(baitRegion, "Selected Bait Border", Copper, 2, 3, 6));
-        SerializedProperty entries = data.FindProperty("rarityHooks"); entries.arraySize = hooks.Length;
-        for (int i = 0; i < hooks.Length; i++) entries.GetArrayElementAtIndex(i).objectReferenceValue = hooks[i];
-        data.FindProperty("showRarity").boolValue = true;
-        data.ApplyModifiedPropertiesWithoutUndo();
-        Save(root, "CreatureCard");
-    }
-
-    /// <summary>Converts the approved central-card top-left reference geometry to normalized anchors.</summary>
-    private static Rect CentralBounds(float x, float y, float w, float h)
-    { return new Rect(x / 1040, 1 - (y + h) / 1300, w / 1040, h / 1300); }
-
-    /// <summary>Keeps each central stat label and number under one independently hidden event-layout parent.</summary>
-    private static TMP_Text CentralStat(Transform parent, string name, string caption, float x)
-    {
-        RectTransform region = Region(name + " Stat", parent, CentralBounds(x, 796, 330, 97));
-        Label(name + " Label", region, new Rect(0, 62f / 97, 1, 35f / 97), 25, Ink, true).text = caption;
-        return Label(name + " Value", region, new Rect(0, 0, 1, 67f / 97), 56, Ink);
     }
 
     /// <summary>Creates the horizontal Catch Chain template with independently bound portrait, stats and Bait badge.</summary>
@@ -152,6 +87,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data, "selectionButton", button); Bind(data, "baitMarker", badgeRoot.gameObject);
         Bind(data, "baitFrame", bait);
         Bind(data, "hoverFrame", Edge(root.transform, "Hover And Focus Edge", new Color32(240, 224, 189, 230), 4, 3, 22));
+        data.FindProperty("pointerHoverFrame").boolValue = false;
         Bind(data, "selectedFrame", Edge(root.transform, "Selection Edge", theme.Copper, 3, 5, 24));
         Bind(data, "releaseCandidateFrame", Edge(root.transform, "Legal Target Edge", theme.BaitAccent, 3, 5, 24));
         Image disabled = Picture("Disabled Overlay", root.transform, null, new Rect(0, 0, 1, 1));
@@ -190,6 +126,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data, "keywordText", keyword); data.FindProperty("externalPose").boolValue = true;
         data.FindProperty("inspectWhileUnavailable").boolValue = true;
         Bind(data, "hoverFrame", Edge(visual, "Hover And Focus Edge", theme.Copper, 10, 3, 20));
+        data.FindProperty("pointerHoverFrame").boolValue = false;
         Bind(data, "selectedFrame", Edge(visual, "Selected Edge", theme.BaitAccent, 8, 4, 20));
         Image disabled = Picture("Disabled Overlay", visual, null, new Rect(0, 0, 1, 1)); disabled.color = new Color(0, 0, 0, .18f);
         Bind(data, "disabledOverlay", disabled);

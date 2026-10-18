@@ -15,7 +15,7 @@ public sealed class JournalActionFeedback : MonoBehaviour, IPointerEnterHandler,
     /// <summary>Restores pointer state.</summary>
     public void OnPointerExit(PointerEventData data) { hovered = false; Refresh(); }
     /// <summary>Highlights controller or keyboard focus.</summary>
-    public void OnSelect(BaseEventData data) { selected = true; Refresh(); }
+    public void OnSelect(BaseEventData data) { selected = !(data is PointerEventData) && !hovered; Refresh(); }
     /// <summary>Restores navigation state.</summary>
     public void OnDeselect(BaseEventData data) { selected = false; Refresh(); }
     /// <summary>Rechecks availability because commands may lock while the pointer remains still.</summary>
@@ -28,6 +28,6 @@ public sealed class JournalActionFeedback : MonoBehaviour, IPointerEnterHandler,
         if (button == null) button = GetComponent<UnityEngine.UI.Button>();
         bool active = (hovered || selected) && button != null && button.IsInteractable();
         if (face != null) face.localScale = Vector3.one * (active ? 1.018f : 1);
-        if (focus != null) focus.enabled = active;
+        if (focus != null) focus.enabled = selected && !hovered && button != null && button.IsInteractable();
     }
 }

@@ -1,0 +1,51 @@
+{
+  "result": {
+    "revision": "MFJ-R006",
+    "name": "Jellyfish",
+    "slug": "Jellyfish",
+    "id": "creature_jellyfish",
+    "weight": 1,
+    "value": 8,
+    "rarity": "Common",
+    "tags": [
+      "Small"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 18
+    },
+    "catchEffect": {
+      "name": "Tangle",
+      "description": "The next creature attached as Catch gains +1 weight."
+    },
+    "baitEffect": {
+      "name": "Buoyant Bell",
+      "description": "Reduce two other Armored creatures’ weight by 1 each."
+    },
+    "x": 17200,
+    "artName": "JellyfishEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Jellyfish.asset",
+    "authoredSha256": "25aa31a551e93f2b51576618fecb761d65fc86570c0f6c5a1c3d0c83b5a0279c",
+    "sourceId": "bae680cd-9225-8018-8008-cf0faf5e1740",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf0faf77ee33",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf0fafe405f7",
+    "cardId": "bae680cd-9225-8018-8008-cf0faf91b8bf",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf0faf91b8c3",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}

@@ -1,0 +1,39 @@
+{
+  "revision": "MFJ-R018",
+  "name": "Squid",
+  "slug": "Squid",
+  "id": "creature_squid",
+  "weight": 2,
+  "value": 20,
+  "rarity": "Rare",
+  "tags": [
+    "Predator",
+    "Elusive"
+  ],
+  "depth": {
+    "min": 8,
+    "max": 20
+  },
+  "catchEffect": {
+    "name": "Ink Veil",
+    "description": "Hide your next 2 non-Apex creatures until their Catch/Bait choices are committed."
+  },
+  "baitEffect": {
+    "name": "Ink Escape",
+    "description": "You may skip your next non-Apex creature encounter."
+  },
+  "x": 12900,
+  "y": 9600,
+  "artName": "SquidEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/squid.asset",
+  "authoredSha256": "ad370892d99d473f68b5d64ea4c521cb8f04a26f618b68f2f2a12fa7ad243f6f",
+  "sourceId": "bae680cd-9225-8018-8008-cf348e7008f3"
+}

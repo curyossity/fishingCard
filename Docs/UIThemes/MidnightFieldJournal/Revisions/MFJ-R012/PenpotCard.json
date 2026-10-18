@@ -1,0 +1,278 @@
+{
+  "result": {
+    "revision": "MFJ-R012",
+    "name": "Cleaner Shrimp",
+    "slug": "CleanerShrimp",
+    "id": "creature_cleaner_shrimp",
+    "weight": 1,
+    "value": 8,
+    "rarity": "Uncommon",
+    "tags": [
+      "Small"
+    ],
+    "depth": {
+      "min": 1,
+      "max": 14
+    },
+    "catchEffect": {
+      "name": "Quick Clean",
+      "description": "When attached as Catch, remove one negative effect."
+    },
+    "baitEffect": {
+      "name": "Cleaning Station",
+      "description": "At later biome starts, swap a Catch for one of two creatures."
+    },
+    "x": 8500,
+    "y": 6400,
+    "artName": "CleanerShrimpEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Cleaner Shrimp.asset",
+    "authoredSha256": "5b8c0a71ebd1fb9021e77a1ea3a36529771131b1b386677a5749487a772210fb",
+    "sourceId": "bae680cd-9225-8018-8008-cf347ed56556",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf347ef37602",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf347f8f2574",
+    "cardId": "bae680cd-9225-8018-8008-cf347f106def",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf347f109caa",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false,
+    "verified": true,
+    "checks": {
+      "name": true,
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "tags": true,
+      "twoImages": true,
+      "frameReused": true,
+      "templateRetained": true,
+      "CatchName": true,
+      "CatchDescription": true,
+      "BaitName": true,
+      "BaitDescription": true
+    },
+    "editableTextFields": 14,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f106df0",
+        "name": "Static / engraved parchment, marine stage and neutral effect panels",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109ca8",
+        "name": "Dynamic / creature type",
+        "type": "text",
+        "text": "C R E A T U R E",
+        "x": 468,
+        "y": 70,
+        "w": 324,
+        "h": 38,
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109ca9",
+        "name": "Dynamic / creature name",
+        "type": "text",
+        "text": "CLEANER SHRIMP",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109caa",
+        "name": "Dynamic / engraved Cleaner Shrimp illustration",
+        "type": "rectangle",
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.3110047846894
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cab",
+        "name": "Dynamic / creature tags",
+        "type": "text",
+        "text": "SMALL",
+        "x": 250,
+        "y": 752,
+        "w": 760,
+        "h": 34,
+        "fontSize": "22"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cac",
+        "name": "Static / Weight label",
+        "type": "text",
+        "text": "WEIGHT",
+        "x": 130,
+        "y": 805,
+        "w": 175,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cad",
+        "name": "Dynamic / effective Weight",
+        "type": "text",
+        "text": "1",
+        "x": 304,
+        "y": 786,
+        "w": 133,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cae",
+        "name": "Static / Value label",
+        "type": "text",
+        "text": "VALUE",
+        "x": 506,
+        "y": 805,
+        "w": 134,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109caf",
+        "name": "Dynamic / sale Value",
+        "type": "text",
+        "text": "8",
+        "x": 634,
+        "y": 786,
+        "w": 115,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb0",
+        "name": "Dynamic / Uncommon rarity diamond",
+        "type": "group",
+        "x": 803,
+        "y": 807,
+        "w": 31,
+        "h": 31
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb1",
+        "name": "Dynamic / rarity name",
+        "type": "text",
+        "text": "UNCOMMON",
+        "x": 851,
+        "y": 805,
+        "w": 300,
+        "h": 42,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb2",
+        "name": "Dynamic / selected Catch glow — not hover",
+        "type": "rectangle",
+        "x": 82,
+        "y": 882,
+        "w": 545,
+        "h": 427
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb3",
+        "name": "Static / Catch hook icon",
+        "type": "group",
+        "x": 109,
+        "y": 906,
+        "w": 45,
+        "h": 65
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb4",
+        "name": "Static / Catch role label",
+        "type": "text",
+        "text": "C A T C H",
+        "x": 181,
+        "y": 916,
+        "w": 342,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb5",
+        "name": "Static / Bait twin-spark icon",
+        "type": "group",
+        "x": 676,
+        "y": 915,
+        "w": 65,
+        "h": 52
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb6",
+        "name": "Static / Bait role label",
+        "type": "text",
+        "text": "B A I T",
+        "x": 780,
+        "y": 916,
+        "w": 300,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb7",
+        "name": "Dynamic / Catch effect name",
+        "type": "text",
+        "text": "Quick Clean",
+        "x": 120,
+        "y": 1021,
+        "w": 460,
+        "h": 70,
+        "fontSize": "42"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb8",
+        "name": "Dynamic / Catch effect text",
+        "type": "text",
+        "text": "When attached as Catch, remove one negative effect.",
+        "x": 180,
+        "y": 1108,
+        "w": 370,
+        "h": 180,
+        "fontSize": "34"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cb9",
+        "name": "Dynamic / Bait effect name",
+        "type": "text",
+        "text": "Cleaning Station",
+        "x": 690,
+        "y": 1021,
+        "w": 450,
+        "h": 70,
+        "fontSize": "42"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f109cba",
+        "name": "Dynamic / Bait effect text",
+        "type": "text",
+        "text": "At later biome starts, swap a Catch for one of two creatures.",
+        "x": 701,
+        "y": 1108,
+        "w": 414,
+        "h": 180,
+        "fontSize": "34"
+      }
+    ]
+  },
+  "log": ""
+}

@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R014",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Sea Anemone.asset",
+    "sha256": "aaea4137215bbe2d60a76f25858b7292bc2582c5fb17da6a709c1eec237c3e12",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "SeaAnemoneCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "07156ba4cc44d328919393153209ad83ecf9c9899eb859cde745271f1eb9f3a6"
+    },
+    {
+      "path": "SeaAnemoneReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "513e2c592e9f0a82817dcf18c6066ae7a669665292df478a2a6b0fd40b126ffe"
+    }
+  ]
+}

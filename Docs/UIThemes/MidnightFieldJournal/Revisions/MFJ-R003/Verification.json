@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R003",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 12,
+  "nullCatchEffectVerified": true,
+  "frameReused": true,
+  "sourceIllustrationVerified": true,
+  "parentOctopusRetained": true,
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredCodAsset": {
+    "path": "Assets/Cards/Coastal Cod.asset",
+    "sha256": "5853f6a7ea3f15ee9e77a6fc43e13b0b3c8528264e8d60335b586e5af4020894",
+    "matchesProtectedBaseline": true
+  },
+  "captures": [
+    {
+      "path": "CodReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "c6b21d33da7e20e6ec3ebc6ad6047866df863598f5aedd38e39e97ca0da8339f"
+    },
+    {
+      "path": "CodCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "9446bfe683a2373ac8debcd450f10c72c83bf94eae1b81e2ba5b351b94754848"
+    }
+  ]
+}

@@ -30,6 +30,7 @@ public sealed class TechniqueCardView : MonoBehaviour, IPointerEnterHandler, IPo
     [Header("Interaction")]
     [SerializeField] private Button useButton;
     [SerializeField] private Graphic hoverFrame;
+    [SerializeField] private bool pointerHoverFrame = true;
     [SerializeField] private Graphic selectedFrame;
     [SerializeField] private Graphic disabledOverlay;
     [SerializeField] private GameObject playableBadge;
@@ -118,7 +119,7 @@ public sealed class TechniqueCardView : MonoBehaviour, IPointerEnterHandler, IPo
     }
 
     /// <summary>Shows navigation focus with the same independent feedback layer.</summary>
-    public void OnSelect(BaseEventData eventData) { focused = true; ApplyState(); }
+    public void OnSelect(BaseEventData eventData) { focused = pointerHoverFrame || (!(eventData is PointerEventData) && !pointerInside); ApplyState(); }
 
     /// <summary>Clears keyboard/controller focus.</summary>
     public void OnDeselect(BaseEventData eventData) { focused = false; ApplyState(); }
@@ -144,7 +145,7 @@ public sealed class TechniqueCardView : MonoBehaviour, IPointerEnterHandler, IPo
     {
         bool disabled = state == TechniqueCardVisualState.Disabled;
         bool hovered = !disabled && (pointerInside || focused || state == TechniqueCardVisualState.Hovered);
-        SetVisible(hoverFrame, hovered);
+        SetVisible(hoverFrame, !disabled && (pointerHoverFrame ? hovered : focused && !pointerInside));
         SetVisible(selectedFrame, state == TechniqueCardVisualState.Selected);
         SetVisible(disabledOverlay, disabled);
         SetVisible(playableBadge, state == TechniqueCardVisualState.Playable);

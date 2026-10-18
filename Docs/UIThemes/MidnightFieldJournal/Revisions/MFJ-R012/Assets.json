@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R012",
+  "cardId": "creature_cleaner_shrimp",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration, no slices",
+  "assets": [
+    {
+      "id": "CleanerShrimpEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R012/Art/CleanerShrimpEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-e380f4ed-f1c3-45f6-9511-c0e9606c0ea9.png",
+      "sha256": "38e32fc040b49d706409704b1785cf1de6b4b237d50f532c40881d9c95891298",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf347ed56556",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_cleaner_shrimp.png"
+    }
+  ],
+  "unityImported": true,
+  "penpotCardId": "bae680cd-9225-8018-8008-cf347f106def",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf347ef37602",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

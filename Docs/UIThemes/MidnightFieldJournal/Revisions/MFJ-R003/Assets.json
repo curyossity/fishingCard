@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R003",
+  "cardId": "creature_coastal_cod",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration only, no card/screenshot slices",
+  "assets": [
+    {
+      "id": "CodEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R003/Art/CodEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-ab3ed82e-f7f3-4394-9ee7-e204e5702b89.png",
+      "sha256": "d0b6b1613f936fc663872d5c7226bc0196e125c167619c1c401c52f1e41102a5",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf09bf1f5d00",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_coastal_cod.png"
+    }
+  ],
+  "penpotCardId": "bae680cd-9225-8018-8008-cf09f41c7320",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf09f3ff1e59",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "unityImported": true,
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

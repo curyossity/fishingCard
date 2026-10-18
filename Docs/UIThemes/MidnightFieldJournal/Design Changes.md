@@ -1,12 +1,43 @@
 # Penpot revisions after the Unity assembly
 
-The current Unity assembly is the starting point for this revision round. Future Penpot changes are recorded here and in [DesignChangeLedger.json](DesignChangeLedger.json); importing them into Unity is a separate step requested by the user.
+MFJ-SYNC-001 now includes every revision below in the Unity candidate theme. [Import and validation record](Sync001/README.md). The original Unity assembly remains the immutable starting baseline. Penpot changes are recorded here and in [DesignChangeLedger.json](DesignChangeLedger.json); MFJ-SYNC-001 records the completed Unity import requested by the user. Future revisions remain separate until their own synchronization.
 
 [UnityDesignBaseline.json](UnityDesignBaseline.json) freezes the current theme files, GUIDs, image dimensions/hashes, source catalog, and related shared presentation files. Do not overwrite that baseline when revising Penpot. It records the accepted assembled version, including the existing missing-art/source-quality boundaries; it does not certify the blocked standalone build.
 
 ## Current changes
 
-No new design revisions yet. The earlier chain, connector and laid-down Technique iterations are already part of the baseline and must not be imported again as pending changes.
+| Revision | Change | Status | Later Unity update |
+| --- | --- | --- | --- |
+| MFJ-R001 | Remove added pointer-hover frames from Descend/Surface, Technique cards and compact Catch Chain cards. Keep other hover motion and state-specific indicators. | Imported and verified at MFJ-SYNC-001. | Native candidate feedback; no source PNG change. |
+| MFJ-R002 | Recreate the main creature card with mockup-style engraving, large separate illustrated octopus, stat/rarity row, role icons and detailed effect panels. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R003 | Create the editable Cod variant: new engraved illustration, Common rarity, Weight 2, Value 12, Fish/Predator tags, empty Catch effect, Bottom Feeder Bait effect. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+
+| MFJ-R004 | Garfish: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R005 | Glass Minnow: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R006 | Jellyfish: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+
+| MFJ-R007 | Lionfish: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R008 | Mackerel: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R009 | Moonlit Ray: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R010 | Mussel: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R011 | Sardine: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+
+| MFJ-R012 | Cleaner Shrimp: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R013 | Clinging Crab: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R014 | Sea Anemone: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R015 | Sea Bass: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R016 | Sea Urchin: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R017 | Spiny Lobster: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R018 | Squid: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+| MFJ-R019 | Tidepool Eel: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+
+The earlier chain, connector and laid-down Technique iterations are already part of the baseline and must not be imported again as pending changes. MFJ-R001 affects the added hover outline, not the cards' painted ornamental frames, Bait border or independent selection/target indicators. Keyboard/controller focus remains a separate state to verify.
+
+MFJ-R001: [live Penpot evidence](MFJ-R001-Penpot.json) records exact source/instance IDs and read-back checks. The requested pointer-hover frames originated in Unity's native feedback code and have now been removed from the candidate pointer feedback at MFJ-SYNC-001. The approved interaction contract is stored on the Penpot page and relevant source/instance shapes using shared metadata `fishing-cards-design` / `MFJ-R001`; this metadata does not itself execute Unity hover behavior. [Synchronization verification](MFJ-R001-Verification.json) tracks the unchanged Unity baseline.
+
+MFJ-R002: [design handoff, previews and selective-import boundary](Revisions/MFJ-R002/README.md). Preserve the already-approved compact Catch Chain art: the new wide octopus is a central-only illustration, not an automatic replacement for its shared compact portrait. The old central cards remain hidden for comparison, and the original static mockup remains intact.
+
+MFJ-R003: [Cod handoff, preview and data verification](Revisions/MFJ-R003/README.md). The standalone Cod board uses the accepted MFJ-R002 template. Unity maps its central portrait independently at runtime. Its null Catch effect is deliberate, not missing data.
 
 ## Record each revision
 

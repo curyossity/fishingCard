@@ -1,0 +1,251 @@
+{
+  "result": {
+    "revision": "MFJ-R001",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "hoverLayersFound": [],
+    "operation": "Record borderless pointer-hover contract in shared page/source/instance metadata; current static Penpot page already has no hover frames.",
+    "namespace": "fishing-cards-design",
+    "metadataKey": "MFJ-R001",
+    "contract": {
+      "revision": "MFJ-R001",
+      "interaction": "pointer-hover",
+      "addedFrame": false,
+      "components": [
+        "Descend",
+        "Surface",
+        "Technique cards",
+        "Catch Chain cards"
+      ],
+      "preserve": [
+        "painted borders",
+        "hover motion and inspection",
+        "Bait indicators",
+        "selection and legal target indicators"
+      ],
+      "unityStatus": "pending synchronization",
+      "imageExportRequired": false
+    },
+    "targets": [
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b391ac88",
+        "name": "Chain card / Sardine / CATCH",
+        "parentId": "bae680cd-9225-8018-8008-cdde36d190e3",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b3dc5ab4",
+        "name": "Chain card / Clinging Crab / CATCH",
+        "parentId": "bae680cd-9225-8018-8008-cdde36d190e3",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b42e5029",
+        "name": "Chain card / Glass Minnow / BAIT",
+        "parentId": "bae680cd-9225-8018-8008-cdde36d190e3",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdde3cc0df68",
+        "name": "Static Descend button face",
+        "parentId": "bae680cd-9225-8018-8008-cdde3c8063bb",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdde3cf48bc9",
+        "name": "Static Surface button face",
+        "parentId": "bae680cd-9225-8018-8008-cdde3c8063bb",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85b13c0af",
+        "name": "Technique v2 / Cut Loose / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85b5b7cd3",
+        "name": "Technique v2 / Slip Past / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85ba59e54",
+        "name": "Technique v2 / Steady Line / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85bf6ba9c",
+        "name": "Technique v2 / Prize Hook / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead5028fb2",
+        "name": "Chain card / Sardine / CATCH",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028f9b",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead5028fb3",
+        "name": "Chain card / Clinging Crab / CATCH",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028f9b",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead5028fb4",
+        "name": "Chain card / Glass Minnow / BAIT",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028f9b",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead502df4c",
+        "name": "Static Descend button face",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028f9e",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead502df4e",
+        "name": "Static Surface button face",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028f9e",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead502df6e",
+        "name": "Technique v2 / Cut Loose / editable",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028fa0",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead502df6f",
+        "name": "Technique v2 / Slip Past / editable",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028fa0",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead502df70",
+        "name": "Technique v2 / Steady Line / editable",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028fa0",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead502df71",
+        "name": "Technique v2 / Prize Hook / editable",
+        "parentId": "bae680cd-9225-8018-8008-cdead5028fa0",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdddda4e2065",
+        "name": "Source / DescendButton",
+        "parentId": "bae680cd-9225-8018-8008-cdde421c05c9",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cddddb67a783",
+        "name": "Source / SurfaceButton",
+        "parentId": "bae680cd-9225-8018-8008-cdde421c05c9",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b5276d4d",
+        "name": "Chain card / Sardine / CATCH",
+        "parentId": "bae680cd-9225-8018-8008-cde2b511f13d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b5797c75",
+        "name": "Chain card / Clinging Crab / CATCH",
+        "parentId": "bae680cd-9225-8018-8008-cde2b511f13d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b5d0d97a",
+        "name": "Chain card / Glass Minnow / BAIT",
+        "parentId": "bae680cd-9225-8018-8008-cde2b511f13d",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85cd2e099",
+        "name": "Technique v2 / Cut Loose / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85d5dac7e",
+        "name": "Technique v2 / Slip Past / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85db720d2",
+        "name": "Technique v2 / Steady Line / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85e1bf8ff",
+        "name": "Technique v2 / Prize Hook / editable",
+        "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79",
+        "metadataVerified": true,
+        "appearanceUnchanged": true,
+        "previousMetadata": null
+      }
+    ],
+    "verified": true,
+    "unityChanged": false
+  },
+  "log": ""
+}

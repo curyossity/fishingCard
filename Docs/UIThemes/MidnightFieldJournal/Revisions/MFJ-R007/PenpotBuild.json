@@ -1,0 +1,54 @@
+{
+  "result": {
+    "revision": "MFJ-R007",
+    "name": "Lionfish",
+    "slug": "Lionfish",
+    "id": "creature_lionfish",
+    "weight": 2,
+    "value": 30,
+    "rarity": "Rare",
+    "tags": [
+      "Fish",
+      "Predator",
+      "Armored"
+    ],
+    "depth": {
+      "min": 10,
+      "max": 20
+    },
+    "catchEffect": {
+      "name": "Venomous Spines",
+      "description": "Whenever you release another creature, this Catch loses 5 value."
+    },
+    "baitEffect": {
+      "name": "Venomous Lure",
+      "description": "After catching a Predator, you may release another Small creature."
+    },
+    "x": 8500,
+    "y": 3200,
+    "artName": "LionfishEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Lionfish.asset",
+    "authoredSha256": "017afc16bff4a1d06f15b23a957c46ea1a8b2a858ff4dd479936f5b3c2df3ca2",
+    "sourceId": "bae680cd-9225-8018-8008-cf1b7b811284",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf1b7b9c8773",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf1b7c5effd8",
+    "cardId": "bae680cd-9225-8018-8008-cf1b7bc27fec",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf1b7bc27ff0",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}

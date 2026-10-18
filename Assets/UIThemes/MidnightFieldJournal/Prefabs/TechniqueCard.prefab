@@ -873,6 +873,7 @@ MonoBehaviour:
   keywordText: {fileID: 158904866679887875}
   useButton: {fileID: 5154247128921488041}
   hoverFrame: {fileID: 7497843709991336792}
+  pointerHoverFrame: 0
   selectedFrame: {fileID: 8256246475159311819}
   disabledOverlay: {fileID: 8780671554888814136}
   playableBadge: {fileID: 0}

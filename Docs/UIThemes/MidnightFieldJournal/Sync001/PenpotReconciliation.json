@@ -1,0 +1,10 @@
+{
+  "result": {
+    "cards": 20,
+    "differences": [],
+    "passed": true,
+    "page": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "hoverContract": "{\"revision\":\"MFJ-R001\",\"interaction\":\"pointer-hover\",\"addedFrame\":false,\"components\":[\"Descend\",\"Surface\",\"Technique cards\",\"Catch Chain cards\"],\"preserve\":[\"painted borders\",\"hover motion and inspection\",\"Bait indicators\",\"selection and legal target indicators\"],\"unityStatus\":\"pending synchronization\",\"imageExportRequired\":false}"
+  },
+  "log": ""
+}

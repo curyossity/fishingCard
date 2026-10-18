@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R008",
+  "cardId": "creature_mackerel",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration, no slices",
+  "assets": [
+    {
+      "id": "MackerelEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R008/Art/MackerelEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-113fbc81-e0f8-4a4b-a974-8b62c2837dc6.png",
+      "sha256": "dc4cbfe1e7f28cbec92c71080fed86eee6fff42cec8d0f512daa9e676bca944b",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf1bcdc52879",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mackerel.png"
+    }
+  ],
+  "unityImported": true,
+  "penpotCardId": "bae680cd-9225-8018-8008-cf1bce0064c9",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf1bcde4302e",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

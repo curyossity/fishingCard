@@ -357,6 +357,7 @@ MonoBehaviour:
   baitFrame: {fileID: 5846892847957420677}
   selectionButton: {fileID: 8533726267633145238}
   hoverFrame: {fileID: 2016380912132679289}
+  pointerHoverFrame: 0
   selectedFrame: {fileID: 6360293604553904050}
   disabledOverlay: {fileID: 2357437713054803476}
   releaseCandidateFrame: {fileID: 8122126776697462909}

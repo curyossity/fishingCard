@@ -1,0 +1,24 @@
+{
+  "revision": "MFJ-R018",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/squid.asset",
+    "sha256": "ad370892d99d473f68b5d64ea4c521cb8f04a26f618b68f2f2a12fa7ad243f6f",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "SquidReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "91da54e53d8186e3e2d82aff96414290df965dfb83a8445617ae7c123c133964"
+    }
+  ]
+}

@@ -1,57 +1,82 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>Supplies exact theme artwork and masked footer metadata to the shared central card view.</summary>
+/// <summary>Renders masked journal metadata and central-only layout independently of run rules.</summary>
 public sealed class JournalCreatureCardVisuals : CreatureCardVisualExtension
 {
     [SerializeField] private MidnightFieldJournalTheme theme;
-    [SerializeField] private TMP_Text tagsText;
-    [SerializeField] private GameObject rarityRoot;
-    [SerializeField] private JournalRarityHook[] rarityHooks;
+    [SerializeField] private TMP_Text tagsText, rarityText, typeText, nameText;
+    [SerializeField] private TMP_Text catchName, catchText, baitName, baitText;
+    [SerializeField] private RectTransform portraitRegion, portrait;
+    [SerializeField] private GameObject rarityRoot, roleDecoration;
+    [SerializeField] private JournalCardEmblem rarityDiamond;
     [SerializeField] private bool showRarity;
-    [SerializeField] private JournalCardOutline catchSelection;
-    [SerializeField] private JournalCardOutline baitSelection;
+    [SerializeField] private JournalCardOutline catchSelection, baitSelection;
     private bool metadataVisible;
 
-    /// <summary>Returns only this creature's selected new-theme art, never a legacy face overlay or another species.</summary>
+    /// <summary>Uses central-only portraits without replacing compact-chain sources.</summary>
     public override Sprite GetArtwork(CardDefinition card)
     {
-        if (theme != null && card != null && theme.TryGetArtwork(card.UniqueId, out Sprite sprite)) return sprite;
-        return null;
+        if (theme == null || card == null) return null;
+        var entry = theme.GetCentralCard(card.UniqueId);
+        if (entry != null) return entry.sprite;
+        return theme.TryGetArtwork(card.UniqueId, out Sprite sprite) ? sprite : null;
     }
 
-    /// <summary>Shows authored tags and approved rarity presentation only when identity is permitted.</summary>
+    /// <summary>Applies recorded layout after the shared view handles content, concealment and event rules.</summary>
     public override void Refresh(CardDefinition card, bool informationHidden, bool identityHidden, bool catchLayout)
     {
         metadataVisible = card != null && catchLayout && !identityHidden;
-        if (tagsText != null) tagsText.text = metadataVisible
-            ? string.Join("  ·  ", CreatureTagVocabulary.Normalize(card.Tags)).ToUpperInvariant() : string.Empty;
-        if (rarityRoot != null) rarityRoot.SetActive(metadataVisible && showRarity);
-        if (!metadataVisible || rarityHooks == null || theme == null) return;
-        int active = Mathf.Clamp((int)card.Rarity + 1, 1, 4);
-        for (int i = 0; i < rarityHooks.Length; i++)
-        {
-            Color color = theme.ParchmentInk; color.a = i < active ? 1 : .22f;
-            rarityHooks[i].color = color;
-        }
+        tagsText.text = metadataVisible ? string.Join("  \u00b7  ", CreatureTagVocabulary.Normalize(card.Tags)).ToUpperInvariant() : string.Empty;
+        rarityRoot.SetActive(metadataVisible && showRarity);
+        roleDecoration.SetActive(catchLayout);
+        rarityText.text = metadataVisible ? card.Rarity.ToString().ToUpperInvariant() : string.Empty;
+        Color ink = card.Rarity == CardRarity.Rare ? new Color32(152, 97, 45, 255)
+            : card.Rarity == CardRarity.Uncommon ? new Color32(84, 140, 148, 255) : theme.ParchmentInk;
+        rarityText.color = rarityDiamond.color = ink;
+        Bounds(typeText.rectTransform, catchLayout ? Pixels(140, 65, 980, 40) : new Rect(110f/1040, 1-78f/1300, 820f/1040, 44f/1300));
+        Bounds(nameText.rectTransform, catchLayout ? Pixels(140, 114, 980, 82) : new Rect(110f/1040, 1-165f/1300, 820f/1040, 100f/1300));
+        typeText.fontSize = catchLayout ? 28 : 22;
+        nameText.fontSizeMax = catchLayout ? 66 : 57;
+        if (catchLayout) typeText.text = card.CardType == CardType.ApexEncounter ? "A P E X" : card.CardType == CardType.Treasure ? "T R E A S U R E" : "C R E A T U R E";
+        var entry = theme.GetCentralCard(card.UniqueId);
+        Rect art = entry != null ? entry.portraitBounds : new Rect(110, 190, 1040, 585.311f);
+        Bounds(portraitRegion, catchLayout ? Pixels(art.x, art.y, art.width, art.height) : new Rect(.2f, .38f, .6f, .42f));
+        portrait.localScale = Vector3.one;
+        portrait.localRotation = Quaternion.identity;
+        portrait.anchoredPosition = Vector2.zero;
+        if (!catchLayout) return;
+        ApplyText(catchName, entry != null ? entry.catchNameBounds : new Rect(120,1021,460,70), entry != null ? entry.catchNameSize : 42);
+        ApplyText(baitName, entry != null ? entry.baitNameBounds : new Rect(690,1021,450,70), entry != null ? entry.baitNameSize : 42);
+        ApplyText(catchText, entry != null ? entry.catchTextBounds : new Rect(150,catchName.text.Length==0?1021:1108,414,catchName.text.Length==0?271:180), entry != null ? entry.catchTextSize : 34, entry != null ? 26 : 22);
+        ApplyText(baitText, entry != null ? entry.baitTextBounds : new Rect(701,baitName.text.Length==0?1021:1108,414,baitName.text.Length==0?271:180), entry != null ? entry.baitTextSize : 34, entry != null ? 26 : 22);
     }
 
-    /// <summary>Enables an approved footer treatment or a temporary review instance without changing gameplay data.</summary>
-    public void SetRarityVisible(bool enabled)
-    { showRarity = enabled; if (rarityRoot != null) rarityRoot.SetActive(metadataVisible && showRarity); }
-
-    /// <summary>Uses hollow native UI borders so selection never paints over either ability panel.</summary>
-    public override void RefreshSelection(EncounterEffectChoice choice, bool active)
+    /// <summary>Places a card-space text field relative to its independently selectable role target.</summary>
+    private static void ApplyText(TMP_Text text, Rect pixels, float size, float minimumSize=26)
     {
-        if (catchSelection != null) catchSelection.gameObject.SetActive(active && choice == EncounterEffectChoice.Catch);
-        if (baitSelection != null) baitSelection.gameObject.SetActive(active && choice == EncounterEffectChoice.Bait);
+        if (text == null || pixels.width <= 0) return;
+        RectTransform parent = (RectTransform)text.transform.parent;
+        Rect p = new Rect(parent.anchorMin, parent.anchorMax-parent.anchorMin);
+        Rect b = Pixels(pixels.x,pixels.y,pixels.width,pixels.height);
+        Bounds(text.rectTransform, new Rect((b.x-p.x)/p.width,(b.y-p.y)/p.height,b.width/p.width,b.height/p.height));
+        text.fontSize = text.fontSizeMax = size;
+        text.fontSizeMin = Mathf.Min(minimumSize,size);
+        text.enableAutoSizing = true;
     }
 
-    /// <summary>Clears all identity-bearing footer content.</summary>
-    public override void Clear()
+    /// <summary>Converts approved top-left coordinates on the 1260 by 1400 card into Unity anchors.</summary>
+    public static Rect Pixels(float x,float y,float width,float height) { return new Rect(x/1260,1-(y+height)/1400,width/1260,height/1400); }
+    /// <summary>Updates one region without retaining old portrait offsets.</summary>
+    private static void Bounds(RectTransform rect,Rect b) { rect.anchorMin=b.min;rect.anchorMax=b.max;rect.offsetMin=rect.offsetMax=Vector2.zero; }
+    /// <summary>Controls native rarity visibility without changing gameplay data.</summary>
+    public void SetRarityVisible(bool enabled) { showRarity=enabled;rarityRoot.SetActive(enabled&&metadataVisible); }
+    /// <summary>Updates selected-role borders independently of pointer hover.</summary>
+    public override void RefreshSelection(EncounterEffectChoice choice,bool active)
     {
-        metadataVisible = false;
-        if (tagsText != null) tagsText.text = string.Empty;
-        if (rarityRoot != null) rarityRoot.SetActive(false);
+        if(catchSelection!=null)catchSelection.gameObject.SetActive(active&&choice==EncounterEffectChoice.Catch);
+        if(baitSelection!=null)baitSelection.gameObject.SetActive(active&&choice==EncounterEffectChoice.Bait);
     }
+    /// <summary>Removes identity-bearing decoration from blank and concealed presentations.</summary>
+    public override void Clear() { metadataVisible=false;tagsText.text="";rarityText.text="";rarityRoot.SetActive(false); }
 }

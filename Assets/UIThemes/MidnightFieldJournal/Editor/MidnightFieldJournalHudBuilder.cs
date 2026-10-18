@@ -38,7 +38,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(focusData, "focus", settingsFocus); focusData.ApplyModifiedPropertiesWithoutUndo();
         Rule(header, 120, 112, 3590);
         GameObject chain = Instance("CatchChain", main, ScreenBounds(105, 170, 855, 1540));
-        RectTransform encounter = Region("Encounter Panel", main, ScreenBounds(1238, 113, 1064, 1324));
+        RectTransform encounter = Region("Encounter Panel", main, ScreenBounds(1250, 110, 1260, 1400));
         RectTransform actions = Region("Run Controls", main, new Rect(0, 0, 1, 1));
         ScreenLabel("Actions Heading", actions, 2780, 185, 880, 80, 40, Copper, true).text = "YOUR NEXT MOVE";
         var descend = PlaceAction("Descend", actions, 2780, 255);
@@ -54,7 +54,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Rule(main, 165, 1923, 700);
         ScreenLabel("Haul Label", main, 165, 1950, 440, 80, 34, Copper, true).text = "CURRENT HAUL";
         TMP_Text haul = ScreenLabel("Haul Value", main, 670, 1945, 195, 90, 54, Paper);
-        TMP_Text trail = ScreenLabel("Encounter Trail Preview", main, 1050, 1430, 1500, 100, 30, Paper);
+        TMP_Text trail = ScreenLabel("Encounter Trail Preview", main, 1050, 1530, 1500, 90, 30, Paper);
         trail.enableAutoSizing = true; trail.fontSizeMin = 22; trail.gameObject.SetActive(false);
         GameObject hand = Instance("TechniqueHand", design, ScreenBounds(980, 1294, 2500, 866)); hand.AddComponent<CanvasGroup>();
         // Hand pile counts occupy the spare action-bar row, clear of both the depth guide and inspect text.

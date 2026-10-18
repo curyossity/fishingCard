@@ -1,0 +1,277 @@
+{
+  "result": {
+    "revision": "MFJ-R006",
+    "name": "Jellyfish",
+    "slug": "Jellyfish",
+    "id": "creature_jellyfish",
+    "weight": 1,
+    "value": 8,
+    "rarity": "Common",
+    "tags": [
+      "Small"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 18
+    },
+    "catchEffect": {
+      "name": "Tangle",
+      "description": "The next creature attached as Catch gains +1 weight."
+    },
+    "baitEffect": {
+      "name": "Buoyant Bell",
+      "description": "Reduce two other Armored creatures’ weight by 1 each."
+    },
+    "x": 17200,
+    "artName": "JellyfishEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Jellyfish.asset",
+    "authoredSha256": "25aa31a551e93f2b51576618fecb761d65fc86570c0f6c5a1c3d0c83b5a0279c",
+    "sourceId": "bae680cd-9225-8018-8008-cf0faf5e1740",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf0faf77ee33",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf0fafe405f7",
+    "cardId": "bae680cd-9225-8018-8008-cf0faf91b8bf",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf0faf91b8c3",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false,
+    "verified": true,
+    "checks": {
+      "name": true,
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "tags": true,
+      "twoImages": true,
+      "frameReused": true,
+      "templateRetained": true,
+      "CatchName": true,
+      "CatchDescription": true,
+      "BaitName": true,
+      "BaitDescription": true
+    },
+    "editableTextFields": 14,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c0",
+        "name": "Static / engraved parchment, marine stage and neutral effect panels",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c1",
+        "name": "Dynamic / creature type",
+        "type": "text",
+        "text": "C R E A T U R E",
+        "x": 468,
+        "y": 70,
+        "w": 324,
+        "h": 38,
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c2",
+        "name": "Dynamic / creature name",
+        "type": "text",
+        "text": "JELLYFISH",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c3",
+        "name": "Dynamic / engraved Jellyfish illustration",
+        "type": "rectangle",
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.311004784689
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c4",
+        "name": "Dynamic / creature tags",
+        "type": "text",
+        "text": "SMALL",
+        "x": 250,
+        "y": 752,
+        "w": 760,
+        "h": 34,
+        "fontSize": "22"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c5",
+        "name": "Static / Weight label",
+        "type": "text",
+        "text": "WEIGHT",
+        "x": 130,
+        "y": 805,
+        "w": 175,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c6",
+        "name": "Dynamic / effective Weight",
+        "type": "text",
+        "text": "1",
+        "x": 304,
+        "y": 786,
+        "w": 133,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c7",
+        "name": "Static / Value label",
+        "type": "text",
+        "text": "VALUE",
+        "x": 506,
+        "y": 805,
+        "w": 134,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c8",
+        "name": "Dynamic / sale Value",
+        "type": "text",
+        "text": "8",
+        "x": 634,
+        "y": 786,
+        "w": 115,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8c9",
+        "name": "Dynamic / Common rarity diamond",
+        "type": "group",
+        "x": 803,
+        "y": 807,
+        "w": 31,
+        "h": 31
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8ca",
+        "name": "Dynamic / rarity name",
+        "type": "text",
+        "text": "COMMON",
+        "x": 851,
+        "y": 805,
+        "w": 300,
+        "h": 42,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8cb",
+        "name": "Dynamic / selected Catch glow — not hover",
+        "type": "rectangle",
+        "x": 82,
+        "y": 882,
+        "w": 545,
+        "h": 427
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8cc",
+        "name": "Static / Catch hook icon",
+        "type": "group",
+        "x": 109,
+        "y": 906,
+        "w": 45,
+        "h": 65
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8cd",
+        "name": "Static / Catch role label",
+        "type": "text",
+        "text": "C A T C H",
+        "x": 181,
+        "y": 916,
+        "w": 342,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8ce",
+        "name": "Static / Bait twin-spark icon",
+        "type": "group",
+        "x": 676,
+        "y": 915,
+        "w": 65,
+        "h": 52
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8cf",
+        "name": "Static / Bait role label",
+        "type": "text",
+        "text": "B A I T",
+        "x": 780,
+        "y": 916,
+        "w": 300,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8d0",
+        "name": "Dynamic / Catch effect name",
+        "type": "text",
+        "text": "Tangle",
+        "x": 120,
+        "y": 1021,
+        "w": 460,
+        "h": 70,
+        "fontSize": "46"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8d1",
+        "name": "Dynamic / Catch effect text",
+        "type": "text",
+        "text": "The next creature attached as Catch gains +1 weight.",
+        "x": 150,
+        "y": 1114,
+        "w": 414,
+        "h": 177.99999999999977,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8d2",
+        "name": "Dynamic / Bait effect name",
+        "type": "text",
+        "text": "Buoyant Bell",
+        "x": 690,
+        "y": 1021,
+        "w": 450,
+        "h": 70,
+        "fontSize": "46"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf91b8d3",
+        "name": "Dynamic / Bait effect text",
+        "type": "text",
+        "text": "Reduce two other Armored creatures’ weight by 1 each.",
+        "x": 701,
+        "y": 1114,
+        "w": 414,
+        "h": 178,
+        "fontSize": "36"
+      }
+    ]
+  },
+  "log": ""
+}

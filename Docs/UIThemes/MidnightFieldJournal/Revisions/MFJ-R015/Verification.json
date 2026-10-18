@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R015",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Sea Bass.asset",
+    "sha256": "39bbddb4b7cec82bd9f16f5535032d9a5b443f00fef41aa24960fc844ffe4a25",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "SeaBassCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "ae13794f869c7776de0a81ad04b60ff018afe36b5959f28b587813a21d53ff8a"
+    },
+    {
+      "path": "SeaBassReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "32493f88ec93c2b39755b36b77ec41d733a1c330c425da6b1b550fd8f56cf282"
+    }
+  ]
+}

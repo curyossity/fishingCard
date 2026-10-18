@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R007",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Lionfish.asset",
+    "sha256": "017afc16bff4a1d06f15b23a957c46ea1a8b2a858ff4dd479936f5b3c2df3ca2",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "LionfishCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "2b318bd081500a403e9d1dbacf1561e9f66d9e3e80cea16b140144768977f618"
+    },
+    {
+      "path": "LionfishReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "45f2b8cc4d207d85ccfe5f837df57d37477d2f184c9ef1bfcc7ba62bcc708b4b"
+    }
+  ]
+}

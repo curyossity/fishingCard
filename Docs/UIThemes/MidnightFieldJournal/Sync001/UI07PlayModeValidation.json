@@ -1,0 +1,6 @@
+{
+    "passed": true,
+    "sceneFilesUnchanged": true,
+    "assertions": 77,
+    "scope": "Actual scene/controller, targeted runtime fixtures, scene reload and real short run through Surface/results/restart"
+}

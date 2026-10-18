@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R014",
+  "cardId": "creature_sea_anemone",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration, no slices",
+  "assets": [
+    {
+      "id": "SeaAnemoneEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R014/Art/SeaAnemoneEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-3a841e45-b321-49e7-8a78-5b9996a6aa56.png",
+      "sha256": "7d3a26c42d4b682d819e855c2e8d2ee680ad0d46f9b2ab8a533b4ea242891401",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf34835d1475",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_anemone.png"
+    }
+  ],
+  "unityImported": true,
+  "penpotCardId": "bae680cd-9225-8018-8008-cf34839949d6",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf348378e765",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

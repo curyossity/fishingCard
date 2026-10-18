@@ -128,6 +128,7 @@ public static class MidnightFieldJournalAssetSetup
         SerializedProperty absent = data.FindProperty("unillustratedCardIds"); absent.arraySize = catalog.unillustratedCardIds.Length;
         for (int n = 0; n < absent.arraySize; n++) absent.GetArrayElementAtIndex(n).stringValue = catalog.unillustratedCardIds[n];
         data.ApplyModifiedPropertiesWithoutUndo(); AssetDatabase.SaveAssetIfDirty(theme);
+        JournalDesignSync.BindCentral(theme);
         File.WriteAllText(Evidence + "UI02FontAudit.json", JsonUtility.ToJson(report, true));
         Debug.Log("Midnight Field Journal: isolated fonts and theme asset prepared.");
     }
@@ -253,7 +254,7 @@ public static class MidnightFieldJournalAssetSetup
 
     /// <summary>Supports regeneration from checked-in canonical sources after ignored staging has been cleaned.</summary>
     private static void CopyStagedIfPresent(string from, string to)
-    { if (File.Exists(from)) CopyVerified(from, to); else if (!File.Exists(to)) throw new FileNotFoundException("Audited source is missing from both staging and theme.", to); }
+    { if (File.Exists(to)) return; if (File.Exists(from)) CopyVerified(from, to); else throw new FileNotFoundException("Audited source is missing from both staging and theme.", to); }
 
     /// <summary>Checks source provenance before resources are consumed by Unity.</summary>
     private static void VerifyHash(string path, string expected)

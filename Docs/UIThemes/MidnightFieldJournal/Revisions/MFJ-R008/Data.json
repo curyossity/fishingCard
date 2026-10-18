@@ -1,0 +1,39 @@
+{
+  "revision": "MFJ-R008",
+  "name": "Mackerel",
+  "slug": "Mackerel",
+  "id": "creature_mackerel",
+  "weight": 1,
+  "value": 10,
+  "rarity": "Common",
+  "tags": [
+    "Fish",
+    "Schooling"
+  ],
+  "depth": {
+    "min": 0,
+    "max": 16
+  },
+  "catchEffect": {
+    "name": "Packed Shoal",
+    "description": "With 2 other Schooling Catches, this creature weighs 0."
+  },
+  "baitEffect": {
+    "name": "School Call",
+    "description": "When attached as Bait, choose your next encounter from 2 Schooling creatures."
+  },
+  "x": 10700,
+  "y": 3200,
+  "artName": "MackerelEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Golden Mackerel.asset",
+  "authoredSha256": "a871ccfc703eda7308b5382d87d48fe4263540d273242e6f48272bc8eeeda413",
+  "sourceId": "bae680cd-9225-8018-8008-cf1bcdc52879"
+}

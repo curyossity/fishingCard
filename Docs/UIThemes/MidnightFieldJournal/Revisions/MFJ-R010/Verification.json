@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R010",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Mussel.asset",
+    "sha256": "cc290f14043b530a9627ef58a15bdf5ea81e6d791ba0fe411192448a7736dc30",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "MusselCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "eee7440ebb8ab6a229406539dfb7d01ec474f9d68c74c5c4f2d0f7db9d0e93ce"
+    },
+    {
+      "path": "MusselReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "64775391f76feee9b9753c37f5bc48a474823ffa7410766b18537bec4015a732"
+    }
+  ]
+}

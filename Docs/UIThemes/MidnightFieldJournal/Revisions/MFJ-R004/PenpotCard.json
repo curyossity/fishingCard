@@ -1,0 +1,279 @@
+{
+  "result": {
+    "revision": "MFJ-R004",
+    "name": "Garfish",
+    "slug": "Garfish",
+    "id": "creature_garfish",
+    "weight": 1,
+    "value": 9,
+    "rarity": "Common",
+    "tags": [
+      "Fish",
+      "Small",
+      "Elusive"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 9
+    },
+    "catchEffect": {
+      "name": "Swift",
+      "description": "Gain +3 value per other Elusive Catch."
+    },
+    "baitEffect": {
+      "name": "Slipstream",
+      "description": "Your other attached Fish gain Elusive."
+    },
+    "x": 12800,
+    "artName": "GarfishEngravedV3",
+    "portrait": {
+      "x": 78,
+      "y": 190,
+      "w": 1104,
+      "h": 621.3301435406698
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Garfish.asset",
+    "authoredSha256": "ee9e2b3273581e33daf0c8a6140df9ef88391661980ef4f14110e01bbd631459",
+    "sourceId": "bae680cd-9225-8018-8008-cf0f6714ff05",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf0f6729044a",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf0f6787a406",
+    "cardId": "bae680cd-9225-8018-8008-cf0f673d3f8d",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf0f673d3f91",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false,
+    "verified": true,
+    "checks": {
+      "name": true,
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "tags": true,
+      "twoImages": true,
+      "frameReused": true,
+      "templateRetained": true,
+      "CatchName": true,
+      "CatchDescription": true,
+      "BaitName": true,
+      "BaitDescription": true
+    },
+    "editableTextFields": 14,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f8e",
+        "name": "Static / engraved parchment, marine stage and neutral effect panels",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f8f",
+        "name": "Dynamic / creature type",
+        "type": "text",
+        "text": "C R E A T U R E",
+        "x": 468,
+        "y": 70,
+        "w": 324,
+        "h": 38,
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f90",
+        "name": "Dynamic / creature name",
+        "type": "text",
+        "text": "GARFISH",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f91",
+        "name": "Dynamic / engraved Garfish illustration",
+        "type": "rectangle",
+        "x": 78,
+        "y": 190,
+        "w": 1104,
+        "h": 621.3301435406702
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f92",
+        "name": "Dynamic / creature tags",
+        "type": "text",
+        "text": "FISH  ·  SMALL  ·  ELUSIVE",
+        "x": 250,
+        "y": 752,
+        "w": 760,
+        "h": 34,
+        "fontSize": "22"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f93",
+        "name": "Static / Weight label",
+        "type": "text",
+        "text": "WEIGHT",
+        "x": 130,
+        "y": 805,
+        "w": 175,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f94",
+        "name": "Dynamic / effective Weight",
+        "type": "text",
+        "text": "1",
+        "x": 304,
+        "y": 786,
+        "w": 133,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f95",
+        "name": "Static / Value label",
+        "type": "text",
+        "text": "VALUE",
+        "x": 506,
+        "y": 805,
+        "w": 134,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f96",
+        "name": "Dynamic / sale Value",
+        "type": "text",
+        "text": "9",
+        "x": 634,
+        "y": 786,
+        "w": 115,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f97",
+        "name": "Dynamic / Common rarity diamond",
+        "type": "group",
+        "x": 803,
+        "y": 807,
+        "w": 31,
+        "h": 31
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f98",
+        "name": "Dynamic / rarity name",
+        "type": "text",
+        "text": "COMMON",
+        "x": 851,
+        "y": 805,
+        "w": 300,
+        "h": 42,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f99",
+        "name": "Dynamic / selected Catch glow — not hover",
+        "type": "rectangle",
+        "x": 82,
+        "y": 882,
+        "w": 545,
+        "h": 427
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f9a",
+        "name": "Static / Catch hook icon",
+        "type": "group",
+        "x": 109,
+        "y": 906,
+        "w": 45,
+        "h": 65
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f9b",
+        "name": "Static / Catch role label",
+        "type": "text",
+        "text": "C A T C H",
+        "x": 181,
+        "y": 916,
+        "w": 342,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f9c",
+        "name": "Static / Bait twin-spark icon",
+        "type": "group",
+        "x": 676,
+        "y": 915,
+        "w": 65,
+        "h": 52
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f9d",
+        "name": "Static / Bait role label",
+        "type": "text",
+        "text": "B A I T",
+        "x": 780,
+        "y": 916,
+        "w": 300,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f9e",
+        "name": "Dynamic / Catch effect name",
+        "type": "text",
+        "text": "Swift",
+        "x": 120,
+        "y": 1021,
+        "w": 460,
+        "h": 70,
+        "fontSize": "46"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3f9f",
+        "name": "Dynamic / Catch effect text",
+        "type": "text",
+        "text": "Gain +3 value per other Elusive Catch.",
+        "x": 150,
+        "y": 1114,
+        "w": 414,
+        "h": 177.99999999999977,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3fa0",
+        "name": "Dynamic / Bait effect name",
+        "type": "text",
+        "text": "Slipstream",
+        "x": 690,
+        "y": 1021,
+        "w": 450,
+        "h": 70,
+        "fontSize": "46"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f673d3fa1",
+        "name": "Dynamic / Bait effect text",
+        "type": "text",
+        "text": "Your other attached Fish gain Elusive.",
+        "x": 701,
+        "y": 1114,
+        "w": 414,
+        "h": 178,
+        "fontSize": "36"
+      }
+    ]
+  },
+  "log": ""
+}

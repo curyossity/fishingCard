@@ -4,26 +4,2760 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R001",
+  "nextRevisionId": "MFJ-R020",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
     "pageName": "Concept B — Reusable Assembly (4K)"
   },
   "unityThemeRoot": "Assets/UIThemes/MidnightFieldJournal/",
-  "statuses": ["in_progress", "ready_for_review", "approved", "exported", "imported", "verified", "superseded"],
-  "requiredEntryFields": [
-    "id", "date", "request", "component", "status", "supersedes",
-    "penpotSources", "affectedPenpotInstances", "changeKinds", "before", "after",
-    "unityAssetIds", "unityPaths", "dependentConsumers", "configurationChanges",
-    "exportRequirements", "approvalEvidence", "exportEvidence", "importEvidence",
-    "verificationEvidence", "remainingWork"
+  "statuses": [
+    "in_progress",
+    "ready_for_review",
+    "approved",
+    "exported",
+    "imported",
+    "verified",
+    "superseded"
   ],
-  "changes": [],
-  "synchronizationCheckpoints": [],
+  "requiredEntryFields": [
+    "id",
+    "date",
+    "request",
+    "component",
+    "status",
+    "supersedes",
+    "penpotSources",
+    "affectedPenpotInstances",
+    "changeKinds",
+    "before",
+    "after",
+    "unityAssetIds",
+    "unityPaths",
+    "dependentConsumers",
+    "configurationChanges",
+    "exportRequirements",
+    "approvalEvidence",
+    "exportEvidence",
+    "importEvidence",
+    "verificationEvidence",
+    "remainingWork"
+  ],
+  "changes": [
+    {
+      "id": "MFJ-R001",
+      "date": "2026-10-18",
+      "request": "Remove the frame when hovering action buttons, Technique cards and Catch Chain cards.",
+      "component": [
+        "Descend button",
+        "Surface button",
+        "Technique cards",
+        "Compact Catch Chain cards"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "candidateBoardIds": [
+          "bae680cd-9225-8018-8008-cdde36733e6f",
+          "bae680cd-9225-8018-8008-cde2b511f13d",
+          "bae680cd-9225-8018-8008-cde85bfb5c79",
+          "bae680cd-9225-8018-8008-cdead5028f97"
+        ],
+        "hoverShapeIds": [],
+        "inspectionStatus": "Connected live inspection complete: current reusable-assembly page contains no hover/focus-frame layers. Existing hover outlines are Unity-native overlays.",
+        "recordedMetadata": {
+          "namespace": "fishing-cards-design",
+          "key": "MFJ-R001",
+          "pageAndSourceInstanceContractVerified": true
+        }
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cde2b391ac88",
+          "name": "Chain card / Sardine / CATCH",
+          "parentId": "bae680cd-9225-8018-8008-cdde36d190e3"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde2b3dc5ab4",
+          "name": "Chain card / Clinging Crab / CATCH",
+          "parentId": "bae680cd-9225-8018-8008-cdde36d190e3"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde2b42e5029",
+          "name": "Chain card / Glass Minnow / BAIT",
+          "parentId": "bae680cd-9225-8018-8008-cdde36d190e3"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdde3cc0df68",
+          "name": "Static Descend button face",
+          "parentId": "bae680cd-9225-8018-8008-cdde3c8063bb"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdde3cf48bc9",
+          "name": "Static Surface button face",
+          "parentId": "bae680cd-9225-8018-8008-cdde3c8063bb"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85b13c0af",
+          "name": "Technique v2 / Cut Loose / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85b5b7cd3",
+          "name": "Technique v2 / Slip Past / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85ba59e54",
+          "name": "Technique v2 / Steady Line / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85bf6ba9c",
+          "name": "Technique v2 / Prize Hook / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85ac6c02d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead5028fb2",
+          "name": "Chain card / Sardine / CATCH",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9b"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead5028fb3",
+          "name": "Chain card / Clinging Crab / CATCH",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9b"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead5028fb4",
+          "name": "Chain card / Glass Minnow / BAIT",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9b"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead502df4c",
+          "name": "Static Descend button face",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9e"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead502df4e",
+          "name": "Static Surface button face",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9e"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead502df6e",
+          "name": "Technique v2 / Cut Loose / editable",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028fa0"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead502df6f",
+          "name": "Technique v2 / Slip Past / editable",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028fa0"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead502df70",
+          "name": "Technique v2 / Steady Line / editable",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028fa0"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdead502df71",
+          "name": "Technique v2 / Prize Hook / editable",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028fa0"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cdddda4e2065",
+          "name": "Source / DescendButton",
+          "parentId": "bae680cd-9225-8018-8008-cdde421c05c9"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cddddb67a783",
+          "name": "Source / SurfaceButton",
+          "parentId": "bae680cd-9225-8018-8008-cdde421c05c9"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde2b5276d4d",
+          "name": "Chain card / Sardine / CATCH",
+          "parentId": "bae680cd-9225-8018-8008-cde2b511f13d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde2b5797c75",
+          "name": "Chain card / Clinging Crab / CATCH",
+          "parentId": "bae680cd-9225-8018-8008-cde2b511f13d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde2b5d0d97a",
+          "name": "Chain card / Glass Minnow / BAIT",
+          "parentId": "bae680cd-9225-8018-8008-cde2b511f13d"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85cd2e099",
+          "name": "Technique v2 / Cut Loose / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85d5dac7e",
+          "name": "Technique v2 / Slip Past / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85db720d2",
+          "name": "Technique v2 / Steady Line / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79"
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-cde85e1bf8ff",
+          "name": "Technique v2 / Prize Hook / editable",
+          "parentId": "bae680cd-9225-8018-8008-cde85bfb5c79"
+        }
+      ],
+      "changeKinds": [
+        "interaction_visual"
+      ],
+      "before": {
+        "unityBaseline": "MFJ-UNITY-BASELINE-001",
+        "actionButtons": "JournalActionFeedback enables Focus Edge on pointer hover or selection, plus face scale 1.018.",
+        "techniques": "TechniqueCardView toggles its separate hoverFrame; JournalTechniquePose supplies the whole-card inspect pose.",
+        "catchChain": "CompactCatchCardView toggles its separate hoverFrame for pointer hover or navigation focus. Selection and legal-target overlays are independent."
+      },
+      "after": {
+        "requestedBehavior": "Pointer hover adds no extra frame/outline around either action button, any Technique card, or any compact Catch Chain card.",
+        "retainedBehavior": "Existing hover lift/scale/inspection, static painted borders, Bait cyan styling, selection and legal-target indicators retain their existing purpose.",
+        "focusBoundary": "This request targets pointer hover. Preserve usable keyboard/controller focus independently; shared hover/focus wiring must not make a pointer hover display the removed frame.",
+        "penpotResult": "Pointer-hover contract imported into candidate-only feedback; navigation focus, selected and legal-target indicators retained."
+      },
+      "unityAssetIds": [
+        "DescendButton",
+        "SurfaceButton",
+        "CatchFrameV2",
+        "TechniqueFrameV2"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalActionFeedback.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniquePose.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/DescendButton.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/SurfaceButton.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueCard.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/CompactCatchCard.prefab"
+      ],
+      "dependentConsumers": [
+        "TechniqueCardView.hoverFrame",
+        "CompactCatchCardView.hoverFrame",
+        "JournalActionFeedback.focus",
+        "TechniqueHand prefab and projected hand raycasts",
+        "CatchChain prefab and pooled card states",
+        "MidnightFieldJournalCanvas prefab",
+        "MidnightFieldJournalComparison scene"
+      ],
+      "configurationChanges": "At later Unity synchronization, opt the candidate out of pointer-hover frames without changing legacy-theme defaults. Update authoritative builder/profile/behavior wiring as appropriate; verify focus, target and selected states separately.",
+      "exportRequirements": {
+        "imageExportsExpected": false,
+        "reason": "Unity hover frames are native UI overlays, separate from supplied PNGs. Reassess only if a fresh Penpot inspection reveals baked state artwork requiring a revision.",
+        "sourceDimensions": "Unchanged; existing 4K display contract applies."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": null,
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R002",
+      "date": "2026-10-18",
+      "request": "Recreate the main Catch/creature card to match the original mockup: detailed frame, integrated illustration, data treatment and effect panels.",
+      "component": [
+        "Main creature card",
+        "Small Octopus central illustration"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cee1b54ddb82",
+        "reviewCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cee1b64ceecf",
+        "sourceShapeIds": {
+          "MainCreatureFrameV3": "bae680cd-9225-8018-8008-cee19e0cf6ce",
+          "SmallOctopusEngravedV3": "bae680cd-9225-8018-8008-cee19f073517"
+        }
+      },
+      "affectedPenpotInstances": [
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+          "previousId": "bae680cd-9225-8018-8008-cdde3a7764b4",
+          "instanceId": "bae680cd-9225-8018-8008-cee251db9229",
+          "x": 1250,
+          "y": 110,
+          "width": 1260,
+          "height": 1400,
+          "fields": [
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db922a",
+              "name": "Static / engraved parchment, marine stage and neutral effect panels",
+              "type": "rectangle"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db922b",
+              "name": "Dynamic / creature type",
+              "type": "text",
+              "text": "C R E A T U R E"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db922c",
+              "name": "Dynamic / creature name",
+              "type": "text",
+              "text": "SMALL OCTOPUS"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db922d",
+              "name": "Dynamic / engraved Small Octopus illustration",
+              "type": "rectangle"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db922e",
+              "name": "Dynamic / creature tags",
+              "type": "text",
+              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db922f",
+              "name": "Static / Weight label",
+              "type": "text",
+              "text": "WEIGHT"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9230",
+              "name": "Dynamic / effective Weight",
+              "type": "text",
+              "text": "1"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9231",
+              "name": "Static / Value label",
+              "type": "text",
+              "text": "VALUE"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9232",
+              "name": "Dynamic / sale Value",
+              "type": "text",
+              "text": "9"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9233",
+              "name": "Dynamic / Uncommon rarity diamond",
+              "type": "group"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9234",
+              "name": "Dynamic / rarity name",
+              "type": "text",
+              "text": "UNCOMMON"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9235",
+              "name": "Dynamic / selected Catch glow — not hover",
+              "type": "rectangle"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9236",
+              "name": "Static / Catch hook icon",
+              "type": "group"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9237",
+              "name": "Static / Catch role label",
+              "type": "text",
+              "text": "C A T C H"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9238",
+              "name": "Static / Bait twin-spark icon",
+              "type": "group"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db9239",
+              "name": "Static / Bait role label",
+              "type": "text",
+              "text": "B A I T"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db923a",
+              "name": "Dynamic / Catch effect name",
+              "type": "text",
+              "text": "Clever Catch"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db923b",
+              "name": "Dynamic / Catch effect text",
+              "type": "text",
+              "text": "When caught, draw 1\ntechnique."
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db923c",
+              "name": "Dynamic / Bait effect name",
+              "type": "text",
+              "text": "Helping Arms"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251db923d",
+              "name": "Dynamic / Bait effect text",
+              "type": "text",
+              "text": "When attached as Bait,\nyou may swap the modes of\nanother Catch and\nanother Bait."
+            }
+          ]
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "previousId": "bae680cd-9225-8018-8008-cdead5028f9d",
+          "instanceId": "bae680cd-9225-8018-8008-cee251f05bf8",
+          "x": 1250,
+          "y": 110,
+          "width": 1260,
+          "height": 1400,
+          "fields": [
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bf9",
+              "name": "Static / engraved parchment, marine stage and neutral effect panels",
+              "type": "rectangle"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bfa",
+              "name": "Dynamic / creature type",
+              "type": "text",
+              "text": "C R E A T U R E"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bfb",
+              "name": "Dynamic / creature name",
+              "type": "text",
+              "text": "SMALL OCTOPUS"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bfc",
+              "name": "Dynamic / engraved Small Octopus illustration",
+              "type": "rectangle"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bfd",
+              "name": "Dynamic / creature tags",
+              "type": "text",
+              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bfe",
+              "name": "Static / Weight label",
+              "type": "text",
+              "text": "WEIGHT"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05bff",
+              "name": "Dynamic / effective Weight",
+              "type": "text",
+              "text": "1"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c00",
+              "name": "Static / Value label",
+              "type": "text",
+              "text": "VALUE"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c01",
+              "name": "Dynamic / sale Value",
+              "type": "text",
+              "text": "9"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c02",
+              "name": "Dynamic / Uncommon rarity diamond",
+              "type": "group"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c03",
+              "name": "Dynamic / rarity name",
+              "type": "text",
+              "text": "UNCOMMON"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c04",
+              "name": "Dynamic / selected Catch glow — not hover",
+              "type": "rectangle"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c05",
+              "name": "Static / Catch hook icon",
+              "type": "group"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c06",
+              "name": "Static / Catch role label",
+              "type": "text",
+              "text": "C A T C H"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c07",
+              "name": "Static / Bait twin-spark icon",
+              "type": "group"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c08",
+              "name": "Static / Bait role label",
+              "type": "text",
+              "text": "B A I T"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c09",
+              "name": "Dynamic / Catch effect name",
+              "type": "text",
+              "text": "Clever Catch"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c0a",
+              "name": "Dynamic / Catch effect text",
+              "type": "text",
+              "text": "When caught, draw 1\ntechnique."
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c0b",
+              "name": "Dynamic / Bait effect name",
+              "type": "text",
+              "text": "Helping Arms"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-cee251f05c0c",
+              "name": "Dynamic / Bait effect text",
+              "type": "text",
+              "text": "When attached as Bait,\nyou may swap the modes of\nanother Catch and\nanother Bait."
+            }
+          ]
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "geometry",
+        "typography",
+        "metadata_presentation",
+        "selection_visual"
+      ],
+      "before": {
+        "evidence": "MFJ-R002-Before.json",
+        "canvas": [
+          1040,
+          1300
+        ]
+      },
+      "after": {
+        "canvas": [
+          1260,
+          1400
+        ],
+        "assemblyOffset": [
+          1250,
+          110
+        ],
+        "sourceManifest": "Revisions/MFJ-R002/Assets.json",
+        "geometry": "Revisions/MFJ-R002/FinalGeometry.json",
+        "data": {
+          "id": "creature_small_octopus",
+          "type": "Creature",
+          "name": "Small Octopus",
+          "weight": 1,
+          "value": 9,
+          "rarity": "Uncommon",
+          "tags": [
+            "Small",
+            "Predator",
+            "Elusive"
+          ],
+          "catchEffect": "Clever Catch: When caught, draw 1 technique.",
+          "baitEffect": "Helping Arms: When attached as Bait, you may swap the modes of another Catch and another Bait."
+        },
+        "layers": "Independent frame and illustration, 14 editable text fields, three native vector emblems, independent selected-role glow. No flattened card/screenshot slice."
+      },
+      "unityAssetIds": [
+        "CreatureTemplate",
+        "SmallOctopusPortrait"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopusCentralV3.png (new central-only asset at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/CreatureVisualProfile.asset",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCreatureCardVisuals.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs"
+      ],
+      "dependentConsumers": [
+        "Central encounter card and transition slots",
+        "Ascent/history cards",
+        "Main canvas placement and builder geometry",
+        "Shared compact-card portrait mapping if replacing its source; preserve compact artwork unless separately approved"
+      ],
+      "configurationChanges": "Use FinalGeometry.json: 1260x1400 main card at (1250,110), larger illustration stage, Creature type label, explicit rarity name/diamond in stat strip, native role icons and selected-role glow. Keep tags and all data editable. Add a central-only portrait override; do not overwrite the shared SmallOctopus portrait or alter approved compact Catch Chain framing/art. Update candidate-specific metadata configuration while retaining legacy presentation defaults.",
+      "exportRequirements": {
+        "images": [
+          "MainCreatureFrameV3",
+          "SmallOctopusEngravedV3"
+        ],
+        "slices": false,
+        "dynamicTextSeparate": true,
+        "vectors": [
+          "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/CatchHookV3.svg",
+          "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/BaitTwinSparkV3.svg",
+          "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/RarityDiamondV3.svg"
+        ],
+        "selectedRoleGlow": "Native UI state geometry/style in FinalGeometry.json, separate from pointer-hover."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "art": "Revisions/MFJ-R002/Assets.json",
+        "card": "Revisions/MFJ-R002/MainCardReview.png",
+        "prompts": "Revisions/MFJ-R002/GenerationPrompts.md",
+        "method": "Built-in image generation; no mockup slices; source dimensions recorded honestly."
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_small_octopus.png",
+          "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCardEmblem.cs"
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R003",
+      "date": "2026-10-18",
+      "request": "Create a Cod creature card based on the accepted detailed main-card design.",
+      "component": [
+        "Cod creature illustration",
+        "Editable Cod main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf09bf1f5d00",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf09f3ff1e59",
+        "cardId": "bae680cd-9225-8018-8008-cf09f41c7320"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf09f41c7320",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf09f41c7324",
+          "boardId": "bae680cd-9225-8018-8008-cf09f3ff1e59"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "codArt": "No approved central Cod art in the candidate theme"
+      },
+      "after": {
+        "cardId": "creature_coastal_cod",
+        "name": "Cod",
+        "weight": 2,
+        "value": 12,
+        "rarity": "Common",
+        "tags": [
+          "Fish",
+          "Predator"
+        ],
+        "catchEffect": null,
+        "baitEffect": {
+          "name": "Bottom Feeder",
+          "description": "After releasing an Armored creature, recover one discarded technique."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "commonRarityInk": "#232A29",
+        "effectlessCatch": "No Catch ability title/body objects; role panel/header and selected-role treatment retained."
+      },
+      "unityAssetIds": [
+        "CodEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CodCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Cod portraits",
+        "Keep existing compact Cod artwork unless separately requested"
+      ],
+      "configurationChanges": "Central-only Cod portrait mapping and framing. Common rarity uses existing neutral parchment ink. Catch effect fields stay empty; preserve approved card data. Reuse MFJ-R002 frame/icons/configuration rather than duplicate/re-export them.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "CodEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R003/Assets.json",
+        "preview": "Revisions/MFJ-R003/CodReview.png",
+        "card": "Revisions/MFJ-R003/CodCard.png",
+        "prompt": "Revisions/MFJ-R003/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_coastal_cod.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R004",
+      "date": "2026-10-18",
+      "request": "Create Garfish as one of the next three creatures based on the accepted card design.",
+      "component": [
+        "Garfish creature illustration",
+        "Editable Garfish main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf0f6714ff05",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf0f6729044a",
+        "cardId": "bae680cd-9225-8018-8008-cf0f673d3f8d",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf0f6787a406"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf0f673d3f8d",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf0f673d3f91",
+          "boardId": "bae680cd-9225-8018-8008-cf0f6729044a"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Garfish engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_garfish",
+        "name": "Garfish",
+        "weight": 1,
+        "value": 9,
+        "rarity": "Common",
+        "tags": [
+          "Fish",
+          "Small",
+          "Elusive"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 9
+        },
+        "catchEffect": {
+          "name": "Swift",
+          "description": "Gain +3 value per other Elusive Catch."
+        },
+        "baitEffect": {
+          "name": "Slipstream",
+          "description": "Your other attached Fish gain Elusive."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 78,
+          "y": 190,
+          "w": 1104,
+          "h": 621.3301435406698
+        },
+        "commonRarityInk": "#232A29",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "GarfishEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GarfishCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Garfish portraits",
+        "Keep existing compact Garfish art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Garfish portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "GarfishEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R004/Assets.json",
+        "preview": "Revisions/MFJ-R004/GarfishReview.png",
+        "card": "Revisions/MFJ-R004/GarfishCard.png",
+        "prompt": "Revisions/MFJ-R004/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_garfish.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R005",
+      "date": "2026-10-18",
+      "request": "Create Glass Minnow as one of the next three creatures based on the accepted card design.",
+      "component": [
+        "Glass Minnow creature illustration",
+        "Editable Glass Minnow main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf0f933c402e",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf0f935a97c4",
+        "cardId": "bae680cd-9225-8018-8008-cf0f9376048f",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf0f93bd126d"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf0f9376048f",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf0f93760493",
+          "boardId": "bae680cd-9225-8018-8008-cf0f935a97c4"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Glass Minnow engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_glass_minnow",
+        "name": "Glass Minnow",
+        "weight": 1,
+        "value": 5,
+        "rarity": "Common",
+        "tags": [
+          "Fish",
+          "Schooling",
+          "Small"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 15
+        },
+        "catchEffect": null,
+        "baitEffect": {
+          "name": "Shoal Signal",
+          "description": "After catching a Schooling creature, redraw 1 technique card."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "commonRarityInk": "#232A29",
+        "editableTextFields": 12
+      },
+      "unityAssetIds": [
+        "GlassMinnowEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnowCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Glass Minnow portraits",
+        "Keep existing compact Glass Minnow art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Glass Minnow portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "GlassMinnowEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R005/Assets.json",
+        "preview": "Revisions/MFJ-R005/GlassMinnowReview.png",
+        "card": "Revisions/MFJ-R005/GlassMinnowCard.png",
+        "prompt": "Revisions/MFJ-R005/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_glass_minnow.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R006",
+      "date": "2026-10-18",
+      "request": "Create Jellyfish as one of the next three creatures based on the accepted card design.",
+      "component": [
+        "Jellyfish creature illustration",
+        "Editable Jellyfish main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf0faf5e1740",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf0faf77ee33",
+        "cardId": "bae680cd-9225-8018-8008-cf0faf91b8bf",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf0fafe405f7"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf0faf91b8bf",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf0faf91b8c3",
+          "boardId": "bae680cd-9225-8018-8008-cf0faf77ee33"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Jellyfish engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_jellyfish",
+        "name": "Jellyfish",
+        "weight": 1,
+        "value": 8,
+        "rarity": "Common",
+        "tags": [
+          "Small"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 18
+        },
+        "catchEffect": {
+          "name": "Tangle",
+          "description": "The next creature attached as Catch gains +1 weight."
+        },
+        "baitEffect": {
+          "name": "Buoyant Bell",
+          "description": "Reduce two other Armored creatures’ weight by 1 each."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "commonRarityInk": "#232A29",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "JellyfishEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/JellyfishCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Jellyfish portraits",
+        "Keep existing compact Jellyfish art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Jellyfish portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "JellyfishEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R006/Assets.json",
+        "preview": "Revisions/MFJ-R006/JellyfishReview.png",
+        "card": "Revisions/MFJ-R006/JellyfishCard.png",
+        "prompt": "Revisions/MFJ-R006/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_jellyfish.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R007",
+      "date": "2026-10-18",
+      "request": "Create Lionfish as one of the next five creatures based on the accepted card design.",
+      "component": [
+        "Lionfish creature illustration",
+        "Editable Lionfish main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf1b7b811284",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf1b7b9c8773",
+        "cardId": "bae680cd-9225-8018-8008-cf1b7bc27fec",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf1b7c5effd8"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf1b7bc27fec",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf1b7bc27ff0",
+          "boardId": "bae680cd-9225-8018-8008-cf1b7b9c8773"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Lionfish engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_lionfish",
+        "name": "Lionfish",
+        "weight": 2,
+        "value": 30,
+        "rarity": "Rare",
+        "tags": [
+          "Fish",
+          "Predator",
+          "Armored"
+        ],
+        "depth": {
+          "min": 10,
+          "max": 20
+        },
+        "catchEffect": {
+          "name": "Venomous Spines",
+          "description": "Whenever you release another creature, this Catch loses 5 value."
+        },
+        "baitEffect": {
+          "name": "Venomous Lure",
+          "description": "After catching a Predator, you may release another Small creature."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#98612D",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "LionfishEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/LionfishCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Lionfish portraits",
+        "Keep existing compact Lionfish art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Lionfish portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "LionfishEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R007/Assets.json",
+        "preview": "Revisions/MFJ-R007/LionfishReview.png",
+        "card": "Revisions/MFJ-R007/LionfishCard.png",
+        "prompt": "Revisions/MFJ-R007/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_lionfish.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R008",
+      "date": "2026-10-18",
+      "request": "Create Mackerel as one of the next five creatures based on the accepted card design.",
+      "component": [
+        "Mackerel creature illustration",
+        "Editable Mackerel main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf1bcdc52879",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf1bcde4302e",
+        "cardId": "bae680cd-9225-8018-8008-cf1bce0064c9",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf1bce5f4ce3"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf1bce0064c9",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf1bce0064cd",
+          "boardId": "bae680cd-9225-8018-8008-cf1bcde4302e"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Mackerel engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_mackerel",
+        "name": "Mackerel",
+        "weight": 1,
+        "value": 10,
+        "rarity": "Common",
+        "tags": [
+          "Fish",
+          "Schooling"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 16
+        },
+        "catchEffect": {
+          "name": "Packed Shoal",
+          "description": "With 2 other Schooling Catches, this creature weighs 0."
+        },
+        "baitEffect": {
+          "name": "School Call",
+          "description": "When attached as Bait, choose your next encounter from 2 Schooling creatures."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#232A29",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "MackerelEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/MackerelCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Mackerel portraits",
+        "Keep existing compact Mackerel art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Mackerel portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "MackerelEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R008/Assets.json",
+        "preview": "Revisions/MFJ-R008/MackerelReview.png",
+        "card": "Revisions/MFJ-R008/MackerelCard.png",
+        "prompt": "Revisions/MFJ-R008/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mackerel.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R009",
+      "date": "2026-10-18",
+      "request": "Create Moonlit Ray as one of the next five creatures based on the accepted card design.",
+      "component": [
+        "Moonlit Ray creature illustration",
+        "Editable Moonlit Ray main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf1bf61354dc",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf1bf62e7a36",
+        "cardId": "bae680cd-9225-8018-8008-cf1bf647bdf1",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf1bf69ba01a"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf1bf647bdf1",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf1bf647bdf5",
+          "boardId": "bae680cd-9225-8018-8008-cf1bf62e7a36"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Moonlit Ray engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_moonlit_ray",
+        "name": "Moonlit Ray",
+        "weight": 3,
+        "value": 24,
+        "rarity": "Rare",
+        "tags": [
+          "Fish",
+          "Predator",
+          "Elusive"
+        ],
+        "depth": {
+          "min": 9,
+          "max": 20
+        },
+        "catchEffect": {
+          "name": "Graceful Glide",
+          "description": "This Catch weighs 1 less while any Elusive Bait is attached."
+        },
+        "baitEffect": {
+          "name": "Moonlit Reflection",
+          "description": "After releasing an Elusive Catch, add its value to another Catch."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#98612D",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "MoonlitRayEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/MoonlitRayCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Moonlit Ray portraits",
+        "Keep existing compact Moonlit Ray art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Moonlit Ray portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "MoonlitRayEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R009/Assets.json",
+        "preview": "Revisions/MFJ-R009/MoonlitRayReview.png",
+        "card": "Revisions/MFJ-R009/MoonlitRayCard.png",
+        "prompt": "Revisions/MFJ-R009/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_moonlit_ray.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R010",
+      "date": "2026-10-18",
+      "request": "Create Mussel as one of the next five creatures based on the accepted card design.",
+      "component": [
+        "Mussel creature illustration",
+        "Editable Mussel main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf1c1919937a",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf1c19384688",
+        "cardId": "bae680cd-9225-8018-8008-cf1c195af813",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf1c19b520b8"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf1c195af813",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf1c195af817",
+          "boardId": "bae680cd-9225-8018-8008-cf1c19384688"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Mussel engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_mussel",
+        "name": "Mussel",
+        "weight": 1,
+        "value": 6,
+        "rarity": "Common",
+        "tags": [
+          "Small",
+          "Armored",
+          "Anchored"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 12
+        },
+        "catchEffect": {
+          "name": "Shell Growth",
+          "description": "This Catch gains 2 value each time you catch another Armored creature."
+        },
+        "baitEffect": {
+          "name": "Shelter Shell",
+          "description": "Cancel the next Hazard while this remains Bait."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#232A29",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "MusselEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/MusselCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Mussel portraits",
+        "Keep existing compact Mussel art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Mussel portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "MusselEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R010/Assets.json",
+        "preview": "Revisions/MFJ-R010/MusselReview.png",
+        "card": "Revisions/MFJ-R010/MusselCard.png",
+        "prompt": "Revisions/MFJ-R010/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mussel.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R011",
+      "date": "2026-10-18",
+      "request": "Create Sardine as one of the next five creatures based on the accepted card design.",
+      "component": [
+        "Sardine creature illustration",
+        "Editable Sardine main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf1c3e255cd0",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf1c3e4397e4",
+        "cardId": "bae680cd-9225-8018-8008-cf1c3e5df3ac",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf1c3eb155ab"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf1c3e5df3ac",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf1c3e5df3b0",
+          "boardId": "bae680cd-9225-8018-8008-cf1c3e4397e4"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Sardine engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_sardine",
+        "name": "Sardine",
+        "weight": 1,
+        "value": 7,
+        "rarity": "Common",
+        "tags": [
+          "Fish",
+          "Schooling",
+          "Small"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 14
+        },
+        "catchEffect": null,
+        "baitEffect": {
+          "name": "Feeding Frenzy",
+          "description": "After catching a Predator, you may release this Bait to draw 2 techniques."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.6612806702574
+        },
+        "rarityInk": "#232A29",
+        "editableTextFields": 12
+      },
+      "unityAssetIds": [
+        "SardineEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SardineCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Sardine portraits",
+        "Keep existing compact Sardine art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Sardine portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SardineEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1671,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R011/Assets.json",
+        "preview": "Revisions/MFJ-R011/SardineReview.png",
+        "card": "Revisions/MFJ-R011/SardineCard.png",
+        "prompt": "Revisions/MFJ-R011/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sardine.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R012",
+      "date": "2026-10-18",
+      "request": "Create Cleaner Shrimp as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Cleaner Shrimp creature illustration",
+        "Editable Cleaner Shrimp main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf347ed56556",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf347ef37602",
+        "cardId": "bae680cd-9225-8018-8008-cf347f106def",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf347f8f2574"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf347f106def",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf347f109caa",
+          "boardId": "bae680cd-9225-8018-8008-cf347ef37602"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Cleaner Shrimp engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_cleaner_shrimp",
+        "name": "Cleaner Shrimp",
+        "weight": 1,
+        "value": 8,
+        "rarity": "Uncommon",
+        "tags": [
+          "Small"
+        ],
+        "depth": {
+          "min": 1,
+          "max": 14
+        },
+        "catchEffect": {
+          "name": "Quick Clean",
+          "description": "When attached as Catch, remove one negative effect."
+        },
+        "baitEffect": {
+          "name": "Cleaning Station",
+          "description": "At later biome starts, swap a Catch for one of two creatures."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#548C94",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "CleanerShrimpEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CleanerShrimpCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Cleaner Shrimp portraits",
+        "Keep existing compact Cleaner Shrimp art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Cleaner Shrimp portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "CleanerShrimpEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R012/Assets.json",
+        "preview": "Revisions/MFJ-R012/CleanerShrimpReview.png",
+        "card": "Revisions/MFJ-R012/CleanerShrimpCard.png",
+        "prompt": "Revisions/MFJ-R012/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_cleaner_shrimp.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R013",
+      "date": "2026-10-18",
+      "request": "Create Clinging Crab as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Clinging Crab creature illustration",
+        "Editable Clinging Crab main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf348118f616",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf3481346f34",
+        "cardId": "bae680cd-9225-8018-8008-cf34814be801",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf34819ae5c4"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf34814be801",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf34814be805",
+          "boardId": "bae680cd-9225-8018-8008-cf3481346f34"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Clinging Crab engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_clinging_crab",
+        "name": "Clinging Crab",
+        "weight": 2,
+        "value": 14,
+        "rarity": "Uncommon",
+        "tags": [
+          "Anchored",
+          "Armored"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 12
+        },
+        "catchEffect": {
+          "name": "Iron Grip",
+          "description": "Cannot be deliberately released."
+        },
+        "baitEffect": {
+          "name": "Claw Cut",
+          "description": "Instantly release another card from the Catch Chain."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#548C94",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "ClingingCrabEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrabCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Clinging Crab portraits",
+        "Keep existing compact Clinging Crab art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Clinging Crab portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "ClingingCrabEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R013/Assets.json",
+        "preview": "Revisions/MFJ-R013/ClingingCrabReview.png",
+        "card": "Revisions/MFJ-R013/ClingingCrabCard.png",
+        "prompt": "Revisions/MFJ-R013/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_clinging_crab.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R014",
+      "date": "2026-10-18",
+      "request": "Create Sea Anemone as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Sea Anemone creature illustration",
+        "Editable Sea Anemone main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf34835d1475",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf348378e765",
+        "cardId": "bae680cd-9225-8018-8008-cf34839949d6",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf3483fa3603"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf34839949d6",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf348399b136",
+          "boardId": "bae680cd-9225-8018-8008-cf348378e765"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Sea Anemone engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_sea_anemone",
+        "name": "Sea Anemone",
+        "weight": 1,
+        "value": 8,
+        "rarity": "Uncommon",
+        "tags": [
+          "Small",
+          "Predator",
+          "Anchored"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 16
+        },
+        "catchEffect": {
+          "name": "Stinging Tentacles",
+          "description": "Techniques cannot target this Catch."
+        },
+        "baitEffect": {
+          "name": "Sheltered Exchange",
+          "description": "After catching a Small creature, you may swap a technique in hand with one in your discard pile."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#548C94",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "SeaAnemoneEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SeaAnemoneCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Sea Anemone portraits",
+        "Keep existing compact Sea Anemone art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Sea Anemone portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SeaAnemoneEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R014/Assets.json",
+        "preview": "Revisions/MFJ-R014/SeaAnemoneReview.png",
+        "card": "Revisions/MFJ-R014/SeaAnemoneCard.png",
+        "prompt": "Revisions/MFJ-R014/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_anemone.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R015",
+      "date": "2026-10-18",
+      "request": "Create Sea Bass as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Sea Bass creature illustration",
+        "Editable Sea Bass main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf3485600096",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf34857f82ac",
+        "cardId": "bae680cd-9225-8018-8008-cf3485a14456",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf3486054010"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf3485a14456",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf3485a1445a",
+          "boardId": "bae680cd-9225-8018-8008-cf34857f82ac"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Sea Bass engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_sea_bass",
+        "name": "Sea Bass",
+        "weight": 2,
+        "value": 16,
+        "rarity": "Uncommon",
+        "tags": [
+          "Fish",
+          "Predator"
+        ],
+        "depth": {
+          "min": 4,
+          "max": 20
+        },
+        "catchEffect": {
+          "name": "Thrashing Catch",
+          "description": "When caught, discard 1 technique from your hand."
+        },
+        "baitEffect": {
+          "name": "Shoal Scatter",
+          "description": "When attached as Bait, you may release up to 2 other Small creatures."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#548C94",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "SeaBassEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SeaBassCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Sea Bass portraits",
+        "Keep existing compact Sea Bass art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Sea Bass portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SeaBassEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R015/Assets.json",
+        "preview": "Revisions/MFJ-R015/SeaBassReview.png",
+        "card": "Revisions/MFJ-R015/SeaBassCard.png",
+        "prompt": "Revisions/MFJ-R015/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_bass.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R016",
+      "date": "2026-10-18",
+      "request": "Create Sea Urchin as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Sea Urchin creature illustration",
+        "Editable Sea Urchin main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf348871c1de",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf348891dbf4",
+        "cardId": "bae680cd-9225-8018-8008-cf3488b2c44b",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf34893f0aaf"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf3488b2c44b",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf3488b2c44f",
+          "boardId": "bae680cd-9225-8018-8008-cf348891dbf4"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Sea Urchin engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_sea_urchin",
+        "name": "Sea Urchin",
+        "weight": 1,
+        "value": 9,
+        "rarity": "Common",
+        "tags": [
+          "Small",
+          "Armored",
+          "Anchored"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 16
+        },
+        "catchEffect": {
+          "name": "Bristling Spines",
+          "description": "This Catch weighs 1 more while you have a Predator attached."
+        },
+        "baitEffect": {
+          "name": "Spiny Grip",
+          "description": "Your next technique targeting an attached Armored creature returns to hand."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#232A29",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "SeaUrchinEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SeaUrchinCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Sea Urchin portraits",
+        "Keep existing compact Sea Urchin art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Sea Urchin portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SeaUrchinEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R016/Assets.json",
+        "preview": "Revisions/MFJ-R016/SeaUrchinReview.png",
+        "card": "Revisions/MFJ-R016/SeaUrchinCard.png",
+        "prompt": "Revisions/MFJ-R016/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_urchin.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R017",
+      "date": "2026-10-18",
+      "request": "Create Spiny Lobster as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Spiny Lobster creature illustration",
+        "Editable Spiny Lobster main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf348b6d75ee",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf348b8ecb45",
+        "cardId": "bae680cd-9225-8018-8008-cf348bb19302",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf348c2f1a6c"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf348bb19302",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf348bb19306",
+          "boardId": "bae680cd-9225-8018-8008-cf348b8ecb45"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Spiny Lobster engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_spiny_lobster",
+        "name": "Spiny Lobster",
+        "weight": 3,
+        "value": 24,
+        "rarity": "Rare",
+        "tags": [
+          "Armored",
+          "Heavy"
+        ],
+        "depth": {
+          "min": 8,
+          "max": 20
+        },
+        "catchEffect": {
+          "name": "Weathered Shell",
+          "description": "This Catch gains 4 value each time a Hazard is cancelled."
+        },
+        "baitEffect": {
+          "name": "Shell Support",
+          "description": "Your other attached Armored creatures weigh 1 less."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#98612D",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "SpinyLobsterEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SpinyLobsterCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Spiny Lobster portraits",
+        "Keep existing compact Spiny Lobster art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Spiny Lobster portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SpinyLobsterEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R017/Assets.json",
+        "preview": "Revisions/MFJ-R017/SpinyLobsterReview.png",
+        "card": "Revisions/MFJ-R017/SpinyLobsterCard.png",
+        "prompt": "Revisions/MFJ-R017/GenerationPrompt.md"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_spiny_lobster.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R018",
+      "date": "2026-10-18",
+      "request": "Create Squid as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Squid creature illustration",
+        "Editable Squid main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf348e7008f3",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf348e983db3",
+        "cardId": "bae680cd-9225-8018-8008-cf348ec647bd",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf348f3681bc"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf348ec647bd",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf348ec6a52a",
+          "boardId": "bae680cd-9225-8018-8008-cf348e983db3"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Squid engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_squid",
+        "name": "Squid",
+        "weight": 2,
+        "value": 20,
+        "rarity": "Rare",
+        "tags": [
+          "Predator",
+          "Elusive"
+        ],
+        "depth": {
+          "min": 8,
+          "max": 20
+        },
+        "catchEffect": {
+          "name": "Ink Veil",
+          "description": "Hide your next 2 non-Apex creatures until their Catch/Bait choices are committed."
+        },
+        "baitEffect": {
+          "name": "Ink Escape",
+          "description": "You may skip your next non-Apex creature encounter."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 585.311004784689
+        },
+        "rarityInk": "#98612D",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "SquidEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SquidCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Squid portraits",
+        "Keep existing compact Squid art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Squid portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SquidEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          941
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R018/Assets.json",
+        "preview": "Revisions/MFJ-R018/SquidReview.png",
+        "card": null,
+        "prompt": "Revisions/MFJ-R018/GenerationPrompt.md",
+        "note": "Full opaque review board is the visual evidence. Optional card-only export omitted after renderer timeouts; independent portrait PNG and editable card are complete."
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_squid.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R019",
+      "date": "2026-10-18",
+      "request": "Create Tidepool Eel as one of the remaining eight creatures based on the accepted card design.",
+      "component": [
+        "Tidepool Eel creature illustration",
+        "Editable Tidepool Eel main-card variant"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "dependsOn": [
+        "MFJ-R002"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "templateCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "sourcePortraitId": "bae680cd-9225-8018-8008-cf3490bcba77",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf3490e909a3",
+        "cardId": "bae680cd-9225-8018-8008-cf349118e81a",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf349181fdae"
+      },
+      "affectedPenpotInstances": [
+        {
+          "id": "bae680cd-9225-8018-8008-cf349118e81a",
+          "portraitInstanceId": "bae680cd-9225-8018-8008-cf349118e81e",
+          "boardId": "bae680cd-9225-8018-8008-cf3490e909a3"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "card_variant",
+        "data_binding_example"
+      ],
+      "before": {
+        "templateRevision": "MFJ-R002",
+        "art": "No central Tidepool Eel engraving variant in this revision round"
+      },
+      "after": {
+        "id": "creature_tidepool_eel",
+        "name": "Tidepool Eel",
+        "weight": 2,
+        "value": 14,
+        "rarity": "Uncommon",
+        "tags": [
+          "Fish",
+          "Predator",
+          "Elusive"
+        ],
+        "depth": {
+          "min": 0,
+          "max": 14
+        },
+        "catchEffect": {
+          "name": "Slippery Exit",
+          "description": "When caught, you may release another Elusive Bait."
+        },
+        "baitEffect": {
+          "name": "Escape Current",
+          "description": "After releasing another Elusive creature, draw 1 technique."
+        },
+        "canvas": [
+          1260,
+          1400
+        ],
+        "portraitBounds": {
+          "x": 110,
+          "y": 190,
+          "w": 1040,
+          "h": 584.688995215311
+        },
+        "rarityInk": "#548C94",
+        "editableTextFields": 14
+      },
+      "unityAssetIds": [
+        "TidepoolEelEngravedV3"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/TidepoolEelCentralV3.png (new at synchronization)",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "MFJ-R002 central-card template",
+        "Central encounter/history/ascent Tidepool Eel portraits",
+        "Keep existing compact Tidepool Eel art unless separately requested"
+      ],
+      "configurationChanges": "Central-only Tidepool Eel portrait mapping and framing; reuse MFJ-R002 frame/icons/configuration. Preserve authored rules, effectless roles, resolved stats and information masks. Do not overwrite shared compact art.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "TidepoolEelEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R002 frame and vector emblems"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          1672,
+          940
+        ],
+        "displayContract": "1260x1400 editable card on 4K gameplay canvas; portrait displayed smaller than source; shared frame retains R002 source-size boundary."
+      },
+      "approvalEvidence": "User accepted the completed Penpot work and explicitly requested integration of everything since the last Unity import.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R019/Assets.json",
+        "preview": "Revisions/MFJ-R019/TidepoolEelReview.png",
+        "card": null,
+        "prompt": "Revisions/MFJ-R019/GenerationPrompt.md",
+        "note": "Full opaque review board is the visual evidence. Optional card-only export omitted after renderer timeouts; independent portrait PNG and editable card are complete."
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-001",
+        "paths": [
+          "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_tidepool_eel.png"
+        ],
+        "manifest": "Sync001/UnityCheckpoint.json",
+        "nativeVectors": null
+      },
+      "verificationEvidence": {
+        "checkpoint": "Sync001/Verification.json",
+        "penpot": "Sync001/PenpotReconciliation.json",
+        "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
+      },
+      "remainingWork": []
+    }
+  ],
+  "synchronizationCheckpoints": [
+    {
+      "id": "MFJ-SYNC-001",
+      "date": "2026-10-18",
+      "revisions": [
+        "MFJ-R001",
+        "MFJ-R002",
+        "MFJ-R003",
+        "MFJ-R004",
+        "MFJ-R005",
+        "MFJ-R006",
+        "MFJ-R007",
+        "MFJ-R008",
+        "MFJ-R009",
+        "MFJ-R010",
+        "MFJ-R011",
+        "MFJ-R012",
+        "MFJ-R013",
+        "MFJ-R014",
+        "MFJ-R015",
+        "MFJ-R016",
+        "MFJ-R017",
+        "MFJ-R018",
+        "MFJ-R019"
+      ],
+      "status": "verified",
+      "manifest": "Sync001/UnityCheckpoint.json",
+      "verification": "Sync001/Verification.json"
+    }
+  ],
   "notes": [
     "Earlier approved iterations are already in the current Unity baseline.",
-    "No new Penpot edit or Unity import has been performed for this revision round.",
+    "MFJ-R001 through MFJ-R019 were imported and verified in Unity at MFJ-SYNC-001. The immutable original baseline is retained; the next comparison uses Sync001/UnityCheckpoint.json.",
     "Pending changes are never considered imported merely because an image was exported.",
     "Reconcile unrecorded external Penpot edits explicitly before the next import."
   ]

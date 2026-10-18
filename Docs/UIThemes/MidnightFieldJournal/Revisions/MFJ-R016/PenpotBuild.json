@@ -1,0 +1,54 @@
+{
+  "result": {
+    "revision": "MFJ-R016",
+    "name": "Sea Urchin",
+    "slug": "SeaUrchin",
+    "id": "creature_sea_urchin",
+    "weight": 1,
+    "value": 9,
+    "rarity": "Common",
+    "tags": [
+      "Small",
+      "Armored",
+      "Anchored"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 16
+    },
+    "catchEffect": {
+      "name": "Bristling Spines",
+      "description": "This Catch weighs 1 more while you have a Predator attached."
+    },
+    "baitEffect": {
+      "name": "Spiny Grip",
+      "description": "Your next technique targeting an attached Armored creature returns to hand."
+    },
+    "x": 8500,
+    "y": 9600,
+    "artName": "SeaUrchinEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Sea Urchin.asset",
+    "authoredSha256": "de1a9f72a62e41cace83c7bb2fe593f4d19cdfc4079464980e2c56f286634894",
+    "sourceId": "bae680cd-9225-8018-8008-cf348871c1de",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf348891dbf4",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf34893f0aaf",
+    "cardId": "bae680cd-9225-8018-8008-cf3488b2c44b",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf3488b2c44f",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}

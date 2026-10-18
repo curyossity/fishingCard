@@ -1,0 +1,33 @@
+{
+  "revision": "MFJ-R002",
+  "penpotVerified": true,
+  "sourceImagesVerified": true,
+  "editableCardCopies": 3,
+  "editableTextFieldsPerCard": 14,
+  "dataAssertions": 27,
+  "previousCardsRetainedHidden": true,
+  "unityImportPerformed": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "captures": [
+    {
+      "path": "MainCardReview.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "008929f22ed15f8945f647d6ead6347bb9faee9e636c04619b997494443a4d16"
+    },
+    {
+      "path": "ReviewBoard.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "ebf960533dcc0faff1313f0e868b935f7d322a760d42872d790e6b4b3013f269"
+    },
+    {
+      "path": "GameplayPlacement4K.png",
+      "width": 3840,
+      "height": 2160,
+      "sha256": "d353b005700cb50cf54b745d70f4f6eafbdee5fd2acf785b261a0296b7dbb6e7"
+    }
+  ],
+  "sourceResolutionNote": "Frame1190x1322 displayed1260x1400 (~6% enlargement); illustration1672x941. Full gameplay PNG3840x2160. These dimensions do not claim native4K source art."
+}

@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R017",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Spiny Lobster.asset",
+    "sha256": "52ead99a436694ecc74fcc3c419904972a0807d5c8aecdc40c0906e9b7eaa55a",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "SpinyLobsterCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "d8cc5f10df6a777db2055e8410f3859e7286289f4063503f7d935b8eaa738edf"
+    },
+    {
+      "path": "SpinyLobsterReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "db009b784c6165048fdea39c79ab4ddbb529b46afdcc58094ce0ddd996be5c61"
+    }
+  ]
+}

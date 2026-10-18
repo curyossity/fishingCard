@@ -1,0 +1,37 @@
+{
+  "revision": "MFJ-R011",
+  "name": "Sardine",
+  "slug": "Sardine",
+  "id": "creature_sardine",
+  "weight": 1,
+  "value": 7,
+  "rarity": "Common",
+  "tags": [
+    "Fish",
+    "Schooling",
+    "Small"
+  ],
+  "depth": {
+    "min": 0,
+    "max": 14
+  },
+  "catchEffect": null,
+  "baitEffect": {
+    "name": "Feeding Frenzy",
+    "description": "After catching a Predator, you may release this Bait to draw 2 techniques."
+  },
+  "x": 17300,
+  "y": 3200,
+  "artName": "SardineEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.6612806702574
+  },
+  "imageWidth": 1671,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Sardine.asset",
+  "authoredSha256": "30b859d8c9a71f6814e148ef14917e49a18d8e299b624b33eca84a1e2b6a03bc",
+  "sourceId": "bae680cd-9225-8018-8008-cf1c3e255cd0"
+}

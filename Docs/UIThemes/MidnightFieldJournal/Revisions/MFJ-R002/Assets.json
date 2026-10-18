@@ -1,0 +1,65 @@
+{
+  "revision": "MFJ-R002",
+  "generation": "Built-in image_gen, no CLI/API fallback",
+  "reference": "ConceptReference in AssetManifest.json; reference used for composition/style only, no slices",
+  "assets": [
+    {
+      "id": "MainCreatureFrameV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/MainCreatureFrameV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-9da7a6d3-4185-414b-b806-9a3ba7a5981a.png",
+      "sha256": "a868c2e2d7c6b889d152a8bf4f5697cf711d7161f0e343c56dcd2643f771d442",
+      "width": 1190,
+      "height": 1322,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cee19e0cf6ce",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png"
+    },
+    {
+      "id": "SmallOctopusEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/SmallOctopusEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-9374da1e-aaef-4bd9-901c-0e9b33bec5be.png",
+      "sha256": "02cba7707d4315145da587043ca262c87a40f1448d93f69d104b177357cdbd76",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cee19f073517",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_small_octopus.png"
+    }
+  ],
+  "discardedIterations": [
+    "exec-9f415fd8-4862-4e62-8549-9aad5b17ddd7.png",
+    "exec-b841d408-f7b8-4959-a347-f3c33125bc28.png",
+    "exec-2fc0a879-3002-4a5c-a9e0-5e8b60473f8b.png"
+  ],
+  "status": "verified",
+  "designCanvas": [
+    1260,
+    1400
+  ],
+  "sourceBoardId": "bae680cd-9225-8018-8008-cee1b64ceecf",
+  "reviewCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+  "unityImported": true,
+  "nativeVectorSources": [
+    {
+      "id": "CatchHookV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/CatchHookV3.svg",
+      "sha256": "0e4022be1149013e8a6abd7f1b33cf50ee11aa69e902f34e6916bf8d2927fcaa",
+      "usage": "Editable Penpot source; implement/export a native UI equivalent at selective Unity integration, without assuming an SVG runtime package."
+    },
+    {
+      "id": "BaitTwinSparkV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/BaitTwinSparkV3.svg",
+      "sha256": "b0bc74b1f513d34ada2ad211d0f0bfa98f98cab49242f6d2c83ccdc4d4719b10",
+      "usage": "Editable Penpot source; implement/export a native UI equivalent at selective Unity integration, without assuming an SVG runtime package."
+    },
+    {
+      "id": "RarityDiamondV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R002/Art/RarityDiamondV3.svg",
+      "sha256": "3938996aa0aa719bdbdb893c30cf925473bf44e6ad3b94645e5d54f8eebec13b",
+      "usage": "Editable Penpot source; implement/export a native UI equivalent at selective Unity integration, without assuming an SVG runtime package."
+    }
+  ],
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R016",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Sea Urchin.asset",
+    "sha256": "de1a9f72a62e41cace83c7bb2fe593f4d19cdfc4079464980e2c56f286634894",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "SeaUrchinCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "41dda70435c0ee3da6aa7e858fd8af26f46852e1b0dc0a8abd509737dd727554"
+    },
+    {
+      "path": "SeaUrchinReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "cb83a78ebdfc16a38d3bc4b1184205b87ab313152fe3c06e8dbd8bc11c078e39"
+    }
+  ]
+}

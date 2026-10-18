@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R009",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Moonlit Ray.asset",
+    "sha256": "13d675ef6d1662313500ffa5643af3c5038d2181fa22490cc17aace085c94d2f",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "MoonlitRayCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "654ab0886819593e799c814810cbf954865b811ead9c72e5fe840a16850af670"
+    },
+    {
+      "path": "MoonlitRayReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "83250d46ad26eaa182b599877826b6d02f26a9f73e5360ca3c8450b027ad44f8"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "revision": "MFJ-R004",
+  "name": "Garfish",
+  "slug": "Garfish",
+  "id": "creature_garfish",
+  "weight": 1,
+  "value": 9,
+  "rarity": "Common",
+  "tags": [
+    "Fish",
+    "Small",
+    "Elusive"
+  ],
+  "depth": {
+    "min": 0,
+    "max": 9
+  },
+  "catchEffect": {
+    "name": "Swift",
+    "description": "Gain +3 value per other Elusive Catch."
+  },
+  "baitEffect": {
+    "name": "Slipstream",
+    "description": "Your other attached Fish gain Elusive."
+  },
+  "x": 12800,
+  "artName": "GarfishEngravedV3",
+  "portrait": {
+    "x": 78,
+    "y": 190,
+    "w": 1104,
+    "h": 621.3301435406698
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Garfish.asset",
+  "authoredSha256": "ee9e2b3273581e33daf0c8a6140df9ef88391661980ef4f14110e01bbd631459",
+  "sourceId": "bae680cd-9225-8018-8008-cf0f6714ff05"
+}

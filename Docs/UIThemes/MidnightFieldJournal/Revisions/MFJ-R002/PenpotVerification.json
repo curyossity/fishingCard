@@ -1,0 +1,888 @@
+{
+  "result": {
+    "revision": "MFJ-R002",
+    "verified": true,
+    "contract": {
+      "id": "MFJ-R002",
+      "status": "ready_for_review",
+      "sourceFrame": "bae680cd-9225-8018-8008-cee19e0cf6ce",
+      "sourcePortrait": "bae680cd-9225-8018-8008-cee19f073517",
+      "sourceCard": "bae680cd-9225-8018-8008-cee1b56dd362",
+      "instances": [
+        "bae680cd-9225-8018-8008-cee251db9229",
+        "bae680cd-9225-8018-8008-cee251f05bf8"
+      ],
+      "canvas": [
+        1260,
+        1400
+      ],
+      "assemblyOffset": [
+        1250,
+        110
+      ],
+      "staticImages": [
+        "MainCreatureFrameV3",
+        "SmallOctopusEngravedV3"
+      ],
+      "dynamicFields": "type,name,portrait,weight,value,rarity,tags,role labels/effect titles/effect text,selected-role feedback",
+      "unityImported": false
+    },
+    "cards": [
+      {
+        "id": "bae680cd-9225-8018-8008-cee1b56dd362",
+        "name": "Main creature card v3 / Small Octopus / editable",
+        "width": 1260,
+        "height": 1400,
+        "editableTextFields": 14,
+        "images": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5753df0",
+            "name": "Static / engraved parchment, marine stage and neutral effect panels",
+            "fillId": "ce180602-f36b-8035-8008-cee19eb7def2"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b593a325",
+            "name": "Dynamic / engraved Small Octopus illustration",
+            "fillId": "cd444aaf-0d8c-801b-8008-cee19fc17b87"
+          }
+        ],
+        "dataChecks": [
+          {
+            "name": "Dynamic / creature type",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / creature name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / effective Weight",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / sale Value",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / rarity name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Catch effect name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Catch effect text",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Bait effect name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Bait effect text",
+            "passed": true
+          }
+        ],
+        "textBounds": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b57bfdd6",
+            "name": "Dynamic / creature type",
+            "region": {
+              "x": 468,
+              "y": 70,
+              "w": 324,
+              "h": 38
+            },
+            "textBounds": {
+              "x": 9334.171875,
+              "y": 217,
+              "width": 191.65625,
+              "height": 35
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b585cf7e",
+            "name": "Dynamic / creature name",
+            "region": {
+              "x": 140,
+              "y": 114,
+              "w": 980,
+              "h": 82
+            },
+            "textBounds": {
+              "x": 9141.21875,
+              "y": 256,
+              "width": 577.546875,
+              "height": 89
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b59843b9",
+            "name": "Dynamic / creature tags",
+            "region": {
+              "x": 250,
+              "y": 752,
+              "w": 760,
+              "h": 34
+            },
+            "textBounds": {
+              "x": 9258.15625,
+              "y": 899,
+              "width": 343.671875,
+              "height": 29
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5a27f1f",
+            "name": "Static / Weight label",
+            "region": {
+              "x": 130,
+              "y": 805,
+              "w": 175,
+              "h": 39
+            },
+            "textBounds": {
+              "x": 8930,
+              "y": 952,
+              "width": 118.3125,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5aedf15",
+            "name": "Dynamic / effective Weight",
+            "region": {
+              "x": 304,
+              "y": 786,
+              "w": 133,
+              "h": 75
+            },
+            "textBounds": {
+              "x": 9153.5625,
+              "y": 928,
+              "width": 33.859375,
+              "height": 87
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5b8fabe",
+            "name": "Static / Value label",
+            "region": {
+              "x": 506,
+              "y": 805,
+              "w": 134,
+              "h": 39
+            },
+            "textBounds": {
+              "x": 9306,
+              "y": 952,
+              "width": 93.34375,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5c40836",
+            "name": "Dynamic / sale Value",
+            "region": {
+              "x": 634,
+              "y": 786,
+              "w": 115,
+              "h": 75
+            },
+            "textBounds": {
+              "x": 9474.5625,
+              "y": 928,
+              "width": 33.859375,
+              "height": 87
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5dcb8ab",
+            "name": "Dynamic / rarity name",
+            "region": {
+              "x": 851,
+              "y": 805,
+              "w": 300,
+              "h": 42
+            },
+            "textBounds": {
+              "x": 9651,
+              "y": 952,
+              "width": 191.640625,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b5f7b803",
+            "name": "Static / Catch role label",
+            "region": {
+              "x": 181,
+              "y": 916,
+              "w": 342,
+              "h": 55
+            },
+            "textBounds": {
+              "x": 9066.390625,
+              "y": 1062,
+              "width": 171.21875,
+              "height": 48
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b60a7509",
+            "name": "Static / Bait role label",
+            "region": {
+              "x": 780,
+              "y": 916,
+              "w": 300,
+              "h": 55
+            },
+            "textBounds": {
+              "x": 9673.65625,
+              "y": 1062,
+              "width": 112.6875,
+              "height": 48
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b615da7e",
+            "name": "Dynamic / Catch effect name",
+            "region": {
+              "x": 120,
+              "y": 1021,
+              "w": 460,
+              "h": 70
+            },
+            "textBounds": {
+              "x": 9005.578125,
+              "y": 1164,
+              "width": 288.828125,
+              "height": 66
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b6226b71",
+            "name": "Dynamic / Catch effect text",
+            "region": {
+              "x": 155,
+              "y": 1118,
+              "w": 410,
+              "h": 140
+            },
+            "textBounds": {
+              "x": 8955,
+              "y": 1263,
+              "width": 389.734375,
+              "height": 96.671875
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b62c320e",
+            "name": "Dynamic / Bait effect name",
+            "region": {
+              "x": 690,
+              "y": 1021,
+              "w": 450,
+              "h": 70
+            },
+            "textBounds": {
+              "x": 9563.140625,
+              "y": 1165,
+              "width": 303.703125,
+              "height": 63
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee1b63583d7",
+            "name": "Dynamic / Bait effect text",
+            "region": {
+              "x": 701,
+              "y": 1114,
+              "w": 414,
+              "h": 178
+            },
+            "textBounds": {
+              "x": 9501,
+              "y": 1259,
+              "width": 400.125,
+              "height": 192.8125
+            }
+          }
+        ],
+        "selectionOverlay": "bae680cd-9225-8018-8008-cee1b5e6c9a2"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee251db9229",
+        "name": "04 / Main Creature Card — engraved mockup detail / MFJ-R002",
+        "width": 1260,
+        "height": 1400,
+        "editableTextFields": 14,
+        "images": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922a",
+            "name": "Static / engraved parchment, marine stage and neutral effect panels",
+            "fillId": "ce180602-f36b-8035-8008-cee19eb7def2"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922d",
+            "name": "Dynamic / engraved Small Octopus illustration",
+            "fillId": "cd444aaf-0d8c-801b-8008-cee19fc17b87"
+          }
+        ],
+        "dataChecks": [
+          {
+            "name": "Dynamic / creature type",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / creature name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / effective Weight",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / sale Value",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / rarity name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Catch effect name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Catch effect text",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Bait effect name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Bait effect text",
+            "passed": true
+          }
+        ],
+        "textBounds": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922b",
+            "name": "Dynamic / creature type",
+            "region": {
+              "x": 468,
+              "y": 70,
+              "w": 324,
+              "h": 38
+            },
+            "textBounds": {
+              "x": 1784.171875,
+              "y": 177,
+              "width": 191.65625,
+              "height": 35
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922c",
+            "name": "Dynamic / creature name",
+            "region": {
+              "x": 140,
+              "y": 114,
+              "w": 980,
+              "h": 82
+            },
+            "textBounds": {
+              "x": 1591.21875,
+              "y": 216,
+              "width": 577.546875,
+              "height": 89
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922e",
+            "name": "Dynamic / creature tags",
+            "region": {
+              "x": 250,
+              "y": 752,
+              "w": 760,
+              "h": 34
+            },
+            "textBounds": {
+              "x": 1708.15625,
+              "y": 859,
+              "width": 343.671875,
+              "height": 29
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922f",
+            "name": "Static / Weight label",
+            "region": {
+              "x": 130,
+              "y": 805,
+              "w": 175,
+              "h": 39
+            },
+            "textBounds": {
+              "x": 1380,
+              "y": 912,
+              "width": 118.3125,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9230",
+            "name": "Dynamic / effective Weight",
+            "region": {
+              "x": 304,
+              "y": 786,
+              "w": 133,
+              "h": 75
+            },
+            "textBounds": {
+              "x": 1603.5625,
+              "y": 888,
+              "width": 33.859375,
+              "height": 87
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9231",
+            "name": "Static / Value label",
+            "region": {
+              "x": 506,
+              "y": 805,
+              "w": 134,
+              "h": 39
+            },
+            "textBounds": {
+              "x": 1756,
+              "y": 912,
+              "width": 93.34375,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9232",
+            "name": "Dynamic / sale Value",
+            "region": {
+              "x": 634,
+              "y": 786,
+              "w": 115,
+              "h": 75
+            },
+            "textBounds": {
+              "x": 1924.5625,
+              "y": 888,
+              "width": 33.859375,
+              "height": 87
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9234",
+            "name": "Dynamic / rarity name",
+            "region": {
+              "x": 851,
+              "y": 805,
+              "w": 300,
+              "h": 42
+            },
+            "textBounds": {
+              "x": 2101,
+              "y": 912,
+              "width": 191.640625,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9237",
+            "name": "Static / Catch role label",
+            "region": {
+              "x": 181,
+              "y": 916,
+              "w": 342,
+              "h": 55
+            },
+            "textBounds": {
+              "x": 1516.390625,
+              "y": 1022,
+              "width": 171.21875,
+              "height": 48
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9239",
+            "name": "Static / Bait role label",
+            "region": {
+              "x": 780,
+              "y": 916,
+              "w": 300,
+              "h": 55
+            },
+            "textBounds": {
+              "x": 2123.65625,
+              "y": 1022,
+              "width": 112.6875,
+              "height": 48
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923a",
+            "name": "Dynamic / Catch effect name",
+            "region": {
+              "x": 120,
+              "y": 1021,
+              "w": 460,
+              "h": 70
+            },
+            "textBounds": {
+              "x": 1455.578125,
+              "y": 1124,
+              "width": 288.828125,
+              "height": 66
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923b",
+            "name": "Dynamic / Catch effect text",
+            "region": {
+              "x": 155,
+              "y": 1118,
+              "w": 410,
+              "h": 140
+            },
+            "textBounds": {
+              "x": 1405,
+              "y": 1223,
+              "width": 389.734375,
+              "height": 96.671875
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923c",
+            "name": "Dynamic / Bait effect name",
+            "region": {
+              "x": 690,
+              "y": 1021,
+              "w": 450,
+              "h": 70
+            },
+            "textBounds": {
+              "x": 2013.140625,
+              "y": 1125,
+              "width": 303.703125,
+              "height": 63
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923d",
+            "name": "Dynamic / Bait effect text",
+            "region": {
+              "x": 701,
+              "y": 1114,
+              "w": 414,
+              "h": 178
+            },
+            "textBounds": {
+              "x": 1951,
+              "y": 1219,
+              "width": 400.125,
+              "height": 192.8125
+            }
+          }
+        ],
+        "selectionOverlay": "bae680cd-9225-8018-8008-cee251db9235"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee251f05bf8",
+        "name": "04 / Main Creature Card — engraved mockup detail / MFJ-R002",
+        "width": 1260,
+        "height": 1400,
+        "editableTextFields": 14,
+        "images": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bf9",
+            "name": "Static / engraved parchment, marine stage and neutral effect panels",
+            "fillId": "ce180602-f36b-8035-8008-cee19eb7def2"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfc",
+            "name": "Dynamic / engraved Small Octopus illustration",
+            "fillId": "cd444aaf-0d8c-801b-8008-cee19fc17b87"
+          }
+        ],
+        "dataChecks": [
+          {
+            "name": "Dynamic / creature type",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / creature name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / effective Weight",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / sale Value",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / rarity name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Catch effect name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Catch effect text",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Bait effect name",
+            "passed": true
+          },
+          {
+            "name": "Dynamic / Bait effect text",
+            "passed": true
+          }
+        ],
+        "textBounds": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfa",
+            "name": "Dynamic / creature type",
+            "region": {
+              "x": 468,
+              "y": 70,
+              "w": 324,
+              "h": 38
+            },
+            "textBounds": {
+              "x": 5984.171875,
+              "y": 5077,
+              "width": 191.65625,
+              "height": 35
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfb",
+            "name": "Dynamic / creature name",
+            "region": {
+              "x": 140,
+              "y": 114,
+              "w": 980,
+              "h": 82
+            },
+            "textBounds": {
+              "x": 5791.21875,
+              "y": 5116,
+              "width": 577.546875,
+              "height": 89
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfd",
+            "name": "Dynamic / creature tags",
+            "region": {
+              "x": 250,
+              "y": 752,
+              "w": 760,
+              "h": 34
+            },
+            "textBounds": {
+              "x": 5908.15625,
+              "y": 5759,
+              "width": 343.671875,
+              "height": 29
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfe",
+            "name": "Static / Weight label",
+            "region": {
+              "x": 130,
+              "y": 805,
+              "w": 175,
+              "h": 39
+            },
+            "textBounds": {
+              "x": 5580,
+              "y": 5812,
+              "width": 118.3125,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bff",
+            "name": "Dynamic / effective Weight",
+            "region": {
+              "x": 304,
+              "y": 786,
+              "w": 133,
+              "h": 75
+            },
+            "textBounds": {
+              "x": 5803.5625,
+              "y": 5788,
+              "width": 33.859375,
+              "height": 87
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c00",
+            "name": "Static / Value label",
+            "region": {
+              "x": 506,
+              "y": 805,
+              "w": 134,
+              "h": 39
+            },
+            "textBounds": {
+              "x": 5956,
+              "y": 5812,
+              "width": 93.34375,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c01",
+            "name": "Dynamic / sale Value",
+            "region": {
+              "x": 634,
+              "y": 786,
+              "w": 115,
+              "h": 75
+            },
+            "textBounds": {
+              "x": 6124.5625,
+              "y": 5788,
+              "width": 33.859375,
+              "height": 87
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c03",
+            "name": "Dynamic / rarity name",
+            "region": {
+              "x": 851,
+              "y": 805,
+              "w": 300,
+              "h": 42
+            },
+            "textBounds": {
+              "x": 6301,
+              "y": 5812,
+              "width": 191.640625,
+              "height": 37
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c06",
+            "name": "Static / Catch role label",
+            "region": {
+              "x": 181,
+              "y": 916,
+              "w": 342,
+              "h": 55
+            },
+            "textBounds": {
+              "x": 5716.390625,
+              "y": 5922,
+              "width": 171.21875,
+              "height": 48
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c08",
+            "name": "Static / Bait role label",
+            "region": {
+              "x": 780,
+              "y": 916,
+              "w": 300,
+              "h": 55
+            },
+            "textBounds": {
+              "x": 6323.65625,
+              "y": 5922,
+              "width": 112.6875,
+              "height": 48
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c09",
+            "name": "Dynamic / Catch effect name",
+            "region": {
+              "x": 120,
+              "y": 1021,
+              "w": 460,
+              "h": 70
+            },
+            "textBounds": {
+              "x": 5655.578125,
+              "y": 6024,
+              "width": 288.828125,
+              "height": 66
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c0a",
+            "name": "Dynamic / Catch effect text",
+            "region": {
+              "x": 155,
+              "y": 1118,
+              "w": 410,
+              "h": 140
+            },
+            "textBounds": {
+              "x": 5605,
+              "y": 6123,
+              "width": 389.734375,
+              "height": 96.671875
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c0b",
+            "name": "Dynamic / Bait effect name",
+            "region": {
+              "x": 690,
+              "y": 1021,
+              "w": 450,
+              "h": 70
+            },
+            "textBounds": {
+              "x": 6213.140625,
+              "y": 6025,
+              "width": 303.703125,
+              "height": 63
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c0c",
+            "name": "Dynamic / Bait effect text",
+            "region": {
+              "x": 701,
+              "y": 1114,
+              "w": 414,
+              "h": 178
+            },
+            "textBounds": {
+              "x": 6151,
+              "y": 6119,
+              "width": 400.125,
+              "height": 192.8125
+            }
+          }
+        ],
+        "selectionOverlay": "bae680cd-9225-8018-8008-cee251f05c04"
+      }
+    ],
+    "previousInstancesHidden": true,
+    "unityImported": false
+  },
+  "log": ""
+}

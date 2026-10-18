@@ -1,0 +1,38 @@
+{
+  "revision": "MFJ-R012",
+  "name": "Cleaner Shrimp",
+  "slug": "CleanerShrimp",
+  "id": "creature_cleaner_shrimp",
+  "weight": 1,
+  "value": 8,
+  "rarity": "Uncommon",
+  "tags": [
+    "Small"
+  ],
+  "depth": {
+    "min": 1,
+    "max": 14
+  },
+  "catchEffect": {
+    "name": "Quick Clean",
+    "description": "When attached as Catch, remove one negative effect."
+  },
+  "baitEffect": {
+    "name": "Cleaning Station",
+    "description": "At later biome starts, swap a Catch for one of two creatures."
+  },
+  "x": 8500,
+  "y": 6400,
+  "artName": "CleanerShrimpEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Cleaner Shrimp.asset",
+  "authoredSha256": "5b8c0a71ebd1fb9021e77a1ea3a36529771131b1b386677a5749487a772210fb",
+  "sourceId": "bae680cd-9225-8018-8008-cf347ed56556"
+}

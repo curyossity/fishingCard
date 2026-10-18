@@ -1,0 +1,40 @@
+{
+  "revision": "MFJ-R019",
+  "name": "Tidepool Eel",
+  "slug": "TidepoolEel",
+  "id": "creature_tidepool_eel",
+  "weight": 2,
+  "value": 14,
+  "rarity": "Uncommon",
+  "tags": [
+    "Fish",
+    "Predator",
+    "Elusive"
+  ],
+  "depth": {
+    "min": 0,
+    "max": 14
+  },
+  "catchEffect": {
+    "name": "Slippery Exit",
+    "description": "When caught, you may release another Elusive Bait."
+  },
+  "baitEffect": {
+    "name": "Escape Current",
+    "description": "After releasing another Elusive creature, draw 1 technique."
+  },
+  "x": 15100,
+  "y": 9600,
+  "artName": "TidepoolEelEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 584.688995215311
+  },
+  "imageWidth": 1672,
+  "imageHeight": 940,
+  "authoredAsset": "Assets/Cards/Tidepool Eel.asset",
+  "authoredSha256": "c4d6bf0c5c85664a9f7b43590a47f7015baf796b63387bd337e750f70d08074b",
+  "sourceId": "bae680cd-9225-8018-8008-cf3490bcba77"
+}

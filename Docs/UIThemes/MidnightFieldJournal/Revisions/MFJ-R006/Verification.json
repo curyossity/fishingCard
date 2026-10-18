@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R006",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Jellyfish.asset",
+    "sha256": "25aa31a551e93f2b51576618fecb761d65fc86570c0f6c5a1c3d0c83b5a0279c",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "JellyfishCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "77b8fa118fa2a112a453b76fd47f962ad6bf826b8f10d93360eca26bffaa3cc8"
+    },
+    {
+      "path": "JellyfishReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "50e353539d0231a1bb4a5fb08820db81846ac500b6aa9e2c11aaf7f502ac8136"
+    }
+  ]
+}

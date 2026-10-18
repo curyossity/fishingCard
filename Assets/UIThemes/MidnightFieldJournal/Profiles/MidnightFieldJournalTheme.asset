@@ -64,12 +64,12 @@ MonoBehaviour:
     cardUniqueId: 
     visibleBoundsTopLeft:
       serializedVersion: 2
-      x: 0.030303031
-      y: 0.008559201
-      width: 0.93939394
-      height: 0.97574896
-    designCanvas: {x: 1040, y: 1300}
-    sourceHash: 3f1f9019fbd86b5ca843da21fb11336efdb1ba857e5681366d7008ad03d57713
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    designCanvas: {x: 1260, y: 1400}
+    sourceHash: a868c2e2d7c6b889d152a8bf4f5697cf711d7161f0e343c56dcd2643f771d442
     compactArtworkBounds:
       serializedVersion: 2
       x: 0.09411765
@@ -383,34 +383,669 @@ MonoBehaviour:
       width: 0.8117647
       height: 0.5785
     techniqueRulesBreakAfterWords: 4
+  centralCards:
+  - cardUniqueId: creature_cleaner_shrimp
+    sprite: {fileID: 21300000, guid: f9068c2a9b4f55d47ace5ce0b5703140, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 34
+  - cardUniqueId: creature_clinging_crab
+    sprite: {fileID: 21300000, guid: 45062a3ae7a35e7449b4af4f7342d6f3, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 34
+  - cardUniqueId: creature_coastal_cod
+    sprite: {fileID: 21300000, guid: 8384368a57d1c0947bfabb0d26f479ee, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    catchTextBounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1114
+      width: 414
+      height: 178
+    catchNameSize: 0
+    catchTextSize: 0
+    baitNameSize: 46
+    baitTextSize: 36
+  - cardUniqueId: creature_garfish
+    sprite: {fileID: 21300000, guid: 6707b3e7ff05b9148a43e0f7e9a0e33b, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 78
+      y: 190
+      width: 1104
+      height: 621.33014
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 150
+      y: 1114
+      width: 414
+      height: 178
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1114
+      width: 414
+      height: 178
+    catchNameSize: 46
+    catchTextSize: 36
+    baitNameSize: 46
+    baitTextSize: 36
+  - cardUniqueId: creature_glass_minnow
+    sprite: {fileID: 21300000, guid: d3e5232e64b4c434a83836b3feef7ed4, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    catchTextBounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1114
+      width: 414
+      height: 178
+    catchNameSize: 0
+    catchTextSize: 0
+    baitNameSize: 46
+    baitTextSize: 36
+  - cardUniqueId: creature_jellyfish
+    sprite: {fileID: 21300000, guid: aeede038408a31c42925088209eac029, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 150
+      y: 1114
+      width: 414
+      height: 178
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1114
+      width: 414
+      height: 178
+    catchNameSize: 46
+    catchTextSize: 36
+    baitNameSize: 46
+    baitTextSize: 36
+  - cardUniqueId: creature_lionfish
+    sprite: {fileID: 21300000, guid: 74e992d5c98d04344b4ab52945acde88, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 32
+  - cardUniqueId: creature_mackerel
+    sprite: {fileID: 21300000, guid: b901ef6054d646b4abc6c8ec553deb3d, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 32
+  - cardUniqueId: creature_moonlit_ray
+    sprite: {fileID: 21300000, guid: fd3dfe3c06695a142b033ed1431a2355, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 34
+  - cardUniqueId: creature_mussel
+    sprite: {fileID: 21300000, guid: 22aff883f89220c4eabc94178d5cdaa9, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 32
+    baitNameSize: 42
+    baitTextSize: 34
+  - cardUniqueId: creature_sardine
+    sprite: {fileID: 21300000, guid: 88f33235ceff4be4e92e627b5c20f850, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.66125
+    catchNameBounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    catchTextBounds:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 0
+    catchTextSize: 0
+    baitNameSize: 42
+    baitTextSize: 32
+  - cardUniqueId: creature_sea_anemone
+    sprite: {fileID: 21300000, guid: 1b00e2eaf1ae9ef48a3b4d09a66a768c, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 38
+    catchTextSize: 34
+    baitNameSize: 38
+    baitTextSize: 29
+  - cardUniqueId: creature_sea_bass
+    sprite: {fileID: 21300000, guid: 51c8d8fdbe7a69240ac7442088c6d3af, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 32
+  - cardUniqueId: creature_sea_urchin
+    sprite: {fileID: 21300000, guid: fa36f9d497e64f34a83a990c7dfe3b2a, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 32
+  - cardUniqueId: creature_small_octopus
+    sprite: {fileID: 21300000, guid: 3f7b8699f021dbd4faac60bcb03ed82d, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 78
+      y: 102
+      width: 1104
+      height: 621.33014
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 155
+      y: 1118
+      width: 410
+      height: 140
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1114
+      width: 414
+      height: 178
+    catchNameSize: 48
+    catchTextSize: 39
+    baitNameSize: 46
+    baitTextSize: 33
+  - cardUniqueId: creature_spiny_lobster
+    sprite: {fileID: 21300000, guid: d87fdd44542d48b49931fe25fa06e819, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 34
+  - cardUniqueId: creature_squid
+    sprite: {fileID: 21300000, guid: 9cb3b1425eea4b242bfefacc31745ef6, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 585.31104
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 32
+    baitNameSize: 42
+    baitTextSize: 34
+  - cardUniqueId: creature_tidepool_eel
+    sprite: {fileID: 21300000, guid: aaed71ed65f1c3f42866721d26d7c316, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 110
+      y: 190
+      width: 1040
+      height: 584.68896
+    catchNameBounds:
+      serializedVersion: 2
+      x: 120
+      y: 1021
+      width: 460
+      height: 70
+    catchTextBounds:
+      serializedVersion: 2
+      x: 180
+      y: 1108
+      width: 370
+      height: 180
+    baitNameBounds:
+      serializedVersion: 2
+      x: 690
+      y: 1021
+      width: 450
+      height: 70
+    baitTextBounds:
+      serializedVersion: 2
+      x: 701
+      y: 1108
+      width: 414
+      height: 180
+    catchNameSize: 42
+    catchTextSize: 34
+    baitNameSize: 42
+    baitTextSize: 34
   unillustratedCardIds:
-  - creature_cleaner_shrimp
   - clear_water
-  - creature_coastal_cod
   - creature_cuttlefish
   - creature_flounder
   - fresh_shell_fragments
-  - creature_garfish
   - gentle_upwelling
-  - creature_mackerel
   - apex_harbor_leviathan
   - hold_steady
-  - creature_jellyfish
-  - creature_lionfish
   - loose_knot
-  - creature_moonlit_ray
-  - creature_mussel
   - treasure_pearl_cache
   - rerig
   - recast
   - reef_snag
-  - creature_sea_anemone
-  - creature_sea_bass
-  - creature_sea_urchin
   - silt_burst
-  - creature_spiny_lobster
-  - creature_squid
   - apex_stormjaw_tuna
   - treasure_sunken_tackle_box
   - transition_next_waters
-  - creature_tidepool_eel

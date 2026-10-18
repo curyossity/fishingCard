@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R011",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 12,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Sardine.asset",
+    "sha256": "30b859d8c9a71f6814e148ef14917e49a18d8e299b624b33eca84a1e2b6a03bc",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "SardineCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "f9ca1c9e9639d0a2861b3e4e74a1527bf31741d1982780b133c08a457fc1cc96"
+    },
+    {
+      "path": "SardineReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "7772917dcb4e87c3baa1f448fcff9baab161875881ba40258a1b255a47fa9b56"
+    }
+  ]
+}

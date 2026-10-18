@@ -1,0 +1,39 @@
+{
+  "revision": "MFJ-R017",
+  "name": "Spiny Lobster",
+  "slug": "SpinyLobster",
+  "id": "creature_spiny_lobster",
+  "weight": 3,
+  "value": 24,
+  "rarity": "Rare",
+  "tags": [
+    "Armored",
+    "Heavy"
+  ],
+  "depth": {
+    "min": 8,
+    "max": 20
+  },
+  "catchEffect": {
+    "name": "Weathered Shell",
+    "description": "This Catch gains 4 value each time a Hazard is cancelled."
+  },
+  "baitEffect": {
+    "name": "Shell Support",
+    "description": "Your other attached Armored creatures weigh 1 less."
+  },
+  "x": 10700,
+  "y": 9600,
+  "artName": "SpinyLobsterEngravedV3",
+  "portrait": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.311004784689
+  },
+  "imageWidth": 1672,
+  "imageHeight": 941,
+  "authoredAsset": "Assets/Cards/Spiny Lobster.asset",
+  "authoredSha256": "52ead99a436694ecc74fcc3c419904972a0807d5c8aecdc40c0906e9b7eaa55a",
+  "sourceId": "bae680cd-9225-8018-8008-cf348b6d75ee"
+}

@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R005",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 12,
+  "frameReused": true,
+  "visualReview": "Actual exported card and opaque review board inspected",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Glass Minnow.asset",
+    "sha256": "0f1457eb9111f6280bf5319700f32e3fc76953fc5123380bf2dba68332e286dc",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "GlassMinnowCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "eecf566d6dc7c1bcc3f2f1f788b07ee7ba2abd82b7ffa58086d01f1928f5036b"
+    },
+    {
+      "path": "GlassMinnowReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "4f6357fa018752b51bee6aa8661ab45a40153c84ee4a3ca27a5f532f1fb275bf"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "revision": "MFJ-R012",
+  "passed": true,
+  "committedDataAssertions": 12,
+  "editableTextFields": 14,
+  "frameReused": true,
+  "visualReview": "Actual opaque review board inspected; optional card-only PNG retained where available.",
+  "unityImported": false,
+  "unityBaselineFilesChecked": 218,
+  "unityFilesChanged": [],
+  "authoredAsset": {
+    "path": "Assets/Cards/Cleaner Shrimp.asset",
+    "sha256": "5b8c0a71ebd1fb9021e77a1ea3a36529771131b1b386677a5749487a772210fb",
+    "unchanged": true
+  },
+  "captures": [
+    {
+      "path": "CleanerShrimpCard.png",
+      "width": 1260,
+      "height": 1400,
+      "sha256": "af3ee7af02f163021f2be410ea90f2450f1504b0e33432dce3e509100491beeb"
+    },
+    {
+      "path": "CleanerShrimpReview.png",
+      "width": 1860,
+      "height": 1740,
+      "sha256": "927616c263d2a27efd91cbb5ce5ded7ed494eea1e19e01ab9154e578882d25f3"
+    }
+  ]
+}

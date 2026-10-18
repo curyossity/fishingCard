@@ -1,0 +1,255 @@
+{
+  "result": {
+    "revision": "MFJ-R011",
+    "name": "Sardine",
+    "slug": "Sardine",
+    "id": "creature_sardine",
+    "weight": 1,
+    "value": 7,
+    "rarity": "Common",
+    "tags": [
+      "Fish",
+      "Schooling",
+      "Small"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 14
+    },
+    "catchEffect": null,
+    "baitEffect": {
+      "name": "Feeding Frenzy",
+      "description": "After catching a Predator, you may release this Bait to draw 2 techniques."
+    },
+    "x": 17300,
+    "y": 3200,
+    "artName": "SardineEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.6612806702574
+    },
+    "imageWidth": 1671,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Sardine.asset",
+    "authoredSha256": "30b859d8c9a71f6814e148ef14917e49a18d8e299b624b33eca84a1e2b6a03bc",
+    "sourceId": "bae680cd-9225-8018-8008-cf1c3e255cd0",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf1c3e4397e4",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf1c3eb155ab",
+    "cardId": "bae680cd-9225-8018-8008-cf1c3e5df3ac",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf1c3e5df3b0",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false,
+    "verified": true,
+    "checks": {
+      "name": true,
+      "weight": true,
+      "value": true,
+      "rarity": true,
+      "tags": true,
+      "twoImages": true,
+      "frameReused": true,
+      "templateRetained": true,
+      "CatchName": true,
+      "CatchDescription": true,
+      "BaitName": true,
+      "BaitDescription": true
+    },
+    "editableTextFields": 12,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3ad",
+        "name": "Static / engraved parchment, marine stage and neutral effect panels",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3ae",
+        "name": "Dynamic / creature type",
+        "type": "text",
+        "text": "C R E A T U R E",
+        "x": 468,
+        "y": 70,
+        "w": 324,
+        "h": 38,
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3af",
+        "name": "Dynamic / creature name",
+        "type": "text",
+        "text": "SARDINE",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b0",
+        "name": "Dynamic / engraved Sardine illustration",
+        "type": "rectangle",
+        "x": 110,
+        "y": 190,
+        "w": 1040,
+        "h": 585.6612806702578
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b1",
+        "name": "Dynamic / creature tags",
+        "type": "text",
+        "text": "FISH  ·  SCHOOLING  ·  SMALL",
+        "x": 250,
+        "y": 752,
+        "w": 760,
+        "h": 34,
+        "fontSize": "22"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b2",
+        "name": "Static / Weight label",
+        "type": "text",
+        "text": "WEIGHT",
+        "x": 130,
+        "y": 805,
+        "w": 175,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b3",
+        "name": "Dynamic / effective Weight",
+        "type": "text",
+        "text": "1",
+        "x": 304,
+        "y": 786,
+        "w": 133,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b4",
+        "name": "Static / Value label",
+        "type": "text",
+        "text": "VALUE",
+        "x": 506,
+        "y": 805,
+        "w": 134,
+        "h": 39,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b5",
+        "name": "Dynamic / sale Value",
+        "type": "text",
+        "text": "7",
+        "x": 634,
+        "y": 786,
+        "w": 115,
+        "h": 75,
+        "fontSize": "64"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b6",
+        "name": "Dynamic / Common rarity diamond",
+        "type": "group",
+        "x": 803,
+        "y": 807,
+        "w": 31,
+        "h": 31
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b7",
+        "name": "Dynamic / rarity name",
+        "type": "text",
+        "text": "COMMON",
+        "x": 851,
+        "y": 805,
+        "w": 300,
+        "h": 42,
+        "fontSize": "28"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b8",
+        "name": "Dynamic / selected Catch glow — not hover",
+        "type": "rectangle",
+        "x": 82,
+        "y": 882,
+        "w": 545,
+        "h": 427
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3b9",
+        "name": "Static / Catch hook icon",
+        "type": "group",
+        "x": 109,
+        "y": 906,
+        "w": 45,
+        "h": 65
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3ba",
+        "name": "Static / Catch role label",
+        "type": "text",
+        "text": "C A T C H",
+        "x": 181,
+        "y": 916,
+        "w": 342,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3bb",
+        "name": "Static / Bait twin-spark icon",
+        "type": "group",
+        "x": 676,
+        "y": 915,
+        "w": 65,
+        "h": 52
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3bc",
+        "name": "Static / Bait role label",
+        "type": "text",
+        "text": "B A I T",
+        "x": 780,
+        "y": 916,
+        "w": 300,
+        "h": 55,
+        "fontSize": "36"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3bf",
+        "name": "Dynamic / Bait effect name",
+        "type": "text",
+        "text": "Feeding Frenzy",
+        "x": 690,
+        "y": 1021,
+        "w": 450,
+        "h": 70,
+        "fontSize": "42"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e5df3c0",
+        "name": "Dynamic / Bait effect text",
+        "type": "text",
+        "text": "After catching a Predator, you may release this Bait to draw 2 techniques.",
+        "x": 701,
+        "y": 1108,
+        "w": 414,
+        "h": 180,
+        "fontSize": "32"
+      }
+    ]
+  },
+  "log": ""
+}

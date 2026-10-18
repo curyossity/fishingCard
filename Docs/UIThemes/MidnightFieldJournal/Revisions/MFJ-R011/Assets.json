@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R011",
+  "cardId": "creature_sardine",
+  "status": "verified",
+  "parentRevision": "MFJ-R002",
+  "reusedFrame": "../MFJ-R002/Art/MainCreatureFrameV3.png",
+  "generation": "Built-in image_gen; separate illustration, no slices",
+  "assets": [
+    {
+      "id": "SardineEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R011/Art/SardineEngravedV3.png",
+      "source": "C:\\Users\\user\\.codex\\generated_images\\01a12664-7dcf-7183-b8bc-4582ea9b6f12\\exec-a1ec2b33-fcac-4e05-aabd-db4345b8e5ed.png",
+      "sha256": "8d5a75f7679a479ec39e9f2e074d15332c716d74030693c6eb872fba35ca405e",
+      "width": 1671,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf1c3e255cd0",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sardine.png"
+    }
+  ],
+  "unityImported": true,
+  "penpotCardId": "bae680cd-9225-8018-8008-cf1c3e5df3ac",
+  "penpotReviewBoardId": "bae680cd-9225-8018-8008-cf1c3e4397e4",
+  "portraitBounds": {
+    "x": 110,
+    "y": 190,
+    "w": 1040,
+    "h": 585.6612806702574
+  },
+  "synchronizationCheckpoint": "MFJ-SYNC-001"
+}

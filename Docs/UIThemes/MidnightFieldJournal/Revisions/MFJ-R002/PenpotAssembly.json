@@ -1,0 +1,262 @@
+{
+  "result": {
+    "revision": "MFJ-R002",
+    "sourceCardId": "bae680cd-9225-8018-8008-cee1b56dd362",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cee1b54ddb82",
+    "instances": [
+      {
+        "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+        "previousId": "bae680cd-9225-8018-8008-cdde3a7764b4",
+        "instanceId": "bae680cd-9225-8018-8008-cee251db9229",
+        "x": 1250,
+        "y": 110,
+        "width": 1260,
+        "height": 1400,
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922a",
+            "name": "Static / engraved parchment, marine stage and neutral effect panels",
+            "type": "rectangle"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922b",
+            "name": "Dynamic / creature type",
+            "type": "text",
+            "text": "C R E A T U R E"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922c",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "SMALL OCTOPUS"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922d",
+            "name": "Dynamic / engraved Small Octopus illustration",
+            "type": "rectangle"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922e",
+            "name": "Dynamic / creature tags",
+            "type": "text",
+            "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db922f",
+            "name": "Static / Weight label",
+            "type": "text",
+            "text": "WEIGHT"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9230",
+            "name": "Dynamic / effective Weight",
+            "type": "text",
+            "text": "1"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9231",
+            "name": "Static / Value label",
+            "type": "text",
+            "text": "VALUE"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9232",
+            "name": "Dynamic / sale Value",
+            "type": "text",
+            "text": "9"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9233",
+            "name": "Dynamic / Uncommon rarity diamond",
+            "type": "group"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9234",
+            "name": "Dynamic / rarity name",
+            "type": "text",
+            "text": "UNCOMMON"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9235",
+            "name": "Dynamic / selected Catch glow — not hover",
+            "type": "rectangle"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9236",
+            "name": "Static / Catch hook icon",
+            "type": "group"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9237",
+            "name": "Static / Catch role label",
+            "type": "text",
+            "text": "C A T C H"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9238",
+            "name": "Static / Bait twin-spark icon",
+            "type": "group"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db9239",
+            "name": "Static / Bait role label",
+            "type": "text",
+            "text": "B A I T"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923a",
+            "name": "Dynamic / Catch effect name",
+            "type": "text",
+            "text": "Clever Catch"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923b",
+            "name": "Dynamic / Catch effect text",
+            "type": "text",
+            "text": "When caught, draw 1\ntechnique."
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923c",
+            "name": "Dynamic / Bait effect name",
+            "type": "text",
+            "text": "Helping Arms"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251db923d",
+            "name": "Dynamic / Bait effect text",
+            "type": "text",
+            "text": "When attached as Bait,\nyou may swap the modes of\nanother Catch and\nanother Bait."
+          }
+        ]
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+        "previousId": "bae680cd-9225-8018-8008-cdead5028f9d",
+        "instanceId": "bae680cd-9225-8018-8008-cee251f05bf8",
+        "x": 1250,
+        "y": 110,
+        "width": 1260,
+        "height": 1400,
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bf9",
+            "name": "Static / engraved parchment, marine stage and neutral effect panels",
+            "type": "rectangle"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfa",
+            "name": "Dynamic / creature type",
+            "type": "text",
+            "text": "C R E A T U R E"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfb",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "SMALL OCTOPUS"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfc",
+            "name": "Dynamic / engraved Small Octopus illustration",
+            "type": "rectangle"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfd",
+            "name": "Dynamic / creature tags",
+            "type": "text",
+            "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bfe",
+            "name": "Static / Weight label",
+            "type": "text",
+            "text": "WEIGHT"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05bff",
+            "name": "Dynamic / effective Weight",
+            "type": "text",
+            "text": "1"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c00",
+            "name": "Static / Value label",
+            "type": "text",
+            "text": "VALUE"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c01",
+            "name": "Dynamic / sale Value",
+            "type": "text",
+            "text": "9"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c02",
+            "name": "Dynamic / Uncommon rarity diamond",
+            "type": "group"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c03",
+            "name": "Dynamic / rarity name",
+            "type": "text",
+            "text": "UNCOMMON"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c04",
+            "name": "Dynamic / selected Catch glow — not hover",
+            "type": "rectangle"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c05",
+            "name": "Static / Catch hook icon",
+            "type": "group"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c06",
+            "name": "Static / Catch role label",
+            "type": "text",
+            "text": "C A T C H"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c07",
+            "name": "Static / Bait twin-spark icon",
+            "type": "group"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c08",
+            "name": "Static / Bait role label",
+            "type": "text",
+            "text": "B A I T"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c09",
+            "name": "Dynamic / Catch effect name",
+            "type": "text",
+            "text": "Clever Catch"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c0a",
+            "name": "Dynamic / Catch effect text",
+            "type": "text",
+            "text": "When caught, draw 1\ntechnique."
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c0b",
+            "name": "Dynamic / Bait effect name",
+            "type": "text",
+            "text": "Helping Arms"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cee251f05c0c",
+            "name": "Dynamic / Bait effect text",
+            "type": "text",
+            "text": "When attached as Bait,\nyou may swap the modes of\nanother Catch and\nanother Bait."
+          }
+        ]
+      }
+    ],
+    "oldCardsHidden": true,
+    "unityImported": false
+  },
+  "log": ""
+}

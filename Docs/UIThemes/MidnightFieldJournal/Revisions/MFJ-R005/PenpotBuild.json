@@ -1,0 +1,50 @@
+{
+  "result": {
+    "revision": "MFJ-R005",
+    "name": "Glass Minnow",
+    "slug": "GlassMinnow",
+    "id": "creature_glass_minnow",
+    "weight": 1,
+    "value": 5,
+    "rarity": "Common",
+    "tags": [
+      "Fish",
+      "Schooling",
+      "Small"
+    ],
+    "depth": {
+      "min": 0,
+      "max": 15
+    },
+    "catchEffect": null,
+    "baitEffect": {
+      "name": "Shoal Signal",
+      "description": "After catching a Schooling creature, redraw 1 technique card."
+    },
+    "x": 15000,
+    "artName": "GlassMinnowEngravedV3",
+    "portrait": {
+      "x": 110,
+      "y": 190,
+      "w": 1040,
+      "h": 585.311004784689
+    },
+    "imageWidth": 1672,
+    "imageHeight": 941,
+    "authoredAsset": "Assets/Cards/Glass Minnow.asset",
+    "authoredSha256": "0f1457eb9111f6280bf5319700f32e3fc76953fc5123380bf2dba68332e286dc",
+    "sourceId": "bae680cd-9225-8018-8008-cf0f933c402e",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf0f935a97c4",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf0f93bd126d",
+    "cardId": "bae680cd-9225-8018-8008-cf0f9376048f",
+    "portraitInstanceId": "bae680cd-9225-8018-8008-cf0f93760493",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "status": "ready_for_review",
+    "dependsOn": "MFJ-R002",
+    "unityImported": false
+  },
+  "log": ""
+}
