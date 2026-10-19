@@ -1199,26 +1199,12 @@
     }
   ],
   "unillustratedCompactCardIds": [
-    "creature_cleaner_shrimp",
-    "creature_coastal_cod",
     "creature_cuttlefish",
     "creature_flounder",
-    "creature_garfish",
-    "creature_mackerel",
     "apex_harbor_leviathan",
-    "creature_jellyfish",
-    "creature_lionfish",
-    "creature_moonlit_ray",
-    "creature_mussel",
     "treasure_pearl_cache",
-    "creature_sea_anemone",
-    "creature_sea_bass",
-    "creature_sea_urchin",
-    "creature_spiny_lobster",
-    "creature_squid",
     "apex_stormjaw_tuna",
-    "treasure_sunken_tackle_box",
-    "creature_tidepool_eel"
+    "treasure_sunken_tackle_box"
   ],
   "centralEvents": [
     {
@@ -1300,6 +1286,134 @@
       "descriptionLineBreaks": [
         4
       ]
+    }
+  ],
+  "compactPortraits": [
+    {
+      "cardUniqueId": "creature_cleaner_shrimp",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_cleaner_shrimp.png",
+      "sha256": "38e32fc040b49d706409704b1785cf1de6b4b237d50f532c40881d9c95891298",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_coastal_cod",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_coastal_cod.png",
+      "sha256": "d0b6b1613f936fc663872d5c7226bc0196e125c167619c1c401c52f1e41102a5",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_garfish",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_garfish.png",
+      "sha256": "6bfeeade2ee5f702739276cafd750c2f9c0648227629c0692b16324c29b44399",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_jellyfish",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_jellyfish.png",
+      "sha256": "75d800f3507ae5ba2426f33a27b38ea42d486b0bbf59b2c3030ece11dbc15339",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_lionfish",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_lionfish.png",
+      "sha256": "5ab9405a3600b05321bf276dd9d4783ac1378b7c76d296252ccd39168271afff",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_mackerel",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mackerel.png",
+      "sha256": "dc4cbfe1e7f28cbec92c71080fed86eee6fff42cec8d0f512daa9e676bca944b",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_moonlit_ray",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_moonlit_ray.png",
+      "sha256": "7f107276e13630f9e0586abd3bb683814b081e73e616f05fb72aea4848c91222",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_mussel",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mussel.png",
+      "sha256": "0f65f5c67c33fa4b4b1e750d6c023543436a43e413c1aed29963e3c79d8fdf3b",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_sea_anemone",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_anemone.png",
+      "sha256": "7d3a26c42d4b682d819e855c2e8d2ee680ad0d46f9b2ab8a533b4ea242891401",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_sea_bass",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_bass.png",
+      "sha256": "6f40db59ad6cd1366b1ea32347851ec35fb148cb9e33fd4d73255373ab199709",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_sea_urchin",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_urchin.png",
+      "sha256": "c348265fcc5047988af4487eb9d69e632a4877e45fa6ebaf928e07df980ac9ef",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_spiny_lobster",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_spiny_lobster.png",
+      "sha256": "d07cf2fc4bbd8b2de3798a18965333f70d322f650c497d8962c9d1e4f255812c",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_squid",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_squid.png",
+      "sha256": "2d19d63309d87812ef0a0024b5a4b762c6ca4c56f5cbd105c0a2e07b5315f7b1",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
+    },
+    {
+      "cardUniqueId": "creature_tidepool_eel",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_tidepool_eel.png",
+      "sha256": "e79c3a9a4b1743a8b5e7d5684df32e0307df99cc09cd9428085e35682a1486fb",
+      "x": 64,
+      "y": 100,
+      "width": 552,
+      "height": 221
     }
   ]
 }

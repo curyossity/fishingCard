@@ -1,0 +1,13 @@
+{
+  "revision": "MFJ-R034",
+  "cardUniqueId": "recast",
+  "name": "Recast",
+  "description": "Discard 1 or 2 other techniques, then draw that many.",
+  "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R034\\RecastIllustration.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "eccbf3ab752b7292b60c72af0ad2874ecde0f87650cb77f8177d434e8a437906",
+  "prompt": "Generate a single standalone illustration for an engraved nautical fantasy card game. Match reference's 19th century copperplate crosshatching, stippling, faded sepia-gold objects and deep navy watercolor foam, richly detailed antique naturalist field journal feel. Wide horizontal vignette, roughly 16:9, completely transparent outside irregular feathered ink silhouette. No parchment rectangle, no frame, no title, no lettering, no UI, no card face. Readable large centerpiece; detailed linework. Reference is style only, do not reproduce its knot. A graceful antique wooden fishing rod tip sweeps from the left; a long looping golden fishing line arcs across a navy wave and carries a small brass lure into the water at right. Dynamic casting motion, no hands.",
+  "tool": "built-in image_gen",
+  "transparentBackground": true
+}

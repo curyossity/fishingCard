@@ -1,0 +1,13 @@
+{
+  "revision": "MFJ-R032",
+  "cardUniqueId": "hold_steady",
+  "name": "Hold Steady",
+  "description": "Cancel the current unresolved Hazard.",
+  "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R032\\HoldSteadyIllustration.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "2bec5dfdb994f56b6f410ca61ed9c773a23af53bea2a5a4e4f37a4236cd5830e",
+  "prompt": "Generate a single standalone illustration for an engraved nautical fantasy card game. Match reference's 19th century copperplate crosshatching, stippling, faded sepia-gold objects and deep navy watercolor foam, richly detailed antique naturalist field journal feel. Wide horizontal vignette, roughly 16:9, completely transparent outside irregular feathered ink silhouette. No parchment rectangle, no frame, no title, no lettering, no UI, no card face. Readable large centerpiece; detailed linework. Reference is style only, do not reproduce its knot. A weathered brass anchor planted firmly into a craggy reef, its short taut rope resisting a crashing deep navy wave. Protective steadiness against danger, compact horizontal composition.",
+  "tool": "built-in image_gen",
+  "transparentBackground": true
+}

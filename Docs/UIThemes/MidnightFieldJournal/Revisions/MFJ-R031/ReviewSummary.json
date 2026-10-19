@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "cards": 4,
+  "editableTexts": 12,
+  "sameExistingFrame": true,
+  "allDescriptionsMatchAuthoredRules": true,
+  "previewVisuallyInspected": true,
+  "unityImported": false,
+  "pendingRevisions": [
+    "MFJ-R031",
+    "MFJ-R032",
+    "MFJ-R033",
+    "MFJ-R034"
+  ]
+}

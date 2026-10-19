@@ -41,38 +41,6 @@ public sealed class TechniqueDeckRuntime
     }
 
     /// <summary>
-    /// Refills the Technique hand up to the requested hand size when cards are available.
-    /// </summary>
-    public void Refill(int handSize, System.Random random)
-    {
-        handSize = Math.Min(HandLimit, Math.Max(0, handSize));
-        while (hand.Length < handSize)
-        {
-            if (drawPile.Length == 0)
-            {
-                if (discardPile.Length == 0)
-                {
-                    return;
-                }
-
-                drawPile = CreateShuffledPile(discardPile, random);
-                discardPile = Array.Empty<CardDefinition>();
-                discardOccurrenceIds = Array.Empty<int>();
-            }
-
-            CardDefinition[] drawnCards = DrawCards(drawPile, 1, out drawPile);
-
-            if (drawnCards.Length == 0)
-            {
-                return;
-            }
-
-            hand = AppendCard(hand, drawnCards[0]);
-            handVersion++;
-        }
-    }
-
-    /// <summary>
     /// Returns a Technique card from a hand position without changing any pile.
     /// </summary>
     public bool TryGetHandCard(int handIndex, out CardDefinition card, out string validationMessage)

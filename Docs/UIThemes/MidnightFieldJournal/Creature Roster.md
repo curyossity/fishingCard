@@ -23,6 +23,6 @@ All 18 refactored Coastal Waters creatures have editable detailed cards in Penpo
 | Squid | 2 | 20 | Rare | [MFJ-R018](Revisions/MFJ-R018/README.md) |
 | Tidepool Eel | 2 | 14 | Uncommon | [MFJ-R019](Revisions/MFJ-R019/README.md) |
 
-[Exact Penpot shape IDs and source manifests](CreatureRoster.json). Later imports depend on the shared MFJ-R002 template once, then per-creature central portrait mappings. Preserve the approved compact Catch Chain art.
+[Exact Penpot shape IDs and source manifests](CreatureRoster.json). Later imports depend on the shared MFJ-R002 template once, then per-creature central portrait mappings. Preserve the approved compact Catch Chain art. All eighteen creatures now have compact coverage: four retain their dedicated portraits and fourteen explicitly reuse their central illustrations. This Unity mapping fix does not require another Penpot import.
 
 This count covers the 18 approved refactors only. Flounder, Cuttlefish, Apex encounters and treasure are outside this batch.

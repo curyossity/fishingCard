@@ -1,0 +1,13 @@
+{
+  "revision": "MFJ-R031",
+  "cardUniqueId": "clear_water",
+  "name": "Clear Water",
+  "description": "Reveal a hidden Hooked creature; otherwise remove 1 pending concealment.",
+  "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R031\\ClearWaterIllustration.png",
+  "width": 1683,
+  "height": 935,
+  "sha256": "1ac3a20ac295905f3e768f4920b9861f9aa447b49f07e702d90cdc0435f7a418",
+  "prompt": "Generate a single standalone illustration for an engraved nautical fantasy card game. Match reference's 19th century copperplate crosshatching, stippling, faded sepia-gold objects and deep navy watercolor foam, richly detailed antique naturalist field journal feel. Wide horizontal vignette, roughly 16:9, completely transparent outside irregular feathered ink silhouette. No parchment rectangle, no frame, no title, no lettering, no UI, no card face. Readable large centerpiece; detailed linework. Reference is style only, do not reproduce its knot. A translucent clear wave sweeps murky navy silt aside to reveal a small silver fish beneath the surface, with rays of light entering the newly clear water. Peaceful clarity, aquatic nautical scene.",
+  "tool": "built-in image_gen",
+  "transparentBackground": true
+}

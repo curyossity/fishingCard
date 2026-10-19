@@ -1,0 +1,24 @@
+{
+  "revision": "MFJ-R033",
+  "cardUniqueId": "rerig",
+  "cardId": "bae680cd-9225-8018-8008-d04ef07b5177",
+  "sourceArtId": "bae680cd-9225-8018-8008-d04eede4b4a5",
+  "illustrationId": "bae680cd-9225-8018-8008-d04ef06000fa",
+  "frameId": "bae680cd-9225-8018-8008-d04ef0289ea6",
+  "reviewBoardId": "bae680cd-9225-8018-8008-d04eef43c54d",
+  "sourceBoardId": "bae680cd-9225-8018-8008-d04eef7634b4",
+  "titleShapeId": "bae680cd-9225-8018-8008-d04ef04609b7",
+  "rulesShapeId": "bae680cd-9225-8018-8008-d04ef06b6077",
+  "cardSize": [
+    620,
+    640
+  ],
+  "portraitBounds": [
+    49.6,
+    176,
+    520.8,
+    291.2
+  ],
+  "unityImported": false,
+  "status": "ready_for_review"
+}

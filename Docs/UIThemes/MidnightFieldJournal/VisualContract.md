@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-003 is the latest imported checkpoint.** The pointer-free R027 tooltip and adaptive R030 fan are integrated and verified. [Implementation](Sync003/README.md) · [next import baseline](Sync003/UnityCheckpoint.json). No pending Unity revisions remain.
+**MFJ-SYNC-003 is the latest imported checkpoint.** The pointer-free R027 tooltip and adaptive R030 fan are integrated and verified. [Implementation](Sync003/README.md) · [next import baseline](Sync003/UnityCheckpoint.json). Four new Technique illustrations, MFJ-R031–R034, are pending review and Unity integration; previous imports remain completed.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -101,6 +101,8 @@ Use a 680 × 382.022472 untransformed reference canvas (aspect 1.78). `CatchFram
 | Bait badge face | 528 | 40 | 104 | 42 | Label 23 |
 
 Keep generous artwork framing per species, encoded in the theme mapping. Source images contain transparent padding; the display canvas is not the visible silhouette. Preserve the approved three reference crops while fitting future creatures without crossing names or stats.
+
+All eighteen approved creatures have compact artwork. Existing dedicated compact mappings take precedence. The canonical catalog's separate `compactPortraits` registry maps the other fourteen identities to their existing central illustration sprites and explicit compact bounds; central-card framing stays independent. `JournalCompactArtworkSync` restores these entries during prefab regeneration. Unmapped identities clear the pooled portrait rather than displaying a previous creature. No additional artwork or Penpot revision is introduced by this Unity coverage fix.
 
 For Bait, show the cyan edge/glow and badge and `0` haul Value. Catch has no extra Catch badge in this approved version. Keep full rules, tags, card-order numbers, modifier deltas and negative-effect badges off compact faces. Selection/target legality feedback belongs to separate overlays and must not recolor connectors. A self-hidden Catch Value remains `?` until allowed by runtime state; do not expose it through a tooltip.
 

@@ -2,7 +2,36 @@
   "generatedDate": "2026-10-19",
   "source": "DesignChangeLedger.json",
   "currentUnityCheckpoint": "Sync003/UnityCheckpoint.json",
-  "pending": [],
+  "pending": [
+    {
+      "id": "MFJ-R031",
+      "component": "Clear Water Technique illustration",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "handoff": "Revisions/MFJ-R031/README.md"
+    },
+    {
+      "id": "MFJ-R032",
+      "component": "Hold Steady Technique illustration",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "handoff": "Revisions/MFJ-R032/README.md"
+    },
+    {
+      "id": "MFJ-R033",
+      "component": "Re-rig Technique illustration",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "handoff": "Revisions/MFJ-R033/README.md"
+    },
+    {
+      "id": "MFJ-R034",
+      "component": "Recast Technique illustration",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "handoff": "Revisions/MFJ-R034/README.md"
+    }
+  ],
   "completed": [
     {
       "id": "MFJ-R001",
@@ -132,7 +161,7 @@
     }
   ],
   "counts": {
-    "pending": 0,
+    "pending": 4,
     "completed": 26,
     "superseded": 4
   },

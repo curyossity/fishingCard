@@ -163,7 +163,7 @@ public static class CreatureReleaseChecks
         Set(cut.Effects[0], "requiredTags", new[] { "Armored" }); Set(cut, "cardType", CardType.Technique);
         Set(deck, "hand", new[] { cut });
         Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
-            "Technique recovery did not pause refill.");
+            "Technique recovery did not wait for its required choice.");
         Require(deck.DiscardPile.Length == 1 && deck.DiscardPile[0] == cut && deck.Hand.Length == 0,
             "Just-used technique reshuffled before recovery.");
         Require(!controller.TryDescend() && !controller.TrySurface(), "Core action bypassed recovery.");

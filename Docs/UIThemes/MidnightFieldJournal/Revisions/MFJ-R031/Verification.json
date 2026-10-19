@@ -1,0 +1,133 @@
+{
+  "result": [
+    {
+      "revision": "MFJ-R031",
+      "cardUniqueId": "clear_water",
+      "cardId": "bae680cd-9225-8018-8008-d04eefcee55c",
+      "sourceArtId": "bae680cd-9225-8018-8008-d04eeb30a002",
+      "illustrationId": "bae680cd-9225-8018-8008-d04eefb01b46",
+      "frameId": "bae680cd-9225-8018-8008-d04eef7e8539",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d04eef43c54d",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d04eef7634b4",
+      "titleShapeId": "bae680cd-9225-8018-8008-d04eef9a41ad",
+      "rulesShapeId": "bae680cd-9225-8018-8008-d04eefb77fad",
+      "cardSize": [
+        620,
+        640
+      ],
+      "portraitBounds": [
+        49.6,
+        176,
+        520.8,
+        291.2
+      ],
+      "unityImported": false,
+      "status": "ready_for_review",
+      "rotation": 0,
+      "width": 620,
+      "height": 640,
+      "editableTextCount": 3,
+      "title": "CLEAR WATER",
+      "rules": "Reveal a hidden Hooked creature;\notherwise remove 1 pending\nconcealment.",
+      "sourceExists": true,
+      "frameSeparate": true
+    },
+    {
+      "revision": "MFJ-R032",
+      "cardUniqueId": "hold_steady",
+      "cardId": "bae680cd-9225-8018-8008-d04ef0220bc7",
+      "sourceArtId": "bae680cd-9225-8018-8008-d04eec929d98",
+      "illustrationId": "bae680cd-9225-8018-8008-d04ef002b7f7",
+      "frameId": "bae680cd-9225-8018-8008-d04eefd627c0",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d04eef43c54d",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d04eef7634b4",
+      "titleShapeId": "bae680cd-9225-8018-8008-d04eefeea52f",
+      "rulesShapeId": "bae680cd-9225-8018-8008-d04ef00c9857",
+      "cardSize": [
+        620,
+        640
+      ],
+      "portraitBounds": [
+        49.6,
+        176,
+        520.8,
+        291.2
+      ],
+      "unityImported": false,
+      "status": "ready_for_review",
+      "rotation": 0,
+      "width": 620,
+      "height": 640,
+      "editableTextCount": 3,
+      "title": "HOLD STEADY",
+      "rules": "Cancel the current unresolved Hazard.",
+      "sourceExists": true,
+      "frameSeparate": true
+    },
+    {
+      "revision": "MFJ-R033",
+      "cardUniqueId": "rerig",
+      "cardId": "bae680cd-9225-8018-8008-d04ef07b5177",
+      "sourceArtId": "bae680cd-9225-8018-8008-d04eede4b4a5",
+      "illustrationId": "bae680cd-9225-8018-8008-d04ef06000fa",
+      "frameId": "bae680cd-9225-8018-8008-d04ef0289ea6",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d04eef43c54d",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d04eef7634b4",
+      "titleShapeId": "bae680cd-9225-8018-8008-d04ef04609b7",
+      "rulesShapeId": "bae680cd-9225-8018-8008-d04ef06b6077",
+      "cardSize": [
+        620,
+        640
+      ],
+      "portraitBounds": [
+        49.6,
+        176,
+        520.8,
+        291.2
+      ],
+      "unityImported": false,
+      "status": "ready_for_review",
+      "rotation": 0,
+      "width": 620,
+      "height": 640,
+      "editableTextCount": 3,
+      "title": "RE-RIG",
+      "rules": "Switch 1 attached creature\nbetween Catch and Bait.",
+      "sourceExists": true,
+      "frameSeparate": true
+    },
+    {
+      "revision": "MFJ-R034",
+      "cardUniqueId": "recast",
+      "cardId": "bae680cd-9225-8018-8008-d04ef0dd043b",
+      "sourceArtId": "bae680cd-9225-8018-8008-d04eef263bea",
+      "illustrationId": "bae680cd-9225-8018-8008-d04ef0bde73a",
+      "frameId": "bae680cd-9225-8018-8008-d04ef08157b4",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d04eef43c54d",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d04eef7634b4",
+      "titleShapeId": "bae680cd-9225-8018-8008-d04ef0a3b545",
+      "rulesShapeId": "bae680cd-9225-8018-8008-d04ef0c701a4",
+      "cardSize": [
+        620,
+        640
+      ],
+      "portraitBounds": [
+        49.6,
+        176,
+        520.8,
+        291.2
+      ],
+      "unityImported": false,
+      "status": "ready_for_review",
+      "rotation": 0,
+      "width": 620,
+      "height": 640,
+      "editableTextCount": 3,
+      "title": "RECAST",
+      "rules": "Discard 1 or 2 other techniques,\nthen draw that many.",
+      "sourceExists": true,
+      "frameSeparate": true
+    }
+  ],
+  "log": ""
+}

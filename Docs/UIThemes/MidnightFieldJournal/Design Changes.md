@@ -6,7 +6,7 @@ MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC
 
 ## Pending Unity changes
 
-The dedicated [pending list](Pending%20Unity%20Changes.md) and [machine-readable index](PendingUnityChanges.json) currently contain **no pending revisions**. MFJ-R001–MFJ-R024 are imported and verified; they must not be queued again. Latest baseline for comparisons: MFJ-SYNC-003.
+The dedicated [pending list](Pending%20Unity%20Changes.md) and [machine-readable index](PendingUnityChanges.json) currently contain **four pending revisions: MFJ-R031–MFJ-R034**. MFJ-R001–MFJ-R024 are imported and verified; they must not be queued again. Latest baseline for comparisons: MFJ-SYNC-003.
 
 ## Change history
 
@@ -82,3 +82,7 @@ Preserve exported revisions until the matching Unity import is verified. Link re
 Use the existing [visual contract](VisualContract.md), [source catalog](../../../Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json), [missing-assets ledger](MissingVisualAssets.md) and [retirement boundary](UI08Retirement.md) alongside these records. This revision round does not authorize deleting the old theme or importing a flattened mockup as reusable game UI.
 
 Import state is explicit: `unityImported`, `integrationStatus`, `synchronizationCheckpoint` and import evidence must agree. Generate the next-import checklist from the pending index, never from the full history table.
+
+## Missing Technique illustrations — MFJ-R031–R034
+
+Clear Water, Hold Steady, Re-rig and Recast now have separate transparent engravings and editable Penpot cards. All four are ready for visual review and remain pending Unity integration. Existing completed/superseded revisions retain their status. [Preview and source IDs](Revisions/MFJ-R031/README.md).

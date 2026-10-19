@@ -423,7 +423,7 @@ A completed trigger survives later removal of its source during that ability.
 
 A played Technique leaves hand while resolving and enters discard only
 after its effect finishes, before completion-waiting recovery reactions.
-Normal hand refill waits for those choices to finish and respects the
+Only explicit draw or recovery effects add cards after the opening hand; play and Descend never refill it. Recovery respects the
 four-card limit. If Cod recovery is offered while the hand is full, the player
 may discard one Technique to make room or decline; it cannot create a fifth
 hand card. See the approved Technique rules in section 10.
@@ -537,7 +537,7 @@ All three are Coastal Waters creatures. Only the selected role's ongoing effects
 - **Catch / Bristling Spines:** add exactly 1 effective Weight while any Predator creature is attached in Catch or Bait mode. Additional Predators do not increase it. Recalculate immediately when creatures, roles, or effective tags change. This is an ongoing negative effect eligible for Quick Clean.
 - **Bait / Spiny Grip:** once per card on first Bait attachment, grant one independent pending Technique recovery. Source removal and role changes do not cancel it or grant another. Multiple grants apply to consecutive qualifying plays, oldest first; a play consumes only one.
 - The next Technique played that selects at least one attached Armored creature as an individual target receives recovery. Use effective tags at play time. Automatic individual targeting qualifies; untargeted effects and targeting only the Hooked encounter do not. Releasing the target does not prevent recovery.
-- After that Technique and every triggered effect/choice finish, return the exact played occurrence from discard to hand. If the four-card hand is full, optionally discard one hand Technique for room or decline. The grant is consumed by that play even when recovery is declined or the played occurrence is no longer in discard. Never substitute another card or an identical unplayed copy. Resolve this recovery before normal Technique refill.
+- After that Technique and every triggered effect/choice finish, return the exact played occurrence from discard to hand. If the four-card hand is full, optionally discard one hand Technique for room or decline. The grant is consumed by that play even when recovery is declined or the played occurrence is no longer in discard. Never substitute another card or an identical unplayed copy. Resolve this recovery before reopening Technique input; there is no automatic replacement draw.
 
 **Small Octopus** — Weight **1**, Value **9**, Uncommon, depth **6–20**, tags **Small, Predator, Elusive**.
 
@@ -873,7 +873,7 @@ repeated cards produce different decisions.
 # 10. The player deck
 
 The player has a maximum hand size of four Technique cards. Normal play
-costs, hand refill, and deck reshuffling follow the general game rules;
+costs and deck reshuffling follow the general game rules; playing or Descending never automatically refills the hand;
 explicit card draws are additional effect draws.
 
 - Technique cards represent bait, special hooks, knots, rigging tricks,
@@ -935,13 +935,13 @@ The player selects required targets before the play is committed. While Stinging
 
 ### Hand and draws
 
-The hand limit is **four**. Explicit draws on the supplied cards are additional effect draws; normal play costs, hand refill, and deck reshuffling follow the general game rules. Do not silently replace an explicit effect draw with normal refill, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
+The hand limit is **four**, dealt at the start of a run. Playing a Technique does **not** draw a replacement; Descend also does **not** refill the hand. After the opening hand, only explicit card effects may draw, redraw or recover Techniques, using their own counts and the normal reshuffle rules. Do not fill other empty slots as part of such an effect, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
 
 When Cod recovery is offered with a full four-card hand, the player may discard one Technique to make room or decline recovery. Recovery must not create a fifth hand card. Sea Urchin uses the same discard-one-to-make-room or decline policy. Recovery still follows each creature's trigger and opportunity limits.
 
 ### Limits and persistence
 
-These designs add no energy resource or once-per-biome counters. Persistent modifiers and pending effects use each Technique's own duration. Ending the run clears all pending effects. This shared contract does not invent individual Technique effects, costs, refill counts, reshuffle exceptions, or duration rules.
+These designs add no energy resource or once-per-biome counters. Persistent modifiers and pending effects use each Technique's own duration. Ending the run clears all pending effects. This shared contract does not invent individual Technique effects, costs, additional draw counts, reshuffle exceptions, or duration rules.
 
 # 11. Run economy and progression
 

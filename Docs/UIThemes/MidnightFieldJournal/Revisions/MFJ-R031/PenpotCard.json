@@ -1,0 +1,24 @@
+{
+  "revision": "MFJ-R031",
+  "cardUniqueId": "clear_water",
+  "cardId": "bae680cd-9225-8018-8008-d04eefcee55c",
+  "sourceArtId": "bae680cd-9225-8018-8008-d04eeb30a002",
+  "illustrationId": "bae680cd-9225-8018-8008-d04eefb01b46",
+  "frameId": "bae680cd-9225-8018-8008-d04eef7e8539",
+  "reviewBoardId": "bae680cd-9225-8018-8008-d04eef43c54d",
+  "sourceBoardId": "bae680cd-9225-8018-8008-d04eef7634b4",
+  "titleShapeId": "bae680cd-9225-8018-8008-d04eef9a41ad",
+  "rulesShapeId": "bae680cd-9225-8018-8008-d04eefb77fad",
+  "cardSize": [
+    620,
+    640
+  ],
+  "portraitBounds": [
+    49.6,
+    176,
+    520.8,
+    291.2
+  ],
+  "unityImported": false,
+  "status": "ready_for_review"
+}

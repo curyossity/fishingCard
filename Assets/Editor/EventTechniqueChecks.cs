@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-/// <summary>Checks event/cancelled windows, authored Technique targets, and coordinator recovery/refill order.</summary>
+/// <summary>Checks event/cancelled windows, authored Technique targets, and coordinator recovery/completion order.</summary>
 public static class EventTechniqueChecks
 {
     private static readonly List<UnityEngine.Object> created = new List<UnityEngine.Object>();
@@ -125,8 +125,8 @@ public static class EventTechniqueChecks
         Set(deck, "hand", new[] { attached, delayed, replace }); Set(deck, "drawPile", Deck(0, 10).DrawPile);
         int depth = controller.CurrentDepth;
         Require(controller.CanUseTechniqueCard(0, out _) && TechniqueRuleChecks.Play(controller, 0) && target.CurrentValue == 10
-            && controller.CurrentDepth == depth && encounters.CurrentEncounter == environment && deck.Hand.Length == 4,
-            "Player event Technique failed target mutation, refill, or advanced the action.");
+            && controller.CurrentDepth == depth && encounters.CurrentEncounter == environment && deck.Hand.Length == 2 && deck.DrawPile.Length == 10,
+            "Player event Technique drew an unearned replacement or changed the action.");
         Require(TechniqueRuleChecks.Play(controller, 0) && techniques.PendingDescendEffects.Length == 1 && controller.CurrentDepth == depth,
             "Second legal Technique could not be played in the same event window.");
         Require(TechniqueRuleChecks.Play(controller, 0) && encounters.CurrentEncounter == alternate
@@ -139,7 +139,7 @@ public static class EventTechniqueChecks
         Require(!TechniqueRuleChecks.Play(controller, 0) && deck.Hand.Length == 1 && deck.Hand[0] == replace
             && deck.DiscardPile.Length == discards, "Illegal missing-target play consumed a card.");
         encounters.SetCurrentEncounter(environment); Set(deck, "hand", new[] { delayed });
-        foreach (string pending in new[] { "descendCompletionPending", "biomeEntryRevealPending", "techniqueRefillPending" })
+        foreach (string pending in new[] { "descendCompletionPending", "biomeEntryRevealPending", "techniqueCompletionPending" })
         {
             Set(controller, pending, true); Require(!controller.CanUseTechniqueCard(0, out _), "Pending controller action allowed a new Technique.");
             Set(controller, pending, false);
@@ -162,10 +162,10 @@ public static class EventTechniqueChecks
         Set(deck, "hand", new[] { release, Technique("A"), Technique("B"), Technique("C") });
         Set(deck, "discardPile", new[] { Technique("Prior") }); Set(deck, "drawPile", Deck(0, 10).DrawPile);
         Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
-            && deck.DrawPile.Length == 10 && deck.DiscardPile[1] == release, "Event Release recovery/refill order changed.");
+            && deck.DrawPile.Length == 10 && deck.DiscardPile[1] == release, "Event Release drew an unearned card or changed recovery order.");
         Require(!TechniqueRuleChecks.Play(controller, 0), "Pending creature recovery allowed another Technique.");
         Require(controller.TryChooseRecoveredTechnique(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique
-            && deck.DrawPile.Length == 10, "Exact played recovery ran before Cod or normal refill ran early.");
+            && deck.DrawPile.Length == 10, "Exact played recovery ran before Cod or drew an unearned card.");
         Require(controller.TryChoosePlayedTechniqueRecovery(0) && !controller.HasPendingCreatureChoice
             && deck.Hand.Length == 4 && deck.Hand[3] == release && deck.DrawPile.Length == 10
             && controller.CanUseTechniqueCard(3, out _), "Completed reactions failed exact recovery or reopening event Techniques.");

@@ -86,7 +86,8 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private bool biomeEntryRevealPending;
     [SerializeField] private int pendingCommittedCatchId = -1;
     private int selectedSwapTargetId = -1;
-    [SerializeField] private bool techniqueRefillPending;
+    [UnityEngine.Serialization.FormerlySerializedAs("techniqueRefillPending")]
+    [SerializeField] private bool techniqueCompletionPending;
     [SerializeField] private TechniqueTargetPlan pendingTechniqueTargets;
     [SerializeField] private int pendingTechniqueHandIndex;
     [SerializeField] private long pendingTechniqueHandVersion;
@@ -111,7 +112,7 @@ public sealed class FishingRunController : MonoBehaviour
     private bool CoreActionInputReady => runActive && !EventActionInputLocked && !HasPendingTechniqueSelection
         && (fishingRunView == null || !fishingRunView.IsEncounterTransitionPlaying)
         && !techniqueEffectInProgress && techniqueDeckRuntime.ResolvingCard == null && string.IsNullOrEmpty(techniquePlayFailure)
-        && !encounterRuntime.IsRevealReactionInProgress && !techniqueRefillPending
+        && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
         && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
 
     public bool CanDescend => CoreActionInputReady && (!biomeApexRuntime.NextWatersPresented
@@ -245,7 +246,7 @@ public sealed class FishingRunController : MonoBehaviour
         runEndCleanupPending = false;
         creatureEffectRuntime.Reset();
         descendCompletionPending = false;
-        techniqueRefillPending = false;
+        techniqueCompletionPending = false;
         biomeEntryRevealPending = false;
         pendingCommittedCatchId = -1;
         selectedSwapTargetId = -1;
@@ -344,7 +345,7 @@ public sealed class FishingRunController : MonoBehaviour
         CardDefinition[] pool = GetTechniqueEncounterPool(encounterSelectionDepth);
         if (!techniqueDeckRuntime.TryBeginPlay(handIndex, out _, out reason)) return false;
         int occurrence = techniqueDeckRuntime.ResolvingOccurrenceId;
-        techniqueRefillPending = true;
+        techniqueCompletionPending = true;
         techniqueEffectInProgress = true;
         bool applied;
         string effectSummary;
@@ -422,7 +423,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         if (EventActionInputLocked || techniqueDeckRuntime.ResolvingCard != null
-            || descendCompletionPending || biomeEntryRevealPending || techniqueRefillPending)
+            || descendCompletionPending || biomeEntryRevealPending || techniqueCompletionPending)
         {
             restrictionReason = "Finish the current action first";
             return false;
@@ -526,7 +527,6 @@ public sealed class FishingRunController : MonoBehaviour
 
         // The next reveal uses the new depth so data-driven depth ranges take effect immediately.
         currentDepth += Mathf.Max(1, depthStepPerDescend + techniqueResolution.AdditionalDepth);
-        techniqueDeckRuntime.Refill(startingHandSize, random);
         techniqueEffectRuntime.Approved.EndAction(catchChainRuntime);
         RevealEncounterAtCurrentDepth();
 
@@ -896,11 +896,8 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
-        if (techniqueRefillPending)
-        {
-            techniqueRefillPending = false;
-            techniqueDeckRuntime.Refill(startingHandSize, random);
-        }
+        // Completion unlocks input after reactions; only explicit effects draw or recover cards.
+        techniqueCompletionPending = false;
 
         if (descendCompletionPending)
         {
@@ -2035,7 +2032,7 @@ public sealed class FishingRunController : MonoBehaviour
         creatureEffectRuntime.Reset();
         descendCompletionPending = false;
         biomeEntryRevealPending = false;
-        techniqueRefillPending = false;
+        techniqueCompletionPending = false;
         pendingCommittedCatchId = -1;
         selectedSwapTargetId = -1;
     }

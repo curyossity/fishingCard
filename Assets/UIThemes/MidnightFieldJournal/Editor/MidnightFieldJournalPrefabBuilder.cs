@@ -26,6 +26,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         theme = AssetDatabase.LoadAssetAtPath<MidnightFieldJournalTheme>(MidnightFieldJournalAssetSetup.ThemePath);
         if (theme == null) throw new InvalidOperationException("Prepare the isolated fonts and theme before building templates.");
         JournalInspectionDesignSync.Bind(theme);
+        JournalCompactArtworkSync.Bind(theme);
         body = theme.BodyFont;
         title = theme.DisplayFont;
         if (body == null || title == null) throw new InvalidOperationException("Theme-local TMP fonts are required.");

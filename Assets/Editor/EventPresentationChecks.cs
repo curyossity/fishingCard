@@ -52,7 +52,7 @@ public static class EventPresentationChecks
             Require(controller.CurrentEncounter == null && controller.CanDescend && controller.CanSurface
                 && !controller.CanReleaseSelectedCatch && controller.CanUseTechniqueCard(0, out _),
                 "Discarded cancelled event disabled its surrounding input window.");
-            string[] locks = { "techniqueRefillPending", "descendCompletionPending", "biomeEntryRevealPending",
+            string[] locks = { "techniqueCompletionPending", "descendCompletionPending", "biomeEntryRevealPending",
                 "eventActionConfirmationInProgress", "eventActionAdvanceInProgress" };
             foreach (string field in locks)
             {

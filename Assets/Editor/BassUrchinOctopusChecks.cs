@@ -474,7 +474,7 @@ public static class BassUrchinOctopusChecks
 
     }
 
-    /// <summary>Checks real coordinator choices, exact recovery before refill, and mode exchange without encounter/depth changes.</summary>
+    /// <summary>Checks real coordinator choices, exact recovery without extra draws, and mode exchange without encounter/depth changes.</summary>
     private static void ValidateController()
     {
         CardDefinition bass = Bass(); BiomeDefinition biome = Biome(new[] { bass });
@@ -513,7 +513,7 @@ public static class BassUrchinOctopusChecks
         int drawCount = deck.DrawPile.Length;
         Require(TechniqueRuleChecks.Play(controller, 0) && deck.Hand.Length == 4 && deck.Hand[3] == technique
             && deck.DrawPile.Length == drawCount && runtime.PendingSelectedTechniqueRecoveryCount == 0,
-            "Exact recovery did not precede normal Technique refill.");
+            "Exact recovery changed the draw pile or left a pending recovery.");
         EncounterRuntime encounters = Get<EncounterRuntime>(controller, "encounterRuntime");
         chain.Reset(); runtime.Reset();
         runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));
@@ -539,13 +539,13 @@ public static class BassUrchinOctopusChecks
         Set(deck, "discardPile", new[] { priorDiscard }); Set(deck, "drawPile", Deck(0, 4).DrawPile);
         drawCount = deck.DrawPile.Length;
         Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
-            && deck.DrawPile.Length == drawCount, "Spiny Grip or normal refill ran before Cod's release reaction.");
+            && deck.DrawPile.Length == drawCount, "Spiny Grip or an unearned draw ran before Cod's release reaction.");
         Require(controller.TryChooseRecoveredTechnique(0)
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique
             && deck.Hand.Length == 4 && deck.DrawPile.Length == drawCount, "Full-hand exact recovery was not deferred after Cod.");
         Require(controller.TryChoosePlayedTechniqueRecovery(0) && deck.Hand.Length == 4
             && deck.Hand[3] == releaseTech && deck.DrawPile.Length == drawCount && !controller.HasPendingCreatureChoice,
-            "Discard-for-room exact recovery failed before refill.");
+            "Discard-for-room exact recovery failed or drew an extra card.");
 
         chain.Reset(); runtime.Reset();
         runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));

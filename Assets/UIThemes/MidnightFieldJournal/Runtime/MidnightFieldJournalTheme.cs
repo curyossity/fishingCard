@@ -8,6 +8,13 @@ using UnityEngine;
 public sealed class MidnightFieldJournalTheme : ScriptableObject
 {
     [Serializable]
+    public sealed class CompactPortraitEntry
+    {
+        public string cardUniqueId;
+        public Sprite sprite;
+        public Rect portraitBounds;
+    }
+    [Serializable]
     public sealed class CentralEventEntry
     {
         public string cardUniqueId;
@@ -60,6 +67,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     [SerializeField] private SpriteEntry[] sprites = Array.Empty<SpriteEntry>();
     [SerializeField] private CentralCardEntry[] centralCards = Array.Empty<CentralCardEntry>();
     [SerializeField] private CentralEventEntry[] centralEvents = Array.Empty<CentralEventEntry>();
+    [SerializeField] private CompactPortraitEntry[] compactPortraits = Array.Empty<CompactPortraitEntry>();
     [SerializeField] private string[] unillustratedCardIds = Array.Empty<string>();
 
     public Vector2 ReferenceResolution => referenceResolution;
@@ -76,6 +84,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     public IReadOnlyList<SpriteEntry> Sprites => sprites;
     public IReadOnlyList<CentralCardEntry> CentralCards => centralCards;
     public IReadOnlyList<CentralEventEntry> CentralEvents => centralEvents;
+    public IReadOnlyList<CompactPortraitEntry> CompactPortraits => compactPortraits;
 
     /// <summary>Finds an exact central event illustration without supplying it to compact catch cards.</summary>
     public CentralEventEntry GetCentralEvent(string cardUniqueId)
@@ -108,7 +117,22 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
             if (!string.IsNullOrEmpty(entry.CardUniqueId) && entry.CardUniqueId == cardUniqueId
                 && entry.CompactArtworkBounds.width > 0 && entry.CompactArtworkBounds.height > 0)
                 return entry.CompactArtworkBounds;
+        foreach (var entry in compactPortraits)
+            if (entry.cardUniqueId == cardUniqueId && entry.portraitBounds.width > 0 && entry.portraitBounds.height > 0)
+                return entry.portraitBounds;
         return CompactBounds(64, 100, 552, 221);
+    }
+
+    /// <summary>Resolves exact-identity chain artwork, preserving the four approved compact overrides before expanded coverage.</summary>
+    public bool TryGetCompactArtwork(string cardUniqueId, out Sprite sprite)
+    {
+        if (TryGetArtwork(cardUniqueId, out sprite)) return true;
+        foreach (var entry in compactPortraits)
+        {
+            if (string.IsNullOrEmpty(cardUniqueId) || entry.cardUniqueId != cardUniqueId) continue;
+            sprite = entry.sprite; return sprite != null;
+        }
+        sprite = null; return false;
     }
 
     /// <summary>Converts reference portrait geometry to anchors without cropping its transparent source.</summary>

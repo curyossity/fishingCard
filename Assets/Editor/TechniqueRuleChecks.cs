@@ -57,7 +57,7 @@ public static class TechniqueRuleChecks
     public static int ValidateRules()
     {
         assertions = 0;
-        try { DeckOwnership(); Selection(); EncounterSelection(); MultiEffect(); Recovery(); ReentryAndFailure(); return assertions; }
+        try { DeckOwnership(); NoAutomaticDraw(); Selection(); EncounterSelection(); MultiEffect(); Recovery(); ReentryAndFailure(); return assertions; }
         finally { foreach (UnityEngine.Object obj in created) UnityEngine.Object.DestroyImmediate(obj); created.Clear(); }
     }
 
@@ -84,8 +84,8 @@ public static class TechniqueRuleChecks
             && deck.Hand.Length == 4 && !deck.HasDiscardedTechniqueOccurrence(id, played),
             "Exact recovery or capacity enforcement failed.");
         Require(!deck.TryRecoverPlayedTechnique(id, played, 4), "A second recovery duplicated the physical card.");
-        deck.Refill(99, new System.Random(1));
-        Require(deck.Hand.Length == 4, "Normal refill ignored the hand cap.");
+        deck.DrawTechniques(99, 99, new System.Random(1));
+        Require(deck.Hand.Length == 4, "Explicit draw ignored the hand cap.");
         deck.Reset(); Set(deck, "hand", new[] { card });
         Require(deck.TryBeginPlay(0, out _, out _) && deck.DrawTechniques(4, 4, new System.Random(1)) == 0
             && deck.ResolvingCard == card && deck.DiscardPile.Length == 0,
@@ -93,6 +93,33 @@ public static class TechniqueRuleChecks
         int old = deck.ResolvingOccurrenceId; deck.Reset(); Set(deck, "hand", new[] { card }); deck.TryBeginPlay(0, out _, out _);
         Require(deck.ResolvingOccurrenceId != old && !deck.TryCompletePlay(old), "A previous run's completion discarded a new card.");
         deck.Reset(); Require(deck.ResolvingCard == null && deck.ResolvingOccurrenceId == 0, "Shutdown retained resolving ownership.");
+    }
+
+    /// <summary>Checks plays and Descend consume no draw cards, while a creature-authored draw still grants exactly its count.</summary>
+    private static void NoAutomaticDraw()
+    {
+        FishingRunController controller = Controller(); TechniqueDeckRuntime deck = Deck(controller);
+        CardDefinition prize = Technique(CardEffectType.QueuePrizeCatchBonus, CardEffectTarget.None, 1);
+        deck.Initialize(new[] { prize, prize, prize, prize, prize, prize, prize, prize }, 4, new System.Random(13), null);
+        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 4, "Opening hand changed.");
+        for (int remaining = 3; remaining >= 0; remaining--)
+        {
+            Require(controller.TryUseTechniqueCard(0) && deck.Hand.Length == remaining
+                && deck.DrawPile.Length == 4 && deck.DiscardPile.Length == 4 - remaining,
+                "Playing a Technique automatically drew a replacement.");
+            Require(!controller.HasPendingCreatureChoice && controller.CanDescend && controller.CanSurface,
+                "Technique completion left gameplay input blocked.");
+        }
+        Require(!controller.TryUseTechniqueCard(0) && controller.TryDescend() && deck.Hand.Length == 0
+            && deck.DrawPile.Length == 4 && deck.DiscardPile.Length == 4,
+            "An empty hand blocked Descend or Descend refilled it.");
+        CardDefinition octopus = Card();
+        Set(octopus, "effects", new[] { Effect(CardEffectType.DrawTechniqueOnAttach, CardEffectTarget.Self, 1, CardEffectTrigger.WhenCaught) });
+        Encounters(controller).SetCurrentEncounter(octopus);
+        Require(controller.TryDescend() && deck.Hand.Length == 1 && deck.DrawPile.Length == 3,
+            "An explicit creature draw was lost or drew more than its one card.");
+        Require(controller.TryUseTechniqueCard(0) && deck.Hand.Length == 0 && deck.DrawPile.Length == 3,
+            "Playing an effect-drawn card granted another replacement.");
     }
 
     /// <summary>Checks no-cost cancellation, explicit non-first selection, legal restrictions, and stale callbacks.</summary>

@@ -4,7 +4,8 @@ technique_rules:
   targets: Select required targets before commitment. Techniques cannot target Sea Anemone Catch; deliberate Release obeys Iron Grip.
   hand_limit: 4
   recovery: Cod may recover the just-used occurrence; Sea Urchin follows other reactions. Discard one for room or decline when full. Never duplicate a physical card.
-  resources: No energy resource or once-per-biome counters. Normal refill and reshuffle rules still apply.
+  resources: No energy resource or once-per-biome counters. Normal reshuffle rules apply only when an explicit effect draws.
+  draws: Deal the opening hand at run start. Playing Techniques and Descend do not automatically draw or refill; only explicit card effects draw, redraw or recover cards.
   release: No universal free Release; a Technique, creature, or event must grant it.
   backup_policy: Only these eight designs are active. Previous Techniques remain archived and excluded from deck initialization, play and progression unlocks.
 

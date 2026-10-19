@@ -64,7 +64,7 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
             if (i >= count) continue;
             CardInstance instance = catches[i];
             card.SetCard(instance);
-            theme.TryGetArtwork(instance?.Definition?.UniqueId, out Sprite artwork);
+            theme.TryGetCompactArtwork(instance?.Definition?.UniqueId, out Sprite artwork);
             Rect bounds = theme.GetCompactArtworkBounds(instance?.Definition?.UniqueId);
             card.SetArtwork(artwork, bounds);
             card.SetState(i == selectedCatchIndex ? CompactCatchCardState.Selected : CompactCatchCardState.Normal);

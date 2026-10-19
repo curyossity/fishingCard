@@ -1,0 +1,13 @@
+{
+  "revision": "MFJ-R033",
+  "cardUniqueId": "rerig",
+  "name": "Re-rig",
+  "description": "Switch 1 attached creature between Catch and Bait.",
+  "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R033\\RerigIllustration.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "1b77cdb01c6047be19874b54d7ca221e7f6213f971849ef58577b96c869f290f",
+  "prompt": "Generate a single standalone illustration for an engraved nautical fantasy card game. Match reference's 19th century copperplate crosshatching, stippling, faded sepia-gold objects and deep navy watercolor foam, richly detailed antique naturalist field journal feel. Wide horizontal vignette, roughly 16:9, completely transparent outside irregular feathered ink silhouette. No parchment rectangle, no frame, no title, no lettering, no UI, no card face. Readable large centerpiece; detailed linework. Reference is style only, do not reproduce its knot. An elegant brass fishing swivel and open snap clasp with two looping fishing leaders, one bearing a small bare hook and the other a tiny lure. Clearly a reorganized fishing rig, no hands, balanced horizontal arrangement.",
+  "tool": "built-in image_gen",
+  "transparentBackground": true
+}
