@@ -129,6 +129,7 @@ public static class MidnightFieldJournalAssetSetup
         for (int n = 0; n < absent.arraySize; n++) absent.GetArrayElementAtIndex(n).stringValue = catalog.unillustratedCardIds[n];
         data.ApplyModifiedPropertiesWithoutUndo(); AssetDatabase.SaveAssetIfDirty(theme);
         JournalDesignSync.BindCentral(theme);
+        JournalEventDesignSync.BindEvents(theme);
         File.WriteAllText(Evidence + "UI02FontAudit.json", JsonUtility.ToJson(report, true));
         Debug.Log("Midnight Field Journal: isolated fonts and theme asset prepared.");
     }

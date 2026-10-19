@@ -1,0 +1,105 @@
+{
+  "result": {
+    "revision": "MFJ-R023",
+    "status": "approved",
+    "stableId": "loose_knot",
+    "name": "Loose Knot",
+    "eventType": "Opportunity",
+    "description": "You may release 1 attached creature.",
+    "reviewBoardId": "bae680cd-9225-8018-8008-cf687d96a259",
+    "cardId": "bae680cd-9225-8018-8008-cf687d96a25b",
+    "sourceBoardId": "bae680cd-9225-8018-8008-cf687dc371b4",
+    "illustrationId": "bae680cd-9225-8018-8008-cf687d7ed8af",
+    "frameSourceId": "bae680cd-9225-8018-8008-cf65f03a3f1d",
+    "canvas": [
+      1260,
+      1400
+    ],
+    "unityImported": false,
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a25d",
+        "name": "Static / engraved event parchment and full-width rules panel",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a25e",
+        "name": "Dynamic / event category",
+        "type": "text",
+        "x": 460,
+        "y": 70,
+        "w": 340,
+        "h": 38,
+        "text": "E V E N T",
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a25f",
+        "name": "Dynamic / event name",
+        "type": "text",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "text": "LOOSE KNOT",
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a260",
+        "name": "Dynamic / engraved Loose Knot illustration",
+        "type": "rectangle",
+        "x": 100,
+        "y": 205,
+        "w": 1060,
+        "h": 595.9330143540683
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a261",
+        "name": "Dynamic / event type",
+        "type": "text",
+        "x": 260,
+        "y": 801,
+        "w": 740,
+        "h": 46,
+        "text": "O P P O R T U N I T Y",
+        "fontSize": "32"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a263",
+        "name": "Static / resolution heading",
+        "type": "text",
+        "x": 250,
+        "y": 970,
+        "w": 760,
+        "h": 60,
+        "text": "E F F E C T",
+        "fontSize": "35"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a264",
+        "name": "Dynamic / event description",
+        "type": "text",
+        "x": 225,
+        "y": 1070,
+        "w": 810,
+        "h": 205,
+        "text": "You may release 1 attached creature.",
+        "fontSize": "46"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687db51f19",
+        "name": "Dynamic / Opportunity emblem",
+        "type": "group",
+        "x": 610,
+        "y": 892,
+        "w": 40,
+        "h": 40
+      }
+    ]
+  },
+  "log": ""
+}

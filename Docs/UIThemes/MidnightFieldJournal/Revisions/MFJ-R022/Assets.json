@@ -1,0 +1,118 @@
+{
+  "revision": "MFJ-R022",
+  "status": "verified",
+  "canvas": [
+    1260,
+    1400
+  ],
+  "assets": [
+    {
+      "id": "GentleUpwellingEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R022/Art/GentleUpwellingEngravedV3.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "6244a2d7c460fdbbc0c603f8914d24dd3d1685e6c1b958f9854d61f6c0518e37",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf687c0dbcf1",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/gentle_upwelling.png"
+    }
+  ],
+  "reusedSources": [
+    "MFJ-R020/MainEventFrameV3"
+  ],
+  "unityImported": true,
+  "stableId": "gentle_upwelling",
+  "name": "Gentle Upwelling",
+  "eventType": "Environment",
+  "description": "The next creature attached as Bait weighs 1 less.",
+  "reviewBoardId": "bae680cd-9225-8018-8008-cf687c2dd7ec",
+  "cardId": "bae680cd-9225-8018-8008-cf687c2dd7ee",
+  "sourceBoardId": "bae680cd-9225-8018-8008-cf687c5f28e5",
+  "illustrationId": "bae680cd-9225-8018-8008-cf687c0dbcf1",
+  "frameSourceId": "bae680cd-9225-8018-8008-cf65f03a3f1d",
+  "fields": [
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2dd7f0",
+      "name": "Static / engraved event parchment and full-width rules panel",
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "w": 1260,
+      "h": 1400
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2e03d7",
+      "name": "Dynamic / event category",
+      "type": "text",
+      "x": 460,
+      "y": 70,
+      "w": 340,
+      "h": 38,
+      "text": "E V E N T",
+      "fontSize": "26"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2e03d8",
+      "name": "Dynamic / event name",
+      "type": "text",
+      "x": 140,
+      "y": 114,
+      "w": 980,
+      "h": 82,
+      "text": "GENTLE UPWELLING",
+      "fontSize": "66"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2e03d9",
+      "name": "Dynamic / engraved Gentle Upwelling illustration",
+      "type": "rectangle",
+      "x": 100,
+      "y": 205,
+      "w": 1060,
+      "h": 596.5669856459353
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2e03da",
+      "name": "Dynamic / event type",
+      "type": "text",
+      "x": 260,
+      "y": 801,
+      "w": 740,
+      "h": 46,
+      "text": "E N V I R O N M E N T",
+      "fontSize": "32"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2e03dc",
+      "name": "Static / resolution heading",
+      "type": "text",
+      "x": 250,
+      "y": 970,
+      "w": 760,
+      "h": 60,
+      "text": "E F F E C T",
+      "fontSize": "35"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2e03dd",
+      "name": "Dynamic / event description",
+      "type": "text",
+      "x": 225,
+      "y": 1070,
+      "w": 810,
+      "h": 205,
+      "text": "The next creature attached\nas Bait weighs 1 less.",
+      "fontSize": "46"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c4d6fb8",
+      "name": "Dynamic / Environment emblem",
+      "type": "group",
+      "x": 610,
+      "y": 892,
+      "w": 40,
+      "h": 40
+    }
+  ],
+  "synchronizationCheckpoint": "MFJ-SYNC-002"
+}

@@ -1,6 +1,6 @@
 # Penpot revisions after the Unity assembly
 
-MFJ-SYNC-001 now includes every revision below in the Unity candidate theme. [Import and validation record](Sync001/README.md). The original Unity assembly remains the immutable starting baseline. Penpot changes are recorded here and in [DesignChangeLedger.json](DesignChangeLedger.json); MFJ-SYNC-001 records the completed Unity import requested by the user. Future revisions remain separate until their own synchronization.
+MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC-002 now imports and verifies MFJ-R020–MFJ-R024, covering all five active event cards. [Import and validation record](Sync001/README.md). The original Unity assembly remains the immutable starting baseline. Penpot changes are recorded here and in [DesignChangeLedger.json](DesignChangeLedger.json); MFJ-SYNC-001 records the completed Unity import requested by the user. Future revisions remain separate until their own synchronization.
 
 [UnityDesignBaseline.json](UnityDesignBaseline.json) freezes the current theme files, GUIDs, image dimensions/hashes, source catalog, and related shared presentation files. Do not overwrite that baseline when revising Penpot. It records the accepted assembled version, including the existing missing-art/source-quality boundaries; it does not certify the blocked standalone build.
 
@@ -30,6 +30,13 @@ MFJ-SYNC-001 now includes every revision below in the Unity candidate theme. [Im
 | MFJ-R017 | Spiny Lobster: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
 | MFJ-R018 | Squid: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
 | MFJ-R019 | Tidepool Eel: separate engraving and editable card, existing gameplay data. | Imported and verified at MFJ-SYNC-001. | Central-only sources/configuration imported; approved compact art retained. |
+
+| MFJ-R020 | Detailed event template plus Reef Snag engraving; same1260×1400 creature-card canvas, full-width effect panel and editable event fields. | Imported and verified at MFJ-SYNC-002. | Replace candidate event frame/layout and add Reef Snag central event mapping. [Handoff](Revisions/MFJ-R020/README.md). |
+
+| MFJ-R021 | Silt Burst: separate engraved illustration, editable event card using R020 template. | Imported and verified at MFJ-SYNC-002. | Exact central-only event mapping; [handoff](Revisions/MFJ-R021/README.md). |
+| MFJ-R022 | Gentle Upwelling: separate engraved illustration, editable event card using R020 template. | Imported and verified at MFJ-SYNC-002. | Exact central-only event mapping; [handoff](Revisions/MFJ-R022/README.md). |
+| MFJ-R023 | Loose Knot: separate engraved illustration, editable event card using R020 template. | Imported and verified at MFJ-SYNC-002. | Exact central-only event mapping; [handoff](Revisions/MFJ-R023/README.md). |
+| MFJ-R024 | Fresh Shell Fragments: separate engraved illustration, editable event card using R020 template. | Imported and verified at MFJ-SYNC-002. | Exact central-only event mapping; [handoff](Revisions/MFJ-R024/README.md). |
 
 The earlier chain, connector and laid-down Technique iterations are already part of the baseline and must not be imported again as pending changes. MFJ-R001 affects the added hover outline, not the cards' painted ornamental frames, Bait border or independent selection/target indicators. Keyboard/controller focus remains a separate state to verify.
 

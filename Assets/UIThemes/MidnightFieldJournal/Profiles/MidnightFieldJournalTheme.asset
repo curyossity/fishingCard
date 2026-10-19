@@ -82,12 +82,12 @@ MonoBehaviour:
     cardUniqueId: 
     visibleBoundsTopLeft:
       serializedVersion: 2
-      x: 0.050802138
-      y: 0.010699001
-      width: 0.8983957
-      height: 0.96861625
-    designCanvas: {x: 1040, y: 1300}
-    sourceHash: f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa
+      x: 0
+      y: 0
+      width: 1
+      height: 1
+    designCanvas: {x: 1260, y: 1400}
+    sourceHash: 6d7c898ff27dd63d657739eeeffe09124589a7755b4b4f67e99dc3a362879304
     compactArtworkBounds:
       serializedVersion: 2
       x: 0.09411765
@@ -1032,20 +1032,66 @@ MonoBehaviour:
     catchTextSize: 34
     baitNameSize: 42
     baitTextSize: 34
+  centralEvents:
+  - cardUniqueId: reef_snag
+    sprite: {fileID: 21300000, guid: 17b38470cd7ae60489a01814572a1efe, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 100
+      y: 205
+      width: 1060
+      height: 596.56696
+    titleSize: 66
+    descriptionLineBreaks: 0300000007000000
+  - cardUniqueId: silt_burst
+    sprite: {fileID: 21300000, guid: 1c5f0a28054b58e439131bf94b2c72f9, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 100
+      y: 205
+      width: 1060
+      height: 595.93304
+    titleSize: 66
+    descriptionLineBreaks: 0500000009000000
+  - cardUniqueId: gentle_upwelling
+    sprite: {fileID: 21300000, guid: 670a92dde58989a4fa77868b8e122e86, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 100
+      y: 205
+      width: 1060
+      height: 596.56696
+    titleSize: 66
+    descriptionLineBreaks: 04000000
+  - cardUniqueId: loose_knot
+    sprite: {fileID: 21300000, guid: f16d52df5192737498b52bdfe09dd2c9, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 100
+      y: 205
+      width: 1060
+      height: 595.93304
+    titleSize: 66
+    descriptionLineBreaks: 
+  - cardUniqueId: fresh_shell_fragments
+    sprite: {fileID: 21300000, guid: adfdb6a37c1919648a4824ee8f4ea92e, type: 3}
+    portraitBounds:
+      serializedVersion: 2
+      x: 100
+      y: 205
+      width: 1060
+      height: 596.56696
+    titleSize: 50
+    descriptionLineBreaks: 04000000
   unillustratedCardIds:
   - clear_water
   - creature_cuttlefish
   - creature_flounder
-  - fresh_shell_fragments
-  - gentle_upwelling
   - apex_harbor_leviathan
   - hold_steady
-  - loose_knot
   - treasure_pearl_cache
   - rerig
   - recast
-  - reef_snag
-  - silt_burst
   - apex_stormjaw_tuna
   - treasure_sunken_tackle_box
   - transition_next_waters

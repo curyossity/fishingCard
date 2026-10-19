@@ -1,0 +1,118 @@
+{
+  "revision": "MFJ-R021",
+  "status": "verified",
+  "canvas": [
+    1260,
+    1400
+  ],
+  "assets": [
+    {
+      "id": "SiltBurstEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R021/Art/SiltBurstEngravedV3.png",
+      "width": 1672,
+      "height": 940,
+      "sha256": "7fae63342bc263c5818d60e73defebd34e64a4367e9740b9fc44be093c529087",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf687a768da2",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/silt_burst.png"
+    }
+  ],
+  "reusedSources": [
+    "MFJ-R020/MainEventFrameV3"
+  ],
+  "unityImported": true,
+  "stableId": "silt_burst",
+  "name": "Silt Burst",
+  "eventType": "Hazard",
+  "description": "Hide your next non-Apex creature until its Catch/Bait choice is committed.",
+  "reviewBoardId": "bae680cd-9225-8018-8008-cf687a9a6f4f",
+  "cardId": "bae680cd-9225-8018-8008-cf687a9aa842",
+  "sourceBoardId": "bae680cd-9225-8018-8008-cf687ab47057",
+  "illustrationId": "bae680cd-9225-8018-8008-cf687a768da2",
+  "frameSourceId": "bae680cd-9225-8018-8008-cf65f03a3f1d",
+  "fields": [
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa844",
+      "name": "Static / engraved event parchment and full-width rules panel",
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "w": 1260,
+      "h": 1400
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa845",
+      "name": "Dynamic / event category",
+      "type": "text",
+      "x": 460,
+      "y": 70,
+      "w": 340,
+      "h": 38,
+      "text": "E V E N T",
+      "fontSize": "26"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa846",
+      "name": "Dynamic / event name",
+      "type": "text",
+      "x": 140,
+      "y": 114,
+      "w": 980,
+      "h": 82,
+      "text": "SILT BURST",
+      "fontSize": "66"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa847",
+      "name": "Dynamic / engraved Silt Burst illustration",
+      "type": "rectangle",
+      "x": 100,
+      "y": 205,
+      "w": 1060,
+      "h": 595.9330143540683
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa848",
+      "name": "Dynamic / event type",
+      "type": "text",
+      "x": 260,
+      "y": 801,
+      "w": 740,
+      "h": 46,
+      "text": "H A Z A R D",
+      "fontSize": "32"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa849",
+      "name": "Dynamic / Hazard emblem",
+      "type": "group",
+      "x": 610,
+      "y": 892,
+      "w": 40,
+      "h": 40
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa84a",
+      "name": "Static / resolution heading",
+      "type": "text",
+      "x": 250,
+      "y": 970,
+      "w": 760,
+      "h": 60,
+      "text": "E F F E C T",
+      "fontSize": "35"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9aa84b",
+      "name": "Dynamic / event description",
+      "type": "text",
+      "x": 225,
+      "y": 1070,
+      "w": 810,
+      "h": 205,
+      "text": "Hide your next non-Apex creature\nuntil its Catch/Bait choice\nis committed.",
+      "fontSize": "46"
+    }
+  ],
+  "synchronizationCheckpoint": "MFJ-SYNC-002"
+}

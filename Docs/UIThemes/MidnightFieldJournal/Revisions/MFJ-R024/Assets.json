@@ -1,0 +1,118 @@
+{
+  "revision": "MFJ-R024",
+  "status": "verified",
+  "canvas": [
+    1260,
+    1400
+  ],
+  "assets": [
+    {
+      "id": "FreshShellFragmentsEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R024/Art/FreshShellFragmentsEngravedV3.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "bce0eef1487c2143867eb50d8dd2c4eb0f5a610c91d1ba1fab142c37f9d0a251",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf687f1503c3",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/fresh_shell_fragments.png"
+    }
+  ],
+  "reusedSources": [
+    "MFJ-R020/MainEventFrameV3"
+  ],
+  "unityImported": true,
+  "stableId": "fresh_shell_fragments",
+  "name": "Fresh Shell Fragments",
+  "eventType": "Opportunity",
+  "description": "A Spiny Lobster awaits 3 depths below.",
+  "reviewBoardId": "bae680cd-9225-8018-8008-cf687f35e870",
+  "cardId": "bae680cd-9225-8018-8008-cf687f35e872",
+  "sourceBoardId": "bae680cd-9225-8018-8008-cf687f67e74b",
+  "illustrationId": "bae680cd-9225-8018-8008-cf687f1503c3",
+  "frameSourceId": "bae680cd-9225-8018-8008-cf65f03a3f1d",
+  "fields": [
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e874",
+      "name": "Static / engraved event parchment and full-width rules panel",
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "w": 1260,
+      "h": 1400
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e875",
+      "name": "Dynamic / event category",
+      "type": "text",
+      "x": 460,
+      "y": 70,
+      "w": 340,
+      "h": 38,
+      "text": "E V E N T",
+      "fontSize": "26"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e876",
+      "name": "Dynamic / event name",
+      "type": "text",
+      "x": 140,
+      "y": 114,
+      "w": 980,
+      "h": 82,
+      "text": "FRESH SHELL FRAGMENTS",
+      "fontSize": "50"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e877",
+      "name": "Dynamic / engraved Fresh Shell Fragments illustration",
+      "type": "rectangle",
+      "x": 100,
+      "y": 205,
+      "w": 1060,
+      "h": 596.5669856459353
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e878",
+      "name": "Dynamic / event type",
+      "type": "text",
+      "x": 260,
+      "y": 801,
+      "w": 740,
+      "h": 46,
+      "text": "O P P O R T U N I T Y",
+      "fontSize": "32"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e87a",
+      "name": "Static / resolution heading",
+      "type": "text",
+      "x": 250,
+      "y": 970,
+      "w": 760,
+      "h": 60,
+      "text": "E F F E C T",
+      "fontSize": "35"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e87b",
+      "name": "Dynamic / event description",
+      "type": "text",
+      "x": 225,
+      "y": 1070,
+      "w": 810,
+      "h": 205,
+      "text": "A Spiny Lobster awaits\n3 depths below.",
+      "fontSize": "46"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f56e777",
+      "name": "Dynamic / Opportunity emblem",
+      "type": "group",
+      "x": 610,
+      "y": 892,
+      "w": 40,
+      "h": 40
+    }
+  ],
+  "synchronizationCheckpoint": "MFJ-SYNC-002"
+}

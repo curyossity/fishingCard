@@ -1,0 +1,1228 @@
+{
+  "sprites": [
+    {
+      "id": "PaperBackground4K",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/PaperBackground4K.png",
+      "cardUniqueId": "",
+      "sha256": "6449cfe256a15e4b1703f3b75063674f332542207802b09e965eabd80ba59d9c",
+      "width": 3840,
+      "height": 2160,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        0,
+        3840,
+        2160
+      ],
+      "designWidth": 3840,
+      "designHeight": 2160
+    },
+    {
+      "id": "Background",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Backgrounds/IllustratedKelpOverlay.png",
+      "cardUniqueId": "",
+      "sha256": "fa7fe3ad73705b8f21f78a567d3dc030bfd42ca5f57443f9c9414fce92c324e2",
+      "width": 1672,
+      "height": 941,
+      "alphaMin": 255,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "designWidth": 3840,
+      "designHeight": 2160
+    },
+    {
+      "id": "CreatureTemplate",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Creature/CreatureTemplate.png",
+      "cardUniqueId": "",
+      "sha256": "a868c2e2d7c6b889d152a8bf4f5697cf711d7161f0e343c56dcd2643f771d442",
+      "width": 1190,
+      "height": 1322,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        0,
+        1190,
+        1322
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        0,
+        1190,
+        1322
+      ],
+      "designWidth": 1260,
+      "designHeight": 1400
+    },
+    {
+      "id": "EventTemplate",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+      "cardUniqueId": "",
+      "sha256": "f2263dcf61eaf67d5d8ceb708822cdf586be2d2dc8e574983c8ead65d6f092fa",
+      "width": 1122,
+      "height": 1402,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        57,
+        15,
+        1065,
+        1373
+      ],
+      "halfAlphaBoundsPixels": [
+        59,
+        16,
+        1064,
+        1372
+      ],
+      "designWidth": 1040,
+      "designHeight": 1300
+    },
+    {
+      "id": "SmallOctopusPortrait",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/SmallOctopus.png",
+      "cardUniqueId": "creature_small_octopus",
+      "sha256": "297d92adcc1094a25bf65e6e7660ad88a7565a03c56c2c76e7e89f289864d570",
+      "width": 1254,
+      "height": 1254,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        20,
+        63,
+        1234,
+        1216
+      ],
+      "halfAlphaBoundsPixels": [
+        21,
+        64,
+        1233,
+        1215
+      ],
+      "designWidth": 570,
+      "designHeight": 570
+    },
+    {
+      "id": "DescendButton",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "cardUniqueId": "",
+      "sha256": "926be32b6c371ad6b124c83ec4c1602e0f25d026b1e0c9b7ad2981fd42160b12",
+      "width": 2001,
+      "height": 786,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        13,
+        136,
+        1988,
+        606
+      ],
+      "halfAlphaBoundsPixels": [
+        14,
+        136,
+        1987,
+        606
+      ],
+      "designWidth": 880,
+      "designHeight": 346
+    },
+    {
+      "id": "SurfaceButton",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "cardUniqueId": "",
+      "sha256": "bc2a6dc20888bdd0c809216ec99d85d52714122da07d05681aa698f302ec75ef",
+      "width": 1983,
+      "height": 793,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        21,
+        139,
+        1963,
+        644
+      ],
+      "halfAlphaBoundsPixels": [
+        22,
+        140,
+        1960,
+        643
+      ],
+      "designWidth": 880,
+      "designHeight": 352
+    },
+    {
+      "id": "LoadEmpty",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadEmpty.png",
+      "cardUniqueId": "",
+      "sha256": "590adcde5bee0361e41d25f93a6e97d89ecca131e4105cc198172e83ac8de253",
+      "width": 128,
+      "height": 96,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "halfAlphaBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "designWidth": 77,
+      "designHeight": 58
+    },
+    {
+      "id": "LoadFilled",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadFilled.png",
+      "cardUniqueId": "",
+      "sha256": "ec5840cfedb4559d300c6053e062ed92f36218682fb009f47a74b49db8b2f60d",
+      "width": 128,
+      "height": 96,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "halfAlphaBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "designWidth": 77,
+      "designHeight": 58
+    },
+    {
+      "id": "LoadDanger",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Meters/LoadDanger.png",
+      "cardUniqueId": "",
+      "sha256": "b096f866b5c814d12b2a41c3f83e225eb284c2a32e5e6219fde6c53f1d48143e",
+      "width": 128,
+      "height": 96,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "halfAlphaBoundsPixels": [
+        3,
+        3,
+        125,
+        93
+      ],
+      "designWidth": 77,
+      "designHeight": 58
+    },
+    {
+      "id": "CatchFrameV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/CompactCatch/CompactCatchFrame.png",
+      "cardUniqueId": "",
+      "sha256": "ec8e34cb3867e34835cdff5dae4ea42e712b7bde6099a8f6a86212414d94e68f",
+      "width": 1659,
+      "height": 948,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        16,
+        16,
+        1644,
+        920
+      ],
+      "halfAlphaBoundsPixels": [
+        18,
+        18,
+        1642,
+        918
+      ],
+      "designWidth": 680,
+      "designHeight": 382.022472
+    },
+    {
+      "id": "SardineV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/Sardine.png",
+      "cardUniqueId": "creature_sardine",
+      "sha256": "8a6a405719713656cfdeee06025c58aa368fa4836376fdf71a1720e0a798a6af",
+      "width": 1983,
+      "height": 793,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        43,
+        109,
+        1956,
+        689
+      ],
+      "halfAlphaBoundsPixels": [
+        44,
+        110,
+        1955,
+        688
+      ],
+      "designWidth": 552,
+      "designHeight": 221
+    },
+    {
+      "id": "CrabV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/ClingingCrab.png",
+      "cardUniqueId": "creature_clinging_crab",
+      "sha256": "af202d2bbffd803e7d35b6bc72268144e28958e844c4e91a2e8c094fd10b6ca5",
+      "width": 1728,
+      "height": 910,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        98,
+        73,
+        1632,
+        830
+      ],
+      "halfAlphaBoundsPixels": [
+        99,
+        74,
+        1632,
+        830
+      ],
+      "designWidth": 440,
+      "designHeight": 250
+    },
+    {
+      "id": "MinnowV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/GlassMinnow.png",
+      "cardUniqueId": "creature_glass_minnow",
+      "sha256": "d6530b9870de0de2d7b038eb2cd393c3f2baa9c0dc0eb118593425745f06c579",
+      "width": 1983,
+      "height": 793,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        52,
+        106,
+        1928,
+        683
+      ],
+      "halfAlphaBoundsPixels": [
+        53,
+        107,
+        1927,
+        682
+      ],
+      "designWidth": 552,
+      "designHeight": 221
+    },
+    {
+      "id": "BrassConnectorV3",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Connectors/BrassConnector.png",
+      "cardUniqueId": "",
+      "sha256": "4caf486467a94a4748a11783a1a55e36ca50d582cbe33d6fa51b6463bb0a9b43",
+      "width": 1024,
+      "height": 1536,
+      "alphaMin": 0,
+      "alphaMax": 254,
+      "visibleBoundsPixels": [
+        382,
+        100,
+        639,
+        1412
+      ],
+      "halfAlphaBoundsPixels": [
+        383,
+        101,
+        638,
+        1412
+      ],
+      "designWidth": 104,
+      "designHeight": 156
+    },
+    {
+      "id": "TechniqueFrameV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png",
+      "cardUniqueId": "",
+      "sha256": "15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad",
+      "width": 1224,
+      "height": 1285,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        84,
+        50,
+        1142,
+        1231
+      ],
+      "halfAlphaBoundsPixels": [
+        85,
+        51,
+        1141,
+        1230
+      ],
+      "designWidth": 620,
+      "designHeight": 640
+    },
+    {
+      "id": "CutLooseV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png",
+      "cardUniqueId": "cut_loose",
+      "sha256": "3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0",
+      "width": 1681,
+      "height": 936,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        0,
+        59,
+        1681,
+        898
+      ],
+      "halfAlphaBoundsPixels": [
+        0,
+        67,
+        1681,
+        894
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    },
+    {
+      "id": "SlipPastV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png",
+      "cardUniqueId": "slip_past",
+      "sha256": "284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559",
+      "width": 1681,
+      "height": 936,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        53,
+        66,
+        1675,
+        889
+      ],
+      "halfAlphaBoundsPixels": [
+        55,
+        67,
+        1669,
+        885
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    },
+    {
+      "id": "SteadyLineV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png",
+      "cardUniqueId": "steady_line",
+      "sha256": "6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49",
+      "width": 1683,
+      "height": 935,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        21,
+        87,
+        1653,
+        866
+      ],
+      "halfAlphaBoundsPixels": [
+        22,
+        89,
+        1652,
+        864
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    },
+    {
+      "id": "PrizeHookV2",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png",
+      "cardUniqueId": "prize_hook",
+      "sha256": "1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c",
+      "width": 1679,
+      "height": 937,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "visibleBoundsPixels": [
+        34,
+        33,
+        1654,
+        905
+      ],
+      "halfAlphaBoundsPixels": [
+        37,
+        34,
+        1653,
+        904
+      ],
+      "designWidth": 520.8,
+      "designHeight": 291.2
+    }
+  ],
+  "unillustratedCardIds": [
+    "clear_water",
+    "creature_cuttlefish",
+    "creature_flounder",
+    "fresh_shell_fragments",
+    "gentle_upwelling",
+    "apex_harbor_leviathan",
+    "hold_steady",
+    "loose_knot",
+    "treasure_pearl_cache",
+    "rerig",
+    "recast",
+    "reef_snag",
+    "silt_burst",
+    "apex_stormjaw_tuna",
+    "treasure_sunken_tackle_box",
+    "transition_next_waters"
+  ],
+  "centralCards": [
+    {
+      "cardUniqueId": "creature_cleaner_shrimp",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_cleaner_shrimp.png",
+      "sha256": "38e32fc040b49d706409704b1785cf1de6b4b237d50f532c40881d9c95891298",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    },
+    {
+      "cardUniqueId": "creature_clinging_crab",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_clinging_crab.png",
+      "sha256": "4bfe1795cbec5f136f5e7a86ae97f840395524b8e759cdb2dcdfdaa024b4199c",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    },
+    {
+      "cardUniqueId": "creature_coastal_cod",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_coastal_cod.png",
+      "sha256": "d0b6b1613f936fc663872d5c7226bc0196e125c167619c1c401c52f1e41102a5",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "catchNameSize": 0,
+      "catchTextBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "catchTextSize": 0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 46.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1114,
+        "width": 414,
+        "height": 178
+      },
+      "baitTextSize": 36.0
+    },
+    {
+      "cardUniqueId": "creature_garfish",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_garfish.png",
+      "sha256": "6bfeeade2ee5f702739276cafd750c2f9c0648227629c0692b16324c29b44399",
+      "portraitBounds": {
+        "x": 78,
+        "y": 190,
+        "width": 1104,
+        "height": 621.3301435406698
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 46.0,
+      "catchTextBounds": {
+        "x": 150,
+        "y": 1114,
+        "width": 414,
+        "height": 177.99999999999977
+      },
+      "catchTextSize": 36.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 46.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1114,
+        "width": 414,
+        "height": 178
+      },
+      "baitTextSize": 36.0
+    },
+    {
+      "cardUniqueId": "creature_glass_minnow",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_glass_minnow.png",
+      "sha256": "0a5b92e6b77e1d7e4e526f4cca6da8e60a2c5fb474897f1e90b3fe0744a908e6",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "catchNameSize": 0,
+      "catchTextBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "catchTextSize": 0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 46.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1114,
+        "width": 414,
+        "height": 178
+      },
+      "baitTextSize": 36.0
+    },
+    {
+      "cardUniqueId": "creature_jellyfish",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_jellyfish.png",
+      "sha256": "75d800f3507ae5ba2426f33a27b38ea42d486b0bbf59b2c3030ece11dbc15339",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 46.0,
+      "catchTextBounds": {
+        "x": 150,
+        "y": 1114,
+        "width": 414,
+        "height": 177.99999999999977
+      },
+      "catchTextSize": 36.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 46.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1114,
+        "width": 414,
+        "height": 178
+      },
+      "baitTextSize": 36.0
+    },
+    {
+      "cardUniqueId": "creature_lionfish",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_lionfish.png",
+      "sha256": "5ab9405a3600b05321bf276dd9d4783ac1378b7c76d296252ccd39168271afff",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 32.0
+    },
+    {
+      "cardUniqueId": "creature_mackerel",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mackerel.png",
+      "sha256": "dc4cbfe1e7f28cbec92c71080fed86eee6fff42cec8d0f512daa9e676bca944b",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 32.0
+    },
+    {
+      "cardUniqueId": "creature_moonlit_ray",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_moonlit_ray.png",
+      "sha256": "7f107276e13630f9e0586abd3bb683814b081e73e616f05fb72aea4848c91222",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    },
+    {
+      "cardUniqueId": "creature_mussel",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_mussel.png",
+      "sha256": "0f65f5c67c33fa4b4b1e750d6c023543436a43e413c1aed29963e3c79d8fdf3b",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 32.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    },
+    {
+      "cardUniqueId": "creature_sardine",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sardine.png",
+      "sha256": "8d5a75f7679a479ec39e9f2e074d15332c716d74030693c6eb872fba35ca405e",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.6612806702574
+      },
+      "catchNameBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "catchNameSize": 0,
+      "catchTextBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "catchTextSize": 0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 32.0
+    },
+    {
+      "cardUniqueId": "creature_sea_anemone",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_anemone.png",
+      "sha256": "7d3a26c42d4b682d819e855c2e8d2ee680ad0d46f9b2ab8a533b4ea242891401",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 38.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 38.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 29.0
+    },
+    {
+      "cardUniqueId": "creature_sea_bass",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_bass.png",
+      "sha256": "6f40db59ad6cd1366b1ea32347851ec35fb148cb9e33fd4d73255373ab199709",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 32.0
+    },
+    {
+      "cardUniqueId": "creature_sea_urchin",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_sea_urchin.png",
+      "sha256": "c348265fcc5047988af4487eb9d69e632a4877e45fa6ebaf928e07df980ac9ef",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 32.0
+    },
+    {
+      "cardUniqueId": "creature_small_octopus",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_small_octopus.png",
+      "sha256": "02cba7707d4315145da587043ca262c87a40f1448d93f69d104b177357cdbd76",
+      "portraitBounds": {
+        "x": 78,
+        "y": 102,
+        "width": 1104,
+        "height": 621.3301435406702
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 48.0,
+      "catchTextBounds": {
+        "x": 155,
+        "y": 1118,
+        "width": 410,
+        "height": 140
+      },
+      "catchTextSize": 39.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 46.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1114,
+        "width": 414,
+        "height": 178
+      },
+      "baitTextSize": 33.0
+    },
+    {
+      "cardUniqueId": "creature_spiny_lobster",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_spiny_lobster.png",
+      "sha256": "d07cf2fc4bbd8b2de3798a18965333f70d322f650c497d8962c9d1e4f255812c",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    },
+    {
+      "cardUniqueId": "creature_squid",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_squid.png",
+      "sha256": "2d19d63309d87812ef0a0024b5a4b762c6ca4c56f5cbd105c0a2e07b5315f7b1",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 585.311004784689
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 32.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    },
+    {
+      "cardUniqueId": "creature_tidepool_eel",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Creatures/CentralV3/creature_tidepool_eel.png",
+      "sha256": "e79c3a9a4b1743a8b5e7d5684df32e0307df99cc09cd9428085e35682a1486fb",
+      "portraitBounds": {
+        "x": 110,
+        "y": 190,
+        "width": 1040,
+        "height": 584.688995215311
+      },
+      "catchNameBounds": {
+        "x": 120,
+        "y": 1021,
+        "width": 460,
+        "height": 70
+      },
+      "catchNameSize": 42.0,
+      "catchTextBounds": {
+        "x": 180,
+        "y": 1108,
+        "width": 370,
+        "height": 180
+      },
+      "catchTextSize": 34.0,
+      "baitNameBounds": {
+        "x": 690,
+        "y": 1021,
+        "width": 450,
+        "height": 70
+      },
+      "baitNameSize": 42.0,
+      "baitTextBounds": {
+        "x": 701,
+        "y": 1108,
+        "width": 414,
+        "height": 180
+      },
+      "baitTextSize": 34.0
+    }
+  ],
+  "unillustratedCompactCardIds": [
+    "creature_cleaner_shrimp",
+    "creature_coastal_cod",
+    "creature_cuttlefish",
+    "creature_flounder",
+    "creature_garfish",
+    "creature_mackerel",
+    "apex_harbor_leviathan",
+    "creature_jellyfish",
+    "creature_lionfish",
+    "creature_moonlit_ray",
+    "creature_mussel",
+    "treasure_pearl_cache",
+    "creature_sea_anemone",
+    "creature_sea_bass",
+    "creature_sea_urchin",
+    "creature_spiny_lobster",
+    "creature_squid",
+    "apex_stormjaw_tuna",
+    "treasure_sunken_tackle_box",
+    "creature_tidepool_eel"
+  ]
+}

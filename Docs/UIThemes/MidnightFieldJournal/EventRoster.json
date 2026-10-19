@@ -1,0 +1,67 @@
+{
+  "cards": [
+    {
+      "name": "Reef Snag",
+      "id": "reef_snag",
+      "revision": "MFJ-R020",
+      "cardId": "bae680cd-9225-8018-8008-cf65f1bb5f3c",
+      "reviewBoardId": "bae680cd-9225-8018-8008-cf65f1a30046",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/reef_snag.png",
+      "status": "verified",
+      "unityImported": true
+    },
+    {
+      "name": "Silt Burst",
+      "id": "silt_burst",
+      "revision": "MFJ-R021",
+      "cardId": "bae680cd-9225-8018-8008-cf687a9aa842",
+      "reviewBoardId": "bae680cd-9225-8018-8008-cf687a9a6f4f",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/silt_burst.png",
+      "status": "verified",
+      "unityImported": true
+    },
+    {
+      "name": "Gentle Upwelling",
+      "id": "gentle_upwelling",
+      "revision": "MFJ-R022",
+      "cardId": "bae680cd-9225-8018-8008-cf687c2dd7ee",
+      "reviewBoardId": "bae680cd-9225-8018-8008-cf687c2dd7ec",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/gentle_upwelling.png",
+      "status": "verified",
+      "unityImported": true
+    },
+    {
+      "name": "Loose Knot",
+      "id": "loose_knot",
+      "revision": "MFJ-R023",
+      "cardId": "bae680cd-9225-8018-8008-cf687d96a25b",
+      "reviewBoardId": "bae680cd-9225-8018-8008-cf687d96a259",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/loose_knot.png",
+      "status": "verified",
+      "unityImported": true
+    },
+    {
+      "name": "Fresh Shell Fragments",
+      "id": "fresh_shell_fragments",
+      "revision": "MFJ-R024",
+      "cardId": "bae680cd-9225-8018-8008-cf687f35e872",
+      "reviewBoardId": "bae680cd-9225-8018-8008-cf687f35e870",
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/fresh_shell_fragments.png",
+      "status": "verified",
+      "unityImported": true
+    }
+  ],
+  "total": 5,
+  "unityImported": true,
+  "checkpoint": "MFJ-SYNC-002",
+  "penpotRosterBoards": [
+    {
+      "id": "bae680cd-9225-8018-8008-cf68a5c60f8c",
+      "name": "EVENT ROSTER / Hazards and Environment / Unity integration"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf68a5f46780",
+      "name": "EVENT ROSTER / Opportunities / Unity integration"
+    }
+  ]
+}

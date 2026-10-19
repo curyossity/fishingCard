@@ -34,6 +34,13 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Label("Bait Role",roles,CentralBounds(780,916,300,55),36,theme.MutedInk,true).text="B A I T";
         Emblem("Catch Hook",roles,CentralBounds(109,906,45,65),JournalCardEmblem.Emblem.Hook,new Color32(214,164,105,255));
         Emblem("Bait Twin Spark",roles,CentralBounds(676,915,65,52),JournalCardEmblem.Emblem.TwinSpark,new Color32(165,169,165,255));
+        RectTransform eventDecoration = Region("Event Decoration",root.transform,new Rect(0,0,1,1));
+        TMP_Text eventType = Label("Event Category",eventDecoration,CentralBounds(260,801,740,46),32,new Color32(119,71,46,255),true);
+        TMP_Text eventHeading = Label("Event Effect Heading",eventDecoration,CentralBounds(250,970,760,60),35,new Color32(214,183,132,255),true);
+        eventHeading.text="E F F E C T";
+        var eventEmblem=Region("Event Emblem",eventDecoration,CentralBounds(610,892,40,40)).gameObject.AddComponent<JournalEventEmblem>();
+        eventEmblem.color=new Color32(119,71,46,255);eventEmblem.raycastTarget=false;
+        eventDecoration.gameObject.SetActive(false);
         TMP_Text tags = Label("Creature Tags",root.transform,CentralBounds(250,752,760,34),22,new Color32(214,205,184,255),true);
         tags.enableAutoSizing=true;tags.fontSizeMin=18;tags.textWrappingMode=TextWrappingModes.NoWrap;
         RectTransform rarity = Region("Rarity Footer",root.transform,CentralBounds(803,805,348,44));
@@ -50,6 +57,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data,"theme",theme);Bind(data,"tagsText",tags);Bind(data,"rarityRoot",rarity.gameObject);Bind(data,"rarityText",rarityName);Bind(data,"rarityDiamond",diamond);
         Bind(data,"typeText",type);Bind(data,"nameText",name);Bind(data,"catchName",catchName);Bind(data,"catchText",catchText);Bind(data,"baitName",baitName);Bind(data,"baitText",baitText);
         Bind(data,"portraitRegion",portrait.transform.parent);Bind(data,"portrait",portrait.rectTransform);Bind(data,"roleDecoration",roles.gameObject);
+        Bind(data,"eventDecoration",eventDecoration.gameObject);Bind(data,"eventTypeText",eventType);Bind(data,"eventEmblem",eventEmblem);
         Bind(data,"catchSelection",RoleGlow(catchRegion,"Selected Catch Border"));Bind(data,"baitSelection",RoleGlow(baitRegion,"Selected Bait Border"));
         data.FindProperty("showRarity").boolValue=true;data.ApplyModifiedPropertiesWithoutUndo();Save(root,"CreatureCard");
     }

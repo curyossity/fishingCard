@@ -8,6 +8,15 @@ using UnityEngine;
 public sealed class MidnightFieldJournalTheme : ScriptableObject
 {
     [Serializable]
+    public sealed class CentralEventEntry
+    {
+        public string cardUniqueId;
+        public Sprite sprite;
+        public Rect portraitBounds;
+        public float titleSize = 66;
+        public int[] descriptionLineBreaks = Array.Empty<int>();
+    }
+    [Serializable]
     public sealed class CentralCardEntry
     {
         public string cardUniqueId;
@@ -49,6 +58,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     [SerializeField] private Color mutedInk = new Color32(184, 185, 170, 255);
     [SerializeField] private SpriteEntry[] sprites = Array.Empty<SpriteEntry>();
     [SerializeField] private CentralCardEntry[] centralCards = Array.Empty<CentralCardEntry>();
+    [SerializeField] private CentralEventEntry[] centralEvents = Array.Empty<CentralEventEntry>();
     [SerializeField] private string[] unillustratedCardIds = Array.Empty<string>();
 
     public Vector2 ReferenceResolution => referenceResolution;
@@ -63,6 +73,15 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     public Color MutedInk => mutedInk;
     public IReadOnlyList<SpriteEntry> Sprites => sprites;
     public IReadOnlyList<CentralCardEntry> CentralCards => centralCards;
+    public IReadOnlyList<CentralEventEntry> CentralEvents => centralEvents;
+
+    /// <summary>Finds an exact central event illustration without supplying it to compact catch cards.</summary>
+    public CentralEventEntry GetCentralEvent(string cardUniqueId)
+    {
+        foreach (var entry in centralEvents)
+            if (entry.cardUniqueId == cardUniqueId) return entry;
+        return null;
+    }
     public IReadOnlyList<string> UnillustratedCardIds => unillustratedCardIds;
 
     /// <summary>Applies only authored presentation line breaks, retaining every word of the live definition's rules.</summary>

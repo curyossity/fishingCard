@@ -1,0 +1,36 @@
+{
+  "result": {
+    "id": "MFJ-SYNC-002",
+    "date": "2026-10-18",
+    "status": "verified",
+    "events": [
+      {
+        "revision": "MFJ-R020",
+        "cardId": "bae680cd-9225-8018-8008-cf65f1bb5f3c",
+        "unityImported": true
+      },
+      {
+        "revision": "MFJ-R021",
+        "cardId": "bae680cd-9225-8018-8008-cf687a9aa842",
+        "unityImported": true
+      },
+      {
+        "revision": "MFJ-R022",
+        "cardId": "bae680cd-9225-8018-8008-cf687c2dd7ee",
+        "unityImported": true
+      },
+      {
+        "revision": "MFJ-R023",
+        "cardId": "bae680cd-9225-8018-8008-cf687d96a25b",
+        "unityImported": true
+      },
+      {
+        "revision": "MFJ-R024",
+        "cardId": "bae680cd-9225-8018-8008-cf687f35e872",
+        "unityImported": true
+      }
+    ],
+    "previous": "MFJ-SYNC-001"
+  },
+  "log": ""
+}

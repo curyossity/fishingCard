@@ -1,0 +1,43 @@
+{
+  "id": "MFJ-SYNC-002",
+  "passed": true,
+  "assertions": 950,
+  "eventCards": 5,
+  "allEncounterDefinitions": 30,
+  "unityFilesBefore": 1053,
+  "changedExistingUnityFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCreatureCardChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalAssetSetup.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalCentralBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/CreatureVisualProfile.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCreatureCardVisuals.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/MidnightFieldJournalTheme.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png"
+  ],
+  "outsideCandidateThemeChanges": [],
+  "existingGuidsPreserved": true,
+  "gameplayAndOriginalAssetsPreserved": true,
+  "penpot": "PenpotReconciliation.json",
+  "reports": [
+    "EventCardValidation.json",
+    "UI05Validation.json",
+    "UI07SceneValidation.json",
+    "UI07PlayModeValidation.json",
+    "UI08EditorOutputValidation.json"
+  ],
+  "visualEvidence": [
+    "Events14K.png",
+    "Events24K.png",
+    "Events11080p.png",
+    "Events21080p.png",
+    "GameplayReefSnag4K.png",
+    "PenpotEvents14K.png",
+    "PenpotEvents24K.png"
+  ],
+  "scope": "Editor layout and actual Play Mode output/input/event/Surface/restart; not standalone build certification."
+}

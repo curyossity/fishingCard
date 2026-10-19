@@ -1,0 +1,120 @@
+{
+  "revision": "MFJ-R020",
+  "status": "verified",
+  "checkpoint": "../../Sync002/Verification.json",
+  "penpot": {
+    "revision": "MFJ-R020",
+    "cardId": "bae680cd-9225-8018-8008-cf65f1bb5f3c",
+    "rosterInstanceId": "bae680cd-9225-8018-8008-cf68a5d3b943",
+    "size": [
+      1260,
+      1400
+    ],
+    "description": "Your heaviest non-Armored\ncreature gains 1 weight\nuntil this biome ends.",
+    "descriptionMatches": true,
+    "title": "REEF SNAG",
+    "eventType": "H A Z A R D",
+    "fields": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1c1a87d",
+        "name": "Static / engraved event parchment and full-width rules panel",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1260,
+        "h": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1cd5181",
+        "name": "Dynamic / event category",
+        "type": "text",
+        "x": 460,
+        "y": 70,
+        "w": 340,
+        "h": 38,
+        "text": "E V E N T",
+        "fontSize": "26"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1dceab8",
+        "name": "Dynamic / event name",
+        "type": "text",
+        "x": 140,
+        "y": 114,
+        "w": 980,
+        "h": 82,
+        "text": "REEF SNAG",
+        "fontSize": "66"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1eb0cac",
+        "name": "Dynamic / engraved Reef Snag illustration",
+        "type": "rectangle",
+        "x": 100,
+        "y": 205,
+        "w": 1060,
+        "h": 596.5669856459353
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1f3f76c",
+        "name": "Dynamic / event type",
+        "type": "text",
+        "x": 260,
+        "y": 801,
+        "w": 740,
+        "h": 46,
+        "text": "H A Z A R D",
+        "fontSize": "32"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f201b1d4",
+        "name": "Dynamic / Hazard emblem",
+        "type": "group",
+        "x": 610,
+        "y": 892,
+        "w": 40,
+        "h": 40
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f20b4fb2",
+        "name": "Static / resolution heading",
+        "type": "text",
+        "x": 250,
+        "y": 970,
+        "w": 760,
+        "h": 60,
+        "text": "E F F E C T",
+        "fontSize": "35"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f2185e19",
+        "name": "Dynamic / event description",
+        "type": "text",
+        "x": 225,
+        "y": 1070,
+        "w": 810,
+        "h": 205,
+        "text": "Your heaviest non-Armored\ncreature gains 1 weight\nuntil this biome ends.",
+        "fontSize": "46"
+      }
+    ]
+  },
+  "source": {
+    "cardUniqueId": "reef_snag",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/reef_snag.png",
+    "sha256": "1fa8a17ad522fe409d6b369172f6a379c13c3e8887347aaee9033cbb7645f196",
+    "portraitBounds": {
+      "x": 100,
+      "y": 205,
+      "width": 1060,
+      "height": 596.5669856459353
+    },
+    "revision": "MFJ-R020",
+    "titleSize": 66,
+    "descriptionLineBreaks": [
+      3,
+      7
+    ]
+  },
+  "unityImported": true
+}

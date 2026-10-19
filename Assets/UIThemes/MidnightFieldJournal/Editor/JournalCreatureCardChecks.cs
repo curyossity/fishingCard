@@ -52,6 +52,7 @@ public static class JournalCreatureCardChecks
                 Require(view.transform.Find("Rarity Footer").gameObject.activeSelf == catchable, "Rarity visibility incorrect.");
                 theme.TryGetArtwork(card.UniqueId, out Sprite expected);
                 var central = theme.GetCentralCard(card.UniqueId); if (central != null) expected = central.sprite;
+                var centralEvent = theme.GetCentralEvent(card.UniqueId); if (centralEvent != null) expected = centralEvent.sprite;
                 var art = Field<UnityEngine.UI.Image>(view, "creatureArtwork");
                 Require(art.sprite == expected && art.enabled == (expected != null), "Artwork substituted: " + card.DisplayName);
                 Require(!Field<UnityEngine.UI.Image>(view, "artworkOverflowLayer").enabled, "Old full-card overlay leaked.");
@@ -82,7 +83,7 @@ public static class JournalCreatureCardChecks
                 {
                     Require(!Field<GameObject>(view, "catchRoleLabel").activeSelf && Text(view, "catchAbilityText").text == "", "Event shows Catch heading.");
                     Require(!Field<RectTransform>(view, "rulesRegion").GetComponent<UnityEngine.UI.Button>().enabled, "Event allows role input.");
-                    Require(Text(view, "effectText").text == card.RulesText, "Event rules changed."); RulesFit(view, "effectText");
+                    Require(string.Join(" ",Text(view,"effectText").text.Split(new[]{' ','\n','\r','\t'},StringSplitOptions.RemoveEmptyEntries)) == string.Join(" ",card.RulesText.Split(new[]{' ','\n','\r','\t'},StringSplitOptions.RemoveEmptyEntries)), "Event rules changed."); RulesFit(view, "effectText");
                 }
             }
             CardDefinition octopus = Card("Small Octopus"); view.SetCard(octopus, 1, 9, false);

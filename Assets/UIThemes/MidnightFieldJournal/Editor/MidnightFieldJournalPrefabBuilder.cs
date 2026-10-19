@@ -34,14 +34,14 @@ public static partial class MidnightFieldJournalPrefabBuilder
             profile = ScriptableObject.CreateInstance<CreatureCardVisualProfile>();
             AssetDatabase.CreateAsset(profile, RootPath + "Profiles/CreatureVisualProfile.asset");
         }
-        profile.nameInk = Ink; profile.catchRulesInk = Paper; profile.eventRulesInk = Ink;
+        profile.nameInk = Ink; profile.catchRulesInk = Paper; profile.eventRulesInk = Paper;
         profile.catchRules = CentralBounds(82, 882, 545, 427); profile.baitRules = CentralBounds(634, 882, 545, 427);
-        profile.eventRules = new Rect(.09f, .07f, .82f, .30f);
+        profile.eventRules = CentralBounds(225,1070,810,205);
         profile.minimumRulesSize = 26; profile.maximumRulesSize = 39; profile.maximumStatSize = 64; profile.rulesPadding = Vector2.zero;
         profile.catchDescription = profile.baitDescription = new Rect(.025f, .05f, .95f, .52f);
         profile.separateAbilityHeadings = true; profile.plainStatNumbers = true; profile.showEventCategory = true;
         profile.selectionWash = Color.clear;
-        profile.respectParentInputLocks = true; profile.catchAspectRatio = .9f; profile.eventAspectRatio = .8f;
+        profile.respectParentInputLocks = true; profile.catchAspectRatio = .9f; profile.eventAspectRatio = .9f;
         EditorUtility.SetDirty(profile);
         Creature(profile);
         Compact();

@@ -1,0 +1,15 @@
+# MFJ-R020 generation record
+
+Mode: built-in image_gen. Two independent transparent images; no CLI/API fallback, screenshot crops or slices. Accepted MFJ-R002 frame/card used as visual references only.
+
+## MainEventFrameV3
+
+Create an independent reusable EVENT CARD FRAME bitmap for the same nautical fantasy card family as the reference. Reference is STYLE and dimensional composition only. This is a new blank frame, not a screenshot or crop. Portrait aspect ratio 9:10, very high resolution at least 1260x1400 if possible. Entire card visible straight on, no perspective. Transparent outside rounded card, parchment inside. Match exceptionally detailed fine copper engraving, layered thin bronze border, aged cream parchment with subtle woven diamond texture, hand-etched marine vegetation, warm antique gold, midnight navy. Top blank cream title space from 5%-16% height. Main illustration stage from 17%-59%: cream at top fading into deep navy seabed below, seaweed/coral etchings framing sides, clear center for separate illustration. A thin full-width blank parchment separator strip at 60%-65%, NO stat boxes or dividers. Bottom from 66%-94%: ONE full width dark navy effect panel, double fine copper line border, elegant rounded corners, intricate etched gold coral in lower corners and silvery seaweed along the outer edges, central 70% of panel clear dark navy for editable text. Small blank centered copper medallion at top center of that panel, thin ornamental horizontal rule below medallion. Rich fine tactile detail like reference. NO letters, text, numbers, creature, symbols of weight or value, NO Catch/Bait two-column split. No baked glow. Preserve whole perimeter.
+
+Reference: `MFJ-R002/Art/MainCreatureFrameV3.png`. Output: `exec-72bd6554-aeee-4750-b506-531257cdeed7.png`.
+
+## ReefSnagEngravedV3
+
+Generate a standalone transparent illustration for the event REEF SNAG in a sophisticated nautical fantasy field-journal card game. Reference is STYLE ONLY: match its exceptionally detailed copperplate engraving, antique scientific natural history ink crosshatching, muted russet copper highlights, midnight navy ink, parchment-gold edges. Do not include the card frame or any UI/text. Subject: a thick aged fishing rope/line entering diagonally from upper left, drawn taut and snagged tightly around a jagged underwater coral reef outcrop at center, a clear visible loop pinched between rocks, frayed rope fibers, small coral branches and seaweed around the reef. Strong silhouette of reef and taut rope, highly detailed engraved stone surfaces, NOT a fish, NO living creature protagonist. Compact panoramic composition, 16:9, fills 85% width with balanced margins. Isolated transparent background including between rope and reef; no opaque rectangular scene, no border, no lettering, no numerals. This image will be layered over a separate marine navy-and-parchment stage. No 3D rendering or photorealism; hand engraved bookplate artwork with richness like the octopus reference. High resolution.
+
+Reference: `MFJ-R002/MainCardReview.png`. Output: `exec-99025875-d3c0-49b4-b620-7a891f202c75.png`.

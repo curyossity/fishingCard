@@ -1,0 +1,219 @@
+{
+  "result": {
+    "revision": "MFJ-R020",
+    "passed": true,
+    "assembledVisible": true,
+    "cards": [
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1bb5f3c",
+        "width": 1260,
+        "height": 1400,
+        "sameSizeAsCreature": true,
+        "editableTextFields": 5,
+        "images": 2,
+        "descriptionMatches": true,
+        "noCreatureStats": true,
+        "fields": [
+          {
+            "name": "Dynamic / event category",
+            "text": "E V E N T",
+            "bounds": {
+              "x": 18171.953125,
+              "y": 9818,
+              "width": 116.09375,
+              "height": 35
+            },
+            "fontSize": "26",
+            "region": {
+              "x": 460,
+              "y": 70,
+              "w": 340,
+              "h": 38
+            }
+          },
+          {
+            "name": "Dynamic / event name",
+            "text": "REEF SNAG",
+            "bounds": {
+              "x": 18043.859375,
+              "y": 9859,
+              "width": 372.265625,
+              "height": 89
+            },
+            "fontSize": "66",
+            "region": {
+              "x": 140,
+              "y": 114,
+              "w": 980,
+              "h": 82
+            }
+          },
+          {
+            "name": "Dynamic / event type",
+            "text": "H A Z A R D",
+            "bounds": {
+              "x": 18138.34375,
+              "y": 10549,
+              "width": 183.296875,
+              "height": 43
+            },
+            "fontSize": "32",
+            "region": {
+              "x": 260,
+              "y": 801,
+              "w": 740,
+              "h": 46
+            }
+          },
+          {
+            "name": "Static / resolution heading",
+            "text": "E F F E C T",
+            "bounds": {
+              "x": 18141.5625,
+              "y": 10717,
+              "width": 176.859375,
+              "height": 47
+            },
+            "fontSize": "35",
+            "region": {
+              "x": 250,
+              "y": 970,
+              "w": 760,
+              "h": 60
+            }
+          },
+          {
+            "name": "Dynamic / event description",
+            "text": "Your heaviest non-Armored\ncreature gains 1 weight\nuntil this biome ends.",
+            "bounds": {
+              "x": 17928.140625,
+              "y": 10816,
+              "width": 603.71875,
+              "height": 175.21875
+            },
+            "fontSize": "46",
+            "region": {
+              "x": 225,
+              "y": 1070,
+              "w": 810,
+              "h": 205
+            }
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f2a8ab76",
+        "width": 1260,
+        "height": 1400,
+        "sameSizeAsCreature": true,
+        "editableTextFields": 5,
+        "images": 2,
+        "descriptionMatches": true,
+        "noCreatureStats": true,
+        "fields": [
+          {
+            "name": "Dynamic / event category",
+            "text": "E V E N T",
+            "bounds": {
+              "x": 1821.953125,
+              "y": 7578,
+              "width": 116.09375,
+              "height": 35
+            },
+            "fontSize": "26",
+            "region": {
+              "x": 460,
+              "y": 70,
+              "w": 340,
+              "h": 38
+            }
+          },
+          {
+            "name": "Dynamic / event name",
+            "text": "REEF SNAG",
+            "bounds": {
+              "x": 1693.859375,
+              "y": 7619,
+              "width": 372.265625,
+              "height": 89
+            },
+            "fontSize": "66",
+            "region": {
+              "x": 140,
+              "y": 114,
+              "w": 980,
+              "h": 82
+            }
+          },
+          {
+            "name": "Dynamic / event type",
+            "text": "H A Z A R D",
+            "bounds": {
+              "x": 1788.34375,
+              "y": 8309,
+              "width": 183.296875,
+              "height": 43
+            },
+            "fontSize": "32",
+            "region": {
+              "x": 260,
+              "y": 801,
+              "w": 740,
+              "h": 46
+            }
+          },
+          {
+            "name": "Static / resolution heading",
+            "text": "E F F E C T",
+            "bounds": {
+              "x": 1791.5625,
+              "y": 8477,
+              "width": 176.859375,
+              "height": 47
+            },
+            "fontSize": "35",
+            "region": {
+              "x": 250,
+              "y": 970,
+              "w": 760,
+              "h": 60
+            }
+          },
+          {
+            "name": "Dynamic / event description",
+            "text": "Your heaviest non-Armored\ncreature gains 1 weight\nuntil this biome ends.",
+            "bounds": {
+              "x": 1578.140625,
+              "y": 8576,
+              "width": 603.71875,
+              "height": 175.21875
+            },
+            "fontSize": "46",
+            "region": {
+              "x": 225,
+              "y": 1070,
+              "w": 810,
+              "h": 205
+            }
+          }
+        ]
+      }
+    ],
+    "originalCreatureAssemblies": [
+      {
+        "id": "bae680cd-9225-8018-8008-cee251db9229",
+        "visible": true,
+        "width": 1260,
+        "height": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee251f05bf8",
+        "visible": true,
+        "width": 1260,
+        "height": 1400
+      }
+    ],
+    "unityImported": false
+  },
+  "log": ""
+}

@@ -1,0 +1,112 @@
+{
+  "frame": {
+    "id": "EventTemplate",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+    "cardUniqueId": "",
+    "sha256": "6d7c898ff27dd63d657739eeeffe09124589a7755b4b4f67e99dc3a362879304",
+    "width": 1190,
+    "height": 1322,
+    "alphaMin": 0,
+    "alphaMax": 255,
+    "visibleBoundsPixels": [
+      30,
+      29,
+      1160,
+      1294
+    ],
+    "halfAlphaBoundsPixels": [
+      33,
+      32,
+      1157,
+      1285
+    ],
+    "designWidth": 1260,
+    "designHeight": 1400
+  },
+  "events": [
+    {
+      "cardUniqueId": "reef_snag",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/reef_snag.png",
+      "sha256": "1fa8a17ad522fe409d6b369172f6a379c13c3e8887347aaee9033cbb7645f196",
+      "portraitBounds": {
+        "x": 100,
+        "y": 205,
+        "width": 1060,
+        "height": 596.5669856459353
+      },
+      "revision": "MFJ-R020",
+      "titleSize": 66,
+      "descriptionLineBreaks": [
+        3,
+        7
+      ]
+    },
+    {
+      "cardUniqueId": "silt_burst",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/silt_burst.png",
+      "sha256": "7fae63342bc263c5818d60e73defebd34e64a4367e9740b9fc44be093c529087",
+      "portraitBounds": {
+        "x": 100,
+        "y": 205,
+        "width": 1060,
+        "height": 595.9330143540683
+      },
+      "revision": "MFJ-R021",
+      "titleSize": 66,
+      "descriptionLineBreaks": [
+        5,
+        9
+      ]
+    },
+    {
+      "cardUniqueId": "gentle_upwelling",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/gentle_upwelling.png",
+      "sha256": "6244a2d7c460fdbbc0c603f8914d24dd3d1685e6c1b958f9854d61f6c0518e37",
+      "portraitBounds": {
+        "x": 100,
+        "y": 205,
+        "width": 1060,
+        "height": 596.5669856459353
+      },
+      "revision": "MFJ-R022",
+      "titleSize": 66,
+      "descriptionLineBreaks": [
+        4
+      ]
+    },
+    {
+      "cardUniqueId": "loose_knot",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/loose_knot.png",
+      "sha256": "7f6f1c5c21206c187b1f6bc4bbde1b1eb4414b360af1670daf13ca0df0fb67a7",
+      "portraitBounds": {
+        "x": 100,
+        "y": 205,
+        "width": 1060,
+        "height": 595.9330143540683
+      },
+      "revision": "MFJ-R023",
+      "titleSize": 66,
+      "descriptionLineBreaks": []
+    },
+    {
+      "cardUniqueId": "fresh_shell_fragments",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/fresh_shell_fragments.png",
+      "sha256": "bce0eef1487c2143867eb50d8dd2c4eb0f5a610c91d1ba1fab142c37f9d0a251",
+      "portraitBounds": {
+        "x": 100,
+        "y": 205,
+        "width": 1060,
+        "height": 596.5669856459353
+      },
+      "revision": "MFJ-R024",
+      "titleSize": 50,
+      "descriptionLineBreaks": [
+        4
+      ]
+    }
+  ],
+  "designCanvas": [
+    1260,
+    1400
+  ]
+}

@@ -2,9 +2,15 @@
 
 ## Scope and coexistence
 
+**MFJ-SYNC-002 is the latest imported checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [next import reference](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
+
+Event geometry (top-left card pixels): category `(460,70,340,38)` at26; name `(140,114,980,82)` at66 (Fresh Shell Fragments50); illustration `(100,205,1060,596.57)`; type `(260,801,740,46)` at32; native type emblem `(610,892,40,40)`; EFFECT heading `(250,970,760,60)` at35; description `(225,1070,810,205)` at46, bounded minimum32. Body uses Source Serif4 Regular and centered top alignment; category/title/type/heading use Cinzel. Description word breaks are presentation data and preserve all live rule words/highlights. Both catch and event profile aspect ratios are0.9. All creature-only stats, rarity, tags, role decorations and role input are hidden for events.
+
+The event master and each illustration are separate images. Native emblem paths match the Penpot warning triangle (Hazard), rising-current arrows (Environment) and four-point spark (Opportunity). Event category, name, type, description and emblem remain editable/native. The frame source1190×1322 is displayed1260×1400; source illustrations1672×941 exceed their display footprint. Captures are4K, while source images retain their recorded native dimensions. `centralEvents` in the canonical source catalog owns exact identity mappings, framing, title sizes and line breaks. Do not apply event mappings to compact catch portraits.
+
 For Penpot revisions after the accepted Unity assembly, use [Design Changes.md](Design%20Changes.md) and [DesignChangeLedger.json](DesignChangeLedger.json). The immutable [Unity baseline](UnityDesignBaseline.json) records the starting file hashes/GUIDs and selected sources. Record every artwork, layout, typography and interaction-visual revision with its dependent Unity consumers before a later selective import; do not mark exported work as imported or discard pending revisions.
 
-**MFJ-SYNC-001 is imported and verified in Unity.** [Current sources, geometry, captures and checks](Sync001/README.md). Revisions MFJ-R001 through MFJ-R019 replace the previous central-card and pointer-hover presentation. The original baseline is retained; [Sync001/UnityCheckpoint.json](Sync001/UnityCheckpoint.json) is the next synchronization reference.
+**MFJ-SYNC-001 remains the previous imported checkpoint.** [Creature sources, geometry, captures and checks](Sync001/README.md). Revisions MFJ-R001 through MFJ-R019 replace the previous central-card and pointer-hover presentation. The original baseline and Sync001 checkpoint are retained; use Sync002 for the next synchronization comparison.
 
 UI-02 implementation is complete. See [UI02.md](UI02.md) for the current imported paths, bundled fonts, templates and validation. Source/draft paths and font availability statements captured during UI-01 below describe that earlier snapshot; the UI-02 import catalog is authoritative for current asset locations.
 

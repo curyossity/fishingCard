@@ -1,0 +1,38 @@
+{
+  "revision": "MFJ-R020",
+  "status": "verified",
+  "generation": "Built-in image_gen; independent frame and illustration, no slices",
+  "canvas": [
+    1260,
+    1400
+  ],
+  "assets": [
+    {
+      "id": "MainEventFrameV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R020/Art/MainEventFrameV3.png",
+      "width": 1190,
+      "height": 1322,
+      "sha256": "6d7c898ff27dd63d657739eeeffe09124589a7755b4b4f67e99dc3a362879304",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf65f03a3f1d",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png"
+    },
+    {
+      "id": "ReefSnagEngravedV3",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R020/Art/ReefSnagEngravedV3.png",
+      "width": 1672,
+      "height": 941,
+      "sha256": "1fa8a17ad522fe409d6b369172f6a379c13c3e8887347aaee9033cbb7645f196",
+      "penpotShapeId": "bae680cd-9225-8018-8008-cf65f1881397",
+      "unityImported": true,
+      "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/reef_snag.png"
+    }
+  ],
+  "unityImported": true,
+  "reviewBoardId": "bae680cd-9225-8018-8008-cf65f1a30046",
+  "cardId": "bae680cd-9225-8018-8008-cf65f1bb5f3c",
+  "sourceBoardId": "bae680cd-9225-8018-8008-cf65f2346433",
+  "scenarioBoardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+  "instanceId": "bae680cd-9225-8018-8008-cf65f2a8ab76",
+  "synchronizationCheckpoint": "MFJ-SYNC-002"
+}

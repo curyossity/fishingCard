@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R020",
+  "nextRevisionId": "MFJ-R025",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -2723,6 +2723,435 @@
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
       "remainingWork": []
+    },
+    {
+      "id": "MFJ-R020",
+      "date": "2026-10-18",
+      "request": "Create a detailed event card matching the latest creature card style and exact size.",
+      "component": "Main event card template and Reef Snag illustration",
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf65f1a30046",
+        "cardId": "bae680cd-9225-8018-8008-cf65f1bb5f3c",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf65f2346433",
+        "frameId": "bae680cd-9225-8018-8008-cf65f03a3f1d",
+        "illustrationId": "bae680cd-9225-8018-8008-cf65f1881397"
+      },
+      "affectedPenpotInstances": {
+        "scenarioBoardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+        "instanceId": "bae680cd-9225-8018-8008-cf65f2a8ab76",
+        "preserved": "Both original creature gameplay assemblies and all roster cards unchanged"
+      },
+      "changeKinds": [
+        "artwork",
+        "geometry",
+        "typography",
+        "shared event template"
+      ],
+      "before": {
+        "unityCheckpoint": "MFJ-SYNC-001",
+        "eventTemplate": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/EventTemplate.png",
+        "canvas": "Earlier event layout has a different aspect ratio and simpler decoration."
+      },
+      "after": {
+        "canvas": [
+          1260,
+          1400
+        ],
+        "data": {
+          "id": "reef_snag",
+          "name": "Reef Snag",
+          "type": "Hazard",
+          "description": "Your heaviest non-Armored creature gains 1 weight until this biome ends."
+        },
+        "fields": "Separate image frame and illustration; editable type/title/body; native Hazard emblem; no Weight/Value/Catch/Bait."
+      },
+      "unityAssetIds": [
+        "reef_snag"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Event/",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/"
+      ],
+      "dependentConsumers": [
+        "JournalCreatureCardVisuals event branch",
+        "MidnightFieldJournalCentralBuilder event prefab",
+        "Theme central event artwork mapping",
+        "Encounter/history/ascent event presentation"
+      ],
+      "configurationChanges": "At a later authorized sync, align event face geometry to1260x1400 and update frame/portrait/type/description placements; preserve independent event reveal/cancellation behavior and all creature mappings. Native emblem varies by event type. Do not overwrite other event illustrations or gameplay definitions.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "MainEventFrameV3",
+          "ReefSnagEngravedV3"
+        ],
+        "dynamicFieldsSeparate": true,
+        "slices": false,
+        "actualSourceDimensions": [
+          [
+            1190,
+            1322
+          ],
+          [
+            1672,
+            941
+          ]
+        ]
+      },
+      "approvalEvidence": "User explicitly requested creation of all event cards and integration into Unity.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R020/Assets.json",
+        "preview": "Revisions/MFJ-R020/EventReview.png",
+        "gameplay": "Revisions/MFJ-R020/Gameplay4K.png",
+        "geometry": "Revisions/MFJ-R020/PenpotCard.json"
+      },
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-002",
+        "manifest": "Sync002/ImportedSources.json",
+        "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/reef_snag.png"
+      },
+      "verificationEvidence": "Sync002/Verification.json",
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R021",
+      "date": "2026-10-18",
+      "request": "Create all remaining event cards in Penpot and integrate all five into Unity.",
+      "component": "Silt Burst event card",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf687a9a6f4f",
+        "cardId": "bae680cd-9225-8018-8008-cf687a9aa842",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf687ab47057",
+        "illustrationId": "bae680cd-9225-8018-8008-cf687a768da2"
+      },
+      "affectedPenpotInstances": {
+        "rosterInstanceId": "bae680cd-9225-8018-8008-cf68a5df85d7"
+      },
+      "changeKinds": [
+        "artwork",
+        "central event mapping",
+        "event text geometry"
+      ],
+      "before": {
+        "checkpoint": "MFJ-SYNC-001",
+        "eventArt": null
+      },
+      "after": {
+        "canvas": [
+          1260,
+          1400
+        ],
+        "name": "Silt Burst",
+        "type": "Hazard",
+        "description": "Hide your next non-Apex creature until its Catch/Bait choice is committed.",
+        "portraitBounds": {
+          "x": 100,
+          "y": 205,
+          "width": 1060,
+          "height": 595.9330143540683
+        },
+        "titleSize": 66,
+        "descriptionLineBreaks": [
+          5,
+          9
+        ]
+      },
+      "unityAssetIds": [
+        "silt_burst"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/silt_burst.png"
+      ],
+      "dependentConsumers": [
+        "MFJ-R020 shared event frame",
+        "JournalCreatureCardVisuals event branch",
+        "JournalEventEmblem",
+        "JournalEventDesignSync",
+        "Candidate encounter/history/ascent consumers"
+      ],
+      "configurationChanges": "Exact central-only event mapping. Same shared1260x1400 event geometry; own native type/emblem and editable title/rules. No gameplay edits.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "SiltBurstEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R020/MainEventFrameV3"
+        ],
+        "slices": false,
+        "dynamicFieldsSeparate": true
+      },
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R021/Assets.json",
+        "preview": "Revisions/MFJ-R021/EventReview.png",
+        "geometry": "Revisions/MFJ-R021/PenpotCard.json"
+      },
+      "status": "verified",
+      "approvalEvidence": "User explicitly requested creation of all event cards and integration into Unity.",
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-002",
+        "manifest": "Sync002/ImportedSources.json",
+        "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/silt_burst.png"
+      },
+      "verificationEvidence": "Sync002/Verification.json",
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R022",
+      "date": "2026-10-18",
+      "request": "Create all remaining event cards in Penpot and integrate all five into Unity.",
+      "component": "Gentle Upwelling event card",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf687c2dd7ec",
+        "cardId": "bae680cd-9225-8018-8008-cf687c2dd7ee",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf687c5f28e5",
+        "illustrationId": "bae680cd-9225-8018-8008-cf687c0dbcf1"
+      },
+      "affectedPenpotInstances": {
+        "rosterInstanceId": "bae680cd-9225-8018-8008-cf68a5e9da70"
+      },
+      "changeKinds": [
+        "artwork",
+        "central event mapping",
+        "event text geometry"
+      ],
+      "before": {
+        "checkpoint": "MFJ-SYNC-001",
+        "eventArt": null
+      },
+      "after": {
+        "canvas": [
+          1260,
+          1400
+        ],
+        "name": "Gentle Upwelling",
+        "type": "Environment",
+        "description": "The next creature attached as Bait weighs 1 less.",
+        "portraitBounds": {
+          "x": 100,
+          "y": 205,
+          "width": 1060,
+          "height": 596.5669856459353
+        },
+        "titleSize": 66,
+        "descriptionLineBreaks": [
+          4
+        ]
+      },
+      "unityAssetIds": [
+        "gentle_upwelling"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/gentle_upwelling.png"
+      ],
+      "dependentConsumers": [
+        "MFJ-R020 shared event frame",
+        "JournalCreatureCardVisuals event branch",
+        "JournalEventEmblem",
+        "JournalEventDesignSync",
+        "Candidate encounter/history/ascent consumers"
+      ],
+      "configurationChanges": "Exact central-only event mapping. Same shared1260x1400 event geometry; own native type/emblem and editable title/rules. No gameplay edits.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "GentleUpwellingEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R020/MainEventFrameV3"
+        ],
+        "slices": false,
+        "dynamicFieldsSeparate": true
+      },
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R022/Assets.json",
+        "preview": "Revisions/MFJ-R022/EventReview.png",
+        "geometry": "Revisions/MFJ-R022/PenpotCard.json"
+      },
+      "status": "verified",
+      "approvalEvidence": "User explicitly requested creation of all event cards and integration into Unity.",
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-002",
+        "manifest": "Sync002/ImportedSources.json",
+        "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/gentle_upwelling.png"
+      },
+      "verificationEvidence": "Sync002/Verification.json",
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R023",
+      "date": "2026-10-18",
+      "request": "Create all remaining event cards in Penpot and integrate all five into Unity.",
+      "component": "Loose Knot event card",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf687d96a259",
+        "cardId": "bae680cd-9225-8018-8008-cf687d96a25b",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf687dc371b4",
+        "illustrationId": "bae680cd-9225-8018-8008-cf687d7ed8af"
+      },
+      "affectedPenpotInstances": {
+        "rosterInstanceId": "bae680cd-9225-8018-8008-cf68a5fc7763"
+      },
+      "changeKinds": [
+        "artwork",
+        "central event mapping",
+        "event text geometry"
+      ],
+      "before": {
+        "checkpoint": "MFJ-SYNC-001",
+        "eventArt": null
+      },
+      "after": {
+        "canvas": [
+          1260,
+          1400
+        ],
+        "name": "Loose Knot",
+        "type": "Opportunity",
+        "description": "You may release 1 attached creature.",
+        "portraitBounds": {
+          "x": 100,
+          "y": 205,
+          "width": 1060,
+          "height": 595.9330143540683
+        },
+        "titleSize": 66,
+        "descriptionLineBreaks": []
+      },
+      "unityAssetIds": [
+        "loose_knot"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/loose_knot.png"
+      ],
+      "dependentConsumers": [
+        "MFJ-R020 shared event frame",
+        "JournalCreatureCardVisuals event branch",
+        "JournalEventEmblem",
+        "JournalEventDesignSync",
+        "Candidate encounter/history/ascent consumers"
+      ],
+      "configurationChanges": "Exact central-only event mapping. Same shared1260x1400 event geometry; own native type/emblem and editable title/rules. No gameplay edits.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "LooseKnotEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R020/MainEventFrameV3"
+        ],
+        "slices": false,
+        "dynamicFieldsSeparate": true
+      },
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R023/Assets.json",
+        "preview": "Revisions/MFJ-R023/EventReview.png",
+        "geometry": "Revisions/MFJ-R023/PenpotCard.json"
+      },
+      "status": "verified",
+      "approvalEvidence": "User explicitly requested creation of all event cards and integration into Unity.",
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-002",
+        "manifest": "Sync002/ImportedSources.json",
+        "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/loose_knot.png"
+      },
+      "verificationEvidence": "Sync002/Verification.json",
+      "remainingWork": []
+    },
+    {
+      "id": "MFJ-R024",
+      "date": "2026-10-18",
+      "request": "Create all remaining event cards in Penpot and integrate all five into Unity.",
+      "component": "Fresh Shell Fragments event card",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-cf687f35e870",
+        "cardId": "bae680cd-9225-8018-8008-cf687f35e872",
+        "sourceBoardId": "bae680cd-9225-8018-8008-cf687f67e74b",
+        "illustrationId": "bae680cd-9225-8018-8008-cf687f1503c3"
+      },
+      "affectedPenpotInstances": {
+        "rosterInstanceId": "bae680cd-9225-8018-8008-cf68a60376e7"
+      },
+      "changeKinds": [
+        "artwork",
+        "central event mapping",
+        "event text geometry"
+      ],
+      "before": {
+        "checkpoint": "MFJ-SYNC-001",
+        "eventArt": null
+      },
+      "after": {
+        "canvas": [
+          1260,
+          1400
+        ],
+        "name": "Fresh Shell Fragments",
+        "type": "Opportunity",
+        "description": "A Spiny Lobster awaits 3 depths below.",
+        "portraitBounds": {
+          "x": 100,
+          "y": 205,
+          "width": 1060,
+          "height": 596.5669856459353
+        },
+        "titleSize": 50,
+        "descriptionLineBreaks": [
+          4
+        ]
+      },
+      "unityAssetIds": [
+        "fresh_shell_fragments"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/fresh_shell_fragments.png"
+      ],
+      "dependentConsumers": [
+        "MFJ-R020 shared event frame",
+        "JournalCreatureCardVisuals event branch",
+        "JournalEventEmblem",
+        "JournalEventDesignSync",
+        "Candidate encounter/history/ascent consumers"
+      ],
+      "configurationChanges": "Exact central-only event mapping. Same shared1260x1400 event geometry; own native type/emblem and editable title/rules. No gameplay edits.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "FreshShellFragmentsEngravedV3"
+        ],
+        "reusedSources": [
+          "MFJ-R020/MainEventFrameV3"
+        ],
+        "slices": false,
+        "dynamicFieldsSeparate": true
+      },
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R024/Assets.json",
+        "preview": "Revisions/MFJ-R024/EventReview.png",
+        "geometry": "Revisions/MFJ-R024/PenpotCard.json"
+      },
+      "status": "verified",
+      "approvalEvidence": "User explicitly requested creation of all event cards and integration into Unity.",
+      "importEvidence": {
+        "checkpoint": "MFJ-SYNC-002",
+        "manifest": "Sync002/ImportedSources.json",
+        "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/fresh_shell_fragments.png"
+      },
+      "verificationEvidence": "Sync002/Verification.json",
+      "remainingWork": []
     }
   ],
   "synchronizationCheckpoints": [
@@ -2753,12 +3182,27 @@
       "status": "verified",
       "manifest": "Sync001/UnityCheckpoint.json",
       "verification": "Sync001/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-002",
+      "date": "2026-10-18",
+      "revisions": [
+        "MFJ-R020",
+        "MFJ-R021",
+        "MFJ-R022",
+        "MFJ-R023",
+        "MFJ-R024"
+      ],
+      "status": "verified",
+      "manifest": "Sync002/UnityCheckpoint.json",
+      "verification": "Sync002/Verification.json"
     }
   ],
   "notes": [
     "Earlier approved iterations are already in the current Unity baseline.",
     "MFJ-R001 through MFJ-R019 were imported and verified in Unity at MFJ-SYNC-001. The immutable original baseline is retained; the next comparison uses Sync001/UnityCheckpoint.json.",
     "Pending changes are never considered imported merely because an image was exported.",
-    "Reconcile unrecorded external Penpot edits explicitly before the next import."
+    "Reconcile unrecorded external Penpot edits explicitly before the next import.",
+    "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained."
   ]
 }
