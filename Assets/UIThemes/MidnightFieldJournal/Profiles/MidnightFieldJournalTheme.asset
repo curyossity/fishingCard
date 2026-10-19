@@ -564,6 +564,24 @@ MonoBehaviour:
       width: 0.8117647
       height: 0.5785
     techniqueRulesBreakAfterWords: 4
+  - sourceId: TechniqueHandSheet
+    sprite: {fileID: 21300000, guid: 823f5ba84511bd844abd91d3e9839d81, type: 3}
+    cardUniqueId: 
+    visibleBoundsTopLeft:
+      serializedVersion: 2
+      x: 0.008508508
+      y: 0
+      width: 0.9834835
+      height: 1
+    designCanvas: {x: 2400, y: 945.34534}
+    sourceHash: 2e5e0a07974cdecaa3154ca7573ec3d075c04b5f29534f1a00f40e004b5a850a
+    compactArtworkBounds:
+      serializedVersion: 2
+      x: 0.09411765
+      y: 0.15973534
+      width: 0.8117647
+      height: 0.5785
+    techniqueRulesBreakAfterWords: 4
   centralCards:
   - cardUniqueId: creature_cleaner_shrimp
     sprite: {fileID: 21300000, guid: f9068c2a9b4f55d47ace5ce0b5703140, type: 3}

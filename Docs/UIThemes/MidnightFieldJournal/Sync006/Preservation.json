@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "protectedFilesUnchanged": 817,
+  "prefabMetadataUnchanged": 10,
+  "sourceMappingsVerified": 31,
+  "authorizedSharedChanges": [
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/Scripts/FishingRunHudPresentation.cs"
+  ],
+  "candidateAndOriginalScenesUnchanged": true,
+  "gameplayDefinitionsUnchanged": true,
+  "retained": [
+    "lowered Technique hand and fan",
+    "grayscale inactive depth tiers",
+    "Catch Chain follows newest unless manually scrolled away",
+    "no automatic Technique redraw",
+    "all approved creature/event/Technique art"
+  ]
+}

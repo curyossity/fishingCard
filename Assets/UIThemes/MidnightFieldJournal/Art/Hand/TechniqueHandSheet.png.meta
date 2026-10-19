@@ -1,0 +1,2249 @@
+fileFormatVersion: 2
+guid: 823f5ba84511bd844abd91d3e9839d81
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6189270529710813590
+    second: TechniqueHandSheet_0
+  - first:
+      213: 5530277816845668668
+    second: TechniqueHandSheet_1
+  - first:
+      213: -3985075490374849105
+    second: TechniqueHandSheet_2
+  - first:
+      213: -1099274719041474054
+    second: TechniqueHandSheet_3
+  - first:
+      213: 5968957969589934649
+    second: TechniqueHandSheet_4
+  - first:
+      213: 8174617908984704747
+    second: TechniqueHandSheet_5
+  - first:
+      213: -487772558069925694
+    second: TechniqueHandSheet_6
+  - first:
+      213: 1354122764677735714
+    second: TechniqueHandSheet_7
+  - first:
+      213: 299971737150330864
+    second: TechniqueHandSheet_8
+  - first:
+      213: 7492290672240638111
+    second: TechniqueHandSheet_9
+  - first:
+      213: 8281359901352095695
+    second: TechniqueHandSheet_10
+  - first:
+      213: -3757660992781831758
+    second: TechniqueHandSheet_11
+  - first:
+      213: 4857989032972878907
+    second: TechniqueHandSheet_12
+  - first:
+      213: -9061816167010626977
+    second: TechniqueHandSheet_13
+  - first:
+      213: 5034001333573644290
+    second: TechniqueHandSheet_14
+  - first:
+      213: -4888765619633410853
+    second: TechniqueHandSheet_15
+  - first:
+      213: -6312604269921610633
+    second: TechniqueHandSheet_16
+  - first:
+      213: 7121453864238680666
+    second: TechniqueHandSheet_17
+  - first:
+      213: 72920247308034921
+    second: TechniqueHandSheet_18
+  - first:
+      213: -3398559374035258788
+    second: TechniqueHandSheet_19
+  - first:
+      213: -1101436647681923232
+    second: TechniqueHandSheet_20
+  - first:
+      213: -354733464889360837
+    second: TechniqueHandSheet_21
+  - first:
+      213: 2943073185788422371
+    second: TechniqueHandSheet_22
+  - first:
+      213: 8697242442907317885
+    second: TechniqueHandSheet_23
+  - first:
+      213: -3149221997763858154
+    second: TechniqueHandSheet_24
+  - first:
+      213: -5202902323439052608
+    second: TechniqueHandSheet_25
+  - first:
+      213: 5934787346236000398
+    second: TechniqueHandSheet_26
+  - first:
+      213: 1265554928833918997
+    second: TechniqueHandSheet_27
+  - first:
+      213: -5825526498479414056
+    second: TechniqueHandSheet_28
+  - first:
+      213: 106234475663716643
+    second: TechniqueHandSheet_29
+  - first:
+      213: -1354007062777971011
+    second: TechniqueHandSheet_30
+  - first:
+      213: 4919127703176052246
+    second: TechniqueHandSheet_31
+  - first:
+      213: 5842672678348684413
+    second: TechniqueHandSheet_32
+  - first:
+      213: 4297563437167819779
+    second: TechniqueHandSheet_33
+  - first:
+      213: 7425327762065797762
+    second: TechniqueHandSheet_34
+  - first:
+      213: -284242995250715661
+    second: TechniqueHandSheet_35
+  - first:
+      213: 2798681852623443432
+    second: TechniqueHandSheet_36
+  - first:
+      213: -1061558287719103738
+    second: TechniqueHandSheet_37
+  - first:
+      213: -2132555096049563336
+    second: TechniqueHandSheet_38
+  - first:
+      213: 7237230926068126901
+    second: TechniqueHandSheet_39
+  - first:
+      213: 9039578813349151256
+    second: TechniqueHandSheet_40
+  - first:
+      213: -7427667899249326078
+    second: TechniqueHandSheet_41
+  - first:
+      213: -6501810477024853012
+    second: TechniqueHandSheet_42
+  - first:
+      213: -3321814264432779011
+    second: TechniqueHandSheet_43
+  - first:
+      213: 4776532197899452241
+    second: TechniqueHandSheet_44
+  - first:
+      213: -2251243259834704304
+    second: TechniqueHandSheet_45
+  - first:
+      213: 2779413700669563615
+    second: TechniqueHandSheet_46
+  - first:
+      213: 1577481390541125011
+    second: TechniqueHandSheet_47
+  - first:
+      213: -6565724660832577548
+    second: TechniqueHandSheet_48
+  - first:
+      213: 6158137915442545866
+    second: TechniqueHandSheet_49
+  - first:
+      213: -1812013241584408449
+    second: TechniqueHandSheet_50
+  - first:
+      213: 6868353333840740739
+    second: TechniqueHandSheet_51
+  - first:
+      213: 7476952040119490604
+    second: TechniqueHandSheet_52
+  - first:
+      213: 6891773107995321862
+    second: TechniqueHandSheet_53
+  - first:
+      213: 7683523263341917488
+    second: TechniqueHandSheet_54
+  - first:
+      213: -1829374863395980901
+    second: TechniqueHandSheet_55
+  - first:
+      213: -5187836001229595563
+    second: TechniqueHandSheet_56
+  - first:
+      213: -1617485480383461342
+    second: TechniqueHandSheet_57
+  - first:
+      213: 4211860720763963946
+    second: TechniqueHandSheet_58
+  - first:
+      213: -5948112643359977821
+    second: TechniqueHandSheet_59
+  - first:
+      213: -9017966947204284343
+    second: TechniqueHandSheet_60
+  - first:
+      213: 4000419746884220567
+    second: TechniqueHandSheet_61
+  - first:
+      213: 6589870322662121710
+    second: TechniqueHandSheet_62
+  - first:
+      213: 7871099309359060726
+    second: TechniqueHandSheet_63
+  - first:
+      213: 3123357788417507490
+    second: TechniqueHandSheet_64
+  - first:
+      213: -4212470864618738952
+    second: TechniqueHandSheet_65
+  - first:
+      213: -7373851735327242906
+    second: TechniqueHandSheet_66
+  - first:
+      213: 5646444747806956678
+    second: TechniqueHandSheet_67
+  - first:
+      213: -7154411163216595248
+    second: TechniqueHandSheet_68
+  - first:
+      213: -268431981223568977
+    second: TechniqueHandSheet_69
+  - first:
+      213: -2022001380776423376
+    second: TechniqueHandSheet_70
+  - first:
+      213: 3403398531741790418
+    second: TechniqueHandSheet_71
+  - first:
+      213: -4697122361570758231
+    second: TechniqueHandSheet_72
+  - first:
+      213: 3522863159979689292
+    second: TechniqueHandSheet_73
+  - first:
+      213: -4584084993079545149
+    second: TechniqueHandSheet_74
+  - first:
+      213: -1082832279889040877
+    second: TechniqueHandSheet_75
+  - first:
+      213: -7957396342235275773
+    second: TechniqueHandSheet_76
+  - first:
+      213: -6893879546830243213
+    second: TechniqueHandSheet_77
+  - first:
+      213: -6441230012817512688
+    second: TechniqueHandSheet_78
+  - first:
+      213: 6159285294008726578
+    second: TechniqueHandSheet_79
+  - first:
+      213: -3105650523301105337
+    second: TechniqueHandSheet_80
+  - first:
+      213: 3518158372078284410
+    second: TechniqueHandSheet_81
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TechniqueHandSheet_0
+      rect:
+        serializedVersion: 2
+        x: 1767
+        y: 770
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691f43e21c4b4e550800000000000000
+      internalID: 6189270529710813590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_1
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 772
+        width: 26
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c311f4eaf5e7fbc40800000000000000
+      internalID: 5530277816845668668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 774
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fad671194fa22b8c0800000000000000
+      internalID: -3985075490374849105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 1967
+        height: 765
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af137fc97779eb0f0800000000000000
+      internalID: -1099274719041474054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_4
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 755
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a15a006aff5d250800000000000000
+      internalID: 5968957969589934649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_5
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 740
+        width: 124
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee649f5da3127170800000000000000
+      internalID: 8174617908984704747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1788
+        y: 748
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c8fe0951751b39f0800000000000000
+      internalID: -487772558069925694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_7
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 721
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 225e2e2ea7fcac210800000000000000
+      internalID: 1354122764677735714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_8
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 724
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f79083a4b6b92400800000000000000
+      internalID: 299971737150330864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_9
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 714
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9830e8aba6f9f760800000000000000
+      internalID: 7492290672240638111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 705
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf614924fc4de270800000000000000
+      internalID: 8281359901352095695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1142
+        y: 697
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b1b5ea6c3b1adbc0800000000000000
+      internalID: -3757660992781831758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_12
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 698
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b348719694b0b6340800000000000000
+      internalID: 4857989032972878907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_13
+      rect:
+        serializedVersion: 2
+        x: 1158
+        y: 697
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5290792536fd3280800000000000000
+      internalID: -9061816167010626977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 696
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200ff76aa8d5cd540800000000000000
+      internalID: 5034001333573644290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_15
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 658
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdcab9b129d972cb0800000000000000
+      internalID: -4888765619633410853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_16
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 649
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77455b3bcdf1568a0800000000000000
+      internalID: -6312604269921610633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_17
+      rect:
+        serializedVersion: 2
+        x: 1029
+        y: 649
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5a8746fe8c74d260800000000000000
+      internalID: 7121453864238680666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_18
+      rect:
+        serializedVersion: 2
+        x: 767
+        y: 641
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 963aabd1490130100800000000000000
+      internalID: 72920247308034921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_19
+      rect:
+        serializedVersion: 2
+        x: 1698
+        y: 143
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c52fd827144e5d0d0800000000000000
+      internalID: -3398559374035258788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_20
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 129
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06762506439e6b0f0800000000000000
+      internalID: -1101436647681923232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_21
+      rect:
+        serializedVersion: 2
+        x: 491
+        y: 119
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3e735b0bcbb31bf0800000000000000
+      internalID: -354733464889360837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_22
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 121
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e865ea2875e7d820800000000000000
+      internalID: 2943073185788422371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_23
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 113
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76f0fefbefc2b870800000000000000
+      internalID: 8697242442907317885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_24
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 111
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61170704747bb44d0800000000000000
+      internalID: -3149221997763858154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_25
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 79
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c85c5a27e39bc7b0800000000000000
+      internalID: -5202902323439052608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_26
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 63
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8841e5c5a99c5250800000000000000
+      internalID: 5934787346236000398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_27
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 66
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518f3e8a087209110800000000000000
+      internalID: 1265554928833918997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_28
+      rect:
+        serializedVersion: 2
+        x: 1601
+        y: 49
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d4628cb382972fa0800000000000000
+      internalID: -5825526498479414056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_29
+      rect:
+        serializedVersion: 2
+        x: 1732
+        y: 31
+        width: 31
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 321f5d851bb697100800000000000000
+      internalID: 106234475663716643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_30
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 49
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbebfbf00c9953de0800000000000000
+      internalID: -1354007062777971011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_31
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 47
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61e77985590444440800000000000000
+      internalID: 4919127703176052246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_32
+      rect:
+        serializedVersion: 2
+        x: 1183
+        y: 57
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c7adb58d7551150800000000000000
+      internalID: 5842672678348684413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_33
+      rect:
+        serializedVersion: 2
+        x: 1426
+        y: 47
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30c38183d2304ab30800000000000000
+      internalID: 4297563437167819779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_34
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 39
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28237ce22401c0760800000000000000
+      internalID: 7425327762065797762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_35
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 47
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f32036708a2e0cf0800000000000000
+      internalID: -284242995250715661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_36
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 41
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e5d3f0215ae6d620800000000000000
+      internalID: 2798681852623443432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_37
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 33
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60381289c569441f0800000000000000
+      internalID: -1061558287719103738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_38
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 11
+        width: 41
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839440c5074a762e0800000000000000
+      internalID: -2132555096049563336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_39
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 31
+        width: 13
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b413c9ce2fcf6460800000000000000
+      internalID: 7237230926068126901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_40
+      rect:
+        serializedVersion: 2
+        x: 455
+        y: 33
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 812c2d87909037d70800000000000000
+      internalID: 9039578813349151256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_41
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 45
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2080cab266f9be890800000000000000
+      internalID: -7427667899249326078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_42
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 30
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce34508b1dde4c5a0800000000000000
+      internalID: -6501810477024853012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_43
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 31
+        width: 8
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df0a8a6b68b86e1d0800000000000000
+      internalID: -3321814264432779011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_44
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 37
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15f33021ab6a94240800000000000000
+      internalID: 4776532197899452241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_45
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 31
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e5f8ace2af1c0e0800000000000000
+      internalID: -2251243259834704304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_46
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 31
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd26348e806729620800000000000000
+      internalID: 2779413700669563615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_47
+      rect:
+        serializedVersion: 2
+        x: 1617
+        y: 29
+        width: 32
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3953ef287f654e510800000000000000
+      internalID: 1577481390541125011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_48
+      rect:
+        serializedVersion: 2
+        x: 1668
+        y: 39
+        width: 7
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f75d0a253cd1e4a0800000000000000
+      internalID: -6565724660832577548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_49
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 17
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac441df8ec9167550800000000000000
+      internalID: 6158137915442545866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_50
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 44
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f78ae07ae8f6ad6e0800000000000000
+      internalID: -1812013241584408449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_51
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 33
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381827f87fa415f50800000000000000
+      internalID: 6868353333840740739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_52
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 15
+        width: 41
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2854f1144873c760800000000000000
+      internalID: 7476952040119490604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_53
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 27
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606a6a6a02f74af50800000000000000
+      internalID: 6891773107995321862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_54
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 31
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 035f1fee2bb51aa60800000000000000
+      internalID: 7683523263341917488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_55
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 31
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b99f0421141cc96e0800000000000000
+      internalID: -1829374863395980901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_56
+      rect:
+        serializedVersion: 2
+        x: 614
+        y: 25
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c1ab9a4aa1108b0800000000000000
+      internalID: -5187836001229595563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_57
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 2
+        width: 23
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 228446086898d89e0800000000000000
+      internalID: -1617485480383461342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_58
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 25
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2a8e889209837a30800000000000000
+      internalID: 4211860720763963946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_59
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 31
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3aec488b01f047da0800000000000000
+      internalID: -5948112643359977821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_60
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 31
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 940ccab37deb9d280800000000000000
+      internalID: -9017966947204284343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_61
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 30
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 796fd7d8098548730800000000000000
+      internalID: 4000419746884220567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_62
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 31
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee02a22d42ce37b50800000000000000
+      internalID: 6589870322662121710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_63
+      rect:
+        serializedVersion: 2
+        x: 1649
+        y: 31
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f65b267e13cb3d60800000000000000
+      internalID: 7871099309359060726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_64
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 33
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a0431d3c55685b20800000000000000
+      internalID: 3123357788417507490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_65
+      rect:
+        serializedVersion: 2
+        x: 1794
+        y: 31
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8faa7b7311c4a85c0800000000000000
+      internalID: -4212470864618738952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_66
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 17
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6650c614ae0daa990800000000000000
+      internalID: -7373851735327242906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_67
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 14
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c57ecf4933c5e40800000000000000
+      internalID: 5646444747806956678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_68
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 15
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d6b267e3fc66bc90800000000000000
+      internalID: -7154411163216595248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_69
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 18
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa990d80986564cf0800000000000000
+      internalID: -268431981223568977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_70
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 15
+        width: 12
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 030d87b057860f3e0800000000000000
+      internalID: -2022001380776423376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_71
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 17
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d03e81ceec4b3f20800000000000000
+      internalID: 3403398531741790418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_72
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 15
+        width: 17
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1f70c391870deb0800000000000000
+      internalID: -4697122361570758231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_73
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 7
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4546ea0169b3e030800000000000000
+      internalID: 3522863159979689292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_74
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 17
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c27b4f7cfe0260c0800000000000000
+      internalID: -4584084993079545149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_75
+      rect:
+        serializedVersion: 2
+        x: 828
+        y: 13
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31a23ed47c109f0f0800000000000000
+      internalID: -1082832279889040877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_76
+      rect:
+        serializedVersion: 2
+        x: 1021
+        y: 15
+        width: 15
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30ed214df26a19190800000000000000
+      internalID: -7957396342235275773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_77
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 13
+        width: 64
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37a3ad6d3150450a0800000000000000
+      internalID: -6893879546830243213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_78
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 17
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0176d613e672c96a0800000000000000
+      internalID: -6441230012817512688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_79
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 15
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2347da3775d2a7550800000000000000
+      internalID: 6159285294008726578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_80
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 14
+        width: 15
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741b122bd4386e4d0800000000000000
+      internalID: -3105650523301105337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TechniqueHandSheet_81
+      rect:
+        serializedVersion: 2
+        x: 1192
+        y: 17
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7eea4f366203d030800000000000000
+      internalID: 3518158372078284410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      TechniqueHandSheet_0: 6189270529710813590
+      TechniqueHandSheet_1: 5530277816845668668
+      TechniqueHandSheet_10: 8281359901352095695
+      TechniqueHandSheet_11: -3757660992781831758
+      TechniqueHandSheet_12: 4857989032972878907
+      TechniqueHandSheet_13: -9061816167010626977
+      TechniqueHandSheet_14: 5034001333573644290
+      TechniqueHandSheet_15: -4888765619633410853
+      TechniqueHandSheet_16: -6312604269921610633
+      TechniqueHandSheet_17: 7121453864238680666
+      TechniqueHandSheet_18: 72920247308034921
+      TechniqueHandSheet_19: -3398559374035258788
+      TechniqueHandSheet_2: -3985075490374849105
+      TechniqueHandSheet_20: -1101436647681923232
+      TechniqueHandSheet_21: -354733464889360837
+      TechniqueHandSheet_22: 2943073185788422371
+      TechniqueHandSheet_23: 8697242442907317885
+      TechniqueHandSheet_24: -3149221997763858154
+      TechniqueHandSheet_25: -5202902323439052608
+      TechniqueHandSheet_26: 5934787346236000398
+      TechniqueHandSheet_27: 1265554928833918997
+      TechniqueHandSheet_28: -5825526498479414056
+      TechniqueHandSheet_29: 106234475663716643
+      TechniqueHandSheet_3: -1099274719041474054
+      TechniqueHandSheet_30: -1354007062777971011
+      TechniqueHandSheet_31: 4919127703176052246
+      TechniqueHandSheet_32: 5842672678348684413
+      TechniqueHandSheet_33: 4297563437167819779
+      TechniqueHandSheet_34: 7425327762065797762
+      TechniqueHandSheet_35: -284242995250715661
+      TechniqueHandSheet_36: 2798681852623443432
+      TechniqueHandSheet_37: -1061558287719103738
+      TechniqueHandSheet_38: -2132555096049563336
+      TechniqueHandSheet_39: 7237230926068126901
+      TechniqueHandSheet_4: 5968957969589934649
+      TechniqueHandSheet_40: 9039578813349151256
+      TechniqueHandSheet_41: -7427667899249326078
+      TechniqueHandSheet_42: -6501810477024853012
+      TechniqueHandSheet_43: -3321814264432779011
+      TechniqueHandSheet_44: 4776532197899452241
+      TechniqueHandSheet_45: -2251243259834704304
+      TechniqueHandSheet_46: 2779413700669563615
+      TechniqueHandSheet_47: 1577481390541125011
+      TechniqueHandSheet_48: -6565724660832577548
+      TechniqueHandSheet_49: 6158137915442545866
+      TechniqueHandSheet_5: 8174617908984704747
+      TechniqueHandSheet_50: -1812013241584408449
+      TechniqueHandSheet_51: 6868353333840740739
+      TechniqueHandSheet_52: 7476952040119490604
+      TechniqueHandSheet_53: 6891773107995321862
+      TechniqueHandSheet_54: 7683523263341917488
+      TechniqueHandSheet_55: -1829374863395980901
+      TechniqueHandSheet_56: -5187836001229595563
+      TechniqueHandSheet_57: -1617485480383461342
+      TechniqueHandSheet_58: 4211860720763963946
+      TechniqueHandSheet_59: -5948112643359977821
+      TechniqueHandSheet_6: -487772558069925694
+      TechniqueHandSheet_60: -9017966947204284343
+      TechniqueHandSheet_61: 4000419746884220567
+      TechniqueHandSheet_62: 6589870322662121710
+      TechniqueHandSheet_63: 7871099309359060726
+      TechniqueHandSheet_64: 3123357788417507490
+      TechniqueHandSheet_65: -4212470864618738952
+      TechniqueHandSheet_66: -7373851735327242906
+      TechniqueHandSheet_67: 5646444747806956678
+      TechniqueHandSheet_68: -7154411163216595248
+      TechniqueHandSheet_69: -268431981223568977
+      TechniqueHandSheet_7: 1354122764677735714
+      TechniqueHandSheet_70: -2022001380776423376
+      TechniqueHandSheet_71: 3403398531741790418
+      TechniqueHandSheet_72: -4697122361570758231
+      TechniqueHandSheet_73: 3522863159979689292
+      TechniqueHandSheet_74: -4584084993079545149
+      TechniqueHandSheet_75: -1082832279889040877
+      TechniqueHandSheet_76: -7957396342235275773
+      TechniqueHandSheet_77: -6893879546830243213
+      TechniqueHandSheet_78: -6441230012817512688
+      TechniqueHandSheet_79: 6159285294008726578
+      TechniqueHandSheet_8: 299971737150330864
+      TechniqueHandSheet_80: -3105650523301105337
+      TechniqueHandSheet_81: 3518158372078284410
+      TechniqueHandSheet_9: 7492290672240638111
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -122,3 +122,19 @@ Only the current tier keeps original artwork colors and amber emphasis. Other ti
 ## Unity Technique hand position — MFJ-SYNC-005.2
 
 Hand lowered48 design pixels (24 at1080p), preserving fan/perspective/hover and fixed sidebar pile counts. [Preview and verification](HandPosition/README.md). Unity-only change, no pending Penpot import. Current baseline:[HandPosition/UnityCheckpoint.json](HandPosition/UnityCheckpoint.json).
+
+## Unity Catch Chain follow behavior — MFJ-SYNC-005.3
+
+Newest catch remains visible by default. Manual wheel/drag inspection preserves its offset; returning to the bottom resumes following. Empty/short chains reset follow state. [Behavior and checks](CatchChainFollow/README.md). Unity-only change; no pending Penpot import. Current baseline:[CatchChainFollow/UnityCheckpoint.json](CatchChainFollow/UnityCheckpoint.json).
+
+## Technique hand backing sheet — MFJ-R041
+
+New independent dark sheet artwork is prepared. Penpot assembly awaits a connected design page. [Source and progress](Revisions/MFJ-R041/README.md). Not integrated into Unity;1 pending revision,36 completed imports,4 superseded drafts. Next revisionR042.
+
+## MFJ-R041 — Penpot assembly ready
+
+Sheet is assembled under the latest hand in Gameplay G, with a separate transparent source and isolated review. Previous awaiting-connection note is now resolved. [Preview and exact handoff](Revisions/MFJ-R041/README.md). Status:ready_for_review; Unity unchanged.1 pending revision,36 completed imports,4 superseded drafts.
+
+## MFJ-SYNC-006 — Sheet integrated and boat transition fixed
+
+R041 is imported and verified. The boat stays visible inside the outgoing encounter slot and moves upward with the existing animation; completion/cancellation restores the reusable art. [Verification and captures](Sync006/README.md). **0 pending,37 completed,4 superseded.** Earlier pendingR041 statements are historical.

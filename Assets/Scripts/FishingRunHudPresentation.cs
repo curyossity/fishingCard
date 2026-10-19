@@ -16,4 +16,6 @@ public abstract class FishingRunHudPresentation : MonoBehaviour
     public abstract void SetTrailPreview(string preview);
     /// <summary>Shows optional presentation-only boat artwork before the first encounter.</summary>
     public virtual void SetOpeningVisible(bool visible) { }
+    /// <summary>Exposes optional opening artwork for the run view's existing encounter motion and masks.</summary>
+    public virtual RectTransform OpeningCard => null;
 }

@@ -247,6 +247,8 @@ public sealed class FishingRunView : MonoBehaviour
     private Image tensionFill;
     private RectTransform encounterRegion;
     private CreatureCardView encounterCardView;
+    private bool openingTransitionActive;
+    private Transform openingRestParent;
     private RectTransform encounterCardMotionRoot;
     private CanvasGroup encounterCardCanvasGroup;
     private WaveWipeMaskGraphic encounterCardWipeMask;
@@ -859,6 +861,15 @@ public sealed class FishingRunView : MonoBehaviour
             out WaveWipeMaskGraphic outgoingMask,
             out RectMask2D outgoingSoftMask);
 
+        RectTransform opening = hudPresentation == null ? null : hudPresentation.OpeningCard;
+        if (opening != null && opening.gameObject.activeSelf)
+        {
+            openingRestParent = opening.parent;
+            opening.SetParent(outgoingMask.transform, false);
+            SetAnchoredRect(opening, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+            openingTransitionActive = true;
+        }
+
         encounterTransitionCoroutine = StartCoroutine(AnimateEncounterTransition(
             outgoingRoot,
             outgoingGroup,
@@ -967,6 +978,7 @@ public sealed class FishingRunView : MonoBehaviour
         outgoingSoftMask.padding = Vector4.zero;
         outgoingSoftMask.enabled = false;
         outgoingRoot.gameObject.SetActive(false);
+        ResetOpeningTransition();
         incomingRoot.anchoredPosition = Vector2.zero;
         incomingGroup.alpha = 1f;
         incomingMask.SetWipe(0f, 0f, false, false);
@@ -1001,7 +1013,29 @@ public sealed class FishingRunView : MonoBehaviour
     }
 
     /// <summary>Forwards the controller's explicit opening state to the optional authored HUD.</summary>
-    public void SetOpeningVisible(bool visible) { if (hudPresentation != null) hudPresentation.SetOpeningVisible(visible); }
+    public void SetOpeningVisible(bool visible)
+    {
+        if (hudPresentation == null) return;
+        // The controller can clear its opening flag immediately while its outgoing artwork is still animating.
+        if (!visible && openingTransitionActive && encounterTransitionCoroutine != null) return;
+        if (visible && openingTransitionActive) CancelEncounterTransition();
+        hudPresentation.SetOpeningVisible(visible);
+    }
+
+    /// <summary>Returns borrowed boat artwork after completion or cancellation so later slots never reuse it.</summary>
+    private void ResetOpeningTransition()
+    {
+        if (!openingTransitionActive) return;
+        openingTransitionActive = false;
+        RectTransform opening = hudPresentation == null ? null : hudPresentation.OpeningCard;
+        if (opening != null)
+        {
+            opening.gameObject.SetActive(false);
+            opening.SetParent(openingRestParent, false);
+            SetAnchoredRect(opening, Vector2.zero, Vector2.one, 0f, 0f, 0f, 0f);
+        }
+        openingRestParent = null;
+    }
 
     /// <summary>Replays visited encounters from deepest to shallowest, then clears the gameplay presentation.</summary>
     private IEnumerator PlaySurfaceTransition()
@@ -1087,6 +1121,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// <summary>Returns both reusable card slots to a deterministic resting state.</summary>
     private void CancelEncounterTransition()
     {
+        ResetOpeningTransition();
         if (encounterTransitionCoroutine != null)
         {
             StopCoroutine(encounterTransitionCoroutine);

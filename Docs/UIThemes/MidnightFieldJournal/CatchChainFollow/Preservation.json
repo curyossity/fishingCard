@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCatchChainChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs"
+  ],
+  "sceneAndSharedGameplayUnchanged": true,
+  "fanAndDepthFocusPreserved": true,
+  "priorEvidenceRestored": true,
+  "playModeRestoredOff": true,
+  "backgroundRestoredOff": true
+}

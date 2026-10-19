@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "assertions": 686,
+  "componentAssertions": 673,
+  "actualBoatPlayModeAssertions": 13,
+  "boatMidTransitionY": 211.14056396484375,
+  "consoleErrors": 0,
+  "captures": [
+    "Gameplay4K.png",
+    "Gameplay1080p.png",
+    "Opening4K.png",
+    "Opening1080p.png",
+    "BoatMoving4K.png",
+    "FirstEncounter4K.png"
+  ],
+  "playModeRestoredOff": true,
+  "backgroundRestoredOff": true,
+  "sceneClean": true,
+  "standaloneBuildRun": false
+}

@@ -1,0 +1,29 @@
+{
+  "result": {
+    "verified": true,
+    "revision": "MFJ-R041",
+    "sheetId": "bae680cd-9225-8018-8008-d0a913dbc342",
+    "handId": "bae680cd-9225-8018-8008-d0a913630869",
+    "independentSheet": true,
+    "layeredBelowHand": true,
+    "sheetBounds": [
+      1050,
+      1390,
+      2400,
+      945.3453453453458
+    ],
+    "sourceDimensions": [
+      1998,
+      787
+    ],
+    "scale": 1.2012012012012012,
+    "fanGeometry": [
+      980,
+      1390,
+      2500,
+      866
+    ],
+    "unityImported": false
+  },
+  "log": ""
+}

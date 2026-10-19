@@ -1,0 +1,26 @@
+{
+  "result": {
+    "revision": "MFJ-R041",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "sourceBoardId": "bae680cd-9225-8018-8008-d0a9132b5870",
+    "sourceShapeId": "bae680cd-9225-8018-8008-d0a912fc55cb",
+    "reviewBoardId": "bae680cd-9225-8018-8008-d0a91419d889",
+    "comparisonBoardId": "bae680cd-9225-8018-8008-d0a91363085a",
+    "instanceId": "bae680cd-9225-8018-8008-d0a913dbc342",
+    "sourceDimensions": [
+      1998,
+      787
+    ],
+    "assemblyBounds": [
+      1050,
+      1390,
+      2400,
+      945.3453453453453
+    ],
+    "status": "ready_for_review",
+    "unityImported": false,
+    "contract": "Independent static decorative sheet beneath existing Technique cards; no baked cards or input. Original fan, editable sources and prior gameplay boards preserved."
+  },
+  "log": ""
+}

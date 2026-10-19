@@ -1,0 +1,18 @@
+{
+  "sources": [
+    {
+      "id": "TechniqueHandSheet",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R041/TechniqueHandSheet.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hand/TechniqueHandSheet.png",
+      "sha256": "2e5e0a07974cdecaa3154ca7573ec3d075c04b5f29534f1a00f40e004b5a850a",
+      "designWidth": 2400,
+      "designHeight": 945.3453453453453,
+      "mipmaps": false,
+      "revision": "MFJ-R041"
+    }
+  ],
+  "revisions": [
+    "MFJ-R041"
+  ]
+}

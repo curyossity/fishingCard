@@ -212,7 +212,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         TMP_Text heading = Label("Chain Heading", root.transform, new Rect(0, .97f, 1, .03f), 36, Copper, true);
         heading.text = "CATCH CHAIN";
         RectTransform scrollRoot = Region("Chain Scroll", root.transform, new Rect(0, 0, 1, 1 - 50f / 1540));
-        UnityEngine.UI.ScrollRect scroll = scrollRoot.gameObject.AddComponent<UnityEngine.UI.ScrollRect>();
+        UnityEngine.UI.ScrollRect scroll = scrollRoot.gameObject.AddComponent<JournalCatchChainScrollRect>();
         RectTransform viewport = Region("Viewport", scrollRoot, new Rect(0, 0, 1, 1));
         UnityEngine.UI.Image hitArea = viewport.gameObject.AddComponent<UnityEngine.UI.Image>();
         hitArea.color = Color.clear; hitArea.raycastTarget = true;

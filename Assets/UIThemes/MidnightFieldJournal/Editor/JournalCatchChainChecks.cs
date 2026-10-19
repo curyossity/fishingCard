@@ -65,6 +65,9 @@ public static class JournalCatchChainChecks
         {
             EventSystem events = EventSystem.current;
             Require(events != null, "Running scene requires an EventSystem.");
+            var initialScroll = view.GetComponentInChildren<UnityEngine.UI.ScrollRect>();
+            initialScroll.OnScroll(new PointerEventData(events) { scrollDelta = new Vector2(0, 10000) });
+            Canvas.ForceUpdateCanvases();
             CompactCatchCardView first = chain.Cards[0];
             RectTransform rect = first.GetComponent<RectTransform>();
             var pointer = new PointerEventData(events) { position = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center)), button = PointerEventData.InputButton.Left };
@@ -171,7 +174,8 @@ public static class JournalCatchChainChecks
             Refresh(view, runtime, select); Canvas.ForceUpdateCanvases();
             Require(chain.Cards.Count == 20 && chain.Links.Count(l => l.gameObject.activeSelf) == 21, "Long chain truncated.");
             Require(scroll.content.rect.height > scroll.viewport.rect.height * 4, "Long content cannot scroll.");
-            scroll.content.anchoredPosition = new Vector2(0, 1700);
+            scroll.OnScroll(new PointerEventData(EventSystem.current) { scrollDelta = new Vector2(0, 10000) });
+            scroll.OnScroll(new PointerEventData(EventSystem.current) { scrollDelta = new Vector2(0, -1700f / scroll.scrollSensitivity) });
             Refresh(view, runtime, select);
             Require(Mathf.Abs(scroll.content.anchoredPosition.y - 1700) < .1f, "Stat refresh reset scroll position.");
             Capture(canvas, camera, 3840, 2160, "UI03LongChain4K.png");

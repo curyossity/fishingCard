@@ -1,7 +1,7 @@
 {
   "generatedDate": "2026-10-19",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "HandPosition/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync006/UnityCheckpoint.json",
   "pending": [],
   "completed": [
     {
@@ -147,6 +147,10 @@
     {
       "id": "MFJ-R040",
       "checkpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R041",
+      "checkpoint": "MFJ-SYNC-006"
     }
   ],
   "superseded": [
@@ -173,7 +177,7 @@
   ],
   "counts": {
     "pending": 0,
-    "completed": 36,
+    "completed": 37,
     "superseded": 4
   },
   "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required."

@@ -35,11 +35,12 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
     private readonly List<UnityEngine.UI.Image> links = new List<UnityEngine.UI.Image>();
     private Action<int> selectCatch;
     private int count;
+    private JournalCatchChainScrollRect chainScroll;
 
     public IReadOnlyList<CompactCatchCardView> Cards => cards;
     public IReadOnlyList<UnityEngine.UI.Image> Links => links;
 
-    /// <summary>Reuses physical views, refreshes resolved fields and retains the user's current scroll position.</summary>
+    /// <summary>Reuses physical views and follows new catches unless the player is inspecting an earlier scroll position.</summary>
     public override void Refresh(CardInstance[] catches, ActiveCatchEffectRecord[] activeEffects,
         int currentLineLoad, int lineCapacity, int selectedCatchIndex, Action<int> selectCatchAction)
     {
@@ -157,6 +158,8 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
         Vector2 position = content.anchoredPosition;
         position.y = Mathf.Clamp(position.y, 0, Mathf.Max(0, height - viewport.rect.height));
         content.anchoredPosition = position;
+        if (chainScroll == null) chainScroll = content.GetComponentInParent<JournalCatchChainScrollRect>();
+        if (chainScroll != null) chainScroll.RestoreAfterLayout();
         for (int i = 0; i < count && i < cards.Count; i++)
         {
             RectTransform rect = cards[i].GetComponent<RectTransform>();

@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R041",
+  "nextRevisionId": "MFJ-R042",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -6065,6 +6065,95 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R041",
+      "date": "2026-10-19",
+      "request": "Recreate in Penpot the sheet beneath the Technique hand from the original mockup.",
+      "component": [
+        "Technique hand backing sheet"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R041",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d0a9132b5870",
+        "sourceShapeId": "bae680cd-9225-8018-8008-d0a912fc55cb",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d0a91419d889",
+        "comparisonBoardId": "bae680cd-9225-8018-8008-d0a91363085a",
+        "instanceId": "bae680cd-9225-8018-8008-d0a913dbc342",
+        "sourceDimensions": [
+          1998,
+          787
+        ],
+        "assemblyBounds": [
+          1050,
+          1390,
+          2400,
+          945.3453453453453
+        ],
+        "status": "ready_for_review",
+        "unityImported": false,
+        "contract": "Independent static decorative sheet beneath existing Technique cards; no baked cards or input. Original fan, editable sources and prior gameplay boards preserved."
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d0a913dbc342"
+      ],
+      "changeKinds": [
+        "new independent background artwork",
+        "layering"
+      ],
+      "before": "Technique hand has no separate backing sheet.",
+      "after": "Separate dark weathered chart sheet beneath the latest R030 hand in Gameplay G; cards/fan/template artwork remain independent. Blank source and isolated review are retained.",
+      "unityAssetIds": [
+        "TechniqueHandSheet"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Hand/TechniqueHandSheet.png (proposed, not created)"
+      ],
+      "dependentConsumers": [
+        "Candidate Technique hand assembly"
+      ],
+      "configurationChanges": {
+        "layer": "Above background, below existing UI/Technique cards",
+        "bounds": [
+          1050,
+          1390,
+          2400,
+          945.3453453453453
+        ],
+        "sourceDimensions": [
+          1998,
+          787
+        ],
+        "aspectPreserved": true,
+        "sourceEnlargement": 1.2012012012012012,
+        "scope": "Penpot only; no Unity resource changes"
+      },
+      "exportRequirements": "Keep original transparent sheet independent of Technique cards; do not flatten a gameplay screenshot or slice the mockup. Source1998×787; preserve aspect ratio and record actual display bounds.",
+      "approvalEvidence": "User requested importing the backing sheet and fixing the boat-to-first-encounter animation.",
+      "exportEvidence": {
+        "source": "Revisions/MFJ-R041/TechniqueHandSheet.png",
+        "sourceReview": "Revisions/MFJ-R041/SheetReview.png",
+        "assembly": "Revisions/MFJ-R041/GameplayG.png",
+        "prompt": "Revisions/MFJ-R041/GenerationPrompt.json"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync006/UnityCheckpoint.json",
+        "plan": "Sync006/ImportPlan.json",
+        "sourceMetadata": "Sync006/ImportedSourceMetadata.json"
+      },
+      "verificationEvidence": {
+        "report": "Sync006/Verification.json",
+        "playMode": "Sync006/BoatPlayModeVerification.json",
+        "preservation": "Sync006/Preservation.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-006"
     }
   ],
   "synchronizationCheckpoints": [
@@ -6130,6 +6219,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "HandPosition/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync006/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

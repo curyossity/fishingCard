@@ -17,6 +17,7 @@ public sealed class JournalGameplayHud : FishingRunHudPresentation
     public override UnityEngine.UI.Button DescendButton => descendButton;
     public override UnityEngine.UI.Button SurfaceButton => surfaceButton;
     public override UnityEngine.UI.Button SettingsButton => settingsButton;
+    public override RectTransform OpeningCard => openingCard == null ? null : (RectTransform)openingCard.transform;
 
     /// <summary>Refreshes labels and pooled rows from actual authored tiers; overlapping tiers can both be highlighted.</summary>
     public override void Refresh(BiomeDefinition biome, int depth, int load, int capacity, int deckCount, int? haulValue)

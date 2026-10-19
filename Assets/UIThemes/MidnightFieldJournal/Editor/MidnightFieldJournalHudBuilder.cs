@@ -58,6 +58,8 @@ public static partial class MidnightFieldJournalPrefabBuilder
         TMP_Text haul = ScreenLabel("Haul Value", main, 670, 1945, 195, 90, 54, Paper);
         TMP_Text trail = ScreenLabel("Encounter Trail Preview", main, 1050, 1530, 1500, 90, 30, Paper);
         trail.enableAutoSizing = true; trail.fontSizeMin = 22; trail.gameObject.SetActive(false);
+        // Separate decorative source, below the projected cards and outside their hit testing.
+        Picture("Technique Hand Backing Sheet",design,"TechniqueHandSheet",ScreenBounds(1050,1390,2400,2400f*787/1998));
         GameObject hand = Instance("TechniqueHand", design, ScreenBounds(980, 1342, 2500, 866)); hand.AddComponent<CanvasGroup>();
         // Hand pile counts occupy the spare action-bar row, clear of both the depth guide and inspect text.
         SetRegion(hand.transform.Find("Pile Counts").GetComponent<RectTransform>(), new Rect(.744f, 1.22f + 48f / 866, .30f, .058f));

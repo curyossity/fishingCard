@@ -1,0 +1,13 @@
+# MFJ-SYNC-006 — Hand backing sheet and boat animation
+
+**MFJ-R041 is imported and verified.0 pending revisions remain;37 designs are completed and4 drafts are superseded.**
+
+[4K gameplay](Gameplay4K.png) · [1080p gameplay](Gameplay1080p.png) · [4K opening composition](Opening4K.png) · [Actual boat moving upward](BoatMoving4K.png) · [Actual first encounter](FirstEncounter4K.png) · [Verification](Verification.json) · [Preservation](Preservation.json) · [Checkpoint](UnityCheckpoint.json).
+
+The new independent transparent sheet is imported from the exact Penpot source into the isolated theme’s Art/Hand folder. Its1998×787 source is displayed2400×945.345 at(1050,1390), preserving aspect and the recorded transparent margins. It sits below the projected hand and does not receive pointer events. The lowered hand, card perspective/fan, dynamic text and all existing art remain independent. This is a selective asset import, not a flattened screenshot. The canonical31-entry source catalog restores the sheet through normal prefab regeneration.
+
+The boat previously lived outside the encounter animation roots and disappeared as soon as the controller cleared its opening flag. The optional HUD now exposes that existing artwork to FishingRunView. For the first transition, the view borrows it into the outgoing slot’s wavy mask and motion root, defers hiding until movement finishes, and restores it on completion or cancellation. It uses the same0.7-second upward motion, clipping and action-input locks as other cards. Restart during motion cancels cleanly and restores the boat. No gameplay card definition, encounter draw, Catch Chain attachment or depth rule was added or changed.
+
+673 component/runtime checks and13 actual Play Mode checks passed (686 total). Real frames verify the visible boat moving upward by more than211 design units while the first encounter rises in, correct cleanup, unchanged depth1/empty chain, and restart during movement.4K/1080p renders and actual moving-boat captures were visually inspected. Initial font/prefab setup is allowed to settle before sampling animation frames. Final console has zero errors. No standalone build was run.
+
+Source hashes, existing prefab GUIDs, original and candidate scene files, build settings and gameplay definitions are preserved. Two shared presentation files add the optional opening-art hook and reuse the existing transition. Current grayscale depth focus, lowered hand, intent-aware Catch Chain scrolling and no automatic Technique refill are retained. Play Mode/background were restored off; the scene is clean. Penpot metadata and both logs markR041 completed atMFJ-SYNC-006; future work uses this checkpoint.

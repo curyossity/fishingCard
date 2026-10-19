@@ -1,0 +1,28 @@
+{
+    "sprites": [
+        {
+            "id": "TechniqueHandSheet",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hand/TechniqueHandSheet.png",
+            "cardUniqueId": "",
+            "sha256": "2e5e0a07974cdecaa3154ca7573ec3d075c04b5f29534f1a00f40e004b5a850a",
+            "width": 1998,
+            "height": 787,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                17,
+                0,
+                1982,
+                787
+            ],
+            "halfAlphaBoundsPixels": [
+                25,
+                174,
+                1974,
+                622
+            ],
+            "designWidth": 2400.0,
+            "designHeight": 945.3453369140625
+        }
+    ]
+}
