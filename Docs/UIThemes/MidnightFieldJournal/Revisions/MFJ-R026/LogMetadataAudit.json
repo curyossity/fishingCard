@@ -1,0 +1,18 @@
+{
+  "result": {
+    "completed": 24,
+    "pending": [
+      "MFJ-R026"
+    ],
+    "superseded": [
+      {
+        "id": "MFJ-R025",
+        "supersededBy": "MFJ-R026",
+        "unityImported": false
+      }
+    ],
+    "nextRevision": "MFJ-R027",
+    "unityImported": false
+  },
+  "log": ""
+}

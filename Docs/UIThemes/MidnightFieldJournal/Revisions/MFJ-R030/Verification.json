@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "instances": [
+    {
+      "handId": "bae680cd-9225-8018-8008-d011106c6952",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d019e91e50d6",
+        "bae680cd-9225-8018-8008-d017781ae2c8",
+        "bae680cd-9225-8018-8008-d017784d99ce",
+        "bae680cd-9225-8018-8008-d019e95b8a39"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d019e91e50d6",
+        "bae680cd-9225-8018-8008-d017781ae2c8",
+        "bae680cd-9225-8018-8008-d017784d99ce",
+        "bae680cd-9225-8018-8008-d019e95b8a39"
+      ],
+      "middleIdsUnchanged": true
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d019e929327d",
+        "bae680cd-9225-8018-8008-d0177825a406",
+        "bae680cd-9225-8018-8008-d01778587a3a",
+        "bae680cd-9225-8018-8008-d019e965c3d8"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d019e929327d",
+        "bae680cd-9225-8018-8008-d0177825a406",
+        "bae680cd-9225-8018-8008-d01778587a3a",
+        "bae680cd-9225-8018-8008-d019e965c3d8"
+      ],
+      "middleIdsUnchanged": true
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d019e93416a1",
+        "bae680cd-9225-8018-8008-d017783005b2",
+        "bae680cd-9225-8018-8008-d01778612125",
+        "bae680cd-9225-8018-8008-d019e96ed40b"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d019e93416a1",
+        "bae680cd-9225-8018-8008-d017783005b2",
+        "bae680cd-9225-8018-8008-d01778612125",
+        "bae680cd-9225-8018-8008-d019e96ed40b"
+      ],
+      "middleIdsUnchanged": true
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d019e940212a",
+        "bae680cd-9225-8018-8008-d01778395685",
+        "bae680cd-9225-8018-8008-d017786be178",
+        "bae680cd-9225-8018-8008-d019e977bd41"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d019e940212a",
+        "bae680cd-9225-8018-8008-d01778395685",
+        "bae680cd-9225-8018-8008-d017786be178",
+        "bae680cd-9225-8018-8008-d019e977bd41"
+      ],
+      "middleIdsUnchanged": true
+    }
+  ],
+  "changes": [
+    {
+      "index": 0,
+      "centerBefore": {
+        "x": 700,
+        "y": 17890
+      },
+      "centerAfter": {
+        "x": 700.0000000000003,
+        "y": 17910
+      },
+      "angleBefore": -15,
+      "angleAfter": -8
+    },
+    {
+      "index": 3,
+      "centerBefore": {
+        "x": 2199.9999999999986,
+        "y": 17890
+      },
+      "centerAfter": {
+        "x": 2199.999999999999,
+        "y": 17910
+      },
+      "angleBefore": 15,
+      "angleAfter": 8
+    }
+  ],
+  "pending": [
+    "MFJ-R027",
+    "MFJ-R030"
+  ],
+  "completed": 24,
+  "middleCardsUnchanged": true,
+  "visualReview": "Preview inspected: middle pair unchanged; outer cards lower; smooth shallow fan, printed text visible.",
+  "projectedEdges": [
+    {
+      "id": "cut_loose",
+      "top": 227.84726621382222,
+      "bottom": 812.1613923744668
+    },
+    {
+      "id": "slip_past",
+      "top": 205.19709174133916,
+      "bottom": 747.604885913607
+    },
+    {
+      "id": "steady_line",
+      "top": 205.19709174133916,
+      "bottom": 747.604885913607
+    },
+    {
+      "id": "prize_hook",
+      "top": 227.84726621382222,
+      "bottom": 812.1613923744668
+    }
+  ],
+  "nearEdgeAmplitude": {
+    "firstFan": 122.36548944757499,
+    "current": 64.55650646085985
+  },
+  "outerTopEdgesLowerThanMiddle": true,
+  "middlePreviewBytesIdentical": true,
+  "penpotExport": "PenpotFan.png",
+  "penpotExportVisuallyInspected": true
+}

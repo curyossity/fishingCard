@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "revisions": [
+    "MFJ-R027",
+    "MFJ-R030"
+  ],
+  "componentAssertions": 2335,
+  "handInputAssertions": 39,
+  "outputAssertions": 67,
+  "renderedCounts": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    8,
+    12,
+    20
+  ],
+  "symmetryCountsThrough": 64,
+  "largerHandActualInput": [
+    8,
+    12
+  ],
+  "outputResolutions": [
+    [
+      3840,
+      2160
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      3440,
+      1440
+    ],
+    [
+      1920,
+      1200
+    ]
+  ],
+  "protectedFilesUnchanged": 820,
+  "prefabGuidsStable": true,
+  "changedPaths": [
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/EngravedTooltipFrame.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/EngravedTooltipFrame.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalInspectionDesignSync.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalInspectionDesignSync.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalInspectionSyncChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalInspectionSyncChecks.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalOutputChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalAssetValidation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalTooltipBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalTooltipBuilder.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchTooltip.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchTooltip.prefab.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchInspectionTrigger.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchInspectionTrigger.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchTooltip.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchTooltip.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueFan.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueFan.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueHandPresentation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/MidnightFieldJournalTheme.cs"
+  ],
+  "newFrameNativeSize": [
+    1487,
+    1058
+  ],
+  "frameDisplaySize": [
+    856,
+    608
+  ],
+  "existingCatalogSpriteHashesUnchanged": 20,
+  "originalScenesBuildSettingsGameplayPreserved": true,
+  "savedSceneUnchanged": true,
+  "standalonePlayerBuild": "Not run; validation is actual Editor Play Mode and rendered component evidence."
+}

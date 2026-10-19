@@ -223,6 +223,7 @@ MonoBehaviour:
   pitch: 450
   topPadding: 60
   bottomPadding: 76
+  tooltipPrefab: {fileID: 2811844943720973643, guid: f09d64bd6644ac74c8ab3b5337328175, type: 3}
 --- !u!114 &959468269154911602
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,9 +13,9 @@ public sealed class JournalTechniqueHandPresentation : TechniqueHandPresentation
     [SerializeField] private TMP_Text pileText;
     [SerializeField] private TMP_Text restrictionText;
     [SerializeField, Range(0, 70)] private float restingTilt = 40;
-    [SerializeField, Range(20, 60)] private float fieldOfView = 35;
-    [SerializeField, Min(1000)] private float cameraDistance = 1500;
-    [SerializeField, Min(0)] private float cardSpacing = 550;
+    [SerializeField, Range(20, 60)] private float fieldOfView = 24.431f;
+    [SerializeField, Min(1000)] private float cameraDistance = 2000;
+    [SerializeField, Min(0)] private float cardSpacing = 500;
     [SerializeField, Range(512, 4096)] private int maxRenderWidth = 3840;
     private GameObject stage;
     private Canvas stageCanvas;
@@ -85,10 +85,7 @@ public sealed class JournalTechniqueHandPresentation : TechniqueHandPresentation
             if (i >= hand.Length) continue;
             cards[i].SetCard(hand[i], "TECHNIQUE", i < playable.Length && playable[i], theme.FormatTechniqueRules(hand[i]));
             theme.TryGetArtwork(hand[i]?.UniqueId, out Sprite artwork); cards[i].SetArtwork(artwork);
-            float center = i - (hand.Length - 1) * .5f;
-            float step = Mathf.Min(cardSpacing, 2200f / Mathf.Max(1, hand.Length));
-            Vector3 position = new Vector3(center * step, -Mathf.Abs(center) * 5, 0);
-            Quaternion rotation = Quaternion.Euler(restingTilt, 0, center * 1.2f);
+            JournalTechniqueFan.Evaluate(i, hand.Length, cardSpacing, restingTilt, out Vector3 position, out Quaternion rotation);
             RectTransform rect = cards[i].GetComponent<RectTransform>(); rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f); rect.sizeDelta = new Vector2(620, 640);
             RectTransform hit = hitPlanes[i]; hit.anchorMin = hit.anchorMax = new Vector2(.5f, .5f);
             hit.sizeDelta = rect.sizeDelta; hit.localPosition = position; hit.localRotation = rotation;

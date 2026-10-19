@@ -1,0 +1,648 @@
+{
+  "result": {
+    "revision": "MFJ-R025",
+    "status": "ready_for_review",
+    "unityImported": false,
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "prototypeBoardId": "bae680cd-9225-8018-8008-d00618505dcb",
+    "previewBoardId": "bae680cd-9225-8018-8008-d0061921543d",
+    "previewTooltipId": "bae680cd-9225-8018-8008-d006197bbb2c",
+    "tooltipCanvas": [
+      900,
+      640
+    ],
+    "variants": [
+      {
+        "id": "bae680cd-9225-8018-8008-d00614dd5194",
+        "stableId": "creature_clinging_crab",
+        "name": "Clinging Crab",
+        "role": "Catch",
+        "ability": "Iron Grip",
+        "description": "Cannot be deliberately released.",
+        "tags": [
+          "Anchored",
+          "Armored"
+        ],
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00614e4397e",
+            "name": "Static / navy tooltip panel",
+            "type": "rectangle",
+            "x": 28,
+            "y": 16,
+            "w": 856,
+            "h": 608
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00614f18e82",
+            "name": "Static / inset copper rule",
+            "type": "rectangle",
+            "x": 39,
+            "y": 27,
+            "w": 834,
+            "h": 586
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00614fcfdae",
+            "name": "Static / left anchor pointer",
+            "type": "group",
+            "x": 0,
+            "y": 295,
+            "w": 34,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061507b172",
+            "name": "Static / etched seaweed corner",
+            "type": "group",
+            "x": 740,
+            "y": 445,
+            "w": 130,
+            "h": 170
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615151ba0",
+            "name": "Static / top copper rule",
+            "type": "rectangle",
+            "x": 76,
+            "y": 48,
+            "w": 300,
+            "h": 2
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006152111f3",
+            "name": "Static / eyebrow",
+            "type": "text",
+            "text": "CATCH CHAIN",
+            "x": 76,
+            "y": 61,
+            "w": 500,
+            "h": 38
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615317fcb",
+            "name": "Dynamic / active mode badge",
+            "type": "rectangle",
+            "x": 670,
+            "y": 61,
+            "w": 158,
+            "h": 44
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006153b9f83",
+            "name": "Dynamic / active mode",
+            "type": "text",
+            "text": "CATCH",
+            "x": 680,
+            "y": 67,
+            "w": 138,
+            "h": 32
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006154d48b1",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "Clinging Crab",
+            "x": 76,
+            "y": 118,
+            "w": 742,
+            "h": 82
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006155d2711",
+            "name": "Dynamic / tag Anchored",
+            "type": "rectangle",
+            "x": 76,
+            "y": 220,
+            "w": 182,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615678959",
+            "name": "Dynamic / tag text Anchored",
+            "type": "text",
+            "text": "Anchored",
+            "x": 90,
+            "y": 228,
+            "w": 154,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061576a200",
+            "name": "Dynamic / tag Armored",
+            "type": "rectangle",
+            "x": 272,
+            "y": 220,
+            "w": 164,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006158059c8",
+            "name": "Dynamic / tag text Armored",
+            "type": "text",
+            "text": "Armored",
+            "x": 286,
+            "y": 228,
+            "w": 136,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006158bccb8",
+            "name": "Static / effect separator",
+            "type": "rectangle",
+            "x": 76,
+            "y": 307,
+            "w": 752,
+            "h": 2
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615975713",
+            "name": "Static / separator diamond",
+            "type": "group",
+            "x": 442,
+            "y": 300,
+            "w": 16,
+            "h": 16
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615a36742",
+            "name": "Dynamic / active effect role",
+            "type": "text",
+            "text": "CATCH EFFECT",
+            "x": 76,
+            "y": 337,
+            "w": 650,
+            "h": 38
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615c5074a",
+            "name": "Dynamic / effect name",
+            "type": "text",
+            "text": "Iron Grip",
+            "x": 76,
+            "y": 388,
+            "w": 710,
+            "h": 62
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00615e4f233",
+            "name": "Dynamic / effect description",
+            "type": "text",
+            "text": "Cannot be deliberately released.",
+            "x": 76,
+            "y": 470,
+            "w": 680,
+            "h": 120
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00616026a38",
+        "stableId": "creature_glass_minnow",
+        "name": "Glass Minnow",
+        "role": "Bait",
+        "ability": "Shoal Signal",
+        "description": "After catching a Schooling creature,\nredraw 1 technique card.",
+        "tags": [
+          "Fish",
+          "Schooling",
+          "Small"
+        ],
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d0061610e1f7",
+            "name": "Static / navy tooltip panel",
+            "type": "rectangle",
+            "x": 28,
+            "y": 16,
+            "w": 856,
+            "h": 608
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061627d3d0",
+            "name": "Static / inset copper rule",
+            "type": "rectangle",
+            "x": 39,
+            "y": 27,
+            "w": 834,
+            "h": 586
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006163a0724",
+            "name": "Static / left anchor pointer",
+            "type": "group",
+            "x": 0,
+            "y": 295,
+            "w": 34,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061646a8df",
+            "name": "Static / etched seaweed corner",
+            "type": "group",
+            "x": 740,
+            "y": 445,
+            "w": 130,
+            "h": 170
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006165a7c5e",
+            "name": "Static / top copper rule",
+            "type": "rectangle",
+            "x": 76,
+            "y": 48,
+            "w": 300,
+            "h": 2
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006166d8027",
+            "name": "Static / eyebrow",
+            "type": "text",
+            "text": "CATCH CHAIN",
+            "x": 76,
+            "y": 61,
+            "w": 500,
+            "h": 38
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616869e30",
+            "name": "Dynamic / active mode badge",
+            "type": "rectangle",
+            "x": 670,
+            "y": 61,
+            "w": 158,
+            "h": 44
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616ab1ac6",
+            "name": "Dynamic / active mode",
+            "type": "text",
+            "text": "BAIT",
+            "x": 680,
+            "y": 67,
+            "w": 138,
+            "h": 32
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616bcbb58",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "Glass Minnow",
+            "x": 76,
+            "y": 118,
+            "w": 742,
+            "h": 82
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616ca035a",
+            "name": "Dynamic / tag Fish",
+            "type": "rectangle",
+            "x": 76,
+            "y": 220,
+            "w": 110,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616d51707",
+            "name": "Dynamic / tag text Fish",
+            "type": "text",
+            "text": "Fish",
+            "x": 90,
+            "y": 228,
+            "w": 82,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616e139ae",
+            "name": "Dynamic / tag Schooling",
+            "type": "rectangle",
+            "x": 200,
+            "y": 220,
+            "w": 200,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616eaca96",
+            "name": "Dynamic / tag text Schooling",
+            "type": "text",
+            "text": "Schooling",
+            "x": 214,
+            "y": 228,
+            "w": 172,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616f94435",
+            "name": "Dynamic / tag Small",
+            "type": "rectangle",
+            "x": 414,
+            "y": 220,
+            "w": 128,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061706ff60",
+            "name": "Dynamic / tag text Small",
+            "type": "text",
+            "text": "Small",
+            "x": 428,
+            "y": 228,
+            "w": 100,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061713475d",
+            "name": "Static / effect separator",
+            "type": "rectangle",
+            "x": 76,
+            "y": 307,
+            "w": 752,
+            "h": 2
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006171ac468",
+            "name": "Static / separator diamond",
+            "type": "group",
+            "x": 442,
+            "y": 300,
+            "w": 16,
+            "h": 16
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061722b6f9",
+            "name": "Dynamic / active effect role",
+            "type": "text",
+            "text": "BAIT EFFECT",
+            "x": 76,
+            "y": 337,
+            "w": 650,
+            "h": 38
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006172e89a3",
+            "name": "Dynamic / effect name",
+            "type": "text",
+            "text": "Shoal Signal",
+            "x": 76,
+            "y": 388,
+            "w": 710,
+            "h": 62
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006173e2c94",
+            "name": "Dynamic / effect description",
+            "type": "text",
+            "text": "After catching a Schooling creature,\nredraw 1 technique card.",
+            "x": 76,
+            "y": 470,
+            "w": 680,
+            "h": 120
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00617505c88",
+        "stableId": "creature_sardine",
+        "name": "Sardine",
+        "role": "Catch",
+        "ability": "No Catch effect",
+        "description": "",
+        "tags": [
+          "Fish",
+          "Schooling",
+          "Small"
+        ],
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00617591c6a",
+            "name": "Static / navy tooltip panel",
+            "type": "rectangle",
+            "x": 28,
+            "y": 16,
+            "w": 856,
+            "h": 608
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617636771",
+            "name": "Static / inset copper rule",
+            "type": "rectangle",
+            "x": 39,
+            "y": 27,
+            "w": 834,
+            "h": 586
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061770324f",
+            "name": "Static / left anchor pointer",
+            "type": "group",
+            "x": 0,
+            "y": 295,
+            "w": 34,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006177aa484",
+            "name": "Static / etched seaweed corner",
+            "type": "group",
+            "x": 740,
+            "y": 445,
+            "w": 130,
+            "h": 170
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006178590fd",
+            "name": "Static / top copper rule",
+            "type": "rectangle",
+            "x": 76,
+            "y": 48,
+            "w": 300,
+            "h": 2
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006178da2c6",
+            "name": "Static / eyebrow",
+            "type": "text",
+            "text": "CATCH CHAIN",
+            "x": 76,
+            "y": 61,
+            "w": 500,
+            "h": 38
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006179da3fb",
+            "name": "Dynamic / active mode badge",
+            "type": "rectangle",
+            "x": 670,
+            "y": 61,
+            "w": 158,
+            "h": 44
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617a6cd18",
+            "name": "Dynamic / active mode",
+            "type": "text",
+            "text": "CATCH",
+            "x": 680,
+            "y": 67,
+            "w": 138,
+            "h": 32
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617b5b887",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "Sardine",
+            "x": 76,
+            "y": 118,
+            "w": 742,
+            "h": 82
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617c1fec8",
+            "name": "Dynamic / tag Fish",
+            "type": "rectangle",
+            "x": 76,
+            "y": 220,
+            "w": 110,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617ce5a69",
+            "name": "Dynamic / tag text Fish",
+            "type": "text",
+            "text": "Fish",
+            "x": 90,
+            "y": 228,
+            "w": 82,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617df996e",
+            "name": "Dynamic / tag Schooling",
+            "type": "rectangle",
+            "x": 200,
+            "y": 220,
+            "w": 200,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617eb5e59",
+            "name": "Dynamic / tag text Schooling",
+            "type": "text",
+            "text": "Schooling",
+            "x": 214,
+            "y": 228,
+            "w": 172,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617fd8dee",
+            "name": "Dynamic / tag Small",
+            "type": "rectangle",
+            "x": 414,
+            "y": 220,
+            "w": 128,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006180b4b45",
+            "name": "Dynamic / tag text Small",
+            "type": "text",
+            "text": "Small",
+            "x": 428,
+            "y": 228,
+            "w": 100,
+            "h": 36
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006181df47f",
+            "name": "Static / effect separator",
+            "type": "rectangle",
+            "x": 76,
+            "y": 307,
+            "w": 752,
+            "h": 2
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0061826e0b5",
+            "name": "Static / separator diamond",
+            "type": "group",
+            "x": 442,
+            "y": 300,
+            "w": 16,
+            "h": 16
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006182ec9e0",
+            "name": "Dynamic / active effect role",
+            "type": "text",
+            "text": "CATCH EFFECT",
+            "x": 76,
+            "y": 337,
+            "w": 650,
+            "h": 38
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006183e044b",
+            "name": "Dynamic / effect name",
+            "type": "text",
+            "text": "No Catch effect",
+            "x": 76,
+            "y": 388,
+            "w": 710,
+            "h": 62
+          }
+        ]
+      }
+    ],
+    "prototypeTargets": [
+      {
+        "id": "bae680cd-9225-8018-8008-d00618c03324",
+        "stableId": "creature_sardine",
+        "overlayId": "bae680cd-9225-8018-8008-d00617505c88",
+        "position": {
+          "x": 930,
+          "y": 150
+        },
+        "triggers": [
+          "mouse-enter",
+          "mouse-leave"
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00618e50b16",
+        "stableId": "creature_clinging_crab",
+        "overlayId": "bae680cd-9225-8018-8008-d00614dd5194",
+        "position": {
+          "x": 930,
+          "y": 600
+        },
+        "triggers": [
+          "mouse-enter",
+          "mouse-leave"
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00619046bd5",
+        "stableId": "creature_glass_minnow",
+        "overlayId": "bae680cd-9225-8018-8008-d00616026a38",
+        "position": {
+          "x": 930,
+          "y": 1050
+        },
+        "triggers": [
+          "mouse-enter",
+          "mouse-leave"
+        ]
+      }
+    ],
+    "interactionContract": {
+      "content": "Creature name, current attached role, current effective tags, active-role effect title and rules; explicit no-effect state.",
+      "pointer": "Native Penpot mouse-enter opens overlay and mouse-leave closes it. No compact-card hover frame.",
+      "unity": "Future implementation only: show on hover or navigation focus; short hover delay, clamp/flip to viewport; non-interactive tooltip; hide on scroll, removal, modal or run end; refresh live data without revealing concealed values.",
+      "prototypeLimitation": "Penpot overlay transitions are wired. Actual viewer behavior requires playback review; this does not implement Unity interaction."
+    }
+  },
+  "log": ""
+}

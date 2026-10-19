@@ -1,0 +1,5 @@
+{
+  "connected": false,
+  "error": "Tool execution failed: Error: No Penpot plugin instances are currently connected. Please ensure the plugin is running and connected.",
+  "sourceReconciliation": "Latest recorded approved R027/R030 geometry and exact source hashes; live page unavailable."
+}

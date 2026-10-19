@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "instances": [
+    {
+      "handId": "bae680cd-9225-8018-8008-d011106c6952",
+      "children": 4,
+      "oldPreviewHidden": true
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+      "children": 4,
+      "oldPreviewHidden": true
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+      "children": 4,
+      "oldPreviewHidden": true
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+      "children": 4,
+      "oldPreviewHidden": true
+    }
+  ],
+  "assembledHandsUpdated": 4,
+  "cardsPerHand": 4,
+  "nativeEditableSourcesPreserved": true,
+  "readability": "Increased center spacing to500 so all printed rules remain visible in the fan.",
+  "visualReview": "Final local render inspected: all printed rules visible, balanced fan arc with controlled overlap and unchanged detailed faces.",
+  "penpotExport": "PenpotFan.png",
+  "penpotExportVerified": true
+}

@@ -1,0 +1,393 @@
+{
+  "result": {
+    "revision": "MFJ-R026",
+    "passed": true,
+    "variants": [
+      {
+        "id": "bae680cd-9225-8018-8008-d00614dd5194",
+        "name": "Clinging Crab",
+        "role": "Catch",
+        "nameMatches": true,
+        "iconId": "bae680cd-9225-8018-8008-d00950ed3c26",
+        "iconIsNative": true,
+        "noOriginOrRoleLabels": true,
+        "tagsMatch": true,
+        "effectMatches": true,
+        "frameId": "bae680cd-9225-8018-8008-d009504ddcd5",
+        "texts": [
+          {
+            "name": "Dynamic / creature name",
+            "text": "CLINGING CRAB",
+            "fontFamily": "Cinzel",
+            "fontSize": "46",
+            "textBounds": {
+              "x": 8764.8125,
+              "y": 13282,
+              "width": 390.375,
+              "height": 62
+            },
+            "region": {
+              "x": 140,
+              "y": 85,
+              "w": 640,
+              "h": 80
+            }
+          },
+          {
+            "name": "Dynamic / tag text Anchored",
+            "text": "Anchored",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 8803.671875,
+              "y": 13400,
+              "width": 121.640625,
+              "height": 36
+            },
+            "region": {
+              "x": 289.5,
+              "y": 203,
+              "w": 150,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / tag text Armored",
+            "text": "Armored",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 8988.15625,
+              "y": 13400,
+              "width": 111.671875,
+              "height": 36
+            },
+            "region": {
+              "x": 477.5,
+              "y": 203,
+              "w": 133,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / effect name",
+            "text": "Iron Grip",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "42",
+            "textBounds": {
+              "x": 8690,
+              "y": 13551,
+              "width": 184.640625,
+              "height": 58
+            },
+            "region": {
+              "x": 190,
+              "y": 355,
+              "w": 580,
+              "h": 66
+            }
+          },
+          {
+            "name": "Dynamic / effect description",
+            "text": "Cannot be deliberately released.",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "33",
+            "textBounds": {
+              "x": 8704.125,
+              "y": 13629,
+              "width": 503.75,
+              "height": 45
+            },
+            "region": {
+              "x": 182,
+              "y": 432,
+              "w": 548,
+              "h": 142
+            }
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00616026a38",
+        "name": "Glass Minnow",
+        "role": "Bait",
+        "nameMatches": true,
+        "iconId": "bae680cd-9225-8018-8008-d00951f46a54",
+        "iconIsNative": true,
+        "noOriginOrRoleLabels": true,
+        "tagsMatch": true,
+        "effectMatches": true,
+        "frameId": "bae680cd-9225-8018-8008-d0095171fa02",
+        "texts": [
+          {
+            "name": "Dynamic / creature name",
+            "text": "GLASS MINNOW",
+            "fontFamily": "Cinzel",
+            "fontSize": "46",
+            "textBounds": {
+              "x": 9819.96875,
+              "y": 13282,
+              "width": 380.0625,
+              "height": 62
+            },
+            "region": {
+              "x": 140,
+              "y": 85,
+              "w": 640,
+              "h": 80
+            }
+          },
+          {
+            "name": "Dynamic / tag text Fish",
+            "text": "Fish",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 9802.640625,
+              "y": 13400,
+              "width": 52.703125,
+              "height": 36
+            },
+            "region": {
+              "x": 238,
+              "y": 203,
+              "w": 82,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / tag text Schooling",
+            "text": "Schooling",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 9930.375,
+              "y": 13400,
+              "width": 122.234375,
+              "height": 36
+            },
+            "region": {
+              "x": 358,
+              "y": 203,
+              "w": 167,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / tag text Small",
+            "text": "Small",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 10127.421875,
+              "y": 13400,
+              "width": 70.15625,
+              "height": 36
+            },
+            "region": {
+              "x": 563,
+              "y": 203,
+              "w": 99,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / effect name",
+            "text": "Shoal Signal",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "42",
+            "textBounds": {
+              "x": 9740,
+              "y": 13551,
+              "width": 243.78125,
+              "height": 58
+            },
+            "region": {
+              "x": 190,
+              "y": 355,
+              "w": 580,
+              "h": 66
+            }
+          },
+          {
+            "name": "Dynamic / effect description",
+            "text": "After catching a Schooling\ncreature, redraw 1 technique card.",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "33",
+            "textBounds": {
+              "x": 9736.484375,
+              "y": 13629,
+              "width": 539.03125,
+              "height": 85.25
+            },
+            "region": {
+              "x": 182,
+              "y": 432,
+              "w": 548,
+              "h": 142
+            }
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00617505c88",
+        "name": "Sardine",
+        "role": "Catch",
+        "nameMatches": true,
+        "iconId": "bae680cd-9225-8018-8008-d00952de8469",
+        "iconIsNative": true,
+        "noOriginOrRoleLabels": true,
+        "tagsMatch": true,
+        "effectMatches": true,
+        "frameId": "bae680cd-9225-8018-8008-d009525cd935",
+        "texts": [
+          {
+            "name": "Dynamic / creature name",
+            "text": "SARDINE",
+            "fontFamily": "Cinzel",
+            "fontSize": "46",
+            "textBounds": {
+              "x": 10954.375,
+              "y": 13282,
+              "width": 211.25,
+              "height": 62
+            },
+            "region": {
+              "x": 140,
+              "y": 85,
+              "w": 640,
+              "h": 80
+            }
+          },
+          {
+            "name": "Dynamic / tag text Fish",
+            "text": "Fish",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 10852.640625,
+              "y": 13400,
+              "width": 52.703125,
+              "height": 36
+            },
+            "region": {
+              "x": 238,
+              "y": 203,
+              "w": 82,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / tag text Schooling",
+            "text": "Schooling",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 10980.375,
+              "y": 13400,
+              "width": 122.234375,
+              "height": 36
+            },
+            "region": {
+              "x": 358,
+              "y": 203,
+              "w": 167,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / tag text Small",
+            "text": "Small",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "26",
+            "textBounds": {
+              "x": 11177.421875,
+              "y": 13400,
+              "width": 70.15625,
+              "height": 36
+            },
+            "region": {
+              "x": 563,
+              "y": 203,
+              "w": 99,
+              "h": 37
+            }
+          },
+          {
+            "name": "Dynamic / effect name",
+            "text": "No effect",
+            "fontFamily": "Source Serif 4",
+            "fontSize": "42",
+            "textBounds": {
+              "x": 10790,
+              "y": 13551,
+              "width": 175.953125,
+              "height": 58
+            },
+            "region": {
+              "x": 190,
+              "y": 355,
+              "w": 580,
+              "h": 66
+            }
+          }
+        ]
+      }
+    ],
+    "prototypeTargets": [
+      {
+        "id": "bae680cd-9225-8018-8008-d00618c03324",
+        "interactions": [
+          {
+            "trigger": "mouse-enter",
+            "type": "open-overlay",
+            "destination": "bae680cd-9225-8018-8008-d00617505c88"
+          },
+          {
+            "trigger": "mouse-leave",
+            "type": "close-overlay",
+            "destination": "bae680cd-9225-8018-8008-d00617505c88"
+          }
+        ],
+        "overlayExists": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00618e50b16",
+        "interactions": [
+          {
+            "trigger": "mouse-enter",
+            "type": "open-overlay",
+            "destination": "bae680cd-9225-8018-8008-d00614dd5194"
+          },
+          {
+            "trigger": "mouse-leave",
+            "type": "close-overlay",
+            "destination": "bae680cd-9225-8018-8008-d00614dd5194"
+          }
+        ],
+        "overlayExists": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00619046bd5",
+        "interactions": [
+          {
+            "trigger": "mouse-enter",
+            "type": "open-overlay",
+            "destination": "bae680cd-9225-8018-8008-d00616026a38"
+          },
+          {
+            "trigger": "mouse-leave",
+            "type": "close-overlay",
+            "destination": "bae680cd-9225-8018-8008-d00616026a38"
+          }
+        ],
+        "overlayExists": true
+      }
+    ],
+    "previewUsesRevisedFrame": true,
+    "previousVersion": "superseded",
+    "unityImported": false,
+    "prototypePlaybackVerified": false
+  },
+  "log": ""
+}

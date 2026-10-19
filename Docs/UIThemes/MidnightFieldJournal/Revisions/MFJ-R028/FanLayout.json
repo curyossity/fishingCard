@@ -1,0 +1,56 @@
+{
+  "canvas": [
+    2500,
+    866
+  ],
+  "perspective": 2000,
+  "tiltX": 40,
+  "cardSize": [
+    620,
+    640
+  ],
+  "transformOrigin": [
+    1250,
+    433
+  ],
+  "cards": [
+    {
+      "id": "cut_loose",
+      "x": 500,
+      "y": 480,
+      "angle": -15,
+      "order": 0
+    },
+    {
+      "id": "slip_past",
+      "x": 1000,
+      "y": 400,
+      "angle": -5,
+      "order": 1
+    },
+    {
+      "id": "steady_line",
+      "x": 1500,
+      "y": 400,
+      "angle": 5,
+      "order": 2
+    },
+    {
+      "id": "prize_hook",
+      "x": 2000,
+      "y": 480,
+      "angle": 15,
+      "order": 3
+    }
+  ],
+  "purpose": "Penpot layout preview only; reuse native individual Unity views at future import, never the flattened preview.",
+  "generalHandRule": {
+    "count": "0..4 physical occurrences",
+    "centeredIndex": "c = index - (count - 1) / 2",
+    "centerX": "1250 + 500 * c",
+    "centerYDown": "400 + 40 * (c*c - (count % 2 == 0 ? 0.25 : 0))",
+    "screenAngleClockwise": "10 * c degrees",
+    "stacking": "left-to-right, later cards above earlier; inspect/focus lifts the inspected occurrence",
+    "note": "Convert screen-down Y and clockwise angle to Unity camera coordinates; verify actual projective render rather than copying signs blindly."
+  }
+}

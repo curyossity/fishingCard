@@ -62,7 +62,8 @@ public static class MidnightFieldJournalAssetValidation
         report.prefabs = prefabs.Length;
         report.prefabGuidsStable = ids.All(p => AssetDatabase.AssetPathToGUID(p.Key) == p.Value);
         if (!report.prefabGuidsStable) report.failures.Add("Template regeneration changed a prefab GUID.");
-        if (theme.Sprites.Count != 20 || report.sprites != 20 || report.fonts != 8 || report.prefabs != 9) report.failures.Add("Unexpected asset/font/template count.");
+        if (theme.Sprites.Count != 20 || report.sprites != 20 || report.fonts != 8 || report.prefabs != 10) report.failures.Add("Unexpected asset/font/template count.");
+        if (theme.CatchTooltipFrame == null) report.failures.Add("Detailed inspection frame is missing.");
         if (theme.TryGetArtwork("clear_water", out Sprite unused)) report.failures.Add("Missing art incorrectly substituted for Clear Water.");
         string[] dependencies = AssetDatabase.GetDependencies(prefabs.Concat(new[] { MidnightFieldJournalAssetSetup.ThemePath }).ToArray(), true);
         report.externalSharedDependencies = dependencies.Where(p => !p.StartsWith(Root, StringComparison.Ordinal)).OrderBy(p => p).ToArray();

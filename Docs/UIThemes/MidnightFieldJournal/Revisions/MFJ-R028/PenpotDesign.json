@@ -1,0 +1,348 @@
+{
+  "result": {
+    "revision": "MFJ-R028",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "sourceBoardId": "bae680cd-9225-8018-8008-d0105575afda",
+    "sources": [
+      {
+        "id": "bae680cd-9225-8018-8008-d01055883e47",
+        "name": "Technique R028 / Cut Loose / editable",
+        "x": 80,
+        "y": 17490,
+        "width": 620.0000000000003,
+        "height": 640,
+        "rotation": 0
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d010559e07ab",
+        "name": "Technique R028 / Slip Past / editable",
+        "x": 780,
+        "y": 17490,
+        "width": 620.0000000000005,
+        "height": 640,
+        "rotation": 359.99999999999994
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d01055b02684",
+        "name": "Technique R028 / Steady Line / editable",
+        "x": 1480,
+        "y": 17490,
+        "width": 620,
+        "height": 640,
+        "rotation": 0
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d01055bfb011",
+        "name": "Technique R028 / Prize Hook / editable",
+        "x": 2180,
+        "y": 17490,
+        "width": 619.9999999999995,
+        "height": 640,
+        "rotation": 0
+      }
+    ],
+    "status": "ready_for_review",
+    "unityImported": false,
+    "integrationStatus": "not_imported",
+    "layout": {
+      "canvas": [
+        2500,
+        866
+      ],
+      "perspective": 2000,
+      "tiltX": 40,
+      "cardSize": [
+        620,
+        640
+      ],
+      "transformOrigin": [
+        1250,
+        433
+      ],
+      "cards": [
+        {
+          "id": "cut_loose",
+          "x": 500,
+          "y": 480,
+          "angle": -15,
+          "order": 0
+        },
+        {
+          "id": "slip_past",
+          "x": 1000,
+          "y": 400,
+          "angle": -5,
+          "order": 1
+        },
+        {
+          "id": "steady_line",
+          "x": 1500,
+          "y": 400,
+          "angle": 5,
+          "order": 2
+        },
+        {
+          "id": "prize_hook",
+          "x": 2000,
+          "y": 480,
+          "angle": 15,
+          "order": 3
+        }
+      ],
+      "purpose": "Penpot layout preview only; reuse native individual Unity views at future import, never the flattened preview.",
+      "generalHandRule": {
+        "count": "0..4 physical occurrences",
+        "centeredIndex": "c = index - (count - 1) / 2",
+        "centerX": "1250 + 500 * c",
+        "centerYDown": "400 + 40 * (c*c - (count % 2 == 0 ? 0.25 : 0))",
+        "screenAngleClockwise": "10 * c degrees",
+        "stacking": "left-to-right, later cards above earlier; inspect/focus lifts the inspected occurrence",
+        "note": "Convert screen-down Y and clockwise angle to Unity camera coordinates; verify actual projective render rather than copying signs blindly."
+      }
+    },
+    "projectedSourceBoardId": "bae680cd-9225-8018-8008-d01110225b74",
+    "projectedSourceIds": [
+      "bae680cd-9225-8018-8008-d011dbc31887",
+      "bae680cd-9225-8018-8008-d011dcd9e70c",
+      "bae680cd-9225-8018-8008-d011de074bf5",
+      "bae680cd-9225-8018-8008-d011df0e3971"
+    ],
+    "instances": [
+      {
+        "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+        "handId": "bae680cd-9225-8018-8008-d011106c6952",
+        "before": {
+          "id": "bae680cd-9225-8018-8008-cdead540babc",
+          "x": 5180,
+          "y": 6290,
+          "width": 2500,
+          "height": 866.6040394551437
+        },
+        "cards": [
+          {
+            "id": "bae680cd-9225-8018-8008-d011eda33cc3",
+            "cardId": "cut_loose"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee087da7",
+            "cardId": "slip_past"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee5aa136",
+            "cardId": "steady_line"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee9ff62f",
+            "cardId": "prize_hook"
+          }
+        ],
+        "after": {
+          "x": 5180,
+          "y": 6290,
+          "width": 2500,
+          "height": 866
+        }
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+        "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+        "before": {
+          "id": "bae680cd-9225-8018-8008-d00619215448",
+          "x": 5180,
+          "y": 11490,
+          "width": 2500,
+          "height": 866.6040394551437
+        },
+        "cards": [
+          {
+            "id": "bae680cd-9225-8018-8008-d011edb0acf9",
+            "cardId": "cut_loose"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee1920bc",
+            "cardId": "slip_past"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee64f951",
+            "cardId": "steady_line"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011eead1f6d",
+            "cardId": "prize_hook"
+          }
+        ],
+        "after": {
+          "x": 5180,
+          "y": 11490,
+          "width": 2500,
+          "height": 866
+        }
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-d00618505dcb",
+        "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+        "before": {
+          "id": "bae680cd-9225-8018-8008-d00618505dd6",
+          "x": 980,
+          "y": 11490,
+          "width": 2500,
+          "height": 866.6040394551437
+        },
+        "cards": [
+          {
+            "id": "bae680cd-9225-8018-8008-d011edc51aec",
+            "cardId": "cut_loose"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee28d2bb",
+            "cardId": "slip_past"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee71c153",
+            "cardId": "steady_line"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011eebbcf05",
+            "cardId": "prize_hook"
+          }
+        ],
+        "after": {
+          "x": 980,
+          "y": 11490,
+          "width": 2500,
+          "height": 866
+        }
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+        "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+        "before": {
+          "id": "bae680cd-9225-8018-8008-cf65f248e1ed",
+          "x": 980,
+          "y": 8790,
+          "width": 2500,
+          "height": 866.6040394551437
+        },
+        "cards": [
+          {
+            "id": "bae680cd-9225-8018-8008-d011eddb8cae",
+            "cardId": "cut_loose"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee3a81ef",
+            "cardId": "slip_past"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011ee82b801",
+            "cardId": "steady_line"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d011eec944ca",
+            "cardId": "prize_hook"
+          }
+        ],
+        "after": {
+          "x": 980,
+          "y": 8790,
+          "width": 2500,
+          "height": 866
+        }
+      }
+    ],
+    "nativeSources": [
+      {
+        "id": "bae680cd-9225-8018-8008-d01055883e47",
+        "name": "Technique R028 / Cut Loose / editable",
+        "x": 317.7408994175821,
+        "y": 17500.669831605715,
+        "width": 620.0000000000003,
+        "height": 640,
+        "rotation": 345,
+        "texts": [
+          {
+            "id": "bae680cd-9225-8018-8008-d01055883e49",
+            "text": "T E C H N I Q U E"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d01055883e4a",
+            "text": "CUT LOOSE"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d01055883e4c",
+            "text": "Release 1 attached\ncreature."
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d010559e07ab",
+        "name": "Technique R028 / Slip Past / editable",
+        "x": 863.2898059123086,
+        "y": 17464.199416358868,
+        "width": 620.0000000000005,
+        "height": 640,
+        "rotation": 355,
+        "texts": [
+          {
+            "id": "bae680cd-9225-8018-8008-d010559e07ad",
+            "text": "T E C H N I Q U E"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d010559e07ae",
+            "text": "SLIP PAST"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d010559e07b0",
+            "text": "Skip the Hooked\nnon-Apex creature."
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d01055b02684",
+        "name": "Technique R028 / Steady Line / editable",
+        "x": 1363.2898059123088,
+        "y": 17464.199416358868,
+        "width": 620,
+        "height": 640,
+        "rotation": 5,
+        "texts": [
+          {
+            "id": "bae680cd-9225-8018-8008-d01055b02686",
+            "text": "T E C H N I Q U E"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d01055b02687",
+            "text": "STEADY LINE"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d01055b02689",
+            "text": "Reduce Line Load by 2\nfor your next Descend or Surface."
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d01055bfb011",
+        "name": "Technique R028 / Prize Hook / editable",
+        "x": 1817.7408994175812,
+        "y": 17500.669831605715,
+        "width": 619.9999999999995,
+        "height": 640,
+        "rotation": 15,
+        "texts": [
+          {
+            "id": "bae680cd-9225-8018-8008-d01055bfb013",
+            "text": "T E C H N I Q U E"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d01055bfb014",
+            "text": "PRIZE HOOK"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d01055bfb016",
+            "text": "Your next Catch gains\n8 value and 1 weight."
+          }
+        ]
+      }
+    ]
+  }
+}

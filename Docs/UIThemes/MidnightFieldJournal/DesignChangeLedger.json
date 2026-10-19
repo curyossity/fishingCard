@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R025",
+  "nextRevisionId": "MFJ-R031",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -41,7 +41,10 @@
     "exportEvidence",
     "importEvidence",
     "verificationEvidence",
-    "remainingWork"
+    "remainingWork",
+    "unityImported",
+    "integrationStatus",
+    "synchronizationCheckpoint"
   ],
   "changes": [
     {
@@ -268,7 +271,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R002",
@@ -641,7 +647,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R003",
@@ -751,7 +760,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R004",
@@ -875,7 +887,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R005",
@@ -996,7 +1011,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R006",
@@ -1118,7 +1136,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R007",
@@ -1242,7 +1263,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R008",
@@ -1365,7 +1389,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R009",
@@ -1489,7 +1516,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R010",
@@ -1613,7 +1643,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R011",
@@ -1734,7 +1767,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R012",
@@ -1856,7 +1892,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R013",
@@ -1979,7 +2018,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R014",
@@ -2103,7 +2145,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R015",
@@ -2226,7 +2271,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R016",
@@ -2350,7 +2398,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R017",
@@ -2473,7 +2524,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R018",
@@ -2597,7 +2651,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R019",
@@ -2722,7 +2779,10 @@
         "penpot": "Sync001/PenpotReconciliation.json",
         "scope": "Actual Editor rendering at 4K/1080p/ultrawide/16:10, card masks/text/hover checks and Play Mode actions, Surface/restart. Not standalone player certification."
       },
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
     },
     {
       "id": "MFJ-R020",
@@ -2816,7 +2876,10 @@
         "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/reef_snag.png"
       },
       "verificationEvidence": "Sync002/Verification.json",
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-002"
     },
     {
       "id": "MFJ-R021",
@@ -2901,7 +2964,10 @@
         "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/silt_burst.png"
       },
       "verificationEvidence": "Sync002/Verification.json",
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-002"
     },
     {
       "id": "MFJ-R022",
@@ -2985,7 +3051,10 @@
         "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/gentle_upwelling.png"
       },
       "verificationEvidence": "Sync002/Verification.json",
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-002"
     },
     {
       "id": "MFJ-R023",
@@ -3067,7 +3136,10 @@
         "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/loose_knot.png"
       },
       "verificationEvidence": "Sync002/Verification.json",
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-002"
     },
     {
       "id": "MFJ-R024",
@@ -3151,7 +3223,1504 @@
         "path": "Assets/UIThemes/MidnightFieldJournal/Art/Events/CentralV3/fresh_shell_fragments.png"
       },
       "verificationEvidence": "Sync002/Verification.json",
-      "remainingWork": []
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-002"
+    },
+    {
+      "id": "MFJ-R025",
+      "date": "2026-10-19",
+      "request": "Create a Penpot-only Catch Chain hover tooltip showing creature effects and tags; keep a reliable pending-versus-imported change log.",
+      "component": "Catch Chain hover/focus tooltip",
+      "status": "superseded",
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "prototypeBoardId": "bae680cd-9225-8018-8008-d00618505dcb",
+        "previewBoardId": "bae680cd-9225-8018-8008-d0061921543d",
+        "tooltipBoards": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00614dd5194",
+            "stableId": "creature_clinging_crab",
+            "name": "Clinging Crab",
+            "role": "Catch"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00616026a38",
+            "stableId": "creature_glass_minnow",
+            "name": "Glass Minnow",
+            "role": "Bait"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00617505c88",
+            "stableId": "creature_sardine",
+            "name": "Sardine",
+            "role": "Catch"
+          }
+        ]
+      },
+      "affectedPenpotInstances": {
+        "previewTooltipId": "bae680cd-9225-8018-8008-d006197bbb2c",
+        "prototypeTargets": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00618c03324",
+            "stableId": "creature_sardine",
+            "overlayId": "bae680cd-9225-8018-8008-d00617505c88",
+            "position": {
+              "x": 930,
+              "y": 150
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00618e50b16",
+            "stableId": "creature_clinging_crab",
+            "overlayId": "bae680cd-9225-8018-8008-d00614dd5194",
+            "position": {
+              "x": 930,
+              "y": 600
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00619046bd5",
+            "stableId": "creature_glass_minnow",
+            "overlayId": "bae680cd-9225-8018-8008-d00616026a38",
+            "position": {
+              "x": 930,
+              "y": 1050
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          }
+        ],
+        "existingAssemblies": "Preserved; review and prototype boards are separate clones."
+      },
+      "changeKinds": [
+        "new editable native tooltip component",
+        "hover prototype",
+        "interaction contract"
+      ],
+      "before": {
+        "checkpoint": "MFJ-SYNC-002",
+        "tooltip": "No creature-effect/tag inspection tooltip in the imported Catch Chain presentation."
+      },
+      "after": {
+        "canvas": [
+          900,
+          640
+        ],
+        "fields": [
+          "name",
+          "active attachment role",
+          "effective tags",
+          "active-role effect title",
+          "active-role rules"
+        ],
+        "examples": [
+          "Clinging Crab Catch / Iron Grip",
+          "Glass Minnow Bait / Shoal Signal",
+          "Sardine Catch / No Catch effect"
+        ],
+        "nativeElements": true,
+        "newRasterAssets": false,
+        "hoverFrame": false,
+        "historicalBackupBoards": [
+          {
+            "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+            "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009513f1f95",
+            "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009522a12b1",
+            "name": "SUPERSEDED / MFJ-R025 / Sardine Catch"
+          }
+        ]
+      },
+      "unityAssetIds": [
+        "creature_clinging_crab",
+        "creature_glass_minnow",
+        "creature_sardine"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab"
+      ],
+      "dependentConsumers": [
+        "CompactCatchCardView hover/focus source",
+        "CatchChainView current attachment indices and live runtime display data",
+        "Candidate tooltip canvas/modal/input layers",
+        "Theme prefab and HUD builders"
+      ],
+      "configurationChanges": "Future authorized import: native non-interactive tooltip, current attached-role effect and live effective tags, hover/navigation focus, clamped placement, live invalidation and modal/scroll/removal dismissal. Preserve pointer-frame removal and all information masks. Views display existing runtime data; no new effects or rules.",
+      "exportRequirements": {
+        "newRasterImages": [],
+        "nativeVectorAndText": true,
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "tooltipCanvas": [
+          900,
+          640
+        ]
+      },
+      "approvalEvidence": "Creation explicitly authorized; Unity integration explicitly deferred by the user.",
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R025/GameplayTooltip4K.png",
+        "component": "Revisions/MFJ-R025/BaitTooltip.png",
+        "geometry": "Revisions/MFJ-R025/PenpotDesign.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": "Revisions/MFJ-R025/Verification.json",
+      "remainingWork": [],
+      "supersededBy": "MFJ-R026"
+    },
+    {
+      "id": "MFJ-R026",
+      "date": "2026-10-19",
+      "request": "Match the tooltip to the detailed engraved theme; remove the redundant Catch Chain heading and replace Catch/Bait titles with the existing role icons.",
+      "component": "Detailed engraved Catch Chain inspection tooltip",
+      "status": "superseded",
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersedes": [
+        "MFJ-R025"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "prototypeBoardId": "bae680cd-9225-8018-8008-d00618505dcb",
+        "previewBoardId": "bae680cd-9225-8018-8008-d0061921543d",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d00953150b66",
+        "sourceFrameId": "bae680cd-9225-8018-8008-d0094fb6cfef"
+      },
+      "affectedPenpotInstances": {
+        "tooltipSourceBoards": [
+          "bae680cd-9225-8018-8008-d00614dd5194",
+          "bae680cd-9225-8018-8008-d00616026a38",
+          "bae680cd-9225-8018-8008-d00617505c88"
+        ],
+        "previewTooltipId": "bae680cd-9225-8018-8008-d00953094203",
+        "prototypeTargets": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00618c03324",
+            "stableId": "creature_sardine",
+            "overlayId": "bae680cd-9225-8018-8008-d00617505c88",
+            "position": {
+              "x": 930,
+              "y": 150
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00618e50b16",
+            "stableId": "creature_clinging_crab",
+            "overlayId": "bae680cd-9225-8018-8008-d00614dd5194",
+            "position": {
+              "x": 930,
+              "y": 600
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00619046bd5",
+            "stableId": "creature_glass_minnow",
+            "overlayId": "bae680cd-9225-8018-8008-d00616026a38",
+            "position": {
+              "x": 930,
+              "y": 1050
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          }
+        ],
+        "preservedHistoricalBackups": [
+          {
+            "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+            "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009513f1f95",
+            "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009522a12b1",
+            "name": "SUPERSEDED / MFJ-R025 / Sardine Catch"
+          }
+        ]
+      },
+      "changeKinds": [
+        "new independent raster master",
+        "native role icons",
+        "typography/layout refinement",
+        "supersedes pending draft"
+      ],
+      "before": {
+        "revision": "MFJ-R025",
+        "style": "Flat native navy tooltip and textual origin/role labels; superseded without a Unity import."
+      },
+      "after": {
+        "canvas": [
+          900,
+          640
+        ],
+        "style": "Independent detailed copper/parchment/navy engraved master",
+        "nameTagsEffectsEditable": true,
+        "rolePresentation": "Existing native Catch hook or Bait twin-spark, no origin/mode headings",
+        "frameDisplayBounds": [
+          28,
+          16,
+          856,
+          608
+        ],
+        "iconDisplayBounds": {
+          "Catch": [
+            116,
+            355,
+            34,
+            50
+          ],
+          "Bait": [
+            116,
+            355,
+            55,
+            43
+          ]
+        },
+        "bodyDisplayBounds": [
+          182,
+          432,
+          548,
+          142
+        ],
+        "bodySize": 33,
+        "examples": "Clinging Crab Catch, Glass Minnow Bait, Sardine effectless Catch"
+      },
+      "unityAssetIds": [
+        "creature_clinging_crab",
+        "creature_glass_minnow",
+        "creature_sardine"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab"
+      ],
+      "dependentConsumers": [
+        "CompactCatchCardView hover/focus source",
+        "CatchChainView current attachment indices and live runtime display data",
+        "Candidate tooltip canvas/modal/input layers",
+        "Theme prefab and HUD builders"
+      ],
+      "configurationChanges": "Use the R026 detailed frame and recorded geometry for the future native tooltip. Keep name/tags/active effect text editable, use the existing hook/twin-spark native equivalents, remove all textual Catch Chain/Catch/Bait headings. R025 is superseded; do not import both. Preserve its live-data, focus, concealment and dismissal contract.",
+      "exportRequirements": {
+        "newRasterImages": [
+          "EngravedTooltipMasterV2"
+        ],
+        "nativeVectorAndText": true,
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "tooltipCanvas": [
+          900,
+          640
+        ],
+        "reusedNativeIcons": [
+          "MFJ-R002/CatchHookV3.svg",
+          "MFJ-R002/BaitTwinSparkV3.svg"
+        ]
+      },
+      "approvalEvidence": "Visual refinement authorized. Unity integration remains deferred by the prior Penpot-only instruction.",
+      "exportEvidence": {
+        "frame": "Revisions/MFJ-R026/Art/EngravedTooltipMasterV2.png",
+        "manifest": "Revisions/MFJ-R026/Assets.json",
+        "preview": "Revisions/MFJ-R026/GameplayTooltip4K.png",
+        "catch": "Revisions/MFJ-R026/CatchTooltip.png",
+        "bait": "Revisions/MFJ-R026/BaitTooltip.png",
+        "geometry": "Revisions/MFJ-R026/PenpotDesign.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": "Revisions/MFJ-R026/Verification.json",
+      "remainingWork": [],
+      "supersededBy": "MFJ-R027"
+    },
+    {
+      "id": "MFJ-R027",
+      "date": "2026-10-19",
+      "request": "Remove the protruding triangle marked in red from the engraved tooltip.",
+      "component": "Detailed engraved Catch Chain inspection tooltip",
+      "status": "verified",
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-003",
+      "supersedes": [
+        "MFJ-R026"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "prototypeBoardId": "bae680cd-9225-8018-8008-d00618505dcb",
+        "previewBoardId": "bae680cd-9225-8018-8008-d0061921543d",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d00953150b66",
+        "sourceFrameId": "bae680cd-9225-8018-8008-d0094fb6cfef"
+      },
+      "affectedPenpotInstances": {
+        "tooltipSourceBoards": [
+          "bae680cd-9225-8018-8008-d00614dd5194",
+          "bae680cd-9225-8018-8008-d00616026a38",
+          "bae680cd-9225-8018-8008-d00617505c88"
+        ],
+        "previewTooltipId": "bae680cd-9225-8018-8008-d00953094203",
+        "prototypeTargets": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00618c03324",
+            "stableId": "creature_sardine",
+            "overlayId": "bae680cd-9225-8018-8008-d00617505c88",
+            "position": {
+              "x": 930,
+              "y": 150
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00618e50b16",
+            "stableId": "creature_clinging_crab",
+            "overlayId": "bae680cd-9225-8018-8008-d00614dd5194",
+            "position": {
+              "x": 930,
+              "y": 600
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00619046bd5",
+            "stableId": "creature_glass_minnow",
+            "overlayId": "bae680cd-9225-8018-8008-d00616026a38",
+            "position": {
+              "x": 930,
+              "y": 1050
+            },
+            "triggers": [
+              "mouse-enter",
+              "mouse-leave"
+            ]
+          }
+        ],
+        "preservedHistoricalBackups": [
+          {
+            "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+            "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009513f1f95",
+            "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009522a12b1",
+            "name": "SUPERSEDED / MFJ-R025 / Sardine Catch"
+          }
+        ],
+        "removedPointers": [
+          {
+            "parentId": "bae680cd-9225-8018-8008-d00614dd5194",
+            "id": "bae680cd-9225-8018-8008-d009503b3feb",
+            "name": "Static / independent anchor pointer"
+          },
+          {
+            "parentId": "bae680cd-9225-8018-8008-d00616026a38",
+            "id": "bae680cd-9225-8018-8008-d00951641498",
+            "name": "Static / independent anchor pointer"
+          },
+          {
+            "parentId": "bae680cd-9225-8018-8008-d00617505c88",
+            "id": "bae680cd-9225-8018-8008-d009525040e4",
+            "name": "Static / independent anchor pointer"
+          },
+          {
+            "parentId": "bae680cd-9225-8018-8008-d00953094203",
+            "id": "bae680cd-9225-8018-8008-d00953094204",
+            "name": "Static / independent anchor pointer"
+          }
+        ]
+      },
+      "changeKinds": [
+        "remove native pointer",
+        "shared tooltip source and assembled instance update"
+      ],
+      "before": {
+        "revision": "MFJ-R026",
+        "pointer": "Separate native vector on the left edge"
+      },
+      "after": {
+        "canvas": [
+          900,
+          640
+        ],
+        "style": "Independent detailed copper/parchment/navy engraved master",
+        "nameTagsEffectsEditable": true,
+        "rolePresentation": "Existing native Catch hook or Bait twin-spark, no origin/mode headings",
+        "frameDisplayBounds": [
+          28,
+          16,
+          856,
+          608
+        ],
+        "iconDisplayBounds": {
+          "Catch": [
+            116,
+            355,
+            34,
+            50
+          ],
+          "Bait": [
+            116,
+            355,
+            55,
+            43
+          ]
+        },
+        "bodyDisplayBounds": [
+          182,
+          432,
+          548,
+          142
+        ],
+        "bodySize": 33,
+        "examples": "Clinging Crab Catch, Glass Minnow Bait, Sardine effectless Catch",
+        "pointer": false
+      },
+      "unityAssetIds": [
+        "creature_clinging_crab",
+        "creature_glass_minnow",
+        "creature_sardine"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchTooltip.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchInspectionTrigger.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/MidnightFieldJournalTheme.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalTooltipBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/JournalInspectionDesignSync.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchTooltip.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/CatchChain.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/EngravedTooltipFrame.png"
+      ],
+      "dependentConsumers": [
+        "CompactCatchCardView hover/focus source",
+        "CatchChainView current attachment indices and live runtime display data",
+        "Candidate tooltip canvas/modal/input layers",
+        "Theme prefab and HUD builders"
+      ],
+      "configurationChanges": "Use R027 tooltip geometry without any anchor pointer. Reuse the R026 detailed raster frame and existing native role icons. R025/R026 are superseded; preserve live-data, focus, concealment and dismissal behavior.",
+      "exportRequirements": {
+        "newRasterImages": [],
+        "nativeVectorAndText": true,
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "tooltipCanvas": [
+          900,
+          640
+        ],
+        "reusedNativeIcons": [
+          "MFJ-R002/CatchHookV3.svg",
+          "MFJ-R002/BaitTwinSparkV3.svg"
+        ]
+      },
+      "approvalEvidence": "User explicitly requested integration of all logged changes on2026-10-19, including a fan that adapts to fewer or more cards.",
+      "exportEvidence": {
+        "frame": "Revisions/MFJ-R026/Art/EngravedTooltipMasterV2.png",
+        "manifest": "Revisions/MFJ-R027/Assets.json",
+        "catch": "Revisions/MFJ-R027/CatchTooltip.png",
+        "bait": "Revisions/MFJ-R027/BaitTooltip.png",
+        "geometry": "Revisions/MFJ-R027/PenpotDesign.json",
+        "contextExport": "Timed out; live assembled preview updated and verified by native read-back."
+      },
+      "importEvidence": "Sync003/ImportedSources.json",
+      "verificationEvidence": "Sync003/Verification.json",
+      "remainingWork": [],
+      "implementationEvidence": {
+        "checkpoint": "Sync003/UnityCheckpoint.json",
+        "handoff": "Sync003/README.md",
+        "render": "Sync003/GameplayTooltip4K.png"
+      }
+    },
+    {
+      "id": "MFJ-R028",
+      "date": "2026-10-19",
+      "request": "Arrange technique cards as a conventional fan, preserving the laid-down perspective and existing detailed card faces.",
+      "component": "Technique hand resting positions and orientation",
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d0105575afda",
+        "projectedSourceBoardId": "bae680cd-9225-8018-8008-d01110225b74",
+        "projectedSourceIds": [
+          "bae680cd-9225-8018-8008-d011dbc31887",
+          "bae680cd-9225-8018-8008-d011dcd9e70c",
+          "bae680cd-9225-8018-8008-d011de074bf5",
+          "bae680cd-9225-8018-8008-d011df0e3971"
+        ]
+      },
+      "affectedPenpotInstances": [
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "handId": "bae680cd-9225-8018-8008-d011106c6952",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-cdead540babc",
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011eda33cc3",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee087da7",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee5aa136",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee9ff62f",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+          "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-d00619215448",
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011edb0acf9",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee1920bc",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee64f951",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011eead1f6d",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d00618505dcb",
+          "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-d00618505dd6",
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011edc51aec",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee28d2bb",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee71c153",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011eebbcf05",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+          "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-cf65f248e1ed",
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011eddb8cae",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee3a81ef",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee82b801",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011eec944ca",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866
+          }
+        }
+      ],
+      "changeKinds": [
+        "layout",
+        "card position",
+        "fan rotation",
+        "individual projected preview elements"
+      ],
+      "before": {
+        "source": "Single rendered perspective-hand composite",
+        "instances": [
+          {
+            "id": "bae680cd-9225-8018-8008-cdead540babc",
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00619215448",
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00618505dd6",
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cf65f248e1ed",
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866.6040394551437
+          }
+        ],
+        "reference": "Temp/PenpotMcp/hand_before_r028.json"
+      },
+      "after": {
+        "canvas": [
+          2500,
+          866
+        ],
+        "perspective": 2000,
+        "tiltX": 40,
+        "cardSize": [
+          620,
+          640
+        ],
+        "transformOrigin": [
+          1250,
+          433
+        ],
+        "cards": [
+          {
+            "id": "cut_loose",
+            "x": 500,
+            "y": 480,
+            "angle": -15,
+            "order": 0
+          },
+          {
+            "id": "slip_past",
+            "x": 1000,
+            "y": 400,
+            "angle": -5,
+            "order": 1
+          },
+          {
+            "id": "steady_line",
+            "x": 1500,
+            "y": 400,
+            "angle": 5,
+            "order": 2
+          },
+          {
+            "id": "prize_hook",
+            "x": 2000,
+            "y": 480,
+            "angle": 15,
+            "order": 3
+          }
+        ],
+        "purpose": "Penpot layout preview only; reuse native individual Unity views at future import, never the flattened preview.",
+        "generalHandRule": {
+          "count": "0..4 physical occurrences",
+          "centeredIndex": "c = index - (count - 1) / 2",
+          "centerX": "1250 + 500 * c",
+          "centerYDown": "400 + 40 * (c*c - (count % 2 == 0 ? 0.25 : 0))",
+          "screenAngleClockwise": "10 * c degrees",
+          "stacking": "left-to-right, later cards above earlier; inspect/focus lifts the inspected occurrence",
+          "note": "Convert screen-down Y and clockwise angle to Unity camera coordinates; verify actual projective render rather than copying signs blindly."
+        }
+      },
+      "unityAssetIds": [
+        "TechniqueHand",
+        "MidnightFieldJournalCanvas"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueHandPresentation.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniquePose.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "Projected card views and stable resting hit planes",
+        "Inspect/hover/navigation pose restoration",
+        "Responsive camera fitting and hand framing",
+        "Prefab regeneration and Technique hand checks"
+      ],
+      "configurationChanges": "Change only the resting fan position/rotation/stacking in native hand layout and its stable hit planes; preserve perspective, active art mappings, content, hand occurrence identity and gameplay. Reuse existing sources; do not import flattened card/hand preview PNGs as runtime UI. Adapt the authored screen-space curve to the existing Unity camera and verify at supported aspects.",
+      "exportRequirements": {
+        "newRasterImages": [],
+        "nativeVectorAndText": true,
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "handViewport": [
+          2500,
+          866
+        ],
+        "previewImagesRuntimeAllowed": false
+      },
+      "approvalEvidence": "User requested Penpot card fan layout refinement. Unity synchronization remains pending.",
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R028/FanPreview.png",
+        "manifest": "Revisions/MFJ-R028/Assets.json",
+        "geometry": "Revisions/MFJ-R028/PenpotDesign.json",
+        "layout": "Revisions/MFJ-R028/FanLayout.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": "Revisions/MFJ-R028/Verification.json",
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R029"
+    },
+    {
+      "id": "MFJ-R029",
+      "date": "2026-10-19",
+      "request": "Reduce the vertical height of the Technique fan curve while retaining the current arrangement and perspective.",
+      "component": "Technique hand shallower fan",
+      "status": "superseded",
+      "supersedes": [
+        "MFJ-R028"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d0105575afda",
+        "projectedSourceBoardId": "bae680cd-9225-8018-8008-d01110225b74",
+        "projectedSourceIds": [
+          "bae680cd-9225-8018-8008-d011dbc31887",
+          "bae680cd-9225-8018-8008-d01754cc0cec",
+          "bae680cd-9225-8018-8008-d01756adb083",
+          "bae680cd-9225-8018-8008-d011df0e3971"
+        ]
+      },
+      "affectedPenpotInstances": [
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "handId": "bae680cd-9225-8018-8008-d011106c6952",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-cdead540babc",
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011eda33cc3",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017781ae2c8",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017784d99ce",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011ee9ff62f",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+          "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-d00619215448",
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011edb0acf9",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d0177825a406",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d01778587a3a",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011eead1f6d",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d00618505dcb",
+          "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-d00618505dd6",
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011edc51aec",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017783005b2",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d01778612125",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011eebbcf05",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+          "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-cf65f248e1ed",
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d011eddb8cae",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d01778395685",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017786be178",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d011eec944ca",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866
+          }
+        }
+      ],
+      "changeKinds": [
+        "vertical layout only",
+        "middle pair lowered50"
+      ],
+      "before": {
+        "revision": "MFJ-R028",
+        "middleY": 400,
+        "outerY": 480,
+        "offset": 80
+      },
+      "after": {
+        "layout": {
+          "canvas": [
+            2500,
+            866
+          ],
+          "perspective": 2000,
+          "tiltX": 40,
+          "cardSize": [
+            620,
+            640
+          ],
+          "transformOrigin": [
+            1250,
+            433
+          ],
+          "cards": [
+            {
+              "id": "cut_loose",
+              "x": 500,
+              "y": 480,
+              "angle": -15,
+              "order": 0
+            },
+            {
+              "id": "slip_past",
+              "x": 1000,
+              "y": 450,
+              "angle": -5,
+              "order": 1
+            },
+            {
+              "id": "steady_line",
+              "x": 1500,
+              "y": 450,
+              "angle": 5,
+              "order": 2
+            },
+            {
+              "id": "prize_hook",
+              "x": 2000,
+              "y": 480,
+              "angle": 15,
+              "order": 3
+            }
+          ],
+          "purpose": "Penpot layout preview only; reuse native individual Unity views at future import, never the flattened preview.",
+          "generalHandRule": {
+            "count": "0..4",
+            "centeredIndex": "c = index - (count - 1) / 2",
+            "centerX": "1250 + 500 * c",
+            "centerYDown": "450 + 15 * (c*c - (count % 2 == 0 ? 0.25 : 0))",
+            "screenAngleClockwise": "10 * c degrees",
+            "stacking": "left-to-right, later above earlier; inspection lifts focused occurrence"
+          }
+        },
+        "delta": {
+          "middleCardY": [
+            400,
+            450
+          ],
+          "outerCardY": 480,
+          "centerToOuterOffset": [
+            80,
+            30
+          ],
+          "spacingUnchanged": 500,
+          "rotationsUnchanged": [
+            -15,
+            -5,
+            5,
+            15
+          ],
+          "perspectiveUnchanged": 2000,
+          "tiltXUnchanged": 40
+        }
+      },
+      "unityAssetIds": [
+        "TechniqueHand",
+        "MidnightFieldJournalCanvas"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueHandPresentation.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniquePose.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset"
+      ],
+      "dependentConsumers": [
+        "Projected card views and stable resting hit planes",
+        "Inspect/hover/navigation pose restoration",
+        "Responsive camera fitting and hand framing",
+        "Prefab regeneration and Technique hand checks"
+      ],
+      "configurationChanges": "Use R029 as the latest native fan target. Reduce quadratic arc coefficient from40 to15 and set central YDown to450 (outer480). Keep500 spacing, clockwise angles±15/±5, camera tilt40 and perspective. Reuse existing art and dynamic card views; no flattened preview imports.",
+      "exportRequirements": {
+        "newRasterImages": [],
+        "nativeVectorAndText": true,
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "handViewport": [
+          2500,
+          866
+        ],
+        "previewImagesRuntimeAllowed": false
+      },
+      "approvalEvidence": "User requested Penpot card fan layout refinement. Unity synchronization remains pending.",
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R029/FanPreview.png",
+        "manifest": "Revisions/MFJ-R029/Assets.json",
+        "geometry": "Revisions/MFJ-R029/PenpotDesign.json",
+        "layout": "Revisions/MFJ-R029/FanLayout.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": "Revisions/MFJ-R029/Verification.json",
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R030",
+      "supersessionReason": "User rejected R029: the outer cards projected higher than the middle pair, breaking the fan."
+    },
+    {
+      "id": "MFJ-R030",
+      "date": "2026-10-19",
+      "request": "Keep the current middle-card height; restore a gradual fan with lower outer cards and less overall curve height than the first fan.",
+      "component": "Technique hand restored shallow fan",
+      "status": "verified",
+      "supersedes": [
+        "MFJ-R029"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d0105575afda",
+        "projectedSourceBoardId": "bae680cd-9225-8018-8008-d01110225b74",
+        "projectedSourceIds": [
+          "bae680cd-9225-8018-8008-d019b2d4a73e",
+          "bae680cd-9225-8018-8008-d01754cc0cec",
+          "bae680cd-9225-8018-8008-d01756adb083",
+          "bae680cd-9225-8018-8008-d019b3fb5849"
+        ]
+      },
+      "affectedPenpotInstances": [
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "handId": "bae680cd-9225-8018-8008-d011106c6952",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-cdead540babc",
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d019e91e50d6",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017781ae2c8",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017784d99ce",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d019e95b8a39",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 5180,
+            "y": 6290,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+          "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-d00619215448",
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d019e929327d",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d0177825a406",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d01778587a3a",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d019e965c3d8",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 5180,
+            "y": 11490,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d00618505dcb",
+          "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-d00618505dd6",
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d019e93416a1",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017783005b2",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d01778612125",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d019e96ed40b",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 980,
+            "y": 11490,
+            "width": 2500,
+            "height": 866
+          }
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+          "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+          "before": {
+            "id": "bae680cd-9225-8018-8008-cf65f248e1ed",
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866.6040394551437
+          },
+          "cards": [
+            {
+              "id": "bae680cd-9225-8018-8008-d019e940212a",
+              "cardId": "cut_loose"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d01778395685",
+              "cardId": "slip_past"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d017786be178",
+              "cardId": "steady_line"
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d019e977bd41",
+              "cardId": "prize_hook"
+            }
+          ],
+          "after": {
+            "x": 980,
+            "y": 8790,
+            "width": 2500,
+            "height": 866
+          }
+        }
+      ],
+      "changeKinds": [
+        "outer card height",
+        "outer card angle",
+        "middle cards preserved"
+      ],
+      "before": {
+        "revision": "MFJ-R029",
+        "middleY": 450,
+        "outerY": 480,
+        "angles": [
+          -15,
+          -5,
+          5,
+          15
+        ],
+        "issue": "Outer upper edges rise above the middle pair."
+      },
+      "after": {
+        "layout": {
+          "canvas": [
+            2500,
+            866
+          ],
+          "perspective": 2000,
+          "tiltX": 40,
+          "cardSize": [
+            620,
+            640
+          ],
+          "transformOrigin": [
+            1250,
+            433
+          ],
+          "cards": [
+            {
+              "id": "cut_loose",
+              "x": 500,
+              "y": 500,
+              "angle": -8,
+              "order": 0
+            },
+            {
+              "id": "slip_past",
+              "x": 1000,
+              "y": 450,
+              "angle": -5,
+              "order": 1
+            },
+            {
+              "id": "steady_line",
+              "x": 1500,
+              "y": 450,
+              "angle": 5,
+              "order": 2
+            },
+            {
+              "id": "prize_hook",
+              "x": 2000,
+              "y": 500,
+              "angle": 8,
+              "order": 3
+            }
+          ],
+          "purpose": "Penpot layout preview only; reuse native individual Unity views at future import, never the flattened preview.",
+          "generalHandRule": {
+            "count": "0..4",
+            "centeredIndex": "c = index - (count - 1) / 2",
+            "centerX": "1250 + 500 * c",
+            "centerYDown": "450 + 25 * (c*c - (count % 2 == 0 ? 0.25 : 0))",
+            "screenAngleClockwiseByCount": [
+              [],
+              [
+                0
+              ],
+              [
+                -5,
+                5
+              ],
+              [
+                -6.5,
+                0,
+                6.5
+              ],
+              [
+                -8,
+                -5,
+                5,
+                8
+              ]
+            ],
+            "stacking": "left-to-right, later above earlier; inspection lifts focused occurrence"
+          }
+        },
+        "delta": {
+          "middleCardsUnchanged": true,
+          "middleY": 450,
+          "outerY": [
+            480,
+            500
+          ],
+          "outerAngles": [
+            [
+              -15,
+              15
+            ],
+            [
+              -8,
+              8
+            ]
+          ],
+          "spacingUnchanged": 500,
+          "perspectiveUnchanged": 2000,
+          "tiltXUnchanged": 40
+        }
+      },
+      "unityAssetIds": [
+        "TechniqueHand",
+        "MidnightFieldJournalCanvas"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueFan.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalTechniqueHandPresentation.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab"
+      ],
+      "dependentConsumers": [
+        "Projected card views and stable resting hit planes",
+        "Inspect/hover/navigation pose restoration",
+        "Responsive camera fitting and hand framing",
+        "Prefab regeneration and Technique hand checks"
+      ],
+      "configurationChanges": "R030 is the latest native fan target. Keep middle Y450 and angles±5 exactly. Move outer centers480→500 and reduce their tilt magnitude15→8 degrees. Keep500 center spacing and existing laid-down camera/art/content. Use the recorded0–4 layout table/curve, update stable hit planes, and verify projected edge heights. Do not import flattened previews.",
+      "exportRequirements": {
+        "newRasterImages": [],
+        "nativeVectorAndText": true,
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "handViewport": [
+          2500,
+          866
+        ],
+        "previewImagesRuntimeAllowed": false
+      },
+      "approvalEvidence": "User explicitly requested integration of all logged changes on2026-10-19, including a fan that adapts to fewer or more cards.",
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R030/FanPreview.png",
+        "manifest": "Revisions/MFJ-R030/Assets.json",
+        "geometry": "Revisions/MFJ-R030/PenpotDesign.json",
+        "layout": "Revisions/MFJ-R030/FanLayout.json"
+      },
+      "importEvidence": "Sync003/ImportedSources.json",
+      "verificationEvidence": "Sync003/Verification.json",
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-003",
+      "implementationEvidence": {
+        "checkpoint": "Sync003/UnityCheckpoint.json",
+        "handoff": "Sync003/README.md",
+        "render": "Sync003/Fan4Cards4K.png"
+      },
+      "implementationExtension": "Fan supports arbitrary physical hand counts using bounded curvature/tilt and compressed spacing; current gameplay cap4 unchanged. Rendered0–20; symmetric1–64; actual per-occurrence projected clicks8/12."
     }
   ],
   "synchronizationCheckpoints": [
@@ -3196,6 +4765,17 @@
       "status": "verified",
       "manifest": "Sync002/UnityCheckpoint.json",
       "verification": "Sync002/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-003",
+      "date": "2026-10-19",
+      "revisions": [
+        "MFJ-R027",
+        "MFJ-R030"
+      ],
+      "status": "verified",
+      "manifest": "Sync003/UnityCheckpoint.json",
+      "verification": "Sync003/Verification.json"
     }
   ],
   "notes": [
@@ -3203,6 +4783,9 @@
     "MFJ-R001 through MFJ-R019 were imported and verified in Unity at MFJ-SYNC-001. The immutable original baseline is retained; the next comparison uses Sync001/UnityCheckpoint.json.",
     "Pending changes are never considered imported merely because an image was exported.",
     "Reconcile unrecorded external Penpot edits explicitly before the next import.",
-    "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained."
-  ]
+    "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
+    "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
+  ],
+  "currentUnityCheckpoint": "Sync003/UnityCheckpoint.json",
+  "pendingImportIndex": "PendingUnityChanges.json"
 }

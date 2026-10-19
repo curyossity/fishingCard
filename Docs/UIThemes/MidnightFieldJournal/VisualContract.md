@@ -2,7 +2,9 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-002 is the latest imported checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [next import reference](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
+**MFJ-SYNC-003 is the latest imported checkpoint.** The pointer-free R027 tooltip and adaptive R030 fan are integrated and verified. [Implementation](Sync003/README.md) · [next import baseline](Sync003/UnityCheckpoint.json). No pending Unity revisions remain.
+
+**MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
 Event geometry (top-left card pixels): category `(460,70,340,38)` at26; name `(140,114,980,82)` at66 (Fresh Shell Fragments50); illustration `(100,205,1060,596.57)`; type `(260,801,740,46)` at32; native type emblem `(610,892,40,40)`; EFFECT heading `(250,970,760,60)` at35; description `(225,1070,810,205)` at46, bounded minimum32. Body uses Source Serif4 Regular and centered top alignment; category/title/type/heading use Cinzel. Description word breaks are presentation data and preserve all live rule words/highlights. Both catch and event profile aspect ratios are0.9. All creature-only stats, rarity, tags, role decorations and role input are hidden for events.
 
@@ -10,7 +12,7 @@ The event master and each illustration are separate images. Native emblem paths 
 
 For Penpot revisions after the accepted Unity assembly, use [Design Changes.md](Design%20Changes.md) and [DesignChangeLedger.json](DesignChangeLedger.json). The immutable [Unity baseline](UnityDesignBaseline.json) records the starting file hashes/GUIDs and selected sources. Record every artwork, layout, typography and interaction-visual revision with its dependent Unity consumers before a later selective import; do not mark exported work as imported or discard pending revisions.
 
-**MFJ-SYNC-001 remains the previous imported checkpoint.** [Creature sources, geometry, captures and checks](Sync001/README.md). Revisions MFJ-R001 through MFJ-R019 replace the previous central-card and pointer-hover presentation. The original baseline and Sync001 checkpoint are retained; use Sync002 for the next synchronization comparison.
+**MFJ-SYNC-001 remains the previous imported checkpoint.** [Creature sources, geometry, captures and checks](Sync001/README.md). Revisions MFJ-R001 through MFJ-R019 replace the previous central-card and pointer-hover presentation. The original baseline and Sync001 checkpoint are retained; use Sync003 for the next synchronization comparison.
 
 UI-02 implementation is complete. See [UI02.md](UI02.md) for the current imported paths, bundled fonts, templates and validation. Source/draft paths and font availability statements captured during UI-01 below describe that earlier snapshot; the UI-02 import catalog is authoritative for current asset locations.
 
@@ -29,7 +31,7 @@ Penpot file **New File 1**, page **Concept B — Reusable Assembly (4K)**:
 | Editable gameplay assembly | `bae680cd-9225-8018-8008-cdde36733e6f` | Current composition and live-field reference |
 | Complete detailed Catch Chain | `bae680cd-9225-8018-8008-cde2b511f13d` | Approved frames, illustrations, Bait styling; includes latest illustrated connectors |
 | Engraved technique hand | `bae680cd-9225-8018-8008-cde85bfb5c79` | Editable card sources and illustration treatment |
-| Gameplay B — laid-down hand | `bae680cd-9225-8018-8008-cdead5028f97` | Perspective-only reference; hand is a raster review composite |
+| Gameplay B — laid-down hand | `bae680cd-9225-8018-8008-cdead5028f97` | Latest MFJ-R030 uses four independent projected preview elements; native flat sources are preserved |
 | Component review sheet | `bae680cd-9225-8018-8008-cdde40529e8e` | Blank main creature/event frames; its earlier technique master is superseded |
 
 The read-only [Penpot snapshot](PenpotLayoutSnapshot.json) captures current positions, typography and visible descendants. All rectangles below use **top-left origin**, in 3840 × 2160 design pixels or normalized to an untransformed card canvas. They are not Unity bottom-left anchors. Convert normalized `(x,y,w,h)` to `anchorMin=(x,1-y-h)` and `anchorMax=(x+w,1-y)` where stretch anchors are appropriate. Rotate/project the complete card after composing its fields.
@@ -102,6 +104,14 @@ Keep generous artwork framing per species, encoded in the theme mapping. Source 
 
 For Bait, show the cyan edge/glow and badge and `0` haul Value. Catch has no extra Catch badge in this approved version. Keep full rules, tags, card-order numbers, modifier deltas and negative-effect badges off compact faces. Selection/target legality feedback belongs to separate overlays and must not recolor connectors. A self-hidden Catch Value remains `?` until allowed by runtime state; do not expose it through a tooltip.
 
+### Catch Chain inspection tooltip — integrated
+
+**MFJ-R027 is imported and verified at MFJ-SYNC-003.** It supersedes unimported R025/R026. The candidate chain now owns the live tooltip lifecycle. See the [tooltip handoff](Revisions/MFJ-R027/README.md), [preview](Revisions/MFJ-R027/CatchTooltip.png) and [pending import list](Pending%20Unity%20Changes.md).
+
+The proposed native 900 × 640 tooltip shows the attachment's name, current Catch/Bait role, effective tags and that role's effect title/rules. The active role is indicated by the existing hook or twin-spark icon, with no textual Catch Chain/Catch/Bait heading. Explicitly empty roles show “No effect”. Do not mirror the other role or leak hidden values. Keep the existing compact face free of rules/tags; the tooltip is a separate inspection layer. It adds no pointer-hover frame, gameplay action or mode-switch control. Its independently generated engraved master supplies the copper/parchment/navy decoration. Name, tag pills, role icon and effect text remain editable vectors/text. The tooltip has no anchor pointer or protruding triangle.
+
+Penpot has separate Catch, Bait and effectless examples and native overlay interactions on a dedicated prototype board. Future Unity work must use live attachment data, support navigation focus, clamp/flip placement and dismiss/rebind on scroll, removal, modal takeover or run end. This paragraph is a pending design contract, not evidence of implemented Unity behavior. Only a separate authorized import may mark it integrated.
+
 ### Brass connectors
 
 Use the **illustrated** `BrassConnectorV3`, not the earlier oval vectors. It owns straight metal sides, patina, warm highlights, dark central opening and small eyelets. Suppress the older black socket/oval artwork when this integrated hardware is used.
@@ -126,7 +136,7 @@ Compose each card flat first on a 620 × 640 reference canvas:
 | Engraved vignette | `(0.08,0.275,0.84,0.455)` | Separate sprite |
 | Rules | `(0.14,0.76,0.72,0.17)` | Source Serif 4, approximately 30–33 |
 
-Do not reuse artificial spaces in `T E C H N I Q U E` as localization content; implement the approved letter spacing as typography. The reference fan uses Z rotations -5°, -1.2°, +1.2°, +5° with slightly raised middle cards, soft contact shadows and restrained overlap. These rotations alone do **not** produce the approved laid-down perspective.
+Do not reuse artificial spaces in `T E C H N I Q U E` as localization content; implement the approved letter spacing as typography. The latest pending [MFJ-R030 fan](Revisions/MFJ-R030/README.md) replaces the older shallow arrangement: screen-clockwise angles −8°, −5°, +5°, +8°, 500-unit center spacing, and outer centers 50 units below the middle pair (middle Y450, outer Y500); outer projected top edges must stay lower than the middle pair. Use the recorded curve for 0–4 physical occurrences. Preserve the laid-down perspective and grounded shadows; Z rotations alone do **not** produce it. MFJ-R030 is imported and verified at MFJ-SYNC-003; the native fan caps curvature/tilt and compresses spacing for arbitrary hand counts without changing the current four-card gameplay cap.
 
 Use the later perspective-only reference to tune real projective foreshortening: receding upper edges, near edges wider, compressed apparent height, subtle edge thickness and grounded shadows. It is a view transform on each complete card, including TMP text and artwork. UI-04 must author camera/plane/tilt settings and validate them in Unity; no trustworthy Euler angle or camera FOV can be inferred from a single raster reference. Do not label guessed numbers as Penpot measurements.
 
@@ -176,3 +186,5 @@ Action hit rectangles use source alpha bounds while the unsliced full button fac
 - Do not overwrite existing shared font assets or their current modifications as a side effect of theme generation. New fonts/materials/atlases live under the theme root or an explicitly shared location with their licenses and dependencies.
 - The earlier seven draft prefabs and their validation report predate these revisions. Their existence is not proof of this contract's implementation.
 - UI-02 imports assets; UI-03/04/05 implement card views; UI-06/07 compose and bind; UI-08 validates actual gameplay and safe retirement boundaries. UI-01 establishes the handoff, not visual or functional completion.
+
+Current selective integration checkpoint: [MFJ-SYNC-003](Sync003/README.md). R027 tooltip and R030 adaptive fan are verified; no pending visual revisions remain as of2026-10-19.

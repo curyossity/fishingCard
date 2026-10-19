@@ -1,0 +1,39 @@
+{
+  "revision": "MFJ-R030",
+  "unityImported": false,
+  "newArtwork": false,
+  "sourceTemplates": "../MFJ-R028/Sources/Card0..3.png",
+  "runtimeAllowed": false,
+  "assets": [
+    {
+      "path": "Card0Projected.png",
+      "bytes": 610393,
+      "sha256": "ea762e4e9aaa201de3189562da1aa9add760caabb5614f7aaea6c51ef6ed28d5"
+    },
+    {
+      "path": "Card1Projected.png",
+      "bytes": 587303,
+      "sha256": "6c6e1fbdea31c7e77e3e3f55654952f1129813dc23cc9e8760af33d4ac8a8c00"
+    },
+    {
+      "path": "Card2Projected.png",
+      "bytes": 597511,
+      "sha256": "97446c0a79c0f486ef5fd18fd14ceb9786ec91e69c8fe5f2f947919e15005611"
+    },
+    {
+      "path": "Card3Projected.png",
+      "bytes": 623605,
+      "sha256": "8867d3fc27e00abc121b598b6a28e72ccf913e0cc4b542dc51be9a0047c000c4"
+    },
+    {
+      "path": "FanPreview.png",
+      "bytes": 1826143,
+      "sha256": "6852e231cf7d8941199c614a8b454299c13b20f568cd31eca2f9b8f5a1f8c873"
+    },
+    {
+      "path": "PenpotFan.png",
+      "bytes": 2071050,
+      "sha256": "8828d1f1cfc53d925b25899a18e568beb4a45d4604c1bcbe864cd63dbe7385a5"
+    }
+  ]
+}

@@ -4,7 +4,11 @@ MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC
 
 [UnityDesignBaseline.json](UnityDesignBaseline.json) freezes the current theme files, GUIDs, image dimensions/hashes, source catalog, and related shared presentation files. Do not overwrite that baseline when revising Penpot. It records the accepted assembled version, including the existing missing-art/source-quality boundaries; it does not certify the blocked standalone build.
 
-## Current changes
+## Pending Unity changes
+
+The dedicated [pending list](Pending%20Unity%20Changes.md) and [machine-readable index](PendingUnityChanges.json) currently contain **no pending revisions**. MFJ-R001–MFJ-R024 are imported and verified; they must not be queued again. Latest baseline for comparisons: MFJ-SYNC-003.
+
+## Change history
 
 | Revision | Change | Status | Later Unity update |
 | --- | --- | --- | --- |
@@ -38,6 +42,13 @@ MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC
 | MFJ-R023 | Loose Knot: separate engraved illustration, editable event card using R020 template. | Imported and verified at MFJ-SYNC-002. | Exact central-only event mapping; [handoff](Revisions/MFJ-R023/README.md). |
 | MFJ-R024 | Fresh Shell Fragments: separate engraved illustration, editable event card using R020 template. | Imported and verified at MFJ-SYNC-002. | Exact central-only event mapping; [handoff](Revisions/MFJ-R024/README.md). |
 
+| MFJ-R025 | Initial tooltip draft. | **Superseded by R026; never imported.** | Do not queue; retained for comparison. |
+| MFJ-R026 | Detailed engraved tooltip with native role icons. | **Superseded by R027; never imported.** | Do not queue; retained for comparison. |
+| MFJ-R027 | Pointer-free engraved Catch Chain inspection tooltip with live tags/current-role effect and native role icon. | **Imported and verified at MFJ-SYNC-003.** | [Implementation](Sync003/README.md); do not queue again. |
+| MFJ-R028 | Initial Technique fan arrangement. | **Superseded by R029; never imported.** | Historical preview retained; do not queue. |
+| MFJ-R029 | Lowered middle pair without restoring outer-card alignment. | **Rejected and superseded by R030; never imported.** | Historical evidence; do not queue. |
+| MFJ-R030 | Approved shallow fan; adaptive layout for arbitrary physical hand counts, matching stable hit planes. | **Imported and verified at MFJ-SYNC-003.** | [Implementation](Sync003/README.md); do not queue again. |
+
 The earlier chain, connector and laid-down Technique iterations are already part of the baseline and must not be imported again as pending changes. MFJ-R001 affects the added hover outline, not the cards' painted ornamental frames, Bait border or independent selection/target indicators. Keyboard/controller focus remains a separate state to verify.
 
 MFJ-R001: [live Penpot evidence](MFJ-R001-Penpot.json) records exact source/instance IDs and read-back checks. The requested pointer-hover frames originated in Unity's native feedback code and have now been removed from the candidate pointer feedback at MFJ-SYNC-001. The approved interaction contract is stored on the Penpot page and relevant source/instance shapes using shared metadata `fishing-cards-design` / `MFJ-R001`; this metadata does not itself execute Unity hover behavior. [Synchronization verification](MFJ-R001-Verification.json) tracks the unchanged Unity baseline.
@@ -69,3 +80,5 @@ Preserve exported revisions until the matching Unity import is verified. Link re
 6. Write a new numbered synchronization checkpoint referencing the old baseline and completed revision IDs. Retain the original baseline and revision history; do not reset the ledger or treat an export as a completed import.
 
 Use the existing [visual contract](VisualContract.md), [source catalog](../../../Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json), [missing-assets ledger](MissingVisualAssets.md) and [retirement boundary](UI08Retirement.md) alongside these records. This revision round does not authorize deleting the old theme or importing a flattened mockup as reusable game UI.
+
+Import state is explicit: `unityImported`, `integrationStatus`, `synchronizationCheckpoint` and import evidence must agree. Generate the next-import checklist from the pending index, never from the full history table.

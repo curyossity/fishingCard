@@ -1,0 +1,32 @@
+{
+  "revision": "MFJ-R026",
+  "inspected": true,
+  "notes": "Catch/Bait components and final4Kgameplay preview inspected. Detailed frame matches card family; origin/mode labels absent; role icons native; Bait rule fitted in2lines at33design pixels. No text clipping in final exports.",
+  "exports": [
+    {
+      "path": "GameplayTooltip4K.png",
+      "sha256": "2cc3dce298b97c055873fdb31b9e8b49bd9fcc16c426f4a3457dd0207311323e",
+      "size": [
+        3840,
+        2160
+      ]
+    },
+    {
+      "path": "CatchTooltip.png",
+      "sha256": "b8199cd66ffc2eeb62bdf8874cd2e28b81af50d30fd506c746ead75613304c76",
+      "size": [
+        900,
+        640
+      ]
+    },
+    {
+      "path": "BaitTooltip.png",
+      "sha256": "b2707c4761e6da61d12d5d4a083eec42fa1871d2b65e7482f56aa6646591c9fe",
+      "size": [
+        900,
+        640
+      ]
+    }
+  ],
+  "unityImported": false
+}

@@ -1,0 +1,35 @@
+{
+  "revision": "MFJ-R026",
+  "status": "ready_for_review",
+  "assets": [
+    {
+      "id": "EngravedTooltipMasterV2",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R026/Art/EngravedTooltipMasterV2.png",
+      "sha256": "6c79df49babc1fe030be462fde762e8fd43bfb2d99ebce5ca33c97c137c4bd66",
+      "width": 1487,
+      "height": 1058,
+      "penpotShapeId": "bae680cd-9225-8018-8008-d0094fb6cfef",
+      "unityImported": false
+    }
+  ],
+  "unityImported": false,
+  "generation": "Built-in image_gen; independent blank frame, no slices",
+  "supersedes": [
+    "MFJ-R025"
+  ],
+  "tooltipCanvas": [
+    900,
+    640
+  ],
+  "frameDisplayBounds": [
+    28,
+    16,
+    856,
+    608
+  ],
+  "nativeIconSources": {
+    "Catch": "MFJ-R002/CatchHookV3.svg",
+    "Bait": "MFJ-R002/BaitTwinSparkV3.svg"
+  },
+  "penpotSourceBoard": "bae680cd-9225-8018-8008-d00953150b66"
+}

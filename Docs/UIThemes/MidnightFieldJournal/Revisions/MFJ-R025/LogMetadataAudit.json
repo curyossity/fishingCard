@@ -1,0 +1,12 @@
+{
+  "result": {
+    "completed": 24,
+    "pending": 1,
+    "restoredMetadata": [
+      "MFJ-R002"
+    ],
+    "allCompletedMarked": true,
+    "pendingImported": false
+  },
+  "log": ""
+}

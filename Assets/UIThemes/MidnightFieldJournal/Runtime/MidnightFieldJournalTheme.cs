@@ -51,6 +51,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     [SerializeField] private TMP_FontAsset bodyFont;
     [SerializeField] private TMP_FontAsset bodySemibold;
     [SerializeField] private TMP_FontAsset bodyBold;
+    [SerializeField] private Sprite catchTooltipFrame;
     [SerializeField] private Color parchmentInk = new Color32(35, 42, 41, 255);
     [SerializeField] private Color lightInk = new Color32(240, 224, 189, 255);
     [SerializeField] private Color copper = new Color32(184, 135, 85, 255);
@@ -62,6 +63,7 @@ public sealed class MidnightFieldJournalTheme : ScriptableObject
     [SerializeField] private string[] unillustratedCardIds = Array.Empty<string>();
 
     public Vector2 ReferenceResolution => referenceResolution;
+    public Sprite CatchTooltipFrame => catchTooltipFrame;
     public TMP_FontAsset DisplayFont => displayFont;
     public TMP_FontAsset BodyFont => bodyFont;
     public TMP_FontAsset BodySemibold => bodySemibold;

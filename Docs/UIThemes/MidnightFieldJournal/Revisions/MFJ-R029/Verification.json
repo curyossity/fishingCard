@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "instances": [
+    {
+      "handId": "bae680cd-9225-8018-8008-d011106c6952",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d011eda33cc3",
+        "bae680cd-9225-8018-8008-d017781ae2c8",
+        "bae680cd-9225-8018-8008-d017784d99ce",
+        "bae680cd-9225-8018-8008-d011ee9ff62f"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d011eda33cc3",
+        "bae680cd-9225-8018-8008-d017781ae2c8",
+        "bae680cd-9225-8018-8008-d017784d99ce",
+        "bae680cd-9225-8018-8008-d011ee9ff62f"
+      ]
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110952e7d",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d011edb0acf9",
+        "bae680cd-9225-8018-8008-d0177825a406",
+        "bae680cd-9225-8018-8008-d01778587a3a",
+        "bae680cd-9225-8018-8008-d011eead1f6d"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d011edb0acf9",
+        "bae680cd-9225-8018-8008-d0177825a406",
+        "bae680cd-9225-8018-8008-d01778587a3a",
+        "bae680cd-9225-8018-8008-d011eead1f6d"
+      ]
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110c1c4c8",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d011edc51aec",
+        "bae680cd-9225-8018-8008-d017783005b2",
+        "bae680cd-9225-8018-8008-d01778612125",
+        "bae680cd-9225-8018-8008-d011eebbcf05"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d011edc51aec",
+        "bae680cd-9225-8018-8008-d017783005b2",
+        "bae680cd-9225-8018-8008-d01778612125",
+        "bae680cd-9225-8018-8008-d011eebbcf05"
+      ]
+    },
+    {
+      "handId": "bae680cd-9225-8018-8008-d01110ed2eb7",
+      "childIds": [
+        "bae680cd-9225-8018-8008-d011eddb8cae",
+        "bae680cd-9225-8018-8008-d01778395685",
+        "bae680cd-9225-8018-8008-d017786be178",
+        "bae680cd-9225-8018-8008-d011eec944ca"
+      ],
+      "expected": [
+        "bae680cd-9225-8018-8008-d011eddb8cae",
+        "bae680cd-9225-8018-8008-d01778395685",
+        "bae680cd-9225-8018-8008-d017786be178",
+        "bae680cd-9225-8018-8008-d011eec944ca"
+      ]
+    }
+  ],
+  "pending": [
+    "MFJ-R027",
+    "MFJ-R029"
+  ],
+  "completed": 24,
+  "onlyMiddleCardsMoved": true,
+  "visualReview": "Rendered shallower fan inspected: only middle-card vertical positions changed; titles and rules remain visible.",
+  "penpotExport": "PenpotFan.png",
+  "sourceBankOrderVerified": true
+}

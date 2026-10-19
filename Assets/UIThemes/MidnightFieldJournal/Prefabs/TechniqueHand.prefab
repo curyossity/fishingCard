@@ -59,9 +59,9 @@ MonoBehaviour:
   pileText: {fileID: 5565287112447869406}
   restrictionText: {fileID: 4379400228555616979}
   restingTilt: 40
-  fieldOfView: 35
-  cameraDistance: 1500
-  cardSpacing: 550
+  fieldOfView: 24.432001
+  cameraDistance: 2000
+  cardSpacing: 500
   maxRenderWidth: 3840
 --- !u!114 &1201237117534042685
 MonoBehaviour:

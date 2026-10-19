@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "removed": [
+    {
+      "parentId": "bae680cd-9225-8018-8008-d00614dd5194",
+      "id": "bae680cd-9225-8018-8008-d009503b3feb",
+      "name": "Static / independent anchor pointer"
+    },
+    {
+      "parentId": "bae680cd-9225-8018-8008-d00616026a38",
+      "id": "bae680cd-9225-8018-8008-d00951641498",
+      "name": "Static / independent anchor pointer"
+    },
+    {
+      "parentId": "bae680cd-9225-8018-8008-d00617505c88",
+      "id": "bae680cd-9225-8018-8008-d009525040e4",
+      "name": "Static / independent anchor pointer"
+    },
+    {
+      "parentId": "bae680cd-9225-8018-8008-d00953094203",
+      "id": "bae680cd-9225-8018-8008-d00953094204",
+      "name": "Static / independent anchor pointer"
+    }
+  ],
+  "remainingPointers": [],
+  "completed": 24,
+  "pending": [
+    "MFJ-R027"
+  ],
+  "visualReview": "Catch tooltip export inspected: left edge has no protruding triangle.",
+  "exports": {
+    "BaitTooltip.png": {
+      "bytes": 1048872,
+      "sha256": "91a6fe7688230fd04471ac45e7cfdd4f4fa22089eaaaba567fc8a045718a1d5d"
+    },
+    "CatchTooltip.png": {
+      "bytes": 1043684,
+      "sha256": "e165810e04e5b1fed6ba4baf57e10ddc4bfab9bec51a23f95e78f0dbf006c4ce"
+    }
+  },
+  "contextExport": "4K context export timed out; live Penpot assembled instance verified through native shape read-back."
+}

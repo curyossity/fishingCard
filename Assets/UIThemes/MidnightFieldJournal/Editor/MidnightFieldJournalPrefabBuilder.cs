@@ -25,6 +25,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         MidnightFieldJournalAssetSetup.EnsureFolder(Prefabs);
         theme = AssetDatabase.LoadAssetAtPath<MidnightFieldJournalTheme>(MidnightFieldJournalAssetSetup.ThemePath);
         if (theme == null) throw new InvalidOperationException("Prepare the isolated fonts and theme before building templates.");
+        JournalInspectionDesignSync.Bind(theme);
         body = theme.BodyFont;
         title = theme.DisplayFont;
         if (body == null || title == null) throw new InvalidOperationException("Theme-local TMP fonts are required.");
@@ -50,6 +51,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         ActionButton("Descend");
         ActionButton("Surface");
         LoadMeter();
+        CatchTooltip();
         CatchChain();
         CanvasLayout();
         AssetDatabase.SaveAssetIfDirty(profile);
@@ -146,6 +148,10 @@ public static partial class MidnightFieldJournalPrefabBuilder
         TMP_Text restriction = Label("Focused Restriction", root.transform, new Rect(.12f, 0, .76f, .08f), 26, Paper);
         var data = new SerializedObject(presentation);
         Bind(data, "theme", theme); Bind(data, "cardPrefab", AssetDatabase.LoadAssetAtPath<TechniqueCardView>(Prefabs + "TechniqueCard.prefab"));
+        data.FindProperty("restingTilt").floatValue = 40;
+        data.FindProperty("fieldOfView").floatValue = 2 * Mathf.Atan(433f / 2000) * Mathf.Rad2Deg;
+        data.FindProperty("cameraDistance").floatValue = 2000;
+        data.FindProperty("cardSpacing").floatValue = 500;
         Bind(data, "surface", surface); Bind(data, "pileText", piles); Bind(data, "restrictionText", restriction); data.ApplyModifiedPropertiesWithoutUndo();
         data = new SerializedObject(view); Bind(data, "presentation", presentation); data.ApplyModifiedPropertiesWithoutUndo();
         var raycaster = root.AddComponent<JournalHandRaycaster>(); data = new SerializedObject(raycaster);
@@ -217,6 +223,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data, "theme", theme); Bind(data, "cardPrefab", AssetDatabase.LoadAssetAtPath<CompactCatchCardView>(Prefabs + "CompactCatchCard.prefab"));
         Bind(data, "viewport", viewport); Bind(data, "content", content); Bind(data, "hardware", hardware);
         Bind(data, "headingText", heading); Bind(data, "emptyText", empty); data.ApplyModifiedPropertiesWithoutUndo();
+        Bind(data, "tooltipPrefab", AssetDatabase.LoadAssetAtPath<JournalCatchTooltip>(Prefabs + "CatchTooltip.prefab"));
         data.FindProperty("topPadding").floatValue = 60; data.ApplyModifiedPropertiesWithoutUndo();
         data = new SerializedObject(view); Bind(data, "presentation", presentation); data.ApplyModifiedPropertiesWithoutUndo();
         heading.transform.SetAsLastSibling();
@@ -243,15 +250,15 @@ public static partial class MidnightFieldJournalPrefabBuilder
     /// <summary>Verifies serialized content boundaries and writes machine-readable asset resolution evidence.</summary>
     public static void Validate()
     {
-        string[] names = { "CreatureCard", "CompactCatchCard", "TechniqueCard", "TechniqueHand", "DescendButton", "SurfaceButton", "LineLoadMeter", "CatchChain", "MidnightFieldJournalCanvas" };
+        string[] names = { "CreatureCard", "CompactCatchCard", "TechniqueCard", "TechniqueHand", "DescendButton", "SurfaceButton", "LineLoadMeter", "CatchChain", "CatchTooltip", "MidnightFieldJournalCanvas" };
         foreach (string name in names)
             if (AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + name + ".prefab") == null) throw new InvalidOperationException("Missing prefab: " + name);
         GameObject canvas = AssetDatabase.LoadAssetAtPath<GameObject>(Prefabs + "MidnightFieldJournalCanvas.prefab");
         if (canvas.GetComponent<CanvasScaler>().referenceResolution != new Vector2(3840, 2160)) throw new InvalidOperationException("4K reference resolution changed.");
         Texture2D background = Sprite("PaperBackground4K").texture;
         if (background.width != 3840 || background.height != 2160) throw new InvalidOperationException("Background is not native 4K.");
-        File.WriteAllText("Docs/UIThemes/MidnightFieldJournal/TemplateValidation.json", "{\"passed\":true,\"scope\":\"Reusable templates; full gameplay-scene integration remains subsequent tasks\",\"prefabCount\":9,\"canvas\":[3840,2160],\"nativeBackground\":[3840,2160],\"screenshotSlices\":0}");
-        Debug.Log("Midnight Field Journal: nine reusable prefabs and native 4K background validated.");
+        File.WriteAllText("Docs/UIThemes/MidnightFieldJournal/TemplateValidation.json", "{\"passed\":true,\"scope\":\"Current candidate templates including role-aware tooltip\",\"prefabCount\":10,\"canvas\":[3840,2160],\"nativeBackground\":[3840,2160],\"screenshotSlices\":0}");
+        Debug.Log("Midnight Field Journal: ten reusable prefabs and native 4K background validated.");
     }
 
     /// <summary>Creates a named UI root with stable geometry.</summary>

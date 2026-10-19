@@ -1,0 +1,140 @@
+{
+  "generatedDate": "2026-10-19",
+  "source": "DesignChangeLedger.json",
+  "currentUnityCheckpoint": "Sync003/UnityCheckpoint.json",
+  "pending": [],
+  "completed": [
+    {
+      "id": "MFJ-R001",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R002",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R003",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R004",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R005",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R006",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R007",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R008",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R009",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R010",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R011",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R012",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R013",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R014",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R015",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R016",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R017",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R018",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R019",
+      "checkpoint": "MFJ-SYNC-001"
+    },
+    {
+      "id": "MFJ-R020",
+      "checkpoint": "MFJ-SYNC-002"
+    },
+    {
+      "id": "MFJ-R021",
+      "checkpoint": "MFJ-SYNC-002"
+    },
+    {
+      "id": "MFJ-R022",
+      "checkpoint": "MFJ-SYNC-002"
+    },
+    {
+      "id": "MFJ-R023",
+      "checkpoint": "MFJ-SYNC-002"
+    },
+    {
+      "id": "MFJ-R024",
+      "checkpoint": "MFJ-SYNC-002"
+    },
+    {
+      "id": "MFJ-R027",
+      "checkpoint": "MFJ-SYNC-003"
+    },
+    {
+      "id": "MFJ-R030",
+      "checkpoint": "MFJ-SYNC-003"
+    }
+  ],
+  "superseded": [
+    {
+      "id": "MFJ-R025",
+      "supersededBy": "MFJ-R026",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R026",
+      "supersededBy": "MFJ-R027",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R028",
+      "supersededBy": "MFJ-R029",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R029",
+      "supersededBy": "MFJ-R030",
+      "unityImported": false
+    }
+  ],
+  "counts": {
+    "pending": 0,
+    "completed": 26,
+    "superseded": 4
+  },
+  "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required."
+}

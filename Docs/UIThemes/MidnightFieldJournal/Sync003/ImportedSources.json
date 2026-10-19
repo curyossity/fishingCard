@@ -1,0 +1,12 @@
+{
+  "newRasterSources": [
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/EngravedTooltipFrame.png",
+      "sha256": "6c79df49babc1fe030be462fde762e8fd43bfb2d99ebce5ca33c97c137c4bd66",
+      "from": "Revisions/MFJ-R026/Art/EngravedTooltipMasterV2.png",
+      "approvedBy": "MFJ-R027"
+    }
+  ],
+  "unchangedCatalogSprites": 20,
+  "flattenedPreviewsImported": false
+}

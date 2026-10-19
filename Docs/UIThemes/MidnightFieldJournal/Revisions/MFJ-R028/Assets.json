@@ -1,0 +1,71 @@
+{
+  "revision": "MFJ-R028",
+  "unityImported": false,
+  "newArtwork": false,
+  "artSource": "Existing native TechniqueFrameV2 / V2 illustrations / editable titles and rules; no slices from composite",
+  "rendering": "Local headless Chromium CSS 3D layout; 620x640 native-source exports, 2500x866 4K hand viewport",
+  "assets": [
+    {
+      "path": "Revisions/MFJ-R028/Card0Projected.png",
+      "sha256": "d9b77d375e8e3c07eded86c491a55b01a488ed7ee8a17b6cf6a1885094d95c9d",
+      "bytes": 614076,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Card1Projected.png",
+      "sha256": "ce40aecc9b507126a24cd25bc6d6755e1235605c4840db34abd4b050a5e7dc33",
+      "bytes": 562413,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Card2Projected.png",
+      "sha256": "0f83e3eb237e03754902cd6035ef163508ae35f19129bd773f4bac6f5f04a11f",
+      "bytes": 575314,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Card3Projected.png",
+      "sha256": "91c6bc12da3d475ec67e564cb81c0aee271b3612747809e2ab718a7ed62f6a96",
+      "bytes": 626042,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/FanPreview.png",
+      "sha256": "a7481c483c86afdf8694ba6a5cb1f9987d63d895544da08250c215719672e0e2",
+      "bytes": 1801723,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/PenpotFan.png",
+      "sha256": "09314295c258990812b6a17b96722ca88c4345f0f7dfcc0a8790efab278b1c61",
+      "bytes": 1805792,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Sources/Card0.png",
+      "sha256": "baac0e2092c17de7aa7584ac9cad2db369829f94c87a2c2f86d46b4a5f4289d5",
+      "bytes": 684636,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Sources/Card1.png",
+      "sha256": "fb5b7925681890fb4e5a3345404cc6a136485e52fcf1b05e577bf612af517c3c",
+      "bytes": 684660,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Sources/Card2.png",
+      "sha256": "9fdf352453c107391c986d4c024316c57df06c6ed15aec38a66a858637ea959e",
+      "bytes": 690425,
+      "runtimeAllowed": false
+    },
+    {
+      "path": "Revisions/MFJ-R028/Sources/Card3.png",
+      "sha256": "5d4caa4c2f4186414004675e3cec0ef05847dfa9f2d4f8d81b41ae06e3217b99",
+      "bytes": 689204,
+      "runtimeAllowed": false
+    }
+  ],
+  "nativeSourceBoardId": "bae680cd-9225-8018-8008-d0105575afda",
+  "projectedSourceBoardId": "bae680cd-9225-8018-8008-d01110225b74"
+}

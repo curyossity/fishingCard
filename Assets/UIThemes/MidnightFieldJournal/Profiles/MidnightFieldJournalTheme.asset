@@ -17,6 +17,7 @@ MonoBehaviour:
   bodyFont: {fileID: 11400000, guid: eb96c5222bba3fb46b3ed91c14daad17, type: 2}
   bodySemibold: {fileID: 11400000, guid: b51181665b2239940b593388f3ecc7ef, type: 2}
   bodyBold: {fileID: 11400000, guid: a0ce11320bb710a47b0f3ae1f62636c8, type: 2}
+  catchTooltipFrame: {fileID: -6826479028817255037, guid: aa38849d3dee90a45833bab2fc6d3113, type: 3}
   parchmentInk: {r: 0.13725491, g: 0.16470589, b: 0.16078432, a: 1}
   lightInk: {r: 0.9411765, g: 0.8784314, b: 0.7411765, a: 1}
   copper: {r: 0.72156864, g: 0.5294118, b: 0.33333334, a: 1}

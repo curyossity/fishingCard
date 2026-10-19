@@ -29,11 +29,15 @@ The candidate design is isolated under `Assets/UIThemes/MidnightFieldJournal/`; 
 
 `CompactCatchCardView` supports optional portrait/framing overrides, configurable title case/alignment, role borders and `Graphic` state layers with pointer/navigation focus. Default values preserve the old prefab behavior. `JournalCardOutline` is a theme-owned hollow rounded UI mesh, avoiding baked state artwork and hardware tinting. `MidnightFieldJournalTheme` stores compact portrait bounds per mapped card identity; source definitions remain unchanged. `JournalCatchChainChecks` validates real runtime state and isolated rendering plus a separate actual Play Mode input smoke. See [UI-03 evidence](UIThemes/MidnightFieldJournal/UI03.md).
 
+`JournalCatchTooltip` is the theme-owned, pointer-free inspection view. `JournalCatchInspectionTrigger` relays hover/navigation focus to `JournalCatchChainPresentation`, which owns delayed display, live attachment rebinding, viewport placement and dismissal on scrolling/removal/visibility/modal locks. The tooltip uses the existing tooltip canvas, independent engraved master and native text/tag pills/role emblems. It never resolves effects or exposes hidden sale values. `MidnightFieldJournalTooltipBuilder` and `JournalInspectionDesignSync` preserve this binding during regeneration.
+
 ### Candidate projected Technique hand
 
 `TechniqueHandView` delegates to optional shared `TechniqueHandPresentation` while preserving its existing renderer as the default. `FishingRunController` passes the deck's existing HandVersion alongside the hand, availability, reasons, counts and use callback. `JournalTechniqueHandPresentation` owns individual pooled TechniqueCardViews, a detached camera/world-space Canvas, output-sized RenderTexture, exact theme-art lookup and explicit navigation. It uses resolved controller data and never mutates piles or executes effects.
 
 `JournalTechniquePose` owns rest/inspect transforms and stable resting hit planes. `JournalHandRaycaster` maps HUD points to projected graphics and returns actual card hits in normal canvas/modal sort order. `JournalTechniqueButton` rejects pointer clicks whose hand binding changed after press. Offscreen input honors the owning HUD's CanvasGroups. `TechniqueCardView` retains its old transform/disabled defaults, with opt-in external pose and unavailable-card inspection for the candidate. The theme owns optional presentation word breaks; gameplay text stays in shared definitions. `JournalTechniqueHandChecks` validates component content/projection and real Play Mode input/resource lifetimes. See [UI-04 evidence](UIThemes/MidnightFieldJournal/UI04.md).
+
+`JournalTechniqueFan` computes symmetric shallow rest poses for any physical hand count. It matches the approved four-card centers/angles, caps curve/tilt and compresses spacing for larger hands. It does not change gameplay hand limits. The presentation applies matching poses to visible cards and stable hit planes, preserving inspection and occurrence-based input.
 
 ### Candidate central encounter presentation
 

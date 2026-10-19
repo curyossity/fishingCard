@@ -14,6 +14,10 @@ public static class JournalOutputChecks
 
     /// <summary>Uses the installed Editor's reflected sizing API and restores the user's prior selection afterward.</summary>
     public static void Start()
+    { Start("Docs/UIThemes/MidnightFieldJournal"); }
+
+    /// <summary>Stores a new synchronization's output evidence separately from historical captures.</summary>
+    public static void Start(string outputDirectory)
     {
         if (!Application.isPlaying) throw new InvalidOperationException("Open the comparison scene and enter Play Mode.");
         Assembly assembly = typeof(Editor).Assembly; viewType = assembly.GetType("UnityEditor.GameView");
@@ -22,7 +26,7 @@ public static class JournalOutputChecks
         object sizes = sizesType.BaseType.GetProperty("instance", BindingFlags.Public | BindingFlags.Static).GetValue(null);
         group = sizesType.GetProperty("currentGroup", Flags).GetValue(sizes);
         window = EditorWindow.GetWindow(viewType); originalIndex = (int)viewType.GetProperty("selectedSizeIndex", Flags).GetValue(window);
-        JournalPlayerValidation.StartEditor("Docs/UIThemes/MidnightFieldJournal", Resize, Restore);
+        JournalPlayerValidation.StartEditor(outputDirectory, Resize, Restore);
     }
     /// <summary>Adds one fixed output size without persisting new entries in Editor preferences.</summary>
     private static void Resize(int width, int height)

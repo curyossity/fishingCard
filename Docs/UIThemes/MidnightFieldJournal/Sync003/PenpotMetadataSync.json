@@ -1,0 +1,11 @@
+{
+  "status": "deferred_plugin_disconnected",
+  "unityImportsComplete": true,
+  "authoritativeRepositoryLog": "../DesignChangeLedger.json",
+  "doNotReimport": [
+    "MFJ-R027",
+    "MFJ-R030"
+  ],
+  "laterMetadataUpdateOnly": "Mark the two page metadata entries verified at MFJ-SYNC-003 and clear its pending list when connected. No Unity reimport is required.",
+  "reconciliation": "Used latest recorded approved source geometry and exact source hashes; live Penpot read was unavailable."
+}

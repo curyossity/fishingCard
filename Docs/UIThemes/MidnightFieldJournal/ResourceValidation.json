@@ -5,8 +5,8 @@
     "scope": "Current isolated imports/fonts/templates; component behavior has separate validation; no full playable-scene certification",
     "sprites": 20,
     "fonts": 8,
-    "prefabs": 9,
-    "textureBytes": 241631804,
+    "prefabs": 10,
+    "textureBytes": 236848764,
     "fontAtlasBytes": 50347266,
     "externalSharedDependencies": [
         "Assets/Scripts/CatchChainView.cs",

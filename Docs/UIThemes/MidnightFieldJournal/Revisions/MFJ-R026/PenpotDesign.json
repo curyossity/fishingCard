@@ -1,0 +1,473 @@
+{
+  "result": {
+    "revision": "MFJ-R026",
+    "supersedes": [
+      "MFJ-R025"
+    ],
+    "status": "ready_for_review",
+    "unityImported": false,
+    "integrationStatus": "not_imported",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "prototypeBoardId": "bae680cd-9225-8018-8008-d00618505dcb",
+    "previewBoardId": "bae680cd-9225-8018-8008-d0061921543d",
+    "previewTooltipId": "bae680cd-9225-8018-8008-d00953094203",
+    "sourceBoardId": "bae680cd-9225-8018-8008-d00953150b66",
+    "sourceFrameId": "bae680cd-9225-8018-8008-d0094fb6cfef",
+    "tooltipCanvas": [
+      900,
+      640
+    ],
+    "variants": [
+      {
+        "id": "bae680cd-9225-8018-8008-d00614dd5194",
+        "stableId": "creature_clinging_crab",
+        "name": "Clinging Crab",
+        "role": "Catch",
+        "tags": [
+          "Anchored",
+          "Armored"
+        ],
+        "ability": "Iron Grip",
+        "description": "Cannot be deliberately released.",
+        "iconId": "bae680cd-9225-8018-8008-d00950ed3c26",
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d009503b3feb",
+            "name": "Static / independent anchor pointer",
+            "type": "group",
+            "x": 0,
+            "y": 295,
+            "w": 70,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009504ddcd5",
+            "name": "Static / detailed engraved tooltip master",
+            "type": "rectangle",
+            "x": 28,
+            "y": 16,
+            "w": 856,
+            "h": 608
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009505f86a6",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "CLINGING CRAB",
+            "x": 140,
+            "y": 85,
+            "w": 640,
+            "h": 80,
+            "fontSize": "46"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00950853ea1",
+            "name": "Dynamic / tag outline Anchored",
+            "type": "rectangle",
+            "x": 277.5,
+            "y": 197,
+            "w": 174,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009509d7e9f",
+            "name": "Dynamic / tag text Anchored",
+            "type": "text",
+            "text": "Anchored",
+            "x": 289.5,
+            "y": 203,
+            "w": 150,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00950bd884f",
+            "name": "Dynamic / tag outline Armored",
+            "type": "rectangle",
+            "x": 465.5,
+            "y": 197,
+            "w": 157,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00950d2ae6d",
+            "name": "Dynamic / tag text Armored",
+            "type": "text",
+            "text": "Armored",
+            "x": 477.5,
+            "y": 203,
+            "w": 133,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00950ed3c26",
+            "name": "Dynamic / active role icon / Catch",
+            "type": "group",
+            "x": 116,
+            "y": 355,
+            "w": 34,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00951135c30",
+            "name": "Dynamic / effect name",
+            "type": "text",
+            "text": "Iron Grip",
+            "x": 190,
+            "y": 355,
+            "w": 580,
+            "h": 66,
+            "fontSize": "42"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009512984eb",
+            "name": "Dynamic / effect description",
+            "type": "text",
+            "text": "Cannot be deliberately released.",
+            "x": 182,
+            "y": 432,
+            "w": 548,
+            "h": 142,
+            "fontSize": "33"
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00616026a38",
+        "stableId": "creature_glass_minnow",
+        "name": "Glass Minnow",
+        "role": "Bait",
+        "tags": [
+          "Fish",
+          "Schooling",
+          "Small"
+        ],
+        "ability": "Shoal Signal",
+        "description": "After catching a Schooling\ncreature, redraw 1 technique card.",
+        "iconId": "bae680cd-9225-8018-8008-d00951f46a54",
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d00951641498",
+            "name": "Static / independent anchor pointer",
+            "type": "group",
+            "x": 0,
+            "y": 295,
+            "w": 70,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0095171fa02",
+            "name": "Static / detailed engraved tooltip master",
+            "type": "rectangle",
+            "x": 28,
+            "y": 16,
+            "w": 856,
+            "h": 608
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009517c441c",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "GLASS MINNOW",
+            "x": 140,
+            "y": 85,
+            "w": 640,
+            "h": 80,
+            "fontSize": "46"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009518efbac",
+            "name": "Dynamic / tag outline Fish",
+            "type": "rectangle",
+            "x": 226,
+            "y": 197,
+            "w": 106,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009519b236c",
+            "name": "Dynamic / tag text Fish",
+            "type": "text",
+            "text": "Fish",
+            "x": 238,
+            "y": 203,
+            "w": 82,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00951ae375e",
+            "name": "Dynamic / tag outline Schooling",
+            "type": "rectangle",
+            "x": 346,
+            "y": 197,
+            "w": 191,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00951bfd0b0",
+            "name": "Dynamic / tag text Schooling",
+            "type": "text",
+            "text": "Schooling",
+            "x": 358,
+            "y": 203,
+            "w": 167,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00951d2d023",
+            "name": "Dynamic / tag outline Small",
+            "type": "rectangle",
+            "x": 551,
+            "y": 197,
+            "w": 123,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00951e1cc19",
+            "name": "Dynamic / tag text Small",
+            "type": "text",
+            "text": "Small",
+            "x": 563,
+            "y": 203,
+            "w": 99,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00951f46a54",
+            "name": "Dynamic / active role icon / Bait",
+            "type": "group",
+            "x": 116,
+            "y": 355,
+            "w": 55,
+            "h": 43
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0095202515b",
+            "name": "Dynamic / effect name",
+            "type": "text",
+            "text": "Shoal Signal",
+            "x": 190,
+            "y": 355,
+            "w": 580,
+            "h": 66,
+            "fontSize": "42"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0095216cfeb",
+            "name": "Dynamic / effect description",
+            "type": "text",
+            "text": "After catching a Schooling\ncreature, redraw 1 technique card.",
+            "x": 182,
+            "y": 432,
+            "w": 548,
+            "h": 142,
+            "fontSize": "33"
+          }
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00617505c88",
+        "stableId": "creature_sardine",
+        "name": "Sardine",
+        "role": "Catch",
+        "tags": [
+          "Fish",
+          "Schooling",
+          "Small"
+        ],
+        "ability": "No effect",
+        "description": "",
+        "iconId": "bae680cd-9225-8018-8008-d00952de8469",
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d009525040e4",
+            "name": "Static / independent anchor pointer",
+            "type": "group",
+            "x": 0,
+            "y": 295,
+            "w": 70,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009525cd935",
+            "name": "Static / detailed engraved tooltip master",
+            "type": "rectangle",
+            "x": 28,
+            "y": 16,
+            "w": 856,
+            "h": 608
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d0095268ebf3",
+            "name": "Dynamic / creature name",
+            "type": "text",
+            "text": "SARDINE",
+            "x": 140,
+            "y": 85,
+            "w": 640,
+            "h": 80,
+            "fontSize": "46"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d009527cb957",
+            "name": "Dynamic / tag outline Fish",
+            "type": "rectangle",
+            "x": 226,
+            "y": 197,
+            "w": 106,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952893227",
+            "name": "Dynamic / tag text Fish",
+            "type": "text",
+            "text": "Fish",
+            "x": 238,
+            "y": 203,
+            "w": 82,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952986645",
+            "name": "Dynamic / tag outline Schooling",
+            "type": "rectangle",
+            "x": 346,
+            "y": 197,
+            "w": 191,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952a89440",
+            "name": "Dynamic / tag text Schooling",
+            "type": "text",
+            "text": "Schooling",
+            "x": 358,
+            "y": 203,
+            "w": 167,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952ba1ece",
+            "name": "Dynamic / tag outline Small",
+            "type": "rectangle",
+            "x": 551,
+            "y": 197,
+            "w": 123,
+            "h": 46
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952cbdaef",
+            "name": "Dynamic / tag text Small",
+            "type": "text",
+            "text": "Small",
+            "x": 563,
+            "y": 203,
+            "w": 99,
+            "h": 37,
+            "fontSize": "26"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952de8469",
+            "name": "Dynamic / active role icon / Catch",
+            "type": "group",
+            "x": 116,
+            "y": 355,
+            "w": 34,
+            "h": 50
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d00952ecd5e3",
+            "name": "Dynamic / effect name",
+            "type": "text",
+            "text": "No effect",
+            "x": 190,
+            "y": 355,
+            "w": 580,
+            "h": 66,
+            "fontSize": "42"
+          }
+        ]
+      }
+    ],
+    "backups": [
+      {
+        "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+        "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d009513f1f95",
+        "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d009522a12b1",
+        "name": "SUPERSEDED / MFJ-R025 / Sardine Catch"
+      }
+    ],
+    "prototypeTargets": [
+      {
+        "id": "bae680cd-9225-8018-8008-d00618c03324",
+        "stableId": "creature_sardine",
+        "overlayId": "bae680cd-9225-8018-8008-d00617505c88",
+        "position": {
+          "x": 930,
+          "y": 150
+        },
+        "triggers": [
+          "mouse-enter",
+          "mouse-leave"
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00618e50b16",
+        "stableId": "creature_clinging_crab",
+        "overlayId": "bae680cd-9225-8018-8008-d00614dd5194",
+        "position": {
+          "x": 930,
+          "y": 600
+        },
+        "triggers": [
+          "mouse-enter",
+          "mouse-leave"
+        ]
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00619046bd5",
+        "stableId": "creature_glass_minnow",
+        "overlayId": "bae680cd-9225-8018-8008-d00616026a38",
+        "position": {
+          "x": 930,
+          "y": 1050
+        },
+        "triggers": [
+          "mouse-enter",
+          "mouse-leave"
+        ]
+      }
+    ],
+    "removedLabels": [
+      "CATCH CHAIN",
+      "CATCH",
+      "BAIT",
+      "CATCH EFFECT",
+      "BAIT EFFECT"
+    ],
+    "roleIconSources": {
+      "Catch": "MFJ-R002/CatchHookV3.svg",
+      "Bait": "MFJ-R002/BaitTwinSparkV3.svg"
+    },
+    "interactionContract": {
+      "content": "Creature name, current attached role, current effective tags, active-role effect title and rules; explicit no-effect state.",
+      "pointer": "Native Penpot mouse-enter opens overlay and mouse-leave closes it. No compact-card hover frame.",
+      "unity": "Future implementation only: show on hover or navigation focus; short hover delay, clamp/flip to viewport; non-interactive tooltip; hide on scroll, removal, modal or run end; refresh live data without revealing concealed values.",
+      "prototypeLimitation": "Penpot overlay transitions are wired. Actual viewer behavior requires playback review; this does not implement Unity interaction."
+    }
+  },
+  "log": ""
+}
