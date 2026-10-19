@@ -25,6 +25,8 @@ The candidate design is isolated under `Assets/UIThemes/MidnightFieldJournal/`; 
 
 ### Candidate Catch Chain presentation
 
+The central candidate card's optional effect-shadow material is assigned by its builder to effect names/descriptions, using Source Serif 4 Regular. The semibold/outline trial was rejected and removed; no runtime override reapplies it. Shared font materials remain untouched. [Shadow trial](Validation/EffectTextShadow/README.md).
+
 `CatchChainView` remains the controller-facing refresh/selection endpoint. Its optional shared `CatchChainPresentation` abstraction delegates layout and rendering while leaving the existing renderer as the serialized default. The Midnight Field Journal chain prefab binds `JournalCatchChainPresentation`, which owns a masked scroll viewport, pooled compact-card views, independent BrassConnectorV3 siblings and optional sibling `LineLoadMeterView` binding. It reads resolved instances and forwards current indices; it never calculates gameplay load, selects legal effect targets or grants Release.
 
 The candidate theme's `CompactPortraitEntry` registry supplies exact-identity compact artwork and independent bounds for fourteen additional approved creatures, reusing their existing central illustration sprites. `TryGetCompactArtwork` preserves the four dedicated compact overrides before consulting this registry. `JournalCompactArtworkSync` restores the registry from the canonical source catalog during prefab regeneration. `JournalCompactArtworkChecks` verifies all eighteen approved creatures, live fields, override precedence and stale-art clearing, with 4K/1080p contact sheets. This presentation-only mapping does not change encounter membership or shared card definitions.

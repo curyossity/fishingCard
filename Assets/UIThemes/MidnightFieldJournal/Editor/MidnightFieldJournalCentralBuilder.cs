@@ -28,6 +28,14 @@ public static partial class MidnightFieldJournalPrefabBuilder
         catchText.alignment = baitText.alignment = TextAlignmentOptions.TopLeft;
         TMP_Text catchName = Label("Catch Ability Name",catchRegion,new Rect(.07f,.5f,.85f,.17f),48,new Color32(240,208,170,255));
         TMP_Text baitName = Label("Bait Ability Name",baitRegion,new Rect(.07f,.5f,.85f,.17f),46,new Color32(209,208,197,255));
+        // Keep the optional readability preset local to effect fields, without changing the font's shared default.
+        Material effectShadow = AssetDatabase.LoadAssetAtPath<Material>(RootPath+"Profiles/EffectTextShadow.mat");
+        if(effectShadow!=null)
+            foreach(var text in new[]{catchText,baitText,catchName,baitName})
+            {
+                text.fontSharedMaterial=effectShadow;
+                text.UpdateMeshPadding();
+            }
         foreach(var t in new[]{catchName,baitName}) { t.enableAutoSizing=true;t.fontSizeMin=26;t.textWrappingMode=TextWrappingModes.NoWrap; }
         RectTransform roles = Region("Role Decoration",root.transform,new Rect(0,0,1,1));
         TMP_Text catchRole = Label("Catch Role",roles,CentralBounds(181,916,342,55),36,new Color32(230,189,128,255),true);catchRole.text="C A T C H";
