@@ -1,0 +1,96 @@
+{
+  "tmpFonts": [
+    {
+      "path": "Assets/FishingUIAssets/Fonts/TMP/Marcellus SC SDF.asset",
+      "family": "Marcellus",
+      "style": "Regular",
+      "source": "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf"
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 Bold SDF.asset",
+      "family": "Source Serif 4",
+      "style": "Bold",
+      "source": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Bold.ttf"
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 SDF.asset",
+      "family": "Source Serif 4",
+      "style": "Regular",
+      "source": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf"
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/TMP/Source Serif 4 Semibold SDF.asset",
+      "family": "Source Serif 4",
+      "style": "SemiBold",
+      "source": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Semibold.ttf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset",
+      "family": "Liberation Sans",
+      "style": "Regular",
+      "source": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+      "family": "Liberation Sans",
+      "style": "Regular",
+      "source": ""
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Body Fallback.asset",
+      "family": "Source Serif 4",
+      "style": "Regular",
+      "source": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Regular.ttf"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Bold.asset",
+      "family": "Cinzel",
+      "style": "Bold",
+      "source": ""
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Regular.asset",
+      "family": "Cinzel",
+      "style": "Regular",
+      "source": ""
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Cinzel Semibold.asset",
+      "family": "Cinzel",
+      "style": "SemiBold",
+      "source": ""
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Display Fallback.asset",
+      "family": "Cinzel",
+      "style": "Regular",
+      "source": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Regular.ttf"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Bold.asset",
+      "family": "Source Serif 4",
+      "style": "Bold",
+      "source": ""
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Regular.asset",
+      "family": "Source Serif 4",
+      "style": "Regular",
+      "source": ""
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/TMP/Source Serif 4 Semibold.asset",
+      "family": "Source Serif 4",
+      "style": "SemiBold",
+      "source": ""
+    }
+  ],
+  "builtin": {
+    "name": "LegacyRuntime",
+    "fontNames": [
+      "Arial"
+    ]
+  },
+  "unity": "6000.5.9f1",
+  "editorPath": "C:/Program Files/Unity/Hub/Editor/6000.5.9f1/Editor/Unity.exe"
+}

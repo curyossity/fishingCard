@@ -1,0 +1,168 @@
+{
+  "date": "2026-10-19",
+  "files": [
+    {
+      "path": "Assets/FishingUIAssets/Fonts/Marcellus/Marcellus-Regular.ttf",
+      "sha256": "1cf0cd10b17d35e852729962cc1ffaffed94514895972458345e2df34abb2f81",
+      "names": {
+        "0": "Copyright (c) 2012 by Brian J. Bonislawsky DBA Astigmatic (AOETI) (astigma@astigmatic.com), with Reserved\rFont Name \"Marcellus\"",
+        "1": "Marcellus",
+        "2": "Regular",
+        "4": "Marcellus",
+        "6": "Marcellus-Regular",
+        "13": "This Font Software is licensed under the SIL Open Font License,\rVersion 1.1. This license is available with a FAQ at:\rhttp://scripts.sil.org/OFL",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/MarcellusSC/MarcellusSC-Regular.ttf",
+      "sha256": "32cb01fde9e5bcb216f9ebaef2d821461c65acbdca72cd76adcb388d455fc31f",
+      "names": {
+        "0": "Copyright (c) 2012 by Brian J. Bonislawsky DBA Astigmatic (AOETI) (astigma@astigmatic.com), with Reserved Font Name \"Marcellus\"",
+        "1": "Marcellus SC",
+        "2": "Regular",
+        "4": "Marcellus SC",
+        "6": "MarcellusSC-Regular",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Bold.ttf",
+      "sha256": "00441a2f2ffdad0957667668cb537faa23b3f16377713cbbe3a2c32ad2095f5a",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4",
+        "2": "Bold",
+        "4": "Source Serif 4 Bold",
+        "6": "SourceSerif4-Bold",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Regular.ttf",
+      "sha256": "8ca4d603b02214e2723f2bdf6c83632551942c9b06702e2bdbcf07f0d8714809",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4",
+        "2": "Regular",
+        "4": "Source Serif 4 Regular",
+        "6": "SourceSerif4-Regular",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Semibold.ttf",
+      "sha256": "3f471d65b233b067f5d7bfebb9b598994dd513a41f9fb4d900c20ae9d30f242c",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4 SemiBold",
+        "2": "Regular",
+        "4": "Source Serif 4 SemiBold",
+        "6": "SourceSerif4-SemiBold",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf",
+      "sha256": "97b2d4da6e3cb494b5a1e66ae176914d852ccabef49e0c02c0df25f3e39aca0b",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4",
+        "2": "Regular",
+        "4": "Source Serif 4 Regular",
+        "6": "SourceSerif4Roman-Regular",
+        "13": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL. This Font Software is distributed on an ‘AS IS’ BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the SIL Open Font License for the specific language, permissions and limitations governing your use of this Font Software.",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/LiberationSans.ttf",
+      "sha256": "e5b0af421ea2bfbc1ac8d251d647268087ae82786234c57f757d1f0b90fa8b49",
+      "names": {
+        "0": "Digitized data copyright (c) 2010 Google Corporation. \nCopyright (c) 2012 Red Hat, Inc.",
+        "1": "Liberation Sans",
+        "2": "Regular",
+        "4": "Liberation Sans",
+        "6": "LiberationSans",
+        "13": "Licensed under the SIL Open Font License, Version 1.1",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Bold.ttf",
+      "sha256": "d8bcdc7b73c6a116077a82a7d172107ab94ea71332d9283b09262f059610fccc",
+      "names": {
+        "1": "Cinzel",
+        "2": "Bold",
+        "4": "Cinzel Bold",
+        "6": "Cinzel-Bold",
+        "0": "Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)",
+        "13": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL",
+        "14": "https://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Regular.ttf",
+      "sha256": "16ad4f7d8f4d57ca31a94927f261c0a1983c56878c9444404b9b491523b848d6",
+      "names": {
+        "1": "Cinzel",
+        "2": "Regular",
+        "4": "Cinzel Regular",
+        "6": "Cinzel-Regular",
+        "0": "Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)",
+        "13": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL",
+        "14": "https://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-SemiBold.ttf",
+      "sha256": "45ff3688f43c7da2f88059a3b8be3c6dd3183de17506cb85e1c3d2fa4ab6e602",
+      "names": {
+        "1": "Cinzel",
+        "2": "SemiBold",
+        "4": "Cinzel SemiBold",
+        "6": "Cinzel-SemiBold",
+        "0": "Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)",
+        "13": "This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL",
+        "14": "https://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Bold.ttf",
+      "sha256": "00441a2f2ffdad0957667668cb537faa23b3f16377713cbbe3a2c32ad2095f5a",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4",
+        "2": "Bold",
+        "4": "Source Serif 4 Bold",
+        "6": "SourceSerif4-Bold",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Regular.ttf",
+      "sha256": "8ca4d603b02214e2723f2bdf6c83632551942c9b06702e2bdbcf07f0d8714809",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4",
+        "2": "Regular",
+        "4": "Source Serif 4 Regular",
+        "6": "SourceSerif4-Regular",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Semibold.ttf",
+      "sha256": "3f471d65b233b067f5d7bfebb9b598994dd513a41f9fb4d900c20ae9d30f242c",
+      "names": {
+        "0": "© 2014 - 2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name ‘Source’.",
+        "1": "Source Serif 4 SemiBold",
+        "2": "Regular",
+        "4": "Source Serif 4 SemiBold",
+        "6": "SourceSerif4-SemiBold",
+        "14": "http://scripts.sil.org/OFL"
+      }
+    }
+  ],
+  "scope": "All imported TTF files under Assets. Unity engine/OS font data is not extracted."
+}

@@ -1,0 +1,201 @@
+{
+  "result": {
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "fileName": "New File 1",
+    "date": "2026-10-19",
+    "pages": [
+      {
+        "id": "9e056cfe-f83f-81f8-8008-cc523ff45212",
+        "name": "Page 1",
+        "textShapes": 0
+      },
+      {
+        "id": "55e98d0e-b63f-8025-8008-cc53feeed652",
+        "name": "Fantasy Card — MCP Verification",
+        "textShapes": 9
+      },
+      {
+        "id": "8a17fa10-389b-804e-8008-cc5591039a4e",
+        "name": "Gameplay Reference — Editable",
+        "textShapes": 74
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdd5868103f5",
+        "name": "Concept B — Midnight Field Journal (Static)",
+        "textShapes": 0
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "name": "Concept B — Reusable Assembly (4K)",
+        "textShapes": 706
+      }
+    ],
+    "fonts": {
+      "Inter Tight": {
+        "shapes": 8,
+        "visibleShapes": 8,
+        "pages": [
+          "Fantasy Card — MCP Verification"
+        ],
+        "weights": [
+          "400"
+        ],
+        "examples": [
+          {
+            "id": "55e98d0e-b63f-8025-8008-cc542507fb49",
+            "name": "Card type",
+            "text": "FANTASY CARD",
+            "page": "Fantasy Card — MCP Verification",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "55e98d0e-b63f-8025-8008-cc542542a8ca",
+            "name": "Illustration label",
+            "text": "ILLUSTRATION",
+            "page": "Fantasy Card — MCP Verification",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "55e98d0e-b63f-8025-8008-cc54254fb284",
+            "name": "Illustration hint",
+            "text": "Replace with your artwork",
+            "page": "Fantasy Card — MCP Verification",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "55e98d0e-b63f-8025-8008-cc5425623c80",
+            "name": "Catch effect / heading",
+            "text": "CATCH EFFECT",
+            "page": "Fantasy Card — MCP Verification",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "55e98d0e-b63f-8025-8008-cc54256df877",
+            "name": "Catch effect / editable description",
+            "text": "Add your Catch effect description here.",
+            "page": "Fantasy Card — MCP Verification",
+            "hidden": false,
+            "style": "normal"
+          }
+        ]
+      },
+      "Cinzel": {
+        "shapes": 465,
+        "visibleShapes": 369,
+        "pages": [
+          "Fantasy Card — MCP Verification",
+          "Gameplay Reference — Editable",
+          "Concept B — Reusable Assembly (4K)"
+        ],
+        "weights": [
+          "400",
+          "600",
+          "500"
+        ],
+        "examples": [
+          {
+            "id": "55e98d0e-b63f-8025-8008-cc542513ae7c",
+            "name": "Title / editable",
+            "text": "MOONLIT RELIC",
+            "page": "Fantasy Card — MCP Verification",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564d9c1343",
+            "name": "Region name",
+            "text": "COBALT SHELF",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564da5e6c7",
+            "name": "Depth label",
+            "text": "DEPTH",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564db6dbba",
+            "name": "Deck count",
+            "text": "DECK 12",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564e7c05e0",
+            "name": "Creature name / editable",
+            "text": "MACKEREL",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          }
+        ]
+      },
+      "Source Serif 4": {
+        "shapes": 316,
+        "visibleShapes": 245,
+        "pages": [
+          "Gameplay Reference — Editable",
+          "Concept B — Reusable Assembly (4K)"
+        ],
+        "weights": [
+          "400",
+          "600",
+          "500"
+        ],
+        "examples": [
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564dab7c97",
+            "name": "Depth value",
+            "text": "180 m",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564e85be9a",
+            "name": "Weight / editable",
+            "text": "1.8 kg",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc564e8e7e63",
+            "name": "Value / editable",
+            "text": "7",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc567932a886",
+            "name": "Effect body / editable",
+            "text": "Increase your line\ncapacity by 4.",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          },
+          {
+            "id": "8a17fa10-389b-804e-8008-cc567964c01b",
+            "name": "Effect body / editable",
+            "text": "Increases chance\nto attract larger fish\nat current depth.",
+            "page": "Gameplay Reference — Editable",
+            "hidden": false,
+            "style": "normal"
+          }
+        ]
+      }
+    },
+    "mixedOrUnreported": []
+  },
+  "log": ""
+}

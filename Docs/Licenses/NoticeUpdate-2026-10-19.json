@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-19",
+  "authorizedChange": "Font license audit and notices requested by user. No font binaries, prefabs or gameplay changes.",
+  "path": "Assets/FishingUIAssets/Fonts/ThirdPartyNotices.txt",
+  "previousSha256": "d578398b5e2c3f8b577fce39b05d0c3a15207b99e1da793ebabc89db6a409b7f",
+  "sha256": "8e315053a612e3a151438c2856551ebb918ea0f8cf96d340e9853d1468edd5ec",
+  "fullLicenseSource": "Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-OFL.txt",
+  "originalLicenseFilesUnchanged": true,
+  "families": [
+    "Cinzel",
+    "Source Serif 4",
+    "Inter Tight",
+    "Marcellus SC",
+    "Marcellus",
+    "Liberation Sans"
+  ]
+}

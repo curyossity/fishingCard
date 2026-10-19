@@ -50,3 +50,184 @@ Assets/FishingUIAssets/Fonts/SourceSerif4/SourceSerif4-Variable.ttf
 The full license text is included at:
 
 Assets/FishingUIAssets/Fonts/SourceSerif4/OFL.txt
+
+Audit update: 19 October 2026
+----------------------------
+
+This notice covers current and retained Unity font resources and the
+Penpot-only test font. Usage and source evidence are documented in
+Docs/ThirdPartyLicenses.md. All six families are licensed under the SIL
+Open Font License 1.1; the full license reproduced below applies to each.
+Original per-family license files remain alongside their source fonts.
+
+Cinzel
+------
+
+Copyright 2020 The Cinzel Project Authors (https://github.com/NDISCOVER/Cinzel)
+
+License: SIL Open Font License, Version 1.1.
+No Reserved Font Name is declared in the supplied copyright header.
+
+Bundled font files (current Unity theme):
+
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Regular.ttf
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-SemiBold.ttf
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-Bold.ttf
+
+Static instances were generated from the upstream variable font. Conversion
+and original-source hashes are recorded in:
+Assets/UIThemes/MidnightFieldJournal/Fonts/FontProvenance.json
+
+Original copyright and license:
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/Cinzel-OFL.txt
+https://github.com/google/fonts/blob/main/ofl/cinzel/OFL.txt
+
+Source Serif 4 - additional current-theme copies
+----------------------------------------------
+
+The Source Serif 4 copyright and OFL notice above also apply to:
+
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Regular.ttf
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Semibold.ttf
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-Bold.ttf
+
+Original copyright and license:
+Assets/UIThemes/MidnightFieldJournal/Fonts/Sources/SourceSerif4-OFL.txt
+https://github.com/google/fonts/blob/main/ofl/sourceserif4/OFL.txt
+
+Inter Tight
+-----------
+
+Copyright 2022 The Inter Project Authors (https://github.com/rsms/inter-tight)
+
+License: SIL Open Font License, Version 1.1.
+
+Used only on the initial Penpot MCP verification card. No Inter Tight font
+binary is currently imported into Unity. This notice is retained for design
+handoff and for any later redistribution of the font software.
+
+Original copyright and license:
+https://github.com/google/fonts/blob/main/ofl/intertight/OFL.txt
+
+Liberation Sans
+---------------
+
+Digitized data copyright (c) 2010 Google Corporation
+	with Reserved Font Arimo, Tinos and Cousine.
+Copyright (c) 2012 Red Hat, Inc.
+	with Reserved Font Name Liberation.
+
+License: SIL Open Font License, Version 1.1.
+
+Bundled font and associated stock TextMesh Pro font assets:
+
+Assets/TextMesh Pro/Fonts/LiberationSans.ttf
+Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
+Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
+
+Original copyright and license:
+Assets/TextMesh Pro/Fonts/LiberationSans - OFL.txt
+https://github.com/liberationfonts/liberation-fonts/blob/main/LICENSE
+
+Commercial use and notices
+--------------------------
+
+These OFL fonts may be used in commercial games without a font subscription
+or per-copy royalty. No on-screen font credit is required. When redistributing
+font software, preserve the applicable copyright statements and license text.
+Keep the font software under the OFL and respect Reserved Font Names for any
+modified versions. Rendered artwork does not itself become OFL-licensed.
+
+Include these notices and the license text with distributed game/font packages
+that contain these fonts or their font-derived resources. This source file is
+not an automatic Unity build-packaging mechanism.
+
+Full license applying to the font families listed above
+------------------------------------------------------
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
