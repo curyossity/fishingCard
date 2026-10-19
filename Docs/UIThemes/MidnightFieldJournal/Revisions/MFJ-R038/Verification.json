@@ -1,0 +1,54 @@
+{
+  "gauges": [
+    {
+      "id": "bae680cd-9225-8018-8008-d07d2f5ab2fb",
+      "width": 760,
+      "height": 175,
+      "oldHidden": null,
+      "load": 4,
+      "capacity": 8,
+      "value": "4 / 8",
+      "status": "WITHIN CAPACITY",
+      "segments": 8,
+      "editableFields": 3
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d07d30e85d63",
+      "width": 760,
+      "height": 175,
+      "oldHidden": null,
+      "load": 8,
+      "capacity": 8,
+      "value": "8 / 8",
+      "status": "AT CAPACITY",
+      "segments": 8,
+      "editableFields": 3
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d07d32194531",
+      "width": 760,
+      "height": 175,
+      "oldHidden": null,
+      "load": 10,
+      "capacity": 8,
+      "value": "10 / 8",
+      "status": "OVERLOADED  +2",
+      "segments": 8,
+      "editableFields": 3
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d07d35d9a8a1",
+      "width": 760,
+      "height": 175,
+      "oldHidden": true,
+      "load": 4,
+      "capacity": 8,
+      "value": "4 / 8",
+      "status": "WITHIN CAPACITY",
+      "segments": 8,
+      "editableFields": 3
+    }
+  ],
+  "comparisonBoardId": "bae680cd-9225-8018-8008-d07d339bae02",
+  "unityImported": false
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "path": "MarineButtonHousing.png",
+    "sha256": "4f10c5bab2ace2d39cd2f95b27aa89e451fd6e5f7029f2b7ce54bf6a67b85bf5",
+    "dimensions": [
+      1989,
+      791
+    ]
+  },
+  {
+    "path": "ActionPair.png",
+    "sha256": "0ae031dc4d446508bd289175ae3d7350a47fec30461e5b90dae2f92a8b874f5c",
+    "dimensions": [
+      2800,
+      1080
+    ]
+  },
+  {
+    "path": "DescendFace.png",
+    "sha256": "c6dc4e66cdd7389324eae1755641b57b37a53ddda805c095b3bfeac1a4d716ad",
+    "dimensions": [
+      880,
+      350
+    ]
+  },
+  {
+    "path": "SurfaceFace.png",
+    "sha256": "171a6208171d9b02d5398f7fb5447552c1023b0567368176dc1edea4bc03b410",
+    "dimensions": [
+      880,
+      350
+    ]
+  }
+]

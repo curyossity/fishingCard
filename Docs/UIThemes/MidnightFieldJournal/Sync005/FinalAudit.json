@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "automatedAssertions": 1694,
+  "protectedFilesUnchanged": 815,
+  "checkpointFilesVerified": 318,
+  "pending": 0,
+  "completed": 36,
+  "superseded": 4,
+  "playMode": false,
+  "sceneDirty": false,
+  "runInBackground": false
+}

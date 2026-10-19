@@ -1,0 +1,6 @@
+{
+    "passed": true,
+    "sceneUnchanged": true,
+    "assertions": 39,
+    "scope": "Actual perspective-camera raycast mapping, pointer/submit callbacks, focus, stable hover, legality, stale-press rejection, resource lifetime and modal priority; saved scene file unchanged"
+}

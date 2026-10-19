@@ -9,10 +9,8 @@ public sealed class JournalGameplayHud : FishingRunHudPresentation
     [SerializeField] private TMP_Text biomeText, depthText, deckText, haulText, trailText;
     [SerializeField] private UnityEngine.UI.Button descendButton, surfaceButton, settingsButton;
     [SerializeField] private LineLoadMeterView meter;
-    [SerializeField] private TMP_Text tierPrototype;
-    [SerializeField] private RectTransform tierRoot;
-    [SerializeField] private Color activeColor, inactiveColor;
-    private readonly List<TMP_Text> tiers = new List<TMP_Text>();
+    [SerializeField] private JournalDepthGuide depthGuide;
+    [SerializeField] private GameObject openingCard;
     public override TMP_Text BiomeText => biomeText;
     public override TMP_Text DepthText => depthText;
     public override TMP_Text DeckText => deckText;
@@ -28,17 +26,12 @@ public sealed class JournalGameplayHud : FishingRunHudPresentation
         deckText.text = "DECK  " + Mathf.Max(0, deckCount);
         haulText.text = haulValue.HasValue ? Mathf.Max(0, haulValue.Value).ToString() : "?";
         meter.SetLoad(load, capacity);
-        BiomeDepthTierDefinition[] data = biome == null ? Array.Empty<BiomeDepthTierDefinition>() : biome.DepthTiers ?? Array.Empty<BiomeDepthTierDefinition>();
-        while (tiers.Count < data.Length) { TMP_Text row = Instantiate(tierPrototype, tierRoot); row.name = "Biome Tier " + (tiers.Count + 1); tiers.Add(row); }
-        for (int i = 0; i < tiers.Count; i++)
-        {
-            bool visible = i < data.Length && data[i] != null; tiers[i].gameObject.SetActive(visible); if (!visible) continue;
-            var tier = data[i]; string range = tier.MaximumDepth < 0 ? tier.MinimumDepth + "+" : tier.MinimumDepth + "–" + tier.MaximumDepth;
-            tiers[i].text = (tier.ContainsDepth(depth) ? ">  " : "·  ") + tier.DisplayName.ToUpperInvariant() + "   " + range + " m";
-            tiers[i].color = tier.ContainsDepth(depth) ? activeColor : inactiveColor;
-            var rect = tiers[i].rectTransform; rect.anchorMin = new Vector2(0, 1 - (i + 1f) / data.Length); rect.anchorMax = new Vector2(1, 1 - i / (float)data.Length); rect.offsetMin = rect.offsetMax = Vector2.zero;
-        }
+        depthGuide.Refresh(biome, depth);
     }
+
+    /// <summary>Shows the art-only boat from the explicit controller state, never from an empty encounter alone.</summary>
+    public override void SetOpeningVisible(bool visible)
+    { if (openingCard == null) return; openingCard.SetActive(visible); if (visible) openingCard.transform.SetAsLastSibling(); }
 
     /// <summary>Preserves learned preview information without putting run status on the card face.</summary>
     public override void SetTrailPreview(string preview)

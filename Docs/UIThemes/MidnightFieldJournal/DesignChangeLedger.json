@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R035",
+  "nextRevisionId": "MFJ-R041",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -4729,7 +4729,7 @@
       "component": [
         "Clear Water Technique card"
       ],
-      "status": "ready_for_review",
+      "status": "verified",
       "supersedes": [],
       "penpotSources": {
         "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
@@ -4785,7 +4785,7 @@
         "titleFontSize": 39.68
       },
       "exportRequirements": "Import separate illustration only; native title and rules remain live. Card preview is reference-only.",
-      "approvalEvidence": "User requested creation; awaiting visual review.",
+      "approvalEvidence": "User requested integration of the latest Penpot changes on 2026-10-19.",
       "exportEvidence": {
         "illustration": "Revisions/MFJ-R031/ClearWaterIllustration.png",
         "sha256": "1ac3a20ac295905f3e768f4920b9861f9aa447b49f07e702d90cdc0435f7a418",
@@ -4795,21 +4795,21 @@
         ],
         "previewSha256": "ec75ac560a71354426c6cc7d27c3497e30ba823b577f0e00176277a9f44cedd7"
       },
-      "importEvidence": null,
-      "verificationEvidence": {
-        "readback": "Revisions/MFJ-R031/Verification.json",
-        "preview": "Revisions/MFJ-R031/TechniqueRoster.png",
-        "visualInspection": true,
-        "editableTextFields": 3,
-        "sourceArtworkSeparate": true
+      "importEvidence": {
+        "checkpoint": "Sync004/UnityCheckpoint.json",
+        "plan": "Sync004/ImportPlan.json",
+        "sourceMetadata": "Sync004/ImportedSourceMetadata.json",
+        "unityIntegrated": true
       },
-      "remainingWork": [
-        "User visual review",
-        "Future selective Unity illustration import and exact-ID mapping when requested"
-      ],
-      "unityImported": false,
-      "integrationStatus": "pending",
-      "synchronizationCheckpoint": null
+      "verificationEvidence": {
+        "report": "Sync004/Verification.json",
+        "captures": "Sync004/README.md",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-004"
     },
     {
       "id": "MFJ-R032",
@@ -4818,7 +4818,7 @@
       "component": [
         "Hold Steady Technique card"
       ],
-      "status": "ready_for_review",
+      "status": "verified",
       "supersedes": [],
       "penpotSources": {
         "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
@@ -4874,7 +4874,7 @@
         "titleFontSize": 39.68
       },
       "exportRequirements": "Import separate illustration only; native title and rules remain live. Card preview is reference-only.",
-      "approvalEvidence": "User requested creation; awaiting visual review.",
+      "approvalEvidence": "User requested integration of the latest Penpot changes on 2026-10-19.",
       "exportEvidence": {
         "illustration": "Revisions/MFJ-R032/HoldSteadyIllustration.png",
         "sha256": "2bec5dfdb994f56b6f410ca61ed9c773a23af53bea2a5a4e4f37a4236cd5830e",
@@ -4884,21 +4884,21 @@
         ],
         "previewSha256": "ec75ac560a71354426c6cc7d27c3497e30ba823b577f0e00176277a9f44cedd7"
       },
-      "importEvidence": null,
-      "verificationEvidence": {
-        "readback": "Revisions/MFJ-R031/Verification.json",
-        "preview": "Revisions/MFJ-R031/TechniqueRoster.png",
-        "visualInspection": true,
-        "editableTextFields": 3,
-        "sourceArtworkSeparate": true
+      "importEvidence": {
+        "checkpoint": "Sync004/UnityCheckpoint.json",
+        "plan": "Sync004/ImportPlan.json",
+        "sourceMetadata": "Sync004/ImportedSourceMetadata.json",
+        "unityIntegrated": true
       },
-      "remainingWork": [
-        "User visual review",
-        "Future selective Unity illustration import and exact-ID mapping when requested"
-      ],
-      "unityImported": false,
-      "integrationStatus": "pending",
-      "synchronizationCheckpoint": null
+      "verificationEvidence": {
+        "report": "Sync004/Verification.json",
+        "captures": "Sync004/README.md",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-004"
     },
     {
       "id": "MFJ-R033",
@@ -4907,7 +4907,7 @@
       "component": [
         "Re-rig Technique card"
       ],
-      "status": "ready_for_review",
+      "status": "verified",
       "supersedes": [],
       "penpotSources": {
         "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
@@ -4963,7 +4963,7 @@
         "titleFontSize": 39.68
       },
       "exportRequirements": "Import separate illustration only; native title and rules remain live. Card preview is reference-only.",
-      "approvalEvidence": "User requested creation; awaiting visual review.",
+      "approvalEvidence": "User requested integration of the latest Penpot changes on 2026-10-19.",
       "exportEvidence": {
         "illustration": "Revisions/MFJ-R033/RerigIllustration.png",
         "sha256": "1b77cdb01c6047be19874b54d7ca221e7f6213f971849ef58577b96c869f290f",
@@ -4973,21 +4973,21 @@
         ],
         "previewSha256": "ec75ac560a71354426c6cc7d27c3497e30ba823b577f0e00176277a9f44cedd7"
       },
-      "importEvidence": null,
-      "verificationEvidence": {
-        "readback": "Revisions/MFJ-R031/Verification.json",
-        "preview": "Revisions/MFJ-R031/TechniqueRoster.png",
-        "visualInspection": true,
-        "editableTextFields": 3,
-        "sourceArtworkSeparate": true
+      "importEvidence": {
+        "checkpoint": "Sync004/UnityCheckpoint.json",
+        "plan": "Sync004/ImportPlan.json",
+        "sourceMetadata": "Sync004/ImportedSourceMetadata.json",
+        "unityIntegrated": true
       },
-      "remainingWork": [
-        "User visual review",
-        "Future selective Unity illustration import and exact-ID mapping when requested"
-      ],
-      "unityImported": false,
-      "integrationStatus": "pending",
-      "synchronizationCheckpoint": null
+      "verificationEvidence": {
+        "report": "Sync004/Verification.json",
+        "captures": "Sync004/README.md",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-004"
     },
     {
       "id": "MFJ-R034",
@@ -4996,7 +4996,7 @@
       "component": [
         "Recast Technique card"
       ],
-      "status": "ready_for_review",
+      "status": "verified",
       "supersedes": [],
       "penpotSources": {
         "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
@@ -5052,7 +5052,7 @@
         "titleFontSize": 39.68
       },
       "exportRequirements": "Import separate illustration only; native title and rules remain live. Card preview is reference-only.",
-      "approvalEvidence": "User requested creation; awaiting visual review.",
+      "approvalEvidence": "User requested integration of the latest Penpot changes on 2026-10-19.",
       "exportEvidence": {
         "illustration": "Revisions/MFJ-R034/RecastIllustration.png",
         "sha256": "eccbf3ab752b7292b60c72af0ad2874ecde0f87650cb77f8177d434e8a437906",
@@ -5062,21 +5062,1009 @@
         ],
         "previewSha256": "ec75ac560a71354426c6cc7d27c3497e30ba823b577f0e00176277a9f44cedd7"
       },
-      "importEvidence": null,
-      "verificationEvidence": {
-        "readback": "Revisions/MFJ-R031/Verification.json",
-        "preview": "Revisions/MFJ-R031/TechniqueRoster.png",
-        "visualInspection": true,
-        "editableTextFields": 3,
-        "sourceArtworkSeparate": true
+      "importEvidence": {
+        "checkpoint": "Sync004/UnityCheckpoint.json",
+        "plan": "Sync004/ImportPlan.json",
+        "sourceMetadata": "Sync004/ImportedSourceMetadata.json",
+        "unityIntegrated": true
       },
-      "remainingWork": [
-        "User visual review",
-        "Future selective Unity illustration import and exact-ID mapping when requested"
+      "verificationEvidence": {
+        "report": "Sync004/Verification.json",
+        "captures": "Sync004/README.md",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R035",
+      "date": "2026-10-19",
+      "request": "Design a new themed Line Load in Penpot instead of the current one.",
+      "component": [
+        "Line Load meter"
       ],
-      "unityImported": false,
-      "integrationStatus": "pending",
-      "synchronizationCheckpoint": null
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d05df1f67423",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d05df1e230d1",
+        "sourceArtId": "bae680cd-9225-8018-8008-d05df1b27d5b"
+      },
+      "affectedPenpotInstances": [
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+          "loadRegionId": "bae680cd-9225-8018-8008-cdde39324fbb",
+          "replacedShapeIds": [
+            "bae680cd-9225-8018-8008-cdde393d06b1",
+            "bae680cd-9225-8018-8008-cdde394f7d2e",
+            "bae680cd-9225-8018-8008-cdde3972be0c",
+            "bae680cd-9225-8018-8008-cdde3988c94b",
+            "bae680cd-9225-8018-8008-cdde399dbe80",
+            "bae680cd-9225-8018-8008-cdde39ace4e3",
+            "bae680cd-9225-8018-8008-cdde39bef84d",
+            "bae680cd-9225-8018-8008-cdde39d3077a",
+            "bae680cd-9225-8018-8008-cdde39e58481",
+            "bae680cd-9225-8018-8008-cdde39f64bd4"
+          ],
+          "id": "bae680cd-9225-8018-8008-d05df897d671",
+          "frameId": "bae680cd-9225-8018-8008-d05df8ac25fd",
+          "labelId": "bae680cd-9225-8018-8008-d05df8ba4cb5",
+          "valueId": "bae680cd-9225-8018-8008-d05df8d3d6c1",
+          "statusId": "bae680cd-9225-8018-8008-d05dfa3d481a",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d05df8efc0a3",
+            "bae680cd-9225-8018-8008-d05df915694a",
+            "bae680cd-9225-8018-8008-d05df93845fa",
+            "bae680cd-9225-8018-8008-d05df96b8a43",
+            "bae680cd-9225-8018-8008-d05df9bcc1ec",
+            "bae680cd-9225-8018-8008-d05df9dcb6c7",
+            "bae680cd-9225-8018-8008-d05df9fa1c24",
+            "bae680cd-9225-8018-8008-d05dfa1a886d"
+          ],
+          "load": 4,
+          "capacity": 8
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "loadRegionId": "bae680cd-9225-8018-8008-cdead5028f9c",
+          "replacedShapeIds": [
+            "bae680cd-9225-8018-8008-cdead502df30",
+            "bae680cd-9225-8018-8008-cdead502df31",
+            "bae680cd-9225-8018-8008-cdead502df32",
+            "bae680cd-9225-8018-8008-cdead502df33",
+            "bae680cd-9225-8018-8008-cdead502df34",
+            "bae680cd-9225-8018-8008-cdead502df35",
+            "bae680cd-9225-8018-8008-cdead502df36",
+            "bae680cd-9225-8018-8008-cdead502df37",
+            "bae680cd-9225-8018-8008-cdead502df38",
+            "bae680cd-9225-8018-8008-cdead502df39"
+          ],
+          "id": "bae680cd-9225-8018-8008-d05dfa9766f9",
+          "frameId": "bae680cd-9225-8018-8008-d05dfac24718",
+          "labelId": "bae680cd-9225-8018-8008-d05dfad5fba9",
+          "valueId": "bae680cd-9225-8018-8008-d05dfaf12c62",
+          "statusId": "bae680cd-9225-8018-8008-d05dfbe4b720",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d05dfb107f56",
+            "bae680cd-9225-8018-8008-d05dfb32d617",
+            "bae680cd-9225-8018-8008-d05dfb55f67e",
+            "bae680cd-9225-8018-8008-d05dfb788d88",
+            "bae680cd-9225-8018-8008-d05dfb9d2f7d",
+            "bae680cd-9225-8018-8008-d05dfbaea620",
+            "bae680cd-9225-8018-8008-d05dfbbf7f87",
+            "bae680cd-9225-8018-8008-d05dfbd1820f"
+          ],
+          "load": 4,
+          "capacity": 8
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+          "loadRegionId": "bae680cd-9225-8018-8008-d00619215442",
+          "replacedShapeIds": [
+            "bae680cd-9225-8018-8008-d006192154c0",
+            "bae680cd-9225-8018-8008-d006192154c1",
+            "bae680cd-9225-8018-8008-d006192154c2",
+            "bae680cd-9225-8018-8008-d006192154c3",
+            "bae680cd-9225-8018-8008-d006192154c4",
+            "bae680cd-9225-8018-8008-d006192154c5",
+            "bae680cd-9225-8018-8008-d006192154c6",
+            "bae680cd-9225-8018-8008-d006192154c7",
+            "bae680cd-9225-8018-8008-d006192154c8",
+            "bae680cd-9225-8018-8008-d006192154c9"
+          ],
+          "id": "bae680cd-9225-8018-8008-d05dfc12c173",
+          "frameId": "bae680cd-9225-8018-8008-d05dfc228995",
+          "labelId": "bae680cd-9225-8018-8008-d05dfc32b5b9",
+          "valueId": "bae680cd-9225-8018-8008-d05dfc4e5f05",
+          "statusId": "bae680cd-9225-8018-8008-d05dfd868262",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d05dfc6c6cf0",
+            "bae680cd-9225-8018-8008-d05dfc92066a",
+            "bae680cd-9225-8018-8008-d05dfcba24aa",
+            "bae680cd-9225-8018-8008-d05dfce0c686",
+            "bae680cd-9225-8018-8008-d05dfd0212a6",
+            "bae680cd-9225-8018-8008-d05dfd150d03",
+            "bae680cd-9225-8018-8008-d05dfd3a4be9",
+            "bae680cd-9225-8018-8008-d05dfd6129e3"
+          ],
+          "load": 4,
+          "capacity": 8
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+          "loadRegionId": "bae680cd-9225-8018-8008-cf65f248e1e7",
+          "replacedShapeIds": [
+            "bae680cd-9225-8018-8008-cf65f248e265",
+            "bae680cd-9225-8018-8008-cf65f248e266",
+            "bae680cd-9225-8018-8008-cf65f248e267",
+            "bae680cd-9225-8018-8008-cf65f248e268",
+            "bae680cd-9225-8018-8008-cf65f248e269",
+            "bae680cd-9225-8018-8008-cf65f248e26a",
+            "bae680cd-9225-8018-8008-cf65f248e26b",
+            "bae680cd-9225-8018-8008-cf65f248e26c",
+            "bae680cd-9225-8018-8008-cf65f248e26d",
+            "bae680cd-9225-8018-8008-cf65f248e26e"
+          ],
+          "id": "bae680cd-9225-8018-8008-d05dfddf28ad",
+          "frameId": "bae680cd-9225-8018-8008-d05dfdf725c2",
+          "labelId": "bae680cd-9225-8018-8008-d05dfe11a1a3",
+          "valueId": "bae680cd-9225-8018-8008-d05dfe5185ca",
+          "statusId": "bae680cd-9225-8018-8008-d05dff592288",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d05dfe781d44",
+            "bae680cd-9225-8018-8008-d05dfea0a91c",
+            "bae680cd-9225-8018-8008-d05dfec7d436",
+            "bae680cd-9225-8018-8008-d05dfef0e58a",
+            "bae680cd-9225-8018-8008-d05dff118db1",
+            "bae680cd-9225-8018-8008-d05dff232396",
+            "bae680cd-9225-8018-8008-d05dff3772a9",
+            "bae680cd-9225-8018-8008-d05dff486d92"
+          ],
+          "load": 4,
+          "capacity": 8
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "geometry",
+        "typography",
+        "state presentation"
+      ],
+      "before": "Plain separate pips and live numbers without a matching engraved housing.",
+      "after": "Independent engraved brass/navy housing with editable live label, exact load/capacity, segmented gauge and explicit capacity states.",
+      "unityAssetIds": [
+        "LineLoadMeter"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/LineLoadMeterView.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/LineLoadMeter.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json"
+      ],
+      "dependentConsumers": [
+        "CatchChainView",
+        "JournalCatchChainPresentation",
+        "candidate gameplay canvas"
+      ],
+      "configurationChanges": {
+        "geometry": {
+          "canvas": [
+            760,
+            175
+          ],
+          "frame": [
+            0,
+            -48,
+            760,
+            270.3185924869234
+          ],
+          "label": [
+            95,
+            28,
+            340,
+            44
+          ],
+          "value": [
+            460,
+            17,
+            205,
+            62
+          ],
+          "gauge": [
+            95,
+            90,
+            570,
+            20
+          ],
+          "status": [
+            95,
+            124,
+            570,
+            28
+          ]
+        },
+        "fontDisplay": "Cinzel",
+        "fontValues": "Source Serif 4",
+        "stateColors": {
+          "normal": "#BE955D",
+          "atCapacity": "#D3A66A",
+          "overloaded": "#B95D40"
+        },
+        "futureUnityBinding": "Use actual effective load/capacity, generate segments from capacity, clamp fill only; never clamp numerical load. Excess shown explicitly. Preserve existing probability calculation and haul."
+      },
+      "exportRequirements": "Import housing separately; render text and gauge natively. State previews are reference-only.",
+      "approvalEvidence": "User requested integration of the latest Penpot changes on 2026-10-19.",
+      "exportEvidence": {
+        "asset": "Revisions/MFJ-R035/EngravedLoadHousing.png",
+        "sha256": "54b0f31c771e1cd100e0f42e832f81ebb2c3166f1d4dabaf457ee5c0e7bf8d7a",
+        "statePreview": "Revisions/MFJ-R035/LoadStates.png",
+        "previewSha256": "fd308a97f274255887ac4f6e4f43c93353cfcea591dfbfde5dfb8995eb6d908f"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync004/UnityCheckpoint.json",
+        "plan": "Sync004/ImportPlan.json",
+        "sourceMetadata": "Sync004/ImportedSourceMetadata.json",
+        "unityIntegrated": true
+      },
+      "verificationEvidence": {
+        "report": "Sync004/Verification.json",
+        "captures": "Sync004/README.md",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R036",
+      "date": "2026-10-19",
+      "request": "Create new equally sized detailed Descend and Surface buttons fitting the theme, with detail distinct from the cards.",
+      "component": [
+        "Descend button",
+        "Surface button"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d0617f36896a",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d0617f174fec",
+        "sourceArtId": "bae680cd-9225-8018-8008-d0617ee0ea9f"
+      },
+      "affectedPenpotInstances": [
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+          "previousId": "bae680cd-9225-8018-8008-cdde3cc0df68",
+          "parentId": "bae680cd-9225-8018-8008-cdde3c8063bb",
+          "x": 2780,
+          "y": 255,
+          "id": "bae680cd-9225-8018-8008-d061811bc70e",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d0618129b07c",
+          "iconId": "bae680cd-9225-8018-8008-d06181388107",
+          "titleId": "bae680cd-9225-8018-8008-d0618143ea8b",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#E0B46F"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+          "previousId": "bae680cd-9225-8018-8008-cdde3cf48bc9",
+          "parentId": "bae680cd-9225-8018-8008-cdde3c8063bb",
+          "x": 2780,
+          "y": 645,
+          "id": "bae680cd-9225-8018-8008-d061815d36b8",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d061816a49dc",
+          "iconId": "bae680cd-9225-8018-8008-d06181768dee",
+          "titleId": "bae680cd-9225-8018-8008-d0618183e148",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#F0E0BD"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "previousId": "bae680cd-9225-8018-8008-cdead502df4c",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9e",
+          "x": 6980,
+          "y": 5155,
+          "id": "bae680cd-9225-8018-8008-d06181ac4c6b",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d06181b858b1",
+          "iconId": "bae680cd-9225-8018-8008-d06181c8a20f",
+          "titleId": "bae680cd-9225-8018-8008-d06181d295f9",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#E0B46F"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+          "previousId": "bae680cd-9225-8018-8008-cdead502df4e",
+          "parentId": "bae680cd-9225-8018-8008-cdead5028f9e",
+          "x": 6980,
+          "y": 5545,
+          "id": "bae680cd-9225-8018-8008-d06181f1fc01",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d0618201c8d1",
+          "iconId": "bae680cd-9225-8018-8008-d06182101d42",
+          "titleId": "bae680cd-9225-8018-8008-d061821aef62",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#F0E0BD"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+          "previousId": "bae680cd-9225-8018-8008-d006192154f8",
+          "parentId": "bae680cd-9225-8018-8008-d00619215445",
+          "x": 6980,
+          "y": 10355,
+          "id": "bae680cd-9225-8018-8008-d061827e7b41",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d06182975979",
+          "iconId": "bae680cd-9225-8018-8008-d06182af7e55",
+          "titleId": "bae680cd-9225-8018-8008-d06182c1d8ee",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#E0B46F"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+          "previousId": "bae680cd-9225-8018-8008-d006192154fa",
+          "parentId": "bae680cd-9225-8018-8008-d00619215445",
+          "x": 6980,
+          "y": 10745,
+          "id": "bae680cd-9225-8018-8008-d06182f43007",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d06183079973",
+          "iconId": "bae680cd-9225-8018-8008-d061831faa99",
+          "titleId": "bae680cd-9225-8018-8008-d0618331f06e",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#F0E0BD"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+          "previousId": "bae680cd-9225-8018-8008-cf65f248e29d",
+          "parentId": "bae680cd-9225-8018-8008-cf65f248e1ea",
+          "x": 2780,
+          "y": 7655,
+          "id": "bae680cd-9225-8018-8008-d061838331aa",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d06183aa044a",
+          "iconId": "bae680cd-9225-8018-8008-d06183bd2b52",
+          "titleId": "bae680cd-9225-8018-8008-d06183ca32c6",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#E0B46F"
+        },
+        {
+          "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+          "previousId": "bae680cd-9225-8018-8008-cf65f248e29f",
+          "parentId": "bae680cd-9225-8018-8008-cf65f248e1ea",
+          "x": 2780,
+          "y": 8045,
+          "id": "bae680cd-9225-8018-8008-d06183e82eb8",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d06183fa8a6c",
+          "iconId": "bae680cd-9225-8018-8008-d061840c45ca",
+          "titleId": "bae680cd-9225-8018-8008-d0618417d67b",
+          "size": [
+            880,
+            350
+          ],
+          "titleColor": "#F0E0BD"
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "geometry",
+        "typography"
+      ],
+      "before": "Previous separate orange Descend and parchment Surface faces, 880×346 and 880×352.",
+      "after": "Matching 880×350 raised marine bronze/navy enamel controls; distinct down/up vector icons and copper/ivory lettering. Wave engraving and functional hardware instead of card botanical borders.",
+      "unityAssetIds": [
+        "DescendButton",
+        "SurfaceButton"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+        "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs"
+      ],
+      "dependentConsumers": [
+        "RunActionButton",
+        "FishingRunView",
+        "MidnightFieldJournalCanvas prefab",
+        "candidate gameplay scene"
+      ],
+      "configurationChanges": {
+        "geometry": {
+          "buttonSize": [
+            880,
+            350
+          ],
+          "icon": [
+            150,
+            132,
+            76,
+            86
+          ],
+          "title": [
+            262,
+            124,
+            480,
+            110
+          ],
+          "titleSize": 74
+        },
+        "sharedHousing": "MarineButtonHousing.png",
+        "typeface": "Cinzel Semibold",
+        "descendInk": "#E0B46F",
+        "surfaceInk": "#F0E0BD",
+        "positionsAndHints": "Preserved",
+        "hoverFrames": "Do not reintroduce a pointer-hover frame."
+      },
+      "exportRequirements": "Retain independent housing and editable title/icon sources; export separate combined face PNGs for future Unity static buttons. Never use a gameplay screenshot or combined pair as runtime art.",
+      "approvalEvidence": "User requested integration of the latest Penpot changes on 2026-10-19.",
+      "exportEvidence": {
+        "manifest": "Revisions/MFJ-R036/Exports.json",
+        "standaloneStaticFaces": [
+          "Revisions/MFJ-R036/DescendFace.png",
+          "Revisions/MFJ-R036/SurfaceFace.png"
+        ],
+        "independentHousing": "Revisions/MFJ-R036/MarineButtonHousing.png"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync004/UnityCheckpoint.json",
+        "plan": "Sync004/ImportPlan.json",
+        "sourceMetadata": "Sync004/ImportedSourceMetadata.json",
+        "unityIntegrated": true
+      },
+      "verificationEvidence": {
+        "report": "Sync004/Verification.json",
+        "captures": "Sync004/README.md",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R037",
+      "date": "2026-10-19",
+      "request": "Create another Descend/Surface and Line Load design matching the cards; the current versions feel too metallic.",
+      "component": [
+        "Descend button",
+        "Surface button"
+      ],
+      "status": "verified",
+      "supersedes": [
+        "MFJ-R036"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d07d2d621005",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d07d2d33d218",
+        "comparisonBoardId": "bae680cd-9225-8018-8008-d07d339bae02",
+        "sourceArtId": "bae680cd-9225-8018-8008-d07d2b3772ad"
+      },
+      "affectedPenpotInstances": [
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcc07",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d34dc4fca",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d07d350618d3",
+          "iconId": "bae680cd-9225-8018-8008-d07d3526aa5e",
+          "titleId": "bae680cd-9225-8018-8008-d07d353afa8b",
+          "size": [
+            880,
+            350
+          ]
+        },
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcc08",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d35791b39",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d07d358acdb5",
+          "iconId": "bae680cd-9225-8018-8008-d07d359c415a",
+          "titleId": "bae680cd-9225-8018-8008-d07d35b0246f",
+          "size": [
+            880,
+            350
+          ]
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "typography",
+        "geometry",
+        "state presentation"
+      ],
+      "before": "Imported marine metal controls remain at MFJ-SYNC-004.",
+      "after": "New aged parchment and printed botanical engraving alternative, on a separate gameplay comparison board.",
+      "unityAssetIds": [
+        "DescendButton",
+        "SurfaceButton"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Controls/",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json"
+      ],
+      "dependentConsumers": [
+        "RunActionButton",
+        "FishingRunView",
+        "candidate canvas"
+      ],
+      "configurationChanges": {
+        "geometry": {
+          "size": [
+            880,
+            350
+          ],
+          "title": [
+            285,
+            127,
+            440,
+            105
+          ],
+          "titleSize": 70,
+          "icon": [
+            185,
+            137,
+            76,
+            78
+          ],
+          "clipContent": true
+        },
+        "sourceDimensions": [
+          1988,
+          791
+        ],
+        "fontDisplay": "Cinzel",
+        "fontValues": "Source Serif 4",
+        "style": "Aged ivory parchment, navy/sepia printed engraving, no metal hardware or gloss.",
+        "currentUnityCheckpoint": "MFJ-SYNC-004",
+        "reviewBoundary": "Only the new Gameplay E comparison uses these alternatives; prior gameplay boards and Unity remain unchanged."
+      },
+      "exportRequirements": "Retain independent blanks and editable text/icons/segments; individual faces may later be exported for the buttons. Never import a gameplay screenshot.",
+      "approvalEvidence": "User explicitly requested integrating all latest Penpot changes and logging the integration.",
+      "exportEvidence": {
+        "asset": "Revisions/MFJ-R037/ParchmentButtonBlank.png",
+        "preview": "Revisions/MFJ-R037/ParchmentControls.png"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync005/UnityCheckpoint.json",
+        "plan": "Sync005/ImportPlan.json",
+        "sourceMetadata": "Sync005/ImportedSourceMetadata.json"
+      },
+      "verificationEvidence": {
+        "report": "Sync005/Verification.json",
+        "playMode": "Sync005/PlayModeVerification.json",
+        "preservation": "Sync005/Preservation.json",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R038",
+      "date": "2026-10-19",
+      "request": "Create another Descend/Surface and Line Load design matching the cards; the current versions feel too metallic.",
+      "component": [
+        "Line Load meter"
+      ],
+      "status": "verified",
+      "supersedes": [
+        "MFJ-R035"
+      ],
+      "penpotSources": {
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d07d2d621005",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d07d2d33d218",
+        "comparisonBoardId": "bae680cd-9225-8018-8008-d07d339bae02",
+        "sourceArtId": "bae680cd-9225-8018-8008-d07d2d01fcf4"
+      },
+      "affectedPenpotInstances": [
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcbc2",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d35d9a8a1",
+          "frameId": "bae680cd-9225-8018-8008-d07d35ec161e",
+          "labelId": "bae680cd-9225-8018-8008-d07d35fef5e0",
+          "valueId": "bae680cd-9225-8018-8008-d07d361fb1f9",
+          "statusId": "bae680cd-9225-8018-8008-d07d36f945ec",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d07d3640c778",
+            "bae680cd-9225-8018-8008-d07d3654c707",
+            "bae680cd-9225-8018-8008-d07d366cba19",
+            "bae680cd-9225-8018-8008-d07d3683edb9",
+            "bae680cd-9225-8018-8008-d07d369a6625",
+            "bae680cd-9225-8018-8008-d07d36b022ce",
+            "bae680cd-9225-8018-8008-d07d36c9a751",
+            "bae680cd-9225-8018-8008-d07d36e27e3b"
+          ],
+          "load": 4,
+          "capacity": 8,
+          "size": [
+            760,
+            175
+          ]
+        }
+      ],
+      "changeKinds": [
+        "artwork",
+        "typography",
+        "geometry",
+        "state presentation"
+      ],
+      "before": "Imported marine metal controls remain at MFJ-SYNC-004.",
+      "after": "New aged parchment and printed botanical engraving alternative, on a separate gameplay comparison board.",
+      "unityAssetIds": [
+        "LineLoadHousing"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Controls/",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json"
+      ],
+      "dependentConsumers": [
+        "LineLoadMeterView",
+        "JournalLoadSegment",
+        "candidate canvas"
+      ],
+      "configurationChanges": {
+        "geometry": {
+          "size": [
+            760,
+            175
+          ],
+          "label": [
+            95,
+            25,
+            340,
+            44
+          ],
+          "value": [
+            460,
+            14,
+            205,
+            62
+          ],
+          "gauge": [
+            95,
+            87,
+            570,
+            18
+          ],
+          "status": [
+            95,
+            116,
+            570,
+            28
+          ]
+        },
+        "sourceDimensions": [
+          2196,
+          716
+        ],
+        "fontDisplay": "Cinzel",
+        "fontValues": "Source Serif 4",
+        "style": "Aged ivory parchment, navy/sepia printed engraving, no metal hardware or gloss.",
+        "currentUnityCheckpoint": "MFJ-SYNC-004",
+        "reviewBoundary": "Only the new Gameplay E comparison uses these alternatives; prior gameplay boards and Unity remain unchanged."
+      },
+      "exportRequirements": "Retain independent blanks and editable text/icons/segments; individual faces may later be exported for the buttons. Never import a gameplay screenshot.",
+      "approvalEvidence": "User explicitly requested integrating all latest Penpot changes and logging the integration.",
+      "exportEvidence": {
+        "asset": "Revisions/MFJ-R038/ParchmentLoadBlank.png",
+        "preview": "Revisions/MFJ-R037/ParchmentControls.png"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync005/UnityCheckpoint.json",
+        "plan": "Sync005/ImportPlan.json",
+        "sourceMetadata": "Sync005/ImportedSourceMetadata.json"
+      },
+      "verificationEvidence": {
+        "report": "Sync005/Verification.json",
+        "playMode": "Sync005/PlayModeVerification.json",
+        "preservation": "Sync005/Preservation.json",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R039",
+      "date": "2026-10-19",
+      "request": "Create an art-only fisherman in a small fishing boat card for the beginning of the run, before the first creature appears.",
+      "component": [
+        "Run-opening boat card"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R039",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d086c7a1bbc3",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d086c7786357",
+        "cardId": "bae680cd-9225-8018-8008-d086c7e1e064",
+        "size": [
+          1260,
+          1400
+        ],
+        "frameId": "bae680cd-9225-8018-8008-d086c7f07b52",
+        "illustrationId": "bae680cd-9225-8018-8008-d086c801e851",
+        "sources": [
+          {
+            "kind": "frame",
+            "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R039\\OpeningBoatFrame.png",
+            "width": 1073,
+            "height": 1466,
+            "sha256": "183156d13946faca851e6c2ef29375fe1721a5a93344197852928173577afda4",
+            "shapeId": "bae680cd-9225-8018-8008-d086c573c7cc"
+          },
+          {
+            "kind": "scene",
+            "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R039\\FishermanBoatIllustration.png",
+            "width": 1179,
+            "height": 1334,
+            "sha256": "d17f1f285e0b16c0ecdde73e7ff6009eeec8cc174097af8c81a2c831e398a475",
+            "shapeId": "bae680cd-9225-8018-8008-d086c74ba321"
+          }
+        ],
+        "status": "ready_for_review",
+        "unityImported": false,
+        "sceneBounds": [
+          90,
+          89.00763358778624,
+          1080,
+          1221.9847328244275
+        ],
+        "contract": "Presentation-only opening artwork before first creature. No stats, text, effects, Catch/Bait modes or deck membership. Unity behavior unchanged."
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d086c7e1e064"
+      ],
+      "changeKinds": [
+        "new illustration",
+        "new art-only card template"
+      ],
+      "before": "No dedicated opening boat card in this theme.",
+      "after": "Engraved ivory parchment card with a lone fisherman in a wooden skiff, coastal water, shoreline and gulls. Frame and scene are independent image layers; the actual card has no text, stats or effect panels.",
+      "unityAssetIds": [
+        "OpeningBoatFrame",
+        "FishermanBoatIllustration"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Opening/ (proposed; not created)"
+      ],
+      "dependentConsumers": [
+        "Future candidate run-opening presentation"
+      ],
+      "configurationChanges": "Penpot only. Intended before the first creature; presentation timing and Unity integration remain unimplemented. This is not a gameplay creature/event/technique definition or deck member.",
+      "exportRequirements": "Export independent frame and scene, not a flattened gameplay screenshot. Preserve illustration aspect ratio. Reference card size 1260 x 1400; original source sizes and hashes are in PenpotDesign.json. Frame housing fits the target card footprint.",
+      "approvalEvidence": "User explicitly requested integrating all latest Penpot changes and logging the integration.",
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R039/OpeningBoatCard.png",
+        "dimensions": [
+          1260,
+          1400
+        ],
+        "sources": "Revisions/MFJ-R039/PenpotDesign.json"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync005/UnityCheckpoint.json",
+        "plan": "Sync005/ImportPlan.json",
+        "sourceMetadata": "Sync005/ImportedSourceMetadata.json"
+      },
+      "verificationEvidence": {
+        "report": "Sync005/Verification.json",
+        "playMode": "Sync005/PlayModeVerification.json",
+        "preservation": "Sync005/Preservation.json",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R040",
+      "date": "2026-10-19",
+      "request": "Recreate the depth guide area in the style of the original Penpot mockup.",
+      "component": [
+        "Depth guide"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R040",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d08a985b4ebe",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d08a980a65fb",
+        "sourceGuideId": "bae680cd-9225-8018-8008-d08a98b3b304",
+        "comparisonBoardId": "bae680cd-9225-8018-8008-d08a9ab76de5",
+        "instanceId": "bae680cd-9225-8018-8008-d08a9b276e25",
+        "replacedShapeIds": [
+          "bae680cd-9225-8018-8008-d08a9ab7b21b",
+          "bae680cd-9225-8018-8008-d08a9ab7b21c",
+          "bae680cd-9225-8018-8008-d08a9ab7b21d",
+          "bae680cd-9225-8018-8008-d08a9ab7b21e"
+        ],
+        "size": [
+          760,
+          550
+        ],
+        "assemblyBounds": [
+          2840,
+          1130,
+          760,
+          550
+        ],
+        "rows": [
+          {
+            "tierId": "shallows",
+            "labelId": "bae680cd-9225-8018-8008-d08a994b5ec6",
+            "rangeId": "bae680cd-9225-8018-8008-d08a9963fccc",
+            "artId": "bae680cd-9225-8018-8008-d08a9921a928",
+            "nodeIds": [
+              "bae680cd-9225-8018-8008-d08a98ea4743",
+              "bae680cd-9225-8018-8008-d08a9904c15b"
+            ],
+            "haloIds": [],
+            "active": false,
+            "center": [
+              50,
+              95
+            ]
+          },
+          {
+            "tierId": "mid_depth",
+            "labelId": "bae680cd-9225-8018-8008-d08a99f8f342",
+            "rangeId": "bae680cd-9225-8018-8008-d08a9a14c1f9",
+            "artId": "bae680cd-9225-8018-8008-d08a99e46210",
+            "nodeIds": [
+              "bae680cd-9225-8018-8008-d08a99b1d352",
+              "bae680cd-9225-8018-8008-d08a99cb8811"
+            ],
+            "haloIds": [
+              "bae680cd-9225-8018-8008-d08a997cb067",
+              "bae680cd-9225-8018-8008-d08a998e0b66",
+              "bae680cd-9225-8018-8008-d08a99a0033e"
+            ],
+            "active": true,
+            "center": [
+              50,
+              270
+            ]
+          },
+          {
+            "tierId": "deep_edge",
+            "labelId": "bae680cd-9225-8018-8008-d08a9a77a985",
+            "rangeId": "bae680cd-9225-8018-8008-d08a9a9a478d",
+            "artId": "bae680cd-9225-8018-8008-d08a9a61ee6f",
+            "nodeIds": [
+              "bae680cd-9225-8018-8008-d08a9a364075",
+              "bae680cd-9225-8018-8008-d08a9a4fefe1"
+            ],
+            "haloIds": [],
+            "active": false,
+            "center": [
+              50,
+              445
+            ]
+          }
+        ],
+        "assets": [
+          {
+            "kind": "shallows",
+            "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R040\\shallows.png",
+            "width": 1448,
+            "height": 1086,
+            "sha256": "67073bd9682388e706d4afacf4e58638e6090763195d889a7d409bd092ffda4b",
+            "shapeId": "bae680cd-9225-8018-8008-d08a95564e0b"
+          },
+          {
+            "kind": "reef",
+            "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R040\\reef.png",
+            "width": 1448,
+            "height": 1086,
+            "sha256": "5e426f8d2cbe1d479354c81e3ea2eaa72e654d8641b2e8d2f0a656859a313d2f",
+            "shapeId": "bae680cd-9225-8018-8008-d08a96b00bf5"
+          },
+          {
+            "kind": "deep_water",
+            "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R040\\deep_water.png",
+            "width": 1448,
+            "height": 1086,
+            "sha256": "9cc20226ab09ef34d1ed5b41f35b7db066bd066880888350801c192127572114",
+            "shapeId": "bae680cd-9225-8018-8008-d08a97cc52cc"
+          }
+        ],
+        "status": "ready_for_review",
+        "unityImported": false,
+        "contract": "Native tier labels, authored ranges, nodes and amber current-tier state. Decorative coral is independent art. Runtime biome tiers/depth remain authoritative; no new gameplay or tier renames."
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d08a9b276e25"
+      ],
+      "changeKinds": [
+        "artwork",
+        "geometry",
+        "typography",
+        "current-tier presentation"
+      ],
+      "before": "Right sidebar text block: The Coast Below, depth12, Coastal Waters and encounter-category summary.",
+      "after": "Fine vertical timeline, three independent engraved marine vignettes, hollow inactive nodes and an amber active node/halo/label. Native authored tier names and depth ranges. Assembled on Gameplay F.",
+      "unityAssetIds": [
+        "DepthShallowsVignette",
+        "DepthReefVignette",
+        "DepthDeepWaterVignette"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/ (proposed)",
+        "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalGameplayHud.cs"
+      ],
+      "dependentConsumers": [
+        "Candidate gameplay HUD",
+        "Biome-authored depth-tier presentation",
+        "Future prefab regeneration"
+      ],
+      "configurationChanges": "Presentation-only. Read runtime biome tiers/current depth; do not rename tiers to mockup sample labels. Node/label state remains native and independent of decorative coral colors. Future layout must support authored tier counts and names, not hardcode three gameplay tiers.",
+      "exportRequirements": "Keep three independent transparent PNGs and native editable text/nodes/line. No mockup slicing or flattened HUD import.760×550 guide; artwork205×153.75, original1448×1086 per asset, suitable for the4K design footprint.",
+      "approvalEvidence": "User explicitly requested integrating all latest Penpot changes and logging the integration.",
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R040/DepthGuideReview.png",
+        "sources": "Revisions/MFJ-R040/PenpotDesign.json",
+        "prompts": "Revisions/MFJ-R040/GenerationPrompts.json"
+      },
+      "importEvidence": {
+        "checkpoint": "Sync005/UnityCheckpoint.json",
+        "plan": "Sync005/ImportPlan.json",
+        "sourceMetadata": "Sync005/ImportedSourceMetadata.json"
+      },
+      "verificationEvidence": {
+        "report": "Sync005/Verification.json",
+        "playMode": "Sync005/PlayModeVerification.json",
+        "preservation": "Sync005/Preservation.json",
+        "passed": true
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-005"
     }
   ],
   "synchronizationCheckpoints": [
@@ -5142,6 +6130,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "Sync003/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "HandPosition/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

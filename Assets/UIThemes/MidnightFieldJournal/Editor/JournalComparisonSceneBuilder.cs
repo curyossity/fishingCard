@@ -31,6 +31,7 @@ public static class JournalComparisonSceneBuilder
             GameObject owner = new GameObject("RunController"); SceneManager.MoveGameObjectToScene(owner, target);
             var controller = owner.AddComponent<FishingRunController>(); EditorUtility.CopySerialized(sourceController, controller);
             var serialized = new SerializedObject(controller);
+            serialized.FindProperty("beginWithBoatCard").boolValue = true;
             serialized.FindProperty("currentEncounterView").objectReferenceValue = null; serialized.FindProperty("techniqueHandViews").arraySize = 0;
             serialized.FindProperty("fishingRunView").objectReferenceValue = ui.GetComponent<FishingRunView>();
             serialized.FindProperty("catchChainView").objectReferenceValue = ui.GetComponentInChildren<CatchChainView>(true);

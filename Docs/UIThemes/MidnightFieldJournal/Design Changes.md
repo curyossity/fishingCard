@@ -6,7 +6,7 @@ MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC
 
 ## Pending Unity changes
 
-The dedicated [pending list](Pending%20Unity%20Changes.md) and [machine-readable index](PendingUnityChanges.json) currently contain **four pending revisions: MFJ-R031–MFJ-R034**. MFJ-R001–MFJ-R024 are imported and verified; they must not be queued again. Latest baseline for comparisons: MFJ-SYNC-003.
+**Two new pending revisions: MFJ-R037–R038.** MFJ-R031–R036 are now imported and verified at [MFJ-SYNC-004](Sync004/README.md), joining the previous26 completed revisions. The four historical superseded drafts remain excluded. Latest comparison baseline: [Sync004 checkpoint](Sync004/UnityCheckpoint.json). Use the [pending index](PendingUnityChanges.json) to avoid reimporting completed work. Design-creation notes below are historical where their original Penpot-only status is superseded by this checkpoint.
 
 ## Change history
 
@@ -86,3 +86,39 @@ Import state is explicit: `unityImported`, `integrationStatus`, `synchronization
 ## Missing Technique illustrations — MFJ-R031–R034
 
 Clear Water, Hold Steady, Re-rig and Recast now have separate transparent engravings and editable Penpot cards. All four are ready for visual review and remain pending Unity integration. Existing completed/superseded revisions retain their status. [Preview and source IDs](Revisions/MFJ-R031/README.md).
+
+## MFJ-R035 — themed Line Load
+
+New separate engraved brass/navy housing and editable values, segments and capacity-state text. Updated the four gameplay assemblies while hiding the replaced meter shapes and retaining haul. Penpot only, awaiting review and Unity integration. [Handoff and previews](Revisions/MFJ-R035/README.md).
+
+## MFJ-R036 — matched marine action buttons
+
+New Descend/Surface pair, exactly880×350 each. Functional bronze hardware, fine wave engraving and navy enamel distinguish the buttons from the parchment/botanical cards. Separate editable sources and static face exports are retained; eight gameplay instances updated. Penpot only, ready for review. [Preview and handoff](Revisions/MFJ-R036/README.md).
+
+## MFJ-SYNC-004 — latest Unity integration
+
+MFJ-R031–R036 are imported and verified: four missing Technique illustrations, the engraved Line Load gauge and matched Descend/Surface buttons. No pending revisions remain. [Evidence and preservation boundaries](Sync004/README.md).
+
+## Parchment control alternatives — MFJ-R037–R038
+
+User found the imported buttons and meter too metallic. New paper/ink designs match the cards’ aged ivory, fine engraving and marine botanical sketches. Review-only Gameplay E preserves the previous assemblies and current Unity implementation. MFJ-R037 covers matched action controls; MFJ-R038 covers dynamic Line Load. [Preview and sources](Revisions/MFJ-R037/README.md). These two revisions remain pending review/import;32 earlier imports remain completed.
+
+## Opening boat card — MFJ-R039
+
+New illustration-only run-opening card with a fisherman fishing from a small wooden boat. Independent frame and scene layers, same1260×1400 footprint as the main cards. No stats, mode or effects. [Preview, source IDs and import boundary](Revisions/MFJ-R039/README.md). Penpot only; all Unity files preserved. Pending: R037, R038, R039.
+
+## Illustrated depth guide — MFJ-R040
+
+Restores the original mockup’s fine depth line, small engraved corals and amber current-tier emphasis. Assembled in Gameplay F while preserving Gameplay E. Actual tier labels/ranges are native editable fields; no gameplay changes. [Preview, source IDs and import contract](Revisions/MFJ-R040/README.md). Pending Unity integration.
+
+## MFJ-SYNC-005 — Latest integration
+
+R037–R040 are imported and verified: parchment action controls, paper/ink load meter, opening boat and illustrated live depth guide. **0 pending;36 completed;4 superseded.** [Integration evidence and layout adaptation](Sync005/README.md). Earlier pending statements above are historical and superseded by this checkpoint.
+
+## Unity depth-guide focus refinement — MFJ-SYNC-005.1
+
+Only the current tier keeps original artwork colors and amber emphasis. Other tiers use a shared grayscale material at42% artwork opacity, with subdued neutral labels/ranges. State changes follow actual depth and clear on pooled-row reuse. No artwork regeneration or pending Penpot import was created. Native Penpot study retains its previous colors; this is a Unity-only presentation override. Current comparison baseline: [MFJ-SYNC-005.1](DepthGuideFocus/UnityCheckpoint.json). [Preview and checks](DepthGuideFocus/README.md). Completed/imported revision counts remain36/0pending/4superseded.
+
+## Unity Technique hand position — MFJ-SYNC-005.2
+
+Hand lowered48 design pixels (24 at1080p), preserving fan/perspective/hover and fixed sidebar pile counts. [Preview and verification](HandPosition/README.md). Unity-only change, no pending Penpot import. Current baseline:[HandPosition/UnityCheckpoint.json](HandPosition/UnityCheckpoint.json).

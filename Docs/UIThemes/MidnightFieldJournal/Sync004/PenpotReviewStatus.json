@@ -1,0 +1,21 @@
+{
+  "result": {
+    "checkpoint": "MFJ-SYNC-004",
+    "updatedReviewStatusLabels": [
+      {
+        "id": "bae680cd-9225-8018-8008-d04eef613753",
+        "copy": "EDITABLE SOURCES  ·  MFJ-R031–R034  ·  INTEGRATED — MFJ-SYNC-004"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df2165b82",
+        "copy": "Live values and fill  ·  Same footprint  ·  Imported / MFJ-SYNC-004"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0617fa28ed7",
+        "copy": "Matched 880 × 350 controls · Engraved bronze · Navy enamel · Imported — MFJ-SYNC-004"
+      }
+    ],
+    "runtimeArtworkChanged": false
+  },
+  "log": ""
+}

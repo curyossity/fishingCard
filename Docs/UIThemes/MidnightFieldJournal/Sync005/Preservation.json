@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "protectedFilesUnchanged": 815,
+  "existingPrefabAndButtonMetadataUnchanged": 12,
+  "sourceMappingsVerified": 30,
+  "authorizedSharedChanges": [
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/Scripts/FishingRunHudPresentation.cs"
+  ],
+  "candidateSceneChanged": "Only beginWithBoatCard enabled; existing scene services and controller data retained.",
+  "originalSceneAndBuildSettingsUnchanged": true,
+  "preserved": [
+    "18 approved compact portraits",
+    "8 active Technique illustrations and adaptive fan",
+    "5 coastal event cards",
+    "regular effect text with subtle shadow",
+    "no automatic Technique refill"
+  ]
+}

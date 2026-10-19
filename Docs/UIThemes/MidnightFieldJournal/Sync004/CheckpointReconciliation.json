@@ -1,0 +1,14 @@
+{
+  "baseline": "../Sync003/UnityCheckpoint.json",
+  "changedSinceBaseline": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalCentralBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/MidnightFieldJournalTheme.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/SourceAssetCatalog.json",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/MidnightFieldJournalTheme.cs"
+  ],
+  "reason": "User-authorized Unity changes since Sync003 are preserved rather than overwritten."
+}

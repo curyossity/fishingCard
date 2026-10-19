@@ -1,0 +1,4250 @@
+{
+  "result": {
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "pages": [
+      {
+        "id": "9e056cfe-f83f-81f8-8008-cc523ff45212",
+        "name": "Page 1"
+      },
+      {
+        "id": "55e98d0e-b63f-8025-8008-cc53feeed652",
+        "name": "Fantasy Card — MCP Verification"
+      },
+      {
+        "id": "8a17fa10-389b-804e-8008-cc5591039a4e",
+        "name": "Gameplay Reference — Editable"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdd5868103f5",
+        "name": "Concept B — Midnight Field Journal (Static)"
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "name": "Concept B — Reusable Assembly (4K)"
+      }
+    ],
+    "gameplay": {
+      "id": "bae680cd-9225-8018-8008-d07d339bae02",
+      "name": "GAMEPLAY E / Parchment controls / MFJ-R037–R038",
+      "type": "board",
+      "x": 20000,
+      "y": 6500,
+      "w": 3840,
+      "h": 2160,
+      "hidden": false,
+      "children": [
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae03",
+          "name": "Background / native 4K paper",
+          "type": "rectangle",
+          "x": 20000,
+          "y": 6500,
+          "w": 3840,
+          "h": 2160,
+          "hidden": false,
+          "children": []
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae04",
+          "name": "Background / illustrated kelp overlay",
+          "type": "rectangle",
+          "x": 20000,
+          "y": 6500,
+          "w": 3840,
+          "h": 2160,
+          "hidden": false,
+          "children": []
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae05",
+          "name": "01 / Header — live run information",
+          "type": "board",
+          "x": 20000,
+          "y": 6500,
+          "w": 3840,
+          "h": 120,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae12",
+              "name": "Biome",
+              "type": "text",
+              "x": 20120,
+              "y": 6535,
+              "w": 900,
+              "h": 60,
+              "hidden": false,
+              "text": "COASTAL WATERS",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae13",
+              "name": "Depth",
+              "type": "text",
+              "x": 21540,
+              "y": 6536,
+              "w": 620,
+              "h": 60,
+              "hidden": false,
+              "text": "DEPTH 12",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae14",
+              "name": "Deck count",
+              "type": "text",
+              "x": 22910,
+              "y": 6540,
+              "w": 400,
+              "h": 55,
+              "hidden": false,
+              "text": "DECK 12",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae15",
+              "name": "Run number",
+              "type": "text",
+              "x": 23390,
+              "y": 6540,
+              "w": 320,
+              "h": 55,
+              "hidden": false,
+              "text": "RUN 03",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae16",
+              "name": "Header rule",
+              "type": "rectangle",
+              "x": 20120,
+              "y": 6612,
+              "w": 3590,
+              "h": 2,
+              "hidden": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae06",
+          "name": "02 / Catch Chain — complete approved detailed style",
+          "type": "board",
+          "x": 20105,
+          "y": 6670,
+          "w": 855,
+          "h": 1540,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae17",
+              "name": "Heading",
+              "type": "text",
+              "x": 20165,
+              "y": 6680,
+              "w": 730,
+              "h": 60,
+              "hidden": false,
+              "text": "CATCH CHAIN",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae18",
+              "name": "Chain connector",
+              "type": "rectangle",
+              "x": 20137,
+              "y": 6775,
+              "w": 3,
+              "h": 1350,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae19",
+              "name": "Previous Sardine card / preserved comparison",
+              "type": "board",
+              "x": 20190,
+              "y": 6750,
+              "w": 680,
+              "h": 453,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae28",
+                  "name": "Static compact card frame",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 6750,
+                  "w": 680,
+                  "h": 453,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae29",
+                  "name": "Creature name",
+                  "type": "text",
+                  "x": 20255,
+                  "y": 6796,
+                  "w": 550,
+                  "h": 58,
+                  "hidden": false,
+                  "text": "SARDINE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae2a",
+                  "name": "Replaceable creature illustration",
+                  "type": "rectangle",
+                  "x": 20263,
+                  "y": 6870,
+                  "w": 535,
+                  "h": 267,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae2b",
+                  "name": "Weight",
+                  "type": "text",
+                  "x": 20260,
+                  "y": 7112,
+                  "w": 260,
+                  "h": 55,
+                  "hidden": false,
+                  "text": "WEIGHT   1"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae2c",
+                  "name": "Sale value",
+                  "type": "text",
+                  "x": 20540,
+                  "y": 7112,
+                  "w": 250,
+                  "h": 55,
+                  "hidden": false,
+                  "text": "VALUE   7"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae2d",
+                  "name": "Mode badge",
+                  "type": "rectangle",
+                  "x": 20655,
+                  "y": 6865,
+                  "w": 125,
+                  "h": 43,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bae2e",
+                  "name": "Mode",
+                  "type": "text",
+                  "x": 20655,
+                  "y": 6871,
+                  "w": 125,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "CATCH"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae1a",
+              "name": "Separate connector ring",
+              "type": "ellipse",
+              "x": 20125,
+              "y": 6960,
+              "w": 28,
+              "h": 28,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae1b",
+              "name": "Slot connector",
+              "type": "rectangle",
+              "x": 20153,
+              "y": 6973,
+              "w": 44,
+              "h": 2,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae1c",
+              "name": "Chain slot 2 / Clinging Crab / CATCH",
+              "type": "board",
+              "x": 20190,
+              "y": 7225,
+              "w": 680,
+              "h": 453,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb5b",
+                  "name": "Static compact card frame",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 7225,
+                  "w": 680,
+                  "h": 453,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb5c",
+                  "name": "Creature name",
+                  "type": "text",
+                  "x": 20255,
+                  "y": 7271,
+                  "w": 550,
+                  "h": 58,
+                  "hidden": false,
+                  "text": "CLINGING CRAB"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb5d",
+                  "name": "Replaceable creature illustration",
+                  "type": "rectangle",
+                  "x": 20395,
+                  "y": 7338,
+                  "w": 270,
+                  "h": 225,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb5e",
+                  "name": "Weight",
+                  "type": "text",
+                  "x": 20260,
+                  "y": 7587,
+                  "w": 260,
+                  "h": 55,
+                  "hidden": false,
+                  "text": "WEIGHT   2"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb5f",
+                  "name": "Sale value",
+                  "type": "text",
+                  "x": 20540,
+                  "y": 7587,
+                  "w": 250,
+                  "h": 55,
+                  "hidden": false,
+                  "text": "VALUE   14"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb60",
+                  "name": "Mode badge",
+                  "type": "rectangle",
+                  "x": 20655,
+                  "y": 7340,
+                  "w": 125,
+                  "h": 43,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb61",
+                  "name": "Mode",
+                  "type": "text",
+                  "x": 20655,
+                  "y": 7346,
+                  "w": 125,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "CATCH"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae1d",
+              "name": "Separate connector ring",
+              "type": "ellipse",
+              "x": 20125,
+              "y": 7435,
+              "w": 28,
+              "h": 28,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae1e",
+              "name": "Slot connector",
+              "type": "rectangle",
+              "x": 20153,
+              "y": 7448,
+              "w": 44,
+              "h": 2,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae1f",
+              "name": "Chain slot 3 / Glass Minnow / BAIT",
+              "type": "board",
+              "x": 20190,
+              "y": 7700,
+              "w": 680,
+              "h": 453,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb62",
+                  "name": "Static compact card frame",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 7700,
+                  "w": 680,
+                  "h": 453,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb63",
+                  "name": "Creature name",
+                  "type": "text",
+                  "x": 20255,
+                  "y": 7746,
+                  "w": 550,
+                  "h": 58,
+                  "hidden": false,
+                  "text": "GLASS MINNOW"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb64",
+                  "name": "Replaceable creature illustration",
+                  "type": "rectangle",
+                  "x": 20263,
+                  "y": 7820,
+                  "w": 535,
+                  "h": 267,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb65",
+                  "name": "Weight",
+                  "type": "text",
+                  "x": 20260,
+                  "y": 8062,
+                  "w": 260,
+                  "h": 55,
+                  "hidden": false,
+                  "text": "WEIGHT   1"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb66",
+                  "name": "Sale value",
+                  "type": "text",
+                  "x": 20540,
+                  "y": 8062,
+                  "w": 250,
+                  "h": 55,
+                  "hidden": false,
+                  "text": "VALUE   0"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb67",
+                  "name": "Mode badge",
+                  "type": "rectangle",
+                  "x": 20655,
+                  "y": 7815,
+                  "w": 125,
+                  "h": 43,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb68",
+                  "name": "Mode",
+                  "type": "text",
+                  "x": 20655,
+                  "y": 7821,
+                  "w": 125,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "BAIT"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae20",
+              "name": "Separate connector ring",
+              "type": "ellipse",
+              "x": 20125,
+              "y": 7910,
+              "w": 28,
+              "h": 28,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae21",
+              "name": "Slot connector",
+              "type": "rectangle",
+              "x": 20153,
+              "y": 7923,
+              "w": 44,
+              "h": 2,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae22",
+              "name": "Chain slot 1 / Sardine / detailed v2",
+              "type": "board",
+              "x": 20190,
+              "y": 6720,
+              "w": 680,
+              "h": 502.0224719101134,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb69",
+                  "name": "Static / freshly drawn parchment, chart sketches and etched border",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 6780,
+                  "w": 680,
+                  "h": 382.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb6a",
+                  "name": "Dynamic / Creature name",
+                  "type": "text",
+                  "x": 20257,
+                  "y": 6816,
+                  "w": 450,
+                  "h": 69,
+                  "hidden": false,
+                  "text": "Sardine"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb6b",
+                  "name": "Dynamic / replaceable engraved Sardine illustration",
+                  "type": "rectangle",
+                  "x": 20254,
+                  "y": 6880,
+                  "w": 552,
+                  "h": 221,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb6c",
+                  "name": "Static / Weight label",
+                  "type": "text",
+                  "x": 20266,
+                  "y": 7090,
+                  "w": 144,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "WEIGHT"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb6d",
+                  "name": "Dynamic / Weight value",
+                  "type": "text",
+                  "x": 20418,
+                  "y": 7076,
+                  "w": 83,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "1"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb6e",
+                  "name": "Static / Value label",
+                  "type": "text",
+                  "x": 20571,
+                  "y": 7090,
+                  "w": 115,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "VALUE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb6f",
+                  "name": "Dynamic / Sale value",
+                  "type": "text",
+                  "x": 20717,
+                  "y": 7076,
+                  "w": 86,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "7"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb70",
+                  "name": "Hardware / Top mounting socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 6793,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb71",
+                  "name": "Hardware / Bottom mounting socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 7120.022471910113,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb72",
+                  "name": "Hardware / Top brass connector",
+                  "type": "board",
+                  "x": 20520,
+                  "y": 6750,
+                  "w": 20.099999999998545,
+                  "h": 61.63999999999942,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb73",
+                  "name": "Hardware / Bottom brass connector",
+                  "type": "board",
+                  "x": 20520,
+                  "y": 7132.022471910113,
+                  "w": 20.099999999998545,
+                  "h": 61.63999999999942,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae23",
+              "name": "Chain card / Sardine / CATCH",
+              "type": "board",
+              "x": 20190,
+              "y": 6780,
+              "w": 680,
+              "h": 382.0224719101134,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb7c",
+                  "name": "Static / approved detailed parchment frame",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 6780,
+                  "w": 680,
+                  "h": 382.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb7d",
+                  "name": "Dynamic / Creature name",
+                  "type": "text",
+                  "x": 20257,
+                  "y": 6816,
+                  "w": 470,
+                  "h": 69,
+                  "hidden": false,
+                  "text": "Sardine"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb7e",
+                  "name": "Dynamic / replaceable engraved Sardine illustration",
+                  "type": "rectangle",
+                  "x": 20254,
+                  "y": 6880,
+                  "w": 552,
+                  "h": 221,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb7f",
+                  "name": "Static / Weight label",
+                  "type": "text",
+                  "x": 20266,
+                  "y": 7090,
+                  "w": 144,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "WEIGHT"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb80",
+                  "name": "Dynamic / Weight value",
+                  "type": "text",
+                  "x": 20418,
+                  "y": 7076,
+                  "w": 83,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "1"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb81",
+                  "name": "Static / Value label",
+                  "type": "text",
+                  "x": 20571,
+                  "y": 7090,
+                  "w": 115,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "VALUE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb82",
+                  "name": "Dynamic / Sale value",
+                  "type": "text",
+                  "x": 20717,
+                  "y": 7076,
+                  "w": 104,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "7"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb83",
+                  "name": "Hardware / top socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 6793,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb84",
+                  "name": "Hardware / bottom socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 7120.022471910113,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": true
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae24",
+              "name": "Chain card / Clinging Crab / CATCH",
+              "type": "board",
+              "x": 20190,
+              "y": 7230,
+              "w": 680,
+              "h": 382.02247191011156,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb85",
+                  "name": "Static / approved detailed parchment frame",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 7230,
+                  "w": 680,
+                  "h": 382.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb86",
+                  "name": "Dynamic / Creature name",
+                  "type": "text",
+                  "x": 20257,
+                  "y": 7266,
+                  "w": 470,
+                  "h": 69,
+                  "hidden": false,
+                  "text": "Clinging Crab"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb87",
+                  "name": "Dynamic / replaceable engraved Clinging Crab illustration",
+                  "type": "rectangle",
+                  "x": 20310,
+                  "y": 7305,
+                  "w": 440,
+                  "h": 250,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb88",
+                  "name": "Static / Weight label",
+                  "type": "text",
+                  "x": 20266,
+                  "y": 7540,
+                  "w": 144,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "WEIGHT"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb89",
+                  "name": "Dynamic / Weight value",
+                  "type": "text",
+                  "x": 20418,
+                  "y": 7526,
+                  "w": 83,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "2"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb8a",
+                  "name": "Static / Value label",
+                  "type": "text",
+                  "x": 20571,
+                  "y": 7540,
+                  "w": 115,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "VALUE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb8b",
+                  "name": "Dynamic / Sale value",
+                  "type": "text",
+                  "x": 20717,
+                  "y": 7526,
+                  "w": 104,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "14"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb8c",
+                  "name": "Hardware / top socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 7243,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb8d",
+                  "name": "Hardware / bottom socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 7570.022471910113,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": true
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae25",
+              "name": "Chain card / Glass Minnow / BAIT",
+              "type": "board",
+              "x": 20190,
+              "y": 7680,
+              "w": 680,
+              "h": 382.0224719101134,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb8e",
+                  "name": "Bait / diffuse cyan edge",
+                  "type": "rectangle",
+                  "x": 20197,
+                  "y": 7687,
+                  "w": 666,
+                  "h": 368.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb8f",
+                  "name": "Bait / outer glow",
+                  "type": "rectangle",
+                  "x": 20197,
+                  "y": 7687,
+                  "w": 666,
+                  "h": 368.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb90",
+                  "name": "Static / approved detailed parchment frame",
+                  "type": "rectangle",
+                  "x": 20190,
+                  "y": 7680,
+                  "w": 680,
+                  "h": 382.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb91",
+                  "name": "Bait / luminous cyan frame",
+                  "type": "rectangle",
+                  "x": 20199,
+                  "y": 7689,
+                  "w": 662,
+                  "h": 364.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb92",
+                  "name": "Bait / inner blue etching",
+                  "type": "rectangle",
+                  "x": 20208,
+                  "y": 7698,
+                  "w": 644,
+                  "h": 346.0224719101134,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb93",
+                  "name": "Dynamic / Creature name",
+                  "type": "text",
+                  "x": 20257,
+                  "y": 7716,
+                  "w": 470,
+                  "h": 69,
+                  "hidden": false,
+                  "text": "Glass Minnow"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb94",
+                  "name": "Dynamic / replaceable engraved Glass Minnow illustration",
+                  "type": "rectangle",
+                  "x": 20254,
+                  "y": 7780,
+                  "w": 552,
+                  "h": 221,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb95",
+                  "name": "Static / Weight label",
+                  "type": "text",
+                  "x": 20266,
+                  "y": 7990,
+                  "w": 144,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "WEIGHT"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb96",
+                  "name": "Dynamic / Weight value",
+                  "type": "text",
+                  "x": 20418,
+                  "y": 7976,
+                  "w": 83,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "1"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb97",
+                  "name": "Static / Value label",
+                  "type": "text",
+                  "x": 20571,
+                  "y": 7990,
+                  "w": 115,
+                  "h": 40,
+                  "hidden": false,
+                  "text": "VALUE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb98",
+                  "name": "Dynamic / Sale value",
+                  "type": "text",
+                  "x": 20717,
+                  "y": 7976,
+                  "w": 104,
+                  "h": 68,
+                  "hidden": false,
+                  "text": "0"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb99",
+                  "name": "Bait / badge face",
+                  "type": "rectangle",
+                  "x": 20718,
+                  "y": 7720,
+                  "w": 104,
+                  "h": 42,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb9a",
+                  "name": "Dynamic / Mode badge",
+                  "type": "text",
+                  "x": 20730,
+                  "y": 7727,
+                  "w": 88,
+                  "h": 32,
+                  "hidden": false,
+                  "text": "BAIT"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb9b",
+                  "name": "Hardware / top socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 7693,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb9c",
+                  "name": "Hardware / bottom socket",
+                  "type": "ellipse",
+                  "x": 20517,
+                  "y": 8020.022471910113,
+                  "w": 26,
+                  "h": 34,
+                  "hidden": true
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae26",
+              "name": "Chain hardware / independent links",
+              "type": "board",
+              "x": 20512,
+              "y": 6725,
+              "w": 36,
+              "h": 1350,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb9d",
+                  "name": "Top hanging link",
+                  "type": "board",
+                  "x": 20518,
+                  "y": 6725,
+                  "w": 24,
+                  "h": 90,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb9e",
+                  "name": "Connecting link / Sardine to Clinging Crab",
+                  "type": "board",
+                  "x": 20518,
+                  "y": 7122.022471910113,
+                  "w": 24,
+                  "h": 150.97752808988662,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcb9f",
+                  "name": "Connecting link / Clinging Crab to Glass Minnow",
+                  "type": "board",
+                  "x": 20518,
+                  "y": 7572.022471910113,
+                  "w": 24,
+                  "h": 150.97752808988662,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcba0",
+                  "name": "Bottom hanging link",
+                  "type": "board",
+                  "x": 20518,
+                  "y": 8028.022471910113,
+                  "w": 24,
+                  "h": 103,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bae27",
+              "name": "Chain hardware / illustrated brass connectors v3",
+              "type": "board",
+              "x": 20465,
+              "y": 6680,
+              "w": 130,
+              "h": 1482.0224719101134,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbb1",
+                  "name": "Brass / top hanging connector",
+                  "type": "rectangle",
+                  "x": 20495.333333333332,
+                  "y": 6709.119999999999,
+                  "w": 69.33333333333576,
+                  "h": 104,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbb2",
+                  "name": "Brass / Sardine to Clinging Crab",
+                  "type": "rectangle",
+                  "x": 20483.90128333819,
+                  "y": 7127.139753262312,
+                  "w": 92.19743332362123,
+                  "h": 138.2961499854282,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbb3",
+                  "name": "Brass / Clinging Crab to Glass Minnow",
+                  "type": "rectangle",
+                  "x": 20483.90128333819,
+                  "y": 7577.139753262312,
+                  "w": 92.19743332362123,
+                  "h": 138.2961499854282,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbb4",
+                  "name": "Brass / bottom hanging connector",
+                  "type": "rectangle",
+                  "x": 20495.333333333332,
+                  "y": 8032.318471910112,
+                  "w": 69.33333333333576,
+                  "h": 104,
+                  "hidden": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae07",
+          "name": "03 / Line Load — individual pips and live numbers",
+          "type": "board",
+          "x": 20145,
+          "y": 8245,
+          "w": 760,
+          "h": 340,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbb5",
+              "name": "Line Load label",
+              "type": "text",
+              "x": 20165,
+              "y": 8250,
+              "w": 370,
+              "h": 60,
+              "hidden": true,
+              "text": "LINE LOAD",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbb6",
+              "name": "Current load and capacity",
+              "type": "text",
+              "x": 20630,
+              "y": 8240,
+              "w": 245,
+              "h": 75,
+              "hidden": true,
+              "text": "4 / 8",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbb7",
+              "name": "Load pip 1 / filled",
+              "type": "rectangle",
+              "x": 20165,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbb8",
+              "name": "Load pip 2 / filled",
+              "type": "rectangle",
+              "x": 20252,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbb9",
+              "name": "Load pip 3 / filled",
+              "type": "rectangle",
+              "x": 20339,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbba",
+              "name": "Load pip 4 / filled",
+              "type": "rectangle",
+              "x": 20426,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbbb",
+              "name": "Load pip 5 / empty",
+              "type": "rectangle",
+              "x": 20513,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbbc",
+              "name": "Load pip 6 / empty",
+              "type": "rectangle",
+              "x": 20600,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbbd",
+              "name": "Load pip 7 / empty",
+              "type": "rectangle",
+              "x": 20687,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbbe",
+              "name": "Load pip 8 / empty",
+              "type": "rectangle",
+              "x": 20774,
+              "y": 8330,
+              "w": 77,
+              "h": 58,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbbf",
+              "name": "Haul divider",
+              "type": "rectangle",
+              "x": 20165,
+              "y": 8423,
+              "w": 700,
+              "h": 2,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbc0",
+              "name": "Haul label",
+              "type": "text",
+              "x": 20165,
+              "y": 8465,
+              "w": 440,
+              "h": 55,
+              "hidden": false,
+              "text": "CURRENT HAUL",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbc1",
+              "name": "Haul value",
+              "type": "text",
+              "x": 20670,
+              "y": 8445,
+              "w": 195,
+              "h": 80,
+              "hidden": false,
+              "text": "21",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbc2",
+              "name": "MFJ-R035 / Line Load / engraved live gauge",
+              "type": "board",
+              "x": 20145,
+              "y": 8245,
+              "w": 760,
+              "h": 175,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc3",
+                  "name": "Static / engraved brass and navy housing",
+                  "type": "rectangle",
+                  "x": 20145,
+                  "y": 8197,
+                  "w": 760,
+                  "h": 270.3185924869231,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc4",
+                  "name": "Dynamic / localized Line Load label",
+                  "type": "text",
+                  "x": 20240,
+                  "y": 8273,
+                  "w": 340,
+                  "h": 44,
+                  "hidden": false,
+                  "text": "LINE LOAD"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc5",
+                  "name": "Dynamic / actual effective load and capacity",
+                  "type": "text",
+                  "x": 20605,
+                  "y": 8262,
+                  "w": 205,
+                  "h": 62,
+                  "hidden": false,
+                  "text": "4 / 8"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc6",
+                  "name": "Dynamic / gauge segment 1 / filled",
+                  "type": "rectangle",
+                  "x": 20240,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc7",
+                  "name": "Dynamic / segment highlight 1",
+                  "type": "rectangle",
+                  "x": 20243,
+                  "y": 8338,
+                  "w": 60,
+                  "h": 2,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc8",
+                  "name": "Dynamic / gauge segment 2 / filled",
+                  "type": "rectangle",
+                  "x": 20312,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbc9",
+                  "name": "Dynamic / segment highlight 2",
+                  "type": "rectangle",
+                  "x": 20315,
+                  "y": 8338,
+                  "w": 60,
+                  "h": 2,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbca",
+                  "name": "Dynamic / gauge segment 3 / filled",
+                  "type": "rectangle",
+                  "x": 20384,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbcb",
+                  "name": "Dynamic / segment highlight 3",
+                  "type": "rectangle",
+                  "x": 20387,
+                  "y": 8338,
+                  "w": 60,
+                  "h": 2,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbcc",
+                  "name": "Dynamic / gauge segment 4 / filled",
+                  "type": "rectangle",
+                  "x": 20456,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbcd",
+                  "name": "Dynamic / segment highlight 4",
+                  "type": "rectangle",
+                  "x": 20459,
+                  "y": 8338,
+                  "w": 60,
+                  "h": 2,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbce",
+                  "name": "Dynamic / gauge segment 5 / empty",
+                  "type": "rectangle",
+                  "x": 20528,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbcf",
+                  "name": "Dynamic / gauge segment 6 / empty",
+                  "type": "rectangle",
+                  "x": 20600,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbd0",
+                  "name": "Dynamic / gauge segment 7 / empty",
+                  "type": "rectangle",
+                  "x": 20672,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbd1",
+                  "name": "Dynamic / gauge segment 8 / empty",
+                  "type": "rectangle",
+                  "x": 20744,
+                  "y": 8335,
+                  "w": 66,
+                  "h": 20,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbd2",
+                  "name": "Dynamic / capacity status",
+                  "type": "text",
+                  "x": 20240,
+                  "y": 8369,
+                  "w": 570,
+                  "h": 28,
+                  "hidden": false,
+                  "text": "WITHIN CAPACITY"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d35d9a8a1",
+              "name": "MFJ-R038 / parchment Line Load / 4 of 8",
+              "type": "board",
+              "x": 20145,
+              "y": 8245,
+              "w": 760,
+              "h": 175,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d35ec161e",
+                  "name": "Static / engraved paper gauge strip",
+                  "type": "rectangle",
+                  "x": 20145,
+                  "y": 8208.602003642987,
+                  "w": 760,
+                  "h": 247.7959927140255,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d35fef5e0",
+                  "name": "Dynamic / Line Load label",
+                  "type": "text",
+                  "x": 20240,
+                  "y": 8270,
+                  "w": 340,
+                  "h": 44,
+                  "hidden": false,
+                  "text": "LINE LOAD"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d361fb1f9",
+                  "name": "Dynamic / actual load and capacity",
+                  "type": "text",
+                  "x": 20605,
+                  "y": 8259,
+                  "w": 205,
+                  "h": 62,
+                  "hidden": false,
+                  "text": "4 / 8"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d3640c778",
+                  "name": "Dynamic / ink segment 1",
+                  "type": "rectangle",
+                  "x": 20240,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d3654c707",
+                  "name": "Dynamic / ink segment 2",
+                  "type": "rectangle",
+                  "x": 20312,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d366cba19",
+                  "name": "Dynamic / ink segment 3",
+                  "type": "rectangle",
+                  "x": 20384,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d3683edb9",
+                  "name": "Dynamic / ink segment 4",
+                  "type": "rectangle",
+                  "x": 20456,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d369a6625",
+                  "name": "Dynamic / ink segment 5",
+                  "type": "rectangle",
+                  "x": 20528,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d36b022ce",
+                  "name": "Dynamic / ink segment 6",
+                  "type": "rectangle",
+                  "x": 20600,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d36c9a751",
+                  "name": "Dynamic / ink segment 7",
+                  "type": "rectangle",
+                  "x": 20672,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d36e27e3b",
+                  "name": "Dynamic / ink segment 8",
+                  "type": "rectangle",
+                  "x": 20744,
+                  "y": 8332,
+                  "w": 66,
+                  "h": 18,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d36f945ec",
+                  "name": "Dynamic / capacity status",
+                  "type": "text",
+                  "x": 20240,
+                  "y": 8361,
+                  "w": 570,
+                  "h": 28,
+                  "hidden": false,
+                  "text": "WITHIN CAPACITY"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae08",
+          "name": "Previous main creature card / pre-MFJ-R002 baseline",
+          "type": "board",
+          "x": 21250,
+          "y": 6625,
+          "w": 1040,
+          "h": 1300,
+          "hidden": true,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd3",
+              "name": "Static creature frame / blank two-effect template",
+              "type": "rectangle",
+              "x": 21250,
+              "y": 6625,
+              "w": 1040,
+              "h": 1300,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd4",
+              "name": "Creature name",
+              "type": "text",
+              "x": 21360,
+              "y": 6690,
+              "w": 820,
+              "h": 100,
+              "hidden": false,
+              "text": "SMALL OCTOPUS",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd5",
+              "name": "Replaceable creature portrait",
+              "type": "rectangle",
+              "x": 21485,
+              "y": 6850,
+              "w": 570,
+              "h": 570,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd6",
+              "name": "Weight label",
+              "type": "text",
+              "x": 21380,
+              "y": 7421,
+              "w": 330,
+              "h": 35,
+              "hidden": false,
+              "text": "WEIGHT",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd7",
+              "name": "Weight value",
+              "type": "text",
+              "x": 21380,
+              "y": 7451,
+              "w": 330,
+              "h": 67,
+              "hidden": false,
+              "text": "1",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd8",
+              "name": "Value label",
+              "type": "text",
+              "x": 21830,
+              "y": 7421,
+              "w": 330,
+              "h": 35,
+              "hidden": false,
+              "text": "VALUE",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbd9",
+              "name": "Value number",
+              "type": "text",
+              "x": 21830,
+              "y": 7451,
+              "w": 330,
+              "h": 67,
+              "hidden": false,
+              "text": "9",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbda",
+              "name": "Catch role label",
+              "type": "text",
+              "x": 21360,
+              "y": 7540,
+              "w": 350,
+              "h": 40,
+              "hidden": false,
+              "text": "CATCH",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbdb",
+              "name": "Catch effect name",
+              "type": "text",
+              "x": 21357,
+              "y": 7593,
+              "w": 355,
+              "h": 60,
+              "hidden": false,
+              "text": "Clever Catch",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbdc",
+              "name": "Catch effect text",
+              "type": "text",
+              "x": 21355,
+              "y": 7656,
+              "w": 360,
+              "h": 110,
+              "hidden": false,
+              "text": "When caught, draw\n1 technique.",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbdd",
+              "name": "Bait role label",
+              "type": "text",
+              "x": 21830,
+              "y": 7540,
+              "w": 350,
+              "h": 40,
+              "hidden": false,
+              "text": "BAIT",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbde",
+              "name": "Bait effect name",
+              "type": "text",
+              "x": 21820,
+              "y": 7593,
+              "w": 370,
+              "h": 60,
+              "hidden": false,
+              "text": "Helping Arms",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbdf",
+              "name": "Bait effect text",
+              "type": "text",
+              "x": 21814,
+              "y": 7656,
+              "w": 380,
+              "h": 110,
+              "hidden": false,
+              "text": "Swap the modes of\nanother Catch and Bait.",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe0",
+              "name": "Creature tags",
+              "type": "text",
+              "x": 21410,
+              "y": 7846,
+              "w": 720,
+              "h": 43,
+              "hidden": false,
+              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae09",
+          "name": "04 / Main Creature Card — engraved mockup detail / MFJ-R002",
+          "type": "board",
+          "x": 21250,
+          "y": 6610,
+          "w": 1260,
+          "h": 1400,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe1",
+              "name": "Static / engraved parchment, marine stage and neutral effect panels",
+              "type": "rectangle",
+              "x": 21250,
+              "y": 6610,
+              "w": 1260,
+              "h": 1400,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe2",
+              "name": "Dynamic / creature type",
+              "type": "text",
+              "x": 21718,
+              "y": 6680,
+              "w": 324,
+              "h": 38,
+              "hidden": false,
+              "text": "C R E A T U R E",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe3",
+              "name": "Dynamic / creature name",
+              "type": "text",
+              "x": 21390,
+              "y": 6724,
+              "w": 980,
+              "h": 82,
+              "hidden": false,
+              "text": "SMALL OCTOPUS",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe4",
+              "name": "Dynamic / engraved Small Octopus illustration",
+              "type": "rectangle",
+              "x": 21328,
+              "y": 6712,
+              "w": 1104,
+              "h": 621.3301435406702,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe5",
+              "name": "Dynamic / creature tags",
+              "type": "text",
+              "x": 21500,
+              "y": 7362,
+              "w": 760,
+              "h": 34,
+              "hidden": false,
+              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe6",
+              "name": "Static / Weight label",
+              "type": "text",
+              "x": 21380,
+              "y": 7415,
+              "w": 175,
+              "h": 39,
+              "hidden": false,
+              "text": "WEIGHT",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe7",
+              "name": "Dynamic / effective Weight",
+              "type": "text",
+              "x": 21554,
+              "y": 7396,
+              "w": 133,
+              "h": 75,
+              "hidden": false,
+              "text": "1",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe8",
+              "name": "Static / Value label",
+              "type": "text",
+              "x": 21756,
+              "y": 7415,
+              "w": 134,
+              "h": 39,
+              "hidden": false,
+              "text": "VALUE",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbe9",
+              "name": "Dynamic / sale Value",
+              "type": "text",
+              "x": 21884,
+              "y": 7396,
+              "w": 115,
+              "h": 75,
+              "hidden": false,
+              "text": "9",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbea",
+              "name": "Dynamic / Uncommon rarity diamond",
+              "type": "group",
+              "x": 22053,
+              "y": 7417,
+              "w": 31,
+              "h": 31,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbf5",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 22053,
+                  "y": 7417,
+                  "w": 31,
+                  "h": 31,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbf6",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 22053.96875,
+                  "y": 7417.96875,
+                  "w": 29.0625,
+                  "h": 29.0625,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbf7",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 22063.65625,
+                  "y": 7427.65625,
+                  "w": 9.6875,
+                  "h": 9.6875,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbeb",
+              "name": "Dynamic / rarity name",
+              "type": "text",
+              "x": 22101,
+              "y": 7415,
+              "w": 300,
+              "h": 42,
+              "hidden": false,
+              "text": "UNCOMMON",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbec",
+              "name": "Dynamic / selected Catch glow — not hover",
+              "type": "rectangle",
+              "x": 21332,
+              "y": 7492,
+              "w": 545,
+              "h": 427,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbed",
+              "name": "Static / Catch hook icon",
+              "type": "group",
+              "x": 21359,
+              "y": 7516,
+              "w": 45,
+              "h": 65,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbf8",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 21359,
+                  "y": 7516,
+                  "w": 45,
+                  "h": 65,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbf9",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 21360.022727272728,
+                  "y": 7525.140625,
+                  "w": 27.613636363636033,
+                  "h": 49.01393349719001,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbfa",
+                  "name": "svg-circle",
+                  "type": "ellipse",
+                  "x": 21383.545454545456,
+                  "y": 7518.03125,
+                  "w": 8.181818181816197,
+                  "h": 8.125,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbee",
+              "name": "Static / Catch role label",
+              "type": "text",
+              "x": 21431,
+              "y": 7526,
+              "w": 342,
+              "h": 55,
+              "hidden": false,
+              "text": "C A T C H",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbef",
+              "name": "Static / Bait twin-spark icon",
+              "type": "group",
+              "x": 21926,
+              "y": 7525,
+              "w": 65,
+              "h": 52,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbfb",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 21926,
+                  "y": 7525,
+                  "w": 65,
+                  "h": 52,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcbfc",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 21927.91176470588,
+                  "y": 7527,
+                  "w": 61.17647058823786,
+                  "h": 46,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbf0",
+              "name": "Static / Bait role label",
+              "type": "text",
+              "x": 22030,
+              "y": 7526,
+              "w": 300,
+              "h": 55,
+              "hidden": false,
+              "text": "B A I T",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbf1",
+              "name": "Dynamic / Catch effect name",
+              "type": "text",
+              "x": 21370,
+              "y": 7631,
+              "w": 460,
+              "h": 70,
+              "hidden": false,
+              "text": "Clever Catch",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbf2",
+              "name": "Dynamic / Catch effect text",
+              "type": "text",
+              "x": 21405,
+              "y": 7728,
+              "w": 410,
+              "h": 140,
+              "hidden": false,
+              "text": "When caught, draw 1\ntechnique.",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbf3",
+              "name": "Dynamic / Bait effect name",
+              "type": "text",
+              "x": 21940,
+              "y": 7631,
+              "w": 450,
+              "h": 70,
+              "hidden": false,
+              "text": "Helping Arms",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbf4",
+              "name": "Dynamic / Bait effect text",
+              "type": "text",
+              "x": 21951,
+              "y": 7724,
+              "w": 414,
+              "h": 178,
+              "hidden": false,
+              "text": "When attached as Bait,\nyou may swap the modes of\nanother Catch and\nanother Bait.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae0a",
+          "name": "05 / Right bar — static action faces and live status",
+          "type": "board",
+          "x": 22720,
+          "y": 6670,
+          "w": 970,
+          "h": 1250,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbfd",
+              "name": "Actions heading",
+              "type": "text",
+              "x": 22780,
+              "y": 6695,
+              "w": 880,
+              "h": 60,
+              "hidden": false,
+              "text": "YOUR NEXT MOVE",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbfe",
+              "name": "Static Descend button face",
+              "type": "rectangle",
+              "x": 22780,
+              "y": 6755,
+              "w": 880,
+              "h": 346,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcbff",
+              "name": "Descend hint",
+              "type": "text",
+              "x": 22780,
+              "y": 7075,
+              "w": 880,
+              "h": 50,
+              "hidden": false,
+              "text": "Continue deeper",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc00",
+              "name": "Static Surface button face",
+              "type": "rectangle",
+              "x": 22780,
+              "y": 7145,
+              "w": 880,
+              "h": 352,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc01",
+              "name": "Surface hint",
+              "type": "text",
+              "x": 22780,
+              "y": 7472,
+              "w": 880,
+              "h": 55,
+              "hidden": false,
+              "text": "Bring your Catch home",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc02",
+              "name": "Depth guide divider",
+              "type": "rectangle",
+              "x": 22840,
+              "y": 7595,
+              "w": 760,
+              "h": 2,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc03",
+              "name": "Depth guide heading",
+              "type": "text",
+              "x": 22840,
+              "y": 7630,
+              "w": 760,
+              "h": 55,
+              "hidden": false,
+              "text": "THE COAST BELOW",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc04",
+              "name": "Current depth marker",
+              "type": "text",
+              "x": 22840,
+              "y": 7690,
+              "w": 180,
+              "h": 90,
+              "hidden": false,
+              "text": "12",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc05",
+              "name": "Depth guide biome",
+              "type": "text",
+              "x": 23040,
+              "y": 7700,
+              "w": 550,
+              "h": 50,
+              "hidden": false,
+              "text": "COASTAL WATERS",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc06",
+              "name": "Depth guide detail",
+              "type": "text",
+              "x": 22840,
+              "y": 7800,
+              "w": 760,
+              "h": 50,
+              "hidden": false,
+              "text": "Creatures · Hazards · Opportunities",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc07",
+              "name": "MFJ-R036 / Descend / editable 880 × 350",
+              "type": "board",
+              "x": 22780,
+              "y": 6755,
+              "w": 880,
+              "h": 350,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcc09",
+                  "name": "Static / identical bronze action housing",
+                  "type": "rectangle",
+                  "x": 22780,
+                  "y": 6755.017596782303,
+                  "w": 880,
+                  "h": 349.9648064353951,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcc0a",
+                  "name": "Editable / double down direction",
+                  "type": "group",
+                  "x": 22930,
+                  "y": 6887,
+                  "w": 76,
+                  "h": 86,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcc0b",
+                  "name": "Editable / Descend title",
+                  "type": "text",
+                  "x": 23042,
+                  "y": 6879,
+                  "w": 480,
+                  "h": 110,
+                  "hidden": false,
+                  "text": "DESCEND"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc08",
+              "name": "MFJ-R036 / Surface / editable 880 × 350",
+              "type": "board",
+              "x": 22780,
+              "y": 7145,
+              "w": 880,
+              "h": 350,
+              "hidden": true,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcc0e",
+                  "name": "Static / identical bronze action housing",
+                  "type": "rectangle",
+                  "x": 22780,
+                  "y": 7145.017596782303,
+                  "w": 880,
+                  "h": 349.9648064353951,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcc0f",
+                  "name": "Editable / double up direction",
+                  "type": "group",
+                  "x": 22930,
+                  "y": 7277,
+                  "w": 76,
+                  "h": 86,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339bcc10",
+                  "name": "Editable / Surface title",
+                  "type": "text",
+                  "x": 23042,
+                  "y": 7269,
+                  "w": 480,
+                  "h": 110,
+                  "hidden": false,
+                  "text": "SURFACE"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d34dc4fca",
+              "name": "MFJ-R037 / Descend / parchment alternative",
+              "type": "board",
+              "x": 22780,
+              "y": 6755,
+              "w": 880,
+              "h": 350,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d350618d3",
+                  "name": "Static / aged parchment and botanical ink",
+                  "type": "rectangle",
+                  "x": 22780,
+                  "y": 6754.929577464789,
+                  "w": 880,
+                  "h": 350.1408450704221,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d3526aa5e",
+                  "name": "Editable / printed Descend direction",
+                  "type": "group",
+                  "x": 22965,
+                  "y": 6892,
+                  "w": 76,
+                  "h": 78,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d353afa8b",
+                  "name": "Editable / Descend title",
+                  "type": "text",
+                  "x": 23065,
+                  "y": 6882,
+                  "w": 440,
+                  "h": 105,
+                  "hidden": false,
+                  "text": "DESCEND"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d35791b39",
+              "name": "MFJ-R037 / Surface / parchment alternative",
+              "type": "board",
+              "x": 22780,
+              "y": 7145,
+              "w": 880,
+              "h": 350,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d358acdb5",
+                  "name": "Static / aged parchment and botanical ink",
+                  "type": "rectangle",
+                  "x": 22780,
+                  "y": 7144.929577464789,
+                  "w": 880,
+                  "h": 350.1408450704221,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d359c415a",
+                  "name": "Editable / printed Surface direction",
+                  "type": "group",
+                  "x": 22965,
+                  "y": 7282,
+                  "w": 76,
+                  "h": 78,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d35b0246f",
+                  "name": "Editable / Surface title",
+                  "type": "text",
+                  "x": 23065,
+                  "y": 7272,
+                  "w": 440,
+                  "h": 105,
+                  "hidden": false,
+                  "text": "SURFACE"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae0b",
+          "name": "Previous technique hand / preserved comparison",
+          "type": "board",
+          "x": 21080,
+          "y": 7940,
+          "w": 2170,
+          "h": 710,
+          "hidden": true,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc13",
+              "name": "Hand heading",
+              "type": "text",
+              "x": 21130,
+              "y": 7940,
+              "w": 1900,
+              "h": 48,
+              "hidden": false,
+              "text": "TECHNIQUES",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc14",
+              "name": "Technique / CUT LOOSE",
+              "type": "board",
+              "x": 21130,
+              "y": 7990,
+              "w": 480,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0828",
+                  "name": "Static blank technique frame",
+                  "type": "rectangle",
+                  "x": 21130,
+                  "y": 7990,
+                  "w": 480,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0829",
+                  "name": "Technique name",
+                  "type": "text",
+                  "x": 21180,
+                  "y": 8060,
+                  "w": 380,
+                  "h": 60,
+                  "hidden": false,
+                  "text": "CUT LOOSE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c082a",
+                  "name": "Replaceable technique illustration",
+                  "type": "rectangle",
+                  "x": 21225,
+                  "y": 8154,
+                  "w": 290,
+                  "h": 290,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c082b",
+                  "name": "Rules text",
+                  "type": "text",
+                  "x": 21185,
+                  "y": 8448,
+                  "w": 370,
+                  "h": 95,
+                  "hidden": false,
+                  "text": "Release 1\nattached creature."
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c082c",
+                  "name": "Role label",
+                  "type": "text",
+                  "x": 21198,
+                  "y": 8560,
+                  "w": 344,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "RELEASE"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc15",
+              "name": "Technique / SLIP PAST",
+              "type": "board",
+              "x": 21650,
+              "y": 7990,
+              "w": 480,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c082d",
+                  "name": "Static blank technique frame",
+                  "type": "rectangle",
+                  "x": 21650,
+                  "y": 7990,
+                  "w": 480,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c082e",
+                  "name": "Technique name",
+                  "type": "text",
+                  "x": 21700,
+                  "y": 8060,
+                  "w": 380,
+                  "h": 60,
+                  "hidden": false,
+                  "text": "SLIP PAST"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c082f",
+                  "name": "Replaceable technique illustration",
+                  "type": "rectangle",
+                  "x": 21745,
+                  "y": 8154,
+                  "w": 290,
+                  "h": 290,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0830",
+                  "name": "Rules text",
+                  "type": "text",
+                  "x": 21705,
+                  "y": 8448,
+                  "w": 370,
+                  "h": 95,
+                  "hidden": false,
+                  "text": "Skip the Hooked\nnon-Apex creature."
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0831",
+                  "name": "Role label",
+                  "type": "text",
+                  "x": 21718,
+                  "y": 8560,
+                  "w": 344,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "AVOIDANCE"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc16",
+              "name": "Technique / STEADY LINE",
+              "type": "board",
+              "x": 22170,
+              "y": 7990,
+              "w": 480,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0832",
+                  "name": "Static blank technique frame",
+                  "type": "rectangle",
+                  "x": 22170,
+                  "y": 7990,
+                  "w": 480,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0833",
+                  "name": "Technique name",
+                  "type": "text",
+                  "x": 22220,
+                  "y": 8060,
+                  "w": 380,
+                  "h": 60,
+                  "hidden": false,
+                  "text": "STEADY LINE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0834",
+                  "name": "Replaceable technique illustration",
+                  "type": "rectangle",
+                  "x": 22220,
+                  "y": 8205,
+                  "w": 380,
+                  "h": 190,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0835",
+                  "name": "Rules text",
+                  "type": "text",
+                  "x": 22225,
+                  "y": 8448,
+                  "w": 370,
+                  "h": 95,
+                  "hidden": false,
+                  "text": "Reduce Line Load by 2\nfor your next action."
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0836",
+                  "name": "Role label",
+                  "type": "text",
+                  "x": 22238,
+                  "y": 8560,
+                  "w": 344,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "LOAD RELIEF"
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339bcc17",
+              "name": "Technique / PRIZE HOOK",
+              "type": "board",
+              "x": 22690,
+              "y": 7990,
+              "w": 480,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0837",
+                  "name": "Static blank technique frame",
+                  "type": "rectangle",
+                  "x": 22690,
+                  "y": 7990,
+                  "w": 480,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0838",
+                  "name": "Technique name",
+                  "type": "text",
+                  "x": 22740,
+                  "y": 8060,
+                  "w": 380,
+                  "h": 60,
+                  "hidden": false,
+                  "text": "PRIZE HOOK"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0839",
+                  "name": "Replaceable technique illustration",
+                  "type": "rectangle",
+                  "x": 22835,
+                  "y": 8153,
+                  "w": 190,
+                  "h": 285,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c083a",
+                  "name": "Rules text",
+                  "type": "text",
+                  "x": 22745,
+                  "y": 8448,
+                  "w": 370,
+                  "h": 95,
+                  "hidden": false,
+                  "text": "Your next Catch gains\n8 value and 1 weight."
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c083b",
+                  "name": "Role label",
+                  "type": "text",
+                  "x": 22758,
+                  "y": 8560,
+                  "w": 344,
+                  "h": 35,
+                  "hidden": false,
+                  "text": "RISK / REWARD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae0c",
+          "name": "Source / editable technique hand — preserved under preview",
+          "type": "board",
+          "x": 20960,
+          "y": 7935,
+          "w": 2480,
+          "h": 720,
+          "hidden": true,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c083c",
+              "name": "Technique v2 / Cut Loose / editable",
+              "type": "group",
+              "x": 20993.289805912307,
+              "y": 7974.199416358868,
+              "w": 620,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0840",
+                  "name": "Static / worn parchment and fine engraved border",
+                  "type": "rectangle",
+                  "x": 20993.289805912307,
+                  "y": 7974.199416358868,
+                  "w": 620,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0841",
+                  "name": "Static / card type",
+                  "type": "text",
+                  "x": 21139.41908616136,
+                  "y": 8033.17004156953,
+                  "w": 334.8000000000029,
+                  "h": 30.079999999999927,
+                  "hidden": false,
+                  "text": "T E C H N I Q U E"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0842",
+                  "name": "Dynamic / technique name",
+                  "type": "text",
+                  "x": 21074.936947623733,
+                  "y": 8066.755025534421,
+                  "w": 471.2000000000007,
+                  "h": 57.60000000000218,
+                  "hidden": false,
+                  "text": "CUT LOOSE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0843",
+                  "name": "Dynamic / engraved Cut Loose illustration",
+                  "type": "rectangle",
+                  "x": 21058.040473661247,
+                  "y": 8153.852608063298,
+                  "w": 520.7999999999993,
+                  "h": 291.2000000000007,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0844",
+                  "name": "Dynamic / rules text",
+                  "type": "text",
+                  "x": 21122.152058979133,
+                  "y": 8466.31363598119,
+                  "w": 446.40000000000146,
+                  "h": 108.79999999999927,
+                  "hidden": false,
+                  "text": "Release 1 attached\ncreature."
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c083d",
+              "name": "Technique v2 / Slip Past / editable",
+              "type": "group",
+              "x": 21563.366413760123,
+              "y": 7973.578031124209,
+              "w": 620,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0845",
+                  "name": "Static / worn parchment and fine engraved border",
+                  "type": "rectangle",
+                  "x": 21563.366413760123,
+                  "y": 7973.578031124209,
+                  "w": 620,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0846",
+                  "name": "Static / card type",
+                  "type": "text",
+                  "x": 21706.913569080585,
+                  "y": 8023.274173731519,
+                  "w": 334.7999999999993,
+                  "h": 30.080000000001746,
+                  "hidden": false,
+                  "text": "T E C H N I Q U E"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0847",
+                  "name": "Dynamic / technique name",
+                  "type": "text",
+                  "x": 21639.559521688574,
+                  "y": 8061.517198215757,
+                  "w": 471.2000000000007,
+                  "h": 57.600000000000364,
+                  "hidden": false,
+                  "text": "SLIP PAST"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0848",
+                  "name": "Dynamic / engraved Slip Past illustration",
+                  "type": "rectangle",
+                  "x": 21616.641401559948,
+                  "y": 8150.578175441995,
+                  "w": 520.8000000000029,
+                  "h": 291.2000000000007,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0849",
+                  "name": "Dynamic / rules text",
+                  "type": "text",
+                  "x": 21660.333770117006,
+                  "y": 8461.689157612249,
+                  "w": 446.3999999999978,
+                  "h": 108.80000000000109,
+                  "hidden": false,
+                  "text": "Skip the Hooked\nnon-Apex creature."
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c083e",
+              "name": "Technique v2 / Steady Line / editable",
+              "type": "group",
+              "x": 22113.366413760123,
+              "y": 7973.578031124209,
+              "w": 620,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c084a",
+                  "name": "Static / worn parchment and fine engraved border",
+                  "type": "rectangle",
+                  "x": 22113.366413760123,
+                  "y": 7973.578031124209,
+                  "w": 620,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c084b",
+                  "name": "Static / card type",
+                  "type": "text",
+                  "x": 22267.729910101945,
+                  "y": 8023.274173731519,
+                  "w": 334.7999999999993,
+                  "h": 30.080000000001746,
+                  "hidden": false,
+                  "text": "T E C H N I Q U E"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c084c",
+                  "name": "Dynamic / technique name",
+                  "type": "text",
+                  "x": 22198.137536872797,
+                  "y": 8061.517198215757,
+                  "w": 471.2000000000007,
+                  "h": 57.600000000000364,
+                  "hidden": false,
+                  "text": "STEADY LINE"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c084d",
+                  "name": "Dynamic / engraved Steady Line illustration",
+                  "type": "rectangle",
+                  "x": 22166.57438581632,
+                  "y": 8150.578175441995,
+                  "w": 520.7999999999993,
+                  "h": 291.2000000000007,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c084e",
+                  "name": "Dynamic / rules text",
+                  "type": "text",
+                  "x": 22201.085597496516,
+                  "y": 8461.689157612249,
+                  "w": 446.40000000000146,
+                  "h": 108.80000000000109,
+                  "hidden": false,
+                  "text": "Reduce Line Load by 2\nfor your next Descend or Surface."
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c083f",
+              "name": "Technique v2 / Prize Hook / editable",
+              "type": "group",
+              "x": 22643.289805912307,
+              "y": 7974.199416358868,
+              "w": 620,
+              "h": 640,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c084f",
+                  "name": "Static / worn parchment and fine engraved border",
+                  "type": "rectangle",
+                  "x": 22643.289805912307,
+                  "y": 7974.199416358868,
+                  "w": 620,
+                  "h": 640,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0850",
+                  "name": "Static / card type",
+                  "type": "text",
+                  "x": 22834.433284175673,
+                  "y": 8033.17004156953,
+                  "w": 334.8000000000029,
+                  "h": 30.079999999999927,
+                  "hidden": false,
+                  "text": "T E C H N I Q U E"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0851",
+                  "name": "Dynamic / technique name",
+                  "type": "text",
+                  "x": 22760.63593985317,
+                  "y": 8066.755025534421,
+                  "w": 471.2000000000007,
+                  "h": 57.60000000000218,
+                  "hidden": false,
+                  "text": "PRIZE HOOK"
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0852",
+                  "name": "Dynamic / engraved Prize Hook illustration",
+                  "type": "rectangle",
+                  "x": 22707.761575284454,
+                  "y": 8153.852608063298,
+                  "w": 520.7999999999993,
+                  "h": 291.2000000000007,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0853",
+                  "name": "Dynamic / rules text",
+                  "type": "text",
+                  "x": 22733.664082981766,
+                  "y": 8466.313635981189,
+                  "w": 446.40000000000146,
+                  "h": 108.79999999999927,
+                  "hidden": false,
+                  "text": "Your next Catch gains\n8 value and 1 weight."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae0d",
+          "name": "SUPERSEDED / before MFJ-R028 / technique arrangement",
+          "type": "rectangle",
+          "x": 20980,
+          "y": 7890,
+          "w": 2500,
+          "h": 866.6040394551437,
+          "hidden": true,
+          "children": []
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae0e",
+          "name": "SUPERSEDED / R025 tooltip assembly",
+          "type": "board",
+          "x": 20930,
+          "y": 7100,
+          "w": 900,
+          "h": 640,
+          "hidden": true,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0854",
+              "name": "Static / navy tooltip panel",
+              "type": "rectangle",
+              "x": 20958,
+              "y": 7116,
+              "w": 856,
+              "h": 608,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0855",
+              "name": "Static / inset copper rule",
+              "type": "rectangle",
+              "x": 20969,
+              "y": 7127,
+              "w": 834,
+              "h": 586,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0856",
+              "name": "Static / left anchor pointer",
+              "type": "group",
+              "x": 20930,
+              "y": 7395,
+              "w": 34,
+              "h": 50,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0866",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 20930,
+                  "y": 7395,
+                  "w": 34,
+                  "h": 50,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0867",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 20932,
+                  "y": 7396,
+                  "w": 31,
+                  "h": 48,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0857",
+              "name": "Static / etched seaweed corner",
+              "type": "group",
+              "x": 21670,
+              "y": 7545,
+              "w": 130,
+              "h": 170,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0868",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 21670,
+                  "y": 7545,
+                  "w": 130,
+                  "h": 170,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0869",
+                  "name": "svg-g",
+                  "type": "group",
+                  "x": 21703,
+                  "y": 7553,
+                  "w": 93,
+                  "h": 152,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c086a",
+                  "name": "svg-g",
+                  "type": "group",
+                  "x": 21693,
+                  "y": 7555.6,
+                  "w": 105,
+                  "h": 108.39999999999964,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0858",
+              "name": "Static / top copper rule",
+              "type": "rectangle",
+              "x": 21006,
+              "y": 7148,
+              "w": 300,
+              "h": 2,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0859",
+              "name": "Static / eyebrow",
+              "type": "text",
+              "x": 21006,
+              "y": 7161,
+              "w": 500,
+              "h": 38,
+              "hidden": false,
+              "text": "CATCH CHAIN",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c085a",
+              "name": "Dynamic / active mode badge",
+              "type": "rectangle",
+              "x": 21600,
+              "y": 7161,
+              "w": 158,
+              "h": 44,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c085b",
+              "name": "Dynamic / active mode",
+              "type": "text",
+              "x": 21610,
+              "y": 7167,
+              "w": 138,
+              "h": 32,
+              "hidden": false,
+              "text": "CATCH",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c085c",
+              "name": "Dynamic / creature name",
+              "type": "text",
+              "x": 21006,
+              "y": 7218,
+              "w": 742,
+              "h": 82,
+              "hidden": false,
+              "text": "Clinging Crab",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c085d",
+              "name": "Dynamic / tag Anchored",
+              "type": "rectangle",
+              "x": 21006,
+              "y": 7320,
+              "w": 182,
+              "h": 50,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c085e",
+              "name": "Dynamic / tag text Anchored",
+              "type": "text",
+              "x": 21020,
+              "y": 7328,
+              "w": 154,
+              "h": 36,
+              "hidden": false,
+              "text": "Anchored",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c085f",
+              "name": "Dynamic / tag Armored",
+              "type": "rectangle",
+              "x": 21202,
+              "y": 7320,
+              "w": 164,
+              "h": 50,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0860",
+              "name": "Dynamic / tag text Armored",
+              "type": "text",
+              "x": 21216,
+              "y": 7328,
+              "w": 136,
+              "h": 36,
+              "hidden": false,
+              "text": "Armored",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0861",
+              "name": "Static / effect separator",
+              "type": "rectangle",
+              "x": 21006,
+              "y": 7407,
+              "w": 752,
+              "h": 2,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0862",
+              "name": "Static / separator diamond",
+              "type": "group",
+              "x": 21372,
+              "y": 7400,
+              "w": 16,
+              "h": 16,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0871",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 21372,
+                  "y": 7400,
+                  "w": 16,
+                  "h": 16,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0872",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 21373,
+                  "y": 7401,
+                  "w": 14,
+                  "h": 14,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0863",
+              "name": "Dynamic / active effect role",
+              "type": "text",
+              "x": 21006,
+              "y": 7437,
+              "w": 650,
+              "h": 38,
+              "hidden": false,
+              "text": "CATCH EFFECT",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0864",
+              "name": "Dynamic / effect name",
+              "type": "text",
+              "x": 21006,
+              "y": 7488,
+              "w": 710,
+              "h": 62,
+              "hidden": false,
+              "text": "Iron Grip",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0865",
+              "name": "Dynamic / effect description",
+              "type": "text",
+              "x": 21006,
+              "y": 7570,
+              "w": 680,
+              "h": 120,
+              "hidden": false,
+              "text": "Cannot be deliberately released.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae0f",
+          "name": "Review only / pointer over Clinging Crab",
+          "type": "group",
+          "x": 20820,
+          "y": 7400,
+          "w": 36,
+          "h": 48,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0873",
+              "name": "base-background",
+              "type": "rectangle",
+              "x": 20820,
+              "y": 7400,
+              "w": 36,
+              "h": 48,
+              "hidden": true,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0874",
+              "name": "svg-path",
+              "type": "path",
+              "x": 20823,
+              "y": 7402,
+              "w": 29,
+              "h": 42,
+              "hidden": false,
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae10",
+          "name": "Hover tooltip / engraved Clinging Crab / MFJ-R026",
+          "type": "board",
+          "x": 20930,
+          "y": 7100,
+          "w": 900,
+          "h": 640,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0875",
+              "name": "Static / detailed engraved tooltip master",
+              "type": "rectangle",
+              "x": 20958,
+              "y": 7116,
+              "w": 856,
+              "h": 608,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0876",
+              "name": "Dynamic / creature name",
+              "type": "text",
+              "x": 21070,
+              "y": 7185,
+              "w": 640,
+              "h": 80,
+              "hidden": false,
+              "text": "CLINGING CRAB",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0877",
+              "name": "Dynamic / tag outline Anchored",
+              "type": "rectangle",
+              "x": 21207.5,
+              "y": 7297,
+              "w": 174,
+              "h": 46,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0878",
+              "name": "Dynamic / tag text Anchored",
+              "type": "text",
+              "x": 21219.5,
+              "y": 7303,
+              "w": 150,
+              "h": 37,
+              "hidden": false,
+              "text": "Anchored",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0879",
+              "name": "Dynamic / tag outline Armored",
+              "type": "rectangle",
+              "x": 21395.5,
+              "y": 7297,
+              "w": 157,
+              "h": 46,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c087a",
+              "name": "Dynamic / tag text Armored",
+              "type": "text",
+              "x": 21407.5,
+              "y": 7303,
+              "w": 133,
+              "h": 37,
+              "hidden": false,
+              "text": "Armored",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c087b",
+              "name": "Dynamic / active role icon / Catch",
+              "type": "group",
+              "x": 21046,
+              "y": 7455,
+              "w": 34,
+              "h": 50,
+              "hidden": false,
+              "children": [
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c087e",
+                  "name": "base-background",
+                  "type": "rectangle",
+                  "x": 21046,
+                  "y": 7455,
+                  "w": 34,
+                  "h": 50,
+                  "hidden": true
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c087f",
+                  "name": "svg-path",
+                  "type": "path",
+                  "x": 21046.772727272728,
+                  "y": 7462.03125,
+                  "w": 20.863636363636033,
+                  "h": 37.70302576707036,
+                  "hidden": false
+                },
+                {
+                  "id": "bae680cd-9225-8018-8008-d07d339c0880",
+                  "name": "svg-circle",
+                  "type": "ellipse",
+                  "x": 21064.545454545456,
+                  "y": 7456.5625,
+                  "w": 6.1818181818161975,
+                  "h": 6.25,
+                  "hidden": false
+                }
+              ]
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c087c",
+              "name": "Dynamic / effect name",
+              "type": "text",
+              "x": 21120,
+              "y": 7455,
+              "w": 580,
+              "h": 66,
+              "hidden": false,
+              "text": "Iron Grip",
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c087d",
+              "name": "Dynamic / effect description",
+              "type": "text",
+              "x": 21112,
+              "y": 7532,
+              "w": 548,
+              "h": 142,
+              "hidden": false,
+              "text": "Cannot be deliberately released.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d339bae11",
+          "name": "Technique hand / balanced laid-down fan / MFJ-R030",
+          "type": "board",
+          "x": 20980,
+          "y": 7890,
+          "w": 2500,
+          "h": 866,
+          "hidden": false,
+          "children": [
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0881",
+              "name": "Technique / cut_loose / restored shallow fan",
+              "type": "rectangle",
+              "x": 20980,
+              "y": 7890,
+              "w": 2500,
+              "h": 866,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0882",
+              "name": "Technique / slip_past / shallow fan preview",
+              "type": "rectangle",
+              "x": 20980,
+              "y": 7890,
+              "w": 2500,
+              "h": 866,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0883",
+              "name": "Technique / steady_line / shallow fan preview",
+              "type": "rectangle",
+              "x": 20980,
+              "y": 7890,
+              "w": 2500,
+              "h": 866,
+              "hidden": false,
+              "children": []
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d07d339c0884",
+              "name": "Technique / prize_hook / restored shallow fan",
+              "type": "rectangle",
+              "x": 20980,
+              "y": 7890,
+              "w": 2500,
+              "h": 866,
+              "hidden": false,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    "top": [
+      {
+        "id": "bae680cd-9225-8018-8008-cdde36733e6f",
+        "name": "GAMEPLAY — assembled reusable parts / 3840 × 2160",
+        "type": "board",
+        "x": 0,
+        "y": 0,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead5028f97",
+        "name": "GAMEPLAY B — techniques laid on table / perspective preview",
+        "type": "board",
+        "x": 4200,
+        "y": 4900,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0061921543d",
+        "name": "GAMEPLAY D / Engraved tooltip / MFJ-R027",
+        "type": "board",
+        "x": 4200,
+        "y": 10100,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d339bae02",
+        "name": "GAMEPLAY E / Parchment controls / MFJ-R037–R038",
+        "type": "board",
+        "x": 20000,
+        "y": 6500,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00618505dcb",
+        "name": "PROTOTYPE / Engraved Catch Chain tooltip / MFJ-R027",
+        "type": "board",
+        "x": 0,
+        "y": 10100,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f248e1e2",
+        "name": "GAMEPLAY C / Reef Snag event / MFJ-R020",
+        "type": "board",
+        "x": 0,
+        "y": 7400,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdde40529e8e",
+        "name": "COMPONENT REVIEW — independent templates / not a screenshot",
+        "type": "board",
+        "x": 4200,
+        "y": 0,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdde421c05c9",
+        "name": "SOURCE ASSETS — independent originals",
+        "type": "board",
+        "x": 8500,
+        "y": 0,
+        "w": 100,
+        "h": 100,
+        "hidden": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde0da1d370c",
+        "name": "CATCH CHAIN CARD v2 — mockup detail study",
+        "type": "board",
+        "x": 0,
+        "y": 2500,
+        "w": 2400,
+        "h": 1480,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b511f13d",
+        "name": "CATCH CHAIN — complete assembled v2",
+        "type": "board",
+        "x": 2600,
+        "y": 2500,
+        "w": 1100,
+        "h": 2160.0000000000073,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85bfb5c79",
+        "name": "TECHNIQUES — engraved hand / mockup detail",
+        "type": "board",
+        "x": 0,
+        "y": 4900,
+        "w": 3840,
+        "h": 1480,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee1b54ddb82",
+        "name": "MFJ-R002 / Main creature card — mockup detail review",
+        "type": "board",
+        "x": 8500,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee1b64ceecf",
+        "name": "MFJ-R002 / Independent source art",
+        "type": "board",
+        "x": 8500,
+        "y": 2050,
+        "w": 1860,
+        "h": 880,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f3ff1e59",
+        "name": "MFJ-R003 / Cod — detailed creature card",
+        "type": "board",
+        "x": 10600,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f6729044a",
+        "name": "MFJ-R004 / Garfish / detailed creature card",
+        "type": "board",
+        "x": 12800,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f6787a406",
+        "name": "MFJ-R004 / Garfish / separate illustration source",
+        "type": "board",
+        "x": 12800,
+        "y": 2050,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f935a97c4",
+        "name": "MFJ-R005 / Glass Minnow / detailed creature card",
+        "type": "board",
+        "x": 15000,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f93bd126d",
+        "name": "MFJ-R005 / Glass Minnow / separate illustration source",
+        "type": "board",
+        "x": 15000,
+        "y": 2050,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf77ee33",
+        "name": "MFJ-R006 / Jellyfish / detailed creature card",
+        "type": "board",
+        "x": 17200,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0fafe405f7",
+        "name": "MFJ-R006 / Jellyfish / separate illustration source",
+        "type": "board",
+        "x": 17200,
+        "y": 2050,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7b9c8773",
+        "name": "MFJ-R007 / Lionfish / detailed creature card",
+        "type": "board",
+        "x": 8500,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7c5effd8",
+        "name": "MFJ-R007 / Lionfish / separate illustration source",
+        "type": "board",
+        "x": 8500,
+        "y": 5250,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bcde4302e",
+        "name": "MFJ-R008 / Mackerel / detailed creature card",
+        "type": "board",
+        "x": 10700,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bce5f4ce3",
+        "name": "MFJ-R008 / Mackerel / separate illustration source",
+        "type": "board",
+        "x": 10700,
+        "y": 5250,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bf62e7a36",
+        "name": "MFJ-R009 / Moonlit Ray / detailed creature card",
+        "type": "board",
+        "x": 12900,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bf69ba01a",
+        "name": "MFJ-R009 / Moonlit Ray / separate illustration source",
+        "type": "board",
+        "x": 12900,
+        "y": 5250,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c19384688",
+        "name": "MFJ-R010 / Mussel / detailed creature card",
+        "type": "board",
+        "x": 15100,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c19b520b8",
+        "name": "MFJ-R010 / Mussel / separate illustration source",
+        "type": "board",
+        "x": 15100,
+        "y": 5250,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e4397e4",
+        "name": "MFJ-R011 / Sardine / detailed creature card",
+        "type": "board",
+        "x": 17300,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3eb155ab",
+        "name": "MFJ-R011 / Sardine / separate illustration source",
+        "type": "board",
+        "x": 17300,
+        "y": 5250,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347ef37602",
+        "name": "MFJ-R012 / Cleaner Shrimp / detailed creature card",
+        "type": "board",
+        "x": 8500,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f8f2574",
+        "name": "MFJ-R012 / Cleaner Shrimp / separate illustration source",
+        "type": "board",
+        "x": 8500,
+        "y": 8450,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3481346f34",
+        "name": "MFJ-R013 / Clinging Crab / detailed creature card",
+        "type": "board",
+        "x": 10700,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf34819ae5c4",
+        "name": "MFJ-R013 / Clinging Crab / separate illustration source",
+        "type": "board",
+        "x": 10700,
+        "y": 8450,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348378e765",
+        "name": "MFJ-R014 / Sea Anemone / detailed creature card",
+        "type": "board",
+        "x": 12900,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3483fa3603",
+        "name": "MFJ-R014 / Sea Anemone / separate illustration source",
+        "type": "board",
+        "x": 12900,
+        "y": 8450,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf34857f82ac",
+        "name": "MFJ-R015 / Sea Bass / detailed creature card",
+        "type": "board",
+        "x": 15100,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3486054010",
+        "name": "MFJ-R015 / Sea Bass / separate illustration source",
+        "type": "board",
+        "x": 15100,
+        "y": 8450,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348891dbf4",
+        "name": "MFJ-R016 / Sea Urchin / detailed creature card",
+        "type": "board",
+        "x": 8500,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf34893f0aaf",
+        "name": "MFJ-R016 / Sea Urchin / separate illustration source",
+        "type": "board",
+        "x": 8500,
+        "y": 11650,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348b8ecb45",
+        "name": "MFJ-R017 / Spiny Lobster / detailed creature card",
+        "type": "board",
+        "x": 10700,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348c2f1a6c",
+        "name": "MFJ-R017 / Spiny Lobster / separate illustration source",
+        "type": "board",
+        "x": 10700,
+        "y": 11650,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348e983db3",
+        "name": "MFJ-R018 / Squid / detailed creature card",
+        "type": "board",
+        "x": 12900,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348f3681bc",
+        "name": "MFJ-R018 / Squid / separate illustration source",
+        "type": "board",
+        "x": 12900,
+        "y": 11650,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3490e909a3",
+        "name": "MFJ-R019 / Tidepool Eel / detailed creature card",
+        "type": "board",
+        "x": 15100,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf349181fdae",
+        "name": "MFJ-R019 / Tidepool Eel / separate illustration source",
+        "type": "board",
+        "x": 15100,
+        "y": 11650,
+        "w": 1860,
+        "h": 650,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1a30046",
+        "name": "MFJ-R020 / Reef Snag / detailed EVENT card",
+        "type": "board",
+        "x": 17300,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687f35e870",
+        "name": "MFJ-R024 / Fresh Shell Fragments / detailed EVENT card",
+        "type": "board",
+        "x": 26100,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a259",
+        "name": "MFJ-R023 / Loose Knot / detailed EVENT card",
+        "type": "board",
+        "x": 23900,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687c2dd7ec",
+        "name": "MFJ-R022 / Gentle Upwelling / detailed EVENT card",
+        "type": "board",
+        "x": 21700,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687a9a6f4f",
+        "name": "MFJ-R021 / Silt Burst / detailed EVENT card",
+        "type": "board",
+        "x": 19500,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f2346433",
+        "name": "MFJ-R020 / Event frame and independent Reef Snag art",
+        "type": "board",
+        "x": 17300,
+        "y": 11650,
+        "w": 1860,
+        "h": 1000,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687ab47057",
+        "name": "MFJ-R021 / Silt Burst / separate illustration source",
+        "type": "board",
+        "x": 19500,
+        "y": 11650,
+        "w": 1860,
+        "h": 800,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687c5f28e5",
+        "name": "MFJ-R022 / Gentle Upwelling / separate illustration source",
+        "type": "board",
+        "x": 21700,
+        "y": 11650,
+        "w": 1860,
+        "h": 800,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687dc371b4",
+        "name": "MFJ-R023 / Loose Knot / separate illustration source",
+        "type": "board",
+        "x": 23900,
+        "y": 11650,
+        "w": 1860,
+        "h": 800,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687f67e74b",
+        "name": "MFJ-R024 / Fresh Shell Fragments / separate illustration source",
+        "type": "board",
+        "x": 26100,
+        "y": 11650,
+        "w": 1860,
+        "h": 800,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf68a5c60f8c",
+        "name": "EVENT ROSTER / Hazards and Environment / Unity integration",
+        "type": "board",
+        "x": 19500,
+        "y": 14200,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf68a5f46780",
+        "name": "EVENT ROSTER / Opportunities / Unity integration",
+        "type": "board",
+        "x": 19500,
+        "y": 16600,
+        "w": 3840,
+        "h": 2160,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00614dd5194",
+        "name": "MFJ-R026 / Engraved tooltip / Clinging Crab Catch",
+        "type": "board",
+        "x": 8500,
+        "y": 13200,
+        "w": 900,
+        "h": 640,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+        "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch",
+        "type": "board",
+        "x": 8500,
+        "y": 15500,
+        "w": 900,
+        "h": 640,
+        "hidden": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00616026a38",
+        "name": "MFJ-R026 / Engraved tooltip / Glass Minnow Bait",
+        "type": "board",
+        "x": 9550,
+        "y": 13200,
+        "w": 900,
+        "h": 640,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d009513f1f95",
+        "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait",
+        "type": "board",
+        "x": 9550,
+        "y": 15500,
+        "w": 900,
+        "h": 640,
+        "hidden": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00617505c88",
+        "name": "MFJ-R026 / Engraved tooltip / Sardine Catch",
+        "type": "board",
+        "x": 10600,
+        "y": 13200,
+        "w": 900,
+        "h": 640,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d009522a12b1",
+        "name": "SUPERSEDED / MFJ-R025 / Sardine Catch",
+        "type": "board",
+        "x": 10600,
+        "y": 15500,
+        "w": 900,
+        "h": 640,
+        "hidden": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00953150b66",
+        "name": "MFJ-R026 / Independent engraved tooltip master",
+        "type": "board",
+        "x": 11800,
+        "y": 13200,
+        "w": 1050,
+        "h": 900,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0105575afda",
+        "name": "MFJ-R030 / Technique fan / editable planar sources",
+        "type": "board",
+        "x": 0,
+        "y": 17400,
+        "w": 3000,
+        "h": 850,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d01110225b74",
+        "name": "MFJ-R030 / Technique fan / independent projected cards",
+        "type": "board",
+        "x": 8500,
+        "y": 17400,
+        "w": 2500,
+        "h": 866,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d04eef43c54d",
+        "name": "TECHNIQUE ROSTER / New engraved cards / MFJ-R031–R034",
+        "type": "board",
+        "x": 20000,
+        "y": 0,
+        "w": 3000,
+        "h": 1080,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d04eef7634b4",
+        "name": "MFJ-R031–R034 / Separate Technique illustrations",
+        "type": "board",
+        "x": 23200,
+        "y": 0,
+        "w": 1800,
+        "h": 4400,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df1e230d1",
+        "name": "MFJ-R035 / Independent engraved Line Load housing",
+        "type": "board",
+        "x": 25200,
+        "y": 0,
+        "w": 2400,
+        "h": 950,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df1f67423",
+        "name": "MFJ-R035 / Engraved Line Load / state review",
+        "type": "board",
+        "x": 20000,
+        "y": 1500,
+        "w": 2800,
+        "h": 1150,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0617f174fec",
+        "name": "MFJ-R036 / Independent marine action-button housing",
+        "type": "board",
+        "x": 25200,
+        "y": 1200,
+        "w": 2400,
+        "h": 1100,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0617f36896a",
+        "name": "MFJ-R036 / Descend + Surface / marine hardware review",
+        "type": "board",
+        "x": 20000,
+        "y": 2850,
+        "w": 2800,
+        "h": 1080,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d2d33d218",
+        "name": "MFJ-R037–R038 / Independent parchment control sources",
+        "type": "board",
+        "x": 28000,
+        "y": 0,
+        "w": 2500,
+        "h": 1900,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d2d621005",
+        "name": "MFJ-R037–R038 / Parchment controls / card-style alternative",
+        "type": "board",
+        "x": 20000,
+        "y": 4500,
+        "w": 3000,
+        "h": 1700,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d086c7786357",
+        "name": "MFJ-R039 / Opening boat / independent original art",
+        "type": "board",
+        "x": 28000,
+        "y": 2200,
+        "w": 3000,
+        "h": 2000,
+        "hidden": false
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d086c7a1bbc3",
+        "name": "MFJ-R039 / Run opening / fisherman boat card",
+        "type": "board",
+        "x": 20000,
+        "y": 9000,
+        "w": 3000,
+        "h": 1800,
+        "hidden": false
+      }
+    ]
+  },
+  "log": ""
+}

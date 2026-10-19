@@ -1,3 +1,5 @@
+> **Imported and verified at [MFJ-SYNC-004](../../Sync004/README.md). No remaining Unity import work.** The original design-only notes below are retained as history and do not indicate pending work.
+
 # Hold Steady — MFJ-R032
 
 **Created in Penpot; awaiting visual review. Not imported into Unity.**

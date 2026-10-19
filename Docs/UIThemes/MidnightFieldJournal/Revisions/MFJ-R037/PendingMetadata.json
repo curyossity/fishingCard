@@ -1,0 +1,12 @@
+{
+  "result": {
+    "pending": [
+      "MFJ-R037",
+      "MFJ-R038"
+    ],
+    "completedCheckpoint": "MFJ-SYNC-004",
+    "selectedBoard": "bae680cd-9225-8018-8008-d07d339bae02",
+    "unityImported": false
+  },
+  "log": ""
+}

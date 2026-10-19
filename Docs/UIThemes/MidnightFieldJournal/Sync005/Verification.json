@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "assertions": 1694,
+  "sceneUnchanged": true,
+  "playModeVerification": "PlayModeVerification.json",
+  "consoleErrors": 0,
+  "captures": [
+    "Gameplay4K.png",
+    "Gameplay1080p.png",
+    "Opening4K.png",
+    "Opening1080p.png",
+    "ActualOpeningFinal.png",
+    "ActualFirstEncounter.png"
+  ],
+  "standaloneBuildRun": false,
+  "editorInitialAndFinalPlayMode": false,
+  "editorInitialAndFinalBackground": false,
+  "componentAssertions": 625,
+  "regressionAssertions": 1069,
+  "regressionEvidence": "Regression/ComponentVerification.json"
+}

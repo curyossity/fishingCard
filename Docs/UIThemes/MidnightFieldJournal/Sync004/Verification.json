@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "assertions": 1121,
+  "componentAssertions": 1069,
+  "liveHudAssertions": 13,
+  "liveHandAssertions": 39,
+  "sourceMappingsVerified": 25,
+  "consoleErrors": 0,
+  "captures": [
+    "Gameplay4K.png",
+    "Gameplay1080p.png",
+    "Techniques4K.png",
+    "Techniques1080p.png",
+    "ActualPlayMode.png"
+  ],
+  "editorInitialAndFinalPlayMode": false,
+  "standaloneBuildRun": false
+}

@@ -1,0 +1,237 @@
+{
+  "result": {
+    "actions": {
+      "revision": "MFJ-R037",
+      "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d07d2d621005",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d07d2d33d218",
+      "comparisonBoardId": "bae680cd-9225-8018-8008-d07d339bae02",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "sourceArtId": "bae680cd-9225-8018-8008-d07d2b3772ad",
+      "sourceDimensions": [
+        1988,
+        791
+      ],
+      "buttons": [
+        {
+          "id": "bae680cd-9225-8018-8008-d07d2dc3a531",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d07d2dd4db9d",
+          "iconId": "bae680cd-9225-8018-8008-d07d2de7dc39",
+          "titleId": "bae680cd-9225-8018-8008-d07d2df7f129",
+          "size": [
+            880,
+            350
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d2e19e09e",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d07d2e2ed055",
+          "iconId": "bae680cd-9225-8018-8008-d07d2e449753",
+          "titleId": "bae680cd-9225-8018-8008-d07d2e5426cd",
+          "size": [
+            880,
+            350
+          ]
+        }
+      ],
+      "instances": [
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcc07",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d34dc4fca",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d07d350618d3",
+          "iconId": "bae680cd-9225-8018-8008-d07d3526aa5e",
+          "titleId": "bae680cd-9225-8018-8008-d07d353afa8b",
+          "size": [
+            880,
+            350
+          ]
+        },
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcc08",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d35791b39",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d07d358acdb5",
+          "iconId": "bae680cd-9225-8018-8008-d07d359c415a",
+          "titleId": "bae680cd-9225-8018-8008-d07d35b0246f",
+          "size": [
+            880,
+            350
+          ]
+        }
+      ],
+      "geometry": {
+        "size": [
+          880,
+          350
+        ],
+        "title": [
+          285,
+          127,
+          440,
+          105
+        ],
+        "titleSize": 70,
+        "icon": [
+          185,
+          137,
+          76,
+          78
+        ],
+        "clipContent": true
+      },
+      "replacesImportedDesign": "MFJ-R036"
+    },
+    "load": {
+      "revision": "MFJ-R038",
+      "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d07d2d621005",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d07d2d33d218",
+      "comparisonBoardId": "bae680cd-9225-8018-8008-d07d339bae02",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "sourceArtId": "bae680cd-9225-8018-8008-d07d2d01fcf4",
+      "sourceDimensions": [
+        2196,
+        716
+      ],
+      "variants": [
+        {
+          "id": "bae680cd-9225-8018-8008-d07d2f5ab2fb",
+          "frameId": "bae680cd-9225-8018-8008-d07d2f74d26f",
+          "labelId": "bae680cd-9225-8018-8008-d07d2f8eb9ee",
+          "valueId": "bae680cd-9225-8018-8008-d07d2fb7b411",
+          "statusId": "bae680cd-9225-8018-8008-d07d30b1dca9",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d07d2fe73594",
+            "bae680cd-9225-8018-8008-d07d300572df",
+            "bae680cd-9225-8018-8008-d07d3034cc93",
+            "bae680cd-9225-8018-8008-d07d304e5892",
+            "bae680cd-9225-8018-8008-d07d3066447e",
+            "bae680cd-9225-8018-8008-d07d3079a492",
+            "bae680cd-9225-8018-8008-d07d308b7da9",
+            "bae680cd-9225-8018-8008-d07d309d2686"
+          ],
+          "load": 4,
+          "capacity": 8,
+          "size": [
+            760,
+            175
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d30e85d63",
+          "frameId": "bae680cd-9225-8018-8008-d07d30f79128",
+          "labelId": "bae680cd-9225-8018-8008-d07d3106478c",
+          "valueId": "bae680cd-9225-8018-8008-d07d311e9080",
+          "statusId": "bae680cd-9225-8018-8008-d07d31da1001",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d07d313db4d0",
+            "bae680cd-9225-8018-8008-d07d3156bda2",
+            "bae680cd-9225-8018-8008-d07d31698bef",
+            "bae680cd-9225-8018-8008-d07d317cbaee",
+            "bae680cd-9225-8018-8008-d07d318dda0b",
+            "bae680cd-9225-8018-8008-d07d31a225d4",
+            "bae680cd-9225-8018-8008-d07d31b5d252",
+            "bae680cd-9225-8018-8008-d07d31c74ab5"
+          ],
+          "load": 8,
+          "capacity": 8,
+          "size": [
+            760,
+            175
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d32194531",
+          "frameId": "bae680cd-9225-8018-8008-d07d322c073a",
+          "labelId": "bae680cd-9225-8018-8008-d07d323b2a9c",
+          "valueId": "bae680cd-9225-8018-8008-d07d325a6fe0",
+          "statusId": "bae680cd-9225-8018-8008-d07d333a2ac2",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d07d32799295",
+            "bae680cd-9225-8018-8008-d07d328d8e37",
+            "bae680cd-9225-8018-8008-d07d32a14737",
+            "bae680cd-9225-8018-8008-d07d32b6f941",
+            "bae680cd-9225-8018-8008-d07d32ca2273",
+            "bae680cd-9225-8018-8008-d07d32e21907",
+            "bae680cd-9225-8018-8008-d07d32fb3e37",
+            "bae680cd-9225-8018-8008-d07d331889ee"
+          ],
+          "load": 10,
+          "capacity": 8,
+          "size": [
+            760,
+            175
+          ]
+        }
+      ],
+      "instances": [
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcbc2",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d35d9a8a1",
+          "frameId": "bae680cd-9225-8018-8008-d07d35ec161e",
+          "labelId": "bae680cd-9225-8018-8008-d07d35fef5e0",
+          "valueId": "bae680cd-9225-8018-8008-d07d361fb1f9",
+          "statusId": "bae680cd-9225-8018-8008-d07d36f945ec",
+          "segmentIds": [
+            "bae680cd-9225-8018-8008-d07d3640c778",
+            "bae680cd-9225-8018-8008-d07d3654c707",
+            "bae680cd-9225-8018-8008-d07d366cba19",
+            "bae680cd-9225-8018-8008-d07d3683edb9",
+            "bae680cd-9225-8018-8008-d07d369a6625",
+            "bae680cd-9225-8018-8008-d07d36b022ce",
+            "bae680cd-9225-8018-8008-d07d36c9a751",
+            "bae680cd-9225-8018-8008-d07d36e27e3b"
+          ],
+          "load": 4,
+          "capacity": 8,
+          "size": [
+            760,
+            175
+          ]
+        }
+      ],
+      "geometry": {
+        "size": [
+          760,
+          175
+        ],
+        "label": [
+          95,
+          25,
+          340,
+          44
+        ],
+        "value": [
+          460,
+          14,
+          205,
+          62
+        ],
+        "gauge": [
+          95,
+          87,
+          570,
+          18
+        ],
+        "status": [
+          95,
+          116,
+          570,
+          28
+        ]
+      },
+      "replacesImportedDesign": "MFJ-R035"
+    }
+  },
+  "log": ""
+}

@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunController
   startRunOnAwake: 1
+  beginWithBoatCard: 1
   startingLineCapacity: 10
   startingDepth: 0
   startingBiome: {fileID: 11400000, guid: e104a3bb49114f2e80aebde5130a122e, type: 2}
@@ -596,7 +597,7 @@ MonoBehaviour:
   descendCompletionPending: 0
   biomeEntryRevealPending: 0
   pendingCommittedCatchId: -1
-  techniqueRefillPending: 0
+  techniqueCompletionPending: 0
   pendingTechniqueTargets:
     card: {fileID: 0}
     encounterTarget: {fileID: 0}
@@ -828,6 +829,10 @@ PrefabInstance:
     - target: {fileID: 2912209876544891502, guid: 644273af1c32d2a4b85ca330f14de5ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8376274676436396842, guid: 644273af1c32d2a4b85ca330f14de5ea, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,0 +1,32 @@
+{
+  "result": {
+    "buttons": [
+      {
+        "id": "bae680cd-9225-8018-8008-d07d2dc3a531",
+        "width": 880,
+        "height": 350,
+        "clipContent": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d2e19e09e",
+        "width": 880,
+        "height": 350,
+        "clipContent": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d34dc4fca",
+        "width": 880,
+        "height": 350,
+        "clipContent": true
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d35791b39",
+        "width": 880,
+        "height": 350,
+        "clipContent": true
+      }
+    ],
+    "visibleArtChanged": false
+  },
+  "log": ""
+}

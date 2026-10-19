@@ -1,0 +1,112 @@
+{
+  "result": {
+    "revision": "MFJ-R040",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "reviewBoardId": "bae680cd-9225-8018-8008-d08a985b4ebe",
+    "sourceBoardId": "bae680cd-9225-8018-8008-d08a980a65fb",
+    "sourceGuideId": "bae680cd-9225-8018-8008-d08a98b3b304",
+    "comparisonBoardId": "bae680cd-9225-8018-8008-d08a9ab76de5",
+    "instanceId": "bae680cd-9225-8018-8008-d08a9b276e25",
+    "replacedShapeIds": [
+      "bae680cd-9225-8018-8008-d08a9ab7b21b",
+      "bae680cd-9225-8018-8008-d08a9ab7b21c",
+      "bae680cd-9225-8018-8008-d08a9ab7b21d",
+      "bae680cd-9225-8018-8008-d08a9ab7b21e"
+    ],
+    "size": [
+      760,
+      550
+    ],
+    "assemblyBounds": [
+      2840,
+      1130,
+      760,
+      550
+    ],
+    "rows": [
+      {
+        "tierId": "shallows",
+        "labelId": "bae680cd-9225-8018-8008-d08a994b5ec6",
+        "rangeId": "bae680cd-9225-8018-8008-d08a9963fccc",
+        "artId": "bae680cd-9225-8018-8008-d08a9921a928",
+        "nodeIds": [
+          "bae680cd-9225-8018-8008-d08a98ea4743",
+          "bae680cd-9225-8018-8008-d08a9904c15b"
+        ],
+        "haloIds": [],
+        "active": false,
+        "center": [
+          50,
+          95
+        ]
+      },
+      {
+        "tierId": "mid_depth",
+        "labelId": "bae680cd-9225-8018-8008-d08a99f8f342",
+        "rangeId": "bae680cd-9225-8018-8008-d08a9a14c1f9",
+        "artId": "bae680cd-9225-8018-8008-d08a99e46210",
+        "nodeIds": [
+          "bae680cd-9225-8018-8008-d08a99b1d352",
+          "bae680cd-9225-8018-8008-d08a99cb8811"
+        ],
+        "haloIds": [
+          "bae680cd-9225-8018-8008-d08a997cb067",
+          "bae680cd-9225-8018-8008-d08a998e0b66",
+          "bae680cd-9225-8018-8008-d08a99a0033e"
+        ],
+        "active": true,
+        "center": [
+          50,
+          270
+        ]
+      },
+      {
+        "tierId": "deep_edge",
+        "labelId": "bae680cd-9225-8018-8008-d08a9a77a985",
+        "rangeId": "bae680cd-9225-8018-8008-d08a9a9a478d",
+        "artId": "bae680cd-9225-8018-8008-d08a9a61ee6f",
+        "nodeIds": [
+          "bae680cd-9225-8018-8008-d08a9a364075",
+          "bae680cd-9225-8018-8008-d08a9a4fefe1"
+        ],
+        "haloIds": [],
+        "active": false,
+        "center": [
+          50,
+          445
+        ]
+      }
+    ],
+    "assets": [
+      {
+        "kind": "shallows",
+        "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R040\\shallows.png",
+        "width": 1448,
+        "height": 1086,
+        "sha256": "67073bd9682388e706d4afacf4e58638e6090763195d889a7d409bd092ffda4b",
+        "shapeId": "bae680cd-9225-8018-8008-d08a95564e0b"
+      },
+      {
+        "kind": "reef",
+        "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R040\\reef.png",
+        "width": 1448,
+        "height": 1086,
+        "sha256": "5e426f8d2cbe1d479354c81e3ea2eaa72e654d8641b2e8d2f0a656859a313d2f",
+        "shapeId": "bae680cd-9225-8018-8008-d08a96b00bf5"
+      },
+      {
+        "kind": "deep_water",
+        "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R040\\deep_water.png",
+        "width": 1448,
+        "height": 1086,
+        "sha256": "9cc20226ab09ef34d1ed5b41f35b7db066bd066880888350801c192127572114",
+        "shapeId": "bae680cd-9225-8018-8008-d08a97cc52cc"
+      }
+    ],
+    "status": "ready_for_review",
+    "unityImported": false,
+    "contract": "Native tier labels, authored ranges, nodes and amber current-tier state. Decorative coral is independent art. Runtime biome tiers/depth remain authoritative; no new gameplay or tier renames."
+  },
+  "log": ""
+}

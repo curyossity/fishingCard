@@ -1,0 +1,14 @@
+{
+  "result": {
+    "pending": [
+      "MFJ-R031",
+      "MFJ-R032",
+      "MFJ-R033",
+      "MFJ-R034",
+      "MFJ-R035"
+    ],
+    "completedCheckpoint": "MFJ-SYNC-003",
+    "selectedBoardId": "bae680cd-9225-8018-8008-d05df1f67423"
+  },
+  "log": ""
+}

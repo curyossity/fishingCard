@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "start": {
+    "passed": true,
+    "frame": 5934,
+    "firstDepth": 1,
+    "firstEncounter": "Jellyfish",
+    "openingEmpty": true,
+    "noInvisibleCommit": true,
+    "hand": 4
+  },
+  "technique": {
+    "used": "slip_past",
+    "before": 4,
+    "frame": 13212
+  },
+  "completion": {
+    "passed": true,
+    "frame": 41039,
+    "techniqueHandAfterResolution": 3,
+    "noAutomaticRedraw": true,
+    "skipDidNotReopenBoat": true,
+    "surfacePassed": true,
+    "restartPassed": true
+  },
+  "restored": {
+    "playing": false,
+    "background": false,
+    "sceneDirty": false
+  },
+  "note": "Slip Past was committed after explicit Hooked-target selection; selection itself does not consume a card."
+}

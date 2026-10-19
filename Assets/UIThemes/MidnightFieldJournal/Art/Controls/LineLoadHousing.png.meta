@@ -1,0 +1,2535 @@
+fileFormatVersion: 2
+guid: 652c85e3fec74d2418e90e40a07ec298
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8281722807912756680
+    second: LineLoadHousing_0
+  - first:
+      213: 8680778633927274642
+    second: LineLoadHousing_1
+  - first:
+      213: -628145301402012895
+    second: LineLoadHousing_2
+  - first:
+      213: 4033865554986215752
+    second: LineLoadHousing_3
+  - first:
+      213: 3849307953610948386
+    second: LineLoadHousing_4
+  - first:
+      213: 5689537238200959879
+    second: LineLoadHousing_5
+  - first:
+      213: 7316791206606327801
+    second: LineLoadHousing_6
+  - first:
+      213: 4200696943278670044
+    second: LineLoadHousing_7
+  - first:
+      213: -329387140135866155
+    second: LineLoadHousing_8
+  - first:
+      213: 456934190247337399
+    second: LineLoadHousing_9
+  - first:
+      213: 6212681483137972367
+    second: LineLoadHousing_10
+  - first:
+      213: 1198144508464363825
+    second: LineLoadHousing_11
+  - first:
+      213: 9212709629297231919
+    second: LineLoadHousing_12
+  - first:
+      213: 4583151667452738941
+    second: LineLoadHousing_13
+  - first:
+      213: -8523715834753229061
+    second: LineLoadHousing_14
+  - first:
+      213: -3935305258513355346
+    second: LineLoadHousing_15
+  - first:
+      213: -3637705567720022327
+    second: LineLoadHousing_16
+  - first:
+      213: -1086095235859195613
+    second: LineLoadHousing_17
+  - first:
+      213: 8374265321322547364
+    second: LineLoadHousing_18
+  - first:
+      213: -3359682451015211555
+    second: LineLoadHousing_19
+  - first:
+      213: 7849858381327092144
+    second: LineLoadHousing_20
+  - first:
+      213: 8983255502250194926
+    second: LineLoadHousing_21
+  - first:
+      213: -1880162227583166783
+    second: LineLoadHousing_22
+  - first:
+      213: 3188511352089534457
+    second: LineLoadHousing_23
+  - first:
+      213: -7189953669652296144
+    second: LineLoadHousing_24
+  - first:
+      213: -4612645105731872653
+    second: LineLoadHousing_25
+  - first:
+      213: -8971371921455977141
+    second: LineLoadHousing_26
+  - first:
+      213: -4968843980007129161
+    second: LineLoadHousing_27
+  - first:
+      213: -4891147514355042924
+    second: LineLoadHousing_28
+  - first:
+      213: -7304961519465868071
+    second: LineLoadHousing_29
+  - first:
+      213: -616760229096910178
+    second: LineLoadHousing_30
+  - first:
+      213: -4137978002641947527
+    second: LineLoadHousing_31
+  - first:
+      213: -7279857700841215321
+    second: LineLoadHousing_32
+  - first:
+      213: -6098135012467312593
+    second: LineLoadHousing_33
+  - first:
+      213: 6592440636915857185
+    second: LineLoadHousing_34
+  - first:
+      213: 5097063817741224203
+    second: LineLoadHousing_35
+  - first:
+      213: 3336848149216061629
+    second: LineLoadHousing_36
+  - first:
+      213: 1366304207225902016
+    second: LineLoadHousing_37
+  - first:
+      213: 9202590329876631440
+    second: LineLoadHousing_38
+  - first:
+      213: -8924896845059641216
+    second: LineLoadHousing_39
+  - first:
+      213: -8028653876596844058
+    second: LineLoadHousing_40
+  - first:
+      213: 4449151492652912457
+    second: LineLoadHousing_41
+  - first:
+      213: -7970146740945132354
+    second: LineLoadHousing_42
+  - first:
+      213: 1365572949586673921
+    second: LineLoadHousing_43
+  - first:
+      213: 4768584731798532242
+    second: LineLoadHousing_44
+  - first:
+      213: -8717846191157257506
+    second: LineLoadHousing_45
+  - first:
+      213: -5921780691652309715
+    second: LineLoadHousing_46
+  - first:
+      213: 550416047355667277
+    second: LineLoadHousing_47
+  - first:
+      213: -1350566163924651648
+    second: LineLoadHousing_48
+  - first:
+      213: 2574721401447669750
+    second: LineLoadHousing_49
+  - first:
+      213: -3702738201518649249
+    second: LineLoadHousing_50
+  - first:
+      213: 8328177806031426314
+    second: LineLoadHousing_51
+  - first:
+      213: 8574624808202373430
+    second: LineLoadHousing_52
+  - first:
+      213: -2854592297248221342
+    second: LineLoadHousing_53
+  - first:
+      213: 7019178968333910322
+    second: LineLoadHousing_54
+  - first:
+      213: -1478681495512869049
+    second: LineLoadHousing_55
+  - first:
+      213: -6670940773815128841
+    second: LineLoadHousing_56
+  - first:
+      213: 6571000632064847467
+    second: LineLoadHousing_57
+  - first:
+      213: -7924336065056339739
+    second: LineLoadHousing_58
+  - first:
+      213: -5842633341555764782
+    second: LineLoadHousing_59
+  - first:
+      213: 5595268843123218546
+    second: LineLoadHousing_60
+  - first:
+      213: -2372262317656384136
+    second: LineLoadHousing_61
+  - first:
+      213: 4693393037006526600
+    second: LineLoadHousing_62
+  - first:
+      213: -4285104750234090656
+    second: LineLoadHousing_63
+  - first:
+      213: 4773365990449888195
+    second: LineLoadHousing_64
+  - first:
+      213: 9133682186448178285
+    second: LineLoadHousing_65
+  - first:
+      213: -2707192163967067314
+    second: LineLoadHousing_66
+  - first:
+      213: -5169593564666594822
+    second: LineLoadHousing_67
+  - first:
+      213: -5504651338200890342
+    second: LineLoadHousing_68
+  - first:
+      213: 4530621945506666723
+    second: LineLoadHousing_69
+  - first:
+      213: -5342804311338367168
+    second: LineLoadHousing_70
+  - first:
+      213: 1202214291929792979
+    second: LineLoadHousing_71
+  - first:
+      213: 1724912429039832487
+    second: LineLoadHousing_72
+  - first:
+      213: 4603223570877843581
+    second: LineLoadHousing_73
+  - first:
+      213: 4512430092949088657
+    second: LineLoadHousing_74
+  - first:
+      213: -7704158597523691996
+    second: LineLoadHousing_75
+  - first:
+      213: 8733201175630961978
+    second: LineLoadHousing_76
+  - first:
+      213: 303810471170487958
+    second: LineLoadHousing_77
+  - first:
+      213: 6778381463151274400
+    second: LineLoadHousing_78
+  - first:
+      213: 4431748780800098259
+    second: LineLoadHousing_79
+  - first:
+      213: 4766449553793198297
+    second: LineLoadHousing_80
+  - first:
+      213: -8993958459401641962
+    second: LineLoadHousing_81
+  - first:
+      213: -786947610160339815
+    second: LineLoadHousing_82
+  - first:
+      213: 2909603973991109930
+    second: LineLoadHousing_83
+  - first:
+      213: -8884493348148353565
+    second: LineLoadHousing_84
+  - first:
+      213: -508350300009970084
+    second: LineLoadHousing_85
+  - first:
+      213: 1541532789552933536
+    second: LineLoadHousing_86
+  - first:
+      213: 144255207365905714
+    second: LineLoadHousing_87
+  - first:
+      213: -4808874349782734234
+    second: LineLoadHousing_88
+  - first:
+      213: 4062606374402726158
+    second: LineLoadHousing_89
+  - first:
+      213: 4925382470638961035
+    second: LineLoadHousing_90
+  - first:
+      213: 3102031199398869345
+    second: LineLoadHousing_91
+  - first:
+      213: 5684786921266882415
+    second: LineLoadHousing_92
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LineLoadHousing_0
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 635
+        width: 193
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83a0c121cf8611d80800000000000000
+      internalID: -8281722807912756680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_1
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 710
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2903901cc22587870800000000000000
+      internalID: 8680778633927274642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_2
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 655
+        width: 74
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1233a9a2d216847f0800000000000000
+      internalID: -628145301402012895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_3
+      rect:
+        serializedVersion: 2
+        x: 494
+        y: 698
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84923a4995b2bf730800000000000000
+      internalID: 4033865554986215752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_4
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 644
+        width: 73
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22ff016703d7b6530800000000000000
+      internalID: 3849307953610948386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 672
+        width: 39
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 783435349fb45fe40800000000000000
+      internalID: 5689537238200959879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_6
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 704
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ffc87d16d67a8560800000000000000
+      internalID: 7316791206606327801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_7
+      rect:
+        serializedVersion: 2
+        x: 712
+        y: 661
+        width: 58
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0c1391d9fdb4a30800000000000000
+      internalID: 4200696943278670044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_8
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 668
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d0be962428cd6bf0800000000000000
+      internalID: -329387140135866155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_9
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 635
+        width: 51
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bd5c6f993b575600800000000000000
+      internalID: 456934190247337399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_10
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 670
+        width: 45
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f88f51984e0e73650800000000000000
+      internalID: 6212681483137972367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_11
+      rect:
+        serializedVersion: 2
+        x: 1130
+        y: 662
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1397a98151aa0a010800000000000000
+      internalID: 1198144508464363825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_12
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 662
+        width: 69
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f280519c89e1adf70800000000000000
+      internalID: 9212709629297231919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_13
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 704
+        width: 13
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7d7242b820aa9f30800000000000000
+      internalID: 4583151667452738941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_14
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 702
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfe592fdb9da5b980800000000000000
+      internalID: -8523715834753229061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_15
+      rect:
+        serializedVersion: 2
+        x: 1308
+        y: 662
+        width: 120
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eada59fa7bcf269c0800000000000000
+      internalID: -3935305258513355346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_16
+      rect:
+        serializedVersion: 2
+        x: 1458
+        y: 685
+        width: 16
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce569e3f06448dc0800000000000000
+      internalID: -3637705567720022327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_17
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 704
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3295e5a232a6de0f0800000000000000
+      internalID: -1086095235859195613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_18
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 706
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a88d44e0fd573470800000000000000
+      internalID: 8374265321322547364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_19
+      rect:
+        serializedVersion: 2
+        x: 1680
+        y: 657
+        width: 94
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd5ef157c920061d0800000000000000
+      internalID: -3359682451015211555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_20
+      rect:
+        serializedVersion: 2
+        x: 1780
+        y: 674
+        width: 81
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b9cf148b9c40fc60800000000000000
+      internalID: 7849858381327092144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_21
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 689
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee73232b84feaac70800000000000000
+      internalID: 8983255502250194926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_22
+      rect:
+        serializedVersion: 2
+        x: 508
+        y: 698
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c65cc06a6258e5e0800000000000000
+      internalID: -1880162227583166783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_23
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 666
+        width: 21
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ffd8976e2edf3c20800000000000000
+      internalID: 3188511352089534457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_24
+      rect:
+        serializedVersion: 2
+        x: 678
+        y: 664
+        width: 36
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03ecbd04b37283c90800000000000000
+      internalID: -7189953669652296144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_25
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 649
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37858e517b79cffb0800000000000000
+      internalID: -4612645105731872653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_26
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 649
+        width: 41
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4de3b115c84f7380800000000000000
+      internalID: -8971371921455977141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_27
+      rect:
+        serializedVersion: 2
+        x: 857
+        y: 688
+        width: 24
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bf365be9be1b0bb0800000000000000
+      internalID: -4968843980007129161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_28
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 676
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49535d600472f1cb0800000000000000
+      internalID: -4891147514355042924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_29
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 700
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d4d65e83309f9a90800000000000000
+      internalID: -7304961519465868071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_30
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 696
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e921711e6d3d077f0800000000000000
+      internalID: -616760229096910178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_31
+      rect:
+        serializedVersion: 2
+        x: 1259
+        y: 672
+        width: 44
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97475283ee2f296c0800000000000000
+      internalID: -4137978002641947527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_32
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 655
+        width: 55
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aaa7fdcdffb8fa90800000000000000
+      internalID: -7279857700841215321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_33
+      rect:
+        serializedVersion: 2
+        x: 1467
+        y: 700
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f287385f3821f5ba0800000000000000
+      internalID: -6098135012467312593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_34
+      rect:
+        serializedVersion: 2
+        x: 1473
+        y: 670
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 127383eb4dd0d7b50800000000000000
+      internalID: 6592440636915857185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_35
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 651
+        width: 79
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0946fd69886cb640800000000000000
+      internalID: 5097063817741224203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_36
+      rect:
+        serializedVersion: 2
+        x: 1523
+        y: 688
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db8617b56bdde4e20800000000000000
+      internalID: 3336848149216061629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_37
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 672
+        width: 40
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c352deff6616f210800000000000000
+      internalID: 1366304207225902016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_38
+      rect:
+        serializedVersion: 2
+        x: 1650
+        y: 672
+        width: 35
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09fcdb9c52b26bf70800000000000000
+      internalID: 9202590329876631440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_39
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 686
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08037350b95642480800000000000000
+      internalID: -8924896845059641216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_40
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 682
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e9d1ec36dd749090800000000000000
+      internalID: -8028653876596844058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_41
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 674
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94fc97fb5bf8ebd30800000000000000
+      internalID: 4449151492652912457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_42
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 674
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb46a3a44c9546190800000000000000
+      internalID: -7970146740945132354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_43
+      rect:
+        serializedVersion: 2
+        x: 871
+        y: 678
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1010ffecc5d73f210800000000000000
+      internalID: 1365572949586673921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_44
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 666
+        width: 37
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 290f33c6c8a6d2240800000000000000
+      internalID: 4768584731798532242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_45
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 670
+        width: 15
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eda5499041df30780800000000000000
+      internalID: -8717846191157257506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_46
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 682
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2d0c4cf5db91dda0800000000000000
+      internalID: -5921780691652309715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_47
+      rect:
+        serializedVersion: 2
+        x: 1043
+        y: 688
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d432f459a7873a700800000000000000
+      internalID: 550416047355667277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_48
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 680
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 081fb91ca33d14de0800000000000000
+      internalID: -1350566163924651648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_49
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 675
+        width: 9
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ff52e0297f3bb320800000000000000
+      internalID: 2574721401447669750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_50
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 664
+        width: 13
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f505632493b3d9cc0800000000000000
+      internalID: -3702738201518649249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_51
+      rect:
+        serializedVersion: 2
+        x: 1514
+        y: 678
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a039bca0791a39370800000000000000
+      internalID: 8328177806031426314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_52
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 669
+        width: 25
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639872f25df2ff670800000000000000
+      internalID: 8574624808202373430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_53
+      rect:
+        serializedVersion: 2
+        x: 863
+        y: 670
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26714ff0e637268d0800000000000000
+      internalID: -2854592297248221342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_54
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 678
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2318f6e1512296160800000000000000
+      internalID: 7019178968333910322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_55
+      rect:
+        serializedVersion: 2
+        x: 1019
+        y: 668
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7471304a30baa7be0800000000000000
+      internalID: -1478681495512869049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_56
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 668
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc641bd5be0c63a0800000000000000
+      internalID: -6670940773815128841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_57
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 681
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6ea71d9242e03b50800000000000000
+      internalID: 6571000632064847467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_58
+      rect:
+        serializedVersion: 2
+        x: 827
+        y: 660
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e80081755a170290800000000000000
+      internalID: -7924336065056339739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_59
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 670
+        width: 15
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d117b37eebcaeea0800000000000000
+      internalID: -5842633341555764782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_60
+      rect:
+        serializedVersion: 2
+        x: 955
+        y: 668
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2789b292e5366ad40800000000000000
+      internalID: 5595268843123218546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_61
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 671
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ddb0aadf7041fd0800000000000000
+      internalID: -2372262317656384136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_62
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 666
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888d01ab918422140800000000000000
+      internalID: 4693393037006526600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_63
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 657
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06345f0eeef3884c0800000000000000
+      internalID: -4285104750234090656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_64
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 655
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cb32b3f3176e3240800000000000000
+      internalID: 4773365990449888195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_65
+      rect:
+        serializedVersion: 2
+        x: 519
+        y: 649
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c8e866e8b51ce70800000000000000
+      internalID: 9133682186448178285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_66
+      rect:
+        serializedVersion: 2
+        x: 1071
+        y: 649
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4b9508f11f1e6ad0800000000000000
+      internalID: -2707192163967067314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_67
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 2103
+        height: 621
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af9f6e8ea0ae148b0800000000000000
+      internalID: -5169593564666594822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_68
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 80
+        width: 21
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a144826d5cc8b93b0800000000000000
+      internalID: -5504651338200890342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_69
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 70
+        width: 57
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e89389b7a000ee30800000000000000
+      internalID: 4530621945506666723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_70
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 74
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 047404649cb8ad5b0800000000000000
+      internalID: -5342804311338367168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_71
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 113
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d18f56678f1fa010800000000000000
+      internalID: 1202214291929792979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_72
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 69
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ad439917be10f710800000000000000
+      internalID: 1724912429039832487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_73
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 99
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7801e3e27fe1ef30800000000000000
+      internalID: 4603223570877843581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_74
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 56
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 199630cf24f5f9e30800000000000000
+      internalID: 4512430092949088657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_75
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 82
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 426245de294551590800000000000000
+      internalID: -7704158597523691996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_76
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 78
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3dd181e230923970800000000000000
+      internalID: 8733201175630961978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_77
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 80
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696392d830a573400800000000000000
+      internalID: 303810471170487958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_78
+      rect:
+        serializedVersion: 2
+        x: 953
+        y: 83
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a9693ff606a11e50800000000000000
+      internalID: 6778381463151274400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_79
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 78
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3df3c55290cb08d30800000000000000
+      internalID: 4431748780800098259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_80
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 99
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8a9ad8d94d52240800000000000000
+      internalID: 4766449553793198297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_81
+      rect:
+        serializedVersion: 2
+        x: 1314
+        y: 38
+        width: 22
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 610eeb6ee6a0f2380800000000000000
+      internalID: -8993958459401641962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_82
+      rect:
+        serializedVersion: 2
+        x: 1330
+        y: 72
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994ec8761533415f0800000000000000
+      internalID: -786947610160339815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_83
+      rect:
+        serializedVersion: 2
+        x: 1355
+        y: 84
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a251eca066df06820800000000000000
+      internalID: 2909603973991109930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_84
+      rect:
+        serializedVersion: 2
+        x: 1363
+        y: 82
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5eb463f50f3b480800000000000000
+      internalID: -8884493348148353565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_85
+      rect:
+        serializedVersion: 2
+        x: 1415
+        y: 80
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c564172781af1f8f0800000000000000
+      internalID: -508350300009970084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_86
+      rect:
+        serializedVersion: 2
+        x: 1437
+        y: 115
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0aa6bea97ef946510800000000000000
+      internalID: 1541532789552933536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_87
+      rect:
+        serializedVersion: 2
+        x: 1642
+        y: 62
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23d8b08c85f700200800000000000000
+      internalID: 144255207365905714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_88
+      rect:
+        serializedVersion: 2
+        x: 1643
+        y: 50
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a66b3e142734db0800000000000000
+      internalID: -4808874349782734234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_89
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 54
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e09138019f6416830800000000000000
+      internalID: 4062606374402726158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_90
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 46
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b810f51e2497a5440800000000000000
+      internalID: 4925382470638961035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_91
+      rect:
+        serializedVersion: 2
+        x: 1758
+        y: 62
+        width: 45
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 169395ac0f0ac0b20800000000000000
+      internalID: 3102031199398869345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LineLoadHousing_92
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 70
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6726e9e59b64ee40800000000000000
+      internalID: 5684786921266882415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      LineLoadHousing_0: -8281722807912756680
+      LineLoadHousing_1: 8680778633927274642
+      LineLoadHousing_10: 6212681483137972367
+      LineLoadHousing_11: 1198144508464363825
+      LineLoadHousing_12: 9212709629297231919
+      LineLoadHousing_13: 4583151667452738941
+      LineLoadHousing_14: -8523715834753229061
+      LineLoadHousing_15: -3935305258513355346
+      LineLoadHousing_16: -3637705567720022327
+      LineLoadHousing_17: -1086095235859195613
+      LineLoadHousing_18: 8374265321322547364
+      LineLoadHousing_19: -3359682451015211555
+      LineLoadHousing_2: -628145301402012895
+      LineLoadHousing_20: 7849858381327092144
+      LineLoadHousing_21: 8983255502250194926
+      LineLoadHousing_22: -1880162227583166783
+      LineLoadHousing_23: 3188511352089534457
+      LineLoadHousing_24: -7189953669652296144
+      LineLoadHousing_25: -4612645105731872653
+      LineLoadHousing_26: -8971371921455977141
+      LineLoadHousing_27: -4968843980007129161
+      LineLoadHousing_28: -4891147514355042924
+      LineLoadHousing_29: -7304961519465868071
+      LineLoadHousing_3: 4033865554986215752
+      LineLoadHousing_30: -616760229096910178
+      LineLoadHousing_31: -4137978002641947527
+      LineLoadHousing_32: -7279857700841215321
+      LineLoadHousing_33: -6098135012467312593
+      LineLoadHousing_34: 6592440636915857185
+      LineLoadHousing_35: 5097063817741224203
+      LineLoadHousing_36: 3336848149216061629
+      LineLoadHousing_37: 1366304207225902016
+      LineLoadHousing_38: 9202590329876631440
+      LineLoadHousing_39: -8924896845059641216
+      LineLoadHousing_4: 3849307953610948386
+      LineLoadHousing_40: -8028653876596844058
+      LineLoadHousing_41: 4449151492652912457
+      LineLoadHousing_42: -7970146740945132354
+      LineLoadHousing_43: 1365572949586673921
+      LineLoadHousing_44: 4768584731798532242
+      LineLoadHousing_45: -8717846191157257506
+      LineLoadHousing_46: -5921780691652309715
+      LineLoadHousing_47: 550416047355667277
+      LineLoadHousing_48: -1350566163924651648
+      LineLoadHousing_49: 2574721401447669750
+      LineLoadHousing_5: 5689537238200959879
+      LineLoadHousing_50: -3702738201518649249
+      LineLoadHousing_51: 8328177806031426314
+      LineLoadHousing_52: 8574624808202373430
+      LineLoadHousing_53: -2854592297248221342
+      LineLoadHousing_54: 7019178968333910322
+      LineLoadHousing_55: -1478681495512869049
+      LineLoadHousing_56: -6670940773815128841
+      LineLoadHousing_57: 6571000632064847467
+      LineLoadHousing_58: -7924336065056339739
+      LineLoadHousing_59: -5842633341555764782
+      LineLoadHousing_6: 7316791206606327801
+      LineLoadHousing_60: 5595268843123218546
+      LineLoadHousing_61: -2372262317656384136
+      LineLoadHousing_62: 4693393037006526600
+      LineLoadHousing_63: -4285104750234090656
+      LineLoadHousing_64: 4773365990449888195
+      LineLoadHousing_65: 9133682186448178285
+      LineLoadHousing_66: -2707192163967067314
+      LineLoadHousing_67: -5169593564666594822
+      LineLoadHousing_68: -5504651338200890342
+      LineLoadHousing_69: 4530621945506666723
+      LineLoadHousing_7: 4200696943278670044
+      LineLoadHousing_70: -5342804311338367168
+      LineLoadHousing_71: 1202214291929792979
+      LineLoadHousing_72: 1724912429039832487
+      LineLoadHousing_73: 4603223570877843581
+      LineLoadHousing_74: 4512430092949088657
+      LineLoadHousing_75: -7704158597523691996
+      LineLoadHousing_76: 8733201175630961978
+      LineLoadHousing_77: 303810471170487958
+      LineLoadHousing_78: 6778381463151274400
+      LineLoadHousing_79: 4431748780800098259
+      LineLoadHousing_8: -329387140135866155
+      LineLoadHousing_80: 4766449553793198297
+      LineLoadHousing_81: -8993958459401641962
+      LineLoadHousing_82: -786947610160339815
+      LineLoadHousing_83: 2909603973991109930
+      LineLoadHousing_84: -8884493348148353565
+      LineLoadHousing_85: -508350300009970084
+      LineLoadHousing_86: 1541532789552933536
+      LineLoadHousing_87: 144255207365905714
+      LineLoadHousing_88: -4808874349782734234
+      LineLoadHousing_89: 4062606374402726158
+      LineLoadHousing_9: 456934190247337399
+      LineLoadHousing_90: 4925382470638961035
+      LineLoadHousing_91: 3102031199398869345
+      LineLoadHousing_92: 5684786921266882415
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

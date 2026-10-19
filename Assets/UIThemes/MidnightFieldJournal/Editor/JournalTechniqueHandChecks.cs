@@ -68,7 +68,7 @@ public static class JournalTechniqueHandChecks
             foreach (string name in new[] { "Cut Loose", "Slip Past", "Clear Water", "Hold Steady", "Re-rig", "Steady Line", "Recast", "Prize Hook" })
             {
                 CardDefinition definition = Card(name); Refresh(view, new[] { definition });
-                bool hasArt = name == "Cut Loose" || name == "Slip Past" || name == "Steady Line" || name == "Prize Hook";
+                bool hasArt = true;
                 AssertContent(hand.Cards[0], definition, hasArt);
             }
             Refresh(view, new[] { Card("Cut Loose"), Card("Cut Loose"), Card("Slip Past") });

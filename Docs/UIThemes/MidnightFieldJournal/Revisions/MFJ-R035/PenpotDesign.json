@@ -1,0 +1,261 @@
+{
+  "result": {
+    "revision": "MFJ-R035",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "reviewBoardId": "bae680cd-9225-8018-8008-d05df1f67423",
+    "sourceBoardId": "bae680cd-9225-8018-8008-d05df1e230d1",
+    "sourceArtId": "bae680cd-9225-8018-8008-d05df1b27d5b",
+    "variants": [
+      {
+        "id": "bae680cd-9225-8018-8008-d05df2418760",
+        "frameId": "bae680cd-9225-8018-8008-d05df24da33b",
+        "labelId": "bae680cd-9225-8018-8008-d05df25a3514",
+        "valueId": "bae680cd-9225-8018-8008-d05df26e5b55",
+        "statusId": "bae680cd-9225-8018-8008-d05df3106060",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05df281b38b",
+          "bae680cd-9225-8018-8008-d05df28f8644",
+          "bae680cd-9225-8018-8008-d05df29dd7ea",
+          "bae680cd-9225-8018-8008-d05df2b4564b",
+          "bae680cd-9225-8018-8008-d05df2caa7fd",
+          "bae680cd-9225-8018-8008-d05df2df54e6",
+          "bae680cd-9225-8018-8008-d05df2f0a4a9",
+          "bae680cd-9225-8018-8008-d05df3008b97"
+        ],
+        "load": 0,
+        "capacity": 8
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df340a800",
+        "frameId": "bae680cd-9225-8018-8008-d05df34f6289",
+        "labelId": "bae680cd-9225-8018-8008-d05df35b13e1",
+        "valueId": "bae680cd-9225-8018-8008-d05df37ffc4e",
+        "statusId": "bae680cd-9225-8018-8008-d05df4c4ff56",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05df3b394c3",
+          "bae680cd-9225-8018-8008-d05df3e81e12",
+          "bae680cd-9225-8018-8008-d05df4162e22",
+          "bae680cd-9225-8018-8008-d05df442bfaf",
+          "bae680cd-9225-8018-8008-d05df481688f",
+          "bae680cd-9225-8018-8008-d05df4949b3d",
+          "bae680cd-9225-8018-8008-d05df4a87ea7",
+          "bae680cd-9225-8018-8008-d05df4b6183b"
+        ],
+        "load": 4,
+        "capacity": 8
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df4f6d13a",
+        "frameId": "bae680cd-9225-8018-8008-d05df5014451",
+        "labelId": "bae680cd-9225-8018-8008-d05df50ce7b0",
+        "valueId": "bae680cd-9225-8018-8008-d05df521ab81",
+        "statusId": "bae680cd-9225-8018-8008-d05df61944ac",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05df5385cd3",
+          "bae680cd-9225-8018-8008-d05df551d6c5",
+          "bae680cd-9225-8018-8008-d05df570263a",
+          "bae680cd-9225-8018-8008-d05df58cbfc8",
+          "bae680cd-9225-8018-8008-d05df5ab39de",
+          "bae680cd-9225-8018-8008-d05df5c7cfc6",
+          "bae680cd-9225-8018-8008-d05df5e2d23a",
+          "bae680cd-9225-8018-8008-d05df5ff09d0"
+        ],
+        "load": 8,
+        "capacity": 8
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df6468a8f",
+        "frameId": "bae680cd-9225-8018-8008-d05df65079ad",
+        "labelId": "bae680cd-9225-8018-8008-d05df65e6ee6",
+        "valueId": "bae680cd-9225-8018-8008-d05df6738b9e",
+        "statusId": "bae680cd-9225-8018-8008-d05df8528153",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05df688e152",
+          "bae680cd-9225-8018-8008-d05df6ab4ee0",
+          "bae680cd-9225-8018-8008-d05df6cd6a19",
+          "bae680cd-9225-8018-8008-d05df70ed479",
+          "bae680cd-9225-8018-8008-d05df75257c9",
+          "bae680cd-9225-8018-8008-d05df78b1c66",
+          "bae680cd-9225-8018-8008-d05df7c56486",
+          "bae680cd-9225-8018-8008-d05df7fce4c6"
+        ],
+        "load": 10,
+        "capacity": 8
+      }
+    ],
+    "instances": [
+      {
+        "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+        "loadRegionId": "bae680cd-9225-8018-8008-cdde39324fbb",
+        "replacedShapeIds": [
+          "bae680cd-9225-8018-8008-cdde393d06b1",
+          "bae680cd-9225-8018-8008-cdde394f7d2e",
+          "bae680cd-9225-8018-8008-cdde3972be0c",
+          "bae680cd-9225-8018-8008-cdde3988c94b",
+          "bae680cd-9225-8018-8008-cdde399dbe80",
+          "bae680cd-9225-8018-8008-cdde39ace4e3",
+          "bae680cd-9225-8018-8008-cdde39bef84d",
+          "bae680cd-9225-8018-8008-cdde39d3077a",
+          "bae680cd-9225-8018-8008-cdde39e58481",
+          "bae680cd-9225-8018-8008-cdde39f64bd4"
+        ],
+        "id": "bae680cd-9225-8018-8008-d05df897d671",
+        "frameId": "bae680cd-9225-8018-8008-d05df8ac25fd",
+        "labelId": "bae680cd-9225-8018-8008-d05df8ba4cb5",
+        "valueId": "bae680cd-9225-8018-8008-d05df8d3d6c1",
+        "statusId": "bae680cd-9225-8018-8008-d05dfa3d481a",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05df8efc0a3",
+          "bae680cd-9225-8018-8008-d05df915694a",
+          "bae680cd-9225-8018-8008-d05df93845fa",
+          "bae680cd-9225-8018-8008-d05df96b8a43",
+          "bae680cd-9225-8018-8008-d05df9bcc1ec",
+          "bae680cd-9225-8018-8008-d05df9dcb6c7",
+          "bae680cd-9225-8018-8008-d05df9fa1c24",
+          "bae680cd-9225-8018-8008-d05dfa1a886d"
+        ],
+        "load": 4,
+        "capacity": 8
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+        "loadRegionId": "bae680cd-9225-8018-8008-cdead5028f9c",
+        "replacedShapeIds": [
+          "bae680cd-9225-8018-8008-cdead502df30",
+          "bae680cd-9225-8018-8008-cdead502df31",
+          "bae680cd-9225-8018-8008-cdead502df32",
+          "bae680cd-9225-8018-8008-cdead502df33",
+          "bae680cd-9225-8018-8008-cdead502df34",
+          "bae680cd-9225-8018-8008-cdead502df35",
+          "bae680cd-9225-8018-8008-cdead502df36",
+          "bae680cd-9225-8018-8008-cdead502df37",
+          "bae680cd-9225-8018-8008-cdead502df38",
+          "bae680cd-9225-8018-8008-cdead502df39"
+        ],
+        "id": "bae680cd-9225-8018-8008-d05dfa9766f9",
+        "frameId": "bae680cd-9225-8018-8008-d05dfac24718",
+        "labelId": "bae680cd-9225-8018-8008-d05dfad5fba9",
+        "valueId": "bae680cd-9225-8018-8008-d05dfaf12c62",
+        "statusId": "bae680cd-9225-8018-8008-d05dfbe4b720",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05dfb107f56",
+          "bae680cd-9225-8018-8008-d05dfb32d617",
+          "bae680cd-9225-8018-8008-d05dfb55f67e",
+          "bae680cd-9225-8018-8008-d05dfb788d88",
+          "bae680cd-9225-8018-8008-d05dfb9d2f7d",
+          "bae680cd-9225-8018-8008-d05dfbaea620",
+          "bae680cd-9225-8018-8008-d05dfbbf7f87",
+          "bae680cd-9225-8018-8008-d05dfbd1820f"
+        ],
+        "load": 4,
+        "capacity": 8
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+        "loadRegionId": "bae680cd-9225-8018-8008-d00619215442",
+        "replacedShapeIds": [
+          "bae680cd-9225-8018-8008-d006192154c0",
+          "bae680cd-9225-8018-8008-d006192154c1",
+          "bae680cd-9225-8018-8008-d006192154c2",
+          "bae680cd-9225-8018-8008-d006192154c3",
+          "bae680cd-9225-8018-8008-d006192154c4",
+          "bae680cd-9225-8018-8008-d006192154c5",
+          "bae680cd-9225-8018-8008-d006192154c6",
+          "bae680cd-9225-8018-8008-d006192154c7",
+          "bae680cd-9225-8018-8008-d006192154c8",
+          "bae680cd-9225-8018-8008-d006192154c9"
+        ],
+        "id": "bae680cd-9225-8018-8008-d05dfc12c173",
+        "frameId": "bae680cd-9225-8018-8008-d05dfc228995",
+        "labelId": "bae680cd-9225-8018-8008-d05dfc32b5b9",
+        "valueId": "bae680cd-9225-8018-8008-d05dfc4e5f05",
+        "statusId": "bae680cd-9225-8018-8008-d05dfd868262",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05dfc6c6cf0",
+          "bae680cd-9225-8018-8008-d05dfc92066a",
+          "bae680cd-9225-8018-8008-d05dfcba24aa",
+          "bae680cd-9225-8018-8008-d05dfce0c686",
+          "bae680cd-9225-8018-8008-d05dfd0212a6",
+          "bae680cd-9225-8018-8008-d05dfd150d03",
+          "bae680cd-9225-8018-8008-d05dfd3a4be9",
+          "bae680cd-9225-8018-8008-d05dfd6129e3"
+        ],
+        "load": 4,
+        "capacity": 8
+      },
+      {
+        "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+        "loadRegionId": "bae680cd-9225-8018-8008-cf65f248e1e7",
+        "replacedShapeIds": [
+          "bae680cd-9225-8018-8008-cf65f248e265",
+          "bae680cd-9225-8018-8008-cf65f248e266",
+          "bae680cd-9225-8018-8008-cf65f248e267",
+          "bae680cd-9225-8018-8008-cf65f248e268",
+          "bae680cd-9225-8018-8008-cf65f248e269",
+          "bae680cd-9225-8018-8008-cf65f248e26a",
+          "bae680cd-9225-8018-8008-cf65f248e26b",
+          "bae680cd-9225-8018-8008-cf65f248e26c",
+          "bae680cd-9225-8018-8008-cf65f248e26d",
+          "bae680cd-9225-8018-8008-cf65f248e26e"
+        ],
+        "id": "bae680cd-9225-8018-8008-d05dfddf28ad",
+        "frameId": "bae680cd-9225-8018-8008-d05dfdf725c2",
+        "labelId": "bae680cd-9225-8018-8008-d05dfe11a1a3",
+        "valueId": "bae680cd-9225-8018-8008-d05dfe5185ca",
+        "statusId": "bae680cd-9225-8018-8008-d05dff592288",
+        "segmentIds": [
+          "bae680cd-9225-8018-8008-d05dfe781d44",
+          "bae680cd-9225-8018-8008-d05dfea0a91c",
+          "bae680cd-9225-8018-8008-d05dfec7d436",
+          "bae680cd-9225-8018-8008-d05dfef0e58a",
+          "bae680cd-9225-8018-8008-d05dff118db1",
+          "bae680cd-9225-8018-8008-d05dff232396",
+          "bae680cd-9225-8018-8008-d05dff3772a9",
+          "bae680cd-9225-8018-8008-d05dff486d92"
+        ],
+        "load": 4,
+        "capacity": 8
+      }
+    ],
+    "unityImported": false,
+    "status": "ready_for_review",
+    "geometry": {
+      "canvas": [
+        760,
+        175
+      ],
+      "frame": [
+        0,
+        -48,
+        760,
+        270.3185924869234
+      ],
+      "label": [
+        95,
+        28,
+        340,
+        44
+      ],
+      "value": [
+        460,
+        17,
+        205,
+        62
+      ],
+      "gauge": [
+        95,
+        90,
+        570,
+        20
+      ],
+      "status": [
+        95,
+        124,
+        570,
+        28
+      ]
+    }
+  },
+  "log": ""
+}

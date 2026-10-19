@@ -1,37 +1,8 @@
 {
   "generatedDate": "2026-10-19",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "Sync003/UnityCheckpoint.json",
-  "pending": [
-    {
-      "id": "MFJ-R031",
-      "component": "Clear Water Technique illustration",
-      "status": "ready_for_review",
-      "unityImported": false,
-      "handoff": "Revisions/MFJ-R031/README.md"
-    },
-    {
-      "id": "MFJ-R032",
-      "component": "Hold Steady Technique illustration",
-      "status": "ready_for_review",
-      "unityImported": false,
-      "handoff": "Revisions/MFJ-R032/README.md"
-    },
-    {
-      "id": "MFJ-R033",
-      "component": "Re-rig Technique illustration",
-      "status": "ready_for_review",
-      "unityImported": false,
-      "handoff": "Revisions/MFJ-R033/README.md"
-    },
-    {
-      "id": "MFJ-R034",
-      "component": "Recast Technique illustration",
-      "status": "ready_for_review",
-      "unityImported": false,
-      "handoff": "Revisions/MFJ-R034/README.md"
-    }
-  ],
+  "currentUnityCheckpoint": "HandPosition/UnityCheckpoint.json",
+  "pending": [],
   "completed": [
     {
       "id": "MFJ-R001",
@@ -136,6 +107,46 @@
     {
       "id": "MFJ-R030",
       "checkpoint": "MFJ-SYNC-003"
+    },
+    {
+      "id": "MFJ-R031",
+      "checkpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R032",
+      "checkpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R033",
+      "checkpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R034",
+      "checkpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R035",
+      "checkpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R036",
+      "checkpoint": "MFJ-SYNC-004"
+    },
+    {
+      "id": "MFJ-R037",
+      "checkpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R038",
+      "checkpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R039",
+      "checkpoint": "MFJ-SYNC-005"
+    },
+    {
+      "id": "MFJ-R040",
+      "checkpoint": "MFJ-SYNC-005"
     }
   ],
   "superseded": [
@@ -161,8 +172,8 @@
     }
   ],
   "counts": {
-    "pending": 4,
-    "completed": 26,
+    "pending": 0,
+    "completed": 36,
     "superseded": 4
   },
   "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required."

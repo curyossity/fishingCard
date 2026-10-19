@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-003 is the latest imported checkpoint.** The pointer-free R027 tooltip and adaptive R030 fan are integrated and verified. [Implementation](Sync003/README.md) · [next import baseline](Sync003/UnityCheckpoint.json). Four new Technique illustrations, MFJ-R031–R034, are pending review and Unity integration; previous imports remain completed.
+**MFJ-SYNC-005 is the latest imported checkpoint.** [Integration and verification](Sync005/README.md). R037–R040 are complete: parchment action controls, paper/ink Line Load, art-only opening boat and illustrated live depth guide. There are0 pending revisions,36 verified imports and4 superseded drafts. The next import baseline is [Sync005](Sync005/UnityCheckpoint.json); historical sections below retain earlier designs where superseded. The Unity depth guide uses760×400 at(2840,1130), compacting the760×550 Penpot study to clear the projected hand. Tier text/ranges and marker state remain native and data-driven. The opening frame and scene remain separate, without card data; the candidate alone enables the explicit boat start before its first Descend/reveal.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -12,7 +12,7 @@ The event master and each illustration are separate images. Native emblem paths 
 
 For Penpot revisions after the accepted Unity assembly, use [Design Changes.md](Design%20Changes.md) and [DesignChangeLedger.json](DesignChangeLedger.json). The immutable [Unity baseline](UnityDesignBaseline.json) records the starting file hashes/GUIDs and selected sources. Record every artwork, layout, typography and interaction-visual revision with its dependent Unity consumers before a later selective import; do not mark exported work as imported or discard pending revisions.
 
-**MFJ-SYNC-001 remains the previous imported checkpoint.** [Creature sources, geometry, captures and checks](Sync001/README.md). Revisions MFJ-R001 through MFJ-R019 replace the previous central-card and pointer-hover presentation. The original baseline and Sync001 checkpoint are retained; use Sync003 for the next synchronization comparison.
+**MFJ-SYNC-001 remains the previous imported checkpoint.** [Creature sources, geometry, captures and checks](Sync001/README.md). Revisions MFJ-R001 through MFJ-R019 replace the previous central-card and pointer-hover presentation. The original baseline and Sync001 checkpoint are retained; use Sync004 for the next synchronization comparison.
 
 UI-02 implementation is complete. See [UI02.md](UI02.md) for the current imported paths, bundled fonts, templates and validation. Source/draft paths and font availability statements captured during UI-01 below describe that earlier snapshot; the UI-02 import catalog is authoritative for current asset locations.
 
@@ -190,3 +190,15 @@ Action hit rectangles use source alpha bounds while the unsliced full button fac
 - UI-02 imports assets; UI-03/04/05 implement card views; UI-06/07 compose and bind; UI-08 validates actual gameplay and safe retirement boundaries. UI-01 establishes the handoff, not visual or functional completion.
 
 Current selective integration checkpoint: [MFJ-SYNC-003](Sync003/README.md). R027 tooltip and R030 adaptive fan are verified; no pending visual revisions remain as of2026-10-19.
+
+## Engraved Line Load proposal — MFJ-R035
+
+**Imported and verified at MFJ-SYNC-004.** Historical design proposal: [state previews and handoff](Revisions/MFJ-R035/README.md). A separate blank brass/navy housing frames native label, actual load/capacity, per-capacity segments and explicit capacity-state text. It occupies 760×175 within the existing 760×340 load/haul region; haul and all surrounding layout remain unchanged. Artwork is 2103×748 with transparent outer margins, displayed at 760×270.319 and offset Y−48 without slicing. Only the decorative housing may be imported as a sprite. Dynamic values, segments and status must remain native UI. Normal and capacity colors remain copper/gold; overload uses muted vermilion plus explicit excess text. Overload is still permitted and has its existing runtime consequences. The housing and native gauge presentation are now integrated in the isolated Unity theme.
+
+## Marine action-button proposal — MFJ-R036
+
+**Imported and verified at MFJ-SYNC-004.** [Matched button pair](Revisions/MFJ-R036/README.md), ready for review. Descend and Surface are both880×350, sharing an identical independent bronze/navy housing. Fine wave engraving, chamfered metal edging, four slotted corner fasteners and stepped endcaps distinguish these from card frames. Down/up vector symbols and Cinzel74 titles are separate editable sources; their combined static face exports follow the existing approved baked-button-label exception. Descend ink#E0B46F; Surface ink#F0E0BD. Button positions and external hints are preserved. Eight instances in four gameplay assemblies are replaced; former faces remain hidden for comparison. Housing source1989×791 exceeds the880×350 4K design footprint. Both isolated face assets and their source/profile/builder records are updated in Unity, retaining callbacks, disabled/pressed/navigation states and no pointer-hover frame.
+
+## Parchment control alternatives — MFJ-R037–R038
+
+**Penpot only, awaiting review.** [Parchment controls](Revisions/MFJ-R037/README.md) appear on the separate Gameplay E comparison. Buttons share a newly generated ivory paper blank, fine sepia corner rules, faded navy fronds and printed dark-ink direction marks; both remain880×350. Cinzel titles70 and separate vector icons retain editable sources. Line Load retains760×175, separate label/value/status fields and ink-filled native segments; normal navy#314A53, full sepia#8F693A and overload oxide#934A35. Source blanks are1988×791 and2196×716, aspect-preserved with transparent margins. These proposals replace only copied controls on Gameplay E; existing assemblies and the current Sync004 Unity implementation are unchanged. No new mechanic or overload probability is introduced. Future imports must reconcile only these two pending revisions and retain their separate art/dynamic-field boundaries.

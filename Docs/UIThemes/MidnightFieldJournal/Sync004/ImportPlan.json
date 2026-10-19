@@ -1,0 +1,89 @@
+{
+  "sources": [
+    {
+      "id": "ClearWater",
+      "cardUniqueId": "clear_water",
+      "source": "C:/Data/Projects/Unity/fishingCards/Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R031/ClearWaterIllustration.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/ClearWater.png",
+      "designWidth": 520.8,
+      "designHeight": 291.2,
+      "mipmaps": true,
+      "revision": "MFJ-R031",
+      "sha256": "1ac3a20ac295905f3e768f4920b9861f9aa447b49f07e702d90cdc0435f7a418"
+    },
+    {
+      "id": "HoldSteady",
+      "cardUniqueId": "hold_steady",
+      "source": "C:/Data/Projects/Unity/fishingCards/Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R032/HoldSteadyIllustration.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/HoldSteady.png",
+      "designWidth": 520.8,
+      "designHeight": 291.2,
+      "mipmaps": true,
+      "revision": "MFJ-R032",
+      "sha256": "2bec5dfdb994f56b6f410ca61ed9c773a23af53bea2a5a4e4f37a4236cd5830e"
+    },
+    {
+      "id": "Rerig",
+      "cardUniqueId": "rerig",
+      "source": "C:/Data/Projects/Unity/fishingCards/Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R033/RerigIllustration.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/Rerig.png",
+      "designWidth": 520.8,
+      "designHeight": 291.2,
+      "mipmaps": true,
+      "revision": "MFJ-R033",
+      "sha256": "1b77cdb01c6047be19874b54d7ca221e7f6213f971849ef58577b96c869f290f"
+    },
+    {
+      "id": "Recast",
+      "cardUniqueId": "recast",
+      "source": "C:/Data/Projects/Unity/fishingCards/Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R034/RecastIllustration.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/Recast.png",
+      "designWidth": 520.8,
+      "designHeight": 291.2,
+      "mipmaps": true,
+      "revision": "MFJ-R034",
+      "sha256": "eccbf3ab752b7292b60c72af0ad2874ecde0f87650cb77f8177d434e8a437906"
+    },
+    {
+      "id": "LineLoadHousing",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R035/EngravedLoadHousing.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/LineLoadHousing.png",
+      "designWidth": 760,
+      "designHeight": 270.3185924869234,
+      "mipmaps": false,
+      "revision": "MFJ-R035",
+      "sha256": "54b0f31c771e1cd100e0f42e832f81ebb2c3166f1d4dabaf457ee5c0e7bf8d7a"
+    },
+    {
+      "id": "DescendButton",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R036/DescendFace.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "designWidth": 880,
+      "designHeight": 350,
+      "mipmaps": false,
+      "revision": "MFJ-R036",
+      "sha256": "c6dc4e66cdd7389324eae1755641b57b37a53ddda805c095b3bfeac1a4d716ad"
+    },
+    {
+      "id": "SurfaceButton",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R036/SurfaceFace.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "designWidth": 880,
+      "designHeight": 350,
+      "mipmaps": false,
+      "revision": "MFJ-R036",
+      "sha256": "171a6208171d9b02d5398f7fb5447552c1023b0567368176dc1edea4bc03b410"
+    }
+  ],
+  "revisions": [
+    "MFJ-R031",
+    "MFJ-R032",
+    "MFJ-R033",
+    "MFJ-R034",
+    "MFJ-R035",
+    "MFJ-R036"
+  ]
+}

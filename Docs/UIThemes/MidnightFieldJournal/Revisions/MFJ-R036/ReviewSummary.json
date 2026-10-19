@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "sameButtonSize": [
+    880,
+    350
+  ],
+  "templates": 2,
+  "instances": 8,
+  "pairVisuallyInspected": true,
+  "unityImported": false
+}

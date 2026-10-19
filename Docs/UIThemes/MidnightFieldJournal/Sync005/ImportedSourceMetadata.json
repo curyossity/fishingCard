@@ -1,0 +1,196 @@
+{
+    "sprites": [
+        {
+            "id": "DescendButton",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+            "cardUniqueId": "",
+            "sha256": "c50487c73a702c393216e686c3c21e611f3f334534b8916413ccd4924dedadf4",
+            "width": 880,
+            "height": 350,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                8,
+                0,
+                870,
+                330
+            ],
+            "halfAlphaBoundsPixels": [
+                12,
+                47,
+                868,
+                303
+            ],
+            "designWidth": 880.0,
+            "designHeight": 350.0
+        },
+        {
+            "id": "SurfaceButton",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+            "cardUniqueId": "",
+            "sha256": "eb7d84968e8bbbce299c7c7a9939a7037a3ff4fb9f06a6fe6c9d496f828822e1",
+            "width": 880,
+            "height": 350,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                8,
+                0,
+                870,
+                330
+            ],
+            "halfAlphaBoundsPixels": [
+                12,
+                47,
+                868,
+                303
+            ],
+            "designWidth": 880.0,
+            "designHeight": 350.0
+        },
+        {
+            "id": "LineLoadHousing",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/LineLoadHousing.png",
+            "cardUniqueId": "",
+            "sha256": "d0603dfe55a186714723f7801c46cd1a90e80b417a91472ebf957ed550c8b79c",
+            "width": 2196,
+            "height": 716,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                41,
+                29,
+                2156,
+                618
+            ],
+            "halfAlphaBoundsPixels": [
+                45,
+                135,
+                2151,
+                582
+            ],
+            "designWidth": 760.0,
+            "designHeight": 247.79598999023438
+        },
+        {
+            "id": "OpeningBoatFrame",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Opening/OpeningBoatFrame.png",
+            "cardUniqueId": "",
+            "sha256": "183156d13946faca851e6c2ef29375fe1721a5a93344197852928173577afda4",
+            "width": 1073,
+            "height": 1466,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                4,
+                1073,
+                1448
+            ],
+            "halfAlphaBoundsPixels": [
+                14,
+                18,
+                1057,
+                1435
+            ],
+            "designWidth": 1260.0,
+            "designHeight": 1400.0
+        },
+        {
+            "id": "FishermanBoatIllustration",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Opening/FishermanBoatIllustration.png",
+            "cardUniqueId": "",
+            "sha256": "d17f1f285e0b16c0ecdde73e7ff6009eeec8cc174097af8c81a2c831e398a475",
+            "width": 1179,
+            "height": 1334,
+            "alphaMin": 0,
+            "alphaMax": 253,
+            "visibleBoundsPixels": [
+                0,
+                0,
+                1179,
+                1334
+            ],
+            "halfAlphaBoundsPixels": [
+                31,
+                147,
+                1166,
+                1313
+            ],
+            "designWidth": 1080.0,
+            "designHeight": 1221.9847412109375
+        },
+        {
+            "id": "Depth_shallows",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/shallows.png",
+            "cardUniqueId": "",
+            "sha256": "67073bd9682388e706d4afacf4e58638e6090763195d889a7d409bd092ffda4b",
+            "width": 1448,
+            "height": 1086,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                25,
+                3,
+                1431,
+                977
+            ],
+            "halfAlphaBoundsPixels": [
+                33,
+                137,
+                1419,
+                958
+            ],
+            "designWidth": 205.0,
+            "designHeight": 153.75
+        },
+        {
+            "id": "Depth_reef",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/reef.png",
+            "cardUniqueId": "",
+            "sha256": "5e426f8d2cbe1d479354c81e3ea2eaa72e654d8641b2e8d2f0a656859a313d2f",
+            "width": 1448,
+            "height": 1086,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                15,
+                1445,
+                1086
+            ],
+            "halfAlphaBoundsPixels": [
+                55,
+                51,
+                1398,
+                1032
+            ],
+            "designWidth": 205.0,
+            "designHeight": 153.75
+        },
+        {
+            "id": "Depth_deep_water",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/deep_water.png",
+            "cardUniqueId": "",
+            "sha256": "9cc20226ab09ef34d1ed5b41f35b7db066bd066880888350801c192127572114",
+            "width": 1448,
+            "height": 1086,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                9,
+                1428,
+                1086
+            ],
+            "halfAlphaBoundsPixels": [
+                36,
+                61,
+                1410,
+                1031
+            ],
+            "designWidth": 205.0,
+            "designHeight": 153.75
+        }
+    ]
+}

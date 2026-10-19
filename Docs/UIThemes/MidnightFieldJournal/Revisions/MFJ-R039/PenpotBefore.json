@@ -1,0 +1,710 @@
+{
+  "result": {
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "currentAlternative": {
+      "revision": "MFJ-R037",
+      "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "reviewBoardId": "bae680cd-9225-8018-8008-d07d2d621005",
+      "sourceBoardId": "bae680cd-9225-8018-8008-d07d2d33d218",
+      "comparisonBoardId": "bae680cd-9225-8018-8008-d07d339bae02",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "sourceArtId": "bae680cd-9225-8018-8008-d07d2b3772ad",
+      "sourceDimensions": [
+        1988,
+        791
+      ],
+      "buttons": [
+        {
+          "id": "bae680cd-9225-8018-8008-d07d2dc3a531",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d07d2dd4db9d",
+          "iconId": "bae680cd-9225-8018-8008-d07d2de7dc39",
+          "titleId": "bae680cd-9225-8018-8008-d07d2df7f129",
+          "size": [
+            880,
+            350
+          ]
+        },
+        {
+          "id": "bae680cd-9225-8018-8008-d07d2e19e09e",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d07d2e2ed055",
+          "iconId": "bae680cd-9225-8018-8008-d07d2e449753",
+          "titleId": "bae680cd-9225-8018-8008-d07d2e5426cd",
+          "size": [
+            880,
+            350
+          ]
+        }
+      ],
+      "instances": [
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcc07",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d34dc4fca",
+          "action": "Descend",
+          "frameId": "bae680cd-9225-8018-8008-d07d350618d3",
+          "iconId": "bae680cd-9225-8018-8008-d07d3526aa5e",
+          "titleId": "bae680cd-9225-8018-8008-d07d353afa8b",
+          "size": [
+            880,
+            350
+          ]
+        },
+        {
+          "previousId": "bae680cd-9225-8018-8008-d07d339bcc08",
+          "boardId": "bae680cd-9225-8018-8008-d07d339bae02",
+          "id": "bae680cd-9225-8018-8008-d07d35791b39",
+          "action": "Surface",
+          "frameId": "bae680cd-9225-8018-8008-d07d358acdb5",
+          "iconId": "bae680cd-9225-8018-8008-d07d359c415a",
+          "titleId": "bae680cd-9225-8018-8008-d07d35b0246f",
+          "size": [
+            880,
+            350
+          ]
+        }
+      ],
+      "geometry": {
+        "size": [
+          880,
+          350
+        ],
+        "title": [
+          285,
+          127,
+          440,
+          105
+        ],
+        "titleSize": 70,
+        "icon": [
+          185,
+          137,
+          76,
+          78
+        ],
+        "clipContent": true
+      },
+      "replacesImportedDesign": "MFJ-R036"
+    },
+    "currentCreature": {
+      "id": "MFJ-R002",
+      "component": [
+        "Main creature card",
+        "Small Octopus central illustration"
+      ],
+      "reconstructedFrom": "Verified repository ledger and completed Unity synchronization checkpoint",
+      "status": "verified",
+      "unityStatus": "verified",
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-001"
+    },
+    "top": [
+      {
+        "id": "bae680cd-9225-8018-8008-cdde36733e6f",
+        "name": "GAMEPLAY — assembled reusable parts / 3840 × 2160",
+        "x": 0,
+        "y": 0,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdead5028f97",
+        "name": "GAMEPLAY B — techniques laid on table / perspective preview",
+        "x": 4200,
+        "y": 4900,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0061921543d",
+        "name": "GAMEPLAY D / Engraved tooltip / MFJ-R027",
+        "x": 4200,
+        "y": 10100,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d339bae02",
+        "name": "GAMEPLAY E / Parchment controls / MFJ-R037–R038",
+        "x": 20000,
+        "y": 6500,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00618505dcb",
+        "name": "PROTOTYPE / Engraved Catch Chain tooltip / MFJ-R027",
+        "x": 0,
+        "y": 10100,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f248e1e2",
+        "name": "GAMEPLAY C / Reef Snag event / MFJ-R020",
+        "x": 0,
+        "y": 7400,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdde40529e8e",
+        "name": "COMPONENT REVIEW — independent templates / not a screenshot",
+        "x": 4200,
+        "y": 0,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cdde421c05c9",
+        "name": "SOURCE ASSETS — independent originals",
+        "x": 8500,
+        "y": 0,
+        "w": 100,
+        "h": 100
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde0da1d370c",
+        "name": "CATCH CHAIN CARD v2 — mockup detail study",
+        "x": 0,
+        "y": 2500,
+        "w": 2400,
+        "h": 1480
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde2b511f13d",
+        "name": "CATCH CHAIN — complete assembled v2",
+        "x": 2600,
+        "y": 2500,
+        "w": 1100,
+        "h": 2160.0000000000073
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cde85bfb5c79",
+        "name": "TECHNIQUES — engraved hand / mockup detail",
+        "x": 0,
+        "y": 4900,
+        "w": 3840,
+        "h": 1480
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee1b54ddb82",
+        "name": "MFJ-R002 / Main creature card — mockup detail review",
+        "x": 8500,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cee1b64ceecf",
+        "name": "MFJ-R002 / Independent source art",
+        "x": 8500,
+        "y": 2050,
+        "w": 1860,
+        "h": 880
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf09f3ff1e59",
+        "name": "MFJ-R003 / Cod — detailed creature card",
+        "x": 10600,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f6729044a",
+        "name": "MFJ-R004 / Garfish / detailed creature card",
+        "x": 12800,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f6787a406",
+        "name": "MFJ-R004 / Garfish / separate illustration source",
+        "x": 12800,
+        "y": 2050,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f935a97c4",
+        "name": "MFJ-R005 / Glass Minnow / detailed creature card",
+        "x": 15000,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0f93bd126d",
+        "name": "MFJ-R005 / Glass Minnow / separate illustration source",
+        "x": 15000,
+        "y": 2050,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0faf77ee33",
+        "name": "MFJ-R006 / Jellyfish / detailed creature card",
+        "x": 17200,
+        "y": 0,
+        "w": 1860,
+        "h": 1739.9999999999998
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf0fafe405f7",
+        "name": "MFJ-R006 / Jellyfish / separate illustration source",
+        "x": 17200,
+        "y": 2050,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7b9c8773",
+        "name": "MFJ-R007 / Lionfish / detailed creature card",
+        "x": 8500,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1b7c5effd8",
+        "name": "MFJ-R007 / Lionfish / separate illustration source",
+        "x": 8500,
+        "y": 5250,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bcde4302e",
+        "name": "MFJ-R008 / Mackerel / detailed creature card",
+        "x": 10700,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bce5f4ce3",
+        "name": "MFJ-R008 / Mackerel / separate illustration source",
+        "x": 10700,
+        "y": 5250,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bf62e7a36",
+        "name": "MFJ-R009 / Moonlit Ray / detailed creature card",
+        "x": 12900,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1bf69ba01a",
+        "name": "MFJ-R009 / Moonlit Ray / separate illustration source",
+        "x": 12900,
+        "y": 5250,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c19384688",
+        "name": "MFJ-R010 / Mussel / detailed creature card",
+        "x": 15100,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c19b520b8",
+        "name": "MFJ-R010 / Mussel / separate illustration source",
+        "x": 15100,
+        "y": 5250,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3e4397e4",
+        "name": "MFJ-R011 / Sardine / detailed creature card",
+        "x": 17300,
+        "y": 3200,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf1c3eb155ab",
+        "name": "MFJ-R011 / Sardine / separate illustration source",
+        "x": 17300,
+        "y": 5250,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347ef37602",
+        "name": "MFJ-R012 / Cleaner Shrimp / detailed creature card",
+        "x": 8500,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf347f8f2574",
+        "name": "MFJ-R012 / Cleaner Shrimp / separate illustration source",
+        "x": 8500,
+        "y": 8450,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3481346f34",
+        "name": "MFJ-R013 / Clinging Crab / detailed creature card",
+        "x": 10700,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf34819ae5c4",
+        "name": "MFJ-R013 / Clinging Crab / separate illustration source",
+        "x": 10700,
+        "y": 8450,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348378e765",
+        "name": "MFJ-R014 / Sea Anemone / detailed creature card",
+        "x": 12900,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3483fa3603",
+        "name": "MFJ-R014 / Sea Anemone / separate illustration source",
+        "x": 12900,
+        "y": 8450,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf34857f82ac",
+        "name": "MFJ-R015 / Sea Bass / detailed creature card",
+        "x": 15100,
+        "y": 6400,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3486054010",
+        "name": "MFJ-R015 / Sea Bass / separate illustration source",
+        "x": 15100,
+        "y": 8450,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348891dbf4",
+        "name": "MFJ-R016 / Sea Urchin / detailed creature card",
+        "x": 8500,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf34893f0aaf",
+        "name": "MFJ-R016 / Sea Urchin / separate illustration source",
+        "x": 8500,
+        "y": 11650,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348b8ecb45",
+        "name": "MFJ-R017 / Spiny Lobster / detailed creature card",
+        "x": 10700,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348c2f1a6c",
+        "name": "MFJ-R017 / Spiny Lobster / separate illustration source",
+        "x": 10700,
+        "y": 11650,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348e983db3",
+        "name": "MFJ-R018 / Squid / detailed creature card",
+        "x": 12900,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf348f3681bc",
+        "name": "MFJ-R018 / Squid / separate illustration source",
+        "x": 12900,
+        "y": 11650,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf3490e909a3",
+        "name": "MFJ-R019 / Tidepool Eel / detailed creature card",
+        "x": 15100,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf349181fdae",
+        "name": "MFJ-R019 / Tidepool Eel / separate illustration source",
+        "x": 15100,
+        "y": 11650,
+        "w": 1860,
+        "h": 650
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f1a30046",
+        "name": "MFJ-R020 / Reef Snag / detailed EVENT card",
+        "x": 17300,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687f35e870",
+        "name": "MFJ-R024 / Fresh Shell Fragments / detailed EVENT card",
+        "x": 26100,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687d96a259",
+        "name": "MFJ-R023 / Loose Knot / detailed EVENT card",
+        "x": 23900,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687c2dd7ec",
+        "name": "MFJ-R022 / Gentle Upwelling / detailed EVENT card",
+        "x": 21700,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687a9a6f4f",
+        "name": "MFJ-R021 / Silt Burst / detailed EVENT card",
+        "x": 19500,
+        "y": 9600,
+        "w": 1860,
+        "h": 1740
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf65f2346433",
+        "name": "MFJ-R020 / Event frame and independent Reef Snag art",
+        "x": 17300,
+        "y": 11650,
+        "w": 1860,
+        "h": 1000
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687ab47057",
+        "name": "MFJ-R021 / Silt Burst / separate illustration source",
+        "x": 19500,
+        "y": 11650,
+        "w": 1860,
+        "h": 800
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687c5f28e5",
+        "name": "MFJ-R022 / Gentle Upwelling / separate illustration source",
+        "x": 21700,
+        "y": 11650,
+        "w": 1860,
+        "h": 800
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687dc371b4",
+        "name": "MFJ-R023 / Loose Knot / separate illustration source",
+        "x": 23900,
+        "y": 11650,
+        "w": 1860,
+        "h": 800
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf687f67e74b",
+        "name": "MFJ-R024 / Fresh Shell Fragments / separate illustration source",
+        "x": 26100,
+        "y": 11650,
+        "w": 1860,
+        "h": 800
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf68a5c60f8c",
+        "name": "EVENT ROSTER / Hazards and Environment / Unity integration",
+        "x": 19500,
+        "y": 14200,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-cf68a5f46780",
+        "name": "EVENT ROSTER / Opportunities / Unity integration",
+        "x": 19500,
+        "y": 16600,
+        "w": 3840,
+        "h": 2160
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00614dd5194",
+        "name": "MFJ-R026 / Engraved tooltip / Clinging Crab Catch",
+        "x": 8500,
+        "y": 13200,
+        "w": 900,
+        "h": 640
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+        "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch",
+        "x": 8500,
+        "y": 15500,
+        "w": 900,
+        "h": 640
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00616026a38",
+        "name": "MFJ-R026 / Engraved tooltip / Glass Minnow Bait",
+        "x": 9550,
+        "y": 13200,
+        "w": 900,
+        "h": 640
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d009513f1f95",
+        "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait",
+        "x": 9550,
+        "y": 15500,
+        "w": 900,
+        "h": 640
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00617505c88",
+        "name": "MFJ-R026 / Engraved tooltip / Sardine Catch",
+        "x": 10600,
+        "y": 13200,
+        "w": 900,
+        "h": 640
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d009522a12b1",
+        "name": "SUPERSEDED / MFJ-R025 / Sardine Catch",
+        "x": 10600,
+        "y": 15500,
+        "w": 900,
+        "h": 640
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d00953150b66",
+        "name": "MFJ-R026 / Independent engraved tooltip master",
+        "x": 11800,
+        "y": 13200,
+        "w": 1050,
+        "h": 900
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0105575afda",
+        "name": "MFJ-R030 / Technique fan / editable planar sources",
+        "x": 0,
+        "y": 17400,
+        "w": 3000,
+        "h": 850
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d01110225b74",
+        "name": "MFJ-R030 / Technique fan / independent projected cards",
+        "x": 8500,
+        "y": 17400,
+        "w": 2500,
+        "h": 866
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d04eef43c54d",
+        "name": "TECHNIQUE ROSTER / New engraved cards / MFJ-R031–R034",
+        "x": 20000,
+        "y": 0,
+        "w": 3000,
+        "h": 1080
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d04eef7634b4",
+        "name": "MFJ-R031–R034 / Separate Technique illustrations",
+        "x": 23200,
+        "y": 0,
+        "w": 1800,
+        "h": 4400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df1e230d1",
+        "name": "MFJ-R035 / Independent engraved Line Load housing",
+        "x": 25200,
+        "y": 0,
+        "w": 2400,
+        "h": 950
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df1f67423",
+        "name": "MFJ-R035 / Engraved Line Load / state review",
+        "x": 20000,
+        "y": 1500,
+        "w": 2800,
+        "h": 1150
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0617f174fec",
+        "name": "MFJ-R036 / Independent marine action-button housing",
+        "x": 25200,
+        "y": 1200,
+        "w": 2400,
+        "h": 1100
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d0617f36896a",
+        "name": "MFJ-R036 / Descend + Surface / marine hardware review",
+        "x": 20000,
+        "y": 2850,
+        "w": 2800,
+        "h": 1080
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d2d33d218",
+        "name": "MFJ-R037–R038 / Independent parchment control sources",
+        "x": 28000,
+        "y": 0,
+        "w": 2500,
+        "h": 1900
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d07d2d621005",
+        "name": "MFJ-R037–R038 / Parchment controls / card-style alternative",
+        "x": 20000,
+        "y": 4500,
+        "w": 3000,
+        "h": 1700
+      }
+    ]
+  },
+  "log": ""
+}

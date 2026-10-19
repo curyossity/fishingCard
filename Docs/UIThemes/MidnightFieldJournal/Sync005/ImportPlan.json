@@ -1,0 +1,98 @@
+{
+  "sources": [
+    {
+      "id": "DescendButton",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R037/DescendFace.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+      "designWidth": 880,
+      "designHeight": 350,
+      "mipmaps": false,
+      "revision": "MFJ-R037",
+      "sha256": "c50487c73a702c393216e686c3c21e611f3f334534b8916413ccd4924dedadf4"
+    },
+    {
+      "id": "SurfaceButton",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R037/SurfaceFace.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+      "designWidth": 880,
+      "designHeight": 350,
+      "mipmaps": false,
+      "revision": "MFJ-R037",
+      "sha256": "eb7d84968e8bbbce299c7c7a9939a7037a3ff4fb9f06a6fe6c9d496f828822e1"
+    },
+    {
+      "id": "LineLoadHousing",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R038/ParchmentLoadBlank.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/LineLoadHousing.png",
+      "designWidth": 760,
+      "designHeight": 247.7959927140255,
+      "mipmaps": false,
+      "revision": "MFJ-R038",
+      "sha256": "d0603dfe55a186714723f7801c46cd1a90e80b417a91472ebf957ed550c8b79c"
+    },
+    {
+      "id": "OpeningBoatFrame",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R039/OpeningBoatFrame.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Opening/OpeningBoatFrame.png",
+      "designWidth": 1260,
+      "designHeight": 1400,
+      "mipmaps": false,
+      "revision": "MFJ-R039",
+      "sha256": "183156d13946faca851e6c2ef29375fe1721a5a93344197852928173577afda4"
+    },
+    {
+      "id": "FishermanBoatIllustration",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R039/FishermanBoatIllustration.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Opening/FishermanBoatIllustration.png",
+      "designWidth": 1080,
+      "designHeight": 1221.9847328244275,
+      "mipmaps": false,
+      "revision": "MFJ-R039",
+      "sha256": "d17f1f285e0b16c0ecdde73e7ff6009eeec8cc174097af8c81a2c831e398a475"
+    },
+    {
+      "id": "Depth_shallows",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R040/shallows.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/shallows.png",
+      "designWidth": 205,
+      "designHeight": 153.75,
+      "mipmaps": false,
+      "revision": "MFJ-R040",
+      "sha256": "67073bd9682388e706d4afacf4e58638e6090763195d889a7d409bd092ffda4b"
+    },
+    {
+      "id": "Depth_reef",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R040/reef.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/reef.png",
+      "designWidth": 205,
+      "designHeight": 153.75,
+      "mipmaps": false,
+      "revision": "MFJ-R040",
+      "sha256": "5e426f8d2cbe1d479354c81e3ea2eaa72e654d8641b2e8d2f0a656859a313d2f"
+    },
+    {
+      "id": "Depth_deep_water",
+      "cardUniqueId": "",
+      "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R040/deep_water.png",
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Hud/DepthGuide/deep_water.png",
+      "designWidth": 205,
+      "designHeight": 153.75,
+      "mipmaps": false,
+      "revision": "MFJ-R040",
+      "sha256": "9cc20226ab09ef34d1ed5b41f35b7db066bd066880888350801c192127572114"
+    }
+  ],
+  "revisions": [
+    "MFJ-R037",
+    "MFJ-R038",
+    "MFJ-R039",
+    "MFJ-R040"
+  ]
+}

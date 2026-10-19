@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 03d13be271e1e864396b37af4204084a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7318699110933568266
+    second: FishermanBoatIllustration_0
+  - first:
+      213: 6753043942287510949
+    second: FishermanBoatIllustration_1
+  - first:
+      213: -4115810449071495558
+    second: FishermanBoatIllustration_2
+  - first:
+      213: -3012333430021170343
+    second: FishermanBoatIllustration_3
+  - first:
+      213: 7183200173206694589
+    second: FishermanBoatIllustration_4
+  - first:
+      213: -5037146296682511243
+    second: FishermanBoatIllustration_5
+  - first:
+      213: 7154181312562518227
+    second: FishermanBoatIllustration_6
+  - first:
+      213: -616390227577673411
+    second: FishermanBoatIllustration_7
+  - first:
+      213: -830716360640724090
+    second: FishermanBoatIllustration_8
+  - first:
+      213: 6988531667861976097
+    second: FishermanBoatIllustration_9
+  - first:
+      213: 479163642639251392
+    second: FishermanBoatIllustration_10
+  - first:
+      213: 215095602913316806
+    second: FishermanBoatIllustration_11
+  - first:
+      213: -991714572356171760
+    second: FishermanBoatIllustration_12
+  - first:
+      213: 858354844062706517
+    second: FishermanBoatIllustration_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1301
+        width: 10
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f466da4fe1ce6a90800000000000000
+      internalID: -7318699110933568266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1179
+        height: 1326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ad86a4bfa1a7bd50800000000000000
+      internalID: 6753043942287510949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_2
+      rect:
+        serializedVersion: 2
+        x: 838
+        y: 1315
+        width: 26
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76a04cf334b1e6c0800000000000000
+      internalID: -4115810449071495558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_3
+      rect:
+        serializedVersion: 2
+        x: 1092
+        y: 1325
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95bdd8694ba0236d0800000000000000
+      internalID: -3012333430021170343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_4
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1298
+        width: 40
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dba6282df7adfa360800000000000000
+      internalID: 7183200173206694589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_5
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 1303
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57480909126781ab0800000000000000
+      internalID: -5037146296682511243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_6
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1285
+        width: 13
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d8d602dff1c84360800000000000000
+      internalID: 7154181312562518227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_7
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1251
+        width: 38
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d39e5329a542277f0800000000000000
+      internalID: -616390227577673411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_8
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 1274
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68387ee0fd3b874f0800000000000000
+      internalID: -830716360640724090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_9
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 1269
+        width: 25
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1243b7c66804cf060800000000000000
+      internalID: 6988531667861976097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_10
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 1279
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c77bc45bc456a600800000000000000
+      internalID: 479163642639251392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_11
+      rect:
+        serializedVersion: 2
+        x: 951
+        y: 1266
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cf856caf4c2cf200800000000000000
+      internalID: 215095602913316806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_12
+      rect:
+        serializedVersion: 2
+        x: 999
+        y: 1283
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018c12cc9d8bc32f0800000000000000
+      internalID: -991714572356171760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FishermanBoatIllustration_13
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1237
+        width: 42
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55be793de2d79eb00800000000000000
+      internalID: 858354844062706517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FishermanBoatIllustration_0: -7318699110933568266
+      FishermanBoatIllustration_1: 6753043942287510949
+      FishermanBoatIllustration_10: 479163642639251392
+      FishermanBoatIllustration_11: 215095602913316806
+      FishermanBoatIllustration_12: -991714572356171760
+      FishermanBoatIllustration_13: 858354844062706517
+      FishermanBoatIllustration_2: -4115810449071495558
+      FishermanBoatIllustration_3: -3012333430021170343
+      FishermanBoatIllustration_4: 7183200173206694589
+      FishermanBoatIllustration_5: -5037146296682511243
+      FishermanBoatIllustration_6: 7154181312562518227
+      FishermanBoatIllustration_7: -616390227577673411
+      FishermanBoatIllustration_8: -830716360640724090
+      FishermanBoatIllustration_9: 6988531667861976097
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

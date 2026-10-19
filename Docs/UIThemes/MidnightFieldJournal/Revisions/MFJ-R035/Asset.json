@@ -1,0 +1,11 @@
+{
+  "path": "EngravedLoadHousing.png",
+  "sha256": "54b0f31c771e1cd100e0f42e832f81ebb2c3166f1d4dabaf457ee5c0e7bf8d7a",
+  "sourceDimensions": [
+    2103,
+    748
+  ],
+  "rgba": true,
+  "unityImported": false,
+  "runtimeAllowed": "Housing only; all text and load geometry remain dynamic."
+}

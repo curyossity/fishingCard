@@ -1,0 +1,26 @@
+[
+  {
+    "path": "ParchmentControls.png",
+    "sha256": "e873c83bec855f75cc327d0ed44593592cca6647d71a3d9004ee9e340ca109bb",
+    "dimensions": [
+      3000,
+      1700
+    ]
+  },
+  {
+    "path": "DescendFace.png",
+    "sha256": "c50487c73a702c393216e686c3c21e611f3f334534b8916413ccd4924dedadf4",
+    "dimensions": [
+      880,
+      350
+    ]
+  },
+  {
+    "path": "SurfaceFace.png",
+    "sha256": "eb7d84968e8bbbce299c7c7a9939a7037a3ff4fb9f06a6fe6c9d496f828822e1",
+    "dimensions": [
+      880,
+      350
+    ]
+  }
+]

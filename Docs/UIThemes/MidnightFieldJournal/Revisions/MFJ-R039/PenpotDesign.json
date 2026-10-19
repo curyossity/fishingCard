@@ -1,0 +1,44 @@
+{
+  "result": {
+    "revision": "MFJ-R039",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "reviewBoardId": "bae680cd-9225-8018-8008-d086c7a1bbc3",
+    "sourceBoardId": "bae680cd-9225-8018-8008-d086c7786357",
+    "cardId": "bae680cd-9225-8018-8008-d086c7e1e064",
+    "size": [
+      1260,
+      1400
+    ],
+    "frameId": "bae680cd-9225-8018-8008-d086c7f07b52",
+    "illustrationId": "bae680cd-9225-8018-8008-d086c801e851",
+    "sources": [
+      {
+        "kind": "frame",
+        "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R039\\OpeningBoatFrame.png",
+        "width": 1073,
+        "height": 1466,
+        "sha256": "183156d13946faca851e6c2ef29375fe1721a5a93344197852928173577afda4",
+        "shapeId": "bae680cd-9225-8018-8008-d086c573c7cc"
+      },
+      {
+        "kind": "scene",
+        "path": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R039\\FishermanBoatIllustration.png",
+        "width": 1179,
+        "height": 1334,
+        "sha256": "d17f1f285e0b16c0ecdde73e7ff6009eeec8cc174097af8c81a2c831e398a475",
+        "shapeId": "bae680cd-9225-8018-8008-d086c74ba321"
+      }
+    ],
+    "status": "ready_for_review",
+    "unityImported": false,
+    "sceneBounds": [
+      90,
+      89.00763358778624,
+      1080,
+      1221.9847328244275
+    ],
+    "contract": "Presentation-only opening artwork before first creature. No stats, text, effects, Catch/Bait modes or deck membership. Unity behavior unchanged."
+  },
+  "log": ""
+}

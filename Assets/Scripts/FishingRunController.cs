@@ -7,6 +7,9 @@ public sealed class FishingRunController : MonoBehaviour
 {
     [Header("Start Run Settings")]
     [SerializeField] private bool startRunOnAwake = true;
+    [SerializeField] private bool beginWithBoatCard;
+    private bool openingBoatPending;
+    public bool IsOpeningBoatVisible => runActive && openingBoatPending;
     [Min(0)]
     [SerializeField] private int startingLineCapacity = 10;
     [Min(0)]
@@ -270,7 +273,9 @@ public sealed class FishingRunController : MonoBehaviour
         runRewardRuntime.BeginRun();
         runProgressionRuntime.BeginRun();
 
-        RevealEncounterAtCurrentDepth();
+        // The opt-in boat start has no encounter to commit; its first Descend follows normal depth advancement.
+        openingBoatPending = beginWithBoatCard;
+        if (!openingBoatPending) RevealEncounterAtCurrentDepth();
         RefreshViews();
         Debug.Log(BuildStartRunSummary(seed), this);
     }
@@ -462,6 +467,8 @@ public sealed class FishingRunController : MonoBehaviour
         {
             return false;
         }
+
+        openingBoatPending = false;
 
         if (biomeApexRuntime.NextWatersPresented)
         {
@@ -2167,6 +2174,7 @@ public sealed class FishingRunController : MonoBehaviour
                 CurrentEncounterIdentityHidden,
                 hideCurrentHaulValue ? (int?)null : currentHaulValue);
             fishingRunView.SetTrailPreview(runActive ? encounterRuntime.Trail.Preview : string.Empty);
+            fishingRunView.SetOpeningVisible(IsOpeningBoatVisible);
         }
 
         if (techniqueHandView != null)

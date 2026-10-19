@@ -14,4 +14,6 @@ public abstract class FishingRunHudPresentation : MonoBehaviour
     public abstract void Refresh(BiomeDefinition biome, int depth, int load, int capacity, int deckCount, int? haulValue);
     /// <summary>Displays learned trail information outside the encounter face.</summary>
     public abstract void SetTrailPreview(string preview);
+    /// <summary>Shows optional presentation-only boat artwork before the first encounter.</summary>
+    public virtual void SetOpeningVisible(bool visible) { }
 }

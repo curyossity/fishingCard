@@ -1,0 +1,40 @@
+{
+  "result": {
+    "checkpoint": "MFJ-SYNC-004",
+    "completed": [
+      {
+        "id": "MFJ-R031",
+        "status": "verified",
+        "unityImported": true
+      },
+      {
+        "id": "MFJ-R032",
+        "status": "verified",
+        "unityImported": true
+      },
+      {
+        "id": "MFJ-R033",
+        "status": "verified",
+        "unityImported": true
+      },
+      {
+        "id": "MFJ-R034",
+        "status": "verified",
+        "unityImported": true
+      },
+      {
+        "id": "MFJ-R035",
+        "status": "verified",
+        "unityImported": true
+      },
+      {
+        "id": "MFJ-R036",
+        "status": "verified",
+        "unityImported": true
+      }
+    ],
+    "pending": [],
+    "geometryChanged": false
+  },
+  "log": ""
+}

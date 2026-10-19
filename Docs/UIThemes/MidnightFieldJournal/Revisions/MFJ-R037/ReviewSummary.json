@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "equalButtonSize": [
+    880,
+    350
+  ],
+  "gaugeStates": 3,
+  "newGameplayComparison": "bae680cd-9225-8018-8008-d07d339bae02",
+  "originalAssembliesPreserved": true,
+  "unityImported": false,
+  "pendingRevisions": [
+    "MFJ-R037",
+    "MFJ-R038"
+  ]
+}

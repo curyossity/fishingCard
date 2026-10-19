@@ -1,0 +1,37 @@
+{
+  "result": {
+    "cardId": "bae680cd-9225-8018-8008-d086c7e1e064",
+    "name": "MFJ-R039 / Opening boat card / 1260 × 1400",
+    "size": [
+      1260,
+      1400
+    ],
+    "children": [
+      {
+        "id": "bae680cd-9225-8018-8008-d086c7f07b52",
+        "name": "Static / uninterrupted engraved parchment frame",
+        "type": "rectangle",
+        "width": 1260,
+        "height": 1400
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d086c801e851",
+        "name": "Static / fisherman in a small wooden boat / no card data",
+        "type": "rectangle",
+        "width": 1080,
+        "height": 1221.9847328244268
+      }
+    ],
+    "pending": {
+      "pending": [
+        "MFJ-R037",
+        "MFJ-R038",
+        "MFJ-R039"
+      ],
+      "completedCheckpoint": "MFJ-SYNC-004",
+      "unityImported": false
+    },
+    "noStatsOrText": true
+  },
+  "log": ""
+}

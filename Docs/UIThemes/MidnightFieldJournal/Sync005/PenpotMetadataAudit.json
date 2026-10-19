@@ -1,0 +1,29 @@
+{
+  "result": {
+    "passed": true,
+    "updated": [
+      {
+        "revision": "MFJ-R037",
+        "status": "verified",
+        "sourceRecordsUpdated": 5
+      },
+      {
+        "revision": "MFJ-R038",
+        "status": "verified",
+        "sourceRecordsUpdated": 5
+      },
+      {
+        "revision": "MFJ-R039",
+        "status": "verified",
+        "sourceRecordsUpdated": 4
+      },
+      {
+        "revision": "MFJ-R040",
+        "status": "verified",
+        "sourceRecordsUpdated": 3
+      }
+    ],
+    "pending": []
+  },
+  "log": ""
+}

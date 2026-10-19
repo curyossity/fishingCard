@@ -25,6 +25,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         MidnightFieldJournalAssetSetup.EnsureFolder(Prefabs);
         theme = AssetDatabase.LoadAssetAtPath<MidnightFieldJournalTheme>(MidnightFieldJournalAssetSetup.ThemePath);
         if (theme == null) throw new InvalidOperationException("Prepare the isolated fonts and theme before building templates.");
+        JournalControlDesignSync.Bind(theme);
         JournalInspectionDesignSync.Bind(theme);
         JournalCompactArtworkSync.Bind(theme);
         body = theme.BodyFont;
@@ -186,15 +187,19 @@ public static partial class MidnightFieldJournalPrefabBuilder
     /// <summary>Creates a pooled data-driven meter; no numbers or load segments are baked into its art.</summary>
     private static void LoadMeter()
     {
-        GameObject root = Root("LineLoadMeter", 760, 150);
+        GameObject root = Root("LineLoadMeter", 760, 175);
         LineLoadMeterView meter = root.AddComponent<LineLoadMeterView>();
-        TMP_Text label = Label("Load Text", root.transform, new Rect(0, .57f, 1, .4f), 38, Paper);
-        RectTransform content = Region("Pips", root.transform, new Rect(0, 0, 1, .45f));
-        Image prototype = Picture("Pip Template", root.transform, "LoadEmpty", new Rect(0, 0, .08f, .4f));
+        float housingHeight=760f*716/2196;
+        Picture("Engraved Load Housing",root.transform,"LineLoadHousing",new Rect(0,(175-housingHeight)/350,1,housingHeight/175));
+        Color ink=new Color32(38,53,57,255);
+        TMP_Text caption=Label("Line Load Label",root.transform,new Rect(95f/760,1-69f/175,340f/760,44f/175),30,ink,true);caption.text="LINE LOAD";caption.alignment=TextAlignmentOptions.TopLeft;
+        TMP_Text label=Label("Load Text",root.transform,new Rect(460f/760,1-76f/175,205f/760,62f/175),43,ink);label.alignment=TextAlignmentOptions.TopRight;
+        TMP_Text status=Label("Load Status",root.transform,new Rect(95f/760,1-144f/175,570f/760,28f/175),20,new Color32(101,91,73,255),true);status.alignment=TextAlignmentOptions.Top;
+        RectTransform content=Region("Pips",root.transform,new Rect(95f/760,1-105f/175,570f/760,18f/175));
+        Image prototype=Region("Pip Template",root.transform,new Rect(0,0,.08f,.1f)).gameObject.AddComponent<JournalLoadSegment>();prototype.raycastTarget=false;
         prototype.gameObject.SetActive(false);
         SerializedObject data = new SerializedObject(meter);
-        Bind(data, "loadText", label); Bind(data, "pipRoot", content); Bind(data, "pipPrefab", prototype);
-        Bind(data, "emptySprite", Sprite("LoadEmpty")); Bind(data, "filledSprite", Sprite("LoadFilled")); Bind(data, "dangerSprite", Sprite("LoadDanger"));
+        Bind(data, "loadText", label);Bind(data,"statusText",status); Bind(data, "pipRoot", content); Bind(data, "pipPrefab", prototype);
         data.ApplyModifiedPropertiesWithoutUndo(); Save(root, "LineLoadMeter");
     }
 

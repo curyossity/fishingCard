@@ -1,0 +1,37 @@
+{
+  "result": {
+    "revision": "MFJ-R040",
+    "verified": true,
+    "names": [
+      "SHALLOWS",
+      "MID-DEPTH",
+      "DEEP EDGE"
+    ],
+    "ranges": [
+      "0–7",
+      "8–15",
+      "16–20"
+    ],
+    "size": [
+      760,
+      550
+    ],
+    "editableTextFields": 6,
+    "independentIllustrations": 3,
+    "activeTier": "mid_depth",
+    "currentDepthSample": 12,
+    "previousGuideHidden": true,
+    "gameplayBoard": "bae680cd-9225-8018-8008-d08a9ab76de5",
+    "pending": {
+      "pending": [
+        "MFJ-R037",
+        "MFJ-R038",
+        "MFJ-R039",
+        "MFJ-R040"
+      ],
+      "completedCheckpoint": "MFJ-SYNC-004",
+      "unityImported": false
+    }
+  },
+  "log": ""
+}

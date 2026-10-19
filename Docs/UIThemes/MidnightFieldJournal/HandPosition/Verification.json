@@ -1,0 +1,18 @@
+{
+  "verified": true,
+  "designOffsetDown": 48,
+  "offsetAt1080p": 24,
+  "fanPerspectiveAndHitMappingCodeUnchanged": true,
+  "pileCountPositionUnchanged": true,
+  "changedFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab"
+  ],
+  "builderReserializedCentralPrefab": true,
+  "sceneUnchanged": true,
+  "captures": [
+    "Gameplay4K.png",
+    "Gameplay1080p.png"
+  ]
+}

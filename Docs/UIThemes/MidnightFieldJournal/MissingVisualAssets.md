@@ -6,7 +6,6 @@ All **18 refactored creatures have central illustrations** in Unity. The detaile
 
 | Remaining gap | Scope | Boundary |
 | --- | --- | --- |
-| Four Technique illustrations | `clear_water`, `hold_steady`, `rerig`, `recast` | New standalone illustrations and editable Penpot cards are ready for review in MFJ-R031–R034; Unity slots remain empty until a requested integration. |
 | Two ordinary central illustrations | `creature_cuttlefish`, `creature_flounder` | Outside the eighteen approved refactors. Do not substitute another species. |
 | Special-card central illustrations | Two Apex, two treasures and one Location | Existing type and information rules remain binding. All five coastal events are complete. |
 | Compact portrait coverage | Cuttlefish, Flounder, two Apex and two treasures | All eighteen approved creatures are mapped. Four original compact portraits remain; fourteen reuse their approved central illustrations with explicit compact framing. Other identities remain unillustrated as requested. |
@@ -17,4 +16,6 @@ All **18 refactored creatures have central illustrations** in Unity. The detaile
 
 Remaining special IDs: `apex_harbor_leviathan`, `apex_stormjaw_tuna`, `treasure_pearl_cache`, `treasure_sunken_tackle_box`, `transition_next_waters`.
 
-The canonical source catalog records **11 missing central/Technique identities** and a separate **6 missing compact identities**. Dedicated compact portraits remain Sardine, Clinging Crab, Glass Minnow and Small Octopus; fourteen additional approved creatures use explicit compact mappings to their existing illustrations. All art is selected by exact stable identity; neither shared gameplay data nor encounter/deck membership was changed. The user requested using only the eighteen approved creature illustrations. [Compact coverage verification](../../Validation/CompactPortraits/README.md).
+The canonical source catalog records **7 missing central identities** and a separate **6 missing compact identities**. Dedicated compact portraits remain Sardine, Clinging Crab, Glass Minnow and Small Octopus; fourteen additional approved creatures use explicit compact mappings to their existing illustrations. All art is selected by exact stable identity; neither shared gameplay data nor encounter/deck membership was changed. The user requested using only the eighteen approved creature illustrations. [Compact coverage verification](../../Validation/CompactPortraits/README.md).
+
+MFJ-SYNC-004 completes all eight active Technique illustrations, Line Load and action controls. No Technique art gap remains. [Integration evidence](Sync004/README.md).

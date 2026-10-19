@@ -1000,6 +1000,9 @@ public sealed class FishingRunView : MonoBehaviour
         RefreshAuthoredRoleInput();
     }
 
+    /// <summary>Forwards the controller's explicit opening state to the optional authored HUD.</summary>
+    public void SetOpeningVisible(bool visible) { if (hudPresentation != null) hudPresentation.SetOpeningVisible(visible); }
+
     /// <summary>Replays visited encounters from deepest to shallowest, then clears the gameplay presentation.</summary>
     private IEnumerator PlaySurfaceTransition()
     {

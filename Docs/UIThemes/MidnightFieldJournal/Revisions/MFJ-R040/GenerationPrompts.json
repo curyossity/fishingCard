@@ -1,0 +1,14 @@
+[
+  {
+    "kind": "shallows",
+    "prompt": "An isolated tiny naturalist copperplate engraving vignette for a nautical fantasy game's depth guide. A low cluster of delicate sea grass, short coral twigs and small stones along a narrow seabed base. Wide 4:3 composition, entire silhouette visible with generous transparent margin. Fine etched crosshatching and stippling in pale desaturated blue-gray and ivory ink, occasional muted ochre strokes, drawn to be clearly visible ON A DARK midnight navy game interface. Elegant 19th century field journal detail matching the supplied STYLE REFERENCE. No dark filled background, no paper rectangle, no framing, no lettering, no numbers, no UI, no metallic look. Only one isolated seabed vignette, transparent background."
+  },
+  {
+    "kind": "reef",
+    "prompt": "An isolated tiny naturalist copperplate engraving vignette for a nautical fantasy game's depth guide. A beautiful branching fan of reef coral with fine irregular branches, small sea grasses and stones along a narrow seabed base. Wide 4:3 composition, entire silhouette visible with generous transparent margin. Fine etched crosshatching and stippling in warm ochre, soft amber and antique ivory ink, drawn to be clearly visible ON A DARK midnight navy game interface. Elegant 19th century field journal detail matching the supplied STYLE REFERENCE. Flat printed inks, restrained warm color, no glossy gold. No dark filled background, no paper rectangle, no framing, no lettering, no numbers, no UI, no metallic look. Only one isolated seabed vignette, transparent background."
+  },
+  {
+    "kind": "deep_water",
+    "prompt": "An isolated tiny naturalist copperplate engraving vignette for a nautical fantasy game's depth guide. A sparse cluster of tall thin deep-water sea whips and fragile branching corals, a few low rounded sponges and rocks along a narrow seabed base. Wide 4:3 composition, entire silhouette visible with generous transparent margin. Fine etched crosshatching and stippling in pale desaturated blue-gray and ivory ink, drawn to be clearly visible ON A DARK midnight navy game interface. Elegant 19th century field journal detail matching the supplied STYLE REFERENCE. No dark filled background, no paper rectangle, no framing, no lettering, no numbers, no UI, no metallic look. Only one isolated seabed vignette, transparent background."
+  }
+]

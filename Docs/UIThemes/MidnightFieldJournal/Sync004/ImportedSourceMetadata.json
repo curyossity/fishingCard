@@ -1,0 +1,172 @@
+{
+    "sprites": [
+        {
+            "id": "ClearWater",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/ClearWater.png",
+            "cardUniqueId": "clear_water",
+            "sha256": "1ac3a20ac295905f3e768f4920b9861f9aa447b49f07e702d90cdc0435f7a418",
+            "width": 1683,
+            "height": 935,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                23,
+                1672,
+                920
+            ],
+            "halfAlphaBoundsPixels": [
+                17,
+                56,
+                1669,
+                896
+            ],
+            "designWidth": 520.7999877929688,
+            "designHeight": 291.20001220703127
+        },
+        {
+            "id": "HoldSteady",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/HoldSteady.png",
+            "cardUniqueId": "hold_steady",
+            "sha256": "2bec5dfdb994f56b6f410ca61ed9c773a23af53bea2a5a4e4f37a4236cd5830e",
+            "width": 1672,
+            "height": 941,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                17,
+                1660,
+                941
+            ],
+            "halfAlphaBoundsPixels": [
+                11,
+                66,
+                1656,
+                920
+            ],
+            "designWidth": 520.7999877929688,
+            "designHeight": 291.20001220703127
+        },
+        {
+            "id": "Rerig",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/Rerig.png",
+            "cardUniqueId": "rerig",
+            "sha256": "1b77cdb01c6047be19874b54d7ca221e7f6213f971849ef58577b96c869f290f",
+            "width": 1672,
+            "height": 941,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                4,
+                1662,
+                941
+            ],
+            "halfAlphaBoundsPixels": [
+                33,
+                121,
+                1636,
+                839
+            ],
+            "designWidth": 520.7999877929688,
+            "designHeight": 291.20001220703127
+        },
+        {
+            "id": "Recast",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/Recast.png",
+            "cardUniqueId": "recast",
+            "sha256": "eccbf3ab752b7292b60c72af0ad2874ecde0f87650cb77f8177d434e8a437906",
+            "width": 1672,
+            "height": 941,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                23,
+                1672,
+                941
+            ],
+            "halfAlphaBoundsPixels": [
+                9,
+                103,
+                1660,
+                884
+            ],
+            "designWidth": 520.7999877929688,
+            "designHeight": 291.20001220703127
+        },
+        {
+            "id": "LineLoadHousing",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/LineLoadHousing.png",
+            "cardUniqueId": "",
+            "sha256": "54b0f31c771e1cd100e0f42e832f81ebb2c3166f1d4dabaf457ee5c0e7bf8d7a",
+            "width": 2103,
+            "height": 748,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                0,
+                19,
+                2103,
+                732
+            ],
+            "halfAlphaBoundsPixels": [
+                4,
+                142,
+                2100,
+                584
+            ],
+            "designWidth": 760.0,
+            "designHeight": 270.318603515625
+        },
+        {
+            "id": "DescendButton",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/DescendButton.png",
+            "cardUniqueId": "",
+            "sha256": "c6dc4e66cdd7389324eae1755641b57b37a53ddda805c095b3bfeac1a4d716ad",
+            "width": 880,
+            "height": 350,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                6,
+                14,
+                874,
+                341
+            ],
+            "halfAlphaBoundsPixels": [
+                8,
+                49,
+                872,
+                292
+            ],
+            "designWidth": 880.0,
+            "designHeight": 350.0
+        },
+        {
+            "id": "SurfaceButton",
+            "path": "Assets/UIThemes/MidnightFieldJournal/Art/Controls/SurfaceButton.png",
+            "cardUniqueId": "",
+            "sha256": "171a6208171d9b02d5398f7fb5447552c1023b0567368176dc1edea4bc03b410",
+            "width": 880,
+            "height": 350,
+            "alphaMin": 0,
+            "alphaMax": 255,
+            "visibleBoundsPixels": [
+                6,
+                14,
+                874,
+                341
+            ],
+            "halfAlphaBoundsPixels": [
+                8,
+                49,
+                872,
+                292
+            ],
+            "designWidth": 880.0,
+            "designHeight": 350.0
+        }
+    ]
+}

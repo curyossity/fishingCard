@@ -1,0 +1,163 @@
+{
+  "result": {
+    "variants": [
+      {
+        "id": "bae680cd-9225-8018-8008-d05df2418760",
+        "load": 0,
+        "capacity": 8,
+        "label": "LINE LOAD",
+        "value": "0 / 8",
+        "status": "WITHIN CAPACITY",
+        "segments": 8,
+        "editableTexts": 3
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df340a800",
+        "load": 4,
+        "capacity": 8,
+        "label": "LINE LOAD",
+        "value": "4 / 8",
+        "status": "WITHIN CAPACITY",
+        "segments": 8,
+        "editableTexts": 3
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df4f6d13a",
+        "load": 8,
+        "capacity": 8,
+        "label": "LINE LOAD",
+        "value": "8 / 8",
+        "status": "AT CAPACITY",
+        "segments": 8,
+        "editableTexts": 3
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05df6468a8f",
+        "load": 10,
+        "capacity": 8,
+        "label": "LINE LOAD",
+        "value": "10 / 8",
+        "status": "OVERLOADED  +2",
+        "segments": 8,
+        "editableTexts": 3
+      }
+    ],
+    "instances": [
+      {
+        "id": "bae680cd-9225-8018-8008-d05df897d671",
+        "boardId": "bae680cd-9225-8018-8008-cdde36733e6f",
+        "oldShapesHidden": true,
+        "haulPreserved": [
+          {
+            "id": "bae680cd-9225-8018-8008-cdde3a06cd63",
+            "name": "Haul divider",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cdde3a157be1",
+            "name": "Haul label",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cdde3a3f2e85",
+            "name": "Haul value",
+            "hidden": false
+          }
+        ],
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 175
+        }
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05dfa9766f9",
+        "boardId": "bae680cd-9225-8018-8008-cdead5028f97",
+        "oldShapesHidden": true,
+        "haulPreserved": [
+          {
+            "id": "bae680cd-9225-8018-8008-cdead502df3a",
+            "name": "Haul divider",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cdead502df3b",
+            "name": "Haul label",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cdead502df3c",
+            "name": "Haul value",
+            "hidden": false
+          }
+        ],
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 175
+        }
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05dfc12c173",
+        "boardId": "bae680cd-9225-8018-8008-d0061921543d",
+        "oldShapesHidden": true,
+        "haulPreserved": [
+          {
+            "id": "bae680cd-9225-8018-8008-d006192154ca",
+            "name": "Haul divider",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006192154cb",
+            "name": "Haul label",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d006192154cc",
+            "name": "Haul value",
+            "hidden": false
+          }
+        ],
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 175
+        }
+      },
+      {
+        "id": "bae680cd-9225-8018-8008-d05dfddf28ad",
+        "boardId": "bae680cd-9225-8018-8008-cf65f248e1e2",
+        "oldShapesHidden": true,
+        "haulPreserved": [
+          {
+            "id": "bae680cd-9225-8018-8008-cf65f248e26f",
+            "name": "Haul divider",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cf65f248e270",
+            "name": "Haul label",
+            "hidden": false
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-cf65f248e271",
+            "name": "Haul value",
+            "hidden": false
+          }
+        ],
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 760,
+          "h": 175
+        }
+      }
+    ],
+    "sourceExists": true,
+    "unityImported": false
+  },
+  "log": ""
+}
