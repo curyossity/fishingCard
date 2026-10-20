@@ -119,8 +119,9 @@ public static class JournalChainStatChecks
                 foreach (var queued in presentation.Cards)
                     if (queued != active && !seen.Contains(queued.BoundInstance.InstanceId))
                         Require(Text(queued, "weightText").text == cod.Weight.ToString()
-                            && Text(queued, "weightText").rectTransform.localScale == Vector3.one,
-                            "A later creature began counting or enlarging before its turn");
+                            && Text(queued, "weightText").rectTransform.localScale == Vector3.one
+                            && (Text(queued, "weightText").fontStyle & FontStyles.Bold) == 0,
+                            "A later creature began counting, enlarging or becoming bold before its turn");
             }
             if (seen.Count == 7 && presentation.AnimatingCard == null) break;
             yield return null;
@@ -141,6 +142,10 @@ public static class JournalChainStatChecks
             var weight = Text(card, "weightText"); var value = Text(card, "valueText");
             Require(weight.text == card.BoundInstance.CurrentWeight.ToString(), "Final Weight was not authoritative");
             Require(value.text == card.BoundInstance.HaulValueContribution.ToString(), "Final Value was not authoritative");
+            Require((weight.fontStyle & FontStyles.Bold) != 0 && weight.fontWeight == FontWeight.Bold,
+                "Modified compact Weight lost persistent bold styling");
+            Require(((value.fontStyle & FontStyles.Bold) != 0) == !card.BoundInstance.IsBait,
+                "Modified compact Value or neutral Bait zero had incorrect bold styling");
             if (card.BoundInstance.IsBait) Require(value.rectTransform.localScale == Vector3.one, "Bait zero was animated/enlarged");
             var pulse = card.GetComponentInChildren<JournalCatchCardPulse>();
             Require(pulse != null && !pulse.IsPlaying && pulse.MotionScale == 1 && pulse.color.a == 0 && !pulse.raycastTarget,

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "mainCardChecks": 74,
+  "chainChecks": 103,
+  "colourTransitionCases": 20,
+  "sceneClean": true,
+  "consoleErrors": 0,
+  "penpotEdited": false
+}

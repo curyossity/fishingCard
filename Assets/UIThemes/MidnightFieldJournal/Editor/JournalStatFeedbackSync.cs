@@ -10,6 +10,7 @@ public static class JournalStatFeedbackSync
     {
         var animator = view.GetComponent<CreatureCardStatAnimator>();
         if (animator == null) animator = view.gameObject.AddComponent<CreatureCardStatAnimator>();
+        animator.ConfigureRapidTiming();
         var data = new SerializedObject(view); var fields = new SerializedObject(animator);
         fields.FindProperty("weightText").objectReferenceValue = data.FindProperty("weightText").objectReferenceValue;
         fields.FindProperty("valueText").objectReferenceValue = data.FindProperty("valueText").objectReferenceValue;

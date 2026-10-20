@@ -19,7 +19,8 @@ public static class JournalStatFeedbackChecks
     private static int assertions;
     private static string captureDirectory;
     public static string Status { get; private set; } = "Not started";
-    [Serializable] private sealed class Report { public bool passed; public int assertions; public string error; public int[] valueSequence; public string captureDirectory; public float maximumStepScale, finalBeatScale; public bool positiveTilt, negativeTilt; }
+    [Serializable] private sealed class Report { public bool passed; public int assertions; public string error; public int[] valueSequence; public string captureDirectory; public float maximumStepScale, finalBeatScale, countDuration; public bool positiveTilt, negativeTilt; }
+    private static float countDuration;
     private static readonly List<int> sequence = new List<int>();
     private static float maximumStepScale, finalBeatScale;
     private static bool positiveTilt, negativeTilt;
@@ -49,7 +50,7 @@ public static class JournalStatFeedbackChecks
         }
         File.WriteAllText(Output + "PlayModeVerification.json", JsonUtility.ToJson(new Report { passed = failure == null,
             assertions = assertions, error = failure?.ToString(), valueSequence = sequence.ToArray(), captureDirectory = captureDirectory,
-            maximumStepScale = maximumStepScale, finalBeatScale = finalBeatScale, positiveTilt = positiveTilt, negativeTilt = negativeTilt }, true));
+            maximumStepScale = maximumStepScale, finalBeatScale = finalBeatScale, countDuration = countDuration, positiveTilt = positiveTilt, negativeTilt = negativeTilt }, true));
         Application.runInBackground = oldBackground; Time.timeScale = oldTimeScale;
         if (fixture != null) UnityEngine.Object.Destroy(fixture);
         UnityEngine.Object.Destroy(runner.gameObject); runner = null;
@@ -69,6 +70,8 @@ public static class JournalStatFeedbackChecks
         var cod = AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/Coastal Cod.asset");
         var urchin = AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/Sea Urchin.asset");
         Color normal = value.color;
+        FontStyles normalStyle = value.fontStyle;
+        FontWeight normalWeight = value.fontWeight;
         Action<int, int, int, int, int> bind = (rev, bw, bv, w, v) => {
             card.SetCard(cod, w, v, false); card.PresentStatFeedback(new EncounterStatFeedback(rev, bw, bv)); };
         yield return null; yield return null; yield return null;
@@ -76,6 +79,8 @@ public static class JournalStatFeedbackChecks
         bind(1, 2, 8, 2, 12);
         Require(value.text == "8", "Modified stat skipped its baseline");
         Require(value.color.g > value.color.r && value.rectTransform.localScale.x > 1.2f, "Positive value lacks green enlargement");
+        Require((value.fontStyle & FontStyles.Bold) != 0 && value.fontWeight == FontWeight.Bold,
+            "Manipulated stat was not bold during the animation");
         Require(weight.rectTransform.localScale == Vector3.one, "Unmodified Weight was emphasised");
         float began = Time.realtimeSinceStartup, deadline = began + 5;
         while (Time.realtimeSinceStartup < deadline)
@@ -89,7 +94,8 @@ public static class JournalStatFeedbackChecks
             bind(1, 2, 8, 2, 12); yield return null;
         }
         Require(string.Join(",", sequence) == "8,9,10,11,12", "Integer sequence skipped or restarted under repeated refresh");
-        Require(Time.realtimeSinceStartup - began >= .6f, "Counting was too fast to notice");
+        countDuration = Time.realtimeSinceStartup - began;
+        Require(countDuration >= .15f && countDuration < .5f, "Short count missed the slightly slower rapid timing");
         Require(value.color.g > value.color.r && value.rectTransform.localScale.x > 1.2f, "Final modified number lost emphasis");
         Require(maximumStepScale > 1.35f, "Counting steps lack a noticeable pop");
         Require(positiveTilt && negativeTilt, "Counting beats did not alternate their tilt");
@@ -97,10 +103,14 @@ public static class JournalStatFeedbackChecks
         yield return new WaitForSecondsRealtime(.45f);
         Require(Mathf.Abs(value.rectTransform.localScale.x - 1.22f) < .001f
             && Quaternion.Angle(value.rectTransform.localRotation, Quaternion.identity) < .01f, "Punch did not settle to the persistent stat style");
+        Require((value.fontStyle & FontStyles.Bold) != 0 && value.fontWeight == FontWeight.Bold,
+            "Modified result lost its bold weight after settling");
         bind(1, 2, 8, 2, 8);
-        Require(value.text == "12" && value.color.r > value.color.g, "Removing a value buff did not count down visibly");
+        Require(value.text == "12" && value.color.g > value.color.r, "Returning a buff to default changed colour before reaching default");
+        Require((value.fontStyle & FontStyles.Bold) != 0, "Return-to-default count was not bold");
         yield return new WaitForSecondsRealtime(1.2f);
         Require(value.text == "8" && value.color == normal && value.rectTransform.localScale == Vector3.one, "Baseline recovery did not restore defaults");
+        Require(value.fontStyle == normalStyle && value.fontWeight == normalWeight, "Default result retained bold styling");
         bind(2, 3, 12, 1, 8);
         Require(weight.text == "3" && weight.color.g > weight.color.r, "Weight reduction was not green or missed baseline");
         Require(value.text == "12" && value.color.r > value.color.g, "Value penalty was not red");
@@ -108,16 +118,17 @@ public static class JournalStatFeedbackChecks
         Require(weight.text == "1" && value.text == "8", "Decreasing stats failed to finish");
         bind(3, 1, 8, 3, 8);
         Require(weight.color.r > weight.color.g && weight.rectTransform.localScale.x > 1.2f, "Weight penalty was not red/enlarged");
-        bind(4, 2, 8, 2, 12); yield return new WaitForSecondsRealtime(.3f);
+        bind(4, 2, 8, 2, 12); yield return new WaitForSecondsRealtime(.06f);
         string before = value.text; bind(4, 2, 8, 2, 10);
         Require(value.text == before, "Retarget snapped to a new baseline or target");
         bind(4, 2, 12, 2, 12);
-        Require(value.text == before && value.color.g > value.color.r, "A rising non-chain baseline incorrectly reversed the remaining count's colour");
+        Require(value.text == before && value.color.r > value.color.g, "Displayed Value did not use the updated baseline for colour");
         bind(5, 2, 8, 2, 12);
         Require(value.text == "8", "Same-species new occurrence did not restart at its own baseline");
         card.SetCard(cod, 2, 0, false); card.SelectEffectChoice(EncounterEffectChoice.Bait, false);
         card.PresentStatFeedback(new EncounterStatFeedback(5, 2, 0, true));
         Require(value.text == "0" && value.color == normal && value.rectTransform.localScale == Vector3.one, "Bait's zero sale value was treated as a penalty");
+        Require(value.fontStyle == normalStyle && value.fontWeight == normalWeight, "Bait zero retained modified bold styling");
         yield return new WaitForSecondsRealtime(.4f);
         Require(value.text == "0" && Quaternion.Angle(value.rectTransform.localRotation, Quaternion.identity) < .01f, "Bait retained a Catch count or punch");
         card.SetCard(cod, 2, 12, false); card.SelectEffectChoice(EncounterEffectChoice.Catch, false);
@@ -126,12 +137,26 @@ public static class JournalStatFeedbackChecks
         card.SetCard(cod, 3, 20, true, true); card.PresentStatFeedback(new EncounterStatFeedback(7, 2, 8));
         yield return new WaitForSecondsRealtime(.4f);
         Require(weight.text == "?" && value.text == "?" && value.color == normal, "Animation exposed hidden information");
+        Require(value.fontStyle == normalStyle && value.fontWeight == normalWeight, "Hidden Value retained modified bold styling");
         card.SetCard(cod, 2, 18, false); yield return new WaitForSecondsRealtime(.4f);
         Require(value.text == "18" && value.rectTransform.localScale == Vector3.one, "Unanimated snapshot was overwritten by an old counter");
+        Require(value.fontStyle == normalStyle && value.fontWeight == normalWeight, "Static snapshot inherited animated bold styling");
         bind(8, 2, 8, 2, 12); card.SetStatFeedbackPaused(true);
         yield return new WaitForSecondsRealtime(.5f); Require(value.text == "8", "Incoming transition consumed unseen count steps");
         card.SetStatFeedbackPaused(false); card.CompleteStatFeedback();
         Require(value.text == "12" && value.rectTransform.localScale == Vector3.one, "Outgoing snapshot did not freeze authoritative values");
+        bind(9, 2, 8, 2, 10008);
+        float largeStart = Time.realtimeSinceStartup; int changes = 0, last = 8;
+        while (Time.realtimeSinceStartup - largeStart < 1.5f && value.text != "10008")
+        {
+            int shown = int.Parse(value.text);
+            if (shown != last) { changes++; last = shown; }
+            yield return null;
+        }
+        Require(value.text == "10008" && changes > 1, "Large bonus was instant or took too long to count");
+        Require(changes <= 25, "Large bonus retained an unbounded integer-by-integer sequence");
+        IEnumerator colourChecks = CheckDisplayedColours(card, cod, weight, value);
+        while (colourChecks.MoveNext()) yield return colourChecks.Current;
         fixture.SetActive(false);
         Time.timeScale = oldTimeScale;
 
@@ -191,13 +216,52 @@ public static class JournalStatFeedbackChecks
         var upwelling = AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/Gentle Upwelling.asset");
         persistence.QueuePending(999, upwelling, upwelling.Effects[0], EventEffectLifetime.UntilRunEnds());
         Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Bait), "Could not choose Bait for Upwelling");
-        Require(currentWeight.color.g > currentWeight.color.r && currentValue.text == "0" && currentValue.color == normal,
-            "Event Weight reduction or neutral Bait Value was not presented");
+        Require(currentWeight.text == (cod.Weight + 1).ToString() && currentWeight.color.r > currentWeight.color.g
+            && currentValue.text == "0" && currentValue.color == normal,
+            "Event retarget changed the still-overweight number to green early or coloured Bait zero");
         yield return new WaitForSecondsRealtime(.8f);
-        Require(currentWeight.text == Mathf.Max(0, cod.Weight - 1).ToString() && persistence.Effects[0].IsPending,
-            "Upwelling preview missed reduced Weight or consumed its pending effect");
+        Require(currentWeight.text == Mathf.Max(0, cod.Weight - 1).ToString() && currentWeight.color.g > currentWeight.color.r
+            && persistence.Effects[0].IsPending,
+            "Upwelling preview missed beneficial Weight/colour or consumed its pending effect");
         controller.StartRun(); yield return null;
         Require(controller.IsOpeningBoatVisible, "Verification failed to reset run");
+    }
+
+    /// <summary>Checks both stats frame by frame through same-side changes, baseline returns and crossings in both directions.</summary>
+    private static IEnumerator CheckDisplayedColours(CreatureCardView card, CardDefinition definition, TMP_Text weight, TMP_Text value)
+    {
+        var animator = card.GetComponent<CreatureCardStatAnimator>(); animator.ResetPresentation();
+        Color weightNormal = weight.color, valueNormal = value.color;
+        int[] destinations = { 12, 10, 14, 8, 4, 6, 2, 12, 4, 8 };
+        for (int stat = 0; stat < 2; stat++)
+        {
+            bool lowerIsBetter = stat == 0;
+            TMP_Text text = lowerIsBetter ? weight : value;
+            Color normal = lowerIsBetter ? weightNormal : valueNormal;
+            foreach (int target in destinations)
+            {
+                Action bind = () => {
+                    card.SetCard(definition, lowerIsBetter ? target : 8, lowerIsBetter ? 8 : target, false);
+                    card.PresentStatFeedback(new EncounterStatFeedback(100 + stat, 8, 8));
+                };
+                bind(); bool correct = true; int samples = 0;
+                float deadline = Time.realtimeSinceStartup + 2;
+                do
+                {
+                    int shown = int.Parse(text.text);
+                    int direction = shown.CompareTo(8);
+                    if (direction == 0 && target != 8) direction = target.CompareTo(8);
+                    int benefit = lowerIsBetter ? -direction : direction;
+                    correct &= benefit == 0 ? text.color == normal
+                        : benefit > 0 ? text.color.g > text.color.r : text.color.r > text.color.g;
+                    samples++;
+                    if (!animator.IsAnimating) break;
+                    yield return null; bind();
+                } while (Time.realtimeSinceStartup < deadline);
+                Require(correct && text.text == target.ToString() && samples > 1,
+                    (lowerIsBetter ? "Weight" : "Value") + " colour changed early, flashed neutral, or missed default at target " + target);
+            }
+        }
     }
 
     /// <summary>Stops on the first visual or integration regression.</summary>

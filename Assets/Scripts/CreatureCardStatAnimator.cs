@@ -4,13 +4,18 @@ using UnityEngine;
 /// <summary>Shares number feedback between current encounters and attached creatures; gameplay values never wait for presentation.</summary>
 public sealed class CreatureCardStatAnimator : MonoBehaviour
 {
+    public const float RapidSecondsPerInteger = .04f;
+    public const float RapidInitialHold = .05f;
+    public const float RapidPunchDuration = .18f;
+    public const float RapidMaximumCountDuration = .8f;
     [SerializeField] private TMP_Text weightText, valueText;
-    [SerializeField, Min(.05f)] private float secondsPerInteger = .16f;
-    [SerializeField, Min(0)] private float initialHold = .25f;
+    [SerializeField, Min(.01f)] private float secondsPerInteger = RapidSecondsPerInteger;
+    [SerializeField, Min(0)] private float initialHold = RapidInitialHold;
+    [SerializeField, Min(.1f)] private float maximumCountDuration = RapidMaximumCountDuration;
     [SerializeField, Range(1, 1.5f)] private float modifiedScale = 1.22f;
     [SerializeField, Range(0, .4f)] private float stepPunch = .14f;
     [SerializeField, Range(0, .4f)] private float finalPunch = .22f;
-    [SerializeField, Min(.1f)] private float punchDuration = .36f;
+    [SerializeField, Min(.1f)] private float punchDuration = RapidPunchDuration;
     [SerializeField, Range(0, 8)] private float tiltDegrees = 2.5f;
     [SerializeField] private Color positiveInk = new Color32(24, 112, 58, 255);
     [SerializeField] private Color negativeInk = new Color32(174, 44, 38, 255);
@@ -18,9 +23,12 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     {
         public TMP_Text Text;
         public Color NormalInk;
+        public FontStyles NormalStyle;
+        public FontWeight NormalWeight;
         public Vector3 NormalScale;
         public Quaternion NormalRotation;
-        public int Displayed, Target, Baseline, Polarity;
+        public int Displayed, Target, Baseline, Step;
+        public bool LowerIsBetter;
         public float Wait;
         public float PunchAge, PunchAmount;
         public int Beat;
@@ -35,6 +43,14 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     private bool isBait;
 
     public bool IsAnimating => Pending(weight) || Pending(value);
+
+    /// <summary>Applies canonical rapid timing when rebuilding or migrating the opted-in prefab.</summary>
+    public void ConfigureRapidTiming()
+    {
+        secondsPerInteger = RapidSecondsPerInteger; initialHold = RapidInitialHold;
+        punchDuration = RapidPunchDuration;
+        maximumCountDuration = RapidMaximumCountDuration;
+    }
 
     /// <summary>Binds compact-card numeric fields before their first animated presentation.</summary>
     public void BindTextFields(TMP_Text weightField, TMP_Text valueField)
@@ -102,6 +118,8 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     private static Counter CreateCounter(TMP_Text text)
     {
         return new Counter { Text = text, NormalInk = text == null ? Color.white : text.color,
+            NormalStyle = text == null ? FontStyles.Normal : text.fontStyle,
+            NormalWeight = text == null ? FontWeight.Regular : text.fontWeight,
             NormalScale = text == null ? Vector3.one : text.rectTransform.localScale,
             NormalRotation = text == null ? Quaternion.identity : text.rectTransform.localRotation };
     }
@@ -125,11 +143,13 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
         }
         else if (changed && !modified && !wasModified) counter.Displayed = target;
         counter.Target = target; counter.Baseline = baseline; counter.Initialized = true;
+        counter.LowerIsBetter = lowerIsBetter;
         if (changed)
         {
             counter.Wait = initialHold;
-            int direction = modified ? target.CompareTo(baseline) : target.CompareTo(counter.Displayed);
-            counter.Polarity = lowerIsBetter ? -direction : direction;
+            long distance = System.Math.Abs((long)target - counter.Displayed);
+            int steps = Mathf.Max(1, Mathf.FloorToInt(maximumCountDuration / Mathf.Max(.01f, secondsPerInteger)));
+            counter.Step = (int)System.Math.Max(1, (distance + steps - 1) / steps);
         }
         if (!Application.isPlaying) counter.Displayed = target;
         Render(counter);
@@ -142,7 +162,7 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
         Tick(weight); Tick(value);
     }
 
-    /// <summary>Shows at most one integer per frame, retaining each step long enough to be read.</summary>
+    /// <summary>Rapidly advances once per rendered frame with a new pop/tilt on every change; large deltas use bounded strides.</summary>
     private void Tick(Counter counter)
     {
         if (counter == null || !counter.Initialized || counter.Text == null) return;
@@ -152,8 +172,11 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
             counter.Wait -= Time.unscaledDeltaTime;
             if (counter.Wait <= 0)
             {
-                counter.Displayed += counter.Target > counter.Displayed ? 1 : -1;
-                counter.Wait = secondsPerInteger;
+                counter.Displayed = counter.Target > counter.Displayed
+                    ? (int)System.Math.Min(counter.Target, (long)counter.Displayed + counter.Step)
+                    : (int)System.Math.Max(counter.Target, (long)counter.Displayed - counter.Step);
+                // Carry fractional timing forward without doing invisible bursts of updates within one frame.
+                counter.Wait = Mathf.Max(0, counter.Wait + Mathf.Max(.01f, secondsPerInteger));
                 counter.PunchAge = 0;
                 counter.PunchAmount = counter.Displayed == counter.Target ? finalPunch : stepPunch;
                 counter.Beat++;
@@ -169,7 +192,14 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
         bool emphasised = counter.Target != counter.Baseline || counter.Displayed != counter.Target;
         bool deferred = playbackPaused && deferEmphasis && Pending(counter);
         emphasised &= !deferred;
-        counter.Text.color = emphasised ? counter.Polarity > 0 ? positiveInk : negativeInk : counter.NormalInk;
+        bool bold = !deferred && (emphasised || Pending(counter));
+        counter.Text.fontStyle = bold ? counter.NormalStyle | FontStyles.Bold : counter.NormalStyle;
+        counter.Text.fontWeight = bold ? FontWeight.Bold : counter.NormalWeight;
+        // Follow the visible amount, not the destination or travel direction. Crossing default never flashes neutral.
+        int direction = counter.Displayed.CompareTo(counter.Baseline);
+        if (direction == 0 && counter.Target != counter.Baseline) direction = counter.Target.CompareTo(counter.Baseline);
+        int polarity = counter.LowerIsBetter ? -direction : direction;
+        counter.Text.color = !deferred && polarity != 0 ? polarity > 0 ? positiveInk : negativeInk : counter.NormalInk;
         float t = Mathf.Clamp01(counter.PunchAge / punchDuration);
         float spring = t >= 1 || deferred ? 0 : Mathf.Exp(-7 * t) * Mathf.Cos(3 * Mathf.PI * t);
         counter.Text.rectTransform.localScale = counter.NormalScale * ((emphasised ? modifiedScale : 1) * (1 + counter.PunchAmount * spring));
@@ -189,6 +219,7 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     {
         if (counter?.Text == null) return;
         counter.Text.color = counter.NormalInk; counter.Text.rectTransform.localScale = counter.NormalScale;
+        counter.Text.fontStyle = counter.NormalStyle; counter.Text.fontWeight = counter.NormalWeight;
         counter.Text.rectTransform.localRotation = counter.NormalRotation;
     }
 

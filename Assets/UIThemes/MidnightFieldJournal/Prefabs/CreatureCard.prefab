@@ -3458,9 +3458,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CreatureCardStatAnimator
   weightText: {fileID: 1725993083262129730}
   valueText: {fileID: 4198737381202444739}
-  secondsPerInteger: 0.16
-  initialHold: 0.25
+  secondsPerInteger: 0.04
+  initialHold: 0.05
+  maximumCountDuration: 0.8
   modifiedScale: 1.22
+  stepPunch: 0.14
+  finalPunch: 0.22
+  punchDuration: 0.18
+  tiltDegrees: 2.5
   positiveInk: {r: 0.09411765, g: 0.4392157, b: 0.22745098, a: 1}
   negativeInk: {r: 0.68235296, g: 0.17254902, b: 0.14901961, a: 1}
 --- !u!1 &7366227528126732846

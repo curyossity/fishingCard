@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/Scripts/CreatureCardStatAnimator.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatFeedbackChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatFeedbackSync.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab"
+  ],
+  "protectedFilesUnchanged": 1163,
+  "artFontsDefinitionsScenesSettingsAndGameplayUnchanged": true,
+  "candidatePrefabChanges": "Native save of stat timing and previously implicit numeric punch defaults only"
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/Scripts/CreatureCardStatAnimator.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatFeedbackChecks.cs"
+  ],
+  "protectedFilesUnchanged": 1165,
+  "artFontsDefinitionsPrefabsScenesSettingsAndGameplayUnchanged": true
+}

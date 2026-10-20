@@ -1,0 +1,18 @@
+{
+    "passed": true,
+    "assertions": 47,
+    "error": "",
+    "valueSequence": [
+        8,
+        9,
+        10,
+        11,
+        12
+    ],
+    "captureDirectory": "Docs/UIThemes/MidnightFieldJournal/RapidStatFeedback/MainCard/Capture-20261020-144509827/",
+    "maximumStepScale": 1.3907999992370606,
+    "finalBeatScale": 1.4883999824523926,
+    "countDuration": 0.11979866027832031,
+    "positiveTilt": true,
+    "negativeTilt": true
+}

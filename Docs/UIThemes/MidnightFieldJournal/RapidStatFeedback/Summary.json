@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "mainCardChecks": 47,
+  "chainChecks": 89,
+  "count8To12Seconds": 0.11979866027832031,
+  "ordinaryStepSeconds": 0.025,
+  "initialHoldSeconds": 0.05,
+  "springSeconds": 0.18,
+  "largeDeltaNominalCountSeconds": 0.6,
+  "sceneClean": true,
+  "consoleErrors": 0,
+  "penpotEdited": false
+}
