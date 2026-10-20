@@ -167,6 +167,7 @@ public static class ApprovedTechniqueChecks
         Require(c.TryUseTechniqueCard(0) && c.CurrentLineLoad == 3 && !c.CanUseTechniqueCard(0, out _), "Steady Line applied early or stacked.");
         Set(c, "lineCapacity", 3);
         int loadAtReveal = -1; Encounters(c).CreatureRevealed += (card, revision) => loadAtReveal = c.CurrentLineLoad;
+        Require(c.TryChooseEncounterRole(EncounterEffectChoice.Catch), "Fixture must explicitly choose Catch before Descend.");
         Require(c.TryDescend() && loadAtReveal == 4 && c.CurrentLineLoad == 4 && !Effects(c).Approved.HasPendingRelief
             && Get<LineLoadRiskRuntime>(c, "lineLoadRiskRuntime").LastOutcome == LineLoadRiskOutcome.NotOverloaded && c.LineCapacity == 3,
             "Steady Line persisted into the next encounter.");

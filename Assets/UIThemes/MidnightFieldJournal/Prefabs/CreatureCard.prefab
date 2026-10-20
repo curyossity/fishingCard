@@ -3312,6 +3312,7 @@ GameObject:
   - component: {fileID: 281917249007372468}
   - component: {fileID: 2516273523711635628}
   - component: {fileID: 8623690505960770208}
+  - component: {fileID: 3024058727698869452}
   m_Layer: 0
   m_Name: CreatureCard
   m_TagString: Untagged
@@ -3406,6 +3407,7 @@ MonoBehaviour:
   catchAbilityText: {fileID: 9106655913311539406}
   baitAbilityText: {fileID: 2568659227315274426}
   visualExtension: {fileID: 8623690505960770208}
+  statAnimator: {fileID: 3024058727698869452}
 --- !u!114 &8623690505960770208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3442,6 +3444,25 @@ MonoBehaviour:
   baitFade: {fileID: 310603837693060819}
   catchGlow: {fileID: 6263573423016117977}
   baitGlow: {fileID: 3133221018195143058}
+--- !u!114 &3024058727698869452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7253514498072038298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c67c477c9689b14e99127ebeff940b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CreatureCardStatAnimator
+  weightText: {fileID: 1725993083262129730}
+  valueText: {fileID: 4198737381202444739}
+  secondsPerInteger: 0.16
+  initialHold: 0.25
+  modifiedScale: 1.22
+  positiveInk: {r: 0.09411765, g: 0.4392157, b: 0.22745098, a: 1}
+  negativeInk: {r: 0.68235296, g: 0.17254902, b: 0.14901961, a: 1}
 --- !u!1 &7366227528126732846
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,6 +69,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data,"catchSelection",RoleGlow(catchRegion,"Selected Catch Border",true));Bind(data,"baitSelection",RoleGlow(baitRegion,"Selected Bait Border",false));
         data.FindProperty("showRarity").boolValue=true;data.ApplyModifiedPropertiesWithoutUndo();
         JournalRoleSelectionSync.ConfigureFading(visuals,profile);
+        JournalStatFeedbackSync.Bind(view);
         Save(root,"CreatureCard");
     }
 

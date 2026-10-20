@@ -2161,6 +2161,17 @@ public sealed class FishingRunController : MonoBehaviour
             }
 
             int currentHaulValue = 0;
+            EncounterStatFeedback? statFeedback = null;
+            if (fishingRunView.SupportsEncounterStatFeedback && currentEncounter != null && currentEncounter.RequiresAttachmentChoice)
+            {
+                CardInstance baseline = catchChainRuntime.CreateResolvedCatchPreview(currentEncounter, effectResolver,
+                    previewRole, techniqueEffectRuntime.Approved.PreviewPendingPrizes, false);
+                if (baseline != null)
+                {
+                    eventPersistenceRuntime.PreviewPendingBaitWeightReductions(baseline);
+                    statFeedback = new EncounterStatFeedback(encounterRuntime.EncounterRevision, baseline.CurrentWeight, baseline.HaulValueContribution);
+                }
+            }
             bool hideCurrentHaulValue = false;
             foreach (CardInstance attachment in DisplayedCatches)
             {
@@ -2191,6 +2202,7 @@ public sealed class FishingRunController : MonoBehaviour
                 CoreActionInputReady && HookedEncounter != null);
             fishingRunView.SetEncounterRoleSelection(currentEncounter != null && currentEncounter.RequiresAttachmentChoice
                 ? SelectedEncounterChoice : SelectedEncounterChoice == EncounterEffectChoice.None ? EncounterEffectChoice.Catch : SelectedEncounterChoice);
+            if (statFeedback.HasValue) fishingRunView.PresentEncounterStatFeedback(statFeedback.Value);
             fishingRunView.SetTrailPreview(runActive ? encounterRuntime.Trail.Preview : string.Empty);
             fishingRunView.SetOpeningVisible(IsOpeningBoatVisible);
         }

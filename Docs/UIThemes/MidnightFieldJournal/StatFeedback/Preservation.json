@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/Editor/ApprovedTechniqueChecks.cs",
+    "Assets/Editor/BassUrchinOctopusChecks.cs",
+    "Assets/Editor/CoastalSupportChecks.cs",
+    "Assets/Scripts/CatchChainRuntime.cs",
+    "Assets/Scripts/CreatureCardView.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalCentralBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab"
+  ],
+  "protectedFilesUnchanged": 1146,
+  "sourceArtCardDefinitionsFontsOldThemeOtherPrefabsSavedScenesAndProjectSettingsUnchanged": true
+}

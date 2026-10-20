@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "playModeChecks": 27,
+  "runtimeRegressionChecks": 202,
+  "totalChecks": 229,
+  "integerSequence": [
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "sceneClean": true,
+  "penpotEdited": false,
+  "captureDirectory": "Docs/UIThemes/MidnightFieldJournal/StatFeedback/Capture-20261020-111617137/"
+}

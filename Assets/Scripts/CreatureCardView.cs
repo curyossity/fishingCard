@@ -87,6 +87,10 @@ public sealed class CreatureCardView : MonoBehaviour
     [SerializeField] private TMP_Text catchAbilityText;
     [SerializeField] private TMP_Text baitAbilityText;
     [SerializeField] private CreatureCardVisualExtension visualExtension;
+    [SerializeField] private CreatureCardStatAnimator statAnimator;
+    private bool displayedWeightHidden, displayedValueHidden;
+    private int displayedWeight, displayedValue;
+    public bool SupportsStatFeedback => statAnimator != null;
 
     public int AnchorSlotCount => anchorMarkers == null ? 0 : anchorMarkers.Length;
     public Image InteractionOverlay => interactionOverlay;
@@ -113,6 +117,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Displays one encounter using its card-type layout and resolved runtime values.</summary>
     public void SetCard(CardDefinition card, int resolvedWeight, int resolvedValue, bool informationHidden, bool identityHidden = false)
     {
+        if (statAnimator != null) statAnimator.PrepareForRefresh();
         if (card == null)
         {
             displayedCard = null;
@@ -139,6 +144,9 @@ public sealed class CreatureCardView : MonoBehaviour
             : CatchAttachmentRole.Catch;
         bool hideOwnValue = previewRole == CatchAttachmentRole.Catch
             && card.HidesOwnValueDuringRunForRole(previewRole);
+        displayedWeightHidden = informationHidden;
+        displayedValueHidden = informationHidden || hideOwnValue;
+        displayedWeight = Mathf.Max(0, resolvedWeight); displayedValue = Mathf.Max(0, resolvedValue);
         Sprite background = usesCatchLayout || eventCardFace == null ? fallbackCardFace : eventCardFace;
 
         SetContent(
@@ -184,6 +192,7 @@ public sealed class CreatureCardView : MonoBehaviour
         string rules,
         CardRarity rarity)
     {
+        if (statAnimator != null) statAnimator.ResetPresentation();
         displayedCard = null;
         SetText(catchAbilityText, string.Empty); SetText(baitAbilityText, string.Empty);
         if (visualExtension != null) visualExtension.Clear();
@@ -217,6 +226,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Shows the authored blank template with no runtime values or filled rarity anchors.</summary>
     public void SetBlank()
     {
+        if (statAnimator != null) statAnimator.ResetPresentation();
         displayedCard = null; selectedEffectChoice = EncounterEffectChoice.None;
         gameObject.SetActive(true);
         ApplyReferenceAspectRatio(true);
@@ -249,6 +259,29 @@ public sealed class CreatureCardView : MonoBehaviour
                 }
             }
         }
+    }
+
+    /// <summary>Animates only explicitly supplied current-encounter previews, preserving concealed fields and static history snapshots.</summary>
+    public void PresentStatFeedback(EncounterStatFeedback feedback)
+    {
+        if (statAnimator == null || displayedCard == null || !displayedCard.RequiresAttachmentChoice) return;
+        bool hiddenValue = displayedWeightHidden || (selectedEffectChoice != EncounterEffectChoice.Bait
+            && displayedCard.HidesOwnValueDuringRunForRole(CatchAttachmentRole.Catch));
+        displayedValueHidden = hiddenValue;
+        if (hiddenValue) SetText(valueText, "?");
+        statAnimator.Present(displayedCard, feedback, displayedWeight, displayedValue, displayedWeightHidden, hiddenValue);
+    }
+
+    /// <summary>Defers counting until the main card's incoming transition has settled.</summary>
+    public void SetStatFeedbackPaused(bool paused) { if (statAnimator != null) statAnimator.SetPaused(paused); }
+
+    /// <summary>Freezes outgoing presentation at authoritative values before a slot becomes encounter history.</summary>
+    public void CompleteStatFeedback()
+    {
+        if (statAnimator == null) return;
+        statAnimator.ResetPresentation();
+        if (!displayedWeightHidden) SetText(weightText, displayedWeight.ToString());
+        if (!displayedValueHidden) SetText(valueText, displayedValue.ToString());
     }
 
     /// <summary>Updates supplied images and runtime text without changing authored geometry.</summary>

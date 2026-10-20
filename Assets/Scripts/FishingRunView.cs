@@ -332,6 +332,16 @@ public sealed class FishingRunView : MonoBehaviour
     public void SetEncounterRoleSelection(EncounterEffectChoice choice)
     { if (encounterCardView != null) encounterCardView.SelectEffectChoice(choice, false); }
 
+    public bool SupportsEncounterStatFeedback => encounterCardView != null && encounterCardView.SupportsStatFeedback;
+
+    /// <summary>Updates only the current slot after controller-owned role selection has been applied.</summary>
+    public void PresentEncounterStatFeedback(EncounterStatFeedback feedback)
+    {
+        if (encounterCardView == null) return;
+        encounterCardView.PresentStatFeedback(feedback);
+        encounterCardView.SetStatFeedbackPaused(IsEncounterTransitionPlaying);
+    }
+
     /// <summary>Shows a runtime-owned creature choice above the existing gameplay composition.</summary>
     public void ShowCreatureEffectChoice(string title, string prompt, string[] labels, string[] details, Sprite[] portraits, Action<int> select)
     {
@@ -851,6 +861,7 @@ public sealed class FishingRunView : MonoBehaviour
         int resolvedEncounterValue,
         bool encounterInformationHidden, bool encounterIdentityHidden = false)
     {
+        encounterCardView.CompleteStatFeedback();
         CancelEncounterTransition();
 
         standbyEncounterCardMotionRoot.SetAsLastSibling();
@@ -994,6 +1005,7 @@ public sealed class FishingRunView : MonoBehaviour
         if (descending)
         {
             encounterTransitionCoroutine = null;
+            encounterCardView.SetStatFeedbackPaused(false);
             RefreshAuthoredRoleInput();
             if (descendButton != null)
             {
@@ -1007,6 +1019,7 @@ public sealed class FishingRunView : MonoBehaviour
     /// <summary>Starts the reverse encounter journey before the completed-run result is revealed.</summary>
     private void BeginSurfaceTransition()
     {
+        encounterCardView.CompleteStatFeedback();
         CancelEncounterTransition();
         if (descendButton != null)
         {

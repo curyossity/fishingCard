@@ -253,6 +253,7 @@ public static class CoastalSupportChecks
         EffectResolver resolver = Get<EffectResolver>(controller, "effectResolver");
         TechniqueDeckRuntime deck = Get<TechniqueDeckRuntime>(controller, "techniqueDeckRuntime");
         chain.Add(Minnow(), resolver, CatchAttachmentRole.Bait); Set(deck, "hand", new[] { Technique("Old") });
+        Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Catch), "Fixture must explicitly choose Catch before Descend.");
         Require(controller.TryDescend() && controller.CurrentDepth == 0
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RedrawTechnique, "Descend did not pause for Shoal Signal.");
         Require(!controller.TryDescend() && !controller.TrySurface() && !controller.TryReleaseCatch(0), "Core action bypassed redraw.");

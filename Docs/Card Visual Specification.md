@@ -42,7 +42,7 @@ Event cards show their name, type, artwork, and description in the event master.
 
 These fields must remain separate UI elements layered over the supplied card image so they can be changed without editing the artwork.
 
-Weight and Value display the currently resolved values. When gameplay modifiers change either value, update the number in place. Do not add modifier deltas, arrows, badges, or separate base-value text unless the user explicitly requests them.
+Weight and Value display the currently resolved values. When gameplay modifiers change either value, update the number in place. The user-approved Midnight Field Journal current-encounter exception animates Catch Chain-derived changes through visible integers and enlarges the affected number: green for Value increases/Weight decreases, red for the opposite. It leaves unaffected stats, concealed fields and historical snapshots unanimated. Gameplay always uses authoritative resolved values, independently of the displayed count. Do not add modifier deltas, arrows, badges, or separate base-value text unless the user explicitly requests them.
 
 A card-authored self-concealment effect may replace only that card's Value with `?` during the run. Weight, name, tags, rules, and other encounter information remain visible unless a separate global concealment effect applies. End-of-run results reveal the resolved Value normally. If a card has an authored random caught-Value range, each committed runtime copy rolls once, retains that base Value through recalculation, and then receives normal interaction modifiers.
 

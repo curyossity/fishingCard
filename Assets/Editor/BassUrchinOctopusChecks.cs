@@ -488,6 +488,7 @@ public static class BassUrchinOctopusChecks
         EffectResolver resolver = Get<EffectResolver>(controller, "effectResolver");
         Set(deck, "hand", Deck(4, 0).Hand); Set(deck, "drawPile", Deck(0, 4).DrawPile);
         CardDefinition old = deck.Hand[0];
+        Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Catch), "Fixture must explicitly choose Catch before Descend.");
         Require(controller.TryDescend() && controller.CurrentDepth == 4
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.DiscardTechnique, "Bass Descend failed to pause for discard.");
         Require(!controller.TrySurface() && !controller.TryDescend(), "Core action bypassed mandatory discard.");

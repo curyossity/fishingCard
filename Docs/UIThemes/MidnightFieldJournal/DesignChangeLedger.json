@@ -6219,6 +6219,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "RoleInitialFade/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "StatFeedback/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

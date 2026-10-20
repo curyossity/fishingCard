@@ -38,4 +38,8 @@ Implemented in Unity on 20 October 2026. Actual previous outer meshes matched ex
 
 ## Initial role dimming — MFJ-SYNC-006.8
 
-Implemented in Unity on20 October2026: both panels start faded; opacity increased from46% to58%. Selected panel returns to full brightness with its unchanged glow; alternative stays faded. [Captures, verification and baseline](RoleInitialFade/README.md). No new Penpot revision or pending import.
+Implemented in Unity on 20 October 2026: both panels start faded; opacity increased from46% to58%. Selected panel returns to full brightness with its unchanged glow; alternative stays faded. [Captures, verification and baseline](RoleInitialFade/README.md). No new Penpot revision or pending import.
+
+## Animated main-card chain stats — MFJ-SYNC-006.9
+
+Implemented directly in Unity on 20 October 2026: chain-modified Weight/Value grow, turn green/red by benefit and count one integer at a time. Refreshes retain progress; new occurrences, masks, role-only zero Value and history are handled separately. Gameplay values do not wait for the animation. [Captures, checks and current baseline](StatFeedback/README.md). No new Penpot revision or pending import.
