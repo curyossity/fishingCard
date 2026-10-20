@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "checks": {
+    "CatchNeutralInitially": true,
+    "CatchPointerSwitch": true,
+    "CatchNoHardBorder": true,
+    "CatchNonblocking": true,
+    "CatchExactSharedContour": true,
+    "CatchSoftTransparentEnds": true,
+    "BaitNeutralInitially": true,
+    "BaitPointerSwitch": true,
+    "BaitNoHardBorder": true,
+    "BaitNonblocking": true,
+    "BaitExactSharedContour": true,
+    "BaitSoftTransparentEnds": true,
+    "NewOccurrenceClearsChoice": true,
+    "EventHidesGlowAndFade": true
+  },
+  "geometry": [
+    {
+      "role": "Catch",
+      "maxContourDifferenceCardPixels": 0.0
+    },
+    {
+      "role": "Bait",
+      "maxContourDifferenceCardPixels": 0.0
+    }
+  ]
+}

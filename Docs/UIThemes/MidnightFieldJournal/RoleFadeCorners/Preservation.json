@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalRoleSelectionSync.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalRoleFade.cs"
+  ],
+  "protectedFilesUnchanged": 1152,
+  "sourceArtTextLayoutsRoleInputAndScenesUnchanged": true
+}

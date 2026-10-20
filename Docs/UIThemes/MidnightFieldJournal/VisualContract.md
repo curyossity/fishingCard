@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-006 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,37 completed,4 superseded. [Next import baseline](Sync006/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
+**MFJ-SYNC-006 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,37 completed,4 superseded. [Next import baseline](RoleInitialFade/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -202,3 +202,27 @@ Current selective integration checkpoint: [MFJ-SYNC-003](Sync003/README.md). R02
 ## Parchment control alternatives — MFJ-R037–R038
 
 **Penpot only, awaiting review.** [Parchment controls](Revisions/MFJ-R037/README.md) appear on the separate Gameplay E comparison. Buttons share a newly generated ivory paper blank, fine sepia corner rules, faded navy fronds and printed dark-ink direction marks; both remain880×350. Cinzel titles70 and separate vector icons retain editable sources. Line Load retains760×175, separate label/value/status fields and ink-filled native segments; normal navy#314A53, full sepia#8F693A and overload oxide#934A35. Source blanks are1988×791 and2196×716, aspect-preserved with transparent margins. These proposals replace only copied controls on Gameplay E; existing assemblies and the current Sync004 Unity implementation are unchanged. No new mechanic or overload probability is introduced. Future imports must reconcile only these two pending revisions and retain their separate art/dynamic-field boundaries.
+
+## Selected Catch/Bait feedback — MFJ-SYNC-006.3
+
+The Unity candidate now uses complete rounded role boundaries: Catch `(82,875,545,438)` and Bait `(634,875,545,438)` on the 1260×1400 card. Content keeps its existing card-space coordinates. Selected roles use an opaque pale-gold 8px edge, radius30, warm outer glow and inset hairline, plus a native gold check in the role header. The check is36×36 at panel-local `(120,43)` and never intercepts input. Neither role is selected by default. Only the selected role shows these decorations; events hide both. Source artwork and other-theme styling remain unchanged. This is a Unity-only refinement; no Penpot import was added. [Captures and verification](RoleSelection/README.md).
+
+## Current Catch/Bait fading trial — MFJ-SYNC-006.4
+
+Supersedes the active gold border/check treatment from006.3. Both roles remain fully visible before selection. Selecting Catch or Bait keeps that complete panel unchanged and dims the other with a46% black rounded overlay, matching the existing aligned panel bounds. Text, artwork and heading/icon dim together; both role targets remain clickable. Border and check objects remain inactive. New occurrences, events and blank cards clear dimming; concealed creatures retain role selection without revealing information. No images or text layouts changed. This Unity-only trial is implemented for user review; Penpot history remains unchanged. [Captures and verification](RoleFading/README.md).
+
+## Fade boundary correction — MFJ-SYNC-006.5
+
+Retains the approved fading appearance and 46% opacity. Native fade shapes now have a 6px inset to leave the printed border untouched, 24px ordinary corner radii and a 66px lower outside radius (Catch lower-left, Bait lower-right). No role target, artwork or text layout changes. [Corner details and verification](RoleFadeCorners/README.md).
+
+## Subtle selected-role highlight — MFJ-SYNC-006.6
+
+The approved fading treatment now includes a thin selected-role gold edge: 3px, #F6CF93 at170/255 alpha, inside the same6px inset and asymmetric24/66px corners as the fade. Both contours share one editor configuration function. No broad glow or checkmark; no artwork/text tint inside the selected panel. None/events/blank cards clear both treatments. Fade opacity remains46%. [Captures and verification](RoleSoftHighlight/README.md).
+
+## Current selected-role inner-glow trial — MFJ-SYNC-006.7
+
+Replaces the hard selected outline with a restrained warm inner glow (#F2BF6F, peak alpha50/255, 24px inward falloff). Fade and glow now use the same native geometry renderer and root-relative bounds, including 6px inset and asymmetric24/66px corner data. The printed master is raster artwork; the contour remains an authored approximation rather than an exact traced border. The previous outline/fade outer vertices actually matched; a sharp line exposed that approximation. Both ends of the new glow falloff are transparent and no light extends outward. Fade remains46%, center/text layout unchanged, no checkmarks. [Audit, trial captures and verification](RoleInnerGlow/README.md).
+
+## Initial role dimming and deeper fade — MFJ-SYNC-006.8
+
+Before role selection, both Catch and Bait panels are dimmed and neither glows. Fade opacity is now58% black (previously46%). The chosen panel returns to full brightness with the existing inner glow; the alternative stays faded. Both targets remain clickable. Contour, artwork, text, glow parameters and gameplay are unchanged. Events and blank cards show neither overlay. [Captures and checks](RoleInitialFade/README.md).

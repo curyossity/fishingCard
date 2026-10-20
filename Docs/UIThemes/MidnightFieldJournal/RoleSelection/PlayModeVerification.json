@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checks": {
+    "noDefaultRole": true,
+    "CatchInitiallyHidden": true,
+    "CatchInputAvailable": true,
+    "CatchSelected": true,
+    "CatchExclusive": true,
+    "CatchPanelAligned": true,
+    "CatchStrongBorder": true,
+    "CatchCheckVisibleNonblocking": true,
+    "CatchRefreshRetainsChoice": true,
+    "BaitInitiallyHidden": true,
+    "BaitInputAvailable": true,
+    "BaitSelected": true,
+    "BaitExclusive": true,
+    "BaitPanelAligned": true,
+    "BaitStrongBorder": true,
+    "BaitCheckVisibleNonblocking": true,
+    "BaitRefreshRetainsChoice": true
+  }
+}

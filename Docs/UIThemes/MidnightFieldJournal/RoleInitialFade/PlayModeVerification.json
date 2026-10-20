@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": {
+    "bothInitiallyDim": true,
+    "explicitChoiceStillRequired": true,
+    "deeperOpacity": true,
+    "catchPointerSelects": true,
+    "baitPointerSelects": true,
+    "newOccurrenceDimsBoth": true,
+    "eventNoFadeOrGlow": true,
+    "blankNoFadeOrGlow": true
+  }
+}

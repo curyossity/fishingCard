@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "checks": {
+    "CatchInitiallyNeutral": true,
+    "CatchMatchingCorners": true,
+    "CatchMatchingInset": true,
+    "CatchSubtleNonblocking": true,
+    "CatchNoOldGlowOrCheck": true,
+    "CatchPointerSwitch": true,
+    "CatchExclusiveBorder": true,
+    "BaitInitiallyNeutral": true,
+    "BaitMatchingCorners": true,
+    "BaitMatchingInset": true,
+    "BaitSubtleNonblocking": true,
+    "BaitNoOldGlowOrCheck": true,
+    "BaitPointerSwitch": true,
+    "BaitExclusiveBorder": true,
+    "FreshOccurrenceNeutral": true,
+    "EventClear": true
+  }
+}

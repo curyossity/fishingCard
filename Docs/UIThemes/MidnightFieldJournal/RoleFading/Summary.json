@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "playModeChecks": 18,
+  "captures": [
+    "None4K.png",
+    "None1080p.png",
+    "Catch4K.png",
+    "Catch1080p.png",
+    "Bait4K.png",
+    "Bait1080p.png"
+  ],
+  "sceneClean": true,
+  "penpotEdited": false,
+  "status": "Implemented fading trial for user review"
+}

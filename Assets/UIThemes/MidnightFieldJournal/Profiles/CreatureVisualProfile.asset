@@ -15,15 +15,15 @@ MonoBehaviour:
   catchRules:
     serializedVersion: 2
     x: 0.06507937
-    y: 0.065
+    y: 0.062142856
     width: 0.43253967
-    height: 0.305
+    height: 0.31285715
   baitRules:
     serializedVersion: 2
     x: 0.5031746
-    y: 0.065
+    y: 0.062142856
     width: 0.43253967
-    height: 0.305
+    height: 0.31285715
   eventRules:
     serializedVersion: 2
     x: 0.17857143

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": {
+    "unselectedFullyVisible": true,
+    "CatchInputAvailable": true,
+    "CatchChoiceAndDescend": true,
+    "CatchOtherDimmedOnly": true,
+    "CatchNoBorderOrCheck": true,
+    "CatchRetainedAfterRefresh": true,
+    "BaitInputAvailable": true,
+    "BaitChoiceAndDescend": true,
+    "BaitOtherDimmedOnly": true,
+    "BaitNoBorderOrCheck": true,
+    "BaitRetainedAfterRefresh": true,
+    "Catch Unselected FadeNonblocking": true,
+    "Catch Unselected FadeAboveHeadings": true,
+    "Bait Unselected FadeNonblocking": true,
+    "Bait Unselected FadeAboveHeadings": true,
+    "newOccurrenceBothBright": true,
+    "eventNotDimmed": true,
+    "concealedRoleWorks": true
+  }
+}

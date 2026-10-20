@@ -1,0 +1,12 @@
+[
+  {
+    "role": "Catch",
+    "maxContourDifferenceCardPixels": 0.0,
+    "comparedBoundaryVertices": 52
+  },
+  {
+    "role": "Bait",
+    "maxContourDifferenceCardPixels": 0.0,
+    "comparedBoundaryVertices": 52
+  }
+]

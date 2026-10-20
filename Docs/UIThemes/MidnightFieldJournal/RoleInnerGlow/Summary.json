@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "previousOutlineAndFadeOuterVerticesMatched": true,
+  "previousContourVerticesCompared": 104,
+  "newSharedRendererContourMatch": true,
+  "playModeChecks": 14,
+  "pixelChecks": 10,
+  "visualReviewResolutions": [
+    "3840x2160",
+    "1920x1080"
+  ],
+  "sceneClean": true,
+  "penpotEdited": false
+}

@@ -66,16 +66,19 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data,"typeText",type);Bind(data,"nameText",name);Bind(data,"catchName",catchName);Bind(data,"catchText",catchText);Bind(data,"baitName",baitName);Bind(data,"baitText",baitText);
         Bind(data,"portraitRegion",portrait.transform.parent);Bind(data,"portrait",portrait.rectTransform);Bind(data,"roleDecoration",roles.gameObject);
         Bind(data,"eventDecoration",eventDecoration.gameObject);Bind(data,"eventTypeText",eventType);Bind(data,"eventEmblem",eventEmblem);
-        Bind(data,"catchSelection",RoleGlow(catchRegion,"Selected Catch Border"));Bind(data,"baitSelection",RoleGlow(baitRegion,"Selected Bait Border"));
-        data.FindProperty("showRarity").boolValue=true;data.ApplyModifiedPropertiesWithoutUndo();Save(root,"CreatureCard");
+        Bind(data,"catchSelection",RoleGlow(catchRegion,"Selected Catch Border",true));Bind(data,"baitSelection",RoleGlow(baitRegion,"Selected Bait Border",false));
+        data.FindProperty("showRarity").boolValue=true;data.ApplyModifiedPropertiesWithoutUndo();
+        JournalRoleSelectionSync.ConfigureFading(visuals,profile);
+        Save(root,"CreatureCard");
     }
 
-    /// <summary>Builds native selected-role edges and diffuse surrounding strokes without baking selection into the art.</summary>
-    private static JournalCardOutline RoleGlow(Transform parent,string name)
+    /// <summary>Builds a subtle native selected-role edge using the unselected fade's contour.</summary>
+    private static JournalCardOutline RoleGlow(Transform parent,string name,bool catchRole)
     {
         var border=Edge(parent,name,new Color32(255,209,141,242),0,3,26);
         Edge(border.transform,"Outer Warm Glow",new Color32(255,166,66,24),-8,16,34);
         Edge(border.transform,"Inner Warm Glow",new Color32(255,166,66,45),-3,6,29);
+        JournalRoleSelectionSync.ConfigureBorder(border,catchRole);
         return border;
     }
 

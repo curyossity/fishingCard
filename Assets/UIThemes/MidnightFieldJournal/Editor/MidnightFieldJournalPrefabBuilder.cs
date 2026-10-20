@@ -38,7 +38,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
             AssetDatabase.CreateAsset(profile, RootPath + "Profiles/CreatureVisualProfile.asset");
         }
         profile.nameInk = Ink; profile.catchRulesInk = Paper; profile.eventRulesInk = Paper;
-        profile.catchRules = CentralBounds(82, 882, 545, 427); profile.baitRules = CentralBounds(634, 882, 545, 427);
+        JournalRoleSelectionSync.ConfigureProfile(profile);
         profile.eventRules = CentralBounds(225,1070,810,205);
         profile.minimumRulesSize = 26; profile.maximumRulesSize = 39; profile.maximumStatSize = 64; profile.rulesPadding = Vector2.zero;
         profile.catchDescription = profile.baitDescription = new Rect(.025f, .05f, .95f, .52f);

@@ -15,6 +15,8 @@ public sealed class JournalCreatureCardVisuals : CreatureCardVisualExtension
     [SerializeField] private JournalCardEmblem rarityDiamond;
     [SerializeField] private bool showRarity;
     [SerializeField] private JournalCardOutline catchSelection, baitSelection;
+    [SerializeField] private JournalRoleFade catchFade, baitFade;
+    [SerializeField] private JournalRoleFade catchGlow, baitGlow;
     private bool metadataVisible;
 
     /// <summary>Uses central-only portraits without replacing compact-chain sources.</summary>
@@ -103,12 +105,16 @@ public sealed class JournalCreatureCardVisuals : CreatureCardVisualExtension
     private static void Bounds(RectTransform rect,Rect b) { rect.anchorMin=b.min;rect.anchorMax=b.max;rect.offsetMin=rect.offsetMax=Vector2.zero; }
     /// <summary>Controls native rarity visibility without changing gameplay data.</summary>
     public void SetRarityVisible(bool enabled) { showRarity=enabled;rarityRoot.SetActive(enabled&&metadataVisible); }
-    /// <summary>Updates selected-role borders independently of pointer hover.</summary>
+    /// <summary>Dims both roles until selection, then illuminates the chosen role without blocking either target.</summary>
     public override void RefreshSelection(EncounterEffectChoice choice,bool active)
     {
-        if(catchSelection!=null)catchSelection.gameObject.SetActive(active&&choice==EncounterEffectChoice.Catch);
-        if(baitSelection!=null)baitSelection.gameObject.SetActive(active&&choice==EncounterEffectChoice.Bait);
+        if(catchSelection!=null)catchSelection.gameObject.SetActive(false);
+        if(baitSelection!=null)baitSelection.gameObject.SetActive(false);
+        if(catchGlow!=null)catchGlow.gameObject.SetActive(active&&choice==EncounterEffectChoice.Catch);
+        if(baitGlow!=null)baitGlow.gameObject.SetActive(active&&choice==EncounterEffectChoice.Bait);
+        if(catchFade!=null)catchFade.gameObject.SetActive(active&&choice!=EncounterEffectChoice.Catch);
+        if(baitFade!=null)baitFade.gameObject.SetActive(active&&choice!=EncounterEffectChoice.Bait);
     }
     /// <summary>Removes identity-bearing decoration from blank and concealed presentations.</summary>
-    public override void Clear() { metadataVisible=false;tagsText.text="";rarityText.text="";rarityRoot.SetActive(false);eventDecoration.SetActive(false); }
+    public override void Clear() { metadataVisible=false;tagsText.text="";rarityText.text="";rarityRoot.SetActive(false);eventDecoration.SetActive(false);RefreshSelection(EncounterEffectChoice.None,false); }
 }
