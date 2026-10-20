@@ -159,7 +159,7 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
         position.y = Mathf.Clamp(position.y, 0, Mathf.Max(0, height - viewport.rect.height));
         content.anchoredPosition = position;
         if (chainScroll == null) chainScroll = content.GetComponentInParent<JournalCatchChainScrollRect>();
-        if (chainScroll != null) chainScroll.RestoreAfterLayout();
+        if (chainScroll != null) chainScroll.RestoreAfterLayout(count);
         for (int i = 0; i < count && i < cards.Count; i++)
         {
             RectTransform rect = cards[i].GetComponent<RectTransform>();

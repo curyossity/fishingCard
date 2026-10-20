@@ -138,3 +138,11 @@ Sheet is assembled under the latest hand in Gameplay G, with a separate transpar
 ## MFJ-SYNC-006 — Sheet integrated and boat transition fixed
 
 R041 is imported and verified. The boat stays visible inside the outgoing encounter slot and moves upward with the existing animation; completion/cancellation restores the reusable art. [Verification and captures](Sync006/README.md). **0 pending,37 completed,4 superseded.** Earlier pendingR041 statements are historical.
+
+## Explicit creature role choice — MFJ-SYNC-006.1
+
+No default Catch/Bait choice; Descend requires explicit selection for each new creature/Apex occurrence. Runtime-owned choice survives ordinary refreshes and resets on replacement, including the same species. Role buttons remain usable while Descend is disabled; Surface, boat and event windows retain their existing availability. [Verification and current baseline](../../Validation/ExplicitAttachmentChoice/README.md). Unity-only gameplay/UI change, no pending Penpot import.
+
+## Smooth catch-chain follow — MFJ-SYNC-006.2
+
+Implemented in Unity: newly attached creatures scroll into view with a 0.32-second eased movement instead of snapping. Wheel/drag inspection interrupts following; returning to the bottom resumes it. Repeated refreshes preserve progress and rapid attachments retarget smoothly. [Verification and current baseline](SmoothCatchChain/README.md). Unity-only presentation change; no new Penpot import or pending design revision.

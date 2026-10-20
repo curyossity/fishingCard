@@ -273,6 +273,7 @@ public sealed class FishingRunView : MonoBehaviour
     private bool hasPresentedEncounter;
     private int lastPresentedDepth;
     private bool latestCanDescend;
+    private bool latestCanChooseEncounterRole;
     private bool latestCanSurface;
     private TMP_Text trailPreviewText;
 
@@ -320,12 +321,16 @@ public sealed class FishingRunView : MonoBehaviour
     public bool IsSurfaceTransitionPlaying => surfaceTransitionCoroutine != null;
     public bool IsEncounterTransitionPlaying => encounterTransitionCoroutine != null;
     public EncounterEffectChoice SelectedEncounterEffectChoice => encounterCardView == null
-        ? EncounterEffectChoice.Catch
+        ? EncounterEffectChoice.None
         : encounterCardView.SelectedEffectChoice;
     public event Action SettingsRequested;
     public event Action SurfaceTransitionCompleted;
     public event Action EncounterTransitionCompleted;
     public event Action<EncounterEffectChoice> EncounterEffectChoiceChanged;
+
+    /// <summary>Displays controller-owned role selection without generating a second choice event.</summary>
+    public void SetEncounterRoleSelection(EncounterEffectChoice choice)
+    { if (encounterCardView != null) encounterCardView.SelectEffectChoice(choice, false); }
 
     /// <summary>Shows a runtime-owned creature choice above the existing gameplay composition.</summary>
     public void ShowCreatureEffectChoice(string title, string prompt, string[] labels, string[] details, Sprite[] portraits, Action<int> select)
@@ -381,7 +386,8 @@ public sealed class FishingRunView : MonoBehaviour
         Func<bool> releaseAction,
         Func<bool> surfaceAction,
         bool encounterIdentityHidden = false,
-        int? currentHaulValue = 0)
+        int? currentHaulValue = 0,
+        bool? canChooseEncounterRole = null)
     {
         EnsureLayout();
         this.descendAction = descendAction;
@@ -448,7 +454,7 @@ public sealed class FishingRunView : MonoBehaviour
         {
             if (!hasPresentedEncounter && IsCatchCard(encounter))
             {
-                encounterCardView.SelectEffectChoice(EncounterEffectChoice.Catch, false);
+                encounterCardView.SelectEffectChoice(EncounterEffectChoice.None, false);
             }
 
             encounterCardView.SetCard(
@@ -462,6 +468,7 @@ public sealed class FishingRunView : MonoBehaviour
         lastPresentedDepth = depth;
 
         latestCanDescend = canDescend;
+        latestCanChooseEncounterRole = canChooseEncounterRole ?? canDescend;
         descendButton.interactable = canDescend && encounterTransitionCoroutine == null;
         if (releaseButton != null) { releaseButton.interactable = false; releaseButton.gameObject.SetActive(false); }
         if (releaseButtonText != null) releaseButtonText.text = selectedCatchIndex >= 0
@@ -659,7 +666,7 @@ public sealed class FishingRunView : MonoBehaviour
     private void RefreshAuthoredRoleInput()
     {
         if (hudPresentation == null || encounterCardCanvasGroup == null) return;
-        bool available = latestCanDescend && encounterTransitionCoroutine == null && surfaceTransitionCoroutine == null;
+        bool available = latestCanChooseEncounterRole && encounterTransitionCoroutine == null && surfaceTransitionCoroutine == null;
         encounterCardCanvasGroup.interactable = available; encounterCardCanvasGroup.blocksRaycasts = available;
         if (standbyEncounterCardCanvasGroup != null) { standbyEncounterCardCanvasGroup.interactable = false; standbyEncounterCardCanvasGroup.blocksRaycasts = false; }
     }
@@ -848,7 +855,7 @@ public sealed class FishingRunView : MonoBehaviour
 
         standbyEncounterCardMotionRoot.SetAsLastSibling();
         standbyEncounterCardMotionRoot.gameObject.SetActive(true);
-        standbyEncounterCardView.SelectEffectChoice(EncounterEffectChoice.Catch, false);
+        standbyEncounterCardView.SelectEffectChoice(EncounterEffectChoice.None, false);
         standbyEncounterCardView.SetCard(
             encounter,
             resolvedEncounterWeight,

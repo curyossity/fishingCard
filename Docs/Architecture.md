@@ -6,6 +6,8 @@ The GDD remains the source of truth for game design. This document explains wher
 
 ## Core Principles
 
+Creature/Apex attachment choice is controller-owned and keyed to `EncounterRuntime.EncounterRevision`. `CardDefinition.RequiresAttachmentChoice` identifies those encounters. `FishingRunController.TryChooseEncounterRole` validates an explicit Catch/Bait choice, optionally against an expected revision; `CanDescend` rejects unselected occurrences. The view mirrors that state silently and receives independent role-input readiness so disabled Descend does not prevent selecting a panel. Stat refreshes preserve selection; new reveals/replacements invalidate it, including repeated species. Surface/Technique rules are independent. [Explicit-choice verification](Validation/ExplicitAttachmentChoice/README.md).
+
 - Keep gameplay data, runtime state, and presentation separate.
 - `CardDefinition` assets describe base card designs. They should not store per-run mutations.
 - Runtime systems own run state, encounter state, decks, hands, catches, Line Load, and effect resolution.
@@ -1186,3 +1188,5 @@ CatchChainRuntime.TryChangeCreatureMode switches one creature in place, retainin
 Steady Line is activated by the confirmed-action coordinator after successful preflight and before event consequences or commitment. CatchChainRuntime subtracts its action-scoped reduction from total Line Load with a zero floor, so every consumer uses the same effective load while individual stats and capacity stay unchanged. Relief survives suspended event/creature choices. Expire it after Descend checks and before reveal, or on Surface/run cleanup; failed preflight does not consume it. Prize Hook awards all pending modifiers before on-attach processing and retains them on the recipient across modes/biomes until removal. All unfinished grants and deferred releases clear on run shutdown/restart.
 
 ApprovedTechniqueChecks runs the actual rule/controller classes and supplies an Editor-only asset/deck/backup check. The combined event menu includes both. Validation and remaining Unity checks are recorded under Docs/Validation/ApprovedTechniques/README.md.
+
+`JournalCatchChainScrollRect` also owns the newest-catch scroll animation: attachment-count growth that extends the viewport starts a 0.32-second smoothstep using unscaled time. Repeated state refreshes retain animation progress; another attachment retargets from the current offset. Wheel/drag input cancels it immediately and preserves manual inspection. Initial binding, responsive extent changes and shrinkage restore/clamp directly; empty chains and disable clear unfinished motion. The presenter supplies the attachment count after measuring content, with no gameplay-state dependency. [Play Mode verification](UIThemes/MidnightFieldJournal/SmoothCatchChain/README.md).

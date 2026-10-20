@@ -82,6 +82,7 @@ public static class JournalLatestDesignChecks
         {
             var controller=go.AddComponent<FishingRunController>();var data=new SerializedObject(controller);data.FindProperty("startingBiome").objectReferenceValue=biome;data.FindProperty("beginWithBoatCard").boolValue=boat;data.FindProperty("useRandomSeed").boolValue=false;data.ApplyModifiedPropertiesWithoutUndo();
             controller.StartRun();Require(controller.IsOpeningBoatVisible==boat,"Opening startup flag");Require((controller.CurrentEncounter==null)==boat,"Initial encounter reveal timing");Require(controller.CatchChain.Length==0,"Boat created a Catch");int start=controller.CurrentDepth;
+            if(controller.CurrentEncounter!=null&&controller.CurrentEncounter.RequiresAttachmentChoice)Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Catch),"Explicit fixture role unavailable");
             Require(controller.TryDescend(),"First Descend unavailable");Require(!controller.IsOpeningBoatVisible&&controller.CurrentDepth==start+1,"First Descend timing/depth");
             if(boat)Require(controller.CatchChain.Length==0&&controller.CurrentEncounter!=null,"First Descend committed an invisible creature");
             controller.StartRun();Require(controller.IsOpeningBoatVisible==boat,"Restart did not restore opening");Require(controller.TrySurface()&&!controller.IsOpeningBoatVisible&&!controller.RunActive,"Surface from opening");

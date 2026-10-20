@@ -28,7 +28,7 @@ Do not put fundamental actions into the player deck. Bad draws should create tac
 
 ## Core Actions
 
-- `Descend`: always available. Advances deeper and normally commits the current Hooked creature to the Catch Chain unless a technique or special effect avoids, redirects, or replaces it. Before commitment, the player selects the card's Catch or Bait effect; only that selected effect set activates.
+- `Descend`: permanent core action. A Hooked creature or Apex requires an explicit Catch/Bait selection before Descend; neither is selected by default. Each new occurrence/replacement clears the choice while ordinary refreshes preserve it. Boat, empty/skipped and event encounters have no role-selection gate. Advances deeper and normally commits the current Hooked creature to the Catch Chain unless a technique or special effect avoids, redirects, or replaces it. Before commitment, the player selects the card's Catch or Bait effect; only that selected effect set activates.
 - `Surface`: always available. Ends the descent and attempts to bring the remaining Catch Chain home as the haul.
 
 The game is structured around meaningful actions, not a separate traditional turn system.

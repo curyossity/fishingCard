@@ -166,7 +166,7 @@ public static class JournalCreatureCardChecks
             ExecuteEvents.Execute(bait.gameObject, pointer, ExecuteEvents.pointerClickHandler); Require(clicks == 3, "Hidden creature role input unavailable.");
             smokeView.SetCard(Card("Reef Snag"), 0, 0, false);
             ExecuteEvents.Execute(catchRegion.gameObject, new BaseEventData(events), ExecuteEvents.submitHandler); Require(clicks == 3, "Event accepts role input.");
-            smokeView.SetCard(Card("Glass Minnow"), 1, 5, false); Require(smokeView.SelectedEffectChoice == EncounterEffectChoice.Catch, "New encounter did not reset role.");
+            smokeView.SetCard(Card("Glass Minnow"), 1, 5, false); Require(smokeView.SelectedEffectChoice == EncounterEffectChoice.None, "New encounter did not clear role.");
             smokeView.SetBlank(); ExecuteEvents.Execute(catchRegion.gameObject, new BaseEventData(events), ExecuteEvents.submitHandler); Require(clicks == 3, "Blank accepts role input.");
             bool unchanged = smokeSceneBytes.SequenceEqual(File.ReadAllBytes(smokeScenePath)); Require(unchanged, "Smoke changed the saved scene.");
             File.WriteAllText(Output + "UI05PlayModeValidation.json", JsonUtility.ToJson(new Report { passed = true, sceneUnchanged = unchanged, assertions = assertions }, true));

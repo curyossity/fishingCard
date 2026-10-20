@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/Scripts/CardDefinition.cs",
+    "Assets/Scripts/CreatureCardView.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalCreatureCardChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalLatestDesignChecks.cs"
+  ],
+  "protectedFilesUnchanged": 1139,
+  "cardAssetsArtPrefabsAndScenesUnchanged": true,
+  "gameplayChange": "Explicit creature/Apex role required before Descend; no other action/deck/effect rules changed"
+}

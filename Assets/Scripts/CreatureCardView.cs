@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public enum EncounterEffectChoice
 {
+    None = -1,
     Catch,
     Bait
 }
@@ -74,7 +75,7 @@ public sealed class CreatureCardView : MonoBehaviour
     private Outline catchEffectSelectionOutline;
     private Outline baitEffectSelectionOutline;
     private CardDefinition displayedCard;
-    private EncounterEffectChoice selectedEffectChoice = EncounterEffectChoice.Catch;
+    private EncounterEffectChoice selectedEffectChoice = EncounterEffectChoice.None;
     private bool usesCatchCardLayout;
 
     [Header("Fallback Assets")]
@@ -129,7 +130,7 @@ public sealed class CreatureCardView : MonoBehaviour
         bool usesCatchLayout = UsesCatchCardLayout(card.CardType);
         if (isNewCard && usesCatchLayout)
         {
-            SelectEffectChoice(EncounterEffectChoice.Catch, false);
+            SelectEffectChoice(card.RequiresAttachmentChoice ? EncounterEffectChoice.None : EncounterEffectChoice.Catch, false);
         }
 
         ApplyReferenceAspectRatio(usesCatchLayout);
@@ -216,7 +217,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Shows the authored blank template with no runtime values or filled rarity anchors.</summary>
     public void SetBlank()
     {
-        displayedCard = null; selectedEffectChoice = EncounterEffectChoice.Catch;
+        displayedCard = null; selectedEffectChoice = EncounterEffectChoice.None;
         gameObject.SetActive(true);
         ApplyReferenceAspectRatio(true);
         SetImage(cardBackground, fallbackCardFace);

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainScrollRect.cs"
+  ],
+  "protectedFilesUnchanged": 1145,
+  "artCardDefinitionsPrefabsScenesAndProjectSettingsUnchanged": true
+}

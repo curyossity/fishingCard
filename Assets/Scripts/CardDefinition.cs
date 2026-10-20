@@ -60,6 +60,8 @@ public class CardDefinition : ScriptableObject
     public string UniqueId => uniqueId;
     public string DisplayName => displayName;
     public CardType CardType => cardType;
+    /// <summary>Creature and Apex attachments require an explicit Catch or Bait decision before Descend.</summary>
+    public bool RequiresAttachmentChoice => cardType == CardType.Creature || cardType == CardType.ApexEncounter;
     public CardRarity Rarity => rarity;
     public bool IsBackupTechnique => cardType == CardType.Technique && backupTechnique;
     public string TechniqueRole => techniqueRole;

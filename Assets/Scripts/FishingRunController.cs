@@ -9,6 +9,11 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private bool startRunOnAwake = true;
     [SerializeField] private bool beginWithBoatCard;
     private bool openingBoatPending;
+    private EncounterEffectChoice selectedEncounterChoice = EncounterEffectChoice.None;
+    private int selectedEncounterChoiceRevision = -1;
+    public EncounterEffectChoice SelectedEncounterChoice => selectedEncounterChoiceRevision == encounterRuntime.EncounterRevision
+        ? selectedEncounterChoice : EncounterEffectChoice.None;
+    public int CurrentEncounterRevision => encounterRuntime.EncounterRevision;
     public bool IsOpeningBoatVisible => runActive && openingBoatPending;
     [Min(0)]
     [SerializeField] private int startingLineCapacity = 10;
@@ -118,7 +123,9 @@ public sealed class FishingRunController : MonoBehaviour
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
         && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
 
-    public bool CanDescend => CoreActionInputReady && (!biomeApexRuntime.NextWatersPresented
+    public bool CanDescend => CoreActionInputReady
+        && (HookedEncounter == null || !HookedEncounter.RequiresAttachmentChoice || SelectedEncounterChoice != EncounterEffectChoice.None)
+        && (!biomeApexRuntime.NextWatersPresented
         || currentBiome?.NextBiome?.GetDepthTier(currentBiome.NextBiome.StartingDepth) != null);
     public bool CanSurface => CoreActionInputReady;
     public bool CanReleaseSelectedCatch => CanReleaseCatch(selectedCatchIndex);
@@ -213,10 +220,19 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Refreshes the selected role's preview without resolving either effect before Descend.</summary>
     private void HandleEncounterEffectChoiceChanged(EncounterEffectChoice choice)
     {
-        if (runActive)
-        {
-            RefreshViews();
-        }
+        if (!TryChooseEncounterRole(choice) && runActive) RefreshViews();
+    }
+
+    /// <summary>Records an explicit role for this encounter occurrence; stale or locked choices cannot authorize Descend.</summary>
+    public bool TryChooseEncounterRole(EncounterEffectChoice choice, int expectedEncounterRevision = -1)
+    {
+        if (!CoreActionInputReady || HookedEncounter == null
+            || (choice != EncounterEffectChoice.Catch && choice != EncounterEffectChoice.Bait)
+            || (expectedEncounterRevision >= 0 && expectedEncounterRevision != encounterRuntime.EncounterRevision)) return false;
+        selectedEncounterChoice = choice;
+        selectedEncounterChoiceRevision = encounterRuntime.EncounterRevision;
+        RefreshViews();
+        return true;
     }
 
     /// <summary>Refreshes result presentation after the view finishes replaying the ascent.</summary>
@@ -487,8 +503,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Commits only a catchable encounter, preserving the normal attachment and suspended Descend path.</summary>
     private void CommitCurrentEncounterForDescend()
     {
-        CatchAttachmentRole attachmentRole = fishingRunView != null
-            && fishingRunView.SelectedEncounterEffectChoice == EncounterEffectChoice.Bait
+        CatchAttachmentRole attachmentRole = SelectedEncounterChoice == EncounterEffectChoice.Bait
                 ? CatchAttachmentRole.Bait
                 : CatchAttachmentRole.Catch;
         bool concealedCommit = encounterRuntime.IsCreatureConcealed;
@@ -2123,7 +2138,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (fishingRunView != null)
         {
             CardDefinition currentEncounter = encounterRuntime.CurrentEncounter;
-            CatchAttachmentRole previewRole = fishingRunView.SelectedEncounterEffectChoice == EncounterEffectChoice.Bait
+            CatchAttachmentRole previewRole = SelectedEncounterChoice == EncounterEffectChoice.Bait
                 ? CatchAttachmentRole.Bait
                 : CatchAttachmentRole.Catch;
             CardInstance encounterPreview = catchChainRuntime.CreateResolvedCatchPreview(
@@ -2172,7 +2187,10 @@ public sealed class FishingRunController : MonoBehaviour
                 TryReleaseSelectedCatch,
                 TrySurface,
                 CurrentEncounterIdentityHidden,
-                hideCurrentHaulValue ? (int?)null : currentHaulValue);
+                hideCurrentHaulValue ? (int?)null : currentHaulValue,
+                CoreActionInputReady && HookedEncounter != null);
+            fishingRunView.SetEncounterRoleSelection(currentEncounter != null && currentEncounter.RequiresAttachmentChoice
+                ? SelectedEncounterChoice : SelectedEncounterChoice == EncounterEffectChoice.None ? EncounterEffectChoice.Catch : SelectedEncounterChoice);
             fishingRunView.SetTrailPreview(runActive ? encounterRuntime.Trail.Preview : string.Empty);
             fishingRunView.SetOpeningVisible(IsOpeningBoatVisible);
         }

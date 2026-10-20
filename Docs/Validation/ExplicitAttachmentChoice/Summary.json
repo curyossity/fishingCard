@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "componentChecks": 674,
+  "playModeChecks": 27,
+  "totalChecks": 701,
+  "sceneClean": true,
+  "playModeAndBackgroundRestoredOff": true,
+  "penpotChanges": false
+}
