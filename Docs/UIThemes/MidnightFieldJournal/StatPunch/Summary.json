@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "playModeChecks": 31,
+  "integerSequence": [
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "maximumStepScale": 1.3907999992370605,
+  "finalBeatScale": 1.4883999824523926,
+  "alternatingTilt": true,
+  "captureDirectory": "Docs/UIThemes/MidnightFieldJournal/StatPunch/Capture-20261020-113230952/",
+  "sceneClean": true,
+  "penpotEdited": false
+}

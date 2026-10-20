@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-006 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,37 completed,4 superseded. [Next import baseline](StatFeedback/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
+**MFJ-SYNC-006 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,37 completed,4 superseded. [Next import baseline](StatPunch/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -230,3 +230,7 @@ Before role selection, both Catch and Bait panels are dimmed and neither glows. 
 ## Current encounter animated chain stats — MFJ-SYNC-006.9
 
 User-approved exception to normal stat styling: Catch Chain-influenced Weight/Value numbers use 1.22× scale, green #18703A for Value gains/Weight reductions and red #AE2C26 for Value losses/Weight increases. Hold the chain-free baseline for 0.25s, then show each integer for at least 0.16s. Emphasis persists at the modified result. Unaffected numbers stay normal; Bait’s intrinsic zero sale value is neutral. Return-to-baseline counts visibly and restores normal styling on arrival. Hidden stats stay hidden. Incoming transitions hold counting until settled; historical/outgoing cards show their authoritative final values. All values remain separate live text; no art, numerical-delta labels or gameplay changes. [Captures and checks](StatFeedback/README.md).
+
+## Springy number-beat motion — MFJ-SYNC-006.10
+
+The current-encounter integer animation adds a short damped spring on each step: 14% scale punch over the existing enlarged style, alternating2.5° tilt, 0.36s settling. The final integer uses a stronger22% punch before returning to the persistent1.22× green/red style. Existing hold, integer pacing, masking, role handling and transition pause are unchanged. No flames, particles, sound additions, pixel treatment or new fonts/assets. [Verification](StatPunch/README.md).

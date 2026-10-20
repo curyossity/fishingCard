@@ -8,6 +8,10 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     [SerializeField, Min(.05f)] private float secondsPerInteger = .16f;
     [SerializeField, Min(0)] private float initialHold = .25f;
     [SerializeField, Range(1, 1.5f)] private float modifiedScale = 1.22f;
+    [SerializeField, Range(0, .4f)] private float stepPunch = .14f;
+    [SerializeField, Range(0, .4f)] private float finalPunch = .22f;
+    [SerializeField, Min(.1f)] private float punchDuration = .36f;
+    [SerializeField, Range(0, 8)] private float tiltDegrees = 2.5f;
     [SerializeField] private Color positiveInk = new Color32(24, 112, 58, 255);
     [SerializeField] private Color negativeInk = new Color32(174, 44, 38, 255);
     private sealed class Counter
@@ -15,8 +19,11 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
         public TMP_Text Text;
         public Color NormalInk;
         public Vector3 NormalScale;
+        public Quaternion NormalRotation;
         public int Displayed, Target, Baseline, Polarity;
         public float Wait;
+        public float PunchAge, PunchAmount;
+        public int Beat;
         public bool Initialized;
     }
     private Counter weight, value;
@@ -56,7 +63,8 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     private static Counter CreateCounter(TMP_Text text)
     {
         return new Counter { Text = text, NormalInk = text == null ? Color.white : text.color,
-            NormalScale = text == null ? Vector3.one : text.rectTransform.localScale };
+            NormalScale = text == null ? Vector3.one : text.rectTransform.localScale,
+            NormalRotation = text == null ? Quaternion.identity : text.rectTransform.localRotation };
     }
 
     /// <summary>Distinguishes chain-modified values from role-only changes and resumes from the currently visible integer.</summary>
@@ -71,7 +79,11 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
         bool start = fresh || !counter.Initialized;
         bool changed = start || target != counter.Target || baseline != counter.Baseline;
         bool wasModified = counter.Target != counter.Baseline;
-        if (start) counter.Displayed = modified ? baseline : target;
+        if (start)
+        {
+            counter.Displayed = modified ? baseline : target;
+            counter.PunchAge = punchDuration; counter.Beat = 0;
+        }
         else if (changed && !modified && !wasModified) counter.Displayed = target;
         counter.Target = target; counter.Baseline = baseline; counter.Initialized = true;
         if (changed)
@@ -95,6 +107,7 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     private void Tick(Counter counter)
     {
         if (counter == null || !counter.Initialized || counter.Text == null) return;
+        counter.PunchAge = Mathf.Min(punchDuration, counter.PunchAge + Time.unscaledDeltaTime);
         if (counter.Displayed != counter.Target)
         {
             counter.Wait -= Time.unscaledDeltaTime;
@@ -102,18 +115,25 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
             {
                 counter.Displayed += counter.Target > counter.Displayed ? 1 : -1;
                 counter.Wait = secondsPerInteger;
+                counter.PunchAge = 0;
+                counter.PunchAmount = counter.Displayed == counter.Target ? finalPunch : stepPunch;
+                counter.Beat++;
             }
         }
         Render(counter);
     }
 
-    /// <summary>Keeps final modified stats emphasised and restores default appearance once a removed modifier counts back to baseline.</summary>
+    /// <summary>Pops and rocks each counting beat with a damped spring, then settles at the appropriate persistent style.</summary>
     private void Render(Counter counter)
     {
         counter.Text.text = counter.Displayed.ToString();
         bool emphasised = counter.Target != counter.Baseline || counter.Displayed != counter.Target;
         counter.Text.color = emphasised ? counter.Polarity > 0 ? positiveInk : negativeInk : counter.NormalInk;
-        counter.Text.rectTransform.localScale = counter.NormalScale * (emphasised ? modifiedScale : 1);
+        float t = Mathf.Clamp01(counter.PunchAge / punchDuration);
+        float spring = t >= 1 ? 0 : Mathf.Exp(-7 * t) * Mathf.Cos(3 * Mathf.PI * t);
+        counter.Text.rectTransform.localScale = counter.NormalScale * ((emphasised ? modifiedScale : 1) * (1 + counter.PunchAmount * spring));
+        float tilt = spring * tiltDegrees * (counter.Beat % 2 == 0 ? -1 : 1);
+        counter.Text.rectTransform.localRotation = counter.NormalRotation * Quaternion.Euler(0, 0, tilt);
     }
 
     /// <summary>Clears presentation state when the card is blanked, hidden or reused outside the current encounter.</summary>
@@ -128,6 +148,7 @@ public sealed class CreatureCardStatAnimator : MonoBehaviour
     {
         if (counter?.Text == null) return;
         counter.Text.color = counter.NormalInk; counter.Text.rectTransform.localScale = counter.NormalScale;
+        counter.Text.rectTransform.localRotation = counter.NormalRotation;
     }
 
     /// <summary>Discards pending counters when the slot leaves presentation.</summary>

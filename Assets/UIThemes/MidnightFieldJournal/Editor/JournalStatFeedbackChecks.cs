@@ -10,7 +10,8 @@ using UnityEngine;
 /// <summary>Checks visible integer pacing, stat polarity, masking and actual Catch Chain preview integration.</summary>
 public static class JournalStatFeedbackChecks
 {
-    private const string Output = "Docs/UIThemes/MidnightFieldJournal/StatFeedback/";
+    private const string DefaultOutput = "Docs/UIThemes/MidnightFieldJournal/StatFeedback/";
+    private static string Output;
     private static JournalModalHost runner;
     private static GameObject fixture;
     private static bool oldBackground;
@@ -18,15 +19,19 @@ public static class JournalStatFeedbackChecks
     private static int assertions;
     private static string captureDirectory;
     public static string Status { get; private set; } = "Not started";
-    [Serializable] private sealed class Report { public bool passed; public int assertions; public string error; public int[] valueSequence; public string captureDirectory; }
+    [Serializable] private sealed class Report { public bool passed; public int assertions; public string error; public int[] valueSequence; public string captureDirectory; public float maximumStepScale, finalBeatScale; public bool positiveTilt, negativeTilt; }
     private static readonly List<int> sequence = new List<int>();
+    private static float maximumStepScale, finalBeatScale;
+    private static bool positiveTilt, negativeTilt;
 
     /// <summary>Runs a finite Play Mode check, preserving source assets and saved scenes.</summary>
-    public static void Start()
+    public static void Start(string outputFolder = null)
     {
         if (!Application.isPlaying || runner != null) throw new InvalidOperationException("Enter Play Mode and start once.");
         oldBackground = Application.runInBackground; oldTimeScale = Time.timeScale;
         Application.runInBackground = true; assertions = 0; sequence.Clear(); Status = "Running";
+        Output = string.IsNullOrWhiteSpace(outputFolder) ? DefaultOutput : outputFolder;
+        Directory.CreateDirectory(Output); maximumStepScale = finalBeatScale = 0; positiveTilt = negativeTilt = false;
         captureDirectory = Output + "Capture-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmssfff") + "/";
         Directory.CreateDirectory(captureDirectory);
         runner = new GameObject("Stat Feedback Verification").AddComponent<JournalModalHost>(); runner.StartCoroutine(Guarded());
@@ -43,7 +48,8 @@ public static class JournalStatFeedbackChecks
             if (!more) break; yield return check.Current;
         }
         File.WriteAllText(Output + "PlayModeVerification.json", JsonUtility.ToJson(new Report { passed = failure == null,
-            assertions = assertions, error = failure?.ToString(), valueSequence = sequence.ToArray(), captureDirectory = captureDirectory }, true));
+            assertions = assertions, error = failure?.ToString(), valueSequence = sequence.ToArray(), captureDirectory = captureDirectory,
+            maximumStepScale = maximumStepScale, finalBeatScale = finalBeatScale, positiveTilt = positiveTilt, negativeTilt = negativeTilt }, true));
         Application.runInBackground = oldBackground; Time.timeScale = oldTimeScale;
         if (fixture != null) UnityEngine.Object.Destroy(fixture);
         UnityEngine.Object.Destroy(runner.gameObject); runner = null;
@@ -75,13 +81,22 @@ public static class JournalStatFeedbackChecks
         while (Time.realtimeSinceStartup < deadline)
         {
             int shown = int.Parse(value.text);
+            if (shown > 8 && shown < 12) maximumStepScale = Mathf.Max(maximumStepScale, value.rectTransform.localScale.x);
+            float tilt = Mathf.DeltaAngle(0, value.rectTransform.localEulerAngles.z);
+            positiveTilt |= tilt > .5f; negativeTilt |= tilt < -.5f;
             if (sequence.Count == 0 || sequence[sequence.Count - 1] != shown) sequence.Add(shown);
-            if (shown == 12) break;
+            if (shown == 12) { finalBeatScale = value.rectTransform.localScale.x; break; }
             bind(1, 2, 8, 2, 12); yield return null;
         }
         Require(string.Join(",", sequence) == "8,9,10,11,12", "Integer sequence skipped or restarted under repeated refresh");
         Require(Time.realtimeSinceStartup - began >= .6f, "Counting was too fast to notice");
         Require(value.color.g > value.color.r && value.rectTransform.localScale.x > 1.2f, "Final modified number lost emphasis");
+        Require(maximumStepScale > 1.35f, "Counting steps lack a noticeable pop");
+        Require(positiveTilt && negativeTilt, "Counting beats did not alternate their tilt");
+        Require(finalBeatScale > maximumStepScale + .04f, "Final landing was not stronger than ordinary beats");
+        yield return new WaitForSecondsRealtime(.45f);
+        Require(Mathf.Abs(value.rectTransform.localScale.x - 1.22f) < .001f
+            && Quaternion.Angle(value.rectTransform.localRotation, Quaternion.identity) < .01f, "Punch did not settle to the persistent stat style");
         bind(1, 2, 8, 2, 8);
         Require(value.text == "12" && value.color.r > value.color.g, "Removing a value buff did not count down visibly");
         yield return new WaitForSecondsRealtime(1.2f);

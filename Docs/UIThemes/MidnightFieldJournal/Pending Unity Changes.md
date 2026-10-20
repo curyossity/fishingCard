@@ -43,3 +43,7 @@ Implemented in Unity on 20 October 2026: both panels start faded; opacity increa
 ## Animated main-card chain stats — MFJ-SYNC-006.9
 
 Implemented directly in Unity on 20 October 2026: chain-modified Weight/Value grow, turn green/red by benefit and count one integer at a time. Refreshes retain progress; new occurrences, masks, role-only zero Value and history are handled separately. Gameplay values do not wait for the animation. [Captures, checks and current baseline](StatFeedback/README.md). No new Penpot revision or pending import.
+
+## Springy number-only stat feedback — MFJ-SYNC-006.10
+
+Implemented in Unity on20 October2026. Counting stats now pop with a short scale spring and alternating tilt on every integer; the final beat is slightly stronger and settles to the existing enlarged green/red style. Fonts, artwork, pacing and gameplay remain unchanged. [Checks and current baseline](StatPunch/README.md). No new Penpot revision or pending import.
