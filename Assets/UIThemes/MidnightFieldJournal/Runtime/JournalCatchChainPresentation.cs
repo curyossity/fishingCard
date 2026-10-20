@@ -36,6 +36,23 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
     private Action<int> selectCatch;
     private int count;
     private JournalCatchChainScrollRect chainScroll;
+    private CompactCatchCardView animatingCard;
+    private bool waitingForScroll;
+    private bool waitingForPulse;
+    private JournalCatchCardPulse cardPulse;
+    private int feedbackGestureRevision;
+    private bool statFeedbackEnabled = true;
+    public CompactCatchCardView AnimatingCard => animatingCard;
+
+    /// <summary>Stops unfinished feedback when live attachments become static end-of-run snapshots.</summary>
+    public override void SetStatFeedbackEnabled(bool enabled)
+    {
+        statFeedbackEnabled = enabled;
+        if (enabled) return;
+        StopCardPulse(); animatingCard = null; waitingForScroll = false;
+        foreach (var card in cards) card.DisableStatFeedback();
+        if (chainScroll != null && chainScroll.HasFeedbackFocus) chainScroll.EndFeedbackFocus();
+    }
 
     public IReadOnlyList<CompactCatchCardView> Cards => cards;
     public IReadOnlyList<UnityEngine.UI.Image> Links => links;
@@ -45,26 +62,40 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
         int currentLineLoad, int lineCapacity, int selectedCatchIndex, Action<int> selectCatchAction)
     {
         if (content == null || viewport == null || hardware == null || cardPrefab == null || theme == null) return;
+        CardInstance activeAttachment = animatingCard == null ? null : animatingCard.BoundInstance;
         selectCatch = selectCatchAction;
         attachments = catches ?? Array.Empty<CardInstance>();
         if (inspectionIndex >= attachments.Length || (inspectionIndex >= 0 && attachments[inspectionIndex] != inspectedInstance)) HideInspection();
         count = catches?.Length ?? 0;
-        while (cards.Count < count)
+        // Preserve each physical view's counter state across removals and exchanges that shift indices.
+        var ordered = new List<CompactCatchCardView>();
+        for (int i = 0; i < count; i++)
         {
-            int index = cards.Count;
-            CompactCatchCardView card = Instantiate(cardPrefab, content);
-            card.name = "Attached Card " + (index + 1);
-            card.SetSelectionHandler(() => selectCatch?.Invoke(index));
-            card.gameObject.AddComponent<JournalCatchInspectionTrigger>().Configure(this, index);
-            cards.Add(card);
+            CompactCatchCardView card = cards.Find(c => ReferenceEquals(c.BoundInstance, catches[i]));
+            if (card == null) card = cards.Find(c => !ordered.Contains(c) && Array.IndexOf(attachments, c.BoundInstance) < 0);
+            if (card == null)
+            {
+                card = Instantiate(cardPrefab, content);
+                card.gameObject.AddComponent<JournalCatchInspectionTrigger>();
+            }
+            ordered.Add(card);
         }
+        foreach (var card in cards) if (!ordered.Contains(card)) ordered.Add(card);
+        cards.Clear(); cards.AddRange(ordered);
         for (int i = 0; i < cards.Count; i++)
         {
             CompactCatchCardView card = cards[i];
             card.gameObject.SetActive(i < count);
             if (i >= count) continue;
+            int index = i;
+            card.name = "Attached Card " + (i + 1);
+            card.SetSelectionHandler(() => selectCatch?.Invoke(index));
+            card.GetComponent<JournalCatchInspectionTrigger>().Configure(this, i);
+            if (Application.isPlaying && statFeedbackEnabled) card.EnableStatFeedback();
+            else card.DisableStatFeedback();
             CardInstance instance = catches[i];
             card.SetCard(instance);
+            card.SetStatFeedbackPaused(card != animatingCard || waitingForScroll || waitingForPulse);
             theme.TryGetCompactArtwork(instance?.Definition?.UniqueId, out Sprite artwork);
             Rect bounds = theme.GetCompactArtworkBounds(instance?.Definition?.UniqueId);
             card.SetArtwork(artwork, bounds);
@@ -73,6 +104,14 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
         if (emptyText != null) emptyText.gameObject.SetActive(count == 0);
         if (loadMeter != null) loadMeter.SetLoad(currentLineLoad, lineCapacity);
         LayoutChain();
+        if (animatingCard != null && (!ReferenceEquals(activeAttachment, animatingCard.BoundInstance)
+            || !Array.Exists(attachments, a => ReferenceEquals(a, activeAttachment))))
+        {
+            animatingCard.SetStatFeedbackPaused(true);
+            StopCardPulse();
+            animatingCard = null; waitingForScroll = false;
+            if (chainScroll != null) chainScroll.EndFeedbackFocus();
+        }
         if (tooltip != null && tooltip.gameObject.activeSelf && inspectedInstance != null) tooltip.Bind(inspectedInstance);
     }
 
@@ -97,6 +136,7 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
     /// <summary>Positions a nonblocking tooltip on its source card, never at the moving pointer.</summary>
     private void LateUpdate()
     {
+        AdvanceStatFeedback();
         if (inspectionSource == null) return;
         if (!inspectionSource.Interested || content.anchoredPosition != inspectionScroll || !InspectionAllowed()) { HideInspection(); return; }
         if (Time.unscaledTime < showAt || tooltipPrefab == null) return;
@@ -134,7 +174,63 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
     }
 
     /// <summary>Dismisses an inspection when its chain leaves the visible run.</summary>
-    private void OnDisable() { HideInspection(); }
+    private void OnDisable()
+    {
+        HideInspection(); StopCardPulse(); animatingCard = null; waitingForScroll = false;
+        foreach (var card in cards) card.CompleteStatFeedback();
+        if (chainScroll != null) chainScroll.EndFeedbackFocus();
+    }
+
+    /// <summary>Finishes one visible recipient, including its spring settle, before starting the next newest pending card.</summary>
+    private void AdvanceStatFeedback()
+    {
+        if (!Application.isPlaying || !statFeedbackEnabled) return;
+        if (animatingCard != null && chainScroll != null && feedbackGestureRevision != chainScroll.UserGestureRevision)
+        {
+            foreach (var card in cards) card.CompleteStatFeedback();
+            StopCardPulse();
+            animatingCard = null; waitingForScroll = false; chainScroll.EndFeedbackFocus();
+            return;
+        }
+        if (animatingCard != null)
+        {
+            if (waitingForScroll)
+            {
+                if (chainScroll != null && chainScroll.IsFeedbackScrolling) return;
+                waitingForScroll = false; waitingForPulse = true;
+                cardPulse = JournalCatchCardPulse.GetOrCreate(animatingCard); cardPulse.Begin();
+                return;
+            }
+            if (waitingForPulse)
+            {
+                if (cardPulse != null && cardPulse.IsPlaying) return;
+                waitingForPulse = false; animatingCard.SetStatFeedbackPaused(false);
+                return;
+            }
+            if (animatingCard.HasPendingStatFeedback) return;
+            animatingCard.SetStatFeedbackPaused(true); StopCardPulse(); animatingCard = null;
+        }
+        for (int i = count - 1; i >= 0; i--)
+        {
+            if (!cards[i].HasPendingStatFeedback) continue;
+            animatingCard = cards[i]; waitingForScroll = true; HideInspection();
+            if (chainScroll != null)
+            {
+                feedbackGestureRevision = chainScroll.UserGestureRevision;
+                var recipient = (RectTransform)animatingCard.transform;
+                chainScroll.FocusFeedbackCard(recipient, recipient.rect.height * .03f);
+            }
+            return;
+        }
+        if (chainScroll != null && chainScroll.HasFeedbackFocus) chainScroll.EndFeedbackFocus();
+    }
+
+    /// <summary>Cancels only card-level presentation, preserving resolved gameplay and numeric targets.</summary>
+    private void StopCardPulse()
+    {
+        if (cardPulse != null) cardPulse.Stop();
+        cardPulse = null; waitingForPulse = false;
+    }
     /// <summary>Releases the separately parented tooltip with its owning chain.</summary>
     private void OnDestroy() { if (tooltip != null) { if (Application.isPlaying) Destroy(tooltip.gameObject); else DestroyImmediate(tooltip.gameObject); } }
 

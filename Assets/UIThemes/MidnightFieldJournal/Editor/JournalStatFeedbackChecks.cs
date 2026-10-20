@@ -7,7 +7,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>Checks visible integer pacing, stat polarity, masking and actual Catch Chain preview integration.</summary>
+/// <summary>Checks visible integer pacing, role changes, masking and resolved feedback from chain, Technique and event effects.</summary>
 public static class JournalStatFeedbackChecks
 {
     private const string DefaultOutput = "Docs/UIThemes/MidnightFieldJournal/StatFeedback/";
@@ -116,8 +116,13 @@ public static class JournalStatFeedbackChecks
         bind(5, 2, 8, 2, 12);
         Require(value.text == "8", "Same-species new occurrence did not restart at its own baseline");
         card.SetCard(cod, 2, 0, false); card.SelectEffectChoice(EncounterEffectChoice.Bait, false);
-        card.PresentStatFeedback(new EncounterStatFeedback(6, 2, 0));
+        card.PresentStatFeedback(new EncounterStatFeedback(5, 2, 0, true));
         Require(value.text == "0" && value.color == normal && value.rectTransform.localScale == Vector3.one, "Bait's zero sale value was treated as a penalty");
+        yield return new WaitForSecondsRealtime(.4f);
+        Require(value.text == "0" && Quaternion.Angle(value.rectTransform.localRotation, Quaternion.identity) < .01f, "Bait retained a Catch count or punch");
+        card.SetCard(cod, 2, 12, false); card.SelectEffectChoice(EncounterEffectChoice.Catch, false);
+        card.PresentStatFeedback(new EncounterStatFeedback(5, 2, 8));
+        Require(value.text == "8" && value.color.g > value.color.r, "Returning to Catch counted from Bait zero instead of authored Value");
         card.SetCard(cod, 3, 20, true, true); card.PresentStatFeedback(new EncounterStatFeedback(7, 2, 8));
         yield return new WaitForSecondsRealtime(.4f);
         Require(weight.text == "?" && value.text == "?" && value.color == normal, "Animation exposed hidden information");
@@ -141,9 +146,8 @@ public static class JournalStatFeedbackChecks
         chain.Add(AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/Spiny Lobster.asset"), resolver, CatchAttachmentRole.Bait);
         Action<CardInstance> pending = p => p.AddPermanentModifiers(1, 8);
         var resolved = chain.CreateResolvedCatchPreview(urchin, resolver, CatchAttachmentRole.Catch, pending);
-        var baseline = chain.CreateResolvedCatchPreview(urchin, resolver, CatchAttachmentRole.Catch, pending, false);
-        Require(baseline.CurrentWeight == 2 && resolved.CurrentWeight == 1, "Baseline failed to isolate Lobster from pending Technique modifiers");
-        Require(baseline.CurrentValue == resolved.CurrentValue && chain.Catches.Length == 1, "Presentation baseline changed unrelated value or live chain");
+        Require(resolved.CurrentWeight == 1, "Combined chain and pending Technique Weight preview changed");
+        Require(resolved.CurrentValue == urchin.Value + 8 && chain.Catches.Length == 1, "Combined preview lost Technique Value or changed the live chain");
         runtime.SetCurrentEncounter(urchin); refresh.Invoke(controller, null);
         var current = (CreatureCardView)typeof(FishingRunView).GetField("encounterCardView", flags).GetValue(view);
         var currentWeight = (TMP_Text)typeof(CreatureCardView).GetField("weightText", flags).GetValue(current);
@@ -160,6 +164,38 @@ public static class JournalStatFeedbackChecks
         yield return new WaitForSecondsRealtime(.9f);
         Require(currentValue.text == "12", "Garfish failed to reach chain-resolved Value");
         ScreenCapture.CaptureScreenshot(captureDirectory + "ValueIncrease4K.png"); yield return null;
+        chain.Reset(); runtime.SetCurrentEncounter(cod); refresh.Invoke(controller, null);
+        var deck = (TechniqueDeckRuntime)typeof(FishingRunController).GetField("techniqueDeckRuntime", flags).GetValue(controller);
+        var techniques = (TechniqueEffectRuntime)typeof(FishingRunController).GetField("techniqueEffectRuntime", flags).GetValue(controller);
+        typeof(TechniqueDeckRuntime).GetField("hand", flags).SetValue(deck,
+            new[] { AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/Prize Hook.asset") });
+        Require(controller.TryUseTechniqueCard(0), "Prize Hook could not be played in the real reaction window");
+        Require(currentWeight.text == cod.Weight.ToString() && currentWeight.color.r > currentWeight.color.g,
+            "Technique Weight penalty did not start red at authored Weight");
+        Require(currentValue.text == cod.Value.ToString() && currentValue.color.g > currentValue.color.r,
+            "Technique Value bonus did not start green at authored Value");
+        yield return new WaitForSecondsRealtime(.5f);
+        Require(currentWeight.text == (cod.Weight + 1).ToString() && int.Parse(currentValue.text) > cod.Value,
+            "Technique stat modifiers did not count through visible integers");
+        Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Bait), "Could not choose Bait during Technique preview");
+        Require(currentValue.text == "0" && currentValue.color == normal && currentValue.rectTransform.localScale == Vector3.one,
+            "Real Bait selection counted down or retained Technique emphasis");
+        Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Catch), "Could not restore Catch");
+        Require(currentValue.text == cod.Value.ToString(), "Real Catch return counted from zero");
+        yield return new WaitForSecondsRealtime(1.9f);
+        Require(currentValue.text == (cod.Value + 8).ToString() && techniques.Approved.PendingPrizeCount == 1,
+            "Prize preview missed its final Value or consumed the grant");
+        ScreenCapture.CaptureScreenshot(captureDirectory + "TechniqueStats4K.png"); yield return null;
+        techniques.Approved.Reset();
+        var persistence = (EventPersistenceRuntime)typeof(FishingRunController).GetField("eventPersistenceRuntime", flags).GetValue(controller);
+        var upwelling = AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/Gentle Upwelling.asset");
+        persistence.QueuePending(999, upwelling, upwelling.Effects[0], EventEffectLifetime.UntilRunEnds());
+        Require(controller.TryChooseEncounterRole(EncounterEffectChoice.Bait), "Could not choose Bait for Upwelling");
+        Require(currentWeight.color.g > currentWeight.color.r && currentValue.text == "0" && currentValue.color == normal,
+            "Event Weight reduction or neutral Bait Value was not presented");
+        yield return new WaitForSecondsRealtime(.8f);
+        Require(currentWeight.text == Mathf.Max(0, cod.Weight - 1).ToString() && persistence.Effects[0].IsPending,
+            "Upwelling preview missed reduced Weight or consumed its pending effect");
         controller.StartRun(); yield return null;
         Require(controller.IsOpeningBoatVisible, "Verification failed to reset run");
     }

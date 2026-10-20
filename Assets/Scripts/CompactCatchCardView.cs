@@ -44,6 +44,38 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     private Action selectionAction;
     private bool pointerInside;
     private bool focused;
+    private CreatureCardStatAnimator statAnimator;
+    private bool statFeedbackEnabled;
+    private CardInstance boundInstance;
+    public CardInstance BoundInstance => boundInstance;
+    public bool HasPendingStatFeedback => statAnimator != null && statAnimator.IsAnimating;
+
+    /// <summary>Opts a pooled compact card into the same number animation used by the central creature.</summary>
+    public void EnableStatFeedback()
+    {
+        statFeedbackEnabled = true;
+        if (statAnimator != null) return;
+        statAnimator = GetComponent<CreatureCardStatAnimator>();
+        if (statAnimator == null) statAnimator = gameObject.AddComponent<CreatureCardStatAnimator>();
+        statAnimator.BindTextFields(weightText, valueText);
+    }
+
+    /// <summary>Prevents ended-run snapshots from replaying effects as newly attached creatures.</summary>
+    public void DisableStatFeedback()
+    {
+        statFeedbackEnabled = false;
+        if (statAnimator != null) statAnimator.ResetPresentation();
+    }
+
+    /// <summary>Lets the chain coordinator serialize animations while preserving queued numbers.</summary>
+    public void SetStatFeedbackPaused(bool paused) { if (statAnimator != null) statAnimator.SetPaused(paused, true); }
+
+    /// <summary>Settles queued feedback immediately when manual inspection takes over scrolling.</summary>
+    public void CompleteStatFeedback()
+    {
+        if (statAnimator == null) return;
+        statAnimator.Complete();
+    }
 
     public RectTransform RigAttachmentPoint => rigAttachmentPoint;
     public CompactCatchCardState State => state;
@@ -71,6 +103,12 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     /// <summary>Populates the compact card from one resolved catch instance.</summary>
     public void SetCard(CardInstance caughtInstance, Sprite optionalPassiveIcon = null)
     {
+        if (statAnimator != null)
+        {
+            if (!ReferenceEquals(boundInstance, caughtInstance)) statAnimator.ResetPresentation();
+            else statAnimator.PrepareForRefresh();
+        }
+        boundInstance = caughtInstance;
         CardDefinition definition = caughtInstance?.Definition;
         SetContent(
             definition == null ? string.Empty : uppercaseName ? definition.DisplayName.ToUpperInvariant() : definition.DisplayName,
@@ -83,6 +121,11 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
                     : caughtInstance.HidesOwnValueDuringRun ? "?" : caughtInstance.HaulValueContribution.ToString(),
             optionalPassiveIcon,
             caughtInstance?.IsBait == true);
+        if (statFeedbackEnabled && statAnimator != null && definition != null)
+            statAnimator.Present(definition, new EncounterStatFeedback(caughtInstance.InstanceId,
+                definition.Weight, caughtInstance.IsBait ? 0 : caughtInstance.BaseValue, caughtInstance.IsBait),
+                caughtInstance.CurrentWeight, caughtInstance.HaulValueContribution, false,
+                !caughtInstance.IsBait && caughtInstance.HidesOwnValueDuringRun);
     }
 
     /// <summary>Populates direct values for editor previews and presentation tests.</summary>
@@ -94,6 +137,8 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
         Sprite optionalPassiveIcon,
         bool isBait = false)
     {
+        if (statAnimator != null) statAnimator.ResetPresentation();
+        boundInstance = null;
         SetContent(displayName, portrait, weight.ToString(), isBait ? "0" : value.ToString(), optionalPassiveIcon, isBait);
     }
 

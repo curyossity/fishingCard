@@ -527,41 +527,33 @@ public sealed class CatchChainRuntime
 
     /// <summary>
     /// Resolves a temporary catch copy against the current chain without mutating the active run.
-    /// A chain-free baseline retains the card's own effects and pending-preview callback, without consuming chain grants.
     /// </summary>
     public CardInstance CreateResolvedCatchPreview(
         CardDefinition card,
         EffectResolver effectResolver,
         CatchAttachmentRole attachmentRole = CatchAttachmentRole.Catch,
-        Action<CardInstance> applyPendingPreview = null,
-        bool includeChainEffects = true)
+        Action<CardInstance> applyPendingPreview = null)
     {
         if (card == null || effectResolver == null)
         {
             return null;
         }
 
-        CardInstance[] previewCatches = includeChainEffects ? CreateSnapshot() : Array.Empty<CardInstance>();
+        CardInstance[] previewCatches = CreateSnapshot();
         CardInstance previewCatch = new CardInstance(0, card, null, attachmentRole);
         applyPendingPreview?.Invoke(previewCatch);
         previewCatches = AppendCatch(previewCatches, previewCatch);
 
         List<ActiveCatchEffectRecord> previewEffects = new List<ActiveCatchEffectRecord>();
-        if (includeChainEffects)
+        foreach (ActiveCatchEffectRecord record in activeEffectRecords)
         {
-            foreach (ActiveCatchEffectRecord record in activeEffectRecords)
-            {
-                CardInstance sourceCopy = Array.Find(previewCatches, c => c?.InstanceId == record.SourceInstance?.InstanceId);
-                previewEffects.Add(new ActiveCatchEffectRecord(sourceCopy, record.Effect, record.ActiveTrigger, record.SourceCatchIndex));
-            }
+            CardInstance sourceCopy = Array.Find(previewCatches, c => c?.InstanceId == record.SourceInstance?.InstanceId);
+            previewEffects.Add(new ActiveCatchEffectRecord(sourceCopy, record.Effect, record.ActiveTrigger, record.SourceCatchIndex));
         }
         AppendPreviewEffects(previewEffects, previewCatch, previewCatches.Length - 1);
         effectResolver.ResolveCatchChain(previewCatches, previewEffects.ToArray());
-        if (includeChainEffects)
-        {
-            ApplyPendingNextCatchEffects(previewCatch, false);
-            ApplyPendingCreatureCatchEffects(previewCatch, false);
-        }
+        ApplyPendingNextCatchEffects(previewCatch, false);
+        ApplyPendingCreatureCatchEffects(previewCatch, false);
         effectResolver.ResolveCatchChain(previewCatches, previewEffects.ToArray());
         return previewCatch;
     }

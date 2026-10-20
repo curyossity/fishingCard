@@ -49,6 +49,9 @@ public sealed class CatchChainView : MonoBehaviour
     private Action<int> selectCatchAction;
     private bool lineLoadOverloaded;
 
+    /// <summary>Forwards the controller's live-run boundary to optional animated presentations.</summary>
+    public void SetStatFeedbackEnabled(bool enabled) { if (presentation != null) presentation.SetStatFeedbackEnabled(enabled); }
+
     /// <summary>
     /// Creates the runtime layout before the first Catch Chain refresh.
     /// </summary>

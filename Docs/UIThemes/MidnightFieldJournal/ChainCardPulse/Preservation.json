@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalChainStatChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainScrollRect.cs"
+  ],
+  "newFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchCardPulse.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchCardPulse.cs.meta"
+  ],
+  "protectedFilesUnchanged": 1162,
+  "gameplaySharedAnimatorArtFontsDefinitionsPrefabsScenesAndSettingsUnchanged": true
+}

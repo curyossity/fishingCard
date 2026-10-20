@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "playModeChecks": 45,
+  "runtimeChecks": {
+    "coastal": 62,
+    "modes": 101,
+    "approvedTechniques": 39
+  },
+  "integerSequence": [
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "sceneClean": true,
+  "editorErrors": 0,
+  "penpotEdited": false,
+  "captureDirectory": "Docs/UIThemes/MidnightFieldJournal/AllStatFeedback/Capture-20261020-115355811/"
+}

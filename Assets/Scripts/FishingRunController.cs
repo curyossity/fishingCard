@@ -2126,6 +2126,7 @@ public sealed class FishingRunController : MonoBehaviour
 
         if (catchChainView != null)
         {
+            catchChainView.SetStatFeedbackEnabled(runActive);
             catchChainView.Refresh(
                 DisplayedCatches,
                 DisplayedCatchEffects,
@@ -2164,13 +2165,9 @@ public sealed class FishingRunController : MonoBehaviour
             EncounterStatFeedback? statFeedback = null;
             if (fishingRunView.SupportsEncounterStatFeedback && currentEncounter != null && currentEncounter.RequiresAttachmentChoice)
             {
-                CardInstance baseline = catchChainRuntime.CreateResolvedCatchPreview(currentEncounter, effectResolver,
-                    previewRole, techniqueEffectRuntime.Approved.PreviewPendingPrizes, false);
-                if (baseline != null)
-                {
-                    eventPersistenceRuntime.PreviewPendingBaitWeightReductions(baseline);
-                    statFeedback = new EncounterStatFeedback(encounterRuntime.EncounterRevision, baseline.CurrentWeight, baseline.HaulValueContribution);
-                }
+                bool isBait = previewRole == CatchAttachmentRole.Bait;
+                statFeedback = new EncounterStatFeedback(encounterRuntime.EncounterRevision,
+                    currentEncounter.Weight, isBait ? 0 : currentEncounter.Value, isBait);
             }
             bool hideCurrentHaulValue = false;
             foreach (CardInstance attachment in DisplayedCatches)

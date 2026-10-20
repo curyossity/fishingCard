@@ -1,0 +1,17 @@
+{
+    "passed": true,
+    "assertions": 45,
+    "error": "",
+    "valueSequence": [
+        8,
+        9,
+        10,
+        11,
+        12
+    ],
+    "captureDirectory": "Docs/UIThemes/MidnightFieldJournal/AllStatFeedback/HealthReview/Capture-20261020-120601528/",
+    "maximumStepScale": 1.3907999992370606,
+    "finalBeatScale": 1.4883999824523926,
+    "positiveTilt": true,
+    "negativeTilt": true
+}

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/Scripts/CatchChainPresentation.cs",
+    "Assets/Scripts/CatchChainView.cs",
+    "Assets/Scripts/CompactCatchCardView.cs",
+    "Assets/Scripts/CreatureCardStatAnimator.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainScrollRect.cs"
+  ],
+  "newFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalChainStatChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalChainStatChecks.cs.meta"
+  ],
+  "protectedFilesUnchanged": 1156,
+  "artFontsCardDefinitionsPrefabsScenesAndProjectSettingsUnchanged": true
+}

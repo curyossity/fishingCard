@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-006 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,37 completed,4 superseded. [Next import baseline](StatPunch/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
+**MFJ-SYNC-006 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,37 completed,4 superseded. [Next import baseline](ChainCardPulse/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -234,3 +234,15 @@ User-approved exception to normal stat styling: Catch Chain-influenced Weight/Va
 ## Springy number-beat motion — MFJ-SYNC-006.10
 
 The current-encounter integer animation adds a short damped spring on each step: 14% scale punch over the existing enlarged style, alternating2.5° tilt, 0.36s settling. The final integer uses a stronger22% punch before returning to the persistent1.22× green/red style. Existing hold, integer pacing, masking, role handling and transition pause are unchanged. No flames, particles, sound additions, pixel treatment or new fonts/assets. [Verification](StatPunch/README.md).
+
+## All-source current-creature stat feedback — MFJ-SYNC-006.11
+
+Implemented directly in Unity on 20 October 2026. Main-card Weight/Value feedback now compares all resolved effects with printed stats, including Techniques, events, own abilities and the Catch Chain. Choosing Bait sets sale Value to neutral zero immediately; returning to Catch counts only effect modifiers from printed Value. Existing colours, integer pacing, spring motion and masking remain. [Verification and current baseline](AllStatFeedback/README.md). No new Penpot revision or pending import.
+
+## Sequential Catch Chain stat feedback — MFJ-SYNC-006.12
+
+Implemented directly in Unity on 20 October 2026. Compact creatures reuse the main-card animator for all resolved Weight/Value modifiers. Affected recipients run newest to oldest, scrolling into view before counting and waiting for the full final spring before the next begins. Physical views retain runtime identity across removals; queued cards defer emphasis. Bait zero and concealed Value retain their rules. Manual scrolling settles/cancels automatic feedback, and ended-run snapshots remain static. [Verification and current baseline](ChainStatFeedback/README.md). No new Penpot revision or pending import.
+
+## Catch Chain card pop and flash — MFJ-SYNC-006.13
+
+Implemented directly in Unity on 20 October 2026. Each affected Catch/Bait now receives a gentle 4.5% centered pop and warm ivory flash before its existing number animation. Scroll padding accommodates the expansion; chain connectors remain still. The newest-to-oldest sequence waits for both stages, and interruption/removal restores resting visuals. [Verification and current baseline](ChainCardPulse/README.md). No Penpot revision or pending import was added.

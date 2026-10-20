@@ -8,7 +8,7 @@
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
-    "pageName": "Concept B — Reusable Assembly (4K)"
+    "pageName": "Concept B \u2014 Reusable Assembly (4K)"
   },
   "unityThemeRoot": "Assets/UIThemes/MidnightFieldJournal/",
   "statuses": [
@@ -333,7 +333,7 @@
               "id": "bae680cd-9225-8018-8008-cee251db922e",
               "name": "Dynamic / creature tags",
               "type": "text",
-              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
+              "text": "SMALL  \u00b7  PREDATOR  \u00b7  ELUSIVE"
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251db922f",
@@ -372,7 +372,7 @@
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251db9235",
-              "name": "Dynamic / selected Catch glow — not hover",
+              "name": "Dynamic / selected Catch glow \u2014 not hover",
               "type": "rectangle"
             },
             {
@@ -458,7 +458,7 @@
               "id": "bae680cd-9225-8018-8008-cee251f05bfd",
               "name": "Dynamic / creature tags",
               "type": "text",
-              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
+              "text": "SMALL  \u00b7  PREDATOR  \u00b7  ELUSIVE"
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251f05bfe",
@@ -497,7 +497,7 @@
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251f05c04",
-              "name": "Dynamic / selected Catch glow — not hover",
+              "name": "Dynamic / selected Catch glow \u2014 not hover",
               "type": "rectangle"
             },
             {
@@ -1073,7 +1073,7 @@
         },
         "baitEffect": {
           "name": "Buoyant Bell",
-          "description": "Reduce two other Armored creatures’ weight by 1 each."
+          "description": "Reduce two other Armored creatures\u2019 weight by 1 each."
         },
         "canvas": [
           1260,
@@ -4359,7 +4359,7 @@
         "Responsive camera fitting and hand framing",
         "Prefab regeneration and Technique hand checks"
       ],
-      "configurationChanges": "Use R029 as the latest native fan target. Reduce quadratic arc coefficient from40 to15 and set central YDown to450 (outer480). Keep500 spacing, clockwise angles±15/±5, camera tilt40 and perspective. Reuse existing art and dynamic card views; no flattened preview imports.",
+      "configurationChanges": "Use R029 as the latest native fan target. Reduce quadratic arc coefficient from40 to15 and set central YDown to450 (outer480). Keep500 spacing, clockwise angles\u00b115/\u00b15, camera tilt40 and perspective. Reuse existing art and dynamic card views; no flattened preview imports.",
       "exportRequirements": {
         "newRasterImages": [],
         "nativeVectorAndText": true,
@@ -4686,7 +4686,7 @@
         "Responsive camera fitting and hand framing",
         "Prefab regeneration and Technique hand checks"
       ],
-      "configurationChanges": "R030 is the latest native fan target. Keep middle Y450 and angles±5 exactly. Move outer centers480→500 and reduce their tilt magnitude15→8 degrees. Keep500 center spacing and existing laid-down camera/art/content. Use the recorded0–4 layout table/curve, update stable hit planes, and verify projected edge heights. Do not import flattened previews.",
+      "configurationChanges": "R030 is the latest native fan target. Keep middle Y450 and angles\u00b15 exactly. Move outer centers480\u2192500 and reduce their tilt magnitude15\u21928 degrees. Keep500 center spacing and existing laid-down camera/art/content. Use the recorded0\u20134 layout table/curve, update stable hit planes, and verify projected edge heights. Do not import flattened previews.",
       "exportRequirements": {
         "newRasterImages": [],
         "nativeVectorAndText": true,
@@ -4720,7 +4720,7 @@
         "handoff": "Sync003/README.md",
         "render": "Sync003/Fan4Cards4K.png"
       },
-      "implementationExtension": "Fan supports arbitrary physical hand counts using bounded curvature/tilt and compressed spacing; current gameplay cap4 unchanged. Rendered0–20; symmetric1–64; actual per-occurrence projected clicks8/12."
+      "implementationExtension": "Fan supports arbitrary physical hand counts using bounded curvature/tilt and compressed spacing; current gameplay cap4 unchanged. Rendered0\u201320; symmetric1\u201364; actual per-occurrence projected clicks8/12."
     },
     {
       "id": "MFJ-R031",
@@ -5480,8 +5480,8 @@
         "geometry",
         "typography"
       ],
-      "before": "Previous separate orange Descend and parchment Surface faces, 880×346 and 880×352.",
-      "after": "Matching 880×350 raised marine bronze/navy enamel controls; distinct down/up vector icons and copper/ivory lettering. Wave engraving and functional hardware instead of card botanical borders.",
+      "before": "Previous separate orange Descend and parchment Surface faces, 880\u00d7346 and 880\u00d7352.",
+      "after": "Matching 880\u00d7350 raised marine bronze/navy enamel controls; distinct down/up vector icons and copper/ivory lettering. Wave engraving and functional hardware instead of card botanical borders.",
       "unityAssetIds": [
         "DescendButton",
         "SurfaceButton"
@@ -6043,7 +6043,7 @@
         "Future prefab regeneration"
       ],
       "configurationChanges": "Presentation-only. Read runtime biome tiers/current depth; do not rename tiers to mockup sample labels. Node/label state remains native and independent of decorative coral colors. Future layout must support authored tier counts and names, not hardcode three gameplay tiers.",
-      "exportRequirements": "Keep three independent transparent PNGs and native editable text/nodes/line. No mockup slicing or flattened HUD import.760×550 guide; artwork205×153.75, original1448×1086 per asset, suitable for the4K design footprint.",
+      "exportRequirements": "Keep three independent transparent PNGs and native editable text/nodes/line. No mockup slicing or flattened HUD import.760\u00d7550 guide; artwork205\u00d7153.75, original1448\u00d71086 per asset, suitable for the4K design footprint.",
       "approvalEvidence": "User explicitly requested integrating all latest Penpot changes and logging the integration.",
       "exportEvidence": {
         "preview": "Revisions/MFJ-R040/DepthGuideReview.png",
@@ -6132,7 +6132,7 @@
         "sourceEnlargement": 1.2012012012012012,
         "scope": "Penpot only; no Unity resource changes"
       },
-      "exportRequirements": "Keep original transparent sheet independent of Technique cards; do not flatten a gameplay screenshot or slice the mockup. Source1998×787; preserve aspect ratio and record actual display bounds.",
+      "exportRequirements": "Keep original transparent sheet independent of Technique cards; do not flatten a gameplay screenshot or slice the mockup. Source1998\u00d7787; preserve aspect ratio and record actual display bounds.",
       "approvalEvidence": "User requested importing the backing sheet and fixing the boat-to-first-encounter animation.",
       "exportEvidence": {
         "source": "Revisions/MFJ-R041/TechniqueHandSheet.png",
@@ -6216,9 +6216,9 @@
     "MFJ-R001 through MFJ-R019 were imported and verified in Unity at MFJ-SYNC-001. The immutable original baseline is retained; the next comparison uses Sync001/UnityCheckpoint.json.",
     "Pending changes are never considered imported merely because an image was exported.",
     "Reconcile unrecorded external Penpot edits explicitly before the next import.",
-    "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
+    "MFJ-SYNC-002 imports all five event cards (MFJ-R020\u2013MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "StatPunch/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "ChainCardPulse/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "changedExistingFiles": [
+    "Assets/Scripts/CatchChainRuntime.cs",
+    "Assets/Scripts/CreatureCardStatAnimator.cs",
+    "Assets/Scripts/EncounterStatFeedback.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatFeedbackChecks.cs"
+  ],
+  "protectedFilesUnchanged": 1158,
+  "artFontsCardDefinitionsPrefabsScenesAndProjectSettingsUnchanged": true
+}

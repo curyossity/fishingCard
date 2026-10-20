@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "playModeChecks": 89,
+  "chainOrder": [
+    7,
+    6,
+    5,
+    4,
+    3,
+    2,
+    1
+  ],
+  "pulsedRecipients": 7,
+  "peakScale": 1.0449998378753662,
+  "peakFlash": 0.1799994260072708,
+  "sceneClean": true,
+  "penpotEdited": false,
+  "unrelatedEditorTeardownObservation": "Stopping Play Mode while a Technique was hovered emitted SetSiblingIndex from unchanged JournalTechniquePose.OnDisable (line 46). Not a card-pulse assertion failure; see README."
+}
