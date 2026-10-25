@@ -1,0 +1,1091 @@
+{
+  "revision": "MFJ-R046",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "reviewBoardId": "bae680cd-9225-8018-8008-d863692957f6",
+  "contextBoardId": "bae680cd-9225-8018-8008-d8640fcd648c",
+  "revealBoardId": "bae680cd-9225-8018-8008-d8640f15ebc8",
+  "partsBoardId": "bae680cd-9225-8018-8008-d8641c80b574",
+  "blankFrameId": "bae680cd-9225-8018-8008-d8641d512f22",
+  "prototypeStartId": "bae680cd-9225-8018-8008-d8638f85a121",
+  "motionBoardIds": [
+    "bae680cd-9225-8018-8008-d8638f85a121",
+    "bae680cd-9225-8018-8008-d863952301d3",
+    "bae680cd-9225-8018-8008-d8639c21d6ad",
+    "bae680cd-9225-8018-8008-d863a28b6c13",
+    "bae680cd-9225-8018-8008-d863a940fe56",
+    "bae680cd-9225-8018-8008-d863b05c9237",
+    "bae680cd-9225-8018-8008-d863b7c48167",
+    "bae680cd-9225-8018-8008-d863bdf8a086",
+    "bae680cd-9225-8018-8008-d863c63a9df7",
+    "bae680cd-9225-8018-8008-d863cd2030c0",
+    "bae680cd-9225-8018-8008-d863d458f83a",
+    "bae680cd-9225-8018-8008-d863dc4a48ef",
+    "bae680cd-9225-8018-8008-d863e547bc62",
+    "bae680cd-9225-8018-8008-d863ecbc489b"
+  ],
+  "resultBoardIds": {
+    "Common": "bae680cd-9225-8018-8008-d863f4fc6f19",
+    "Uncommon": "bae680cd-9225-8018-8008-d863fe964834",
+    "Rare": "bae680cd-9225-8018-8008-d86406d660e3"
+  },
+  "records": [
+    {
+      "id": "bae680cd-9225-8018-8008-d8636a409f51",
+      "trackId": "bae680cd-9225-8018-8008-d8636c639a0c",
+      "markerId": "bae680cd-9225-8018-8008-d8636d75515a",
+      "buttonId": "bae680cd-9225-8018-8008-d8636ecc3b53",
+      "position": 0.36,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d8636c75e46e",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d8636ccca29d",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8636d1d464c",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8636fd3f3ae",
+      "trackId": "bae680cd-9225-8018-8008-d8637182157d",
+      "markerId": "bae680cd-9225-8018-8008-d863727f0cbd",
+      "buttonId": "bae680cd-9225-8018-8008-d8637409318e",
+      "position": 0.96,
+      "result": "Rare",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d86371968ef8",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d86371df2281",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863721ff697",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86375138a30",
+      "trackId": "bae680cd-9225-8018-8008-d86376710b25",
+      "markerId": "bae680cd-9225-8018-8008-d8637814f5ad",
+      "buttonId": "bae680cd-9225-8018-8008-d8637a85e11e",
+      "position": 0.72,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.62,
+          "shapeId": "bae680cd-9225-8018-8008-d863768b293a",
+          "start": 0,
+          "end": 0.62,
+          "width": 649.760000000002
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.25,
+          "shapeId": "bae680cd-9225-8018-8008-d86376d0550e",
+          "start": 0.62,
+          "end": 0.87,
+          "width": 262
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8637715e332",
+          "start": 0.87,
+          "end": 0.95,
+          "width": 83.83999999999651
+        },
+        {
+          "name": "Legendary",
+          "fraction": 0.03,
+          "shapeId": "bae680cd-9225-8018-8008-d8637753ec90",
+          "start": 0.95,
+          "end": 0.98,
+          "width": 31.44000000000233
+        },
+        {
+          "name": "Miss",
+          "fraction": 0.02,
+          "shapeId": "bae680cd-9225-8018-8008-d863779401da",
+          "start": 0.98,
+          "end": 1,
+          "width": 20.959999999999127
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8637b1745a5",
+      "trackId": "bae680cd-9225-8018-8008-d8637c854ef1",
+      "markerId": "bae680cd-9225-8018-8008-d8637e1a3054",
+      "buttonId": "bae680cd-9225-8018-8008-d8637fc5dd7b",
+      "position": 0.91,
+      "result": "Rare",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.58,
+          "shapeId": "bae680cd-9225-8018-8008-d8637c9dc99e",
+          "start": 0,
+          "end": 0.58,
+          "width": 607.8399999999965
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.28,
+          "shapeId": "bae680cd-9225-8018-8008-d8637ce11d34",
+          "start": 0.58,
+          "end": 0.86,
+          "width": 293.4400000000023
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.14,
+          "shapeId": "bae680cd-9225-8018-8008-d8637d51c234",
+          "start": 0.86,
+          "end": 1,
+          "width": 146.72000000000116
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8638066420f",
+      "trackId": "bae680cd-9225-8018-8008-d86381e3de4e",
+      "markerId": "bae680cd-9225-8018-8008-d86384860f57",
+      "buttonId": "bae680cd-9225-8018-8008-d86386b4d8c9",
+      "position": 0.966,
+      "result": "Legendary",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.62,
+          "shapeId": "bae680cd-9225-8018-8008-d86381fb9908",
+          "start": 0,
+          "end": 0.62,
+          "width": 649.760000000002
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.25,
+          "shapeId": "bae680cd-9225-8018-8008-d8638243c101",
+          "start": 0.62,
+          "end": 0.87,
+          "width": 262
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d86382ef06d8",
+          "start": 0.87,
+          "end": 0.95,
+          "width": 83.83999999999651
+        },
+        {
+          "name": "Legendary",
+          "fraction": 0.03,
+          "shapeId": "bae680cd-9225-8018-8008-d863836dceed",
+          "start": 0.95,
+          "end": 0.98,
+          "width": 31.44000000000233
+        },
+        {
+          "name": "Miss",
+          "fraction": 0.02,
+          "shapeId": "bae680cd-9225-8018-8008-d863842ccb19",
+          "start": 0.98,
+          "end": 1,
+          "width": 20.959999999999127
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86387e7d72f",
+      "trackId": "bae680cd-9225-8018-8008-d86389b06954",
+      "markerId": "bae680cd-9225-8018-8008-d8638b87cf5b",
+      "buttonId": "bae680cd-9225-8018-8008-d8638e4b4743",
+      "position": 0.991,
+      "result": "Miss",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.62,
+          "shapeId": "bae680cd-9225-8018-8008-d86389c98e74",
+          "start": 0,
+          "end": 0.62,
+          "width": 649.760000000002
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.25,
+          "shapeId": "bae680cd-9225-8018-8008-d8638a28673e",
+          "start": 0.62,
+          "end": 0.87,
+          "width": 262
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8638a7f2d35",
+          "start": 0.87,
+          "end": 0.95,
+          "width": 83.83999999999651
+        },
+        {
+          "name": "Legendary",
+          "fraction": 0.03,
+          "shapeId": "bae680cd-9225-8018-8008-d8638ac96810",
+          "start": 0.95,
+          "end": 0.98,
+          "width": 31.44000000000233
+        },
+        {
+          "name": "Miss",
+          "fraction": 0.02,
+          "shapeId": "bae680cd-9225-8018-8008-d8638b10d896",
+          "start": 0.98,
+          "end": 1,
+          "width": 20.959999999999127
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8638f85a121",
+      "trackId": "bae680cd-9225-8018-8008-d86391460f90",
+      "markerId": "bae680cd-9225-8018-8008-d863927c83c0",
+      "buttonId": "bae680cd-9225-8018-8008-d86394171712",
+      "position": 0.04,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d8639169c56b",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d86391c868c8",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8639218812b",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863952301d3",
+      "trackId": "bae680cd-9225-8018-8008-d86397e7e59b",
+      "markerId": "bae680cd-9225-8018-8008-d86399d9dd1d",
+      "buttonId": "bae680cd-9225-8018-8008-d8639b84dfd3",
+      "position": 0.2,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863981b24ed",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d86398bd0294",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863997641b5",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8639c21d6ad",
+      "trackId": "bae680cd-9225-8018-8008-d8639dffa2f3",
+      "markerId": "bae680cd-9225-8018-8008-d8639f5060ce",
+      "buttonId": "bae680cd-9225-8018-8008-d863a15a3b99",
+      "position": 0.36,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d8639e23d929",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d8639e807b0d",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8639edd4d4b",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863a28b6c13",
+      "trackId": "bae680cd-9225-8018-8008-d863a5296dd1",
+      "markerId": "bae680cd-9225-8018-8008-d863a695a1b1",
+      "buttonId": "bae680cd-9225-8018-8008-d863a88c10cb",
+      "position": 0.52,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863a550a180",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863a5b87f20",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863a618b87a",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863a940fe56",
+      "trackId": "bae680cd-9225-8018-8008-d863ab42a635",
+      "markerId": "bae680cd-9225-8018-8008-d863aca5fdfe",
+      "buttonId": "bae680cd-9225-8018-8008-d863afb43576",
+      "position": 0.67,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863ab6344b1",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863abc0cc7b",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863ac21cb01",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863b05c9237",
+      "trackId": "bae680cd-9225-8018-8008-d863b263da97",
+      "markerId": "bae680cd-9225-8018-8008-d863b4ff028d",
+      "buttonId": "bae680cd-9225-8018-8008-d863b7214825",
+      "position": 0.79,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863b293af58",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863b35ded77",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863b4201346",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863b7c48167",
+      "trackId": "bae680cd-9225-8018-8008-d863b9d377e1",
+      "markerId": "bae680cd-9225-8018-8008-d863bb31a259",
+      "buttonId": "bae680cd-9225-8018-8008-d863bd368445",
+      "position": 0.9,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863b9f3e29e",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863ba51a992",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863bab91e5a",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863bdf8a086",
+      "trackId": "bae680cd-9225-8018-8008-d863c0314859",
+      "markerId": "bae680cd-9225-8018-8008-d863c1d2daa9",
+      "buttonId": "bae680cd-9225-8018-8008-d863c565eb36",
+      "position": 0.96,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863c05bd191",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863c0d86860",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863c15091a0",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863c63a9df7",
+      "trackId": "bae680cd-9225-8018-8008-d863c8a1e9d0",
+      "markerId": "bae680cd-9225-8018-8008-d863ca29d222",
+      "buttonId": "bae680cd-9225-8018-8008-d863cc4d8abe",
+      "position": 0.9,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863c8c233ea",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863c9302010",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863c99eb17f",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863cd2030c0",
+      "trackId": "bae680cd-9225-8018-8008-d863cf75bb5f",
+      "markerId": "bae680cd-9225-8018-8008-d863d11511c6",
+      "buttonId": "bae680cd-9225-8018-8008-d863d3372c73",
+      "position": 0.79,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863cfa08e38",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863d00f8219",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863d081f506",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863d458f83a",
+      "trackId": "bae680cd-9225-8018-8008-d863d7b7a733",
+      "markerId": "bae680cd-9225-8018-8008-d863d94dad1b",
+      "buttonId": "bae680cd-9225-8018-8008-d863db8ec774",
+      "position": 0.67,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863d7db9739",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863d8515712",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863d8c1abb1",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863dc4a48ef",
+      "trackId": "bae680cd-9225-8018-8008-d863de9ea276",
+      "markerId": "bae680cd-9225-8018-8008-d863e029eaa5",
+      "buttonId": "bae680cd-9225-8018-8008-d863e46d324a",
+      "position": 0.52,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863dec3a4ee",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863df38ad3a",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863dfab0a54",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863e547bc62",
+      "trackId": "bae680cd-9225-8018-8008-d863e7a8312a",
+      "markerId": "bae680cd-9225-8018-8008-d863e9459ca8",
+      "buttonId": "bae680cd-9225-8018-8008-d863ebcebb7b",
+      "position": 0.36,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863e7d20d26",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863e83c8601",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863e8bdfbe4",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863ecbc489b",
+      "trackId": "bae680cd-9225-8018-8008-d863ef93b89f",
+      "markerId": "bae680cd-9225-8018-8008-d863f15887a8",
+      "buttonId": "bae680cd-9225-8018-8008-d863f41712eb",
+      "position": 0.2,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863efb7bdfe",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863f039df89",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863f0c2f4a1",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863f4fc6f19",
+      "trackId": "bae680cd-9225-8018-8008-d863f7890656",
+      "markerId": "bae680cd-9225-8018-8008-d863f98722aa",
+      "buttonId": "bae680cd-9225-8018-8008-d863fcfa41f4",
+      "position": 0.36,
+      "result": "Common",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d863f7b41eed",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d863f8608dcf",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d863f8db36c6",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863fe964834",
+      "trackId": "bae680cd-9225-8018-8008-d86401872a85",
+      "markerId": "bae680cd-9225-8018-8008-d864037d2a01",
+      "buttonId": "bae680cd-9225-8018-8008-d86405e76caf",
+      "position": 0.79,
+      "result": "Uncommon",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d86401ae0d2a",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d8640233a29c",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d86402dbbc31",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86406d660e3",
+      "trackId": "bae680cd-9225-8018-8008-d86409a93384",
+      "markerId": "bae680cd-9225-8018-8008-d8640ba7e3bb",
+      "buttonId": "bae680cd-9225-8018-8008-d8640e12bb9c",
+      "position": 0.96,
+      "result": "Rare",
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d86409cd074f",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d8640a511e83",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8640adc6fe1",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86410d5325e",
+      "trackId": "bae680cd-9225-8018-8008-d86414c10ea4",
+      "markerId": "bae680cd-9225-8018-8008-d864174638fa",
+      "buttonId": "bae680cd-9225-8018-8008-d86419e6428d",
+      "position": 0.79,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.68,
+          "shapeId": "bae680cd-9225-8018-8008-d864152e12c1",
+          "start": 0,
+          "end": 0.68,
+          "width": 712.6399999999994
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.24,
+          "shapeId": "bae680cd-9225-8018-8008-d864160c064b",
+          "start": 0.68,
+          "end": 0.92,
+          "width": 251.5199999999968
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d864169f4ce0",
+          "start": 0.92,
+          "end": 1,
+          "width": 83.83999999999651
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8642050f53d",
+      "trackId": "bae680cd-9225-8018-8008-d864232fe8fc",
+      "markerId": "bae680cd-9225-8018-8008-d864263a2d92",
+      "buttonId": "bae680cd-9225-8018-8008-d86429ffe745",
+      "position": 0.96,
+      "result": null,
+      "zones": [
+        {
+          "name": "Common",
+          "fraction": 0.62,
+          "shapeId": "bae680cd-9225-8018-8008-d86423640f8c",
+          "start": 0,
+          "end": 0.62,
+          "width": 649.760000000002
+        },
+        {
+          "name": "Uncommon",
+          "fraction": 0.25,
+          "shapeId": "bae680cd-9225-8018-8008-d86423e1fe9e",
+          "start": 0.62,
+          "end": 0.87,
+          "width": 262
+        },
+        {
+          "name": "Rare",
+          "fraction": 0.08,
+          "shapeId": "bae680cd-9225-8018-8008-d8642471825b",
+          "start": 0.87,
+          "end": 0.95,
+          "width": 83.83999999999651
+        },
+        {
+          "name": "Legendary",
+          "fraction": 0.03,
+          "shapeId": "bae680cd-9225-8018-8008-d86424fe28fd",
+          "start": 0.95,
+          "end": 0.98,
+          "width": 31.44000000000233
+        },
+        {
+          "name": "Miss",
+          "fraction": 0.02,
+          "shapeId": "bae680cd-9225-8018-8008-d86425901a97",
+          "start": 0.98,
+          "end": 1,
+          "width": 20.959999999999127
+        }
+      ],
+      "width": 1160,
+      "height": 340
+    }
+  ],
+  "baseDistribution": [
+    [
+      "Common",
+      0.68
+    ],
+    [
+      "Uncommon",
+      0.24
+    ],
+    [
+      "Rare",
+      0.08
+    ]
+  ],
+  "upgradeDistribution": [
+    [
+      "Common",
+      0.62
+    ],
+    [
+      "Uncommon",
+      0.25
+    ],
+    [
+      "Rare",
+      0.08
+    ],
+    [
+      "Legendary",
+      0.03
+    ],
+    [
+      "Miss",
+      0.02
+    ]
+  ],
+  "modifiedDistribution": [
+    [
+      "Common",
+      0.58
+    ],
+    [
+      "Uncommon",
+      0.28
+    ],
+    [
+      "Rare",
+      0.14
+    ]
+  ],
+  "prototypeFrameDelayMs": 140,
+  "sourceFrameBorders": {
+    "left": 64,
+    "right": 64,
+    "top": 64,
+    "bottom": 64
+  },
+  "status": "ready_for_review",
+  "unityImported": false,
+  "revealBoardIds": {
+    "Common": "bae680cd-9225-8018-8008-d865098b5f41",
+    "Uncommon": "bae680cd-9225-8018-8008-d8650df0234d",
+    "Rare": "bae680cd-9225-8018-8008-d8640f15ebc8"
+  },
+  "exactFreezeFrames": [
+    {
+      "id": "bae680cd-9225-8018-8008-d865325f5866",
+      "position": 0.04,
+      "markerId": "bae680cd-9225-8018-8008-d865325f5877"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8654119f2fe",
+      "position": 0.2,
+      "markerId": "bae680cd-9225-8018-8008-d8654119f30f"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86558d28746",
+      "position": 0.52,
+      "markerId": "bae680cd-9225-8018-8008-d86558d28757"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d865668b9eef",
+      "position": 0.67,
+      "markerId": "bae680cd-9225-8018-8008-d865668bec9e"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d865798766fb",
+      "position": 0.9,
+      "markerId": "bae680cd-9225-8018-8008-d8657987670c"
+    }
+  ],
+  "refined": true,
+  "stopPreservesExactPosition": true
+}

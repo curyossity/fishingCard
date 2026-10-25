@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-007 is the latest imported checkpoint.** [Current integration and verification](Sync006/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.0 pending,38 completed,7 superseded. [Next import baseline](DisplayedStatColours/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
+**MFJ-SYNC-007 is the latest imported checkpoint.** [Current integration and verification](Sync007/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.1 pending visual proposal,38 completed,7 superseded. [Next import baseline](Sync007/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -288,3 +288,17 @@ R045 supersedes R044; R042 remains a comparison alternative. Two pending alterna
 **Imported and verified.** Main and Catch Chain modified numbers now expose the latest compact tooltip with actual resolver provenance, the new 64px sliced frame, flat background-free glyphs, three visible source rows and arrow-only scrolling. Pointer travel, focus, clipping, modal locks and concealed/Bait-zero rules are implemented. Stat and chain animations are preserved. [Import, captures and validation](Sync007/README.md).
 
 R042, R043 and R044 are obsolete proposals retained for history; do not import them. **No pending changes remain: 38 completed imports, seven superseded drafts.** Future selective integration uses [MFJ-SYNC-007](Sync007/UnityCheckpoint.json); MFJ-SYNC-006.16 remains historical evidence.
+
+## MFJ-R046 — Integrated as MFJ-SYNC-008
+
+**Imported and verified.** The approved parchment timing instrument temporarily replaces the central encounter during creature selection. Its sliced frame has fixed 64px corners; native zones/patterns, external legends, independent outlined compass marker, Stop and stopped-result wash/burst remain editable and reusable. No creature information is visible before Stop and its brief feedback hold. Events bypass timing. Available rarity intervals normalize dynamically to the full track; queued/trail/chain/Apex promises retain their identity through a fixed-rarity interval. [Import and 4K verification](Sync008/README.md).
+
+**No pending changes remain: 39 completed imports, seven superseded drafts.** Future selective integration uses [MFJ-SYNC-008](Sync008/UnityCheckpoint.json). The original Penpot design study and previous checkpoints remain historical evidence.
+
+## Unity tuning — MFJ-SYNC-008.1
+
+Uncommon is now 5%, Common 87% and Rare 8%. Unavailable rarity space goes to Common where possible so Uncommon stays 5% at shallow depths. No new Penpot change or pending import. [Validation and current checkpoint](RarityWidthTuning/README.md).
+
+## Unity gameplay update — MFJ-SYNC-008.2
+
+The stopped rarity now sets a ceiling. Every distinct biome/depth-eligible species at or below that rarity has one equal chance, without rarity/species weights or immediate-repeat exclusions. Bar sizes stay unchanged. Result text says “UP TO [rarity]”. Event pacing and fixed promises remain intact. [Validation and current checkpoint](RarityCeilingSelection/README.md). No new Penpot revision or pending import.

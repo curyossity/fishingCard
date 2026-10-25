@@ -1,0 +1,31 @@
+{
+  "status": "design_verified",
+  "visualInspection": [
+    "DesignReview.png",
+    "InContext4K.png",
+    "ReusableParts.png"
+  ],
+  "baseHasThreePositiveZonesAndNoFailure": true,
+  "allZoneWidthsSumToOne": true,
+  "tinyZonesUseExternalLabels": true,
+  "redundantRarityCues": [
+    "colour",
+    "pattern",
+    "emblem",
+    "result label"
+  ],
+  "motionFrameCount": 14,
+  "stopPreservesExactNormalizedPosition": true,
+  "baseRarityReveals": [
+    "Common Cod",
+    "Uncommon Small Octopus",
+    "Rare Moonlit Ray"
+  ],
+  "exampleBiomeDepth": "Coastal Waters, 12 m",
+  "eligibleExamples": true,
+  "prototypeInteractionPlayedInViewer": false,
+  "continuousTimingOrRandomSelectionImplemented": false,
+  "unityCheckpointPreserved": "Sync007/UnityCheckpoint.json",
+  "unityFilesVerifiedUnchanged": 409,
+  "unityImported": false
+}

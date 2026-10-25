@@ -1,0 +1,106 @@
+{
+  "ready": true,
+  "checks": [
+    {
+      "motionId": "bae680cd-9225-8018-8008-d8638f85a121",
+      "targetId": "bae680cd-9225-8018-8008-d865325f5866",
+      "sourcePosition": 0.04,
+      "stoppedPosition": 0.039999999999998335,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863952301d3",
+      "targetId": "bae680cd-9225-8018-8008-d8654119f2fe",
+      "sourcePosition": 0.2,
+      "stoppedPosition": 0.19999999999999862,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d8639c21d6ad",
+      "targetId": "bae680cd-9225-8018-8008-d863f4fc6f19",
+      "sourcePosition": 0.36,
+      "stoppedPosition": 0.3599999999999989,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863a28b6c13",
+      "targetId": "bae680cd-9225-8018-8008-d86558d28746",
+      "sourcePosition": 0.52,
+      "stoppedPosition": 0.5199999999999991,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863a940fe56",
+      "targetId": "bae680cd-9225-8018-8008-d865668b9eef",
+      "sourcePosition": 0.67,
+      "stoppedPosition": 0.6700000000000034,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863b05c9237",
+      "targetId": "bae680cd-9225-8018-8008-d863fe964834",
+      "sourcePosition": 0.79,
+      "stoppedPosition": 0.7899999999999984,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863b7c48167",
+      "targetId": "bae680cd-9225-8018-8008-d865798766fb",
+      "sourcePosition": 0.9,
+      "stoppedPosition": 0.8999999999999972,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863bdf8a086",
+      "targetId": "bae680cd-9225-8018-8008-d86406d660e3",
+      "sourcePosition": 0.96,
+      "stoppedPosition": 0.9600000000000016,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863c63a9df7",
+      "targetId": "bae680cd-9225-8018-8008-d865798766fb",
+      "sourcePosition": 0.9,
+      "stoppedPosition": 0.8999999999999972,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863cd2030c0",
+      "targetId": "bae680cd-9225-8018-8008-d863fe964834",
+      "sourcePosition": 0.79,
+      "stoppedPosition": 0.7899999999999984,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863d458f83a",
+      "targetId": "bae680cd-9225-8018-8008-d865668b9eef",
+      "sourcePosition": 0.67,
+      "stoppedPosition": 0.6700000000000034,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863dc4a48ef",
+      "targetId": "bae680cd-9225-8018-8008-d86558d28746",
+      "sourcePosition": 0.52,
+      "stoppedPosition": 0.5199999999999991,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863e547bc62",
+      "targetId": "bae680cd-9225-8018-8008-d863f4fc6f19",
+      "sourcePosition": 0.36,
+      "stoppedPosition": 0.3599999999999989,
+      "exact": true
+    },
+    {
+      "motionId": "bae680cd-9225-8018-8008-d863ecbc489b",
+      "targetId": "bae680cd-9225-8018-8008-d8654119f2fe",
+      "sourcePosition": 0.2,
+      "stoppedPosition": 0.19999999999999862,
+      "exact": true
+    }
+  ],
+  "overlappingTopLevelBoards": [],
+  "flowName": "R046 \u2014 Rarity timing",
+  "prototypeViewerPlayed": false
+}

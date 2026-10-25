@@ -130,9 +130,14 @@ descent commits that card to the Catch Chain.
 2.  Use Descend to move through deeper encounter pools and advance the
     expedition.
 
-3.  Reveal an Encounter card based on depth, biome, current catches, and
-    active modifiers. A catchable creature becomes the current Hooked
-    encounter.
+3.  Select the next encounter category based on depth, biome, current catches
+    and active modifiers. Before an ordinary creature is revealed, show the
+    rarity timing bar. The player stops the moving marker, locking a maximum
+    rarity; uniformly sample an eligible creature of that rarity or any more
+    common rarity. After brief stopped-result feedback,
+    reveal it as the current Hooked encounter. Events reveal directly without
+    a timing bar. The journal comparison scene enables this approved timing
+    flow; legacy scenes without its profile retain direct reveals.
 
 4.  Resolve automatic reveal reactions first. Use legal technique cards
     during the reaction window to manipulate the current encounter, avoid
@@ -176,6 +181,39 @@ greed makes the return trip too dangerous?</p></th>
 </table>
 
 # 6. Catch chain
+
+## Rarity timing rules (approved 25 October 2026)
+
+The stopped rarity is a ceiling: Common allows Common; Uncommon allows
+Common and Uncommon; Rare allows Common, Uncommon and Rare; Legendary
+allows all four rarities. Each distinct eligible creature in that combined
+biome/depth pool has an equal probability. Do not roll rarity first, apply
+rarity/species encounter weights, or exclude immediate species repeats from
+this draw. Duplicate pool entries for the same species do not increase its
+chance. Encounter-category/event pacing stays separate. Fixed promised
+encounters retain their existing identity. Bar widths are unchanged by this
+sampling rule.
+
+The timing phase has no visible creature identity, stats or effects. Reveal
+reactions and concealment assignment happen only after Stop and its short
+feedback hold. Descend and Technique play are unavailable during timing;
+Surface can end the run and clear the pending attempt. A revealed creature
+still requires an explicit Catch or Bait choice before the next Descend.
+
+Current relative widths are Common 87, Uncommon 5 and Rare 8, with no failure
+interval. These are editable playtest tuning. Omit rarities with no eligible
+creatures at the selected biome/depth and give their space to Common when
+available, keeping Uncommon at 5% when Rare is unavailable. If Common is
+unavailable, normalize the remaining eligible intervals to the full track.
+Optional Legendary and penalty-free Miss intervals default off; their visual
+and configuration support introduces no new upgrade content. Marker speed
+and stopped-result duration are authored configuration.
+
+Promised encounters from School Call, trails and authored chains, and the
+scheduled Apex, retain their identity and use a single-rarity timing interval.
+Events, treasures and next-waters Locations reveal directly. Replacing an
+already revealed encounter through a Technique uses its existing reaction
+flow without a second timing attempt. Timing adds no extra depth advancement.
 
 Caught creatures do not immediately disappear into an inventory. They
 stay attached to the fishing rig while the player continues descending.

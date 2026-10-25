@@ -1,0 +1,28 @@
+{
+  "revision": "MFJ-R046",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "shapeId": "bae680cd-9225-8018-8008-d8641d512f22",
+  "source": "Approved blank frame exported directly from Penpot; no screenshot slicing or generated card text",
+  "path": "Assets/UIThemes/MidnightFieldJournal/Art/Rarity/RarityBarFrame.png",
+  "sha256": "48b0da3d5e113cf283fa03f0287b3f8f31528cc289a6da4db3b47a455690a263",
+  "nativeSize": [
+    1160,
+    340
+  ],
+  "spriteBorder": [
+    64,
+    64,
+    64,
+    64
+  ],
+  "dynamicElements": [
+    "zones",
+    "patterns",
+    "legends",
+    "marker",
+    "stop button",
+    "heading",
+    "feedback"
+  ]
+}

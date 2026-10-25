@@ -1,0 +1,33 @@
+{
+  "status": "verified",
+  "date": "2026-10-25",
+  "timingAssertions": 46,
+  "productionAssertions": 22,
+  "gameplaySuites": {
+    "ApprovedTechnique": 39,
+    "CoastalSupport": 62,
+    "PredatorSchoolRay": 87,
+    "ShellFeedingExchange": 87,
+    "BassUrchinOctopus": 101,
+    "LobsterSquidEel": 80,
+    "CoastalEvent": 57,
+    "EventPersistence": 45
+  },
+  "consoleErrors": 0,
+  "productionRuntimeWarnings": 0,
+  "existingCompilationWarnings": "Older scripts use deprecated FindFirstObjectByType; the new timing scripts use FindAnyObjectByType.",
+  "captureResolution": [
+    3840,
+    2160
+  ],
+  "protectedPreviousCheckpointFilesUnchanged": true,
+  "changedPreviousFiles": [
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonSceneBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+  ],
+  "scope": "Isolated comparison scene; legacy scene/build configuration preserved"
+}

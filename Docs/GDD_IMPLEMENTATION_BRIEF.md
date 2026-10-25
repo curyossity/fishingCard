@@ -1,5 +1,11 @@
 # GDD Implementation Brief
 
+## Approved creature timing flow (25 October 2026)
+
+The journal comparison scene uses a rarity timing phase before creature reveals. Descend commits the selected Catch/Bait and advances normally; the next ordinary creature remains unrevealed until the player stops the moving marker. Stop sets the maximum creature rarity: Common; Common/Uncommon; Common/Uncommon/Rare; or all four rarities for Legendary. Draw uniformly from distinct biome/depth-eligible creatures at or below that ceiling. Each species has one equal chance; previous rarity weights, encounter-weight modifiers and immediate-repeat exclusions do not bias this species draw. Event/category pacing is separate and unchanged. Show a brief stopped result before normal reveal reactions and the Technique window. Catch/Bait has no default. Events reveal directly without a bar; their existing action-confirmation rules remain intact. Surface is available during timing and cancels its pending state.
+
+Unavailable rarities have no interval; their space goes to Common when available, otherwise available intervals normalize to the full track. Current tuning is Common/Uncommon/Rare 87/5/8 and 0.6 one-way traversals per second, editable in RarityTiming.asset. Uncommon remains 5% when Rare is unavailable and Common is eligible. No initial Miss or Legendary interval. Existing fixed queued/trail/chain/Apex selections use a single fixed-rarity interval to preserve their guarantee. Encounter replacements in an already revealed Technique window do not demand another bar. No new upgrade cards or effects are introduced by this increment. Legacy scenes without the profile retain the previous selection flow.
+
 This brief summarizes `Docs/Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md` for day-to-day development. The full GDD remains the source of truth.
 
 ## Core Concept

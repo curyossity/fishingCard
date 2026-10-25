@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public sealed class EncounterRuntime
+public sealed partial class EncounterRuntime
 {
     [SerializeField] private CardDefinition currentEncounter;
     [SerializeField] private EncounterState currentState;
@@ -252,6 +252,8 @@ public sealed class EncounterRuntime
             }
         }
 
+        // Category pacing remains unchanged; timed species draws use the full eligible pool equally.
+        List<CardDefinition> timingCandidates = TimingProfile != null ? new List<CardDefinition>(candidates) : null;
         encounterVarietyRuntime.ApplyRepetitionRules(candidates);
 
         if (candidates.Count == 0)
@@ -276,6 +278,7 @@ public sealed class EncounterRuntime
         lastCandidateWeightSummary = string.Join(", ", candidateWeightLabels);
         lastSelectedEncounterWeight = candidateWeights[selectedIndex];
         CardDefinition selected = candidates[selectedIndex];
+        if (TryDeferCreature(selected, timingCandidates ?? candidates, encounterChains)) return true;
         encounterVarietyRuntime.RecordSelectedEncounter(selected);
         BeginEncounterChain(selected, encounterChains);
         SetCurrentEncounter(selected);
@@ -343,6 +346,7 @@ public sealed class EncounterRuntime
         lastSelectedEncounterWeight = resolver.GetEncounterSelectionWeight(chosen, effects, temporaryEffects);
         lastTotalEncounterWeight = lastSelectedEncounterWeight;
         lastCandidateWeightSummary = "Chosen next encounter: " + chosen.DisplayName;
+        if (TryDeferCreature(chosen, null, chains)) return true;
         encounterVarietyRuntime.RecordSelectedEncounter(chosen);
         BeginEncounterChain(chosen, chains);
         SetCurrentEncounter(chosen);
@@ -365,6 +369,7 @@ public sealed class EncounterRuntime
         lastTotalEncounterWeight = 1;
         lastCandidateWeightSummary = $"Biome Apex: {apexEncounter.DisplayName}";
         encounterVarietyRuntime.BeginSelection();
+        if (TryDeferCreature(apexEncounter, null, null)) return true;
         encounterVarietyRuntime.RecordSelectedEncounter(apexEncounter);
         SetCurrentEncounter(apexEncounter);
         return true;
@@ -485,6 +490,7 @@ public sealed class EncounterRuntime
     /// </summary>
     public void Reset(bool preservePendingConcealments = false)
     {
+        RarityTiming.Reset(); timingChains = null; timingChainFollowUp = false;
         Trail.Reset();
         currentEventOccurrence?.Supersede();
         currentEventOccurrence = null;
@@ -581,6 +587,7 @@ public sealed class EncounterRuntime
 
         lastSelectedEncounterWeight = 1;
         lastTotalEncounterWeight = 1;
+        if (TryDeferCreature(chainedEncounter, null, null, true)) return true;
         encounterVarietyRuntime.RecordAuthoredChainFollowUp();
         encounterVarietyRuntime.RecordSelectedEncounter(chainedEncounter);
         SetCurrentEncounter(chainedEncounter);
@@ -613,6 +620,7 @@ public sealed class EncounterRuntime
     /// <summary>Rejects new reveals before selection, history, or chain state can change during active consequences.</summary>
     private void EnsureEncounterCanBeRevealed()
     {
+        if (RarityTiming.Active) throw new InvalidOperationException("Stop the rarity marker before revealing another encounter.");
         if (currentEventOccurrence?.State == EventOccurrenceState.Resolving)
             throw new InvalidOperationException("Cannot reveal a new encounter while event consequences are resolving.");
     }

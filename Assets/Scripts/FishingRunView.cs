@@ -213,6 +213,8 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private RectTransform mainContent;
     [SerializeField] private RectTransform catchRigPanel;
     [SerializeField] private RectTransform encounterPanel;
+    [SerializeField] private EncounterRarityTimingView rarityTimingView;
+
     [SerializeField] private RectTransform runControlsPanel;
     [SerializeField] private RectTransform techniqueHand;
     [SerializeField] private Canvas tooltipLayer;
@@ -327,6 +329,10 @@ public sealed class FishingRunView : MonoBehaviour
     public event Action SurfaceTransitionCompleted;
     public event Action EncounterTransitionCompleted;
     public event Action<EncounterEffectChoice> EncounterEffectChoiceChanged;
+
+    /// <summary>Forwards hidden timing state without substituting a card or executing encounter rules.</summary>
+    public void SetRarityTiming(EncounterRarityTiming timing, Func<long, bool> stop, BiomeDefinition biome, int depth)
+    { if (rarityTimingView != null) rarityTimingView.Present(timing, stop, biome, depth); }
 
     /// <summary>Displays controller-owned role selection without generating a second choice event.</summary>
     public void SetEncounterRoleSelection(EncounterEffectChoice choice)

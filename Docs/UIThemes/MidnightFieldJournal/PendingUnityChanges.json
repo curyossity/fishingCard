@@ -1,7 +1,7 @@
 {
-  "generatedDate": "2026-10-20",
+  "generatedDate": "2026-10-25",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "Sync007/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "RarityCeilingSelection/UnityCheckpoint.json",
   "pending": [],
   "completed": [
     {
@@ -155,6 +155,10 @@
     {
       "id": "MFJ-R045",
       "checkpoint": "MFJ-SYNC-007"
+    },
+    {
+      "id": "MFJ-R046",
+      "checkpoint": "MFJ-SYNC-008"
     }
   ],
   "superseded": [

@@ -19,6 +19,12 @@ Creature/Apex attachment choice is controller-owned and keyed to `EncounterRunti
 
 ## Current Classes
 
+### Creature encounter rarity timing
+
+`RarityTimingProfile` authors relative zone widths, marker traversal speed and stopped-result hold. The isolated journal comparison scene opts in through `FishingRunController.rarityTimingProfile`; an absent profile preserves the legacy scene. `EncounterRuntime` reserves a creature selection without publishing a Current/Hooked card, consuming concealment, recording history or dispatching reveal reactions. `EncounterRarityTiming` owns the distinct eligible candidate snapshot, normalized available zones, ping-pong motion, occurrence token, exact Stop rarity ceiling and uniform sampling across all eligible species at or below that ceiling. Ordinary encounter-category selection retains its existing weights and pacing; events reveal directly. Timed species selection receives the biome/depth-filtered pool before repetition filtering, deduplicates stable species IDs and accepts no weights. Authored chains, queued selections, trails and scheduled Apex encounters retain their guaranteed identity through a single-rarity bar. Technique replacements inside an already revealed reaction window do not start another timing phase.
+
+The controller ticks this state, rejects Descend/Technique plays during timing, accepts an occurrence-checked Stop, then commits the reveal after its short result hold. Surface cancels timing through normal run cleanup. Pending encounter modifiers finish only on the actual reveal. The optional `EncounterRarityTimingView` boundary forwards state/input without owning selection; `JournalRarityTimingView` renders the R046 sliced parchment, separate native zones/patterns/legends, compass marker, Stop and feedback. `JournalRarityTimingBuilder` maintains the isolated prefab/profile and durable canvas/scene bindings. [MFJ-SYNC-008 validation](UIThemes/MidnightFieldJournal/Sync008/README.md).
+
 ### Midnight Field Journal candidate-theme resources
 
 The candidate design is isolated under `Assets/UIThemes/MidnightFieldJournal/`; the existing scene/build entry and old-design defaults remain unchanged. `MidnightFieldJournalTheme` is visual configuration only: project-local sprite/font/palette references, source geometry/provenance and optional artwork overrides keyed by stable `CardDefinition.UniqueId`. Its lookup never changes shared definitions or substitutes another card's art. Runtime consumers are integrated in subsequent component tasks.

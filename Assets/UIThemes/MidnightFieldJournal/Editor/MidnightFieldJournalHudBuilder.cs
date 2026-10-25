@@ -81,6 +81,8 @@ public static partial class MidnightFieldJournalPrefabBuilder
         Bind(data, "tooltipLayer", tooltip); Bind(data, "transitionLayer", transition); Bind(data, "modalLayer", modal); data.ApplyModifiedPropertiesWithoutUndo();
         BuildModals(root, view, modal, header.GetComponent<CanvasGroup>(), main.GetComponent<CanvasGroup>(), hand.GetComponent<CanvasGroup>(), descend);
         // The HUD alone owns effective load; individual catch weights cannot reconstruct Steady Line relief.
+        JournalRarityTimingBuilder.Build();
+        JournalRarityTimingBuilder.BindCanvas(root);
         Save(root, "MidnightFieldJournalCanvas");
     }
 

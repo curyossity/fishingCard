@@ -1,0 +1,55 @@
+{
+  "revision": "MFJ-R046",
+  "status": "verified",
+  "unityImported": true,
+  "creation": "Native Penpot vectors/text/patterns; existing clean parchment and approved creature examples reused.",
+  "newRasterAssets": [],
+  "frameBorders": {
+    "left": 64,
+    "right": 64,
+    "top": 64,
+    "bottom": 64
+  },
+  "panelCanvas": [
+    1160,
+    340
+  ],
+  "trackCanvas": [
+    1048,
+    62
+  ],
+  "fonts": [
+    "Cinzel",
+    "Source Serif 4"
+  ],
+  "separateElements": [
+    "frame",
+    "zone fills",
+    "clipped patterns",
+    "marker",
+    "motion trail",
+    "labels",
+    "emblems",
+    "stop button",
+    "zone wash",
+    "stop burst"
+  ],
+  "widthsAndTimingsAreIllustrative": true,
+  "gameplayImplemented": false,
+  "reviewExports": [
+    {
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R046/DesignReview.png",
+      "sha256": "2d83b733cab21ed6f987af2da4d00d18f71f6d6f41cfe00fb6b63baa4e241404"
+    },
+    {
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R046/InContext4K.png",
+      "sha256": "8e2b6946f625ec1f87433122bc35f41b189d140f3d88d30ed540774ffcbe17ca"
+    },
+    {
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R046/ReusableParts.png",
+      "sha256": "f9bb770ef14b14fefc3009737e4610c57f53da14788f0e409f79cd0862dce916"
+    }
+  ],
+  "synchronizationCheckpoint": "MFJ-SYNC-008",
+  "unityImportManifest": "../../Sync008/SourceManifest.json"
+}

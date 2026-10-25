@@ -1,8 +1,8 @@
 # Penpot changes awaiting Unity integration
 
-**Current: 0 pending; 38 imported and verified; 7 superseded drafts.** MFJ-R045 integrated as MFJ-SYNC-007; R042–R044 must not be imported. [Pending index](PendingUnityChanges.json) · [Full ledger](DesignChangeLedger.json).
+**Current: 0 pending; 39 imported and verified; 7 superseded drafts.** R046 is integrated. [Pending index](PendingUnityChanges.json) · [Full ledger](DesignChangeLedger.json).
 
-Latest baseline: [MFJ-SYNC-007](Sync007/UnityCheckpoint.json). Next design revision: **MFJ-R046**. Preserve all Unity-only refinements.
+Latest baseline: [MFJ-SYNC-008](Sync008/UnityCheckpoint.json). Next revision: **MFJ-R047**.
 
 ## Explicit creature role choice — MFJ-SYNC-006.1
 
@@ -97,3 +97,21 @@ R045 supersedes R044; R042 remains a comparison alternative. Two pending alterna
 **Imported and verified.** Main and Catch Chain modified numbers now expose the latest compact tooltip with actual resolver provenance, the new 64px sliced frame, flat background-free glyphs, three visible source rows and arrow-only scrolling. Pointer travel, focus, clipping, modal locks and concealed/Bait-zero rules are implemented. Stat and chain animations are preserved. [Import, captures and validation](Sync007/README.md).
 
 R042, R043 and R044 are obsolete proposals retained for history; do not import them. **No pending changes remain: 38 completed imports, seven superseded drafts.** Future selective integration uses [MFJ-SYNC-007](Sync007/UnityCheckpoint.json); MFJ-SYNC-006.16 remains historical evidence.
+
+## MFJ-R046 — Rarity timing bar (Penpot only)
+
+**Ready for review; not implemented or imported into Unity.** Parchment timing instrument with separate Common/Uncommon/Rare zones, optional tiny Legendary/Miss sections, external colour/pattern/emblem labels, independent outlined marker, Stop control and restrained stop feedback. Review states include zone resizing and Legendary/Miss results; a timed-frame prototype freezes the current marker position and leads to existing eligible creature examples. Widths and frame timing are illustrative. [Previews and handoff](Revisions/MFJ-R046/README.md).
+
+This is the user's new visual/mechanic proposal, not an update to the current runtime's encounter rules. One pending design revision; 38 completed integrations and seven superseded drafts remain preserved. Latest Unity baseline remains MFJ-SYNC-007. Gameplay integration needs its own explicit task.
+
+## MFJ-R046 integration — MFJ-SYNC-008
+
+Imported and verified on 25 October 2026. Creature timing waits for Stop before reveal; events bypass the bar. Reusable 4K presentation, configuration, gameplay validation and source hashes are recorded in [Sync008](Sync008/README.md). Earlier design-only statements describe historical status. No pending import remains.
+
+## Unity tuning — MFJ-SYNC-008.1
+
+Uncommon is now 5%, Common 87% and Rare 8%. Unavailable rarity space goes to Common where possible so Uncommon stays 5% at shallow depths. No new Penpot change or pending import. [Validation and current checkpoint](RarityWidthTuning/README.md).
+
+## Unity gameplay update — MFJ-SYNC-008.2
+
+The stopped rarity now sets a ceiling. Every distinct biome/depth-eligible species at or below that rarity has one equal chance, without rarity/species weights or immediate-repeat exclusions. Bar sizes stay unchanged. Result text says “UP TO [rarity]”. Event pacing and fixed promises remain intact. [Validation and current checkpoint](RarityCeilingSelection/README.md). No new Penpot revision or pending import.
