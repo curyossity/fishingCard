@@ -1,0 +1,29 @@
+{
+  "status": "design_verified",
+  "visualInspection": [
+    "CompactReview.png",
+    "OverflowReview.png",
+    "TooltipFrameMaster.png"
+  ],
+  "scrollStates": [
+    "first: down only",
+    "middle: up and down",
+    "last: up only"
+  ],
+  "arrowLabelsOrCounts": false,
+  "exampleArithmeticCorrect": true,
+  "iconBackings": false,
+  "iconsSingleColour": true,
+  "sharedTechniqueIcon": "tied hook",
+  "sharedEventIcon": "wave scroll",
+  "nativeCornerRegions": [
+    64,
+    64
+  ],
+  "borderOrnamentCrossesSliceBoundaries": false,
+  "prototypePlayedInViewer": false,
+  "liveWheelScrollingImplemented": false,
+  "unityFilesVerifiedUnchanged": 362,
+  "unityCheckpointPreserved": "DisplayedStatColours/UnityCheckpoint.json",
+  "unityImported": false
+}

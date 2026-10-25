@@ -13,7 +13,7 @@ public enum CompactCatchCardState
 }
 
 /// <summary>Displays one catch in the rig without reproducing the full creature rules face.</summary>
-public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
+public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler, ICreatureStatInspectionSource
 {
     private static readonly Color TitleColor = new Color(0.937f, 0.886f, 0.761f, 1f);
     private static readonly Color StatColor = new Color(0.082f, 0.239f, 0.239f, 1f);
@@ -48,6 +48,14 @@ public sealed class CompactCatchCardView : MonoBehaviour, IPointerEnterHandler, 
     private bool statFeedbackEnabled;
     private CardInstance boundInstance;
     public CardInstance BoundInstance => boundInstance;
+    /// <summary>Reads the same resolved instance used by the compact stat animation, respecting hidden sale values.</summary>
+    public bool TryGetStatBreakdown(CreatureStat stat, out CardStatBreakdown breakdown)
+    {
+        breakdown = null;
+        if (boundInstance?.Definition == null || stat == CreatureStat.Value && (boundInstance.IsBait || boundInstance.HidesOwnValueDuringRun)) return false;
+        breakdown = new CardStatBreakdown(boundInstance, stat, boundInstance.InstanceId);
+        return breakdown.Current != breakdown.Baseline && breakdown.Reasons.Length > 0;
+    }
     public bool HasPendingStatFeedback => statAnimator != null && statAnimator.IsAnimating;
 
     /// <summary>Opts a pooled compact card into the same number animation used by the central creature.</summary>

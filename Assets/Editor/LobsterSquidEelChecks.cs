@@ -268,7 +268,7 @@ public static class LobsterSquidEelChecks
         Set(deck, "hand", new[] { reveal, Technique("Discard") });
         Require(!controller.CanUseTechniqueCard(0, out _) && encounters.IsCreatureConcealed,
             "Ordinary reveal Technique bypassed or spent a card against commit-only Ink.");
-        Require(controller.TryDescend() && !controller.CurrentEncounterIdentityHidden
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller) && !controller.CurrentEncounterIdentityHidden
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.DiscardTechnique && controller.CurrentDepth == 1,
             "Identity stayed hidden during on-attach or Descend bypassed mandatory effect.");
         Require(controller.TryChooseRequiredTechniqueDiscard(0) && controller.CurrentDepth == 2
@@ -280,7 +280,7 @@ public static class LobsterSquidEelChecks
             && !controller.TryDescend() && !controller.TrySurface() && !TechniqueRuleChecks.Play(controller, 0), "A new action bypassed immediate skip offer.");
         Require(controller.TryChooseEncounterSkip(true) && controller.CurrentDepth == depth && controller.CurrentEncounter == null,
             "Skip advanced depth or retained encounter.");
-        Require(controller.TryDescend() && controller.CurrentDepth == depth + 1 && controller.CurrentEncounter == bass,
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller) && controller.CurrentDepth == depth + 1 && controller.CurrentEncounter == bass,
             "Descend after skip failed normal advance/reveal.");
         CardInstance lobster = chain.Add(Lobster(), resolver);
         CardDefinition mussel = Card("Protected Mussel", new[] { "Armored" }); Set(mussel, "baitEffects", new[] {

@@ -1,0 +1,17 @@
+{
+    "passed": true,
+    "assertions": 103,
+    "error": "",
+    "order": [
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1
+    ],
+    "pulsedRecipients": 7,
+    "peakScale": 1.044999361038208,
+    "peakFlash": 0.1799975484609604
+}

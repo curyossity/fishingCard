@@ -137,6 +137,9 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
     private void LateUpdate()
     {
         AdvanceStatFeedback();
+        if (runView == null) runView = GetComponentInParent<FishingRunView>();
+        var statHost = runView == null ? null : runView.GetComponent<JournalStatTooltipHost>();
+        if (statHost != null && statHost.HasActiveSource) { HideInspection(); return; }
         if (inspectionSource == null) return;
         if (!inspectionSource.Interested || content.anchoredPosition != inspectionScroll || !InspectionAllowed()) { HideInspection(); return; }
         if (Time.unscaledTime < showAt || tooltipPrefab == null) return;

@@ -28,6 +28,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         JournalControlDesignSync.Bind(theme);
         JournalInspectionDesignSync.Bind(theme);
         JournalCompactArtworkSync.Bind(theme);
+        JournalStatTooltipDesignSync.Prepare();
         body = theme.BodyFont;
         title = theme.DisplayFont;
         if (body == null || title == null) throw new InvalidOperationException("Theme-local TMP fonts are required.");
@@ -101,7 +102,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         data.FindProperty("uppercaseName").boolValue = false;
         data.FindProperty("titleAlignment").intValue = (int)TextAlignmentOptions.TopLeft;
         foreach (string overlay in new[] { "Hover And Focus Edge", "Selection Edge", "Legal Target Edge" }) root.transform.Find(overlay).gameObject.SetActive(false);
-        data.ApplyModifiedPropertiesWithoutUndo(); Save(root, "CompactCatchCard");
+        data.ApplyModifiedPropertiesWithoutUndo(); JournalStatTooltipDesignSync.Bind(root); Save(root, "CompactCatchCard");
     }
 
     /// <summary>Creates the existing technique view with one blank surface and separate equipment and text layers.</summary>

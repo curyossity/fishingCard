@@ -389,7 +389,7 @@ public static class ShellFeedingExchangeChecks
         EffectResolver resolver = Get<EffectResolver>(controller, "effectResolver");
         Set(deck, "hand", Deck(4, 0).Hand); Set(deck, "drawPile", Deck(0, 4).DrawPile);
         CardInstance sardine = chain.Add(Sardine(), resolver, CatchAttachmentRole.Bait);
-        Require(controller.TryDescend() && controller.CurrentDepth == 1
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller) && controller.CurrentDepth == 1
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.FeedingFrenzy, "Descend did not pause for Sardine.");
         Require(!controller.TryDescend() && !controller.TrySurface(), "Gameplay bypassed Sardine activation.");
         Require(controller.TryActivateFeedingFrenzy(sardine.InstanceId)
@@ -400,7 +400,7 @@ public static class ShellFeedingExchangeChecks
         chain.Add(Anemone(), resolver, CatchAttachmentRole.Bait);
         CardDefinition discard = Technique("Exchange target"); Set(deck, "discardPile", new[] { discard });
         int originalDepth = controller.CurrentDepth;
-        Require(controller.TryDescend() && controller.PendingCreatureChoice == CreatureEffectChoiceKind.ExchangeTechniques
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.ExchangeTechniques
             && controller.CurrentDepth == originalDepth, "Controller did not pause for exchange.");
         CardDefinition old = deck.Hand[0];
         Require(controller.TryChooseExchangeHand(0) && deck.Hand[0] == old, "Controller first selection moved a card.");
@@ -416,7 +416,7 @@ public static class ShellFeedingExchangeChecks
         Require(controller.CurrentEncounter == null && encounters.LastCancelledHazard == hazard
             && controller.CurrentDepth == originalDepth && !mussel.HasUnusedHazardProtection,
             "Controller Hazard cancellation advanced depth or left Hazard active.");
-        Require(controller.TryDescend() && controller.CurrentDepth == originalDepth + 1 && controller.CurrentEncounter == hazard,
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller) && controller.CurrentDepth == originalDepth + 1 && controller.CurrentEncounter == hazard,
             "Next Descend after cancellation did not advance normally to the next Hazard.");
     }
 

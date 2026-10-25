@@ -1,0 +1,241 @@
+{
+  "revision": "MFJ-R043",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "reviewBoardId": "bae680cd-9225-8018-8008-d1d61e2e0eeb",
+  "scrollReviewBoardId": "bae680cd-9225-8018-8008-d1d631064172",
+  "guideBoardId": "bae680cd-9225-8018-8008-d1d6446675ed",
+  "blankModuleId": "bae680cd-9225-8018-8008-d1d645c9add1",
+  "prototypeTopId": "bae680cd-9225-8018-8008-d1d6441a5fcd",
+  "prototypeBottomId": "bae680cd-9225-8018-8008-d1d64433eb39",
+  "records": [
+    {
+      "id": "bae680cd-9225-8018-8008-d1d61eb9597e",
+      "name": "MFJ-R043 / One source",
+      "stat": "Value",
+      "base": 12,
+      "current": 20,
+      "rows": [
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 8
+        }
+      ],
+      "visibleRows": 1,
+      "offset": 0,
+      "height": 348,
+      "width": 680,
+      "tiles": [
+        "bae680cd-9225-8018-8008-d1d61ee621e1",
+        "bae680cd-9225-8018-8008-d1d61f092ea4",
+        "bae680cd-9225-8018-8008-d1d61f2d63a0",
+        "bae680cd-9225-8018-8008-d1d61f4d1161",
+        "bae680cd-9225-8018-8008-d1d61f6769b0",
+        "bae680cd-9225-8018-8008-d1d61f81edba",
+        "bae680cd-9225-8018-8008-d1d61f9dbfd7",
+        "bae680cd-9225-8018-8008-d1d61fc04b77",
+        "bae680cd-9225-8018-8008-d1d61fdf4e4d"
+      ],
+      "viewportId": "bae680cd-9225-8018-8008-d1d6209dfabf",
+      "contentId": "bae680cd-9225-8018-8008-d1d620b1cc49"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d62114ad5e",
+      "name": "MFJ-R043 / Two sources",
+      "stat": "Value",
+      "base": 30,
+      "current": 33,
+      "rows": [
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 8
+        },
+        {
+          "name": "Lionfish",
+          "kind": "creature",
+          "amount": -5
+        }
+      ],
+      "visibleRows": 2,
+      "offset": 0,
+      "height": 420,
+      "width": 680,
+      "tiles": [
+        "bae680cd-9225-8018-8008-d1d6211f6beb",
+        "bae680cd-9225-8018-8008-d1d6214684a6",
+        "bae680cd-9225-8018-8008-d1d62189ec90",
+        "bae680cd-9225-8018-8008-d1d621bebe9b",
+        "bae680cd-9225-8018-8008-d1d621eca18b",
+        "bae680cd-9225-8018-8008-d1d62220a4c4",
+        "bae680cd-9225-8018-8008-d1d6225554a3",
+        "bae680cd-9225-8018-8008-d1d6228aacda",
+        "bae680cd-9225-8018-8008-d1d622c76e82"
+      ],
+      "viewportId": "bae680cd-9225-8018-8008-d1d6236cfc5b",
+      "contentId": "bae680cd-9225-8018-8008-d1d62380fb3b"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d6274b7ef5",
+      "name": "MFJ-R043 / Three sources",
+      "stat": "Value",
+      "base": 30,
+      "current": 42,
+      "rows": [
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 8
+        },
+        {
+          "name": "Lionfish",
+          "kind": "creature",
+          "amount": -5
+        },
+        {
+          "name": "Moonlit Ray",
+          "kind": "creature",
+          "amount": 9
+        }
+      ],
+      "visibleRows": 3,
+      "offset": 0,
+      "height": 492,
+      "width": 680,
+      "tiles": [
+        "bae680cd-9225-8018-8008-d1d627623e81",
+        "bae680cd-9225-8018-8008-d1d627a08232",
+        "bae680cd-9225-8018-8008-d1d627c23881",
+        "bae680cd-9225-8018-8008-d1d627da4f35",
+        "bae680cd-9225-8018-8008-d1d627fd7f74",
+        "bae680cd-9225-8018-8008-d1d62815f662",
+        "bae680cd-9225-8018-8008-d1d628311462",
+        "bae680cd-9225-8018-8008-d1d6284bc5da",
+        "bae680cd-9225-8018-8008-d1d6286f1e88"
+      ],
+      "viewportId": "bae680cd-9225-8018-8008-d1d6290c7dfd",
+      "contentId": "bae680cd-9225-8018-8008-d1d6291d48f3"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d6315a7f53",
+      "name": "MFJ-R043 / Overflow / first three",
+      "stat": "Weight",
+      "base": 2,
+      "current": 4,
+      "rows": [
+        {
+          "name": "Jellyfish",
+          "kind": "creature",
+          "amount": 1
+        },
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 1
+        },
+        {
+          "name": "Reef Snag",
+          "kind": "hazard",
+          "amount": 1
+        },
+        {
+          "name": "Gentle Upwelling",
+          "kind": "environment",
+          "amount": -1
+        }
+      ],
+      "visibleRows": 3,
+      "offset": 0,
+      "height": 536,
+      "width": 680,
+      "tiles": [
+        "bae680cd-9225-8018-8008-d1d6316bc74a",
+        "bae680cd-9225-8018-8008-d1d631973163",
+        "bae680cd-9225-8018-8008-d1d631b744d9",
+        "bae680cd-9225-8018-8008-d1d631dc45a1",
+        "bae680cd-9225-8018-8008-d1d632017400",
+        "bae680cd-9225-8018-8008-d1d63221243b",
+        "bae680cd-9225-8018-8008-d1d63245872f",
+        "bae680cd-9225-8018-8008-d1d63266c506",
+        "bae680cd-9225-8018-8008-d1d6328f788f"
+      ],
+      "viewportId": "bae680cd-9225-8018-8008-d1d634114706",
+      "contentId": "bae680cd-9225-8018-8008-d1d63427a8a4",
+      "hintId": "bae680cd-9225-8018-8008-d1d639f70e32"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d63a283a66",
+      "name": "MFJ-R043 / Overflow / scrolled to last",
+      "stat": "Weight",
+      "base": 2,
+      "current": 4,
+      "rows": [
+        {
+          "name": "Jellyfish",
+          "kind": "creature",
+          "amount": 1
+        },
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 1
+        },
+        {
+          "name": "Reef Snag",
+          "kind": "hazard",
+          "amount": 1
+        },
+        {
+          "name": "Gentle Upwelling",
+          "kind": "environment",
+          "amount": -1
+        }
+      ],
+      "visibleRows": 3,
+      "offset": 1,
+      "height": 536,
+      "width": 680,
+      "tiles": [
+        "bae680cd-9225-8018-8008-d1d63a370415",
+        "bae680cd-9225-8018-8008-d1d63a5f1e3a",
+        "bae680cd-9225-8018-8008-d1d63a868fc9",
+        "bae680cd-9225-8018-8008-d1d63aaa613f",
+        "bae680cd-9225-8018-8008-d1d63ad1ac28",
+        "bae680cd-9225-8018-8008-d1d63afce104",
+        "bae680cd-9225-8018-8008-d1d63b281df3",
+        "bae680cd-9225-8018-8008-d1d63b93bf0f",
+        "bae680cd-9225-8018-8008-d1d63be76def"
+      ],
+      "viewportId": "bae680cd-9225-8018-8008-d1d63d39ce87",
+      "contentId": "bae680cd-9225-8018-8008-d1d63d4e670b",
+      "hintId": "bae680cd-9225-8018-8008-d1d643dfe76f"
+    }
+  ],
+  "sourceFrameId": "bae680cd-9225-8018-8008-d1c2678546b4",
+  "sliceBorderPixels": {
+    "left": 320,
+    "bottom": 340,
+    "right": 320,
+    "top": 340
+  },
+  "displayCapPixels": {
+    "left": 80,
+    "bottom": 85,
+    "right": 80,
+    "top": 85
+  },
+  "blankTiles": [
+    "bae680cd-9225-8018-8008-d1d645edcd83",
+    "bae680cd-9225-8018-8008-d1d64647074b",
+    "bae680cd-9225-8018-8008-d1d64680119a",
+    "bae680cd-9225-8018-8008-d1d646afe19c",
+    "bae680cd-9225-8018-8008-d1d646d6ddb9",
+    "bae680cd-9225-8018-8008-d1d646fd2556",
+    "bae680cd-9225-8018-8008-d1d64721c387",
+    "bae680cd-9225-8018-8008-d1d64748a5fe",
+    "bae680cd-9225-8018-8008-d1d647763120"
+  ],
+  "unityImported": false,
+  "status": "ready_for_review"
+}

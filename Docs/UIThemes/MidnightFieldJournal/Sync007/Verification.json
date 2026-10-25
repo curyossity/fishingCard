@@ -1,0 +1,35 @@
+{
+  "status": "verified",
+  "checkpoint": "MFJ-SYNC-007",
+  "revision": "MFJ-R045",
+  "gameplayAssertions": 558,
+  "mainAnimationAssertions": 74,
+  "chainAnimationAssertions": 103,
+  "componentAssertions": 25,
+  "interactionAssertions": 27,
+  "productionSmoke": {
+    "passed": true,
+    "mainNumberRaycast": true,
+    "tooltipLayerInput": true,
+    "pendingTechniqueProvenance": true
+  },
+  "visualInspection": [
+    "TooltipInGame.png",
+    "MainTooltip4K.png"
+  ],
+  "captureResolution": [
+    3840,
+    2160
+  ],
+  "frameMatchesPenpotMaster": true,
+  "sliceBorders": [
+    64,
+    64,
+    64,
+    64
+  ],
+  "fontsScenesAuthoredCardsAndAnimatorUnchanged": true,
+  "previousFilesPreserved": 353,
+  "standalonePlayerBuildRun": false,
+  "unityConsoleErrorsAfterValidation": 0
+}

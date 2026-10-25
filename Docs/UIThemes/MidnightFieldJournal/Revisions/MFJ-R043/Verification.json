@@ -1,0 +1,25 @@
+{
+  "status": "design_verified",
+  "visualInspection": [
+    "CompactReview.png",
+    "OverflowReview.png",
+    "NineSliceGuide.png"
+  ],
+  "resizing": "Fixed corner details retained across all sizes; no visible frame seams",
+  "examples": 5,
+  "exampleArithmeticCorrect": true,
+  "currentIncludesHiddenReasons": true,
+  "maximumVisibleReasons": 3,
+  "overflowStates": [
+    0,
+    1
+  ],
+  "nativeClippedViewports": true,
+  "editableTextAndSeparateIcons": true,
+  "prototype": "Click navigation between first/last scroll states; not a live ScrollRect",
+  "prototypeInteractionPlayedInViewer": false,
+  "mouseWheelOrThumbDraggingImplemented": false,
+  "unityCheckpointPreserved": "DisplayedStatColours/UnityCheckpoint.json",
+  "unityFilesVerifiedUnchanged": 362,
+  "unityImported": false
+}

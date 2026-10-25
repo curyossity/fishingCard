@@ -12,7 +12,7 @@ public enum EncounterEffectChoice
 }
 
 /// <summary>Renders catchable and event encounters from supplied visual layers and runtime-owned fields.</summary>
-public sealed class CreatureCardView : MonoBehaviour
+public sealed class CreatureCardView : MonoBehaviour, ICreatureStatInspectionSource
 {
     public const float ReferenceAspectRatio = 1122f / 1402f;
     public const float EventReferenceAspectRatio = 1101f / 1429f;
@@ -91,6 +91,22 @@ public sealed class CreatureCardView : MonoBehaviour
     private bool displayedWeightHidden, displayedValueHidden;
     private int displayedWeight, displayedValue;
     public bool SupportsStatFeedback => statAnimator != null;
+    private CardInstance inspectionInstance;
+    private int inspectionOccurrence;
+
+    /// <summary>Accepts a controller-owned detached preview after the current occurrence and role have refreshed.</summary>
+    public void SetStatInspection(CardInstance instance, int occurrenceId)
+    { inspectionInstance = instance; inspectionOccurrence = occurrenceId; }
+
+    /// <summary>Exposes only currently visible modified stats; Bait's intrinsic zero is never an effect modifier.</summary>
+    public bool TryGetStatBreakdown(CreatureStat stat, out CardStatBreakdown breakdown)
+    {
+        breakdown = null;
+        if (inspectionInstance == null || inspectionInstance.Definition != displayedCard || displayedWeightHidden
+            || stat == CreatureStat.Value && (displayedValueHidden || inspectionInstance.IsBait)) return false;
+        breakdown = new CardStatBreakdown(inspectionInstance, stat, inspectionOccurrence);
+        return breakdown.Current != breakdown.Baseline && breakdown.Reasons.Length > 0;
+    }
 
     public int AnchorSlotCount => anchorMarkers == null ? 0 : anchorMarkers.Length;
     public Image InteractionOverlay => interactionOverlay;
@@ -117,6 +133,7 @@ public sealed class CreatureCardView : MonoBehaviour
     /// <summary>Displays one encounter using its card-type layout and resolved runtime values.</summary>
     public void SetCard(CardDefinition card, int resolvedWeight, int resolvedValue, bool informationHidden, bool identityHidden = false)
     {
+        inspectionInstance = null;
         if (statAnimator != null) statAnimator.PrepareForRefresh();
         if (card == null)
         {

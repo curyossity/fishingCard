@@ -1,0 +1,15 @@
+{
+  "status": "design_verified",
+  "visualInspection": [
+    "CompactReview.png",
+    "OverflowReview.png"
+  ],
+  "removedScrollbarShapes": 8,
+  "containFittedPortraits": 7,
+  "maximumVisibleReasons": 3,
+  "overflowIndicatorRetained": true,
+  "liveScrollingImplemented": false,
+  "unityFilesVerifiedUnchanged": 362,
+  "unityImported": false,
+  "unityCheckpointPreserved": "DisplayedStatColours/UnityCheckpoint.json"
+}

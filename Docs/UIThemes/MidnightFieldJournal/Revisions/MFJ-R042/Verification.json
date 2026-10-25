@@ -1,0 +1,17 @@
+{
+  "status": "design_verified",
+  "variants": 2,
+  "editableTextFields": 46,
+  "textBoundsContained": true,
+  "exampleArithmeticCorrect": true,
+  "prototypeConnectionsVerified": [
+    "mouse-enter opens independent overlay",
+    "mouse-leave closes overlay"
+  ],
+  "prototypeInteractionPlayedInViewer": false,
+  "visualInspection": "TooltipReviewV2.png inspected; footer clear of corner art and Environment symbol corrected",
+  "gameplayPreview": "Assembled as editable Gameplay H; full PNG export timed out and is not claimed visually verified",
+  "unityCheckpointPreserved": "DisplayedStatColours/UnityCheckpoint.json",
+  "unityFilesVerifiedUnchanged": 362,
+  "unityImported": false
+}

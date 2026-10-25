@@ -334,6 +334,10 @@ public sealed class FishingRunView : MonoBehaviour
 
     public bool SupportsEncounterStatFeedback => encounterCardView != null && encounterCardView.SupportsStatFeedback;
 
+    /// <summary>Supplies current stat provenance independently of animation and encounter history snapshots.</summary>
+    public void SetEncounterStatInspection(CardInstance preview, int occurrenceId)
+    { if (encounterCardView != null) encounterCardView.SetStatInspection(preview, occurrenceId); }
+
     /// <summary>Updates only the current slot after controller-owned role selection has been applied.</summary>
     public void PresentEncounterStatFeedback(EncounterStatFeedback feedback)
     {

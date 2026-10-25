@@ -1,0 +1,323 @@
+{
+  "revision": "MFJ-R045",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "reviewBoardId": "bae680cd-9225-8018-8008-d1f8e5a830ea",
+  "scrollReviewBoardId": "bae680cd-9225-8018-8008-d1f8eb58cd20",
+  "masterBoardId": "bae680cd-9225-8018-8008-d1f8f54b16ca",
+  "prototypeIds": [
+    "bae680cd-9225-8018-8008-d1f8f4e9dda4",
+    "bae680cd-9225-8018-8008-d1f8f504cab5",
+    "bae680cd-9225-8018-8008-d1f8f51f5f10"
+  ],
+  "records": [
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8e5eb648a",
+      "name": "MFJ-R045 / One reason",
+      "stat": "Value",
+      "base": 12,
+      "current": 20,
+      "rows": [
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 8
+        }
+      ],
+      "offset": 0,
+      "visibleRows": 1,
+      "height": 348,
+      "width": 680,
+      "viewportId": "bae680cd-9225-8018-8008-d1f8e72c10c0",
+      "contentId": "bae680cd-9225-8018-8008-d1f8e7389f8f",
+      "frame": {
+        "corners": [
+          "bae680cd-9225-8018-8008-d1f8e61675d3",
+          "bae680cd-9225-8018-8008-d1f8e623cf7c",
+          "bae680cd-9225-8018-8008-d1f8e63072dd",
+          "bae680cd-9225-8018-8008-d1f8e63c87a3"
+        ],
+        "borders": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        }
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8e782dd7e",
+      "name": "MFJ-R045 / Two reasons",
+      "stat": "Value",
+      "base": 30,
+      "current": 33,
+      "rows": [
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 8
+        },
+        {
+          "name": "Lionfish",
+          "kind": "creature",
+          "amount": -5
+        }
+      ],
+      "offset": 0,
+      "visibleRows": 2,
+      "height": 420,
+      "width": 680,
+      "viewportId": "bae680cd-9225-8018-8008-d1f8e8ac8e8a",
+      "contentId": "bae680cd-9225-8018-8008-d1f8e8b6fd6b",
+      "frame": {
+        "corners": [
+          "bae680cd-9225-8018-8008-d1f8e7a6923f",
+          "bae680cd-9225-8018-8008-d1f8e7b289be",
+          "bae680cd-9225-8018-8008-d1f8e7be303f",
+          "bae680cd-9225-8018-8008-d1f8e7cae668"
+        ],
+        "borders": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        }
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8e944d173",
+      "name": "MFJ-R045 / Three reasons",
+      "stat": "Value",
+      "base": 30,
+      "current": 42,
+      "rows": [
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 8
+        },
+        {
+          "name": "Lionfish",
+          "kind": "creature",
+          "amount": -5
+        },
+        {
+          "name": "Moonlit Ray",
+          "kind": "creature",
+          "amount": 9
+        }
+      ],
+      "offset": 0,
+      "visibleRows": 3,
+      "height": 492,
+      "width": 680,
+      "viewportId": "bae680cd-9225-8018-8008-d1f8ea7eadd6",
+      "contentId": "bae680cd-9225-8018-8008-d1f8ea8bfe4d",
+      "frame": {
+        "corners": [
+          "bae680cd-9225-8018-8008-d1f8e9692bad",
+          "bae680cd-9225-8018-8008-d1f8e97626b5",
+          "bae680cd-9225-8018-8008-d1f8e9847752",
+          "bae680cd-9225-8018-8008-d1f8e990e408"
+        ],
+        "borders": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        }
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8eb972ad2",
+      "name": "MFJ-R045 / Scroll offset 0",
+      "stat": "Weight",
+      "base": 2,
+      "current": 3,
+      "rows": [
+        {
+          "name": "Jellyfish",
+          "kind": "creature",
+          "amount": 1
+        },
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 1
+        },
+        {
+          "name": "Reef Snag",
+          "kind": "event",
+          "amount": 1
+        },
+        {
+          "name": "Gentle Upwelling",
+          "kind": "event",
+          "amount": -1
+        },
+        {
+          "name": "Spiny Lobster",
+          "kind": "creature",
+          "amount": -1
+        }
+      ],
+      "offset": 0,
+      "visibleRows": 3,
+      "height": 536,
+      "width": 680,
+      "viewportId": "bae680cd-9225-8018-8008-d1f8ece4c8ce",
+      "contentId": "bae680cd-9225-8018-8008-d1f8ecf44ee8",
+      "downArrowId": "bae680cd-9225-8018-8008-d1f8ee6c2a98",
+      "frame": {
+        "corners": [
+          "bae680cd-9225-8018-8008-d1f8ebc11447",
+          "bae680cd-9225-8018-8008-d1f8ebcde417",
+          "bae680cd-9225-8018-8008-d1f8ebdb5ae0",
+          "bae680cd-9225-8018-8008-d1f8ebe85756"
+        ],
+        "borders": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        }
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8ee7823dc",
+      "name": "MFJ-R045 / Scroll offset 1",
+      "stat": "Weight",
+      "base": 2,
+      "current": 3,
+      "rows": [
+        {
+          "name": "Jellyfish",
+          "kind": "creature",
+          "amount": 1
+        },
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 1
+        },
+        {
+          "name": "Reef Snag",
+          "kind": "event",
+          "amount": 1
+        },
+        {
+          "name": "Gentle Upwelling",
+          "kind": "event",
+          "amount": -1
+        },
+        {
+          "name": "Spiny Lobster",
+          "kind": "creature",
+          "amount": -1
+        }
+      ],
+      "offset": 1,
+      "visibleRows": 3,
+      "height": 536,
+      "width": 680,
+      "viewportId": "bae680cd-9225-8018-8008-d1f8eff646fd",
+      "contentId": "bae680cd-9225-8018-8008-d1f8f0073ee4",
+      "upArrowId": "bae680cd-9225-8018-8008-d1f8efe9769e",
+      "downArrowId": "bae680cd-9225-8018-8008-d1f8f18298df",
+      "frame": {
+        "corners": [
+          "bae680cd-9225-8018-8008-d1f8eeaa5ab8",
+          "bae680cd-9225-8018-8008-d1f8eeb88995",
+          "bae680cd-9225-8018-8008-d1f8eec6b8bf",
+          "bae680cd-9225-8018-8008-d1f8eed51193"
+        ],
+        "borders": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        }
+      }
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8f18f5eb9",
+      "name": "MFJ-R045 / Scroll offset 2",
+      "stat": "Weight",
+      "base": 2,
+      "current": 3,
+      "rows": [
+        {
+          "name": "Jellyfish",
+          "kind": "creature",
+          "amount": 1
+        },
+        {
+          "name": "Prize Hook",
+          "kind": "technique",
+          "amount": 1
+        },
+        {
+          "name": "Reef Snag",
+          "kind": "event",
+          "amount": 1
+        },
+        {
+          "name": "Gentle Upwelling",
+          "kind": "event",
+          "amount": -1
+        },
+        {
+          "name": "Spiny Lobster",
+          "kind": "creature",
+          "amount": -1
+        }
+      ],
+      "offset": 2,
+      "visibleRows": 3,
+      "height": 536,
+      "width": 680,
+      "viewportId": "bae680cd-9225-8018-8008-d1f8f31e41c8",
+      "contentId": "bae680cd-9225-8018-8008-d1f8f332628c",
+      "upArrowId": "bae680cd-9225-8018-8008-d1f8f310d4f2",
+      "frame": {
+        "corners": [
+          "bae680cd-9225-8018-8008-d1f8f1bfff19",
+          "bae680cd-9225-8018-8008-d1f8f1ce2efb",
+          "bae680cd-9225-8018-8008-d1f8f1dcba8e",
+          "bae680cd-9225-8018-8008-d1f8f1eb1712"
+        ],
+        "borders": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        }
+      }
+    }
+  ],
+  "sliceBorderPixels": {
+    "left": 64,
+    "right": 64,
+    "top": 64,
+    "bottom": 64
+  },
+  "masterFrame": {
+    "corners": [
+      "bae680cd-9225-8018-8008-d1f8f58419b6",
+      "bae680cd-9225-8018-8008-d1f8f5945aca",
+      "bae680cd-9225-8018-8008-d1f8f5a4b71f",
+      "bae680cd-9225-8018-8008-d1f8f5b4a6cd"
+    ],
+    "borders": {
+      "left": 64,
+      "right": 64,
+      "top": 64,
+      "bottom": 64
+    }
+  },
+  "scrollbar": false,
+  "scrollIndicators": "Arrow up above list; arrow down below list; both for middle scroll positions. No counts or labels.",
+  "icons": "Flat single ink colour, no backing. Tied hook for every Technique; wave scroll for every event; individual creature silhouettes.",
+  "status": "ready_for_review",
+  "unityImported": false
+}

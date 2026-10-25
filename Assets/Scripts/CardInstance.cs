@@ -23,6 +23,8 @@ public sealed class CardInstance
     [SerializeField] private int[] removedEffectIndices = Array.Empty<int>();
     [SerializeField] private List<string> removedRoleEffectKeys = new List<string>();
     [SerializeField] private List<AppliedCatchModifier> appliedModifiers = new List<AppliedCatchModifier>();
+    [NonSerialized] private List<CardStatContribution> resolvedStatContributions = new List<CardStatContribution>();
+    public IReadOnlyList<CardStatContribution> ResolvedStatContributions => resolvedStatContributions;
 
     [SerializeField] private bool hasRuntimeTagOverride;
     [SerializeField] private string[] runtimeBaseTags = Array.Empty<string>();
@@ -245,6 +247,20 @@ public sealed class CardInstance
     {
         currentWeight = definition == null ? 0 : Mathf.Max(0, definition.Weight + permanentWeightModifier - EventWeightModifier);
         currentValue = definition == null ? 0 : Mathf.Max(0, baseValue + permanentValueModifier);
+        if (resolvedStatContributions == null) resolvedStatContributions = new List<CardStatContribution>();
+        resolvedStatContributions.Clear();
+        int weight = 0, value = 0;
+        foreach (AppliedCatchModifier modifier in appliedModifiers)
+        {
+            int w = modifier.EventEffectId > 0 ? 0 : modifier.WeightAmount;
+            resolvedStatContributions.Add(new CardStatContribution(modifier.SourceCard, modifier.Effect, w, modifier.ValueAmount));
+            weight += w; value += modifier.ValueAmount;
+        }
+        int untrackedWeight = permanentWeightModifier - EventWeightModifier - weight;
+        int untrackedValue = permanentValueModifier - value;
+        if (untrackedWeight != 0 || untrackedValue != 0)
+            resolvedStatContributions.Add(new CardStatContribution(null, null, untrackedWeight, untrackedValue));
+        ReconcileStatFloors();
     }
 
     /// <summary>
@@ -302,6 +318,39 @@ public sealed class CardInstance
         currentWeight = Mathf.Max(0, currentWeight + amount);
     }
 
+    /// <summary>Records the effective, zero-clamped change at the same point where gameplay resolves it.</summary>
+    public void ModifyWeight(int amount, CardDefinition source, CardEffectDefinition effect)
+    {
+        int before = currentWeight; ModifyWeight(amount);
+        if (currentWeight != before) resolvedStatContributions.Add(new CardStatContribution(source, effect, currentWeight - before, 0));
+    }
+
+    /// <summary>Applies the existing combined event-weight rule while retaining each event's independent contribution.</summary>
+    public void ApplyEventWeightModifiers()
+    {
+        ModifyWeight(EventWeightModifier);
+        foreach (AppliedCatchModifier modifier in appliedModifiers)
+            if (modifier.EventEffectId > 0 && modifier.WeightAmount != 0)
+                resolvedStatContributions.Add(new CardStatContribution(modifier.SourceCard, modifier.Effect, modifier.WeightAmount, 0));
+        ReconcileStatFloors();
+    }
+
+    /// <summary>Attributes only effective reductions when combined lasting or event modifiers encounter the zero floor.</summary>
+    private void ReconcileStatFloors()
+    {
+        int weight = definition?.Weight ?? 0, value = baseValue;
+        foreach (CardStatContribution c in resolvedStatContributions) { weight += c.Weight; value += c.Value; }
+        int weightOverflow = currentWeight - weight, valueOverflow = currentValue - value;
+        for (int i = resolvedStatContributions.Count - 1; i >= 0 && (weightOverflow > 0 || valueOverflow > 0); i--)
+        {
+            CardStatContribution c = resolvedStatContributions[i];
+            int w = Mathf.Min(Mathf.Max(0, -c.Weight), Mathf.Max(0, weightOverflow));
+            int v = Mathf.Min(Mathf.Max(0, -c.Value), Mathf.Max(0, valueOverflow));
+            resolvedStatContributions[i] = new CardStatContribution(c.Source, c.Effect, c.Weight + w, c.Value + v);
+            weightOverflow -= w; valueOverflow -= v;
+        }
+    }
+
     /// <summary>
     /// Applies a runtime value change without allowing the resolved card value below zero.
     /// Bait retains this resolved value for effect calculations but contributes zero haul value.
@@ -309,6 +358,13 @@ public sealed class CardInstance
     public void ModifyValue(int amount)
     {
         currentValue = Mathf.Max(0, currentValue + amount);
+    }
+
+    /// <summary>Records an ongoing source's actual contribution without duplicating its calculation in presentation.</summary>
+    public void ModifyValue(int amount, CardDefinition source, CardEffectDefinition effect)
+    {
+        int before = currentValue; ModifyValue(amount);
+        if (currentValue != before) resolvedStatContributions.Add(new CardStatContribution(source, effect, 0, currentValue - before));
     }
 
     /// <summary>
@@ -340,6 +396,7 @@ public sealed class CardInstance
         snapshot.removedEffectIndices = (int[])removedEffectIndices.Clone();
         snapshot.removedRoleEffectKeys = new List<string>(removedRoleEffectKeys);
         snapshot.appliedModifiers = new List<AppliedCatchModifier>(appliedModifiers);
+        snapshot.resolvedStatContributions = new List<CardStatContribution>(resolvedStatContributions);
         return snapshot;
     }
 

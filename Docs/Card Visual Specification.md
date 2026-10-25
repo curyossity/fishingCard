@@ -18,6 +18,8 @@ Creature artwork supports two explicitly authored layouts on `CardDefinition`: `
 
 ## Unity-Owned Fields
 
+The Midnight Field Journal candidate supports the user-requested modified-number tooltip (MFJ-R045): hover or focus a visible non-default Weight or Catch Value to inspect default/current values and named source contributions. It uses a separate sliced frame, flat icons and at most three visible reasons, with scroll arrows above/below the reasons as appropriate. No scrollbar, source-count caption or icon background is shown. Bait's intrinsic zero sale value and concealed information never open this tooltip. The card face itself gains no extra modifier badges or printed baseline fields. The tooltip reads resolver-owned attribution and preserves the approved stat animations.
+
 Unity fills these fields from card data:
 
 - Card type

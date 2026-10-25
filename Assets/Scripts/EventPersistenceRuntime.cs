@@ -31,11 +31,9 @@ public sealed class EventPersistenceRuntime
     public void PreviewPendingBaitWeightReductions(CardInstance preview)
     {
         if (preview?.Definition?.CardType != CardType.Creature || !preview.IsBait) return;
-        int amount = 0;
         foreach (PersistentEventEffect record in Effects)
             if (record.IsPending && record.Effect.EffectType == CardEffectType.QueueBaitWeightReduction)
-                amount += record.Effect.Amount;
-        preview.ModifyWeight(-amount);
+                preview.ModifyWeight(-record.Effect.Amount, record.Source, record.Effect);
     }
 
     public long Epoch => epoch;

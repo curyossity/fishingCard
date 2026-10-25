@@ -65,7 +65,7 @@ public static class CoastalEventChecks
         CardInstance first = chain.Add(Card(2), r), second = chain.Add(Card(2), r, CatchAttachmentRole.Bait);
         CardDefinition armored = Card(5); Set(armored, "tags", new[] { "Armored" });
         CardInstance shell = chain.Add(armored, r);
-        Require(c.TryDescend() && c.PendingCreatureChoice == CreatureEffectChoiceKind.EventSnagTarget
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && c.PendingCreatureChoice == CreatureEffectChoiceKind.EventSnagTarget
             && c.CurrentDepth == 0 && c.HasConfirmedEventAction, "Snag failed to pause at a heaviest tie.");
         Require(!c.TryChooseEventTarget(shell.InstanceId) && !c.TryChooseEventTarget(-1)
             && !c.TrySurface() && !c.CanDescend, "Snag tie allowed an invalid target or action.");
@@ -75,19 +75,19 @@ public static class CoastalEventChecks
         Require(second.CurrentWeight == 3, "Later Armored incorrectly removed a Snag.");
         Require(Store(c).GetNegativeOptions().Length == 1 && Store(c).GetNegativeOptions()[0].TryRemove()
             && second.CurrentWeight == 2, "Quick Clean failed exact Snag removal.");
-        Require(c.TryDescend() && first.CurrentWeight == 3, "Snag targeted heavier Armored instead of eligible creature.");
-        Require(c.TryDescend() && first.CurrentWeight == 4, "Repeated Snags failed to stack.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && first.CurrentWeight == 3, "Snag targeted heavier Armored instead of eligible creature.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && first.CurrentWeight == 4, "Repeated Snags failed to stack.");
         Invoke(c, "EndBiomeEventEffects");
         Require(first.CurrentWeight == 2 && Store(c).Effects.Length == 0, "Biome ending failed to expire Snags.");
         c.StartRun(); chain = Chain(c); first = chain.Add(Card(3), Resolver(c));
         Require(c.TrySurface() && Get<FishingRunResult>(c, "lastSurfaceResult").SurfaceLineLoad == 4
             && first.CurrentWeight == 3, "Surface load checked after Snag expiry.");
         c = Controller(source); chain = Chain(c); chain.Add(armored, Resolver(c));
-        Require(c.TryDescend() && Store(c).Effects.Length == 0 && !c.HasPendingCreatureChoice,
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && Store(c).Effects.Length == 0 && !c.HasPendingCreatureChoice,
             "All-Armored chain did not resolve Snag without effect.");
         c = Controller(source); chain = Chain(c); first = chain.Add(Card(1), Resolver(c)); second = chain.Add(Card(2), Resolver(c));
         first.AddPermanentModifiers(3, 0); chain.Recalculate(Resolver(c));
-        Require(c.TryDescend() && first.CurrentWeight == 5 && second.CurrentWeight == 2,
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && first.CurrentWeight == 5 && second.CurrentWeight == 2,
             "Snag selected from base or reveal-time weight instead of current effective weight.");
         c = Controller(source); chain = Chain(c); r = Resolver(c);
         CardDefinition school = Card(0); Set(school, "tags", new[] { "Schooling", "Armored" });
@@ -96,7 +96,7 @@ public static class CoastalEventChecks
         CardEffectDefinition packed = Effect(CardEffectType.SetSelfWeightZeroWithOtherCreatureCatches, CardEffectTrigger.WhileAttached, 2);
         Set(packed, "requiredTags", new[] { "Schooling" }); Set(mackerel, "effects", new[] { packed });
         first = chain.Add(mackerel, r);
-        Require(first.CurrentWeight == 0 && c.TryDescend() && first.CurrentWeight == 1,
+        Require(first.CurrentWeight == 0 && FishingRunCheckActions.TryDescendAsCatch(c) && first.CurrentWeight == 1,
             "Snag did not add to the target's current effective zero weight.");
     }
 
@@ -104,7 +104,7 @@ public static class CoastalEventChecks
     private static void Upwelling()
     {
         FishingRunController c = Controller(Event(CardEffectType.QueueBaitWeightReduction));
-        Require(c.TryDescend() && c.TryDescend() && Store(c).Effects.Length == 2, "Upwellings failed to queue independently.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && FishingRunCheckActions.TryDescendAsCatch(c) && Store(c).Effects.Length == 2, "Upwellings failed to queue independently.");
         CatchChainRuntime chain = Chain(c); EffectResolver r = Resolver(c);
         CardDefinition predator = Card(2); Set(predator, "tags", new[] { "Predator" });
         CardInstance caught = chain.Add(predator, r);
@@ -123,7 +123,7 @@ public static class CoastalEventChecks
         Require(chain.TrySwapCreatureModes(caught.InstanceId, bait.InstanceId, r), "Fixture mode swap failed.");
         chain.ActivateRoleOnAttach(caught, r); chain.ActivateRoleOnAttach(bait, r);
         Require(bait.CurrentWeight == 0 && !bait.IsBait, "Upwelling modifier disappeared on entering Catch.");
-        Require(c.TryDescend(), "Next Upwelling did not resolve.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c), "Next Upwelling did not resolve.");
         Invoke(c, "EndBiomeEventEffects");
         Require(Array.Exists(Store(c).Effects, e => e.IsPending), "Biome ending expired pending Upwelling.");
         Require(chain.TrySwapCreatureModes(bait.InstanceId, caught.InstanceId, r), "Second fixture swap failed.");
@@ -141,7 +141,7 @@ public static class CoastalEventChecks
         FishingRunController c = Controller(source); EncounterRuntime e = Encounters(c);
         CardEffectDefinition ink = Effect(CardEffectType.QueueCreatureEncounterConcealment, CardEffectTrigger.WhenCaught, 2);
         e.GrantCreatureConcealment(ink, Card(2));
-        Require(c.TryDescend() && e.PendingConcealments.Length == 2, "Silt did not append after existing Ink.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && e.PendingConcealments.Length == 2, "Silt did not append after existing Ink.");
         CardDefinition apex = Card(3); Set(apex, "cardType", CardType.ApexEncounter);
         e.SetCurrentEncounter(apex);
         Require(!e.IsCreatureConcealed && e.PendingConcealments[0].Remaining == 2, "Apex consumed Silt or Squid concealment.");
@@ -158,10 +158,10 @@ public static class CoastalEventChecks
         CardDefinition mussel = Card(1); Set(mussel, "hasExplicitBaitData", true);
         Set(mussel, "baitEffects", new[] { Effect(CardEffectType.CancelNextHazard, CardEffectTrigger.WhenCaught, 1) });
         CardInstance protection = chain.Add(mussel, Resolver(c), CatchAttachmentRole.Bait);
-        c.TryDescend();
+        FishingRunCheckActions.TryDescendAsCatch(c);
         Require(Encounters(c).CurrentEventOccurrence.State == EventOccurrenceState.Cancelled
             && Encounters(c).PendingConcealments.Length == 1, "Mussel did not cancel the next Silt reveal.");
-        Require(c.TryDescend() && Encounters(c).PendingConcealments.Length == 1, "Cancelled Silt still added concealment.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && Encounters(c).PendingConcealments.Length == 1, "Cancelled Silt still added concealment.");
         CardDefinition squid = Card(2); Set(squid, "hasExplicitBaitData", true);
         Set(squid, "baitEffects", new[] { Effect(CardEffectType.GrantNextCreatureSkip, CardEffectTrigger.WhenCaught, 1) });
         CreatureEffectRuntime creatures = Get<CreatureEffectRuntime>(c, "creatureEffectRuntime");
@@ -183,7 +183,7 @@ public static class CoastalEventChecks
         CardInstance crab = chain.Add(lockCard, r);
         CardDefinition anemone = Card(1); Set(anemone, "effects", new[] { Effect(CardEffectType.PreventTechniqueTargeting, CardEffectTrigger.WhileAttached, 0) });
         CardInstance target = chain.Add(anemone, r);
-        Require(c.TryDescend() && c.PendingCreatureChoice == CreatureEffectChoiceKind.EventCreatureRelease
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && c.PendingCreatureChoice == CreatureEffectChoiceKind.EventCreatureRelease
             && !c.TryChooseEventTarget(crab.InstanceId), "Loose Knot bypassed Iron Grip.");
         Require(c.TryChooseEventTarget(target.InstanceId) && chain.ReleasedCatches.Length == 1 && c.CurrentDepth == 1,
             "Loose Knot incorrectly applied Technique targeting restrictions.");
@@ -217,7 +217,7 @@ public static class CoastalEventChecks
         Require(c.TryChooseFeedingDraw(0) && !c.RunActive
             && Get<FishingRunResult>(c, "lastSurfaceResult").HaulValue == 33, "Eel draw did not complete before Surface.");
         c = Controller(source);
-        Require(c.TryDescend() && !c.HasPendingCreatureChoice, "No-target Loose Knot did not complete.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && !c.HasPendingCreatureChoice, "No-target Loose Knot did not complete.");
     }
 
     /// <summary>Checks legal slots, duplicate guards, queued priority, Technique replacement, skipped depths, and cleanup.</summary>
@@ -228,30 +228,30 @@ public static class CoastalEventChecks
         CardDefinition fish = Card(1); Set(fish, "tags", new[] { "Schooling" });
         FishingRunController c = Controller(source, 5, lobster, fish);
         Encounters(c).SetCurrentEncounter(source);
-        Require(c.TryDescend() && Encounters(c).Trail.HasPending && Encounters(c).Trail.DestinationDepth == 8,
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && Encounters(c).Trail.HasPending && Encounters(c).Trail.DestinationDepth == 8,
             "Fresh Shell Fragments did not schedule depth +3.");
         Require(Encounters(c).Trail.Preview.Contains("Spiny Lobster") && Encounters(c).Trail.Preview.Contains("Weight 3"),
             "Trail preview omitted learned identity/stats.");
         Encounters(c).SetCurrentEncounter(source);
-        Require(c.TryDescend() && Encounters(c).Trail.DestinationDepth == 8, "Forced duplicate trail rescheduled a promise.");
-        Require(c.TryDescend() && c.CurrentDepth == 8 && c.CurrentEncounter == lobster && !Encounters(c).Trail.HasPending,
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && Encounters(c).Trail.DestinationDepth == 8, "Forced duplicate trail rescheduled a promise.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && c.CurrentDepth == 8 && c.CurrentEncounter == lobster && !Encounters(c).Trail.HasPending,
             "Destination did not consume the normal draw exactly once.");
         Require(Encounters(c).TryReplaceEncounter(Encounters(c).EncounterRevision, lobster, new[] { fish }, "Coastal", 8,
             new System.Random(1), Chain(c).ActiveEffectRecords, Resolver(c)) && Encounters(c).Trail.Preview.Contains("replaced"),
             "Technique replacement failed to mark the consumed promise.");
         Require(c.TrySurface() && !Encounters(c).Trail.HasPending && Encounters(c).Trail.Preview == string.Empty,
             "Surface retained trail presentation or scheduling.");
-        c = Controller(source, 5, lobster, fish); Encounters(c).SetCurrentEncounter(source); c.TryDescend(); c.TryDescend();
+        c = Controller(source, 5, lobster, fish); Encounters(c).SetCurrentEncounter(source); FishingRunCheckActions.TryDescendAsCatch(c); FishingRunCheckActions.TryDescendAsCatch(c);
         Set(Get<CreatureEffectRuntime>(c, "creatureEffectRuntime"), "queuedEncounter", fish);
-        Require(c.TryDescend() && c.CurrentEncounter == fish && Encounters(c).Trail.Preview.Contains("replaced")
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && c.CurrentEncounter == fish && Encounters(c).Trail.Preview.Contains("replaced")
             && !Encounters(c).Trail.HasPending, "Queued School Call failed to consume and replace the trail slot.");
         c = Controller(source, 5, lobster, fish); Encounters(c).SetCurrentEncounter(source); Set(c, "depthStepPerDescend", 4);
-        Require(c.TryDescend() && c.CurrentDepth == 9 && c.CurrentEncounter == lobster
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && c.CurrentDepth == 9 && c.CurrentEncounter == lobster
             && Encounters(c).Trail.Preview.Contains("depth 9"), "Passed destination was not retargeted to the first subsequent slot.");
-        c = Controller(source, 5, lobster, fish); Encounters(c).SetCurrentEncounter(source); c.TryDescend(); c.TryDescend();
+        c = Controller(source, 5, lobster, fish); Encounters(c).SetCurrentEncounter(source); FishingRunCheckActions.TryDescendAsCatch(c); FishingRunCheckActions.TryDescendAsCatch(c);
         CardDefinition silt = Event(CardEffectType.QueueCreatureEncounterConcealment);
         Encounters(c).GrantCreatureConcealment(silt.Effects[0], silt);
-        Require(c.TryDescend() && c.CurrentEncounterIdentityHidden && Encounters(c).Trail.Preview.Contains("Spiny Lobster")
+        Require(FishingRunCheckActions.TryDescendAsCatch(c) && c.CurrentEncounterIdentityHidden && Encounters(c).Trail.Preview.Contains("Spiny Lobster")
             && Encounters(c).Trail.Preview.Contains("Weight 3"), "Silt erased knowledge already learned from the trail preview.");
         CardDefinition avoid = Card(0); Set(avoid, "cardType", CardType.Technique);
         CardEffectDefinition skip = Effect(CardEffectType.AvoidEncounter, CardEffectTrigger.Manual, 1);

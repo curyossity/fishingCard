@@ -4,11 +4,11 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R042",
+  "nextRevisionId": "MFJ-R046",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
-    "pageName": "Concept B \u2014 Reusable Assembly (4K)"
+    "pageName": "Concept B — Reusable Assembly (4K)"
   },
   "unityThemeRoot": "Assets/UIThemes/MidnightFieldJournal/",
   "statuses": [
@@ -333,7 +333,7 @@
               "id": "bae680cd-9225-8018-8008-cee251db922e",
               "name": "Dynamic / creature tags",
               "type": "text",
-              "text": "SMALL  \u00b7  PREDATOR  \u00b7  ELUSIVE"
+              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251db922f",
@@ -372,7 +372,7 @@
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251db9235",
-              "name": "Dynamic / selected Catch glow \u2014 not hover",
+              "name": "Dynamic / selected Catch glow — not hover",
               "type": "rectangle"
             },
             {
@@ -458,7 +458,7 @@
               "id": "bae680cd-9225-8018-8008-cee251f05bfd",
               "name": "Dynamic / creature tags",
               "type": "text",
-              "text": "SMALL  \u00b7  PREDATOR  \u00b7  ELUSIVE"
+              "text": "SMALL  ·  PREDATOR  ·  ELUSIVE"
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251f05bfe",
@@ -497,7 +497,7 @@
             },
             {
               "id": "bae680cd-9225-8018-8008-cee251f05c04",
-              "name": "Dynamic / selected Catch glow \u2014 not hover",
+              "name": "Dynamic / selected Catch glow — not hover",
               "type": "rectangle"
             },
             {
@@ -1073,7 +1073,7 @@
         },
         "baitEffect": {
           "name": "Buoyant Bell",
-          "description": "Reduce two other Armored creatures\u2019 weight by 1 each."
+          "description": "Reduce two other Armored creatures’ weight by 1 each."
         },
         "canvas": [
           1260,
@@ -4359,7 +4359,7 @@
         "Responsive camera fitting and hand framing",
         "Prefab regeneration and Technique hand checks"
       ],
-      "configurationChanges": "Use R029 as the latest native fan target. Reduce quadratic arc coefficient from40 to15 and set central YDown to450 (outer480). Keep500 spacing, clockwise angles\u00b115/\u00b15, camera tilt40 and perspective. Reuse existing art and dynamic card views; no flattened preview imports.",
+      "configurationChanges": "Use R029 as the latest native fan target. Reduce quadratic arc coefficient from40 to15 and set central YDown to450 (outer480). Keep500 spacing, clockwise angles±15/±5, camera tilt40 and perspective. Reuse existing art and dynamic card views; no flattened preview imports.",
       "exportRequirements": {
         "newRasterImages": [],
         "nativeVectorAndText": true,
@@ -4686,7 +4686,7 @@
         "Responsive camera fitting and hand framing",
         "Prefab regeneration and Technique hand checks"
       ],
-      "configurationChanges": "R030 is the latest native fan target. Keep middle Y450 and angles\u00b15 exactly. Move outer centers480\u2192500 and reduce their tilt magnitude15\u21928 degrees. Keep500 center spacing and existing laid-down camera/art/content. Use the recorded0\u20134 layout table/curve, update stable hit planes, and verify projected edge heights. Do not import flattened previews.",
+      "configurationChanges": "R030 is the latest native fan target. Keep middle Y450 and angles±5 exactly. Move outer centers480→500 and reduce their tilt magnitude15→8 degrees. Keep500 center spacing and existing laid-down camera/art/content. Use the recorded0–4 layout table/curve, update stable hit planes, and verify projected edge heights. Do not import flattened previews.",
       "exportRequirements": {
         "newRasterImages": [],
         "nativeVectorAndText": true,
@@ -4720,7 +4720,7 @@
         "handoff": "Sync003/README.md",
         "render": "Sync003/Fan4Cards4K.png"
       },
-      "implementationExtension": "Fan supports arbitrary physical hand counts using bounded curvature/tilt and compressed spacing; current gameplay cap4 unchanged. Rendered0\u201320; symmetric1\u201364; actual per-occurrence projected clicks8/12."
+      "implementationExtension": "Fan supports arbitrary physical hand counts using bounded curvature/tilt and compressed spacing; current gameplay cap4 unchanged. Rendered0–20; symmetric1–64; actual per-occurrence projected clicks8/12."
     },
     {
       "id": "MFJ-R031",
@@ -5480,8 +5480,8 @@
         "geometry",
         "typography"
       ],
-      "before": "Previous separate orange Descend and parchment Surface faces, 880\u00d7346 and 880\u00d7352.",
-      "after": "Matching 880\u00d7350 raised marine bronze/navy enamel controls; distinct down/up vector icons and copper/ivory lettering. Wave engraving and functional hardware instead of card botanical borders.",
+      "before": "Previous separate orange Descend and parchment Surface faces, 880×346 and 880×352.",
+      "after": "Matching 880×350 raised marine bronze/navy enamel controls; distinct down/up vector icons and copper/ivory lettering. Wave engraving and functional hardware instead of card botanical borders.",
       "unityAssetIds": [
         "DescendButton",
         "SurfaceButton"
@@ -6043,7 +6043,7 @@
         "Future prefab regeneration"
       ],
       "configurationChanges": "Presentation-only. Read runtime biome tiers/current depth; do not rename tiers to mockup sample labels. Node/label state remains native and independent of decorative coral colors. Future layout must support authored tier counts and names, not hardcode three gameplay tiers.",
-      "exportRequirements": "Keep three independent transparent PNGs and native editable text/nodes/line. No mockup slicing or flattened HUD import.760\u00d7550 guide; artwork205\u00d7153.75, original1448\u00d71086 per asset, suitable for the4K design footprint.",
+      "exportRequirements": "Keep three independent transparent PNGs and native editable text/nodes/line. No mockup slicing or flattened HUD import.760×550 guide; artwork205×153.75, original1448×1086 per asset, suitable for the4K design footprint.",
       "approvalEvidence": "User explicitly requested integrating all latest Penpot changes and logging the integration.",
       "exportEvidence": {
         "preview": "Revisions/MFJ-R040/DepthGuideReview.png",
@@ -6132,7 +6132,7 @@
         "sourceEnlargement": 1.2012012012012012,
         "scope": "Penpot only; no Unity resource changes"
       },
-      "exportRequirements": "Keep original transparent sheet independent of Technique cards; do not flatten a gameplay screenshot or slice the mockup. Source1998\u00d7787; preserve aspect ratio and record actual display bounds.",
+      "exportRequirements": "Keep original transparent sheet independent of Technique cards; do not flatten a gameplay screenshot or slice the mockup. Source1998×787; preserve aspect ratio and record actual display bounds.",
       "approvalEvidence": "User requested importing the backing sheet and fixing the boat-to-first-encounter animation.",
       "exportEvidence": {
         "source": "Revisions/MFJ-R041/TechniqueHandSheet.png",
@@ -6154,6 +6154,1904 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-006"
+    },
+    {
+      "id": "MFJ-R042",
+      "date": "2026-10-20",
+      "request": "Design a themed hover tooltip explaining modified creature Weight/Value and all contributing sources, in Penpot.",
+      "component": [
+        "Modified-stat tooltip"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R042",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d1c312ec4bb6",
+        "sourceBoardId": "bae680cd-9225-8018-8008-d1c312ce8f8a",
+        "frameId": "bae680cd-9225-8018-8008-d1c2678546b4",
+        "valueTooltipId": "bae680cd-9225-8018-8008-d1c3133e2a69",
+        "weightTooltipId": "bae680cd-9225-8018-8008-d1c317048118",
+        "gameplayBoardId": "bae680cd-9225-8018-8008-d1c31b44a376",
+        "prototypeBoardId": "bae680cd-9225-8018-8008-d1c31fa6ec4b",
+        "hoverTargetId": "bae680cd-9225-8018-8008-d1c31fa71e3f",
+        "configs": [
+          {
+            "key": "value",
+            "title": "VALUE",
+            "creature": "LIONFISH",
+            "base": 30,
+            "current": 42,
+            "net": 12,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "source": "TECHNIQUE",
+                "amount": 8,
+                "kind": "technique",
+                "detail": "Applied when this creature entered Catch."
+              },
+              {
+                "name": "Venomous Spines",
+                "source": "CREATURE · LIONFISH",
+                "amount": -5,
+                "kind": "creature",
+                "detail": "One deliberate creature Release."
+              },
+              {
+                "name": "Moonlit Reflection",
+                "source": "CREATURE · MOONLIT RAY BAIT",
+                "amount": 9,
+                "kind": "creature",
+                "detail": "Value transferred from a released Garfish."
+              }
+            ]
+          },
+          {
+            "key": "weight",
+            "title": "WEIGHT",
+            "creature": "COD",
+            "base": 2,
+            "current": 4,
+            "net": 2,
+            "rows": [
+              {
+                "name": "Tangle",
+                "source": "CREATURE · JELLYFISH CATCH",
+                "amount": 1,
+                "kind": "creature",
+                "detail": "Extra weight carried by this creature."
+              },
+              {
+                "name": "Prize Hook",
+                "source": "TECHNIQUE",
+                "amount": 1,
+                "kind": "technique",
+                "detail": "Applied when this creature entered Catch."
+              },
+              {
+                "name": "Reef Snag",
+                "source": "HAZARD",
+                "amount": 1,
+                "kind": "event",
+                "detail": "Until the current biome ends."
+              },
+              {
+                "name": "Gentle Upwelling",
+                "source": "ENVIRONMENT",
+                "amount": -1,
+                "kind": "environment",
+                "detail": "Retained after switching from Bait to Catch."
+              }
+            ]
+          }
+        ],
+        "overlayBoardId": "bae680cd-9225-8018-8008-d1c443614e62",
+        "fields": [
+          {
+            "id": "bae680cd-9225-8018-8008-d1c3133e2a69",
+            "name": "MFJ-R042 / VALUE modifier tooltip / LIONFISH",
+            "width": 900,
+            "height": 1020,
+            "fields": [
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3135aabb6",
+                "name": "Dynamic / stat heading",
+                "text": "VALUE BREAKDOWN",
+                "x": 220,
+                "y": 112,
+                "w": 460,
+                "h": 48,
+                "fontFamily": "Cinzel",
+                "fontSize": "32",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c313756ca9",
+                "name": "Dynamic / creature name",
+                "text": "LIONFISH",
+                "x": 260,
+                "y": 168,
+                "w": 380,
+                "h": 38,
+                "fontFamily": "Cinzel",
+                "fontSize": "25",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3138cd7aa",
+                "name": "Static / default label",
+                "text": "DEFAULT",
+                "x": 170,
+                "y": 240,
+                "w": 220,
+                "h": 32,
+                "fontFamily": "Cinzel",
+                "fontSize": "21",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c313a5566f",
+                "name": "Dynamic / base amount",
+                "text": "30",
+                "x": 170,
+                "y": 275,
+                "w": 220,
+                "h": 72,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "58",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c313d1d0a8",
+                "name": "Static / calculation arrow",
+                "text": "→",
+                "x": 405,
+                "y": 278,
+                "w": 90,
+                "h": 64,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "48",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3140c33dd",
+                "name": "Static / current label",
+                "text": "CURRENT",
+                "x": 510,
+                "y": 240,
+                "w": 220,
+                "h": 32,
+                "fontFamily": "Cinzel",
+                "fontSize": "21",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3143d09f6",
+                "name": "Dynamic / resolved amount",
+                "text": "42",
+                "x": 510,
+                "y": 271,
+                "w": 220,
+                "h": 80,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "64",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c314a37ae3",
+                "name": "Dynamic / source 1",
+                "text": "TECHNIQUE",
+                "x": 205,
+                "y": 394,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c314c9e65d",
+                "name": "Dynamic / effect 1",
+                "text": "Prize Hook",
+                "x": 205,
+                "y": 425,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c314f1119d",
+                "name": "Dynamic / explanation 1",
+                "text": "Applied when this creature entered Catch.",
+                "x": 205,
+                "y": 470,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c315170fdf",
+                "name": "Dynamic / signed modifier 1",
+                "text": "+8",
+                "x": 690,
+                "y": 425,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31584996f",
+                "name": "Dynamic / source 2",
+                "text": "CREATURE · LIONFISH",
+                "x": 205,
+                "y": 526,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c315a56051",
+                "name": "Dynamic / effect 2",
+                "text": "Venomous Spines",
+                "x": 205,
+                "y": 557,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c315c28fc6",
+                "name": "Dynamic / explanation 2",
+                "text": "One deliberate creature Release.",
+                "x": 205,
+                "y": 602,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c315e4dc49",
+                "name": "Dynamic / signed modifier 2",
+                "text": "−5",
+                "x": 690,
+                "y": 557,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31620cdd5",
+                "name": "Dynamic / source 3",
+                "text": "CREATURE · MOONLIT RAY BAIT",
+                "x": 205,
+                "y": 658,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3163d9687",
+                "name": "Dynamic / effect 3",
+                "text": "Moonlit Reflection",
+                "x": 205,
+                "y": 689,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31663cbdb",
+                "name": "Dynamic / explanation 3",
+                "text": "Value transferred from a released Garfish.",
+                "x": 205,
+                "y": 734,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c316835bd8",
+                "name": "Dynamic / signed modifier 3",
+                "text": "+9",
+                "x": 690,
+                "y": 689,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c316c1ab5c",
+                "name": "Static / net label",
+                "text": "NET CHANGE",
+                "x": 325,
+                "y": 866,
+                "w": 205,
+                "h": 42,
+                "fontFamily": "Cinzel",
+                "fontSize": "22",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c316e02141",
+                "name": "Dynamic / net amount",
+                "text": "+12",
+                "x": 530,
+                "y": 856,
+                "w": 90,
+                "h": 58,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "40",
+                "fontWeight": "700"
+              }
+            ],
+            "overflow": []
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1c317048118",
+            "name": "MFJ-R042 / WEIGHT modifier tooltip / COD",
+            "width": 900,
+            "height": 1020,
+            "fields": [
+              {
+                "id": "bae680cd-9225-8018-8008-d1c317282988",
+                "name": "Dynamic / stat heading",
+                "text": "WEIGHT BREAKDOWN",
+                "x": 220,
+                "y": 112,
+                "w": 460,
+                "h": 48,
+                "fontFamily": "Cinzel",
+                "fontSize": "32",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31748962a",
+                "name": "Dynamic / creature name",
+                "text": "COD",
+                "x": 260,
+                "y": 168,
+                "w": 380,
+                "h": 38,
+                "fontFamily": "Cinzel",
+                "fontSize": "25",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31767c2a2",
+                "name": "Static / default label",
+                "text": "DEFAULT",
+                "x": 170,
+                "y": 240,
+                "w": 220,
+                "h": 32,
+                "fontFamily": "Cinzel",
+                "fontSize": "21",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31782e78f",
+                "name": "Dynamic / base amount",
+                "text": "2",
+                "x": 170,
+                "y": 275,
+                "w": 220,
+                "h": 72,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "58",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3179f1236",
+                "name": "Static / calculation arrow",
+                "text": "→",
+                "x": 405,
+                "y": 278,
+                "w": 90,
+                "h": 64,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "48",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c317bef662",
+                "name": "Static / current label",
+                "text": "CURRENT",
+                "x": 510,
+                "y": 240,
+                "w": 220,
+                "h": 32,
+                "fontFamily": "Cinzel",
+                "fontSize": "21",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c317db6a28",
+                "name": "Dynamic / resolved amount",
+                "text": "4",
+                "x": 510,
+                "y": 271,
+                "w": 220,
+                "h": 80,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "64",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3181668f8",
+                "name": "Dynamic / source 1",
+                "text": "CREATURE · JELLYFISH CATCH",
+                "x": 205,
+                "y": 394,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3182f1801",
+                "name": "Dynamic / effect 1",
+                "text": "Tangle",
+                "x": 205,
+                "y": 425,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31846b1d1",
+                "name": "Dynamic / explanation 1",
+                "text": "Extra weight carried by this creature.",
+                "x": 205,
+                "y": 470,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31860f793",
+                "name": "Dynamic / signed modifier 1",
+                "text": "+1",
+                "x": 690,
+                "y": 425,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3188d7b0e",
+                "name": "Dynamic / source 2",
+                "text": "TECHNIQUE",
+                "x": 205,
+                "y": 502,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c318ab5f28",
+                "name": "Dynamic / effect 2",
+                "text": "Prize Hook",
+                "x": 205,
+                "y": 533,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c318c874d6",
+                "name": "Dynamic / explanation 2",
+                "text": "Applied when this creature entered Catch.",
+                "x": 205,
+                "y": 578,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c318fce11f",
+                "name": "Dynamic / signed modifier 2",
+                "text": "+1",
+                "x": 690,
+                "y": 533,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c319669a40",
+                "name": "Dynamic / source 3",
+                "text": "HAZARD",
+                "x": 205,
+                "y": 610,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c3199dd187",
+                "name": "Dynamic / effect 3",
+                "text": "Reef Snag",
+                "x": 205,
+                "y": 641,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c319d15714",
+                "name": "Dynamic / explanation 3",
+                "text": "Until the current biome ends.",
+                "x": 205,
+                "y": 686,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31a049198",
+                "name": "Dynamic / signed modifier 3",
+                "text": "+1",
+                "x": 690,
+                "y": 641,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31a71667b",
+                "name": "Dynamic / source 4",
+                "text": "ENVIRONMENT",
+                "x": 205,
+                "y": 718,
+                "w": 494,
+                "h": 27,
+                "fontFamily": "Cinzel",
+                "fontSize": "18",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31a945f82",
+                "name": "Dynamic / effect 4",
+                "text": "Gentle Upwelling",
+                "x": 205,
+                "y": 749,
+                "w": 478,
+                "h": 44,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "30",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31ab19ec8",
+                "name": "Dynamic / explanation 4",
+                "text": "Retained after switching from Bait to Catch.",
+                "x": 205,
+                "y": 794,
+                "w": 490,
+                "h": 39,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "23",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31ad06ae9",
+                "name": "Dynamic / signed modifier 4",
+                "text": "−1",
+                "x": 690,
+                "y": 749,
+                "w": 83,
+                "h": 46,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "36",
+                "fontWeight": "700"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31b03ae4b",
+                "name": "Static / net label",
+                "text": "NET CHANGE",
+                "x": 325,
+                "y": 866,
+                "w": 205,
+                "h": 42,
+                "fontFamily": "Cinzel",
+                "fontSize": "22",
+                "fontWeight": "400"
+              },
+              {
+                "id": "bae680cd-9225-8018-8008-d1c31b234220",
+                "name": "Dynamic / net amount",
+                "text": "+2",
+                "x": 530,
+                "y": 856,
+                "w": 90,
+                "h": 58,
+                "fontFamily": "Source Serif 4",
+                "fontSize": "40",
+                "fontWeight": "700"
+              }
+            ],
+            "overflow": []
+          }
+        ],
+        "prototypeWired": true,
+        "unityImported": false,
+        "integrationStatus": "not_imported",
+        "status": "ready_for_review"
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d1c312ec4bb6",
+        "bae680cd-9225-8018-8008-d1c3133e2a69",
+        "bae680cd-9225-8018-8008-d1c317048118",
+        "bae680cd-9225-8018-8008-d1c31b44a376",
+        "bae680cd-9225-8018-8008-d1c31fa6ec4b",
+        "bae680cd-9225-8018-8008-d1c443614e62"
+      ],
+      "changeKinds": [
+        "new independent engraved frame",
+        "editable breakdown fields",
+        "native source emblems",
+        "hover prototype"
+      ],
+      "before": "Modified numbers have colour/scale/bold feedback without a source-breakdown tooltip.",
+      "after": "900x1020 parchment tooltip with stat/creature heading, default/current comparison, signed source rows, explanations and net change; Value and Weight examples plus editable gameplay preview.",
+      "unityAssetIds": [
+        "ModifierTooltipFrameV1"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV1.png (proposed, not created)",
+        "Assets/Scripts/CreatureCardView.cs",
+        "Assets/Scripts/CompactCatchCardView.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs"
+      ],
+      "dependentConsumers": [
+        "Main creature modified Weight/Value hover and focus",
+        "Compact Catch/Bait modified Weight/Value hover and focus",
+        "Tooltip canvas and viewport placement",
+        "Runtime modifier attribution across creatures, events and Techniques"
+      ],
+      "configurationChanges": "New tooltip only; keep existing creature-effect inspection and all Unity-only animation refinements. Bind real attribution, never hardcode the illustrative rows. Keep text editable and border independent.",
+      "exportRequirements": {
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "tooltipCanvas": [
+          900,
+          1020
+        ],
+        "newRasterImages": [
+          "ModifierTooltipFrameV1"
+        ],
+        "slices": false,
+        "dynamicFieldsSeparate": true,
+        "nativeVectorAndText": true,
+        "variableRowCount": true
+      },
+      "approvalEvidence": "User requested the Penpot design; this visual is ready for review, not yet approved for Unity import.",
+      "exportEvidence": {
+        "review": "Revisions/MFJ-R042/TooltipReviewV2.png",
+        "frame": "Revisions/MFJ-R042/Art/ModifierTooltipFrameV1.png",
+        "geometry": "Revisions/MFJ-R042/PenpotDesign.json",
+        "prompt": "Revisions/MFJ-R042/GenerationPrompt.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R042/Verification.json"
+      },
+      "remainingWork": [
+        "Visual review",
+        "Unity integration only when requested; audit and bind complete runtime cause attribution",
+        "Test hover/focus, masking, modal locks, viewport clamping, mixed/stacked/conditional effects and variable row count"
+      ],
+      "unityImported": false,
+      "integrationStatus": "not_imported",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R045"
+    },
+    {
+      "id": "MFJ-R043",
+      "date": "2026-10-20",
+      "request": "Create a smaller modular stat tooltip with default/current, source name/icon/amount, up to three visible reasons and scroll overflow.",
+      "component": [
+        "Modified-stat tooltip"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "alternativeGroup": "Modified-stat tooltip; retain R042 and R043 for comparison, select one before integration",
+      "penpotSources": {
+        "revision": "MFJ-R043",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d1d61e2e0eeb",
+        "scrollReviewBoardId": "bae680cd-9225-8018-8008-d1d631064172",
+        "guideBoardId": "bae680cd-9225-8018-8008-d1d6446675ed",
+        "blankModuleId": "bae680cd-9225-8018-8008-d1d645c9add1",
+        "prototypeTopId": "bae680cd-9225-8018-8008-d1d6441a5fcd",
+        "prototypeBottomId": "bae680cd-9225-8018-8008-d1d64433eb39",
+        "records": [
+          {
+            "id": "bae680cd-9225-8018-8008-d1d61eb9597e",
+            "name": "MFJ-R043 / One source",
+            "stat": "Value",
+            "base": 12,
+            "current": 20,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              }
+            ],
+            "visibleRows": 1,
+            "offset": 0,
+            "height": 348,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d61ee621e1",
+              "bae680cd-9225-8018-8008-d1d61f092ea4",
+              "bae680cd-9225-8018-8008-d1d61f2d63a0",
+              "bae680cd-9225-8018-8008-d1d61f4d1161",
+              "bae680cd-9225-8018-8008-d1d61f6769b0",
+              "bae680cd-9225-8018-8008-d1d61f81edba",
+              "bae680cd-9225-8018-8008-d1d61f9dbfd7",
+              "bae680cd-9225-8018-8008-d1d61fc04b77",
+              "bae680cd-9225-8018-8008-d1d61fdf4e4d"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d6209dfabf",
+            "contentId": "bae680cd-9225-8018-8008-d1d620b1cc49"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d62114ad5e",
+            "name": "MFJ-R043 / Two sources",
+            "stat": "Value",
+            "base": 30,
+            "current": 33,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              },
+              {
+                "name": "Lionfish",
+                "kind": "creature",
+                "amount": -5
+              }
+            ],
+            "visibleRows": 2,
+            "offset": 0,
+            "height": 420,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d6211f6beb",
+              "bae680cd-9225-8018-8008-d1d6214684a6",
+              "bae680cd-9225-8018-8008-d1d62189ec90",
+              "bae680cd-9225-8018-8008-d1d621bebe9b",
+              "bae680cd-9225-8018-8008-d1d621eca18b",
+              "bae680cd-9225-8018-8008-d1d62220a4c4",
+              "bae680cd-9225-8018-8008-d1d6225554a3",
+              "bae680cd-9225-8018-8008-d1d6228aacda",
+              "bae680cd-9225-8018-8008-d1d622c76e82"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d6236cfc5b",
+            "contentId": "bae680cd-9225-8018-8008-d1d62380fb3b"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d6274b7ef5",
+            "name": "MFJ-R043 / Three sources",
+            "stat": "Value",
+            "base": 30,
+            "current": 42,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              },
+              {
+                "name": "Lionfish",
+                "kind": "creature",
+                "amount": -5
+              },
+              {
+                "name": "Moonlit Ray",
+                "kind": "creature",
+                "amount": 9
+              }
+            ],
+            "visibleRows": 3,
+            "offset": 0,
+            "height": 492,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d627623e81",
+              "bae680cd-9225-8018-8008-d1d627a08232",
+              "bae680cd-9225-8018-8008-d1d627c23881",
+              "bae680cd-9225-8018-8008-d1d627da4f35",
+              "bae680cd-9225-8018-8008-d1d627fd7f74",
+              "bae680cd-9225-8018-8008-d1d62815f662",
+              "bae680cd-9225-8018-8008-d1d628311462",
+              "bae680cd-9225-8018-8008-d1d6284bc5da",
+              "bae680cd-9225-8018-8008-d1d6286f1e88"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d6290c7dfd",
+            "contentId": "bae680cd-9225-8018-8008-d1d6291d48f3"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d6315a7f53",
+            "name": "MFJ-R043 / Overflow / first three",
+            "stat": "Weight",
+            "base": 2,
+            "current": 4,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "hazard",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "environment",
+                "amount": -1
+              }
+            ],
+            "visibleRows": 3,
+            "offset": 0,
+            "height": 536,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d6316bc74a",
+              "bae680cd-9225-8018-8008-d1d631973163",
+              "bae680cd-9225-8018-8008-d1d631b744d9",
+              "bae680cd-9225-8018-8008-d1d631dc45a1",
+              "bae680cd-9225-8018-8008-d1d632017400",
+              "bae680cd-9225-8018-8008-d1d63221243b",
+              "bae680cd-9225-8018-8008-d1d63245872f",
+              "bae680cd-9225-8018-8008-d1d63266c506",
+              "bae680cd-9225-8018-8008-d1d6328f788f"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d634114706",
+            "contentId": "bae680cd-9225-8018-8008-d1d63427a8a4",
+            "hintId": "bae680cd-9225-8018-8008-d1d639f70e32"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d63a283a66",
+            "name": "MFJ-R043 / Overflow / scrolled to last",
+            "stat": "Weight",
+            "base": 2,
+            "current": 4,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "hazard",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "environment",
+                "amount": -1
+              }
+            ],
+            "visibleRows": 3,
+            "offset": 1,
+            "height": 536,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d63a370415",
+              "bae680cd-9225-8018-8008-d1d63a5f1e3a",
+              "bae680cd-9225-8018-8008-d1d63a868fc9",
+              "bae680cd-9225-8018-8008-d1d63aaa613f",
+              "bae680cd-9225-8018-8008-d1d63ad1ac28",
+              "bae680cd-9225-8018-8008-d1d63afce104",
+              "bae680cd-9225-8018-8008-d1d63b281df3",
+              "bae680cd-9225-8018-8008-d1d63b93bf0f",
+              "bae680cd-9225-8018-8008-d1d63be76def"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d63d39ce87",
+            "contentId": "bae680cd-9225-8018-8008-d1d63d4e670b",
+            "hintId": "bae680cd-9225-8018-8008-d1d643dfe76f"
+          }
+        ],
+        "sourceFrameId": "bae680cd-9225-8018-8008-d1c2678546b4",
+        "sliceBorderPixels": {
+          "left": 320,
+          "bottom": 340,
+          "right": 320,
+          "top": 340
+        },
+        "displayCapPixels": {
+          "left": 80,
+          "bottom": 85,
+          "right": 80,
+          "top": 85
+        },
+        "blankTiles": [
+          "bae680cd-9225-8018-8008-d1d645edcd83",
+          "bae680cd-9225-8018-8008-d1d64647074b",
+          "bae680cd-9225-8018-8008-d1d64680119a",
+          "bae680cd-9225-8018-8008-d1d646afe19c",
+          "bae680cd-9225-8018-8008-d1d646d6ddb9",
+          "bae680cd-9225-8018-8008-d1d646fd2556",
+          "bae680cd-9225-8018-8008-d1d64721c387",
+          "bae680cd-9225-8018-8008-d1d64748a5fe",
+          "bae680cd-9225-8018-8008-d1d647763120"
+        ],
+        "unityImported": false,
+        "status": "ready_for_review"
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d1d61e2e0eeb",
+        "bae680cd-9225-8018-8008-d1d631064172",
+        "bae680cd-9225-8018-8008-d1d6446675ed",
+        "bae680cd-9225-8018-8008-d1d6441a5fcd",
+        "bae680cd-9225-8018-8008-d1d64433eb39"
+      ],
+      "changeKinds": [
+        "compact alternative",
+        "native nine-region frame",
+        "three-row clipping",
+        "scroll-state prototype"
+      ],
+      "before": "R042 uses a 900x1020 detailed breakdown with explanations and net footer.",
+      "after": "680px-wide variable-height parchment, default/current and icon/name/signed-amount rows only; three visible reasons, scrollbar and overflow indicator.",
+      "unityAssetIds": [
+        "ModifierTooltipFrameV1"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV1.png (proposed, not created)",
+        "Assets/Scripts/CreatureCardView.cs",
+        "Assets/Scripts/CompactCatchCardView.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs"
+      ],
+      "dependentConsumers": [
+        "Main and compact creature modified Weight/Value inspection",
+        "Runtime modifier provenance",
+        "Tooltip placement, focus and scroll input"
+      ],
+      "configurationChanges": "Choose between R042 and R043 before integration. Preserve all current Unity refinements. Bind real sources; retain at most three visible rows and include hidden rows in current totals.",
+      "exportRequirements": {
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "width": 680,
+        "heights": [
+          348,
+          420,
+          492,
+          536
+        ],
+        "newRasterImages": [],
+        "slices": true,
+        "sliceBorderPixels": {
+          "left": 320,
+          "bottom": 340,
+          "right": 320,
+          "top": 340
+        },
+        "displayCapPixels": {
+          "left": 80,
+          "bottom": 85,
+          "right": 80,
+          "top": 85
+        },
+        "dynamicFieldsSeparate": true
+      },
+      "approvalEvidence": "User authorized creation of this Penpot alternative; not approval for Unity import.",
+      "exportEvidence": {
+        "compact": "Revisions/MFJ-R043/CompactReview.png",
+        "overflow": "Revisions/MFJ-R043/OverflowReview.png",
+        "sliceGuide": "Revisions/MFJ-R043/NineSliceGuide.png",
+        "geometry": "Revisions/MFJ-R043/PenpotDesign.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R043/Verification.json"
+      },
+      "remainingWork": [
+        "User review and variant choice",
+        "Unity integration only when requested",
+        "Real runtime provenance and ScrollRect; pointer travel, wheel routing, focus, viewport placement, hidden information and variable source counts"
+      ],
+      "unityImported": false,
+      "integrationStatus": "not_imported",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R044"
+    },
+    {
+      "id": "MFJ-R044",
+      "date": "2026-10-20",
+      "request": "Remove the overflow slider and fit complete creature portraits within source icon tiles.",
+      "component": [
+        "Modified-stat tooltip"
+      ],
+      "status": "superseded",
+      "supersedes": [
+        "MFJ-R043"
+      ],
+      "alternativeGroup": "Modified-stat tooltip: choose R042 or R044 before Unity integration",
+      "penpotSources": {
+        "revision": "MFJ-R044",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d1d61e2e0eeb",
+        "scrollReviewBoardId": "bae680cd-9225-8018-8008-d1d631064172",
+        "guideBoardId": "bae680cd-9225-8018-8008-d1d6446675ed",
+        "blankModuleId": "bae680cd-9225-8018-8008-d1d645c9add1",
+        "prototypeTopId": "bae680cd-9225-8018-8008-d1d6441a5fcd",
+        "prototypeBottomId": "bae680cd-9225-8018-8008-d1d64433eb39",
+        "records": [
+          {
+            "id": "bae680cd-9225-8018-8008-d1d61eb9597e",
+            "name": "MFJ-R043 / One source",
+            "stat": "Value",
+            "base": 12,
+            "current": 20,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              }
+            ],
+            "visibleRows": 1,
+            "offset": 0,
+            "height": 348,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d61ee621e1",
+              "bae680cd-9225-8018-8008-d1d61f092ea4",
+              "bae680cd-9225-8018-8008-d1d61f2d63a0",
+              "bae680cd-9225-8018-8008-d1d61f4d1161",
+              "bae680cd-9225-8018-8008-d1d61f6769b0",
+              "bae680cd-9225-8018-8008-d1d61f81edba",
+              "bae680cd-9225-8018-8008-d1d61f9dbfd7",
+              "bae680cd-9225-8018-8008-d1d61fc04b77",
+              "bae680cd-9225-8018-8008-d1d61fdf4e4d"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d6209dfabf",
+            "contentId": "bae680cd-9225-8018-8008-d1d620b1cc49"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d62114ad5e",
+            "name": "MFJ-R043 / Two sources",
+            "stat": "Value",
+            "base": 30,
+            "current": 33,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              },
+              {
+                "name": "Lionfish",
+                "kind": "creature",
+                "amount": -5
+              }
+            ],
+            "visibleRows": 2,
+            "offset": 0,
+            "height": 420,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d6211f6beb",
+              "bae680cd-9225-8018-8008-d1d6214684a6",
+              "bae680cd-9225-8018-8008-d1d62189ec90",
+              "bae680cd-9225-8018-8008-d1d621bebe9b",
+              "bae680cd-9225-8018-8008-d1d621eca18b",
+              "bae680cd-9225-8018-8008-d1d62220a4c4",
+              "bae680cd-9225-8018-8008-d1d6225554a3",
+              "bae680cd-9225-8018-8008-d1d6228aacda",
+              "bae680cd-9225-8018-8008-d1d622c76e82"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d6236cfc5b",
+            "contentId": "bae680cd-9225-8018-8008-d1d62380fb3b"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d6274b7ef5",
+            "name": "MFJ-R043 / Three sources",
+            "stat": "Value",
+            "base": 30,
+            "current": 42,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              },
+              {
+                "name": "Lionfish",
+                "kind": "creature",
+                "amount": -5
+              },
+              {
+                "name": "Moonlit Ray",
+                "kind": "creature",
+                "amount": 9
+              }
+            ],
+            "visibleRows": 3,
+            "offset": 0,
+            "height": 492,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d627623e81",
+              "bae680cd-9225-8018-8008-d1d627a08232",
+              "bae680cd-9225-8018-8008-d1d627c23881",
+              "bae680cd-9225-8018-8008-d1d627da4f35",
+              "bae680cd-9225-8018-8008-d1d627fd7f74",
+              "bae680cd-9225-8018-8008-d1d62815f662",
+              "bae680cd-9225-8018-8008-d1d628311462",
+              "bae680cd-9225-8018-8008-d1d6284bc5da",
+              "bae680cd-9225-8018-8008-d1d6286f1e88"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d6290c7dfd",
+            "contentId": "bae680cd-9225-8018-8008-d1d6291d48f3"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d6315a7f53",
+            "name": "MFJ-R043 / Overflow / first three",
+            "stat": "Weight",
+            "base": 2,
+            "current": 4,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "hazard",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "environment",
+                "amount": -1
+              }
+            ],
+            "visibleRows": 3,
+            "offset": 0,
+            "height": 536,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d6316bc74a",
+              "bae680cd-9225-8018-8008-d1d631973163",
+              "bae680cd-9225-8018-8008-d1d631b744d9",
+              "bae680cd-9225-8018-8008-d1d631dc45a1",
+              "bae680cd-9225-8018-8008-d1d632017400",
+              "bae680cd-9225-8018-8008-d1d63221243b",
+              "bae680cd-9225-8018-8008-d1d63245872f",
+              "bae680cd-9225-8018-8008-d1d63266c506",
+              "bae680cd-9225-8018-8008-d1d6328f788f"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d634114706",
+            "contentId": "bae680cd-9225-8018-8008-d1d63427a8a4",
+            "hintId": "bae680cd-9225-8018-8008-d1d639f70e32"
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1d63a283a66",
+            "name": "MFJ-R043 / Overflow / scrolled to last",
+            "stat": "Weight",
+            "base": 2,
+            "current": 4,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "hazard",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "environment",
+                "amount": -1
+              }
+            ],
+            "visibleRows": 3,
+            "offset": 1,
+            "height": 536,
+            "width": 680,
+            "tiles": [
+              "bae680cd-9225-8018-8008-d1d63a370415",
+              "bae680cd-9225-8018-8008-d1d63a5f1e3a",
+              "bae680cd-9225-8018-8008-d1d63a868fc9",
+              "bae680cd-9225-8018-8008-d1d63aaa613f",
+              "bae680cd-9225-8018-8008-d1d63ad1ac28",
+              "bae680cd-9225-8018-8008-d1d63afce104",
+              "bae680cd-9225-8018-8008-d1d63b281df3",
+              "bae680cd-9225-8018-8008-d1d63b93bf0f",
+              "bae680cd-9225-8018-8008-d1d63be76def"
+            ],
+            "viewportId": "bae680cd-9225-8018-8008-d1d63d39ce87",
+            "contentId": "bae680cd-9225-8018-8008-d1d63d4e670b",
+            "hintId": "bae680cd-9225-8018-8008-d1d643dfe76f"
+          }
+        ],
+        "sourceFrameId": "bae680cd-9225-8018-8008-d1c2678546b4",
+        "sliceBorderPixels": {
+          "left": 320,
+          "bottom": 340,
+          "right": 320,
+          "top": 340
+        },
+        "displayCapPixels": {
+          "left": 80,
+          "bottom": 85,
+          "right": 80,
+          "top": 85
+        },
+        "blankTiles": [
+          "bae680cd-9225-8018-8008-d1d645edcd83",
+          "bae680cd-9225-8018-8008-d1d64647074b",
+          "bae680cd-9225-8018-8008-d1d64680119a",
+          "bae680cd-9225-8018-8008-d1d646afe19c",
+          "bae680cd-9225-8018-8008-d1d646d6ddb9",
+          "bae680cd-9225-8018-8008-d1d646fd2556",
+          "bae680cd-9225-8018-8008-d1d64721c387",
+          "bae680cd-9225-8018-8008-d1d64748a5fe",
+          "bae680cd-9225-8018-8008-d1d647763120"
+        ],
+        "unityImported": false,
+        "status": "ready_for_review",
+        "updatesRevision": "MFJ-R043",
+        "changes": {
+          "removedScrollbars": [
+            "bae680cd-9225-8018-8008-d1d639ca47e0",
+            "bae680cd-9225-8018-8008-d1d639e1234c",
+            "bae680cd-9225-8018-8008-d1d643acf41b",
+            "bae680cd-9225-8018-8008-d1d643c41aa3",
+            "bae680cd-9225-8018-8008-d1d6441a5fde",
+            "bae680cd-9225-8018-8008-d1d6441a5fdf",
+            "bae680cd-9225-8018-8008-d1d644343ea3",
+            "bae680cd-9225-8018-8008-d1d644343ea4"
+          ],
+          "portraits": [
+            {
+              "id": "bae680cd-9225-8018-8008-d1d626da318c",
+              "name": "Dynamic / approved Lionfish portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d626b18065",
+              "fit": "contain",
+              "padding": 4
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d1d62c3b853e",
+              "name": "Dynamic / approved Lionfish portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d62c18e205",
+              "fit": "contain",
+              "padding": 4
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d1d630b68d50",
+              "name": "Dynamic / approved Moonlit Ray portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d6308bc2a8",
+              "fit": "contain",
+              "padding": 4
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d1d637e1649f",
+              "name": "Dynamic / approved Jellyfish portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d637c57c22",
+              "fit": "contain",
+              "padding": 4
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d1d64123197a",
+              "name": "Dynamic / approved Jellyfish portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d640e40cef",
+              "fit": "contain",
+              "padding": 4
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d1d6441a5ff2",
+              "name": "Dynamic / approved Jellyfish portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d6441a5fef",
+              "fit": "contain",
+              "padding": 4
+            },
+            {
+              "id": "bae680cd-9225-8018-8008-d1d644343eb7",
+              "name": "Dynamic / approved Jellyfish portrait",
+              "width": 48,
+              "height": 27.01435406698572,
+              "parentId": "bae680cd-9225-8018-8008-d1d644343eb4",
+              "fit": "contain",
+              "padding": 4
+            }
+          ]
+        },
+        "scrollbar": false,
+        "portraitFit": "contain",
+        "portraitPadding": 4
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d1d61e2e0eeb",
+        "bae680cd-9225-8018-8008-d1d631064172",
+        "bae680cd-9225-8018-8008-d1d6446675ed",
+        "bae680cd-9225-8018-8008-d1d6441a5fcd",
+        "bae680cd-9225-8018-8008-d1d64433eb39"
+      ],
+      "changeKinds": [
+        "remove scrollbar visuals",
+        "contain-fit source portraits"
+      ],
+      "before": "R043 has visible scrollbars and height-fitted creature portraits that clip horizontally.",
+      "after": "No scrollbar; overflow indicator and scrolling retained. Whole creature portraits fit proportionally with padding.",
+      "unityAssetIds": [
+        "ModifierTooltipFrameV1"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV1.png (proposed, not created)",
+        "Assets/Scripts/CreatureCardView.cs",
+        "Assets/Scripts/CompactCatchCardView.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs"
+      ],
+      "dependentConsumers": [
+        "Main and compact creature modified Weight/Value inspection",
+        "Runtime modifier provenance",
+        "Tooltip placement, focus and scroll input"
+      ],
+      "configurationChanges": "Use R044 in place of R043. No visible scrollbar at any source count; retain scrolling and overflow indicators. Creature thumbnails use centered aspect-preserving contain fit with padding.",
+      "exportRequirements": {
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "width": 680,
+        "heights": [
+          348,
+          420,
+          492,
+          536
+        ],
+        "newRasterImages": [],
+        "slices": true,
+        "sliceBorderPixels": {
+          "left": 320,
+          "bottom": 340,
+          "right": 320,
+          "top": 340
+        },
+        "displayCapPixels": {
+          "left": 80,
+          "bottom": 85,
+          "right": 80,
+          "top": 85
+        },
+        "dynamicFieldsSeparate": true,
+        "visibleScrollbar": false,
+        "portraitFit": "contain",
+        "portraitPadding": 4
+      },
+      "approvalEvidence": "User authorized creation of this Penpot alternative; not approval for Unity import.",
+      "exportEvidence": {
+        "compact": "Revisions/MFJ-R044/CompactReview.png",
+        "overflow": "Revisions/MFJ-R044/OverflowReview.png",
+        "geometry": "Revisions/MFJ-R044/PenpotDesign.json"
+      },
+      "importEvidence": null,
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R044/Verification.json"
+      },
+      "remainingWork": [
+        "User review and variant choice",
+        "Unity integration only when requested",
+        "Real runtime provenance and ScrollRect; pointer travel, wheel routing, focus, viewport placement, hidden information and variable source counts"
+      ],
+      "unityImported": false,
+      "integrationStatus": "not_imported",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R045"
+    },
+    {
+      "id": "MFJ-R045",
+      "date": "2026-10-20",
+      "request": "Use directional arrows above/below reasons, background-free flat icons with shared Technique/event glyphs, and a new decoration suitable for nine-slice resizing.",
+      "component": [
+        "Modified-stat tooltip"
+      ],
+      "status": "verified",
+      "supersedes": [
+        "MFJ-R042",
+        "MFJ-R044"
+      ],
+      "alternativeGroup": "Modified-stat tooltip: choose R042 or R045 before integration",
+      "penpotSources": {
+        "revision": "MFJ-R045",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "reviewBoardId": "bae680cd-9225-8018-8008-d1f8e5a830ea",
+        "scrollReviewBoardId": "bae680cd-9225-8018-8008-d1f8eb58cd20",
+        "masterBoardId": "bae680cd-9225-8018-8008-d1f8f54b16ca",
+        "prototypeIds": [
+          "bae680cd-9225-8018-8008-d1f8f4e9dda4",
+          "bae680cd-9225-8018-8008-d1f8f504cab5",
+          "bae680cd-9225-8018-8008-d1f8f51f5f10"
+        ],
+        "records": [
+          {
+            "id": "bae680cd-9225-8018-8008-d1f8e5eb648a",
+            "name": "MFJ-R045 / One reason",
+            "stat": "Value",
+            "base": 12,
+            "current": 20,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              }
+            ],
+            "offset": 0,
+            "visibleRows": 1,
+            "height": 348,
+            "width": 680,
+            "viewportId": "bae680cd-9225-8018-8008-d1f8e72c10c0",
+            "contentId": "bae680cd-9225-8018-8008-d1f8e7389f8f",
+            "frame": {
+              "corners": [
+                "bae680cd-9225-8018-8008-d1f8e61675d3",
+                "bae680cd-9225-8018-8008-d1f8e623cf7c",
+                "bae680cd-9225-8018-8008-d1f8e63072dd",
+                "bae680cd-9225-8018-8008-d1f8e63c87a3"
+              ],
+              "borders": {
+                "left": 64,
+                "right": 64,
+                "top": 64,
+                "bottom": 64
+              }
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1f8e782dd7e",
+            "name": "MFJ-R045 / Two reasons",
+            "stat": "Value",
+            "base": 30,
+            "current": 33,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              },
+              {
+                "name": "Lionfish",
+                "kind": "creature",
+                "amount": -5
+              }
+            ],
+            "offset": 0,
+            "visibleRows": 2,
+            "height": 420,
+            "width": 680,
+            "viewportId": "bae680cd-9225-8018-8008-d1f8e8ac8e8a",
+            "contentId": "bae680cd-9225-8018-8008-d1f8e8b6fd6b",
+            "frame": {
+              "corners": [
+                "bae680cd-9225-8018-8008-d1f8e7a6923f",
+                "bae680cd-9225-8018-8008-d1f8e7b289be",
+                "bae680cd-9225-8018-8008-d1f8e7be303f",
+                "bae680cd-9225-8018-8008-d1f8e7cae668"
+              ],
+              "borders": {
+                "left": 64,
+                "right": 64,
+                "top": 64,
+                "bottom": 64
+              }
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1f8e944d173",
+            "name": "MFJ-R045 / Three reasons",
+            "stat": "Value",
+            "base": 30,
+            "current": 42,
+            "rows": [
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 8
+              },
+              {
+                "name": "Lionfish",
+                "kind": "creature",
+                "amount": -5
+              },
+              {
+                "name": "Moonlit Ray",
+                "kind": "creature",
+                "amount": 9
+              }
+            ],
+            "offset": 0,
+            "visibleRows": 3,
+            "height": 492,
+            "width": 680,
+            "viewportId": "bae680cd-9225-8018-8008-d1f8ea7eadd6",
+            "contentId": "bae680cd-9225-8018-8008-d1f8ea8bfe4d",
+            "frame": {
+              "corners": [
+                "bae680cd-9225-8018-8008-d1f8e9692bad",
+                "bae680cd-9225-8018-8008-d1f8e97626b5",
+                "bae680cd-9225-8018-8008-d1f8e9847752",
+                "bae680cd-9225-8018-8008-d1f8e990e408"
+              ],
+              "borders": {
+                "left": 64,
+                "right": 64,
+                "top": 64,
+                "bottom": 64
+              }
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1f8eb972ad2",
+            "name": "MFJ-R045 / Scroll offset 0",
+            "stat": "Weight",
+            "base": 2,
+            "current": 3,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "event",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "event",
+                "amount": -1
+              },
+              {
+                "name": "Spiny Lobster",
+                "kind": "creature",
+                "amount": -1
+              }
+            ],
+            "offset": 0,
+            "visibleRows": 3,
+            "height": 536,
+            "width": 680,
+            "viewportId": "bae680cd-9225-8018-8008-d1f8ece4c8ce",
+            "contentId": "bae680cd-9225-8018-8008-d1f8ecf44ee8",
+            "downArrowId": "bae680cd-9225-8018-8008-d1f8ee6c2a98",
+            "frame": {
+              "corners": [
+                "bae680cd-9225-8018-8008-d1f8ebc11447",
+                "bae680cd-9225-8018-8008-d1f8ebcde417",
+                "bae680cd-9225-8018-8008-d1f8ebdb5ae0",
+                "bae680cd-9225-8018-8008-d1f8ebe85756"
+              ],
+              "borders": {
+                "left": 64,
+                "right": 64,
+                "top": 64,
+                "bottom": 64
+              }
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1f8ee7823dc",
+            "name": "MFJ-R045 / Scroll offset 1",
+            "stat": "Weight",
+            "base": 2,
+            "current": 3,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "event",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "event",
+                "amount": -1
+              },
+              {
+                "name": "Spiny Lobster",
+                "kind": "creature",
+                "amount": -1
+              }
+            ],
+            "offset": 1,
+            "visibleRows": 3,
+            "height": 536,
+            "width": 680,
+            "viewportId": "bae680cd-9225-8018-8008-d1f8eff646fd",
+            "contentId": "bae680cd-9225-8018-8008-d1f8f0073ee4",
+            "upArrowId": "bae680cd-9225-8018-8008-d1f8efe9769e",
+            "downArrowId": "bae680cd-9225-8018-8008-d1f8f18298df",
+            "frame": {
+              "corners": [
+                "bae680cd-9225-8018-8008-d1f8eeaa5ab8",
+                "bae680cd-9225-8018-8008-d1f8eeb88995",
+                "bae680cd-9225-8018-8008-d1f8eec6b8bf",
+                "bae680cd-9225-8018-8008-d1f8eed51193"
+              ],
+              "borders": {
+                "left": 64,
+                "right": 64,
+                "top": 64,
+                "bottom": 64
+              }
+            }
+          },
+          {
+            "id": "bae680cd-9225-8018-8008-d1f8f18f5eb9",
+            "name": "MFJ-R045 / Scroll offset 2",
+            "stat": "Weight",
+            "base": 2,
+            "current": 3,
+            "rows": [
+              {
+                "name": "Jellyfish",
+                "kind": "creature",
+                "amount": 1
+              },
+              {
+                "name": "Prize Hook",
+                "kind": "technique",
+                "amount": 1
+              },
+              {
+                "name": "Reef Snag",
+                "kind": "event",
+                "amount": 1
+              },
+              {
+                "name": "Gentle Upwelling",
+                "kind": "event",
+                "amount": -1
+              },
+              {
+                "name": "Spiny Lobster",
+                "kind": "creature",
+                "amount": -1
+              }
+            ],
+            "offset": 2,
+            "visibleRows": 3,
+            "height": 536,
+            "width": 680,
+            "viewportId": "bae680cd-9225-8018-8008-d1f8f31e41c8",
+            "contentId": "bae680cd-9225-8018-8008-d1f8f332628c",
+            "upArrowId": "bae680cd-9225-8018-8008-d1f8f310d4f2",
+            "frame": {
+              "corners": [
+                "bae680cd-9225-8018-8008-d1f8f1bfff19",
+                "bae680cd-9225-8018-8008-d1f8f1ce2efb",
+                "bae680cd-9225-8018-8008-d1f8f1dcba8e",
+                "bae680cd-9225-8018-8008-d1f8f1eb1712"
+              ],
+              "borders": {
+                "left": 64,
+                "right": 64,
+                "top": 64,
+                "bottom": 64
+              }
+            }
+          }
+        ],
+        "sliceBorderPixels": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        },
+        "masterFrame": {
+          "corners": [
+            "bae680cd-9225-8018-8008-d1f8f58419b6",
+            "bae680cd-9225-8018-8008-d1f8f5945aca",
+            "bae680cd-9225-8018-8008-d1f8f5a4b71f",
+            "bae680cd-9225-8018-8008-d1f8f5b4a6cd"
+          ],
+          "borders": {
+            "left": 64,
+            "right": 64,
+            "top": 64,
+            "bottom": 64
+          }
+        },
+        "scrollbar": false,
+        "scrollIndicators": "Arrow up above list; arrow down below list; both for middle scroll positions. No counts or labels.",
+        "icons": "Flat single ink colour, no backing. Tied hook for every Technique; wave scroll for every event; individual creature silhouettes.",
+        "status": "ready_for_review",
+        "unityImported": false
+      },
+      "affectedPenpotInstances": [
+        "bae680cd-9225-8018-8008-d1f8e5a830ea",
+        "bae680cd-9225-8018-8008-d1f8eb58cd20",
+        "bae680cd-9225-8018-8008-d1f8f54b16ca",
+        "bae680cd-9225-8018-8008-d1f8f4e9dda4",
+        "bae680cd-9225-8018-8008-d1f8f504cab5",
+        "bae680cd-9225-8018-8008-d1f8f51f5f10"
+      ],
+      "changeKinds": [
+        "arrow-only overflow states",
+        "flat creature silhouettes",
+        "shared category glyphs",
+        "new native engraved corner frame"
+      ],
+      "before": "R044 uses numbered above/below labels, portrait backings, distinct event symbols and a rescaled illustrated frame.",
+      "after": "Arrow up above reasons and down below; both only in the middle. Single-ink background-free icons: creature silhouettes, tied hook for Techniques and wave scroll for all events. New 64px fixed corner engraving with straight stretchable edges.",
+      "unityAssetIds": [
+        "ModifierTooltipFrameV2",
+        "ModifierSourceIconsV2"
+      ],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV2.png",
+        "Assets/Scripts/CreatureCardView.cs",
+        "Assets/Scripts/CompactCatchCardView.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs"
+      ],
+      "dependentConsumers": [
+        "Main and compact creature modified Weight/Value inspection",
+        "Runtime modifier provenance",
+        "Tooltip placement, focus and scroll input"
+      ],
+      "configurationChanges": "Replace R044 with R045. New master uses 64px borders, not the old 320/340px borders. No icon backings, scroll labels/counts or scrollbar. Bind arrow visibility to scroll bounds; preserve three visible source rows and truthful attribution.",
+      "exportRequirements": {
+        "designResolution": [
+          3840,
+          2160
+        ],
+        "width": 680,
+        "heights": [
+          348,
+          420,
+          492,
+          536
+        ],
+        "masterCanvas": [
+          680,
+          536
+        ],
+        "slices": true,
+        "sliceBorderPixels": {
+          "left": 64,
+          "right": 64,
+          "top": 64,
+          "bottom": 64
+        },
+        "dynamicFieldsSeparate": true,
+        "visibleScrollbar": false,
+        "icons": "native single-colour SVG; no backing",
+        "arrowIndicators": "up above list; down below list; visibility follows actual scroll range"
+      },
+      "approvalEvidence": "User requested importing the latest completed Penpot tooltip into Unity.",
+      "exportEvidence": {
+        "compact": "Revisions/MFJ-R045/CompactReview.png",
+        "overflow": "Revisions/MFJ-R045/OverflowReview.png",
+        "master": "Revisions/MFJ-R045/TooltipFrameMaster.png",
+        "geometry": "Revisions/MFJ-R045/PenpotDesign.json"
+      },
+      "importEvidence": {
+        "manifest": "Sync007/ImportManifest.json",
+        "checkpoint": "Sync007/UnityCheckpoint.json"
+      },
+      "verificationEvidence": {
+        "report": "Sync007/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-007"
     }
   ],
   "synchronizationCheckpoints": [
@@ -6216,9 +8114,9 @@
     "MFJ-R001 through MFJ-R019 were imported and verified in Unity at MFJ-SYNC-001. The immutable original baseline is retained; the next comparison uses Sync001/UnityCheckpoint.json.",
     "Pending changes are never considered imported merely because an image was exported.",
     "Reconcile unrecorded external Penpot edits explicitly before the next import.",
-    "MFJ-SYNC-002 imports all five event cards (MFJ-R020\u2013MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
+    "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "DisplayedStatColours/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync007/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

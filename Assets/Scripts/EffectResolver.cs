@@ -47,7 +47,7 @@ public sealed class EffectResolver
             if (Array.Exists(safeCatches, c => c != null && c != record.SourceInstance && c.IsBait
                 && c.Definition?.CardType == CardType.Creature && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)))
             {
-                record.SourceInstance.ModifyWeight(-Math.Abs(record.Effect.Amount));
+                record.SourceInstance.ModifyWeight(-Math.Abs(record.Effect.Amount), record.SourceCard, record.Effect);
             }
         }
 
@@ -57,7 +57,7 @@ public sealed class EffectResolver
                 || record.SourceInstance == null || record.SourceInstance.IsBait) continue;
             if (Array.Exists(safeCatches, c => c != null && c.Definition?.CardType == CardType.Creature
                 && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)))
-                record.SourceInstance.ModifyWeight(Math.Abs(record.Effect.Amount));
+                record.SourceInstance.ModifyWeight(Math.Abs(record.Effect.Amount), record.SourceCard, record.Effect);
         }
 
         foreach (ActiveCatchEffectRecord record in safeEffects)
@@ -68,7 +68,7 @@ public sealed class EffectResolver
             {
                 if (target != null && target != record.SourceInstance && target.Definition?.CardType == CardType.Creature
                     && RequiredTagsMatchInstance(record.Effect.RequiredTags, target))
-                    target.ModifyWeight(-Math.Abs(record.Effect.Amount));
+                    target.ModifyWeight(-Math.Abs(record.Effect.Amount), record.SourceCard, record.Effect);
             }
         }
 
@@ -85,10 +85,10 @@ public sealed class EffectResolver
                 || record.SourceInstance == null || record.SourceInstance.IsBait) continue;
             int count = Array.FindAll(safeCatches, c => c != null && c != record.SourceInstance && !c.IsBait
                 && c.Definition?.CardType == CardType.Creature && RequiredTagsMatchInstance(record.Effect.RequiredTags, c)).Length;
-            if (count >= Math.Max(1, record.Effect.Amount)) record.SourceInstance.ModifyWeight(-record.SourceInstance.CurrentWeight);
+            if (count >= Math.Max(1, record.Effect.Amount)) record.SourceInstance.ModifyWeight(-record.SourceInstance.CurrentWeight, record.SourceCard, record.Effect);
         }
         // Events add to effective weight; clamp their combined contribution only after ongoing interactions settle.
-        foreach (CardInstance card in safeCatches) card?.ModifyWeight(card.EventWeightModifier);
+        foreach (CardInstance card in safeCatches) card?.ApplyEventWeightModifiers();
     }
 
     /// <summary>
@@ -172,7 +172,7 @@ public sealed class EffectResolver
                     && record.SourceInstance.IsBait && record.SourceInstance.IsSelectedEffectTarget(record.Effect, target.InstanceId)
                     && RequiredTagsMatchInstance(record.Effect.RequiredTags, target))
                 {
-                    target.ModifyWeight(-Math.Abs(record.Effect.Amount));
+                    target.ModifyWeight(-Math.Abs(record.Effect.Amount), record.SourceCard, record.Effect);
                 }
             }
             return;
@@ -225,7 +225,7 @@ public sealed class EffectResolver
             }
         }
 
-        source.ModifyValue(effect.Amount * matchingOthers);
+        source.ModifyValue(effect.Amount * matchingOthers, source.Definition, effect);
     }
 
     /// <summary>
@@ -235,7 +235,7 @@ public sealed class EffectResolver
     {
         if (effect.Target == CardEffectTarget.Self)
         {
-            ApplyStatChange(GetCatch(catches, sourceIndex), effect);
+            ApplyStatChange(GetCatch(catches, sourceIndex), effect, GetCatch(catches, sourceIndex)?.Definition);
             return;
         }
 
@@ -245,7 +245,7 @@ public sealed class EffectResolver
             {
                 if (RequiredTagsMatchInstance(effect.RequiredTags, catches[i]))
                 {
-                    ApplyStatChange(catches[i], effect);
+                    ApplyStatChange(catches[i], effect, GetCatch(catches, sourceIndex)?.Definition);
                 }
             }
 
@@ -255,7 +255,7 @@ public sealed class EffectResolver
         if (effect.Target == CardEffectTarget.SpecificCaughtCard)
         {
             int targetIndex = FindSpecificTarget(catches, sourceIndex, effect);
-            ApplyStatChange(GetCatch(catches, targetIndex), effect);
+            ApplyStatChange(GetCatch(catches, targetIndex), effect, GetCatch(catches, sourceIndex)?.Definition);
         }
     }
 
@@ -302,7 +302,7 @@ public sealed class EffectResolver
     /// <summary>
     /// Applies the numerical portion of a supported stat effect to one catch.
     /// </summary>
-    private static void ApplyStatChange(CardInstance target, CardEffectDefinition effect)
+    private static void ApplyStatChange(CardInstance target, CardEffectDefinition effect, CardDefinition source)
     {
         if (target == null)
         {
@@ -311,14 +311,14 @@ public sealed class EffectResolver
 
         if (effect.EffectType == CardEffectType.ModifyCatchValue)
         {
-            target.ModifyValue(effect.Amount);
+            target.ModifyValue(effect.Amount, source, effect);
             return;
         }
 
         int weightChange = effect.EffectType == CardEffectType.RemoveLineLoadModifier
             ? -Math.Abs(effect.Amount)
             : effect.Amount;
-        target.ModifyWeight(weightChange);
+        target.ModifyWeight(weightChange, source, effect);
     }
 
     /// <summary>

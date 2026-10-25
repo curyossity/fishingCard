@@ -1,0 +1,28 @@
+{
+  "revision": "MFJ-R045",
+  "status": "verified",
+  "unityImported": true,
+  "master": {
+    "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R045/TooltipFrameMaster.png",
+    "sha256": "f0a193dc07f832312fc6e77621250406180b243580c82280654dc3180c07ce8b",
+    "width": 680,
+    "height": 536,
+    "penpotShapeId": "bae680cd-9225-8018-8008-d1f8f54b16ca",
+    "borders": {
+      "left": 64,
+      "right": 64,
+      "top": 64,
+      "bottom": 64
+    }
+  },
+  "creation": "Native vector engraving and icons; reused clean parchment center only. No bitmap generation, no screenshot slicing.",
+  "iconSources": "CreateDesign.js glyphs; original paths for each species and common category glyphs",
+  "fonts": [
+    "Cinzel",
+    "Source Serif 4"
+  ],
+  "maximumVisibleReasons": 3,
+  "scrollbar": false,
+  "dynamicFieldsSeparate": true,
+  "synchronizationCheckpoint": "MFJ-SYNC-007"
+}

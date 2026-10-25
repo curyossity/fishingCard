@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9d5f20c3bf2894439f8be49e27b851e, type: 3}
+  m_Name: StatTooltipStyle
+  m_EditorClassIdentifier: Assembly-CSharp::JournalStatTooltipStyle
+  theme: {fileID: 11400000, guid: b437da156c4f80d45b3a25a6f2c6c7a5, type: 2}
+  frame: {fileID: 21300000, guid: e51230cdb135cfd4ca0fc770a1df1924, type: 3}
+  techniqueIcon: {fileID: 21300000, guid: c334237ecb21ee64590834f1a39040a2, type: 3}
+  eventIcon: {fileID: 21300000, guid: 5a428e5903b38904abdd3c8f7c87fb29, type: 3}
+  silhouetteMaterial: {fileID: 2100000, guid: 0f96f6e92928ff242ab6d7a4b47aab92, type: 2}
+  creatureIcons:
+  - creatureId: creature_lionfish
+    sprite: {fileID: 21300000, guid: 9dd2a6caccd31af46aef65a691df632b, type: 3}
+  - creatureId: creature_moonlit_ray
+    sprite: {fileID: 21300000, guid: 21092a5429416984b80c097430c9e2e4, type: 3}
+  - creatureId: creature_jellyfish
+    sprite: {fileID: 21300000, guid: 96281f58ecf889b4db605fc8f5c1a202, type: 3}
+  - creatureId: creature_spiny_lobster
+    sprite: {fileID: 21300000, guid: b7707bfcabe181d4c81d2cc54e76c00a, type: 3}

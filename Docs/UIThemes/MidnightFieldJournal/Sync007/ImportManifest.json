@@ -1,0 +1,95 @@
+{
+  "revision": "MFJ-R045",
+  "source": "../Revisions/MFJ-R045/PenpotDesign.json",
+  "master": {
+    "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV2.png",
+    "sha256": "f0a193dc07f832312fc6e77621250406180b243580c82280654dc3180c07ce8b"
+  },
+  "icons": [
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/event.png",
+      "sha256": "a887314639ed1d30a768475f701c24e42df143f6b0eadafe5201b6d65bee1029"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/jellyfish.png",
+      "sha256": "d5ebe2e753d059b50df3e10dad20986a7edca28ddc702fce40b11f41cf9d09f6"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/lionfish.png",
+      "sha256": "1e1cef0d68dca30999f9c2b7248adcbd5885616c3dbe5d360efac094eaa2decc"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/moonlit_ray.png",
+      "sha256": "b95213c6966191b2c9fa31c105b1447ee1fb9d25e48ff3ca7e9e8b7c8ffca136"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/spiny_lobster.png",
+      "sha256": "9e9645bba007d1f90c42e894f7f060f5133e53ecabca548f7265a33d45dadc1d"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/technique.png",
+      "sha256": "aad8ec29e7781a8dcf03360a72c12ff3030225bebb74fa1ece4295f18c7ba0db"
+    }
+  ],
+  "style": "Assets/UIThemes/MidnightFieldJournal/Profiles/StatTooltipStyle.asset",
+  "modifiedUnityPaths": [
+    "Assets/Editor/CoastalEventChecks.cs",
+    "Assets/Editor/LobsterSquidEelChecks.cs",
+    "Assets/Editor/ShellFeedingExchangeChecks.cs",
+    "Assets/Scripts/ApprovedTechniqueRuntime.cs",
+    "Assets/Scripts/CardInstance.cs",
+    "Assets/Scripts/CompactCatchCardView.cs",
+    "Assets/Scripts/CreatureCardView.cs",
+    "Assets/Scripts/EffectResolver.cs",
+    "Assets/Scripts/EventPersistenceRuntime.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/Scripts/TechniqueEffectRuntime.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalCentralBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalPrefabBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CompactCatchCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/CreatureCard.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalCatchChainPresentation.cs"
+  ],
+  "newUnityPaths": [
+    "Assets/Editor/FishingRunCheckActions.cs",
+    "Assets/Editor/FishingRunCheckActions.cs.meta",
+    "Assets/Scripts/CardStatBreakdown.cs",
+    "Assets/Scripts/CardStatBreakdown.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV2.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/ModifierTooltipFrameV2.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/event.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/event.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/jellyfish.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/jellyfish.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/lionfish.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/lionfish.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/moonlit_ray.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/moonlit_ray.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/spiny_lobster.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/spiny_lobster.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/technique.png",
+    "Assets/UIThemes/MidnightFieldJournal/Art/Tooltips/StatIcons/technique.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatTooltipChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatTooltipChecks.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatTooltipDesignSync.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalStatTooltipDesignSync.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/StatSilhouette.mat",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/StatSilhouette.mat.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/StatTooltipStyle.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Profiles/StatTooltipStyle.asset.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatInspectionTrigger.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatInspectionTrigger.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatScrollArrow.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatScrollArrow.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltip.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltip.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltipHost.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltipHost.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltipStyle.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltipStyle.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/StatSilhouette.shader",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/StatSilhouette.shader.meta"
+  ]
+}

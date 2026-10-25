@@ -2200,6 +2200,7 @@ public sealed class FishingRunController : MonoBehaviour
             fishingRunView.SetEncounterRoleSelection(currentEncounter != null && currentEncounter.RequiresAttachmentChoice
                 ? SelectedEncounterChoice : SelectedEncounterChoice == EncounterEffectChoice.None ? EncounterEffectChoice.Catch : SelectedEncounterChoice);
             if (statFeedback.HasValue) fishingRunView.PresentEncounterStatFeedback(statFeedback.Value);
+            fishingRunView.SetEncounterStatInspection(runActive ? encounterPreview : null, encounterRuntime.EncounterRevision);
             fishingRunView.SetTrailPreview(runActive ? encounterRuntime.Trail.Preview : string.Empty);
             fishingRunView.SetOpeningVisible(IsOpeningBoatVisible);
         }

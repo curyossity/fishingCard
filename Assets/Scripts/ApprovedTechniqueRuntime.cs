@@ -9,6 +9,7 @@ public sealed class ApprovedTechniqueRuntime
     [SerializeField] private int pendingLoadRelief;
     [SerializeField] private bool reliefActive;
     [SerializeField] private List<CardEffectDefinition> pendingPrizes = new List<CardEffectDefinition>();
+    [SerializeField] private List<CardDefinition> pendingPrizeSources = new List<CardDefinition>();
     public bool HasPendingRelief => pendingLoadRelief > 0 || reliefActive;
     public int PendingPrizeCount => pendingPrizes.Count;
 
@@ -45,7 +46,7 @@ public sealed class ApprovedTechniqueRuntime
     public bool Apply(CardEffectDefinition effect, int effectIndex, TechniqueTargetPlan targets,
         EncounterRuntime encounters, CatchChainRuntime chain, EffectResolver resolver,
         CreatureEffectRuntime creatures, TechniqueDeckRuntime deck, System.Random random, bool hidden,
-        out bool revealCurrent)
+        out bool revealCurrent, CardDefinition source = null)
     {
         revealCurrent = false;
         if (!CanApply(effect, encounters, chain, deck, hidden)) return false;
@@ -76,7 +77,7 @@ public sealed class ApprovedTechniqueRuntime
                 Array.Sort(slots); Array.Reverse(slots);
                 foreach (int slot in slots) if (!deck.TryDiscardTechnique(slot)) throw new InvalidOperationException("Recast target changed after commitment.");
                 deck.DrawTechniques(slots.Length, TechniqueDeckRuntime.HandLimit, random); return true;
-            case CardEffectType.QueuePrizeCatchBonus: pendingPrizes.Add(effect); return true;
+            case CardEffectType.QueuePrizeCatchBonus: pendingPrizes.Add(effect); pendingPrizeSources.Add(source ?? deck?.ResolvingCard); return true;
             default: return false;
         }
     }
@@ -99,6 +100,7 @@ public sealed class ApprovedTechniqueRuntime
             && card.Definition.CardType != CardType.ApexEncounter)) return;
         PreviewPendingPrizes(card);
         pendingPrizes.Clear();
+        pendingPrizeSources.Clear();
     }
 
     /// <summary>Projects pending Catch modifiers onto a detached preview without consuming the grants.</summary>
@@ -106,9 +108,10 @@ public sealed class ApprovedTechniqueRuntime
     {
         if (card == null || card.IsBait || (card.Definition.CardType != CardType.Creature
             && card.Definition.CardType != CardType.ApexEncounter)) return;
-        foreach (CardEffectDefinition effect in pendingPrizes) card.AddPermanentModifiers(1, effect.Amount, effect, null);
+        for (int i = 0; i < pendingPrizes.Count; i++)
+            card.AddPermanentModifiers(1, pendingPrizes[i].Amount, pendingPrizes[i], i < pendingPrizeSources.Count ? pendingPrizeSources[i] : null);
     }
 
     /// <summary>Clears all unfinished grants at run replacement or shutdown.</summary>
-    public void Reset() { pendingLoadRelief = 0; reliefActive = false; pendingPrizes.Clear(); }
+    public void Reset() { pendingLoadRelief = 0; reliefActive = false; pendingPrizes.Clear(); pendingPrizeSources.Clear(); }
 }

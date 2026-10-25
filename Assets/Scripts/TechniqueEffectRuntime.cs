@@ -129,7 +129,7 @@ public sealed class TechniqueEffectRuntime
             if (ApprovedTechniqueRuntime.Handles(effect))
             {
                 if (approved.Apply(effect, i, targets, encounterRuntime, catchChainRuntime, effectResolver,
-                    creatures, deck, random, encounterInformationHidden, out bool revealCurrent))
+                    creatures, deck, random, encounterInformationHidden, out bool revealCurrent, techniqueCard))
                 {
                     if (revealCurrent) revealsCurrentEncounter = true;
                     results.Add(effect.ReminderText ?? effect.EffectType.ToString());

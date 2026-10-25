@@ -1,0 +1,34 @@
+{
+  "ApprovedTechniqueChecks": {
+    "passed": true,
+    "assertions": 39
+  },
+  "CoastalSupportChecks": {
+    "passed": true,
+    "assertions": 62
+  },
+  "PredatorSchoolRayChecks": {
+    "passed": true,
+    "assertions": 87
+  },
+  "ShellFeedingExchangeChecks": {
+    "passed": true,
+    "assertions": 87
+  },
+  "BassUrchinOctopusChecks": {
+    "passed": true,
+    "assertions": 101
+  },
+  "LobsterSquidEelChecks": {
+    "passed": true,
+    "assertions": 80
+  },
+  "CoastalEventChecks": {
+    "passed": true,
+    "assertions": 57
+  },
+  "EventPersistenceChecks": {
+    "passed": true,
+    "assertions": 45
+  }
+}

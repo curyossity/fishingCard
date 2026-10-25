@@ -1,0 +1,25 @@
+{
+  "revision": "MFJ-R042",
+  "status": "superseded",
+  "unityImported": false,
+  "generation": "Built-in image_gen; new independent frame, no slicing or paid external API",
+  "assets": [
+    {
+      "id": "ModifierTooltipFrameV1",
+      "path": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R042/Art/ModifierTooltipFrameV1.png",
+      "sha256": "0ca62ad82c65e6b0b1a424a5d0116677f7027e5f10b349f1ad82fc7a82caa1a1",
+      "width": 1190,
+      "height": 1322,
+      "penpotShapeId": "bae680cd-9225-8018-8008-d1c2678546b4",
+      "unityImported": false
+    }
+  ],
+  "dynamicFieldsSeparate": true,
+  "nativeIcons": "CreateDesign.js source emblems",
+  "fonts": [
+    "Cinzel",
+    "Source Serif 4"
+  ],
+  "synchronizationCheckpoint": null,
+  "supersededBy": "MFJ-R045"
+}

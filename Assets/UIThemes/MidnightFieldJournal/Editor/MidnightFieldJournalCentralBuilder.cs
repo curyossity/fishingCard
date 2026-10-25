@@ -70,6 +70,7 @@ public static partial class MidnightFieldJournalPrefabBuilder
         data.FindProperty("showRarity").boolValue=true;data.ApplyModifiedPropertiesWithoutUndo();
         JournalRoleSelectionSync.ConfigureFading(visuals,profile);
         JournalStatFeedbackSync.Bind(view);
+        JournalStatTooltipDesignSync.Bind(root);
         Save(root,"CreatureCard");
     }
 
