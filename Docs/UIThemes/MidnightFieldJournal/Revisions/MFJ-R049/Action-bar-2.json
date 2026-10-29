@@ -1,0 +1,82 @@
+{
+  "id": "0ee2d4ff-05c9-80cd-8008-dc4adb2d6188",
+  "variant": 2,
+  "title": "The Sounding Chart",
+  "state": "initial",
+  "width": 1600,
+  "height": 600,
+  "zones": [
+    {
+      "tag": "Fish",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4adec1dd9e",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Predator",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4ae0ec82ba",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Schooling",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4ae34e914a",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Small",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4ae55dcdd2",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Heavy",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4ae79761d4",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Anchored",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4ae9aa240c",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Armored",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4aec01d936",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    },
+    {
+      "tag": "Elusive",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4aee85d6a1",
+      "fraction": 0.125,
+      "visible": true,
+      "precisionFraction": 0.18
+    }
+  ],
+  "markerId": "0ee2d4ff-05c9-80cd-8008-dc4af0cb7cf3",
+  "guideCount": 8,
+  "visibleTags": [
+    "Fish",
+    "Predator",
+    "Schooling",
+    "Small",
+    "Heavy",
+    "Anchored",
+    "Armored",
+    "Elusive"
+  ],
+  "stopId": "0ee2d4ff-05c9-80cd-8008-dc4af1be7b70",
+  "complete": true,
+  "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+  "interactionProposal": "Boat follows chart route"
+}

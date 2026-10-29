@@ -1,0 +1,95 @@
+{
+  "revision": "MFJ-R050",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "Concept B — Reusable Assembly (4K)",
+  "sourceRevision": "MFJ-R048",
+  "sourceBarId": "0ee2d4ff-05c9-80cd-8008-db200bad4abc",
+  "bars": {
+    "0": {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd78",
+      "state": "initial",
+      "width": 1600,
+      "height": 400,
+      "trackId": "0ee2d4ff-05c9-80cd-8008-dc524174dd81",
+      "trackWidth": 1440,
+      "zones": [
+        {
+          "tag": "Fish",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd94",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5243d90187",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524438dd2d"
+        },
+        {
+          "tag": "Predator",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd95",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc52457afa34",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc5246063545"
+        },
+        {
+          "tag": "Schooling",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd96",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5246e00c46",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524749d9fb"
+        },
+        {
+          "tag": "Small",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd97",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc52488d5144",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524949bf91"
+        },
+        {
+          "tag": "Heavy",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd98",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524a53defa",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524ad09465"
+        },
+        {
+          "tag": "Anchored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd99",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524c636155",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524d0d1fd0"
+        },
+        {
+          "tag": "Armored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd9a",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524dd57c42",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524e309621"
+        },
+        {
+          "tag": "Elusive",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd9b",
+          "fraction": 0.125,
+          "precisionFraction": 0.18,
+          "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524f21fdec",
+          "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524fcfa5f5"
+        }
+      ],
+      "markerId": "0ee2d4ff-05c9-80cd-8008-dc52508f7b8f",
+      "markerPosition": 0.32,
+      "markerSize": {
+        "width": 40,
+        "height": 216
+      },
+      "activeTagHighlight": false,
+      "precisionPresentation": "Eight permanent centre brackets below the tag labels",
+      "palettePolicy": "Light parchment, shared ink glyphs/text, restrained ochre centre marks",
+      "complete": true
+    }
+  },
+  "reviewId": "0ee2d4ff-05c9-80cd-8008-dc52279538d6"
+}

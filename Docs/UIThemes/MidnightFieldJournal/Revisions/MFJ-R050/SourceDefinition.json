@@ -1,0 +1,75 @@
+{
+  "id": "0ee2d4ff-05c9-80cd-8008-db200bad4abc",
+  "variant": 2,
+  "title": "The Lantern Focus",
+  "state": "initial",
+  "width": 1600,
+  "height": 400,
+  "trackId": "0ee2d4ff-05c9-80cd-8008-db2010d612ec",
+  "trackWidth": 1440,
+  "tagColour": "#293D40",
+  "palettePolicy": "One shared tag palette; gold is reserved for precision, not tag identity.",
+  "precisionFraction": 0.18,
+  "zones": [
+    {
+      "tag": "Fish",
+      "id": "0ee2d4ff-05c9-80cd-8008-db201243acd8",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db201459fcf4",
+      "precisionVisible": true,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Predator",
+      "id": "0ee2d4ff-05c9-80cd-8008-db2014f16d1a",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db2016f5ef3d",
+      "precisionVisible": false,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Schooling",
+      "id": "0ee2d4ff-05c9-80cd-8008-db20174d92b0",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db20195c1d70",
+      "precisionVisible": false,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Small",
+      "id": "0ee2d4ff-05c9-80cd-8008-db2019df12c9",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db201bc92676",
+      "precisionVisible": false,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Heavy",
+      "id": "0ee2d4ff-05c9-80cd-8008-db201c4db3fa",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db201e4d2915",
+      "precisionVisible": false,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Anchored",
+      "id": "0ee2d4ff-05c9-80cd-8008-db201f020051",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db2020dfb57a",
+      "precisionVisible": false,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Armored",
+      "id": "0ee2d4ff-05c9-80cd-8008-db2021726b3b",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db20238480f9",
+      "precisionVisible": false,
+      "fraction": 0.125
+    },
+    {
+      "tag": "Elusive",
+      "id": "0ee2d4ff-05c9-80cd-8008-db2024339b01",
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-db202633bc2b",
+      "precisionVisible": false,
+      "fraction": 0.125
+    }
+  ],
+  "markerPosition": 0.07,
+  "precisionPresentation": "Only current zone exposes guide",
+  "stopId": "0ee2d4ff-05c9-80cd-8008-db2027c2f838",
+  "complete": true
+}

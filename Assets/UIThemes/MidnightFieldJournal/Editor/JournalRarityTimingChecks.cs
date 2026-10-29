@@ -101,6 +101,19 @@ public static class JournalRarityTimingChecks
         finally {foreach(var card in cards)UnityEngine.Object.DestroyImmediate(card);UnityEngine.Object.DestroyImmediate(profile);}
     }
 
+    /// <summary>Checks exact motion endpoints, elastic wind-up and the one-second duration independently of frame rate.</summary>
+    public static int ValidateExitMotion()
+    {
+        assertions=0;
+        Assert(JournalRarityExitMotion.Duration==1,"Exit no longer lasts one second");
+        Assert(JournalRarityExitMotion.Evaluate(0)==0,"Exit does not start at rest");
+        Assert(JournalRarityExitMotion.Evaluate(1)==1,"Exit does not finish off-screen");
+        Assert(JournalRarityExitMotion.Evaluate(-1)==0&&JournalRarityExitMotion.Evaluate(2)==1,"Exit endpoints are not clamped");
+        Assert(JournalRarityExitMotion.Evaluate(.65f)<0,"Elastic wind-up was clamped away");
+        Assert(Mathf.Abs(JournalRarityExitMotion.Evaluate(.9f)-.330337f)<.0001f,"Exit differs from inElastic(1,0.74)");
+        return assertions;
+    }
+
     /// <summary>Starts real Game View input, timing and restart checks using the authored comparison scene.</summary>
     public static void BeginProductionSmoke(string outputFolder="Docs/Validation/RarityTiming/")
     {
@@ -108,6 +121,15 @@ public static class JournalRarityTimingChecks
         output=outputFolder.EndsWith("/")?outputFolder:outputFolder+"/";
         Directory.CreateDirectory(output);Status="Running";
         UnityEngine.Object.FindAnyObjectByType<JournalModalHost>().StartCoroutine(Production());
+    }
+
+    /// <summary>Waits for optional live entrance motion without bypassing controller input gates.</summary>
+    public static IEnumerator WaitForEntrance(FishingRunController controller)
+    {
+        var view=UnityEngine.Object.FindAnyObjectByType<JournalRarityTimingView>();
+        float deadline=Time.realtimeSinceStartup+6;
+        while(controller.RunActive&&controller.RarityTiming.Active&&view!=null
+            &&!view.HasCompletedEntrance(controller.RarityTiming.Occurrence)&&Time.realtimeSinceStartup<deadline)yield return null;
     }
 
     /// <summary>Runs the production boat/bar/role/next-slot sequence and captures native 4K output.</summary>
@@ -118,6 +140,7 @@ public static class JournalRarityTimingChecks
         Set(controller,"useRandomSeed",false);Set(controller,"randomSeed",5);controller.StartRun();
         Assert(controller.IsOpeningBoatVisible,"Boat missing");Assert(controller.TryDescend(),"Boat Descend rejected");
         yield return new WaitForSecondsRealtime(1);
+        yield return WaitForEntrance(controller);
         Assert(controller.RarityTiming.Active&&controller.CurrentEncounter==null,"First creature did not wait for Stop");
         Assert(!controller.CanDescend&&!controller.TryDescend(),"Descend bypassed timing");Assert(!controller.CanUseTechniqueCard(0,out _),"Technique played before reveal");
         var view=UnityEngine.Object.FindAnyObjectByType<JournalRarityTimingView>();var button=view.StopButton;Canvas.ForceUpdateCanvases();
@@ -128,6 +151,12 @@ public static class JournalRarityTimingChecks
         Assert(controller.RarityTiming.Stopped&&controller.CurrentEncounter==null,"Stop revealed before feedback");
         Assert(!controller.TryStopRarityTiming(occurrence),"Double Stop accepted");
         UnityEngine.ScreenCapture.CaptureScreenshot(output+"Stopped4K.png");yield return new WaitForSecondsRealtime(.9f);
+        Assert(controller.CurrentEncounter==null&&controller.RarityTiming.Active,"Creature revealed before the bar exited");
+        Assert(view.ExitProgress>0&&view.ExitProgress<1&&!button.interactable,"Exit did not animate with Stop locked");
+        UnityEngine.ScreenCapture.CaptureScreenshot(output+"ExitWindUp4K.png");yield return new WaitForSecondsRealtime(.65f);
+        UnityEngine.ScreenCapture.CaptureScreenshot(output+"ExitUpward4K.png");yield return new WaitForSecondsRealtime(.35f);
+        float revealDeadline=Time.realtimeSinceStartup+5;
+        while(controller.RarityTiming.Active&&Time.realtimeSinceStartup<revealDeadline)yield return null;
         Assert(controller.CurrentEncounter!=null&&!controller.RarityTiming.Active,"Creature not revealed");
         Assert(controller.SelectedEncounterChoice==EncounterEffectChoice.None&&!controller.CanDescend,"Explicit role selection bypassed");
         UnityEngine.ScreenCapture.CaptureScreenshot(output+"Revealed4K.png");yield return null;
@@ -135,6 +164,12 @@ public static class JournalRarityTimingChecks
         Assert(controller.TryChooseEncounterRole(EncounterEffectChoice.Catch),"Catch choice rejected");
         Assert(controller.TryDescend(),"Creature Descend rejected");yield return new WaitForSecondsRealtime(1);
         Assert(controller.RarityTiming.Active||EncounterRuntime.IsEventCard(controller.CurrentEncounter),"No next bar/event");
+        if(controller.RarityTiming.Active)
+        {
+            var nextView=UnityEngine.Object.FindAnyObjectByType<JournalRarityTimingView>();
+            yield return WaitForEntrance(controller);
+            Assert(nextView.ExitProgress==0&&nextView.GetComponent<RectTransform>().anchoredPosition==Vector2.zero,"Next attempt retained the previous exit offset");
+        }
         // Surface invalidates the pending occurrence; a restarted run must not accept its callbacks.
         Assert(controller.CanSurface&&controller.TrySurface(),"Surface unavailable during timing");yield return new WaitForSecondsRealtime(2);
         Assert(!controller.RarityTiming.Active,"Surface retained pending timing");controller.StartRun();
@@ -149,6 +184,16 @@ public static class JournalRarityTimingChecks
         Assert(controller.TryDescend(),"Event Descend failed");yield return new WaitForSecondsRealtime(1);
         Assert(controller.CurrentDepth==6,"Event added an extra depth step");
         Assert(controller.RarityTiming.Active||EncounterRuntime.IsEventCard(controller.CurrentEncounter),"Event did not continue to normal bar/event selection");
+        controller.StartRun();Assert(controller.TryDescend(),"Cancellation fixture could not reach timing");yield return new WaitForSecondsRealtime(1);
+        yield return WaitForEntrance(controller);
+        var cancelledView=UnityEngine.Object.FindAnyObjectByType<JournalRarityTimingView>();
+        Assert(controller.TryStopRarityTiming(controller.RarityTiming.Occurrence),"Cancellation fixture could not stop timing");yield return new WaitForSecondsRealtime(.85f);
+        Assert(cancelledView.ExitProgress>0&&controller.CurrentEncounter==null,"Cancellation fixture did not reach exit before reveal");
+        Assert(controller.TrySurface()&&!controller.RarityTiming.Active&&cancelledView.GetComponent<RectTransform>().anchoredPosition==Vector2.zero,"Surface did not cancel and reset the exiting bar");yield return new WaitForSecondsRealtime(2);
+        controller.StartRun();controller.TryDescend();yield return new WaitForSecondsRealtime(1);
+        yield return WaitForEntrance(controller);
+        var restartedView=UnityEngine.Object.FindAnyObjectByType<JournalRarityTimingView>();
+        Assert(restartedView!=null&&restartedView.ExitProgress==0&&restartedView.GetComponent<RectTransform>().anchoredPosition==Vector2.zero,"Restart retained an exiting bar pose");
         Status="Passed "+assertions+" production assertions";File.WriteAllText(output+"ProductionValidation.json",JsonUtility.ToJson(new Report{assertions=assertions,status=Status},true));
     }
     [Serializable] private sealed class Report { public int assertions;public string status; }

@@ -1,0 +1,86 @@
+{
+  "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd78",
+  "width": 1600,
+  "height": 400,
+  "marker": {
+    "id": "0ee2d4ff-05c9-80cd-8008-dc52508f7b8f",
+    "width": 40,
+    "height": 216,
+    "visible": true
+  },
+  "darkWashPresent": false,
+  "zones": [
+    {
+      "tag": "Fish",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Predator",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Schooling",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Small",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Heavy",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Anchored",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Armored",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    },
+    {
+      "tag": "Elusive",
+      "width": 180,
+      "precisionWidth": 32.400000000001455,
+      "precisionVisible": true,
+      "centred": true,
+      "tagColour": "#293d40",
+      "activeHighlight": false
+    }
+  ]
+}

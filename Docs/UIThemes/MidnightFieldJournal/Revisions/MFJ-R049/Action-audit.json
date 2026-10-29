@@ -1,0 +1,32 @@
+[
+  {
+    "id": "0ee2d4ff-05c9-80cd-8008-dc4a46e2fe3a",
+    "exists": true,
+    "state": "initial",
+    "logicalTagCount": 8,
+    "visibleCount": 8,
+    "equalPhases": true,
+    "markerExists": true,
+    "zonesExist": true
+  },
+  {
+    "id": "0ee2d4ff-05c9-80cd-8008-dc4ab0509ff4",
+    "exists": true,
+    "state": "initial",
+    "logicalTagCount": 8,
+    "visibleCount": 3,
+    "equalPhases": true,
+    "markerExists": true,
+    "zonesExist": true
+  },
+  {
+    "id": "0ee2d4ff-05c9-80cd-8008-dc4adb2d6188",
+    "exists": true,
+    "state": "initial",
+    "logicalTagCount": 8,
+    "visibleCount": 8,
+    "equalPhases": true,
+    "markerExists": true,
+    "zonesExist": true
+  }
+]

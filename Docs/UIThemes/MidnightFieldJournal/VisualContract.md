@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-007 is the latest imported checkpoint.** [Current integration and verification](Sync007/README.md). R041 adds the independent dark chart sheet beneath the lowered Technique hand. Boat artwork now shares the normal outgoing encounter movement/masks. Grayscale inactive depth tiers, adaptive fan, newest-catch following and all prior imports are retained.1 pending visual proposal,38 completed,7 superseded. [Next import baseline](Sync007/UnityCheckpoint.json). Earlier sections below describe historical geometry where superseded by the current checkpoint.
+**MFJ-SYNC-008.5 is the latest Unity checkpoint.** [Current baseline](RarityBarEntrance/UnityCheckpoint.json). One pending selected Penpot refinement, MFJ-R051, continues Lantern Focus in light parchment with a visible anchor cursor over the bar and eight upward-fading precision areas inside it. R047/R048/R049 are superseded historical studies. The live Unity rarity bar is unchanged. 39 revisions remain imported and verified; seven drafts are superseded. [Design log](Design%20Changes.md). Earlier sections describe historical geometry where superseded.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -302,3 +302,15 @@ Uncommon is now 5%, Common 87% and Rare 8%. Unavailable rarity space goes to Com
 ## Unity gameplay update — MFJ-SYNC-008.2
 
 The stopped rarity now sets a ceiling. Every distinct biome/depth-eligible species at or below that rarity has one equal chance, without rarity/species weights or immediate-repeat exclusions. Bar sizes stay unchanged. Result text says “UP TO [rarity]”. Event pacing and fixed promises remain intact. [Validation and current checkpoint](RarityCeilingSelection/README.md). No new Penpot revision or pending import.
+
+## Unity animation update — MFJ-SYNC-008.3
+
+The stopped bar now winds up elastically and exits upward over one second before the encounter is revealed. Motion matches inElastic(1,0.74), resets between attempts, and cancels safely on Surface/restart. Selection and zone widths are unchanged. [Validation and current checkpoint](RarityBarElasticExit/README.md). Unity-only change; no pending Penpot import.
+
+## Unity feedback update — MFJ-SYNC-008.4
+
+Stopping in the highest displayed non-Miss rarity now emits a gold/ivory particle burst at the marker. The effect emits once per occurrence, clears on cancellation/reuse, and preserves selection odds, hold and upward exit. [4K verification and current checkpoint](RarityCelebration/README.md). Unity-only change; no pending Penpot import.
+
+## Unity entrance update — MFJ-SYNC-008.5
+
+The rarity bar now enters from below over one second using the mirrored elastic exit curve. The marker and Stop remain inactive until it settles; cancellation, restart, the upward exit and highest-rarity particles are verified. [4K captures and current checkpoint](RarityBarEntrance/README.md). Unity-only update; no pending Penpot import.

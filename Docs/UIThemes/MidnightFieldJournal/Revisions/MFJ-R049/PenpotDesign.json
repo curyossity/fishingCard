@@ -1,0 +1,255 @@
+{
+  "revision": "MFJ-R049",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "Concept B — Reusable Assembly (4K)",
+  "bars": {
+    "0": {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4a46e2fe3a",
+      "variant": 0,
+      "title": "The Tide Dial",
+      "state": "initial",
+      "width": 1600,
+      "height": 600,
+      "zones": [
+        {
+          "tag": "Fish",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a4a0b398d",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Predator",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a4c09e6a5",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Schooling",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a4e39a507",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Small",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a4f93a673",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Heavy",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a52012401",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Anchored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a5466a735",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Armored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a56385ec3",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Elusive",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4a5862d13c",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        }
+      ],
+      "markerId": "0ee2d4ff-05c9-80cd-8008-dc4a5d987a27",
+      "guideCount": 8,
+      "visibleTags": [
+        "Fish",
+        "Predator",
+        "Schooling",
+        "Small",
+        "Heavy",
+        "Anchored",
+        "Armored",
+        "Elusive"
+      ],
+      "stopId": "0ee2d4ff-05c9-80cd-8008-dc4a5fe9409c",
+      "complete": true,
+      "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+      "interactionProposal": "Needle follows a crescent"
+    },
+    "1": {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4ab0509ff4",
+      "variant": 1,
+      "title": "The Line Spool",
+      "state": "initial",
+      "width": 1600,
+      "height": 600,
+      "zones": [
+        {
+          "tag": "Fish",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ab6d9b9e1",
+          "fraction": 0.125,
+          "visible": false,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Predator",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ab948ec8e",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Schooling",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4abc0f425d",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Small",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4abed3b272",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Heavy",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ac0f61529",
+          "fraction": 0.125,
+          "visible": false,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Anchored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ac31acbec",
+          "fraction": 0.125,
+          "visible": false,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Armored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ac5c8b664",
+          "fraction": 0.125,
+          "visible": false,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Elusive",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ac8cfe0df",
+          "fraction": 0.125,
+          "visible": false,
+          "precisionFraction": 0.18
+        }
+      ],
+      "markerId": "0ee2d4ff-05c9-80cd-8008-dc4acbe9b7cc",
+      "guideCount": 1,
+      "visibleTags": [
+        "Predator",
+        "Schooling",
+        "Small"
+      ],
+      "stopId": "0ee2d4ff-05c9-80cd-8008-dc4acddd6a99",
+      "complete": true,
+      "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+      "interactionProposal": "Ribbon moves beneath fixed index"
+    },
+    "2": {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4adb2d6188",
+      "variant": 2,
+      "title": "The Sounding Chart",
+      "state": "initial",
+      "width": 1600,
+      "height": 600,
+      "zones": [
+        {
+          "tag": "Fish",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4adec1dd9e",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Predator",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ae0ec82ba",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Schooling",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ae34e914a",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Small",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ae55dcdd2",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Heavy",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ae79761d4",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Anchored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4ae9aa240c",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Armored",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4aec01d936",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Elusive",
+          "id": "0ee2d4ff-05c9-80cd-8008-dc4aee85d6a1",
+          "fraction": 0.125,
+          "visible": true,
+          "precisionFraction": 0.18
+        }
+      ],
+      "markerId": "0ee2d4ff-05c9-80cd-8008-dc4af0cb7cf3",
+      "guideCount": 8,
+      "visibleTags": [
+        "Fish",
+        "Predator",
+        "Schooling",
+        "Small",
+        "Heavy",
+        "Anchored",
+        "Armored",
+        "Elusive"
+      ],
+      "stopId": "0ee2d4ff-05c9-80cd-8008-dc4af1be7b70",
+      "complete": true,
+      "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+      "interactionProposal": "Boat follows chart route"
+    }
+  },
+  "rowIds": [
+    "0ee2d4ff-05c9-80cd-8008-dc4a22c9d801",
+    "0ee2d4ff-05c9-80cd-8008-dc4a250647b3",
+    "0ee2d4ff-05c9-80cd-8008-dc4a26fc0c05"
+  ],
+  "reviewId": "0ee2d4ff-05c9-80cd-8008-dc4a1d5c480f"
+}

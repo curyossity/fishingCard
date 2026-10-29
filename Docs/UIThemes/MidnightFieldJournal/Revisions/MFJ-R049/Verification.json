@@ -1,0 +1,37 @@
+{
+  "revision": "MFJ-R049",
+  "date": "2026-10-28",
+  "checks": {
+    "threeInitialConcepts": true,
+    "eightEqualLogicalTags": true,
+    "nativeObjectsExist": true,
+    "viewportVisibility": true,
+    "exportsExist": true,
+    "visualReviewPassed": true,
+    "unityFilesUnchanged": true
+  },
+  "unityCheckpointUnchanged": "MFJ-SYNC-008.5",
+  "unityFileCount": 442,
+  "modifiedUnityFiles": [],
+  "visualReview": {
+    "revision": "MFJ-R049",
+    "date": "2026-10-28",
+    "passed": true,
+    "method": "Inspected the three actual Penpot row PNG exports and the full comparison export.",
+    "inspectedExports": [
+      "TideDial.png",
+      "LineSpool.png",
+      "SoundingChart.png",
+      "DesignReview.png"
+    ],
+    "findings": [
+      "Exactly three initial-state concepts are present and all three use a shared palette rather than per-tag colours.",
+      "The tide dial's eight names and glyphs follow the outside of the crescent; the needle is clear of the text and the precision notches remain visible.",
+      "The spool viewport exposes Predator, Schooling and Small, clipping the other five logical tag regions. Both fixed index tips are clear of the ribbon text.",
+      "The chart shows all eight bearings, with alternating labels clear of the route and the independent boat marker. Fine contour engraving does not obscure the labels.",
+      "Headers, instructions, captions and Stop controls fit their bounds. The full board shows all three concepts without overlap or clipping.",
+      "The review explicitly identifies alternate motion paths as visual proposals, with no runtime implementation."
+    ],
+    "scope": "Static Penpot visual review only; not gameplay, motion timing or probability validation."
+  }
+}

@@ -1,8 +1,15 @@
 {
-  "generatedDate": "2026-10-25",
+  "generatedDate": "2026-10-28",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "RarityCeilingSelection/UnityCheckpoint.json",
-  "pending": [],
+  "currentUnityCheckpoint": "RarityBarEntrance/UnityCheckpoint.json",
+  "pending": [
+    {
+      "id": "MFJ-R051",
+      "status": "ready_for_review",
+      "unityImported": false,
+      "source": "Revisions/MFJ-R051/README.md"
+    }
+  ],
   "completed": [
     {
       "id": "MFJ-R001",
@@ -183,6 +190,11 @@
       "unityImported": false
     },
     {
+      "id": "MFJ-R042",
+      "supersededBy": "MFJ-R045",
+      "unityImported": false
+    },
+    {
       "id": "MFJ-R043",
       "supersededBy": "MFJ-R044",
       "unityImported": false
@@ -193,15 +205,30 @@
       "unityImported": false
     },
     {
-      "id": "MFJ-R042",
-      "supersededBy": "MFJ-R045",
+      "id": "MFJ-R047",
+      "supersededBy": "MFJ-R050",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R048",
+      "supersededBy": "MFJ-R050",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R049",
+      "supersededBy": "MFJ-R050",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R050",
+      "supersededBy": "MFJ-R051",
       "unityImported": false
     }
   ],
   "counts": {
-    "pending": 0,
-    "completed": 37,
-    "superseded": 4
+    "pending": 1,
+    "completed": 39,
+    "superseded": 11
   },
   "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required.",
   "alternativeGroups": []

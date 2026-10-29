@@ -1,0 +1,40 @@
+{
+  "revision": "MFJ-R047",
+  "verificationDate": "2026-10-28",
+  "checks": {
+    "sixCompleteBars": true,
+    "eightZonesPerBar": true,
+    "widthsSumToOne": true,
+    "initialEqual": true,
+    "finalMinimumFivePercent": true,
+    "proportionalPrecision": true,
+    "exportsExist": true,
+    "unityFilesUnchanged": true,
+    "nativeGeometry": true,
+    "visualReviewPassed": true
+  },
+  "unityCheckpointUnchanged": "MFJ-SYNC-008.5",
+  "unityFileCount": 442,
+  "modifiedUnityFiles": [],
+  "visualReview": {
+    "revision": "MFJ-R047",
+    "date": "2026-10-28",
+    "passed": true,
+    "method": "Visually inspected the actual Penpot PNG exports: all three row exports and the full comparison board.",
+    "inspectedExports": [
+      "FieldJournal.png",
+      "NightSounder.png",
+      "NaturalistsLedger.png",
+      "DesignReview.png"
+    ],
+    "findings": [
+      "Exactly three alternatives, each containing one initial and one mid-run bar.",
+      "All eight tag names, icons, widths and centered gold precision areas are visible in both states.",
+      "Header and instruction text clear the corner engravings; legend spacing corrections are present.",
+      "Narrowed Small and Predator zones retain their own precision areas, with exterior labels avoiding truncation.",
+      "Precision feedback in the parchment variants and ordinary tag-hit feedback in the dark variant are distinct and contained.",
+      "Native geometry audit confirms all 48 zone widths and precision centers, plus one independent marker per bar."
+    ],
+    "scope": "Static visual studies only. No runtime resizing, timing, probability or gameplay implementation. No Unity integration."
+  }
+}

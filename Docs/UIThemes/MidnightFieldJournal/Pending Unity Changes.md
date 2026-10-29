@@ -1,8 +1,8 @@
 # Penpot changes awaiting Unity integration
 
-**Current: 0 pending; 39 imported and verified; 7 superseded drafts.** R046 is integrated. [Pending index](PendingUnityChanges.json) · [Full ledger](DesignChangeLedger.json).
+**Current: 1 pending selected design; 39 imported and verified; 11 superseded drafts/studies.** R051 is ready_for_review. R050 is superseded. [Pending index](PendingUnityChanges.json) · [Full ledger](DesignChangeLedger.json).
 
-Latest baseline: [MFJ-SYNC-008](Sync008/UnityCheckpoint.json). Next revision: **MFJ-R047**.
+Latest baseline: [MFJ-SYNC-008.5](RarityBarEntrance/UnityCheckpoint.json). Next revision: **MFJ-R052**.
 
 ## Explicit creature role choice — MFJ-SYNC-006.1
 
@@ -115,3 +115,35 @@ Uncommon is now 5%, Common 87% and Rare 8%. Unavailable rarity space goes to Com
 ## Unity gameplay update — MFJ-SYNC-008.2
 
 The stopped rarity now sets a ceiling. Every distinct biome/depth-eligible species at or below that rarity has one equal chance, without rarity/species weights or immediate-repeat exclusions. Bar sizes stay unchanged. Result text says “UP TO [rarity]”. Event pacing and fixed promises remain intact. [Validation and current checkpoint](RarityCeilingSelection/README.md). No new Penpot revision or pending import.
+
+## Unity animation update — MFJ-SYNC-008.3
+
+The stopped bar now winds up elastically and exits upward over one second before the encounter is revealed. Motion matches inElastic(1,0.74), resets between attempts, and cancels safely on Surface/restart. Selection and zone widths are unchanged. [Validation and current checkpoint](RarityBarElasticExit/README.md). Unity-only change; no pending Penpot import.
+
+## Unity feedback update — MFJ-SYNC-008.4
+
+Stopping in the highest displayed non-Miss rarity now emits a gold/ivory particle burst at the marker. The effect emits once per occurrence, clears on cancellation/reuse, and preserves selection odds, hold and upward exit. [4K verification and current checkpoint](RarityCelebration/README.md). Unity-only change; no pending Penpot import.
+
+## Unity entrance update — MFJ-SYNC-008.5
+
+The rarity bar now enters from below over one second using the mirrored elastic exit curve. The marker and Stop remain inactive until it settles; cancellation, restart, the upward exit and highest-rarity particles are verified. [4K captures and current checkpoint](RarityBarEntrance/README.md). Unity-only update; no pending Penpot import.
+
+## Dynamic Fishing Tag Bar — MFJ-R047
+
+Three alternatives with initial and mid-run static states. Penpot-only exploration; the existing Unity rarity bar remains active. [Design and evidence](Revisions/MFJ-R047/README.md). No variation has been selected for implementation.
+
+## A Quieter Cast — MFJ-R048
+
+Three additional initial-state alternatives: Engraved Ruler, Tackle Labels and Lantern Focus. Each uses a shared palette and quiet precision cues. R047 is retained for comparison; neither study is imported. [Design and evidence](Revisions/MFJ-R048/README.md).
+
+## Three Ways to Read the Sea — MFJ-R049
+
+Three initial-only instrument concepts: Tide Dial, Line Spool and Sounding Chart. R047/R048 are retained. Motion/viewport changes are visual proposals only; Unity is unchanged. [Design and evidence](Revisions/MFJ-R049/README.md).
+
+## Selected Lantern Focus — MFJ-R050
+
+Light parchment, eight permanent centre marks, no active-tag wash and a larger dark cursor. This is the only pending tag-bar design. Earlier concepts remain as historical Penpot boards. [Design and verification](Revisions/MFJ-R050/README.md). Unity remains unchanged.
+
+## Anchor cursor and rising precision — MFJ-R051
+
+The selected parchment bar now uses an overlay cursor ending in an anchor, with all eight precision highlights inside the channel, rising and fading from its bottom edge. R050 is historical; only R051 remains pending. [Design and verification](Revisions/MFJ-R051/README.md). Unity is unchanged.

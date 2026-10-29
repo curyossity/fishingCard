@@ -194,11 +194,20 @@ chance. Encounter-category/event pacing stays separate. Fixed promised
 encounters retain their existing identity. Bar widths are unchanged by this
 sampling rule.
 
-The timing phase has no visible creature identity, stats or effects. Reveal
-reactions and concealment assignment happen only after Stop and its short
-feedback hold. Descend and Technique play are unavailable during timing;
+The timing phase has no visible creature identity, stats or effects. The
+journal bar enters from below over one second with mirrored elastic motion.
+The marker is paused and Stop is unavailable until
+the entrance settles; Surface can cancel this entrance normally. Reveal
+reactions and concealment assignment happen only after Stop, its short
+feedback hold, and the instrument's one-second elastic upward exit off-screen.
+Descend and Technique play are unavailable during timing and this exit;
 Surface can end the run and clear the pending attempt. A revealed creature
 still requires an explicit Catch or Bait choice before the next Descend.
+
+Stopping in the highest currently displayed non-Miss rarity celebrates with
+a brief gold/ivory particle burst at the marker. At shallow depths this can
+be Uncommon when Rare is unavailable. Creature selection still uses the
+uniform rarity-ceiling pool, and the existing hold/exit timing is retained.
 
 Current relative widths are Common 87, Uncommon 5 and Rare 8, with no failure
 interval. These are editable playtest tuning. Omit rarities with no eligible

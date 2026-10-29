@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R047",
+  "nextRevisionId": "MFJ-R052",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -9239,6 +9239,1563 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-008"
+    },
+    {
+      "id": "MFJ-R047",
+      "date": "2026-10-27",
+      "request": "Three static Dynamic Fishing Tag Bar variations, each with one initial and one mid-run state; Penpot only.",
+      "component": [
+        "Dynamic Fishing Tag Bar studies"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R047",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "bars": {
+          "0:0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db1956cf23bb",
+            "variant": 0,
+            "state": "initial",
+            "width": 1500,
+            "height": 480,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db195b426efb",
+            "trackWidth": 1380,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db195b91fb10",
+                "start": 0,
+                "end": 0.125,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db195e2182a0",
+                "start": 0.125,
+                "end": 0.25,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19600282ac",
+                "start": 0.25,
+                "end": 0.375,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1962ac5eca",
+                "start": 0.375,
+                "end": 0.5,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1964858dcd",
+                "start": 0.5,
+                "end": 0.625,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19672ad344",
+                "start": 0.625,
+                "end": 0.75,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19695f1ffc",
+                "start": 0.75,
+                "end": 0.875,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db196ba90181",
+                "start": 0.875,
+                "end": 1,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              }
+            ],
+            "position": 0.24,
+            "selectedTag": null,
+            "precisionHit": false,
+            "complete": true
+          },
+          "0:1": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db198b4aa789",
+            "variant": 0,
+            "state": "mid-run",
+            "width": 1500,
+            "height": 480,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db198f9105cf",
+            "trackWidth": 1380,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db198fd68c16",
+                "start": 0,
+                "end": 0.14,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19926d39fe",
+                "start": 0.14,
+                "end": 0.24000000000000002,
+                "fraction": 0.1,
+                "width": 138,
+                "precisionWidth": 24.84,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19951a2801",
+                "start": 0.24000000000000002,
+                "end": 0.38,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1997cc18f7",
+                "start": 0.38,
+                "end": 0.44,
+                "fraction": 0.06,
+                "width": 82.8,
+                "precisionWidth": 14.903999999999998,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db199a6f0704",
+                "start": 0.44,
+                "end": 0.5800000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db199cb7cf05",
+                "start": 0.5800000000000001,
+                "end": 0.7200000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db199fabfb8a",
+                "start": 0.7200000000000001,
+                "end": 0.8600000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19a261fd80",
+                "start": 0.8600000000000001,
+                "end": 1,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              }
+            ],
+            "position": 0.41000000000000003,
+            "selectedTag": "Small",
+            "precisionHit": true,
+            "complete": true
+          },
+          "1:0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db19e9b772ed",
+            "variant": 1,
+            "state": "initial",
+            "width": 1500,
+            "height": 480,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db19ee671895",
+            "trackWidth": 1380,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19ee9ad7d8",
+                "start": 0,
+                "end": 0.125,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19f0f9b2b5",
+                "start": 0.125,
+                "end": 0.25,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19f36c6a84",
+                "start": 0.25,
+                "end": 0.375,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19f5ca7a66",
+                "start": 0.375,
+                "end": 0.5,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19f83def8d",
+                "start": 0.5,
+                "end": 0.625,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19fa3ec9f0",
+                "start": 0.625,
+                "end": 0.75,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19fceb82fd",
+                "start": 0.75,
+                "end": 0.875,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db19ffaa6dce",
+                "start": 0.875,
+                "end": 1,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              }
+            ],
+            "position": 0.24,
+            "selectedTag": null,
+            "precisionHit": false,
+            "complete": true
+          },
+          "1:1": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db1a5e5fa0f6",
+            "variant": 1,
+            "state": "mid-run",
+            "width": 1500,
+            "height": 480,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db1a63409bc3",
+            "trackWidth": 1380,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a6398c099",
+                "start": 0,
+                "end": 0.14,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a66037baa",
+                "start": 0.14,
+                "end": 0.24000000000000002,
+                "fraction": 0.1,
+                "width": 138,
+                "precisionWidth": 24.84,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a6858a6be",
+                "start": 0.24000000000000002,
+                "end": 0.38,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a6a9d1c95",
+                "start": 0.38,
+                "end": 0.44,
+                "fraction": 0.06,
+                "width": 82.8,
+                "precisionWidth": 14.903999999999998,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a6ce30378",
+                "start": 0.44,
+                "end": 0.5800000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a6f557e13",
+                "start": 0.5800000000000001,
+                "end": 0.7200000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a71b76626",
+                "start": 0.7200000000000001,
+                "end": 0.8600000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a743d33b2",
+                "start": 0.8600000000000001,
+                "end": 1,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              }
+            ],
+            "position": 0.21900000000000003,
+            "selectedTag": "Predator",
+            "precisionHit": false,
+            "complete": true
+          },
+          "2:0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db1a8ae58bbe",
+            "variant": 2,
+            "state": "initial",
+            "width": 1500,
+            "height": 480,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db1a8f60afa6",
+            "trackWidth": 1380,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a8fb32f21",
+                "start": 0,
+                "end": 0.125,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a9233a04a",
+                "start": 0.125,
+                "end": 0.25,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a94238822",
+                "start": 0.25,
+                "end": 0.375,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a968801d3",
+                "start": 0.375,
+                "end": 0.5,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a99339ba9",
+                "start": 0.5,
+                "end": 0.625,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a9b0c6e5b",
+                "start": 0.625,
+                "end": 0.75,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a9d796528",
+                "start": 0.75,
+                "end": 0.875,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1a9fcab56b",
+                "start": 0.875,
+                "end": 1,
+                "fraction": 0.125,
+                "width": 172.5,
+                "precisionWidth": 31.049999999999997,
+                "precisionFraction": 0.18
+              }
+            ],
+            "position": 0.24,
+            "selectedTag": null,
+            "precisionHit": false,
+            "complete": true
+          },
+          "2:1": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db1ab8230991",
+            "variant": 2,
+            "state": "mid-run",
+            "width": 1500,
+            "height": 480,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db1abcf06a03",
+            "trackWidth": 1380,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1abd5180e4",
+                "start": 0,
+                "end": 0.14,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1abfe9389f",
+                "start": 0.14,
+                "end": 0.24000000000000002,
+                "fraction": 0.1,
+                "width": 138,
+                "precisionWidth": 24.84,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ac279ed1c",
+                "start": 0.24000000000000002,
+                "end": 0.38,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ac4523e08",
+                "start": 0.38,
+                "end": 0.44,
+                "fraction": 0.06,
+                "width": 82.8,
+                "precisionWidth": 14.903999999999998,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ac7411c72",
+                "start": 0.44,
+                "end": 0.5800000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ac9df61b7",
+                "start": 0.5800000000000001,
+                "end": 0.7200000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1acc461bc5",
+                "start": 0.7200000000000001,
+                "end": 0.8600000000000001,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ace45ec1d",
+                "start": 0.8600000000000001,
+                "end": 1,
+                "fraction": 0.14,
+                "width": 193.20000000000002,
+                "precisionWidth": 34.776,
+                "precisionFraction": 0.18
+              }
+            ],
+            "position": 0.41000000000000003,
+            "selectedTag": "Small",
+            "precisionHit": true,
+            "complete": true
+          }
+        },
+        "rowIds": [
+          "0ee2d4ff-05c9-80cd-8008-db19454fc6c4",
+          "0ee2d4ff-05c9-80cd-8008-db19479b0e83",
+          "0ee2d4ff-05c9-80cd-8008-db194997fc41"
+        ],
+        "initialWidths": [
+          0.125,
+          0.125,
+          0.125,
+          0.125,
+          0.125,
+          0.125,
+          0.125,
+          0.125
+        ],
+        "midWidths": [
+          0.14,
+          0.1,
+          0.14,
+          0.06,
+          0.14,
+          0.14,
+          0.14,
+          0.14
+        ],
+        "precisionFraction": 0.18,
+        "normalizationPolicy": "User confirmed: 12.5% recovery baseline before normalization; final normalized zones may exceed 12.5%; 5% floor. Widths illustrative.",
+        "reviewId": "0ee2d4ff-05c9-80cd-8008-db1942f00ae7",
+        "pageName": "Concept B — Reusable Assembly (4K)"
+      },
+      "affectedPenpotInstances": [
+        "0ee2d4ff-05c9-80cd-8008-db1942f00ae7",
+        "0ee2d4ff-05c9-80cd-8008-db1956cf23bb",
+        "0ee2d4ff-05c9-80cd-8008-db198b4aa789",
+        "0ee2d4ff-05c9-80cd-8008-db19e9b772ed",
+        "0ee2d4ff-05c9-80cd-8008-db1a5e5fa0f6",
+        "0ee2d4ff-05c9-80cd-8008-db1a8ae58bbe",
+        "0ee2d4ff-05c9-80cd-8008-db1ab8230991"
+      ],
+      "changeKinds": [
+        "new_design_alternatives",
+        "native_editable_ui"
+      ],
+      "before": "Existing Unity rarity bar remains active and unchanged.",
+      "after": "Six static editable bars on MFJ-R047 / Dynamic Fishing Tag Bar / three static variations, on Concept B — Reusable Assembly (4K).",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Design review PNGs only; no Unity import authorized."
+      ],
+      "approvalEvidence": [
+        "User confirmed 12.5% as recovery baseline before normalization; normalized zones may exceed it."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R047",
+        "files": [
+          "DesignReview.png",
+          "FieldJournal.png",
+          "NightSounder.png",
+          "NaturalistsLedger.png"
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R047/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "verificationDate": "2026-10-28",
+      "supersededBy": "MFJ-R050",
+      "supersessionReason": "User selected the R048 Lantern Focus concept for refinement as R050; other proposals are historical, not import candidates."
+    },
+    {
+      "id": "MFJ-R048",
+      "date": "2026-10-28",
+      "request": "Three additional initial-state tag-bar alternatives with no individual tag colours and quieter precision cues.",
+      "component": [
+        "Dynamic Fishing Tag Bar alternatives"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R048",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "bars": {
+          "0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db1f9188a017",
+            "variant": 0,
+            "title": "The Engraved Ruler",
+            "state": "initial",
+            "width": 1600,
+            "height": 400,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db1f967105a2",
+            "trackWidth": 1440,
+            "tagColour": "#293D40",
+            "palettePolicy": "One shared tag palette; gold is reserved for precision, not tag identity.",
+            "precisionFraction": 0.18,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1f97455b14",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1f97f7e5c8",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1f99aa3765",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1f9abd2c20",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1f9c238e8a",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1f9d74fb16",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1f9f0e4c39",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fa0742700",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fa1c01b15",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fa3145644",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fa48f425f",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fa5ca12f4",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fa7326ed5",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fa87fad29",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fa9c9630c",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1faaf36d84",
+                "precisionVisible": true,
+                "fraction": 0.125
+              }
+            ],
+            "markerPosition": 0.29,
+            "precisionPresentation": "Fine edge notch",
+            "stopId": "0ee2d4ff-05c9-80cd-8008-db1fad4bc7f3",
+            "complete": true
+          },
+          "1": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db1fd84c86b5",
+            "variant": 1,
+            "title": "The Tackle Labels",
+            "state": "initial",
+            "width": 1600,
+            "height": 400,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db1fdd378b0f",
+            "trackWidth": 1440,
+            "tagColour": "#293D40",
+            "palettePolicy": "One shared tag palette; gold is reserved for precision, not tag identity.",
+            "precisionFraction": 0.18,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fdef3d787",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fe1b3282b",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fe225f1cf",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fe4d9ef95",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fe5780106",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fe88320e5",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fe8f75201",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1feb6c9080",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1febcea1ad",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1fee9041aa",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1fef20bf6f",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1ff1fc2569",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ff2528017",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1ff4e7161f",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db1ff5672e7d",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db1ff80f014b",
+                "precisionVisible": true,
+                "fraction": 0.125
+              }
+            ],
+            "markerPosition": 0.29,
+            "precisionPresentation": "Short stitch on fishing line",
+            "stopId": "0ee2d4ff-05c9-80cd-8008-db1ff995b16c",
+            "complete": true
+          },
+          "2": {
+            "id": "0ee2d4ff-05c9-80cd-8008-db200bad4abc",
+            "variant": 2,
+            "title": "The Lantern Focus",
+            "state": "initial",
+            "width": 1600,
+            "height": 400,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-db2010d612ec",
+            "trackWidth": 1440,
+            "tagColour": "#293D40",
+            "palettePolicy": "One shared tag palette; gold is reserved for precision, not tag identity.",
+            "precisionFraction": 0.18,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-db201243acd8",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db201459fcf4",
+                "precisionVisible": true,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-db2014f16d1a",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db2016f5ef3d",
+                "precisionVisible": false,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-db20174d92b0",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db20195c1d70",
+                "precisionVisible": false,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-db2019df12c9",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db201bc92676",
+                "precisionVisible": false,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-db201c4db3fa",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db201e4d2915",
+                "precisionVisible": false,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db201f020051",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db2020dfb57a",
+                "precisionVisible": false,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-db2021726b3b",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db20238480f9",
+                "precisionVisible": false,
+                "fraction": 0.125
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-db2024339b01",
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-db202633bc2b",
+                "precisionVisible": false,
+                "fraction": 0.125
+              }
+            ],
+            "markerPosition": 0.07,
+            "precisionPresentation": "Only current zone exposes guide",
+            "stopId": "0ee2d4ff-05c9-80cd-8008-db2027c2f838",
+            "complete": true
+          }
+        },
+        "rowIds": [
+          "0ee2d4ff-05c9-80cd-8008-db1f83cce6d6",
+          "0ee2d4ff-05c9-80cd-8008-db1f85a9f93a",
+          "0ee2d4ff-05c9-80cd-8008-db1f8780b0ea"
+        ],
+        "reviewId": "0ee2d4ff-05c9-80cd-8008-db1f8145f4b7"
+      },
+      "affectedPenpotInstances": [
+        "0ee2d4ff-05c9-80cd-8008-db1f8145f4b7",
+        "0ee2d4ff-05c9-80cd-8008-db1f9188a017",
+        "0ee2d4ff-05c9-80cd-8008-db1fd84c86b5",
+        "0ee2d4ff-05c9-80cd-8008-db200bad4abc"
+      ],
+      "changeKinds": [
+        "additional_design_alternatives",
+        "reduced_visual_density",
+        "native_editable_ui"
+      ],
+      "before": "R047 remains an available coloured comparison study; the existing Unity rarity bar remains active.",
+      "after": "Three new initial-only ideas: Engraved Ruler, Tackle Labels, Lantern Focus. One shared palette per design; no per-tag colours or percentage legends.",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Review PNGs only. Any future integration needs a chosen design and a separate implementation task."
+      ],
+      "approvalEvidence": [
+        "User requested three additional independent monochrome initial-state ideas; no gameplay or Unity changes."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R048",
+        "files": [
+          "DesignReview.png",
+          "EngravedRuler.png",
+          "TackleLabels.png",
+          "LanternFocus.png"
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R048/Verification.json",
+        "nativeAudit": "Revisions/MFJ-R048/Action-audit.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R050",
+      "supersessionReason": "User selected the R048 Lantern Focus concept for refinement as R050; other proposals are historical, not import candidates."
+    },
+    {
+      "id": "MFJ-R049",
+      "date": "2026-10-28",
+      "request": "Three more genuinely different themed initial-state tag-timing designs; keep a restrained shared palette.",
+      "component": [
+        "Fishing tag timing instrument studies"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R049",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "bars": {
+          "0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-dc4a46e2fe3a",
+            "variant": 0,
+            "title": "The Tide Dial",
+            "state": "initial",
+            "width": 1600,
+            "height": 600,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a4a0b398d",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a4c09e6a5",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a4e39a507",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a4f93a673",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a52012401",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a5466a735",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a56385ec3",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4a5862d13c",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              }
+            ],
+            "markerId": "0ee2d4ff-05c9-80cd-8008-dc4a5d987a27",
+            "guideCount": 8,
+            "visibleTags": [
+              "Fish",
+              "Predator",
+              "Schooling",
+              "Small",
+              "Heavy",
+              "Anchored",
+              "Armored",
+              "Elusive"
+            ],
+            "stopId": "0ee2d4ff-05c9-80cd-8008-dc4a5fe9409c",
+            "complete": true,
+            "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+            "interactionProposal": "Needle follows a crescent"
+          },
+          "1": {
+            "id": "0ee2d4ff-05c9-80cd-8008-dc4ab0509ff4",
+            "variant": 1,
+            "title": "The Line Spool",
+            "state": "initial",
+            "width": 1600,
+            "height": 600,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ab6d9b9e1",
+                "fraction": 0.125,
+                "visible": false,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ab948ec8e",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4abc0f425d",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4abed3b272",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ac0f61529",
+                "fraction": 0.125,
+                "visible": false,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ac31acbec",
+                "fraction": 0.125,
+                "visible": false,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ac5c8b664",
+                "fraction": 0.125,
+                "visible": false,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ac8cfe0df",
+                "fraction": 0.125,
+                "visible": false,
+                "precisionFraction": 0.18
+              }
+            ],
+            "markerId": "0ee2d4ff-05c9-80cd-8008-dc4acbe9b7cc",
+            "guideCount": 1,
+            "visibleTags": [
+              "Predator",
+              "Schooling",
+              "Small"
+            ],
+            "stopId": "0ee2d4ff-05c9-80cd-8008-dc4acddd6a99",
+            "complete": true,
+            "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+            "interactionProposal": "Ribbon moves beneath fixed index"
+          },
+          "2": {
+            "id": "0ee2d4ff-05c9-80cd-8008-dc4adb2d6188",
+            "variant": 2,
+            "title": "The Sounding Chart",
+            "state": "initial",
+            "width": 1600,
+            "height": 600,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4adec1dd9e",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ae0ec82ba",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ae34e914a",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ae55dcdd2",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ae79761d4",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4ae9aa240c",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4aec01d936",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc4aee85d6a1",
+                "fraction": 0.125,
+                "visible": true,
+                "precisionFraction": 0.18
+              }
+            ],
+            "markerId": "0ee2d4ff-05c9-80cd-8008-dc4af0cb7cf3",
+            "guideCount": 8,
+            "visibleTags": [
+              "Fish",
+              "Predator",
+              "Schooling",
+              "Small",
+              "Heavy",
+              "Anchored",
+              "Armored",
+              "Elusive"
+            ],
+            "stopId": "0ee2d4ff-05c9-80cd-8008-dc4af1be7b70",
+            "complete": true,
+            "palettePolicy": "Shared ink, parchment and restrained gold; no per-tag colours.",
+            "interactionProposal": "Boat follows chart route"
+          }
+        },
+        "rowIds": [
+          "0ee2d4ff-05c9-80cd-8008-dc4a22c9d801",
+          "0ee2d4ff-05c9-80cd-8008-dc4a250647b3",
+          "0ee2d4ff-05c9-80cd-8008-dc4a26fc0c05"
+        ],
+        "reviewId": "0ee2d4ff-05c9-80cd-8008-dc4a1d5c480f"
+      },
+      "affectedPenpotInstances": [
+        "0ee2d4ff-05c9-80cd-8008-dc4a1d5c480f",
+        "0ee2d4ff-05c9-80cd-8008-dc4a46e2fe3a",
+        "0ee2d4ff-05c9-80cd-8008-dc4ab0509ff4",
+        "0ee2d4ff-05c9-80cd-8008-dc4adb2d6188"
+      ],
+      "changeKinds": [
+        "additional_design_alternatives",
+        "alternative_instrument_forms",
+        "native_editable_ui"
+      ],
+      "before": "R047 and R048 remain preserved comparisons; the existing Unity rarity timing mechanic is active.",
+      "after": "Tide Dial, Line Spool and Sounding Chart: one initial mockup each, separate editable parts, shared palette. Alternate motion cues are visual proposals only.",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Penpot review PNGs only; no Unity import in this task."
+      ],
+      "approvalEvidence": [
+        "User requested three more creative variations, not repetitions of the previous visual solutions."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R049",
+        "files": [
+          "DesignReview.png",
+          "TideDial.png",
+          "LineSpool.png",
+          "SoundingChart.png"
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R049/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R050",
+      "supersessionReason": "User selected the R048 Lantern Focus concept for refinement as R050; other proposals are historical, not import candidates."
+    },
+    {
+      "id": "MFJ-R050",
+      "date": "2026-10-28",
+      "request": "Continue with R048 Lantern Focus: light parchment, all eight centres marked, no current-tag highlight, more visible marker.",
+      "component": [
+        "Selected Lantern Focus tag bar"
+      ],
+      "status": "superseded",
+      "supersedes": [
+        "MFJ-R047",
+        "MFJ-R048",
+        "MFJ-R049"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R050",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "sourceRevision": "MFJ-R048",
+        "sourceBarId": "0ee2d4ff-05c9-80cd-8008-db200bad4abc",
+        "bars": {
+          "0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd78",
+            "state": "initial",
+            "width": 1600,
+            "height": 400,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-dc524174dd81",
+            "trackWidth": 1440,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd94",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5243d90187",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524438dd2d"
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd95",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc52457afa34",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc5246063545"
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd96",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5246e00c46",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524749d9fb"
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd97",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc52488d5144",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524949bf91"
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd98",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524a53defa",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524ad09465"
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd99",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524c636155",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524d0d1fd0"
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd9a",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524dd57c42",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524e309621"
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc524174dd9b",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc524f21fdec",
+                "precisionOutlineId": "0ee2d4ff-05c9-80cd-8008-dc524fcfa5f5"
+              }
+            ],
+            "markerId": "0ee2d4ff-05c9-80cd-8008-dc52508f7b8f",
+            "markerPosition": 0.32,
+            "markerSize": {
+              "width": 40,
+              "height": 216
+            },
+            "activeTagHighlight": false,
+            "precisionPresentation": "Eight permanent centre brackets below the tag labels",
+            "palettePolicy": "Light parchment, shared ink glyphs/text, restrained ochre centre marks",
+            "complete": true
+          }
+        },
+        "reviewId": "0ee2d4ff-05c9-80cd-8008-dc52279538d6"
+      },
+      "affectedPenpotInstances": [
+        "0ee2d4ff-05c9-80cd-8008-dc52279538d6",
+        "0ee2d4ff-05c9-80cd-8008-dc524174dd78"
+      ],
+      "changeKinds": [
+        "selected_concept_refinement",
+        "palette",
+        "precision_guides",
+        "marker_visibility"
+      ],
+      "before": "Dark Lantern Focus highlighted one tag and showed only that tag’s precision guide with a small marker.",
+      "after": "Light parchment, uniform ink tags, eight permanent centre brackets, no active-tag fill, larger dual-ended dark cursor. Original studies preserved.",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Only the selected R050 design may enter a later import checklist; superseded studies remain historical."
+      ],
+      "approvalEvidence": [
+        "User selected 03 — The Lantern Focus and specified this refinement; the R049 alternatives were rejected."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R050",
+        "files": [
+          "DesignReview.png",
+          "LanternFocusParchment.png"
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R050/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R051",
+      "supersessionReason": "Selected design refined with an anchor cursor and in-bar fading precision areas."
+    },
+    {
+      "id": "MFJ-R051",
+      "date": "2026-10-28",
+      "request": "Replace the cursor with a visible over-bar marker ending in an anchor; move precision areas into the bar as upward tapering highlights fading near text height.",
+      "component": [
+        "Selected Lantern Focus tag bar"
+      ],
+      "status": "ready_for_review",
+      "supersedes": [
+        "MFJ-R050"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R051",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "sourceRevision": "MFJ-R050",
+        "sourceBarId": "0ee2d4ff-05c9-80cd-8008-dc524174dd78",
+        "bars": {
+          "0": {
+            "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c76",
+            "state": "initial",
+            "width": 1600,
+            "height": 400,
+            "trackId": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c7f",
+            "trackWidth": 1440,
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c91",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5605944e47",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Predator",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c92",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5606255fcd",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Schooling",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c93",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5606a66210",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Small",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c94",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5607244c4f",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Heavy",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c95",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5607fb077f",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Anchored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c96",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc56089fd272",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Armored",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c97",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc560907b39a",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              },
+              {
+                "tag": "Elusive",
+                "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c98",
+                "fraction": 0.125,
+                "precisionFraction": 0.18,
+                "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5609c9a883",
+                "precisionOffsetY": 56,
+                "precisionHeight": 60
+              }
+            ],
+            "markerId": "0ee2d4ff-05c9-80cd-8008-dc54aa04d8c7",
+            "markerPosition": 0.37,
+            "markerStyle": "Ivory-edged dark line overlays the bar, with a nautical eyelet above and anchor below",
+            "activeTagHighlight": false,
+            "precisionPresentation": "Eight tapered ochre highlights rise from the channel bottom and fade near text height",
+            "complete": true
+          }
+        },
+        "reviewId": "0ee2d4ff-05c9-80cd-8008-dc54976c9872"
+      },
+      "affectedPenpotInstances": [
+        "0ee2d4ff-05c9-80cd-8008-dc54976c9872",
+        "0ee2d4ff-05c9-80cd-8008-dc54a3d51c76"
+      ],
+      "changeKinds": [
+        "marker_redesign",
+        "precision_placement",
+        "gradient_fade"
+      ],
+      "before": "R050 had two separate cursor pointers outside the channel and centre brackets below the bar.",
+      "after": "Independent anchor cursor overlays the channel; eight tapered ochre precision areas rise from its bottom edge and fade beneath native text. No active-tag fill.",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Only the selected R050 design may enter a later import checklist; superseded studies remain historical."
+      ],
+      "approvalEvidence": [
+        "User requested the anchor-bottom overlay marker and upward-fading in-bar precision areas."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R051",
+        "files": [
+          "DesignReview.png",
+          "LanternAnchorPrecision.png"
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R051/Verification.json"
+      },
+      "remainingWork": [
+        "Unity integration is outside this Penpot refinement task."
+      ],
+      "unityImported": false,
+      "integrationStatus": "not_imported",
+      "synchronizationCheckpoint": null
     }
   ],
   "synchronizationCheckpoints": [
@@ -9314,6 +10871,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "RarityCeilingSelection/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "RarityBarEntrance/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

@@ -1,0 +1,34 @@
+{
+  "revision": "MFJ-R047",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "bars": {},
+  "rowIds": [
+    "0ee2d4ff-05c9-80cd-8008-db19454fc6c4",
+    "0ee2d4ff-05c9-80cd-8008-db19479b0e83",
+    "0ee2d4ff-05c9-80cd-8008-db194997fc41"
+  ],
+  "initialWidths": [
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125,
+    0.125
+  ],
+  "midWidths": [
+    0.14,
+    0.1,
+    0.14,
+    0.06,
+    0.14,
+    0.14,
+    0.14,
+    0.14
+  ],
+  "precisionFraction": 0.18,
+  "normalizationPolicy": "User confirmed: 12.5% recovery baseline before normalization; final normalized zones may exceed 12.5%; 5% floor. Widths illustrative.",
+  "reviewId": "0ee2d4ff-05c9-80cd-8008-db1942f00ae7"
+}

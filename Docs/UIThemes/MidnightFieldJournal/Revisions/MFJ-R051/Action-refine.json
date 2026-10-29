@@ -1,0 +1,88 @@
+{
+  "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c76",
+  "state": "initial",
+  "width": 1600,
+  "height": 400,
+  "trackId": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c7f",
+  "trackWidth": 1440,
+  "zones": [
+    {
+      "tag": "Fish",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c91",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5605944e47",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Predator",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c92",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5606255fcd",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Schooling",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c93",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5606a66210",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Small",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c94",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5607244c4f",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Heavy",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c95",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5607fb077f",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Anchored",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c96",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc56089fd272",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Armored",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c97",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc560907b39a",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    },
+    {
+      "tag": "Elusive",
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c98",
+      "fraction": 0.125,
+      "precisionFraction": 0.18,
+      "precisionId": "0ee2d4ff-05c9-80cd-8008-dc5609c9a883",
+      "precisionOffsetY": 56,
+      "precisionHeight": 60
+    }
+  ],
+  "markerId": "0ee2d4ff-05c9-80cd-8008-dc54aa04d8c7",
+  "markerPosition": 0.37,
+  "markerStyle": "Ivory-edged dark line overlays the bar, with a nautical eyelet above and anchor below",
+  "activeTagHighlight": false,
+  "precisionPresentation": "Eight tapered ochre highlights rise from the channel bottom and fade near text height",
+  "complete": true
+}

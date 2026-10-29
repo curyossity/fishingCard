@@ -1,0 +1,15 @@
+{
+  "revision": "MFJ-R051",
+  "date": "2026-10-28",
+  "passed": true,
+  "method": "Inspected both final Penpot PNG exports, checked native gradient stops, and sampled the exported highlight to confirm that its intensity decreases upward.",
+  "inspectedExports": ["LanternAnchorPrecision.png", "DesignReview.png"],
+  "findings": [
+    "The independent cursor is visibly layered over the bar, with an eyelet above, an ivory-edged dark line crossing the channel and a recognizable anchor at its bottom.",
+    "All eight precision areas sit inside the channel, reach its bottom edge and taper upward. The old under-bar brackets are absent.",
+    "Each precision area is a native path with an editable four-stop gradient, decreasing from0.62 opacity at the bottom to0 at the top. Text and icons remain above the gradient.",
+    "Exported centre pixels below the Fish label progressively lighten upward: RGB201,172,119 at y230;210,184,136 at y222;218,195,151 at y214;221,198,157 at y210. This confirms a fade rather than a flat solid triangle.",
+    "Labels, icons, marker, anchor and Stop control remain readable and unclipped. No active-tag fill has been introduced."
+  ],
+  "scope": "Static Penpot design verification only; no Unity integration or gameplay/motion implementation."
+}

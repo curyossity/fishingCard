@@ -1939,7 +1939,8 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Stops only the active timing occurrence while presentation input is available.</summary>
     public bool TryStopRarityTiming(long occurrence)
     {
-        if (!CoreActionInputReady || !RarityTiming.TryStop(occurrence)) return false;
+        if (!CoreActionInputReady || (fishingRunView != null && !fishingRunView.HasCompletedRarityTimingEntrance(occurrence))
+            || !RarityTiming.TryStop(occurrence)) return false;
         RefreshViews(); return true;
     }
 
@@ -1947,7 +1948,9 @@ public sealed class FishingRunController : MonoBehaviour
     private void Update()
     {
         if (!runActive || !RarityTiming.Active || fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying) return;
+        if (fishingRunView != null && !fishingRunView.HasCompletedRarityTimingEntrance(RarityTiming.Occurrence)) return;
         if (!RarityTiming.Tick(Time.unscaledDeltaTime)) return;
+        if (fishingRunView != null && !fishingRunView.HasCompletedRarityTimingExit(RarityTiming.Occurrence)) return;
         encounterRuntime.CompleteRarityTiming(random);
         techniqueEffectRuntime.CompleteEncounterReveal();
         PrepareCreatureChoice(); ResumeAfterCreatureChoices(); RefreshViews();

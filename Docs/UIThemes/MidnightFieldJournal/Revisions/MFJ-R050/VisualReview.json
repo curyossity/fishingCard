@@ -1,0 +1,15 @@
+{
+  "revision": "MFJ-R050",
+  "date": "2026-10-28",
+  "passed": true,
+  "method": "Inspected both actual Penpot exports: the1600×400 bar and the full review board.",
+  "inspectedExports": ["LanternFocusParchment.png", "DesignReview.png"],
+  "findings": [
+    "The dark wash is removed; frame, shared channel and Stop control use the light parchment treatment.",
+    "All eight tag names and monochrome glyphs are readable and use identical styling, with no active-tag fill.",
+    "Eight permanent precision sections are visible as matching ochre centre brackets below their corresponding tags.",
+    "The larger dark diamond and lower pointer have strong contrast, share the same horizontal position and remain clear of the tag glyphs and names.",
+    "Both cursor tips, precision marks, text and Stop control fit inside the bar without clipping. The review header and footer are also unobstructed."
+  ],
+  "scope": "Static visual refinement only; no Unity, gameplay or animation implementation."
+}

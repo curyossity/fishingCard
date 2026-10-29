@@ -1,0 +1,38 @@
+{
+  "revision": "MFJ-R048",
+  "date": "2026-10-28",
+  "checks": {
+    "threeInitialBarsOnly": true,
+    "eightEqualTags": true,
+    "sharedPalettePerDesign": true,
+    "nativeGeometry": true,
+    "precisionCueCounts": true,
+    "exportsExist": true,
+    "visualReviewPassed": true,
+    "unityFilesUnchanged": true
+  },
+  "unityCheckpointUnchanged": "MFJ-SYNC-008.5",
+  "unityFileCount": 442,
+  "modifiedUnityFiles": [],
+  "visualReview": {
+    "revision": "MFJ-R048",
+    "date": "2026-10-28",
+    "passed": true,
+    "method": "Visually inspected all three actual Penpot row exports and the full comparison PNG.",
+    "inspectedExports": [
+      "EngravedRuler.png",
+      "TackleLabels.png",
+      "LanternFocus.png",
+      "DesignReview.png"
+    ],
+    "findings": [
+      "Exactly three additional designs, with one initial-state bar each; the R047 boards are retained.",
+      "No separate colour per tag; text, icons and borders use the shared ink/parchment palette.",
+      "All eight tag names and glyphs are legible and aligned with equal spans, without percentage labels or a repeated legend.",
+      "Ruler precision targets are small edge notches; tackle targets are short stitches; Lantern Focus exposes only the current zone's guide.",
+      "Markers remain independent and do not obscure tag labels. The lantern needle is above the text panel; the tackle float is below it.",
+      "Native geometry audit confirms 24 equal tag regions, centered proportional precision shapes and one marker per design."
+    ],
+    "scope": "Static Penpot designs only; no motion, encounter selection, resizing algorithm or Unity implementation."
+  }
+}

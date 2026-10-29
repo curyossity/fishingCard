@@ -334,6 +334,14 @@ public sealed class FishingRunView : MonoBehaviour
     public void SetRarityTiming(EncounterRarityTiming timing, Func<long, bool> stop, BiomeDefinition biome, int depth)
     { if (rarityTimingView != null) rarityTimingView.Present(timing, stop, biome, depth); }
 
+    /// <summary>Waits for the current timing instrument's exit, with immediate completion when no view is configured.</summary>
+    public bool HasCompletedRarityTimingExit(long occurrence)
+    { return rarityTimingView == null || rarityTimingView.HasCompletedExit(occurrence); }
+
+    /// <summary>Waits for the current instrument to enter, with immediate readiness when no view is configured.</summary>
+    public bool HasCompletedRarityTimingEntrance(long occurrence)
+    { return rarityTimingView == null || rarityTimingView.HasCompletedEntrance(occurrence); }
+
     /// <summary>Displays controller-owned role selection without generating a second choice event.</summary>
     public void SetEncounterRoleSelection(EncounterEffectChoice choice)
     { if (encounterCardView != null) encounterCardView.SelectEffectChoice(choice, false); }

@@ -1,0 +1,288 @@
+{
+  "id": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c76",
+  "width": 1600,
+  "height": 400,
+  "marker": {
+    "id": "0ee2d4ff-05c9-80cd-8008-dc54aa04d8c7",
+    "width": 52,
+    "height": 210,
+    "visible": true,
+    "overlay": true,
+    "top": 88,
+    "bottom": 298
+  },
+  "zones": [
+    {
+      "tag": "Fish",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Predator",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Schooling",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Small",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Heavy",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Anchored",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Armored",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    },
+    {
+      "tag": "Elusive",
+      "width": 180,
+      "precisionWidth": 32.400001525878906,
+      "precisionHeight": 60,
+      "precisionTop": 56,
+      "precisionBottom": 116,
+      "centred": true,
+      "behindText": true,
+      "gradientStops": [
+        {
+          "color": "#b28a46",
+          "opacity": 0.62,
+          "offset": 0
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.24,
+          "offset": 0.38
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0.04,
+          "offset": 0.72
+        },
+        {
+          "color": "#b28a46",
+          "opacity": 0,
+          "offset": 1
+        }
+      ],
+      "oldBracketPresent": false,
+      "activeHighlight": false
+    }
+  ]
+}

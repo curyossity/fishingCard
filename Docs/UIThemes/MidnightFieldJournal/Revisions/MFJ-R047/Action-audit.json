@@ -1,0 +1,392 @@
+[
+  {
+    "key": "0:0",
+    "id": "0ee2d4ff-05c9-80cd-8008-db1956cf23bb",
+    "width": 1500,
+    "height": 480,
+    "markerCount": 1,
+    "zones": [
+      {
+        "tag": "Fish",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Predator",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Schooling",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Small",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Heavy",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Anchored",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Armored",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Elusive",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      }
+    ]
+  },
+  {
+    "key": "0:1",
+    "id": "0ee2d4ff-05c9-80cd-8008-db198b4aa789",
+    "width": 1500,
+    "height": 480,
+    "markerCount": 1,
+    "zones": [
+      {
+        "tag": "Fish",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Predator",
+        "width": 138,
+        "expected": 138,
+        "precisionWidth": 24.839999999996508,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Schooling",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Small",
+        "width": 82.80000000000291,
+        "expected": 82.8,
+        "precisionWidth": 14.90400000000227,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Heavy",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Anchored",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Armored",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Elusive",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      }
+    ]
+  },
+  {
+    "key": "1:0",
+    "id": "0ee2d4ff-05c9-80cd-8008-db19e9b772ed",
+    "width": 1500,
+    "height": 480,
+    "markerCount": 1,
+    "zones": [
+      {
+        "tag": "Fish",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Predator",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Schooling",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Small",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Heavy",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Anchored",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Armored",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Elusive",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      }
+    ]
+  },
+  {
+    "key": "1:1",
+    "id": "0ee2d4ff-05c9-80cd-8008-db1a5e5fa0f6",
+    "width": 1500,
+    "height": 480,
+    "markerCount": 1,
+    "zones": [
+      {
+        "tag": "Fish",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Predator",
+        "width": 138,
+        "expected": 138,
+        "precisionWidth": 24.839999999996508,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Schooling",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Small",
+        "width": 82.80000000000291,
+        "expected": 82.8,
+        "precisionWidth": 14.90400000000227,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Heavy",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Anchored",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Armored",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Elusive",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      }
+    ]
+  },
+  {
+    "key": "2:0",
+    "id": "0ee2d4ff-05c9-80cd-8008-db1a8ae58bbe",
+    "width": 1500,
+    "height": 480,
+    "markerCount": 1,
+    "zones": [
+      {
+        "tag": "Fish",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Predator",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Schooling",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Small",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.049999999999272,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Heavy",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Anchored",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Armored",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Elusive",
+        "width": 172.5,
+        "expected": 172.5,
+        "precisionWidth": 31.05000000000291,
+        "precisionCentered": true
+      }
+    ]
+  },
+  {
+    "key": "2:1",
+    "id": "0ee2d4ff-05c9-80cd-8008-db1ab8230991",
+    "width": 1500,
+    "height": 480,
+    "markerCount": 1,
+    "zones": [
+      {
+        "tag": "Fish",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Predator",
+        "width": 138,
+        "expected": 138,
+        "precisionWidth": 24.839999999996508,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Schooling",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Small",
+        "width": 82.80000000000291,
+        "expected": 82.8,
+        "precisionWidth": 14.90400000000227,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Heavy",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Anchored",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Armored",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      },
+      {
+        "tag": "Elusive",
+        "width": 193.1999999999971,
+        "expected": 193.20000000000002,
+        "precisionWidth": 34.77599999999802,
+        "precisionCentered": true
+      }
+    ]
+  }
+]
