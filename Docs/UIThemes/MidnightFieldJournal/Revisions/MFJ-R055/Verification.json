@@ -1,0 +1,36 @@
+{
+  "revision": "MFJ-R055",
+  "screenCount": 1,
+  "independentItemInstances": 4,
+  "uniqueNewIllustrations": 3,
+  "sources": [
+    {
+      "file": "Art\\HookEngraved.png",
+      "width": 1254,
+      "height": 1254,
+      "hasAlphaChannel": true,
+      "sha256": "1fe6dad783650f7a3977e7fcb86636350e7f2e432178b4a5494ca4162736b398"
+    },
+    {
+      "file": "Art\\ReelEngraved.png",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "sha256": "50cecc7f3066ed84aedd5d33181c0b5a71117090adaf6f981d259367a546fef6"
+    },
+    {
+      "file": "Art\\RodEngraved.png",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": true,
+      "sha256": "e26616388f0c5179b954cb11c5f230c9c3dc41ac4318fe71d7780d5fe6b5ee84"
+    }
+  ],
+  "visualReview": "All item silhouettes fit without cropping; new etching style and restrained washes match creature art. Shop text, borders and layout preserved.",
+  "unityImported": false,
+  "unityAssetsComparison": {
+    "checkedFiles": 1234,
+    "differences": [],
+    "unchanged": true
+  }
+}

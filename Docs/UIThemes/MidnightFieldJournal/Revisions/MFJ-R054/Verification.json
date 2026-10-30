@@ -1,0 +1,23 @@
+{
+  "revision": "MFJ-R054",
+  "screenCount": 1,
+  "boardSize": [
+    3840,
+    2160
+  ],
+  "sourceRasterDimensions": [
+    1672,
+    941
+  ],
+  "editableTextFields": 29,
+  "independentEquipmentArtwork": 4,
+  "visualReview": "Penpot export inspected for text fit, illustration containment and decoration collisions.",
+  "productionAssetSeparation": "Equipment artwork and native text separate; decorative composition remains review-only.",
+  "unityImported": false,
+  "unityAssetsComparison": {
+    "checkedFiles": 1234,
+    "differences": [],
+    "unchanged": true
+  },
+  "priorHarborRetained": true
+}

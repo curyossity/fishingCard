@@ -1,8 +1,10 @@
 # Midnight Field Journal — candidate-theme visual contract
 
+**MFJ-SYNC-010: imported and verified in Unity (2026-10-30).** Harbor, Tackle Shop and Technique Collection now support navigation and Set Sail. Shop/deck controls remain visual previews. [Integration and checks](Sync010/README.md). **0 pending; 44 completed; 13 superseded.** Earlier pending statements below are historical.
+
 ## Scope and coexistence
 
-**MFJ-SYNC-009 is the latest Unity checkpoint.** [Current baseline](Sync009/UnityCheckpoint.json). R051 Lantern Focus is integrated and verified: light parchment, overlay anchor cursor, eight proportional rising precision lights and dynamically resizing tag spans. 40 revisions are imported and verified; 11 are superseded. No pending imports remain. [Integration evidence](Sync009/README.md). Earlier sections retain historical geometry.
+**MFJ-SYNC-009 is the latest Unity checkpoint.** R053/R055/R056 remain pending, with [R057 sharp-frame correction](Revisions/MFJ-R057/README.md) ready_for_review. Use its verified standalone frame construction rather than enlarged full-screen review images. 40 completed revisions and 13 superseded studies remain unchanged. No Unity import.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 

@@ -45,6 +45,7 @@ public static class JournalComparisonSceneBuilder
             var camera = source.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<Camera>(true)).First(c => c.CompareTag("MainCamera"));
             Clone(camera.gameObject, target);
             foreach (var light in source.GetRootGameObjects().Where(g => g.GetComponents<Component>().Any(c => c != null && c.GetType().Name == "Light2D"))) Clone(light, target);
+            JournalHarborBuilder.Install(target);
             if (!EditorSceneManager.SaveScene(target, ScenePath, false)) throw new InvalidOperationException("Could not save comparison scene.");
         }
         finally { EditorSceneManager.CloseScene(target, true); EditorSceneManager.ClosePreviewScene(source); SceneManager.SetActiveScene(active); }

@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R052",
+  "nextRevisionId": "MFJ-R058",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -10814,6 +10814,2348 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-009"
+    },
+    {
+      "id": "MFJ-R052",
+      "date": "2026-10-30",
+      "request": "Design the complete Harbor hub, expanded Tackle Shop, Technique Collection and Discovery Journal in the existing game style, using separable reusable 4K UI elements.",
+      "component": [
+        "Harbor hub",
+        "Tackle Shop",
+        "Technique Collection",
+        "Discovery Journal",
+        "Harbor reusable-element sheet"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R052",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "screens": {
+          "hub": "d76f6cbf-1fc5-8066-8008-de832b61fc2d",
+          "shop": "d76f6cbf-1fc5-8066-8008-de83518583ea",
+          "techniques": "d76f6cbf-1fc5-8066-8008-de8437dc384a",
+          "journal": "75555645-d407-8067-8008-de8623eba843"
+        },
+        "prototypeLinks": 15,
+        "templates": {
+          "location0": "d76f6cbf-1fc5-8066-8008-de8337f55a87",
+          "location1": "d76f6cbf-1fc5-8066-8008-de833de1a326",
+          "location2": "d76f6cbf-1fc5-8066-8008-de83436dd1bb",
+          "departure": "d76f6cbf-1fc5-8066-8008-de834d435802",
+          "product0": "d76f6cbf-1fc5-8066-8008-de836936a0a8",
+          "product1": "d76f6cbf-1fc5-8066-8008-de8374abf8fb",
+          "product2": "d76f6cbf-1fc5-8066-8008-de837b5ff5fc",
+          "equipmentDetail": "d76f6cbf-1fc5-8066-8008-de8387d681d4",
+          "technique0": "d76f6cbf-1fc5-8066-8008-de8453a73736",
+          "technique1": "d76f6cbf-1fc5-8066-8008-de845c0d229c",
+          "technique2": "d76f6cbf-1fc5-8066-8008-de8463baebc7",
+          "technique3": "d76f6cbf-1fc5-8066-8008-de846b6ed724",
+          "technique4": "d76f6cbf-1fc5-8066-8008-de8472fdf81b",
+          "technique5": "d76f6cbf-1fc5-8066-8008-de847ac25ca3",
+          "technique6": "d76f6cbf-1fc5-8066-8008-de84834f8345",
+          "technique7": "d76f6cbf-1fc5-8066-8008-de848aeba826",
+          "journalReward": "75555645-d407-8067-8008-de865898dcfa",
+          "blankShell": "75555645-d407-8067-8008-de86a55c31b9"
+        },
+        "links": [
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de832f925c85",
+            "target": "shop"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de8330c55c72",
+            "target": "techniques"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de83317f17f3",
+            "target": "journal"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de8337f55a87",
+            "target": "shop"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de833de1a326",
+            "target": "techniques"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de83436dd1bb",
+            "target": "journal"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de8353e07f7d",
+            "target": "hub"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de835636426f",
+            "target": "techniques"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de8357303f63",
+            "target": "journal"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de837b5ff5fc",
+            "target": "journal"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de843b1198c5",
+            "target": "hub"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de843ca45b3d",
+            "target": "shop"
+          },
+          {
+            "shapeId": "d76f6cbf-1fc5-8066-8008-de843f57a59a",
+            "target": "journal"
+          },
+          {
+            "shapeId": "75555645-d407-8067-8008-de86261e30ee",
+            "target": "hub"
+          },
+          {
+            "shapeId": "75555645-d407-8067-8008-de86273acb40",
+            "target": "shop"
+          },
+          {
+            "shapeId": "75555645-d407-8067-8008-de8627ffcaa6",
+            "target": "techniques"
+          },
+          {
+            "shapeId": "75555645-d407-8067-8008-de865c98e178",
+            "target": "shop"
+          }
+        ],
+        "kitId": "75555645-d407-8067-8008-de86a08036bb",
+        "art": {
+          "reel": "d76f6cbf-1fc5-8066-8008-de81e6709a76",
+          "CutLoose": "d76f6cbf-1fc5-8066-8008-de81e8d1c288",
+          "SlipPast": "d76f6cbf-1fc5-8066-8008-de81eb799a87",
+          "SteadyLine": "d76f6cbf-1fc5-8066-8008-de81ee4b23fd",
+          "PrizeHook": "d76f6cbf-1fc5-8066-8008-de81f0851a96",
+          "rod": "75555645-d407-8067-8008-de8860eb1e21",
+          "hook": "75555645-d407-8067-8008-de8862e7702f",
+          "clear": "bae680cd-9225-8018-8008-d04eeb30a002",
+          "hold": "bae680cd-9225-8018-8008-d04eec929d98",
+          "rerig": "bae680cd-9225-8018-8008-d04eede4b4a5",
+          "recast": "bae680cd-9225-8018-8008-d04eef263bea"
+        },
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "flowError": "Error: [PENPOT PLUGIN] Value not valid: [object ShapeProxy]. Code: :createFlow-frame",
+        "prototypeErrors": [],
+        "connectedLinks": 17
+      },
+      "affectedPenpotInstances": [
+        "d76f6cbf-1fc5-8066-8008-de832b61fc2d",
+        "d76f6cbf-1fc5-8066-8008-de83518583ea",
+        "d76f6cbf-1fc5-8066-8008-de8437dc384a",
+        "75555645-d407-8067-8008-de8623eba843",
+        "75555645-d407-8067-8008-de86a08036bb"
+      ],
+      "changeKinds": [
+        "new_screen",
+        "hub_navigation",
+        "reusable_UI_templates",
+        "new_scenery",
+        "new_equipment_illustrations"
+      ],
+      "before": "No Harbor screen exists in this candidate Penpot design.",
+      "after": "Four editable 4K screens with 17 navigation links, an engraved dusk Harbor and separate native UI fields, artwork, shells and state templates.",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor presentation; no runtime consumer changed"
+      ],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Export individual blank shells, corners, illustrations and masks; reconstruct text and state in Unity.",
+        "Prepare native 4K Harbor scenery or explicitly approve enlargement before production use."
+      ],
+      "approvalEvidence": [
+        "User requested Harbor design and expanded views; existing visual style and gold-only progression."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R052",
+        "files": [
+          "Harbor.jpg",
+          "TackleShop.jpg",
+          "TechniqueCollection.jpg",
+          "DiscoveryJournal.jpg",
+          "ReusableElements.jpg"
+        ],
+        "generatedSources": [
+          {
+            "file": "Art/BarbedHook.png",
+            "width": 1024,
+            "height": 1536,
+            "hasAlphaChannel": true,
+            "sha256": "6c190eed0e5593d344f9a0f5e4ca20d20d6ec7154a3463e58cbc0e8cc0d84335"
+          },
+          {
+            "file": "Art/DriftwoodRod.png",
+            "width": 1536,
+            "height": 1024,
+            "hasAlphaChannel": true,
+            "sha256": "760a19f2f7443af5f8d9658d8e40bfb9339aec38e2e16dd1fd07356aa877bade"
+          },
+          {
+            "file": "Art/HarborPanorama.png",
+            "width": 1672,
+            "height": 941,
+            "hasAlphaChannel": false,
+            "sha256": "8f32111d199d8eb011bb14deb90b60409902ef898696099978edb2a2cdbf28b8"
+          },
+          {
+            "file": "Art/TideglassReel.png",
+            "width": 1536,
+            "height": 1024,
+            "hasAlphaChannel": true,
+            "sha256": "3ffb815c0d1bbfaebd34d2905e90e0e4b00d50e92b9ff481da2fbd64a9c6eb85"
+          }
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R052/Verification.json",
+        "visualReview": "Revisions/MFJ-R052/VisualReview.json"
+      },
+      "remainingWork": [
+        "Retained for structural comparison only. Visual direction superseded by R053; expanded screens require a later approved redesign before integration."
+      ],
+      "unityImported": false,
+      "integrationStatus": "not_imported",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R053"
+    },
+    {
+      "id": "MFJ-R053",
+      "date": "2026-10-30",
+      "request": "Revise only one main Harbor screen to match the rich decorative style of the approved creature cards.",
+      "component": [
+        "Harbor hub style study"
+      ],
+      "status": "verified",
+      "supersedes": [
+        "MFJ-R052"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R053",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "boardId": "75555645-d407-8067-8008-de8ff58e2639",
+        "boardName": "MFJ-R053 — Harbor / Ornate card-style study",
+        "width": 3840,
+        "height": 2160,
+        "editableTextFields": [
+          "75555645-d407-8067-8008-de8ff65c9c51",
+          "75555645-d407-8067-8008-de8ff70e081e",
+          "75555645-d407-8067-8008-de8ff7e788e9",
+          "75555645-d407-8067-8008-de8ff8a8b548",
+          "75555645-d407-8067-8008-de8ff9393e46",
+          "75555645-d407-8067-8008-de8ffa2b231c",
+          "75555645-d407-8067-8008-de8ffb02982b",
+          "75555645-d407-8067-8008-de8ffb77ebd9",
+          "75555645-d407-8067-8008-de8ffc3513a5",
+          "75555645-d407-8067-8008-de8ffd258ca7",
+          "75555645-d407-8067-8008-de8ffdb33240",
+          "75555645-d407-8067-8008-de8ffe48ae60",
+          "75555645-d407-8067-8008-de8fff1cf573",
+          "75555645-d407-8067-8008-de9000065116",
+          "75555645-d407-8067-8008-de90008b521f",
+          "75555645-d407-8067-8008-de90011c4019",
+          "75555645-d407-8067-8008-de9001f12a5b",
+          "75555645-d407-8067-8008-de9002bbdea8",
+          "75555645-d407-8067-8008-de90035b4b25",
+          "75555645-d407-8067-8008-de90043b6aa2",
+          "75555645-d407-8067-8008-de9004f564a4",
+          "75555645-d407-8067-8008-de90056f2d15"
+        ],
+        "artId": "75555645-d407-8067-8008-de8fd4e31436",
+        "unityImported": false
+      },
+      "affectedPenpotInstances": [
+        "75555645-d407-8067-8008-de8ff58e2639"
+      ],
+      "changeKinds": [
+        "visual_direction",
+        "ornate_frame",
+        "single_screen_review"
+      ],
+      "before": "R052 Harbor used simpler UI decoration that did not match the approved creature cards.",
+      "after": "One ornate Harbor composition with editable labels, layered parchment and copper borders, engraved kelp and textured navy destination panels.",
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/",
+        "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+      ],
+      "dependentConsumers": [
+        "Future Harbor presentation; no runtime consumer changed"
+      ],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Approval study only. Recreate independent production-resolution decorative assets after visual approval; do not slice the composite image."
+      ],
+      "approvalEvidence": [
+        "User requested a single revised Harbor screen before expanding the design. Style approval remains pending.",
+        "User requested screen navigation and starting a new run; full shop functionality is explicitly out of scope."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R053",
+        "files": [
+          "Harbor.jpg",
+          "Harbor4K.jpg"
+        ],
+        "sourceRasterDimensions": [
+          1672,
+          941
+        ],
+        "boardDimensions": [
+          3840,
+          2160
+        ]
+      },
+      "importEvidence": {
+        "record": "Sync010/README.md",
+        "sources": "Sync010/ImportedSources.json",
+        "nativeLayout": "Sync010/PenpotLayout.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R053/Verification.json",
+        "unity": "Sync010/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-010"
+    },
+    {
+      "id": "MFJ-R054",
+      "date": "2026-10-30",
+      "request": "Create the expanded Tackle Shop with the same ornate card-style instructions as the revised Harbor.",
+      "component": [
+        "Tackle Shop expanded view"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R054",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "boardId": "75555645-d407-8067-8008-de9192c78c73",
+        "boardName": "MFJ-R054 — Tackle Shop / Ornate card-style study",
+        "width": 3840,
+        "height": 2160,
+        "editableTextFields": [
+          "75555645-d407-8067-8008-de91935e9c43",
+          "75555645-d407-8067-8008-de919468ce3d",
+          "75555645-d407-8067-8008-de91950e7931",
+          "75555645-d407-8067-8008-de91957979be",
+          "75555645-d407-8067-8008-de919623014b",
+          "75555645-d407-8067-8008-de9196f541e8",
+          "75555645-d407-8067-8008-de91976ec4ad",
+          "75555645-d407-8067-8008-de9197d7c98d",
+          "75555645-d407-8067-8008-de91989bccb0",
+          "75555645-d407-8067-8008-de91996287f6",
+          "75555645-d407-8067-8008-de919a2f01ab",
+          "75555645-d407-8067-8008-de919ab321ed",
+          "75555645-d407-8067-8008-de919b6ee89f",
+          "75555645-d407-8067-8008-de919ca3b6ac",
+          "75555645-d407-8067-8008-de919d1b9903",
+          "75555645-d407-8067-8008-de919deba867",
+          "75555645-d407-8067-8008-de919f0e14b3",
+          "75555645-d407-8067-8008-de919fcd5adf",
+          "75555645-d407-8067-8008-de91a0b29343",
+          "75555645-d407-8067-8008-de91a12e3ef5",
+          "75555645-d407-8067-8008-de91a1ac8e25",
+          "75555645-d407-8067-8008-de91a28626ac",
+          "75555645-d407-8067-8008-de91a39a0731",
+          "75555645-d407-8067-8008-de91a4532902",
+          "75555645-d407-8067-8008-de91a5362f33",
+          "75555645-d407-8067-8008-de91a5af2cc2",
+          "75555645-d407-8067-8008-de91a66dd64a",
+          "75555645-d407-8067-8008-de91a73cc247",
+          "75555645-d407-8067-8008-de91a7b5b201"
+        ],
+        "independentEquipmentArtwork": [
+          "75555645-d407-8067-8008-de9199da33b5",
+          "75555645-d407-8067-8008-de919c420a39",
+          "75555645-d407-8067-8008-de919eb4f3c8",
+          "75555645-d407-8067-8008-de91a340312d"
+        ],
+        "artId": "75555645-d407-8067-8008-de918861f45b",
+        "unityImported": false
+      },
+      "affectedPenpotInstances": [
+        "75555645-d407-8067-8008-de9192c78c73"
+      ],
+      "changeKinds": [
+        "expanded_shop_screen",
+        "ornate_frame",
+        "independent_equipment_art",
+        "editable_shop_fields"
+      ],
+      "before": "Only the simpler, visually superseded R052 expanded shop exists.",
+      "after": "One ornate workshop screen matching R053, with independent equipment art, editable ownership and gold fields, a selected item panel and single-slot loadout.",
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor presentation; no runtime consumer changed"
+      ],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Visual review only; independently recreate decorative shells and scenery at production resolution after approval. Do not slice the composition. Keep native labels, state and equipment illustrations separate."
+      ],
+      "approvalEvidence": [
+        "User requested the Tackle Shop with the same instructions after the main Harbor. Visual approval remains pending."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R054",
+        "files": [
+          "TackleShop.jpg",
+          "TackleShop4K.jpg"
+        ],
+        "sourceRasterDimensions": [
+          1672,
+          941
+        ],
+        "boardDimensions": [
+          3840,
+          2160
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R054/Verification.json"
+      },
+      "remainingWork": [
+        "Layout retained by R055. Use R055 equipment sources and review board for future integration; keep this version as comparison only."
+      ],
+      "unityImported": false,
+      "integrationStatus": "not_imported",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R055"
+    },
+    {
+      "id": "MFJ-R055",
+      "date": "2026-10-30",
+      "request": "Recreate shop equipment illustrations to match the creature cards, keeping the shop layout.",
+      "component": [
+        "Driftwood Rod illustration",
+        "Tideglass Reel illustration",
+        "Barbed Hook illustration",
+        "Tackle Shop current review board"
+      ],
+      "status": "verified",
+      "supersedes": [
+        "MFJ-R054"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R055",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "boardId": "75555645-d407-8067-8008-de9b9c9710d1",
+        "boardName": "MFJ-R055 — Tackle Shop / Engraved equipment",
+        "width": 3840,
+        "height": 2160,
+        "equipmentArtwork": [
+          {
+            "key": "rod",
+            "shapeId": "75555645-d407-8067-8008-de9b9d1dd90a",
+            "detail": false
+          },
+          {
+            "key": "reel",
+            "shapeId": "75555645-d407-8067-8008-de9b9dd65a67",
+            "detail": false
+          },
+          {
+            "key": "hook",
+            "shapeId": "75555645-d407-8067-8008-de9b9e803f47",
+            "detail": false
+          },
+          {
+            "key": "reel",
+            "shapeId": "75555645-d407-8067-8008-de9b9f4367e0",
+            "detail": true
+          }
+        ],
+        "editableTextFields": [
+          "75555645-d407-8067-8008-de9b9c9710d3",
+          "75555645-d407-8067-8008-de9b9c9710d4",
+          "75555645-d407-8067-8008-de9b9c9710d5",
+          "75555645-d407-8067-8008-de9b9c9710d6",
+          "75555645-d407-8067-8008-de9b9c9710d7",
+          "75555645-d407-8067-8008-de9b9c9710d8",
+          "75555645-d407-8067-8008-de9b9c9710d9",
+          "75555645-d407-8067-8008-de9b9c9710da",
+          "75555645-d407-8067-8008-de9b9c9710db",
+          "75555645-d407-8067-8008-de9b9c9710dc",
+          "75555645-d407-8067-8008-de9b9c9710de",
+          "75555645-d407-8067-8008-de9b9c9710df",
+          "75555645-d407-8067-8008-de9b9c9710e0",
+          "75555645-d407-8067-8008-de9b9c9710e2",
+          "75555645-d407-8067-8008-de9b9c9710e3",
+          "75555645-d407-8067-8008-de9b9c9710e4",
+          "75555645-d407-8067-8008-de9b9c9740cd",
+          "75555645-d407-8067-8008-de9b9c9740ce",
+          "75555645-d407-8067-8008-de9b9c9740cf",
+          "75555645-d407-8067-8008-de9b9c9740d0",
+          "75555645-d407-8067-8008-de9b9c9740d1",
+          "75555645-d407-8067-8008-de9b9c9740d2",
+          "75555645-d407-8067-8008-de9b9c9740d4",
+          "75555645-d407-8067-8008-de9b9c9740d5",
+          "75555645-d407-8067-8008-de9b9c9740d6",
+          "75555645-d407-8067-8008-de9b9c9740d7",
+          "75555645-d407-8067-8008-de9b9c9740d8",
+          "75555645-d407-8067-8008-de9b9c9740d9",
+          "75555645-d407-8067-8008-de9b9c9740da"
+        ],
+        "sourceArtwork": {
+          "rod": "75555645-d407-8067-8008-de9b972ff90c",
+          "reel": "75555645-d407-8067-8008-de9b99677d11",
+          "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+        },
+        "unityImported": false
+      },
+      "affectedPenpotInstances": [
+        "75555645-d407-8067-8008-de9b9c9710d1"
+      ],
+      "changeKinds": [
+        "replacement_equipment_illustrations"
+      ],
+      "before": "R054 equipment illustrations looked like rendered inventory objects and did not share the creature-card illustration style.",
+      "after": "Three new separate transparent etched illustrations with muted naturalist washes; replaced all four shop equipment instances while preserving the layout and text.",
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/",
+        "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+      ],
+      "dependentConsumers": [
+        "Future Harbor presentation; no runtime consumer changed"
+      ],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Use the independent R055 item sources, not the R052 item art. Retain R054/R053 layout and production decorative-asset boundaries."
+      ],
+      "approvalEvidence": [
+        "User liked the shop and requested new item artwork referencing the creature cards. New artwork remains pending review.",
+        "User requested screen navigation and starting a new run; full shop functionality is explicitly out of scope."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R055",
+        "files": [
+          "TackleShop.jpg",
+          "TackleShop4K.jpg"
+        ],
+        "sources": [
+          {
+            "file": "Art\\HookEngraved.png",
+            "width": 1254,
+            "height": 1254,
+            "hasAlphaChannel": true,
+            "sha256": "1fe6dad783650f7a3977e7fcb86636350e7f2e432178b4a5494ca4162736b398"
+          },
+          {
+            "file": "Art\\ReelEngraved.png",
+            "width": 1672,
+            "height": 941,
+            "hasAlphaChannel": true,
+            "sha256": "50cecc7f3066ed84aedd5d33181c0b5a71117090adaf6f981d259367a546fef6"
+          },
+          {
+            "file": "Art\\RodEngraved.png",
+            "width": 1672,
+            "height": 941,
+            "hasAlphaChannel": true,
+            "sha256": "e26616388f0c5179b954cb11c5f230c9c3dc41ac4318fe71d7780d5fe6b5ee84"
+          }
+        ]
+      },
+      "importEvidence": {
+        "record": "Sync010/README.md",
+        "sources": "Sync010/ImportedSources.json",
+        "nativeLayout": "Sync010/PenpotLayout.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R055/Verification.json",
+        "unity": "Sync010/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-010"
+    },
+    {
+      "id": "MFJ-R056",
+      "date": "2026-10-30",
+      "request": "Design the Technique Collection in the revised Harbor style and reuse actual in-run Technique card faces; user clarified Event cards was a typo.",
+      "component": [
+        "Technique Collection expanded view",
+        "Reusable collection card instances",
+        "Starting deck visual editor"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R056",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "boardId": "75555645-d407-8067-8008-de9d62501389",
+        "boardName": "MFJ-R056 — Technique Collection / In-run card faces",
+        "width": 3840,
+        "height": 2160,
+        "cardInstances": [
+          {
+            "id": "cut_loose",
+            "boardId": "75555645-d407-8067-8008-de9d6c52e2a8",
+            "resource": "CutLoose",
+            "deckCopies": 3,
+            "illustrativeState": "in_deck"
+          },
+          {
+            "id": "slip_past",
+            "boardId": "75555645-d407-8067-8008-de9d709ecd75",
+            "resource": "SlipPast",
+            "deckCopies": 3,
+            "illustrativeState": "in_deck"
+          },
+          {
+            "id": "clear_water",
+            "boardId": "75555645-d407-8067-8008-de9d73b55a52",
+            "resource": "ClearWater",
+            "deckCopies": 1,
+            "illustrativeState": "in_deck"
+          },
+          {
+            "id": "hold_steady",
+            "boardId": "75555645-d407-8067-8008-de9d776a1631",
+            "resource": "HoldSteady",
+            "deckCopies": 1,
+            "illustrativeState": "in_deck"
+          },
+          {
+            "id": "rerig",
+            "boardId": "75555645-d407-8067-8008-de9d7b140530",
+            "resource": "Rerig",
+            "deckCopies": 1,
+            "illustrativeState": "in_deck"
+          },
+          {
+            "id": "steady_line",
+            "boardId": "75555645-d407-8067-8008-de9d7eca676d",
+            "resource": "SteadyLine",
+            "deckCopies": 3,
+            "illustrativeState": "in_deck"
+          },
+          {
+            "id": "recast",
+            "boardId": "75555645-d407-8067-8008-de9d82835fb8",
+            "resource": "Recast",
+            "deckCopies": 0,
+            "illustrativeState": "owned"
+          },
+          {
+            "id": "prize_hook",
+            "boardId": "75555645-d407-8067-8008-de9d865c21e5",
+            "resource": "PrizeHook",
+            "deckCopies": 0,
+            "illustrativeState": "locked"
+          }
+        ],
+        "editableTextFields": [
+          "75555645-d407-8067-8008-de9d63b0ae8a",
+          "75555645-d407-8067-8008-de9d6476404a",
+          "75555645-d407-8067-8008-de9d650c2e45",
+          "75555645-d407-8067-8008-de9d65a233ee",
+          "75555645-d407-8067-8008-de9d66426de8",
+          "75555645-d407-8067-8008-de9d66cbe974",
+          "75555645-d407-8067-8008-de9d6823a58e",
+          "75555645-d407-8067-8008-de9d6942e66e",
+          "75555645-d407-8067-8008-de9d6a8bffe4",
+          "75555645-d407-8067-8008-de9d6b424042",
+          "75555645-d407-8067-8008-de9d6d3a7d6f",
+          "75555645-d407-8067-8008-de9d6dadb2dc",
+          "75555645-d407-8067-8008-de9d6ed3c177",
+          "75555645-d407-8067-8008-de9ea34b8eda",
+          "75555645-d407-8067-8008-de9d718bf625",
+          "75555645-d407-8067-8008-de9d7201172d",
+          "75555645-d407-8067-8008-de9d72d4cb8b",
+          "75555645-d407-8067-8008-de9ea43f6c11",
+          "75555645-d407-8067-8008-de9d74db3d18",
+          "75555645-d407-8067-8008-de9d75935192",
+          "75555645-d407-8067-8008-de9d76792b4d",
+          "75555645-d407-8067-8008-de9ea5d3778a",
+          "75555645-d407-8067-8008-de9d78173002",
+          "75555645-d407-8067-8008-de9d78cea41b",
+          "75555645-d407-8067-8008-de9d7a25c5b3",
+          "75555645-d407-8067-8008-de9ea68302cd",
+          "75555645-d407-8067-8008-de9d7ba85eb0",
+          "75555645-d407-8067-8008-de9d7c51812c",
+          "75555645-d407-8067-8008-de9d7dd44aa9",
+          "75555645-d407-8067-8008-de9ea752292c",
+          "75555645-d407-8067-8008-de9d7f82ae1f",
+          "75555645-d407-8067-8008-de9d8030ad2d",
+          "75555645-d407-8067-8008-de9d81a07eaf",
+          "75555645-d407-8067-8008-de9ea8002b82",
+          "75555645-d407-8067-8008-de9d839df93a",
+          "75555645-d407-8067-8008-de9d847baae8",
+          "75555645-d407-8067-8008-de9d855cfab7",
+          "75555645-d407-8067-8008-de9ea8c79a6f",
+          "75555645-d407-8067-8008-de9d879462d4",
+          "75555645-d407-8067-8008-de9d8861c178",
+          "75555645-d407-8067-8008-de9d893e4290",
+          "75555645-d407-8067-8008-de9ea9788002",
+          "75555645-d407-8067-8008-de9d8aa38c4f",
+          "75555645-d407-8067-8008-de9d8b76adb7",
+          "75555645-d407-8067-8008-de9d8bf2be6b",
+          "75555645-d407-8067-8008-de9d8c703cfb",
+          "75555645-d407-8067-8008-de9d8dbc50ae",
+          "75555645-d407-8067-8008-de9d8e8356fc",
+          "75555645-d407-8067-8008-de9d8eff667f",
+          "75555645-d407-8067-8008-de9d8f7a3f9d",
+          "75555645-d407-8067-8008-de9d902b9bec",
+          "75555645-d407-8067-8008-de9d90f8e113",
+          "75555645-d407-8067-8008-de9d91b302b0",
+          "75555645-d407-8067-8008-de9d9233ed70",
+          "75555645-d407-8067-8008-de9d92e9be6e",
+          "75555645-d407-8067-8008-de9d93b2ab0e",
+          "75555645-d407-8067-8008-de9d94764a82",
+          "75555645-d407-8067-8008-de9d94f9c346",
+          "75555645-d407-8067-8008-de9d95a2df57",
+          "75555645-d407-8067-8008-de9d9665addf",
+          "75555645-d407-8067-8008-de9d97339908",
+          "75555645-d407-8067-8008-de9d97b455aa",
+          "75555645-d407-8067-8008-de9d985536e7",
+          "75555645-d407-8067-8008-de9d9925d40e",
+          "75555645-d407-8067-8008-de9d99f30a15",
+          "75555645-d407-8067-8008-de9d9a70337f",
+          "75555645-d407-8067-8008-de9d9b2eeeb6",
+          "75555645-d407-8067-8008-de9d9c05c1ef",
+          "75555645-d407-8067-8008-de9d9cbe1159",
+          "75555645-d407-8067-8008-de9d9d3fda12",
+          "75555645-d407-8067-8008-de9d9e0899aa",
+          "75555645-d407-8067-8008-de9d9eeb39c7",
+          "75555645-d407-8067-8008-de9d9fb3a50e",
+          "75555645-d407-8067-8008-de9da038b85e",
+          "75555645-d407-8067-8008-de9da120a0c7",
+          "75555645-d407-8067-8008-de9da2427e14",
+          "75555645-d407-8067-8008-de9da33e7bae",
+          "75555645-d407-8067-8008-de9da3e9e2f1",
+          "75555645-d407-8067-8008-de9da50590ae",
+          "75555645-d407-8067-8008-de9da624c692",
+          "75555645-d407-8067-8008-de9da6e2c70d",
+          "75555645-d407-8067-8008-de9da797086a"
+        ],
+        "sourceArtwork": {
+          "frame": "75555645-d407-8067-8008-de9cef76aab3",
+          "CutLoose": "75555645-d407-8067-8008-de9cf120757d",
+          "SlipPast": "75555645-d407-8067-8008-de9cf2d49de0",
+          "ClearWater": "75555645-d407-8067-8008-de9cf4970a6a",
+          "HoldSteady": "75555645-d407-8067-8008-de9cf70d6a10",
+          "Rerig": "75555645-d407-8067-8008-de9cf8a41a16",
+          "SteadyLine": "75555645-d407-8067-8008-de9cfb3ca568",
+          "Recast": "75555645-d407-8067-8008-de9cfcd8d253",
+          "PrizeHook": "75555645-d407-8067-8008-de9cfe5b9d50",
+          "background": "75555645-d407-8067-8008-de9d614288b6"
+        },
+        "unityImported": false,
+        "cardDesign": "Exact active in-run Technique frame and illustrations; planar collection presentation with native title and rules"
+      },
+      "affectedPenpotInstances": [
+        "75555645-d407-8067-8008-de9d62501389"
+      ],
+      "changeKinds": [
+        "new_collection_screen",
+        "exact_in_game_card_resources",
+        "native_collection_fields"
+      ],
+      "before": "The historical R052 collection used simplified card layouts and did not match the revised Harbor framing.",
+      "after": "Ornate Collection screen containing all eight active Technique designs using exact frame/art copies with native names and rules, external ownership labels and adjacent starting-deck list.",
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/",
+        "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+      ],
+      "dependentConsumers": [
+        "Future Harbor presentation; no runtime consumer changed"
+      ],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Retain native per-card fields and exact existing game frame/art. Recreate outer decorative shells independently after approval; do not slice the review composition."
+      ],
+      "approvalEvidence": [
+        "User requested Collection with same instructions as revised Harbor and shop. User clarified Technique cards, not Event cards.",
+        "User requested screen navigation and starting a new run; full shop functionality is explicitly out of scope."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R056",
+        "files": [
+          "TechniqueCollection.jpg",
+          "TechniqueCollection4K.jpg"
+        ],
+        "cardSources": "Revisions/MFJ-R056/GameCardSources.json",
+        "sourceIdentityChecks": [
+          {
+            "resource": "frame",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "CutLoose",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "SlipPast",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "ClearWater",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "HoldSteady",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "Rerig",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "SteadyLine",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "Recast",
+            "matchesActiveGameResource": true
+          },
+          {
+            "resource": "PrizeHook",
+            "matchesActiveGameResource": true
+          }
+        ]
+      },
+      "importEvidence": {
+        "record": "Sync010/README.md",
+        "sources": "Sync010/ImportedSources.json",
+        "nativeLayout": "Sync010/PenpotLayout.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R056/Verification.json",
+        "unity": "Sync010/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-010"
+    },
+    {
+      "id": "MFJ-R057",
+      "date": "2026-10-30",
+      "request": "Fix blurry UI frames on the new Harbor/shop screens for sharp 4K presentation.",
+      "component": [
+        "Harbor framing",
+        "Tackle Shop framing",
+        "Technique Collection framing",
+        "Reusable dark and parchment frame masters"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R057",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "screens": {
+          "shop": {
+            "boardId": "75555645-d407-8067-8008-de9b9c9710d1",
+            "backupBoardId": "75555645-d407-8067-8008-dea8242484c7",
+            "frameLayerId": "75555645-d407-8067-8008-debc2cc7b0d6",
+            "sourceArtId": "75555645-d407-8067-8008-de9b9c9710d2",
+            "foregroundIds": [
+              "75555645-d407-8067-8008-de9b9c9710d3",
+              "75555645-d407-8067-8008-de9b9c9710d4",
+              "75555645-d407-8067-8008-de9b9c9710d5",
+              "75555645-d407-8067-8008-de9b9c9710d6",
+              "75555645-d407-8067-8008-de9b9c9710d7",
+              "75555645-d407-8067-8008-de9b9c9710d8",
+              "75555645-d407-8067-8008-de9b9c9710d9",
+              "75555645-d407-8067-8008-de9b9c9710da",
+              "75555645-d407-8067-8008-de9b9c9710db",
+              "75555645-d407-8067-8008-de9b9c9710dc",
+              "75555645-d407-8067-8008-de9b9c9710de",
+              "75555645-d407-8067-8008-de9b9c9710df",
+              "75555645-d407-8067-8008-de9b9c9710e0",
+              "75555645-d407-8067-8008-de9b9c9710e2",
+              "75555645-d407-8067-8008-de9b9c9710e3",
+              "75555645-d407-8067-8008-de9b9c9710e4",
+              "75555645-d407-8067-8008-de9b9c9740cd",
+              "75555645-d407-8067-8008-de9b9c9740ce",
+              "75555645-d407-8067-8008-de9b9c9740cf",
+              "75555645-d407-8067-8008-de9b9c9740d0",
+              "75555645-d407-8067-8008-de9b9c9740d1",
+              "75555645-d407-8067-8008-de9b9c9740d2",
+              "75555645-d407-8067-8008-de9b9c9740d4",
+              "75555645-d407-8067-8008-de9b9c9740d5",
+              "75555645-d407-8067-8008-de9b9c9740d6",
+              "75555645-d407-8067-8008-de9b9c9740d7",
+              "75555645-d407-8067-8008-de9b9c9740d8",
+              "75555645-d407-8067-8008-de9b9c9740d9",
+              "75555645-d407-8067-8008-de9b9c9740da",
+              "75555645-d407-8067-8008-de9b9c9740db",
+              "75555645-d407-8067-8008-de9b9c9740dc",
+              "75555645-d407-8067-8008-de9b9d1dd90a",
+              "75555645-d407-8067-8008-de9b9dd65a67",
+              "75555645-d407-8067-8008-de9b9e803f47",
+              "75555645-d407-8067-8008-de9b9f4367e0"
+            ],
+            "method": "native-4k-fixed-corner-render",
+            "shells": [
+              {
+                "name": "perimeter",
+                "master": "Dark",
+                "x": 0,
+                "y": 0,
+                "w": 1672,
+                "h": 941,
+                "outer": true,
+                "target": [
+                  3840,
+                  2160
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "wordmark",
+                "master": "Paper",
+                "x": 68,
+                "y": 25,
+                "w": 400,
+                "h": 73,
+                "outer": false,
+                "target": [
+                  919,
+                  168
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  43.199999999999996,
+                  72,
+                  80.64000000000001,
+                  72
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 72,
+                "cornerScale": 0.144
+              },
+              {
+                "name": "navigation",
+                "master": "Dark",
+                "x": 510,
+                "y": 20,
+                "w": 760,
+                "h": 77,
+                "outer": false,
+                "target": [
+                  1745,
+                  177
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  45.6,
+                  76,
+                  85.12,
+                  76
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 76,
+                "cornerScale": 0.152
+              },
+              {
+                "name": "gold",
+                "master": "Paper",
+                "x": 1350,
+                "y": 25,
+                "w": 249,
+                "h": 73,
+                "outer": false,
+                "target": [
+                  572,
+                  168
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  43.199999999999996,
+                  72,
+                  80.64000000000001,
+                  72
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 72,
+                "cornerScale": 0.144
+              },
+              {
+                "name": "cabinet",
+                "master": "Dark",
+                "x": 65,
+                "y": 289,
+                "w": 1016,
+                "h": 515,
+                "outer": false,
+                "target": [
+                  2333,
+                  1182
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "filters",
+                "master": "Paper",
+                "x": 73,
+                "y": 294,
+                "w": 1000,
+                "h": 57,
+                "outer": false,
+                "target": [
+                  2297,
+                  131
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  33.6,
+                  56,
+                  62.720000000000006,
+                  56
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 56,
+                "cornerScale": 0.112
+              },
+              {
+                "name": "detail",
+                "master": "Dark",
+                "x": 1105,
+                "y": 289,
+                "w": 503,
+                "h": 515,
+                "outer": false,
+                "target": [
+                  1155,
+                  1182
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "detail-heading",
+                "master": "Paper",
+                "x": 1113,
+                "y": 294,
+                "w": 487,
+                "h": 57,
+                "outer": false,
+                "target": [
+                  1118,
+                  131
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  33.6,
+                  56,
+                  62.720000000000006,
+                  56
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 56,
+                "cornerScale": 0.112
+              },
+              {
+                "name": "primary",
+                "master": "Paper",
+                "x": 1153,
+                "y": 731,
+                "w": 416,
+                "h": 62,
+                "outer": false,
+                "target": [
+                  955,
+                  142
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  36.6,
+                  61,
+                  68.32000000000001,
+                  61
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 61,
+                "cornerScale": 0.122
+              },
+              {
+                "name": "loadout",
+                "master": "Dark",
+                "x": 65,
+                "y": 819,
+                "w": 1070,
+                "h": 82,
+                "outer": false,
+                "target": [
+                  2457,
+                  188
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  48,
+                  80,
+                  89.60000000000001,
+                  80
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 80,
+                "cornerScale": 0.16
+              },
+              {
+                "name": "return",
+                "master": "Paper",
+                "x": 1160,
+                "y": 819,
+                "w": 440,
+                "h": 82,
+                "outer": false,
+                "target": [
+                  1011,
+                  188
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  48,
+                  80,
+                  89.60000000000001,
+                  80
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 80,
+                "cornerScale": 0.16
+              },
+              {
+                "name": "equipment0",
+                "master": "Dark",
+                "x": 94,
+                "y": 359,
+                "w": 308,
+                "h": 370,
+                "outer": false,
+                "target": [
+                  707,
+                  849
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  84.6,
+                  141,
+                  157.92000000000002,
+                  141
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 141,
+                "cornerScale": 0.282
+              },
+              {
+                "name": "equipment-art0",
+                "master": "Paper",
+                "x": 99,
+                "y": 364,
+                "w": 298,
+                "h": 178,
+                "outer": false,
+                "target": [
+                  684,
+                  409
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  81.6,
+                  136,
+                  152.32000000000002,
+                  136
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 136,
+                "cornerScale": 0.272
+              },
+              {
+                "name": "equipment-title0",
+                "master": "Paper",
+                "x": 99,
+                "y": 545,
+                "w": 298,
+                "h": 46,
+                "outer": false,
+                "target": [
+                  684,
+                  106
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  27,
+                  45,
+                  50.400000000000006,
+                  45
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 45,
+                "cornerScale": 0.09
+              },
+              {
+                "name": "equipment1",
+                "master": "Dark",
+                "x": 424,
+                "y": 359,
+                "w": 318,
+                "h": 370,
+                "outer": false,
+                "target": [
+                  730,
+                  849
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  87.6,
+                  146,
+                  163.52,
+                  146
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 146,
+                "cornerScale": 0.292
+              },
+              {
+                "name": "equipment-art1",
+                "master": "Paper",
+                "x": 429,
+                "y": 364,
+                "w": 308,
+                "h": 178,
+                "outer": false,
+                "target": [
+                  707,
+                  409
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  84.6,
+                  141,
+                  157.92000000000002,
+                  141
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 141,
+                "cornerScale": 0.282
+              },
+              {
+                "name": "equipment-title1",
+                "master": "Paper",
+                "x": 429,
+                "y": 545,
+                "w": 308,
+                "h": 46,
+                "outer": false,
+                "target": [
+                  707,
+                  106
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  27,
+                  45,
+                  50.400000000000006,
+                  45
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 45,
+                "cornerScale": 0.09
+              },
+              {
+                "name": "equipment2",
+                "master": "Dark",
+                "x": 759,
+                "y": 359,
+                "w": 308,
+                "h": 370,
+                "outer": false,
+                "target": [
+                  707,
+                  849
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  84.6,
+                  141,
+                  157.92000000000002,
+                  141
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 141,
+                "cornerScale": 0.282
+              },
+              {
+                "name": "equipment-art2",
+                "master": "Paper",
+                "x": 764,
+                "y": 364,
+                "w": 298,
+                "h": 178,
+                "outer": false,
+                "target": [
+                  684,
+                  409
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  81.6,
+                  136,
+                  152.32000000000002,
+                  136
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 136,
+                "cornerScale": 0.272
+              },
+              {
+                "name": "equipment-title2",
+                "master": "Paper",
+                "x": 764,
+                "y": 545,
+                "w": 298,
+                "h": 46,
+                "outer": false,
+                "target": [
+                  684,
+                  106
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  27,
+                  45,
+                  50.400000000000006,
+                  45
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 45,
+                "cornerScale": 0.09
+              },
+              {
+                "name": "detail-art",
+                "master": "Paper",
+                "x": 1112,
+                "y": 352,
+                "w": 489,
+                "h": 191,
+                "outer": false,
+                "target": [
+                  1123,
+                  438
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  112.8,
+                  188,
+                  210.56000000000003,
+                  188
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 188,
+                "cornerScale": 0.376
+              }
+            ],
+            "frameSource": "ShopFrames4K.png",
+            "nativeFrameSize": [
+              3840,
+              2160
+            ]
+          },
+          "harbor": {
+            "boardId": "75555645-d407-8067-8008-de8ff58e2639",
+            "backupBoardId": "75555645-d407-8067-8008-debc97203dbe",
+            "frameLayerId": "75555645-d407-8067-8008-debe4142dfcb",
+            "sourceArtId": "75555645-d407-8067-8008-de8fd4e31436",
+            "foregroundIds": [
+              "75555645-d407-8067-8008-de8ff65c9c51",
+              "75555645-d407-8067-8008-de8ff70e081e",
+              "75555645-d407-8067-8008-de8ff7e788e9",
+              "75555645-d407-8067-8008-de8ff8a8b548",
+              "75555645-d407-8067-8008-de8ff9393e46",
+              "75555645-d407-8067-8008-de8ffa2b231c",
+              "75555645-d407-8067-8008-de8ffb02982b",
+              "75555645-d407-8067-8008-de8ffb77ebd9",
+              "75555645-d407-8067-8008-de8ffc3513a5",
+              "75555645-d407-8067-8008-de8ffd258ca7",
+              "75555645-d407-8067-8008-de8ffdb33240",
+              "75555645-d407-8067-8008-de8ffe48ae60",
+              "75555645-d407-8067-8008-de8fff1cf573",
+              "75555645-d407-8067-8008-de9000065116",
+              "75555645-d407-8067-8008-de90008b521f",
+              "75555645-d407-8067-8008-de90011c4019",
+              "75555645-d407-8067-8008-de9001f12a5b",
+              "75555645-d407-8067-8008-de9002bbdea8",
+              "75555645-d407-8067-8008-de90035b4b25",
+              "75555645-d407-8067-8008-de90043b6aa2",
+              "75555645-d407-8067-8008-de9004f564a4",
+              "75555645-d407-8067-8008-de90056f2d15"
+            ],
+            "method": "native-4k-fixed-corner-render",
+            "shells": [
+              {
+                "name": "perimeter",
+                "master": "Dark",
+                "x": 0,
+                "y": 0,
+                "w": 1672,
+                "h": 941,
+                "outer": true,
+                "target": [
+                  3840,
+                  2160
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "wordmark",
+                "master": "Paper",
+                "x": 68,
+                "y": 25,
+                "w": 400,
+                "h": 73,
+                "outer": false,
+                "target": [
+                  919,
+                  168
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  43.199999999999996,
+                  72,
+                  80.64000000000001,
+                  72
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 72,
+                "cornerScale": 0.144
+              },
+              {
+                "name": "navigation",
+                "master": "Dark",
+                "x": 510,
+                "y": 20,
+                "w": 760,
+                "h": 77,
+                "outer": false,
+                "target": [
+                  1745,
+                  177
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  45.6,
+                  76,
+                  85.12,
+                  76
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 76,
+                "cornerScale": 0.152
+              },
+              {
+                "name": "gold",
+                "master": "Paper",
+                "x": 1350,
+                "y": 25,
+                "w": 249,
+                "h": 73,
+                "outer": false,
+                "target": [
+                  572,
+                  168
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  43.199999999999996,
+                  72,
+                  80.64000000000001,
+                  72
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 72,
+                "cornerScale": 0.144
+              },
+              {
+                "name": "destination0",
+                "master": "Dark",
+                "x": 62,
+                "y": 534,
+                "w": 506,
+                "h": 226,
+                "outer": false,
+                "target": [
+                  1162,
+                  519
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "destination-title0",
+                "master": "Paper",
+                "x": 71,
+                "y": 540,
+                "w": 488,
+                "h": 53,
+                "outer": false,
+                "target": [
+                  1121,
+                  122
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  31.2,
+                  52,
+                  58.24000000000001,
+                  52
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 52,
+                "cornerScale": 0.104
+              },
+              {
+                "name": "destination1",
+                "master": "Dark",
+                "x": 588,
+                "y": 534,
+                "w": 496,
+                "h": 226,
+                "outer": false,
+                "target": [
+                  1139,
+                  519
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "destination-title1",
+                "master": "Paper",
+                "x": 597,
+                "y": 540,
+                "w": 478,
+                "h": 53,
+                "outer": false,
+                "target": [
+                  1098,
+                  122
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  31.2,
+                  52,
+                  58.24000000000001,
+                  52
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 52,
+                "cornerScale": 0.104
+              },
+              {
+                "name": "destination2",
+                "master": "Dark",
+                "x": 1102,
+                "y": 534,
+                "w": 506,
+                "h": 226,
+                "outer": false,
+                "target": [
+                  1162,
+                  519
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "destination-title2",
+                "master": "Paper",
+                "x": 1111,
+                "y": 540,
+                "w": 488,
+                "h": 53,
+                "outer": false,
+                "target": [
+                  1121,
+                  122
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  31.2,
+                  52,
+                  58.24000000000001,
+                  52
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 52,
+                "cornerScale": 0.104
+              },
+              {
+                "name": "loadout",
+                "master": "Dark",
+                "x": 65,
+                "y": 779,
+                "w": 1080,
+                "h": 102,
+                "outer": false,
+                "target": [
+                  2480,
+                  234
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  60,
+                  100,
+                  112.00000000000001,
+                  100
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 100,
+                "cornerScale": 0.2
+              },
+              {
+                "name": "primary",
+                "master": "Paper",
+                "x": 1173,
+                "y": 778,
+                "w": 407,
+                "h": 100,
+                "outer": false,
+                "target": [
+                  935,
+                  230
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  58.8,
+                  98,
+                  109.76,
+                  98
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 98,
+                "cornerScale": 0.196
+              }
+            ],
+            "frameSource": "HarborFrames4K.png",
+            "nativeFrameSize": [
+              3840,
+              2160
+            ]
+          },
+          "collection": {
+            "boardId": "75555645-d407-8067-8008-de9d62501389",
+            "backupBoardId": "75555645-d407-8067-8008-debcce9e38b3",
+            "frameLayerId": "75555645-d407-8067-8008-debccd5bcfb8",
+            "sourceArtId": "75555645-d407-8067-8008-de9d614288b6",
+            "foregroundIds": [
+              "75555645-d407-8067-8008-de9d63b0ae8a",
+              "75555645-d407-8067-8008-de9d6476404a",
+              "75555645-d407-8067-8008-de9d650c2e45",
+              "75555645-d407-8067-8008-de9d65a233ee",
+              "75555645-d407-8067-8008-de9d66426de8",
+              "75555645-d407-8067-8008-de9d66cbe974",
+              "75555645-d407-8067-8008-de9d67790cb7",
+              "75555645-d407-8067-8008-de9d6823a58e",
+              "75555645-d407-8067-8008-de9d6942e66e",
+              "75555645-d407-8067-8008-de9d6a8bffe4",
+              "75555645-d407-8067-8008-de9d6b424042",
+              "75555645-d407-8067-8008-de9d6bd20815",
+              "75555645-d407-8067-8008-de9d6c52e2a8",
+              "75555645-d407-8067-8008-de9d709ecd75",
+              "75555645-d407-8067-8008-de9d73b55a52",
+              "75555645-d407-8067-8008-de9d776a1631",
+              "75555645-d407-8067-8008-de9d7b140530",
+              "75555645-d407-8067-8008-de9d7eca676d",
+              "75555645-d407-8067-8008-de9d82835fb8",
+              "75555645-d407-8067-8008-de9d865c21e5",
+              "75555645-d407-8067-8008-de9d8aa38c4f",
+              "75555645-d407-8067-8008-de9d8b76adb7",
+              "75555645-d407-8067-8008-de9d8bf2be6b",
+              "75555645-d407-8067-8008-de9d8c703cfb",
+              "75555645-d407-8067-8008-de9d8d1a0b62",
+              "75555645-d407-8067-8008-de9d8dbc50ae",
+              "75555645-d407-8067-8008-de9d8e8356fc",
+              "75555645-d407-8067-8008-de9d8eff667f",
+              "75555645-d407-8067-8008-de9d8f7a3f9d",
+              "75555645-d407-8067-8008-de9d902b9bec",
+              "75555645-d407-8067-8008-de9d90f8e113",
+              "75555645-d407-8067-8008-de9d91b302b0",
+              "75555645-d407-8067-8008-de9d9233ed70",
+              "75555645-d407-8067-8008-de9d92e9be6e",
+              "75555645-d407-8067-8008-de9d93b2ab0e",
+              "75555645-d407-8067-8008-de9d94764a82",
+              "75555645-d407-8067-8008-de9d94f9c346",
+              "75555645-d407-8067-8008-de9d95a2df57",
+              "75555645-d407-8067-8008-de9d9665addf",
+              "75555645-d407-8067-8008-de9d97339908",
+              "75555645-d407-8067-8008-de9d97b455aa",
+              "75555645-d407-8067-8008-de9d985536e7",
+              "75555645-d407-8067-8008-de9d9925d40e",
+              "75555645-d407-8067-8008-de9d99f30a15",
+              "75555645-d407-8067-8008-de9d9a70337f",
+              "75555645-d407-8067-8008-de9d9b2eeeb6",
+              "75555645-d407-8067-8008-de9d9c05c1ef",
+              "75555645-d407-8067-8008-de9d9cbe1159",
+              "75555645-d407-8067-8008-de9d9d3fda12",
+              "75555645-d407-8067-8008-de9d9e0899aa",
+              "75555645-d407-8067-8008-de9d9eeb39c7",
+              "75555645-d407-8067-8008-de9d9fb3a50e",
+              "75555645-d407-8067-8008-de9da038b85e",
+              "75555645-d407-8067-8008-de9da120a0c7",
+              "75555645-d407-8067-8008-de9da2427e14",
+              "75555645-d407-8067-8008-de9da33e7bae",
+              "75555645-d407-8067-8008-de9da3e9e2f1",
+              "75555645-d407-8067-8008-de9da50590ae",
+              "75555645-d407-8067-8008-de9da624c692",
+              "75555645-d407-8067-8008-de9da6e2c70d",
+              "75555645-d407-8067-8008-de9da797086a",
+              "75555645-d407-8067-8008-de9ea29c82a9",
+              "75555645-d407-8067-8008-de9ea34b8eda",
+              "75555645-d407-8067-8008-de9ea3981ca8",
+              "75555645-d407-8067-8008-de9ea43f6c11",
+              "75555645-d407-8067-8008-de9ea4ae6fb8",
+              "75555645-d407-8067-8008-de9ea5d3778a",
+              "75555645-d407-8067-8008-de9ea6157831",
+              "75555645-d407-8067-8008-de9ea68302cd",
+              "75555645-d407-8067-8008-de9ea6c07362",
+              "75555645-d407-8067-8008-de9ea752292c",
+              "75555645-d407-8067-8008-de9ea78b879a",
+              "75555645-d407-8067-8008-de9ea8002b82",
+              "75555645-d407-8067-8008-de9ea8365e48",
+              "75555645-d407-8067-8008-de9ea8c79a6f",
+              "75555645-d407-8067-8008-de9ea90408cb",
+              "75555645-d407-8067-8008-de9ea9788002"
+            ],
+            "method": "native-4k-fixed-corner-render",
+            "shells": [
+              {
+                "name": "perimeter",
+                "master": "Dark",
+                "x": 0,
+                "y": 0,
+                "w": 1672,
+                "h": 941,
+                "outer": true,
+                "target": [
+                  3840,
+                  2160
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "wordmark",
+                "master": "Paper",
+                "x": 68,
+                "y": 25,
+                "w": 400,
+                "h": 73,
+                "outer": false,
+                "target": [
+                  919,
+                  168
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  43.199999999999996,
+                  72,
+                  80.64000000000001,
+                  72
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 72,
+                "cornerScale": 0.144
+              },
+              {
+                "name": "navigation",
+                "master": "Dark",
+                "x": 510,
+                "y": 20,
+                "w": 760,
+                "h": 77,
+                "outer": false,
+                "target": [
+                  1745,
+                  177
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  45.6,
+                  76,
+                  85.12,
+                  76
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 76,
+                "cornerScale": 0.152
+              },
+              {
+                "name": "gold",
+                "master": "Paper",
+                "x": 1350,
+                "y": 25,
+                "w": 249,
+                "h": 73,
+                "outer": false,
+                "target": [
+                  572,
+                  168
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  43.199999999999996,
+                  72,
+                  80.64000000000001,
+                  72
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 72,
+                "cornerScale": 0.144
+              },
+              {
+                "name": "cabinet",
+                "master": "Dark",
+                "x": 65,
+                "y": 289,
+                "w": 1016,
+                "h": 515,
+                "outer": false,
+                "target": [
+                  2333,
+                  1182
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "filters",
+                "master": "Paper",
+                "x": 73,
+                "y": 294,
+                "w": 1000,
+                "h": 57,
+                "outer": false,
+                "target": [
+                  2297,
+                  131
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  33.6,
+                  56,
+                  62.720000000000006,
+                  56
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 56,
+                "cornerScale": 0.112
+              },
+              {
+                "name": "detail",
+                "master": "Dark",
+                "x": 1105,
+                "y": 289,
+                "w": 503,
+                "h": 515,
+                "outer": false,
+                "target": [
+                  1155,
+                  1182
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  132,
+                  220,
+                  246.40000000000003,
+                  220
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 220,
+                "cornerScale": 0.44
+              },
+              {
+                "name": "detail-heading",
+                "master": "Paper",
+                "x": 1113,
+                "y": 294,
+                "w": 487,
+                "h": 57,
+                "outer": false,
+                "target": [
+                  1118,
+                  131
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  33.6,
+                  56,
+                  62.720000000000006,
+                  56
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 56,
+                "cornerScale": 0.112
+              },
+              {
+                "name": "primary",
+                "master": "Paper",
+                "x": 1153,
+                "y": 731,
+                "w": 416,
+                "h": 62,
+                "outer": false,
+                "target": [
+                  955,
+                  142
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  36.6,
+                  61,
+                  68.32000000000001,
+                  61
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 61,
+                "cornerScale": 0.122
+              },
+              {
+                "name": "loadout",
+                "master": "Dark",
+                "x": 65,
+                "y": 819,
+                "w": 1070,
+                "h": 82,
+                "outer": false,
+                "target": [
+                  2457,
+                  188
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  48,
+                  80,
+                  89.60000000000001,
+                  80
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 80,
+                "cornerScale": 0.16
+              },
+              {
+                "name": "return",
+                "master": "Paper",
+                "x": 1160,
+                "y": 819,
+                "w": 440,
+                "h": 82,
+                "outer": false,
+                "target": [
+                  1011,
+                  188
+                ],
+                "sourceBorders": [
+                  300,
+                  500,
+                  560,
+                  500
+                ],
+                "targetBorders": [
+                  48,
+                  80,
+                  89.60000000000001,
+                  80
+                ],
+                "sourceCorner": 500,
+                "targetCorner": 80,
+                "cornerScale": 0.16
+              }
+            ],
+            "frameSource": "CollectionFrames4K.png",
+            "nativeFrameSize": [
+              3840,
+              2160
+            ]
+          }
+        },
+        "unityImported": false
+      },
+      "affectedPenpotInstances": [
+        "75555645-d407-8067-8008-de8ff58e2639",
+        "75555645-d407-8067-8008-de9b9c9710d1",
+        "75555645-d407-8067-8008-de9d62501389"
+      ],
+      "changeKinds": [
+        "resolution_correction",
+        "independent_frame_masters",
+        "nine_slice_construction"
+      ],
+      "before": "UI framing was baked into 1672x941 full-screen art and enlarged about 2.3x. 4K JPEG exports did not add detail.",
+      "after": "Independent detailed frame masters assembled with fixed/downsampled corners and separately resized edges/fills; text, equipment and exact Technique sources retained.",
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/",
+        "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+      ],
+      "dependentConsumers": [
+        "Future Harbor presentation; no runtime consumer changed"
+      ],
+      "configurationChanges": [],
+      "exportRequirements": [
+        "Use final verified R057 frame sources for R053/R055/R056. Do not import the rejected Vectors study. Scenic illustrations remain lower-resolution review art; this is a frame correction, not a claim that the entire backdrop is native 4K."
+      ],
+      "approvalEvidence": [
+        "User requested correction of blurry frames at 4K.",
+        "User requested screen navigation and starting a new run; full shop functionality is explicitly out of scope."
+      ],
+      "exportEvidence": {
+        "folder": "Revisions/MFJ-R057",
+        "sources": [
+          {
+            "file": "Art\\DarkFrameMaster.png",
+            "dimensions": [
+              1672,
+              941
+            ],
+            "sha256": "d2a69072e3852abb5652f8f7b5e1444459b0026071385aa6a8748a30bf02799e"
+          },
+          {
+            "file": "Art\\PaperFrameMaster.png",
+            "dimensions": [
+              1672,
+              941
+            ],
+            "sha256": "c2e5abd79248f09fdd6571187c41399bba1f78db5573f5c8f49292c3289effe6"
+          }
+        ],
+        "files": [
+          "Harbor4K.png",
+          "Shop4K.png",
+          "Collection4K.png"
+        ]
+      },
+      "importEvidence": {
+        "record": "Sync010/README.md",
+        "sources": "Sync010/ImportedSources.json",
+        "nativeLayout": "Sync010/PenpotLayout.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R057/Verification.json",
+        "unity": "Sync010/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-010"
     }
   ],
   "synchronizationCheckpoints": [
@@ -10889,6 +13231,19 @@
       "status": "verified",
       "manifest": "Sync009/UnityCheckpoint.json",
       "verification": "Sync009/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-010",
+      "date": "2026-10-30",
+      "revisions": [
+        "MFJ-R053",
+        "MFJ-R055",
+        "MFJ-R056",
+        "MFJ-R057"
+      ],
+      "status": "verified",
+      "manifest": "Sync010/UnityCheckpoint.json",
+      "verification": "Sync010/Verification.json"
     }
   ],
   "notes": [
@@ -10899,6 +13254,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "Sync009/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync010/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

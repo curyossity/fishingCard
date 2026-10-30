@@ -1,0 +1,100 @@
+{
+  "revision": "MFJ-R052",
+  "date": "2026-10-30",
+  "status": "ready_for_review",
+  "checks": {
+    "fourComplete4KLayouts": true,
+    "reusableElementSheet": true,
+    "separateIllustrations": true,
+    "allNavigationConnected": true,
+    "reviewExportsPresent": true,
+    "unityAssetsUnchanged": true,
+    "manualVisualReview": true
+  },
+  "screens": [
+    {
+      "key": "hub",
+      "id": "d76f6cbf-1fc5-8066-8008-de832b61fc2d",
+      "name": "MFJ-R052 / 01 — Harbor / 3840 × 2160",
+      "width": 3840,
+      "height": 2160,
+      "nativeTextFields": 26,
+      "imageLayers": 4,
+      "totalShapes": 162
+    },
+    {
+      "key": "shop",
+      "id": "d76f6cbf-1fc5-8066-8008-de83518583ea",
+      "name": "MFJ-R052 / 02 — Tackle Shop / 3840 × 2160",
+      "width": 3840,
+      "height": 2160,
+      "nativeTextFields": 36,
+      "imageLayers": 10,
+      "totalShapes": 206
+    },
+    {
+      "key": "techniques",
+      "id": "d76f6cbf-1fc5-8066-8008-de8437dc384a",
+      "name": "MFJ-R052 / 03 — Technique Collection / 3840 × 2160",
+      "width": 3840,
+      "height": 2160,
+      "nativeTextFields": 74,
+      "imageLayers": 18,
+      "totalShapes": 379
+    },
+    {
+      "key": "journal",
+      "id": "75555645-d407-8067-8008-de8623eba843",
+      "name": "MFJ-R052 / 04 — Discovery Journal / 3840 × 2160",
+      "width": 3840,
+      "height": 2160,
+      "nativeTextFields": 48,
+      "imageLayers": 3,
+      "totalShapes": 190
+    }
+  ],
+  "nativeTextFields": 184,
+  "connectedNavigationLinks": 17,
+  "unityAssetsChecked": 1234,
+  "modifiedUnityFiles": [],
+  "generatedBitmapSources": [
+    {
+      "file": "Art/BarbedHook.png",
+      "width": 1024,
+      "height": 1536,
+      "hasAlphaChannel": true,
+      "sha256": "6c190eed0e5593d344f9a0f5e4ca20d20d6ec7154a3463e58cbc0e8cc0d84335"
+    },
+    {
+      "file": "Art/DriftwoodRod.png",
+      "width": 1536,
+      "height": 1024,
+      "hasAlphaChannel": true,
+      "sha256": "760a19f2f7443af5f8d9658d8e40bfb9339aec38e2e16dd1fd07356aa877bade"
+    },
+    {
+      "file": "Art/HarborPanorama.png",
+      "width": 1672,
+      "height": 941,
+      "hasAlphaChannel": false,
+      "sha256": "8f32111d199d8eb011bb14deb90b60409902ef898696099978edb2a2cdbf28b8"
+    },
+    {
+      "file": "Art/TideglassReel.png",
+      "width": 1536,
+      "height": 1024,
+      "hasAlphaChannel": true,
+      "sha256": "3ffb815c0d1bbfaebd34d2905e90e0e4b00d50e92b9ff481da2fbd64a9c6eb85"
+    }
+  ],
+  "reviewExports": [
+    "Harbor.jpg",
+    "TackleShop.jpg",
+    "TechniqueCollection.jpg",
+    "DiscoveryJournal.jpg",
+    "ReusableElements.jpg"
+  ],
+  "productionBoundary": "Layouts, vector decoration and typography are 4K-native. Harbor scenery source is 1672x941; it requires a native-resolution master or approved enlargement before production shipping. No upscaled bitmap is labelled native 4K.",
+  "contentBoundary": "Equipment names/effects/tradeoffs, prices, ownership and discovery content are illustrative UX examples, not approved runtime changes.",
+  "prototypeBoundary": "17 board navigation links verified; purchases, deck edits, claims and Set Sail are visual design states. Named flow creation is rejected by current Penpot API; present the selected main board."
+}

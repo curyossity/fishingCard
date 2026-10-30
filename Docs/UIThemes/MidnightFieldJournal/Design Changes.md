@@ -1,12 +1,14 @@
 # Penpot revisions after the Unity assembly
 
+**MFJ-SYNC-010: imported and verified in Unity (2026-10-30).** Harbor, Tackle Shop and Technique Collection now support navigation and Set Sail. Shop/deck controls remain visual previews. [Integration and checks](Sync010/README.md). **0 pending; 44 completed; 13 superseded.** Earlier pending statements below are historical.
+
 MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC-002 now imports and verifies MFJ-R020–MFJ-R024, covering all five active event cards. [Import and validation record](Sync001/README.md). The original Unity assembly remains the immutable starting baseline. Penpot changes are recorded here and in [DesignChangeLedger.json](DesignChangeLedger.json); MFJ-SYNC-001 records the completed Unity import requested by the user. Future revisions remain separate until their own synchronization.
 
 [UnityDesignBaseline.json](UnityDesignBaseline.json) freezes the current theme files, GUIDs, image dimensions/hashes, source catalog, and related shared presentation files. Do not overwrite that baseline when revising Penpot. It records the accepted assembled version, including the existing missing-art/source-quality boundaries; it does not certify the blocked standalone build.
 
 ## Pending Unity changes
 
-**No pending imports. MFJ-R051 is imported and verified at MFJ-SYNC-009.** 40 revisions are completed; 11 are superseded. [Integration evidence](Sync009/README.md) · [Pending index](PendingUnityChanges.json).
+**Four pending revisions: R053 Harbor, R055 Tackle Shop, R056 Technique Collection and R057 sharp-frame correction.** R057 is ready_for_review. Do not import earlier baked frame images in place of its replacements. All 40 completed revisions and 13 superseded studies remain unchanged; Unity checkpoint is MFJ-SYNC-009. [Frame correction](Revisions/MFJ-R057/README.md).
 
 ## Change history
 
@@ -270,3 +272,30 @@ The rarity bar now enters from below over one second using the mirrored elastic 
 | MFJ-R049 | Three new initial-state instrument forms: Tide Dial, Line Spool, Sounding Chart. Earlier studies retained. | Superseded by MFJ-R050; not imported. | Historical study retained; selected Lantern Focus continues in R050. |
 | MFJ-R050 | Selected Lantern Focus: parchment palette, eight centre brackets, no tag highlight and a larger dark cursor. | Superseded by MFJ-R051; not imported. | Earlier selected refinement retained as historical evidence. |
 | MFJ-R051 | Anchor-bottom cursor over the bar; eight in-channel tapered precision highlights fading upward. | Imported and verified at MFJ-SYNC-009. | R051 replaces the candidate rarity bar; separate native dynamic elements and independent blank exports. [Evidence](Sync009/README.md). |
+
+| MFJ-R052 | Harbor, Tackle Shop, Technique Collection and Discovery Journal; separate illustrations and reusable editable 4K elements. | Ready for review; not imported. | [Design and handoff](Revisions/MFJ-R052/README.md). |
+
+
+## MFJ-R053 — Ornate Harbor revision
+
+One main screen only. Rich creature-card framing and editable labels; composite raster decoration is for review, not production slicing. Pending visual approval; no Unity import. [Review](Revisions/MFJ-R053/README.md).
+
+
+## MFJ-R054 — Matching ornate Tackle Shop
+
+One expanded shop screen with detailed parchment/copper framing, navy information panels, separate equipment illustrations and native editable labels. Shows equipped, purchasable and journal-locked states with a one-item loadout. Illustrative design data only; no new equipment mechanics. Pending review, not integrated. [Review](Revisions/MFJ-R054/README.md).
+
+
+## MFJ-R055 — Recreated shop equipment
+
+New transparent engraved Rod, Reel and Hook based on approved creature art. R054 layout preserved in the new review board, including replacement of the selected Reel detail. Pending review, not integrated. [Review and source files](Revisions/MFJ-R055/README.md).
+
+
+## MFJ-R056 — Technique Collection
+
+New ornate collection with all eight active Technique faces using exact game frame/art and separate native fields. External owned/in-deck/locked state and starting-deck editor are visual only; data is illustrative. Pending review, not imported. [Review and source identity evidence](Revisions/MFJ-R056/README.md).
+
+
+## MFJ-R057 — Sharp 4K frames
+
+Replace magnified full-screen raster framing with separately generated reusable nine-slice frame masters. Preserve existing native card fields and illustrations. See the verification report for completion; no Unity import. [Revision](Revisions/MFJ-R057/README.md).

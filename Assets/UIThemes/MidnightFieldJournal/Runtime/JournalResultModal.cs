@@ -14,6 +14,8 @@ public sealed class JournalResultModal : RunResultPresentation
     private UnityEngine.UI.Button upgrade, unlock, next;
     private Func<bool> purchaseAction, unlockAction;
     private Action nextAction;
+    private Action harborReturn;
+    private TMP_Text nextLabel;
     public bool IsVisible => root != null && root.activeInHierarchy;
     public UnityEngine.UI.Button NextRunButton => next;
 
@@ -30,10 +32,16 @@ public sealed class JournalResultModal : RunResultPresentation
         upgrade = JournalModalLayout.Button("Upgrade Line", panel, new Rect(.04f, .085f, .44f, .06f), theme, out upgradeLabel);
         unlockText = JournalModalLayout.Text("Unlock Status", panel, new Rect(.52f, .15f, .44f, .10f), theme, 30);
         unlock = JournalModalLayout.Button("Unlock Technique", panel, new Rect(.52f, .085f, .44f, .06f), theme, out unlockLabel);
-        next = JournalModalLayout.Button("Start Next Run", panel, new Rect(.04f, .015f, .92f, .06f), theme, out TMP_Text nextLabel); nextLabel.text = "START NEXT RUN";
+        next = JournalModalLayout.Button("Start Next Run", panel, new Rect(.04f, .015f, .92f, .06f), theme, out nextLabel); nextLabel.text = harborReturn == null ? "START NEXT RUN" : "RETURN TO HARBOR";
         upgrade.onClick.AddListener(() => { if (upgrade.interactable) purchaseAction?.Invoke(); });
         unlock.onClick.AddListener(() => { if (unlock.interactable) unlockAction?.Invoke(); });
-        next.onClick.AddListener(() => { if (!next.interactable) return; next.interactable = false; nextAction?.Invoke(); });
+        next.onClick.AddListener(() => { if (!next.interactable) return; next.interactable = false; if (harborReturn != null) harborReturn(); else nextAction?.Invoke(); });
+    }
+    /// <summary>Optionally returns to the authored Harbor after results; scenes without a hub keep their existing restart action.</summary>
+    public void BindHarborReturn(Action callback)
+    {
+        harborReturn = callback;
+        if (nextLabel != null) nextLabel.text = callback == null ? "START NEXT RUN" : "RETURN TO HARBOR";
     }
     /// <summary>Creates an independently scrollable result list so long hauls do not truncate.</summary>
     private TMP_Text Column(Transform panel, string name, float x)

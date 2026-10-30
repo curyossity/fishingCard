@@ -1,0 +1,83 @@
+{
+  "frame": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Cards/Technique/TechniqueFrame.png",
+    "file": "Art/TechniqueFrame.png",
+    "sha256": "15fb7b891f571c523f5c952a1b5a43dbdc8e16ffd1e7ac6c5366e313d3d602ad",
+    "dimensions": [
+      1224,
+      1285
+    ]
+  },
+  "CutLoose": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/CutLoose.png",
+    "file": "Art/CutLoose.png",
+    "sha256": "3e28c962b55f751caa575d6f405bbc1957fdd27816578ef6ebd28970d9774bd0",
+    "dimensions": [
+      1681,
+      936
+    ]
+  },
+  "SlipPast": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SlipPast.png",
+    "file": "Art/SlipPast.png",
+    "sha256": "284e1c1b4d447735bf48dda60fda9d07680b98494e627af91c129ceec447b559",
+    "dimensions": [
+      1681,
+      936
+    ]
+  },
+  "ClearWater": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/ClearWater.png",
+    "file": "Art/ClearWater.png",
+    "sha256": "1ac3a20ac295905f3e768f4920b9861f9aa447b49f07e702d90cdc0435f7a418",
+    "dimensions": [
+      1683,
+      935
+    ]
+  },
+  "HoldSteady": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/HoldSteady.png",
+    "file": "Art/HoldSteady.png",
+    "sha256": "2bec5dfdb994f56b6f410ca61ed9c773a23af53bea2a5a4e4f37a4236cd5830e",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "Rerig": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/Rerig.png",
+    "file": "Art/Rerig.png",
+    "sha256": "1b77cdb01c6047be19874b54d7ca221e7f6213f971849ef58577b96c869f290f",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "SteadyLine": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/SteadyLine.png",
+    "file": "Art/SteadyLine.png",
+    "sha256": "6e1c4c762d40f47ecbb8acb524a51b979fa56f8cc09d38856d4bc29e11f5db49",
+    "dimensions": [
+      1683,
+      935
+    ]
+  },
+  "Recast": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/Recast.png",
+    "file": "Art/Recast.png",
+    "sha256": "eccbf3ab752b7292b60c72af0ad2874ecde0f87650cb77f8177d434e8a437906",
+    "dimensions": [
+      1672,
+      941
+    ]
+  },
+  "PrizeHook": {
+    "source": "Assets/UIThemes/MidnightFieldJournal/Art/Techniques/PrizeHook.png",
+    "file": "Art/PrizeHook.png",
+    "sha256": "1e259fb4b2037e3c64c52e6aa571413df2726fcddd2dd0d8262637f48b2d468c",
+    "dimensions": [
+      1679,
+      937
+    ]
+  }
+}

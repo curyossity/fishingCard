@@ -1,0 +1,59 @@
+{
+  "revision": "MFJ-R056",
+  "screenCount": 1,
+  "boardSize": [
+    3840,
+    2160
+  ],
+  "generatedBackdropSize": [
+    1672,
+    941
+  ],
+  "techniqueCards": 8,
+  "editableTextFields": 82,
+  "sourceIdentityChecks": [
+    {
+      "resource": "frame",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "CutLoose",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "SlipPast",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "ClearWater",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "HoldSteady",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "Rerig",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "SteadyLine",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "Recast",
+      "matchesActiveGameResource": true
+    },
+    {
+      "resource": "PrizeHook",
+      "matchesActiveGameResource": true
+    }
+  ],
+  "visualReview": "Export visually inspected: exact game frames/art, native titles/rules and external state labels; collection and deck fit ornate panels.",
+  "unityImported": false,
+  "unityAssetsComparison": {
+    "checkedFiles": 1234,
+    "differences": [],
+    "unchanged": true
+  }
+}

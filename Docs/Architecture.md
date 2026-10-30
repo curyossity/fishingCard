@@ -1,5 +1,11 @@
 # Architecture
 
+## Candidate Harbor presentation
+
+`JournalHarborFlow` owns navigation between the Midnight Field Journal Harbor, Tackle Shop and Technique Collection. Set Sail delegates to `FishingRunController.StartRun`; that controller retains ownership of expedition reset, gameplay and gold. The candidate scene disables automatic run start and hides the run Canvas until Set Sail. `JournalResultModal` accepts an optional Harbor-return callback; scenes without it retain their existing next-run route. The hub refuses to restart or abandon an active expedition.
+
+`JournalHarborBuilder` reconstructs the separate 4K Canvas prefab from `Harbor/HarborLayout.json`. Native TMP fields, individual illustrations and decorative layers remain separable; the comparison-scene builder installs and binds the prefab. `JournalHarborChecks` verifies isolated renders and the live navigation/run loop. Shop purchases, equipment effects, ownership and deck editing remain inactive presentation previews in this increment. [Integration record](UIThemes/MidnightFieldJournal/Sync010/README.md).
+
 This document is the living responsibility map for the codebase. It should stay lightweight and practical: update it when class responsibilities, runtime flow, or system boundaries change.
 
 The GDD remains the source of truth for game design. This document explains where the code should put those ideas.

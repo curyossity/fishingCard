@@ -1,0 +1,5 @@
+{
+    "passed": true,
+    "assertions": 22,
+    "message": "Actual pointer raycast, routes, fresh run, Surface/results, Harbor return and second fresh run passed."
+}

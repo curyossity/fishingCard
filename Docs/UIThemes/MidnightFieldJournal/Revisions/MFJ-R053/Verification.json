@@ -1,0 +1,20 @@
+{
+  "revision": "MFJ-R053",
+  "boardSize": [
+    3840,
+    2160
+  ],
+  "screenCount": 1,
+  "editableTextFields": 22,
+  "visualReview": "Inspected Penpot export; text fits panels. Removed lower subtitle that collided with decoration.",
+  "unityImported": false,
+  "unityFilesModifiedByThisRevision": false,
+  "previousDesignRetained": true,
+  "productionAssetSeparation": "Not performed; visual approval study only.",
+  "unityAssetsComparison": {
+    "baseline": "../MFJ-R052/UnityBefore.json",
+    "checkedFiles": 1234,
+    "differences": [],
+    "unchanged": true
+  }
+}

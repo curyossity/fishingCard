@@ -1,0 +1,70 @@
+{
+  "revision": "MFJ-R057",
+  "status": "ready_for_review",
+  "assemblyAndVisualReviewComplete": true,
+  "masterSources": [
+    {
+      "file": "Art\\DarkFrameMaster.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "d2a69072e3852abb5652f8f7b5e1444459b0026071385aa6a8748a30bf02799e"
+    },
+    {
+      "file": "Art\\PaperFrameMaster.png",
+      "dimensions": [
+        1672,
+        941
+      ],
+      "sha256": "c2e5abd79248f09fdd6571187c41399bba1f78db5573f5c8f49292c3289effe6"
+    }
+  ],
+  "frameComponents": 44,
+  "maximumDecorativeCornerScale": 0.44,
+  "nativeFrameCanvas": [
+    3840,
+    2160
+  ],
+  "sourceBordersTopRightBottomLeft": [
+    300,
+    500,
+    560,
+    500
+  ],
+  "foregroundIdsPreserved": true,
+  "captures": [
+    {
+      "file": "Harbor4K.png",
+      "dimensions": [
+        3840,
+        2160
+      ],
+      "sha256": "8bd4f38b4edafcae7a1408e00da153d9f7f55337eb3ca1e6436cadfe431e9a51"
+    },
+    {
+      "file": "Shop4K.png",
+      "dimensions": [
+        3840,
+        2160
+      ],
+      "sha256": "98ff1a6baad8d6454432fecb8e7dacd2bfe3146e99c6937ca2d80dfc4f569c95"
+    },
+    {
+      "file": "Collection4K.png",
+      "dimensions": [
+        3840,
+        2160
+      ],
+      "sha256": "82b9f94cb110b59438ed0f73c51c38c50e594697e2b1e8fbc7f91318fabda46d"
+    }
+  ],
+  "visualReview": "All three lossless Penpot exports inspected. Corrected Harbor footer frame alignment. Existing text, Technique cards and equipment remain in place. No enlarged decorative corners.",
+  "scenicArtNative4K": false,
+  "unityImported": false,
+  "unityAssetsComparison": {
+    "checkedFiles": 1234,
+    "differences": [],
+    "unchanged": true
+  }
+}

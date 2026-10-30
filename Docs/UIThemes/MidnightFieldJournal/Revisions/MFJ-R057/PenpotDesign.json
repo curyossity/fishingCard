@@ -1,0 +1,1423 @@
+{
+  "revision": "MFJ-R057",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "Concept B \u2014 Reusable Assembly (4K)",
+  "screens": {
+    "shop": {
+      "boardId": "75555645-d407-8067-8008-de9b9c9710d1",
+      "backupBoardId": "75555645-d407-8067-8008-dea8242484c7",
+      "frameLayerId": "75555645-d407-8067-8008-debc2cc7b0d6",
+      "sourceArtId": "75555645-d407-8067-8008-de9b9c9710d2",
+      "foregroundIds": [
+        "75555645-d407-8067-8008-de9b9c9710d3",
+        "75555645-d407-8067-8008-de9b9c9710d4",
+        "75555645-d407-8067-8008-de9b9c9710d5",
+        "75555645-d407-8067-8008-de9b9c9710d6",
+        "75555645-d407-8067-8008-de9b9c9710d7",
+        "75555645-d407-8067-8008-de9b9c9710d8",
+        "75555645-d407-8067-8008-de9b9c9710d9",
+        "75555645-d407-8067-8008-de9b9c9710da",
+        "75555645-d407-8067-8008-de9b9c9710db",
+        "75555645-d407-8067-8008-de9b9c9710dc",
+        "75555645-d407-8067-8008-de9b9c9710de",
+        "75555645-d407-8067-8008-de9b9c9710df",
+        "75555645-d407-8067-8008-de9b9c9710e0",
+        "75555645-d407-8067-8008-de9b9c9710e2",
+        "75555645-d407-8067-8008-de9b9c9710e3",
+        "75555645-d407-8067-8008-de9b9c9710e4",
+        "75555645-d407-8067-8008-de9b9c9740cd",
+        "75555645-d407-8067-8008-de9b9c9740ce",
+        "75555645-d407-8067-8008-de9b9c9740cf",
+        "75555645-d407-8067-8008-de9b9c9740d0",
+        "75555645-d407-8067-8008-de9b9c9740d1",
+        "75555645-d407-8067-8008-de9b9c9740d2",
+        "75555645-d407-8067-8008-de9b9c9740d4",
+        "75555645-d407-8067-8008-de9b9c9740d5",
+        "75555645-d407-8067-8008-de9b9c9740d6",
+        "75555645-d407-8067-8008-de9b9c9740d7",
+        "75555645-d407-8067-8008-de9b9c9740d8",
+        "75555645-d407-8067-8008-de9b9c9740d9",
+        "75555645-d407-8067-8008-de9b9c9740da",
+        "75555645-d407-8067-8008-de9b9c9740db",
+        "75555645-d407-8067-8008-de9b9c9740dc",
+        "75555645-d407-8067-8008-de9b9d1dd90a",
+        "75555645-d407-8067-8008-de9b9dd65a67",
+        "75555645-d407-8067-8008-de9b9e803f47",
+        "75555645-d407-8067-8008-de9b9f4367e0"
+      ],
+      "method": "native-4k-fixed-corner-render",
+      "shells": [
+        {
+          "name": "perimeter",
+          "master": "Dark",
+          "x": 0,
+          "y": 0,
+          "w": 1672,
+          "h": 941,
+          "outer": true,
+          "target": [
+            3840,
+            2160
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "wordmark",
+          "master": "Paper",
+          "x": 68,
+          "y": 25,
+          "w": 400,
+          "h": 73,
+          "outer": false,
+          "target": [
+            919,
+            168
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            43.199999999999996,
+            72,
+            80.64000000000001,
+            72
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 72,
+          "cornerScale": 0.144
+        },
+        {
+          "name": "navigation",
+          "master": "Dark",
+          "x": 510,
+          "y": 20,
+          "w": 760,
+          "h": 77,
+          "outer": false,
+          "target": [
+            1745,
+            177
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            45.6,
+            76,
+            85.12,
+            76
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 76,
+          "cornerScale": 0.152
+        },
+        {
+          "name": "gold",
+          "master": "Paper",
+          "x": 1350,
+          "y": 25,
+          "w": 249,
+          "h": 73,
+          "outer": false,
+          "target": [
+            572,
+            168
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            43.199999999999996,
+            72,
+            80.64000000000001,
+            72
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 72,
+          "cornerScale": 0.144
+        },
+        {
+          "name": "cabinet",
+          "master": "Dark",
+          "x": 65,
+          "y": 289,
+          "w": 1016,
+          "h": 515,
+          "outer": false,
+          "target": [
+            2333,
+            1182
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "filters",
+          "master": "Paper",
+          "x": 73,
+          "y": 294,
+          "w": 1000,
+          "h": 57,
+          "outer": false,
+          "target": [
+            2297,
+            131
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            33.6,
+            56,
+            62.720000000000006,
+            56
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 56,
+          "cornerScale": 0.112
+        },
+        {
+          "name": "detail",
+          "master": "Dark",
+          "x": 1105,
+          "y": 289,
+          "w": 503,
+          "h": 515,
+          "outer": false,
+          "target": [
+            1155,
+            1182
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "detail-heading",
+          "master": "Paper",
+          "x": 1113,
+          "y": 294,
+          "w": 487,
+          "h": 57,
+          "outer": false,
+          "target": [
+            1118,
+            131
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            33.6,
+            56,
+            62.720000000000006,
+            56
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 56,
+          "cornerScale": 0.112
+        },
+        {
+          "name": "primary",
+          "master": "Paper",
+          "x": 1153,
+          "y": 731,
+          "w": 416,
+          "h": 62,
+          "outer": false,
+          "target": [
+            955,
+            142
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            36.6,
+            61,
+            68.32000000000001,
+            61
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 61,
+          "cornerScale": 0.122
+        },
+        {
+          "name": "loadout",
+          "master": "Dark",
+          "x": 65,
+          "y": 819,
+          "w": 1070,
+          "h": 82,
+          "outer": false,
+          "target": [
+            2457,
+            188
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            48,
+            80,
+            89.60000000000001,
+            80
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 80,
+          "cornerScale": 0.16
+        },
+        {
+          "name": "return",
+          "master": "Paper",
+          "x": 1160,
+          "y": 819,
+          "w": 440,
+          "h": 82,
+          "outer": false,
+          "target": [
+            1011,
+            188
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            48,
+            80,
+            89.60000000000001,
+            80
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 80,
+          "cornerScale": 0.16
+        },
+        {
+          "name": "equipment0",
+          "master": "Dark",
+          "x": 94,
+          "y": 359,
+          "w": 308,
+          "h": 370,
+          "outer": false,
+          "target": [
+            707,
+            849
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            84.6,
+            141,
+            157.92000000000002,
+            141
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 141,
+          "cornerScale": 0.282
+        },
+        {
+          "name": "equipment-art0",
+          "master": "Paper",
+          "x": 99,
+          "y": 364,
+          "w": 298,
+          "h": 178,
+          "outer": false,
+          "target": [
+            684,
+            409
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            81.6,
+            136,
+            152.32000000000002,
+            136
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 136,
+          "cornerScale": 0.272
+        },
+        {
+          "name": "equipment-title0",
+          "master": "Paper",
+          "x": 99,
+          "y": 545,
+          "w": 298,
+          "h": 46,
+          "outer": false,
+          "target": [
+            684,
+            106
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            27,
+            45,
+            50.400000000000006,
+            45
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 45,
+          "cornerScale": 0.09
+        },
+        {
+          "name": "equipment1",
+          "master": "Dark",
+          "x": 424,
+          "y": 359,
+          "w": 318,
+          "h": 370,
+          "outer": false,
+          "target": [
+            730,
+            849
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            87.6,
+            146,
+            163.52,
+            146
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 146,
+          "cornerScale": 0.292
+        },
+        {
+          "name": "equipment-art1",
+          "master": "Paper",
+          "x": 429,
+          "y": 364,
+          "w": 308,
+          "h": 178,
+          "outer": false,
+          "target": [
+            707,
+            409
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            84.6,
+            141,
+            157.92000000000002,
+            141
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 141,
+          "cornerScale": 0.282
+        },
+        {
+          "name": "equipment-title1",
+          "master": "Paper",
+          "x": 429,
+          "y": 545,
+          "w": 308,
+          "h": 46,
+          "outer": false,
+          "target": [
+            707,
+            106
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            27,
+            45,
+            50.400000000000006,
+            45
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 45,
+          "cornerScale": 0.09
+        },
+        {
+          "name": "equipment2",
+          "master": "Dark",
+          "x": 759,
+          "y": 359,
+          "w": 308,
+          "h": 370,
+          "outer": false,
+          "target": [
+            707,
+            849
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            84.6,
+            141,
+            157.92000000000002,
+            141
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 141,
+          "cornerScale": 0.282
+        },
+        {
+          "name": "equipment-art2",
+          "master": "Paper",
+          "x": 764,
+          "y": 364,
+          "w": 298,
+          "h": 178,
+          "outer": false,
+          "target": [
+            684,
+            409
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            81.6,
+            136,
+            152.32000000000002,
+            136
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 136,
+          "cornerScale": 0.272
+        },
+        {
+          "name": "equipment-title2",
+          "master": "Paper",
+          "x": 764,
+          "y": 545,
+          "w": 298,
+          "h": 46,
+          "outer": false,
+          "target": [
+            684,
+            106
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            27,
+            45,
+            50.400000000000006,
+            45
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 45,
+          "cornerScale": 0.09
+        },
+        {
+          "name": "detail-art",
+          "master": "Paper",
+          "x": 1112,
+          "y": 352,
+          "w": 489,
+          "h": 191,
+          "outer": false,
+          "target": [
+            1123,
+            438
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            112.8,
+            188,
+            210.56000000000003,
+            188
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 188,
+          "cornerScale": 0.376
+        }
+      ],
+      "frameSource": "ShopFrames4K.png",
+      "nativeFrameSize": [
+        3840,
+        2160
+      ]
+    },
+    "harbor": {
+      "boardId": "75555645-d407-8067-8008-de8ff58e2639",
+      "backupBoardId": "75555645-d407-8067-8008-debc97203dbe",
+      "frameLayerId": "75555645-d407-8067-8008-debe4142dfcb",
+      "sourceArtId": "75555645-d407-8067-8008-de8fd4e31436",
+      "foregroundIds": [
+        "75555645-d407-8067-8008-de8ff65c9c51",
+        "75555645-d407-8067-8008-de8ff70e081e",
+        "75555645-d407-8067-8008-de8ff7e788e9",
+        "75555645-d407-8067-8008-de8ff8a8b548",
+        "75555645-d407-8067-8008-de8ff9393e46",
+        "75555645-d407-8067-8008-de8ffa2b231c",
+        "75555645-d407-8067-8008-de8ffb02982b",
+        "75555645-d407-8067-8008-de8ffb77ebd9",
+        "75555645-d407-8067-8008-de8ffc3513a5",
+        "75555645-d407-8067-8008-de8ffd258ca7",
+        "75555645-d407-8067-8008-de8ffdb33240",
+        "75555645-d407-8067-8008-de8ffe48ae60",
+        "75555645-d407-8067-8008-de8fff1cf573",
+        "75555645-d407-8067-8008-de9000065116",
+        "75555645-d407-8067-8008-de90008b521f",
+        "75555645-d407-8067-8008-de90011c4019",
+        "75555645-d407-8067-8008-de9001f12a5b",
+        "75555645-d407-8067-8008-de9002bbdea8",
+        "75555645-d407-8067-8008-de90035b4b25",
+        "75555645-d407-8067-8008-de90043b6aa2",
+        "75555645-d407-8067-8008-de9004f564a4",
+        "75555645-d407-8067-8008-de90056f2d15"
+      ],
+      "method": "native-4k-fixed-corner-render",
+      "shells": [
+        {
+          "name": "perimeter",
+          "master": "Dark",
+          "x": 0,
+          "y": 0,
+          "w": 1672,
+          "h": 941,
+          "outer": true,
+          "target": [
+            3840,
+            2160
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "wordmark",
+          "master": "Paper",
+          "x": 68,
+          "y": 25,
+          "w": 400,
+          "h": 73,
+          "outer": false,
+          "target": [
+            919,
+            168
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            43.199999999999996,
+            72,
+            80.64000000000001,
+            72
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 72,
+          "cornerScale": 0.144
+        },
+        {
+          "name": "navigation",
+          "master": "Dark",
+          "x": 510,
+          "y": 20,
+          "w": 760,
+          "h": 77,
+          "outer": false,
+          "target": [
+            1745,
+            177
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            45.6,
+            76,
+            85.12,
+            76
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 76,
+          "cornerScale": 0.152
+        },
+        {
+          "name": "gold",
+          "master": "Paper",
+          "x": 1350,
+          "y": 25,
+          "w": 249,
+          "h": 73,
+          "outer": false,
+          "target": [
+            572,
+            168
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            43.199999999999996,
+            72,
+            80.64000000000001,
+            72
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 72,
+          "cornerScale": 0.144
+        },
+        {
+          "name": "destination0",
+          "master": "Dark",
+          "x": 62,
+          "y": 534,
+          "w": 506,
+          "h": 226,
+          "outer": false,
+          "target": [
+            1162,
+            519
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "destination-title0",
+          "master": "Paper",
+          "x": 71,
+          "y": 540,
+          "w": 488,
+          "h": 53,
+          "outer": false,
+          "target": [
+            1121,
+            122
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            31.2,
+            52,
+            58.24000000000001,
+            52
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 52,
+          "cornerScale": 0.104
+        },
+        {
+          "name": "destination1",
+          "master": "Dark",
+          "x": 588,
+          "y": 534,
+          "w": 496,
+          "h": 226,
+          "outer": false,
+          "target": [
+            1139,
+            519
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "destination-title1",
+          "master": "Paper",
+          "x": 597,
+          "y": 540,
+          "w": 478,
+          "h": 53,
+          "outer": false,
+          "target": [
+            1098,
+            122
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            31.2,
+            52,
+            58.24000000000001,
+            52
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 52,
+          "cornerScale": 0.104
+        },
+        {
+          "name": "destination2",
+          "master": "Dark",
+          "x": 1102,
+          "y": 534,
+          "w": 506,
+          "h": 226,
+          "outer": false,
+          "target": [
+            1162,
+            519
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "destination-title2",
+          "master": "Paper",
+          "x": 1111,
+          "y": 540,
+          "w": 488,
+          "h": 53,
+          "outer": false,
+          "target": [
+            1121,
+            122
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            31.2,
+            52,
+            58.24000000000001,
+            52
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 52,
+          "cornerScale": 0.104
+        },
+        {
+          "name": "loadout",
+          "master": "Dark",
+          "x": 65,
+          "y": 779,
+          "w": 1080,
+          "h": 102,
+          "outer": false,
+          "target": [
+            2480,
+            234
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            60,
+            100,
+            112.00000000000001,
+            100
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 100,
+          "cornerScale": 0.2
+        },
+        {
+          "name": "primary",
+          "master": "Paper",
+          "x": 1173,
+          "y": 778,
+          "w": 407,
+          "h": 100,
+          "outer": false,
+          "target": [
+            935,
+            230
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            58.8,
+            98,
+            109.76,
+            98
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 98,
+          "cornerScale": 0.196
+        }
+      ],
+      "frameSource": "HarborFrames4K.png",
+      "nativeFrameSize": [
+        3840,
+        2160
+      ]
+    },
+    "collection": {
+      "boardId": "75555645-d407-8067-8008-de9d62501389",
+      "backupBoardId": "75555645-d407-8067-8008-debcce9e38b3",
+      "frameLayerId": "75555645-d407-8067-8008-debccd5bcfb8",
+      "sourceArtId": "75555645-d407-8067-8008-de9d614288b6",
+      "foregroundIds": [
+        "75555645-d407-8067-8008-de9d63b0ae8a",
+        "75555645-d407-8067-8008-de9d6476404a",
+        "75555645-d407-8067-8008-de9d650c2e45",
+        "75555645-d407-8067-8008-de9d65a233ee",
+        "75555645-d407-8067-8008-de9d66426de8",
+        "75555645-d407-8067-8008-de9d66cbe974",
+        "75555645-d407-8067-8008-de9d67790cb7",
+        "75555645-d407-8067-8008-de9d6823a58e",
+        "75555645-d407-8067-8008-de9d6942e66e",
+        "75555645-d407-8067-8008-de9d6a8bffe4",
+        "75555645-d407-8067-8008-de9d6b424042",
+        "75555645-d407-8067-8008-de9d6bd20815",
+        "75555645-d407-8067-8008-de9d6c52e2a8",
+        "75555645-d407-8067-8008-de9d709ecd75",
+        "75555645-d407-8067-8008-de9d73b55a52",
+        "75555645-d407-8067-8008-de9d776a1631",
+        "75555645-d407-8067-8008-de9d7b140530",
+        "75555645-d407-8067-8008-de9d7eca676d",
+        "75555645-d407-8067-8008-de9d82835fb8",
+        "75555645-d407-8067-8008-de9d865c21e5",
+        "75555645-d407-8067-8008-de9d8aa38c4f",
+        "75555645-d407-8067-8008-de9d8b76adb7",
+        "75555645-d407-8067-8008-de9d8bf2be6b",
+        "75555645-d407-8067-8008-de9d8c703cfb",
+        "75555645-d407-8067-8008-de9d8d1a0b62",
+        "75555645-d407-8067-8008-de9d8dbc50ae",
+        "75555645-d407-8067-8008-de9d8e8356fc",
+        "75555645-d407-8067-8008-de9d8eff667f",
+        "75555645-d407-8067-8008-de9d8f7a3f9d",
+        "75555645-d407-8067-8008-de9d902b9bec",
+        "75555645-d407-8067-8008-de9d90f8e113",
+        "75555645-d407-8067-8008-de9d91b302b0",
+        "75555645-d407-8067-8008-de9d9233ed70",
+        "75555645-d407-8067-8008-de9d92e9be6e",
+        "75555645-d407-8067-8008-de9d93b2ab0e",
+        "75555645-d407-8067-8008-de9d94764a82",
+        "75555645-d407-8067-8008-de9d94f9c346",
+        "75555645-d407-8067-8008-de9d95a2df57",
+        "75555645-d407-8067-8008-de9d9665addf",
+        "75555645-d407-8067-8008-de9d97339908",
+        "75555645-d407-8067-8008-de9d97b455aa",
+        "75555645-d407-8067-8008-de9d985536e7",
+        "75555645-d407-8067-8008-de9d9925d40e",
+        "75555645-d407-8067-8008-de9d99f30a15",
+        "75555645-d407-8067-8008-de9d9a70337f",
+        "75555645-d407-8067-8008-de9d9b2eeeb6",
+        "75555645-d407-8067-8008-de9d9c05c1ef",
+        "75555645-d407-8067-8008-de9d9cbe1159",
+        "75555645-d407-8067-8008-de9d9d3fda12",
+        "75555645-d407-8067-8008-de9d9e0899aa",
+        "75555645-d407-8067-8008-de9d9eeb39c7",
+        "75555645-d407-8067-8008-de9d9fb3a50e",
+        "75555645-d407-8067-8008-de9da038b85e",
+        "75555645-d407-8067-8008-de9da120a0c7",
+        "75555645-d407-8067-8008-de9da2427e14",
+        "75555645-d407-8067-8008-de9da33e7bae",
+        "75555645-d407-8067-8008-de9da3e9e2f1",
+        "75555645-d407-8067-8008-de9da50590ae",
+        "75555645-d407-8067-8008-de9da624c692",
+        "75555645-d407-8067-8008-de9da6e2c70d",
+        "75555645-d407-8067-8008-de9da797086a",
+        "75555645-d407-8067-8008-de9ea29c82a9",
+        "75555645-d407-8067-8008-de9ea34b8eda",
+        "75555645-d407-8067-8008-de9ea3981ca8",
+        "75555645-d407-8067-8008-de9ea43f6c11",
+        "75555645-d407-8067-8008-de9ea4ae6fb8",
+        "75555645-d407-8067-8008-de9ea5d3778a",
+        "75555645-d407-8067-8008-de9ea6157831",
+        "75555645-d407-8067-8008-de9ea68302cd",
+        "75555645-d407-8067-8008-de9ea6c07362",
+        "75555645-d407-8067-8008-de9ea752292c",
+        "75555645-d407-8067-8008-de9ea78b879a",
+        "75555645-d407-8067-8008-de9ea8002b82",
+        "75555645-d407-8067-8008-de9ea8365e48",
+        "75555645-d407-8067-8008-de9ea8c79a6f",
+        "75555645-d407-8067-8008-de9ea90408cb",
+        "75555645-d407-8067-8008-de9ea9788002"
+      ],
+      "method": "native-4k-fixed-corner-render",
+      "shells": [
+        {
+          "name": "perimeter",
+          "master": "Dark",
+          "x": 0,
+          "y": 0,
+          "w": 1672,
+          "h": 941,
+          "outer": true,
+          "target": [
+            3840,
+            2160
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "wordmark",
+          "master": "Paper",
+          "x": 68,
+          "y": 25,
+          "w": 400,
+          "h": 73,
+          "outer": false,
+          "target": [
+            919,
+            168
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            43.199999999999996,
+            72,
+            80.64000000000001,
+            72
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 72,
+          "cornerScale": 0.144
+        },
+        {
+          "name": "navigation",
+          "master": "Dark",
+          "x": 510,
+          "y": 20,
+          "w": 760,
+          "h": 77,
+          "outer": false,
+          "target": [
+            1745,
+            177
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            45.6,
+            76,
+            85.12,
+            76
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 76,
+          "cornerScale": 0.152
+        },
+        {
+          "name": "gold",
+          "master": "Paper",
+          "x": 1350,
+          "y": 25,
+          "w": 249,
+          "h": 73,
+          "outer": false,
+          "target": [
+            572,
+            168
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            43.199999999999996,
+            72,
+            80.64000000000001,
+            72
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 72,
+          "cornerScale": 0.144
+        },
+        {
+          "name": "cabinet",
+          "master": "Dark",
+          "x": 65,
+          "y": 289,
+          "w": 1016,
+          "h": 515,
+          "outer": false,
+          "target": [
+            2333,
+            1182
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "filters",
+          "master": "Paper",
+          "x": 73,
+          "y": 294,
+          "w": 1000,
+          "h": 57,
+          "outer": false,
+          "target": [
+            2297,
+            131
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            33.6,
+            56,
+            62.720000000000006,
+            56
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 56,
+          "cornerScale": 0.112
+        },
+        {
+          "name": "detail",
+          "master": "Dark",
+          "x": 1105,
+          "y": 289,
+          "w": 503,
+          "h": 515,
+          "outer": false,
+          "target": [
+            1155,
+            1182
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            132,
+            220,
+            246.40000000000003,
+            220
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 220,
+          "cornerScale": 0.44
+        },
+        {
+          "name": "detail-heading",
+          "master": "Paper",
+          "x": 1113,
+          "y": 294,
+          "w": 487,
+          "h": 57,
+          "outer": false,
+          "target": [
+            1118,
+            131
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            33.6,
+            56,
+            62.720000000000006,
+            56
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 56,
+          "cornerScale": 0.112
+        },
+        {
+          "name": "primary",
+          "master": "Paper",
+          "x": 1153,
+          "y": 731,
+          "w": 416,
+          "h": 62,
+          "outer": false,
+          "target": [
+            955,
+            142
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            36.6,
+            61,
+            68.32000000000001,
+            61
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 61,
+          "cornerScale": 0.122
+        },
+        {
+          "name": "loadout",
+          "master": "Dark",
+          "x": 65,
+          "y": 819,
+          "w": 1070,
+          "h": 82,
+          "outer": false,
+          "target": [
+            2457,
+            188
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            48,
+            80,
+            89.60000000000001,
+            80
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 80,
+          "cornerScale": 0.16
+        },
+        {
+          "name": "return",
+          "master": "Paper",
+          "x": 1160,
+          "y": 819,
+          "w": 440,
+          "h": 82,
+          "outer": false,
+          "target": [
+            1011,
+            188
+          ],
+          "sourceBorders": [
+            300,
+            500,
+            560,
+            500
+          ],
+          "targetBorders": [
+            48,
+            80,
+            89.60000000000001,
+            80
+          ],
+          "sourceCorner": 500,
+          "targetCorner": 80,
+          "cornerScale": 0.16
+        }
+      ],
+      "frameSource": "CollectionFrames4K.png",
+      "nativeFrameSize": [
+        3840,
+        2160
+      ]
+    }
+  },
+  "unityImported": false
+}

@@ -1,0 +1,338 @@
+[
+  {
+    "name": "perimeter",
+    "master": "Dark",
+    "x": 0,
+    "y": 0,
+    "w": 1672,
+    "h": 941,
+    "outer": true,
+    "target": [
+      3840,
+      2160
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      132.0,
+      220,
+      246.40000000000003,
+      220
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 220,
+    "cornerScale": 0.44
+  },
+  {
+    "name": "wordmark",
+    "master": "Paper",
+    "x": 68,
+    "y": 25,
+    "w": 400,
+    "h": 73,
+    "outer": false,
+    "target": [
+      919,
+      168
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      43.199999999999996,
+      72,
+      80.64000000000001,
+      72
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 72,
+    "cornerScale": 0.144
+  },
+  {
+    "name": "navigation",
+    "master": "Dark",
+    "x": 510,
+    "y": 20,
+    "w": 760,
+    "h": 77,
+    "outer": false,
+    "target": [
+      1745,
+      177
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      45.6,
+      76,
+      85.12,
+      76
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 76,
+    "cornerScale": 0.152
+  },
+  {
+    "name": "gold",
+    "master": "Paper",
+    "x": 1350,
+    "y": 25,
+    "w": 249,
+    "h": 73,
+    "outer": false,
+    "target": [
+      572,
+      168
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      43.199999999999996,
+      72,
+      80.64000000000001,
+      72
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 72,
+    "cornerScale": 0.144
+  },
+  {
+    "name": "destination0",
+    "master": "Dark",
+    "x": 62,
+    "y": 534,
+    "w": 506,
+    "h": 226,
+    "outer": false,
+    "target": [
+      1162,
+      519
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      132.0,
+      220,
+      246.40000000000003,
+      220
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 220,
+    "cornerScale": 0.44
+  },
+  {
+    "name": "destination-title0",
+    "master": "Paper",
+    "x": 71,
+    "y": 540,
+    "w": 488,
+    "h": 53,
+    "outer": false,
+    "target": [
+      1121,
+      122
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      31.2,
+      52,
+      58.24000000000001,
+      52
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 52,
+    "cornerScale": 0.104
+  },
+  {
+    "name": "destination1",
+    "master": "Dark",
+    "x": 588,
+    "y": 534,
+    "w": 496,
+    "h": 226,
+    "outer": false,
+    "target": [
+      1139,
+      519
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      132.0,
+      220,
+      246.40000000000003,
+      220
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 220,
+    "cornerScale": 0.44
+  },
+  {
+    "name": "destination-title1",
+    "master": "Paper",
+    "x": 597,
+    "y": 540,
+    "w": 478,
+    "h": 53,
+    "outer": false,
+    "target": [
+      1098,
+      122
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      31.2,
+      52,
+      58.24000000000001,
+      52
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 52,
+    "cornerScale": 0.104
+  },
+  {
+    "name": "destination2",
+    "master": "Dark",
+    "x": 1102,
+    "y": 534,
+    "w": 506,
+    "h": 226,
+    "outer": false,
+    "target": [
+      1162,
+      519
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      132.0,
+      220,
+      246.40000000000003,
+      220
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 220,
+    "cornerScale": 0.44
+  },
+  {
+    "name": "destination-title2",
+    "master": "Paper",
+    "x": 1111,
+    "y": 540,
+    "w": 488,
+    "h": 53,
+    "outer": false,
+    "target": [
+      1121,
+      122
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      31.2,
+      52,
+      58.24000000000001,
+      52
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 52,
+    "cornerScale": 0.104
+  },
+  {
+    "name": "loadout",
+    "master": "Dark",
+    "x": 65,
+    "y": 779,
+    "w": 1080,
+    "h": 102,
+    "outer": false,
+    "target": [
+      2480,
+      234
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      60.0,
+      100,
+      112.00000000000001,
+      100
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 100,
+    "cornerScale": 0.2
+  },
+  {
+    "name": "primary",
+    "master": "Paper",
+    "x": 1173,
+    "y": 778,
+    "w": 407,
+    "h": 100,
+    "outer": false,
+    "target": [
+      935,
+      230
+    ],
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "targetBorders": [
+      58.8,
+      98,
+      109.76,
+      98
+    ],
+    "sourceCorner": 500,
+    "targetCorner": 98,
+    "cornerScale": 0.196
+  }
+]

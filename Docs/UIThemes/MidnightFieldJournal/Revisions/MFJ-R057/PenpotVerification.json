@@ -1,0 +1,30 @@
+{
+  "screens": [
+    {
+      "key": "shop",
+      "boardId": "75555645-d407-8067-8008-de9b9c9710d1",
+      "width": 3840,
+      "height": 2160,
+      "frameLayers": 1,
+      "missingForegroundIds": []
+    },
+    {
+      "key": "harbor",
+      "boardId": "75555645-d407-8067-8008-de8ff58e2639",
+      "width": 3840,
+      "height": 2160,
+      "frameLayers": 1,
+      "missingForegroundIds": []
+    },
+    {
+      "key": "collection",
+      "boardId": "75555645-d407-8067-8008-de9d62501389",
+      "width": 3840,
+      "height": 2160,
+      "frameLayers": 1,
+      "missingForegroundIds": []
+    }
+  ],
+  "allForegroundsPreserved": true,
+  "allFramesNative4K": true
+}

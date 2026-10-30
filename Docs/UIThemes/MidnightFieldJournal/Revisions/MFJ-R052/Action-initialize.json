@@ -1,0 +1,25 @@
+{
+  "result": {
+    "revision": "MFJ-R052",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "pageName": "Concept B — Reusable Assembly (4K)",
+    "screens": {},
+    "links": [],
+    "templates": {},
+    "notes": "Design-only. Gold, equipment names/effects/prices, ownership and objectives are illustrative; existing Technique rules reused. No new runtime mechanics approved.",
+    "art": {
+      "reel": "d76f6cbf-1fc5-8066-8008-de81e6709a76",
+      "CutLoose": "d76f6cbf-1fc5-8066-8008-de81e8d1c288",
+      "SlipPast": "d76f6cbf-1fc5-8066-8008-de81eb799a87",
+      "SteadyLine": "d76f6cbf-1fc5-8066-8008-de81ee4b23fd",
+      "PrizeHook": "d76f6cbf-1fc5-8066-8008-de81f0851a96",
+      "clear": "bae680cd-9225-8018-8008-d04eeb30a002",
+      "hold": "bae680cd-9225-8018-8008-d04eec929d98",
+      "rerig": "bae680cd-9225-8018-8008-d04eede4b4a5",
+      "recast": "bae680cd-9225-8018-8008-d04eef263bea"
+    },
+    "titleId": "d76f6cbf-1fc5-8066-8008-de832a7f59c0"
+  },
+  "log": ""
+}

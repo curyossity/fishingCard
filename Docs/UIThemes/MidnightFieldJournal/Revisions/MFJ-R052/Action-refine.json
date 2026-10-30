@@ -1,0 +1,71 @@
+{
+  "result": {
+    "revision": "MFJ-R052",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "screens": {
+      "hub": "d76f6cbf-1fc5-8066-8008-de832b61fc2d",
+      "shop": "d76f6cbf-1fc5-8066-8008-de83518583ea",
+      "techniques": "d76f6cbf-1fc5-8066-8008-de8437dc384a",
+      "journal": "75555645-d407-8067-8008-de8623eba843"
+    },
+    "prototypeLinks": 15,
+    "templates": {
+      "location0": "d76f6cbf-1fc5-8066-8008-de8337f55a87",
+      "location1": "d76f6cbf-1fc5-8066-8008-de833de1a326",
+      "location2": "d76f6cbf-1fc5-8066-8008-de83436dd1bb",
+      "departure": "d76f6cbf-1fc5-8066-8008-de834d435802",
+      "product0": "d76f6cbf-1fc5-8066-8008-de836936a0a8",
+      "product1": "d76f6cbf-1fc5-8066-8008-de8374abf8fb",
+      "product2": "d76f6cbf-1fc5-8066-8008-de837b5ff5fc",
+      "equipmentDetail": "d76f6cbf-1fc5-8066-8008-de8387d681d4",
+      "technique0": "d76f6cbf-1fc5-8066-8008-de8453a73736",
+      "technique1": "d76f6cbf-1fc5-8066-8008-de845c0d229c",
+      "technique2": "d76f6cbf-1fc5-8066-8008-de8463baebc7",
+      "technique3": "d76f6cbf-1fc5-8066-8008-de846b6ed724",
+      "technique4": "d76f6cbf-1fc5-8066-8008-de8472fdf81b",
+      "technique5": "d76f6cbf-1fc5-8066-8008-de847ac25ca3",
+      "technique6": "d76f6cbf-1fc5-8066-8008-de84834f8345",
+      "technique7": "d76f6cbf-1fc5-8066-8008-de848aeba826",
+      "journalReward": "75555645-d407-8067-8008-de865898dcfa",
+      "blankShell": "75555645-d407-8067-8008-de86a55c31b9"
+    },
+    "links": [
+      {
+        "shapeId": "75555645-d407-8067-8008-de86261e30ee",
+        "target": "hub"
+      },
+      {
+        "shapeId": "75555645-d407-8067-8008-de86273acb40",
+        "target": "shop"
+      },
+      {
+        "shapeId": "75555645-d407-8067-8008-de8627ffcaa6",
+        "target": "techniques"
+      },
+      {
+        "shapeId": "75555645-d407-8067-8008-de8629178f06",
+        "target": "journal"
+      },
+      {
+        "shapeId": "75555645-d407-8067-8008-de865c98e178",
+        "target": "shop"
+      }
+    ],
+    "kitId": "75555645-d407-8067-8008-de86a08036bb",
+    "art": {
+      "reel": "d76f6cbf-1fc5-8066-8008-de81e6709a76",
+      "CutLoose": "d76f6cbf-1fc5-8066-8008-de81e8d1c288",
+      "SlipPast": "d76f6cbf-1fc5-8066-8008-de81eb799a87",
+      "SteadyLine": "d76f6cbf-1fc5-8066-8008-de81ee4b23fd",
+      "PrizeHook": "d76f6cbf-1fc5-8066-8008-de81f0851a96",
+      "rod": "75555645-d407-8067-8008-de8860eb1e21",
+      "hook": "75555645-d407-8067-8008-de8862e7702f",
+      "clear": "bae680cd-9225-8018-8008-d04eeb30a002",
+      "hold": "bae680cd-9225-8018-8008-d04eec929d98",
+      "rerig": "bae680cd-9225-8018-8008-d04eede4b4a5",
+      "recast": "bae680cd-9225-8018-8008-d04eef263bea"
+    }
+  },
+  "log": ""
+}

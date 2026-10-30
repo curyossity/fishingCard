@@ -1,0 +1,56 @@
+[
+  {
+    "id": "harborBackground",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R053\\Art\\HarborOrnateBlank.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/harborBackground.png",
+    "sha256": "cc7852bac0e8c5cb7b633cf9c9b378917753b8938e8f6ba9e46582a9c6904fbd"
+  },
+  {
+    "id": "shopBackground",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R054\\Art\\TackleShopOrnateBlank.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/shopBackground.png",
+    "sha256": "d5e97fd0968c87095cf645cb2a9038c1eb59ff4d0f9f8fb4eacbe7cc97db20ba"
+  },
+  {
+    "id": "collectionBackground",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R056\\Art\\CollectionBlank.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/collectionBackground.png",
+    "sha256": "59a06bfe1a31896fb2251ae1528cf16c51db6d713f8ea68fa95146de2a9b3631"
+  },
+  {
+    "id": "harborFrames",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R057\\HarborFrames4K.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/harborFrames.png",
+    "sha256": "5575ff6961d1d4282a365befbde59b7bc1bd0271ae0343d35e56d80f5aa3cb27"
+  },
+  {
+    "id": "shopFrames",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R057\\ShopFrames4K.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/shopFrames.png",
+    "sha256": "7d04bdee219475870b4071f726fa4e5588eaf429a15a3ca484055fb18e16a55c"
+  },
+  {
+    "id": "collectionFrames",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R057\\CollectionFrames4K.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/collectionFrames.png",
+    "sha256": "5995083c32406f45cccdceb99ddd33395aa000dec42812fba8e135b458bdc9bd"
+  },
+  {
+    "id": "rod",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R055\\Art\\RodEngraved.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/rod.png",
+    "sha256": "e26616388f0c5179b954cb11c5f230c9c3dc41ac4318fe71d7780d5fe6b5ee84"
+  },
+  {
+    "id": "reel",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R055\\Art\\ReelEngraved.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/reel.png",
+    "sha256": "50cecc7f3066ed84aedd5d33181c0b5a71117090adaf6f981d259367a546fef6"
+  },
+  {
+    "id": "hook",
+    "source": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\MidnightFieldJournal\\Revisions\\MFJ-R055\\Art\\HookEngraved.png",
+    "target": "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/hook.png",
+    "sha256": "1fe6dad783650f7a3977e7fcb86636350e7f2e432178b4a5494ca4162736b398"
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "date": "2026-10-30",
+  "component": {
+    "passed": true,
+    "assertions": 293
+  },
+  "play": {
+    "passed": true,
+    "assertions": 22,
+    "message": "Actual pointer raycast, routes, fresh run, Surface/results, Harbor return and second fresh run passed."
+  },
+  "protectedExistingFilesUnchanged": 1232,
+  "changedExistingFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonSceneBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalResultModal.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+  ],
+  "addedFiles": [
+    "Assets/UIThemes/MidnightFieldJournal/Harbor.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/collectionBackground.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/collectionBackground.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/collectionFrames.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/collectionFrames.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/harborBackground.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/harborBackground.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/harborFrames.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/harborFrames.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/hook.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/hook.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/reel.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/reel.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/rod.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/rod.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/shopBackground.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/shopBackground.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/shopFrames.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Art/shopFrames.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborBuilder.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborChecks.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/HarborLayout.json",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/HarborLayout.json.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalHarborFlow.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalHarborFlow.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab.meta"
+  ],
+  "originalSceneAndBuildSettingsUnchanged": true,
+  "cardDefinitionsAndGameplayRulesUnchanged": true,
+  "sceneCleanOutsidePlayMode": true,
+  "notes": [
+    "The smoke test yields a frame between page changes so newly enabled uGUI graphics register before the next pointer raycast.",
+    "The runtime-generated fallback font atlas was restored to its hash-verified pre-task bytes."
+  ]
+}

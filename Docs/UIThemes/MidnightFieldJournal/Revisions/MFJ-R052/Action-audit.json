@@ -1,0 +1,72 @@
+{
+  "result": {
+    "revision": "MFJ-R052",
+    "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+    "screens": [
+      {
+        "key": "hub",
+        "id": "d76f6cbf-1fc5-8066-8008-de832b61fc2d",
+        "name": "MFJ-R052 / 01 — Harbor / 3840 × 2160",
+        "width": 3840,
+        "height": 2160,
+        "nativeTextFields": 26,
+        "imageLayers": 4,
+        "totalShapes": 162
+      },
+      {
+        "key": "shop",
+        "id": "d76f6cbf-1fc5-8066-8008-de83518583ea",
+        "name": "MFJ-R052 / 02 — Tackle Shop / 3840 × 2160",
+        "width": 3840,
+        "height": 2160,
+        "nativeTextFields": 36,
+        "imageLayers": 10,
+        "totalShapes": 206
+      },
+      {
+        "key": "techniques",
+        "id": "d76f6cbf-1fc5-8066-8008-de8437dc384a",
+        "name": "MFJ-R052 / 03 — Technique Collection / 3840 × 2160",
+        "width": 3840,
+        "height": 2160,
+        "nativeTextFields": 74,
+        "imageLayers": 18,
+        "totalShapes": 379
+      },
+      {
+        "key": "journal",
+        "id": "75555645-d407-8067-8008-de8623eba843",
+        "name": "MFJ-R052 / 04 — Discovery Journal / 3840 × 2160",
+        "width": 3840,
+        "height": 2160,
+        "nativeTextFields": 48,
+        "imageLayers": 3,
+        "totalShapes": 190
+      }
+    ],
+    "prototypeLinks": 17,
+    "kitId": "75555645-d407-8067-8008-de86a08036bb",
+    "templates": {
+      "location0": "d76f6cbf-1fc5-8066-8008-de8337f55a87",
+      "location1": "d76f6cbf-1fc5-8066-8008-de833de1a326",
+      "location2": "d76f6cbf-1fc5-8066-8008-de83436dd1bb",
+      "departure": "d76f6cbf-1fc5-8066-8008-de834d435802",
+      "product0": "d76f6cbf-1fc5-8066-8008-de836936a0a8",
+      "product1": "d76f6cbf-1fc5-8066-8008-de8374abf8fb",
+      "product2": "d76f6cbf-1fc5-8066-8008-de837b5ff5fc",
+      "equipmentDetail": "d76f6cbf-1fc5-8066-8008-de8387d681d4",
+      "technique0": "d76f6cbf-1fc5-8066-8008-de8453a73736",
+      "technique1": "d76f6cbf-1fc5-8066-8008-de845c0d229c",
+      "technique2": "d76f6cbf-1fc5-8066-8008-de8463baebc7",
+      "technique3": "d76f6cbf-1fc5-8066-8008-de846b6ed724",
+      "technique4": "d76f6cbf-1fc5-8066-8008-de8472fdf81b",
+      "technique5": "d76f6cbf-1fc5-8066-8008-de847ac25ca3",
+      "technique6": "d76f6cbf-1fc5-8066-8008-de84834f8345",
+      "technique7": "d76f6cbf-1fc5-8066-8008-de848aeba826",
+      "journalReward": "75555645-d407-8067-8008-de865898dcfa",
+      "blankShell": "75555645-d407-8067-8008-de86a55c31b9"
+    }
+  },
+  "log": ""
+}
