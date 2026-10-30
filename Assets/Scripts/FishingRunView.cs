@@ -213,7 +213,8 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private RectTransform mainContent;
     [SerializeField] private RectTransform catchRigPanel;
     [SerializeField] private RectTransform encounterPanel;
-    [SerializeField] private EncounterRarityTimingView rarityTimingView;
+    [UnityEngine.Serialization.FormerlySerializedAs("rarityTimingView")]
+    [SerializeField] private EncounterTimingView encounterTimingView;
 
     [SerializeField] private RectTransform runControlsPanel;
     [SerializeField] private RectTransform techniqueHand;
@@ -331,16 +332,16 @@ public sealed class FishingRunView : MonoBehaviour
     public event Action<EncounterEffectChoice> EncounterEffectChoiceChanged;
 
     /// <summary>Forwards hidden timing state without substituting a card or executing encounter rules.</summary>
-    public void SetRarityTiming(EncounterRarityTiming timing, Func<long, bool> stop, BiomeDefinition biome, int depth)
-    { if (rarityTimingView != null) rarityTimingView.Present(timing, stop, biome, depth); }
+    public void SetTiming(EncounterTiming timing, Func<long, bool> stop, BiomeDefinition biome, int depth)
+    { if (encounterTimingView != null) encounterTimingView.Present(timing, stop, biome, depth); }
 
     /// <summary>Waits for the current timing instrument's exit, with immediate completion when no view is configured.</summary>
-    public bool HasCompletedRarityTimingExit(long occurrence)
-    { return rarityTimingView == null || rarityTimingView.HasCompletedExit(occurrence); }
+    public bool HasCompletedTimingExit(long occurrence)
+    { return encounterTimingView == null || encounterTimingView.HasCompletedExit(occurrence); }
 
     /// <summary>Waits for the current instrument to enter, with immediate readiness when no view is configured.</summary>
-    public bool HasCompletedRarityTimingEntrance(long occurrence)
-    { return rarityTimingView == null || rarityTimingView.HasCompletedEntrance(occurrence); }
+    public bool HasCompletedTimingEntrance(long occurrence)
+    { return encounterTimingView == null || encounterTimingView.HasCompletedEntrance(occurrence); }
 
     /// <summary>Displays controller-owned role selection without generating a second choice event.</summary>
     public void SetEncounterRoleSelection(EncounterEffectChoice choice)

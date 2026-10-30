@@ -1,0 +1,49 @@
+{
+  "status": "verified",
+  "date": "2026-10-29",
+  "revision": "MFJ-R051",
+  "rulesAssertions": 2955,
+  "legacyRulesAssertions": 75,
+  "elasticExitAssertions": 6,
+  "elasticEntranceAssertions": 8,
+  "particleAssertions": 14,
+  "playMode": {
+    "status": "Passed: 103",
+    "assertions": 103
+  },
+  "visualChecks": [
+    "4K and 1080p moving instrument",
+    "precision stop feedback",
+    "5% minimum span and proportional lights",
+    "event bypass"
+  ],
+  "protectedFiles": [
+    {
+      "path": "Assets/Scenes/SampleScene.unity",
+      "sha256": "7152ce297b7455085535cb61c45d71d037b4d75a1dc0137b5437d27a0e675c85"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "a9ac9ddca68a9caa6dfa08c1d24144cc2362bba452a7747cca45727b659cb142"
+    }
+  ],
+  "previousBaselineChangedFiles": [
+    "Assets/Scripts/EncounterRarityTiming.cs",
+    "Assets/Scripts/EncounterRuntime.RarityTiming.cs",
+    "Assets/Scripts/EncounterRuntime.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/FishingRunView.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalComparisonSceneBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/JournalRarityTimingBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Editor/MidnightFieldJournalHudBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalRarityTimingView.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+  ],
+  "renamedPreviousPaths": [
+    "Assets/Scripts/EncounterRarityTimingView.cs",
+    "Assets/Scripts/EncounterRarityTimingView.cs.meta"
+  ],
+  "unchangedPreviousBaselineFiles": 429,
+  "scope": "Targeted candidate canvas timing replacement; no card data, illustrations, fonts, other templates or legacy scene/build changes."
+}

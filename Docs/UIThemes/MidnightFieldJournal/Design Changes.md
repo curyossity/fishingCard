@@ -6,7 +6,7 @@ MFJ-SYNC-001 includes MFJ-R001–MFJ-R019 in the Unity candidate theme. MFJ-SYNC
 
 ## Pending Unity changes
 
-**One pending selected design: MFJ-R051** (ready_for_review). R050 is superseded; all39 prior integrations remain verified. [Pending index](PendingUnityChanges.json).
+**No pending imports. MFJ-R051 is imported and verified at MFJ-SYNC-009.** 40 revisions are completed; 11 are superseded. [Integration evidence](Sync009/README.md) · [Pending index](PendingUnityChanges.json).
 
 ## Change history
 
@@ -177,7 +177,7 @@ Implemented directly in Unity on 20 October 2026: chain-modified Weight/Value gr
 
 ## Springy number-only stat feedback — MFJ-SYNC-006.10
 
-Implemented in Unity on20 October2026. Counting stats now pop with a short scale spring and alternating tilt on every integer; the final beat is slightly stronger and settles to the existing enlarged green/red style. Fonts, artwork, pacing and gameplay remain unchanged. [Checks and current baseline](StatPunch/README.md). No new Penpot revision or pending import.
+Implemented in Unity on20 October 2026. Counting stats now pop with a short scale spring and alternating tilt on every integer; the final beat is slightly stronger and settles to the existing enlarged green/red style. Fonts, artwork, pacing and gameplay remain unchanged. [Checks and current baseline](StatPunch/README.md). No new Penpot revision or pending import.
 
 ## All-source current-creature stat feedback — MFJ-SYNC-006.11
 
@@ -269,4 +269,4 @@ The rarity bar now enters from below over one second using the mirrored elastic 
 | MFJ-R048 | Three additional initial-only monochrome tag-bar ideas, with quieter precision cues. R047 retained. | Superseded by MFJ-R050; not imported. | Historical study retained; selected Lantern Focus continues in R050. |
 | MFJ-R049 | Three new initial-state instrument forms: Tide Dial, Line Spool, Sounding Chart. Earlier studies retained. | Superseded by MFJ-R050; not imported. | Historical study retained; selected Lantern Focus continues in R050. |
 | MFJ-R050 | Selected Lantern Focus: parchment palette, eight centre brackets, no tag highlight and a larger dark cursor. | Superseded by MFJ-R051; not imported. | Earlier selected refinement retained as historical evidence. |
-| MFJ-R051 | Anchor-bottom cursor over the bar; eight in-channel tapered precision highlights fading upward. | ready_for_review; Penpot only. | Not imported; [evidence](Revisions/MFJ-R051/README.md). |
+| MFJ-R051 | Anchor-bottom cursor over the bar; eight in-channel tapered precision highlights fading upward. | Imported and verified at MFJ-SYNC-009. | R051 replaces the candidate rarity bar; separate native dynamic elements and independent blank exports. [Evidence](Sync009/README.md). |

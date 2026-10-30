@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>Owns a hidden encounter's eligibility, marker and exact stopped outcome.</summary>
-public sealed class EncounterRarityTiming
+public sealed class EncounterRarityTiming : EncounterTiming
 {
     public readonly struct Zone
     {
@@ -15,27 +15,27 @@ public sealed class EncounterRarityTiming
         public Zone(CardRarity rarity, bool miss, float start, float end)
         { Rarity = rarity; IsMiss = miss; Start = start; End = end; }
     }
-    private CardDefinition[] candidates = Array.Empty<CardDefinition>();
     private Zone[] zones = Array.Empty<Zone>();
-    private float elapsed, speed, hold, stoppedElapsed;
-    private bool stopped;
-    private long occurrence;
-    public bool Active => candidates.Length > 0;
-    public bool Stopped => Active && stopped;
-    public bool ReadyToReveal => Stopped && stoppedElapsed >= hold;
-    public long Occurrence => occurrence;
-    public float Position => Mathf.PingPong(elapsed * speed, 1);
-    public float FeedbackProgress => hold <= 0 ? 1 : Mathf.Clamp01(stoppedElapsed / hold);
     public IReadOnlyList<Zone> Zones => zones;
     public Zone Outcome { get; private set; }
+    public override string ResultLabel => Outcome.Label;
+    public override bool CelebrateStop
+    {
+        get
+        {
+            if (!Stopped || Outcome.IsMiss) return false;
+            foreach (Zone zone in zones) if (!zone.IsMiss && (int)zone.Rarity > (int)Outcome.Rarity) return false;
+            return true;
+        }
+    }
     /// <summary>Counts equal species entries under the locked ceiling for authoritative draw diagnostics.</summary>
-    public int EligibleSpeciesCount
+    public override int EligibleSpeciesCount
     {
         get
         {
             if (!Stopped || Outcome.IsMiss) return 0;
             int count=0;
-            foreach (CardDefinition card in candidates) if ((int)card.Rarity <= (int)Outcome.Rarity) count++;
+            foreach (CardDefinition card in Candidates) if ((int)card.Rarity <= (int)Outcome.Rarity) count++;
             return count;
         }
     }
@@ -43,18 +43,12 @@ public sealed class EncounterRarityTiming
     /// <summary>Gives unavailable rarity space to Common where possible; fixed promises keep their identity.</summary>
     public void Begin(CardDefinition[] cards, RarityTimingProfile profile, bool fixedEncounter)
     {
-        Reset();
-        var unique = new List<CardDefinition>(); var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        foreach (CardDefinition card in cards ?? Array.Empty<CardDefinition>())
-            if (card != null && !unique.Contains(card)
-                && (string.IsNullOrEmpty(card.UniqueId) || ids.Add(card.UniqueId))) unique.Add(card);
-        candidates = unique.ToArray();
-        speed = Mathf.Max(.05f, profile.traversalsPerSecond); hold = Mathf.Max(0, profile.resultHoldSeconds);
+        Reserve(cards, profile.traversalsPerSecond, profile.resultHoldSeconds);
         var available = new List<CardRarity>(); var widths = new List<float>(); float total = 0, unavailableWidth = 0;
         foreach (CardRarity rarity in Enum.GetValues(typeof(CardRarity)))
         {
             float width = fixedEncounter ? 1 : Mathf.Max(0, profile.Width(rarity));
-            if (!Array.Exists(candidates, c => c.Rarity == rarity))
+            if (!Array.Exists(Candidates, c => c.Rarity == rarity))
             { if (!fixedEncounter) unavailableWidth += width; continue; }
             if (width <= 0) continue;
             available.Add(rarity); widths.Add(width); total += width;
@@ -65,7 +59,7 @@ public sealed class EncounterRarityTiming
         // A pool containing only currently disabled rarities must still produce an encounter.
         if (available.Count == 0)
             foreach (CardRarity rarity in Enum.GetValues(typeof(CardRarity)))
-                if (Array.Exists(candidates, c => c.Rarity == rarity)) { available.Add(rarity); widths.Add(1); total++; }
+                if (Array.Exists(Candidates, c => c.Rarity == rarity)) { available.Add(rarity); widths.Add(1); total++; }
         float missWidth = fixedEncounter ? 0 : Mathf.Max(0, profile.miss); total += missWidth;
         var result = new List<Zone>(); float start = 0;
         for (int i = 0; i < available.Count; i++)
@@ -75,34 +69,24 @@ public sealed class EncounterRarityTiming
         zones = result.ToArray();
     }
 
-    /// <summary>Advances marker motion or stopped feedback, independent of presentation frame rate.</summary>
-    public bool Tick(float delta)
+    /// <summary>Captures the rarity interval containing the shared clock's exact stopped position.</summary>
+    protected override void CaptureStop(float position)
     {
-        if (!Active) return false;
-        if (!stopped) elapsed += Mathf.Max(0, delta); else stoppedElapsed += Mathf.Max(0, delta);
-        return stopped && stoppedElapsed >= hold;
-    }
-
-    /// <summary>Locks exactly one occurrence, rejecting stale callbacks and repeated presses.</summary>
-    public bool TryStop(long expectedOccurrence)
-    {
-        if (!Active || stopped || expectedOccurrence != occurrence) return false;
-        float position = Position; Outcome = zones[zones.Length - 1];
+        Outcome = zones[zones.Length - 1];
         foreach (Zone zone in zones) if (position < zone.End) { Outcome = zone; break; }
-        stopped = true; return true;
     }
 
     /// <summary>Samples uniformly across distinct creatures at or below the stopped rarity ceiling.</summary>
-    public CardDefinition Choose(System.Random random)
+    public override CardDefinition Choose(System.Random random)
     {
         if (!Stopped || Outcome.IsMiss) return null;
         var indices = new List<int>();
-        for (int i = 0; i < candidates.Length; i++)
-            if ((int)candidates[i].Rarity <= (int)Outcome.Rarity) indices.Add(i);
-        return candidates[indices[random.Next(indices.Count)]];
+        for (int i = 0; i < Candidates.Length; i++)
+            if ((int)Candidates[i].Rarity <= (int)Outcome.Rarity) indices.Add(i);
+        return Candidates[indices[random.Next(indices.Count)]];
     }
 
     /// <summary>Invalidates pending input and clears hidden state at a phase/run boundary.</summary>
-    public void Reset()
-    { occurrence++; candidates = Array.Empty<CardDefinition>(); zones = Array.Empty<Zone>(); elapsed = stoppedElapsed = 0; stopped = false; }
+    public override void Reset()
+    { base.Reset(); zones = Array.Empty<Zone>(); }
 }

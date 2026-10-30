@@ -287,7 +287,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FishingRunController
   startRunOnAwake: 1
   beginWithBoatCard: 1
-  rarityTimingProfile: {fileID: 11400000, guid: 3dc95a5bab2353f48ad5087cae2824d8, type: 2}
+  rarityTimingProfile: {fileID: 0}
+  tagTimingProfile: {fileID: 11400000, guid: f77fef199b8805e43810bb7a06e7d824, type: 2}
   startingLineCapacity: 10
   startingDepth: 0
   startingBiome: {fileID: 11400000, guid: e104a3bb49114f2e80aebde5130a122e, type: 2}

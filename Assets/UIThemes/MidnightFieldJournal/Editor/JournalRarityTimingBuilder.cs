@@ -62,11 +62,13 @@ public static class JournalRarityTimingBuilder
     public static void BindCanvas(GameObject canvas)
     {
         var view=canvas.GetComponent<FishingRunView>();var data=new SerializedObject(view);
-        if(data.FindProperty("rarityTimingView").objectReferenceValue!=null)return;
+        var old=data.FindProperty("encounterTimingView").objectReferenceValue as EncounterTimingView;
+        if(old is JournalRarityTimingView)return;
+        if(old!=null)UnityEngine.Object.DestroyImmediate(old.gameObject);
         var encounter=(RectTransform)data.FindProperty("encounterPanel").objectReferenceValue;
         var instance=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath),encounter.parent);
         var rect=instance.GetComponent<RectTransform>();rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;
-        Bind(data,"rarityTimingView",instance.GetComponent<JournalRarityTimingView>());data.ApplyModifiedPropertiesWithoutUndo();
+        Bind(data,"encounterTimingView",instance.GetComponent<JournalRarityTimingView>());data.ApplyModifiedPropertiesWithoutUndo();
     }
 
     /// <summary>Imports only R046 and enables its gameplay profile in the isolated playable scene.</summary>
@@ -80,6 +82,7 @@ public static class JournalRarityTimingBuilder
         try{BindCanvas(root);PrefabUtility.SaveAsPrefabAsset(root,path);}finally{PrefabUtility.UnloadPrefabContents(root);}
         var controller=UnityEngine.Object.FindAnyObjectByType<FishingRunController>();var data=new SerializedObject(controller);
         Bind(data,"rarityTimingProfile",AssetDatabase.LoadAssetAtPath<RarityTimingProfile>(ProfilePath));data.ApplyModifiedPropertiesWithoutUndo();
+        Bind(data,"tagTimingProfile",null);data.ApplyModifiedPropertiesWithoutUndo();
         EditorSceneManager.MarkSceneDirty(scene);EditorSceneManager.SaveScene(scene);
     }
 

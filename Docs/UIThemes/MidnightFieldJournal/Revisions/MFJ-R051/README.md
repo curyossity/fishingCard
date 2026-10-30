@@ -1,5 +1,7 @@
 # MFJ-R051 — Anchor cursor and rising precision
 
+**Unity integration: imported and verified 29 October 2026 at [MFJ-SYNC-009](../../Sync009/README.md). No pending work remains for this revision.** The original design-only notes below are retained as historical evidence.
+
 **Ready for review. Penpot-only refinement of the selected parchment Lantern Focus, exported and checked on 28 October 2026.**
 
 The user requested a different marker visible over the bar, with an anchor at its bottom, and centre highlights inside the bar that rise from the lower edge and fade away near the text height.

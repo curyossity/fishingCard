@@ -1,15 +1,8 @@
 {
-  "generatedDate": "2026-10-28",
+  "generatedDate": "2026-10-29",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "RarityBarEntrance/UnityCheckpoint.json",
-  "pending": [
-    {
-      "id": "MFJ-R051",
-      "status": "ready_for_review",
-      "unityImported": false,
-      "source": "Revisions/MFJ-R051/README.md"
-    }
-  ],
+  "currentUnityCheckpoint": "Sync009/UnityCheckpoint.json",
+  "pending": [],
   "completed": [
     {
       "id": "MFJ-R001",
@@ -166,6 +159,10 @@
     {
       "id": "MFJ-R046",
       "checkpoint": "MFJ-SYNC-008"
+    },
+    {
+      "id": "MFJ-R051",
+      "checkpoint": "MFJ-SYNC-009"
     }
   ],
   "superseded": [
@@ -226,8 +223,8 @@
     }
   ],
   "counts": {
-    "pending": 1,
-    "completed": 39,
+    "pending": 0,
+    "completed": 40,
     "superseded": 11
   },
   "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required.",

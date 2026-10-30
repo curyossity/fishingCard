@@ -253,7 +253,7 @@ public sealed partial class EncounterRuntime
         }
 
         // Category pacing remains unchanged; timed species draws use the full eligible pool equally.
-        List<CardDefinition> timingCandidates = TimingProfile != null ? new List<CardDefinition>(candidates) : null;
+        List<CardDefinition> timingCandidates = TimingProfile != null || TagTimingProfile != null ? new List<CardDefinition>(candidates) : null;
         encounterVarietyRuntime.ApplyRepetitionRules(candidates);
 
         if (candidates.Count == 0)
@@ -491,6 +491,7 @@ public sealed partial class EncounterRuntime
     public void Reset(bool preservePendingConcealments = false)
     {
         RarityTiming.Reset(); timingChains = null; timingChainFollowUp = false;
+        if (preservePendingConcealments) TagTiming.Reset(); else TagTiming.ResetRun();
         Trail.Reset();
         currentEventOccurrence?.Supersede();
         currentEventOccurrence = null;
@@ -620,7 +621,7 @@ public sealed partial class EncounterRuntime
     /// <summary>Rejects new reveals before selection, history, or chain state can change during active consequences.</summary>
     private void EnsureEncounterCanBeRevealed()
     {
-        if (RarityTiming.Active) throw new InvalidOperationException("Stop the rarity marker before revealing another encounter.");
+        if (Timing.Active) throw new InvalidOperationException("Stop the timing marker before revealing another encounter.");
         if (currentEventOccurrence?.State == EventOccurrenceState.Resolving)
             throw new InvalidOperationException("Cannot reveal a new encounter while event consequences are resolving.");
     }

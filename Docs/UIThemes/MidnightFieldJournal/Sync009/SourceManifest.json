@@ -1,0 +1,25 @@
+{
+  "revision": "MFJ-R051",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "approvedBarId": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c76",
+  "frameExportBoardId": "0ee2d4ff-05c9-80cd-8008-dd5a7a1e59e6",
+  "paperExportShapeId": "0ee2d4ff-05c9-80cd-8008-dc54a3d51c77",
+  "exports": [
+    {
+      "path": "TagBarFrame.png",
+      "width": 1600,
+      "height": 400,
+      "sha256": "63effa5df58ab07ee66f720ac88f80d3b1d58a818be15a5875b7cd486425c124"
+    },
+    {
+      "path": "TagBarPaper.png",
+      "width": 1600,
+      "height": 400,
+      "sha256": "9a30fd0413980a950bec7cb1b637a0efab671dc6c6a7da82d90376928e927071"
+    }
+  ],
+  "construction": "Independent blank engraved frame and independent clean paper exported from native R051 shapes. No assembled screenshot sliced. Tags, text, precision lights, anchor, Stop and feedback are live native Unity elements.",
+  "profile": "Assets/UIThemes/MidnightFieldJournal/Profiles/TagTiming.asset",
+  "prefab": "Assets/UIThemes/MidnightFieldJournal/Prefabs/TagTiming.prefab"
+}

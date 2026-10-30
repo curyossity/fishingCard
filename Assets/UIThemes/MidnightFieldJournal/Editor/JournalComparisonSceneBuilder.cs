@@ -32,7 +32,8 @@ public static class JournalComparisonSceneBuilder
             var controller = owner.AddComponent<FishingRunController>(); EditorUtility.CopySerialized(sourceController, controller);
             var serialized = new SerializedObject(controller);
             serialized.FindProperty("beginWithBoatCard").boolValue = true;
-            serialized.FindProperty("rarityTimingProfile").objectReferenceValue = AssetDatabase.LoadAssetAtPath<RarityTimingProfile>(JournalRarityTimingBuilder.ProfilePath);
+            serialized.FindProperty("rarityTimingProfile").objectReferenceValue = null;
+            serialized.FindProperty("tagTimingProfile").objectReferenceValue = AssetDatabase.LoadAssetAtPath<TagTimingProfile>(JournalTagTimingBuilder.ProfilePath);
             serialized.FindProperty("currentEncounterView").objectReferenceValue = null; serialized.FindProperty("techniqueHandViews").arraySize = 0;
             serialized.FindProperty("fishingRunView").objectReferenceValue = ui.GetComponent<FishingRunView>();
             serialized.FindProperty("catchChainView").objectReferenceValue = ui.GetComponentInChildren<CatchChainView>(true);

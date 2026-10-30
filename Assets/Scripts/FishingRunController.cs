@@ -9,7 +9,10 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private bool startRunOnAwake = true;
     [SerializeField] private bool beginWithBoatCard;
     [SerializeField] private RarityTimingProfile rarityTimingProfile;
+    [SerializeField] private TagTimingProfile tagTimingProfile;
     public EncounterRarityTiming RarityTiming => encounterRuntime.RarityTiming;
+    public EncounterTagTiming TagTiming => encounterRuntime.TagTiming;
+    public EncounterTiming Timing => encounterRuntime.Timing;
     private bool openingBoatPending;
     private EncounterEffectChoice selectedEncounterChoice = EncounterEffectChoice.None;
     private int selectedEncounterChoiceRevision = -1;
@@ -125,7 +128,7 @@ public sealed class FishingRunController : MonoBehaviour
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
         && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
 
-    public bool CanDescend => !RarityTiming.Active && CoreActionInputReady
+    public bool CanDescend => !Timing.Active && CoreActionInputReady
         && (HookedEncounter == null || !HookedEncounter.RequiresAttachmentChoice || SelectedEncounterChoice != EncounterEffectChoice.None)
         && (!biomeApexRuntime.NextWatersPresented
         || currentBiome?.NextBiome?.GetDepthTier(currentBiome.NextBiome.StartingDepth) != null);
@@ -423,7 +426,7 @@ public sealed class FishingRunController : MonoBehaviour
     public bool CanUseTechniqueCard(int handIndex, out string restrictionReason)
     {
         restrictionReason = string.Empty;
-        if (RarityTiming.Active) { restrictionReason = "Stop the rarity marker first"; return false; }
+        if (Timing.Active) { restrictionReason = "Stop the timing marker first"; return false; }
 
         if (fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying)
         { restrictionReason = "Wait for the encounter transition"; return false; }
@@ -1872,8 +1875,9 @@ public sealed class FishingRunController : MonoBehaviour
     private void RevealEncounterAtCurrentDepth()
     {
         encounterRuntime.TimingProfile = rarityTimingProfile;
+        encounterRuntime.TagTimingProfile = tagTimingProfile;
         try { PrepareEncounterAtCurrentDepth(); }
-        finally { encounterRuntime.TimingProfile = null; }
+        finally { encounterRuntime.TimingProfile = null; encounterRuntime.TagTimingProfile = null; }
     }
 
     /// <summary>Reserves the next slot; only creature selections defer their reveal until Stop.</summary>
@@ -1886,7 +1890,7 @@ public sealed class FishingRunController : MonoBehaviour
         if (TryRevealBiomeApex(selectionDepth))
         {
             encounterRuntime.Trail.Reset();
-            if (!RarityTiming.Active) techniqueEffectRuntime.CompleteEncounterReveal();
+            if (!Timing.Active) techniqueEffectRuntime.CompleteEncounterReveal();
             return;
         }
 
@@ -1928,7 +1932,7 @@ public sealed class FishingRunController : MonoBehaviour
             null,
             currentBiome?.EncounterChains);
 
-        if (!RarityTiming.Active) techniqueEffectRuntime.CompleteEncounterReveal();
+        if (!Timing.Active) techniqueEffectRuntime.CompleteEncounterReveal();
 
         if (!revealed)
         {
@@ -1937,21 +1941,24 @@ public sealed class FishingRunController : MonoBehaviour
     }
 
     /// <summary>Stops only the active timing occurrence while presentation input is available.</summary>
-    public bool TryStopRarityTiming(long occurrence)
+    public bool TryStopEncounterTiming(long occurrence)
     {
-        if (!CoreActionInputReady || (fishingRunView != null && !fishingRunView.HasCompletedRarityTimingEntrance(occurrence))
-            || !RarityTiming.TryStop(occurrence)) return false;
+        if (!CoreActionInputReady || (fishingRunView != null && !fishingRunView.HasCompletedTimingEntrance(occurrence))
+            || !Timing.TryStop(occurrence)) return false;
         RefreshViews(); return true;
     }
+
+    /// <summary>Preserves the existing rarity input API for old profile scenes and validation fixtures.</summary>
+    public bool TryStopRarityTiming(long occurrence) { return TryStopEncounterTiming(occurrence); }
 
     /// <summary>Advances timing independently of the view, then dispatches the delayed reveal once.</summary>
     private void Update()
     {
-        if (!runActive || !RarityTiming.Active || fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying) return;
-        if (fishingRunView != null && !fishingRunView.HasCompletedRarityTimingEntrance(RarityTiming.Occurrence)) return;
-        if (!RarityTiming.Tick(Time.unscaledDeltaTime)) return;
-        if (fishingRunView != null && !fishingRunView.HasCompletedRarityTimingExit(RarityTiming.Occurrence)) return;
-        encounterRuntime.CompleteRarityTiming(random);
+        if (!runActive || !Timing.Active || fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying) return;
+        if (fishingRunView != null && !fishingRunView.HasCompletedTimingEntrance(Timing.Occurrence)) return;
+        if (!Timing.Tick(Time.unscaledDeltaTime)) return;
+        if (fishingRunView != null && !fishingRunView.HasCompletedTimingExit(Timing.Occurrence)) return;
+        encounterRuntime.CompleteTiming(random);
         techniqueEffectRuntime.CompleteEncounterReveal();
         PrepareCreatureChoice(); ResumeAfterCreatureChoices(); RefreshViews();
     }
@@ -2228,7 +2235,7 @@ public sealed class FishingRunController : MonoBehaviour
                 CurrentEncounterIdentityHidden,
                 hideCurrentHaulValue ? (int?)null : currentHaulValue,
                 CoreActionInputReady && HookedEncounter != null);
-            fishingRunView.SetRarityTiming(runActive ? RarityTiming : null, TryStopRarityTiming, CurrentBiome, currentDepth);
+            fishingRunView.SetTiming(runActive ? Timing : null, TryStopEncounterTiming, CurrentBiome, currentDepth);
             fishingRunView.SetEncounterRoleSelection(currentEncounter != null && currentEncounter.RequiresAttachmentChoice
                 ? SelectedEncounterChoice : SelectedEncounterChoice == EncounterEffectChoice.None ? EncounterEffectChoice.Catch : SelectedEncounterChoice);
             if (statFeedback.HasValue) fishingRunView.PresentEncounterStatFeedback(statFeedback.Value);

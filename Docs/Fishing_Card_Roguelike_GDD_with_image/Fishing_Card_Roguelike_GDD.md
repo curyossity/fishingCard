@@ -131,13 +131,12 @@ descent commits that card to the Catch Chain.
     expedition.
 
 3.  Select the next encounter category based on depth, biome, current catches
-    and active modifiers. Before an ordinary creature is revealed, show the
-    rarity timing bar. The player stops the moving marker, locking a maximum
-    rarity; uniformly sample an eligible creature of that rarity or any more
-    common rarity. After brief stopped-result feedback,
-    reveal it as the current Hooked encounter. Events reveal directly without
-    a timing bar. The journal comparison scene enables this approved timing
-    flow; legacy scenes without its profile retain direct reveals.
+    and active modifiers. Before a creature is revealed, show the tag timing
+    bar. Stop selects a tag; its centre precision area boosts higher-rarity
+    species odds. Draw an eligible creature with that tag, falling back to
+    all eligible species if unavailable. Reveal after stopped feedback and
+    the instrument's upward exit. Events reveal directly. The journal
+    comparison scene enables timing; legacy scenes retain direct reveals.
 
 4.  Resolve automatic reveal reactions first. Use legal technique cards
     during the reaction window to manipulate the current encounter, avoid
@@ -182,47 +181,15 @@ greed makes the return trip too dangerous?</p></th>
 
 # 6. Catch chain
 
-## Rarity timing rules (approved 25 October 2026)
+## Tag timing rules (approved 29 October 2026)
 
-The stopped rarity is a ceiling: Common allows Common; Uncommon allows
-Common and Uncommon; Rare allows Common, Uncommon and Rare; Legendary
-allows all four rarities. Each distinct eligible creature in that combined
-biome/depth pool has an equal probability. Do not roll rarity first, apply
-rarity/species encounter weights, or exclude immediate species repeats from
-this draw. Duplicate pool entries for the same species do not increase its
-chance. Encounter-category/event pacing stays separate. Fixed promised
-encounters retain their existing identity. Bar widths are unchanged by this
-sampling rule.
+The journal comparison scene uses the approved R051 Lantern Focus tag bar before creature reveals, replacing the earlier rarity ceiling bar. Descend commits the selected Catch/Bait and advances normally; the next creature remains hidden until Stop, its feedback hold and the upward exit complete. Events reveal directly. Catch/Bait has no default. Technique replacements of already revealed creatures do not start another timing phase.
 
-The timing phase has no visible creature identity, stats or effects. The
-journal bar enters from below over one second with mirrored elastic motion.
-The marker is paused and Stop is unavailable until
-the entrance settles; Surface can cancel this entrance normally. Reveal
-reactions and concealment assignment happen only after Stop, its short
-feedback hold, and the instrument's one-second elastic upward exit off-screen.
-Descend and Technique play are unavailable during timing and this exit;
-Surface can end the run and clear the pending attempt. A revealed creature
-still requires an explicit Catch or Bait choice before the next Descend.
+All eight tags remain visible in canonical order: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Initially each occupies 12.5%. A normal hit samples uniformly from distinct biome/depth-eligible species with that tag, without rarity weights, encounter-weight modifiers or immediate-repeat filtering. On precision, each Common/Uncommon/Rare/Legendary species receives relative weight 1/2/4/8. If the stopped tag has no eligible creatures, use the full eligible species pool with the same normal/precision policy. Category/event pacing remains separate. Queued selections, trails, authored chains and scheduled Apex encounters keep their promised identity; their tag bar cannot replace that promise.
 
-Stopping in the highest currently displayed non-Miss rarity celebrates with
-a brief gold/ivory particle burst at the marker. At shallow depths this can
-be Uncommon when Rare is unavailable. Creature selection still uses the
-uniform rarity-ceiling pool, and the existing hold/exit timing is retained.
+Each tag has a centred precision span 18% of its width. After one accepted Stop, multiply only the selected tag's raw weight by 0.85; other tags recover 0.01 toward their 0.125 raw baseline. Normalize the resulting weights to fill 100%, with a final 5% minimum. The 12.5% baseline is applied before normalization; displayed zones may exceed it. Repeated hits at the floor do not accumulate invisible fatigue. Run balance survives subsequent creatures and biome transitions; ending/restarting the run restores equal spans. Widths resize smoothly over 0.3 seconds without changing the captured hit.
 
-Current relative widths are Common 87, Uncommon 5 and Rare 8, with no failure
-interval. These are editable playtest tuning. Omit rarities with no eligible
-creatures at the selected biome/depth and give their space to Common when
-available, keeping Uncommon at 5% when Rare is unavailable. If Common is
-unavailable, normalize the remaining eligible intervals to the full track.
-Optional Legendary and penalty-free Miss intervals default off; their visual
-and configuration support introduces no new upgrade content. Marker speed
-and stopped-result duration are authored configuration.
-
-Promised encounters from School Call, trails and authored chains, and the
-scheduled Apex, retain their identity and use a single-rarity timing interval.
-Events, treasures and next-waters Locations reveal directly. Replacing an
-already revealed encounter through a Technique uses its existing reaction
-flow without a second timing attempt. Timing adds no extra depth advancement.
+Preserve the previous one-second entrance from below with mirrored elastic settling and one-second upward elastic-in exit (amplitude 1, period 0.74). Marker motion and Stop remain locked until entrance finishes. Stop holds for 0.65 seconds; precision hits reuse the existing gold/ivory particles and marker pulse. Reveal reactions and concealment assignment wait until the exit finishes. Descend and Technique play stay locked during timing; Surface can cancel it. TagTiming.asset authors speed, hold, precision fraction, fatigue/recovery and rarity multipliers. No new creature, Technique or upgrade content is introduced. Legacy scenes without timing profiles retain direct reveals; the old rarity profile/prefab remain available as backup.
 
 Caught creatures do not immediately disappear into an inventory. They
 stay attached to the fishing rig while the player continues descending.

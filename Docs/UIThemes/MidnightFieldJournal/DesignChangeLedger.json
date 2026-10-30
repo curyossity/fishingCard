@@ -10655,7 +10655,7 @@
       "component": [
         "Selected Lantern Focus tag bar"
       ],
-      "status": "ready_for_review",
+      "status": "verified",
       "supersedes": [
         "MFJ-R050"
       ],
@@ -10770,11 +10770,25 @@
       "before": "R050 had two separate cursor pointers outside the channel and centre brackets below the bar.",
       "after": "Independent anchor cursor overlays the channel; eight tapered ochre precision areas rise from its bottom edge and fade beneath native text. No active-tag fill.",
       "unityAssetIds": [],
-      "unityPaths": [],
-      "dependentConsumers": [],
-      "configurationChanges": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/TagTiming/",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TagTiming.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Profiles/TagTiming.asset",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/MidnightFieldJournalCanvas.prefab",
+        "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+      ],
+      "dependentConsumers": [
+        "FishingRunController",
+        "FishingRunView",
+        "MidnightFieldJournalCanvas",
+        "JournalComparisonSceneBuilder"
+      ],
+      "configurationChanges": [
+        "Candidate uses TagTiming.asset; rarity profile retained as legacy backup.",
+        "Uniform normal species odds; precision weights1/2/4/8; unavailable tags fall back to all eligible species."
+      ],
       "exportRequirements": [
-        "Only the selected R050 design may enter a later import checklist; superseded studies remain historical."
+        "Satisfied by independent R051 frame/paper exports; superseded studies were not imported."
       ],
       "approvalEvidence": [
         "User requested the anchor-bottom overlay marker and upward-fading in-bar precision areas."
@@ -10784,18 +10798,22 @@
         "files": [
           "DesignReview.png",
           "LanternAnchorPrecision.png"
-        ]
+        ],
+        "unitySourceManifest": "Sync009/SourceManifest.json"
       },
-      "importEvidence": {},
+      "importEvidence": {
+        "checkpoint": "Sync009/UnityCheckpoint.json",
+        "sourceManifest": "Sync009/SourceManifest.json",
+        "date": "2026-10-29"
+      },
       "verificationEvidence": {
-        "report": "Revisions/MFJ-R051/Verification.json"
+        "report": "Revisions/MFJ-R051/Verification.json",
+        "unityReport": "Sync009/Verification.json"
       },
-      "remainingWork": [
-        "Unity integration is outside this Penpot refinement task."
-      ],
-      "unityImported": false,
-      "integrationStatus": "not_imported",
-      "synchronizationCheckpoint": null
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-009"
     }
   ],
   "synchronizationCheckpoints": [
@@ -10861,6 +10879,16 @@
       "status": "verified",
       "manifest": "Sync008/UnityCheckpoint.json",
       "verification": "Sync008/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-009",
+      "date": "2026-10-29",
+      "revisions": [
+        "MFJ-R051"
+      ],
+      "status": "verified",
+      "manifest": "Sync009/UnityCheckpoint.json",
+      "verification": "Sync009/Verification.json"
     }
   ],
   "notes": [
@@ -10871,6 +10899,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "RarityBarEntrance/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync009/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

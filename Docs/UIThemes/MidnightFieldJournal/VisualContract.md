@@ -2,7 +2,7 @@
 
 ## Scope and coexistence
 
-**MFJ-SYNC-008.5 is the latest Unity checkpoint.** [Current baseline](RarityBarEntrance/UnityCheckpoint.json). One pending selected Penpot refinement, MFJ-R051, continues Lantern Focus in light parchment with a visible anchor cursor over the bar and eight upward-fading precision areas inside it. R047/R048/R049 are superseded historical studies. The live Unity rarity bar is unchanged. 39 revisions remain imported and verified; seven drafts are superseded. [Design log](Design%20Changes.md). Earlier sections describe historical geometry where superseded.
+**MFJ-SYNC-009 is the latest Unity checkpoint.** [Current baseline](Sync009/UnityCheckpoint.json). R051 Lantern Focus is integrated and verified: light parchment, overlay anchor cursor, eight proportional rising precision lights and dynamically resizing tag spans. 40 revisions are imported and verified; 11 are superseded. No pending imports remain. [Integration evidence](Sync009/README.md). Earlier sections retain historical geometry.
 
 **MFJ-SYNC-002 remains the prior event integration checkpoint.** All five active coastal events use the detailed event frame at **1260 × 1400**, matching the creature face and the current central placement **(1250,110)**. [Sources, captures and checks](Sync002/README.md); [event checkpoint](Sync002/UnityCheckpoint.json). Earlier coordinate/reference tables below remain historical where superseded by this section and the detailed creature section.
 
@@ -314,3 +314,7 @@ Stopping in the highest displayed non-Miss rarity now emits a gold/ivory particl
 ## Unity entrance update — MFJ-SYNC-008.5
 
 The rarity bar now enters from below over one second using the mirrored elastic exit curve. The marker and Stop remain inactive until it settles; cancellation, restart, the upward exit and highest-rarity particles are verified. [4K captures and current checkpoint](RarityBarEntrance/README.md). Unity-only update; no pending Penpot import.
+
+## R051 tag timing integration
+
+The candidate now uses the 1600×400 Lantern Focus instrument centred in its 4K gameplay viewport. Paper and engraved frame are independent sliced exports; marker, monochrome tag glyphs, native labels, precision gradients, Stop and feedback are separate uGUI elements. No assembled mockup is sliced. Eight zones normalize at runtime with a 5% minimum. Small spans retain their glyph; a full tag name appears in the phase field when needed. No active-zone wash is shown. Precision hits reuse the gold/ivory particle celebration and exact old entrance/exit animations. See [Sync009](Sync009/README.md).
