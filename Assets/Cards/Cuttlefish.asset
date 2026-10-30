@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Cuttlefish
   cardType: 3
   rarity: 1
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Predator
   - Elusive
@@ -33,6 +35,8 @@ MonoBehaviour:
     color: {r: 0.36078432, g: 0.3254902, b: 0.8117647, a: 1}
     sizePercent: 120
     matchWholeWord: 1
+  baitRulesText: 
+  baitRulesTextHighlights: []
   weight: 2
   value: 16
   randomizeValueWhenCaught: 1
@@ -40,17 +44,26 @@ MonoBehaviour:
   maximumCaughtValue: 15
   biomeIds:
   - Coastal
-  minimumDepth: 5
-  maximumDepth: 17
+  minimumDepth: 0
+  maximumDepth: -1
   effects:
   - effectId: cuttlefish_hidden_value
+    displayName: 
     effectType: 5
     trigger: 2
     target: 1
     effectTone: 2
     amount: 0
     requiredTags: []
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
     reminderText: Cuttlefish's Value remains hidden until the run ends.
+  hasExplicitBaitData: 0
+  baitEffects: []

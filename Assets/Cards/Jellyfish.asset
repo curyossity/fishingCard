@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Jellyfish
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Small
   artwork: {fileID: -4311028475029301002, guid: 7fe0198a3f1d4b6ba2c75ebd6cf98ed1, type: 3}
@@ -26,9 +28,10 @@ MonoBehaviour:
   encounterArtworkOffset: {x: -48, y: -24}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Tangle: The next creature attached as Catch gains +1 weight."
+  rulesText: 'Tangle: The next creature attached as Catch gains +1 weight.'
   rulesTextHighlights: []
-  baitRulesText: "Buoyant Bell: Reduce two other Armored creatures’ weight by 1 each."
+  baitRulesText: "Buoyant Bell: Reduce two other Armored creatures\u2019 weight by
+    1 each."
   baitRulesTextHighlights: []
   weight: 1
   value: 8
@@ -38,7 +41,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 18
+  maximumDepth: -1
   effects:
   - effectId: tangle
     displayName: Tangle
@@ -49,11 +52,19 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Creature
-    grantedTag:
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Queue +1 effective weight for the next other creature attached as Catch. Bait does not consume it. The pending penalty survives Jellyfish removal; applied weight lasts until the recipient leaves, even if its mode changes. Pending Tangles stack."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Queue +1 effective weight for the next other creature attached
+      as Catch. Bait does not consume it. The pending penalty survives Jellyfish
+      removal; applied weight lasts until the recipient leaves, even if its mode
+      changes. Pending Tangles stack.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: buoyant_bell
@@ -65,8 +76,17 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Armored
-    grantedTag:
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "On Bait attachment, optionally choose up to two distinct other attached Armored creatures in either role. Reduce each weight by 1, minimum 0, while this source is Bait and the target remains attached and Armored. Loss of Armored suspends the reduction; regaining it restores it. Freeze targets once; no replacements. Multiple Jellyfish reductions stack."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: On Bait attachment, optionally choose up to two distinct other
+      attached Armored creatures in either role. Reduce each weight by 1, minimum
+      0, while this source is Bait and the target remains attached and Armored. Loss
+      of Armored suspends the reduction; regaining it restores it. Freeze targets
+      once; no replacements. Multiple Jellyfish reductions stack.

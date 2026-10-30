@@ -16,24 +16,33 @@ MonoBehaviour:
   displayName: Squid
   cardType: 3
   rarity: 2
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Predator
   - Elusive
   artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 3466943956296948973, guid: 6203ac7bacb22c14abe91448771598be, type: 3}
   cardFaceIncludesName: 1
-  rulesText: "Ink Veil: Hide your next 2 non-Apex creatures until their Catch/Bait choices are committed."
+  rulesText: 'Ink Veil: Hide your next 2 non-Apex creatures until their Catch/Bait
+    choices are committed.'
   rulesTextHighlights: []
-  baitRulesText: "Ink Escape: You may skip your next non-Apex creature encounter."
+  baitRulesText: 'Ink Escape: You may skip your next non-Apex creature encounter.'
   baitRulesTextHighlights: []
   weight: 2
   value: 20
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 8
-  maximumDepth: 20
+  minimumDepth: 0
+  maximumDepth: -1
   effects:
   - effectId: ink_veil
     displayName: Ink Veil
@@ -43,11 +52,19 @@ MonoBehaviour:
     effectTone: 2
     amount: 2
     requiredTags: []
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Conceal identity, artwork, weight, value, tags and both effects until commitment; reveal before on-attach effects. Removal without attachment consumes assigned concealment. Non-creatures and Apex do not consume it. Pending charges survive source removal and stack on consecutive eligible encounters."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Conceal identity, artwork, weight, value, tags and both effects
+      until commitment; reveal before on-attach effects. Removal without attachment
+      consumes assigned concealment. Non-creatures and Apex do not consume it. Pending
+      charges survive source removal and stack on consecutive eligible encounters.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: ink_escape
@@ -58,8 +75,19 @@ MonoBehaviour:
     effectTone: 1
     amount: 1
     requiredTags: []
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Once per card, grant an optional skip of the next ordinary creature after normal reveal effects and before techniques. Keep concealed information hidden during the choice. Skip discards without attachment or Release effects and consumes assigned concealment; skipping does not advance depth. Offer is spent even if declined or reveal effects remove the creature. Grants survive source removal and mode changes; multiple grants apply oldest first to consecutive eligible encounters."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Once per card, grant an optional skip of the next ordinary creature
+      after normal reveal effects and before techniques. Keep concealed information
+      hidden during the choice. Skip discards without attachment or Release effects
+      and consumes assigned concealment; skipping does not advance depth. Offer is
+      spent even if declined or reveal effects remove the creature. Grants survive
+      source removal and mode changes; multiple grants apply oldest first to consecutive
+      eligible encounters.

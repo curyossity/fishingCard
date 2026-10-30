@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Garfish
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Small
@@ -28,9 +30,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: -14, y: -10}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Swift: Gain +3 value per other Elusive Catch."
+  rulesText: 'Swift: Gain +3 value per other Elusive Catch.'
   rulesTextHighlights: []
-  baitRulesText: "Slipstream: Your other attached Fish gain Elusive."
+  baitRulesText: 'Slipstream: Your other attached Fish gain Elusive.'
   baitRulesTextHighlights: []
   weight: 1
   value: 9
@@ -40,7 +42,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 9
+  maximumDepth: -1
   effects:
   - effectId: swift
     displayName: Swift
@@ -51,11 +53,17 @@ MonoBehaviour:
     amount: 3
     requiredTags:
     - Elusive
-    grantedTag:
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Gain 3 sale value for each other attached Elusive creature in Catch mode. Bait does not count; recalculate as eligible creatures or tags change."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Gain 3 sale value for each other attached Elusive creature in Catch
+      mode. Bait does not count; recalculate as eligible creatures or tags change.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: slipstream
@@ -68,7 +76,14 @@ MonoBehaviour:
     requiredTags:
     - Fish
     grantedTag: Elusive
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Every other attached Fish creature in either role gains Elusive while this Garfish is Bait. Apply before attachment triggers. Ending this effect preserves native tags and other active grants."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Every other attached Fish creature in either role gains Elusive
+      while this Garfish is Bait. Apply before attachment triggers. Ending this effect
+      preserves native tags and other active grants.

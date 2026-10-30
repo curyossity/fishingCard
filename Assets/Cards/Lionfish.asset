@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Lionfish
   cardType: 3
   rarity: 2
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Predator
@@ -28,9 +30,11 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Venomous Spines: Whenever you release another creature, this Catch loses 5 value."
+  rulesText: 'Venomous Spines: Whenever you release another creature, this Catch
+    loses 5 value.'
   rulesTextHighlights: []
-  baitRulesText: "Venomous Lure: After catching a Predator, you may release another Small creature."
+  baitRulesText: 'Venomous Lure: After catching a Predator, you may release another
+    Small creature.'
   baitRulesTextHighlights: []
   weight: 2
   value: 30
@@ -39,8 +43,8 @@ MonoBehaviour:
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 10
-  maximumDepth: 20
+  minimumDepth: 0
+  maximumDepth: -1
   effects:
   - effectId: venomous_spines
     displayName: Venomous Spines
@@ -50,11 +54,19 @@ MonoBehaviour:
     effectTone: 2
     amount: 5
     requiredTags: []
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "After deliberately releasing another attached creature in either role, this Lionfish Catch loses 5 sale value, minimum 0, per creature. Forced removal and exchanges do not trigger. The loss lasts on this card across mode changes until it leaves."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: After deliberately releasing another attached creature in either
+      role, this Lionfish Catch loses 5 sale value, minimum 0, per creature. Forced
+      removal and exchanges do not trigger. The loss lasts on this card across mode
+      changes until it leaves.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: venomous_lure
@@ -66,9 +78,18 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Predator
+    grantedTag: 
     targetTags:
     - Small
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "After a Predator Catch finishes its on-attach effects, optionally release one other legal attached Small creature in either role, excluding that Predator. Successful deliberate creature Release triggers other Release effects. All Lionfish Bait copies share one release per Predator caught. Decline or no target spends this immediate opportunity."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: After a Predator Catch finishes its on-attach effects, optionally
+      release one other legal attached Small creature in either role, excluding that
+      Predator. Successful deliberate creature Release triggers other Release effects.
+      All Lionfish Bait copies share one release per Predator caught. Decline or
+      no target spends this immediate opportunity.

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "date": "2026-10-30",
+  "checks": 440,
+  "biomes": [
+    {
+      "biome": "Coastal",
+      "creatures": 20,
+      "verifiedDepths": 21,
+      "apexBoundary": 21
+    }
+  ]
+}

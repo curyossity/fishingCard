@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Glass Minnow
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Schooling
@@ -28,9 +30,10 @@ MonoBehaviour:
   encounterArtworkOffset: {x: -15, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: ""
+  rulesText: 
   rulesTextHighlights: []
-  baitRulesText: "Shoal Signal: After catching a Schooling creature, redraw 1 technique card."
+  baitRulesText: 'Shoal Signal: After catching a Schooling creature, redraw 1 technique
+    card.'
   baitRulesTextHighlights: []
   weight: 1
   value: 5
@@ -40,7 +43,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 15
+  maximumDepth: -1
   effects: []
   hasExplicitBaitData: 1
   baitEffects:
@@ -53,8 +56,16 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Schooling
-    grantedTag:
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "After another Schooling creature is attached as Catch and its on-attach effects finish, optionally discard one hand technique and draw one replacement. Decline or skip with an empty hand. Multiple Minnow Bait copies offer one redraw per eligible attachment; never save it."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: After another Schooling creature is attached as Catch and its on-attach
+      effects finish, optionally discard one hand technique and draw one replacement.
+      Decline or skip with an empty hand. Multiple Minnow Bait copies offer one redraw
+      per eligible attachment; never save it.

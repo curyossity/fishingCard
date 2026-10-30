@@ -16,18 +16,25 @@ MonoBehaviour:
   displayName: Sea Urchin
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Small
-  - Armored
   - Anchored
+  - Armored
   artwork: {fileID: 0}
   encounterArtwork: {fileID: 0}
   artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Bristling Spines: This Catch weighs 1 more while you have a Predator attached."
+  rulesText: 'Bristling Spines: This Catch weighs 1 more while you have a Predator
+    attached.'
   rulesTextHighlights: []
-  baitRulesText: "Spiny Grip: Your next technique targeting an attached Armored creature returns to hand."
+  baitRulesText: 'Spiny Grip: Your next technique targeting an attached Armored creature
+    returns to hand.'
   baitRulesTextHighlights: []
   weight: 1
   value: 9
@@ -37,7 +44,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 16
+  maximumDepth: -1
   effects:
   - effectId: bristling_spines
     displayName: Bristling Spines
@@ -48,11 +55,18 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Predator
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Add exactly 1 effective weight while any Predator creature is attached in Catch or Bait mode. More Predators do not increase the penalty. Recalculate immediately on creature, role, or effective tag changes."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Add exactly 1 effective weight while any Predator creature is attached
+      in Catch or Bait mode. More Predators do not increase the penalty. Recalculate
+      immediately on creature, role, or effective tag changes.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: spiny_grip
@@ -64,8 +78,21 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Armored
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Once per card on first Bait attachment, grant one independent pending recovery. The next technique played with an attached Armored creature selected as a target consumes the oldest recovery. Check eligibility at play time. After the technique and every triggered effect finish, return that exact played discard occurrence, even if the target left. If full, optionally discard one hand technique or decline. No selected target and Hooked-only targeting do not qualify. Source removal or mode changes do not cancel the grant. A declined recovery or missing played occurrence still consumes it and never substitutes another copy. One recovery per qualifying play; multiple grants cover consecutive plays."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Once per card on first Bait attachment, grant one independent pending
+      recovery. The next technique played with an attached Armored creature selected
+      as a target consumes the oldest recovery. Check eligibility at play time. After
+      the technique and every triggered effect finish, return that exact played discard
+      occurrence, even if the target left. If full, optionally discard one hand technique
+      or decline. No selected target and Hooked-only targeting do not qualify. Source
+      removal or mode changes do not cancel the grant. A declined recovery or missing
+      played occurrence still consumes it and never substitutes another copy. One
+      recovery per qualifying play; multiple grants cover consecutive plays.

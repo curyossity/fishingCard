@@ -1,0 +1,324 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-30",
+  "purpose": "Temporary all-depth creature availability for tag-bar playtesting",
+  "cards": [
+    {
+      "guid": "18d3ad07711f49909de0ac7dcc6d0e7d",
+      "path": "Assets/Cards/Golden Mackerel.asset",
+      "id": "creature_mackerel",
+      "name": "Mackerel",
+      "minimumDepth": 0,
+      "maximumDepth": 16,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "eb8211d2ef79f714892c9883e5c2241d",
+      "path": "Assets/Cards/Sardine.asset",
+      "id": "creature_sardine",
+      "name": "Sardine",
+      "minimumDepth": 0,
+      "maximumDepth": 14,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "44f81e4b09c54cbbbb2fe4fc915881ce",
+      "path": "Assets/Cards/Coastal Cod.asset",
+      "id": "creature_coastal_cod",
+      "name": "Cod",
+      "minimumDepth": 3,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "bb1e829a1dd746088949e4ae0587e7da",
+      "path": "Assets/Cards/Cleaner Shrimp.asset",
+      "id": "creature_cleaner_shrimp",
+      "name": "Cleaner Shrimp",
+      "minimumDepth": 1,
+      "maximumDepth": 14,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "34c59dc250ef41a98ab7097f67fdc6d4",
+      "path": "Assets/Cards/Glass Minnow.asset",
+      "id": "creature_glass_minnow",
+      "name": "Glass Minnow",
+      "minimumDepth": 0,
+      "maximumDepth": 15,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "4c78748f96b14fe194e3f5e2c1fe620c",
+      "path": "Assets/Cards/Tidepool Eel.asset",
+      "id": "creature_tidepool_eel",
+      "name": "Tidepool Eel",
+      "minimumDepth": 0,
+      "maximumDepth": 14,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "2b5e345dea8745ce83d2867e4453b542",
+      "path": "Assets/Cards/Flounder.asset",
+      "id": "creature_flounder",
+      "name": "Flounder",
+      "minimumDepth": 0,
+      "maximumDepth": 10,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "4ebc6e8d7c6d4b919276f8419968967e",
+      "path": "Assets/Cards/Sea Bass.asset",
+      "id": "creature_sea_bass",
+      "name": "Sea Bass",
+      "minimumDepth": 4,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "9936664d779b40ffa91f2bb7408d52a1",
+      "path": "Assets/Cards/Cuttlefish.asset",
+      "id": "creature_cuttlefish",
+      "name": "Cuttlefish",
+      "minimumDepth": 5,
+      "maximumDepth": 17,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "7a1daf51db1d428082b3b595f9646eea",
+      "path": "Assets/Cards/Jellyfish.asset",
+      "id": "creature_jellyfish",
+      "name": "Jellyfish",
+      "minimumDepth": 0,
+      "maximumDepth": 18,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "2c4f0a596a8e4ba69ecf181ab82372ab",
+      "path": "Assets/Cards/Small Octopus.asset",
+      "id": "creature_small_octopus",
+      "name": "Small Octopus",
+      "minimumDepth": 6,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "1cca2759c2ed489ead60cbb54dfce191",
+      "path": "Assets/Cards/Sea Urchin.asset",
+      "id": "creature_sea_urchin",
+      "name": "Sea Urchin",
+      "minimumDepth": 0,
+      "maximumDepth": 16,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "77c7e10d2a924d9aa5972a5392255a21",
+      "path": "Assets/Cards/Mussel.asset",
+      "id": "creature_mussel",
+      "name": "Mussel",
+      "minimumDepth": 0,
+      "maximumDepth": 12,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "3478ec4dfb8c4b80a22b2617b11a1b67",
+      "path": "Assets/Cards/Sea Anemone.asset",
+      "id": "creature_sea_anemone",
+      "name": "Sea Anemone",
+      "minimumDepth": 0,
+      "maximumDepth": 16,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "a2d446970a7a45a9ae5cf3836e28d944",
+      "path": "Assets/Cards/Garfish.asset",
+      "id": "creature_garfish",
+      "name": "Garfish",
+      "minimumDepth": 0,
+      "maximumDepth": 9,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "880457168a2f05748aabf45d63bafa05",
+      "path": "Assets/Cards/squid.asset",
+      "id": "creature_squid",
+      "name": "Squid",
+      "minimumDepth": 8,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "eb8267dfbd1e4b709946a8f192b87402",
+      "path": "Assets/Cards/Clinging Crab.asset",
+      "id": "creature_clinging_crab",
+      "name": "Clinging Crab",
+      "minimumDepth": 0,
+      "maximumDepth": 12,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "1c2283c16571400dbe1f802fabad2813",
+      "path": "Assets/Cards/Spiny Lobster.asset",
+      "id": "creature_spiny_lobster",
+      "name": "Spiny Lobster",
+      "minimumDepth": 8,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "9499c27ba6064cbfb777a458a78c5b13",
+      "path": "Assets/Cards/Moonlit Ray.asset",
+      "id": "creature_moonlit_ray",
+      "name": "Moonlit Ray",
+      "minimumDepth": 9,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    },
+    {
+      "guid": "c7f47e9d119b4db7974af424ef9f23b7",
+      "path": "Assets/Cards/Lionfish.asset",
+      "id": "creature_lionfish",
+      "name": "Lionfish",
+      "minimumDepth": 10,
+      "maximumDepth": 20,
+      "biomeIds": [
+        "Coastal"
+      ]
+    }
+  ],
+  "biomes": [
+    {
+      "guid": "e104a3bb49114f2e80aebde5130a122e",
+      "path": "Assets/Biomes/Coastal Waters.asset",
+      "id": "Coastal",
+      "tiers": [
+        {
+          "id": "shallows",
+          "min": 0,
+          "max": 7,
+          "poolGuids": [
+            "18d3ad07711f49909de0ac7dcc6d0e7d",
+            "eb8211d2ef79f714892c9883e5c2241d",
+            "44f81e4b09c54cbbbb2fe4fc915881ce",
+            "bb1e829a1dd746088949e4ae0587e7da",
+            "6813455f758e40b99a1f454a48124d83",
+            "34c59dc250ef41a98ab7097f67fdc6d4",
+            "4c78748f96b14fe194e3f5e2c1fe620c",
+            "2b5e345dea8745ce83d2867e4453b542",
+            "4ebc6e8d7c6d4b919276f8419968967e",
+            "9936664d779b40ffa91f2bb7408d52a1",
+            "7a1daf51db1d428082b3b595f9646eea",
+            "2c4f0a596a8e4ba69ecf181ab82372ab",
+            "1cca2759c2ed489ead60cbb54dfce191",
+            "77c7e10d2a924d9aa5972a5392255a21",
+            "3478ec4dfb8c4b80a22b2617b11a1b67",
+            "a2d446970a7a45a9ae5cf3836e28d944",
+            "a7dd30c6e0424a0d876135fec2fe8ec1",
+            "e33cf52f86f84e8b9ef184257e5784f0",
+            "6e437a669999499c9e919c42fd0b4c8f",
+            "dceb33d2a89b40399c181add7ae0a9be",
+            "d4df0dcdf28a4b35bb43604918996b38"
+          ]
+        },
+        {
+          "id": "mid_depth",
+          "min": 8,
+          "max": 15,
+          "poolGuids": [
+            "880457168a2f05748aabf45d63bafa05",
+            "18d3ad07711f49909de0ac7dcc6d0e7d",
+            "eb8211d2ef79f714892c9883e5c2241d",
+            "44f81e4b09c54cbbbb2fe4fc915881ce",
+            "bb1e829a1dd746088949e4ae0587e7da",
+            "eb8267dfbd1e4b709946a8f192b87402",
+            "1c2283c16571400dbe1f802fabad2813",
+            "6813455f758e40b99a1f454a48124d83",
+            "34c59dc250ef41a98ab7097f67fdc6d4",
+            "4c78748f96b14fe194e3f5e2c1fe620c",
+            "9499c27ba6064cbfb777a458a78c5b13",
+            "fb3cb53b927d4b82980fb349b641e6e3",
+            "c7f47e9d119b4db7974af424ef9f23b7",
+            "2b5e345dea8745ce83d2867e4453b542",
+            "4ebc6e8d7c6d4b919276f8419968967e",
+            "9936664d779b40ffa91f2bb7408d52a1",
+            "7a1daf51db1d428082b3b595f9646eea",
+            "2c4f0a596a8e4ba69ecf181ab82372ab",
+            "1cca2759c2ed489ead60cbb54dfce191",
+            "77c7e10d2a924d9aa5972a5392255a21",
+            "3478ec4dfb8c4b80a22b2617b11a1b67",
+            "a2d446970a7a45a9ae5cf3836e28d944",
+            "a7dd30c6e0424a0d876135fec2fe8ec1",
+            "e33cf52f86f84e8b9ef184257e5784f0",
+            "6e437a669999499c9e919c42fd0b4c8f",
+            "dceb33d2a89b40399c181add7ae0a9be",
+            "d4df0dcdf28a4b35bb43604918996b38"
+          ]
+        },
+        {
+          "id": "deep_edge",
+          "min": 16,
+          "max": 20,
+          "poolGuids": [
+            "1cca2759c2ed489ead60cbb54dfce191",
+            "3478ec4dfb8c4b80a22b2617b11a1b67",
+            "44f81e4b09c54cbbbb2fe4fc915881ce",
+            "1c2283c16571400dbe1f802fabad2813",
+            "18d3ad07711f49909de0ac7dcc6d0e7d",
+            "880457168a2f05748aabf45d63bafa05",
+            "6813455f758e40b99a1f454a48124d83",
+            "9499c27ba6064cbfb777a458a78c5b13",
+            "fb3cb53b927d4b82980fb349b641e6e3",
+            "bb1e829a1dd746088949e4ae0587e7da",
+            "c7f47e9d119b4db7974af424ef9f23b7",
+            "2b5e345dea8745ce83d2867e4453b542",
+            "4ebc6e8d7c6d4b919276f8419968967e",
+            "9936664d779b40ffa91f2bb7408d52a1",
+            "7a1daf51db1d428082b3b595f9646eea",
+            "2c4f0a596a8e4ba69ecf181ab82372ab",
+            "a7dd30c6e0424a0d876135fec2fe8ec1",
+            "e33cf52f86f84e8b9ef184257e5784f0",
+            "dceb33d2a89b40399c181add7ae0a9be"
+          ]
+        }
+      ]
+    }
+  ]
+}

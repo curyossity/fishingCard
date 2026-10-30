@@ -16,10 +16,12 @@ MonoBehaviour:
   displayName: Mussel
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Small
-  - Armored
   - Anchored
+  - Armored
   artwork: {fileID: -4311028475029301000, guid: 4eb18dcf50924da3d64fbe718a03c524, type: 3}
   encounterArtwork: {fileID: 3125584908192654000, guid: 4eb18dcf50924da3d64fbe718a03c524, type: 3}
   artworkLayout: 1
@@ -28,9 +30,10 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Shell Growth: This Catch gains 2 value each time you catch another Armored creature."
+  rulesText: 'Shell Growth: This Catch gains 2 value each time you catch another
+    Armored creature.'
   rulesTextHighlights: []
-  baitRulesText: "Shelter Shell: Cancel the next Hazard while this remains Bait."
+  baitRulesText: 'Shelter Shell: Cancel the next Hazard while this remains Bait.'
   baitRulesTextHighlights: []
   weight: 1
   value: 6
@@ -40,7 +43,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 12
+  maximumDepth: -1
   effects:
   - effectId: shell_growth
     displayName: Shell Growth
@@ -51,11 +54,18 @@ MonoBehaviour:
     amount: 2
     requiredTags:
     - Armored
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "After another Armored creature Catch finishes its on-attach effects, add 2 sale value to every surviving Mussel Catch once. Armored Bait does not count. Bonuses last until this card leaves the chain, including across modes."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: After another Armored creature Catch finishes its on-attach effects,
+      add 2 sale value to every surviving Mussel Catch once. Armored Bait does not
+      count. Bonuses last until this card leaves the chain, including across modes.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: shelter_shell
@@ -66,8 +76,18 @@ MonoBehaviour:
     effectTone: 1
     amount: 1
     requiredTags: []
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "One protection on first Bait attachment. Before any effects, automatically discard the next revealed Hazard and consume only the oldest protected Mussel's protection. No depth advance or immediate redraw; next Descend proceeds normally. Only Hazard classification qualifies, never Apex. Protection survives biomes but expires on leaving Bait mode; returning never restores used or expired protection."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: One protection on first Bait attachment. Before any effects, automatically
+      discard the next revealed Hazard and consume only the oldest protected Mussel's
+      protection. No depth advance or immediate redraw; next Descend proceeds normally.
+      Only Hazard classification qualifies, never Apex. Protection survives biomes
+      but expires on leaving Bait mode; returning never restores used or expired
+      protection.

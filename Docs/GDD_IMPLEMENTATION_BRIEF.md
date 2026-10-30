@@ -1,5 +1,7 @@
 # GDD Implementation Brief
 
+> Temporary playtest active (30 October 2026): all 20 existing Coastal Waters creatures are available at every normal biome depth. Both card depth ranges and tier pools are widened. Original values and rollback instructions are saved in [the playtest log](Playtests/2026-10-30-AllDepthCreatures/README.md). This is a testing override; the permanent depth balance has not been redesigned.
+
 ## Approved creature timing flow (29 October 2026)
 
 The journal comparison scene uses the approved R051 Lantern Focus tag bar before creature reveals, replacing the earlier rarity ceiling bar. Descend commits the selected Catch/Bait and advances normally; the next creature remains hidden until Stop, its feedback hold and the upward exit complete. Events reveal directly. Catch/Bait has no default. Technique replacements of already revealed creatures do not start another timing phase.

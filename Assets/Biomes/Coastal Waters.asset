@@ -50,6 +50,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6e437a669999499c9e919c42fd0b4c8f, type: 2}
     - {fileID: 11400000, guid: dceb33d2a89b40399c181add7ae0a9be, type: 2}
     - {fileID: 11400000, guid: d4df0dcdf28a4b35bb43604918996b38, type: 2}
+    - {fileID: 11400000, guid: 880457168a2f05748aabf45d63bafa05, type: 2}
+    - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
+    - {fileID: 11400000, guid: 1c2283c16571400dbe1f802fabad2813, type: 2}
+    - {fileID: 11400000, guid: 9499c27ba6064cbfb777a458a78c5b13, type: 2}
+    - {fileID: 11400000, guid: c7f47e9d119b4db7974af424ef9f23b7, type: 2}
   - tierId: mid_depth
     displayName: Mid-depth
     minimumDepth: 8
@@ -110,8 +115,15 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a7dd30c6e0424a0d876135fec2fe8ec1, type: 2}
     - {fileID: 11400000, guid: e33cf52f86f84e8b9ef184257e5784f0, type: 2}
     - {fileID: 11400000, guid: dceb33d2a89b40399c181add7ae0a9be, type: 2}
+    - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
+    - {fileID: 11400000, guid: 34c59dc250ef41a98ab7097f67fdc6d4, type: 2}
+    - {fileID: 11400000, guid: 4c78748f96b14fe194e3f5e2c1fe620c, type: 2}
+    - {fileID: 11400000, guid: 77c7e10d2a924d9aa5972a5392255a21, type: 2}
+    - {fileID: 11400000, guid: a2d446970a7a45a9ae5cf3836e28d944, type: 2}
+    - {fileID: 11400000, guid: eb8267dfbd1e4b709946a8f192b87402, type: 2}
   encounterChains: []
   apexEncounters:
   - {fileID: 11400000, guid: 413a50766f634f8b973ea134fd6f11e8, type: 2}
   - {fileID: 11400000, guid: b5ccb176f3c24237b3c00a24be500a45, type: 2}
   nextWatersEncounter: {fileID: 11400000, guid: 7f1d730a8573484b8627cda214b2bb37, type: 2}
+  nextBiome: {fileID: 0}

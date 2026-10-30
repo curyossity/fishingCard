@@ -16,17 +16,24 @@ MonoBehaviour:
   displayName: Mackerel
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Schooling
   artwork: {fileID: -1726895074981326407, guid: 29f58547088278642bed18cf0b9f0d57, type: 3}
   encounterArtwork: {fileID: 6831962317458024601, guid: 29f58547088278642bed18cf0b9f0d57, type: 3}
   artworkLayout: 1
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Packed Shoal: With 2 other Schooling Catches, this creature weighs 0."
+  rulesText: 'Packed Shoal: With 2 other Schooling Catches, this creature weighs
+    0.'
   rulesTextHighlights: []
-  baitRulesText: "School Call: When attached as Bait, choose your next encounter from 2 Schooling creatures."
+  baitRulesText: 'School Call: When attached as Bait, choose your next encounter
+    from 2 Schooling creatures.'
   baitRulesTextHighlights: []
   weight: 1
   value: 10
@@ -36,7 +43,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 16
+  maximumDepth: -1
   effects:
   - effectId: packed_shoal
     displayName: Packed Shoal
@@ -47,11 +54,18 @@ MonoBehaviour:
     amount: 2
     requiredTags:
     - Schooling
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "This Mackerel has effective weight 0 while at least two other Schooling creatures are attached as Catch. Bait does not count. Recalculate immediately as creatures or effective tags change."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: This Mackerel has effective weight 0 while at least two other Schooling
+      creatures are attached as Catch. Bait does not count. Recalculate immediately
+      as creatures or effective tags change.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: school_call
@@ -63,8 +77,20 @@ MonoBehaviour:
     amount: 2
     requiredTags:
     - Schooling
+    grantedTag: 
     targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Once per card on first Bait attachment, offer up to two distinct non-Apex Schooling species eligible at the next biome and depth using normal weights. Choose one or decline immediately. One species is a valid offer; zero uses the normal draw. Reveal at normal time without advancing depth for the choice. A new selection replaces the earlier one and survives source removal. Scheduled Apex cannot be replaced; if the actual destination makes the selected species ineligible, discard it and draw normally. Mode and biome changes never refresh this activation."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Once per card on first Bait attachment, offer up to two distinct
+      non-Apex Schooling species eligible at the next biome and depth using normal
+      weights. Choose one or decline immediately. One species is a valid offer; zero
+      uses the normal draw. Reveal at normal time without advancing depth for the
+      choice. A new selection replaces the earlier one and survives source removal.
+      Scheduled Apex cannot be replaced; if the actual destination makes the selected
+      species ineligible, discard it and draw normally. Mode and biome changes never
+      refresh this activation.

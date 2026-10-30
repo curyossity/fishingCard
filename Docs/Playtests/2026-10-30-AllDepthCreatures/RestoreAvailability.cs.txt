@@ -1,0 +1,68 @@
+// Unity MCP execute_code method body. Run outside Play Mode to restore ONLY availability fields.
+// The immutable snapshot was written before the playtest edits. No other stats/effects are restored.
+if (UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode)
+    throw new System.InvalidOperationException("Stop Play Mode before restoring availability.");
+var snapshot = Newtonsoft.Json.Linq.JObject.Parse(System.IO.File.ReadAllText(
+    "Docs/Playtests/2026-10-30-AllDepthCreatures/OriginalAvailability.json"));
+var edits = new System.Collections.Generic.List<UnityEditor.SerializedObject>();
+foreach (var entry in snapshot["cards"])
+{
+    var card = UnityEditor.AssetDatabase.LoadAssetAtPath<CardDefinition>(
+        UnityEditor.AssetDatabase.GUIDToAssetPath((string)entry["guid"]));
+    if (card == null || card.UniqueId != (string)entry["id"])
+        throw new System.InvalidOperationException("Missing or changed card identity: " + entry["name"]);
+    bool original = card.MinimumDepth == (int)entry["minimumDepth"] && card.MaximumDepth == (int)entry["maximumDepth"];
+    if (!original && (card.MinimumDepth != 0 || card.MaximumDepth != -1))
+        throw new System.InvalidOperationException("New depth edits need review: " + card.DisplayName);
+    var edit = new UnityEditor.SerializedObject(card);
+    edit.FindProperty("minimumDepth").intValue = (int)entry["minimumDepth"];
+    edit.FindProperty("maximumDepth").intValue = (int)entry["maximumDepth"];
+    edits.Add(edit);
+}
+foreach (var entry in snapshot["biomes"])
+{
+    var biome = UnityEditor.AssetDatabase.LoadAssetAtPath<BiomeDefinition>(
+        UnityEditor.AssetDatabase.GUIDToAssetPath((string)entry["guid"]));
+    if (biome == null || biome.BiomeId != (string)entry["id"] || biome.DepthTiers.Length != entry["tiers"].Count())
+        throw new System.InvalidOperationException("Biome structure changed; review before restoring.");
+    // Reconstruct the exact test additions from the original biome's pool union.
+    var union = new System.Collections.Generic.List<string>();
+    foreach (var tier in entry["tiers"])
+        foreach (var token in tier["poolGuids"])
+        {
+            string guid = (string)token;
+            var card = UnityEditor.AssetDatabase.LoadAssetAtPath<CardDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid ?? ""));
+            if (card != null && card.CardType == CardType.Creature && card.IsAvailableInBiome(biome.BiomeId) && !union.Contains(guid)) union.Add(guid);
+        }
+    var edit = new UnityEditor.SerializedObject(biome);
+    var tiers = edit.FindProperty("depthTiers"); int index = 0;
+    foreach (var tier in entry["tiers"])
+    {
+        var original = tier["poolGuids"].ToObject<string[]>();
+        var expected = new System.Collections.Generic.List<string>(original);
+        foreach (string guid in union) if (!expected.Contains(guid)) expected.Add(guid);
+        var live = biome.DepthTiers[index];
+        var actual = new System.Collections.Generic.List<string>();
+        foreach (var card in live.EncounterPool)
+            actual.Add(card == null ? null : UnityEditor.AssetDatabase.AssetPathToGUID(UnityEditor.AssetDatabase.GetAssetPath(card)));
+        if (live.TierId != (string)tier["id"] || live.MinimumDepth != (int)tier["min"] || live.MaximumDepth != (int)tier["max"]
+            || (!System.Linq.Enumerable.SequenceEqual(actual, original) && !System.Linq.Enumerable.SequenceEqual(actual, expected)))
+            throw new System.InvalidOperationException("New tier edits need review: " + live.TierId);
+        var pool = tiers.GetArrayElementAtIndex(index++).FindPropertyRelative("encounterPool");
+        pool.arraySize = original.Length;
+        for (int i = 0; i < original.Length; i++)
+        {
+            var card = UnityEditor.AssetDatabase.LoadAssetAtPath<CardDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(original[i] ?? ""));
+            if (original[i] != null && card == null) throw new System.InvalidOperationException("Missing original pool card.");
+            pool.GetArrayElementAtIndex(i).objectReferenceValue = card;
+        }
+    }
+    edits.Add(edit);
+}
+// Preflight every target before applying any change. Save only the affected assets.
+foreach (var edit in edits)
+{
+    edit.ApplyModifiedPropertiesWithoutUndo();
+    UnityEditor.AssetDatabase.SaveAssetIfDirty(edit.targetObject);
+}
+return "Original creature depth ranges and biome tier pools restored; unrelated fields preserved.";

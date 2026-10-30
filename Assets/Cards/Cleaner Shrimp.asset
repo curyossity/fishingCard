@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Cleaner Shrimp
   cardType: 3
   rarity: 1
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Small
   artwork: {fileID: 2157674157209873347, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
@@ -26,9 +28,10 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Quick Clean: When attached as Catch, remove one negative effect."
+  rulesText: 'Quick Clean: When attached as Catch, remove one negative effect.'
   rulesTextHighlights: []
-  baitRulesText: "Cleaning Station: At later biome starts, swap a Catch for one of two creatures."
+  baitRulesText: 'Cleaning Station: At later biome starts, swap a Catch for one of
+    two creatures.'
   baitRulesTextHighlights: []
   weight: 1
   value: 8
@@ -37,8 +40,8 @@ MonoBehaviour:
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 1
-  maximumDepth: 14
+  minimumDepth: 0
+  maximumDepth: -1
   effects:
   - effectId: cleaner_shrimp_quick_clean
     displayName: Quick Clean
@@ -48,10 +51,18 @@ MonoBehaviour:
     effectTone: 1
     amount: 1
     requiredTags: []
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
-    reminderText: Immediately after attachment as Catch, choose and remove one active negative effect. Completed actions are unchanged; lasting negative stat modifiers can be removed.
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Immediately after attachment as Catch, choose and remove one active
+      negative effect. Completed actions are unchanged; lasting negative stat modifiers
+      can be removed.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: cleaner_shrimp_cleaning_station
@@ -63,7 +74,14 @@ MonoBehaviour:
     amount: 2
     requiredTags:
     - Creature
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: At each later biome start, replace one pre-entry creature Catch with a weighted creature offer; keep normal Weight, Value, and Catch effects.
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: At each later biome start, replace one pre-entry creature Catch
+      with a weighted creature offer; keep normal Weight, Value, and Catch effects.

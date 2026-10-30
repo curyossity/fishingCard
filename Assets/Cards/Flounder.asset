@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Flounder
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Small
@@ -38,6 +40,8 @@ MonoBehaviour:
     color: {r: 0, g: 0.14509805, b: 0.15294118, a: 1}
     sizePercent: 120
     matchWholeWord: 1
+  baitRulesText: 
+  baitRulesTextHighlights: []
   weight: 3
   value: 12
   randomizeValueWhenCaught: 0
@@ -46,9 +50,10 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 10
+  maximumDepth: -1
   effects:
   - effectId: flounder_next_elusive_value
+    displayName: 
     effectType: 2
     trigger: 7
     target: 5
@@ -56,7 +61,15 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Elusive
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 1
     replacementCard: {fileID: 0}
     expiresAfterUse: 1
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
     reminderText: The next Elusive catch after Flounder permanently gains 1 Value.
+  hasExplicitBaitData: 0
+  baitEffects: []

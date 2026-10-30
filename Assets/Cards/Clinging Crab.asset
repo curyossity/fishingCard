@@ -16,6 +16,8 @@ MonoBehaviour:
   displayName: Clinging Crab
   cardType: 3
   rarity: 1
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Anchored
   - Armored
@@ -27,9 +29,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: "Iron Grip: Cannot be deliberately released."
+  rulesText: 'Iron Grip: Cannot be deliberately released.'
   rulesTextHighlights: []
-  baitRulesText: "Claw Cut: Instantly release another card from the Catch Chain."
+  baitRulesText: 'Claw Cut: Instantly release another card from the Catch Chain.'
   baitRulesTextHighlights: []
   weight: 2
   value: 14
@@ -39,7 +41,7 @@ MonoBehaviour:
   biomeIds:
   - Coastal
   minimumDepth: 0
-  maximumDepth: 12
+  maximumDepth: -1
   effects:
   - effectId: iron_grip
     displayName: Iron Grip
@@ -49,10 +51,17 @@ MonoBehaviour:
     effectTone: 2
     amount: 1
     requiredTags: []
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Techniques and abilities cannot deliberately release this Crab. Forced removal and exchanges can still remove it."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Techniques and abilities cannot deliberately release this Crab.
+      Forced removal and exchanges can still remove it.
   hasExplicitBaitData: 1
   baitEffects:
   - effectId: claw_cut
@@ -63,7 +72,14 @@ MonoBehaviour:
     effectTone: 1
     amount: 1
     requiredTags: []
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "Immediately after attaching as Bait, choose one other legally releasable Catch or Bait. Deliberate creature Release; unused release is lost."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Immediately after attaching as Bait, choose one other legally releasable
+      Catch or Bait. Deliberate creature Release; unused release is lost.

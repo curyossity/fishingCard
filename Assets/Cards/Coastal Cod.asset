@@ -16,17 +16,23 @@ MonoBehaviour:
   displayName: Cod
   cardType: 3
   rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Predator
   artwork: {fileID: -6506108666410769293, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
   encounterArtwork: {fileID: 3164928710328421175, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
   artworkLayout: 1
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText:
+  rulesText: 
   rulesTextHighlights: []
-  baitRulesText: "Bottom Feeder: After releasing an Armored creature, recover one discarded technique."
+  baitRulesText: 'Bottom Feeder: After releasing an Armored creature, recover one
+    discarded technique.'
   baitRulesTextHighlights: []
   weight: 2
   value: 12
@@ -35,8 +41,8 @@ MonoBehaviour:
   maximumCaughtValue: 0
   biomeIds:
   - Coastal
-  minimumDepth: 3
-  maximumDepth: 20
+  minimumDepth: 0
+  maximumDepth: -1
   effects: []
   hasExplicitBaitData: 1
   baitEffects:
@@ -49,7 +55,17 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Armored
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: "After deliberately releasing another attached Armored creature in either role, choose a discarded technique after the releasing ability finishes, including the technique just used. First eligible Release per encounter only, even with an empty discard; all Cod Bait copies share this limit. Encounter replacements do not reset it. Forced removal and exchanges do not trigger it."
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: After deliberately releasing another attached Armored creature
+      in either role, choose a discarded technique after the releasing ability finishes,
+      including the technique just used. First eligible Release per encounter only,
+      even with an empty discard; all Cod Bait copies share this limit. Encounter
+      replacements do not reset it. Forced removal and exchanges do not trigger it.
