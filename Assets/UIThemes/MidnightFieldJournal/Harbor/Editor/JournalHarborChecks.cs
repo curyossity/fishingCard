@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 /// <summary>Checks native source quality, actual hub rendering and the live hub-to-expedition loop.</summary>
 public static class JournalHarborChecks
 {
-    private const string Output = "Docs/UIThemes/MidnightFieldJournal/Sync010/";
+    private const string Output = "Docs/Validation/DiscoveryJournal/";
     private static int assertions;
     public static string Status { get; private set; } = "Not started";
 
@@ -117,6 +117,10 @@ public static class JournalHarborChecks
         Click(flow, "Technique Collection"); Require(flow.CurrentPage == 2, "Collection route failed.");
         yield return null;
         Click(flow, "Back to Harbor"); Require(flow.CurrentPage == 0, "Harbor return failed.");
+        yield return null;
+        Click(flow, "Open Discovery Journal"); Require(flow.CurrentPage == 3, "Journal destination failed.");
+        yield return null;
+        Click(flow, "Back to Harbor"); Require(flow.CurrentPage == 0, "Journal return failed.");
         yield return null;
         Click(flow, "Set Sail");
         Require(!flow.HubVisible && controller.RunActive && controller.IsOpeningBoatVisible, "Set Sail did not start the existing boat run.");

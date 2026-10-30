@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "consoleErrors": 0,
+  "partialLabels": [
+    "INCOMPLETE",
+    "INCOMPLETE",
+    "1 / 3 successful expeditions"
+  ],
+  "completeLabels": [
+    "COMPLETE",
+    "COMPLETE",
+    "3 / 3 successful expeditions · COMPLETE"
+  ],
+  "visibleProgressTracks": [
+    false,
+    false,
+    true
+  ],
+  "validation": "Actual Play Mode page Refresh and OnEnable with temporary in-memory evidence; no PlayerPrefs writes or reward grants.",
+  "changedAssets": [
+    "Assets/Editor/DiscoveryJournalChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalDiscoveryPageBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalDiscoveryPage.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab"
+  ],
+  "trackingRulesAndCatalogUnchanged": true,
+  "prefabUpdate": "Targeted labels and track visibility; existing layout and object identities preserved."
+}

@@ -1,7 +1,7 @@
 {
   "generatedDate": "2026-10-30",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "Sync010/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "../../Validation/DiscoveryJournal/StatusPresentation/UnityCheckpoint.json",
   "pending": [],
   "completed": [
     {

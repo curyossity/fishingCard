@@ -214,6 +214,8 @@ Some technique cards should act as escape valves for mandatory catches by bypass
 
 ## Economy And Progression
 
+The Harbor Discovery Journal tracks three approved quests, with rewards displayed but never granted in this increment. The Perfect School requires a successful Surface with at least four Schooling creature attachments in one expedition. The Collector requires at least five distinct effective creature tags on successful Surface. Both Catch and Bait count, and internal evidence retains the best successful expedition rather than adding creatures/tags across runs. Risk Taker requires three distinct successful overloaded Surfaces. Line-break returns, released/lost creatures and the uncommitted Hooked encounter do not qualify. Completion persists between launches; no equipment, event, Technique or gold reward is added. [Quest/reward text and validation](Validation/DiscoveryJournal/README.md).
+
 Value is realized primarily after surfacing, not immediately when a creature is caught. Only catches still attached and successfully returned become the haul.
 
 The haul can be sold or used for progression such as equipment improvements, new cards, deck upgrades, and unlocks. Long-term progression should expand strategic possibilities rather than only increasing raw power.
@@ -245,3 +247,6 @@ Do not lock these without explicit design approval or prototype evidence:
 - How locations/biomes are selected.
 - Permanent versus run-specific meta-progression.
 - Exact biome length, depth-tier count, encounter-pool size, and visit length.
+
+
+Single-expedition objectives display only COMPLETE or INCOMPLETE, without partial numbers, a best-expedition caption or a progress bar. Cumulative objectives display their qualifying successful-expedition count and progress bar. Saved evidence and reward behavior are unchanged.

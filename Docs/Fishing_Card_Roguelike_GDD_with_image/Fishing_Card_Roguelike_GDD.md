@@ -971,6 +971,21 @@ These designs add no energy resource or once-per-biome counters. Persistent modi
 - Long-term progression should expand strategic possibilities rather
   than only increase raw power.
 
+## Approved Discovery Journal quests
+
+The Harbor Journal tracks these objectives persistently. Rewards below are descriptive only: completing an objective does not grant an item, purchase eligibility, event, Technique or gold yet.
+
+| Quest | Requirement | Descriptive reward, not granted |
+| --- | --- | --- |
+| The Perfect School | Successfully Surface with at least 4 Schooling creatures attached in one expedition. | Unlock Schoolmaster's Charm for purchase: your first Schooling Catch each expedition has −1 weight. |
+| The Collector | Successfully Surface with creatures representing at least 5 distinct tags. | Unlock a new special Event card. |
+| Risk Taker | Successfully Surface while overloaded in 3 separate expeditions. | Unlock Salvager's Kit for purchase: once per expedition, release one attached creature and draw 1 Technique. |
+
+Count returned creature and creature-like Apex attachments in both Catch and Bait mode. Use their effective tags in the completed Surface snapshot. The first two objectives retain the best single successful expedition, never sum across expeditions. Risk Taker counts each distinct expedition once and uses the load/capacity evaluated for Surface, including any action-scoped relief. Line-break returns do not qualify. Released/lost creatures, events, treasures and the uncommitted Hooked encounter do not contribute. Progress is saved independently of reward systems; completed quests remain completed. No historical expedition replay is inferred from old result screens.
+
+
+Single-expedition objectives display only COMPLETE or INCOMPLETE, without partial numbers, a best-expedition caption or a progress bar. Cumulative objectives display their qualifying successful-expedition count and progress bar. Saved evidence and reward behavior are unchanged.
+
 # 12. Intended player tension
 
 <table>

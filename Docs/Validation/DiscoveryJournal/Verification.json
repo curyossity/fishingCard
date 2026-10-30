@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "date": "2026-10-30",
+  "reports": {
+    "RulesVerification.json": {
+      "passed": true,
+      "assertions": 15
+    },
+    "ComponentVerification.json": {
+      "passed": true,
+      "assertions": 348
+    },
+    "LiveProgressVerification.json": {
+      "passed": true,
+      "message": "Actual Surface updates Journal, persists evidence, grants no quest rewards and returns to Harbor."
+    },
+    "PlayVerification.json": {
+      "passed": true,
+      "assertions": 26,
+      "message": "Actual pointer raycast, routes, fresh run, Surface/results, Harbor return and second fresh run passed."
+    }
+  },
+  "changedExistingAssets": [
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalHarborFlow.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+  ],
+  "newAssets": [
+    "Assets/Editor/DiscoveryJournalChecks.cs",
+    "Assets/Editor/DiscoveryJournalChecks.cs.meta",
+    "Assets/Scripts/DiscoveryJournalProgress.cs",
+    "Assets/Scripts/DiscoveryJournalProgress.cs.meta",
+    "Assets/Scripts/DiscoveryJournalTracker.cs",
+    "Assets/Scripts/DiscoveryJournalTracker.cs.meta",
+    "Assets/Scripts/DiscoveryQuestCatalog.cs",
+    "Assets/Scripts/DiscoveryQuestCatalog.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/DiscoveryQuests.json",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/DiscoveryQuests.json.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalDiscoveryPageBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalDiscoveryPageBuilder.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalDiscoveryPage.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalDiscoveryPage.cs.meta"
+  ],
+  "protectedExistingAssetsUnchanged": 1260,
+  "originalSceneBuildSettingsArtworkAndCardDefinitionsUnchanged": true,
+  "consoleErrors": 0,
+  "sceneSavedOutsidePlayMode": true,
+  "rewardGranting": false,
+  "testPersistence": "Unique temporary PlayerPrefs key, deleted after checks; player progress untouched."
+}

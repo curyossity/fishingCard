@@ -4,11 +4,18 @@
 
 `JournalHarborFlow` owns navigation between the Midnight Field Journal Harbor, Tackle Shop and Technique Collection. Set Sail delegates to `FishingRunController.StartRun`; that controller retains ownership of expedition reset, gameplay and gold. The candidate scene disables automatic run start and hides the run Canvas until Set Sail. `JournalResultModal` accepts an optional Harbor-return callback; scenes without it retain their existing next-run route. The hub refuses to restart or abandon an active expedition.
 
-`JournalHarborBuilder` reconstructs the separate 4K Canvas prefab from `Harbor/HarborLayout.json`. Native TMP fields, individual illustrations and decorative layers remain separable; the comparison-scene builder installs and binds the prefab. `JournalHarborChecks` verifies isolated renders and the live navigation/run loop. Shop purchases, equipment effects, ownership and deck editing remain inactive presentation previews in this increment. [Integration record](UIThemes/MidnightFieldJournal/Sync010/README.md).
+`JournalHarborBuilder` reconstructs the separate 4K Canvas prefab from `Harbor/HarborLayout.json` and the native `JournalDiscoveryPageBuilder`. Native TMP fields, individual illustrations and decorative layers remain separable; the comparison-scene builder installs and binds the prefab. `JournalHarborChecks` verifies isolated renders and the live navigation/run loop. Shop purchases, equipment effects, ownership and deck editing remain inactive presentation previews. [Initial integration](UIThemes/MidnightFieldJournal/Sync010/README.md).
+
+`FishingRunController.RunCompleted` publishes an expedition GUID and the existing immutable-by-convention result snapshot after ending a run. `DiscoveryJournalTracker` stays on the always-active Harbor root, subscribes across expeditions and persists objective evidence using the versioned `FishingCards.DiscoveryJournal.v1` PlayerPrefs entry. The shared `DiscoveryJournalProgress` evaluates successful returned creature/Apex attachments in either role, reads their resolved snapshot tags and excludes line-break outcomes. Best-per-expedition Schooling/tag counts use maxima; distinct successful overloaded expeditions use stable IDs, capped at the authored objective target. Serialization preserves completion and deduplication. Unreadable saves are preserved with an explicit UI error; pending writes retry on subsequent completions/disable. No reward-grant path exists.
+
+`DiscoveryQuestCatalog` loads stable objective IDs, metrics, targets, requirements and descriptive rewards from `Harbor/DiscoveryQuests.json`. `JournalDiscoveryPage` reads progress on entry and renders native objective rows; it does not evaluate outcomes or grant rewards. `DiscoveryJournalChecks` verifies model boundaries, save reload, real Surface notification, reward isolation and UI completion using an isolated temporary save key. [Journal behavior and validation](Validation/DiscoveryJournal/README.md).
 
 This document is the living responsibility map for the codebase. It should stay lightweight and practical: update it when class responsibilities, runtime flow, or system boundaries change.
 
 The GDD remains the source of truth for game design. This document explains where the code should put those ideas.
+
+
+Single-expedition objectives display only COMPLETE or INCOMPLETE, without partial numbers, a best-expedition caption or a progress bar. Cumulative objectives display their qualifying successful-expedition count and progress bar. Saved evidence and reward behavior are unchanged.
 
 ## Core Principles
 

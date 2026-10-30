@@ -5,6 +5,8 @@ using UnityEngine;
 
 public sealed class FishingRunController : MonoBehaviour
 {
+    public event Action<string, FishingRunResult> RunCompleted;
+    private string expeditionId;
     [Header("Start Run Settings")]
     [SerializeField] private bool startRunOnAwake = true;
     [SerializeField] private bool beginWithBoatCard;
@@ -267,6 +269,7 @@ public sealed class FishingRunController : MonoBehaviour
         runProgressionRuntime.InitializeTechniqueDeck(startingTechniqueDeck);
 
         runActive = true;
+        expeditionId = Guid.NewGuid().ToString("N");
         runEndCleanupPending = false;
         creatureEffectRuntime.Reset();
         descendCompletionPending = false;
@@ -2127,7 +2130,7 @@ public sealed class FishingRunController : MonoBehaviour
             random);
     }
 
-    /// <summary>Snapshots rewards and begins the shared ascent presentation for any run-ending outcome.</summary>
+    /// <summary>Snapshots the outcome, begins ascent and publishes one expedition-keyed result for progression observers.</summary>
     private void CompleteRun(int startingLoad, int evaluatedCapacity, bool endedByLineBreak)
     {
         // The Hooked encounter is intentionally excluded because it has not entered the Catch Chain.
@@ -2141,6 +2144,7 @@ public sealed class FishingRunController : MonoBehaviour
             endedByLineBreak);
         runRewardRuntime.AwardGold(lastSurfaceResult);
         EndActiveRun();
+        RunCompleted?.Invoke(expeditionId, lastSurfaceResult);
     }
 
     /// <summary>

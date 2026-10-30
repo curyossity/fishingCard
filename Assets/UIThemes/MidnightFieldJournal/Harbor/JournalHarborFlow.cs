@@ -20,8 +20,8 @@ public sealed class JournalHarborFlow : MonoBehaviour
     /// <summary>Opens the Harbor before a run and opts the result modal into the hub return route.</summary>
     private void Awake()
     {
-        if (controller == null || runCanvas == null || hubContent == null || pages.Length != 3)
-            throw new InvalidOperationException("Journal Harbor requires its controller, run canvas and three authored pages.");
+        if (controller == null || runCanvas == null || hubContent == null || pages.Length != 4)
+            throw new InvalidOperationException("Journal Harbor requires its controller, run canvas and four authored pages.");
         if (resultModal != null) resultModal.BindHarborReturn(ReturnToHarbor);
         ReturnToHarbor();
     }

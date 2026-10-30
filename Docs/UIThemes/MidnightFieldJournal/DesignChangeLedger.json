@@ -13244,6 +13244,23 @@
       "status": "verified",
       "manifest": "Sync010/UnityCheckpoint.json",
       "verification": "Sync010/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-010.1",
+      "date": "2026-10-30",
+      "status": "verified",
+      "revisions": [],
+      "manifest": "../../Validation/DiscoveryJournal/UnityCheckpoint.json",
+      "verification": "../../Validation/DiscoveryJournal/Verification.json",
+      "kind": "Unity-only Journal quest tracking; no Penpot import or reward grant"
+    },
+    {
+      "id": "MFJ-SYNC-010.2",
+      "date": "2026-10-30",
+      "revisions": [],
+      "status": "verified",
+      "manifest": "../../Validation/DiscoveryJournal/StatusPresentation/UnityCheckpoint.json",
+      "verification": "../../Validation/DiscoveryJournal/StatusPresentation/Verification.json"
     }
   ],
   "notes": [
@@ -13254,6 +13271,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "Sync010/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "../../Validation/DiscoveryJournal/StatusPresentation/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

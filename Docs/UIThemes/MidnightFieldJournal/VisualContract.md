@@ -1,5 +1,9 @@
 # Midnight Field Journal — candidate-theme visual contract
 
+**MFJ-SYNC-010.2:** single-expedition Journal quests show COMPLETE/INCOMPLETE only; cumulative quests retain successful-expedition counters and bars. Tracking and rewards are unchanged. No pending Penpot import. [Validation](../../Validation/DiscoveryJournal/StatusPresentation/README.md).
+
+**MFJ-SYNC-010.1 is the current Unity checkpoint.** Discovery Journal is active with three persistent quests and display-only rewards. This is a Unity-only increment; all earlier Penpot integrations remain completed, with no pending imports. [Behavior and verification](../../Validation/DiscoveryJournal/README.md). Earlier inactive-Journal statements below describe the previous checkpoint.
+
 **MFJ-SYNC-010: imported and verified in Unity (2026-10-30).** Harbor, Tackle Shop and Technique Collection now support navigation and Set Sail. Shop/deck controls remain visual previews. [Integration and checks](Sync010/README.md). **0 pending; 44 completed; 13 superseded.** Earlier pending statements below are historical.
 
 ## Scope and coexistence
