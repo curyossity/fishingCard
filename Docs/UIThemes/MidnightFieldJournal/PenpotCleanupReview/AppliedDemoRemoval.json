@@ -1,0 +1,12 @@
+{
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"result\": {\n    \"file\": \"9e056cfe-f83f-81f8-8008-cc523ff45211\",\n    \"activePage\": \"55e98d0e-b63f-8025-8008-cc53feeed652\",\n    \"pages\": [\n      {\n        \"id\": \"9e056cfe-f83f-81f8-8008-cc523ff45212\",\n        \"name\": \"Page 1\",\n        \"count\": 0\n      },\n      {\n        \"id\": \"55e98d0e-b63f-8025-8008-cc53feeed652\",\n        \"name\": \"EMPTY - obsolete MCP demo - remove page\",\n        \"count\": 0\n      },\n      {\n        \"id\": \"8a17fa10-389b-804e-8008-cc5591039a4e\",\n        \"name\": \"Gameplay Reference — Editable\",\n        \"count\": 6\n      },\n      {\n        \"id\": \"bae680cd-9225-8018-8008-cdd5868103f5\",\n        \"name\": \"Concept B — Midnight Field Journal (Static)\",\n        \"count\": 1\n      },\n      {\n        \"id\": \"bae680cd-9225-8018-8008-cddd6a6f3825\",\n        \"name\": \"01 - Current Design Library\",\n        \"count\": 7\n      }\n    ],\n    \"revision\": 241\n  },\n  \"log\": \"\"\n}"
+      }
+    ]
+  },
+  "jsonrpc": "2.0",
+  "id": 2
+}

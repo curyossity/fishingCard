@@ -10,7 +10,7 @@ using UnityEngine;
 /// <summary>Deterministic tag selection rules and real candidate-scene animation/reveal verification.</summary>
 public static class JournalTagTimingChecks
 {
-    private const string Output="Docs/UIThemes/MidnightFieldJournal/Sync009/";
+    private static string Output="Docs/UIThemes/MidnightFieldJournal/Sync009/";
     private static readonly BindingFlags Flags=BindingFlags.Instance|BindingFlags.NonPublic;
     private static int assertions;
     public static string Status { get; private set; }="Not started";
@@ -101,9 +101,10 @@ public static class JournalTagTimingChecks
     }
 
     /// <summary>Starts a bounded real Play Mode test with temporary background ticking.</summary>
-    public static void BeginProductionSmoke()
+    public static void BeginProductionSmoke(string outputDirectory = null)
     {
         if(!Application.isPlaying)throw new InvalidOperationException("Enter candidate Play Mode first.");
+        if (!string.IsNullOrEmpty(outputDirectory)) Output=outputDirectory.TrimEnd('/','\\')+"/";
         Directory.CreateDirectory(Output);assertions=0;Status="Running";
         previousBackground=Application.runInBackground;Application.runInBackground=true;smokeDeadline=EditorApplication.timeSinceStartup+90;
         EditorApplication.update+=Pump;
@@ -137,7 +138,7 @@ public static class JournalTagTimingChecks
         Assert(!c.TryStopEncounterTiming(token),"Double Stop accepted");
         yield return null;Assert(v.Celebration!=null&&v.Celebration.IsPlaying,"Precision particles absent");
         yield return new WaitForSecondsRealtime(.35f);Canvas.ForceUpdateCanvases();
-        Assert(v.ZoneRects[0].rect.width<180&&v.ZoneRects[0].rect.width>72,"Zone did not resize");
+        Assert(v.ZoneRects[0].rect.width<((RectTransform)v.ZoneRects[0].parent).rect.width*.125f&&v.ZoneRects[0].rect.width>((RectTransform)v.ZoneRects[0].parent).rect.width*.05f,"Zone did not resize");
         float exitDeadline=Time.realtimeSinceStartup+3;
         while(v.ExitProgress<=0&&c.Timing.Active&&Time.realtimeSinceStartup<exitDeadline)yield return null;
         Assert(c.CurrentEncounter==null&&c.Timing.Active&&v.ExitProgress>0,"Reveal skipped exit");
@@ -160,7 +161,7 @@ public static class JournalTagTimingChecks
         for(int hit=0;hit<35;hit++){c.TagTiming.Begin(new[]{cod},tagProfile,false);Stop(c.TagTiming,0,false,tagProfile);}
         c.TagTiming.Begin(new[]{cod},tagProfile,false);typeof(FishingRunController).GetMethod("RefreshViews",Flags).Invoke(c,null);
         yield return Entry(c,v);Canvas.ForceUpdateCanvases();
-        Assert(Mathf.Abs(v.ZoneRects[0].rect.width-72)<.1f,"Minimum zone not72 design pixels");
+        Assert(Mathf.Abs(v.ZoneRects[0].rect.width-((RectTransform)v.ZoneRects[0].parent).rect.width*.05f)<.1f,"Minimum zone not five percent of current track");
         Assert(v.ZoneRects.All(x=>x.gameObject.activeInHierarchy),"Minimum width hid a tag");
         Assert(v.PrecisionRects.All(x=>Mathf.Abs(x.rect.width/x.parent.GetComponent<RectTransform>().rect.width-.18f)<.001f),"Precision widths not proportional");
         Capture("TagBarFatigue4K.png",3840,2160);

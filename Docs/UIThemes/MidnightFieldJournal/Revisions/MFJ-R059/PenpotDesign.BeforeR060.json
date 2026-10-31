@@ -1,0 +1,223 @@
+{
+  "revision": "MFJ-R059",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "reviewId": "26b75110-679b-80ad-8008-dfea9e6ff40d",
+  "sourceId": "26b75110-679b-80ad-8008-dfea9d6b4b6f",
+  "sourceArtId": "26b75110-679b-80ad-8008-dfea7b4bd1f1",
+  "sourcePixels": [
+    2172,
+    724
+  ],
+  "bars": [
+    {
+      "id": "26b75110-679b-80ad-8008-dfeaa0187e17",
+      "name": "Initial state / equal 12.5% zones",
+      "width": 2160,
+      "height": 720,
+      "frameId": "26b75110-679b-80ad-8008-dfeaa066069e",
+      "trackId": "26b75110-679b-80ad-8008-dfeaa1ab164f",
+      "trackBounds": [
+        250,
+        250,
+        1660,
+        200
+      ],
+      "zones": [
+        {
+          "tag": "Fish",
+          "id": "26b75110-679b-80ad-8008-dfeaa2c41597",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaa34c45c0",
+          "labelId": "26b75110-679b-80ad-8008-dfeaa387d7ae",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaa314e911",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Predator",
+          "id": "26b75110-679b-80ad-8008-dfeaa44ce4d8",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaa4fc353a",
+          "labelId": "26b75110-679b-80ad-8008-dfeaa56c6c53",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaa4aba2d6",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Schooling",
+          "id": "26b75110-679b-80ad-8008-dfeaa60b0103",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaa6dceeee",
+          "labelId": "26b75110-679b-80ad-8008-dfeaa7526ddd",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaa6809a89",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Small",
+          "id": "26b75110-679b-80ad-8008-dfeaa84cb2f1",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaa8fd30c4",
+          "labelId": "26b75110-679b-80ad-8008-dfeaa954a50f",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaa88dfc55",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Heavy",
+          "id": "26b75110-679b-80ad-8008-dfeaaa54858e",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaaab2d1af",
+          "labelId": "26b75110-679b-80ad-8008-dfeaab0bc699",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaaa8a8a65",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Anchored",
+          "id": "26b75110-679b-80ad-8008-dfeaac0a57f8",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaacb802e3",
+          "labelId": "26b75110-679b-80ad-8008-dfeaacebcdd7",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaac8b8717",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Armored",
+          "id": "26b75110-679b-80ad-8008-dfeaade9ad5f",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeaaebdea0d",
+          "labelId": "26b75110-679b-80ad-8008-dfeaaef60077",
+          "precisionId": "26b75110-679b-80ad-8008-dfeaae4f49f5",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Elusive",
+          "id": "26b75110-679b-80ad-8008-dfeaafd31db4",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeab0800891",
+          "labelId": "26b75110-679b-80ad-8008-dfeab0ddec8e",
+          "precisionId": "26b75110-679b-80ad-8008-dfeab0255f70",
+          "precisionFraction": 0.18
+        }
+      ],
+      "markerId": "26b75110-679b-80ad-8008-dfeab19bac63",
+      "markerFraction": 0.37,
+      "stopId": "26b75110-679b-80ad-8008-dfeab2894e07",
+      "activeTagHighlight": false
+    },
+    {
+      "id": "26b75110-679b-80ad-8008-dfeab506ae31",
+      "name": "Mid-run illustration / resizing-ready zones",
+      "width": 2160,
+      "height": 720,
+      "frameId": "26b75110-679b-80ad-8008-dfeab55eda73",
+      "trackId": "26b75110-679b-80ad-8008-dfeab6916b3a",
+      "trackBounds": [
+        250,
+        250,
+        1660,
+        200
+      ],
+      "zones": [
+        {
+          "tag": "Fish",
+          "id": "26b75110-679b-80ad-8008-dfeab76d9a09",
+          "width": 149.4,
+          "fraction": 0.09,
+          "iconId": "26b75110-679b-80ad-8008-dfeab80fa439",
+          "labelId": "26b75110-679b-80ad-8008-dfeab862f395",
+          "precisionId": "26b75110-679b-80ad-8008-dfeab7be103b",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Predator",
+          "id": "26b75110-679b-80ad-8008-dfeab91a2774",
+          "width": 227.42000000000002,
+          "fraction": 0.137,
+          "iconId": "26b75110-679b-80ad-8008-dfeab980b4dd",
+          "labelId": "26b75110-679b-80ad-8008-dfeab9e15466",
+          "precisionId": "26b75110-679b-80ad-8008-dfeab95314d6",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Schooling",
+          "id": "26b75110-679b-80ad-8008-dfeabae5fb34",
+          "width": 225.76000000000002,
+          "fraction": 0.136,
+          "iconId": "26b75110-679b-80ad-8008-dfeabb7970f8",
+          "labelId": "26b75110-679b-80ad-8008-dfeabbac6f6a",
+          "precisionId": "26b75110-679b-80ad-8008-dfeabb51f96b",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Small",
+          "id": "26b75110-679b-80ad-8008-dfeabca07339",
+          "width": 199.2,
+          "fraction": 0.12,
+          "iconId": "26b75110-679b-80ad-8008-dfeabd4b4215",
+          "labelId": "26b75110-679b-80ad-8008-dfeabd7c907a",
+          "precisionId": "26b75110-679b-80ad-8008-dfeabcf18a3c",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Heavy",
+          "id": "26b75110-679b-80ad-8008-dfeabe6e4f99",
+          "width": 249,
+          "fraction": 0.15,
+          "iconId": "26b75110-679b-80ad-8008-dfeabf347efc",
+          "labelId": "26b75110-679b-80ad-8008-dfeabf651a24",
+          "precisionId": "26b75110-679b-80ad-8008-dfeabed442e2",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Anchored",
+          "id": "26b75110-679b-80ad-8008-dfeac0523829",
+          "width": 166,
+          "fraction": 0.1,
+          "iconId": "26b75110-679b-80ad-8008-dfeac0fdd12f",
+          "labelId": "26b75110-679b-80ad-8008-dfeac162d81c",
+          "precisionId": "26b75110-679b-80ad-8008-dfeac0a7375d",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Armored",
+          "id": "26b75110-679b-80ad-8008-dfeac2561a76",
+          "width": 235.71999999999997,
+          "fraction": 0.142,
+          "iconId": "26b75110-679b-80ad-8008-dfeac307ef3b",
+          "labelId": "26b75110-679b-80ad-8008-dfeac36817eb",
+          "precisionId": "26b75110-679b-80ad-8008-dfeac2b87e1b",
+          "precisionFraction": 0.18
+        },
+        {
+          "tag": "Elusive",
+          "id": "26b75110-679b-80ad-8008-dfeac440c893",
+          "width": 207.5,
+          "fraction": 0.125,
+          "iconId": "26b75110-679b-80ad-8008-dfeac4ec6606",
+          "labelId": "26b75110-679b-80ad-8008-dfeac5694f85",
+          "precisionId": "26b75110-679b-80ad-8008-dfeac4932ae6",
+          "precisionFraction": 0.18
+        }
+      ],
+      "markerId": "26b75110-679b-80ad-8008-dfeac64260d5",
+      "markerFraction": 0.61,
+      "stopId": "26b75110-679b-80ad-8008-dfeac7129ad2",
+      "activeTagHighlight": false
+    }
+  ],
+  "status": "ready_for_review",
+  "unityImported": false,
+  "reviewOnly": true,
+  "existingR051Preserved": true,
+  "palettePolicy": "One shared ivory/navy/copper palette; no per-tag colours or current-tag highlight.",
+  "sourceFrame": "Revisions/MFJ-R059/EngravedTagBarFrame.png",
+  "nativeParts": "tag zones, names, icons, precision gradients, marker, STOP text/control",
+  "rasterParts": "ornamental parchment surround, paper grain and botanical decoration only"
+}

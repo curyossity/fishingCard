@@ -1,5 +1,14 @@
 # Penpot changes awaiting Unity integration
 
+**MFJ-SYNC-012 — R059 tag bar and R060 Stop are integrated and verified in Unity.** Separate decorative sprites and native dynamic elements; existing timing, selection and elastic animations retained. 4K/1080p captures and 103 live checks passed. **0 pending; 47 completed; 13 superseded.** [Integration](Sync012/README.md). Earlier review-only statements below are historical.
+
+
+**MFJ-R060 — engraved parchment Stop button, ready for review.** Applied to both R059 bar examples, with separate native Stop icon and label. **2 pending design revisions (R059 + R060); 45 completed; 13 superseded.** Unity remains unchanged. [Design and preview](Revisions/MFJ-R060/README.md).
+
+
+**MFJ-R059 — new engraved coastal tag-bar variation, ready for review.** One design shown in initial and illustrative mid-run states. Detailed parchment/copper border, botanical engraving and navy footer; native labels, existing tag glyphs, precision areas, anchor marker and Stop remain separate. R051 stays active in Unity. **1 design awaiting review/import; 45 completed; 13 superseded.** [Preview and handoff](Revisions/MFJ-R059/README.md).
+
+
 **Current: 1 pending selected design; 39 imported and verified; 11 superseded drafts/studies.** R051 is ready_for_review. R050 is superseded. [Pending index](PendingUnityChanges.json) · [Full ledger](DesignChangeLedger.json).
 
 Latest baseline: [MFJ-SYNC-008.5](RarityBarEntrance/UnityCheckpoint.json). Next revision: **MFJ-R052**.

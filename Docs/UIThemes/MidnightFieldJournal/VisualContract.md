@@ -1,5 +1,8 @@
 # Midnight Field Journal — candidate-theme visual contract
 
+**MFJ-SYNC-012 — R059 tag bar and R060 Stop are integrated and verified in Unity.** Separate decorative sprites and native dynamic elements; existing timing, selection and elastic animations retained. 4K/1080p captures and 103 live checks passed. **0 pending; 47 completed; 13 superseded.** [Integration](Sync012/README.md). Earlier review-only statements below are historical.
+
+
 **MFJ-SYNC-011.2: Technique hand size is unrestricted.** Four starting cards normally; six with Tideglass Reel. Explicit effects may grow either hand further; obsolete room-discard prompts are removed. Equipment ownership/loadout rules remain confirmed. Unity-only increment; **0 pending imports, 45 completed, 13 superseded.** [Verification](../../Validation/UnlimitedTechniqueHand/README.md).
 
 **MFJ-SYNC-011.1: Tackle Shop purchases and expedition equipment are active.** Permanent ownership, one-item loadout and Gold persist; all three approved effects work. Unity-only increment, no new art import. **0 pending; 45 completed; 13 superseded.** [Behavior and validation](../../Validation/TackleShop/README.md).

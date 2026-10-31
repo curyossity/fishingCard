@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R059",
+  "nextRevisionId": "MFJ-R061",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -10813,7 +10813,11 @@
       "remainingWork": [],
       "unityImported": true,
       "integrationStatus": "verified",
-      "synchronizationCheckpoint": "MFJ-SYNC-009"
+      "synchronizationCheckpoint": "MFJ-SYNC-009",
+      "visualSuccessor": [
+        "MFJ-R059",
+        "MFJ-R060"
+      ]
     },
     {
       "id": "MFJ-R052",
@@ -13518,6 +13522,510 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-011"
+    },
+    {
+      "id": "MFJ-R059",
+      "date": "2026-10-31",
+      "request": "Create a new Penpot tag bar matching the game card styles and decorations.",
+      "component": [
+        "Tag timing bar decorative frame",
+        "Editable tag zones and precision centres",
+        "Independent anchor marker and Stop control"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R059",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "reviewId": "26b75110-679b-80ad-8008-dfea9e6ff40d",
+        "sourceId": "26b75110-679b-80ad-8008-dfea9d6b4b6f",
+        "sourceArtId": "26b75110-679b-80ad-8008-dfea7b4bd1f1",
+        "sourcePixels": [
+          2172,
+          724
+        ],
+        "bars": [
+          {
+            "id": "26b75110-679b-80ad-8008-dfeaa0187e17",
+            "name": "Initial state / equal 12.5% zones",
+            "width": 2160,
+            "height": 720,
+            "frameId": "26b75110-679b-80ad-8008-dfeaa066069e",
+            "trackId": "26b75110-679b-80ad-8008-dfeaa1ab164f",
+            "trackBounds": [
+              250,
+              250,
+              1660,
+              200
+            ],
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "26b75110-679b-80ad-8008-dfeaa2c41597",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaa34c45c0",
+                "labelId": "26b75110-679b-80ad-8008-dfeaa387d7ae",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaa314e911",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "26b75110-679b-80ad-8008-dfeaa44ce4d8",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaa4fc353a",
+                "labelId": "26b75110-679b-80ad-8008-dfeaa56c6c53",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaa4aba2d6",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "26b75110-679b-80ad-8008-dfeaa60b0103",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaa6dceeee",
+                "labelId": "26b75110-679b-80ad-8008-dfeaa7526ddd",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaa6809a89",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "26b75110-679b-80ad-8008-dfeaa84cb2f1",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaa8fd30c4",
+                "labelId": "26b75110-679b-80ad-8008-dfeaa954a50f",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaa88dfc55",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "26b75110-679b-80ad-8008-dfeaaa54858e",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaaab2d1af",
+                "labelId": "26b75110-679b-80ad-8008-dfeaab0bc699",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaaa8a8a65",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "26b75110-679b-80ad-8008-dfeaac0a57f8",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaacb802e3",
+                "labelId": "26b75110-679b-80ad-8008-dfeaacebcdd7",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaac8b8717",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "26b75110-679b-80ad-8008-dfeaade9ad5f",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeaaebdea0d",
+                "labelId": "26b75110-679b-80ad-8008-dfeaaef60077",
+                "precisionId": "26b75110-679b-80ad-8008-dfeaae4f49f5",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "26b75110-679b-80ad-8008-dfeaafd31db4",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeab0800891",
+                "labelId": "26b75110-679b-80ad-8008-dfeab0ddec8e",
+                "precisionId": "26b75110-679b-80ad-8008-dfeab0255f70",
+                "precisionFraction": 0.18
+              }
+            ],
+            "markerId": "26b75110-679b-80ad-8008-dfeab19bac63",
+            "markerFraction": 0.37,
+            "stopId": "26b75110-679b-80ad-8008-dff87e63f7d1",
+            "activeTagHighlight": false,
+            "stopRevision": "MFJ-R060"
+          },
+          {
+            "id": "26b75110-679b-80ad-8008-dfeab506ae31",
+            "name": "Mid-run illustration / resizing-ready zones",
+            "width": 2160,
+            "height": 720,
+            "frameId": "26b75110-679b-80ad-8008-dfeab55eda73",
+            "trackId": "26b75110-679b-80ad-8008-dfeab6916b3a",
+            "trackBounds": [
+              250,
+              250,
+              1660,
+              200
+            ],
+            "zones": [
+              {
+                "tag": "Fish",
+                "id": "26b75110-679b-80ad-8008-dfeab76d9a09",
+                "width": 149.4,
+                "fraction": 0.09,
+                "iconId": "26b75110-679b-80ad-8008-dfeab80fa439",
+                "labelId": "26b75110-679b-80ad-8008-dfeab862f395",
+                "precisionId": "26b75110-679b-80ad-8008-dfeab7be103b",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Predator",
+                "id": "26b75110-679b-80ad-8008-dfeab91a2774",
+                "width": 227.42000000000002,
+                "fraction": 0.137,
+                "iconId": "26b75110-679b-80ad-8008-dfeab980b4dd",
+                "labelId": "26b75110-679b-80ad-8008-dfeab9e15466",
+                "precisionId": "26b75110-679b-80ad-8008-dfeab95314d6",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Schooling",
+                "id": "26b75110-679b-80ad-8008-dfeabae5fb34",
+                "width": 225.76000000000002,
+                "fraction": 0.136,
+                "iconId": "26b75110-679b-80ad-8008-dfeabb7970f8",
+                "labelId": "26b75110-679b-80ad-8008-dfeabbac6f6a",
+                "precisionId": "26b75110-679b-80ad-8008-dfeabb51f96b",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Small",
+                "id": "26b75110-679b-80ad-8008-dfeabca07339",
+                "width": 199.2,
+                "fraction": 0.12,
+                "iconId": "26b75110-679b-80ad-8008-dfeabd4b4215",
+                "labelId": "26b75110-679b-80ad-8008-dfeabd7c907a",
+                "precisionId": "26b75110-679b-80ad-8008-dfeabcf18a3c",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Heavy",
+                "id": "26b75110-679b-80ad-8008-dfeabe6e4f99",
+                "width": 249,
+                "fraction": 0.15,
+                "iconId": "26b75110-679b-80ad-8008-dfeabf347efc",
+                "labelId": "26b75110-679b-80ad-8008-dfeabf651a24",
+                "precisionId": "26b75110-679b-80ad-8008-dfeabed442e2",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Anchored",
+                "id": "26b75110-679b-80ad-8008-dfeac0523829",
+                "width": 166,
+                "fraction": 0.1,
+                "iconId": "26b75110-679b-80ad-8008-dfeac0fdd12f",
+                "labelId": "26b75110-679b-80ad-8008-dfeac162d81c",
+                "precisionId": "26b75110-679b-80ad-8008-dfeac0a7375d",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Armored",
+                "id": "26b75110-679b-80ad-8008-dfeac2561a76",
+                "width": 235.71999999999997,
+                "fraction": 0.142,
+                "iconId": "26b75110-679b-80ad-8008-dfeac307ef3b",
+                "labelId": "26b75110-679b-80ad-8008-dfeac36817eb",
+                "precisionId": "26b75110-679b-80ad-8008-dfeac2b87e1b",
+                "precisionFraction": 0.18
+              },
+              {
+                "tag": "Elusive",
+                "id": "26b75110-679b-80ad-8008-dfeac440c893",
+                "width": 207.5,
+                "fraction": 0.125,
+                "iconId": "26b75110-679b-80ad-8008-dfeac4ec6606",
+                "labelId": "26b75110-679b-80ad-8008-dfeac5694f85",
+                "precisionId": "26b75110-679b-80ad-8008-dfeac4932ae6",
+                "precisionFraction": 0.18
+              }
+            ],
+            "markerId": "26b75110-679b-80ad-8008-dfeac64260d5",
+            "markerFraction": 0.61,
+            "stopId": "26b75110-679b-80ad-8008-dff88057c370",
+            "activeTagHighlight": false,
+            "stopRevision": "MFJ-R060"
+          }
+        ],
+        "status": "ready_for_review",
+        "unityImported": false,
+        "reviewOnly": true,
+        "existingR051Preserved": true,
+        "palettePolicy": "One shared ivory/navy/copper palette; no per-tag colours or current-tag highlight.",
+        "sourceFrame": "Revisions/MFJ-R059/EngravedTagBarFrame.png",
+        "nativeParts": "tag zones, names, icons, precision gradients, marker, STOP text/control",
+        "rasterParts": "ornamental parchment surround, paper grain and botanical decoration only",
+        "refinedBy": [
+          "MFJ-R060"
+        ]
+      },
+      "affectedPenpotInstances": [
+        "26b75110-679b-80ad-8008-dfeaa0187e17",
+        "26b75110-679b-80ad-8008-dfeab506ae31"
+      ],
+      "changeKinds": [
+        "artwork",
+        "decorative_frame",
+        "geometry",
+        "typography",
+        "reusable_elements"
+      ],
+      "before": {
+        "revision": "MFJ-R051",
+        "preview": "Revisions/MFJ-R051/LanternAnchorPrecision.png",
+        "preserved": true,
+        "stillCurrentInUnity": true
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R059/InitialBar.png",
+        "midRun": "Revisions/MFJ-R059/MidRunBar.png",
+        "review": "Revisions/MFJ-R059/DesignReview.png",
+        "source": "Revisions/MFJ-R059/EngravedTagBarFrame.png",
+        "images": {
+          "EngravedTagBarFrame.png": {
+            "width": 2172,
+            "height": 724,
+            "sha256": "126ff765fa7f4480380cf2cdee6ce406211d429942950c72870bc37199e407c9"
+          },
+          "InitialBar.png": {
+            "width": 2160,
+            "height": 720,
+            "sha256": "feca13dc9751925046ada99467cc8104a2e0aad9b6025cf0c4120eb30a2493b8"
+          },
+          "MidRunBar.png": {
+            "width": 2160,
+            "height": 720,
+            "sha256": "2c6d610172327a8d58bce05b890aa29bb241e03bddd5f418119766a3d65b0536"
+          },
+          "DesignReview.png": {
+            "width": 3840,
+            "height": 2160,
+            "sha256": "03e8a2fbb692ee7a4157794bab98bfaf3256d2e3593de79ad192e88bdfd4f38e"
+          }
+        }
+      },
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/TagTiming/",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TagTiming.prefab"
+      ],
+      "dependentConsumers": [
+        "JournalTagTimingView",
+        "JournalTagTimingBuilder"
+      ],
+      "configurationChanges": [
+        "Visual proposal only: no gameplay, balance, species selection, timings or animation changes.",
+        "Future import must preserve native tag spans, proportional precision meshes, marker and existing elastic entry/exit.",
+        "Frame source is 2172 x 724, displayed at 2160 x 720 without upscaling; the 3840 x 2160 review board is not a 4K raster frame master."
+      ],
+      "exportRequirements": [
+        "Use independent decorative frame, never a flattened full-bar screenshot.",
+        "Keep labels, eight existing tag glyphs, boundaries, precision gradients, anchor and Stop separate.",
+        "At 5% zone width, use existing icon-first narrow-zone behavior; no minimum-width gameplay rule changes.",
+        "Verify intended final 4K on-screen bounds before enlarging the decorative bitmap."
+      ],
+      "approvalEvidence": [
+        "User requested a new Penpot design. Visual approval and Unity integration have not been requested.",
+        "User requested: when you finish, integrate into unity."
+      ],
+      "exportEvidence": {
+        "images": {
+          "EngravedTagBarFrame.png": {
+            "width": 2172,
+            "height": 724,
+            "sha256": "126ff765fa7f4480380cf2cdee6ce406211d429942950c72870bc37199e407c9"
+          },
+          "InitialBar.png": {
+            "width": 2160,
+            "height": 720,
+            "sha256": "feca13dc9751925046ada99467cc8104a2e0aad9b6025cf0c4120eb30a2493b8"
+          },
+          "MidRunBar.png": {
+            "width": 2160,
+            "height": 720,
+            "sha256": "2c6d610172327a8d58bce05b890aa29bb241e03bddd5f418119766a3d65b0536"
+          },
+          "DesignReview.png": {
+            "width": 3840,
+            "height": 2160,
+            "sha256": "03e8a2fbb692ee7a4157794bab98bfaf3256d2e3593de79ad192e88bdfd4f38e"
+          }
+        },
+        "manifest": "Revisions/MFJ-R059/PenpotDesign.json"
+      },
+      "importEvidence": {
+        "record": "Sync012/README.md",
+        "sourceHashes": "Sync012/ImportedSources.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R059/Verification.json",
+        "unity": "Sync012/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-012"
+    },
+    {
+      "id": "MFJ-R060",
+      "date": "2026-10-31",
+      "request": "Design a better Stop button matching the game theme and overall decorations.",
+      "component": [
+        "Tag-bar Stop button"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R060",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "reviewId": "26b75110-679b-80ad-8008-dff8826c6f81",
+        "sourceId": "26b75110-679b-80ad-8008-dff87e095c7f",
+        "sourceArtId": "26b75110-679b-80ad-8008-dff855e9f0e5",
+        "sourcePixels": [
+          2172,
+          724
+        ],
+        "master": {
+          "id": "26b75110-679b-80ad-8008-dff88406d25f",
+          "frameId": "26b75110-679b-80ad-8008-dff8846b3c98",
+          "iconId": "26b75110-679b-80ad-8008-dff884c01f8b",
+          "labelId": "26b75110-679b-80ad-8008-dff88522ed1a",
+          "width": 800,
+          "height": 266.6666666666667
+        },
+        "instances": [
+          {
+            "barId": "26b75110-679b-80ad-8008-dfeaa0187e17",
+            "id": "26b75110-679b-80ad-8008-dff87e63f7d1",
+            "frameId": "26b75110-679b-80ad-8008-dff87ef0ba6f",
+            "iconId": "26b75110-679b-80ad-8008-dff87f522d24",
+            "labelId": "26b75110-679b-80ad-8008-dff87fc02fa0",
+            "width": 400,
+            "height": 133.33333333333334
+          },
+          {
+            "barId": "26b75110-679b-80ad-8008-dfeab506ae31",
+            "id": "26b75110-679b-80ad-8008-dff88057c370",
+            "frameId": "26b75110-679b-80ad-8008-dff88099ad60",
+            "iconId": "26b75110-679b-80ad-8008-dff88114b006",
+            "labelId": "26b75110-679b-80ad-8008-dff881a05edc",
+            "width": 400,
+            "height": 133.33333333333334
+          }
+        ],
+        "replaced": [
+          {
+            "barId": "26b75110-679b-80ad-8008-dfeaa0187e17",
+            "oldStopId": "26b75110-679b-80ad-8008-dfeab2894e07",
+            "oldGeometry": [
+              1500,
+              541,
+              300,
+              68
+            ]
+          },
+          {
+            "barId": "26b75110-679b-80ad-8008-dfeab506ae31",
+            "oldStopId": "26b75110-679b-80ad-8008-dfeac7129ad2",
+            "oldGeometry": [
+              1500,
+              541,
+              300,
+              68
+            ]
+          }
+        ],
+        "barReviewId": "26b75110-679b-80ad-8008-dfea9e6ff40d",
+        "buttonBoundsInBar": [
+          1420,
+          510,
+          400,
+          133.33333333333334
+        ],
+        "label": "STOP",
+        "font": "Cinzel",
+        "palette": "Ivory parchment, copper/brown ink, navy botanical engraving; no metallic hardware.",
+        "status": "ready_for_review",
+        "unityImported": false
+      },
+      "affectedPenpotInstances": [
+        "26b75110-679b-80ad-8008-dff87e63f7d1",
+        "26b75110-679b-80ad-8008-dff88057c370"
+      ],
+      "changeKinds": [
+        "artwork",
+        "button_geometry",
+        "editable_text",
+        "native_icon"
+      ],
+      "before": {
+        "revision": "MFJ-R059",
+        "preview": "Revisions/MFJ-R059/InitialBar.png",
+        "stopBounds": [
+          1500,
+          541,
+          300,
+          68
+        ]
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R060/BarWithStop.png",
+        "button": "Revisions/MFJ-R060/StopButton.png",
+        "stopBounds": [
+          1420,
+          510,
+          400,
+          133.33333333333334
+        ]
+      },
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Art/TagTiming/",
+        "Assets/UIThemes/MidnightFieldJournal/Prefabs/TagTiming.prefab"
+      ],
+      "dependentConsumers": [
+        "JournalTagTimingView",
+        "JournalTagTimingBuilder"
+      ],
+      "configurationChanges": [
+        "Penpot only: replace Stop controls in both R059 examples with a new 400 x 133.33 decorative button container.",
+        "New static parchment face plus separate native Cinzel label and Stop square.",
+        "Tag geometry, marker, precision and gameplay unchanged."
+      ],
+      "exportRequirements": [
+        "Use independent new decorative face and native text/icon; do not flatten the full bar.",
+        "The 2172 x 724 source is displayed at 400 x 133.33 in bar examples. Preserve alpha and aspect ratio."
+      ],
+      "approvalEvidence": [
+        "User requested the themed Stop-button design; no Unity import requested.",
+        "User requested: when you finish, integrate into unity."
+      ],
+      "exportEvidence": {
+        "button": "Revisions/MFJ-R060/StopButton.png",
+        "inContext": "Revisions/MFJ-R060/BarWithStop.png",
+        "hashes": {
+          "EngravedStopButton.png": "fcd572246b87f375e7d81c7d9678f0fb2762ef1dedd14cb0f6ae2d5f19e3f536",
+          "StopButton.png": "7c3949fbd496434d43d95e476ec756cb657c1a2708d2efeaa43ed9801b7f17bb",
+          "BarWithStop.png": "180508fbf7919fbc8e5e653bb8da45c8819aa194e5172a65dce9d82ad5eca6cb"
+        }
+      },
+      "importEvidence": {
+        "record": "Sync012/README.md",
+        "sourceHashes": "Sync012/ImportedSources.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R060/Verification.json",
+        "unity": "Sync012/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-012"
     }
   ],
   "synchronizationCheckpoints": [
@@ -13648,6 +14156,17 @@
       "revisions": [],
       "manifest": "../../Validation/UnlimitedTechniqueHand/UnityCheckpoint.json",
       "verification": "../../Validation/UnlimitedTechniqueHand/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-012",
+      "date": "2026-10-31",
+      "status": "verified",
+      "revisions": [
+        "MFJ-R059",
+        "MFJ-R060"
+      ],
+      "manifest": "Sync012/UnityCheckpoint.json",
+      "verification": "Sync012/Verification.json"
     }
   ],
   "notes": [
@@ -13658,6 +14177,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "../../Validation/UnlimitedTechniqueHand/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync012/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

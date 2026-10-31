@@ -1,0 +1,75 @@
+{
+  "revision": "MFJ-R060",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "reviewId": "26b75110-679b-80ad-8008-dff8826c6f81",
+  "sourceId": "26b75110-679b-80ad-8008-dff87e095c7f",
+  "sourceArtId": "26b75110-679b-80ad-8008-dff855e9f0e5",
+  "sourcePixels": [
+    2172,
+    724
+  ],
+  "master": {
+    "id": "26b75110-679b-80ad-8008-dff88406d25f",
+    "frameId": "26b75110-679b-80ad-8008-dff8846b3c98",
+    "iconId": "26b75110-679b-80ad-8008-dff884c01f8b",
+    "labelId": "26b75110-679b-80ad-8008-dff88522ed1a",
+    "width": 800,
+    "height": 266.6666666666667
+  },
+  "instances": [
+    {
+      "barId": "26b75110-679b-80ad-8008-dfeaa0187e17",
+      "id": "26b75110-679b-80ad-8008-dff87e63f7d1",
+      "frameId": "26b75110-679b-80ad-8008-dff87ef0ba6f",
+      "iconId": "26b75110-679b-80ad-8008-dff87f522d24",
+      "labelId": "26b75110-679b-80ad-8008-dff87fc02fa0",
+      "width": 400,
+      "height": 133.33333333333334
+    },
+    {
+      "barId": "26b75110-679b-80ad-8008-dfeab506ae31",
+      "id": "26b75110-679b-80ad-8008-dff88057c370",
+      "frameId": "26b75110-679b-80ad-8008-dff88099ad60",
+      "iconId": "26b75110-679b-80ad-8008-dff88114b006",
+      "labelId": "26b75110-679b-80ad-8008-dff881a05edc",
+      "width": 400,
+      "height": 133.33333333333334
+    }
+  ],
+  "replaced": [
+    {
+      "barId": "26b75110-679b-80ad-8008-dfeaa0187e17",
+      "oldStopId": "26b75110-679b-80ad-8008-dfeab2894e07",
+      "oldGeometry": [
+        1500,
+        541,
+        300,
+        68
+      ]
+    },
+    {
+      "barId": "26b75110-679b-80ad-8008-dfeab506ae31",
+      "oldStopId": "26b75110-679b-80ad-8008-dfeac7129ad2",
+      "oldGeometry": [
+        1500,
+        541,
+        300,
+        68
+      ]
+    }
+  ],
+  "barReviewId": "26b75110-679b-80ad-8008-dfea9e6ff40d",
+  "buttonBoundsInBar": [
+    1420,
+    510,
+    400,
+    133.33333333333334
+  ],
+  "label": "STOP",
+  "font": "Cinzel",
+  "palette": "Ivory parchment, copper/brown ink, navy botanical engraving; no metallic hardware.",
+  "status": "ready_for_review",
+  "unityImported": false
+}

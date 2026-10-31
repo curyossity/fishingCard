@@ -1,0 +1,1651 @@
+{
+  "date": "2026-10-31",
+  "file": {
+    "id": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+    "name": "New File 1",
+    "revision": 239
+  },
+  "readOnly": true,
+  "deletionAuthorized": false,
+  "counts": {
+    "REMOVE_CANDIDATE": 64,
+    "ARCHIVE_OPTIONAL": 12,
+    "KEEP_REFERENCE": 2,
+    "KEEP_CURRENT": 79,
+    "KEEP_SHARED": 16,
+    "CONSOLIDATE_SOURCE": 4
+  },
+  "pages": [
+    {
+      "id": "9e056cfe-f83f-81f8-8008-cc523ff45212",
+      "name": "Page 1",
+      "topLevelItems": 0,
+      "proposal": "REMOVE_EMPTY_PAGE_CANDIDATE"
+    },
+    {
+      "id": "55e98d0e-b63f-8025-8008-cc53feeed652",
+      "name": "Fantasy Card — MCP Verification",
+      "topLevelItems": 1,
+      "proposal": "REMOVE_DEMO_PAGE_CANDIDATE"
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "name": "Gameplay Reference — Editable",
+      "topLevelItems": 6,
+      "proposal": "ARCHIVE_LEGACY_PAGE_OPTIONAL"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdd5868103f5",
+      "name": "Concept B — Midnight Field Journal (Static)",
+      "topLevelItems": 1,
+      "proposal": "KEEP_ONE_STYLE_REFERENCE"
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "name": "Concept B — Reusable Assembly (4K)",
+      "topLevelItems": 169,
+      "proposal": "KEEP_AND_ORGANIZE"
+    }
+  ],
+  "items": [
+    {
+      "id": "55e98d0e-b63f-8025-8008-cc5424e80374",
+      "name": "Fantasy Card / Moonlit Relic",
+      "type": "board",
+      "pageId": "55e98d0e-b63f-8025-8008-cc53feeed652",
+      "pageName": "Fantasy Card — MCP Verification",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "MCP connection demo; unrelated to the fishing game."
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc559f8249d4",
+      "name": "Original reference / locked comparison",
+      "type": "board",
+      "pageId": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "pageName": "Gameplay Reference — Editable",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Legacy nautical UI, replaced by Midnight Field Journal; retain only if the old style is still wanted as reference."
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc55bf618f5e",
+      "name": "Gameplay layout / editable 1920 × 1080",
+      "type": "board",
+      "pageId": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "pageName": "Gameplay Reference — Editable",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Legacy nautical UI, replaced by Midnight Field Journal; retain only if the old style is still wanted as reference."
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc55bf667282",
+      "name": "Source artwork / reusable",
+      "type": "board",
+      "pageId": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "pageName": "Gameplay Reference — Editable",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Legacy nautical UI, replaced by Midnight Field Journal; retain only if the old style is still wanted as reference."
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc5a092d4141",
+      "name": "Previous right sidebar / comparison",
+      "type": "board",
+      "pageId": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "pageName": "Gameplay Reference — Editable",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Legacy nautical UI, replaced by Midnight Field Journal; retain only if the old style is still wanted as reference."
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc5d983ad2a9",
+      "name": "Catch Rig / individual Unity parts",
+      "type": "board",
+      "pageId": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "pageName": "Gameplay Reference — Editable",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Legacy nautical UI, replaced by Midnight Field Journal; retain only if the old style is still wanted as reference."
+    },
+    {
+      "id": "8a17fa10-389b-804e-8008-cc6d5c4d3b2e",
+      "name": "Descend / Hover state",
+      "type": "board",
+      "pageId": "8a17fa10-389b-804e-8008-cc5591039a4e",
+      "pageName": "Gameplay Reference — Editable",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Legacy nautical UI, replaced by Midnight Field Journal; retain only if the old style is still wanted as reference."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdd5885a6014",
+      "name": "Midnight Field Journal / single static mockup",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cdd5868103f5",
+      "pageName": "Concept B — Midnight Field Journal (Static)",
+      "decision": "KEEP_REFERENCE",
+      "reason": "Original approved atmosphere/style mockup; reference only, not a runtime asset."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdde36733e6f",
+      "name": "GAMEPLAY — assembled reusable parts / 3840 × 2160",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Older assembled comparison/prototype. Current component masters are kept separately; this screen is not the current Unity layout."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdead5028f97",
+      "name": "GAMEPLAY B — techniques laid on table / perspective preview",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Older assembled comparison/prototype. Current component masters are kept separately; this screen is not the current Unity layout."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0061921543d",
+      "name": "GAMEPLAY D / Engraved tooltip / MFJ-R027",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Older assembled comparison/prototype. Current component masters are kept separately; this screen is not the current Unity layout."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d07d339bae02",
+      "name": "GAMEPLAY E / Parchment controls / MFJ-R037–R038",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Older assembled comparison/prototype. Current component masters are kept separately; this screen is not the current Unity layout."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d08a9ab76de5",
+      "name": "GAMEPLAY F / Illustrated depth guide / MFJ-R040",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Older assembled comparison/prototype. Current component masters are kept separately; this screen is not the current Unity layout."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0a91363085a",
+      "name": "GAMEPLAY G / Technique hand backing sheet / MFJ-R041",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_REFERENCE",
+      "reason": "Most recent general assembled gameplay reference before subsequent tooltip/tag-bar studies; not a complete latest-state gameplay screen."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1c31b44a376",
+      "name": "GAMEPLAY H / Value modifier tooltip / MFJ-R042",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Demonstrates the retired R042 tooltip or replaced R046 rarity-bar mechanic."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1c31fa6ec4b",
+      "name": "PROTOTYPE / Hover modified Value / MFJ-R042",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Prototype for retired R042 tooltip; R045 is current."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d00618505dcb",
+      "name": "PROTOTYPE / Engraved Catch Chain tooltip / MFJ-R027",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf65f248e1e2",
+      "name": "GAMEPLAY C / Reef Snag event / MFJ-R020",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "ARCHIVE_OPTIONAL",
+      "reason": "Older assembled comparison/prototype. Current component masters are kept separately; this screen is not the current Unity layout."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdde40529e8e",
+      "name": "COMPONENT REVIEW — independent templates / not a screenshot",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Mixed source sheet contains reusable originals; extract required pieces before considering any whole-board deletion."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cdde421c05c9",
+      "name": "SOURCE ASSETS — independent originals",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Mixed source sheet contains reusable originals; extract required pieces before considering any whole-board deletion."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cde0da1d370c",
+      "name": "CATCH CHAIN CARD v2 — mockup detail study",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Approved detailed chain/Technique appearance; the later fan refines placement rather than replacing this artwork."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cde2b511f13d",
+      "name": "CATCH CHAIN — complete assembled v2",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Approved detailed chain/Technique appearance; the later fan refines placement rather than replacing this artwork."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cde85bfb5c79",
+      "name": "TECHNIQUES — engraved hand / mockup detail",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Approved detailed chain/Technique appearance; the later fan refines placement rather than replacing this artwork."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cee1b54ddb82",
+      "name": "MFJ-R002 / Main creature card — mockup detail review",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cee1b64ceecf",
+      "name": "MFJ-R002 / Independent source art",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf09f3ff1e59",
+      "name": "MFJ-R003 / Cod — detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf0f6729044a",
+      "name": "MFJ-R004 / Garfish / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf0f6787a406",
+      "name": "MFJ-R004 / Garfish / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf0f935a97c4",
+      "name": "MFJ-R005 / Glass Minnow / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf0f93bd126d",
+      "name": "MFJ-R005 / Glass Minnow / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf0faf77ee33",
+      "name": "MFJ-R006 / Jellyfish / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf0fafe405f7",
+      "name": "MFJ-R006 / Jellyfish / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1b7b9c8773",
+      "name": "MFJ-R007 / Lionfish / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1b7c5effd8",
+      "name": "MFJ-R007 / Lionfish / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1bcde4302e",
+      "name": "MFJ-R008 / Mackerel / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1bce5f4ce3",
+      "name": "MFJ-R008 / Mackerel / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1bf62e7a36",
+      "name": "MFJ-R009 / Moonlit Ray / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1bf69ba01a",
+      "name": "MFJ-R009 / Moonlit Ray / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1c19384688",
+      "name": "MFJ-R010 / Mussel / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1c19b520b8",
+      "name": "MFJ-R010 / Mussel / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1c3e4397e4",
+      "name": "MFJ-R011 / Sardine / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf1c3eb155ab",
+      "name": "MFJ-R011 / Sardine / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf347ef37602",
+      "name": "MFJ-R012 / Cleaner Shrimp / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf347f8f2574",
+      "name": "MFJ-R012 / Cleaner Shrimp / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf3481346f34",
+      "name": "MFJ-R013 / Clinging Crab / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf34819ae5c4",
+      "name": "MFJ-R013 / Clinging Crab / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf348378e765",
+      "name": "MFJ-R014 / Sea Anemone / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf3483fa3603",
+      "name": "MFJ-R014 / Sea Anemone / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf34857f82ac",
+      "name": "MFJ-R015 / Sea Bass / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf3486054010",
+      "name": "MFJ-R015 / Sea Bass / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf348891dbf4",
+      "name": "MFJ-R016 / Sea Urchin / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf34893f0aaf",
+      "name": "MFJ-R016 / Sea Urchin / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf348b8ecb45",
+      "name": "MFJ-R017 / Spiny Lobster / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf348c2f1a6c",
+      "name": "MFJ-R017 / Spiny Lobster / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf348e983db3",
+      "name": "MFJ-R018 / Squid / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf348f3681bc",
+      "name": "MFJ-R018 / Squid / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf3490e909a3",
+      "name": "MFJ-R019 / Tidepool Eel / detailed creature card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf349181fdae",
+      "name": "MFJ-R019 / Tidepool Eel / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf65f1a30046",
+      "name": "MFJ-R020 / Reef Snag / detailed EVENT card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f35e870",
+      "name": "MFJ-R024 / Fresh Shell Fragments / detailed EVENT card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687d96a259",
+      "name": "MFJ-R023 / Loose Knot / detailed EVENT card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c2dd7ec",
+      "name": "MFJ-R022 / Gentle Upwelling / detailed EVENT card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687a9a6f4f",
+      "name": "MFJ-R021 / Silt Burst / detailed EVENT card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf65f2346433",
+      "name": "MFJ-R020 / Event frame and independent Reef Snag art",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687ab47057",
+      "name": "MFJ-R021 / Silt Burst / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687c5f28e5",
+      "name": "MFJ-R022 / Gentle Upwelling / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687dc371b4",
+      "name": "MFJ-R023 / Loose Knot / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf687f67e74b",
+      "name": "MFJ-R024 / Fresh Shell Fragments / separate illustration source",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf68a5c60f8c",
+      "name": "EVENT ROSTER / Hazards and Environment / Unity integration",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-cf68a5f46780",
+      "name": "EVENT ROSTER / Opportunities / Unity integration",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d00614dd5194",
+      "name": "MFJ-R026 / Engraved tooltip / Clinging Crab Catch",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Despite R026 naming, these boards were updated in place for accepted R027; frame and role artwork are reused."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0094ff4e6c7",
+      "name": "SUPERSEDED / MFJ-R025 / Clinging Crab Catch",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d00616026a38",
+      "name": "MFJ-R026 / Engraved tooltip / Glass Minnow Bait",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Despite R026 naming, these boards were updated in place for accepted R027; frame and role artwork are reused."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d009513f1f95",
+      "name": "SUPERSEDED / MFJ-R025 / Glass Minnow Bait",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d00617505c88",
+      "name": "MFJ-R026 / Engraved tooltip / Sardine Catch",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Despite R026 naming, these boards were updated in place for accepted R027; frame and role artwork are reused."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d009522a12b1",
+      "name": "SUPERSEDED / MFJ-R025 / Sardine Catch",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d00953150b66",
+      "name": "MFJ-R026 / Independent engraved tooltip master",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Despite R026 naming, these boards were updated in place for accepted R027; frame and role artwork are reused."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0105575afda",
+      "name": "MFJ-R030 / Technique fan / editable planar sources",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d01110225b74",
+      "name": "MFJ-R030 / Technique fan / independent projected cards",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d04eef43c54d",
+      "name": "TECHNIQUE ROSTER / New engraved cards / MFJ-R031–R034",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d04eef7634b4",
+      "name": "MFJ-R031–R034 / Separate Technique illustrations",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d05df1e230d1",
+      "name": "MFJ-R035 / Independent engraved Line Load housing",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d05df1f67423",
+      "name": "MFJ-R035 / Engraved Line Load / state review",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0617f174fec",
+      "name": "MFJ-R036 / Independent marine action-button housing",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0617f36896a",
+      "name": "MFJ-R036 / Descend + Surface / marine hardware review",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d07d2d33d218",
+      "name": "MFJ-R037–R038 / Independent parchment control sources",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d07d2d621005",
+      "name": "MFJ-R037–R038 / Parchment controls / card-style alternative",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d086c7786357",
+      "name": "MFJ-R039 / Opening boat / independent original art",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d086c7a1bbc3",
+      "name": "MFJ-R039 / Run opening / fisherman boat card",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d08a980a65fb",
+      "name": "MFJ-R040 / Independent engraved depth vignettes",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d08a985b4ebe",
+      "name": "MFJ-R040 / Depth guide / mockup-style coral timeline",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0a9132b5870",
+      "name": "MFJ-R041 / Independent Technique hand backing sheet",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d0a91419d889",
+      "name": "MFJ-R041 / Sheet source review / no cards baked in",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1c312ce8f8a",
+      "name": "MFJ-R042 / Independent modifier-tooltip frame",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1c312ec4bb6",
+      "name": "MFJ-R042 / Stat modifier tooltips / editable review",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1c443614e62",
+      "name": "OVERLAY / Value modifiers / MFJ-R042",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d61e2e0eeb",
+      "name": "MFJ-R043 / Compact modifier tooltips / 1–3 sources",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d631064172",
+      "name": "MFJ-R043 / Overflow / three visible + scrolling",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d6441a5fcd",
+      "name": "PROTOTYPE / R043 / scroll down",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d64433eb39",
+      "name": "PROTOTYPE / R043 / scroll up",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1d6446675ed",
+      "name": "MFJ-R043 / 9-slice assembly / fixed corners",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8e5a830ea",
+      "name": "MFJ-R045 / Compact tooltip / flat icons + corner engraving",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8eb58cd20",
+      "name": "MFJ-R045 / Arrow-only scrolling / first · middle · last",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8f4e9dda4",
+      "name": "PROTOTYPE / R045 / scroll state 0",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8f504cab5",
+      "name": "PROTOTYPE / R045 / scroll state 1",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8f51f5f10",
+      "name": "PROTOTYPE / R045 / scroll state 2",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d1f8f54b16ca",
+      "name": "MFJ-R045 / Blank master / 64px nine-slice borders",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863692957f6",
+      "name": "MFJ-R046 / Rarity timing bar / design review",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8638f85a121",
+      "name": "PROTOTYPE / R046 / Sweep 01",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863952301d3",
+      "name": "PROTOTYPE / R046 / Sweep 02",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8639c21d6ad",
+      "name": "PROTOTYPE / R046 / Sweep 03",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863a28b6c13",
+      "name": "PROTOTYPE / R046 / Sweep 04",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863a940fe56",
+      "name": "PROTOTYPE / R046 / Sweep 05",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863b05c9237",
+      "name": "PROTOTYPE / R046 / Sweep 06",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863b7c48167",
+      "name": "PROTOTYPE / R046 / Sweep 07",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863bdf8a086",
+      "name": "PROTOTYPE / R046 / Sweep 08",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863c63a9df7",
+      "name": "PROTOTYPE / R046 / Sweep 09",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863cd2030c0",
+      "name": "PROTOTYPE / R046 / Sweep 10",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863d458f83a",
+      "name": "PROTOTYPE / R046 / Sweep 11",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863dc4a48ef",
+      "name": "PROTOTYPE / R046 / Sweep 12",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863e547bc62",
+      "name": "PROTOTYPE / R046 / Sweep 13",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863ecbc489b",
+      "name": "PROTOTYPE / R046 / Sweep 14",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863f4fc6f19",
+      "name": "PROTOTYPE / R046 / Stopped Common",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d863fe964834",
+      "name": "PROTOTYPE / R046 / Stopped Uncommon",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86406d660e3",
+      "name": "PROTOTYPE / R046 / Stopped Rare",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8640f15ebc8",
+      "name": "GAMEPLAY J / Rare creature revealed after timing / R046",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Demonstrates the retired R042 tooltip or replaced R046 rarity-bar mechanic."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8640fcd648c",
+      "name": "GAMEPLAY I / Rarity timing phase / R046",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Demonstrates the retired R042 tooltip or replaced R046 rarity-bar mechanic."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8641c80b574",
+      "name": "MFJ-R046 / Reusable parts / native Unity handoff",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d865098b5f41",
+      "name": "GAMEPLAY K / Common Cod reveal / R046",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Demonstrates the retired R042 tooltip or replaced R046 rarity-bar mechanic."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8650df0234d",
+      "name": "GAMEPLAY L / Uncommon Small Octopus reveal / R046",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Demonstrates the retired R042 tooltip or replaced R046 rarity-bar mechanic."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d865325f5866",
+      "name": "PROTOTYPE / R046 / Exact stop Common 0.04",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d8654119f2fe",
+      "name": "PROTOTYPE / R046 / Exact stop Common 0.2",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d86558d28746",
+      "name": "PROTOTYPE / R046 / Exact stop Common 0.52",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d865668b9eef",
+      "name": "PROTOTYPE / R046 / Exact stop Common 0.67",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "bae680cd-9225-8018-8008-d865798766fb",
+      "name": "PROTOTYPE / R046 / Exact stop Uncommon 0.9",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "0ee2d4ff-05c9-80cd-8008-db1942f00ae7",
+      "name": "MFJ-R047 / Dynamic Fishing Tag Bar / three static variations",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "0ee2d4ff-05c9-80cd-8008-db1f8145f4b7",
+      "name": "MFJ-R048 / Quiet tag bars / three initial-state ideas",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc4a1d5c480f",
+      "name": "MFJ-R049 / Fishing instruments / three new forms",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc52279538d6",
+      "name": "MFJ-R050 / Lantern Focus / light parchment refinement",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "0ee2d4ff-05c9-80cd-8008-dc54976c9872",
+      "name": "MFJ-R051 / Lantern Focus / anchor cursor and rising precision",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de811c62398a",
+      "name": "HarborPanorama.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Loose source from the replaced R052/old equipment study; current ornate scenery/engraved items are preserved."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de81e6709a76",
+      "name": "TideglassReel.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Loose source from the replaced R052/old equipment study; current ornate scenery/engraved items are preserved."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de81e8d1c288",
+      "name": "CutLoose.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "CONSOLIDATE_SOURCE",
+      "reason": "Duplicate loose Technique artwork from the early Harbor study; keep a canonical current copy before removing this drop."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de81eb799a87",
+      "name": "SlipPast.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "CONSOLIDATE_SOURCE",
+      "reason": "Duplicate loose Technique artwork from the early Harbor study; keep a canonical current copy before removing this drop."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de81ee4b23fd",
+      "name": "SteadyLine.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "CONSOLIDATE_SOURCE",
+      "reason": "Duplicate loose Technique artwork from the early Harbor study; keep a canonical current copy before removing this drop."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de81f0851a96",
+      "name": "PrizeHook.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "CONSOLIDATE_SOURCE",
+      "reason": "Duplicate loose Technique artwork from the early Harbor study; keep a canonical current copy before removing this drop."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de832a7f59c0",
+      "name": "MFJ-R052 / Harbor design collection title",
+      "type": "text",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de832b61fc2d",
+      "name": "MFJ-R052 / 01 — Harbor / 3840 × 2160",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de83518583ea",
+      "name": "MFJ-R052 / 02 — Tackle Shop / 3840 × 2160",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "d76f6cbf-1fc5-8066-8008-de8437dc384a",
+      "name": "MFJ-R052 / 03 — Technique Collection / 3840 × 2160",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de8623eba843",
+      "name": "MFJ-R052 / 04 — Discovery Journal / 3840 × 2160",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de86a08036bb",
+      "name": "MFJ-R052 / 05 — Reusable Unity element library",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de8860eb1e21",
+      "name": "DriftwoodRod.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Loose source from the replaced R052/old equipment study; current ornate scenery/engraved items are preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de8862e7702f",
+      "name": "BarbedHook.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Loose source from the replaced R052/old equipment study; current ornate scenery/engraved items are preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de8ff58e2639",
+      "name": "MFJ-R053 — Harbor / Ornate card-style study",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "75555645-d407-8067-8008-debc97203dbe",
+      "name": "R057 comparison / original raster framing / harbor",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9192c78c73",
+      "name": "MFJ-R054 — Tackle Shop / Ornate card-style study",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9b9c9710d1",
+      "name": "MFJ-R055 — Tackle Shop / Engraved equipment",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "75555645-d407-8067-8008-dea8242484c7",
+      "name": "R057 comparison / original raster framing / shop",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9b972ff90c",
+      "name": "RodEngraved.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9b99677d11",
+      "name": "ReelEngraved.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9b9b3a9112",
+      "name": "HookEngraved.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cef76aab3",
+      "name": "TechniqueFrame.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cf120757d",
+      "name": "CutLoose.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cf2d49de0",
+      "name": "SlipPast.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cf4970a6a",
+      "name": "ClearWater.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cf70d6a10",
+      "name": "HoldSteady.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cf8a41a16",
+      "name": "Rerig.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cfb3ca568",
+      "name": "SteadyLine.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cfcd8d253",
+      "name": "Recast.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9cfe5b9d50",
+      "name": "PrizeHook.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-de9d62501389",
+      "name": "MFJ-R056 — Technique Collection / In-run card faces",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "75555645-d407-8067-8008-debcce9e38b3",
+      "name": "R057 comparison / original raster framing / collection",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "REMOVE_CANDIDATE",
+      "reason": "Retired design, rejected alternative, or obsolete comparison; successor is preserved."
+    },
+    {
+      "id": "75555645-d407-8067-8008-dea9cd9a2881",
+      "name": "DarkFrameMaster.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-dea9cfcb5568",
+      "name": "PaperFrameMaster.png",
+      "type": "rectangle",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_SHARED",
+      "reason": "Loose current engraved equipment, Technique artwork/frame or R057 frame master; organize with reusable source assets."
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedef8b3f171",
+      "name": "MFJ-R058 — Discovery Journal / Ornate 4K",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedff4d4b1dd",
+      "name": "MFJ-R058 / Reusable Journal sources",
+      "type": "board",
+      "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+      "pageName": "Concept B — Reusable Assembly (4K)",
+      "decision": "KEEP_CURRENT",
+      "reason": "Current component, current card design, or independent reusable source."
+    }
+  ],
+  "prototypeDependencyPromotions": [],
+  "prototypeLinksChecked": 95,
+  "hierarchyNodesChecked": 16311,
+  "truncatedHierarchyScans": [],
+  "localLibraryComponents": 0,
+  "note": "Review proposal. Recheck file revision and prototype targets immediately before any later approved cleanup."
+}

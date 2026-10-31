@@ -1,0 +1,222 @@
+{
+  "revision": "MFJ-R059",
+  "reviewId": "26b75110-679b-80ad-8008-dfea9e6ff40d",
+  "oldR051Preserved": true,
+  "bars": [
+    {
+      "id": "26b75110-679b-80ad-8008-dfeaa0187e17",
+      "width": 2160,
+      "height": 720,
+      "normalised": true,
+      "zones": [
+        {
+          "tag": "Fish",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Predator",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Schooling",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Small",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Heavy",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Anchored",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Armored",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Elusive",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        }
+      ],
+      "markerOverlay": true,
+      "markerVisible": true,
+      "frameNotUpscaled": true
+    },
+    {
+      "id": "26b75110-679b-80ad-8008-dfeab506ae31",
+      "width": 2160,
+      "height": 720,
+      "normalised": true,
+      "zones": [
+        {
+          "tag": "Fish",
+          "editable": true,
+          "fraction": 0.0899999999999965,
+          "precisionFraction": 0.18000000000005453,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Predator",
+          "editable": true,
+          "fraction": 0.13699999999999896,
+          "precisionFraction": 0.1800017588602666,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Schooling",
+          "editable": true,
+          "fraction": 0.13599999999999685,
+          "precisionFraction": 0.18000088589654228,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Small",
+          "editable": true,
+          "fraction": 0.11999999999999825,
+          "precisionFraction": 0.18000000000000146,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Heavy",
+          "editable": true,
+          "fraction": 0.15,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Anchored",
+          "editable": true,
+          "fraction": 0.1,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Armored",
+          "editable": true,
+          "fraction": 0.1420000000000007,
+          "precisionFraction": 0.1800016969285288,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        },
+        {
+          "tag": "Elusive",
+          "editable": true,
+          "fraction": 0.125,
+          "precisionFraction": 0.18000000000002805,
+          "precisionCentred": true,
+          "labelInside": true,
+          "iconInside": true,
+          "zoneFills": []
+        }
+      ],
+      "markerOverlay": true,
+      "markerVisible": true,
+      "frameNotUpscaled": true
+    }
+  ],
+  "fonts": [
+    "Cinzel",
+    "Source Serif 4"
+  ],
+  "unityImported": false,
+  "visualReview": {
+    "initial": "Export inspected: clear tag names/icons, visible overlay anchor, warm precision centres, navy footer and coastal frame.",
+    "midRun": "Export inspected: variable-width spans and precision widths remain proportional.",
+    "reviewBoard": "3840 x 2160 export inspected; both examples fit the board."
+  },
+  "images": {
+    "EngravedTagBarFrame.png": {
+      "width": 2172,
+      "height": 724,
+      "sha256": "126ff765fa7f4480380cf2cdee6ce406211d429942950c72870bc37199e407c9"
+    },
+    "InitialBar.png": {
+      "width": 2160,
+      "height": 720,
+      "sha256": "feca13dc9751925046ada99467cc8104a2e0aad9b6025cf0c4120eb30a2493b8"
+    },
+    "MidRunBar.png": {
+      "width": 2160,
+      "height": 720,
+      "sha256": "2c6d610172327a8d58bce05b890aa29bb241e03bddd5f418119766a3d65b0536"
+    },
+    "DesignReview.png": {
+      "width": 3840,
+      "height": 2160,
+      "sha256": "03e8a2fbb692ee7a4157794bab98bfaf3256d2e3593de79ad192e88bdfd4f38e"
+    }
+  },
+  "unityChanged": false
+}

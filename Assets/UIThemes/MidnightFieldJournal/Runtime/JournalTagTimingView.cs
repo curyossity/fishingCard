@@ -1,13 +1,15 @@
 using TMPro;
 using UnityEngine;
 
-/// <summary>R051 monochrome tag channel, proportional precision lights and anchor cursor.</summary>
+/// <summary>Monochrome tag channel, proportional precision lights and an independently positioned anchor cursor.</summary>
 public sealed class JournalTagTimingView : JournalEncounterTimingView
 {
     [SerializeField] private RectTransform marker, burst;
     [SerializeField] private RectTransform[] zones, precisionAreas;
     [SerializeField] private TMP_Text[] labels;
     [SerializeField] private TMP_Text phase;
+    [SerializeField] private float precisionHeight = 60, markerTop = 88, burstTop = 254;
+    [SerializeField] private Color stopFaceColor = new Color32(41,61,64,255);
     private float resizeStartedAt = -1;
     protected override RectTransform Marker => marker;
     public RectTransform[] ZoneRects => zones;
@@ -26,21 +28,23 @@ public sealed class JournalTagTimingView : JournalEncounterTimingView
         float t = !state.Stopped ? 0 : state.ResizeSeconds <= 0 ? 1 : Mathf.Clamp01((Time.unscaledTime-resizeStartedAt)/state.ResizeSeconds);
         t = t*t*(3-2*t);
         float start = 0, markerPosition = state.Position;
+        var track = (RectTransform)zones[0].parent;
+        float trackWidth = track.rect.width, trackLeft = track.anchoredPosition.x;
         for (int i = 0; i < zones.Length; i++)
         {
             var zone = state.Zones[i];
             float share = Mathf.Lerp(zone.End-zone.Start, state.NextShares[i], t);
             zones[i].anchorMin = new Vector2(start,0); zones[i].anchorMax = new Vector2(start+share,1);
             zones[i].offsetMin = zones[i].offsetMax = Vector2.zero;
-            float width = 1440*share;
-            precisionAreas[i].sizeDelta = new Vector2(width*(zone.PrecisionEnd-zone.PrecisionStart)/(zone.End-zone.Start),60);
+            float width = trackWidth*share;
+            precisionAreas[i].sizeDelta = new Vector2(width*(zone.PrecisionEnd-zone.PrecisionStart)/(zone.End-zone.Start),precisionHeight);
             // Every tag keeps its glyph at the five-percent floor. The phase field names narrow spans.
             labels[i].gameObject.SetActive(width >= 112);
             if (state.Stopped && zone.Tag == state.Outcome.Tag)
                 markerPosition = start + share*Mathf.InverseLerp(zone.Start,zone.End,state.Position);
             start += share;
         }
-        marker.anchoredPosition = new Vector2(80+1440*markerPosition,-88);
+        marker.anchoredPosition = new Vector2(trackLeft+trackWidth*markerPosition,-markerTop);
         heading.text = state.Stopped ? state.Outcome.Tag.ToUpperInvariant()+(state.PrecisionHit ? " · PRECISION" : " · STOPPED") : "FOLLOW THE LIGHT";
         heading.color = Ink;
         if (state.Stopped) phase.text = state.FixedEncounter ? "PROMISED ENCOUNTER" : state.UsesFallbackPool ? "OPEN WATERS" : "TAG SELECTED";
@@ -52,11 +56,11 @@ public sealed class JournalTagTimingView : JournalEncounterTimingView
         }
         instruction.text = !state.Stopped ? "Stop on a tag. Aim for its marked centre." : state.FixedEncounter ? "Your promised creature reveals next." : state.UsesFallbackPool ? "No eligible species with this tag. Drawing from these waters." : "The creature reveals next. Then choose Catch or Bait.";
         stopLabel.text = state.Stopped ? "STOPPED" : "STOP";
-        stopButton.targetGraphic.color = Ink;
+        stopButton.targetGraphic.color = stopFaceColor;
         burst.gameObject.SetActive(state.Stopped);
         if (state.Stopped)
         {
-            burst.anchoredPosition = new Vector2(80+1440*markerPosition,-254);
+            burst.anchoredPosition = new Vector2(trackLeft+trackWidth*markerPosition,-burstTop);
             burst.localScale = Vector3.one*(1+Mathf.Sin(state.FeedbackProgress*Mathf.PI)*.25f);
         }
     }

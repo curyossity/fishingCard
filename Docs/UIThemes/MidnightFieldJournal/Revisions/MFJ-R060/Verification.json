@@ -1,0 +1,29 @@
+{
+  "revision": "MFJ-R060",
+  "instances": [
+    {
+      "id": "26b75110-679b-80ad-8008-dff87e63f7d1",
+      "partsSeparate": true,
+      "nativeLabel": true,
+      "withinBar": true,
+      "sourceNotUpscaled": true,
+      "oldStopRemoved": true
+    },
+    {
+      "id": "26b75110-679b-80ad-8008-dff88057c370",
+      "partsSeparate": true,
+      "nativeLabel": true,
+      "withinBar": true,
+      "sourceNotUpscaled": true,
+      "oldStopRemoved": true
+    }
+  ],
+  "oldR051Preserved": true,
+  "unityImported": false,
+  "visualReview": "Actual Penpot button and bar exports inspected: readable dark Stop icon/label on ivory, detailed botanical ends and engraved border; button fits within navy footer without covering the instruction.",
+  "imageHashes": {
+    "EngravedStopButton.png": "fcd572246b87f375e7d81c7d9678f0fb2762ef1dedd14cb0f6ae2d5f19e3f536",
+    "StopButton.png": "7c3949fbd496434d43d95e476ec756cb657c1a2708d2efeaa43ed9801b7f17bb",
+    "BarWithStop.png": "180508fbf7919fbc8e5e653bb8da45c8819aa194e5172a65dce9d82ad5eca6cb"
+  }
+}

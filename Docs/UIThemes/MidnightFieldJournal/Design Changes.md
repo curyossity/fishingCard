@@ -1,5 +1,14 @@
 # Penpot revisions after the Unity assembly
 
+**MFJ-SYNC-012 — R059 tag bar and R060 Stop are integrated and verified in Unity.** Separate decorative sprites and native dynamic elements; existing timing, selection and elastic animations retained. 4K/1080p captures and 103 live checks passed. **0 pending; 47 completed; 13 superseded.** [Integration](Sync012/README.md). Earlier review-only statements below are historical.
+
+
+**MFJ-R060 — engraved parchment Stop button, ready for review.** Applied to both R059 bar examples, with separate native Stop icon and label. **2 pending design revisions (R059 + R060); 45 completed; 13 superseded.** Unity remains unchanged. [Design and preview](Revisions/MFJ-R060/README.md).
+
+
+**MFJ-R059 — new engraved coastal tag-bar variation, ready for review.** One design shown in initial and illustrative mid-run states. Detailed parchment/copper border, botanical engraving and navy footer; native labels, existing tag glyphs, precision areas, anchor marker and Stop remain separate. R051 stays active in Unity. **1 design awaiting review/import; 45 completed; 13 superseded.** [Preview and handoff](Revisions/MFJ-R059/README.md).
+
+
 **Unity-only debug tool (31 October 2026):** reset is now in **Fishing Cards / Debug / Game Saves** in the editor. The runtime overlay was removed. Edit Mode deletion, Play Mode Harbor reload and preservation of settings passed isolated tests. No Penpot revision or art import is pending. [Implementation/removal notes](../../Validation/DebugSaveReset/README.md).
 
 **MFJ-SYNC-011.2: Technique hand size is unrestricted.** Four starting cards normally; six with Tideglass Reel. Explicit effects may grow either hand further; obsolete room-discard prompts are removed. Equipment ownership/loadout rules remain confirmed. Unity-only increment; **0 pending imports, 45 completed, 13 superseded.** [Verification](../../Validation/UnlimitedTechniqueHand/README.md).
@@ -313,3 +322,8 @@ New ornate collection with all eight active Technique faces using exact game fra
 ## MFJ-R057 — Sharp 4K frames
 
 Replace magnified full-screen raster framing with separately generated reusable nine-slice frame masters. Preserve existing native card fields and illustrations. See the verification report for completion; no Unity import. [Revision](Revisions/MFJ-R057/README.md).
+
+
+## Penpot library organization — 31 October 2026
+
+Approved cleanup removed all 64 reviewed obsolete design items and two empty pages and organized the current page into named screen, card, component, source and archive groups. Current board IDs and retained artwork/text/geometry/prototype links were preserved. Six older assemblies and four older loose Technique uploads remain in Archive. The remaining pages are labelled Current Design Library, Style Reference - Original Mockup, and Archive - Original Nautical UI. Cleanup is complete. This is Penpot organization only: **no Unity reimport required**, and existing integration statuses are unchanged. [Execution record](PenpotCleanupReview/Execution.md).

@@ -1,0 +1,24 @@
+[
+  {
+    "revision": "MFJ-R059",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R059/EngravedTagBarFrame.png",
+    "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/TagTiming/EngravedCoastal/EngravedTagBarFrame.png",
+    "sha256": "126ff765fa7f4480380cf2cdee6ce406211d429942950c72870bc37199e407c9",
+    "guid": "75e729c9b21563a469eb8d7747f21da7",
+    "sourcePixels": [
+      2172,
+      724
+    ]
+  },
+  {
+    "revision": "MFJ-R060",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R060/EngravedStopButton.png",
+    "unityPath": "Assets/UIThemes/MidnightFieldJournal/Art/TagTiming/EngravedCoastal/EngravedStopButton.png",
+    "sha256": "fcd572246b87f375e7d81c7d9678f0fb2762ef1dedd14cb0f6ae2d5f19e3f536",
+    "guid": "9acf86f8b86caea46a87f754c708150f",
+    "sourcePixels": [
+      2172,
+      724
+    ]
+  }
+]

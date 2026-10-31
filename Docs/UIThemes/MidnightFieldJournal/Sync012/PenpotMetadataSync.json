@@ -1,0 +1,12 @@
+{
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"result\": {\n    \"updated\": [\n      {\n        \"id\": \"MFJ-R059\",\n        \"unityImported\": true\n      },\n      {\n        \"id\": \"MFJ-R060\",\n        \"unityImported\": true\n      }\n    ],\n    \"checkpoint\": \"MFJ-SYNC-012\"\n  },\n  \"log\": \"\"\n}"
+      }
+    ]
+  },
+  "jsonrpc": "2.0",
+  "id": 2
+}
