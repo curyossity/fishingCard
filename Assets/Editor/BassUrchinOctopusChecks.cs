@@ -192,7 +192,7 @@ public static class BassUrchinOctopusChecks
         Require(urchin.CurrentWeight == 2, "An attached Urchin with a runtime Predator tag failed to qualify.");
     }
 
-    /// <summary>Checks FIFO grants, selected-target eligibility, exact discard occurrences, capacity, and completion ordering.</summary>
+    /// <summary>Checks FIFO grants, selected-target eligibility, exact discard occurrences and uncapped recovery ordering.</summary>
     private static void ValidateRecovery()
     {
         EffectResolver resolver = new EffectResolver();
@@ -210,28 +210,21 @@ public static class BassUrchinOctopusChecks
             CardEffectTarget.SpecificCaughtCard, 2, new[] { "Armored" }));
         TechniqueDeckRuntime deck = Deck(4, 3); Set(deck, "hand", new[] { technique, Technique("A"), Technique("B"), Technique("C"), Technique("D") });
         Play(runtime, deck, chain, resolver, technique);
-        Require(runtime.PendingSelectedTechniqueRecoveryCount == 1 && runtime.ChoiceKind == CreatureEffectChoiceKind.RecoverPlayedTechnique
-            && runtime.ChoiceName == "Oldest Grip", "A play failed to consume exactly the oldest grant.");
-        Require(armor.CurrentValue == 10 && deck.Hand.Length == 4, "Technique/recovery capacity fixture failed.");
-        Require(runtime.TryChoosePlayedTechniqueRecovery(0, deck), "Full-hand recovery could not discard for room.");
-        Prepare(runtime, chain, resolver, deck);
-        Require(deck.Hand.Length == 4 && Array.Exists(deck.Hand, c => c == technique)
-            && runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Exact played technique failed to return after one discard.");
+        Require(runtime.PendingSelectedTechniqueRecoveryCount == 1 && runtime.ChoiceKind == CreatureEffectChoiceKind.None
+            && deck.Hand.Length == 5 && Array.Exists(deck.Hand, c => c == technique), "Oldest grant did not recover the exact play.");
+        Require(armor.CurrentValue == 10, "Targeted technique effect failed.");
         Set(deck, "hand", new[] { technique, Technique("E"), Technique("F"), Technique("G"), Technique("H") });
         Play(runtime, deck, chain, resolver, technique);
-        Require(runtime.ChoiceName == "Next Grip" && runtime.PendingSelectedTechniqueRecoveryCount == 0,
-            "Second grant did not apply to the next qualifying play.");
-        Require(runtime.TryChoosePlayedTechniqueRecovery(-1, deck) && runtime.ChoiceKind == CreatureEffectChoiceKind.None,
-            "Declined recovery remained available.");
-
+        Require(runtime.PendingSelectedTechniqueRecoveryCount == 0 && deck.Hand.Length == 5
+            && runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Next grant failed uncapped recovery.");
         runtime.Reset(); first = chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait); runtime.RecordAttachment(first);
         runtime.Reset(); runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));
         deck = Deck(0, 2);
         Set(deck, "hand", new[] { technique, Technique("OA"), Technique("OB"), Technique("OC"), Technique("OD"), Technique("OE") });
         Play(runtime, deck, chain, resolver, technique);
-        Require(deck.Hand.Length == 5 && runtime.ChoiceKind == CreatureEffectChoiceKind.None
+        Require(deck.Hand.Length == 6 && runtime.ChoiceKind == CreatureEffectChoiceKind.None
             && runtime.PendingSelectedTechniqueRecoveryCount == 0,
-            "Oversized recovery offered a discard that cannot make room within its one-card limit.");
+            "Recovery above six failed or offered an unnecessary discard.");
         runtime.Reset(); runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));
         CardInstance otherArmor = chain.Add(Card("Armor2", new[] { "Armored" }), resolver);
         CardDefinition untargeted = Technique("Untargeted", Effect(CardEffectType.ModifyCaughtCard, CardEffectTrigger.Manual,
@@ -278,7 +271,7 @@ public static class BassUrchinOctopusChecks
         deck = Deck(0, 0); Set(deck, "hand", new[] { technique });
         TechniqueRuleChecks.DiscardFixture(deck, 0, out _, out _); playedId = deck.LastDiscardOccurrenceId;
         runtime.BeginTechniquePlay(technique, playedId, chain.Catches); chain.TryApplyTechniqueEffect(technique.Effects[0], resolver, out _);
-        deck.DrawTechniques(1, 4, new System.Random(1)); // The play has been reshuffled/drawn by an earlier effect.
+        deck.DrawTechniques(1, new System.Random(1)); // The play has been reshuffled/drawn by an earlier effect.
         runtime.FinishTechniquePlay(); Prepare(runtime, chain, resolver, deck);
         Require(deck.Hand.Length == 1 && runtime.PendingSelectedTechniqueRecoveryCount == 0
             && !deck.HasDiscardedTechniqueOccurrence(playedId, technique), "Reshuffled played card produced a second recovery.");
@@ -308,22 +301,12 @@ public static class BassUrchinOctopusChecks
             "Clever Catch failed to draw exactly one immediately.");
         deck = Deck(4, 3); octopus = chain.Add(Octopus(), resolver); runtime.RecordAttachment(octopus, false, chain.Catches);
         Prepare(runtime, chain, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques && runtime.PendingDrawCount == 1,
-            "Full hand did not offer the immediate draw decision.");
-        Require(runtime.TryChooseFeedingDraw(-1, deck, new System.Random(1)) && deck.Hand.Length == 4 && deck.DrawPile.Length == 3,
-            "Declining Clever Catch drew or discarded a card.");
-        octopus = chain.Add(Octopus(), resolver); runtime.RecordAttachment(octopus, false, chain.Catches);
-        Prepare(runtime, chain, resolver, deck); CardDefinition discarded = deck.Hand[0];
-        Require(runtime.TryChooseFeedingDraw(0, deck, new System.Random(1))
-            && !runtime.TryChooseFeedingDraw(0, deck, new System.Random(1)), "Clever Catch allowed more than one discard.");
-        Prepare(runtime, chain, resolver, deck);
-        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 2 && deck.DiscardPile[0] == discarded,
-            "Clever Catch replacement exceeded one draw or played the discard.");
-        deck = Deck(5, 2); octopus = chain.Add(Octopus(), resolver);
-        runtime.RecordAttachment(octopus, false, chain.Catches); Prepare(runtime, chain, resolver, deck);
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None && deck.Hand.Length == 5 && deck.DrawPile.Length == 2,
-            "Oversized Clever Catch offered a discard that cannot make enough room.");
-
+            "Clever Catch failed to draw above four without discarding.");
+        octopus = chain.Add(Octopus(), resolver); runtime.RecordAttachment(octopus, false, chain.Catches);
+        Prepare(runtime, chain, resolver, deck);
+        Require(deck.Hand.Length == 6 && deck.DrawPile.Length == 1 && deck.DiscardPile.Length == 0,
+            "Repeated Clever Catch did not grant exactly one.");
 
         chain.Reset(); runtime.Reset(); deck = Deck(4, 4);
         CardInstance catchBass = chain.Add(Bass(), resolver);
@@ -541,12 +524,9 @@ public static class BassUrchinOctopusChecks
         drawCount = deck.DrawPile.Length;
         Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
             && deck.DrawPile.Length == drawCount, "Spiny Grip or an unearned draw ran before Cod's release reaction.");
-        Require(controller.TryChooseRecoveredTechnique(0)
-            && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique
-            && deck.Hand.Length == 4 && deck.DrawPile.Length == drawCount, "Full-hand exact recovery was not deferred after Cod.");
-        Require(controller.TryChoosePlayedTechniqueRecovery(0) && deck.Hand.Length == 4
-            && deck.Hand[3] == releaseTech && deck.DrawPile.Length == drawCount && !controller.HasPendingCreatureChoice,
-            "Discard-for-room exact recovery failed or drew an extra card.");
+        Require(controller.TryChooseRecoveredTechnique(0) && !controller.HasPendingCreatureChoice
+            && deck.Hand.Length == 5 && deck.Hand[4] == releaseTech && deck.DrawPile.Length == drawCount,
+            "Cod then Urchin recovery failed or drew an unearned card.");
 
         chain.Reset(); runtime.Reset();
         runtime.RecordAttachment(chain.Add(Urchin(), resolver, CatchAttachmentRole.Bait));

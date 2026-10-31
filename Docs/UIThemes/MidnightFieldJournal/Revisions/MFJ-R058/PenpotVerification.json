@@ -1,0 +1,542 @@
+{
+  "boardId": "75555645-d407-8067-8008-dedef8b3f171",
+  "sourceBoardId": "75555645-d407-8067-8008-dedff4d4b1dd",
+  "width": 3840,
+  "height": 2160,
+  "frames": [
+    {
+      "id": "75555645-d407-8067-8008-dedef942a30a",
+      "name": "Reusable frame / screen perimeter",
+      "width": 3840,
+      "height": 2160,
+      "nativePixels": [
+        3840,
+        2160
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.44
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedef9dc9562",
+      "name": "Reusable frame / Journal wordmark",
+      "width": 919,
+      "height": 200,
+      "nativePixels": [
+        919,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.144
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefa31a6c6",
+      "name": "Reusable frame / navigation",
+      "width": 1745,
+      "height": 200,
+      "nativePixels": [
+        1745,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.152
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefa742857",
+      "name": "Reusable frame / gold balance",
+      "width": 572,
+      "height": 200,
+      "nativePixels": [
+        572,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.144
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedeff061223",
+      "name": "Reusable frame / field journal cabinet",
+      "width": 975,
+      "height": 1580,
+      "nativePixels": [
+        975,
+        1580
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.39
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedeff454fac",
+      "name": "Reusable frame / illustration matte",
+      "width": 895,
+      "height": 1130,
+      "nativePixels": [
+        895,
+        1130
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.358
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0280460b",
+      "name": "Reusable frame / quest body",
+      "width": 2480,
+      "height": 500,
+      "nativePixels": [
+        2480,
+        500
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.43
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf02c561eb",
+      "name": "Reusable frame / quest title",
+      "width": 2440,
+      "height": 200,
+      "nativePixels": [
+        2440,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.098
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf06f09869",
+      "name": "Reusable frame / quest body",
+      "width": 2480,
+      "height": 500,
+      "nativePixels": [
+        2480,
+        500
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.43
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0789944d",
+      "name": "Reusable frame / quest title",
+      "width": 2440,
+      "height": 200,
+      "nativePixels": [
+        2440,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.098
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0cf6fc41",
+      "name": "Reusable frame / quest body",
+      "width": 2480,
+      "height": 500,
+      "nativePixels": [
+        2480,
+        500
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.43
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0d4997e0",
+      "name": "Reusable frame / quest title",
+      "width": 2440,
+      "height": 200,
+      "nativePixels": [
+        2440,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.098
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf12bef107",
+      "name": "Reusable frame / Journal footer",
+      "width": 2500,
+      "height": 200,
+      "nativePixels": [
+        2500,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.16
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf1335fad3",
+      "name": "Reusable frame / return to Harbor",
+      "width": 1010,
+      "height": 200,
+      "nativePixels": [
+        1010,
+        200
+      ],
+      "scaleX": 1,
+      "scaleY": 1,
+      "cornerScale": 0.16
+    }
+  ],
+  "rows": [
+    {
+      "questId": "the_perfect_school",
+      "status": "INCOMPLETE",
+      "progressSegments": 0
+    },
+    {
+      "questId": "the_collector",
+      "status": "COMPLETE",
+      "progressSegments": 0
+    },
+    {
+      "questId": "risk_taker",
+      "status": "1 / 3 SUCCESSFUL EXPEDITIONS",
+      "progressSegments": 3
+    }
+  ],
+  "text": [
+    {
+      "id": "75555645-d407-8067-8008-dedefb15d830",
+      "text": "JOURNAL",
+      "font": "Cinzel",
+      "fontSize": "64",
+      "x": 330,
+      "y": 92,
+      "width": 680,
+      "height": 94
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefbf90fb0",
+      "text": "920",
+      "font": "Cinzel",
+      "fontSize": "72",
+      "x": 3250,
+      "y": 90,
+      "width": 350,
+      "height": 95
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefc8c88be",
+      "text": "HARBOR",
+      "font": "Cinzel",
+      "fontSize": "37",
+      "x": 1332,
+      "y": 110,
+      "width": 345,
+      "height": 68
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefd234726",
+      "text": "TACKLE SHOP",
+      "font": "Cinzel",
+      "fontSize": "37",
+      "x": 1692,
+      "y": 110,
+      "width": 345,
+      "height": 68
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefda51953",
+      "text": "TECHNIQUES",
+      "font": "Cinzel",
+      "fontSize": "37",
+      "x": 2052,
+      "y": 110,
+      "width": 345,
+      "height": 68
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedefe25e360",
+      "text": "JOURNAL",
+      "font": "Cinzel",
+      "fontSize": "37",
+      "x": 2412,
+      "y": 110,
+      "width": 345,
+      "height": 68
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedeffeb7130",
+      "text": "THE FIELD JOURNAL",
+      "font": "Cinzel",
+      "fontSize": "48",
+      "x": 240,
+      "y": 1510,
+      "width": 790,
+      "height": 70
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf005c43ef",
+      "text": "Every expedition\nleaves a story.",
+      "font": "Source Serif 4",
+      "fontSize": "54",
+      "x": 255,
+      "y": 1607,
+      "width": 760,
+      "height": 150
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf010f0382",
+      "text": "Discover the sea.\nRecord what you bring home.",
+      "font": "Source Serif 4",
+      "fontSize": "33",
+      "x": 260,
+      "y": 1745,
+      "width": 750,
+      "height": 85
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf03120d61",
+      "text": "01",
+      "font": "Cinzel",
+      "fontSize": "48",
+      "x": 1275,
+      "y": 343,
+      "width": 105,
+      "height": 72
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0377e5f6",
+      "text": "THE PERFECT SCHOOL",
+      "font": "Cinzel",
+      "fontSize": "57",
+      "x": 1410,
+      "y": 338,
+      "width": 2150,
+      "height": 85
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf03e2d97c",
+      "text": "OBJECTIVE",
+      "font": "Cinzel",
+      "fontSize": "28",
+      "x": 1290,
+      "y": 467,
+      "width": 1010,
+      "height": 50
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf044420a6",
+      "text": "Surface with 4 Schooling creatures\nattached in one expedition.",
+      "font": "Source Serif 4",
+      "fontSize": "43",
+      "x": 1290,
+      "y": 530,
+      "width": 1010,
+      "height": 130
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf050aa869",
+      "text": "REWARD \u00b7 NOT YET GRANTED",
+      "font": "Cinzel",
+      "fontSize": "28",
+      "x": 2440,
+      "y": 467,
+      "width": 1120,
+      "height": 50
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf056ff11d",
+      "text": "Unlock Schoolmaster\u2019s Charm for purchase:\nyour first Schooling Catch each expedition\nhas \u22121 weight.",
+      "font": "Source Serif 4",
+      "fontSize": "39",
+      "x": 2440,
+      "y": 530,
+      "width": 1120,
+      "height": 180
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf05d0e1f0",
+      "text": "INCOMPLETE",
+      "font": "Cinzel",
+      "fontSize": "31",
+      "x": 1480,
+      "y": 694,
+      "width": 850,
+      "height": 54
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf08277b0b",
+      "text": "02",
+      "font": "Cinzel",
+      "fontSize": "48",
+      "x": 1275,
+      "y": 883,
+      "width": 105,
+      "height": 72
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf089cb3bf",
+      "text": "THE COLLECTOR",
+      "font": "Cinzel",
+      "fontSize": "57",
+      "x": 1410,
+      "y": 878,
+      "width": 2150,
+      "height": 85
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf08fed0b8",
+      "text": "OBJECTIVE",
+      "font": "Cinzel",
+      "fontSize": "28",
+      "x": 1290,
+      "y": 1007,
+      "width": 1010,
+      "height": 50
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0962440a",
+      "text": "Surface with creatures representing\nat least 5 distinct tags.",
+      "font": "Source Serif 4",
+      "fontSize": "43",
+      "x": 1290,
+      "y": 1070,
+      "width": 1010,
+      "height": 130
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0a26e67a",
+      "text": "REWARD \u00b7 NOT YET GRANTED",
+      "font": "Cinzel",
+      "fontSize": "28",
+      "x": 2440,
+      "y": 1007,
+      "width": 1120,
+      "height": 50
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0ac52395",
+      "text": "Unlock a new special Event card.",
+      "font": "Source Serif 4",
+      "fontSize": "39",
+      "x": 2440,
+      "y": 1070,
+      "width": 1120,
+      "height": 180
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0b83fedb",
+      "text": "COMPLETE",
+      "font": "Cinzel",
+      "fontSize": "31",
+      "x": 1530,
+      "y": 1234,
+      "width": 850,
+      "height": 54
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0d8a2365",
+      "text": "03",
+      "font": "Cinzel",
+      "fontSize": "48",
+      "x": 1275,
+      "y": 1423,
+      "width": 105,
+      "height": 72
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0df83e54",
+      "text": "RISK TAKER",
+      "font": "Cinzel",
+      "fontSize": "57",
+      "x": 1410,
+      "y": 1418,
+      "width": 2150,
+      "height": 85
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0e62ea58",
+      "text": "OBJECTIVE",
+      "font": "Cinzel",
+      "fontSize": "28",
+      "x": 1290,
+      "y": 1547,
+      "width": 1010,
+      "height": 50
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf0edbfbbf",
+      "text": "Successfully surface while overloaded\nin 3 separate expeditions.",
+      "font": "Source Serif 4",
+      "fontSize": "43",
+      "x": 1290,
+      "y": 1610,
+      "width": 1010,
+      "height": 130
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf10253e8e",
+      "text": "REWARD \u00b7 NOT YET GRANTED",
+      "font": "Cinzel",
+      "fontSize": "28",
+      "x": 2440,
+      "y": 1547,
+      "width": 1120,
+      "height": 50
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf10c2b022",
+      "text": "Unlock Salvager\u2019s Kit for purchase:\nonce per expedition, release one attached\ncreature and draw 1 Technique.",
+      "font": "Source Serif 4",
+      "fontSize": "39",
+      "x": 2440,
+      "y": 1610,
+      "width": 1120,
+      "height": 180
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf112ddccd",
+      "text": "1 / 3 SUCCESSFUL EXPEDITIONS",
+      "font": "Cinzel",
+      "fontSize": "31",
+      "x": 1480,
+      "y": 1774,
+      "width": 850,
+      "height": 54
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf143b29e1",
+      "text": "PROGRESS IS RECORDED",
+      "font": "Cinzel",
+      "fontSize": "32",
+      "x": 375,
+      "y": 1950,
+      "width": 2050,
+      "height": 55
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf14f7801c",
+      "text": "Rewards are listed for reference; nothing is granted yet.",
+      "font": "Source Serif 4",
+      "fontSize": "37",
+      "x": 375,
+      "y": 2010,
+      "width": 2080,
+      "height": 58
+    },
+    {
+      "id": "75555645-d407-8067-8008-dedf15d7cee1",
+      "text": "BACK TO HARBOR",
+      "font": "Cinzel",
+      "fontSize": "48",
+      "x": 2860,
+      "y": 1980,
+      "width": 730,
+      "height": 75
+    }
+  ],
+  "outside": [],
+  "overflow": [],
+  "selected": true
+}

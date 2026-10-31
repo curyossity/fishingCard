@@ -1,0 +1,9 @@
+# Journal illustration provenance
+
+Generated with the built-in image-generation tool. Reference: `../MFJ-R057/ShopPreview.jpg`, used only to match the game's engraving, colour and material style. Generated source was copied into this revision as `Art/JournalDesk.png`. No external paid image API was used. Existing approved frame masters are reused separately; they are not generated from this illustration.
+
+Prompt:
+
+> Create a NEW independent portrait illustration for a fantasy fishing card roguelike Discovery Journal UI. Reference image is STYLE REFERENCE ONLY: match its finely engraved Victorian maritime natural-history, warm parchment, dark midnight teal, aged copper, hand-drawn botanical detail, amber lantern glow. Do not reproduce the screenshot layout, text, frames or UI. Paint a captivating still life inside a small seaside naturalist's cabin: a richly worn open specimen journal on a wooden desk, careful ink drawings of a school of small fish and shells on its pages (no readable writing), a brass magnifying glass, a small dip pen, nautical chart, dried marine plants, amber lantern; beyond a narrow window a quiet harbor and distant lighthouse at dusk. Detailed scratchboard / copperplate etched line work with restrained watercolor and rich tactile shadows, beautiful fine hatching like the game's creature cards. Portrait composition approximately 3:4, book dominant in lower middle, modest lantern top left, ocean window upper right. Entirely illustration, no lettering, no interface, no frame, no border, no logos. High resolution ideally 1536x2048 or higher, crisp detail. This will be a separate image shown at approximately 850x1100 pixels on a 3840x2160 UI, not a complete screen mockup.
+
+Returned source is 1086 × 1448. Final Penpot placement is 810 × 1080, preserving the source aspect ratio. Native 4K decorative frames and editable text are constructed independently; no claim is made that the illustration itself is a 4K source.

@@ -76,7 +76,7 @@ public sealed class ApprovedTechniqueRuntime
                 int[] slots = targets.ResolvingHandSlots(effectIndex);
                 Array.Sort(slots); Array.Reverse(slots);
                 foreach (int slot in slots) if (!deck.TryDiscardTechnique(slot)) throw new InvalidOperationException("Recast target changed after commitment.");
-                deck.DrawTechniques(slots.Length, TechniqueDeckRuntime.HandLimit, random); return true;
+                deck.DrawTechniques(slots.Length, random); return true;
             case CardEffectType.QueuePrizeCatchBonus: pendingPrizes.Add(effect); pendingPrizeSources.Add(source ?? deck?.ResolvingCard); return true;
             default: return false;
         }

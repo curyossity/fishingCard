@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 764086cede18e1e4fba4eb91af4fa1de, type: 3}
+  m_Name: TackleShopCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::TackleShopCatalog
+  items:
+  - id: driftwood_rod
+    displayName: Driftwood Rod
+    category: Capacity-focused
+    description: Start each expedition with +1 Line Capacity.
+    price: 200
+    amount: 1
+    catchLimit: 0
+    benefit: 0
+    sourceCard: {fileID: 11400000, guid: ae89e1073334d4c43bbb410bc35e60a3, type: 2}
+  - id: tideglass_reel
+    displayName: Tideglass Reel
+    category: Technique-focused
+    description: Draw 2 additional Technique cards at the start of each expedition.
+    price: 200
+    amount: 2
+    catchLimit: 0
+    benefit: 1
+    sourceCard: {fileID: 11400000, guid: 6148ba6728b889643b253613a54fe342, type: 2}
+  - id: barbed_hook
+    displayName: Barbed Hook
+    category: Profit-focused
+    description: The first 3 creatures you Catch each expedition gain +1 sale value
+      each while attached.
+    price: 250
+    amount: 1
+    catchLimit: 3
+    benefit: 2
+    sourceCard: {fileID: 11400000, guid: 0e0ebcaabf9ee9349bbbc10f0ea313f5, type: 2}

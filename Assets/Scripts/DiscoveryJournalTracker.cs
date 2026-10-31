@@ -4,13 +4,15 @@ using UnityEngine;
 /// <summary>Connects completed expeditions to persistent discovery evidence without executing rewards.</summary>
 public sealed class DiscoveryJournalTracker : MonoBehaviour
 {
+    public const string DefaultSaveKey = "FishingCards.DiscoveryJournal.v1";
     [SerializeField] private FishingRunController controller;
     [SerializeField] private TextAsset catalogSource;
-    [SerializeField] private string saveKey = "FishingCards.DiscoveryJournal.v1";
+    [SerializeField] private string saveKey = DefaultSaveKey;
     private DiscoveryQuestCatalog catalog;
     private DiscoveryJournalProgress progress;
     private bool loadFailed;
     private bool pendingSave;
+    private bool debugSaveResetPending;
     public string SaveError { get; private set; }
     public DiscoveryQuestDefinition[] Quests { get { EnsureLoaded(); return catalog.quests; } }
 
@@ -62,7 +64,7 @@ public sealed class DiscoveryJournalTracker : MonoBehaviour
     /// <summary>Retries unsaved evidence on later completions or scene exit while preserving unreadable saves.</summary>
     private void TrySave()
     {
-        if (!pendingSave || loadFailed) return;
+        if (!pendingSave || loadFailed || debugSaveResetPending) return;
         try
         {
             PlayerPrefs.SetString(saveKey, progress.ToJson());
@@ -76,4 +78,14 @@ public sealed class DiscoveryJournalTracker : MonoBehaviour
             Debug.LogError(SaveError + " " + error.Message, this);
         }
     }
+
+#if UNITY_EDITOR
+    public string EditorJournalSaveKey => saveKey;
+    /// <summary>Prevents quest evidence being saved again while the editor tool reloads a reset profile.</summary>
+    public string SetDebugSaveResetPending(bool pending)
+    {
+        debugSaveResetPending = pending;
+        return saveKey;
+    }
+#endif
 }

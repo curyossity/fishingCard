@@ -13,13 +13,14 @@ using UnityEngine.SceneManagement;
 /// <summary>Checks native source quality, actual hub rendering and the live hub-to-expedition loop.</summary>
 public static class JournalHarborChecks
 {
-    private const string Output = "Docs/Validation/DiscoveryJournal/";
+    private static string Output = "Docs/Validation/DiscoveryJournal/";
     private static int assertions;
     public static string Status { get; private set; } = "Not started";
 
     /// <summary>Checks the installed scene/prefab and renders each actual Unity page at 4K.</summary>
-    public static void ValidateAndCapture()
+    public static void ValidateAndCapture(string output = "Docs/Validation/DiscoveryJournal/")
     {
+        Output = output;
         if (Application.isPlaying) throw new InvalidOperationException("Validate authored assets outside Play Mode.");
         Directory.CreateDirectory(Output); assertions = 0;
         var scene = SceneManager.GetActiveScene();
@@ -83,8 +84,10 @@ public static class JournalHarborChecks
     }
 
     /// <summary>Starts a live pointer/navigation/new-run/surface/return verification in the actual scene.</summary>
-    public static void BeginProductionSmoke()
+    public static void BeginProductionSmoke(string output = "Docs/Validation/DiscoveryJournal/")
     {
+        Output = output;
+        Directory.CreateDirectory(Output);
         if (!Application.isPlaying) throw new InvalidOperationException("Enter the integrated comparison scene's Play Mode.");
         assertions = 0; Status = "Running";
         var flow = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>();

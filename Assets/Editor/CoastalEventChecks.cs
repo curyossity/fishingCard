@@ -210,12 +210,9 @@ public static class CoastalEventChecks
             && lionCatch.CurrentValue == 25, "Event Release missed Lionfish penalty or Cod recovery ordering.");
         Require(c.TryChooseRecoveredTechnique(0) && c.PendingCreatureChoice == CreatureEffectChoiceKind.TransferValue,
             "Cod recovery did not finish before Ray transfer.");
-        Require(c.TryChooseCreatureValueTransfer(lionCatch.InstanceId) && c.RunActive
-            && c.PendingCreatureChoice == CreatureEffectChoiceKind.DrawTechniques
-            && creatures.PendingSelectedTechniqueRecoveryCount == 1 && deck.Hand.Length == 4,
-            "Ray/Eel ordering failed or event Release consumed Sea Urchin Technique recovery.");
-        Require(c.TryChooseFeedingDraw(0) && !c.RunActive
-            && Get<FishingRunResult>(c, "lastSurfaceResult").HaulValue == 33, "Eel draw did not complete before Surface.");
+        Require(c.TryChooseCreatureValueTransfer(lionCatch.InstanceId) && !c.RunActive
+            && creatures.PendingSelectedTechniqueRecoveryCount == 0
+            && Get<FishingRunResult>(c, "lastSurfaceResult").HaulValue == 33, "Ray transfer/Eel draw did not finish Surface.");
         c = Controller(source);
         Require(FishingRunCheckActions.TryDescendAsCatch(c) && !c.HasPendingCreatureChoice, "No-target Loose Knot did not complete.");
     }

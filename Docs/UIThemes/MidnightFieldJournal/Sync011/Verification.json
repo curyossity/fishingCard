@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "date": "2026-10-30",
+  "reports": {
+    "ComponentVerification.json": {
+      "passed": true,
+      "assertions": 368
+    },
+    "StateVerification.json": {
+      "passed": true,
+      "partialLitSegments": 1,
+      "completeLitSegments": 3,
+      "completionMarks": 2,
+      "actualGoldBound": true,
+      "nativeTextureAssets": 11
+    },
+    "LiveProgressVerification.json": {
+      "passed": true,
+      "message": "Actual Surface updates Journal, persists evidence, grants no quest rewards and returns to Harbor."
+    },
+    "PlayVerification.json": {
+      "passed": true,
+      "assertions": 26,
+      "message": "Actual pointer raycast, routes, fresh run, Surface/results, Harbor return and second fresh run passed."
+    }
+  },
+  "changedExistingAssets": [
+    "Assets/Editor/DiscoveryJournalChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalDiscoveryPageBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborChecks.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalDiscoveryPage.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab"
+  ],
+  "addedAssets": [
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/JournalDesk.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/JournalDesk.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/footer.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/footer.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/gold.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/gold.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/illustration.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/illustration.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/navigation.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/navigation.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/perimeter.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/perimeter.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/quest.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/quest.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/questTitle.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/questTitle.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/return.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/return.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/sidebar.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/sidebar.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/wordmark.png",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/wordmark.png.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/JournalLayout.json",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/JournalLayout.json.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalHarborEmblem.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalHarborEmblem.cs.meta"
+  ],
+  "protectedExistingFilesUnchanged": 1275,
+  "questModelCatalogSaveSchemaAndGameplayUnchanged": true,
+  "originalSceneAndBuildSettingsUnchanged": true,
+  "consoleErrors": 0,
+  "sceneCleanOutsidePlayMode": true,
+  "review": "Actual Unity Journal captures visually inspected; separate frames remain sharp at native size. Runtime status and actual gold replace mockup examples."
+}

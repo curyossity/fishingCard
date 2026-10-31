@@ -4,7 +4,7 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R058",
+  "nextRevisionId": "MFJ-R059",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
@@ -13156,6 +13156,368 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-010"
+    },
+    {
+      "id": "MFJ-R058",
+      "date": "2026-10-30",
+      "request": "Design the Discovery Journal in Penpot to match the ornate Harbor/shop/card style, with sharp 4K frames and approved quest-status presentation.",
+      "component": [
+        "Discovery Journal screen",
+        "Reusable ornate quest rows",
+        "Journal illustration",
+        "Hub prototype Journal links"
+      ],
+      "status": "verified",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R058",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "Concept B — Reusable Assembly (4K)",
+        "boardId": "75555645-d407-8067-8008-dedef8b3f171",
+        "boardName": "MFJ-R058 — Discovery Journal / Ornate 4K",
+        "width": 3840,
+        "height": 2160,
+        "frames": [
+          {
+            "id": "75555645-d407-8067-8008-dedef942a30a",
+            "key": "perimeter",
+            "x": 0,
+            "y": 0,
+            "sourcePixels": [
+              3840,
+              2160
+            ],
+            "displayPixels": [
+              3840,
+              2160
+            ],
+            "cornerScale": 0.44
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedef9dc9562",
+            "key": "wordmark",
+            "x": 156,
+            "y": 57,
+            "sourcePixels": [
+              919,
+              200
+            ],
+            "displayPixels": [
+              919,
+              200
+            ],
+            "cornerScale": 0.144
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedefa31a6c6",
+            "key": "navigation",
+            "x": 1171,
+            "y": 46,
+            "sourcePixels": [
+              1745,
+              200
+            ],
+            "displayPixels": [
+              1745,
+              200
+            ],
+            "cornerScale": 0.152
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedefa742857",
+            "key": "gold",
+            "x": 3100,
+            "y": 57,
+            "sourcePixels": [
+              572,
+              200
+            ],
+            "displayPixels": [
+              572,
+              200
+            ],
+            "cornerScale": 0.144
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedeff061223",
+            "key": "sidebar",
+            "x": 150,
+            "y": 300,
+            "sourcePixels": [
+              975,
+              1580
+            ],
+            "displayPixels": [
+              975,
+              1580
+            ],
+            "cornerScale": 0.39
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedeff454fac",
+            "key": "illustration",
+            "x": 190,
+            "y": 340,
+            "sourcePixels": [
+              895,
+              1130
+            ],
+            "displayPixels": [
+              895,
+              1130
+            ],
+            "cornerScale": 0.358
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf0280460b",
+            "key": "quest",
+            "x": 1200,
+            "y": 300,
+            "sourcePixels": [
+              2480,
+              500
+            ],
+            "displayPixels": [
+              2480,
+              500
+            ],
+            "cornerScale": 0.43
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf02c561eb",
+            "key": "questTitle",
+            "x": 1220,
+            "y": 318,
+            "sourcePixels": [
+              2440,
+              200
+            ],
+            "displayPixels": [
+              2440,
+              200
+            ],
+            "cornerScale": 0.098
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf06f09869",
+            "key": "quest",
+            "x": 1200,
+            "y": 840,
+            "sourcePixels": [
+              2480,
+              500
+            ],
+            "displayPixels": [
+              2480,
+              500
+            ],
+            "cornerScale": 0.43
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf0789944d",
+            "key": "questTitle",
+            "x": 1220,
+            "y": 858,
+            "sourcePixels": [
+              2440,
+              200
+            ],
+            "displayPixels": [
+              2440,
+              200
+            ],
+            "cornerScale": 0.098
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf0cf6fc41",
+            "key": "quest",
+            "x": 1200,
+            "y": 1380,
+            "sourcePixels": [
+              2480,
+              500
+            ],
+            "displayPixels": [
+              2480,
+              500
+            ],
+            "cornerScale": 0.43
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf0d4997e0",
+            "key": "questTitle",
+            "x": 1220,
+            "y": 1398,
+            "sourcePixels": [
+              2440,
+              200
+            ],
+            "displayPixels": [
+              2440,
+              200
+            ],
+            "cornerScale": 0.098
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf12bef107",
+            "key": "footer",
+            "x": 150,
+            "y": 1920,
+            "sourcePixels": [
+              2500,
+              200
+            ],
+            "displayPixels": [
+              2500,
+              200
+            ],
+            "cornerScale": 0.16
+          },
+          {
+            "id": "75555645-d407-8067-8008-dedf1335fad3",
+            "key": "return",
+            "x": 2670,
+            "y": 1920,
+            "sourcePixels": [
+              1010,
+              200
+            ],
+            "displayPixels": [
+              1010,
+              200
+            ],
+            "cornerScale": 0.16
+          }
+        ],
+        "editableTextFields": [
+          "75555645-d407-8067-8008-dedefb15d830",
+          "75555645-d407-8067-8008-dedefbf90fb0",
+          "75555645-d407-8067-8008-dedefc8c88be",
+          "75555645-d407-8067-8008-dedefd234726",
+          "75555645-d407-8067-8008-dedefda51953",
+          "75555645-d407-8067-8008-dedefe25e360",
+          "75555645-d407-8067-8008-dedeffeb7130",
+          "75555645-d407-8067-8008-dedf005c43ef",
+          "75555645-d407-8067-8008-dedf010f0382",
+          "75555645-d407-8067-8008-dedf03120d61",
+          "75555645-d407-8067-8008-dedf0377e5f6",
+          "75555645-d407-8067-8008-dedf03e2d97c",
+          "75555645-d407-8067-8008-dedf044420a6",
+          "75555645-d407-8067-8008-dedf050aa869",
+          "75555645-d407-8067-8008-dedf056ff11d",
+          "75555645-d407-8067-8008-dedf05d0e1f0",
+          "75555645-d407-8067-8008-dedf08277b0b",
+          "75555645-d407-8067-8008-dedf089cb3bf",
+          "75555645-d407-8067-8008-dedf08fed0b8",
+          "75555645-d407-8067-8008-dedf0962440a",
+          "75555645-d407-8067-8008-dedf0a26e67a",
+          "75555645-d407-8067-8008-dedf0ac52395",
+          "75555645-d407-8067-8008-dedf0b83fedb",
+          "75555645-d407-8067-8008-dedf0d8a2365",
+          "75555645-d407-8067-8008-dedf0df83e54",
+          "75555645-d407-8067-8008-dedf0e62ea58",
+          "75555645-d407-8067-8008-dedf0edbfbbf",
+          "75555645-d407-8067-8008-dedf10253e8e",
+          "75555645-d407-8067-8008-dedf10c2b022",
+          "75555645-d407-8067-8008-dedf112ddccd",
+          "75555645-d407-8067-8008-dedf143b29e1",
+          "75555645-d407-8067-8008-dedf14f7801c",
+          "75555645-d407-8067-8008-dedf15d7cee1"
+        ],
+        "icons": [
+          "75555645-d407-8067-8008-dedefac1a68d",
+          "75555645-d407-8067-8008-dedefb7df074",
+          "75555645-d407-8067-8008-dedf0c46dd28",
+          "75555645-d407-8067-8008-dedf13b689d0",
+          "75555645-d407-8067-8008-dedf1574b9df"
+        ],
+        "rows": [
+          {
+            "questId": "the_perfect_school",
+            "boardId": "75555645-d407-8067-8008-dedf01d0244b",
+            "status": "INCOMPLETE",
+            "statusId": "75555645-d407-8067-8008-dedf05d0e1f0",
+            "partialCounter": false,
+            "bar": false
+          },
+          {
+            "questId": "the_collector",
+            "boardId": "75555645-d407-8067-8008-dedf0668705c",
+            "status": "COMPLETE",
+            "statusId": "75555645-d407-8067-8008-dedf0b83fedb",
+            "partialCounter": false,
+            "bar": false
+          },
+          {
+            "questId": "risk_taker",
+            "boardId": "75555645-d407-8067-8008-dedf0ca8c330",
+            "status": "1 / 3 SUCCESSFUL EXPEDITIONS",
+            "statusId": "75555645-d407-8067-8008-dedf112ddccd",
+            "partialCounter": true,
+            "bar": true
+          }
+        ],
+        "illustrationId": "75555645-d407-8067-8008-dedeff9d2695",
+        "unityImported": false,
+        "exampleStates": true,
+        "sourceBoardId": "75555645-d407-8067-8008-dedff4d4b1dd"
+      },
+      "affectedPenpotInstances": [
+        "75555645-d407-8067-8008-dedef8b3f171",
+        "75555645-d407-8067-8008-dedff4d4b1dd",
+        "75555645-d407-8067-8008-de8ff58e2639",
+        "75555645-d407-8067-8008-de9b9c9710d1",
+        "75555645-d407-8067-8008-de9d62501389"
+      ],
+      "changeKinds": [
+        "new_journal_screen",
+        "independent_frame_assets",
+        "native_editable_quest_fields",
+        "prototype_navigation"
+      ],
+      "before": "The functional Unity Journal uses the previous native paper/ink layout; no matching ornate Journal screen is approved.",
+      "after": "Editable 4K Journal with fourteen separate sharp frame instances, new downsampled illustration, three approved quests, status-only single-expedition objectives and a cumulative expedition tracker.",
+      "unityAssetIds": [],
+      "unityPaths": [
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalDiscoveryPage.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalDiscoveryPageBuilder.cs",
+        "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab"
+      ],
+      "dependentConsumers": [
+        "JournalDiscoveryPage",
+        "JournalDiscoveryPageBuilder",
+        "JournalHarborFlow"
+      ],
+      "configurationChanges": [
+        "Preserve existing discovery tracking, persistence and no-reward behavior. Replace presentation only after explicit integration.",
+        "Gold and demonstrated quest states are mockup values; bind actual runtime values in Unity."
+      ],
+      "exportRequirements": [
+        "Use separate Frames PNGs/HTML geometry and existing R057 nine-slice source masters, not a flattened whole-screen UI.",
+        "Preserve 1:1 frame image dimensions including transparent short-frame padding; do not enlarge decorative corners.",
+        "Keep illustration, native quest/reward/status fields and progress segments separate."
+      ],
+      "approvalEvidence": [
+        "User requested a Penpot Journal design matching the other screens, explicitly requiring non-blurry frames.",
+        "User requested integration into the game."
+      ],
+      "exportEvidence": {
+        "capture": "Revisions/MFJ-R058/Journal4K.png",
+        "sources": "Revisions/MFJ-R058/FrameGeometry.json"
+      },
+      "importEvidence": {
+        "record": "Sync011/README.md",
+        "sourceHashes": "Sync011/ImportedSources.json"
+      },
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R058/Verification.json",
+        "unity": "Sync011/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "verified",
+      "synchronizationCheckpoint": "MFJ-SYNC-011"
     }
   ],
   "synchronizationCheckpoints": [
@@ -13261,6 +13623,31 @@
       "status": "verified",
       "manifest": "../../Validation/DiscoveryJournal/StatusPresentation/UnityCheckpoint.json",
       "verification": "../../Validation/DiscoveryJournal/StatusPresentation/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-011",
+      "date": "2026-10-30",
+      "status": "verified",
+      "revisions": [
+        "MFJ-R058"
+      ],
+      "manifest": "Sync011/UnityCheckpoint.json",
+      "verification": "Sync011/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-011.1",
+      "status": "verified",
+      "revisions": [],
+      "manifest": "../../Validation/TackleShop/UnityCheckpoint.json",
+      "verification": "../../Validation/TackleShop/Verification.json"
+    },
+    {
+      "id": "MFJ-SYNC-011.2",
+      "date": "2026-10-31",
+      "status": "verified",
+      "revisions": [],
+      "manifest": "../../Validation/UnlimitedTechniqueHand/UnityCheckpoint.json",
+      "verification": "../../Validation/UnlimitedTechniqueHand/Verification.json"
     }
   ],
   "notes": [
@@ -13271,6 +13658,6 @@
     "MFJ-SYNC-002 imports all five event cards (MFJ-R020–MFJ-R024). Future comparisons use Sync002/UnityCheckpoint.json; original baseline and Sync001 are retained.",
     "MFJ-SYNC-003 integrates R027 tooltip and R030 adaptive fan. No pending changes remain; R025/R026/R028/R029 are superseded and never imported independently."
   ],
-  "currentUnityCheckpoint": "../../Validation/DiscoveryJournal/StatusPresentation/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "../../Validation/UnlimitedTechniqueHand/UnityCheckpoint.json",
   "pendingImportIndex": "PendingUnityChanges.json"
 }

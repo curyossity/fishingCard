@@ -13,6 +13,9 @@ public sealed class RunRewardRuntime
     public int TotalGold => totalGold;
     public int LastGoldAwarded => lastGoldAwarded;
 
+    /// <summary>Restores the authoritative balance after loading or committing a progression transaction.</summary>
+    public void RestoreBalance(int amount) { totalGold = Math.Max(0, amount); }
+
     /// <summary>
     /// Converts a completed haul's resolved value into Gold and adds it to the current wallet.
     /// </summary>

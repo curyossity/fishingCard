@@ -949,15 +949,33 @@ The player selects required targets before the play is committed. While Stinging
 
 ### Hand and draws
 
-The hand limit is **four**, dealt at the start of a run. Playing a Technique does **not** draw a replacement; Descend also does **not** refill the hand. After the opening hand, only explicit card effects may draw, redraw or recover Techniques, using their own counts and the normal reshuffle rules. Do not fill other empty slots as part of such an effect, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
+**31 October 2026 amendment:** there is no Technique hand-size limit. This supersedes every older per-card full-hand, four-slot and discard-for-room instruction in this document. Four remains the default opening draw; Tideglass Reel adds two opening cards. Explicit creature/Technique effects draw or recover their stated count automatically, using normal reshuffles and physical-card ownership. No discard is required merely to make room. Required discards, optional redraws, Recast and exchanges retain their own rules.
 
-When Cod recovery is offered with a full four-card hand, the player may discard one Technique to make room or decline recovery. Recovery must not create a fifth hand card. Sea Urchin uses the same discard-one-to-make-room or decline policy. Recovery still follows each creature's trigger and opportunity limits.
+The normal opening draw is **four**; the hand has no size limit. Playing a Technique does **not** draw a replacement; Descend also does **not** refill the hand. After the opening hand, only explicit card effects may draw, redraw or recover Techniques, using their own counts and the normal reshuffle rules. Do not fill other empty slots as part of such an effect, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
+
+Cod recovery returns the selected discarded Technique without a hand discard. Sea Urchin automatically returns the exact played occurrence after earlier reactions. Recovery still follows each creature's trigger and opportunity limits and cannot duplicate physical cards.
 
 ### Limits and persistence
 
 These designs add no energy resource or once-per-biome counters. Persistent modifiers and pending effects use each Technique's own duration. Ending the run clears all pending effects. This shared contract does not invent individual Technique effects, costs, additional draw counts, reshuffle exceptions, or duration rules.
 
 # 11. Run economy and progression
+
+## Approved Tackle Shop equipment — 30 October 2026
+
+The Harbor sells permanent unlocks using Gold only. Purchase and equip are separate actions, allowed between expeditions. One item may be equipped; none is owned or equipped by default. All three items below are directly available for purchase, replacing the illustrative shop's prices/ownership/lock captions.
+
+| Equipment | Price | Effect |
+| --- | --- | --- |
+| Driftwood Rod | 200 Gold | Start each expedition with +1 Line Capacity. |
+| Tideglass Reel | 200 Gold | Draw 2 additional Technique cards at expedition start. |
+| Barbed Hook | 250 Gold | The first 3 creatures attached as Catch each expedition gain +1 sale value each until they leave the chain. |
+
+The equipped item is fixed for the expedition. Rod adds to starting capacity and existing purchased capacity bonuses. Reel deals six starting Techniques. Hand size is unrestricted for every loadout, so subsequent explicit draws and recoveries can grow it beyond six; playing a Technique still never refills the hand automatically.
+
+Hook applies before the recipient's own on-attach effects and attachment reactions. New creature-like Apex and exchange replacement Catches qualify. Bait attachments and changing an already attached creature's mode do not consume charges or grant the bonus. Previews do not consume charges. Once awarded, the named bonus persists across mode/biome changes until removal; Bait still has no sale value. Released recipients do not refund charges. Each new expedition resets the three grants.
+
+Gold, equipment ownership, equipped identity and existing permanent capacity purchases are persisted as one versioned progression document. Insufficient funds, duplicate purchases, unowned equips and active-expedition changes are rejected. Failed purchase saves spend/unlock nothing. Journal quest rewards remain descriptive and ungranted in this increment; Technique Collection deck editing remains separate.
 
 - Value is realized primarily after the player surfaces, not immediately
   when a creature is caught.
@@ -1022,7 +1040,7 @@ content or meta-progression layer.
   commitment are automatic parts of encounter resolution rather than a
   separate basic Catch action.
 
-- A 4-card technique hand and a small technique deck.
+- A four-card default opening draw and a small technique deck; no ongoing hand-size limit.
 
 - A small Encounter deck/pool with roughly 15–20 cards across creatures,
   hazards, opportunities, treasure, and at least one short encounter

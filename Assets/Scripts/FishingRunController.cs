@@ -7,6 +7,14 @@ public sealed class FishingRunController : MonoBehaviour
 {
     public event Action<string, FishingRunResult> RunCompleted;
     private string expeditionId;
+    [Header("Persistent Equipment")]
+    public const string DefaultProgressionSaveKey = "FishingCards.PlayerProgression.v1";
+    [SerializeField] private TackleShopCatalog tackleShopCatalog;
+    [SerializeField] private string progressionSaveKey = DefaultProgressionSaveKey;
+    private TackleShopRuntime tackleShop;
+    private bool debugSaveResetPending;
+    private readonly RunEquipmentRuntime runEquipment = new RunEquipmentRuntime();
+    public TackleShopRuntime TackleShop { get { EnsureTackleShop(); return tackleShop; } }
     [Header("Start Run Settings")]
     [SerializeField] private bool startRunOnAwake = true;
     [SerializeField] private bool beginWithBoatCard;
@@ -178,7 +186,8 @@ public sealed class FishingRunController : MonoBehaviour
     public CardInstance[] LastReleasedCatches => lastSurfaceResult.ReleasedCatches;
     public CardInstance[] LastLostCatches => lastSurfaceResult.LostCatches;
     public int LastGoldAwarded => lastSurfaceResult.GoldAwarded;
-    public int TotalGold => runRewardRuntime.TotalGold;
+    public int TotalGold { get { EnsureTackleShop(); return runRewardRuntime.TotalGold; } }
+    public int NextExpeditionHandSize => startingHandSize + (TackleShop?.Equipped?.Benefit == EquipmentBenefit.OpeningTechniques ? TackleShop.Equipped.Amount : 0);
     public int ProgressionLineCapacityBonus => runProgressionRuntime.CurrentLineCapacityBonus;
     public CardDefinition[] SavedTechniqueDeck => runProgressionRuntime.SavedTechniqueDeck;
     public bool UnlockableTechniqueCardUnlocked => runProgressionRuntime.TechniqueCardUnlocked;
@@ -190,6 +199,7 @@ public sealed class FishingRunController : MonoBehaviour
     private void Awake()
     {
         EnsureRuntimeObjects();
+        EnsureTackleShop();
         if (fishingRunView != null)
         {
             fishingRunView.SurfaceTransitionCompleted += HandleSurfaceTransitionCompleted;
@@ -205,6 +215,7 @@ public sealed class FishingRunController : MonoBehaviour
 
     private void OnDestroy()
     {
+        SavePersistentWallet();
         if (catchChainRuntime != null)
         {
             catchChainRuntime.DeliberatelyReleased -= HandleDeliberateRelease;
@@ -222,6 +233,77 @@ public sealed class FishingRunController : MonoBehaviour
             fishingRunView.EncounterTransitionCompleted -= HandleEncounterTransitionCompleted;
             fishingRunView.EncounterEffectChoiceChanged -= HandleEncounterEffectChoiceChanged;
         }
+    }
+
+    /// <summary>Retries pending ordinary progression writes when the application is suspended.</summary>
+    private void OnApplicationPause(bool paused) { if (paused) SavePersistentWallet(); }
+
+    /// <summary>Initializes the optional persistent shop before any Harbor gold or equipment is shown.</summary>
+    private void EnsureTackleShop()
+    {
+        if (tackleShop != null || tackleShopCatalog == null) return;
+        EnsureRuntimeObjects();
+        tackleShop = new TackleShopRuntime(tackleShopCatalog, runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades,
+            () => PlayerPrefs.HasKey(progressionSaveKey) ? PlayerPrefs.GetString(progressionSaveKey) : null,
+            PersistProgressionDocument);
+        runRewardRuntime.RestoreBalance(tackleShop.Gold);
+        runProgressionRuntime.RestoreCapacityPurchases(tackleShop.LineCapacityUpgrades);
+    }
+
+    /// <summary>Restores the previous preference value if persisting the complete transaction fails.</summary>
+    private void PersistProgressionDocument(string json)
+    {
+        bool existed = PlayerPrefs.HasKey(progressionSaveKey);
+        string previous = existed ? PlayerPrefs.GetString(progressionSaveKey) : null;
+        try { PlayerPrefs.SetString(progressionSaveKey, json); PlayerPrefs.Save(); }
+        catch
+        {
+            if (existed) PlayerPrefs.SetString(progressionSaveKey, previous); else PlayerPrefs.DeleteKey(progressionSaveKey);
+            try { PlayerPrefs.Save(); } catch (Exception) { /* Preserve the old in-memory document for a later flush. */ }
+            throw;
+        }
+    }
+
+    /// <summary>Persists ordinary earnings without introducing an independent shop currency.</summary>
+    private void SavePersistentWallet()
+    {
+        if (debugSaveResetPending) return;
+        if (tackleShop != null && !tackleShop.SaveWallet(runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades))
+            Debug.LogWarning(tackleShop.Error, this);
+    }
+
+#if UNITY_EDITOR
+    public string EditorProgressionSaveKey => progressionSaveKey;
+    /// <summary>Prevents scene teardown from recreating progression deliberately reset by the editor tool.</summary>
+    public string SetDebugSaveResetPending(bool pending)
+    {
+        debugSaveResetPending = pending;
+        return progressionSaveKey;
+    }
+#endif
+
+    /// <summary>Purchases authored equipment once, publishing the saved wallet only after a successful transaction.</summary>
+    public bool TryPurchaseEquipment(string id, out string message)
+    {
+        EnsureTackleShop();
+        if (tackleShop == null) { message = "Equipment shop unavailable"; return false; }
+        if (!tackleShop.TryPurchase(id, runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades, runActive, out message)) return false;
+        runRewardRuntime.RestoreBalance(tackleShop.Gold); RefreshViews(); return true;
+    }
+
+    /// <summary>Selects one owned item for future expeditions, never mutating equipment during a run.</summary>
+    public bool TryEquipEquipment(string id, out string message)
+    {
+        EnsureTackleShop();
+        if (tackleShop == null) { message = "Equipment shop unavailable"; return false; }
+        return tackleShop.TryEquip(id, runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades, runActive, out message);
+    }
+
+    /// <summary>Combines pending Technique and equipment Catch previews without consuming either source.</summary>
+    private void PreviewPendingCatchBonuses(CardInstance preview)
+    {
+        techniqueEffectRuntime.Approved.PreviewPendingPrizes(preview);
+        runEquipment.PreviewCatchBonus(preview);
     }
 
     /// <summary>Refreshes the selected role's preview without resolving either effect before Descend.</summary>
@@ -277,7 +359,9 @@ public sealed class FishingRunController : MonoBehaviour
         biomeEntryRevealPending = false;
         pendingCommittedCatchId = -1;
         selectedSwapTargetId = -1;
-        lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus);
+        EnsureTackleShop();
+        runEquipment.BeginRun(tackleShop?.Equipped);
+        lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus + runEquipment.CapacityBonus);
         currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);
         selectedCatchIndex = -1;
@@ -288,7 +372,7 @@ public sealed class FishingRunController : MonoBehaviour
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Initialize(
             runProgressionRuntime.SavedTechniqueDeck,
-            startingHandSize,
+            startingHandSize + runEquipment.OpeningDrawBonus,
             random,
             LogRuntimeWarning);
         techniqueEffectRuntime.Reset();
@@ -662,7 +746,7 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
-    /// <summary>Selects an exact Cod recovery occurrence or declines when the hand is full.</summary>
+    /// <summary>Selects an exact Cod discard occurrence to recover into the uncapped hand.</summary>
     public bool TryChooseRecoveredTechnique(int discardIndex)
     {
         if (techniqueEffectInProgress || !string.IsNullOrEmpty(techniquePlayFailure) || IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching
@@ -670,13 +754,7 @@ public sealed class FishingRunController : MonoBehaviour
         PrepareCreatureChoice(); ResumeAfterCreatureChoices(); RefreshViews(); return true;
     }
 
-    /// <summary>Discards one hand card for the reserved Cod recovery, or declines without creating a fifth card.</summary>
-    public bool TryChooseRecoveryRoom(int handIndex)
-    {
-        if (techniqueEffectInProgress || !string.IsNullOrEmpty(techniquePlayFailure) || !runActive || IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching
-            || !creatureEffectRuntime.TryChooseCodRecoveryRoom(handIndex, techniqueDeckRuntime)) return false;
-        PrepareCreatureChoice(); ResumeAfterCreatureChoices(); RefreshViews(); return true;
-    }
+
 
     /// <summary>Chooses one Buoyant Bell recipient or finishes the optional selection.</summary>
     public bool TryChooseCreatureWeightTarget(int targetInstanceId)
@@ -772,16 +850,7 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
-    /// <summary>Discards one technique for room, or finishes the activated capacity-limited draw.</summary>
-    public bool TryChooseFeedingDraw(int handIndex)
-    {
-        if (techniqueEffectInProgress || !string.IsNullOrEmpty(techniquePlayFailure) || IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
-        if (!runActive || !creatureEffectRuntime.TryChooseFeedingDraw(handIndex, techniqueDeckRuntime, random)) return false;
-        PrepareCreatureChoice();
-        ResumeAfterCreatureChoices();
-        RefreshViews();
-        return true;
-    }
+
 
     /// <summary>Selects the hand half of a sheltered exchange without moving a card, or declines it.</summary>
     public bool TryChooseExchangeHand(int handIndex)
@@ -851,16 +920,7 @@ public sealed class FishingRunController : MonoBehaviour
         return true;
     }
 
-    /// <summary>Discards one hand technique for exact Spiny Grip recovery, or declines its consumed opportunity.</summary>
-    public bool TryChoosePlayedTechniqueRecovery(int handIndex)
-    {
-        if (techniqueEffectInProgress || !string.IsNullOrEmpty(techniquePlayFailure) || IsFailedConfirmedEventAction || eventEffectRuntime.IsDispatching) return false;
-        if (!runActive || !creatureEffectRuntime.TryChoosePlayedTechniqueRecovery(handIndex, techniqueDeckRuntime)) return false;
-        PrepareCreatureChoice();
-        ResumeAfterCreatureChoices();
-        RefreshViews();
-        return true;
-    }
+
 
     /// <summary>Records the complete Hazard cancellation only after its reveal has been discarded without effects.</summary>
     private void HandleHazardCancelled(CardDefinition hazard)
@@ -1202,27 +1262,14 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
-        if (PendingCreatureChoice == CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique)
-        {
-            CardDefinition[] hand = techniqueDeckRuntime.Hand;
-            string[] labels = new string[hand.Length + 1], details = new string[hand.Length + 1];
-            Sprite[] art = new Sprite[hand.Length + 1];
-            labels[0] = "Decline recovery"; details[0] = "Keep the four cards in hand.";
-            for (int i = 0; i < hand.Length; i++)
-            { labels[i + 1] = hand[i].DisplayName; details[i + 1] = hand[i].RulesText; art[i + 1] = hand[i].Artwork; }
-            fishingRunView.ShowCreatureEffectChoice(abilityName, "Discard one Technique to make room for recovery, or decline.",
-                labels, details, art, index => TryChooseRecoveryRoom(index - 1));
-            return;
-        }
+
 
         if (PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique)
         {
             CardDefinition[] discarded = techniqueDeckRuntime.DiscardPile;
-            bool full = techniqueDeckRuntime.Hand.Length >= TechniqueDeckRuntime.HandLimit;
             List<string> labels = new List<string>(), details = new List<string>(); List<Sprite> art = new List<Sprite>();
             foreach (CardDefinition card in discarded)
             { labels.Add(card.DisplayName); details.Add(card.RulesText); art.Add(card.Artwork); }
-            if (full) { labels.Add("Decline recovery"); details.Add("Keep your current hand."); art.Add(null); }
             fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose a discarded Technique to recover.",
                 labels.ToArray(), details.ToArray(), art.ToArray(),
                 index => TryChooseRecoveredTechnique(index < discarded.Length ? index : -1));
@@ -1332,25 +1379,7 @@ public sealed class FishingRunController : MonoBehaviour
                 labels, details, art, index => TryActivateFeedingFrenzy(index == 0 ? -1 : sources[index - 1].InstanceId));
             return;
         }
-        if (PendingCreatureChoice == CreatureEffectChoiceKind.DrawTechniques)
-        {
-            CardDefinition[] cards = techniqueDeckRuntime.Hand;
-            string[] labels = new string[cards.Length + 1];
-            string[] details = new string[cards.Length + 1];
-            Sprite[] art = new Sprite[cards.Length + 1];
-            int room = Math.Min(creatureEffectRuntime.PendingDrawCount, Math.Max(0, 4 - cards.Length));
-            labels[0] = "Finish · draw up to " + room;
-            details[0] = "Draw only as many techniques as fit in four slots.";
-            for (int i = 0; i < cards.Length; i++)
-            {
-                labels[i + 1] = "Discard " + cards[i].DisplayName;
-                details[i + 1] = "Make room without playing this technique.";
-                art[i + 1] = cards[i].Artwork;
-            }
-            fishingRunView.ShowCreatureEffectChoice(abilityName, "You may discard for room before drawing " + creatureEffectRuntime.PendingDrawCount + ".",
-                labels, details, art, index => TryChooseFeedingDraw(index - 1));
-            return;
-        }
+
         if (PendingCreatureChoice == CreatureEffectChoiceKind.ExchangeTechniques)
         {
             bool choosingHand = creatureEffectRuntime.SelectedExchangeHandIndex < 0;
@@ -1377,33 +1406,13 @@ public sealed class FishingRunController : MonoBehaviour
             return;
         }
 
-        if (PendingCreatureChoice == CreatureEffectChoiceKind.DiscardTechnique
-            || PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique)
+        if (PendingCreatureChoice == CreatureEffectChoiceKind.DiscardTechnique)
         {
-            bool required = PendingCreatureChoice == CreatureEffectChoiceKind.DiscardTechnique;
             CardDefinition[] cards = techniqueDeckRuntime.Hand;
-            int offset = required ? 0 : 1;
-            string[] labels = new string[cards.Length + offset];
-            string[] details = new string[labels.Length];
-            Sprite[] art = new Sprite[labels.Length];
-            if (!required)
-            {
-                labels[0] = "Decline recovery";
-                details[0] = "Keep your hand. This recovery has been consumed.";
-            }
-            for (int i = 0; i < cards.Length; i++)
-            {
-                labels[i + offset] = "Discard " + cards[i].DisplayName;
-                details[i + offset] = required ? "Discard without playing this technique." : "Make room to return the technique just played.";
-                art[i + offset] = cards[i].Artwork;
-            }
-            fishingRunView.ShowCreatureEffectChoice(abilityName,
-                required ? "Choose one technique to discard." : "Discard one technique for room, or decline recovery.",
-                labels, details, art, index =>
-                {
-                    if (required) TryChooseRequiredTechniqueDiscard(index);
-                    else TryChoosePlayedTechniqueRecovery(index - 1);
-                });
+            fishingRunView.ShowCreatureEffectChoice(abilityName, "Choose one technique to discard.",
+                Array.ConvertAll(cards, card => "Discard " + card.DisplayName),
+                Array.ConvertAll(cards, card => "Discard without playing this technique."),
+                Array.ConvertAll(cards, card => card.Artwork), index => TryChooseRequiredTechniqueDiscard(index));
             return;
         }
         if (PendingCreatureChoice == CreatureEffectChoiceKind.SelectReleaseTargets)
@@ -1612,6 +1621,9 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     public bool TryPurchaseLineCapacityUpgrade()
     {
+        EnsureTackleShop();
+        string before = JsonUtility.ToJson(runProgressionRuntime);
+        int previousGold = runRewardRuntime.TotalGold;
         bool purchased = runProgressionRuntime.TryPurchaseLineCapacityUpgrade(
             runRewardRuntime,
             runActive,
@@ -1622,6 +1634,12 @@ public sealed class FishingRunController : MonoBehaviour
         {
             Debug.LogWarning(resultSummary, this);
             return false;
+        }
+
+        if (tackleShop != null && !tackleShop.SaveWallet(runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades))
+        {
+            JsonUtility.FromJsonOverwrite(before, runProgressionRuntime); runRewardRuntime.RestoreBalance(previousGold);
+            Debug.LogWarning(tackleShop.Error, this); return false;
         }
 
         RefreshViews();
@@ -1852,6 +1870,8 @@ public sealed class FishingRunController : MonoBehaviour
         catchChainRuntime.BeforeAttachmentEffects += eventPersistenceRuntime.ApplyPendingBaitWeightReductions;
         catchChainRuntime.BeforeAttachmentEffects -= techniqueEffectRuntime.Approved.ApplyPendingPrizes;
         catchChainRuntime.BeforeAttachmentEffects += techniqueEffectRuntime.Approved.ApplyPendingPrizes;
+        catchChainRuntime.BeforeAttachmentEffects -= runEquipment.BeforeAttachment;
+        catchChainRuntime.BeforeAttachmentEffects += runEquipment.BeforeAttachment;
         encounterRuntime.EventAvailability = IsEventAvailable;
     }
 
@@ -2093,6 +2113,7 @@ public sealed class FishingRunController : MonoBehaviour
         techniqueDeckRuntime.Reset();
         techniqueEffectRuntime.Reset();
         creatureEffectRuntime.Reset();
+        runEquipment.Reset();
         descendCompletionPending = false;
         biomeEntryRevealPending = false;
         techniqueCompletionPending = false;
@@ -2143,6 +2164,7 @@ public sealed class FishingRunController : MonoBehaviour
             evaluatedCapacity,
             endedByLineBreak);
         runRewardRuntime.AwardGold(lastSurfaceResult);
+        SavePersistentWallet();
         EndActiveRun();
         RunCompleted?.Invoke(expeditionId, lastSurfaceResult);
     }
@@ -2187,7 +2209,7 @@ public sealed class FishingRunController : MonoBehaviour
             CardInstance encounterPreview = catchChainRuntime.CreateResolvedCatchPreview(
                 currentEncounter,
                 effectResolver,
-                previewRole, techniqueEffectRuntime.Approved.PreviewPendingPrizes);
+                previewRole, PreviewPendingCatchBonuses);
             int resolvedEncounterWeight = 0;
             int resolvedEncounterValue = 0;
 

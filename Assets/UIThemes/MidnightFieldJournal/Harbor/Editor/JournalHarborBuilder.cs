@@ -108,26 +108,16 @@ public static class JournalHarborBuilder
                 }
                 page.gameObject.SetActive(source.id == "harbor");
             }
-            RectTransform journal = JournalDiscoveryPageBuilder.Build(stage, tracker, questSource, theme);
+            RectTransform journal = JournalDiscoveryPageBuilder.Build(stage, tracker, questSource, theme, flow);
             pages.Add(journal.gameObject);
-            Navigate(journal, flow, "Harbor", new Rect(580, 38, 150, 55), 0);
-            Navigate(journal, flow, "Tackle Shop", new Rect(737, 38, 150, 55), 1);
-            Navigate(journal, flow, "Technique Collection", new Rect(894, 38, 150, 55), 2);
-            Navigate(journal, flow, "Discovery Journal", new Rect(1051, 38, 150, 55), 3);
-            string[] names = { "HARBOR", "TACKLE SHOP", "TECHNIQUES", "JOURNAL" };
-            for (int i = 0; i < names.Length; i++)
-            {
-                var label = JournalModalLayout.Text(names[i], journal, new Rect(.347f + i * .094f, .90f, .09f, .06f), theme, 37, true);
-                label.text = names[i]; label.color = theme.LightInk;
-            }
-            var back = JournalModalLayout.Button("Back to Harbor", journal, new Rect(.69f, .035f, .26f, .07f), theme, out TMP_Text backLabel);
-            backLabel.text = "BACK TO HARBOR"; UnityEventTools.AddIntPersistentListener(back.onClick, flow.Navigate, 0);
+            gold.Add(journal.GetComponent<JournalDiscoveryPage>().GoldLabel);
             journal.gameObject.SetActive(false);
             var data = new SerializedObject(flow);
             data.FindProperty("hubContent").objectReferenceValue = content.gameObject;
             SetArray(data.FindProperty("pages"), pages.Cast<UnityEngine.Object>().ToArray());
             SetArray(data.FindProperty("goldLabels"), gold.Cast<UnityEngine.Object>().ToArray());
             data.ApplyModifiedPropertiesWithoutUndo();
+            JournalTackleShopSetup.Bind(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }
@@ -150,6 +140,8 @@ public static class JournalHarborBuilder
         var tracker = instance.GetComponent<DiscoveryJournalTracker>(); var trackerData = new SerializedObject(tracker);
         trackerData.FindProperty("controller").objectReferenceValue = controller; trackerData.ApplyModifiedPropertiesWithoutUndo(); PrefabUtility.RecordPrefabInstancePropertyModifications(tracker);
         var run = new SerializedObject(controller); run.FindProperty("startRunOnAwake").boolValue = false; run.ApplyModifiedPropertiesWithoutUndo();
+        var equipment = AssetDatabase.LoadAssetAtPath<TackleShopCatalog>(JournalTackleShopSetup.CatalogPath);
+        if (equipment != null) { run.Update(); run.FindProperty("tackleShopCatalog").objectReferenceValue = equipment; run.ApplyModifiedPropertiesWithoutUndo(); }
         EditorUtility.SetDirty(controller);
     }
 

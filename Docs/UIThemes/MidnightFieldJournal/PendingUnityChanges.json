@@ -1,7 +1,7 @@
 {
   "generatedDate": "2026-10-30",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "../../Validation/DiscoveryJournal/StatusPresentation/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "../../Validation/UnlimitedTechniqueHand/UnityCheckpoint.json",
   "pending": [],
   "completed": [
     {
@@ -179,6 +179,10 @@
     {
       "id": "MFJ-R057",
       "checkpoint": "MFJ-SYNC-010"
+    },
+    {
+      "id": "MFJ-R058",
+      "checkpoint": "MFJ-SYNC-011"
     }
   ],
   "superseded": [
@@ -250,7 +254,7 @@
   ],
   "counts": {
     "pending": 0,
-    "completed": 44,
+    "completed": 45,
     "superseded": 13
   },
   "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required.",

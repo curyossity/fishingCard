@@ -1,0 +1,239 @@
+[
+  {
+    "key": "perimeter",
+    "master": "Dark",
+    "w": 3840,
+    "h": 2160,
+    "outer": true,
+    "imageDisplayHeight": 2160,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.44,
+    "targetBorders": [
+      132.0,
+      220,
+      246.40000000000003,
+      220
+    ],
+    "source": "..\\MFJ-R057\\Art\\DarkFrameMaster.png",
+    "file": "Frames/perimeter.png",
+    "sha256": "2b0e337ac44a9070eff813c52c06049c3e5023ef38ce21096775e034ed1bee3b"
+  },
+  {
+    "key": "wordmark",
+    "master": "Paper",
+    "w": 919,
+    "h": 168,
+    "viewportHeight": 200,
+    "imageDisplayHeight": 200,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.144,
+    "targetBorders": [
+      43.199999999999996,
+      72,
+      80.64000000000001,
+      72
+    ],
+    "source": "..\\MFJ-R057\\Art\\PaperFrameMaster.png",
+    "file": "Frames/wordmark.png",
+    "sha256": "c4687472fc8b2d4fb3cf0354afd2ab920a30a30933b5b6081589f3fe906b32da"
+  },
+  {
+    "key": "navigation",
+    "master": "Dark",
+    "w": 1745,
+    "h": 177,
+    "viewportHeight": 200,
+    "imageDisplayHeight": 200,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.152,
+    "targetBorders": [
+      45.6,
+      76,
+      85.12,
+      76
+    ],
+    "source": "..\\MFJ-R057\\Art\\DarkFrameMaster.png",
+    "file": "Frames/navigation.png",
+    "sha256": "7ab782eea083a6a324c47c15509f127f1d0d4cad16443a97627578d28f5b8ad6"
+  },
+  {
+    "key": "gold",
+    "master": "Paper",
+    "w": 572,
+    "h": 168,
+    "viewportHeight": 200,
+    "imageDisplayHeight": 200,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.144,
+    "targetBorders": [
+      43.199999999999996,
+      72,
+      80.64000000000001,
+      72
+    ],
+    "source": "..\\MFJ-R057\\Art\\PaperFrameMaster.png",
+    "file": "Frames/gold.png",
+    "sha256": "9616ab4326312de09cc32b1ea5b7d54f04626aa13bff94811025dfab4146a019"
+  },
+  {
+    "key": "sidebar",
+    "master": "Dark",
+    "w": 975,
+    "h": 1580,
+    "imageDisplayHeight": 1580,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.39,
+    "targetBorders": [
+      117.0,
+      195,
+      218.40000000000003,
+      195
+    ],
+    "source": "..\\MFJ-R057\\Art\\DarkFrameMaster.png",
+    "file": "Frames/sidebar.png",
+    "sha256": "edc5ab72cfad52cf77ffaadf5a59f169611f71f309368a7d0a3b0de0ffb94e49"
+  },
+  {
+    "key": "illustration",
+    "master": "Paper",
+    "w": 895,
+    "h": 1130,
+    "imageDisplayHeight": 1130,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.358,
+    "targetBorders": [
+      107.39999999999999,
+      179,
+      200.48000000000002,
+      179
+    ],
+    "source": "..\\MFJ-R057\\Art\\PaperFrameMaster.png",
+    "file": "Frames/illustration.png",
+    "sha256": "d2652e09c6cc943ac32db9272b138be1761c1b08933836952fb2425b1c7b2d53"
+  },
+  {
+    "key": "quest",
+    "master": "Dark",
+    "w": 2480,
+    "h": 500,
+    "imageDisplayHeight": 500,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.43,
+    "targetBorders": [
+      129.0,
+      215,
+      240.8,
+      215
+    ],
+    "source": "..\\MFJ-R057\\Art\\DarkFrameMaster.png",
+    "file": "Frames/quest.png",
+    "sha256": "c8c2251072d7871e9ed63ce867665707a84bf6f7b091de6ad6c3e40ffae3a3bc"
+  },
+  {
+    "key": "questTitle",
+    "master": "Paper",
+    "w": 2440,
+    "h": 115,
+    "viewportHeight": 200,
+    "imageDisplayHeight": 200,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.098,
+    "targetBorders": [
+      29.4,
+      49,
+      54.88,
+      49
+    ],
+    "source": "..\\MFJ-R057\\Art\\PaperFrameMaster.png",
+    "file": "Frames/questTitle.png",
+    "sha256": "d9250c8832397412795f833e76ed25b85d7cbcbd10f5da2b022fc206dc5be66f"
+  },
+  {
+    "key": "footer",
+    "master": "Dark",
+    "w": 2500,
+    "h": 188,
+    "viewportHeight": 200,
+    "imageDisplayHeight": 200,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.16,
+    "targetBorders": [
+      48.0,
+      80,
+      89.60000000000001,
+      80
+    ],
+    "source": "..\\MFJ-R057\\Art\\DarkFrameMaster.png",
+    "file": "Frames/footer.png",
+    "sha256": "429a019d558a6b0bbee2e115696f18248bf4f98f0b38774704cea5641c826ba7"
+  },
+  {
+    "key": "return",
+    "master": "Paper",
+    "w": 1010,
+    "h": 188,
+    "viewportHeight": 200,
+    "imageDisplayHeight": 200,
+    "sourceBorders": [
+      300,
+      500,
+      560,
+      500
+    ],
+    "cornerScale": 0.16,
+    "targetBorders": [
+      48.0,
+      80,
+      89.60000000000001,
+      80
+    ],
+    "source": "..\\MFJ-R057\\Art\\PaperFrameMaster.png",
+    "file": "Frames/return.png",
+    "sha256": "20ab60d8647b668cae26957507c745a6399fba34bf2d0f26878b2f3b6eb4c569"
+  }
+]

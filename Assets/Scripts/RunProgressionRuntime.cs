@@ -37,6 +37,9 @@ public sealed class RunProgressionRuntime
     public bool TechniqueCardUnlocked => techniqueCardUnlocked;
     public CardDefinition[] SavedTechniqueDeck => savedTechniqueDeck;
 
+    /// <summary>Restores existing purchased capacity alongside the persistent equipment wallet.</summary>
+    public void RestoreCapacityPurchases(int count) { purchasedLineCapacityUpgrades = Mathf.Clamp(count, 0, maximumLineCapacityUpgrades); }
+
     /// <summary>
     /// Creates the session deck from active authored cards, rebuilding legacy sessions that contain archived Techniques.
     /// </summary>

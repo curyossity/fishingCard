@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "checkpoint": "MFJ-SYNC-011.1",
+  "reports": {
+    "RulesVerification.json": {
+      "passed": true,
+      "assertions": 31
+    },
+    "PlayVerification.json": {
+      "passed": true,
+      "assertions": 29
+    },
+    "TechniqueRegression.json": {
+      "passed": true,
+      "runtimeAssertions": 39,
+      "authoredAssertions": 33
+    },
+    "ComponentVerification.json": {
+      "passed": true,
+      "assertions": 376
+    }
+  },
+  "changedExistingAssets": [
+    "Assets/Scripts/ApprovedTechniqueRuntime.cs",
+    "Assets/Scripts/CreatureEffectRuntime.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/RunProgressionRuntime.cs",
+    "Assets/Scripts/RunRewardRuntime.cs",
+    "Assets/Scripts/TechniqueDeckRuntime.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborBuilder.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalHarborFlow.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab",
+    "Assets/UIThemes/MidnightFieldJournal/Runtime/JournalStatTooltipStyle.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+  ],
+  "addedAssets": [
+    "Assets/Editor/TackleShopChecks.cs",
+    "Assets/Editor/TackleShopChecks.cs.meta",
+    "Assets/Scripts/RunEquipmentRuntime.cs",
+    "Assets/Scripts/RunEquipmentRuntime.cs.meta",
+    "Assets/Scripts/TackleShopCatalog.cs",
+    "Assets/Scripts/TackleShopCatalog.cs.meta",
+    "Assets/Scripts/TackleShopRuntime.cs",
+    "Assets/Scripts/TackleShopRuntime.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalTackleShopSetup.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalTackleShopSetup.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalTackleShopView.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalTackleShopView.cs.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/TackleShopCatalog.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/TackleShopCatalog.asset.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/barbed_hook.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/barbed_hook.asset.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/driftwood_rod.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/driftwood_rod.asset.meta",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/tideglass_reel.asset",
+    "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/tideglass_reel.asset.meta"
+  ],
+  "protectedExistingAssetsUnchanged": 1297,
+  "originalSceneBuildSettingsAndEncounterContentUnchanged": true,
+  "realPlayerSaveKeysUntouchedByTestFixtures": true,
+  "disposableTestKeysCleanedAfterPlay": true,
+  "sixCardHandViewsVerified": 6,
+  "consoleErrors": 0,
+  "sceneCleanOutsidePlayMode": true,
+  "review": "Actual shop and six-card hand captures visually inspected; native effects fit at 4K/1080p."
+}

@@ -195,16 +195,8 @@ public static class ShellFeedingExchangeChecks
         Require(chain.ReleasedCatches.Length == 1 && Array.Exists(chain.Catches, c => c == first),
             "Shared activation sacrificed multiple copies.");
         Prepare(runtime, chain, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques, "Full hand skipped optional discard choices.");
-        CardDefinition original = deck.Hand[0];
-        Require(runtime.TryChooseFeedingDraw(0, deck, new System.Random(1))
-            && deck.Hand.Length == 3 && deck.DiscardPile[0] == original, "Pre-draw discard played or redrew a technique.");
-        Prepare(runtime, chain, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques, "One slot prevented a second optional discard.");
-        Require(runtime.TryChooseFeedingDraw(-1, deck, new System.Random(1))
-            && deck.Hand.Length == 4 && deck.DrawPile.Length == 2, "Feeding draw exceeded available hand space.");
-        Prepare(runtime, chain, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Multiple Sardines offered repeat activations.");
+        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None && deck.Hand.Length == 6 && deck.DrawPile.Length == 1
+            && deck.DiscardPile.Length == 0, "Feeding reward was capped or required discarding.");
         predator = chain.Add(Card("Predator2", new[] { "Predator" }), resolver);
         runtime.RecordAttachment(predator, false, chain.Catches); Prepare(runtime, chain, resolver, deck);
         Require(runtime.TryActivateFeedingFrenzy(-1, chain, resolver) && Array.Exists(chain.Catches, c => c == first),
@@ -247,16 +239,16 @@ public static class ShellFeedingExchangeChecks
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.RemoveNegativeEffect,
             "Sardine activation ran before on-attach effects.");
         runtime.CompleteChoice(); Prepare(runtime, chain, resolver, deck);
-        Require(runtime.TryActivateFeedingFrenzy(first.InstanceId, chain, resolver)
-            && runtime.TryChooseFeedingDraw(-1, deck, new System.Random(1)) && deck.Hand.Length == 4
-            && deck.DrawPile.Length == 3, "Finishing a full hand drew cards without room.");
+        Require(runtime.TryActivateFeedingFrenzy(first.InstanceId, chain, resolver), "Sardine activation failed.");
+        Prepare(runtime, chain, resolver, deck);
+        Require(deck.Hand.Length == 6 && deck.DrawPile.Length == 1, "Full starting hand blocked sacrifice draws.");
         deck = Deck(0, 0); CardDefinition recovered = Technique("Only discard");
         Set(deck, "discardPile", new[] { recovered });
-        Require(deck.DrawTechniques(2, 4, new System.Random(1)) == 1 && deck.Hand.Length == 1,
+        Require(deck.DrawTechniques(2, new System.Random(1)) == 1 && deck.Hand.Length == 1,
             "Limited draw failed normal reshuffle or invented cards.");
         deck = Deck(5, 3);
-        Require(deck.DrawTechniques(2, 4, new System.Random(1)) == 0 && deck.Hand.Length == 5,
-            "Capacity-limited draw expanded an oversized recovery hand.");
+        Require(deck.DrawTechniques(2, new System.Random(1)) == 2 && deck.Hand.Length == 7,
+            "An existing five-card hand blocked additional effect draws.");
 
         chain.Reset(); runtime.Reset(); deck = Deck(4, 3);
         CardDefinition cod = Card("Cod", Array.Empty<string>());
@@ -271,14 +263,10 @@ public static class ShellFeedingExchangeChecks
         Require(runtime.TryActivateFeedingFrenzy(first.InstanceId, chain, resolver)
             && runtime.ChoiceKind == CreatureEffectChoiceKind.RecoverTechnique, "Sardine draws ran before Cod Release recovery.");
         Require(deck.DrawPile.Length == 3 && deck.Hand.Length == 4, "Draw occurred during Release recovery.");
-        Require(runtime.TryChooseCodRecovery(0, deck) && runtime.TryChooseCodRecoveryRoom(0, deck),
-            "Full-hand Cod recovery did not resolve before sacrifice draws.");
+        Require(runtime.TryChooseCodRecovery(0, deck) && deck.Hand.Length == 5, "Cod recovery failed before sacrifice draws.");
         Prepare(runtime, chain, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques && deck.Hand.Length == 4,
-            "Completed sacrifice draw vanished when source was removed.");
-        runtime.TryChooseFeedingDraw(0, deck, new System.Random(1));
-        runtime.TryChooseFeedingDraw(0, deck, new System.Random(1)); Prepare(runtime, chain, resolver, deck);
-        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 1, "Optional discards after recovery did not make room for two draws.");
+        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None && deck.Hand.Length == 7 && deck.DrawPile.Length == 1,
+            "Release recovery did not precede two uncapped sacrifice draws.");
     }
 
     /// <summary>Checks technique-only target immunity while leaving untargeted and creature effects available.</summary>
@@ -392,11 +380,9 @@ public static class ShellFeedingExchangeChecks
         Require(FishingRunCheckActions.TryDescendAsCatch(controller) && controller.CurrentDepth == 1
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.FeedingFrenzy, "Descend did not pause for Sardine.");
         Require(!controller.TryDescend() && !controller.TrySurface(), "Gameplay bypassed Sardine activation.");
-        Require(controller.TryActivateFeedingFrenzy(sardine.InstanceId)
-            && controller.PendingCreatureChoice == CreatureEffectChoiceKind.DrawTechniques, "Controller sacrifice missed discard window.");
-        Require(controller.TryChooseFeedingDraw(0) && controller.CurrentDepth == 1, "Discard advanced depth early.");
-        Require(controller.TryChooseFeedingDraw(0) && controller.CurrentDepth == 2 && !controller.HasPendingCreatureChoice
-            && deck.Hand.Length == 4 && deck.DrawPile.Length == 2, "Two discards did not finish reward before normal Descend.");
+        Require(controller.TryActivateFeedingFrenzy(sardine.InstanceId) && controller.CurrentDepth == 2
+            && !controller.HasPendingCreatureChoice && deck.Hand.Length == 6 && deck.DrawPile.Length == 2,
+            "Sardine draws did not finish before normal Descend.");
         chain.Add(Anemone(), resolver, CatchAttachmentRole.Bait);
         CardDefinition discard = Technique("Exchange target"); Set(deck, "discardPile", new[] { discard });
         int originalDepth = controller.CurrentDepth;

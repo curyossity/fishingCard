@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "date": "2026-10-31",
+  "reports": {
+    "RulesVerification.json": {
+      "passed": true,
+      "assertions": 31
+    },
+    "RegressionVerification.json": {
+      "passed": true,
+      "suites": [
+        {
+          "name": "Technique rules",
+          "assertions": 56
+        },
+        {
+          "name": "Creature Release",
+          "assertions": 34
+        },
+        {
+          "name": "Bass Urchin Octopus",
+          "assertions": 94
+        },
+        {
+          "name": "Shell Feeding Exchange",
+          "assertions": 81
+        },
+        {
+          "name": "Lobster Squid Eel",
+          "assertions": 77
+        },
+        {
+          "name": "Confirmed event actions",
+          "assertions": 45
+        },
+        {
+          "name": "Event reactions",
+          "assertions": 38
+        },
+        {
+          "name": "Coastal events",
+          "assertions": 56
+        },
+        {
+          "name": "Event Techniques",
+          "assertions": 37
+        },
+        {
+          "name": "Approved Techniques",
+          "assertions": 39
+        },
+        {
+          "name": "Authored Techniques",
+          "assertions": 33
+        }
+      ]
+    },
+    "PlayVerification.json": {
+      "passed": true,
+      "assertions": 31
+    }
+  },
+  "changedExistingAssets": [
+    "Assets/Editor/BassUrchinOctopusChecks.cs",
+    "Assets/Editor/CoastalEventChecks.cs",
+    "Assets/Editor/CreatureReleaseChecks.cs",
+    "Assets/Editor/EventActionChecks.cs",
+    "Assets/Editor/EventResolutionChecks.cs",
+    "Assets/Editor/EventTechniqueChecks.cs",
+    "Assets/Editor/LobsterSquidEelChecks.cs",
+    "Assets/Editor/ShellFeedingExchangeChecks.cs",
+    "Assets/Editor/TackleShopChecks.cs",
+    "Assets/Editor/TechniqueRuleChecks.cs",
+    "Assets/Scripts/ApprovedTechniqueRuntime.cs",
+    "Assets/Scripts/CreatureEffectRuntime.cs",
+    "Assets/Scripts/FishingRunController.cs",
+    "Assets/Scripts/TechniqueDeckRuntime.cs",
+    "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity"
+  ],
+  "addedAssets": [
+    "Assets/Editor/UnlimitedTechniqueHandChecks.cs",
+    "Assets/Editor/UnlimitedTechniqueHandChecks.cs.meta"
+  ],
+  "protectedExistingAssetsUnchanged": 1314,
+  "noArtworkPrefabOrEncounterContentChanges": true,
+  "originalSceneAndBuildSettingsUnchanged": true,
+  "twelveCardHandInspectedAt4K": true,
+  "isolatedPlayerSaveFixturesCleanedAfterPlay": true,
+  "finalRefreshRecheckAvailable": false,
+  "finalRefreshLimitation": "Unity MCP stopped answering after successful rule and live tests; fallback window observation timed out.",
+  "consoleErrorsAtLastSuccessfulCheck": 0,
+  "sceneCleanOutsidePlayAtLastSuccessfulCheck": true
+}

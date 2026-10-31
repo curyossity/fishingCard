@@ -38,13 +38,20 @@ public sealed class JournalHarborFlow : MonoBehaviour
         if (!HubVisible || page < 0 || page >= pages.Length) return;
         CurrentPage = page;
         for (int i = 0; i < pages.Length; i++) pages[i].SetActive(i == page);
-        foreach (TMP_Text label in goldLabels) if (label != null) label.text = controller.TotalGold.ToString();
+        RefreshEconomy();
         if (EventSystem.current != null)
         {
             EventSystem.current.SetSelectedGameObject(null);
             foreach (UnityEngine.UI.Button button in pages[page].GetComponentsInChildren<UnityEngine.UI.Button>())
                 if (button.IsInteractable()) { button.Select(); break; }
         }
+    }
+
+    /// <summary>Refreshes the shared wallet and loadout captions after a shop transaction or page change.</summary>
+    public void RefreshEconomy()
+    {
+        foreach (TMP_Text label in goldLabels) if (label != null) label.text = controller.TotalGold.ToString();
+        GetComponentInChildren<JournalTackleShopView>(true)?.Refresh();
     }
 
     /// <summary>Returns from completed-run results; an active expedition cannot be silently abandoned.</summary>

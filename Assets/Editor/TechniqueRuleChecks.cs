@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using TMPro;
 #endif
 
-/// <summary>Validates resolving ownership, precommit targets, capacity, and exact recovery ordering.</summary>
+/// <summary>Validates resolving ownership, precommit targets, uncapped draws, and exact recovery ordering.</summary>
 public static class TechniqueRuleChecks
 {
     private static readonly List<UnityEngine.Object> created = new List<UnityEngine.Object>();
@@ -61,33 +61,26 @@ public static class TechniqueRuleChecks
         finally { foreach (UnityEngine.Object obj in created) UnityEngine.Object.DestroyImmediate(obj); created.Clear(); }
     }
 
-    /// <summary>Checks the four-card cap and exclusion of a resolving physical card from draw, recovery, and discard.</summary>
+    /// <summary>Checks uncapped draws and exclusion of a resolving physical card from draw, recovery, and discard.</summary>
     private static void DeckOwnership()
     {
         CardDefinition card = Technique(CardEffectType.ModifyDescendDistance, CardEffectTarget.NextDescend);
         TechniqueDeckRuntime deck = new TechniqueDeckRuntime();
-        deck.Initialize(new[] { card, card, card, card, card, card }, 20, new System.Random(1), null);
-        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 2, "Initial hand exceeded four or lost undrawn cards.");
+        deck.Initialize(new[] { card, card, card, card, card, card }, 4, new System.Random(1), null);
+        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 2, "Opening draw lost cards.");
         long version = deck.HandVersion;
         Require(deck.TryBeginPlay(0, out CardDefinition played, out _) && deck.Hand.Length == 3
             && deck.ResolvingCard == played && deck.DiscardPile.Length == 0 && deck.HandVersion > version,
             "Played card entered discard before effect completion.");
         int id = deck.ResolvingOccurrenceId;
-        Require(!deck.TryBeginPlay(0, out _, out _) && !deck.TryRecoverPlayedTechnique(id, played, 4),
-            "Resolving occurrence was replayed or recovered early.");
-        Require(deck.DrawTechniques(9, 99, new System.Random(1)) == 1 && deck.Hand.Length == 4,
-            "Explicit effect draw ignored the global cap.");
-        Require(deck.TryCompletePlay(id) && deck.LastDiscardOccurrenceId == id && deck.ResolvingCard == null
-            && !deck.TryCompletePlay(id), "Completion failed exact once-only discard.");
-        Require(!deck.TryRecoverDiscardedTechnique(0) && deck.Hand.Length == 4, "Cod recovery created a fifth card.");
-        Require(deck.TryDiscardTechnique(0) && deck.TryRecoverPlayedTechnique(id, played, 99)
-            && deck.Hand.Length == 4 && !deck.HasDiscardedTechniqueOccurrence(id, played),
-            "Exact recovery or capacity enforcement failed.");
-        Require(!deck.TryRecoverPlayedTechnique(id, played, 4), "A second recovery duplicated the physical card.");
-        deck.DrawTechniques(99, 99, new System.Random(1));
-        Require(deck.Hand.Length == 4, "Explicit draw ignored the hand cap.");
+        Require(!deck.TryBeginPlay(0, out _, out _) && !deck.TryRecoverPlayedTechnique(id, played), "Resolving card recovered early.");
+        Require(deck.DrawTechniques(9, new System.Random(1)) == 2 && deck.Hand.Length == 5, "Effect draw was capped or invented cards.");
+        Require(deck.TryCompletePlay(id) && !deck.TryCompletePlay(id), "Discard completion was not once-only.");
+        Require(deck.TryRecoverPlayedTechnique(id, played) && deck.Hand.Length == 6
+            && !deck.TryRecoverPlayedTechnique(id, played), "Exact recovery was capped or duplicated.");
+        Require(deck.DrawTechniques(99, new System.Random(1)) == 0 && deck.Hand.Length == 6, "Empty piles invented cards.");
         deck.Reset(); Set(deck, "hand", new[] { card });
-        Require(deck.TryBeginPlay(0, out _, out _) && deck.DrawTechniques(4, 4, new System.Random(1)) == 0
+        Require(deck.TryBeginPlay(0, out _, out _) && deck.DrawTechniques(4, new System.Random(1)) == 0
             && deck.ResolvingCard == card && deck.DiscardPile.Length == 0,
             "The resolving card was reshuffled into an effect draw.");
         int old = deck.ResolvingOccurrenceId; deck.Reset(); Set(deck, "hand", new[] { card }); deck.TryBeginPlay(0, out _, out _);
@@ -99,6 +92,7 @@ public static class TechniqueRuleChecks
     private static void NoAutomaticDraw()
     {
         FishingRunController controller = Controller(); TechniqueDeckRuntime deck = Deck(controller);
+        controller.TryChooseEncounterRole(EncounterEffectChoice.Catch);
         CardDefinition prize = Technique(CardEffectType.QueuePrizeCatchBonus, CardEffectTarget.None, 1);
         deck.Initialize(new[] { prize, prize, prize, prize, prize, prize, prize, prize }, 4, new System.Random(13), null);
         Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 4, "Opening hand changed.");
@@ -116,7 +110,7 @@ public static class TechniqueRuleChecks
         CardDefinition octopus = Card();
         Set(octopus, "effects", new[] { Effect(CardEffectType.DrawTechniqueOnAttach, CardEffectTarget.Self, 1, CardEffectTrigger.WhenCaught) });
         Encounters(controller).SetCurrentEncounter(octopus);
-        Require(controller.TryDescend() && deck.Hand.Length == 1 && deck.DrawPile.Length == 3,
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller) && deck.Hand.Length == 1 && deck.DrawPile.Length == 3,
             "An explicit creature draw was lost or drew more than its one card.");
         Require(controller.TryUseTechniqueCard(0) && deck.Hand.Length == 0 && deck.DrawPile.Length == 3,
             "Playing an effect-drawn card granted another replacement.");
@@ -227,7 +221,7 @@ public static class TechniqueRuleChecks
             "Backend guessed a target without a supplied plan.");
     }
 
-    /// <summary>Checks full-hand Cod choices and exact Cod-before-Urchin recovery without duplication.</summary>
+    /// <summary>Checks uncapped Cod recovery and exact Cod-before-Urchin ordering without duplication.</summary>
     private static void Recovery()
     {
         FishingRunController c = Controller(); CatchChainRuntime chain = Chain(c); EffectResolver resolver = Resolver(c);
@@ -238,17 +232,10 @@ public static class TechniqueRuleChecks
         Require(TechniqueRuleChecks.ReleaseFixture(c, 0) && c.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique,
             "Cod did not offer recovery.");
         int reserved = deck.GetDiscardOccurrenceId(0);
-        Require(c.TryChooseRecoveredTechnique(0) && deck.Hand.Length == 4
-            && c.PendingCreatureChoice == CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique,
-            "Full Cod recovery overflowed or did not offer room.");
-        Require(c.TryChooseRecoveryRoom(0) && deck.Hand.Length == 4 && !deck.HasDiscardedTechniqueOccurrence(reserved, card)
-            && deck.DiscardPile.Length == 1 && !c.TryChooseRecoveryRoom(0),
-            "Cod recovered the wrong identical card or duplicated completion.");
-        c = Controller(); chain = Chain(c); resolver = Resolver(c); target = chain.Add(armored, resolver); AddCod(chain, resolver);
-        Set(Deck(c), "hand", new[] { card, card, card, card }); Set(Deck(c), "discardPile", new[] { card });
-        TechniqueRuleChecks.ReleaseFixture(c, 0); c.TryChooseRecoveredTechnique(0);
-        Require(c.TryChooseRecoveryRoom(-1) && Deck(c).Hand.Length == 4 && Deck(c).DiscardPile.Length == 1,
-            "Declining Cod recovery changed the hand or spent a hand card.");
+        Require(c.TryChooseRecoveredTechnique(0) && deck.Hand.Length == 5 && !c.HasPendingCreatureChoice
+            && !deck.HasDiscardedTechniqueOccurrence(reserved, card) && deck.DiscardPile.Length == 0,
+            "Cod recovery was capped or required a hand discard.");
+        Require(!c.TryChooseRecoveredTechnique(0), "Completed recovery duplicated a card.");
         c = Controller(); chain = Chain(c); resolver = Resolver(c); target = chain.Add(armored, resolver); AddCod(chain, resolver);
         CardDefinition urchin = Card(); Set(urchin, "hasExplicitBaitData", true);
         CardEffectDefinition grip = Effect(CardEffectType.GrantSelectedTechniqueRecovery, CardEffectTarget.None, 1, CardEffectTrigger.WhenCaught);

@@ -164,11 +164,9 @@ public static class EventTechniqueChecks
         Require(TechniqueRuleChecks.Play(controller, 0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique
             && deck.DrawPile.Length == 10 && deck.DiscardPile[1] == release, "Event Release drew an unearned card or changed recovery order.");
         Require(!TechniqueRuleChecks.Play(controller, 0), "Pending creature recovery allowed another Technique.");
-        Require(controller.TryChooseRecoveredTechnique(0) && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverPlayedTechnique
-            && deck.DrawPile.Length == 10, "Exact played recovery ran before Cod or drew an unearned card.");
-        Require(controller.TryChoosePlayedTechniqueRecovery(0) && !controller.HasPendingCreatureChoice
-            && deck.Hand.Length == 4 && deck.Hand[3] == release && deck.DrawPile.Length == 10
-            && controller.CanUseTechniqueCard(3, out _), "Completed reactions failed exact recovery or reopening event Techniques.");
+        Require(controller.TryChooseRecoveredTechnique(0) && !controller.HasPendingCreatureChoice
+            && deck.Hand.Length == 5 && deck.Hand[4] == release && deck.DrawPile.Length == 10
+            && controller.CanUseTechniqueCard(4, out _), "Cod/Urchin order or uncapped exact recovery failed.");
     }
 
     /// <summary>Creates a non-catchable event fixture.</summary>

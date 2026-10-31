@@ -16,6 +16,7 @@ public sealed class JournalStatTooltipStyle : ScriptableObject
         silhouette = false;
         if (source == null || source.CardType == CardType.Technique) return techniqueIcon;
         if (EncounterRuntime.IsEventCard(source)) return eventIcon;
+        if (source.CardType == CardType.Equipment) { silhouette = true; return source.Artwork; }
         foreach (Icon icon in creatureIcons) if (icon.creatureId == source.UniqueId) return icon.sprite;
         silhouette = true;
         return theme.GetCentralCard(source.UniqueId)?.sprite;

@@ -10,7 +10,7 @@ using UnityEngine;
 /// <summary>Verifies quest evidence, persistence, result integration and reward isolation using disposable state.</summary>
 public static class DiscoveryJournalChecks
 {
-    private const string Output = "Docs/Validation/DiscoveryJournal/";
+    private static string Output = "Docs/Validation/DiscoveryJournal/";
     private static int assertions;
     public static string Status { get; private set; }
 
@@ -77,8 +77,10 @@ public static class DiscoveryJournalChecks
     }
 
     /// <summary>Starts an actual controller Surface test with an isolated PlayerPrefs key, never the player's journal.</summary>
-    public static void BeginLiveCheck()
+    public static void BeginLiveCheck(string output = "Docs/Validation/DiscoveryJournal/")
     {
+        Output = output;
+        Directory.CreateDirectory(Output);
         if (!Application.isPlaying) throw new InvalidOperationException("Enter Play Mode first.");
         var flow = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>();
         var tracker = flow.GetComponent<DiscoveryJournalTracker>();
@@ -132,7 +134,7 @@ public static class DiscoveryJournalChecks
         while (!modal.IsVisible && Time.realtimeSinceStartup < deadline) yield return null;
         Require(modal.IsVisible, "Results missing."); modal.NextRunButton.onClick.Invoke(); flow.Navigate(3); yield return null;
         Require(flow.CurrentPage == 3 && flow.GetComponentsInChildren<TMP_Text>().Any(t => t.text == "COMPLETE"), "Journal did not show completed quest.");
-        Require(flow.GetComponentsInChildren<TMP_Text>().Count(t => t.text == "REWARD · NOT GRANTED") == 3, "Reward descriptions imply a grant.");
+        Require(flow.GetComponentsInChildren<TMP_Text>().Count(t => t.text == "REWARD · NOT YET GRANTED") == 3, "Reward descriptions imply a grant.");
         flow.Navigate(0);
     }
 

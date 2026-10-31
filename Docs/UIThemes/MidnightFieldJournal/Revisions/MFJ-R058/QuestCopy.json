@@ -1,0 +1,26 @@
+[
+  {
+    "id": "the_perfect_school",
+    "title": "The Perfect School",
+    "metric": 0,
+    "target": 4,
+    "requirement": "Surface with 4 Schooling creatures attached in one expedition.",
+    "reward": "Unlock Schoolmaster's Charm for purchase: your first Schooling Catch each expedition has −1 weight."
+  },
+  {
+    "id": "the_collector",
+    "title": "The Collector",
+    "metric": 1,
+    "target": 5,
+    "requirement": "Surface with creatures representing at least 5 distinct tags.",
+    "reward": "Unlock a new special Event card."
+  },
+  {
+    "id": "risk_taker",
+    "title": "Risk Taker",
+    "metric": 2,
+    "target": 3,
+    "requirement": "Successfully surface while overloaded in 3 separate expeditions.",
+    "reward": "Unlock Salvager's Kit for purchase: once per expedition, release one attached creature and draw 1 Technique."
+  }
+]

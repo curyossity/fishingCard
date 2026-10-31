@@ -1,5 +1,13 @@
 # Midnight Field Journal — candidate-theme visual contract
 
+**MFJ-SYNC-011.2: Technique hand size is unrestricted.** Four starting cards normally; six with Tideglass Reel. Explicit effects may grow either hand further; obsolete room-discard prompts are removed. Equipment ownership/loadout rules remain confirmed. Unity-only increment; **0 pending imports, 45 completed, 13 superseded.** [Verification](../../Validation/UnlimitedTechniqueHand/README.md).
+
+**MFJ-SYNC-011.1: Tackle Shop purchases and expedition equipment are active.** Permanent ownership, one-item loadout and Gold persist; all three approved effects work. Unity-only increment, no new art import. **0 pending; 45 completed; 13 superseded.** [Behavior and validation](../../Validation/TackleShop/README.md).
+
+**MFJ-SYNC-011: the ornate R058 Journal is imported and verified in Unity.** Live quest states and gold are bound; tracking/persistence and display-only rewards are unchanged. **0 pending imports; 45 completed; 13 superseded.** Earlier pending statements below are historical. [Integration](Sync011/README.md).
+
+**MFJ-R058 is ready for review in Penpot:** the ornate 4K Discovery Journal, with separate sharp frames and native quest fields. **1 pending import; 44 completed; 13 superseded.** Unity remains at its existing checkpoint; no game assets changed. [Design and handoff](Revisions/MFJ-R058/README.md).
+
 **MFJ-SYNC-010.2:** single-expedition Journal quests show COMPLETE/INCOMPLETE only; cumulative quests retain successful-expedition counters and bars. Tracking and rewards are unchanged. No pending Penpot import. [Validation](../../Validation/DiscoveryJournal/StatusPresentation/README.md).
 
 **MFJ-SYNC-010.1 is the current Unity checkpoint.** Discovery Journal is active with three persistent quests and display-only rewards. This is a Unity-only increment; all earlier Penpot integrations remain completed, with no pending imports. [Behavior and verification](../../Validation/DiscoveryJournal/README.md). Earlier inactive-Journal statements below describe the previous checkpoint.

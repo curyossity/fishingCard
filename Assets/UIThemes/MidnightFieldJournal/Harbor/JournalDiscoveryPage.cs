@@ -5,9 +5,16 @@ using UnityEngine;
 public sealed class JournalDiscoveryPage : MonoBehaviour
 {
     [SerializeField] private DiscoveryJournalTracker tracker;
-    [SerializeField] private TMP_Text[] progressLabels;
-    [SerializeField] private UnityEngine.UI.Image[] progressFills;
+    [System.Serializable] private sealed class QuestRow
+    {
+        public TMP_Text status;
+        public UnityEngine.UI.Graphic completionMark;
+        public UnityEngine.UI.Image[] segments;
+    }
+    [SerializeField] private QuestRow[] rows;
     [SerializeField] private TMP_Text saveStatus;
+    [SerializeField] private TMP_Text goldLabel;
+    public TMP_Text GoldLabel => goldLabel;
 
     /// <summary>Refreshes saved progress whenever the player opens the Journal.</summary>
     private void OnEnable() { Refresh(); }
@@ -20,12 +27,18 @@ public sealed class JournalDiscoveryPage : MonoBehaviour
         for (int i = 0; i < quests.Length; i++)
         {
             int amount = tracker.GetProgress(quests[i]);
-            progressLabels[i].text = FormatProgress(quests[i], amount);
-            progressFills[i].transform.parent.gameObject.SetActive(quests[i].metric == DiscoveryQuestMetric.OverloadedSuccessfulExpeditions);
-            progressFills[i].fillAmount = (float)amount / quests[i].target;
+            bool complete=amount>=quests[i].target;
+            var row=rows[i]; row.status.text=FormatProgress(quests[i],amount);
+            row.status.color=complete?new Color32(196,217,196,255):new Color32(224,188,128,255);
+            if(row.completionMark!=null)
+            {
+                row.completionMark.enabled=complete;
+                var position=row.status.rectTransform.anchoredPosition; position.x=complete?1530:1480; row.status.rectTransform.anchoredPosition=position;
+            }
+            for(int j=0;j<row.segments.Length;j++) row.segments[j].color=j<amount?new Color32(216,181,127,255):new Color32(114,128,128,102);
         }
         saveStatus.text = string.IsNullOrEmpty(tracker.SaveError)
-            ? "Progress is saved. Rewards are listed for reference and are not granted yet."
+            ? "Rewards are listed for reference; nothing is granted yet."
             : tracker.SaveError;
     }
 

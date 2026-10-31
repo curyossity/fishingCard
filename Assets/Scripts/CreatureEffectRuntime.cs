@@ -27,8 +27,7 @@ public enum CreatureEffectChoiceKind
     EncounterSkip,
     ResolveReleaseDraws,
     EventSnagTarget,
-    EventCreatureRelease,
-    MakeRoomForRecoveredTechnique
+    EventCreatureRelease
 }
 
 /// <summary>Owns ordered creature choices, deferred Release reactions, and a queued encounter without owning presentation.</summary>
@@ -65,8 +64,6 @@ public sealed class CreatureEffectRuntime
         public int SelectedCatchId = -1;
         public CatchAttachmentRole ExpectedRole;
         public bool RequireSourceRole;
-        public int MaxDiscards = -1;
-        public int DiscardCount;
         public CardDefinition PlayedTechnique;
         public int PlayedDiscardOccurrenceId;
         public int EncounterRevision;
@@ -144,7 +141,6 @@ public sealed class CreatureEffectRuntime
     [SerializeField] private string pendingReleaseDrawName;
     public int PendingCreatureSkipCount => pendingCreatureSkips.Count;
     public int PendingSelectedTechniqueRecoveryCount => pendingSelectedTechniqueRecoveries.Count;
-    public int PendingDrawCount => ChoiceKind == CreatureEffectChoiceKind.DrawTechniques ? requests[0].DrawCount : 0;
     public int SelectedReleaseCount => ChoiceKind == CreatureEffectChoiceKind.SelectReleaseTargets ? requests[0].SelectedTargetIds.Count : 0;
     public int SelectedModeSwapCatchId => ChoiceKind == CreatureEffectChoiceKind.SwapCreatureModes ? requests[0].SelectedCatchId : -1;
 
@@ -229,7 +225,7 @@ public sealed class CreatureEffectRuntime
                 if (effect.EffectType == CardEffectType.DrawTechniqueOnAttach && !instance.IsBait)
                     immediate.Add(new Request { SourceInstanceId = instance.InstanceId, EffectIndex = effectIndex,
                         AbilityName = effect.DisplayName, Kind = CreatureEffectChoiceKind.DrawTechniques,
-                        DrawCount = effect.Amount, MaxDiscards = 1 });
+                        DrawCount = effect.Amount });
                 if (instance.IsBait && (effect.EffectType == CardEffectType.ReleaseSelectedCreaturesOnAttach
                     || effect.EffectType == CardEffectType.SwapCreatureModesOnAttach
                     || effect.EffectType == CardEffectType.GrantSelectedTechniqueRecovery)
@@ -450,14 +446,7 @@ public sealed class CreatureEffectRuntime
                 }
                 continue;
             }
-            if (request.Kind == CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique)
-            {
-                if (deck == null || !deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique))
-                { requests.RemoveAt(0); continue; }
-                if (deck.Hand.Length >= TechniqueDeckRuntime.HandLimit) return;
-                deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique, TechniqueDeckRuntime.HandLimit);
-                requests.RemoveAt(0); continue;
-            }
+
             if (request.Kind == CreatureEffectChoiceKind.RecoverPlayedTechnique)
             {
                 if (deck == null || !deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique))
@@ -465,9 +454,7 @@ public sealed class CreatureEffectRuntime
                     requests.RemoveAt(0);
                     continue;
                 }
-                if (deck.Hand.Length < 4)
-                    deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique, 4);
-                else if (deck.Hand.Length == 4 && request.DiscardCount == 0) return;
+                deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique);
                 requests.RemoveAt(0);
                 continue;
             }
@@ -499,11 +486,7 @@ public sealed class CreatureEffectRuntime
                     requests.RemoveAt(0);
                     continue;
                 }
-                bool canMakeRoom = request.MaxDiscards < 0
-                    || deck.Hand.Length - (request.MaxDiscards - request.DiscardCount) <= 4 - Math.Min(4, request.DrawCount);
-                if (deck.Hand.Length > 4 - Math.Min(4, request.DrawCount) && canMakeRoom
-                    && (request.MaxDiscards < 0 || request.DiscardCount < request.MaxDiscards)) return;
-                deck.DrawTechniques(request.DrawCount, 4, random);
+                deck.DrawTechniques(request.DrawCount, random);
                 requests.RemoveAt(0);
                 continue;
             }
@@ -854,7 +837,7 @@ public sealed class CreatureEffectRuntime
         pendingPlayedTechniqueRecovery = new Request
         {
             Kind = CreatureEffectChoiceKind.RecoverPlayedTechnique, AbilityName = pendingSelectedTechniqueRecoveries[0].DisplayName,
-            PlayedTechnique = resolvingTechnique, PlayedDiscardOccurrenceId = resolvingDiscardOccurrenceId, MaxDiscards = 1
+            PlayedTechnique = resolvingTechnique, PlayedDiscardOccurrenceId = resolvingDiscardOccurrenceId
         };
         pendingSelectedTechniqueRecoveries.RemoveAt(0);
     }
@@ -868,53 +851,12 @@ public sealed class CreatureEffectRuntime
         eligibleAttachedIdsAtTechniquePlay = Array.Empty<int>();
     }
 
-    /// <summary>Reserves an exact discarded Cod recovery before any optional hand discard can change the pile.</summary>
+    /// <summary>Returns the selected physical discard occurrence without spending a hand card.</summary>
     public bool TryChooseCodRecovery(int discardIndex, TechniqueDeckRuntime deck)
     {
-        if (ChoiceKind != CreatureEffectChoiceKind.RecoverTechnique || deck == null) return false;
-        if (discardIndex < 0)
-        {
-            if (deck.Hand.Length < TechniqueDeckRuntime.HandLimit) return false;
-            CompleteChoice(); return true;
-        }
-        int id = deck.GetDiscardOccurrenceId(discardIndex);
-        if (id <= 0 || deck.DiscardPile[discardIndex]?.CardType != CardType.Technique) return false;
-        if (deck.Hand.Length < TechniqueDeckRuntime.HandLimit)
-        {
-            if (!deck.TryRecoverDiscardedTechnique(discardIndex)) return false;
-            CompleteChoice(); return true;
-        }
-        requests[0].PlayedTechnique = deck.DiscardPile[discardIndex];
-        requests[0].PlayedDiscardOccurrenceId = id;
-        requests[0].Kind = CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique;
-        return true;
-    }
-
-    /// <summary>Creates room once or declines the reserved recovery; an identical new discard is never a substitute.</summary>
-    public bool TryChooseCodRecoveryRoom(int handIndex, TechniqueDeckRuntime deck)
-    {
-        if (ChoiceKind != CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique || deck == null) return false;
-        Request request = requests[0];
-        if (handIndex < 0) { CompleteChoice(); return true; }
-        if (!deck.HasDiscardedTechniqueOccurrence(request.PlayedDiscardOccurrenceId, request.PlayedTechnique)) return false;
-        if (deck.Hand.Length >= TechniqueDeckRuntime.HandLimit && !deck.TryDiscardTechnique(handIndex)) return false;
-        if (!deck.TryRecoverPlayedTechnique(request.PlayedDiscardOccurrenceId, request.PlayedTechnique, TechniqueDeckRuntime.HandLimit)) return false;
+        if (ChoiceKind != CreatureEffectChoiceKind.RecoverTechnique || deck == null
+            || !deck.TryRecoverDiscardedTechnique(discardIndex)) return false;
         CompleteChoice(); return true;
-    }
-
-    /// <summary>Discards at most one hand technique for room, or declines this already-consumed exact recovery.</summary>
-    public bool TryChoosePlayedTechniqueRecovery(int handIndex, TechniqueDeckRuntime deck)
-    {
-        if (ChoiceKind != CreatureEffectChoiceKind.RecoverPlayedTechnique || deck == null) return false;
-        if (handIndex < 0)
-        {
-            CompleteChoice();
-            return true;
-        }
-        Request request = requests[0];
-        if (request.DiscardCount != 0 || !deck.TryDiscardTechnique(handIndex)) return false;
-        request.DiscardCount++;
-        return true;
     }
 
     /// <summary>Applies one lasting bonus to every original surviving qualifying Catch after on-attach effects finish.</summary>
@@ -972,22 +914,7 @@ public sealed class CreatureEffectRuntime
         return true;
     }
 
-    /// <summary>Optionally discards an exact hand occurrence before drawing only the activated reward that fits four slots.</summary>
-    public bool TryChooseFeedingDraw(int discardHandIndex, TechniqueDeckRuntime deck, System.Random random)
-    {
-        if (ChoiceKind != CreatureEffectChoiceKind.DrawTechniques || deck == null) return false;
-        if (discardHandIndex >= 0)
-        {
-            Request request = requests[0];
-            if (request.MaxDiscards >= 0 && request.DiscardCount >= request.MaxDiscards
-                || !deck.TryDiscardTechnique(discardHandIndex)) return false;
-            request.DiscardCount++;
-            return true;
-        }
-        deck.DrawTechniques(requests[0].DrawCount, 4, random);
-        CompleteChoice();
-        return true;
-    }
+
 
     /// <summary>Chooses a hand occurrence without moving it, or declines the entire immediate exchange.</summary>
     public bool TryChooseExchangeHand(int handIndex, TechniqueDeckRuntime deck)

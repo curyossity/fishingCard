@@ -5,7 +5,6 @@ using UnityEngine;
 [Serializable]
 public sealed class TechniqueDeckRuntime
 {
-    public const int HandLimit = 4;
     [SerializeField] private CardDefinition resolvingCard;
     [SerializeField] private int resolvingOccurrenceId;
     [SerializeField] private int resolvingOriginalHandIndex = -1;
@@ -36,7 +35,7 @@ public sealed class TechniqueDeckRuntime
         resolvingCard = null; resolvingOccurrenceId = 0; resolvingOriginalHandIndex = -1;
         lastDiscardOccurrenceId = 0;
         drawPile = BuildShuffledDeck(startingDeck, random, warningLogger);
-        hand = DrawCards(drawPile, Math.Min(HandLimit, Math.Max(0, startingHandSize)), out drawPile);
+        hand = DrawCards(drawPile, Math.Max(0, startingHandSize), out drawPile);
         handVersion++;
     }
 
@@ -104,10 +103,10 @@ public sealed class TechniqueDeckRuntime
         return index >= 0 && index < discardOccurrenceIds.Length ? discardOccurrenceIds[index] : 0;
     }
 
-    /// <summary>Returns one selected discard occurrence only when it fits the four-card hand.</summary>
+    /// <summary>Returns one selected discard occurrence only when it exists in the discard pile.</summary>
     public bool TryRecoverDiscardedTechnique(int discardIndex)
     {
-        if (hand.Length >= HandLimit || discardIndex < 0 || discardIndex >= discardPile.Length
+        if (discardIndex < 0 || discardIndex >= discardPile.Length
             || discardPile[discardIndex]?.CardType != CardType.Technique)
         {
             return false;
@@ -148,11 +147,11 @@ public sealed class TechniqueDeckRuntime
         return true;
     }
 
-    /// <summary>Draws only the requested number that fits the supplied capacity, using the normal reshuffle rule.</summary>
-    public int DrawTechniques(int count, int capacity, System.Random random)
+    /// <summary>Draws the requested number using normal reshuffles, stopping only when both piles are empty.</summary>
+    public int DrawTechniques(int count, System.Random random)
     {
         int drawn = 0;
-        int available = Math.Min(Math.Max(0, count), Math.Max(0, Math.Min(HandLimit, capacity) - hand.Length));
+        int available = Math.Max(0, count);
         while (drawn < available)
         {
             if (drawPile.Length == 0)
@@ -196,10 +195,10 @@ public sealed class TechniqueDeckRuntime
         return index >= 0 && discardPile[index] == expected && expected?.CardType == CardType.Technique;
     }
 
-    /// <summary>Returns only the played occurrence, subject to available capacity, without recovering another copy.</summary>
-    public bool TryRecoverPlayedTechnique(int occurrenceId, CardDefinition expected, int capacity)
+    /// <summary>Returns only the played occurrence, without recovering another copy.</summary>
+    public bool TryRecoverPlayedTechnique(int occurrenceId, CardDefinition expected)
     {
-        if (hand.Length >= Math.Min(HandLimit, capacity) || !HasDiscardedTechniqueOccurrence(occurrenceId, expected)) return false;
+        if (!HasDiscardedTechniqueOccurrence(occurrenceId, expected)) return false;
         return TryRecoverDiscardedTechnique(Array.IndexOf(discardOccurrenceIds, occurrenceId));
     }
 

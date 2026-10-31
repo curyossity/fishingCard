@@ -106,12 +106,8 @@ public static class CreatureReleaseChecks
         runtime.FinishReleaseResolution();
         Prepare(runtime, chain, resolver, deck);
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.RecoverTechnique, "Armored Bait release failed to trigger.");
-        Require(!deck.TryRecoverDiscardedTechnique(1) && deck.Hand.Length == 4,
-            "Direct recovery bypassed the four-card cap.");
-        Require(runtime.TryChooseCodRecovery(1, deck)
-            && runtime.ChoiceKind == CreatureEffectChoiceKind.MakeRoomForRecoveredTechnique
-            && runtime.TryChooseCodRecoveryRoom(0, deck) && deck.Hand.Length == 4 && deck.DiscardPile.Length == 2,
-            "Full-hand Cod recovery did not discard for room before returning the exact occurrence.");
+        Require(runtime.TryChooseCodRecovery(1, deck) && runtime.ChoiceKind == CreatureEffectChoiceKind.None
+            && deck.Hand.Length == 5 && deck.DiscardPile.Length == 1, "Cod failed uncapped exact recovery.");
         chain.Add(armored, resolver);
         chain.TryRelease(2, resolver, out _, out _, out _); runtime.FinishReleaseResolution();
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Multiple Cod copies or second release bypassed shared limit.");
@@ -180,7 +176,7 @@ public static class CreatureReleaseChecks
         chain.Add(armored, resolver);
         Require(TechniqueRuleChecks.ReleaseFixture(controller, chain.Catches.Length - 1) && !controller.HasPendingCreatureChoice,
             "Replacement reset the recovery limit.");
-        Require(controller.TryDescend(), "Genuine encounter advancement failed.");
+        Require(FishingRunCheckActions.TryDescendAsCatch(controller), "Genuine encounter advancement failed.");
         Set(deck, "discardPile", new[] { cut }); chain.Add(armored, resolver);
         Require(TechniqueRuleChecks.ReleaseFixture(controller, chain.Catches.Length - 1)
             && controller.PendingCreatureChoice == CreatureEffectChoiceKind.RecoverTechnique, "New encounter did not reset recovery.");

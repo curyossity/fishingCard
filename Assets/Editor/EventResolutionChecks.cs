@@ -146,12 +146,9 @@ public static class EventResolutionChecks
         Require(runtime.AdvanceResolution(context) == EventResolutionProgress.WaitingForCreatureReactions && first.Calls == 1,
             "Repeated advance reexecuted the paused effect.");
         Prepare(context);
-        Require(context.Creatures.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques && context.Deck.DrawPile.Length == 2
-            && !context.Encounters.HasTechniqueReactionWindow, "Creature modal preparation drew early or opened Technique input.");
-        Require(context.Creatures.TryChooseFeedingDraw(0, context.Deck, context.Random), "Actual creature draw choice rejected room discard.");
-        Prepare(context);
-        Require(context.Creatures.ChoiceKind == CreatureEffectChoiceKind.None && context.Deck.Hand.Length == 4
-            && context.Deck.DrawPile.Length == 1, "Actual creature choice failed to finish its draw.");
+        Require(context.Creatures.ChoiceKind == CreatureEffectChoiceKind.None && context.Deck.Hand.Length == 5
+            && context.Deck.DrawPile.Length == 1 && !context.Encounters.HasTechniqueReactionWindow,
+            "Automatic creature draw was capped or reopened Technique input.");
         Require(runtime.AdvanceResolution(context) == EventResolutionProgress.Completed && second.Calls == 1 && first.Calls == 1
             && runtime.AppliedEffectCount == 2 && target.CurrentWeight == 2 && target.CurrentValue == 10,
             "Resume missed the later consequence or repeated the earlier mutation.");

@@ -1,0 +1,45 @@
+{
+  "revision": "MFJ-R058",
+  "status": "ready_for_review",
+  "unityImported": false,
+  "nativeCanvas": [
+    3840,
+    2160
+  ],
+  "frameInstances": 14,
+  "separateFrameResources": 10,
+  "allFrameInstancesOneToOnePixels": true,
+  "maximumDecorativeCornerScale": 0.44,
+  "textOverflow": 0,
+  "outsideScreen": 0,
+  "singleExpeditionPartialTrackers": false,
+  "riskTakerSegments": 3,
+  "exampleStatesNotPlayerData": true,
+  "rewardsGranted": false,
+  "visualReview": "Inspected lossless actual Penpot export; moved statuses clear of engraved corners and raised sidebar caption. Matches current ornate shop framing and typography.",
+  "capture": {
+    "file": "Journal4K.png",
+    "dimensions": [
+      3840,
+      2160
+    ],
+    "sha256": "3ad6583d3c52236d79f110cc10e0c5b2446c7a6b3749eb2f51c7e4dc4da69442"
+  },
+  "illustration": {
+    "file": "Art/JournalDesk.png",
+    "source": [
+      1086,
+      1448
+    ],
+    "display": [
+      810,
+      1080
+    ],
+    "sha256": "4b198d4819e8a9e317672dca96e41cb2ed0be1e106779733d9ba1242d8f05964"
+  },
+  "unityAssetComparison": {
+    "checkedFiles": 1280,
+    "differences": [],
+    "unchanged": true
+  }
+}

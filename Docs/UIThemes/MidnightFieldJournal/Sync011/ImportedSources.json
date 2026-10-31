@@ -1,0 +1,68 @@
+[
+  {
+    "id": "perimeter",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/perimeter.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/perimeter.png",
+    "sha256": "2b0e337ac44a9070eff813c52c06049c3e5023ef38ce21096775e034ed1bee3b"
+  },
+  {
+    "id": "wordmark",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/wordmark.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/wordmark.png",
+    "sha256": "c4687472fc8b2d4fb3cf0354afd2ab920a30a30933b5b6081589f3fe906b32da"
+  },
+  {
+    "id": "navigation",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/navigation.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/navigation.png",
+    "sha256": "7ab782eea083a6a324c47c15509f127f1d0d4cad16443a97627578d28f5b8ad6"
+  },
+  {
+    "id": "gold",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/gold.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/gold.png",
+    "sha256": "9616ab4326312de09cc32b1ea5b7d54f04626aa13bff94811025dfab4146a019"
+  },
+  {
+    "id": "sidebar",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/sidebar.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/sidebar.png",
+    "sha256": "edc5ab72cfad52cf77ffaadf5a59f169611f71f309368a7d0a3b0de0ffb94e49"
+  },
+  {
+    "id": "illustration",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/illustration.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/illustration.png",
+    "sha256": "d2652e09c6cc943ac32db9272b138be1761c1b08933836952fb2425b1c7b2d53"
+  },
+  {
+    "id": "quest",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/quest.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/quest.png",
+    "sha256": "c8c2251072d7871e9ed63ce867665707a84bf6f7b091de6ad6c3e40ffae3a3bc"
+  },
+  {
+    "id": "questTitle",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/questTitle.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/questTitle.png",
+    "sha256": "d9250c8832397412795f833e76ed25b85d7cbcbd10f5da2b022fc206dc5be66f"
+  },
+  {
+    "id": "footer",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/footer.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/footer.png",
+    "sha256": "429a019d558a6b0bbee2e115696f18248bf4f98f0b38774704cea5641c826ba7"
+  },
+  {
+    "id": "return",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/return.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Frames/return.png",
+    "sha256": "20ab60d8647b668cae26957507c745a6399fba34bf2d0f26878b2f3b6eb4c569"
+  },
+  {
+    "id": "JournalDesk",
+    "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Journal/Art/JournalDesk.png",
+    "source": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R058/Art/JournalDesk.png",
+    "sha256": "4b198d4819e8a9e317672dca96e41cb2ed0be1e106779733d9ba1242d8f05964"
+  }
+]

@@ -75,12 +75,12 @@ public static class EventActionChecks
             && !controller.HasConfirmedEventAction, "Completed run retained dispatcher/persistence/action ownership.");
     }
 
-    /// <summary>Checks both confirmed actions wait for actual full-hand creature draw choices and reject stale/reentrant input.</summary>
+    /// <summary>Checks both confirmed actions wait for required creature discard choices and reject stale/reentrant input.</summary>
     private static void ValidatePaused(bool surface)
     {
         CardDefinition source = Event(Effect()); FishingRunController controller = Controller(source);
         CatchChainRuntime chain = Get<CatchChainRuntime>(controller, "catchChainRuntime"); EffectResolver resolver = Get<EffectResolver>(controller, "effectResolver");
-        CardDefinition creature = Creature(); CardEffectDefinition draw = Effect(); Set(draw, "effectType", CardEffectType.DrawTechniqueOnAttach);
+        CardDefinition creature = Creature(); CardEffectDefinition draw = Effect(); Set(draw, "effectType", CardEffectType.DiscardTechniqueOnAttach);
         Set(draw, "trigger", CardEffectTrigger.WhenCaught); Set(creature, "effects", new[] { draw });
         CardInstance target = chain.Add(creature, resolver); TechniqueDeckRuntime deck = Get<TechniqueDeckRuntime>(controller, "techniqueDeckRuntime");
         CardDefinition delayed = Technique(); Set(deck, "hand", new[] { delayed, delayed, delayed, delayed });
@@ -92,20 +92,20 @@ public static class EventActionChecks
                 0, 3, EventEffectLifetime.UntilRunEnds(), out _);
             ctx.Creatures.RecordAttachment(target, false, ctx.Chain.Catches);
             Invoke(controller, "RefreshViews");
-            Require(!controller.TryChooseFeedingDraw(-1) && deck.Hand.Length == 4 && deck.DrawPile.Length == 2,
+            Require(!controller.TryChooseRequiredTechniqueDiscard(-1) && deck.Hand.Length == 4 && deck.DrawPile.Length == 2,
                 "Partial consequence processed a creature choice before its handler returned.");
             return EventEffectOutcome.Applied;
         } }; controller.RegisterEventEffectHandler(handler);
         Require(surface ? controller.TrySurface() : controller.TryDescend(), "Event action was not accepted.");
         Require(controller.RunActive && controller.CurrentDepth == depth && handler.Calls == 1
             && controller.PendingEventAction == (surface ? ConfirmedEventAction.Surface : ConfirmedEventAction.Descend)
-            && controller.PendingCreatureChoice == CreatureEffectChoiceKind.DrawTechniques,
+            && controller.PendingCreatureChoice == CreatureEffectChoiceKind.DiscardTechnique,
             "Confirmed action executed before its creature reactions finished.");
         Require(!controller.TryDescend() && !controller.TrySurface() && !controller.TryReleaseCatch(0)
             && !TechniqueRuleChecks.Play(controller, 0) && !controller.TryEnterNextBiome(), "A pending event action was replaced/interrupted.");
         Invoke(controller, "ResumeAfterCreatureChoices"); Invoke(controller, "RefreshViews");
         Require(handler.Calls == 1 && controller.CurrentDepth == depth && deck.DrawPile.Length == 2, "Repeated callbacks replayed an effect or action.");
-        Require(controller.TryChooseFeedingDraw(0), "Creature reaction could not make room for its draw.");
+        Require(controller.TryChooseRequiredTechniqueDiscard(0), "Creature reaction could not make room for its draw.");
         Require(handler.Calls == 1 && !controller.HasConfirmedEventAction && !controller.HasPendingCreatureChoice,
             "Finished creature reaction did not finish the confirmed action exactly once.");
         if (surface)
@@ -117,11 +117,11 @@ public static class EventActionChecks
         else
         {
             Require(controller.RunActive && controller.CurrentDepth == depth + 1 && chain.Catches.Length == 1
-                && deck.Hand.Length == 4 && deck.DrawPile.Length == 1 && controller.CanUseTechniqueCard(0, out _),
+                && deck.Hand.Length == 3 && deck.DrawPile.Length == 2 && controller.CanUseTechniqueCard(0, out _),
                 "Paused Descend added an event catch, changed draw order, or failed the next window.");
         }
         depth = controller.CurrentDepth; Invoke(controller, "ResumeAfterCreatureChoices");
-        Require(!controller.TryChooseFeedingDraw(-1) && controller.CurrentDepth == depth && handler.Calls == 1,
+        Require(!controller.TryChooseRequiredTechniqueDiscard(-1) && controller.CurrentDepth == depth && handler.Calls == 1,
             "Old choice completion caused a second action.");
     }
 
@@ -183,7 +183,7 @@ public static class EventActionChecks
             && fault.Calls == 1 && deck.DrawPile.Length == 1 && controller.PendingCreatureChoice == CreatureEffectChoiceKind.None,
             "Faulting consequence reopened/processed partial reactions.");
         Invoke(controller, "ResumeAfterCreatureChoices");
-        Require(!controller.TryChooseFeedingDraw(-1) && !controller.TrySurface() && fault.Calls == 1,
+        Require(!controller.TryChooseRequiredTechniqueDiscard(-1) && !controller.TrySurface() && fault.Calls == 1,
             "Failed confirmed action was retried or bypassed through a choice.");
         controller.StartRun();
         Require(!controller.HasConfirmedEventAction && Get<EventEffectRuntime>(controller, "eventEffectRuntime").Progress == EventResolutionProgress.Inactive

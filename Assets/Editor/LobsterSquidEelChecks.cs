@@ -187,11 +187,8 @@ public static class LobsterSquidEelChecks
             && !runtime.TryChooseMatchingBaitRelease(locked.InstanceId, chain, resolver), "Catch choice bypassed role or release restriction.");
         Require(runtime.TryChooseMatchingBaitRelease(eligible.InstanceId, chain, resolver), "Legal Eel Catch release failed.");
         Prepare(runtime, chain, encounters, resolver, deck);
-        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.DrawTechniques && deck.DrawPile.Length == 8, "Release draw ran early or no discard choice offered.");
-        Require(runtime.TryChooseFeedingDraw(0, deck, new System.Random(1)), "Eel draw failed optional room discard.");
-        Prepare(runtime, chain, encounters, resolver, deck);
-        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 7 && runtime.ChoiceKind == CreatureEffectChoiceKind.None,
-            "Multiple Eel copies drew twice for one released creature.");
+        Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None && deck.Hand.Length == 5 && deck.DrawPile.Length == 7,
+            "Eel failed uncapped draw or multiple copies drew twice.");
         runtime.RecordAttachment(eel); Prepare(runtime, chain, encounters, resolver, deck);
         Require(runtime.TryChooseMatchingBaitRelease(-1, chain, resolver), "Optional Catch release could not decline.");
         Prepare(runtime, chain, encounters, resolver, deck);
@@ -202,10 +199,7 @@ public static class LobsterSquidEelChecks
         Require(chain.TryReleaseTogether(new[] { one.InstanceId, two.InstanceId }, resolver), "Group fixture could not release.");
         Require(runtime.ChoiceKind == CreatureEffectChoiceKind.None && deck.DrawPile.Length == before, "Draw became available before release action finished.");
         runtime.FinishReleaseResolution(); Prepare(runtime, chain, encounters, resolver, deck);
-        runtime.TryChooseFeedingDraw(0, deck, new System.Random(1));
-        Require(deck.Hand.Length == 3 && deck.DrawPile.Length == before, "First optional discard drew before all room choices.");
-        runtime.TryChooseFeedingDraw(0, deck, new System.Random(1)); Prepare(runtime, chain, encounters, resolver, deck);
-        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == before - 2, "Group release did not draw one per eligible creature.");
+        Require(deck.Hand.Length == 7 && deck.DrawPile.Length == before - 2, "Group release did not draw once per eligible creature.");
         one = chain.Add(Card("Forced", new[] { "Elusive" }), resolver);
         chain.TryRelease(Array.IndexOf(chain.Catches, one), resolver, out _, out _, out _, CatchRemovalReason.LineStrain);
         runtime.FinishReleaseResolution(); Prepare(runtime, chain, encounters, resolver, deck);
@@ -243,7 +237,7 @@ public static class LobsterSquidEelChecks
         runtime.Reset(); chain.Reset(); deck = Deck(0, 8); bait = chain.Add(Eel(), resolver, CatchAttachmentRole.Bait);
         int[] ids = new int[6]; for (int i = 0; i < ids.Length; i++) ids[i] = chain.Add(Card("Elusive " + i, new[] { "Elusive" }), resolver).InstanceId;
         chain.TryReleaseTogether(ids, resolver); runtime.FinishReleaseResolution(); Prepare(runtime, chain, encounters, resolver, deck);
-        Require(deck.Hand.Length == 4 && deck.DrawPile.Length == 4 && runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Large release group overflowed or stalled the four-card hand.");
+        Require(deck.Hand.Length == 6 && deck.DrawPile.Length == 2 && runtime.ChoiceKind == CreatureEffectChoiceKind.None, "Large release group failed to draw one per eligible creature.");
     }
 
     /// <summary>Checks controller binding, commitment before on-attach, immediate skip blocking, and depth progression.</summary>
