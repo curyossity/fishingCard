@@ -1,0 +1,363 @@
+{
+  "revision": "MFJ-R061",
+  "oldR055Preserved": true,
+  "screens": [
+    {
+      "state": "Before purchase",
+      "id": "f31e67ca-185b-80af-8008-e02d302f9052",
+      "size": [
+        3840,
+        2160
+      ],
+      "slotCategories": [
+        "Equipment slot / ROD",
+        "Equipment slot / REEL",
+        "Equipment slot / HOOK"
+      ],
+      "catalog": [
+        {
+          "item": "rod",
+          "id": "f31e67ca-185b-80af-8008-e02d5b35daea",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "reel",
+          "id": "f31e67ca-185b-80af-8008-e02d6112d553",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "hook",
+          "id": "f31e67ca-185b-80af-8008-e02d66fdcd04",
+          "state": "AVAILABLE \u00b7 250 GOLD"
+        }
+      ],
+      "nativeTextCount": 49,
+      "primaryInteractions": [
+        {
+          "trigger": "click",
+          "action": {
+            "type": "navigate-to",
+            "destination": {
+              "id": "f31e67ca-185b-80af-8008-e02d75d27036",
+              "type": "board",
+              "name": "MFJ-R061 / Tackle Shop / Hook owned",
+              "blocked": false,
+              "hidden": false,
+              "visible": true,
+              "proportionLock": false,
+              "constraintsHorizontal": "scale",
+              "constraintsVertical": "scale",
+              "fixedWhenScrolling": false,
+              "borderRadius": 0,
+              "borderRadiusTopLeft": 0,
+              "borderRadiusTopRight": 0,
+              "borderRadiusBottomRight": 0,
+              "borderRadiusBottomLeft": 0,
+              "opacity": null,
+              "blendMode": "normal",
+              "shadows": [],
+              "blur": null,
+              "backgroundBlur": null,
+              "exports": [],
+              "x": 84200,
+              "y": 0,
+              "parentIndex": 6,
+              "parentX": 56200,
+              "parentY": 0,
+              "boardX": 56200,
+              "boardY": 0,
+              "width": 3840,
+              "height": 2160,
+              "bounds": {
+                "x": 84200,
+                "y": 0,
+                "width": 3840,
+                "height": 2160
+              },
+              "center": {
+                "x": 86120,
+                "y": 1080
+              },
+              "rotation": 0,
+              "flipX": false,
+              "flipY": false,
+              "fills": [
+                {
+                  "fillColor": "#111e25",
+                  "fillOpacity": 1,
+                  "fillColorGradient": null,
+                  "fillColorRefFile": null,
+                  "fillColorRefId": null,
+                  "fillImage": null
+                }
+              ],
+              "strokes": [],
+              "layoutChild": null,
+              "layoutCell": null,
+              "interactions": [],
+              "tokens": {},
+              "clipContent": false,
+              "showInViewMode": true,
+              "grid": null,
+              "flex": null,
+              "guides": [],
+              "rulerGuides": [],
+              "horizontalSizing": "fix",
+              "verticalSizing": "fix"
+            },
+            "preserveScrollPosition": false
+          }
+        }
+      ],
+      "bounds": true
+    },
+    {
+      "state": "Hook owned",
+      "id": "f31e67ca-185b-80af-8008-e02d75d27036",
+      "size": [
+        3840,
+        2160
+      ],
+      "slotCategories": [
+        "Equipment slot / ROD",
+        "Equipment slot / REEL",
+        "Equipment slot / HOOK"
+      ],
+      "catalog": [
+        {
+          "item": "rod",
+          "id": "f31e67ca-185b-80af-8008-e02daa7f140d",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "reel",
+          "id": "f31e67ca-185b-80af-8008-e02db18eab7e",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "hook",
+          "id": "f31e67ca-185b-80af-8008-e02db8b0b5e7",
+          "state": "OWNED \u00b7 NOT EQUIPPED"
+        }
+      ],
+      "nativeTextCount": 49,
+      "primaryInteractions": [
+        {
+          "trigger": "click",
+          "action": {
+            "type": "navigate-to",
+            "destination": {
+              "id": "f31e67ca-185b-80af-8008-e02dcaa9b1ea",
+              "type": "board",
+              "name": "MFJ-R061 / Tackle Shop / Hook equipped",
+              "blocked": false,
+              "hidden": false,
+              "visible": true,
+              "proportionLock": false,
+              "constraintsHorizontal": "scale",
+              "constraintsVertical": "scale",
+              "fixedWhenScrolling": false,
+              "borderRadius": 0,
+              "borderRadiusTopLeft": 0,
+              "borderRadiusTopRight": 0,
+              "borderRadiusBottomRight": 0,
+              "borderRadiusBottomLeft": 0,
+              "opacity": null,
+              "blendMode": "normal",
+              "shadows": [],
+              "blur": null,
+              "backgroundBlur": null,
+              "exports": [],
+              "x": 88400,
+              "y": 0,
+              "parentIndex": 7,
+              "parentX": 60400,
+              "parentY": 0,
+              "boardX": 60400,
+              "boardY": 0,
+              "width": 3840,
+              "height": 2160,
+              "bounds": {
+                "x": 88400,
+                "y": 0,
+                "width": 3840,
+                "height": 2160
+              },
+              "center": {
+                "x": 90320,
+                "y": 1080
+              },
+              "rotation": 0,
+              "flipX": false,
+              "flipY": false,
+              "fills": [
+                {
+                  "fillColor": "#111e25",
+                  "fillOpacity": 1,
+                  "fillColorGradient": null,
+                  "fillColorRefFile": null,
+                  "fillColorRefId": null,
+                  "fillImage": null
+                }
+              ],
+              "strokes": [],
+              "layoutChild": null,
+              "layoutCell": null,
+              "interactions": [],
+              "tokens": {},
+              "clipContent": false,
+              "showInViewMode": true,
+              "grid": null,
+              "flex": null,
+              "guides": [],
+              "rulerGuides": [],
+              "horizontalSizing": "fix",
+              "verticalSizing": "fix"
+            },
+            "preserveScrollPosition": false
+          }
+        }
+      ],
+      "bounds": true
+    },
+    {
+      "state": "Hook equipped",
+      "id": "f31e67ca-185b-80af-8008-e02dcaa9b1ea",
+      "size": [
+        3840,
+        2160
+      ],
+      "slotCategories": [
+        "Equipment slot / ROD",
+        "Equipment slot / REEL",
+        "Equipment slot / HOOK"
+      ],
+      "catalog": [
+        {
+          "item": "rod",
+          "id": "f31e67ca-185b-80af-8008-e02e0889060a",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "reel",
+          "id": "f31e67ca-185b-80af-8008-e02e1092661e",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "hook",
+          "id": "f31e67ca-185b-80af-8008-e02e18cd4f8c",
+          "state": "EQUIPPED"
+        }
+      ],
+      "nativeTextCount": 51,
+      "primaryInteractions": [
+        {
+          "trigger": "click",
+          "action": {
+            "type": "navigate-to",
+            "destination": {
+              "id": "f31e67ca-185b-80af-8008-e02d75d27036",
+              "type": "board",
+              "name": "MFJ-R061 / Tackle Shop / Hook owned",
+              "blocked": false,
+              "hidden": false,
+              "visible": true,
+              "proportionLock": false,
+              "constraintsHorizontal": "scale",
+              "constraintsVertical": "scale",
+              "fixedWhenScrolling": false,
+              "borderRadius": 0,
+              "borderRadiusTopLeft": 0,
+              "borderRadiusTopRight": 0,
+              "borderRadiusBottomRight": 0,
+              "borderRadiusBottomLeft": 0,
+              "opacity": null,
+              "blendMode": "normal",
+              "shadows": [],
+              "blur": null,
+              "backgroundBlur": null,
+              "exports": [],
+              "x": 84200,
+              "y": 0,
+              "parentIndex": 6,
+              "parentX": 56200,
+              "parentY": 0,
+              "boardX": 56200,
+              "boardY": 0,
+              "width": 3840,
+              "height": 2160,
+              "bounds": {
+                "x": 84200,
+                "y": 0,
+                "width": 3840,
+                "height": 2160
+              },
+              "center": {
+                "x": 86120,
+                "y": 1080
+              },
+              "rotation": 0,
+              "flipX": false,
+              "flipY": false,
+              "fills": [
+                {
+                  "fillColor": "#111e25",
+                  "fillOpacity": 1,
+                  "fillColorGradient": null,
+                  "fillColorRefFile": null,
+                  "fillColorRefId": null,
+                  "fillImage": null
+                }
+              ],
+              "strokes": [],
+              "layoutChild": null,
+              "layoutCell": null,
+              "interactions": [],
+              "tokens": {},
+              "clipContent": false,
+              "showInViewMode": true,
+              "grid": null,
+              "flex": null,
+              "guides": [],
+              "rulerGuides": [],
+              "horizontalSizing": "fix",
+              "verticalSizing": "fix"
+            },
+            "preserveScrollPosition": false
+          }
+        }
+      ],
+      "bounds": true
+    }
+  ],
+  "sourceDimensions": [
+    2172,
+    724
+  ],
+  "exports": {
+    "BeforePurchase.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "02fcbf52f5d56a243e4bdca75d449f9853226b661064d4dafe10a099ec4800ad"
+    },
+    "HookOwned.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "7a69d40045fa1f0a3f5e37bcaa044673da2dcc0f10bb24f84dcc8917fd700569"
+    },
+    "HookEquipped.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "b63eca82003bf96a1a49a1235985e5b1eca2204fbce419d38c398f4a2aeb6894"
+    }
+  },
+  "sourceHash": "07471ccf868d3db6dcc3b0af28689367d22e21c065d7824ce6b8dab98f146a06",
+  "visualReview": "Actual Penpot exports inspected at 4K: independent engraved artwork, readable native fields, three equipment categories, and matching parchment/navy frames. Label insets refined around lower ornaments.",
+  "unityChanged": false
+}

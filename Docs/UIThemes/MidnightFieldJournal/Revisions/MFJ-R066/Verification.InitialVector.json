@@ -1,0 +1,56 @@
+{
+  "revision": "MFJ-R066",
+  "backgroundSize": [
+    3840,
+    2160
+  ],
+  "visibleOldOrnaments": [
+    0,
+    0
+  ],
+  "oldPaperHidden": [
+    true,
+    true
+  ],
+  "newBackgroundVectorOnly": [
+    true,
+    true
+  ],
+  "fixedGroups": [
+    {
+      "name": "Fixed / Shop masthead",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    },
+    {
+      "name": "Fixed / Portrait equipment slots",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    },
+    {
+      "name": "Fixed / Collection heading and filters",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    },
+    {
+      "name": "Fixed / Equipment detail card",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    }
+  ],
+  "catalogCounts": [
+    9,
+    9
+  ],
+  "clipping": [
+    true,
+    true
+  ],
+  "scrollDelta": 1090,
+  "cardFamilyCounts": [
+    13,
+    13
+  ],
+  "ratiosUnchanged": true,
+  "oldR065Preserved": true
+}

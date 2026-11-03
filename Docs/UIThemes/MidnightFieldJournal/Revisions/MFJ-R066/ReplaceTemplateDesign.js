@@ -1,0 +1,10 @@
+const p=penpot.currentPage,ns='fishing-cards-design',d=JSON.parse(p.getSharedPluginData(ns,'MFJ-R066')),source=p.getShapeById(d.backgroundSourceBoardId);
+const vector=penpot.createShapeFromSvg(SVG_CONTENT);vector.name='Original native 4K vector paper and fishing-line edges';source.appendChild(vector);vector.x=source.x;vector.y=source.y;
+const old=p.getShapeById(d.backgroundVectorId);if(old)old.remove();
+const ornament=p.getShapeById(ORNAMENT_ID);source.appendChild(ornament);ornament.name='New original engraving / lower left';ornament.resize(210,140);ornament.x=source.x+80;ornament.y=source.y+1940;
+const right=ornament.clone();source.appendChild(right);right.name='New original engraving / lower right';right.flipX=true;right.x=source.x+2285;right.y=source.y+1940;
+const navy=ornament.clone();source.appendChild(navy);navy.name='New original engraving / navy margin';navy.resize(160,160*2/3);navy.flipX=true;navy.x=source.x+3660;navy.y=source.y+2040;
+function walk(a){return (a.children||[]).flatMap(c=>[c,...walk(c)]);}
+for(const spec of d.screens){const root=p.getShapeById(spec.id),oldLayer=walk(root).find(c=>c.name==='Fixed / Original native 4K background');oldLayer.remove();const layer=source.clone();root.appendChild(layer);layer.name='Fixed / Original native 4K background';layer.x=root.x;layer.y=root.y;layer.fixedWhenScrolling=true;layer.sendToBack();}
+d.backgroundVectorId=vector.id;d.backgroundOrnamentId=ornament.id;d.ornamentSourcePixels=[1536,1024];d.ornamentPlacements=[{position:[80,1940],size:[210,140],flipX:false},{position:[2285,1940],size:[210,140],flipX:true},{position:[3660,2040],size:[160,160*2/3],flipX:true}];d.backgroundConstruction='New native 3840 x 2160 vector paper/edges plus an independently generated transparent engraving displayed at 210 x 140 or smaller from 1536 x 1024. No old ornament master, screenshot slicing, concept-image enlargement or raster upscaling.';
+p.setSharedPluginData(ns,d.revision,JSON.stringify(d));for(const spec of d.screens)p.getShapeById(spec.id).setSharedPluginData(ns,d.revision,JSON.stringify(d));return d;

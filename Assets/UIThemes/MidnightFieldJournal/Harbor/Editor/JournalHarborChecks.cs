@@ -29,13 +29,19 @@ public static class JournalHarborChecks
         Require(installed != null && installed.Controller != null, "Scene hub/controller binding missing.");
         Require(!new SerializedObject(installed.Controller).FindProperty("startRunOnAwake").boolValue, "A hidden run would start before Set Sail.");
         Require(scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<EventSystem>(true)).Count() == 1, "Expected one EventSystem.");
-        foreach (string page in new[] { "harbor", "shop", "collection" })
+        foreach (string page in new[] { "harbor", "collection" })
         {
             string path = JournalHarborBuilder.Root + "Art/" + page + "Frames.png";
             var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path); var importer = (TextureImporter)AssetImporter.GetAtPath(path);
             Require(texture.width == 3840 && texture.height == 2160, "4K frame was reduced: " + page);
             Require(importer.textureCompression == TextureImporterCompression.Uncompressed && !importer.mipmapEnabled && importer.maxTextureSize >= 3840, "Lossy frame import: " + page);
         }
+        string backgroundPath = JournalTackleShopDesignSync.ArtRoot + "ShopBackground4K.png";
+        var background = AssetDatabase.LoadAssetAtPath<Texture2D>(backgroundPath);
+        var backgroundImporter = (TextureImporter)AssetImporter.GetAtPath(backgroundPath);
+        Require(background.width == 3840 && background.height == 2160 && backgroundImporter.maxTextureSize >= 3840
+            && backgroundImporter.textureCompression == TextureImporterCompression.Uncompressed && !backgroundImporter.mipmapEnabled,
+            "Restored shop background lost 4K resolution or import quality.");
         Scene preview = EditorSceneManager.NewPreviewScene();
         GameObject root = null, cameraObject = null;
         try
@@ -57,6 +63,18 @@ public static class JournalHarborChecks
                     if (button.interactable) Require(button.onClick.GetPersistentEventCount() == 1, "Unwired route: " + button.name);
                 Capture(camera, root, 3840, 2160, page.name + "-Unity4K.png");
                 Capture(camera, root, 1920, 1080, page.name + "-Unity1080p.png");
+                if (page.name == "shop")
+                {
+                    var scroll = page.GetComponentInChildren<UnityEngine.UI.ScrollRect>();
+                    var slot = page.GetComponentsInChildren<RectTransform>().Single(r => r.name == "Equipment slot / Rod");
+                    var fixedPosition = slot.position;
+                    Require(scroll.content.childCount == 9 && scroll.viewport.GetComponent<UnityEngine.UI.RectMask2D>() != null,
+                        "Shop catalog content or clipping missing.");
+                    scroll.verticalNormalizedPosition = 0;
+                    Capture(camera, root, 3840, 2160, "shop-scrolled-Unity4K.png");
+                    Capture(camera, root, 1920, 1080, "shop-scrolled-Unity1080p.png");
+                    Require(slot.position == fixedPosition, "Scrolling moved a fixed equipment slot.");
+                }
             }
         }
         finally

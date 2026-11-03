@@ -1,0 +1,164 @@
+{
+  "revision": "MFJ-R064",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "size": [
+    3840,
+    2160
+  ],
+  "cardAspect": {
+    "sourcePixels": [
+      1190,
+      1322
+    ],
+    "ratio": 0.9001512859304085,
+    "emptySlot": [
+      300,
+      333.2773109243697
+    ],
+    "catalogCard": [
+      500,
+      555.4621848739496
+    ]
+  },
+  "screens": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15749f48c31",
+      "state": "Collection top",
+      "position": [
+        80000,
+        17000
+      ],
+      "scrollOffset": 0
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e158222c4037",
+      "state": "Collection scrolled",
+      "position": [
+        84200,
+        17000
+      ],
+      "scrollOffset": 1090
+    }
+  ],
+  "initialId": "5de0315f-b85e-80a3-8008-e15749f48c31",
+  "slots": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15750621298",
+      "category": "ROD",
+      "width": 300,
+      "height": 333.2773109243697
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1575190df3f",
+      "category": "REEL",
+      "width": 300,
+      "height": 333.2773109243697
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15753150ee9",
+      "category": "HOOK",
+      "width": 300,
+      "height": 333.2773109243697
+    }
+  ],
+  "catalog": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1578bd12fee",
+      "item": "rod",
+      "index": 0,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1578fe11707",
+      "item": "reel",
+      "index": 1,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15794634b3a",
+      "item": "hook",
+      "index": 2,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e157bb66018e",
+      "item": "rod",
+      "index": 3,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e157bee1fab3",
+      "item": "reel",
+      "index": 4,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e157c260a4b9",
+      "item": "hook",
+      "index": 5,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e157d9a65323",
+      "item": "rod",
+      "index": 6,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e157dd66c17a",
+      "item": "reel",
+      "index": 7,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e157e11dc5d7",
+      "item": "hook",
+      "index": 8,
+      "placeholder": true,
+      "width": 500,
+      "height": 555.4621848739496
+    }
+  ],
+  "viewportId": "5de0315f-b85e-80a3-8008-e15759403638",
+  "contentId": "5de0315f-b85e-80a3-8008-e15759b9afcb",
+  "inspectorId": "5de0315f-b85e-80a3-8008-e157fb7e7159",
+  "sourceIds": {
+    "background": "bae680cd-9225-8018-8008-d00618505dcc",
+    "rod": "75555645-d407-8067-8008-de9b972ff90c",
+    "reel": "75555645-d407-8067-8008-de9b99677d11",
+    "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+  },
+  "concept": "The Open Field Journal: pale native parchment leaf holding portrait rig slots and collector cards, with a dark unframed enlarged equipment study on the right.",
+  "status": "ready_for_review",
+  "unityImported": false,
+  "initialEquippedItems": [],
+  "placeholderCopies": {
+    "rod": 3,
+    "reel": 3,
+    "hook": 3
+  },
+  "prototype": "Catalog down/up arrows link discrete scroll states. Header, rig, collection filters and right study remain fixed. Harbor navigation works. Purchases/equips/filters and wheel scrolling are visual specifications.",
+  "artwork": "Existing independent equipment illustrations and in-game dark paper. New native vector parchment, grain, botanical strokes, portrait card silhouettes and controls. No shop background image, scene, panorama, old full-screen mockup slicing or reused R063 layout.",
+  "preserved": [
+    "R061, R062 and R063 designs",
+    "Unity project assets, scenes, code, gameplay and saves"
+  ]
+}

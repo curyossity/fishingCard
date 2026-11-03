@@ -1,0 +1,7 @@
+const p=penpot.currentPage,ns='fishing-cards-design',d=JSON.parse(p.getSharedPluginData(ns,'MFJ-R067')),imported=p.getShapeById('5de0315f-b85e-80a3-8008-e186c2cac8ba');
+let replaced=0;for(const root of [p.getShapeById(d.backgroundSourceBoardId),...d.screens.map(s=>p.getShapeById(s.id))]){
+ for(const art of penpotUtils.findShapes(s=>s.name==='Approved GeneratedConceptOnly / raster preview — not native 4K',root)){art.fills=imported.fills;art.name='Approved concept / restored 3840 x 2160 background';replaced++;}
+ root.name=root.name.replace('PREVIEW — source 1672 x 941','Restored 4K master');
+}
+if(replaced!==3)throw Error('Expected three background instances, found '+replaced);imported.remove();
+d.originalSourcePixels=[1672,941];d.backgroundNativePixels=[3840,2160];d.backgroundSource='Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/ShopBackground4K.png';d.backgroundProcessing='Local Real-ESRGAN x4plus restoration (6688 x 3764), then high-quality reduction to 3840 x 2160. AI-restored from the approved composition; not a native 4K generation.';d.qualityLimitation='Original source retained; higher-frequency detail is reconstructed by super-resolution. 4K output reviewed at 1:1 before import.';d.status='integration_in_progress';d.integrationStatus='in_progress';p.setSharedPluginData(ns,d.revision,JSON.stringify(d));for(const s of d.screens)p.getShapeById(s.id).setSharedPluginData(ns,d.revision,JSON.stringify(d));penpot.selection=[p.getShapeById(d.initialId)];penpot.viewport.zoomIntoView(penpot.selection);return d;

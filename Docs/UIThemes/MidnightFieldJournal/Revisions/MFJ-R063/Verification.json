@@ -1,0 +1,128 @@
+{
+  "revision": "MFJ-R063",
+  "fixedParts": [
+    {
+      "name": "Fixed / Header",
+      "initial": [
+        0,
+        0,
+        3840,
+        300.0000000000018
+      ],
+      "scrolled": [
+        0,
+        0,
+        3840,
+        300.0000000000018
+      ],
+      "unchanged": true
+    },
+    {
+      "name": "Fixed / Three empty equipment slots",
+      "initial": [
+        145,
+        310,
+        2210,
+        500
+      ],
+      "scrolled": [
+        145,
+        310,
+        2210,
+        500
+      ],
+      "unchanged": true
+    },
+    {
+      "name": "Fixed / Enlarged item inspection",
+      "initial": [
+        2540,
+        310,
+        1150,
+        1730
+      ],
+      "scrolled": [
+        2540,
+        310,
+        1150,
+        1730
+      ],
+      "unchanged": true
+    },
+    {
+      "name": "Fixed / Catalog filters",
+      "initial": [
+        155,
+        950,
+        2150,
+        65
+      ],
+      "scrolled": [
+        155,
+        950,
+        2150,
+        65
+      ],
+      "unchanged": true
+    }
+  ],
+  "slotLabels": [
+    [
+      "ROD",
+      "REEL",
+      "HOOK"
+    ],
+    [
+      "ROD",
+      "REEL",
+      "HOOK"
+    ]
+  ],
+  "noSlotPrices": true,
+  "catalogCounts": [
+    9,
+    9
+  ],
+  "catalogClipEnabled": [
+    true,
+    true
+  ],
+  "offsetDifference": 960,
+  "screenSizes": [
+    [
+      3840,
+      2160
+    ],
+    [
+      3840,
+      2160
+    ]
+  ],
+  "oldAlternativesPreserved": true,
+  "prototypeDestinations": [
+    "5de0315f-b85e-80a3-8008-e153bcc30b20",
+    "5de0315f-b85e-80a3-8008-e152ed3dae2d"
+  ],
+  "nativeTextCounts": [
+    50,
+    50
+  ],
+  "exports": {
+    "CatalogTop.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "f9df2cea96719b61dd68a3fe4287d66fb2b4d288a8d8a2d1a920b57b9647ede9"
+    },
+    "CatalogScrolled.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "728d81734ee72bb2cc107ee51e45227f6f0ac01efe1718d7bfe7861483f515bd"
+    }
+  },
+  "visualReview": "Both actual Penpot 4K exports inspected: empty category slots without prices; nine independent placeholder items; clipping confines translated rows to the catalog; larger Reel inspection and fixed header/rig retain their bounds.",
+  "unityChanged": false
+}

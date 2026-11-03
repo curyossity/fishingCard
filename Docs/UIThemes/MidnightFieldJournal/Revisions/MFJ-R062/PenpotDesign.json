@@ -1,0 +1,75 @@
+{
+  "revision": "MFJ-R062",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "reviewId": "f31e67ca-185b-80af-8008-e036e9bc2368",
+  "position": [
+    80000,
+    7000
+  ],
+  "size": [
+    3840,
+    2160
+  ],
+  "slots": [
+    {
+      "id": "f31e67ca-185b-80af-8008-e036ef7f6975",
+      "category": "ROD",
+      "equipped": true
+    },
+    {
+      "id": "f31e67ca-185b-80af-8008-e036f2f7e659",
+      "category": "REEL",
+      "equipped": false
+    },
+    {
+      "id": "f31e67ca-185b-80af-8008-e036f68f4106",
+      "category": "HOOK",
+      "equipped": false
+    }
+  ],
+  "cards": [
+    {
+      "id": "f31e67ca-185b-80af-8008-e036fda98120",
+      "item": "rod",
+      "actionId": "f31e67ca-185b-80af-8008-e03702476ecd"
+    },
+    {
+      "id": "f31e67ca-185b-80af-8008-e037035d0dfc",
+      "item": "reel",
+      "actionId": "f31e67ca-185b-80af-8008-e03706e563ec"
+    },
+    {
+      "id": "f31e67ca-185b-80af-8008-e03708100db3",
+      "item": "hook",
+      "actionId": "f31e67ca-185b-80af-8008-e0370d1b72b8"
+    }
+  ],
+  "filters": [
+    "f31e67ca-185b-80af-8008-e036fa6d1a18",
+    "f31e67ca-185b-80af-8008-e036fb9a7b0b",
+    "f31e67ca-185b-80af-8008-e036fc1abf56",
+    "f31e67ca-185b-80af-8008-e036fca07649"
+  ],
+  "status": "ready_for_review",
+  "unityImported": false,
+  "concept": "Equipment Card Table: compact loadout ribbon above three large collectible equipment cards. Owned Reel is subtly raised. Direct purchase/equip controls below cards.",
+  "background": "Only existing in-game 4K dark paper and illustrated kelp. No shop background, panorama, workshop or R061 frame master.",
+  "sourceIds": {
+    "background": "bae680cd-9225-8018-8008-d00618505dcc",
+    "kelp": "bae680cd-9225-8018-8008-d00618505dcd",
+    "compact": "bae680cd-9225-8018-8008-d00618505ded",
+    "card": "f31e67ca-185b-80af-8008-e036aa77cd26",
+    "rod": "75555645-d407-8067-8008-de9b972ff90c",
+    "reel": "75555645-d407-8067-8008-de9b99677d11",
+    "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+  },
+  "prototype": "Static editable design review. Harbor back link is wired; filters and equip/purchase actions are visual specifications.",
+  "mechanic": "Up to three equipped items: one Rod, one Reel, one Hook; empty slots allowed. Existing approved item identities, prices and effects retained.",
+  "preserved": [
+    "MFJ-R061 and earlier shop designs",
+    "All Unity assets, scenes, gameplay and saves"
+  ],
+  "sourceBoardId": "f31e67ca-185b-80af-8008-e037bfddcd65"
+}

@@ -31,6 +31,7 @@ public static class JournalTackleShopSetup
     public static void Bind(GameObject root)
     {
         if (AssetDatabase.LoadAssetAtPath<TackleShopCatalog>(CatalogPath) == null) return;
+        if (JournalTackleShopDesignSync.IsAvailable) { JournalTackleShopDesignSync.Bind(root); return; }
         var theme = AssetDatabase.LoadAssetAtPath<MidnightFieldJournalTheme>(MidnightFieldJournalAssetSetup.ThemePath);
         var flow = root.GetComponent<JournalHarborFlow>(); var stage = root.transform.Find("Hub Content/16x9 Design Stage");
         Transform shop = stage.Find("shop"), harbor = stage.Find("harbor"), collection = stage.Find("collection");
@@ -123,6 +124,7 @@ public static class JournalTackleShopSetup
             var item = items.GetArrayElementAtIndex(i); item.FindPropertyRelative("id").stringValue = ids[i]; item.FindPropertyRelative("displayName").stringValue = names[i]; item.FindPropertyRelative("category").stringValue = categories[i];
             item.FindPropertyRelative("description").stringValue = descriptions[i]; item.FindPropertyRelative("price").intValue = prices[i]; item.FindPropertyRelative("amount").intValue = amounts[i];
             item.FindPropertyRelative("catchLimit").intValue = i == 2 ? 3 : 0; item.FindPropertyRelative("benefit").enumValueIndex = i; item.FindPropertyRelative("sourceCard").objectReferenceValue = sources[i];
+            item.FindPropertyRelative("slot").enumValueIndex = i;
         }
         c.ApplyModifiedPropertiesWithoutUndo(); EditorUtility.SetDirty(catalog); AssetDatabase.SaveAssetIfDirty(catalog); catalog.Validate();
     }

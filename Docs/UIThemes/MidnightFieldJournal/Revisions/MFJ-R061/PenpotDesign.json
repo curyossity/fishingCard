@@ -1,0 +1,197 @@
+{
+  "revision": "MFJ-R061",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "screens": [
+    {
+      "state": "Before purchase",
+      "id": "f31e67ca-185b-80af-8008-e02d302f9052",
+      "width": 3840,
+      "height": 2160,
+      "balance": 650,
+      "equipped": 2,
+      "slots": [
+        "f31e67ca-185b-80af-8008-e02d43acab7a",
+        "f31e67ca-185b-80af-8008-e02d46e5113a",
+        "f31e67ca-185b-80af-8008-e02d4a3abf5a"
+      ],
+      "catalog": [
+        {
+          "item": "rod",
+          "id": "f31e67ca-185b-80af-8008-e02d5b35daea",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "reel",
+          "id": "f31e67ca-185b-80af-8008-e02d6112d553",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "hook",
+          "id": "f31e67ca-185b-80af-8008-e02d66fdcd04",
+          "state": "AVAILABLE \u00b7 250 GOLD"
+        }
+      ],
+      "filters": [
+        "f31e67ca-185b-80af-8008-e02d50202a89",
+        "f31e67ca-185b-80af-8008-e02d52a39e52",
+        "f31e67ca-185b-80af-8008-e02d555f91bc",
+        "f31e67ca-185b-80af-8008-e02d5819dd7a"
+      ],
+      "primaryActionId": "f31e67ca-185b-80af-8008-e02d7016c2da",
+      "backId": "f31e67ca-185b-80af-8008-e02d7307585f",
+      "navigation": [
+        {
+          "name": "HARBOR",
+          "id": "f31e67ca-185b-80af-8008-e02d36d744c3"
+        },
+        {
+          "name": "TACKLE SHOP",
+          "id": "f31e67ca-185b-80af-8008-e02d3703d5fb"
+        },
+        {
+          "name": "TECHNIQUES",
+          "id": "f31e67ca-185b-80af-8008-e02d374d798b"
+        },
+        {
+          "name": "JOURNAL",
+          "id": "f31e67ca-185b-80af-8008-e02d377a782c"
+        }
+      ],
+      "hookUnequipId": null
+    },
+    {
+      "state": "Hook owned",
+      "id": "f31e67ca-185b-80af-8008-e02d75d27036",
+      "width": 3840,
+      "height": 2160,
+      "balance": 400,
+      "equipped": 2,
+      "slots": [
+        "f31e67ca-185b-80af-8008-e02d8dd28c90",
+        "f31e67ca-185b-80af-8008-e02d91d3ecd5",
+        "f31e67ca-185b-80af-8008-e02d962c7fd3"
+      ],
+      "catalog": [
+        {
+          "item": "rod",
+          "id": "f31e67ca-185b-80af-8008-e02daa7f140d",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "reel",
+          "id": "f31e67ca-185b-80af-8008-e02db18eab7e",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "hook",
+          "id": "f31e67ca-185b-80af-8008-e02db8b0b5e7",
+          "state": "OWNED \u00b7 NOT EQUIPPED"
+        }
+      ],
+      "filters": [
+        "f31e67ca-185b-80af-8008-e02d9d6dd338",
+        "f31e67ca-185b-80af-8008-e02da0a1036e",
+        "f31e67ca-185b-80af-8008-e02da3babc88",
+        "f31e67ca-185b-80af-8008-e02da6eddbb6"
+      ],
+      "primaryActionId": "f31e67ca-185b-80af-8008-e02dc3c4aa7d",
+      "backId": "f31e67ca-185b-80af-8008-e02dc75d6666",
+      "navigation": [
+        {
+          "name": "HARBOR",
+          "id": "f31e67ca-185b-80af-8008-e02d7db7654d"
+        },
+        {
+          "name": "TACKLE SHOP",
+          "id": "f31e67ca-185b-80af-8008-e02d7df27415"
+        },
+        {
+          "name": "TECHNIQUES",
+          "id": "f31e67ca-185b-80af-8008-e02d7e51f640"
+        },
+        {
+          "name": "JOURNAL",
+          "id": "f31e67ca-185b-80af-8008-e02d7e8e8063"
+        }
+      ],
+      "hookUnequipId": null
+    },
+    {
+      "state": "Hook equipped",
+      "id": "f31e67ca-185b-80af-8008-e02dcaa9b1ea",
+      "width": 3840,
+      "height": 2160,
+      "balance": 400,
+      "equipped": 3,
+      "slots": [
+        "f31e67ca-185b-80af-8008-e02de7811b22",
+        "f31e67ca-185b-80af-8008-e02dec772b8d",
+        "f31e67ca-185b-80af-8008-e02df1233eb9"
+      ],
+      "catalog": [
+        {
+          "item": "rod",
+          "id": "f31e67ca-185b-80af-8008-e02e0889060a",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "reel",
+          "id": "f31e67ca-185b-80af-8008-e02e1092661e",
+          "state": "EQUIPPED"
+        },
+        {
+          "item": "hook",
+          "id": "f31e67ca-185b-80af-8008-e02e18cd4f8c",
+          "state": "EQUIPPED"
+        }
+      ],
+      "filters": [
+        "f31e67ca-185b-80af-8008-e02df9ed9027",
+        "f31e67ca-185b-80af-8008-e02dfd7198c4",
+        "f31e67ca-185b-80af-8008-e02e00fd26c7",
+        "f31e67ca-185b-80af-8008-e02e04982e3b"
+      ],
+      "primaryActionId": "f31e67ca-185b-80af-8008-e02e252ea21f",
+      "backId": "f31e67ca-185b-80af-8008-e02e293e6b87",
+      "navigation": [
+        {
+          "name": "HARBOR",
+          "id": "f31e67ca-185b-80af-8008-e02dd42d95dc"
+        },
+        {
+          "name": "TACKLE SHOP",
+          "id": "f31e67ca-185b-80af-8008-e02dd47578c1"
+        },
+        {
+          "name": "TECHNIQUES",
+          "id": "f31e67ca-185b-80af-8008-e02dd4e65da1"
+        },
+        {
+          "name": "JOURNAL",
+          "id": "f31e67ca-185b-80af-8008-e02dd52ddd02"
+        }
+      ],
+      "hookUnequipId": "f31e67ca-185b-80af-8008-e02df5aaecfc"
+    }
+  ],
+  "sourceId": "f31e67ca-185b-80af-8008-e02e2d67968a",
+  "workshopArtId": "f31e67ca-185b-80af-8008-e02d267e1b63",
+  "frameMasterIds": {
+    "Paper": "75555645-d407-8067-8008-dea9cfcb5568",
+    "Dark": "75555645-d407-8067-8008-dea9cd9a2881"
+  },
+  "itemArtIds": {
+    "rod": "75555645-d407-8067-8008-de9b972ff90c",
+    "reel": "75555645-d407-8067-8008-de9b99677d11",
+    "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+  },
+  "status": "ready_for_review",
+  "unityImported": false,
+  "mechanic": "Up to three equipped items, at most one Rod, one Reel and one Hook. Empty slots allowed.",
+  "prototype": "Illustrative Hook unlock \u2192 equip \u2192 unequip. Gold values are mockup state, not saved progression.",
+  "unchanged": "Existing Unity shop and prior Penpot source preserved; no gameplay implementation.",
+  "reusedSource": "Existing approved engraved equipment illustrations and independent paper/navy frame masters; no screen-image slicing.",
+  "frameConstruction": "Native editable fixed-corner 9-slice boards; 300px source corners displayed at 25\u2013150px, never enlarged."
+}

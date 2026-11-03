@@ -1,0 +1,92 @@
+{
+  "revision": "MFJ-R066",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "size": [
+    3840,
+    2160
+  ],
+  "screens": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e17b6094b341",
+      "state": "Original background / catalog top",
+      "position": [
+        80000,
+        27000
+      ],
+      "scrollOffset": 0
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e17b632f4cf1",
+      "state": "Original background / catalog scrolled",
+      "position": [
+        84200,
+        27000
+      ],
+      "scrollOffset": 1090
+    }
+  ],
+  "initialId": "5de0315f-b85e-80a3-8008-e17b6094b341",
+  "backgroundSourceBoardId": "5de0315f-b85e-80a3-8008-e17b6015732d",
+  "backgroundVectorId": "5de0315f-b85e-80a3-8008-e17d83595184",
+  "backgroundNativePixels": [
+    3840,
+    2160
+  ],
+  "backgroundSource": "Art/ShopBackground4K.svg",
+  "backgroundRaster": "Art/ShopBackground4K.png",
+  "conceptOnly": "Art/GeneratedConceptOnly.png \u2014 smaller generated concept, never placed or enlarged",
+  "baseRevision": "MFJ-R065",
+  "status": "ready_for_review",
+  "unityImported": false,
+  "change": "Replace the entire visible shop background with original native 4K vector artwork: parchment folio, hand-drawn rigging-line flourishes, custom spool/float engravings, coastal grass/seed pods and dark navy paper. No old decoration master or 9-slice visible.",
+  "unchanged": [
+    "Equipment card family and all dynamic fields",
+    "Three empty portrait slots and nine placeholders",
+    "Card ratio, catalog clipping and fixed inspection",
+    "Unity assets, code, scene, gameplay and saves"
+  ],
+  "prototype": "Discrete catalog scroll states linked with down/up arrows. Harbor back link. Purchases, equips, filters and wheel scrolling remain visual specifications.",
+  "backgroundConstruction": "New native 3840 x 2160 vector paper/edges plus an independently generated transparent engraving displayed at 210 x 140 or smaller from 1536 x 1024. No old ornament master, screenshot slicing, concept-image enlargement or raster upscaling.",
+  "backgroundOrnamentId": "5de0315f-b85e-80a3-8008-e17d62e6125b",
+  "ornamentSourcePixels": [
+    1536,
+    1024
+  ],
+  "ornamentPlacements": [
+    {
+      "position": [
+        80,
+        1940
+      ],
+      "size": [
+        210,
+        140
+      ],
+      "flipX": false
+    },
+    {
+      "position": [
+        2285,
+        1940
+      ],
+      "size": [
+        210,
+        140
+      ],
+      "flipX": true
+    },
+    {
+      "position": [
+        3660,
+        2040
+      ],
+      "size": [
+        160,
+        106.66666666666667
+      ],
+      "flipX": true
+    }
+  ]
+}

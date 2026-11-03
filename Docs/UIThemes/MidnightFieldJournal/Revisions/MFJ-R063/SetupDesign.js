@@ -1,0 +1,32 @@
+const p=penpot.currentPage,ns='fishing-cards-design';if(p.getSharedPluginData(ns,'MFJ-R063'))throw Error('Inspect existing R063');
+const X=80000,Y=12000,C={navy:'#101B22',ink:'#283B3D',paper:'#EAD8B8',ivory:'#ECE0C5',gold:'#C9A06A',muted:'#BCB8AA',green:'#B9CBAE'};
+const refs={background:'bae680cd-9225-8018-8008-d00618505dcc',kelp:'bae680cd-9225-8018-8008-d00618505dcd',compact:'bae680cd-9225-8018-8008-d00618505ded',card:'f31e67ca-185b-80af-8008-e036aa77cd26',rod:'75555645-d407-8067-8008-de9b972ff90c',reel:'75555645-d407-8067-8008-de9b99677d11',hook:'75555645-d407-8067-8008-de9b9b3a9112'};
+const board=(name,x,y,w,h,parent)=>{const b=penpot.createBoard();b.name=name;b.resize(w,h);b.x=x;b.y=y;b.fills=[];b.clipContent=false;if(parent)parent.appendChild(b);return b;};
+const b=board('MFJ-R063 / Tackle Shop / Fixed Rig + Scroll Catalog',X,Y,3840,2160,p.getShapeById('92f68b17-9997-80de-8008-dfc1d6a06a0a'));b.fills=[{fillColor:C.navy,fillOpacity:1}];
+const text=(parent,name,copy,x,y,w,h,size=34,color=C.ivory,body=false,align='left')=>{const t=penpot.createText(copy);penpot.fonts.findByName(body?'Source Serif 4':'Cinzel').applyToText(t);t.name=name;t.fontSize=String(size);t.fontWeight='400';t.lineHeight='1.16';t.align=align;t.growType='fixed';t.resize(w,h);t.x=X+x;t.y=Y+y;t.fills=[{fillColor:color,fillOpacity:1}];parent.appendChild(t);return t;};
+const image=(parent,key,x,y,w,h,fit=false)=>{const src=p.getShapeById(refs[key]),s=src.clone(),k=Math.min(w/src.width,h/src.height);parent.appendChild(s);s.name='Source / '+key;s.resize(fit?src.width*k:w,fit?src.height*k:h);s.x=X+x+(w-s.width)/2;s.y=Y+y+(h-s.height)/2;return s;};
+const svg=(parent,name,body,x,y,w,h)=>{const s=penpot.createShapeFromSvg(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>`);s.name=name;parent.appendChild(s);s.x=X+x;s.y=Y+y;return s;};
+const button=(parent,name,label,x,y,w,h=110)=>{const a=board(name,X+x,Y+y,w,h,parent);svg(a,'Native parchment button',`<rect x="2" y="2" width="${w-4}" height="${h-4}" rx="14" fill="${C.paper}" stroke="#A57D4E" stroke-width="2"/><path d="M35 20 Q18 20 18 40 M${w-35} ${h-20} Q${w-18} ${h-20} ${w-18} ${h-40}" stroke="#785A3B" stroke-width="2" fill="none"/>`,x,y,w,h);text(a,'Button label',label,x+45,y+30,w-90,h-40,33,C.ink,false,'center');return a;};
+image(b,'background',0,0,3840,2160);image(b,'kelp',0,0,3840,2160);
+const header=board('Fixed / Header',X,Y,3840,220,b);header.fixedWhenScrolling=true;
+text(header,'Back to Harbor','‹  HARBOR',145,80,480,65,36);
+text(header,'Shop title','TACKLE SHOP',145,170,1900,110,80);
+text(header,'Gold balance','650 GOLD',3020,80,660,80,53,C.ivory,false,'right');
+const rig=board('Fixed / Three empty equipment slots',X+145,Y+310,2210,500,b);rig.fixedWhenScrolling=true;
+text(rig,'Rig heading','YOUR EXPEDITION RIG',155,309,1540,55,34,C.gold);
+text(rig,'Equipped count','0 / 3 EQUIPPED',1800,313,540,52,30,C.muted,false,'right');
+for(const [i,type] of ['ROD','REEL','HOOK'].entries()){
+ const x=155+i*740,y=400,slot=board('Reserved slot / '+type,X+x,Y+y,690,390,rig);
+ svg(slot,'Native engraved empty socket',`<rect x="3" y="3" width="684" height="294" rx="26" fill="#14232A" fill-opacity=".68" stroke="#9F815A" stroke-width="2"/><rect x="14" y="14" width="662" height="272" rx="19" fill="none" stroke="#6E604B" stroke-width="1"/><path d="M35 69 Q34 35 69 35 M621 265 Q655 265 655 231 M33 48 Q54 48 54 29 M636 271 Q636 249 659 249" stroke="#C5A373" stroke-width="2" fill="none"/><path d="M345 126 V174 M321 150 H369" stroke="#BAA37A" stroke-width="2"/>`,x,y,690,300);
+ text(slot,'Equipment type / '+type,type,x+80,y+326,530,50,35,C.ivory,false,'center');
+}
+text(b,'Catalog title','EQUIPMENT CATALOG',155,863,1300,64,41);
+text(b,'Catalog count','9 ITEMS',1890,870,430,50,29,C.muted,false,'right');
+const filters=board('Fixed / Catalog filters',X+155,Y+950,2150,65,b);filters.fixedWhenScrolling=true;
+for(const [i,label] of ['ALL EQUIPMENT','RODS','REELS','HOOKS'].entries())text(filters,'Filter / '+label,label,155+i*500,954,460,50,29,i===0?C.gold:C.muted,false,'center');
+svg(filters,'Active filter underline','<path d="M0 1H380" stroke="#C9A06A" stroke-width="2"/>',195,1015,380,3);
+svg(b,'Subtle column separation','<path d="M1 0V1730" stroke="#A2865B" stroke-opacity=".45" stroke-width="2"/>',2450,310,3,1730);
+const viewport=board('Scroll / Catalog viewport',X+145,Y+1060,2220,990,b);viewport.clipContent=true;
+const content=board('Scroll / Nine placeholder items',X+145,Y+1060,2220,1950,viewport);
+storage.r063={X,Y,C,refs,b,header,rig,filters,viewport,content,board,text,image,svg,button,catalog:[]};
+p.setSharedPluginData(ns,'MFJ-R063-WIP',JSON.stringify({reviewId:b.id,viewportId:viewport.id,contentId:content.id}));return {reviewId:b.id,viewportId:viewport.id,contentId:content.id};

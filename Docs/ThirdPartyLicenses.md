@@ -54,3 +54,7 @@ The consolidated, distributable font copyright notices and full OFL are maintain
 - [Imported TTF hashes and embedded metadata](Licenses/ImportedFontFiles-2026-10-19.json): copyright, family/style, license descriptions and URLs for all imported TTF files.
 
 The original local OFL files are retained unchanged. No commercial-use restriction or required on-screen attribution was found in any of the six family licenses.
+
+## Local artwork restoration tool — Real-ESRGAN
+
+MFJ-SYNC-013 uses the official portable Real-ESRGAN NCNN Vulkan 20220424 release and its `realesrgan-x4plus` model locally to restore the approved shop background before reducing it to 3840 × 2160. No paid service or API was used. The tool is MIT licensed; its notices are retained in [RealESRGAN-ncnn-vulkan-MIT.txt](Licenses/RealESRGAN-ncnn-vulkan-MIT.txt). Tool binaries/models stay outside Assets under ignored Temp and are not included in the game. The tool's MIT terms do not require an on-screen credit for the resulting PNG. If the tool itself is redistributed, include its license notices. [Official release/instructions](https://github.com/xinntao/Real-ESRGAN) · [License](https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan/blob/master/LICENSE).

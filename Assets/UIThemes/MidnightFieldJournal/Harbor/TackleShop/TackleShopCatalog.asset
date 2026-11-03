@@ -21,6 +21,7 @@ MonoBehaviour:
     amount: 1
     catchLimit: 0
     benefit: 0
+    slot: 0
     sourceCard: {fileID: 11400000, guid: ae89e1073334d4c43bbb410bc35e60a3, type: 2}
   - id: tideglass_reel
     displayName: Tideglass Reel
@@ -30,6 +31,7 @@ MonoBehaviour:
     amount: 2
     catchLimit: 0
     benefit: 1
+    slot: 1
     sourceCard: {fileID: 11400000, guid: 6148ba6728b889643b253613a54fe342, type: 2}
   - id: barbed_hook
     displayName: Barbed Hook
@@ -40,4 +42,5 @@ MonoBehaviour:
     amount: 1
     catchLimit: 3
     benefit: 2
+    slot: 2
     sourceCard: {fileID: 11400000, guid: 0e0ebcaabf9ee9349bbbc10f0ea313f5, type: 2}

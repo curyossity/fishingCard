@@ -1,0 +1,119 @@
+{
+  "revision": "MFJ-R063",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "size": [
+    3840,
+    2160
+  ],
+  "screens": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e152ed3dae2d",
+      "state": "Catalog top",
+      "position": [
+        80000,
+        12000
+      ],
+      "scrollOffset": 0
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e153bcc30b20",
+      "state": "Catalog scrolled",
+      "position": [
+        84200,
+        12000
+      ],
+      "scrollOffset": 960
+    }
+  ],
+  "initialId": "5de0315f-b85e-80a3-8008-e152ed3dae2d",
+  "viewportId": "5de0315f-b85e-80a3-8008-e152f6216065",
+  "contentId": "5de0315f-b85e-80a3-8008-e152f661636c",
+  "fixedRigId": "5de0315f-b85e-80a3-8008-e152ef891943",
+  "fixedDetailId": "5de0315f-b85e-80a3-8008-e15389e2af19",
+  "slotTypes": [
+    "Rod",
+    "Reel",
+    "Hook"
+  ],
+  "initialEquippedItems": [],
+  "catalog": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1533dc7b92c",
+      "item": "rod",
+      "index": 0,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1533fe74fd4",
+      "item": "reel",
+      "index": 1,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15342209c53",
+      "item": "hook",
+      "index": 2,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15356a999a4",
+      "item": "rod",
+      "index": 3,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15358c0f0ca",
+      "item": "reel",
+      "index": 4,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1535abb1f84",
+      "item": "hook",
+      "index": 5,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e1536e2fe0c5",
+      "item": "rod",
+      "index": 6,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e153705100d4",
+      "item": "reel",
+      "index": 7,
+      "placeholder": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e15372495c4f",
+      "item": "hook",
+      "index": 8,
+      "placeholder": true
+    }
+  ],
+  "placeholderDesigns": 3,
+  "placeholderCopiesEach": 3,
+  "sourceIds": {
+    "background": "bae680cd-9225-8018-8008-d00618505dcc",
+    "kelp": "bae680cd-9225-8018-8008-d00618505dcd",
+    "compact": "bae680cd-9225-8018-8008-d00618505ded",
+    "card": "f31e67ca-185b-80af-8008-e036aa77cd26",
+    "rod": "75555645-d407-8067-8008-de9b972ff90c",
+    "reel": "75555645-d407-8067-8008-de9b99677d11",
+    "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+  },
+  "status": "ready_for_review",
+  "unityImported": false,
+  "prototype": "Click the catalog down chevron to inspect the lower catalog; click the upper chevron on that state to return. Discrete scroll-state prototype; no wheel scrolling or actual purchases/equips implemented.",
+  "layout": "Fixed empty Rod/Reel/Hook slots above an independently clipped 9-item catalog. Fixed enlarged item inspection on the right.",
+  "background": "In-game dark paper and kelp only; no shop background scenes.",
+  "notes": [
+    "All nine entries are repeated visual placeholders, not new item designs or actual duplicates in the game.",
+    "Owned and purchasable examples are mixed; no top-slot price labels.",
+    "R061 and R062 remain preserved for comparison.",
+    "Unity unchanged."
+  ]
+}

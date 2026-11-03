@@ -4,11 +4,11 @@
   "createdDate": "2026-10-18",
   "baseline": "UnityDesignBaseline.json",
   "instructions": "Design Changes.md",
-  "nextRevisionId": "MFJ-R061",
+  "nextRevisionId": "MFJ-R068",
   "penpot": {
     "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
     "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
-    "pageName": "Concept B — Reusable Assembly (4K)"
+    "pageName": "01 - Current Design Library"
   },
   "unityThemeRoot": "Assets/UIThemes/MidnightFieldJournal/",
   "statuses": [
@@ -14026,6 +14026,1378 @@
       "unityImported": true,
       "integrationStatus": "verified",
       "synchronizationCheckpoint": "MFJ-SYNC-012"
+    },
+    {
+      "id": "MFJ-R061",
+      "date": "2026-10-31",
+      "request": "Design a new themed Tackle Shop with up to three equipped items: one Rod, one Reel and one Hook, plus an available-item catalog.",
+      "component": [
+        "Tackle Shop",
+        "Three-category loadout",
+        "Equipment catalog"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R061",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "screens": [
+          {
+            "state": "Before purchase",
+            "id": "f31e67ca-185b-80af-8008-e02d302f9052",
+            "width": 3840,
+            "height": 2160,
+            "balance": 650,
+            "equipped": 2,
+            "slots": [
+              "f31e67ca-185b-80af-8008-e02d43acab7a",
+              "f31e67ca-185b-80af-8008-e02d46e5113a",
+              "f31e67ca-185b-80af-8008-e02d4a3abf5a"
+            ],
+            "catalog": [
+              {
+                "item": "rod",
+                "id": "f31e67ca-185b-80af-8008-e02d5b35daea",
+                "state": "EQUIPPED"
+              },
+              {
+                "item": "reel",
+                "id": "f31e67ca-185b-80af-8008-e02d6112d553",
+                "state": "EQUIPPED"
+              },
+              {
+                "item": "hook",
+                "id": "f31e67ca-185b-80af-8008-e02d66fdcd04",
+                "state": "AVAILABLE · 250 GOLD"
+              }
+            ],
+            "filters": [
+              "f31e67ca-185b-80af-8008-e02d50202a89",
+              "f31e67ca-185b-80af-8008-e02d52a39e52",
+              "f31e67ca-185b-80af-8008-e02d555f91bc",
+              "f31e67ca-185b-80af-8008-e02d5819dd7a"
+            ],
+            "primaryActionId": "f31e67ca-185b-80af-8008-e02d7016c2da",
+            "backId": "f31e67ca-185b-80af-8008-e02d7307585f",
+            "navigation": [
+              {
+                "name": "HARBOR",
+                "id": "f31e67ca-185b-80af-8008-e02d36d744c3"
+              },
+              {
+                "name": "TACKLE SHOP",
+                "id": "f31e67ca-185b-80af-8008-e02d3703d5fb"
+              },
+              {
+                "name": "TECHNIQUES",
+                "id": "f31e67ca-185b-80af-8008-e02d374d798b"
+              },
+              {
+                "name": "JOURNAL",
+                "id": "f31e67ca-185b-80af-8008-e02d377a782c"
+              }
+            ],
+            "hookUnequipId": null
+          },
+          {
+            "state": "Hook owned",
+            "id": "f31e67ca-185b-80af-8008-e02d75d27036",
+            "width": 3840,
+            "height": 2160,
+            "balance": 400,
+            "equipped": 2,
+            "slots": [
+              "f31e67ca-185b-80af-8008-e02d8dd28c90",
+              "f31e67ca-185b-80af-8008-e02d91d3ecd5",
+              "f31e67ca-185b-80af-8008-e02d962c7fd3"
+            ],
+            "catalog": [
+              {
+                "item": "rod",
+                "id": "f31e67ca-185b-80af-8008-e02daa7f140d",
+                "state": "EQUIPPED"
+              },
+              {
+                "item": "reel",
+                "id": "f31e67ca-185b-80af-8008-e02db18eab7e",
+                "state": "EQUIPPED"
+              },
+              {
+                "item": "hook",
+                "id": "f31e67ca-185b-80af-8008-e02db8b0b5e7",
+                "state": "OWNED · NOT EQUIPPED"
+              }
+            ],
+            "filters": [
+              "f31e67ca-185b-80af-8008-e02d9d6dd338",
+              "f31e67ca-185b-80af-8008-e02da0a1036e",
+              "f31e67ca-185b-80af-8008-e02da3babc88",
+              "f31e67ca-185b-80af-8008-e02da6eddbb6"
+            ],
+            "primaryActionId": "f31e67ca-185b-80af-8008-e02dc3c4aa7d",
+            "backId": "f31e67ca-185b-80af-8008-e02dc75d6666",
+            "navigation": [
+              {
+                "name": "HARBOR",
+                "id": "f31e67ca-185b-80af-8008-e02d7db7654d"
+              },
+              {
+                "name": "TACKLE SHOP",
+                "id": "f31e67ca-185b-80af-8008-e02d7df27415"
+              },
+              {
+                "name": "TECHNIQUES",
+                "id": "f31e67ca-185b-80af-8008-e02d7e51f640"
+              },
+              {
+                "name": "JOURNAL",
+                "id": "f31e67ca-185b-80af-8008-e02d7e8e8063"
+              }
+            ],
+            "hookUnequipId": null
+          },
+          {
+            "state": "Hook equipped",
+            "id": "f31e67ca-185b-80af-8008-e02dcaa9b1ea",
+            "width": 3840,
+            "height": 2160,
+            "balance": 400,
+            "equipped": 3,
+            "slots": [
+              "f31e67ca-185b-80af-8008-e02de7811b22",
+              "f31e67ca-185b-80af-8008-e02dec772b8d",
+              "f31e67ca-185b-80af-8008-e02df1233eb9"
+            ],
+            "catalog": [
+              {
+                "item": "rod",
+                "id": "f31e67ca-185b-80af-8008-e02e0889060a",
+                "state": "EQUIPPED"
+              },
+              {
+                "item": "reel",
+                "id": "f31e67ca-185b-80af-8008-e02e1092661e",
+                "state": "EQUIPPED"
+              },
+              {
+                "item": "hook",
+                "id": "f31e67ca-185b-80af-8008-e02e18cd4f8c",
+                "state": "EQUIPPED"
+              }
+            ],
+            "filters": [
+              "f31e67ca-185b-80af-8008-e02df9ed9027",
+              "f31e67ca-185b-80af-8008-e02dfd7198c4",
+              "f31e67ca-185b-80af-8008-e02e00fd26c7",
+              "f31e67ca-185b-80af-8008-e02e04982e3b"
+            ],
+            "primaryActionId": "f31e67ca-185b-80af-8008-e02e252ea21f",
+            "backId": "f31e67ca-185b-80af-8008-e02e293e6b87",
+            "navigation": [
+              {
+                "name": "HARBOR",
+                "id": "f31e67ca-185b-80af-8008-e02dd42d95dc"
+              },
+              {
+                "name": "TACKLE SHOP",
+                "id": "f31e67ca-185b-80af-8008-e02dd47578c1"
+              },
+              {
+                "name": "TECHNIQUES",
+                "id": "f31e67ca-185b-80af-8008-e02dd4e65da1"
+              },
+              {
+                "name": "JOURNAL",
+                "id": "f31e67ca-185b-80af-8008-e02dd52ddd02"
+              }
+            ],
+            "hookUnequipId": "f31e67ca-185b-80af-8008-e02df5aaecfc"
+          }
+        ],
+        "sourceId": "f31e67ca-185b-80af-8008-e02e2d67968a",
+        "workshopArtId": "f31e67ca-185b-80af-8008-e02d267e1b63",
+        "frameMasterIds": {
+          "Paper": "75555645-d407-8067-8008-dea9cfcb5568",
+          "Dark": "75555645-d407-8067-8008-dea9cd9a2881"
+        },
+        "itemArtIds": {
+          "rod": "75555645-d407-8067-8008-de9b972ff90c",
+          "reel": "75555645-d407-8067-8008-de9b99677d11",
+          "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+        },
+        "status": "ready_for_review",
+        "unityImported": false,
+        "mechanic": "Up to three equipped items, at most one Rod, one Reel and one Hook. Empty slots allowed.",
+        "prototype": "Illustrative Hook unlock → equip → unequip. Gold values are mockup state, not saved progression.",
+        "unchanged": "Existing Unity shop and prior Penpot source preserved; no gameplay implementation.",
+        "reusedSource": "Existing approved engraved equipment illustrations and independent paper/navy frame masters; no screen-image slicing.",
+        "frameConstruction": "Native editable fixed-corner 9-slice boards; 300px source corners displayed at 25–150px, never enlarged."
+      },
+      "affectedPenpotInstances": [
+        "f31e67ca-185b-80af-8008-e02d302f9052",
+        "f31e67ca-185b-80af-8008-e02d75d27036",
+        "f31e67ca-185b-80af-8008-e02dcaa9b1ea"
+      ],
+      "changeKinds": [
+        "layout",
+        "artwork",
+        "editable_text",
+        "equipment_slots",
+        "prototype"
+      ],
+      "before": {
+        "revision": "MFJ-R055",
+        "equipmentLimit": "One item total",
+        "preserved": true
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R061/BeforePurchase.png",
+        "equipmentLimit": "One Rod, one Reel, one Hook; empty slots allowed",
+        "states": [
+          "BeforePurchase.png",
+          "HookOwned.png",
+          "HookEquipped.png"
+        ]
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop presentation and category loadout"
+      ],
+      "configurationChanges": [
+        "Penpot design only. Three equipment slots replace the single-item design limit.",
+        "Reuse approved Rod/Reel/Hook artwork, names, prices and effects.",
+        "Illustrative Hook unlock, equip and unequip prototype; mock balances are not saved progression."
+      ],
+      "exportRequirements": [
+        "Reconstruct using independent frame masters, equipment illustrations, workshop art and native dynamic labels.",
+        "Preserve 3840 x 2160 canvas and fixed-size decorative corners. Do not slice full-screen mockups."
+      ],
+      "approvalEvidence": [
+        "User explicitly requested up to 3 equipment items: one rod, one reel and one hook.",
+        "Design requested; Unity implementation is outside this revision."
+      ],
+      "exportEvidence": {
+        "previews": [
+          "BeforePurchase.png",
+          "HookOwned.png",
+          "HookEquipped.png"
+        ],
+        "hashes": {
+          "BeforePurchase.png": "02fcbf52f5d56a243e4bdca75d449f9853226b661064d4dafe10a099ec4800ad",
+          "HookOwned.png": "7a69d40045fa1f0a3f5e37bcaa044673da2dcc0f10bb24f84dcc8917fd700569",
+          "HookEquipped.png": "b63eca82003bf96a1a49a1235985e5b1eca2204fbce419d38c398f4a2aeb6894"
+        }
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R061/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R067"
+    },
+    {
+      "id": "MFJ-R062",
+      "date": "2026-10-31",
+      "request": "Create a different Tackle Shop alternative resembling the in-game UI, without using shop background images.",
+      "component": [
+        "Alternative Tackle Shop",
+        "Equipment card catalog",
+        "Horizontal rig slots"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R062",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "reviewId": "f31e67ca-185b-80af-8008-e036e9bc2368",
+        "position": [
+          80000,
+          7000
+        ],
+        "size": [
+          3840,
+          2160
+        ],
+        "slots": [
+          {
+            "id": "f31e67ca-185b-80af-8008-e036ef7f6975",
+            "category": "ROD",
+            "equipped": true
+          },
+          {
+            "id": "f31e67ca-185b-80af-8008-e036f2f7e659",
+            "category": "REEL",
+            "equipped": false
+          },
+          {
+            "id": "f31e67ca-185b-80af-8008-e036f68f4106",
+            "category": "HOOK",
+            "equipped": false
+          }
+        ],
+        "cards": [
+          {
+            "id": "f31e67ca-185b-80af-8008-e036fda98120",
+            "item": "rod",
+            "actionId": "f31e67ca-185b-80af-8008-e03702476ecd"
+          },
+          {
+            "id": "f31e67ca-185b-80af-8008-e037035d0dfc",
+            "item": "reel",
+            "actionId": "f31e67ca-185b-80af-8008-e03706e563ec"
+          },
+          {
+            "id": "f31e67ca-185b-80af-8008-e03708100db3",
+            "item": "hook",
+            "actionId": "f31e67ca-185b-80af-8008-e0370d1b72b8"
+          }
+        ],
+        "filters": [
+          "f31e67ca-185b-80af-8008-e036fa6d1a18",
+          "f31e67ca-185b-80af-8008-e036fb9a7b0b",
+          "f31e67ca-185b-80af-8008-e036fc1abf56",
+          "f31e67ca-185b-80af-8008-e036fca07649"
+        ],
+        "status": "superseded",
+        "unityImported": false,
+        "concept": "Equipment Card Table: compact loadout ribbon above three large collectible equipment cards. Owned Reel is subtly raised. Direct purchase/equip controls below cards.",
+        "background": "Only existing in-game 4K dark paper and illustrated kelp. No shop background, panorama, workshop or R061 frame master.",
+        "sourceIds": {
+          "background": "bae680cd-9225-8018-8008-d00618505dcc",
+          "kelp": "bae680cd-9225-8018-8008-d00618505dcd",
+          "compact": "bae680cd-9225-8018-8008-d00618505ded",
+          "card": "f31e67ca-185b-80af-8008-e036aa77cd26",
+          "rod": "75555645-d407-8067-8008-de9b972ff90c",
+          "reel": "75555645-d407-8067-8008-de9b99677d11",
+          "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+        },
+        "prototype": "Static editable design review. Harbor back link is wired; filters and equip/purchase actions are visual specifications.",
+        "mechanic": "Up to three equipped items: one Rod, one Reel, one Hook; empty slots allowed. Existing approved item identities, prices and effects retained.",
+        "preserved": [
+          "MFJ-R061 and earlier shop designs",
+          "All Unity assets, scenes, gameplay and saves"
+        ],
+        "sourceBoardId": "f31e67ca-185b-80af-8008-e037bfddcd65",
+        "supersededBy": "MFJ-R063"
+      },
+      "affectedPenpotInstances": [
+        "f31e67ca-185b-80af-8008-e036e9bc2368"
+      ],
+      "changeKinds": [
+        "layout",
+        "reused_ingame_art",
+        "editable_text",
+        "native_controls"
+      ],
+      "before": {
+        "revision": "MFJ-R061",
+        "preserved": true
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R062/EquipmentCardTable.png",
+        "concept": "Equipment Card Table: compact loadout ribbon above three large collectible equipment cards. Owned Reel is subtly raised. Direct purchase/equip controls below cards."
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop and category loadout presentation"
+      ],
+      "configurationChanges": [
+        "Penpot-only alternate concept; no workshop, panorama or shop background image.",
+        "Use existing in-game dark paper, kelp, collectible-card borders, compact frames and typography.",
+        "Horizontal Rod/Reel/Hook slot ribbon above three large equipment cards; purchase/equip actions sit beneath each card.",
+        "Static sample: Rod equipped, Reel owned, Hook purchasable."
+      ],
+      "exportRequirements": [
+        "Keep frame, item illustration, labels, slots, controls and HUD separate.",
+        "Use in-game EventTemplate for equipment face artwork without creature stats or Catch/Bait labels; native equipment-only fields.",
+        "Full 3840 x 2160 canvas. Catalog card frames are downscaled from 1190 x 1322 to 900 x 1000."
+      ],
+      "approvalEvidence": [
+        "User requested a new design distinct from existing shops and R061, with no shop background images."
+      ],
+      "exportEvidence": {
+        "preview": "Revisions/MFJ-R062/EquipmentCardTable.png",
+        "sha256": "d0f80a885c19bab396300007a83f4d3ef9077ff8d39d925ef202f982d08c9471",
+        "pixels": [
+          3840,
+          2160
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R062/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R063"
+    },
+    {
+      "id": "MFJ-R063",
+      "date": "2026-11-01",
+      "request": "New landscape shop: fixed initially empty Rod/Reel/Hook slots with type labels, independently scrolling catalog, enlarged inspection on right. Use three copies each of the three existing items as placeholders.",
+      "component": [
+        "Fixed equipment rig",
+        "Scrollable catalog",
+        "Item inspection"
+      ],
+      "status": "superseded",
+      "supersedes": [
+        "MFJ-R062"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R063",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "size": [
+          3840,
+          2160
+        ],
+        "screens": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e152ed3dae2d",
+            "state": "Catalog top",
+            "position": [
+              80000,
+              12000
+            ],
+            "scrollOffset": 0
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e153bcc30b20",
+            "state": "Catalog scrolled",
+            "position": [
+              84200,
+              12000
+            ],
+            "scrollOffset": 960
+          }
+        ],
+        "initialId": "5de0315f-b85e-80a3-8008-e152ed3dae2d",
+        "viewportId": "5de0315f-b85e-80a3-8008-e152f6216065",
+        "contentId": "5de0315f-b85e-80a3-8008-e152f661636c",
+        "fixedRigId": "5de0315f-b85e-80a3-8008-e152ef891943",
+        "fixedDetailId": "5de0315f-b85e-80a3-8008-e15389e2af19",
+        "slotTypes": [
+          "Rod",
+          "Reel",
+          "Hook"
+        ],
+        "initialEquippedItems": [],
+        "catalog": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1533dc7b92c",
+            "item": "rod",
+            "index": 0,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1533fe74fd4",
+            "item": "reel",
+            "index": 1,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15342209c53",
+            "item": "hook",
+            "index": 2,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15356a999a4",
+            "item": "rod",
+            "index": 3,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15358c0f0ca",
+            "item": "reel",
+            "index": 4,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1535abb1f84",
+            "item": "hook",
+            "index": 5,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1536e2fe0c5",
+            "item": "rod",
+            "index": 6,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e153705100d4",
+            "item": "reel",
+            "index": 7,
+            "placeholder": true
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15372495c4f",
+            "item": "hook",
+            "index": 8,
+            "placeholder": true
+          }
+        ],
+        "placeholderDesigns": 3,
+        "placeholderCopiesEach": 3,
+        "sourceIds": {
+          "background": "bae680cd-9225-8018-8008-d00618505dcc",
+          "kelp": "bae680cd-9225-8018-8008-d00618505dcd",
+          "compact": "bae680cd-9225-8018-8008-d00618505ded",
+          "card": "f31e67ca-185b-80af-8008-e036aa77cd26",
+          "rod": "75555645-d407-8067-8008-de9b972ff90c",
+          "reel": "75555645-d407-8067-8008-de9b99677d11",
+          "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+        },
+        "status": "ready_for_review",
+        "unityImported": false,
+        "prototype": "Click the catalog down chevron to inspect the lower catalog; click the upper chevron on that state to return. Discrete scroll-state prototype; no wheel scrolling or actual purchases/equips implemented.",
+        "layout": "Fixed empty Rod/Reel/Hook slots above an independently clipped 9-item catalog. Fixed enlarged item inspection on the right.",
+        "background": "In-game dark paper and kelp only; no shop background scenes.",
+        "notes": [
+          "All nine entries are repeated visual placeholders, not new item designs or actual duplicates in the game.",
+          "Owned and purchasable examples are mixed; no top-slot price labels.",
+          "R061 and R062 remain preserved for comparison.",
+          "Unity unchanged."
+        ]
+      },
+      "affectedPenpotInstances": [
+        "5de0315f-b85e-80a3-8008-e152ed3dae2d",
+        "5de0315f-b85e-80a3-8008-e153bcc30b20"
+      ],
+      "changeKinds": [
+        "layout",
+        "catalog_scroll_clipping",
+        "fixed_groups",
+        "native_controls",
+        "editable_text"
+      ],
+      "before": {
+        "revision": "MFJ-R062",
+        "preserved": true,
+        "selection": "Rejected by user"
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R063/CatalogTop.png",
+        "scrolledPreview": "Revisions/MFJ-R063/CatalogScrolled.png",
+        "placeholderEntries": 9,
+        "initialEquippedItems": []
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop and category loadout presentation"
+      ],
+      "configurationChanges": [
+        "Penpot-only design; 3840 x 2160 landscape.",
+        "Fixed empty Rod/Reel/Hook slots above catalog, type labels only; no slot prices.",
+        "Nine placeholder catalog tiles: three copies each of existing Rod, Reel and Hook, mixed owned/purchasable examples.",
+        "Clipped catalog container translated by 960 pixels in linked scrolled state. Header, rig, filters and enlarged detail stay fixed.",
+        "No reference-image frames, diamond HUD, bottom navigation bar or shop background scene."
+      ],
+      "exportRequirements": [
+        "Keep header, rig, catalog viewport/content, item tiles, details, action and fields separate.",
+        "Prototype shows discrete scroll states with chevrons, not wheel scrolling.",
+        "Placeholders are design-only, not extra item definitions or save entries."
+      ],
+      "approvalEvidence": [
+        "User approved the fixed-slot / scrollable catalog / right inspection concept.",
+        "User authorized three copies each of the existing three items as placeholders."
+      ],
+      "exportEvidence": {
+        "previews": [
+          "CatalogTop.png",
+          "CatalogScrolled.png"
+        ],
+        "details": {
+          "CatalogTop.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "f9df2cea96719b61dd68a3fe4287d66fb2b4d288a8d8a2d1a920b57b9647ede9"
+          },
+          "CatalogScrolled.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "728d81734ee72bb2cc107ee51e45227f6f0ac01efe1718d7bfe7861483f515bd"
+          }
+        }
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R063/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R067"
+    },
+    {
+      "id": "MFJ-R064",
+      "date": "2026-11-01",
+      "request": "Completely different Tackle Shop concept under the same fixed rig / scrolling catalog / right inspection requirements. Top slots and catalog items must have the same portrait aspect as the game cards.",
+      "component": [
+        "Open Field Journal shop",
+        "Portrait equipment slots",
+        "Portrait catalog",
+        "Unframed inspection"
+      ],
+      "status": "superseded",
+      "supersedes": [],
+      "penpotSources": {
+        "revision": "MFJ-R064",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "size": [
+          3840,
+          2160
+        ],
+        "cardAspect": {
+          "sourcePixels": [
+            1190,
+            1322
+          ],
+          "ratio": 0.9001512859304085,
+          "emptySlot": [
+            300,
+            333.2773109243697
+          ],
+          "catalogCard": [
+            500,
+            555.4621848739496
+          ]
+        },
+        "screens": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15749f48c31",
+            "state": "Collection top",
+            "position": [
+              80000,
+              17000
+            ],
+            "scrollOffset": 0
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e158222c4037",
+            "state": "Collection scrolled",
+            "position": [
+              84200,
+              17000
+            ],
+            "scrollOffset": 1090
+          }
+        ],
+        "initialId": "5de0315f-b85e-80a3-8008-e15749f48c31",
+        "slots": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15750621298",
+            "category": "ROD",
+            "width": 300,
+            "height": 333.2773109243697
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1575190df3f",
+            "category": "REEL",
+            "width": 300,
+            "height": 333.2773109243697
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15753150ee9",
+            "category": "HOOK",
+            "width": 300,
+            "height": 333.2773109243697
+          }
+        ],
+        "catalog": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1578bd12fee",
+            "item": "rod",
+            "index": 0,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e1578fe11707",
+            "item": "reel",
+            "index": 1,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e15794634b3a",
+            "item": "hook",
+            "index": 2,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e157bb66018e",
+            "item": "rod",
+            "index": 3,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e157bee1fab3",
+            "item": "reel",
+            "index": 4,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e157c260a4b9",
+            "item": "hook",
+            "index": 5,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e157d9a65323",
+            "item": "rod",
+            "index": 6,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e157dd66c17a",
+            "item": "reel",
+            "index": 7,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e157e11dc5d7",
+            "item": "hook",
+            "index": 8,
+            "placeholder": true,
+            "width": 500,
+            "height": 555.4621848739496
+          }
+        ],
+        "viewportId": "5de0315f-b85e-80a3-8008-e15759403638",
+        "contentId": "5de0315f-b85e-80a3-8008-e15759b9afcb",
+        "inspectorId": "5de0315f-b85e-80a3-8008-e157fb7e7159",
+        "sourceIds": {
+          "background": "bae680cd-9225-8018-8008-d00618505dcc",
+          "rod": "75555645-d407-8067-8008-de9b972ff90c",
+          "reel": "75555645-d407-8067-8008-de9b99677d11",
+          "hook": "75555645-d407-8067-8008-de9b9b3a9112"
+        },
+        "concept": "The Open Field Journal: pale native parchment leaf holding portrait rig slots and collector cards, with a dark unframed enlarged equipment study on the right.",
+        "status": "superseded",
+        "unityImported": false,
+        "initialEquippedItems": [],
+        "placeholderCopies": {
+          "rod": 3,
+          "reel": 3,
+          "hook": 3
+        },
+        "prototype": "Catalog down/up arrows link discrete scroll states. Header, rig, collection filters and right study remain fixed. Harbor navigation works. Purchases/equips/filters and wheel scrolling are visual specifications.",
+        "artwork": "Existing independent equipment illustrations and in-game dark paper. New native vector parchment, grain, botanical strokes, portrait card silhouettes and controls. No shop background image, scene, panorama, old full-screen mockup slicing or reused R063 layout.",
+        "preserved": [
+          "R061, R062 and R063 designs",
+          "Unity project assets, scenes, code, gameplay and saves"
+        ],
+        "supersededBy": "MFJ-R065"
+      },
+      "affectedPenpotInstances": [
+        "5de0315f-b85e-80a3-8008-e15749f48c31",
+        "5de0315f-b85e-80a3-8008-e158222c4037"
+      ],
+      "changeKinds": [
+        "new_visual_direction",
+        "native_vector_parchment",
+        "portrait_card_ratio",
+        "editable_text",
+        "scroll_states"
+      ],
+      "before": {
+        "revision": "MFJ-R063",
+        "preserved": true
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R064/JournalTop.png",
+        "scrolledPreview": "Revisions/MFJ-R064/JournalScrolled.png",
+        "aspectSource": [
+          1190,
+          1322
+        ],
+        "slotPixels": [
+          300,
+          333.2773109243697
+        ],
+        "catalogPixels": [
+          500,
+          555.4621848739496
+        ]
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop and category loadout presentation"
+      ],
+      "configurationChanges": [
+        "Separate Penpot-only alternative. Light parchment leaf and dark unframed enlarged equipment study, rather than another dark catalog with a framed detail card.",
+        "Three empty portrait equipment slots use 1190:1322 proportions, with category labels and no prices.",
+        "Nine independent portrait placeholders: three copies each of existing Rod, Reel and Hook.",
+        "Five fixed groups preserve their bounds; clipped collection alone translates 1090px.",
+        "No shop scene/background, diamond HUD, bottom navigation bar or screenshot slicing."
+      ],
+      "exportRequirements": [
+        "Preserve the exact 1190:1322 aspect for top slots and catalog cards; change size uniformly.",
+        "Native vector page, grain, botanical strokes, card silhouettes and controls remain editable and sharp at 4K.",
+        "Use independent equipment artwork and native dynamic fields; no baked full-screen UI.",
+        "Prototype chevrons switch two scroll states; real wheel/drag scrolling and purchases/equips remain for Unity."
+      ],
+      "approvalEvidence": [
+        "User requested a completely different shop under the previously confirmed layout instructions.",
+        "User explicitly requested the same ratio as the game cards for top slots and shop items.",
+        "Previous authorization permits three copies of each existing item as review placeholders."
+      ],
+      "exportEvidence": {
+        "previews": [
+          "JournalTop.png",
+          "JournalScrolled.png"
+        ],
+        "details": {
+          "JournalTop.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "ef50bbbb7eed5a918c1533f59b0efffd78a5f459f3abf54d5c179e76490bf4fe"
+          },
+          "JournalScrolled.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "8db68df581c88d584cf4a21accf35e5e9441b76ad1680a24970541cdc2feb8bf"
+          }
+        }
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R064/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R065"
+    },
+    {
+      "id": "MFJ-R065",
+      "date": "2026-11-01",
+      "request": "Retain the better R064 design/proportions but match game decoration, give equipment its own distinct card UI and put the right detail view inside a matching card.",
+      "component": [
+        "Equipment card visual family",
+        "Decorated journal page",
+        "Enlarged equipment detail card"
+      ],
+      "status": "superseded",
+      "supersedes": [
+        "MFJ-R064"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R065",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "size": [
+          3840,
+          2160
+        ],
+        "screens": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e162034ddb27",
+            "state": "Decorated collection top",
+            "position": [
+              80000,
+              22000
+            ],
+            "scrollOffset": 0
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e162aebc8a79",
+            "state": "Decorated collection scrolled",
+            "position": [
+              84200,
+              22000
+            ],
+            "scrollOffset": 1090
+          }
+        ],
+        "initialId": "5de0315f-b85e-80a3-8008-e162034ddb27",
+        "masterId": "5de0315f-b85e-80a3-8008-e1619e4fb4e6",
+        "sourceBoardId": "5de0315f-b85e-80a3-8008-e162b2bca3ea",
+        "sourcePixels": [
+          1190,
+          1322
+        ],
+        "pageOrnamentMaster": "75555645-d407-8067-8008-dea9cfcb5568",
+        "cardRatio": 0.9001512859304085,
+        "slotSize": [
+          300,
+          333.2773109243697
+        ],
+        "catalogSize": [
+          500,
+          555.4621848739496
+        ],
+        "detailSize": [
+          1140,
+          1266.453781512605
+        ],
+        "status": "superseded",
+        "unityImported": false,
+        "baseRevision": "MFJ-R064",
+        "change": "Retain approved open journal layout and portrait proportions; add a new equipment-only rope-and-hook engraved card family to all empty slots, catalog tiles and larger right detail card. Existing game ornaments decorate the page.",
+        "emptySlots": [
+          "Rod",
+          "Reel",
+          "Hook"
+        ],
+        "placeholderCopies": {
+          "rod": 3,
+          "reel": 3,
+          "hook": 3
+        },
+        "prototype": "Discrete catalog scroll states linked with down/up arrows. Harbor back link. Purchases, equips, filters and wheel scrolling remain visual specifications.",
+        "generation": "Built-in imagegen; independently generated blank equipment frame using current game cards/ornament masters as style references. Item illustrations, names, category, ownership and effects remain separate.",
+        "reusedDecorations": "R057 independent paper frame master: 8 clipped outer 9-slice cells; 300px source corners displayed at 100px, no enlarged corner detail.",
+        "preserved": [
+          "R064 base and earlier shop designs",
+          "Unity code, assets, scenes and saves"
+        ],
+        "supersededBy": "MFJ-R066"
+      },
+      "affectedPenpotInstances": [
+        "5de0315f-b85e-80a3-8008-e162034ddb27",
+        "5de0315f-b85e-80a3-8008-e162aebc8a79"
+      ],
+      "changeKinds": [
+        "new_equipment_card_art",
+        "existing_game_ornaments",
+        "native_dynamic_fields",
+        "detail_card_frame"
+      ],
+      "before": {
+        "revision": "MFJ-R064",
+        "preserved": true,
+        "approvedBasis": "User said this design is better; retain proportions"
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R065/EquipmentJournalTop.png",
+        "scrolledPreview": "Revisions/MFJ-R065/EquipmentJournalScrolled.png",
+        "master": "Revisions/MFJ-R065/Art/EquipmentCardMaster.png",
+        "aspect": [
+          1190,
+          1322
+        ]
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop and category loadout presentation"
+      ],
+      "configurationChanges": [
+        "Refine preferred Open Field Journal layout, preserving slots, catalog clipping and fixed right inspection.",
+        "New equipment-only blank card master: tied rope corners, hook-like ink filigree, coastal fronds, ivory art field and navy effect/status footer.",
+        "Apply same equipment family to 3 empty slots, 9 catalog examples and 1 enlarged detail card per screen.",
+        "Reintroduce existing R057 page decorations through fixed-corner outer 9-slice master reuse.",
+        "Keep object artwork, category, name, ownership, effect and controls native/separate."
+      ],
+      "exportRequirements": [
+        "Use independent EquipmentCardMaster, not creature/event/technique frames or screen slices.",
+        "Source 1190 x 1322; largest card 1140 x 1266.45, no artwork upscaling.",
+        "Keep page 300px source corners at 100px display size.",
+        "Preserve native fields, exact ratio and separate scroll viewport/content."
+      ],
+      "approvalEvidence": [
+        "User prefers R064 layout/proportions and requested game decorations, unique equipment cards and a right-hand card view."
+      ],
+      "exportEvidence": {
+        "previews": {
+          "EquipmentJournalTop.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "8902571cc25eb9967228764e46a036b878d8e7e03ead46e3f7367d204484176f"
+          },
+          "EquipmentJournalScrolled.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "090fccff8beb5c98e0a58f21549cfaf8937ae73617c67b121b2db41feee36a27"
+          }
+        },
+        "masterSha256": "5b084f785926f8ee035e84cea6ea3ebbc212d56ef8e24259fb5805d25d51f00e",
+        "generation": "Prompt.md / built-in imagegen"
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R065/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R066"
+    },
+    {
+      "id": "MFJ-R066",
+      "date": "2026-11-01",
+      "request": "Replace the blurry reused shop background decoration with a new unique background in the game style.",
+      "component": [
+        "Original native 4K Tackle Shop background"
+      ],
+      "status": "superseded",
+      "supersedes": [
+        "MFJ-R065"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R066",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "size": [
+          3840,
+          2160
+        ],
+        "screens": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e17b6094b341",
+            "state": "Original background / catalog top",
+            "position": [
+              80000,
+              27000
+            ],
+            "scrollOffset": 0
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e17b632f4cf1",
+            "state": "Original background / catalog scrolled",
+            "position": [
+              84200,
+              27000
+            ],
+            "scrollOffset": 1090
+          }
+        ],
+        "initialId": "5de0315f-b85e-80a3-8008-e17b6094b341",
+        "backgroundSourceBoardId": "5de0315f-b85e-80a3-8008-e17b6015732d",
+        "backgroundVectorId": "5de0315f-b85e-80a3-8008-e17d83595184",
+        "backgroundNativePixels": [
+          3840,
+          2160
+        ],
+        "backgroundSource": "Art/ShopBackground4K.svg",
+        "backgroundRaster": "Art/ShopBackground4K.png",
+        "conceptOnly": "Art/GeneratedConceptOnly.png — smaller generated concept, never placed or enlarged",
+        "baseRevision": "MFJ-R065",
+        "status": "ready_for_review",
+        "unityImported": false,
+        "change": "Replace the entire visible shop background with original native 4K vector artwork: parchment folio, hand-drawn rigging-line flourishes, custom spool/float engravings, coastal grass/seed pods and dark navy paper. No old decoration master or 9-slice visible.",
+        "unchanged": [
+          "Equipment card family and all dynamic fields",
+          "Three empty portrait slots and nine placeholders",
+          "Card ratio, catalog clipping and fixed inspection",
+          "Unity assets, code, scene, gameplay and saves"
+        ],
+        "prototype": "Discrete catalog scroll states linked with down/up arrows. Harbor back link. Purchases, equips, filters and wheel scrolling remain visual specifications.",
+        "backgroundConstruction": "New native 3840 x 2160 vector paper/edges plus an independently generated transparent engraving displayed at 210 x 140 or smaller from 1536 x 1024. No old ornament master, screenshot slicing, concept-image enlargement or raster upscaling.",
+        "backgroundOrnamentId": "5de0315f-b85e-80a3-8008-e17d62e6125b",
+        "ornamentSourcePixels": [
+          1536,
+          1024
+        ],
+        "ornamentPlacements": [
+          {
+            "position": [
+              80,
+              1940
+            ],
+            "size": [
+              210,
+              140
+            ],
+            "flipX": false
+          },
+          {
+            "position": [
+              2285,
+              1940
+            ],
+            "size": [
+              210,
+              140
+            ],
+            "flipX": true
+          },
+          {
+            "position": [
+              3660,
+              2040
+            ],
+            "size": [
+              160,
+              106.66666666666667
+            ],
+            "flipX": true
+          }
+        ]
+      },
+      "affectedPenpotInstances": [
+        "5de0315f-b85e-80a3-8008-e17b6094b341",
+        "5de0315f-b85e-80a3-8008-e17b632f4cf1"
+      ],
+      "changeKinds": [
+        "new_original_background",
+        "native_4k_art",
+        "new_independent_engraving"
+      ],
+      "before": {
+        "revision": "MFJ-R065",
+        "preserved": true,
+        "problem": "Reused R057 page-ornament artwork looked blurry to user"
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R066/ShopTop.png",
+        "scrolledPreview": "Penpot linked state; optional PNG export timed out",
+        "background": "Revisions/MFJ-R066/Art/ShopBackground4K.png",
+        "sourceManifest": "Revisions/MFJ-R066/Art/BackgroundManifest.json"
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop and category loadout presentation"
+      ],
+      "configurationChanges": [
+        "Hide the entire old paper/ornament background layer; no R057 decoration is visible in the new shop.",
+        "Author a new full-size 3840 x 2160 vector folio background, with original fishing-line curls, paper grain and ink page edges.",
+        "Add newly generated independent spool/float/seed-pod engraving at 210 x 140 or smaller from its 1536 x 1024 source.",
+        "Generated 1672 x 941 full-background concept is reference-only and never enlarged or placed.",
+        "Retain equipment cards, text, layout, ratio, empty slots, nine placeholders and scroll behavior."
+      ],
+      "exportRequirements": [
+        "Use standalone native 3840 x 2160 ShopBackground4K.png or reconstruct the SVG base plus independent original ornament from BackgroundManifest.json.",
+        "Do not use GeneratedConceptOnly.png as the final background or enlarge it.",
+        "Keep UI/card layers separate; the new background contains no baked labels, cards or controls."
+      ],
+      "approvalEvidence": [
+        "User requested a new background with unique decorations in the existing game style, replacing the blurry reused background."
+      ],
+      "exportEvidence": {
+        "files": {
+          "ShopTop.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "669edccb7e97c85c9cff9f8a54b081a8d6182c90c84ee3aefabee52090230b8e"
+          },
+          "Art/ShopBackground4K.png": {
+            "pixels": [
+              3840,
+              2160
+            ],
+            "sha256": "6e7511fa071b13f94d7961306fc430a13d04a713fe38e385498f59a7a081feef"
+          },
+          "Art/CornerOrnament.png": {
+            "pixels": [
+              1536,
+              1024
+            ],
+            "sha256": "38c107f113cae4557936af823879d3a7f0c21efdc974034beee294cba67aad51"
+          }
+        },
+        "provenance": [
+          "Prompt.md",
+          "OrnamentPrompt.md"
+        ]
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "report": "Revisions/MFJ-R066/Verification.json"
+      },
+      "remainingWork": [],
+      "unityImported": false,
+      "integrationStatus": "superseded",
+      "synchronizationCheckpoint": null,
+      "supersededBy": "MFJ-R067"
+    },
+    {
+      "id": "MFJ-R067",
+      "date": "2026-11-01",
+      "request": "Use the preferred GeneratedConceptOnly background in Penpot instead of the rejected flat ShopBackground4K reconstruction.",
+      "component": [
+        "Tackle Shop approved concept background preview"
+      ],
+      "status": "integrated",
+      "supersedes": [
+        "MFJ-R066"
+      ],
+      "penpotSources": {
+        "revision": "MFJ-R067",
+        "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+        "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+        "pageName": "01 - Current Design Library",
+        "size": [
+          3840,
+          2160
+        ],
+        "screens": [
+          {
+            "id": "5de0315f-b85e-80a3-8008-e18372f1d8ac",
+            "state": "Current review",
+            "position": [
+              80000,
+              32000
+            ],
+            "scrollOffset": 0
+          },
+          {
+            "id": "5de0315f-b85e-80a3-8008-e183752479ec",
+            "state": "Catalog scrolled",
+            "position": [
+              84200,
+              32000
+            ],
+            "scrollOffset": 1090
+          }
+        ],
+        "initialId": "5de0315f-b85e-80a3-8008-e18372f1d8ac",
+        "backgroundSourceBoardId": "5de0315f-b85e-80a3-8008-e183724f9cb2",
+        "backgroundImageId": "5de0315f-b85e-80a3-8008-e1835da54fa4",
+        "backgroundSource": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/ShopBackground4K.png",
+        "backgroundNativePixels": [
+          3840,
+          2160
+        ],
+        "displayPixels": [
+          3840,
+          2160
+        ],
+        "status": "integrated",
+        "unityImported": true,
+        "integrationStatus": "integrated",
+        "baseRevision": "MFJ-R066",
+        "change": "Use the exact GeneratedConceptOnly image requested by the user, replacing the rejected flat reconstruction for visual review.",
+        "qualityLimitation": "Original source retained; higher-frequency detail is reconstructed by super-resolution. 4K output reviewed at 1:1 before import.",
+        "unchanged": [
+          "Equipment card art and proportions",
+          "Other Harbor pages and encounter content"
+        ],
+        "prototype": "Discrete catalog scroll states linked with down/up arrows. Harbor back link. Purchases, equips, filters and wheel scrolling remain visual specifications.",
+        "layoutClearance": "Move Harbor link and shop title inward to clear original corner engraving; hide redundant footer hint where bottom border overlaps it. Catalog arrows retained.",
+        "originalSourcePixels": [
+          1672,
+          941
+        ],
+        "backgroundProcessing": "Local Real-ESRGAN x4plus restoration (6688 x 3764), then high-quality reduction to 3840 x 2160. AI-restored from the approved composition; not a native 4K generation.",
+        "synchronizationCheckpoint": "MFJ-SYNC-013",
+        "unityRecord": "Docs/UIThemes/MidnightFieldJournal/Sync013/README.md",
+        "unityImplementation": "Independent restored 4K background and card frame; native fields; live catalog ScrollRect and filters; one Rod/Reel/Hook slot; save-v1 migration to v2; equipment effects verified together."
+      },
+      "affectedPenpotInstances": [
+        "5de0315f-b85e-80a3-8008-e18372f1d8ac",
+        "5de0315f-b85e-80a3-8008-e183752479ec"
+      ],
+      "changeKinds": [
+        "background_replacement",
+        "visual_review_preview"
+      ],
+      "before": {
+        "revision": "MFJ-R066",
+        "preserved": true,
+        "problem": "User rejected flat vector reconstruction and preferred GeneratedConceptOnly."
+      },
+      "after": {
+        "preview": "Revisions/MFJ-R067/ShopTop.png",
+        "background": "Revisions/MFJ-R067/Art/ApprovedConceptBackground.png",
+        "sourceResolution": [
+          1672,
+          941
+        ],
+        "canvasResolution": [
+          3840,
+          2160
+        ]
+      },
+      "unityAssetIds": [],
+      "unityPaths": [],
+      "dependentConsumers": [
+        "Future Harbor shop and category loadout presentation"
+      ],
+      "configurationChanges": [
+        "Use the exact approved GeneratedConceptOnly raster as a separate background layer in both catalog states.",
+        "Retain all foreground cards, labels, slots and layout.",
+        "Hide the R066 reconstruction; preserve previous boards.",
+        "Move Harbor link and shop title inward to clear original corner engraving; hide redundant footer hint where bottom border overlaps it. Catalog arrows retained.",
+        "Restore the approved concept with the free local Real-ESRGAN upscaler, then reduce to 3840x2160; inspect and import uncompressed.",
+        "Replace both Penpot background instances and source master with the same restored asset.",
+        "Reconstruct the native Unity shop: fixed category slots and inspector, scrolling nine-placeholder catalog, filters, inspection and transactions.",
+        "Enable one Rod, one Reel and one Hook simultaneously; migrate version-1 progression without resetting it."
+      ],
+      "exportRequirements": [
+        "Use the restored 3840x2160 PNG, not the original preview or rejected R066 reconstruction.",
+        "Keep card frame, equipment artwork and all runtime fields separate."
+      ],
+      "approvalEvidence": [
+        "User selected GeneratedConceptOnly and explicitly requested its use in Penpot."
+      ],
+      "exportEvidence": {
+        "asset": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/ShopBackground4K.png",
+        "pixels": [
+          3840,
+          2160
+        ],
+        "sha256": "db3d7b15833ab91ebc07489054174478267c804e6bac8719e702bca0624e1a5b",
+        "restoredFrom": "Docs/UIThemes/MidnightFieldJournal/Revisions/MFJ-R067/Art/ApprovedConceptBackground.png"
+      },
+      "importEvidence": {},
+      "verificationEvidence": {
+        "record": "Sync013/README.md",
+        "report": "Sync013/Verification.json",
+        "finalScrolledCapture": {
+          "passed": true,
+          "date": "2026-11-02",
+          "record": "Sync013/Verification.json"
+        }
+      },
+      "remainingWork": [],
+      "unityImported": true,
+      "integrationStatus": "integrated",
+      "synchronizationCheckpoint": "MFJ-SYNC-013"
     }
   ],
   "synchronizationCheckpoints": [

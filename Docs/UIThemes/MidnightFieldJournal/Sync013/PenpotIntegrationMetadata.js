@@ -1,0 +1,5 @@
+const p=penpot.currentPage,ns='fishing-cards-design',d=JSON.parse(p.getSharedPluginData(ns,'MFJ-R067'));
+d.status='integrated';d.integrationStatus='integrated';d.unityImported=true;d.synchronizationCheckpoint='MFJ-SYNC-013';d.unityRecord='Docs/UIThemes/MidnightFieldJournal/Sync013/README.md';d.unchanged=['Equipment card art and proportions','Other Harbor pages and encounter content'];d.unityImplementation='Independent restored 4K background and card frame; native fields; live catalog ScrollRect and filters; one Rod/Reel/Hook slot; save-v1 migration to v2; equipment effects verified together.';
+for(const s of d.screens){const b=p.getShapeById(s.id);const bg=penpotUtils.findShape(c=>c.name==='Fixed / Approved concept background — preview',b);if(bg)bg.name='Fixed / Approved concept background — restored 4K';b.setSharedPluginData(ns,d.revision,JSON.stringify(d));}p.setSharedPluginData(ns,d.revision,JSON.stringify(d));
+for(const rev of ['MFJ-R061','MFJ-R063']){const raw=p.getSharedPluginData(ns,rev);if(raw){const old=JSON.parse(raw);old.status='superseded';old.supersededBy=d.revision;p.setSharedPluginData(ns,rev,JSON.stringify(old));}}
+return d;

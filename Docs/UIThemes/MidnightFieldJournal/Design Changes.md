@@ -1,5 +1,31 @@
 # Penpot revisions after the Unity assembly
 
+**2 November 2026 — MFJ-SYNC-013 final verification complete.** Initial/scrolled Unity captures passed at 4K and 1080p; fixed slots, clipping and a clean scene verified; zero console errors. The earlier MCP verification gap is resolved. [Evidence](Sync013/README.md).
+
+**MFJ-SYNC-013 completed — R067 Tackle Shop integrated.** Preferred concept restored to 3840 × 2160 and used in Penpot/Unity; native fields, catalog scrolling and Rod/Reel/Hook loadout active. R061/R063 alternatives are superseded, not pending imports. **0 pending; 48 completed; 19 superseded.** [Integration and validation](Sync013/README.md).
+
+
+**MFJ-R067 — preferred concept applied in Penpot; visual preview only.** Replaces rejected R066 background while retaining cards/layout. The exact approved image is 1672 × 941 on a 3840 × 2160 board; this is not native 4K artwork. Final Unity import is blocked on background quality. Unity unchanged. [Record](Revisions/MFJ-R067/README.md).
+
+
+**MFJ-R066 — original native 4K shop background, current review revision.** Old reused page ornaments are hidden; new vector folio/rigging-line artwork and new independent engraving replace them. No raster upscaling. Equipment cards, layout and scrolling are unchanged. R065 is superseded and preserved. **3 pending review designs (R066 current; R061/R063 older comparisons); 47 completed; 16 superseded.** Unity unchanged. [Preview and source record](Revisions/MFJ-R066/README.md).
+
+
+**MFJ-R065 — decorated equipment journal, current refinement ready for review.** Preferred R064 layout/proportions retained; new equipment-only card family appears in slots, catalog and right detail card; existing game page ornaments restored. R064 is superseded and preserved. **3 pending review designs (R065 current; R061/R063 older comparisons); 47 completed; 15 superseded.** Do not import old shop alternatives cumulatively. Unity unchanged. [Preview and handoff](Revisions/MFJ-R065/README.md).
+
+
+**MFJ-R064 — The Open Field Journal, ready for review.** A new light parchment catalog beside an unframed dark equipment study. All top slots and catalog items preserve the game card ratio **1190:1322**. Nine placeholders and linked catalog scroll states retained. **3 pending design alternatives; 47 completed; 14 superseded.** Choose one shop before integration; do not import alternatives cumulatively. Unity is unchanged. [Preview and handoff](Revisions/MFJ-R064/README.md).
+
+
+**MFJ-R063 — fixed rig, scrollable catalog and right inspection, ready for review.** All three equipment slots start empty; nine repeated item placeholders test the layout. Two linked 4K states demonstrate catalog-only scrolling. Rejected R062 is superseded and preserved; R061 remains an older comparison. **2 pending review alternatives; 47 completed; 14 superseded.** Do not import alternatives cumulatively. Unity is unchanged. [Preview and handoff](Revisions/MFJ-R063/README.md).
+
+
+**MFJ-R062 — Equipment Card Table alternative, ready for review.** In-game paper/kelp background, collectible equipment cards and horizontal Rod/Reel/Hook rig slots; no shop background image. R061 remains available for comparison. **2 pending alternative designs; 47 completed; 13 superseded.** Choose a concept before integration; these are alternatives, not two cumulative shop imports. [Preview and notes](Revisions/MFJ-R062/README.md).
+
+
+**MFJ-R061 — three-slot Tackle Shop, ready for review in Penpot.** Separate Rod, Reel and Hook slots; available-item catalog; illustrative unlock/equip/unequip states. **1 pending design; 47 completed; 13 superseded.** Unity stays at Sync012 with its current shop behavior. [Preview and handoff](Revisions/MFJ-R061/README.md).
+
+
 **MFJ-SYNC-012 — R059 tag bar and R060 Stop are integrated and verified in Unity.** Separate decorative sprites and native dynamic elements; existing timing, selection and elastic animations retained. 4K/1080p captures and 103 live checks passed. **0 pending; 47 completed; 13 superseded.** [Integration](Sync012/README.md). Earlier review-only statements below are historical.
 
 

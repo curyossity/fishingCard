@@ -1,0 +1,83 @@
+{
+  "revision": "MFJ-R066",
+  "backgroundSize": [
+    3840,
+    2160
+  ],
+  "visibleOldOrnaments": [
+    0,
+    0
+  ],
+  "oldPaperHidden": [
+    true,
+    true
+  ],
+  "newEngravingCounts": [
+    3,
+    3
+  ],
+  "allNewRasterArtDownscaled": true,
+  "fixedGroups": [
+    {
+      "name": "Fixed / Shop masthead",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    },
+    {
+      "name": "Fixed / Portrait equipment slots",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    },
+    {
+      "name": "Fixed / Collection heading and filters",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    },
+    {
+      "name": "Fixed / Equipment detail card",
+      "unchangedFromR065": true,
+      "fixedAcrossScroll": true
+    }
+  ],
+  "catalogCounts": [
+    9,
+    9
+  ],
+  "clipping": [
+    true,
+    true
+  ],
+  "scrollDelta": 1090,
+  "cardFamilyCounts": [
+    13,
+    13
+  ],
+  "ratiosUnchanged": true,
+  "oldR065Preserved": true,
+  "files": {
+    "ShopTop.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "669edccb7e97c85c9cff9f8a54b081a8d6182c90c84ee3aefabee52090230b8e"
+    },
+    "Art/ShopBackground4K.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "6e7511fa071b13f94d7961306fc430a13d04a713fe38e385498f59a7a081feef"
+    },
+    "Art/CornerOrnament.png": {
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "38c107f113cae4557936af823879d3a7f0c21efdc974034beee294cba67aad51"
+    }
+  },
+  "visualReview": "Actual full 4K shop and standalone background exports inspected. Original old master is invisible. New downscaled engraving is clear; edge rules clear navigation and catalog hint. The linked scrolled state passed structural checks; its optional PNG export timed out twice and is not supplied.",
+  "scrolledPngExport": "Timed out twice; actual linked Penpot state remains assembled and structurally verified.",
+  "unityChanged": false
+}

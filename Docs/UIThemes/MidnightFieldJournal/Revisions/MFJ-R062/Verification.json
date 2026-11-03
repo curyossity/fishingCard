@@ -1,0 +1,26 @@
+{
+  "revision": "MFJ-R062",
+  "allWithinScreen": true,
+  "slotCount": 3,
+  "cardCount": 3,
+  "nativeTextCount": 42,
+  "backgroundNames": [
+    "Independent in-game source / background",
+    "Independent in-game source / kelp"
+  ],
+  "previousShopPreserved": true,
+  "cardFrameDownscaled": [
+    1190,
+    1322,
+    900,
+    1000
+  ],
+  "noShopSceneOrPanorama": true,
+  "exportPixels": [
+    3840,
+    2160
+  ],
+  "imageHash": "d0f80a885c19bab396300007a83f4d3ef9077ff8d39d925ef202f982d08c9471",
+  "visualReview": "Actual Penpot 4K export inspected for card names, item art, effect readability, equipment slots and distinct card-table composition.",
+  "unityChanged": false
+}

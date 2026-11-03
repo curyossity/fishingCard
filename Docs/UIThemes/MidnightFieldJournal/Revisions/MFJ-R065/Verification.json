@@ -1,0 +1,321 @@
+{
+  "revision": "MFJ-R065",
+  "ratio": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e421d",
+      "name": "Empty portrait slot / ROD",
+      "size": [
+        300,
+        333.27731092436807
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e421f",
+      "name": "Empty portrait slot / REEL",
+      "size": [
+        300,
+        333.27731092436807
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4221",
+      "name": "Empty portrait slot / HOOK",
+      "size": [
+        300,
+        333.27731092436807
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4241",
+      "name": "Portrait catalog card / 1 / rod",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4242",
+      "name": "Portrait catalog card / 2 / reel",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4243",
+      "name": "Portrait catalog card / 3 / hook",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4244",
+      "name": "Portrait catalog card / 4 / rod",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4245",
+      "name": "Portrait catalog card / 5 / reel",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4246",
+      "name": "Portrait catalog card / 6 / hook",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4247",
+      "name": "Portrait catalog card / 7 / rod",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4248",
+      "name": "Portrait catalog card / 8 / reel",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034e4249",
+      "name": "Portrait catalog card / 9 / hook",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162763437b3",
+      "name": "Enlarged equipment card / Reel",
+      "size": [
+        1140,
+        1266.453781512606
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0bb",
+      "name": "Empty portrait slot / ROD",
+      "size": [
+        300,
+        333.27731092436807
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0bd",
+      "name": "Empty portrait slot / REEL",
+      "size": [
+        300,
+        333.27731092436807
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0bf",
+      "name": "Empty portrait slot / HOOK",
+      "size": [
+        300,
+        333.27731092436807
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0d9",
+      "name": "Portrait catalog card / 1 / rod",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0da",
+      "name": "Portrait catalog card / 2 / reel",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0db",
+      "name": "Portrait catalog card / 3 / hook",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0dc",
+      "name": "Portrait catalog card / 4 / rod",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0dd",
+      "name": "Portrait catalog card / 5 / reel",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0de",
+      "name": "Portrait catalog card / 6 / hook",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0df",
+      "name": "Portrait catalog card / 7 / rod",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0e0",
+      "name": "Portrait catalog card / 8 / reel",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebcd0e1",
+      "name": "Portrait catalog card / 9 / hook",
+      "size": [
+        500,
+        555.462184873948
+      ],
+      "correct": true
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebd2390",
+      "name": "Enlarged equipment card / Reel",
+      "size": [
+        1140,
+        1266.453781512606
+      ],
+      "correct": true
+    }
+  ],
+  "allRatiosCorrect": true,
+  "fixedGroups": [
+    {
+      "name": "Fixed / Parchment leaf",
+      "same": true
+    },
+    {
+      "name": "Fixed / Shop masthead",
+      "same": true
+    },
+    {
+      "name": "Fixed / Portrait equipment slots",
+      "same": true
+    },
+    {
+      "name": "Fixed / Collection heading and filters",
+      "same": true
+    },
+    {
+      "name": "Fixed / Equipment detail card",
+      "same": true
+    }
+  ],
+  "familyInstances": [
+    13,
+    13
+  ],
+  "catalogCounts": [
+    9,
+    9
+  ],
+  "viewportClipping": [
+    true,
+    true
+  ],
+  "scrollDelta": 1090,
+  "detailNativeFields": [
+    [
+      "Equipment type",
+      "Equipment name",
+      "Ownership state",
+      "Effect heading",
+      "Effect description"
+    ],
+    [
+      "Equipment type",
+      "Equipment name",
+      "Ownership state",
+      "Effect heading",
+      "Effect description"
+    ]
+  ],
+  "nativeTextCounts": [
+    51,
+    51
+  ],
+  "allFramesDownscaled": true,
+  "pageCornerScale": 0.3333333333333333,
+  "baseR064Preserved": true,
+  "emptySlots": [
+    3,
+    3
+  ],
+  "exports": {
+    "EquipmentJournalTop.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "8902571cc25eb9967228764e46a036b878d8e7e03ead46e3f7367d204484176f"
+    },
+    "EquipmentJournalScrolled.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "090fccff8beb5c98e0a58f21549cfaf8937ae73617c67b121b2db41feee36a27"
+    }
+  },
+  "masterHash": "5b084f785926f8ee035e84cea6ea3ebbc212d56ef8e24259fb5805d25d51f00e",
+  "visualReview": "Both final Penpot exports inspected. New rope/hook equipment frame applied to every slot, catalog and large inspection card. Existing page ornament added. Category/ownership moved clear of rope motifs and catalog portraits inset. No artwork/text overlaps remain in the checked fields.",
+  "unityChanged": false
+}

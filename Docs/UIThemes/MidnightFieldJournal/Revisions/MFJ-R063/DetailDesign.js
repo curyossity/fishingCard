@@ -1,0 +1,18 @@
+const s=storage.r063,{b,X,Y,C,board,text,image,svg,button}=s;
+const panel=board('Fixed / Enlarged item inspection',X+2540,Y+310,1150,1730,b);panel.fixedWhenScrolling=true;s.panel=panel;
+text(panel,'Inspection heading','ITEM DETAILS',2580,280,1070,55,33,C.gold,false,'center');
+image(panel,'card',2540,370,1150,1278);
+text(panel,'Item category','REEL',2700,443,830,48,31,C.ink,false,'center');
+text(panel,'Item title','TIDEGLASS REEL',2640,516,950,85,55,C.ink,false,'center');
+image(panel,'reel',2795,652,640,395,true);
+text(panel,'Ownership','OWNED · NOT EQUIPPED',2690,1098,850,55,30,C.ink,false,'center');
+text(panel,'Effect title','EXPEDITION EFFECT',2730,1230,770,48,31,C.gold,false,'center');
+text(panel,'Effect text','Draw 2 additional Technique cards\nat the start of each expedition.',2745,1325,740,190,42,C.ivory,true,'center');
+const equip=button(panel,'Action / Equip selected Reel','EQUIP REEL',2665,1720,900,120);s.equipId=equip.id;
+text(panel,'Equip hint','Equip in your Reel slot.',2670,1880,890,60,34,C.muted,true,'center');
+text(b,'Catalog scroll hint','Scroll to browse equipment',155,2088,1630,52,29,C.muted,true);
+const up=board('Catalog / Scroll up',X+2375,Y+1070,55,80,b),down=board('Catalog / Scroll down',X+2375,Y+1955,55,80,b);
+svg(up,'Up chevron','<path d="M8 42L27 23L46 42" stroke="#6B685D" stroke-width="3" fill="none"/>',2375,1070,55,80);
+svg(down,'Down chevron','<path d="M8 23L27 42L46 23" stroke="#D2B27B" stroke-width="3" fill="none"/>',2375,1955,55,80);
+svg(b,'Catalog scroll rail','<path d="M2 0V720" stroke="#8F7A59" stroke-opacity=".4" stroke-width="2"/><path d="M2 0V300" stroke="#CEAB75" stroke-width="4"/>',2400,1180,6,720);
+s.up=up;s.down=down;return {panelId:panel.id,equipId:equip.id};

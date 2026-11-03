@@ -1,0 +1,1370 @@
+[
+  {
+    "name": "Empty portrait slot / ROD",
+    "x": 355,
+    "y": 425,
+    "w": 300,
+    "h": 333.27731092436807,
+    "children": [
+      {
+        "name": "Equipment family / empty slot frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 333.27731092436443,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Empty socket plus",
+        "type": "group",
+        "x": 134,
+        "y": 130.6420168067234,
+        "w": 32,
+        "h": 32,
+        "fills": []
+      }
+    ]
+  },
+  {
+    "name": "Empty portrait slot / REEL",
+    "x": 1095,
+    "y": 425,
+    "w": 300,
+    "h": 333.27731092436807,
+    "children": [
+      {
+        "name": "Equipment family / empty slot frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 333.27731092436443,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Empty socket plus",
+        "type": "group",
+        "x": 134,
+        "y": 130.6420168067234,
+        "w": 32,
+        "h": 32,
+        "fills": []
+      }
+    ]
+  },
+  {
+    "name": "Empty portrait slot / HOOK",
+    "x": 1835,
+    "y": 425,
+    "w": 300,
+    "h": 333.27731092436807,
+    "children": [
+      {
+        "name": "Equipment family / empty slot frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 300,
+        "h": 333.27731092436443,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Empty socket plus",
+        "type": "group",
+        "x": 134,
+        "y": 130.6420168067234,
+        "w": 32,
+        "h": 32,
+        "fills": []
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 1 / rod",
+    "x": 255,
+    "y": 1090,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "ROD",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Driftwood Rod",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / rod",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "RodEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-de9b972ce132",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "200 GOLD",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#f0dfbd",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 2 / reel",
+    "x": 995,
+    "y": 1090,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "REEL",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Tideglass Reel",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / reel",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "ReelEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "c6f51e89-5d00-81ce-8008-de9b99711a41",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "OWNED",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#bed2b1",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Selected card keyline",
+        "type": "group",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.4619999999995,
+        "fills": []
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 3 / hook",
+    "x": 1735,
+    "y": 1090,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "HOOK",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Barbed Hook",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / hook",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "HookEngraved.png",
+              "width": 1254,
+              "height": 1254,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-de9b9b4a5085",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "250 GOLD",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#f0dfbd",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 4 / rod",
+    "x": 255,
+    "y": 1755,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "ROD",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Driftwood Rod",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / rod",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "RodEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-de9b972ce132",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "200 GOLD",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#f0dfbd",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 5 / reel",
+    "x": 995,
+    "y": 1755,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "REEL",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Tideglass Reel",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / reel",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "ReelEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "c6f51e89-5d00-81ce-8008-de9b99711a41",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "OWNED",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#bed2b1",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 6 / hook",
+    "x": 1735,
+    "y": 1755,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "HOOK",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Barbed Hook",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / hook",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "HookEngraved.png",
+              "width": 1254,
+              "height": 1254,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-de9b9b4a5085",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "250 GOLD",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#f0dfbd",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 7 / rod",
+    "x": 255,
+    "y": 2420,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "ROD",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Driftwood Rod",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / rod",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "RodEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-de9b972ce132",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "200 GOLD",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#f0dfbd",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 8 / reel",
+    "x": 995,
+    "y": 2420,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "REEL",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Tideglass Reel",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / reel",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "ReelEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "c6f51e89-5d00-81ce-8008-de9b99711a41",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "OWNED",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#bed2b1",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Portrait catalog card / 9 / hook",
+    "x": 1735,
+    "y": 2420,
+    "w": 500,
+    "h": 555.462184873948,
+    "children": [
+      {
+        "name": "Equipment family / illustrated card frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 500,
+        "h": 555.462184873948,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Category",
+        "type": "text",
+        "text": "HOOK",
+        "x": 60,
+        "y": 43,
+        "w": 380,
+        "h": 25,
+        "fontSize": "17",
+        "fills": [
+          {
+            "fillColor": "#7b705e",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Name",
+        "type": "text",
+        "text": "Barbed Hook",
+        "x": 32,
+        "y": 69,
+        "w": 436,
+        "h": 48,
+        "fontSize": "30",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent illustration / hook",
+        "type": "rectangle",
+        "x": 94.44444444443798,
+        "y": 150,
+        "w": 311.1111111111095,
+        "h": 200,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "HookEngraved.png",
+              "width": 1254,
+              "height": 1254,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-de9b9b4a5085",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Price or ownership",
+        "type": "text",
+        "text": "250 GOLD",
+        "x": 55,
+        "y": 453,
+        "w": 390,
+        "h": 48,
+        "fontSize": "29",
+        "fills": [
+          {
+            "fillColor": "#f0dfbd",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Enlarged equipment card / Reel",
+    "x": 2600,
+    "y": 420,
+    "w": 1140,
+    "h": 1266.4537815126096,
+    "children": [
+      {
+        "name": "Equipment family / large detail frame",
+        "type": "rectangle",
+        "x": 0,
+        "y": 0,
+        "w": 1140,
+        "h": 1266.4537815126096,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "EquipmentCardMaster.png",
+              "width": 1190,
+              "height": 1322,
+              "mtype": "image/png",
+              "id": "542abcb8-15f9-80f7-8008-e1619dc6ec5b",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Equipment type",
+        "type": "text",
+        "text": "REEL",
+        "x": 180,
+        "y": 90,
+        "w": 780,
+        "h": 34,
+        "fontSize": "24",
+        "fills": [
+          {
+            "fillColor": "#665a46",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Equipment name",
+        "type": "text",
+        "text": "TIDEGLASS REEL",
+        "x": 140,
+        "y": 133,
+        "w": 860,
+        "h": 80,
+        "fontSize": "55",
+        "fills": [
+          {
+            "fillColor": "#283b3d",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Independent equipment illustration / Reel",
+        "type": "rectangle",
+        "x": 215,
+        "y": 311.78571428571377,
+        "w": 710,
+        "h": 456.4285714285761,
+        "fills": [
+          {
+            "fillColor": null,
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": {
+              "name": "ReelEngraved.png",
+              "width": 1672,
+              "height": 941,
+              "mtype": "image/png",
+              "id": "c6f51e89-5d00-81ce-8008-de9b99711a41",
+              "keepAspectRatio": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "Ownership state",
+        "type": "text",
+        "text": "OWNED \u00c2\u00b7 NOT EQUIPPED",
+        "x": 190,
+        "y": 777,
+        "w": 760,
+        "h": 38,
+        "fontSize": "24",
+        "fills": [
+          {
+            "fillColor": "#3b4847",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Effect heading",
+        "type": "text",
+        "text": "EXPEDITION EFFECT",
+        "x": 190,
+        "y": 941,
+        "w": 760,
+        "h": 48,
+        "fontSize": "28",
+        "fills": [
+          {
+            "fillColor": "#d4b981",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      },
+      {
+        "name": "Effect description",
+        "type": "text",
+        "text": "Draw 2 additional Technique cards\nat the start of each expedition.",
+        "x": 215,
+        "y": 1015,
+        "w": 710,
+        "h": 159,
+        "fontSize": "38",
+        "fills": [
+          {
+            "fillColor": "#efe0c2",
+            "fillOpacity": 1,
+            "fillColorGradient": null,
+            "fillColorRefFile": null,
+            "fillColorRefId": null,
+            "fillImage": null
+          }
+        ]
+      }
+    ]
+  }
+]

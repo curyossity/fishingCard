@@ -7,11 +7,12 @@ public sealed class TackleShopRuntime
 {
     [Serializable] private sealed class SaveData
     {
-        public int version = 1;
+        public int version = 2;
         public int gold;
         public int lineCapacityUpgrades;
         public List<string> owned = new List<string>();
         public string equipped = "";
+        public List<string> loadout = new List<string>();
     }
     private SaveData state;
     private readonly TackleShopCatalog catalog;
@@ -21,9 +22,14 @@ public sealed class TackleShopRuntime
     public bool CanEdit => !readOnly;
     public int Gold => state.gold;
     public int LineCapacityUpgrades => state.lineCapacityUpgrades;
-    public string EquippedId => state.equipped;
     public TackleShopCatalog Catalog => catalog;
-    public TackleShopCatalog.Item Equipped => catalog.Find(state.equipped);
+    public TackleShopCatalog.Item[] EquippedItems => state.loadout.ConvertAll(catalog.Find).ToArray();
+
+    /// <summary>Reports the item occupying a specific equipment category.</summary>
+    public TackleShopCatalog.Item GetEquipped(EquipmentSlot slot) { return Array.Find(EquippedItems, item => item.Slot == slot); }
+
+    /// <summary>Checks membership without treating another category as a replacement.</summary>
+    public bool IsEquipped(string id) { return state.loadout.Contains(id); }
 
     /// <summary>Loads one versioned transaction document; an unreadable save is never overwritten.</summary>
     public TackleShopRuntime(TackleShopCatalog catalog, int initialGold, int initialUpgrades, Func<string> load, Action<string> save)
@@ -36,11 +42,21 @@ public sealed class TackleShopRuntime
             if (!string.IsNullOrEmpty(json))
             {
                 var loaded = JsonUtility.FromJson<SaveData>(json);
-                if (loaded == null || loaded.version != 1 || loaded.gold < 0 || loaded.lineCapacityUpgrades < 0 || loaded.owned == null
+                if (loaded == null || (loaded.version != 1 && loaded.version != 2) || loaded.gold < 0 || loaded.lineCapacityUpgrades < 0 || loaded.owned == null
                     || new HashSet<string>(loaded.owned).Count != loaded.owned.Count
                     || loaded.owned.Exists(string.IsNullOrWhiteSpace)
                     || !string.IsNullOrEmpty(loaded.equipped) && !loaded.owned.Contains(loaded.equipped))
                     throw new InvalidOperationException("Invalid player progression save.");
+                if (loaded.version == 1)
+                {
+                    loaded.loadout = new List<string>();
+                    if (!string.IsNullOrEmpty(loaded.equipped)) loaded.loadout.Add(loaded.equipped);
+                    loaded.equipped = ""; loaded.version = 2;
+                }
+                var slots = new HashSet<EquipmentSlot>();
+                if (loaded.loadout == null || loaded.loadout.Count > 3 || loaded.loadout.Exists(id =>
+                    !loaded.owned.Contains(id) || catalog.Find(id) == null || !slots.Add(catalog.Find(id).Slot)))
+                    throw new InvalidOperationException("Invalid equipment loadout.");
                 state = loaded;
             }
         }
@@ -68,14 +84,26 @@ public sealed class TackleShopRuntime
         reason = catalog.Find(id).DisplayName + " purchased. Equip it for your next expedition."; return true;
     }
 
-    /// <summary>Changes the one-item loadout only between expeditions; an empty identity unequips it.</summary>
+    /// <summary>Equips one item in its category between expeditions; an empty identity clears the loadout.</summary>
     public bool TryEquip(string id, int currentGold, int upgrades, bool runActive, out string reason)
     {
         if (readOnly || runActive || !string.IsNullOrEmpty(id) && (catalog.Find(id) == null || !Owns(id)))
         { reason = readOnly ? Error : runActive ? "Available between expeditions" : "Purchase this item first"; return false; }
-        var next = Copy(); next.equipped = id ?? ""; next.gold = currentGold; next.lineCapacityUpgrades = upgrades;
+        var next = Copy();
+        if (string.IsNullOrEmpty(id)) next.loadout.Clear();
+        else { next.loadout.RemoveAll(value => catalog.Find(value).Slot == catalog.Find(id).Slot); next.loadout.Add(id); }
+        next.gold = currentGold; next.lineCapacityUpgrades = upgrades;
         if (!Commit(next)) { reason = Error; return false; }
-        reason = Equipped == null ? "No equipment selected" : Equipped.DisplayName + " equipped"; return true;
+        reason = string.IsNullOrEmpty(id) ? "No equipment selected" : catalog.Find(id).DisplayName + " equipped"; return true;
+    }
+
+    /// <summary>Clears only the selected category without changing the other two items.</summary>
+    public bool TryUnequip(EquipmentSlot slot, int gold, int upgrades, bool runActive, out string reason)
+    {
+        if (readOnly || runActive) { reason = readOnly ? Error : "Available between expeditions"; return false; }
+        var next = Copy(); next.loadout.RemoveAll(id => catalog.Find(id).Slot == slot); next.gold = gold; next.lineCapacityUpgrades = upgrades;
+        if (!Commit(next)) { reason = Error; return false; }
+        reason = slot + " slot cleared"; return true;
     }
 
     /// <summary>Records ordinary haul earnings and existing capacity purchases in the same progression document.</summary>

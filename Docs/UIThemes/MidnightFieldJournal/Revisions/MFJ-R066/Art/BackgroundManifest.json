@@ -1,0 +1,50 @@
+{
+  "canvas": [
+    3840,
+    2160
+  ],
+  "base": "ShopBackground4K.svg",
+  "ornament": "CornerOrnament.png",
+  "ornamentSourcePixels": [
+    1536,
+    1024
+  ],
+  "placements": [
+    {
+      "position": [
+        80,
+        1940
+      ],
+      "size": [
+        210,
+        140
+      ],
+      "flipX": false
+    },
+    {
+      "position": [
+        2285,
+        1940
+      ],
+      "size": [
+        210,
+        140
+      ],
+      "flipX": true
+    },
+    {
+      "position": [
+        3660,
+        2040
+      ],
+      "size": [
+        160,
+        106.66666666666667
+      ],
+      "flipX": true
+    }
+  ],
+  "flattenedNativeExport": "ShopBackground4K.png",
+  "conceptOnly": "GeneratedConceptOnly.png",
+  "rasterUpscaling": false
+}

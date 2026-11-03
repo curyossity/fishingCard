@@ -963,7 +963,7 @@ These designs add no energy resource or once-per-biome counters. Persistent modi
 
 ## Approved Tackle Shop equipment — 30 October 2026
 
-The Harbor sells permanent unlocks using Gold only. Purchase and equip are separate actions, allowed between expeditions. One item may be equipped; none is owned or equipped by default. All three items below are directly available for purchase, replacing the illustrative shop's prices/ownership/lock captions.
+The Harbor sells permanent unlocks using Gold only. Purchase and equip are separate actions, allowed between expeditions. The approved shop redesign amendment (1 November 2026) allows up to three equipped items: one Rod, one Reel and one Hook. None is owned or equipped by default. Equipping replaces only the same category; unequipping leaves the other slots unchanged. All three items below are directly available for purchase, replacing the illustrative shop's prices/ownership/lock captions.
 
 | Equipment | Price | Effect |
 | --- | --- | --- |
@@ -971,7 +971,7 @@ The Harbor sells permanent unlocks using Gold only. Purchase and equip are separ
 | Tideglass Reel | 200 Gold | Draw 2 additional Technique cards at expedition start. |
 | Barbed Hook | 250 Gold | The first 3 creatures attached as Catch each expedition gain +1 sale value each until they leave the chain. |
 
-The equipped item is fixed for the expedition. Rod adds to starting capacity and existing purchased capacity bonuses. Reel deals six starting Techniques. Hand size is unrestricted for every loadout, so subsequent explicit draws and recoveries can grow it beyond six; playing a Technique still never refills the hand automatically.
+The equipped loadout is fixed for the expedition and its three benefits can operate together. Rod adds to starting capacity and existing purchased capacity bonuses. Reel deals six starting Techniques. Hand size is unrestricted for every loadout, so subsequent explicit draws and recoveries can grow it beyond six; playing a Technique still never refills the hand automatically.
 
 Hook applies before the recipient's own on-attach effects and attachment reactions. New creature-like Apex and exchange replacement Catches qualify. Bait attachments and changing an already attached creature's mode do not consume charges or grant the bonus. Previews do not consume charges. Once awarded, the named bonus persists across mode/biome changes until removal; Bait still has no sale value. Released recipients do not refund charges. Each new expedition resets the three grants.
 

@@ -1,0 +1,15 @@
+{
+  "backend": "Unity-generated Editor response files / .NET SDK Roslyn; output isolated under Temp",
+  "results": [
+    {
+      "assembly": "Assembly-CSharp",
+      "passed": true,
+      "log": "Temp\\Sync013Compile\\Assembly-CSharp.log"
+    },
+    {
+      "assembly": "Assembly-CSharp-Editor",
+      "passed": true,
+      "log": "Temp\\Sync013Compile\\Assembly-CSharp-Editor.log"
+    }
+  ]
+}

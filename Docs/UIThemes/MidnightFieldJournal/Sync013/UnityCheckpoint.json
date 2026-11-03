@@ -1,0 +1,86 @@
+{
+  "checkpoint": "MFJ-SYNC-013",
+  "date": "2026-11-01",
+  "previousCheckpoint": "../Sync012/UnityCheckpoint.json",
+  "revisions": [
+    "MFJ-R067"
+  ],
+  "includedSourceRevisions": [
+    "MFJ-R064 layout",
+    "MFJ-R065 equipment frame"
+  ],
+  "kind": "Reviewed Tackle Shop with restored 4K background, native catalog, category loadout and v1 save migration",
+  "verification": "Verification.json",
+  "files": [
+    {
+      "path": "Assets/Editor/TackleShopChecks.cs",
+      "sha256": "0985f2aba3209f12e74c4aefa34c7bbea172cb0be1c14d06e932a50131e03d0f"
+    },
+    {
+      "path": "Assets/Scripts/FishingRunController.cs",
+      "sha256": "7e70eeae7b9f6b87fde82f186cf6c24170cb4692f0bbec4af74b8eeba8a3cf6c"
+    },
+    {
+      "path": "Assets/Scripts/RunEquipmentRuntime.cs",
+      "sha256": "18292d19fb5c369ed1b3cf1431b92a6c4678c5cd7f6a38f1bc6878c617746fc6"
+    },
+    {
+      "path": "Assets/Scripts/TackleShopCatalog.cs",
+      "sha256": "9490fd389e3100fcebe6d032055b8a66eccb22923c2cde1989d34b00e0b4f622"
+    },
+    {
+      "path": "Assets/Scripts/TackleShopRuntime.cs",
+      "sha256": "6402667d1d8ead449de1a1ce26089438f180b9c7fb5c39ec3b2ffc44f2bbdf07"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalHarborChecks.cs",
+      "sha256": "ab864a01ac9bd55b785b657e05269d913f0497cf914199cc70cd008d885faa5c"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalTackleShopDesignSync.cs",
+      "sha256": "ec8b99a47af3af8e8e45b354b8ec65523017bc11c5d23ac06f2ecab6d404886e"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalTackleShopDesignSync.cs.meta",
+      "sha256": "70155aae9df97efa585e1b76a3b9ed68d7dfde804d2dd9afc61e3b9d354f14d0"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Editor/JournalTackleShopSetup.cs",
+      "sha256": "9eb3b07affb4e3a38348f1040dde536b60135e3f22121b58634d6c7fa9362fd2"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/JournalTackleShopView.cs",
+      "sha256": "7567d32051ff14f32bd8ff9e34df73ebc00eca7c392531fed03bffcfcca1be84"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/Prefabs/JournalHarbor.prefab",
+      "sha256": "211b853774653af7931e0cce871696be2887b8dba3a52e7edb54b9c3a4314567"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/EquipmentCardMaster.png",
+      "sha256": "5b084f785926f8ee035e84cea6ea3ebbc212d56ef8e24259fb5805d25d51f00e"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/EquipmentCardMaster.png.meta",
+      "sha256": "c671bd758d3aa3f16c0e7603fa3f6ea1ce67d2650d7cbbb7e675ba65abf7436b"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/ShopBackground4K.png",
+      "sha256": "db3d7b15833ab91ebc07489054174478267c804e6bac8719e702bca0624e1a5b"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/ShopBackground4K.png.meta",
+      "sha256": "a7850f01f0682c03aa1299488ee3d8573ce5445e760d921ebbf79a7e78b2d08b"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067.meta",
+      "sha256": "b30d44ee1857805b0c52c0cb1a1e170279f74ac782f0129132eb12d9114b2d7b"
+    },
+    {
+      "path": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/TackleShopCatalog.asset",
+      "sha256": "04c5c948b7c2a939f2329a7be074f10913483d702c1430210fb782e80a1a1334"
+    }
+  ],
+  "finalVerificationDate": "2026-11-02",
+  "verificationStatus": "Complete, including scrolled 4K/1080p captures"
+}

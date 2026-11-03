@@ -1,0 +1,62 @@
+{
+  "revision": "MFJ-R067",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "size": [
+    3840,
+    2160
+  ],
+  "screens": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e18372f1d8ac",
+      "state": "Current review",
+      "position": [
+        80000,
+        32000
+      ],
+      "scrollOffset": 0
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e183752479ec",
+      "state": "Catalog scrolled",
+      "position": [
+        84200,
+        32000
+      ],
+      "scrollOffset": 1090
+    }
+  ],
+  "initialId": "5de0315f-b85e-80a3-8008-e18372f1d8ac",
+  "backgroundSourceBoardId": "5de0315f-b85e-80a3-8008-e183724f9cb2",
+  "backgroundImageId": "5de0315f-b85e-80a3-8008-e1835da54fa4",
+  "backgroundSource": "Assets/UIThemes/MidnightFieldJournal/Harbor/TackleShop/DesignR067/ShopBackground4K.png",
+  "backgroundNativePixels": [
+    3840,
+    2160
+  ],
+  "displayPixels": [
+    3840,
+    2160
+  ],
+  "status": "integrated",
+  "unityImported": true,
+  "integrationStatus": "integrated",
+  "baseRevision": "MFJ-R066",
+  "change": "Use the exact GeneratedConceptOnly image requested by the user, replacing the rejected flat reconstruction for visual review.",
+  "qualityLimitation": "Original source retained; higher-frequency detail is reconstructed by super-resolution. 4K output reviewed at 1:1 before import.",
+  "unchanged": [
+    "Equipment card art and proportions",
+    "Other Harbor pages and encounter content"
+  ],
+  "prototype": "Discrete catalog scroll states linked with down/up arrows. Harbor back link. Purchases, equips, filters and wheel scrolling remain visual specifications.",
+  "layoutClearance": "Move Harbor link and shop title inward to clear original corner engraving; hide redundant footer hint where bottom border overlaps it. Catalog arrows retained.",
+  "originalSourcePixels": [
+    1672,
+    941
+  ],
+  "backgroundProcessing": "Local Real-ESRGAN x4plus restoration (6688 x 3764), then high-quality reduction to 3840 x 2160. AI-restored from the approved composition; not a native 4K generation.",
+  "synchronizationCheckpoint": "MFJ-SYNC-013",
+  "unityRecord": "Docs/UIThemes/MidnightFieldJournal/Sync013/README.md",
+  "unityImplementation": "Independent restored 4K background and card frame; native fields; live catalog ScrollRect and filters; one Rod/Reel/Hook slot; save-v1 migration to v2; equipment effects verified together."
+}

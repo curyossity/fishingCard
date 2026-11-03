@@ -1,0 +1,108 @@
+{
+  "passed": true,
+  "backgroundPixels": [
+    3840,
+    2160
+  ],
+  "originalPixels": [
+    1672,
+    941
+  ],
+  "backgroundProcessing": "Real-ESRGAN x4plus 4x restoration, then high-quality bicubic reduction from 6688x3764 to 3840x2160. Reconstructed detail, not native 4K generation.",
+  "originalPreserved": true,
+  "toolRelease": "https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-windows.zip",
+  "toolArchiveSha256": "abc02804e17982a3be33675e4d471e91ea374e65b70167abc09e31acb412802d",
+  "sourceSha256": "d868473c65672b46b131f42176bc05cd1c0f11d04331950f6c0952a6fd915766",
+  "outputSha256": "db3d7b15833ab91ebc07489054174478267c804e6bac8719e702bca0624e1a5b",
+  "import": "Sprite / full rect / max4096 / NPOT None / uncompressed / no mipmaps / Clamp",
+  "visualReview": [
+    "Restored background full composition and 800x800 detail at 1:1 inspected.",
+    "Actual initial Unity shop 4K and 1080p captures inspected.",
+    "Initial and scrolled Unity captures at 4K and 1080p verified on 2026-11-02."
+  ],
+  "rules": {
+    "passed": true,
+    "assertions": 35
+  },
+  "play": {
+    "passed": true,
+    "assertions": 31
+  },
+  "components": {
+    "passed": true,
+    "assertions": 554
+  },
+  "additionalLiveChecks": {
+    "wheelScroll": true,
+    "fixedSlotDuringScroll": true,
+    "reelFilterVisibleCards": 3,
+    "equippedSlots": 3
+  },
+  "saveTestIsolation": "Unique FishingCards.EquipmentTest.* keys were removed after stopping Play Mode. Normal player saves were not reset.",
+  "native4KGeneration": false,
+  "paidToolsUsed": false,
+  "compilation": {
+    "backend": "Unity-generated Editor response files / .NET SDK Roslyn; output isolated under Temp",
+    "results": [
+      {
+        "assembly": "Assembly-CSharp",
+        "passed": true,
+        "log": "Temp\\Sync013Compile\\Assembly-CSharp.log"
+      },
+      {
+        "assembly": "Assembly-CSharp-Editor",
+        "passed": true,
+        "log": "Temp\\Sync013Compile\\Assembly-CSharp-Editor.log"
+      }
+    ]
+  },
+  "finalScrolledCapture": {
+    "passed": true,
+    "date": "2026-11-02",
+    "sizes": [
+      [
+        3840,
+        2160
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "catalogClipping": true,
+    "equipmentSlotsFixed": true,
+    "sceneRemainedClean": true,
+    "consoleErrors": 0,
+    "visualReview": "Both scrolled Unity exports inspected; previous connection-related gap resolved."
+  },
+  "captureFiles": {
+    "shop-Unity4K.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "d4e66ef1ccf21c923e5bdf9172d7d0c6a274e1ae8aafc064d9d88100a55a70c1"
+    },
+    "shop-Unity1080p.png": {
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "7cbe0307f4eaaf5e9cf79dd6c67f0e20f74cd661e31a03cfb0190248da989828"
+    },
+    "shop-scrolled-Unity4K.png": {
+      "pixels": [
+        3840,
+        2160
+      ],
+      "sha256": "34bc5fbd8afbc461542827502bc8c3115be87559aa1c5e84f34f41e4be30acdc"
+    },
+    "shop-scrolled-Unity1080p.png": {
+      "pixels": [
+        1920,
+        1080
+      ],
+      "sha256": "a6b6c9f8c3719523d0773d29c3595b5ae5860f2efdae80664571a8715ae7e7e8"
+    }
+  }
+}

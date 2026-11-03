@@ -187,7 +187,7 @@ public sealed class FishingRunController : MonoBehaviour
     public CardInstance[] LastLostCatches => lastSurfaceResult.LostCatches;
     public int LastGoldAwarded => lastSurfaceResult.GoldAwarded;
     public int TotalGold { get { EnsureTackleShop(); return runRewardRuntime.TotalGold; } }
-    public int NextExpeditionHandSize => startingHandSize + (TackleShop?.Equipped?.Benefit == EquipmentBenefit.OpeningTechniques ? TackleShop.Equipped.Amount : 0);
+    public int NextExpeditionHandSize => startingHandSize + (TackleShop?.GetEquipped(EquipmentSlot.Reel)?.Benefit == EquipmentBenefit.OpeningTechniques ? TackleShop.GetEquipped(EquipmentSlot.Reel).Amount : 0);
     public int ProgressionLineCapacityBonus => runProgressionRuntime.CurrentLineCapacityBonus;
     public CardDefinition[] SavedTechniqueDeck => runProgressionRuntime.SavedTechniqueDeck;
     public bool UnlockableTechniqueCardUnlocked => runProgressionRuntime.TechniqueCardUnlocked;
@@ -291,12 +291,20 @@ public sealed class FishingRunController : MonoBehaviour
         runRewardRuntime.RestoreBalance(tackleShop.Gold); RefreshViews(); return true;
     }
 
-    /// <summary>Selects one owned item for future expeditions, never mutating equipment during a run.</summary>
+    /// <summary>Selects one owned item in its category for future expeditions.</summary>
     public bool TryEquipEquipment(string id, out string message)
     {
         EnsureTackleShop();
         if (tackleShop == null) { message = "Equipment shop unavailable"; return false; }
         return tackleShop.TryEquip(id, runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades, runActive, out message);
+    }
+
+    /// <summary>Clears one category while preserving other equipped items and active-run restrictions.</summary>
+    public bool TryUnequipEquipment(EquipmentSlot slot, out string message)
+    {
+        EnsureTackleShop();
+        if (tackleShop == null) { message = "Equipment shop unavailable"; return false; }
+        return tackleShop.TryUnequip(slot, runRewardRuntime.TotalGold, runProgressionRuntime.PurchasedLineCapacityUpgrades, runActive, out message);
     }
 
     /// <summary>Combines pending Technique and equipment Catch previews without consuming either source.</summary>
@@ -360,7 +368,7 @@ public sealed class FishingRunController : MonoBehaviour
         pendingCommittedCatchId = -1;
         selectedSwapTargetId = -1;
         EnsureTackleShop();
-        runEquipment.BeginRun(tackleShop?.Equipped);
+        runEquipment.BeginLoadout(tackleShop?.EquippedItems);
         lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus + runEquipment.CapacityBonus);
         currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);

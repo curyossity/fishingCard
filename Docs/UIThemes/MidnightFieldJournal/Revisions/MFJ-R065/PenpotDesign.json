@@ -1,0 +1,72 @@
+{
+  "revision": "MFJ-R065",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "bae680cd-9225-8018-8008-cddd6a6f3825",
+  "pageName": "01 - Current Design Library",
+  "size": [
+    3840,
+    2160
+  ],
+  "screens": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162034ddb27",
+      "state": "Decorated collection top",
+      "position": [
+        80000,
+        22000
+      ],
+      "scrollOffset": 0
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e162aebc8a79",
+      "state": "Decorated collection scrolled",
+      "position": [
+        84200,
+        22000
+      ],
+      "scrollOffset": 1090
+    }
+  ],
+  "initialId": "5de0315f-b85e-80a3-8008-e162034ddb27",
+  "masterId": "5de0315f-b85e-80a3-8008-e1619e4fb4e6",
+  "sourceBoardId": "5de0315f-b85e-80a3-8008-e162b2bca3ea",
+  "sourcePixels": [
+    1190,
+    1322
+  ],
+  "pageOrnamentMaster": "75555645-d407-8067-8008-dea9cfcb5568",
+  "cardRatio": 0.9001512859304085,
+  "slotSize": [
+    300,
+    333.2773109243697
+  ],
+  "catalogSize": [
+    500,
+    555.4621848739496
+  ],
+  "detailSize": [
+    1140,
+    1266.453781512605
+  ],
+  "status": "ready_for_review",
+  "unityImported": false,
+  "baseRevision": "MFJ-R064",
+  "change": "Retain approved open journal layout and portrait proportions; add a new equipment-only rope-and-hook engraved card family to all empty slots, catalog tiles and larger right detail card. Existing game ornaments decorate the page.",
+  "emptySlots": [
+    "Rod",
+    "Reel",
+    "Hook"
+  ],
+  "placeholderCopies": {
+    "rod": 3,
+    "reel": 3,
+    "hook": 3
+  },
+  "prototype": "Discrete catalog scroll states linked with down/up arrows. Harbor back link. Purchases, equips, filters and wheel scrolling remain visual specifications.",
+  "generation": "Built-in imagegen; independently generated blank equipment frame using current game cards/ornament masters as style references. Item illustrations, names, category, ownership and effects remain separate.",
+  "reusedDecorations": "R057 independent paper frame master: 8 clipped outer 9-slice cells; 300px source corners displayed at 100px, no enlarged corner detail.",
+  "preserved": [
+    "R064 base and earlier shop designs",
+    "Unity code, assets, scenes and saves"
+  ]
+}

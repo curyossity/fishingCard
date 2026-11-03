@@ -1,7 +1,7 @@
 {
-  "generatedDate": "2026-10-31",
+  "generatedDate": "2026-11-01",
   "source": "DesignChangeLedger.json",
-  "currentUnityCheckpoint": "Sync012/UnityCheckpoint.json",
+  "currentUnityCheckpoint": "Sync013/UnityCheckpoint.json",
   "pending": [],
   "completed": [
     {
@@ -191,6 +191,10 @@
     {
       "id": "MFJ-R060",
       "checkpoint": "MFJ-SYNC-012"
+    },
+    {
+      "id": "MFJ-R067",
+      "checkpoint": "MFJ-SYNC-013"
     }
   ],
   "superseded": [
@@ -258,12 +262,42 @@
       "id": "MFJ-R054",
       "supersededBy": "MFJ-R055",
       "unityImported": false
+    },
+    {
+      "id": "MFJ-R062",
+      "supersededBy": "MFJ-R063",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R064",
+      "supersededBy": "MFJ-R065",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R065",
+      "supersededBy": "MFJ-R066",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R066",
+      "supersededBy": "MFJ-R067",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R061",
+      "supersededBy": "MFJ-R067",
+      "unityImported": false
+    },
+    {
+      "id": "MFJ-R063",
+      "supersededBy": "MFJ-R067",
+      "unityImported": false
     }
   ],
   "counts": {
     "pending": 0,
-    "completed": 47,
-    "superseded": 13
+    "completed": 48,
+    "superseded": 19
   },
   "selectionRule": "Only unityImported=false AND status!=superseded may enter a future candidate checklist; separate integration authorization remains required.",
   "alternativeGroups": []

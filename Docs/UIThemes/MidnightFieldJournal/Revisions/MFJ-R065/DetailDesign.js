@@ -1,0 +1,16 @@
+const s=storage.r065,{X,Y,master,inspector,board,pic,text,svg}=s;
+text(inspector,'Inspection eyebrow','EQUIPMENT DETAILS',2665,270,980,60,32,'#C4A170');
+const x=2600,y=420,w=1140,h=w/s.R,card=board('Enlarged equipment card / Reel',x,y,w,h,inspector);s.detailCard=card;
+pic(card,master,'Equipment family / large detail frame',x,y,w,h);
+text(card,'Equipment type','REEL',x+180,y+62,780,48,28,'#665A46');
+text(card,'Equipment name','TIDEGLASS REEL',x+140,y+133,860,80,55,'#283B3D');
+const src=penpot.currentPage.getShapeById('75555645-d407-8067-8008-de9b99677d11'),k=Math.min(710/src.width,520/src.height);
+pic(card,src,'Independent equipment illustration / Reel',x+(w-src.width*k)/2,y+280+(520-src.height*k)/2,src.width*k,src.height*k);
+text(card,'Ownership state','OWNED · NOT EQUIPPED',x+190,y+833,760,44,25,'#3B4847');
+text(card,'Effect heading','EXPEDITION EFFECT',x+190,y+941,760,48,28,'#D4B981');
+text(card,'Effect description','Draw 2 additional Technique cards\nat the start of each expedition.',x+215,y+1015,710,159,38,'#EFE0C2',true);
+const equip=board('Action / Equip Reel',2665,1790,980,120,inspector);s.equipId=equip.id;
+svg(equip,'Native paper action','<rect x="2" y="2" width="976" height="116" rx="12" fill="#EBD8B7" stroke="#BA9869" stroke-width="2"/><path d="M28 25H130M850 95H952" stroke="#9B7C55" stroke-width="1.5"/>',2665,1790,980,120);
+text(equip,'Action label','EQUIP REEL',2710,1823,890,60,36,'#283B3D');
+text(inspector,'Slot hint','Your Reel slot is empty.',2670,1960,980,56,31,'#EDDFC2',true);
+return {detailCardId:card.id,size:[w,h]};

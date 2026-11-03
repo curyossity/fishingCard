@@ -1,0 +1,104 @@
+{
+  "screens": [
+    {
+      "id": "5de0315f-b85e-80a3-8008-e18372f1d8ac",
+      "canvas": [
+        3840,
+        2160
+      ],
+      "oldBackgroundHidden": true,
+      "approvedBackgroundVisible": true,
+      "catalogCount": 9,
+      "cardsAndPanelsUnchanged": true,
+      "harborX": 450,
+      "titleX": 300,
+      "footerHintHidden": true,
+      "geometryTolerance": 0.01
+    },
+    {
+      "id": "5de0315f-b85e-80a3-8008-e183752479ec",
+      "canvas": [
+        3840,
+        2160
+      ],
+      "oldBackgroundHidden": true,
+      "approvedBackgroundVisible": true,
+      "catalogCount": 9,
+      "cardsAndPanelsUnchanged": true,
+      "harborX": 450,
+      "titleX": 300,
+      "footerHintHidden": true,
+      "geometryTolerance": 0.01
+    }
+  ],
+  "geometryEvidence": [
+    {
+      "name": "Fixed / Portrait equipment slots",
+      "new": [
+        155,
+        325,
+        2190,
+        530
+      ],
+      "old": [
+        155,
+        325,
+        2190,
+        530
+      ]
+    },
+    {
+      "name": "Fixed / Collection heading and filters",
+      "new": [
+        155,
+        900,
+        2190,
+        120
+      ],
+      "old": [
+        155,
+        900,
+        2190,
+        120
+      ]
+    },
+    {
+      "name": "Fixed / Equipment detail card",
+      "new": [
+        2635,
+        100,
+        1060,
+        1990
+      ],
+      "old": [
+        2635,
+        100,
+        1060,
+        1990.0000000000036
+      ]
+    },
+    {
+      "name": "Scroll / Portrait catalog viewport",
+      "new": [
+        150,
+        1070,
+        2210,
+        920
+      ],
+      "old": [
+        150,
+        1070,
+        2210,
+        920
+      ]
+    }
+  ],
+  "visualReview": "Initial export inspected; header/footer clearance adjusted after inspection.",
+  "native4K": false,
+  "resolvedBy": "MFJ-SYNC-013",
+  "restoredOutputPixels": [
+    3840,
+    2160
+  ],
+  "qualityBlockerResolved": true
+}

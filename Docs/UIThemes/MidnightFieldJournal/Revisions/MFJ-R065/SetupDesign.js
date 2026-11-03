@@ -1,0 +1,16 @@
+const p=penpot.currentPage,ns='fishing-cards-design';if(p.getSharedPluginData(ns,'MFJ-R065'))throw Error('R065 already exists');
+const prior=JSON.parse(p.getSharedPluginData(ns,'MFJ-R064')),b=p.getShapeById(prior.initialId).clone();b.x=80000;b.y=22000;b.name='MFJ-R065 / Tackle Shop / Decorated Equipment Journal';b.setSharedPluginData(ns,'MFJ-R064','');
+const X=b.x,Y=b.y,R=1190/1322,master=p.getShapeById('5de0315f-b85e-80a3-8008-e1619e4fb4e6');
+function walk(a){return (a.children||[]).flatMap(c=>[c,...walk(c)]);}function find(n){return walk(b).find(c=>c.name===n);}
+for(const a of [b,...walk(b)])for(const i of [...a.interactions])a.removeInteraction(i);
+function board(name,x,y,w,h,parent){const a=penpot.createBoard();a.name=name;a.resize(w,h);a.x=X+x;a.y=Y+y;a.fills=[];a.clipContent=false;parent.appendChild(a);return a;}
+function pic(parent,source,name,x,y,w,h){const a=source.clone();parent.appendChild(a);a.name=name;a.resize(w,h);a.x=X+x;a.y=Y+y;return a;}
+function text(parent,name,copy,x,y,w,h,size,color,body=false,align='center'){const a=penpot.createText(copy);penpot.fonts.findByName(body?'Source Serif 4':'Cinzel').applyToText(a);a.name=name;a.fontSize=String(size);a.fontWeight='400';a.lineHeight='1.16';a.align=align;a.growType='fixed';a.resize(w,h);a.x=X+x;a.y=Y+y;a.fills=[{fillColor:color,fillOpacity:1}];parent.appendChild(a);return a;}
+function svg(parent,name,body,x,y,w,h){const a=penpot.createShapeFromSvg(`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${body}</svg>`);a.name=name;parent.appendChild(a);a.x=X+x;a.y=Y+y;return a;}
+const paper=find('Fixed / Parchment leaf'),source=p.getShapeById('75555645-d407-8067-8008-dea9cfcb5568'),orn=board('Existing game ornament / fixed corner page border',70,65,2440,2030,paper),cut=300,c=100,ux=[0,cut,source.width-cut,source.width],uy=[0,cut,source.height-cut,source.height],dx=[0,c,2440-c,2440],dy=[0,c,2030-c,2030];
+for(let row=0;row<3;row++)for(let col=0;col<3;col++){if(row===1&&col===1)continue;const clip=board('Page ornament slice / '+row+','+col,70+dx[col],65+dy[row],dx[col+1]-dx[col],dy[row+1]-dy[row],orn);clip.clipContent=true;const a=source.clone();clip.appendChild(a);a.name='Independent existing paper ornament master';const sx=clip.width/(ux[col+1]-ux[col]),sy=clip.height/(uy[row+1]-uy[row]);a.resize(source.width*sx,source.height*sy);a.x=clip.x-ux[col]*sx;a.y=clip.y-uy[row]*sy;}
+find('Navigation / Harbor').x=X+210;
+const slots=walk(b).filter(a=>a.name.startsWith('Empty portrait slot /'));
+for(const slot of slots){for(const a of [...slot.children])a.remove();const x=slot.x-X,y=slot.y-Y;pic(slot,master,'Equipment family / empty slot frame',x,y,slot.width,slot.height);svg(slot,'Empty socket plus','<path d="M0 16H32M16 0V32" stroke="#566052" stroke-width="2"/>',x+slot.width/2-16,y+slot.height*.44-16,32,32);}
+const inspector=find('Fixed / Unframed equipment study');for(const a of [...inspector.children])if(a.name!=='Gold balance')a.remove();inspector.name='Fixed / Equipment detail card';
+storage.r065={X,Y,R,b,prior,master,paper,orn,slots,inspector,walk,find,board,pic,text,svg};p.setSharedPluginData(ns,'MFJ-R065-WIP',JSON.stringify({id:b.id}));return {id:b.id,slots:slots.length};
