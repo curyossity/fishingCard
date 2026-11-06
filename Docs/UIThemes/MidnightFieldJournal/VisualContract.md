@@ -1,3 +1,5 @@
+> **Historical implementation/artwork record.** Preserve resources and provenance. Mechanics, statistics, controls and approvals below do not define Deepwater gameplay. Consult [document status](../../README.md) and the current GDD. The 6 November 2026 redesign changes documents only.
+
 # Midnight Field Journal — candidate-theme visual contract
 
 **MFJ-SYNC-012 — R059 tag bar and R060 Stop are integrated and verified in Unity.** Separate decorative sprites and native dynamic elements; existing timing, selection and elastic animations retained. 4K/1080p captures and 103 live checks passed. **0 pending; 47 completed; 13 superseded.** [Integration](Sync012/README.md). Earlier review-only statements below are historical.

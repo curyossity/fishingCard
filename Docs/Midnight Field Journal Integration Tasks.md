@@ -1,3 +1,5 @@
+> **Historical implementation/artwork record.** Preserve resources and provenance. Mechanics, statistics, controls and approvals below do not define Deepwater gameplay. Consult [document status](README.md) and the current GDD. The 6 November 2026 redesign changes documents only.
+
 # Midnight Field Journal — Unity Integration
 
 ## Objective and approved reference

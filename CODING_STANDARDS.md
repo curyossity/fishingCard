@@ -4,7 +4,7 @@ Read this file before making code, asset, prefab, scene, or architecture changes
 
 ## Project Context
 
-- This project is a 2D card game built in Unity.
+- Deepwater (working title) is a 2D fishing card roguelike built in Unity.
 - Code and implementation choices should fit Unity conventions and the needs of a 2D game.
 - Prefer Unity 2D systems, components, physics, rendering, and assets unless there is a clear reason to use a 3D equivalent.
 

@@ -1,3 +1,9 @@
+> **Historical implementation/artwork record.** Preserve resources and provenance. Mechanics, statistics, controls and approvals below do not define Deepwater gameplay. Consult [document status](../../README.md) and the current GDD. The 6 November 2026 redesign changes documents only.
+
+**6 November 2026 — DW-LOOP-002:** [Deepwater loop mockups](../DeepwaterLoop/README.md) now use the existing ornate card decoration: R059 coastal instrument frames, R060 botanical buttons, TechniqueFrameV2 reel/match panels, parchment haul/score plaques and illustrated brass connectors. The initial mockups are archived on the same Penpot page. Ready for review; no Unity import or runtime asset changes.
+
+**6 November 2026 — DW-LOOP-001:** two editable Deepwater game-loop mockups are ready for review on the separate Penpot page **03 - Deepwater - Gameplay Loop**. [Discover and Land previews, provisional values and handoff](../DeepwaterLoop/README.md). Existing Field Journal artwork is reused; existing pages and Unity assets are preserved. This is design only, not an imported revision.
+
 # Penpot revisions after the Unity assembly
 
 **Equipment pricing revision — Unity only.** Nine individual provisional prices applied to the equipment source, catalog and native shop labels. Permanent ownership and optional independent category slots remain active; purchases have no prerequisites or price escalation. No Penpot revision or new import is required. [Prices and verification](../../Validation/EquipmentPassives/PricingRevision/README.md).

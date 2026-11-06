@@ -1,6 +1,8 @@
 # Full Game Development Guidelines
 
-This project has moved beyond MVP development. The goal is now to build the full fishing card roguelike with production-quality foundations, not to prove the smallest playable loop.
+Deepwater (working title) is developed with production-quality foundations. The agreed 6 November 2026 direction is Discover → Land → Build. Its documentation does not claim the Unity implementation has been migrated.
+
+Use [document status](README.md) to distinguish specifications from implementation evidence and artwork provenance. Prototype suggestions and illustrative examples are not final rules. Focused playtesting of unresolved landing mechanics is compatible with production foundations; provisional values must not become permanent requirements by accident.
 
 ## Development Posture
 
@@ -15,9 +17,9 @@ This project has moved beyond MVP development. The goal is now to build the full
 
 - The full GDD remains the gameplay source of truth.
 - `Docs/GDD_IMPLEMENTATION_BRIEF.md` is the low-token summary of the GDD.
-- `Docs/Architecture.md` is the responsibility map and must be kept current when responsibilities change.
+- `Docs/Architecture.md` maps intended responsibilities and must be kept current. `Docs/Architecture Implementation Reference.md` records existing code and is not gameplay authority.
 - `Docs/Card Visual Specification.md` remains the card-face rendering contract.
-- `Docs/UI Redesign Plan.md` is the current visual implementation plan for the complete gameplay UI.
+- `Docs/UI Redesign Plan.md` defines presentation requirements and unresolved inputs. Detailed assembly references are preserved in `Docs/UI Presentation Reference.md` and `Docs/Card Presentation Reference.md`; they do not approve obsolete controls or statistics.
 - `Docs/MVP Workplan.md` is historical planning context. Do not use its MVP scope limits, explicit postponements, or "acceptable for MVP" language to justify new implementation shortcuts.
 - `Docs/MVP Technical Debt.md` is a backlog of known production-hardening work inherited from the earlier MVP phase. Existing items should be resolved or redesigned as development touches their area.
 
@@ -55,5 +57,7 @@ When modifying a system that still contains MVP-era assumptions, use the opportu
 - Placeholder UI composition that conflicts with the redesign plan.
 - Runtime data stored in authored definitions.
 - Effect handling that cannot support richer final-game cards.
+
+An initially unlocked Shallows is a progression rule, not permission for a one-biome architecture. Follow the GDD for sequential unlocks, empty-rig expedition starts and automatic continuation. Success and failure both award full accumulated Catch sale value; Bait contributes zero. Capture value before removing all temporary attachments at expedition end, and preserve permanent unlocks/progression. Do not reintroduce voluntary surfacing, capacity or overload through inherited tasks or debt entries. Equipment, Techniques, additional completion rewards and Weight/Heavy require the decisions recorded in the GDD.
 
 Resolve these issues in the touched area when reasonable, or identify them clearly as remaining production-hardening work.

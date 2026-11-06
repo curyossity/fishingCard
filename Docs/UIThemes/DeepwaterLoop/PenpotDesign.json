@@ -1,0 +1,51 @@
+{
+  "revision": "DW-LOOP-002",
+  "status": "ready_for_review",
+  "date": "2026-11-06",
+  "fileId": "9e056cfe-f83f-81f8-8008-cc523ff45211",
+  "pageId": "38e9e9ec-a6d5-8050-8008-e796f637ba87",
+  "pageName": "03 - Deepwater - Gameplay Loop",
+  "screens": [
+    {
+      "phase": "Discover",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7971f4bfa02",
+      "size": [1920, 1080],
+      "preview": "SlotMachine.png",
+      "nativeTextCount": 44
+    },
+    {
+      "phase": "Land",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7972b912b7f",
+      "size": [1920, 1080],
+      "preview": "LandingChallenge.png",
+      "nativeTextCount": 49
+    }
+  ],
+  "prototype": {
+    "navigationLinks": 1,
+    "action": "Follow These Tags",
+    "from": "Discover",
+    "to": "Land",
+    "playableMinigame": false
+  },
+  "provisional": [
+    "Reel result presentation and lock/respin controls",
+    "Input bindings",
+    "Resistance and scoring values",
+    "Four initial landing attempts",
+    "Mackerel positional synergy example"
+  ],
+  "archivedBoards": {
+    "DW-LOOP-001-slot": "38e9e9ec-a6d5-8050-8008-e79a812a3de0",
+    "DW-LOOP-001-landing": "38e9e9ec-a6d5-8050-8008-e79a816c4873"
+  },
+  "artworkSources": {
+    "coastalFrameR059": "26b75110-679b-80ad-8008-dfea7b4bd1f1",
+    "buttonFrameR060": "26b75110-679b-80ad-8008-dff855e9f0e5",
+    "techniqueFrameV2": "bae680cd-9225-8018-8008-cde81a37c739",
+    "compactCardFrame": "bae680cd-9225-8018-8008-cde2b397985a",
+    "brassRigConnector": "bae680cd-9225-8018-8008-cde463458584"
+  },
+  "unityImportStatus": "not_imported",
+  "unityChanges": false
+}

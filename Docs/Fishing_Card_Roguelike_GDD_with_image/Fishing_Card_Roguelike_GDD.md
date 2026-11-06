@@ -1,1105 +1,252 @@
-> **One-sentence concept**
->
-> A cards-only fishing roguelike where the player descends through increasingly valuable waters, builds a risky chain of catches on the fishing line, and decides when to stop pushing deeper and surface with the haul.
+﻿# Deepwater — Game Design Document
 
+**Working title:** Deepwater. **Design baseline:** 6 November 2026.
+**Status:** Agreed direction, subject to refinement and playtesting. Confirmed rules, leading concepts and illustrative examples are distinguished below. This is the gameplay source of truth; it does not claim implementation is complete.
 
-**Status:** Early design. This document captures the mechanics and
-direction currently agreed upon; values, balance, exact card counts, and
-content are intentionally not final.
+## 1. Core vision
 
-# 1. Design pillars
+Deepwater is a skill-based fishing roguelike built around three interconnected mechanics:
 
-- Cards are the game world. The presentation should feel like a physical
-  illustrated card game on a screen, not a conventional game with cards
-  layered on top.
+- **Discover:** influence which creatures appear using a tag slot machine.
+- **Land:** complete a short skill-based fishing challenge, generating Landing Points through accuracy and the current rig's synergies.
+- **Build:** choose Catch or Bait, then commit the newly acquired creature to a position in an ordered rig.
 
-- Push-your-luck is the emotional core. Every additional catch and every
-  deeper step should make the player ask whether to keep going or cash
-  out.
+Each successful encounter strengthens or changes the build for increasingly difficult creatures and deeper biomes. The central strategic challenge is building a powerful rig through irreversible positioning decisions. The central execution challenge is using that rig effectively during fishing encounters.
 
-- The catch chain is a temporary build. Caught creatures remain
-  mechanically relevant during the descent instead of becoming instant
-  currency.
+### Design pillars
 
-- Weight creates pressure. Valuable catches increase line load, and
-  greed should create dangerous but tempting states rather than a simple
-  hard inventory limit.
+- Every creature encounter is a challenge the player can win or lose.
+- The rig is the main build-building mechanic; the landing challenge tests it.
+- Skillful actions remain meaningful as rig bonuses and multipliers grow.
+- Placement creates long-term commitments, immediate synergies and future opportunities.
+- Abilities support distinct strategies, including landing performance, haul value and Technique interactions.
+- Illustrated cards are the game world. Use Unity 2D and a tactile physical-card presentation without an animated player character or explorable sea.
 
-- The deck defines how the player fishes. Basic fishing actions are
-  always available; the hand contains techniques that modify, exploit,
-  or bend those actions.
+Traditional combat and additional tactical landing decision systems are not planned. Voluntary surfacing, Line Capacity, line overload and line-break failure are not game mechanics. Catch acquisition requires successful landing.
 
-# 2. Visual and presentation direction
+## 2. Presentation and card roles
 
-**The game contains no animated character, explorable sea, or
-traditional world view.** Everything important is represented by cards:
-the boat/start state, ocean encounters, creatures, treasure, the catch
-chain, and the player's techniques.
+Large vertical illustrated cards communicate creatures, discoveries and depth. The visible rig connects attached creature cards and remains a central visual feature. Supplied illustrations and reusable card masters remain protected by the [card visual contract](../Card%20Visual%20Specification.md).
 
-- Large vertical illustrated cards are the main visual language.
+![Card presentation reference](Fishing_Card_Roguelike_GDD_reference.png)
 
-- The fishing line visually connects the boat/start card to caught
-  creature cards below it.
+The reference supplies atmosphere and card presentation, not approval of every depicted control or statistic.
 
-- Artwork carries most of the atmosphere and sense of depth; surrounding
-  UI should stay restrained.
+- **Creature cards:** encounter challenges and, after success, potential rig members with distinct Catch/Bait effects.
+- **Technique cards:** strategic modifiers whose exact timing and redesigned effects are still to be determined. Access to the core loop must not depend on drawing a Technique.
+- **Equipment:** build support and possible permanent progression rewards; categories and acquisition rules are under review.
+- **Other encounter content:** events, treasure, authored chains and Apex content require compatibility review. Existing content is not automatically an approved completion gate, challenge bypass or extra failure system.
 
-- Cards should feel collectible and tactile, with clear names, small
-  amounts of readable information, and strong illustration.
+## 3. Expedition and encounter loop
 
-- Depth and danger can be communicated through card art, card pools,
-  labels, and increasingly strange encounters rather than animated
-  scenery.
+Every new expedition starts in the first biome, **Shallows**, with an **empty rig**. Initially only Shallows is unlocked. Creatures collected during an expedition are temporary and never carry over as attachments into a future expedition; permanent unlocks and progression are preserved.
 
-## Visual reference
+### Phase 1 — Discover: slot machine
 
-The provided reference captures the intended feeling: illustrated
-vertical cards, a visible fishing line, minimal UI, and the sense that
-the card itself contains the world.
+Use three reels, matching tags and optional lock/respin to influence the tags governing the next creature encounter. The slot machine is the encounter-selection instrument. The agreed tag-matching direction is retained; no extra connection to landing scoring is added.
 
-![Visual reference for the card-based fishing presentation](Fishing_Card_Roguelike_GDD_reference.png)
+Exact reel distributions, match outcomes, lock/respin limits or costs, eligible-pool fallback and rarity interactions are not specified in this design baseline. Do not substitute tag-bar precision, fatigue or rarity-ceiling rules for missing slot-machine rules. A detailed slot specification is needed before implementation.
 
-# 3. Card architecture
+### Phase 2 — Land: challenge
 
-The design uses three functional card groups. This resolves the main
-concern about whether the hand should contain creatures or actions.
+Reveal the creature with a **Resistance** target. Generate **Landing Points** through a skill-based fishing challenge using a limited number of attempts. The existing rig, active creature abilities, Techniques and equipment can enhance performance.
 
-| **Card / element**     | **Role**                                                        | **Example effect**                                                                                                                                                                        |
-|------------------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Core action cards      | Always available; not shuffled into the deck.                   | Descend and Surface. Encounter commitment happens automatically unless a technique intervenes.                                                                                      |
-| Player technique cards | The 4-card hand and build/deckbuilding layer.                   | Bait, reinforced knots, special hooks, descent modifiers, risk manipulation, catch manipulation.                                                                                          |
-| Encounter cards        | Drawn/generated by the game according to the current situation. | Creatures, treasure, hazards, environmental situations, opportunities, and unusual discoveries. Catchable creature encounters become Hooked and move into the Catch Chain when committed. |
+- Reach Resistance within the available attempts to succeed.
+- If the target is not reached before attempts run out, fail the encounter and immediately end the expedition.
+- The encountered creature is not yet acquired and supplies no newly attached rig benefits to its own landing.
+- Success opens Catch/Bait choice and placement; failure does not acquire this creature.
 
-## Why this split
+### Phase 3 — Build: role and placement
 
-- The player never becomes unable to perform a fundamental fishing
-  action because the correct card was not drawn.
+After successful landing:
 
-- The hand still matters because technique cards determine how
-  efficiently, safely, or unusually the player fishes.
+1. Choose **Catch** or **Bait** for the acquired creature.
+2. Choose any permitted insertion position along the rig.
+3. Commit placement. Existing creatures retain their relative order.
+4. Recalculate positional and other ongoing synergies.
+5. Continue automatically to the next encounter or biome progression step.
 
-- Ocean creatures remain discoveries rather than choices presented like
-  items in a shop.
+The new creature begins contributing after successful landing and placement, affecting future encounters. There is no per-encounter choice to surface. No additional manual Descend commitment is required by this loop. Exact role/position previews and confirmation remain UI work.
 
-- Deckbuilding represents the player's fishing strategy, while the catch
-  chain represents the temporary state of the current descent.
+## 4. Landing challenge — leading concept
 
-# 4. Core actions
+The preferred concept is a timing minigame partly inspired by Stardew Valley, with a distinct scoring system. Exact mechanics and controls remain open.
 
-The game is structured around **actions**, not a separate turn system. A core action resolves one meaningful decision. **Descend** advances the expedition and **Surface** ends the descent. Release changes the Catch Chain only when a Technique, creature, or event grants it; there is no universal free Release. Technique cards modify these actions or the current encounter.
+### Proposed interaction
 
-| **Core action** | **Purpose**                                                                                                                   | **Design rule**                                                                                                                                                                                                            |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Descend         | Move deeper and commit the current Hooked card to the Catch Chain in its selected Catch or Bait role unless a technique card avoids, redirects, or replaces it. | Permanent core action. For a Hooked creature or Apex, disabled until the player explicitly chooses Catch or Bait; neither role is selected by default. Every new occurrence or replacement, including the same species, requires a fresh choice. Ordinary stat/preview refreshes preserve it. Boat, empty/skipped and event encounters have no attachment-role gate; Surface remains independent. Descending is the normal way to accept the current card and continue. Only the selected Catch/Bait effect set activates. Technique cards can alter how far or how safely the player descends, or allow the player to pass an encounter without taking it. |
-| Surface         | End the descent and attempt to bring the remaining catch home.                                                                | Everything that successfully returns becomes the player's haul and can be sold/used in progression.                                                                                                                        |
+- Both the fish and landing zone move.
+- Time an action to strike when fish and zone align.
+- Accuracy determines base points. Candidate grades are **Miss**, **Good** and **Perfect**.
+- Each creature allows limited attempts. **Four attempts is a prototype suggestion only.**
+- Creatures have distinct, learnable movement patterns. Tags and characteristics may influence those patterns.
 
-## 4.1 Encounter commitment and Hooked state
+Grade thresholds, points per grade, Miss behavior, attempt consumption details, early-success presentation and controls are not finalized. Do not infer automatic success, combat health or a separate tension resource.
 
-Creature encounters are not freely accepted or skipped. When a catchable
-creature appears, it becomes the current Hooked encounter. Unless the
-player uses a technique or special effect to intervene, continuing the
-descent commits that card to the Catch Chain.
-
-- Encountered: the card has been revealed and its information/effect is
-  visible according to the current rules.
-
-- Hooked: the creature is attached to the rig as the current unresolved
-  encounter. This is the player's reaction window.
-
-- Attached: before Descend, the player selects the Hooked card's Catch
-  or Bait effect. When committed, the card records that role and becomes
-  a permanent part of the current Catch Chain. Only the selected role's
-  effects activate. Bait-role cards remain visible in the chain with a
-  distinct marker. Both roles contribute their resolved Weight to Line
-  Load. Catch-role cards contribute their resolved Value to the final
-  haul; Bait-role cards contribute zero haul Value.
+### Difficulty progression
 
-- There is no free universal Skip action. Avoiding an unwanted catch
-  requires a technique card, equipment effect, creature effect, or
-  another specific rule.
+Resistance targets rise through the expedition. Creature characteristics and rarity may also influence difficulty. Increasing fish speed or shrinking the zone must not be the main escalation.
 
-- This allows creatures with meaningful downsides to matter. The ocean
-  can give the player an inconvenient catch that must be managed rather
-  than simply declined.
+Rig growth should visibly increase results. Some abilities or upgrades may widen the landing zone or slow the fish, complementing score growth rather than simply erasing the main difficulty escalation.
 
-# 5. Core run loop
+### Skill and build balance
 
-1.  Begin the descent with an empty Catch Chain and a small hand of
-    technique cards.
+Timing determines action quality; the rig transforms that quality into a stronger result. Strong builds should make successful actions satisfying while preserving the value of accuracy. Different builds should achieve power through different interactions rather than every creature adding the same bonus.
 
-2.  Use Descend to move through deeper encounter pools and advance the
-    expedition.
+## 5. Landing Points and scoring
 
-3.  Select the next encounter category based on depth, biome, current catches
-    and active modifiers. Before a creature is revealed, show the tag timing
-    bar. Stop selects a tag; its centre precision area boosts higher-rarity
-    species odds. Draw an eligible creature with that tag, falling back to
-    all eligible species if unavailable. Reveal after stopped feedback and
-    the instrument's upward exit. Events reveal directly. The journal
-    comparison scene enables timing; legacy scenes retain direct reveals.
+An initial design model is:
 
-4.  Resolve automatic reveal reactions first. Use legal technique cards
-    during the reaction window to manipulate the current encounter, avoid
-    or replace it, change its consequences, prepare the line, or alter the
-    next descent. Non-catchable events retain this window even if cancelled.
+`Landing Points = (Accuracy Base + Rig Bonuses) × Rig Multipliers`
 
-5.  If the player Descends without an avoidance/replacement effect, the
-    Hooked creature is automatically committed to the Catch Chain in its
-    selected Catch or Bait role before the next encounter is reached.
-    For an event, confirming Descend or Surface instead resolves its
-    consequences once (unless the card states otherwise), including
-    resulting creature reactions, before that action. The Technique window
-    stays closed until the confirmed action finishes; event resolution
-    never grants an extra depth advance.
+**This is a concept, not a finalized formula.** Accuracy values, flat-bonus eligibility, multiplier order, stacking, rounding, score floors/caps and per-attempt versus per-challenge effects are undecided. In particular, the model does not decide whether a Miss can receive rig bonuses.
 
-6.  The new attached card increases Line Load and only its selected role's
-    passive or downside effects may immediately change the run.
+Possible ability directions include flat bonuses, multipliers, additional attempts and special scoring interactions. Each exact effect needs an approved trigger, target, duration and limits. Additional attempts are a possible ability type, not a universal purchase during landing.
 
-7.  Choose whether to keep descending, release an existing catch to
-    reduce load or remove its effect, or surface with the current haul.
+The player should understand how a skillful strike becomes a visibly stronger result, with satisfying combinations comparable in spirit to Balatro's build growth.
 
-8.  On surfacing, all surviving cards still attached to the line become
-    the haul.
+## 6. Ordered rig and placement
 
-9.  Sell/use the haul, improve equipment/deck options, then begin
-    another run.
+The rig is an ordered sequence of attached creatures, in either Catch or Bait role.
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Core question</strong></p>
-<p>How much value and synergy can I keep hanging from this line before
-greed makes the return trip too dangerous?</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+- Insert a newly acquired creature at any permitted position.
+- Committed creatures cannot be manually rearranged.
+- Insertion never changes existing creatures' relative order.
+- Some abilities may restrict later insertion positions.
+- Positional effects update dynamically when creatures attach or are removed.
+- Both Catch and Bait participate in adjacency and tag synergies unless an ability explicitly excludes a role.
+- Position means current rig order; distinguish it from acquisition time and runtime instance identity.
 
-# 6. Catch chain
+No maximum rig size is established. Removing Line Capacity does not authorize a replacement slot limit. Handling a placement state with no permitted position is open and must be decided before introducing an ability that can create it. Restriction interactions, orientation and exact effect timing require precise wording.
 
-## Tag timing rules (approved 29 October 2026)
+### Catch and Bait
 
-The journal comparison scene uses the approved R051 Lantern Focus tag bar before creature reveals, replacing the earlier rarity ceiling bar. Descend commits the selected Catch/Bait and advances normally; the next creature remains hidden until Stop, its feedback hold and the upward exit complete. Events reveal directly. Catch/Bait has no default. Technique replacements of already revealed creatures do not start another timing phase.
+Only the selected role's effects operate.
 
-All eight tags remain visible in canonical order: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Initially each occupies 12.5%. A normal hit samples uniformly from distinct biome/depth-eligible species with that tag, without rarity weights, encounter-weight modifiers or immediate-repeat filtering. On precision, each Common/Uncommon/Rare/Legendary species receives relative weight 1/2/4/8. If the stopped tag has no eligible creatures, use the full eligible species pool with the same normal/precision policy. Category/event pacing remains separate. Queued selections, trails, authored chains and scheduled Apex encounters keep their promised identity; their tag bar cannot replace that promise.
+- **Catch:** contributes resolved sale value and may provide utility or synergy.
+- **Bait:** contributes zero sale value but may supply stronger effects or positional support. It remains attached rather than being automatically consumed.
 
-Each tag has a centred precision span 18% of its width. After one accepted Stop, multiply only the selected tag's raw weight by 0.85; other tags recover 0.01 toward their 0.125 raw baseline. Normalize the resulting weights to fill 100%, with a final 5% minimum. The 12.5% baseline is applied before normalization; displayed zones may exceed it. Repeated hits at the floor do not accumulate invisible fatigue. Run balance survives subsequent creatures and biome transitions; ending/restarting the run restores equal spans. Widths resize smoothly over 0.3 seconds without changing the captured hit.
-
-Preserve the previous one-second entrance from below with mirrored elastic settling and one-second upward elastic-in exit (amplitude 1, period 0.74). Marker motion and Stop remain locked until entrance finishes. Stop holds for 0.65 seconds; precision hits reuse the existing gold/ivory particles and marker pulse. Reveal reactions and concealment assignment wait until the exit finishes. Descend and Technique play stay locked during timing; Surface can cancel it. TagTiming.asset authors speed, hold, precision fraction, fatigue/recovery and rarity multipliers. No new creature, Technique or upgrade content is introduced. Legacy scenes without timing profiles retain direct reveals; the old rarity profile/prefab remain available as backup.
-
-Caught creatures do not immediately disappear into an inventory. They
-stay attached to the fishing rig while the player continues descending.
-The vertical chain of caught cards is both a visual record of the run
-and a mechanical system.
-
-- A catchable encounter normally enters the chain by default when the
-  player continues descending; avoiding it requires a specific technique
-  or effect.
-
-- Every attached card contributes its resolved Weight to Line Load. Catch-role
-  cards contribute their resolved Value to the haul; Bait-role cards contribute
-  zero haul Value.
-
-- Many caught cards can provide passive effects while they remain
-  attached.
-
-- Existing catches can influence what appears next, creating a temporary
-  engine during the descent.
-
-- The player is rewarded for assembling useful interactions, but every
-  additional catch makes the line harder to manage.
-
-- Releasing a card removes its Weight, any Catch-role haul Value, and ongoing
-  attached effects. Completed one-time triggered effects are not automatically
-  undone by releasing their source.
-
-## Creature interaction principle
-
-Creature and creature-like Apex cards use a closed gameplay tag vocabulary: **Fish**, **Predator**, **Schooling**, **Small**, **Heavy**, **Anchored**, **Armored**, and **Elusive**. These tags exist to support readable synergies and targeting rules. Biological taxonomy, rarity, card type, flavor, role, and runtime state should not be added as creature tags; those concepts belong in their dedicated data or presentation fields. A card may have multiple applicable tags.
-
-Creatures can join or interact with the line for different thematic reasons:
-
-- Predators may be attracted to previously caught prey.
-
-- Squid and octopus can be attracted to struggling prey, grab a catch,
-  or tangle with the rig.
-
-- Crabs or similar creatures can cling to catches or the line.
-
-- Jellyfish or debris may become entangled.
-
-- Treasure and objects can be snagged by the rig.
-
-- Some creatures may alter the value, weight, attraction, or behavior of
-  other cards in the chain.
-
-The goal is thematic plausibility, not strict simulation, while supporting
-a wide range of creature behaviors and interactions.
-
-## Catch and Bait Effect Design
-
-These guidelines govern creature effect authoring across biomes, including
-Coastal Waters creature YAML. They define design principles, not a finalized
-card set or an implementation catalog.
-
-### Role tradeoff
-
-Both Catch and Bait remain attached until released or surfaced; Bait is not
-temporary by default. Each role contributes the card's full resolved Weight
-to Line Load, including any explicitly authored weight modifiers. Only the
-selected role's effect set activates, if it has effects.
-
-- **Catch:** contributes its resolved sale Value when successfully surfaced.
-  Its main purpose is collecting value with modest utility or synergy.
-- **Bait:** contributes zero haul Value even when successfully surfaced.
-  Its main purpose is sacrificing sale value and occupying capacity for
-  greater utility, build potential, or tactical advantage.
-
-The central decision is: “Do I spend limited Line Capacity on profit or
-on power?” The design target is: **Catch builds the haul; Bait builds the
-engine.**
-
-### Effect design principles
-
-1. **Thematic grounding:** Connect both effects to the creature's anatomy,
-   behavior, appearance, or ecological role. Ink, camouflage, venom, shells,
-   spines, gripping tentacles, schooling, and anchoring are useful inspirations.
-2. **Mechanical freedom:** Catch and Bait can serve entirely different
-   strategic purposes. They need not share a target, statistic, or trigger.
-   Numerical pairs such as Catch granting Predators +2 Value and Bait granting
-   +5 Value are occasionally valid, but should not define the card set.
-3. **Bait generally stronger:** Zero sale value and full load should usually
-   buy greater utility or build potential. Stronger need not mean a larger number.
-4. **Interesting tradeoffs:** Either role should sometimes be right depending
-   on the Catch Chain, Line Load, depth, technique hand, and desired build.
-5. **Build synergy:** Favor meaningful interactions with creatures and the
-   closed tag vocabulary above over universal, always-good bonuses. Tags
-   connect creatures; not every effect must explicitly mention a tag.
-6. **Downsides allowed:** Catch effects may be inconvenient or risky, with
-   high sale value compensating. Effects need not all be beneficial.
-7. **Deliberate simplicity:** Common creatures may have no Catch effect,
-   no Bait effect, or only one simple effect. Do not add complexity for its own sake.
-8. **Distinctiveness:** Mix straightforward cards, synergy cards, and surprising
-   effects rather than many small variations of Value, Weight, or attraction.
-9. **Persistent power needs limits:** Early attachments can affect many
-   encounters. Prefer conditional, tag-specific, or situational power over
-   unlimited universal bonuses.
-10. **Preserve core decisions:** Effects should enrich Catch/Bait choice,
-    Catch Chain management, Line Load, Release, Descend, Surface, and technique
-    play rather than routinely bypassing them.
-
-Possible design directions include Catch Chain manipulation, information
-reveal, encounter control, Release interactions, effective Weight changes,
-conditional bonuses, and distinctive downsides. Ability copying and role
-changes are also exploratory directions. These directions do not authorize
-unspecified mechanics: each proposed effect needs precise rules and design
-approval before becoming finalized content.
-
-### Effect behavior and timing
-
-Distinguish ongoing attached effects from effects that resolve at a specific
-moment. Only the selected role supplies its effects.
-
-- **Persistent example:** “Small catches gain +3 Value while attached.”
-  The bonus ends when its source is released.
-- **Triggered example:** “When caught, reveal the next two encounters.”
-  A completed reveal is not undone by releasing its source. This example
-  illustrates lifetime, not a finalized encounter-preview mechanic.
-
-Releasing either role removes its Weight and ongoing attached effects.
-Releasing Catch also forfeits its haul Value; Bait already has zero haul
-Value. Completed one-time triggered effects are not automatically undone
-when their source is released. Explicit effect rules must define any
-continuing dependency on the source.
-
-Candidate trigger moments include commitment as Catch or Bait, Descend,
-another creature's commitment, Release, entering a depth zone, and Surface.
-Define each effect's timing, target, duration, and Release interaction.
-If an effect refers to role assignment, specify whether it means selecting
-a Hooked role or committing the card; selecting a panel must not be assumed
-to resolve a commitment effect. Avoid “next creature” unless it clearly means
-the next encountered, Hooked, or committed creature. Trigger examples are
-not a promise that all such behaviors are currently implemented.
-
-### Illustrative effect pairs
-
-These examples illustrate variety and simplicity. They are not finalized
-card effects, balance values, or approval to implement new systems. Target
-selection, timing, duration, and interactions must be specified before use.
-
-| Creature | Catch example | Bait example | Design intent |
-|----------|---------------|--------------|---------------|
-| Small Octopus | **Grip:** Reduce another attached catch's effective Weight by 1. | **Tentacle Trick:** When releasing a creature, choose the next encounter from two revealed options. | Load efficiency versus encounter control. The choice mechanic requires defined selection and encounter rules. |
-| Cuttlefish | **Ink Cloud:** Hide the next encounter. | **Mimicry:** The next caught creature copies an attached creature's effect. | An information downside versus combinations. Concealment duration and copying eligibility, role, trigger, lifetime, and stacking require exact rules. |
-| Snapper | **Fresh Prey:** Predators become slightly more common while attached. | **Blood Trail:** Predator encounters become significantly more common while attached. | A valid occasional numerical pair; not the default for the whole set. |
-| Sea Bass | No effect; keep normal sale Value. | **Live Prey:** Predator encounters become more likely. | Deliberate simplicity; not every common creature needs two abilities. |
-
-### Creature effect quality checklist
-
-Before accepting a card design, check:
-
-- Both effects, if present, fit the creature's characteristics or theme.
-- Catch and Bait offer distinct strategic reasons to choose them; a numerical
-  pair is a deliberate occasional exception.
-- Bait is generally compelling enough to sacrifice sale value and carry
-  the creature's full resolved Weight.
-- Catch remains attractive in plausible game states.
-- Timing, target, duration, and Release interactions are understandable.
-- The card interacts meaningfully with creatures or tags, or fills a useful
-  simple role.
-- Line Load and Catch Chain decisions remain meaningful.
-- Rules text is short enough for the supplied Catch and Bait effect panels.
-  Compact Catch Chain cards retain their existing visual contract and do
-  not gain full rules text.
-
-## Approved creature refactor: Cleaner Shrimp
-
-Cleaner Shrimp is a Coastal Waters creature: Weight **1**, Value **8**, rarity
-**Uncommon**, inclusive depth range **1–14**, and tag **Small**. Its previous
-weight-reduction effect is replaced by the two role effects below.
-
-### Catch — Quick Clean
-
-**Card text:** “Remove one negative effect.” Immediately after commitment as
-Catch, the player chooses one active lasting or temporary negative effect
-created by a card and affecting the run, another card, or Line Load. Remove
-that exact runtime occurrence completely; if none is eligible, do nothing.
-
-Eligible effects include ongoing attached effects, pending effects, and
-lasting stat modifiers already applied to a card. Removing a lasting modifier
-reverses that modifier's own contribution while preserving other modifiers.
-Authored negative-effect classification identifies eligible card effects;
-normal base Weight and overload are not themselves effects to remove.
-Completed actions such as revealing information are not undone. Cleansing
-one effect does not remove its source card, alter its other effects, affect
-other copies, or modify shared card definitions. The removal remains resolved
-if Cleaner Shrimp is later released.
-
-### Bait — Cleaning Station
-
-**Card text:** “At later biome starts, swap a Catch for one of two creatures.”
-Automatically trigger once at the start of each later biome visit while this
-Bait attachment survives. Do not trigger in the biome where it was attached.
-Resolve multiple Cleaner Shrimp in Catch Chain order, one after another.
-
-1. Snapshot eligible creature Catch attachments before entering the biome.
-   Bait cannot be selected. A replacement created during this entry is not
-   eligible for another swap during the same entry.
-2. Reveal two distinct non-Apex creatures eligible in the new biome's normal
-   starting-depth pool, using normal encounter weights. Offers do not consume
-   normal encounters, advance encounter chains, or alter repetition history.
-   Skip if no eligible Catch survives or fewer than two distinct creatures
-   can be offered.
-3. The player chooses an eligible Catch and one offered replacement. Remove
-   the old attachment and end its ongoing effects. This replacement is a swap,
-   not a Release action, and does not trigger Release reactions.
-4. Attach the replacement as Catch with its normal starting Weight and Value,
-   without inheriting the old attachment's modifiers. Activate its Catch
-   on-attach effect, if any, before resolving the next Shrimp. Both normal
-   persistent interactions and the replacement's own Catch effects apply.
-5. Finish biome-entry choices before drawing the new biome's first normal
-   encounter. The Catch Chain, Line Load, technique deck, and run state
-   otherwise continue across the boundary.
-
-Biome destinations are authored links, not invented content. Coastal Waters
-currently has no authored destination biome; its next-waters presentation
-remains the boundary until that content is provided.
-
-## Approved creature refactors: Clinging Crab and Cod
-
-**Clinging Crab** — Coastal Waters, Weight **2**, Value **14**, Uncommon,
-depth **0–12**, tags **Anchored, Armored**.
-
-- **Catch / Iron Grip:** cannot be deliberately released by Techniques,
-  events, or creature abilities. Forced removal and exchanges can still
-  remove it. The restriction applies only in the Catch role.
-- **Bait / Claw Cut:** immediately after attachment, the player chooses one
-  other legally releasable attached Catch or Bait and releases it immediately.
-  This is a deliberate Release caused by a creature effect and can trigger
-  Release reactions. Resolve once; skip without a legal target and never save
-  the unused release for later.
-
-**Cod** — Coastal Waters, Weight **2**, Value **12**, Common, depth **3–20**,
-tags **Fish, Predator**. **Catch has no effect.**
-
-**Bait / Bottom Feeder:** while attached, the first deliberate Release of
-another attached **Armored creature**, in either role, offers one discarded
-Technique to return to hand. The player chooses after the entire releasing
-Technique or ability finishes, including the Technique just used. An empty
-discard pile recovers nothing but still consumes the opportunity. All Cod
-Bait copies share **one opportunity per encounter**; replacing the current
-encounter does not reset it. Forced removals and exchanges do not trigger it.
-A completed trigger survives later removal of its source during that ability.
-
-A played Technique leaves hand while resolving and enters discard only
-after its effect finishes, before completion-waiting recovery reactions.
-Only explicit draw or recovery effects add cards after the opening hand; play and Descend never refill it. Recovery respects the
-four-card limit. If Cod recovery is offered while the hand is full, the player
-may discard one Technique to make room or decline; it cannot create a fifth
-hand card. See the approved Technique rules in section 10.
-
-An explicitly empty Catch or Bait role remains effectless. It must not copy
-another role's text or effects. Legacy role fallback exists only for creature
-cards that have not yet received their approved refactor.
-
-## Approved creature refactors: Garfish, Glass Minnow, and Jellyfish
-
-All three are Common Coastal Waters creatures.
-
-**Garfish** — Weight **1**, Value **9**, depth **0–9**, tags **Fish, Small, Elusive**.
-
-- **Catch / Swift:** gains +3 sale Value per other attached creature that is
-  Elusive and in Catch mode. Bait and non-creature cards do not count.
-  Recalculate whenever eligible creatures or their effective tags change.
-- **Bait / Slipstream:** every other attached Fish creature, in either role,
-  gains Elusive while this source remains attached as Bait. Newly attached Fish
-  receive the grant before their on-attach and other attachment-triggered effects.
-  Multiple grants never duplicate tags. Ending a grant preserves native tags and
-  tags still supplied by another active source.
-
-**Glass Minnow** — Weight **1**, Value **5**, depth **0–15**, tags
-**Fish, Small, Schooling**. **Catch has no effect.**
-
-**Bait / Shoal Signal:** after another Schooling creature is attached as Catch
-and its on-attach effects finish, while a Minnow Bait remains attached, the player
-may discard one Technique from hand and draw exactly one replacement. This is a
-redraw, not playing the discarded card. An empty hand or declining does nothing.
-The choice is immediate and cannot be saved. Multiple Minnow Bait copies offer
-only one redraw per eligible attachment. The normal deck/discard reshuffle rules
-apply, including the just-discarded card when the draw pile is empty.
-
-**Jellyfish** — Weight **1**, Value **8**, depth **0–18**, tag **Small**.
-
-- **Catch / Tangle:** on attachment, queue +1 effective Weight for the next other
-  creature attached as Catch. Bait attachments do not consume it. The pending
-  effect survives Jellyfish removal and multiple pending Tangles add together.
-  Once applied, the extra Weight lasts until the recipient leaves the chain,
-  including if its mode later changes. Pending and applied penalties remain
-  removable negative effects for Quick Clean.
-- **Bait / Buoyant Bell:** immediately choose up to two distinct other attached
-  Armored creatures, in either role. Reduce each selected creature's Weight by 1
-  (minimum 0) while this source remains attached as Bait and that target remains
-  attached and Armored. Losing Armored suspends its reduction; regaining Armored
-  restores it. Target role changes do not end the reduction. Freeze targets once:
-  unused selections and removed targets cannot be replaced. Multiple Jellyfish
-  can select the same creature; reductions stack and clamp at zero.
-
-Rebuild effective attached tags from runtime/native base tags and surviving grants
-before calculating tag-dependent statistics and attachment triggers. Do not mutate
-shared card definitions. Attachment exchanges create a new creature Catch, consume
-eligible pending Tangles, and resolve on-attach effects before Shoal Signal; they
-still do not count as Releases.
-
-## Approved creature refactors: Lionfish, Mackerel, and Moonlit Ray
-
-All three are Coastal Waters creatures. Only the selected role's effects operate.
-
-**Lionfish** — Weight **2**, Value **30**, Rare, depth **10–20**, tags **Fish, Predator, Armored**.
-
-- **Catch / Venomous Spines:** each deliberate Release of another attached creature in either role removes 5 current sale Value, minimum 0. Each creature released by a multi-release action causes its own penalty. The loss persists until this Lionfish leaves the chain, including across mode changes. Do not accumulate debt below zero. Forced removals and exchanges do not trigger it.
-- **Bait / Venomous Lure:** after a Predator is attached as Catch and its on-attach effects finish, optionally Release one other attached Small creature in either role. Exclude the Predator just caught and obey normal Release restrictions. Successful removal is a deliberate creature-effect Release and triggers other Release effects. All Lionfish Bait copies share at most one Release opportunity per Predator attachment. No legal target or declining skips it immediately; it cannot be saved.
-
-**Mackerel** — Weight **1**, Value **10**, Common, depth **0–16**, tags **Fish, Schooling**.
-
-- **Catch / Packed Shoal:** effective Weight is exactly 0 while at least two other Schooling creatures are attached as Catch. Bait does not count. Recalculate immediately as eligible creatures, roles, or effective tags change.
-- **Bait / School Call:** on this card's first Bait attachment, immediately offer up to two distinct non-Apex Schooling species eligible at the next encounter's biome and depth, using normal encounter weights. Choose one to replace the next normal draw, or decline. One eligible species is a valid offer; with none, draw normally. Selection does not reveal the encounter or advance depth; reveal at normal time with normal on-reveal effects. Scheduled Apex encounters cannot be replaced.
-- School Call activates once per card; mode and biome changes do not refresh it. The decision cannot be saved. One selection can be queued: a new selection replaces the earlier one, while declining leaves it intact. Removing the source does not cancel its selection. Revalidate at the actual next destination; an ineligible selection is discarded and the normal draw is used.
-
-**Moonlit Ray** — Weight **3**, Value **24**, Rare, depth **9–20**, tags **Fish, Predator, Elusive**.
-
-- **Catch / Graceful Glide:** reduce effective Weight by exactly 1, minimum 0, while any Elusive creature is attached as Bait. Additional Elusive Bait do not increase the reduction. Eligibility updates immediately with creatures, roles, and tags. This follows the approved detailed resolution and stacking rule; the short description is normalized to the same flat reduction.
-- **Bait / Moonlit Reflection:** each deliberate Release of an Elusive Catch records its sale Value, including modifiers, immediately before that individual removal. After the entire Release action finishes, choose a remaining Catch and add the recorded amount as a lasting Value bonus. Forced removals, exchanges, and released Bait do not trigger it.
-- All Ray Bait copies share one transfer per released Elusive Catch. Multi-release actions record and transfer each separately. Resolve recipient choices immediately after the action; no remaining Catch skips the transfer. A completed trigger survives later source removal during the action. The bonus lasts until recipient removal, survives original Ray removal and recipient mode changes, and still contributes no sale Value while the recipient is Bait.
-
-## Approved creature refactors: Mussel, Sardine, and Sea Anemone
-
-All three are Coastal Waters creatures. Only the selected attachment role's effects operate.
-
-**Mussel** — Weight **1**, Value **6**, Common, depth **0–12**, tags **Small, Armored, Anchored**.
-
-- **Catch / Shell Growth:** after another Armored creature attaches as Catch and finishes its on-attach effects, add 2 sale Value to each surviving Mussel Catch once. Armored Bait does not trigger it; the newly attached Mussel does not count itself. Each bonus stays on that Mussel until it leaves the chain, including across mode changes.
-- **Bait / Shelter Shell:** on first Bait attachment, gain one protection against the next revealed encounter classified as Hazard, before any Hazard effects resolve. Automatically discard that Hazard without resolving effects and consume the protection. Cancelling neither advances depth nor immediately reveals a replacement; the next Descend advances and reveals normally. Apex and other encounter classifications never qualify.
-- Protection survives biome changes but expires on leaving Bait mode. Each card has one protection; returning to Bait restores neither used nor expired protection. Multiple protected Mussels cancel consecutive Hazards. Each Hazard consumes only the oldest attached Mussel's unused protection; others retain theirs. Attachment age is independent of a replaced card's chain slot.
-
-**Sardine** — Weight **1**, Value **7**, Common, depth **0–14**, tags **Fish, Schooling, Small**. **Catch has no effect.**
-
-- **Bait / Feeding Frenzy:** after a Predator attaches as Catch and finishes its on-attach effects, optionally deliberately Release one Sardine Bait, obeying normal Release restrictions. At most one Sardine Bait activates per Predator caught, shared across copies. Declining spends the immediate opportunity; a failed or prohibited Release grants no draws. Forced removal and Releases caused by other effects do not activate Feeding Frenzy.
-- On successful activation, resolve all resulting Release effects first, then draw up to two Techniques that fit the four-card hand. Before drawing, the player may discard Techniques without playing them to make room. Draw only as many as fit, using normal reshuffle rules. Removing the activating Sardine does not cancel the completed draw request. Recovery may leave an oversized hand; drawing cannot increase it beyond four, and optional discards can make room.
-
-**Sea Anemone** — Weight **1**, Value **8**, Uncommon, depth **0–16**, tags **Small, Predator, Anchored**.
-
-- **Catch / Stinging Tentacles:** while in Catch mode, cannot be selected as a Technique's target, including automatic individual targeting and targeted Releases. Untargeted effects still apply, and creature effects may target it. The restriction ends immediately outside Catch mode.
-- **Bait / Sheltered Exchange:** after a Small creature attaches as Catch and finishes its on-attach effects, optionally choose one Technique in hand and one already in the Technique discard pile. Choose both before moving either. Discard the selected hand occurrence and return the selected discarded occurrence to hand. This exchanges exact occurrences, does not play or draw, and preserves hand size.
-- At most one swap per Small creature caught, shared across all Anemone Bait copies. Require a Technique in each pile before selection. Declining spends the immediate opportunity and moves neither card; no swap can be saved.
-
-## Approved creature refactors: Sea Bass, Sea Urchin, and Small Octopus
-
-All three are Coastal Waters creatures. Only the selected role's ongoing effects operate; completed bonuses and pending effects follow their own durations.
-
-**Sea Bass** — Weight **2**, Value **16**, Uncommon, depth **4–20**, tags **Fish, Predator**.
-
-- **Catch / Thrashing Catch:** immediately after Catch attachment, choose and discard one Technique from hand without playing or drawing it. Empty hand does nothing. This resolves each time the Catch on-attach effect is activated.
-- **Bait / Shoal Scatter:** once per card on first Bait attachment, optionally choose up to two distinct other attached Small creatures, in either role, obeying normal Release restrictions. Choose every target before removing either. Deliberately Release the selected creatures together, then resolve their Release reactions after all selected removals. No Technique is required, and the Hooked encounter is never eligible.
-- Record each selected creature's effective tags and modified sale Value before the simultaneous group removal. Reaction sources must survive that removal. Each removed creature counts as a separate Release for surviving effects, but no reaction may observe only half of the group removed. Selecting fewer than two or declining spends the activation; changing modes never refreshes it.
-
-**Sea Urchin** — Weight **1**, Value **9**, Common, depth **0–16**, tags **Small, Armored, Anchored**.
-
-- **Catch / Bristling Spines:** add exactly 1 effective Weight while any Predator creature is attached in Catch or Bait mode. Additional Predators do not increase it. Recalculate immediately when creatures, roles, or effective tags change. This is an ongoing negative effect eligible for Quick Clean.
-- **Bait / Spiny Grip:** once per card on first Bait attachment, grant one independent pending Technique recovery. Source removal and role changes do not cancel it or grant another. Multiple grants apply to consecutive qualifying plays, oldest first; a play consumes only one.
-- The next Technique played that selects at least one attached Armored creature as an individual target receives recovery. Use effective tags at play time. Automatic individual targeting qualifies; untargeted effects and targeting only the Hooked encounter do not. Releasing the target does not prevent recovery.
-- After that Technique and every triggered effect/choice finish, return the exact played occurrence from discard to hand. If the four-card hand is full, optionally discard one hand Technique for room or decline. The grant is consumed by that play even when recovery is declined or the played occurrence is no longer in discard. Never substitute another card or an identical unplayed copy. Resolve this recovery before reopening Technique input; there is no automatic replacement draw.
-
-**Small Octopus** — Weight **1**, Value **9**, Uncommon, depth **6–20**, tags **Small, Predator, Elusive**.
-
-- **Catch / Clever Catch:** immediately draw one Technique if it fits the four-card hand. If full, optionally discard one Technique first for room or decline. This immediate draw cannot be saved.
-- **Bait / Helping Arms:** once per card on first Bait attachment, optionally choose another attached creature Catch and another attached creature Bait. Require both legal targets; exclude the activating Octopus, non-creatures, and the Hooked encounter. Declining or no eligible pair spends the use; returning to Bait never refreshes it. Release restrictions alone do not prohibit changing modes.
-- Switch both chosen roles together, preserving positions, instance IDs, and resolved bonuses. End old ongoing effects and activate new ongoing effects. Resolve the new Catch's own on-attach effect first, including its resulting choices; then resolve the new Bait's own on-attach effect only if that card remains attached in Bait mode. Respect each effect's activation limits.
-- This is not a Release, a new encounter, or a new physical attachment. Per the user-confirmed rule, only the two swapped cards' own on-attach effects activate; other cards' after-catching reactions do not trigger. Pending effects follow their own entry rules: Prize Hook qualifies on Catch entry and Gentle Upwelling on Bait entry; ordinary next-attachment triggers are not consumed by the role swap. Existing pending effects follow their own durations.
-- Cleansing and one-use lifecycle state remain specific to the affected card role/effect. A removed Catch effect does not suppress a Bait effect at the same index, and returning to a role never restores its cleansed effects or spent one-use activations.
-
-## Approved creature refactors: Spiny Lobster, Squid, and Tidepool Eel
+Neither role must have a positional effect. The tradeoff is haul value versus build utility and placement consequences. Positional mechanics belong within some Catch/Bait abilities, not a universal third ability layer.
 
-These approved definitions replace the prior designs for these species. They use separate Catch and Bait effects and the existing deliberate-Release, mode-change, four-card hand, and creature-eligibility contracts.
-
-**Spiny Lobster** — Weight **3**, Value **24**, Rare, depth **8–20**, tags **Armored, Heavy**.
+## 7. Creature ability design
 
-- **Catch — Weathered Shell:** After a revealed Hazard is fully cancelled without resolving any of its effects, each attached Lobster Catch gains **4 sale Value** once. Preventing only some Hazard effects or replacing an encounter before reveal does not qualify. Each bonus persists on its recipient until it leaves the chain, including mode changes.
-- **Bait — Shell Support:** Every other attached Armored creature, in Catch or Bait mode, weighs **1 less**, minimum effective Weight **0**, while this Lobster remains Bait. Attachment and effective-tag changes update support immediately. Losing Armored suspends support; regaining it restores support. Sources stack. Lobsters can support each other but never themselves; non-creature attachments do not qualify.
+Ground effects in creature behavior, anatomy or ecology. Support simple creatures as well as synergy engines. Avoid adding complexity to every creature or making Landing Points every creature's sole contribution.
 
-**Squid** — Weight **2**, Value **20**, Rare, depth **8–20**, tags **Predator, Elusive**.
+Abilities may improve landing, haul value, Technique interactions or other supported aspects of the rig. Exact effects and values need redesign; existing serialized effects are not the redesigned content specification.
 
-- **Catch — Ink Veil:** On Catch attachment, conceal the next **two non-Apex creature encounters**. Conceal identity, artwork, Weight, Value, effective visible tags, and both effect texts until the Catch/Bait choice is committed; reveal before resolving the chosen role's on-attach effects. Both role panels remain selectable while concealed. Concealment is assigned once per eligible reveal and consumed by commitment or removal without attachment, including avoidance/replacement/skip. Non-creatures and Apex do not consume charges. Unused charges survive removal or mode changes of their source and persist across biomes; a new run clears them. Stacked grants conceal consecutive eligible creatures and never the same encounter twice. Quick Clean may remove an exact still-active negative Ink occurrence, including its assigned/current concealment and unused charges, without affecting other grants. Clear Water explicitly ends one assigned Ink concealment. Legacy information-only reveal effects do not bypass commit-only Ink.
-- **Bait — Ink Escape:** First Bait attachment grants one optional skip of the next non-Apex creature, once per card; mode changes never refresh the grant. Resolve normal reveal effects first, then offer the decision immediately, before any new Technique or core action. Concealed information stays concealed during the decision. Accepting discards without attachment, Catch/Bait effects, or Release reactions, and consumes concealment assigned to that encounter. The skip itself does not advance depth; the next Descend advances normally and reveals the next encounter. The offer is consumed when made, including a decline, and cannot wait until after techniques. If reveal effects already remove the creature, consume that offer without carrying it to a later creature. Non-creatures and Apex do not consume offers. Pending grants survive source removal/mode changes and biome transitions, and apply oldest first to consecutive eligible encounters. Skipping breaks the skipped encounter's active authored chain.
+### Illustrative Mackerel — not finalized
 
-**Tidepool Eel** — Weight **2**, Value **14**, Uncommon, depth **0–14**, tags **Fish, Predator, Elusive**.
+- **Catch:** gain +5 value for each other contiguous Schooling creature connected to Mackerel in either direction.
+- **Bait:** each other contiguous Schooling creature adds +3 Landing Points to successful strikes.
 
-- **Catch — Slippery Exit:** Immediately after Catch attachment, optionally choose one other attached creature that is both Elusive and Bait. Deliberately Release it subject to normal restrictions and resolve Release reactions normally. Declining or having no legal target does not save the choice.
-- **Bait — Escape Current:** After a whole deliberate Release action removes another Elusive creature in either role, draw **one Technique per qualifying creature**, checking Elusive immediately before removal. An eligible observing Eel must remain attached as Bait through the action's completion. Multiple Eel Baits share one draw per released creature. Before any drawing, optionally discard Techniques to make room in the four-card hand, then draw only as many cards as fit. Forced removals and exchanges do not qualify. Resolve these draws after the releasing action and its preceding Release choices; they cannot be saved.
+Both roles can participate unless finalized text excludes one. These examples do not finalize counting boundaries, stacking between multiple Mackerel, trigger order or numbers.
 
-# 7. Line load and overload
+### Illustrative Anchored creature — not finalized
 
-Weight is the main pressure system. The current working term is Line
-Load.
+An ability might prevent future creatures from being inserted before its source while doubling the Catch value of creatures before it. This combines a strong reward with a placement restriction. It is not an automatic property of the Anchored tag. Exact behavior and balance remain open.
 
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Example display</strong></p>
-<p>LINE LOAD 11 / 10 - OVERLOADED</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
+### Tags and properties
 
-- Each catch has a weight/load contribution.
+Retain the established vocabulary as the content review starting point: **Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive**. Tags support readable synergies and may express movement characteristics; they do not grant automatic abilities.
 
-- Equipment defines a safe line capacity.
+The purpose of **Weight** and **Heavy** needs reevaluation. Weight has no capacity, overload or line-break role. Do not assign Resistance from Weight or automatically rename Weight to Resistance: Resistance is a challenge target. No creature/tag assets are removed or renamed by this documentation change.
 
-- Going above capacity is allowed. Overload should increase danger
-  instead of causing an immediate automatic failure.
+See [Creature Ability Design](../Creature%20Ability%20Design.md) for authoring and review scope.
 
-- The further above capacity the player goes, the more dangerous certain
-  actions can become: continuing to descend, catching another heavy
-  creature, or beginning the return/surface process.
+## 8. Removal and release
 
-- Descend and Surface perform a break check while overloaded. The chance
-  increases with each point of excess Line Load.
+Removal changes rig composition and positional synergies. Release may become strategically important, but its access, timing, restrictions, costs, triggers and effect-lifetime rules need reevaluation.
 
-- If the break check succeeds, the line breaks and the run ends. The
-  player loses a random number of attached catches from one up to half of
-  the Catch Chain, selected randomly without replacement.
+This baseline grants no universal free Release, free role switch, manual reorder or challenge skip. It does not finalize retained abilities that might grant these actions. Before approving removal, define source-dependent effects, completed triggers, newly adjacent creatures and insertion restrictions.
 
-- A line-break ending uses the normal accelerated Surface ascent. The
-  surviving Catch Chain remains visible during the ascent, then becomes
-  the final haul.
+Expedition failure imposes no loss or reduction of accumulated Catch sale value. Release access and the value consequences of deliberately removing a creature still require their own rules; end-of-expedition cleanup is not a deliberate Release action.
 
-- If the check holds during Descend, the run continues while overloaded.
-  If it holds during Surface, the full attached Catch Chain is retained.
+## 9. Biomes and expedition progression
 
-- This creates intentional greed states where the player knows the rig
-  is unsafe but may still chase one more valuable encounter.
+- Only **Shallows** is initially unlocked.
+- Completing a biome permanently unlocks the following biome.
+- Every expedition begins in Shallows; traverse earlier biomes to reach later unlocked ones.
+- Failure ends the expedition without reversing permanent biome unlocks.
+- Failure awards the full accumulated sale value of previously attached Catch creatures; the failed creature is not acquired and Bait contributes zero.
+- Success must grant meaningful rewards beyond unlocking the next biome.
 
-# 8. Releasing catches
+Biome length, completion criteria, pacing, biome count, expedition success conditions and what happens after the last available biome remain open. No particular Apex, encounter count or terminal placeholder is an approved completion condition. Whether a newly unlocked biome is entered in the same expedition also needs specification.
 
-Release is the pressure valve for the load system, but it must remain
-costly enough that overload still matters.
+Biomes should provide meaningful creature and build variety. Earlier-biome repetition is a playtest risk; allowing deeper starts would conflict with the agreed start rule.
 
-- The player can release a caught creature/item while still descending.
+### Expedition failure, success and haul rewards
 
-- Released cards immediately reduce Line Load.
+- Every expedition begins with an empty rig. Collected creatures are temporary expedition build components.
+- Failing a Landing Challenge immediately ends the expedition. The failed encounter's creature is not acquired.
+- On failure, award the full accumulated sale value of all previously attached Catch creatures, as if the haul had been returned successfully. No accumulated Catch value is lost because of failure.
+- Successful expedition completion also awards the full accumulated Catch sale value. Success and failure use the same full-value haul payout rule.
+- Bait creatures have zero sale value on either outcome.
+- Preserve the resolved haul value for payout before clearing the rig. All attached creatures are removed when the expedition ends, regardless of success or failure; they do not become a permanent creature inventory.
+- Every subsequent expedition begins with an empty rig while permanent unlocks and progression remain preserved.
+- Successful completion may additionally unlock biomes, equipment, creatures available in future expeditions, or other permanent progression rewards. Unlocking creature availability does not carry over an attached creature.
 
-- The player permanently loses a released Catch-role card's end-of-run Value.
-  Bait-role cards already contribute zero haul Value.
+The full-value payout rule is decided. Currency identity, conversion details and the exact additional completion rewards remain open. Neither voluntary surfacing nor Line Capacity is part of the design.
 
-- Ongoing attached effects, attraction modifiers, and source-dependent synergies
-  from that card end immediately. Completed one-time triggered effects are not
-  automatically undone; any continuing dependency must be defined by the effect.
+### Rewards and permanent progression
 
-- Release is not a free inventory operation. Choosing Release does **not**
-  advance the descent. The player stays at the current depth, the current
-  Hooked encounter remains unresolved, and the player must still decide how
-  to deal with that encounter afterward.
+Possible completion rewards include equipment/upgrades, creatures becoming available in future expeditions, additional gameplay options, special unlocks and achievements. These are candidate categories, not a reward table.
 
-- This means a low-value creature can still be painful to release if it
-  is enabling an important build interaction.
+Gold-based purchases are not guaranteed to remain the main progression system. Full accumulated Catch sale value is awarded at expedition end on both success and failure; whether Gold is used and how value is represented or converted remain open. Successful expeditions should feel more rewarding through additional completion/progression rewards, not by withholding Catch value on failure.
 
-# 9. Depth and encounters
+Achievement unlocks are under consideration. Illustrative objectives: capture 25 Schooling creatures across expeditions; capture five unique Predator creatures in one expedition. These do not finalize counting, targets, rewards or requirements. Existing Journal objectives require review; surfacing and overload objectives are not active requirements.
 
-- Depth is a central progression axis within a run.
+## 10. Equipment and Techniques
 
-- Different depth bands use different Encounter card pools, with deeper
-  areas tending toward rarer, stranger, heavier, and more valuable
-  encounters.
+### Equipment
 
-- Descend is always available as a core action; the deck contains cards
-  that modify descent rather than gate it.
+Review all equipment against the new encounter, scoring and rig systems. Rod, Reel and Hook can remain as categories; roles and loadout rules need reconsideration. Existing prices, purchase rules and permanent equipment ownership are not finalized progression.
 
-- Encounter probabilities can be influenced by bait, current catches,
-  technique cards, equipment, and potentially location/biome.
+Individual effects need approval. Weight-, capacity- and overload-related effects need redesign. See [Equipment Passive Rules](../Equipment%20Passive%20Rules.md).
 
-- The ocean should feel like a discovery system: the player manipulates
-  encounter conditions and can prepare answers to bad catches, but does
-  not freely choose or reject every creature that appears.
+### Techniques
 
-## Encounter deck composition
+Evaluate compatibility with landing. Techniques may influence points, attempts, accuracy or other strategic interactions. Exact play windows, effects, durations, deck composition and access remain to be determined. Capacity-, weight-, overload- and surfacing-based effects need redesign.
 
-A biome should not be a simple stack of creature cards. The game uses an
-Encounter Deck: creatures are only one category of encounter. This keeps
-each region active and prevents the repeated decision pattern of “catch
-or skip another fish.”
+Do not carry forward challenge bypasses or arbitrary play windows merely because a Technique exists. Do not add energy, a turn system, mandatory per-strike card play or automatic refills without approval. Existing deck behavior is implementation reference, not finalized balance.
 
-- Creature cards: fish, squid, crabs, predators, and other catchable sea
-  life.
+## 11. Other encounter mechanics
 
-- Treasure and salvage cards: cargo, artifacts, wreckage, pearls, and
-  other valuable objects.
+Events, treasure, encounter chains, concealment, replacements and Apex behavior need review against Discover → Land → Build. A reward effect must not silently grant an unchallenged creature where the core loop requires landing one.
 
-- Environment cards: currents, reefs, murky water, vents, weather, and
-  other conditions that change the current situation.
+Frequency, place in the sequence, Technique windows and completion implications remain open. Preserve separate presentation/data categories while those rules are designed. Do not invent extra tactical landing phases or combat. See [Event Rules Implementation Tasks](../Event%20Rules%20Implementation%20Tasks.md).
 
-- Opportunity cards: schools of fish, migrations, feeding frenzies,
-  unusual signals, and other temporary advantages.
+## 12. Validation priorities
 
-- Hazard cards: snags, sudden load problems, predators, damaged rigging,
-  and other complications.
+| Risk | What playtesting must establish |
+| --- | --- |
+| Repetition | Landing remains enjoyable across many encounters. |
+| Skill versus build | Accuracy matters and rig decisions substantially improve results. |
+| Difficulty | Resistance creates pressure without relying mainly on speed or tiny zones. |
+| Creature variety | Learnable movement and abilities produce distinct encounters. |
+| Rig complexity | Positioning offers strategy without every creature becoming complicated. |
+| Earlier biomes | Mandatory traversal remains worthwhile after deeper unlocks. |
+| Completion rewards | Additional completion/progression rewards make success worthwhile while both outcomes pay full accumulated Catch value. |
+| Balance | Powerful combinations do not consistently trivialize future challenges. |
 
-- Rare or special encounters: unusual creatures, major discoveries,
-  mini-boss-style catches, and memorable one-off events.
+A focused playtest can evaluate proposed controls, attempt counts or formulas without making them final. Production work must keep authored tuning and runtime state separate and deliver complete clean increments.
 
-- Biome-specific cards: encounters that exist mainly to express the
-  unique mechanic and identity of that region.
+## 13. Open decision register
 
-## Event cards and resolution window
+| Area | Decisions still required |
+| --- | --- |
+| Slot machine | Match outcomes, distributions, lock/respin limits/costs, fallback and rarity selection; no extra landing connection. |
+| Landing | Controls, alignment/grade thresholds, movement, attempt rules and challenge end behavior. |
+| Scoring | Accuracy values, Miss rules, formula, multiplier ordering/stacking, rounding and special interactions. |
+| Difficulty | Resistance curves, rarity/characteristic influence and skill/build balance. |
+| Rig | Orientation, restriction combinations, no-legal-position handling and effect order. |
+| Creature content | Redesigned Catch/Bait effects, numbers, durations, tags and movement. |
+| Weight and Heavy | Whether retained and for what purpose. |
+| Release and role changes | Access, timing, targets, costs, triggers, lifetimes and placement consequences. |
+| Techniques | Windows, effects, deck/hand/draw configuration and progression. |
+| Equipment | Category roles, effects, loadout, acquisition and ownership. |
+| Biomes | Completion, length, transitions, unlock entry timing and expedition success endpoint. |
+| Rewards | Additional biome/expedition rewards, currency representation/conversion and whether Gold remains; both success and failure already award full accumulated Catch sale value at expedition end. |
+| Achievements | Whether used, counting, grants and persistence. |
+| Other encounters | Events, treasure, Apex, chains, concealment and replacements. |
+| Presentation | Slot/landing layouts, Resistance display, weight fields and insertion feedback. |
 
-Event cards are non-catchable Hazard, Environment, Opportunity, and generic Encounter cards. They show **name, type, artwork, and description**. They have no Weight, sale Value, or Catch/Bait modes and never attach to the Catch Chain. Creature, Treasure, and Apex commitment rules remain separate.
-
-### Event timing
-
-1. Reveal the event and resolve automatic reveal reactions, including Hazard cancellation and any resulting creature reactions, **before any event consequences**.
-2. After reveal reactions finish, the player may use legal Techniques until confirming **Descend** or **Surface**. This window exists whether or not the event was cancelled; it does not require a Hooked creature. Each Technique still requires its own legal targets and conditions.
-3. Unless the card states otherwise, resolve the event **once before performing the confirmed action**, including any resulting creature reactions. A cancelled or replaced event has no consequences to resolve.
-4. Once event resolution begins, do not reopen the Technique window before the confirmed action finishes. Resolving resulting choices/reactions is part of completing that resolution, not another opportunity to play Techniques.
-5. Descend advances depth normally and reveals the next encounter. Resolving the event never adds an extra depth advance. Surface resolves the event before performing the return/haul action.
-
-### Cancellation and replacement
-
-- Cancelling a **revealed Hazard** discards it without its effects and triggers Hazard-cancellation reactions, including **Weathered Shell**. Cancellation does not remove the player's pre-action Technique window.
-- Replacing an unresolved event prevents that event's effects but is **not Hazard cancellation** and does not itself trigger Weathered Shell. Any replacement card follows its own normal reveal rules.
-- An event with no eligible target resolves without effect. It was **not cancelled** and does not trigger Hazard-cancellation reactions.
-- **No event in this batch forces a Release.** This restriction applies to the upcoming event-card batch; it does not alter existing deliberate-Release creature or Technique effects.
-
-### Event persistence and run cleanup
-
-Discard resolved event cards. Pending effects and modifiers remain in runtime state for their stated durations rather than keeping the event card in the Catch Chain. A target's mode change does not reset a modifier. Ending the run clears all unfinished event effects and encounter trails.
-
-## Approved coastal events
-
-These five user-supplied definitions use the shared pre-action event window. They have no Weight, sale Value, Catch/Bait role, or Catch Chain attachment. Loose Knot grants an **optional deliberate Release**, never a forced Release.
-
-These are the only active coastal events. The earlier Feeding Frenzy, Ghost Net, Murky Current, Rough Current, and Snagged Kelp event definitions and their pool entries have been removed, along with the Feeding Signs and Ghost Net Salvage encounter chains. Sardine's Feeding Frenzy Bait ability is separate from the removed event and remains active.
-
-| ID | Name | Type | Rarity | Depth |
-| --- | --- | --- | --- | --- |
-| reef_snag | Reef Snag | Hazard | Common | 3-18 |
-| silt_burst | Silt Burst | Hazard | Common | 4-17 |
-| gentle_upwelling | Gentle Upwelling | Environment | Uncommon | 1-15 |
-| loose_knot | Loose Knot | Opportunity | Uncommon | 3-18 |
-| fresh_shell_fragments | Fresh Shell Fragments | Opportunity | Rare | 5-13 |
-
-### Reef Snag
-
-Description: **Your heaviest non-Armored creature gains 1 weight until this biome ends.** Resolve before the confirmed Descend or Surface. Among attached creatures in either Catch or Bait mode without Armored, select the greatest current effective Weight; the player breaks ties. Determine eligibility and Weight after Techniques, not on reveal. Add 1 effective Weight; no eligible creature means no effect. Stacked Snags add together. The modifier ends on recipient removal or current-biome completion; gaining Armored afterward does not remove it. A Surface now checks load with the penalty before run-end expiry. Mussel Bait can cancel the Hazard and trigger Lobster Catch rewards.
-
-### Silt Burst
-
-Description: **Hide your next non-Apex creature until its Catch/Bait choice is committed.** Resolve before the confirmed action. Conceal the next ordinary creature's identity, artwork, Weight, Value, tags, and both effects. Reveal them after commitment and before its on-attach effect. Removal without attachment consumes that concealment. Pending charges cross biomes; events and Apex do not consume them. Append one encounter after existing concealment, consuming exactly one charge per eligible creature. Previously learned trail/preview information remains available. Mussel can cancel the event; Squid Bait may skip a concealed encounter, consuming both its skip and the encounter's assigned concealment.
-
-Silt Burst uses the same FIFO concealment owner as Squid. The current Cuttlefish asset only hides its own sale Value and remains unchanged; if Cuttlefish is later given encounter concealment, it must use this same queue. This reference does not authorize redesigning Cuttlefish.
-
-### Gentle Upwelling
-
-Description: **The next creature attached as Bait weighs 1 less.** Resolution grants one pending reduction. All pending Upwellings apply together to the next creature entering Bait, including through a mode change, after entry and before its own on-attach effect. Reduce effective Weight by 1 per grant, minimum 0. Pending grants cross biomes until awarded; awarded modifiers last until recipient removal and persist through later Catch/Bait changes. They do not increase Line Capacity. Bait previews include the pending reduction without consuming it.
-
-### Loose Knot
-
-Description: **You may release 1 attached creature.** Before the confirmed action, the player may select one legally releasable attached creature in Catch or Bait mode, or decline. The event grants this deliberate Release without a Technique. Resolve all resulting Release reactions before continuing the action. No target or decline does nothing; no use can be saved. Iron Grip still blocks release. Sea Anemone Catch may be selected because this is not Technique targeting; Sea Urchin Bait's Technique recovery is not consumed. Cod recovery, Eel draws, Ray value transfers, and Lionfish's 5-Value loss follow their normal eligibility, ordering, and shared limits.
-
-### Fresh Shell Fragments
-
-Description: **A Spiny Lobster awaits 3 depths below.** Include only with no pending encounter trail and a normal eligible destination in the current biome at current depth +3. Never schedule over an Apex. At resolution, record that destination and preview the existing Spiny Lobster's identity and normal Weight/Value. Intervening encounters follow normal selection.
-
-At the destination, replace the random draw with the existing Spiny Lobster definition; normal reveal reactions, Catch/Bait choice, stats, and effects apply. Consume the trail when that slot is used. An existing valid queued replacement such as School Call takes priority and consumes the promise. Techniques may replace or avoid the revealed Lobster normally; show the consumed promise as replaced rather than rescheduling it.
-
-If a depth change passes the destination, use the first subsequent eligible normal slot in this biome and update the preview. Do not interrupt an already revealed encounter or displace an Apex. At most one pending trail exists. A forced copy while a trail is pending, or with no legal destination, creates nothing. End the promise on slot consumption, Surface/failure, or biome completion; no follow-up or penalty carries into another biome. The Lobster remains an encounter costing its normal 3 base Weight, rather than a free catch.
-
-## Biome identity
-
-Each biome should introduce a recognizable gameplay idea, not merely
-different artwork and higher-value fish. Entering a new region should
-change how the player thinks about the catch chain, risk, or encounter
-deck.
-
-- An introductory coastal biome can emphasize schools and simple
-  predator attraction.
-
-- A reef biome can emphasize snags, attachments, and interactions
-  between caught cards.
-
-- Open ocean can emphasize predators and intentionally carrying smaller
-  prey as bait.
-
-- A twilight/deeper biome can emphasize incomplete information and
-  uncertain encounters.
-
-- Deep-sea regions can emphasize very heavy catches and unusual load
-  manipulation.
-
-- Late-game abyssal regions can deliberately bend established rules with
-  strange creature effects.
-
-## Internal progression within a biome
-
-A region should have enough room for the player to experience it before
-moving on. To achieve this without requiring an enormous amount of
-unique content, each biome can contain several depth tiers whose
-encounter pools overlap and evolve.
-
-- Shallow tiers introduce the biome with safer and more common
-  encounters.
-
-- Middle tiers add the biome’s core hazards, opportunities, and
-  strategic interactions.
-
-- Deep tiers phase out common cards and introduce predators, rare
-  rewards, heavier catches, and major encounters.
-
-- Cards can enter and leave the pool gradually rather than every biome
-  using one fixed shuffled deck.
-
-This means repeat cards are acceptable when the surrounding state
-changes the decision. A Sardine can remain interesting if its low
-weight, predator-attraction effect, current Line Load, and the player’s
-technique hand create a different reason to keep or release it.
-
-## Biome Apex Encounters
-
-Each biome ends with a special **Biome Apex Encounter**: a rare creature,
-treasure, or other major encounter that does not normally appear in the
-biome's standard encounter pools. It acts as the climax of that region
-and marks the transition into the next biome.
-
-- Apex Encounters should be high-value and mechanically significant, not
-  simply larger versions of ordinary creatures.
-
-- Catching an Apex creature can introduce a powerful passive effect that
-  changes how the rest of the run is played while that card remains in
-  the Catch Chain.
-
-- The reward should usually come with pressure. Apex catches can be very
-  heavy, have a downside, or otherwise make continuing into the next
-  biome more dangerous.
-
-- The player carries the Apex catch and its consequences into the next
-  biome. Entering a new region does not reset the Catch Chain or Line
-  Load.
-
-- Apex Encounters should use the same core language as the rest of the
-  game rather than becoming traditional combat bosses. The important
-  question remains whether the player can afford to keep the encounter
-  attached to the line.
-
-- A biome can have multiple possible Apex Encounters, with one selected
-  for a particular run. A working target is roughly 2–4 Apex variants per
-  mature biome so repeated visits do not always end with the same climax.
-
-The intended feeling is that an Apex catch is simultaneously a
-**legendary reward, a temporary run-changing build component, and a new
-source of risk**. Catching one should make reaching the next biome feel
-exciting rather than simply advancing to a new card pool.
-
-## Encounter chains
-
-Some encounter cards can form short card-only sequences that create a
-sense of discovery and mini-stories without animation or a traditional
-environment. For example, an ambiguous signal may lead to a shadow and
-then to a predator; wreckage may lead to a sunken wreck and then to a
-choice of salvage paths.
-
-- Encounter chains should create different choices than ordinary
-  creature encounters, not merely delay the reveal of a reward.
-
-- They are especially useful for rare moments, biome landmarks, major
-  creatures, and treasure discoveries.
-
-## Content and repetition target
-
-The design should seek systemic replayability rather than solving
-repetition only by producing hundreds of unique fish. A working early
-content target for a mature biome is roughly 25–35 encounter designs,
-with only a subset appearing in any one visit and with different depth
-tiers drawing from different subsets. This number is a planning target,
-not a locked requirement.
-
-- Roughly 10–15 creature designs.
-
-- Roughly 4–6 environment or hazard designs.
-
-- Roughly 3–5 treasure or opportunity designs.
-
-- Roughly 3–4 rare or special encounters.
-
-- Roughly 1–2 major encounters or biome-defining moments in the regular encounter pool.
-
-- Roughly 2–4 possible Biome Apex Encounter variants, with one used as the biome climax in a given run.
-
-The important measure is decision variety: Encounter Card + Catch
-Chain + Line Load + Depth + Technique Hand should combine to make
-repeated cards produce different decisions.
-
-# 10. The player deck
-
-The player has a maximum hand size of four Technique cards. Normal play
-costs and deck reshuffling follow the general game rules; playing or Descending never automatically refills the hand;
-explicit card draws are additional effect draws.
-
-- Technique cards represent bait, special hooks, knots, rigging tricks,
-  line reinforcement, descent modifiers, encounter manipulation, and
-  other fishing methods.
-
-- The deck should create distinct fishing strategies rather than simply
-  provide larger numbers.
-
-- Cards should interact with depth, Line Load, creature tags, the catch
-  chain, and risk.
-
-- Fundamental actions should remain outside the deck so bad draws create
-  interesting limitations, not basic-function lockouts.
-
-- Legal Techniques can also be used after event reveal reactions and before
-  confirming Descend or Surface, including after Hazard cancellation.
-  This window closes once event resolution begins and stays closed until
-  the confirmed action finishes.
-
-- Some technique cards should specifically provide escape valves for
-  mandatory catches: bypassing a Hooked creature, replacing it,
-  neutralizing a downside, or releasing it more efficiently.
-
-## Active Technique set and starter deck
-
-The approved active set is Cut Loose, Slip Past, Clear Water, Hold Steady, Re-rig, Steady Line, Recast, and Prize Hook. These eight designs replace the previous Technique set. Their complete definitions, play conditions, duration rules, design notes, and recommended 12-card starter deck are in [Technique Card Definitions.yaml](../Technique%20Card%20Definitions.yaml), which is the approved content supplement to this section.
-
-The starter deck contains Cut Loose ×3, Slip Past ×2, Clear Water ×1, Hold Steady ×1, Re-rig ×1, Steady Line ×2, Recast ×1, and Prize Hook ×1; the hand size is four. These counts are the initial playtest configuration, not a guarantee of access or final balance.
-
-- Cut Loose selects one legal attached creature in either mode and deliberately Releases it; resulting creature reactions resolve after the Technique enters discard.
-- Slip Past skips only the Hooked ordinary creature, even if hidden, consuming assigned concealment. It neither attaches nor Releases it, reveals no immediate replacement, and leaves Surface available. Apex and events are ineligible.
-- Clear Water reveals all information on the hidden Hooked creature and ends only its assigned concealment; otherwise it removes one oldest future concealment charge. One play cannot do both. Unresolved Silt Burst has not granted its concealment yet.
-- Hold Steady cancels only a revealed, unresolved Hazard, triggering Hazard-cancellation reactions without depth advance or immediate redraw. Techniques remain legal afterward. It cannot cancel other categories or undo resolved effects.
-- Re-rig switches one targetable attached creature's mode in place, preserving modifiers and spent activation limits. Resolve only that card's own new-mode on-attach effects, consistent with existing mode changes; this is neither Release nor a new Catch. Iron Grip does not prevent switching, but active Stinging Tentacles prevents targeting.
-- Steady Line queues a non-stacking reduction of 2 total Line Load, floored at zero, for the next confirmed Descend or Surface. Activate before event consequences or commitments and all action load checks; expire before the next encounter reveal or after Surface consequences. It changes neither creature weights nor capacity.
-- Recast selects one or two other physical Techniques in hand before commitment, discards them and draws the same number under normal reshuffle rules. Recast stays outside discard until these draws finish. Discarded cards are not played.
-- Prize Hook queues +8 sale Value and +1 effective Weight for the next creature or Apex entering Catch, including mode changes. Award every pending copy before own on-attach and other attachment reactions. Bait does not consume it. Applied modifiers persist across modes and biomes until removal; Bait still sells for zero. Unawarded bonuses end with the run.
-
-Previous Technique assets remain as backups under `Assets/Cards/Backup/Techniques/`, with their stable GUIDs preserved and an explicit backup flag. They cannot enter normal deck setup, be played, or be unlocked. An existing session deck containing archived cards is rebuilt from the active starter deck at the next run initialization. The old Counterweight Rig unlock is disconnected from the active scene; no replacement unlock is invented.
-
-There is no universal free Release. Descend and Surface are the permanent actions; Release requires a specific Technique, creature, or event effect and still follows normal restrictions and costs.
-
-## Approved Technique rules
-
-These rules govern the supplied Technique designs and supersede earlier approximate hand-size or early-discard assumptions.
-
-### Timing and play sequence
-
-Play only during the player's reaction window, before confirming Descend or Surface. Finish one Technique and its resulting reactions before another Technique can be played. A Technique play does not itself advance depth or Surface; authored modifiers may affect a later confirmed action.
-
-Select every required target before committing the play. Move the played physical Technique out of hand into resolving ownership. It is not in the discard pile while its effect resolves, and cannot be recovered or reshuffled from there during that effect. Resolve the effect, discard that physical card, then finish reactions that wait for the Technique to finish.
-
-Cod may recover the Technique just used after it enters discard. Sea Urchin recovery resolves after that Technique's other triggered effects. If one recovery has already returned the physical card, a later recovery cannot return another copy of it; a different physical copy with the same definition is not a substitute.
-
-### Targeting
-
-The player selects required targets before the play is committed. While Stinging Tentacles is active, a Technique cannot select Sea Anemone Catch. Deliberate Releases obey normal restrictions, including Clinging Crab Catch's Iron Grip. A targetless effect does not count as targeting attached creatures and cannot qualify for a targeting-based trigger merely because it affects them.
-
-### Hand and draws
-
-**31 October 2026 amendment:** there is no Technique hand-size limit. This supersedes every older per-card full-hand, four-slot and discard-for-room instruction in this document. Four remains the default opening draw; Tideglass Reel draws one extra card at each biome start, including the first. Explicit creature/Technique effects draw or recover their stated count automatically, using normal reshuffles and physical-card ownership. No discard is required merely to make room. Required discards, optional redraws, Recast and exchanges retain their own rules.
-
-The normal opening draw is **four**; the hand has no size limit. Playing a Technique does **not** draw a replacement; Descend also does **not** refill the hand. After the opening hand, only explicit card effects may draw, redraw or recover Techniques, using their own counts and the normal reshuffle rules. Do not fill other empty slots as part of such an effect, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
-
-Cod recovery returns the selected discarded Technique without a hand discard. Sea Urchin automatically returns the exact played occurrence after earlier reactions. Recovery still follows each creature's trigger and opportunity limits and cannot duplicate physical cards.
-
-### Limits and persistence
-
-These designs add no energy resource or once-per-biome counters. Persistent modifiers and pending effects use each Technique's own duration. Ending the run clears all pending effects. This shared contract does not invent individual Technique effects, costs, additional draw counts, reshuffle exceptions, or duration rules.
-
-# 11. Run economy and progression
-
-## Approved Tackle Shop equipment — 4 November 2026
-
-The Harbor sells permanent unlocks using Gold only. Prices below are provisional balancing values, remain fixed after purchases, and impose no prerequisite or purchase order. Purchase and equip are separate actions between expeditions. Empty slots are allowed; at most one Rod, one Reel and one Hook can be equipped. Equipping replaces only the same category. Nothing is owned or equipped initially; empty slots grant no bonuses. The loadout is fixed during an expedition.
-
-| Equipment | Price | Passive effect |
-| --- | --- | --- |
-| Driftwood Rod | 100 Gold | First 2 physical creature attachments weigh 1 less while attached; Catch or Bait. |
-| Ironback Rod | 250 Gold | Heaviest original-weight creature weighs 2 less; oldest wins ties. |
-| Stormbent Rod | 350 Gold | While effective attached weight exceeds capacity, creature Catches gain +1 sale value. |
-| Tideglass Reel | 150 Gold | Draw 1 extra Technique at each biome start, including the first. |
-| Clockwork Reel | 300 Gold | After a Technique and reactions finish with an empty hand, draw 1; once per encounter. |
-| Pearlwind Reel | 250 Gold | After a new Bait's effect resolves, draw 1 then choose 1 Technique to discard. |
-| Barbed Hook | 100 Gold | Every 3rd new Catch gains +2 sale value until removal. |
-| Living Hook | 250 Gold | With at least 2 Bait attached, all creature Baits weigh 1 less. |
-| Twinfang Hook | 300 Gold | With at least 1 Bait attached, all creature Catches gain +1 sale value. |
-
-All reductions stop at zero; definitions are never mutated. Mode changes do not count as physical attachments. Driftwood grants and Barbed bonuses persist with their recipients across modes/biomes until removal, without transferring/refunding charges. Barbed counts persist across biomes. Dynamic conditions recalculate on attachment, removal, loss and mode changes. Bait has zero sale contribution. Equipment draws use normal reshuffles and the hand is unlimited; four is the default opening draw, five with Tideglass. Only explicit effects draw cards after plays.
-
-Gold, ownership, category loadout and existing capacity purchases share versioned persistence. Original item IDs and legacy save migration are preserved. Journal quest rewards remain descriptive and ungranted. Detailed ordering and attribution: [Equipment Passive Rules](../Equipment%20Passive%20Rules.md).
-
-- Value is realized primarily after the player surfaces, not immediately
-  when a creature is caught.
-
-- Only catches still attached/successfully returned become part of the
-  haul.
-
-- The haul can be sold for gold and can support later progression such
-  as equipment improvements, new cards, deck upgrades, and unlocks.
-
-- Long-term progression should expand strategic possibilities rather
-  than only increase raw power.
-
-## Approved Discovery Journal quests
-
-The Harbor Journal tracks these objectives persistently. Rewards below are descriptive only: completing an objective does not grant an item, purchase eligibility, event, Technique or gold yet.
-
-| Quest | Requirement | Descriptive reward, not granted |
-| --- | --- | --- |
-| The Perfect School | Successfully Surface with at least 4 Schooling creatures attached in one expedition. | Unlock Schoolmaster's Charm for purchase: your first Schooling Catch each expedition has −1 weight. |
-| The Collector | Successfully Surface with creatures representing at least 5 distinct tags. | Unlock a new special Event card. |
-| Risk Taker | Successfully Surface while overloaded in 3 separate expeditions. | Unlock Salvager's Kit for purchase: once per expedition, release one attached creature and draw 1 Technique. |
-
-Count returned creature and creature-like Apex attachments in both Catch and Bait mode. Use their effective tags in the completed Surface snapshot. The first two objectives retain the best single successful expedition, never sum across expeditions. Risk Taker counts each distinct expedition once and uses the load/capacity evaluated for Surface, including any action-scoped relief. Line-break returns do not qualify. Released/lost creatures, events, treasures and the uncommitted Hooked encounter do not contribute. Progress is saved independently of reward systems; completed quests remain completed. No historical expedition replay is inferred from old result screens.
-
-
-Single-expedition objectives display only COMPLETE or INCOMPLETE, without partial numbers, a best-expedition caption or a progress bar. Cumulative objectives display their qualifying successful-expedition count and progress bar. Saved evidence and reward behavior are unchanged.
-
-# 12. Intended player tension
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Target feeling</strong></p>
-<p>"I should surface now... but I can probably handle one more
-catch."</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-
-The strongest decisions should come from conflicts between value,
-weight, and synergy. A creature can be worth keeping because it is
-expensive, because it enables another creature, because it improves
-encounter odds, or because it supports the current deck. Releasing a
-card should therefore feel like dismantling part of the run, not merely
-cleaning inventory space. The player should also sometimes be forced to
-absorb an inconvenient creature and decide whether to build around it,
-spend a scarce technique to avoid it, release another catch, or surface
-early.
-
-# 13. Prototype scope
-
-The first prototype should test the signature loop before adding a large
-content or meta-progression layer.
-
-- 2 permanent core actions: Descend and Surface; Release requires an explicit card effect. Hooking and catch
-  commitment are automatic parts of encounter resolution rather than a
-  separate basic Catch action.
-
-- A four-card default opening draw and a small technique deck; no ongoing hand-size limit.
-
-- A small Encounter deck/pool with roughly 15–20 cards across creatures,
-  hazards, opportunities, treasure, and at least one short encounter
-  chain.
-
-- At least 2–3 downside creatures that are undesirable in some states,
-  plus several technique cards that let the player bypass, replace,
-  cleanse, or otherwise manage a Hooked encounter.
-
-- A visible vertical catch chain.
-
-- One Line Load / capacity system with overload risk.
-
-- Simple passive effects on selected catches.
-
-- A few depth bands with different encounter pools.
-
-- A basic end-of-run haul and sell screen.
-
-- Prototype specifically for decision variety: repeated creature cards
-  should still create different choices because of current load,
-  catch-chain effects, depth, and the player hand.
-
-<table>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p><strong>Prototype success criterion</strong></p>
-<p>Is it fun to build an increasingly valuable and mechanically useful
-catch chain while deciding whether to release something, keep
-descending, or surface?</p></th>
-</tr>
-</thead>
-<tbody>
-</tbody>
-</table>
-
-# 14. Still open / not locked
-
-- Exact overload probability tuning and loss-count balance within the
-  locked one-to-half loss range.
-
-- Whether physical position/order in the catch chain has rules of its
-  own (for example, only releasing the lowest catch freely). This is
-  promising but should be prototyped before being treated as core.
-
-- Exact number of cards drawn, deck size, discard/shuffle rules, and
-  card rarity structure.
-
-- How locations/biomes are selected between runs or during a run.
-
-- How much meta-progression is permanent versus run-specific.
-
-- Exact biome length, depth-tier count, encounter-pool size, and how
-  many encounters a typical visit should contain before moving to the
-  next region.
+Resolve these through explicit design decisions and playtesting. Examples and existing assets do not fill the gaps automatically.

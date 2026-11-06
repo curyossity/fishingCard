@@ -1,3 +1,9 @@
+> **Historical implementation/artwork record.** Preserve resources and provenance. Mechanics, statistics, controls and approvals below do not define Deepwater gameplay. Consult [document status](../../README.md) and the current GDD. The 6 November 2026 redesign changes documents only.
+
+**6 November 2026 — DW-LOOP-002 decorative revision ready for review:** the [Discover and Land screens](../DeepwaterLoop/README.md) reuse the established card, coastal-frame and botanical-button artwork. No Unity integration is requested or marked complete. DW-LOOP-001 is retained as archived review history.
+
+**6 November 2026 — Deepwater mockups ready for review, no Unity integration requested:** [DW-LOOP-001](../DeepwaterLoop/README.md) contains Discover/slot-machine and Land/challenge screens on a separate Penpot page. Gameplay examples and controls remain provisional. These are not approved implementation/import tasks, and the older completion counts below do not include them.
+
 # Penpot changes awaiting Unity integration
 
 **Equipment pricing revision integrated in Unity.** Source data, catalog and shop labels use the nine approved per-item prices. No additional Penpot asset changes or imports are pending for pricing. [Verification](../../Validation/EquipmentPassives/PricingRevision/README.md).

@@ -1,3 +1,5 @@
+> **Historical implementation/artwork record.** Preserve resources and provenance. Mechanics, statistics, controls and approvals below do not define Deepwater gameplay. Consult [document status](../../README.md) and the current GDD. The 6 November 2026 redesign changes documents only.
+
 # Refactored creature design roster
 
 All 18 refactored Coastal Waters creatures have editable detailed cards in Penpot on **Concept B — Reusable Assembly (4K)**. New illustrations and all dynamic game fields remain separate. All 18 central portraits and the shared detailed card are imported and verified in the Unity candidate theme at MFJ-SYNC-001. [Evidence](Sync001/README.md).
