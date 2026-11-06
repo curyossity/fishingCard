@@ -1,0 +1,3050 @@
+{
+  "version": 2,
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "resolutionNote": "Original 1920 x 1080 layout and initial sprite dimensions. Higher-resolution work is deferred by user instruction; original sources are preserved.",
+  "penpot": {
+    "fileId": "3681d377-bc58-8110-8008-e7a38adc2112",
+    "pages": {
+      "common": {
+        "id": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+        "name": "05 - Common UI Assets"
+      },
+      "discover": {
+        "id": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+        "name": "06 - Discover UI Assets"
+      },
+      "landing": {
+        "id": "38e9e9ec-a6d5-8050-8008-e7b1dd7c6506",
+        "name": "07 - Landing UI Assets"
+      },
+      "placement": {
+        "id": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+        "name": "08 - Rig Placement UI Assets"
+      },
+      "assembly": {
+        "id": "38e9e9ec-a6d5-8050-8008-e7b1dd7f5bfb",
+        "name": "09 - Unity Assembly Reference"
+      }
+    }
+  },
+  "assetCount": 50,
+  "assets": [
+    {
+      "id": "TA-013",
+      "name": "rig-card-ivory",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5a11b65d6",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5a1250fcf",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "cards",
+      "sourceIndex": 0,
+      "crop": [
+        75,
+        73,
+        416,
+        326
+      ],
+      "sourceNativeSize": [
+        416,
+        326
+      ],
+      "baseMasterSize": [
+        416,
+        326
+      ],
+      "exportSize": [
+        416,
+        326
+      ],
+      "displaySize": [
+        320,
+        250
+      ],
+      "borderPixels": {
+        "left": 33,
+        "top": 91,
+        "right": 33,
+        "bottom": 85
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/rig-card-ivory.png",
+      "verifiedPngSize": [
+        416,
+        326
+      ],
+      "sha256": "8827278ee06a537183144bd2393cdf6ffd684b3393013d360eaf0cb312d1b8c0",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        33,
+        85,
+        33,
+        91
+      ]
+    },
+    {
+      "id": "TA-001",
+      "name": "desk-background",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d27bb97f",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d2855f0b",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": false,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "background",
+      "sourceIndex": 0,
+      "crop": [
+        0,
+        0,
+        1672,
+        941
+      ],
+      "sourceNativeSize": [
+        1672,
+        941
+      ],
+      "baseMasterSize": [
+        1920,
+        1080
+      ],
+      "exportSize": [
+        1920,
+        1080
+      ],
+      "displaySize": [
+        1920,
+        1080
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/desk-background.png",
+      "verifiedPngSize": [
+        1920,
+        1080
+      ],
+      "sha256": "f5b6b274529891639022782df769ead8878ec435309da944eb0a0c0d83c38930",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-002",
+      "name": "machine-housing",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d294124e",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d29cad67",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "machine",
+      "sourceIndex": 0,
+      "crop": [
+        32,
+        72,
+        1598,
+        806
+      ],
+      "sourceNativeSize": [
+        1598,
+        806
+      ],
+      "baseMasterSize": [
+        1598,
+        806
+      ],
+      "exportSize": [
+        1598,
+        806
+      ],
+      "displaySize": [
+        1300,
+        670
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/machine-housing.png",
+      "verifiedPngSize": [
+        1598,
+        806
+      ],
+      "sha256": "a5f8dbcc81d8cf8301c09868d13518d5eb372f52b9e608902d1a5ce91a582690",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-003",
+      "name": "rig-cabinet",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d2ad4f11",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d2b914a1",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "rigcabinet",
+      "sourceIndex": 0,
+      "crop": [
+        135,
+        60,
+        626,
+        1635
+      ],
+      "sourceNativeSize": [
+        626,
+        1635
+      ],
+      "baseMasterSize": [
+        626,
+        1635
+      ],
+      "exportSize": [
+        626,
+        1635
+      ],
+      "displaySize": [
+        380,
+        995
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/rig-cabinet.png",
+      "verifiedPngSize": [
+        626,
+        1635
+      ],
+      "sha256": "0c6e507b059628e4fdf255cc4c7caa5880050d14b897c48e8b8a9cd4f9587e9c",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-004",
+      "name": "title-plaque",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d2c936ba",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d2d232e4",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 0,
+      "crop": [
+        29,
+        126,
+        592,
+        117
+      ],
+      "sourceNativeSize": [
+        592,
+        117
+      ],
+      "baseMasterSize": [
+        592,
+        117
+      ],
+      "exportSize": [
+        592,
+        117
+      ],
+      "displaySize": [
+        760,
+        118
+      ],
+      "borderPixels": {
+        "left": 47,
+        "top": 29,
+        "right": 47,
+        "bottom": 29
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/title-plaque.png",
+      "verifiedPngSize": [
+        592,
+        117
+      ],
+      "sha256": "015b93d96a4a7122cf9a3e1350245d6dd3f2999b66d462c6d4f30f0820778040",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        47,
+        29,
+        47,
+        29
+      ]
+    },
+    {
+      "id": "TA-005",
+      "name": "haul-plaque",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d2e04ee3",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d2e85c61",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 1,
+      "crop": [
+        672,
+        100,
+        424,
+        161
+      ],
+      "sourceNativeSize": [
+        424,
+        161
+      ],
+      "baseMasterSize": [
+        424,
+        161
+      ],
+      "exportSize": [
+        424,
+        161
+      ],
+      "displaySize": [
+        350,
+        118
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/haul-plaque.png",
+      "verifiedPngSize": [
+        424,
+        161
+      ],
+      "sha256": "573b2c833bac1edb9ba55a30b42d16ab57e644f017a71cab6d0bb6cde59b8636",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-006",
+      "name": "message-strip",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d2f687f2",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d2ff64ca",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 2,
+      "crop": [
+        1141,
+        139,
+        603,
+        82
+      ],
+      "sourceNativeSize": [
+        603,
+        82
+      ],
+      "baseMasterSize": [
+        603,
+        82
+      ],
+      "exportSize": [
+        603,
+        82
+      ],
+      "displaySize": [
+        1100,
+        60
+      ],
+      "borderPixels": {
+        "left": 36,
+        "top": 26,
+        "right": 36,
+        "bottom": 26
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/message-strip.png",
+      "verifiedPngSize": [
+        603,
+        82
+      ],
+      "sha256": "57f2be0ef5056d8226520a1f57045c12a1c5be67aae7110eb673f246a6dc872f",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        36,
+        26,
+        36,
+        26
+      ]
+    },
+    {
+      "id": "TA-007",
+      "name": "button-primary",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d30f1f9f",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d318d6f8",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 3,
+      "crop": [
+        28,
+        381,
+        549,
+        162
+      ],
+      "sourceNativeSize": [
+        549,
+        162
+      ],
+      "baseMasterSize": [
+        549,
+        162
+      ],
+      "exportSize": [
+        549,
+        162
+      ],
+      "displaySize": [
+        600,
+        140
+      ],
+      "borderPixels": {
+        "left": 49,
+        "top": 45,
+        "right": 49,
+        "bottom": 45
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/button-primary.png",
+      "verifiedPngSize": [
+        549,
+        162
+      ],
+      "sha256": "a5c463f8ed6880e47fb6186a372c2c80184074d3b33db0c2af3262003b95ffd4",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        49,
+        45,
+        49,
+        45
+      ]
+    },
+    {
+      "id": "TA-008",
+      "name": "button-secondary",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d3262184",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d32e187d",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 4,
+      "crop": [
+        626,
+        383,
+        521,
+        160
+      ],
+      "sourceNativeSize": [
+        521,
+        160
+      ],
+      "baseMasterSize": [
+        521,
+        160
+      ],
+      "exportSize": [
+        521,
+        160
+      ],
+      "displaySize": [
+        500,
+        140
+      ],
+      "borderPixels": {
+        "left": 47,
+        "top": 45,
+        "right": 47,
+        "bottom": 45
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/button-secondary.png",
+      "verifiedPngSize": [
+        521,
+        160
+      ],
+      "sha256": "eab5ba1e46dd87a98252e8b4cd96bfe4a691c5c346adc8f38a19e8f271e84013",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        47,
+        45,
+        47,
+        45
+      ]
+    },
+    {
+      "id": "TA-009",
+      "name": "readout-glass-wide",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d33bec04",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d346f6f3",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 5,
+      "crop": [
+        1191,
+        380,
+        552,
+        163
+      ],
+      "sourceNativeSize": [
+        552,
+        163
+      ],
+      "baseMasterSize": [
+        552,
+        163
+      ],
+      "exportSize": [
+        552,
+        163
+      ],
+      "displaySize": [
+        500,
+        140
+      ],
+      "borderPixels": {
+        "left": 44,
+        "top": 46,
+        "right": 44,
+        "bottom": 46
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/readout-glass-wide.png",
+      "verifiedPngSize": [
+        552,
+        163
+      ],
+      "sha256": "538abcb7a104fdb653698e6076fff8f2353be57757be59f38ed8e0730972b08d",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        44,
+        46,
+        44,
+        46
+      ]
+    },
+    {
+      "id": "TA-010",
+      "name": "keycap",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d357cedd",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d36217bb",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 6,
+      "crop": [
+        76,
+        675,
+        295,
+        142
+      ],
+      "sourceNativeSize": [
+        295,
+        142
+      ],
+      "baseMasterSize": [
+        295,
+        142
+      ],
+      "exportSize": [
+        295,
+        142
+      ],
+      "displaySize": [
+        145,
+        55
+      ],
+      "borderPixels": {
+        "left": 47,
+        "top": 43,
+        "right": 47,
+        "bottom": 43
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/keycap.png",
+      "verifiedPngSize": [
+        295,
+        142
+      ],
+      "sha256": "b80de4824959304f96b67c7af29f7d63fe43aa72ab6c1e6e85ced7eb8ab5caa0",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        47,
+        43,
+        47,
+        43
+      ]
+    },
+    {
+      "id": "TA-011",
+      "name": "status-plaque",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d3711d5b",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d38a4c2f",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 7,
+      "crop": [
+        469,
+        676,
+        458,
+        132
+      ],
+      "sourceNativeSize": [
+        458,
+        132
+      ],
+      "baseMasterSize": [
+        458,
+        132
+      ],
+      "exportSize": [
+        458,
+        132
+      ],
+      "displaySize": [
+        300,
+        70
+      ],
+      "borderPixels": {
+        "left": 41,
+        "top": 40,
+        "right": 41,
+        "bottom": 40
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/status-plaque.png",
+      "verifiedPngSize": [
+        458,
+        132
+      ],
+      "sha256": "0a6111d83655dfc207ebc75e62de2b442b8ceeb85491555f26ae124a344a9714",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        41,
+        40,
+        41,
+        40
+      ]
+    },
+    {
+      "id": "TA-012",
+      "name": "control-console",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d3c0085e",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d3e0f7c7",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "controls",
+      "sourceIndex": 8,
+      "crop": [
+        989,
+        636,
+        738,
+        198
+      ],
+      "sourceNativeSize": [
+        738,
+        198
+      ],
+      "baseMasterSize": [
+        738,
+        198
+      ],
+      "exportSize": [
+        738,
+        198
+      ],
+      "displaySize": [
+        1320,
+        270
+      ],
+      "borderPixels": {
+        "left": 89,
+        "top": 40,
+        "right": 133,
+        "bottom": 40
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/control-console.png",
+      "verifiedPngSize": [
+        738,
+        198
+      ],
+      "sha256": "76122b01bae4f8654fbfe150673159e22c28652ada07b6da2b7904ac46df9dc5",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        89,
+        40,
+        133,
+        40
+      ]
+    },
+    {
+      "id": "TA-014",
+      "name": "rig-card-sage",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d4149c2a",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d42df4d2",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "cards",
+      "sourceIndex": 1,
+      "crop": [
+        593,
+        73,
+        418,
+        324
+      ],
+      "sourceNativeSize": [
+        418,
+        324
+      ],
+      "baseMasterSize": [
+        418,
+        324
+      ],
+      "exportSize": [
+        418,
+        324
+      ],
+      "displaySize": [
+        320,
+        250
+      ],
+      "borderPixels": {
+        "left": 33,
+        "top": 91,
+        "right": 33,
+        "bottom": 84
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/rig-card-sage.png",
+      "verifiedPngSize": [
+        418,
+        324
+      ],
+      "sha256": "c393cc9074520e0c50e292c20ff5826dee586d9a34dc91e814d1bd15fe7b3af8",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        33,
+        84,
+        33,
+        91
+      ]
+    },
+    {
+      "id": "TA-015",
+      "name": "portrait-frame",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d45659f7",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d474ed97",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "cards",
+      "sourceIndex": 2,
+      "crop": [
+        46,
+        850,
+        505,
+        251
+      ],
+      "sourceNativeSize": [
+        505,
+        251
+      ],
+      "baseMasterSize": [
+        505,
+        251
+      ],
+      "exportSize": [
+        505,
+        251
+      ],
+      "displaySize": [
+        450,
+        230
+      ],
+      "borderPixels": {
+        "left": 40,
+        "top": 40,
+        "right": 40,
+        "bottom": 75
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/portrait-frame.png",
+      "verifiedPngSize": [
+        505,
+        251
+      ],
+      "sha256": "13bef1ef98d8f69852551781f3fad5c03e2d07be2414925d46d7744c2109a4fa",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        40,
+        75,
+        40,
+        40
+      ]
+    },
+    {
+      "id": "TA-016",
+      "name": "card-clip",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d4afa092",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d4bc2bcf",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "cards",
+      "sourceIndex": 3,
+      "crop": [
+        697,
+        921,
+        213,
+        132
+      ],
+      "sourceNativeSize": [
+        213,
+        132
+      ],
+      "baseMasterSize": [
+        213,
+        132
+      ],
+      "exportSize": [
+        213,
+        132
+      ],
+      "displaySize": [
+        70,
+        56
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/card-clip.png",
+      "verifiedPngSize": [
+        213,
+        132
+      ],
+      "sha256": "05b248e929922e1c10c6f95cd0783b89739a47135cafe2e0a8cf4998d79f9e31",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-017",
+      "name": "rope-horizontal",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d4d0f98b",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d4dfbaeb",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "cards",
+      "sourceIndex": 4,
+      "crop": [
+        80,
+        1244,
+        429,
+        92
+      ],
+      "sourceNativeSize": [
+        429,
+        92
+      ],
+      "baseMasterSize": [
+        429,
+        92
+      ],
+      "exportSize": [
+        429,
+        92
+      ],
+      "displaySize": [
+        95,
+        35
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/rope-horizontal.png",
+      "verifiedPngSize": [
+        429,
+        92
+      ],
+      "sha256": "0745c8cc8dd737d0456ac33734011bdfdbd66409e2f0b2aa73f33ac3ae341535",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-018",
+      "name": "rope-vertical",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d4fad11f",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d510eb63",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "cards",
+      "sourceIndex": 5,
+      "crop": [
+        770,
+        1168,
+        60,
+        224
+      ],
+      "sourceNativeSize": [
+        60,
+        224
+      ],
+      "baseMasterSize": [
+        60,
+        224
+      ],
+      "exportSize": [
+        60,
+        224
+      ],
+      "displaySize": [
+        22,
+        65
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/rope-vertical.png",
+      "verifiedPngSize": [
+        60,
+        224
+      ],
+      "sha256": "e8d53dd948ad32860188d043379d16bf558d14aaf40f176b5abefe4f34d7f49c",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-019",
+      "name": "portrait-sardine",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d534102c",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d54aff21",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "creatures",
+      "sourceIndex": 0,
+      "crop": [
+        88,
+        141,
+        440,
+        173
+      ],
+      "sourceNativeSize": [
+        440,
+        173
+      ],
+      "baseMasterSize": [
+        440,
+        173
+      ],
+      "exportSize": [
+        440,
+        173
+      ],
+      "displaySize": [
+        275,
+        120
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/portrait-sardine.png",
+      "verifiedPngSize": [
+        440,
+        173
+      ],
+      "sha256": "d44f24585666c3e8139d04139a3fa17509a8a9d6107e3f6ac7cfc4fe11c17631",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-020",
+      "name": "portrait-mackerel",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d568a311",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d57cbc28",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "creatures",
+      "sourceIndex": 1,
+      "crop": [
+        672,
+        112,
+        504,
+        229
+      ],
+      "sourceNativeSize": [
+        504,
+        229
+      ],
+      "baseMasterSize": [
+        504,
+        229
+      ],
+      "exportSize": [
+        504,
+        229
+      ],
+      "displaySize": [
+        275,
+        130
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/portrait-mackerel.png",
+      "verifiedPngSize": [
+        504,
+        229
+      ],
+      "sha256": "82bf559d39e63b89d61f3dddbcb90b9f6c08f1a04ecf150084296778829c47cf",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-021",
+      "name": "portrait-glass-minnow",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d5d3754c",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d5f116da",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "creatures",
+      "sourceIndex": 2,
+      "crop": [
+        114,
+        540,
+        337,
+        153
+      ],
+      "sourceNativeSize": [
+        337,
+        153
+      ],
+      "baseMasterSize": [
+        337,
+        153
+      ],
+      "exportSize": [
+        337,
+        153
+      ],
+      "displaySize": [
+        250,
+        120
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/portrait-glass-minnow.png",
+      "verifiedPngSize": [
+        337,
+        153
+      ],
+      "sha256": "9c468788c6917841384d397633c0d596fd94a6bbafc206c0bea2af172e89d9ff",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-022",
+      "name": "portrait-garfish",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d61f5c17",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d63cc96e",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "creatures",
+      "sourceIndex": 3,
+      "crop": [
+        579,
+        553,
+        640,
+        123
+      ],
+      "sourceNativeSize": [
+        640,
+        123
+      ],
+      "baseMasterSize": [
+        640,
+        123
+      ],
+      "exportSize": [
+        640,
+        123
+      ],
+      "displaySize": [
+        380,
+        100
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/portrait-garfish.png",
+      "verifiedPngSize": [
+        640,
+        123
+      ],
+      "sha256": "a08696c2fa924bc8d4deecbd0dd66172c1fa644d9bc949707020b6cd573c3208",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-023",
+      "name": "cursor-garfish-right",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d669161a",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d6832eda",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "creatures",
+      "sourceIndex": 4,
+      "crop": [
+        47,
+        960,
+        536,
+        106
+      ],
+      "sourceNativeSize": [
+        536,
+        106
+      ],
+      "baseMasterSize": [
+        536,
+        106
+      ],
+      "exportSize": [
+        536,
+        106
+      ],
+      "displaySize": [
+        230,
+        55
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/cursor-garfish-right.png",
+      "verifiedPngSize": [
+        536,
+        106
+      ],
+      "sha256": "7f3b4f6e8ce0f7c87ae757d482dee6a1fc4618bdb7267f88ec812cef024af996",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-024",
+      "name": "tag-schooling",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d6a4f343",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d6b7079f",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "creatures",
+      "sourceIndex": 5,
+      "crop": [
+        690,
+        899,
+        501,
+        219
+      ],
+      "sourceNativeSize": [
+        501,
+        219
+      ],
+      "baseMasterSize": [
+        501,
+        219
+      ],
+      "exportSize": [
+        501,
+        219
+      ],
+      "displaySize": [
+        220,
+        120
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/tag-schooling.png",
+      "verifiedPngSize": [
+        501,
+        219
+      ],
+      "sha256": "e0f8b8d0cd6e00ed67e4a9156802b867d8e5e8f45749904265371b929e1a0900",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-033",
+      "name": "lamp-on",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d6ccd7cf",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d6db17e0",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "landing",
+      "sourceIndex": 2,
+      "crop": [
+        191,
+        521,
+        277,
+        280
+      ],
+      "sourceNativeSize": [
+        277,
+        280
+      ],
+      "baseMasterSize": [
+        277,
+        280
+      ],
+      "exportSize": [
+        277,
+        280
+      ],
+      "displaySize": [
+        54,
+        54
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/lamp-on.png",
+      "verifiedPngSize": [
+        277,
+        280
+      ],
+      "sha256": "855161fee00a88768643df29d22240c874cfbf9d02e7573dbf36cd5e8bc3e26e",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-034",
+      "name": "lamp-off",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d6f52063",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d702f043",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "landing",
+      "sourceIndex": 3,
+      "crop": [
+        787,
+        521,
+        276,
+        280
+      ],
+      "sourceNativeSize": [
+        276,
+        280
+      ],
+      "baseMasterSize": [
+        276,
+        280
+      ],
+      "exportSize": [
+        276,
+        280
+      ],
+      "displaySize": [
+        54,
+        54
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/lamp-off.png",
+      "verifiedPngSize": [
+        276,
+        280
+      ],
+      "sha256": "fbbac41e758039bc036cf2b9ca31461b05dcccb9bf762ca0537114a389e76670",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-036",
+      "name": "readout-glass-small",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5d71a06ed",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5d7294c21",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "landing",
+      "sourceIndex": 5,
+      "crop": [
+        682,
+        945,
+        508,
+        181
+      ],
+      "sourceNativeSize": [
+        508,
+        181
+      ],
+      "baseMasterSize": [
+        508,
+        181
+      ],
+      "exportSize": [
+        508,
+        181
+      ],
+      "displaySize": [
+        320,
+        100
+      ],
+      "borderPixels": {
+        "left": 41,
+        "top": 40,
+        "right": 41,
+        "bottom": 40
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Common/readout-glass-small.png",
+      "verifiedPngSize": [
+        508,
+        181
+      ],
+      "sha256": "eef47eaed06da9097731b5dd01feb4494f1c5b5b80a1db5b5094f36ef6908ebf",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        41,
+        40,
+        41,
+        40
+      ]
+    },
+    {
+      "id": "TA-025",
+      "name": "reel-drum",
+      "page": "discover",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5eb008108",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5eb08956a",
+      "uses": [
+        "discover"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "discover",
+      "sourceIndex": 0,
+      "crop": [
+        126,
+        58,
+        412,
+        490
+      ],
+      "sourceNativeSize": [
+        412,
+        490
+      ],
+      "baseMasterSize": [
+        412,
+        490
+      ],
+      "exportSize": [
+        412,
+        490
+      ],
+      "displaySize": [
+        310,
+        365
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Discover/reel-drum.png",
+      "verifiedPngSize": [
+        412,
+        490
+      ],
+      "sha256": "7ccc667b60ed30086637625f54ce9aa0e225eb520d89b8e6eafdb33e65b5c8e4",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-026",
+      "name": "reel-bezel",
+      "page": "discover",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5eb138ffd",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5eb1b26f0",
+      "uses": [
+        "discover"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "discover",
+      "sourceIndex": 1,
+      "crop": [
+        654,
+        60,
+        526,
+        487
+      ],
+      "sourceNativeSize": [
+        526,
+        487
+      ],
+      "baseMasterSize": [
+        526,
+        487
+      ],
+      "exportSize": [
+        526,
+        487
+      ],
+      "displaySize": [
+        345,
+        400
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Discover/reel-bezel.png",
+      "verifiedPngSize": [
+        526,
+        487
+      ],
+      "sha256": "5476860f44fbd16b54499e7fff68bafc66811618974e3fb9e53887dbc724b659",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-027",
+      "name": "lock-lever-locked",
+      "page": "discover",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5eb2643ac",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5eb2d4e50",
+      "uses": [
+        "discover"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "discover",
+      "sourceIndex": 2,
+      "crop": [
+        197,
+        609,
+        259,
+        313
+      ],
+      "sourceNativeSize": [
+        259,
+        313
+      ],
+      "baseMasterSize": [
+        259,
+        313
+      ],
+      "exportSize": [
+        259,
+        313
+      ],
+      "displaySize": [
+        75,
+        90
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Discover/lock-lever-locked.png",
+      "verifiedPngSize": [
+        259,
+        313
+      ],
+      "sha256": "3333dc5d7a8e8edc9ef3e78d023f55d64014e2a501963c707f97ce6778f73b67",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-028",
+      "name": "lock-lever-open",
+      "page": "discover",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5eb3907f9",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5eb4326b4",
+      "uses": [
+        "discover"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "discover",
+      "sourceIndex": 3,
+      "crop": [
+        787,
+        689,
+        262,
+        233
+      ],
+      "sourceNativeSize": [
+        262,
+        233
+      ],
+      "baseMasterSize": [
+        262,
+        233
+      ],
+      "exportSize": [
+        262,
+        233
+      ],
+      "displaySize": [
+        75,
+        75
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Discover/lock-lever-open.png",
+      "verifiedPngSize": [
+        262,
+        233
+      ],
+      "sha256": "779d2c3bf12b2493d9db558f844ea7f4d78e278d6975cd1e01c7b60c20816a8f",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-029",
+      "name": "match-lamps-on",
+      "page": "discover",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5eb5b3414",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5eb6c4050",
+      "uses": [
+        "discover"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "discover",
+      "sourceIndex": 4,
+      "crop": [
+        84,
+        1041,
+        457,
+        116
+      ],
+      "sourceNativeSize": [
+        457,
+        116
+      ],
+      "baseMasterSize": [
+        457,
+        116
+      ],
+      "exportSize": [
+        457,
+        116
+      ],
+      "displaySize": [
+        260,
+        65
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Discover/match-lamps-on.png",
+      "verifiedPngSize": [
+        457,
+        116
+      ],
+      "sha256": "b5958db410fa91761f14fcd0be2b8ffe05804a77082badfedfc69ba040d5f803",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-030",
+      "name": "match-lamps-off",
+      "page": "discover",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7a566e",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5eb8c640e",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5eb9e8056",
+      "uses": [
+        "discover"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "discover",
+      "sourceIndex": 5,
+      "crop": [
+        669,
+        1042,
+        496,
+        112
+      ],
+      "sourceNativeSize": [
+        496,
+        112
+      ],
+      "baseMasterSize": [
+        496,
+        112
+      ],
+      "exportSize": [
+        496,
+        112
+      ],
+      "displaySize": [
+        260,
+        65
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Discover/match-lamps-off.png",
+      "verifiedPngSize": [
+        496,
+        112
+      ],
+      "sha256": "757e20dc5b6148a9daafe276c9c89f133c8821cdc35212b0a5edcef3c0988cc1",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-031",
+      "name": "timing-track",
+      "page": "landing",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7c6506",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ec50addd",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ec577ed7",
+      "uses": [
+        "landing"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "landing",
+      "sourceIndex": 0,
+      "crop": [
+        26,
+        183,
+        607,
+        152
+      ],
+      "sourceNativeSize": [
+        607,
+        152
+      ],
+      "baseMasterSize": [
+        607,
+        152
+      ],
+      "exportSize": [
+        607,
+        152
+      ],
+      "displaySize": [
+        1000,
+        160
+      ],
+      "borderPixels": {
+        "left": 30,
+        "top": 27,
+        "right": 30,
+        "bottom": 38
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Landing/timing-track.png",
+      "verifiedPngSize": [
+        607,
+        152
+      ],
+      "sha256": "0ef29a077751b8ea49126d7f0a0019a53a995e31a960463c212017e4ac983b61",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        30,
+        38,
+        30,
+        27
+      ]
+    },
+    {
+      "id": "TA-032",
+      "name": "score-readout",
+      "page": "landing",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7c6506",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ec622aa7",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ec68fe7d",
+      "uses": [
+        "landing"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "landing",
+      "sourceIndex": 1,
+      "crop": [
+        673,
+        134,
+        552,
+        232
+      ],
+      "sourceNativeSize": [
+        552,
+        232
+      ],
+      "baseMasterSize": [
+        552,
+        232
+      ],
+      "exportSize": [
+        552,
+        232
+      ],
+      "displaySize": [
+        555,
+        215
+      ],
+      "borderPixels": {
+        "left": 39,
+        "top": 35,
+        "right": 39,
+        "bottom": 65
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Landing/score-readout.png",
+      "verifiedPngSize": [
+        552,
+        232
+      ],
+      "sha256": "3184931cc97c906df554c6b40f84e519ef826f5d96ed57a9ea5f780692dcd454",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        39,
+        65,
+        39,
+        35
+      ]
+    },
+    {
+      "id": "TA-035",
+      "name": "progress-trough",
+      "page": "landing",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7c6506",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ec73117e",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ec7a51fb",
+      "uses": [
+        "landing"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "landing",
+      "sourceIndex": 4,
+      "crop": [
+        28,
+        995,
+        605,
+        85
+      ],
+      "sourceNativeSize": [
+        605,
+        85
+      ],
+      "baseMasterSize": [
+        605,
+        85
+      ],
+      "exportSize": [
+        605,
+        85
+      ],
+      "displaySize": [
+        500,
+        30
+      ],
+      "borderPixels": {
+        "left": 36,
+        "top": 26,
+        "right": 36,
+        "bottom": 26
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Landing/progress-trough.png",
+      "verifiedPngSize": [
+        605,
+        85
+      ],
+      "sha256": "4508cd118baeda7a136df8f01ab67811153621f0c59cc9b19643ee2f9b0550ec",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        36,
+        26,
+        36,
+        26
+      ]
+    },
+    {
+      "id": "TA-037",
+      "name": "insertion-rail",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ecfcd662",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ed02d37a",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "placement",
+      "sourceIndex": 0,
+      "crop": [
+        43,
+        134,
+        622,
+        221
+      ],
+      "sourceNativeSize": [
+        622,
+        221
+      ],
+      "baseMasterSize": [
+        622,
+        221
+      ],
+      "exportSize": [
+        622,
+        221
+      ],
+      "displaySize": [
+        1070,
+        245
+      ],
+      "borderPixels": {
+        "left": 93,
+        "top": 49,
+        "right": 93,
+        "bottom": 49
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Placement/insertion-rail.png",
+      "verifiedPngSize": [
+        622,
+        221
+      ],
+      "sha256": "2e56c9aa02591e3a45986f9802216a04bf883df2cde6493ad36a0ce6966850d4",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        93,
+        49,
+        93,
+        49
+      ]
+    },
+    {
+      "id": "TA-038",
+      "name": "role-panel-idle",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ed0c0b5a",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ed1366ce",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "placement",
+      "sourceIndex": 1,
+      "crop": [
+        794,
+        74,
+        371,
+        314
+      ],
+      "sourceNativeSize": [
+        371,
+        314
+      ],
+      "baseMasterSize": [
+        371,
+        314
+      ],
+      "exportSize": [
+        371,
+        314
+      ],
+      "displaySize": [
+        250,
+        210
+      ],
+      "borderPixels": {
+        "left": 37,
+        "top": 91,
+        "right": 37,
+        "bottom": 31
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Placement/role-panel-idle.png",
+      "verifiedPngSize": [
+        371,
+        314
+      ],
+      "sha256": "add9474e197e2fbbde3da291f2abf94b3fa8ad382a694ee2f03d5e680cf7add3",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        37,
+        31,
+        37,
+        91
+      ]
+    },
+    {
+      "id": "TA-039",
+      "name": "role-panel-selected",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ed1d12bc",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ed247788",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "placement",
+      "sourceIndex": 2,
+      "crop": [
+        167,
+        479,
+        371,
+        317
+      ],
+      "sourceNativeSize": [
+        371,
+        317
+      ],
+      "baseMasterSize": [
+        371,
+        317
+      ],
+      "exportSize": [
+        371,
+        317
+      ],
+      "displaySize": [
+        250,
+        210
+      ],
+      "borderPixels": {
+        "left": 37,
+        "top": 92,
+        "right": 37,
+        "bottom": 32
+      },
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Placement/role-panel-selected.png",
+      "verifiedPngSize": [
+        371,
+        317
+      ],
+      "sha256": "de370a3532f6ea875fd0bf9fe4d1a7cfd7f428c4b6e1ee423b7e596e502f7ba8",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        37,
+        32,
+        37,
+        92
+      ]
+    },
+    {
+      "id": "TA-040",
+      "name": "insertion-socket-idle",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ed2ebd70",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ed35c2fd",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "placement",
+      "sourceIndex": 3,
+      "crop": [
+        834,
+        534,
+        228,
+        223
+      ],
+      "sourceNativeSize": [
+        228,
+        223
+      ],
+      "baseMasterSize": [
+        228,
+        223
+      ],
+      "exportSize": [
+        228,
+        223
+      ],
+      "displaySize": [
+        62,
+        62
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Placement/insertion-socket-idle.png",
+      "verifiedPngSize": [
+        228,
+        223
+      ],
+      "sha256": "094d5bb63835e9f821f165ad4c3c741202046f51157e66c5bf237a4731dc2c0e",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-041",
+      "name": "insertion-socket-selected",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b5ed3f5989",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b5ed478bcc",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": null,
+      "source": "placement",
+      "sourceIndex": 4,
+      "crop": [
+        217,
+        925,
+        234,
+        230
+      ],
+      "sourceNativeSize": [
+        234,
+        230
+      ],
+      "baseMasterSize": [
+        234,
+        230
+      ],
+      "exportSize": [
+        234,
+        230
+      ],
+      "displaySize": [
+        62,
+        62
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Original artwork and initial sprite dimensions",
+      "exportPath": "Exports/Placement/insertion-socket-selected.png",
+      "verifiedPngSize": [
+        234,
+        230
+      ],
+      "sha256": "31eb1b1da3ba1a78b5354dfc9cc48022dfc6cf16c5bce95c175ca6e70ef69472",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-042",
+      "name": "focus-corners",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b7097e1b5d",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b7098fc831",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        96,
+        64
+      ],
+      "exportSize": [
+        96,
+        64
+      ],
+      "displaySize": [
+        96,
+        64
+      ],
+      "borderPixels": {
+        "left": 24,
+        "top": 20,
+        "right": 24,
+        "bottom": 20
+      },
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Common/focus-corners.png",
+      "verifiedPngSize": [
+        96,
+        64
+      ],
+      "sha256": "4585f02008fb3d246231523537fddff86f53073a1fca6bb85cd6ff6ac5423b4b",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": [
+        24,
+        20,
+        24,
+        20
+      ]
+    },
+    {
+      "id": "TA-043",
+      "name": "arrow-right",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b7099c9042",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b709add9db",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        32,
+        18
+      ],
+      "exportSize": [
+        32,
+        18
+      ],
+      "displaySize": [
+        32,
+        18
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Common/arrow-right.png",
+      "verifiedPngSize": [
+        32,
+        18
+      ],
+      "sha256": "f4639e39d40e8b820f6941d2f44e233f1df78a0bb77500d3d311e780d443385f",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-044",
+      "name": "arrow-left",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b709ba4899",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b709cba99e",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        32,
+        18
+      ],
+      "exportSize": [
+        32,
+        18
+      ],
+      "displaySize": [
+        32,
+        18
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Common/arrow-left.png",
+      "verifiedPngSize": [
+        32,
+        18
+      ],
+      "sha256": "c27ea5c00f72e358571657966b54e57ba0503060e5740153639ac9c8d9edf973",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-045",
+      "name": "caret-down",
+      "page": "common",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b709e54aa9",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b709fe93d7",
+      "uses": [
+        "discover",
+        "landing",
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        24,
+        16
+      ],
+      "exportSize": [
+        24,
+        16
+      ],
+      "displaySize": [
+        24,
+        16
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Common/caret-down.png",
+      "verifiedPngSize": [
+        24,
+        16
+      ],
+      "sha256": "caf13278bcc6f2fbfcc510af70554e11ee1fe416353046a91edb4d99dca676f5",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-046",
+      "name": "landing-zone",
+      "page": "landing",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b714894401",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b7149e1b5d",
+      "uses": [
+        "landing"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        160,
+        96
+      ],
+      "exportSize": [
+        160,
+        96
+      ],
+      "displaySize": [
+        160,
+        96
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Landing/landing-zone.png",
+      "verifiedPngSize": [
+        160,
+        96
+      ],
+      "sha256": "5019af4b234902b0716fcaa71a93f5310923e1a442483978eef1d43a48e66421",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-047",
+      "name": "perfect-band",
+      "page": "landing",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b714abb5dd",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b714c3f88e",
+      "uses": [
+        "landing"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        24,
+        96
+      ],
+      "exportSize": [
+        24,
+        96
+      ],
+      "displaySize": [
+        24,
+        96
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Landing/perfect-band.png",
+      "verifiedPngSize": [
+        24,
+        96
+      ],
+      "sha256": "14e960591516c826d9c7b9a9dbf957f9e8222fd29ca932b083399d9990cf71cb",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-048",
+      "name": "score-segment",
+      "page": "landing",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd775f52",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b714d73c28",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b714f15473",
+      "uses": [
+        "landing"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        18,
+        9
+      ],
+      "exportSize": [
+        18,
+        9
+      ],
+      "displaySize": [
+        18,
+        9
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Landing/score-segment.png",
+      "verifiedPngSize": [
+        18,
+        9
+      ],
+      "sha256": "1f710ad1cd8b00a5a4398cd82087c6bcefd8ad92451d459c9e3cbab14d3b96ed",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-049",
+      "name": "insertion-plus",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b7159c4afa",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b715a6a356",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        24,
+        24
+      ],
+      "exportSize": [
+        24,
+        24
+      ],
+      "displaySize": [
+        24,
+        24
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Placement/insertion-plus.png",
+      "verifiedPngSize": [
+        24,
+        24
+      ],
+      "sha256": "0bc46fb4a16464635f82ebdd0e594b9c5a01120f690fb2e94999128e1e8a2de5",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    },
+    {
+      "id": "TA-050",
+      "name": "insertion-blocked",
+      "page": "placement",
+      "pageId": "38e9e9ec-a6d5-8050-8008-e7b1dd7dc043",
+      "boardId": "38e9e9ec-a6d5-8050-8008-e7b715acf895",
+      "componentId": "38e9e9ec-a6d5-8050-8008-e7b715b63911",
+      "uses": [
+        "placement"
+      ],
+      "alpha": true,
+      "runtimeTextBaked": false,
+      "kind": "native",
+      "source": null,
+      "sourceIndex": null,
+      "crop": null,
+      "sourceNativeSize": null,
+      "baseMasterSize": [
+        24,
+        24
+      ],
+      "exportSize": [
+        24,
+        24
+      ],
+      "displaySize": [
+        24,
+        24
+      ],
+      "borderPixels": null,
+      "resolutionMethod": "Native geometry at original UI scale",
+      "exportPath": "Exports/Placement/insertion-blocked.png",
+      "verifiedPngSize": [
+        24,
+        24
+      ],
+      "sha256": "27ef49c8999c6d3acd02a7ad69f3b188f03a70da510cab52d97f780af9f718a3",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "unityBorderLBRT": null
+    }
+  ],
+  "composedComponents": [
+    {
+      "name": "RigCard / Catch",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b70e2d4bfe",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b70a9acf8b",
+      "fields": [
+        "NameLabel",
+        "RoleLabel",
+        "SaleValueLabel",
+        "Portrait"
+      ]
+    },
+    {
+      "name": "RigCard / Bait",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b70e341b2d",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b70c6289db",
+      "fields": [
+        "NameLabel",
+        "RoleLabel",
+        "SaleValueLabel",
+        "Portrait"
+      ]
+    },
+    {
+      "name": "RigCard / Compact",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b70e39738c",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b70d1d00b8",
+      "fields": [
+        "NameLabel",
+        "RoleLabel",
+        "SaleValueLabel",
+        "Portrait"
+      ]
+    },
+    {
+      "name": "Button / normal",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42530b8ec",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b70e5d4955",
+      "fields": [
+        "ActionLabel"
+      ]
+    },
+    {
+      "name": "Button / focus",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42536cb05",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b70f75b095",
+      "fields": [
+        "ActionLabel"
+      ]
+    },
+    {
+      "name": "Button / pressed",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c4253da89b",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b71050cf16",
+      "fields": [
+        "ActionLabel"
+      ]
+    },
+    {
+      "name": "Button / disabled",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42545921b",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7b710ef1bac",
+      "fields": [
+        "ActionLabel"
+      ]
+    },
+    {
+      "name": "RigPanel",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42ad12cd6",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c425721532",
+      "fields": [
+        "RigTitle",
+        "RigViewport",
+        "Ordered RigCard instances"
+      ]
+    },
+    {
+      "name": "HaulCounter",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42b7a1917",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c42ad973ae",
+      "fields": [
+        "CaptionLabel",
+        "ValueLabel"
+      ]
+    },
+    {
+      "name": "TooltipPanel",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42d4a7b26",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c42b87dc9e",
+      "fields": [
+        "TooltipTitle",
+        "TooltipBody"
+      ]
+    },
+    {
+      "name": "ReelCell",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c44e4ffa3d",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c44e29c45f",
+      "fields": [
+        "SymbolViewport",
+        "CurrentSymbol",
+        "TagLabel"
+      ]
+    },
+    {
+      "name": "LandingTrack",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c46671bca7",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c465f55a19",
+      "fields": [
+        "TimingViewport",
+        "MovingZone",
+        "MovingFish"
+      ]
+    },
+    {
+      "name": "RoleChoice",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c470c063c8",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c470920081",
+      "fields": [
+        "RoleLabel",
+        "SaleValueLabel",
+        "ValueCaption",
+        "Selected artwork"
+      ]
+    },
+    {
+      "name": "InsertionTarget / available",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c470dc7bcd",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c470c29853",
+      "fields": [
+        "Legality / selection state"
+      ]
+    },
+    {
+      "name": "InsertionTarget / selected",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c47102899b",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c470e6bba3",
+      "fields": [
+        "Legality / selection state"
+      ]
+    },
+    {
+      "name": "InsertionTarget / blocked",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c4712d6ee6",
+      "mainId": "38e9e9ec-a6d5-8050-8008-e7c4710d4397",
+      "fields": [
+        "Legality / selection state"
+      ]
+    }
+  ],
+  "assemblies": [
+    {
+      "name": "Common construction",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b70a6d2b61"
+    },
+    {
+      "name": "Typography",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b7125ab754"
+    },
+    {
+      "name": "Discover",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b7ba6984f3"
+    },
+    {
+      "name": "Landing",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b7c56f84db"
+    },
+    {
+      "name": "Rig Placement",
+      "id": "38e9e9ec-a6d5-8050-8008-e7b7da204996"
+    },
+    {
+      "name": "Common overview",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c416f396d3"
+    },
+    {
+      "name": "Common live widgets",
+      "id": "38e9e9ec-a6d5-8050-8008-e7c42558363d"
+    }
+  ],
+  "recommendedImport": {
+    "textureType": "Sprite (2D and UI)",
+    "spriteMode": "Single",
+    "meshType": "Full Rect",
+    "filterMode": "Point",
+    "compression": "None for visual validation",
+    "mipmaps": false,
+    "sRGB": true,
+    "alphaSource": "Input Texture Alpha",
+    "alphaIsTransparency": true,
+    "readWrite": false,
+    "wrap": "Clamp",
+    "pixelsPerUnit": 100,
+    "maxSize": 2048
+  },
+  "status": "Design handoff; not imported or validated in Unity.",
+  "sources": [
+    {
+      "key": "background",
+      "file": "Sources/background.png",
+      "promptFile": "Sources/background-prompt.txt",
+      "width": 1672,
+      "height": 941,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "machine",
+      "file": "Sources/machine.png",
+      "promptFile": "Sources/machine-prompt.txt",
+      "width": 1672,
+      "height": 941,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "rigcabinet",
+      "file": "Sources/rigcabinet.png",
+      "promptFile": "Sources/rigcabinet-prompt.txt",
+      "width": 896,
+      "height": 1756,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "controls",
+      "file": "Sources/controls.png",
+      "promptFile": "Sources/controls-prompt.txt",
+      "width": 1774,
+      "height": 887,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "cards",
+      "file": "Sources/cards.png",
+      "promptFile": "Sources/cards-prompt.txt",
+      "width": 1086,
+      "height": 1448,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "creatures",
+      "file": "Sources/creatures.png",
+      "promptFile": "Sources/creatures-prompt.txt",
+      "width": 1254,
+      "height": 1254,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "discover",
+      "file": "Sources/discover.png",
+      "promptFile": "Sources/discover-prompt.txt",
+      "width": 1254,
+      "height": 1254,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "landing",
+      "file": "Sources/landing.png",
+      "promptFile": "Sources/landing-prompt.txt",
+      "width": 1254,
+      "height": 1254,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    },
+    {
+      "key": "placement",
+      "file": "Sources/placement.png",
+      "promptFile": "Sources/placement-prompt.txt",
+      "width": 1254,
+      "height": 1254,
+      "generator": "Built-in image generation tool",
+      "reference": "Approved Tackle Apparatus concept artwork"
+    }
+  ],
+  "generationPolicy": {
+    "builtInOnly": true,
+    "directImageAPIAllowed": false,
+    "source": "Explicit user instruction on 6 November 2026"
+  }
+}

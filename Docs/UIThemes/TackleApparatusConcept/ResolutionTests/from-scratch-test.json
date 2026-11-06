@@ -1,0 +1,14 @@
+{
+  "mode": "Built-in image generation, new image from scratch without reference images",
+  "requested": [
+    3840,
+    2160
+  ],
+  "actual": [
+    1672,
+    941
+  ],
+  "passed": false,
+  "selectedForUIAssetLibrary": false,
+  "directImageAPIAllowed": false
+}

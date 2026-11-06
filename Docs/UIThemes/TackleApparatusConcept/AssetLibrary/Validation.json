@@ -1,0 +1,597 @@
+{
+  "assetCount": 50,
+  "allDimensionsMatch": true,
+  "allNonEmpty": true,
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "higherResolutionDeferred": true,
+  "originalSourceArtPreserved": true,
+  "unityValidated": false,
+  "assets": [
+    {
+      "name": "arrow-left",
+      "width": 32,
+      "height": 18,
+      "transparentPixels": 394,
+      "translucentPixels": 0,
+      "totalPixels": 576,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "arrow-right",
+      "width": 32,
+      "height": 18,
+      "transparentPixels": 394,
+      "translucentPixels": 0,
+      "totalPixels": 576,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "button-primary",
+      "width": 549,
+      "height": 162,
+      "transparentPixels": 4123,
+      "translucentPixels": 84793,
+      "totalPixels": 88938,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "button-secondary",
+      "width": 521,
+      "height": 160,
+      "transparentPixels": 3305,
+      "translucentPixels": 80038,
+      "totalPixels": 83360,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "card-clip",
+      "width": 213,
+      "height": 132,
+      "transparentPixels": 6610,
+      "translucentPixels": 21414,
+      "totalPixels": 28116,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "caret-down",
+      "width": 24,
+      "height": 16,
+      "transparentPixels": 144,
+      "translucentPixels": 0,
+      "totalPixels": 384,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "control-console",
+      "width": 738,
+      "height": 198,
+      "transparentPixels": 10930,
+      "translucentPixels": 134684,
+      "totalPixels": 146124,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "cursor-garfish-right",
+      "width": 536,
+      "height": 106,
+      "transparentPixels": 23471,
+      "translucentPixels": 33329,
+      "totalPixels": 56816,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "desk-background",
+      "width": 1920,
+      "height": 1080,
+      "transparentPixels": 0,
+      "translucentPixels": 0,
+      "totalPixels": 2073600,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "focus-corners",
+      "width": 96,
+      "height": 64,
+      "transparentPixels": 5504,
+      "translucentPixels": 0,
+      "totalPixels": 6144,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "haul-plaque",
+      "width": 424,
+      "height": 161,
+      "transparentPixels": 6280,
+      "translucentPixels": 61894,
+      "totalPixels": 68264,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "keycap",
+      "width": 295,
+      "height": 142,
+      "transparentPixels": 3317,
+      "translucentPixels": 38494,
+      "totalPixels": 41890,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "lamp-off",
+      "width": 276,
+      "height": 280,
+      "transparentPixels": 16922,
+      "translucentPixels": 60335,
+      "totalPixels": 77280,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "lamp-on",
+      "width": 277,
+      "height": 280,
+      "transparentPixels": 17231,
+      "translucentPixels": 60280,
+      "totalPixels": 77560,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "machine-housing",
+      "width": 1598,
+      "height": 806,
+      "transparentPixels": 127179,
+      "translucentPixels": 1160422,
+      "totalPixels": 1287988,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "message-strip",
+      "width": 603,
+      "height": 82,
+      "transparentPixels": 4393,
+      "translucentPixels": 44463,
+      "totalPixels": 49446,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "portrait-frame",
+      "width": 505,
+      "height": 251,
+      "transparentPixels": 3901,
+      "translucentPixels": 122850,
+      "totalPixels": 126755,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "portrait-garfish",
+      "width": 640,
+      "height": 123,
+      "transparentPixels": 35204,
+      "translucentPixels": 43505,
+      "totalPixels": 78720,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "portrait-glass-minnow",
+      "width": 337,
+      "height": 153,
+      "transparentPixels": 17205,
+      "translucentPixels": 34349,
+      "totalPixels": 51561,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "portrait-mackerel",
+      "width": 504,
+      "height": 229,
+      "transparentPixels": 46391,
+      "translucentPixels": 68884,
+      "totalPixels": 115416,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "portrait-sardine",
+      "width": 440,
+      "height": 173,
+      "transparentPixels": 28973,
+      "translucentPixels": 47023,
+      "totalPixels": 76120,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "readout-glass-small",
+      "width": 508,
+      "height": 181,
+      "transparentPixels": 4045,
+      "translucentPixels": 87541,
+      "totalPixels": 91948,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "readout-glass-wide",
+      "width": 552,
+      "height": 163,
+      "transparentPixels": 4458,
+      "translucentPixels": 85495,
+      "totalPixels": 89976,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "rig-cabinet",
+      "width": 626,
+      "height": 1635,
+      "transparentPixels": 12427,
+      "translucentPixels": 1010215,
+      "totalPixels": 1023510,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "rig-card-ivory",
+      "width": 416,
+      "height": 326,
+      "transparentPixels": 3664,
+      "translucentPixels": 131949,
+      "totalPixels": 135616,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "rig-card-sage",
+      "width": 418,
+      "height": 324,
+      "transparentPixels": 5058,
+      "translucentPixels": 130321,
+      "totalPixels": 135432,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "rope-horizontal",
+      "width": 429,
+      "height": 92,
+      "transparentPixels": 19574,
+      "translucentPixels": 19860,
+      "totalPixels": 39468,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "rope-vertical",
+      "width": 60,
+      "height": 224,
+      "transparentPixels": 3636,
+      "translucentPixels": 9754,
+      "totalPixels": 13440,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "status-plaque",
+      "width": 458,
+      "height": 132,
+      "transparentPixels": 2037,
+      "translucentPixels": 58417,
+      "totalPixels": 60456,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "tag-schooling",
+      "width": 501,
+      "height": 219,
+      "transparentPixels": 56266,
+      "translucentPixels": 53397,
+      "totalPixels": 109719,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "title-plaque",
+      "width": 592,
+      "height": 117,
+      "transparentPixels": 3553,
+      "translucentPixels": 65699,
+      "totalPixels": 69264,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "lock-lever-locked",
+      "width": 259,
+      "height": 313,
+      "transparentPixels": 16384,
+      "translucentPixels": 64653,
+      "totalPixels": 81067,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "lock-lever-open",
+      "width": 262,
+      "height": 233,
+      "transparentPixels": 3730,
+      "translucentPixels": 57309,
+      "totalPixels": 61046,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "match-lamps-off",
+      "width": 496,
+      "height": 112,
+      "transparentPixels": 11674,
+      "translucentPixels": 43738,
+      "totalPixels": 55552,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "match-lamps-on",
+      "width": 457,
+      "height": 116,
+      "transparentPixels": 5173,
+      "translucentPixels": 47747,
+      "totalPixels": 53012,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "reel-bezel",
+      "width": 526,
+      "height": 487,
+      "transparentPixels": 141280,
+      "translucentPixels": 113593,
+      "totalPixels": 256162,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "reel-drum",
+      "width": 412,
+      "height": 490,
+      "transparentPixels": 9844,
+      "translucentPixels": 191601,
+      "totalPixels": 201880,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "landing-zone",
+      "width": 160,
+      "height": 96,
+      "transparentPixels": 0,
+      "translucentPixels": 14976,
+      "totalPixels": 15360,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "perfect-band",
+      "width": 24,
+      "height": 96,
+      "transparentPixels": 0,
+      "translucentPixels": 2304,
+      "totalPixels": 2304,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "progress-trough",
+      "width": 605,
+      "height": 85,
+      "transparentPixels": 3412,
+      "translucentPixels": 47490,
+      "totalPixels": 51425,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "score-readout",
+      "width": 552,
+      "height": 232,
+      "transparentPixels": 2565,
+      "translucentPixels": 125264,
+      "totalPixels": 128064,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "score-segment",
+      "width": 18,
+      "height": 9,
+      "transparentPixels": 0,
+      "translucentPixels": 0,
+      "totalPixels": 162,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "timing-track",
+      "width": 607,
+      "height": 152,
+      "transparentPixels": 2062,
+      "translucentPixels": 90158,
+      "totalPixels": 92264,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "insertion-blocked",
+      "width": 24,
+      "height": 24,
+      "transparentPixels": 172,
+      "translucentPixels": 26,
+      "totalPixels": 576,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "insertion-plus",
+      "width": 24,
+      "height": 24,
+      "transparentPixels": 324,
+      "translucentPixels": 0,
+      "totalPixels": 576,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 0,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "insertion-rail",
+      "width": 622,
+      "height": 221,
+      "transparentPixels": 11952,
+      "translucentPixels": 125490,
+      "totalPixels": 137462,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "insertion-socket-idle",
+      "width": 228,
+      "height": 223,
+      "transparentPixels": 2747,
+      "translucentPixels": 48094,
+      "totalPixels": 50844,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "insertion-socket-selected",
+      "width": 234,
+      "height": 230,
+      "transparentPixels": 1409,
+      "translucentPixels": 52407,
+      "totalPixels": 53820,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "role-panel-idle",
+      "width": 371,
+      "height": 314,
+      "transparentPixels": 4620,
+      "translucentPixels": 111587,
+      "totalPixels": 116494,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    },
+    {
+      "name": "role-panel-selected",
+      "width": 371,
+      "height": 317,
+      "transparentPixels": 3243,
+      "translucentPixels": 114359,
+      "totalPixels": 117607,
+      "nonEmpty": true,
+      "transparentGuardAtAlphaAbove3": 3,
+      "dimensionsMatch": true
+    }
+  ],
+  "screenTextOverflow": [],
+  "previews": [
+    {
+      "file": "Previews\\Commonoverview-1080p.png",
+      "width": 2400,
+      "height": 2650,
+      "sha256": "a2d384480f2435f3614e737eed4568e4ee43730674335f555a9066f71db75526"
+    },
+    {
+      "file": "Previews\\Discover-1080p.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "cce22087903ce8307a02f05293056301d84a2c5dc12fa9a0c3ad6698ab9cbdae"
+    },
+    {
+      "file": "Previews\\Landing-1080p.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a67899c5d4253ffb7d42e99cf9aad94bf4c75f0108aab9b3cf6025e231876ea3"
+    },
+    {
+      "file": "Previews\\RigPlacement-1080p.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a21d1e2a44641c4e24e180f35af0cb73dd03360b688dbb875a74210df10db237"
+    }
+  ],
+  "notes": [
+    "Initial 1920 x 1080 layout and initial sprite dimensions restored.",
+    "Original source artwork preserved; higher-resolution work deferred.",
+    "All three screen previews and common overview visually reviewed.",
+    "Unity integration has not been performed."
+  ]
+}
