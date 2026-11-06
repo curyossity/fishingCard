@@ -27,7 +27,8 @@ public enum CreatureEffectChoiceKind
     EncounterSkip,
     ResolveReleaseDraws,
     EventSnagTarget,
-    EventCreatureRelease
+    EventCreatureRelease,
+    EquipmentFilter
 }
 
 /// <summary>Owns ordered creature choices, deferred Release reactions, and a queued encounter without owning presentation.</summary>
@@ -84,6 +85,14 @@ public sealed class CreatureEffectRuntime
     [SerializeField] private Request pendingPlayedTechniqueRecovery;
     public EncounterRuntime EncounterEffects { get; set; }
     public EventPersistenceRuntime EventPersistence { get; set; }
+    public Action<CardInstance, CreatureEffectRuntime> NewAttachmentReactions { private get; set; }
+
+    /// <summary>Queues a passive equipment draw/discard after an attachment's own effects.</summary>
+    public void QueueEquipmentFilter(CardDefinition source, int count)
+    {
+        requests.Add(new Request { Kind = CreatureEffectChoiceKind.EquipmentFilter, EventSource = source,
+            AbilityName = source.DisplayName, DrawCount = count });
+    }
 
     /// <summary>Queues a mandatory heaviest-target tie decision independently of attachment sources.</summary>
     public void QueueEventSnag(long origin, CardDefinition source, CardEffectDefinition effect)
@@ -320,6 +329,7 @@ public sealed class CreatureEffectRuntime
         {
             requests.AddRange(immediate);
         }
+        if (!isRoleChange) NewAttachmentReactions?.Invoke(instance, this);
     }
 
     /// <summary>Snapshots pre-entry creature Catches and queues surviving Bait effects in chain order.</summary>
@@ -398,6 +408,19 @@ public sealed class CreatureEffectRuntime
         while (requests.Count > 0)
         {
             Request request = requests[0];
+            if (request.Kind == CreatureEffectChoiceKind.EquipmentFilter)
+            {
+                int drawn = deck == null ? 0 : deck.DrawTechniques(request.DrawCount, random);
+                if (drawn == 0) { CompleteChoice(); continue; }
+                request.DrawCount = drawn;
+                request.Kind = CreatureEffectChoiceKind.DiscardTechnique;
+                continue;
+            }
+            if (request.Kind == CreatureEffectChoiceKind.DiscardTechnique && request.EventSource?.CardType == CardType.Equipment)
+            {
+                if (deck != null && deck.Hand.Length > 0) return;
+                CompleteChoice(); continue;
+            }
             if (request.Kind == CreatureEffectChoiceKind.EventSnagTarget)
             {
                 CardInstance[] targets = GetEventSnagTargets(chain.Catches);
@@ -731,6 +754,7 @@ public sealed class CreatureEffectRuntime
     public bool TryChooseRequiredDiscard(int handIndex, TechniqueDeckRuntime deck)
     {
         if (ChoiceKind != CreatureEffectChoiceKind.DiscardTechnique || deck == null || !deck.TryDiscardTechnique(handIndex)) return false;
+        if (requests[0].EventSource?.CardType == CardType.Equipment && --requests[0].DrawCount > 0) return true;
         CompleteChoice();
         return true;
     }

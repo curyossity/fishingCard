@@ -599,6 +599,13 @@ MonoBehaviour:
   biomeEntryRevealPending: 0
   pendingCommittedCatchId: -1
   techniqueCompletionPending: 0
+  pendingTechniqueTargets:
+    card: {fileID: 0}
+    encounterTarget: {fileID: 0}
+    encounterRevision: 0
+    handVersion: 0
+    playedHandIndex: 0
+    selections: []
   pendingTechniqueHandIndex: 0
   pendingTechniqueHandVersion: 0
   pendingTechniqueEncounterRevision: 0

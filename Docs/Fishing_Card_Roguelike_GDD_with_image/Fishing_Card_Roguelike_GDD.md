@@ -949,7 +949,7 @@ The player selects required targets before the play is committed. While Stinging
 
 ### Hand and draws
 
-**31 October 2026 amendment:** there is no Technique hand-size limit. This supersedes every older per-card full-hand, four-slot and discard-for-room instruction in this document. Four remains the default opening draw; Tideglass Reel adds two opening cards. Explicit creature/Technique effects draw or recover their stated count automatically, using normal reshuffles and physical-card ownership. No discard is required merely to make room. Required discards, optional redraws, Recast and exchanges retain their own rules.
+**31 October 2026 amendment:** there is no Technique hand-size limit. This supersedes every older per-card full-hand, four-slot and discard-for-room instruction in this document. Four remains the default opening draw; Tideglass Reel draws one extra card at each biome start, including the first. Explicit creature/Technique effects draw or recover their stated count automatically, using normal reshuffles and physical-card ownership. No discard is required merely to make room. Required discards, optional redraws, Recast and exchanges retain their own rules.
 
 The normal opening draw is **four**; the hand has no size limit. Playing a Technique does **not** draw a replacement; Descend also does **not** refill the hand. After the opening hand, only explicit card effects may draw, redraw or recover Techniques, using their own counts and the normal reshuffle rules. Do not fill other empty slots as part of such an effect, or put the currently resolving Technique in discard early to make it available to a draw or recovery.
 
@@ -961,21 +961,25 @@ These designs add no energy resource or once-per-biome counters. Persistent modi
 
 # 11. Run economy and progression
 
-## Approved Tackle Shop equipment — 30 October 2026
+## Approved Tackle Shop equipment — 4 November 2026
 
-The Harbor sells permanent unlocks using Gold only. Purchase and equip are separate actions, allowed between expeditions. The approved shop redesign amendment (1 November 2026) allows up to three equipped items: one Rod, one Reel and one Hook. None is owned or equipped by default. Equipping replaces only the same category; unequipping leaves the other slots unchanged. All three items below are directly available for purchase, replacing the illustrative shop's prices/ownership/lock captions.
+The Harbor sells permanent unlocks using Gold only. Prices below are provisional balancing values, remain fixed after purchases, and impose no prerequisite or purchase order. Purchase and equip are separate actions between expeditions. Empty slots are allowed; at most one Rod, one Reel and one Hook can be equipped. Equipping replaces only the same category. Nothing is owned or equipped initially; empty slots grant no bonuses. The loadout is fixed during an expedition.
 
-| Equipment | Price | Effect |
+| Equipment | Price | Passive effect |
 | --- | --- | --- |
-| Driftwood Rod | 200 Gold | Start each expedition with +1 Line Capacity. |
-| Tideglass Reel | 200 Gold | Draw 2 additional Technique cards at expedition start. |
-| Barbed Hook | 250 Gold | The first 3 creatures attached as Catch each expedition gain +1 sale value each until they leave the chain. |
+| Driftwood Rod | 100 Gold | First 2 physical creature attachments weigh 1 less while attached; Catch or Bait. |
+| Ironback Rod | 250 Gold | Heaviest original-weight creature weighs 2 less; oldest wins ties. |
+| Stormbent Rod | 350 Gold | While effective attached weight exceeds capacity, creature Catches gain +1 sale value. |
+| Tideglass Reel | 150 Gold | Draw 1 extra Technique at each biome start, including the first. |
+| Clockwork Reel | 300 Gold | After a Technique and reactions finish with an empty hand, draw 1; once per encounter. |
+| Pearlwind Reel | 250 Gold | After a new Bait's effect resolves, draw 1 then choose 1 Technique to discard. |
+| Barbed Hook | 100 Gold | Every 3rd new Catch gains +2 sale value until removal. |
+| Living Hook | 250 Gold | With at least 2 Bait attached, all creature Baits weigh 1 less. |
+| Twinfang Hook | 300 Gold | With at least 1 Bait attached, all creature Catches gain +1 sale value. |
 
-The equipped loadout is fixed for the expedition and its three benefits can operate together. Rod adds to starting capacity and existing purchased capacity bonuses. Reel deals six starting Techniques. Hand size is unrestricted for every loadout, so subsequent explicit draws and recoveries can grow it beyond six; playing a Technique still never refills the hand automatically.
+All reductions stop at zero; definitions are never mutated. Mode changes do not count as physical attachments. Driftwood grants and Barbed bonuses persist with their recipients across modes/biomes until removal, without transferring/refunding charges. Barbed counts persist across biomes. Dynamic conditions recalculate on attachment, removal, loss and mode changes. Bait has zero sale contribution. Equipment draws use normal reshuffles and the hand is unlimited; four is the default opening draw, five with Tideglass. Only explicit effects draw cards after plays.
 
-Hook applies before the recipient's own on-attach effects and attachment reactions. New creature-like Apex and exchange replacement Catches qualify. Bait attachments and changing an already attached creature's mode do not consume charges or grant the bonus. Previews do not consume charges. Once awarded, the named bonus persists across mode/biome changes until removal; Bait still has no sale value. Released recipients do not refund charges. Each new expedition resets the three grants.
-
-Gold, equipment ownership, equipped identity and existing permanent capacity purchases are persisted as one versioned progression document. Insufficient funds, duplicate purchases, unowned equips and active-expedition changes are rejected. Failed purchase saves spend/unlock nothing. Journal quest rewards remain descriptive and ungranted in this increment; Technique Collection deck editing remains separate.
+Gold, ownership, category loadout and existing capacity purchases share versioned persistence. Original item IDs and legacy save migration are preserved. Journal quest rewards remain descriptive and ungranted. Detailed ordering and attribution: [Equipment Passive Rules](../Equipment%20Passive%20Rules.md).
 
 - Value is realized primarily after the player surfaces, not immediately
   when a creature is caught.

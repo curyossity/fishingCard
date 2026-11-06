@@ -1,12 +1,22 @@
 # GDD Implementation Brief
 
-## Approved Tackle Shop equipment (30 October 2026)
+## Approved Tackle Shop equipment (4 November 2026)
 
-Permanent unlocks cost Gold: Driftwood Rod 200 (+1 starting Line Capacity), Tideglass Reel 200 (two additional opening Techniques), Barbed Hook 250 (+1 sale value on each of the first three newly attached creature Catches). Buy once, then separately equip up to three items between expeditions: one Rod, one Reel and one Hook (approved shop redesign amendment, 1 November 2026). No item is initially owned/equipped. All three are directly purchasable. Hook grants persist until recipients leave the chain, including across modes/biomes; Bait attachments and mode changes do not consume grants, and Release never refunds them. A newly exchanged-in Catch qualifies as a new attachment. Previews never spend grants. Single-item saves migrate without resetting progression.
+Nine passive equipment designs replace the previous three effects. Empty slots are allowed: at most one Rod, Reel and Hook. Each item has its own fixed provisional Gold price, listed below. Prices never increase after purchases; all items are purchasable in any order without prerequisites. Buy permanent unlocks, then equip separately between expeditions. Existing saves and original item IDs remain valid.
 
-**Unlimited Technique hand amendment (31 October 2026):** four is the default opening draw, not a hand limit. Tideglass Reel starts with six; any equipment loadout may gain more cards through explicit effects. No automatic refill or discard-for-room requirement exists. This supersedes older per-card full-hand wording. [Validation](Validation/UnlimitedTechniqueHand/README.md). Gold, owned equipment, equipped identity and existing capacity-upgrade purchases persist together. Journal rewards remain display-only. [Behavior and verification](Validation/TackleShop/README.md).
+| Equipment | Price | Passive effect |
+| --- | --- | --- |
+| Driftwood Rod | 100 Gold | First 2 physical creature attachments weigh 1 less while attached; Catch or Bait. |
+| Ironback Rod | 250 Gold | Heaviest original-weight creature weighs 2 less; oldest wins ties. |
+| Stormbent Rod | 350 Gold | While effective attached weight exceeds capacity, creature Catches gain +1 sale value. |
+| Tideglass Reel | 150 Gold | Draw 1 extra Technique at each biome start, including the first. |
+| Clockwork Reel | 300 Gold | After a Technique and reactions finish with an empty hand, draw 1; once per encounter. |
+| Pearlwind Reel | 250 Gold | After a new Bait's effect resolves, draw 1 then choose 1 Technique to discard. |
+| Barbed Hook | 100 Gold | Every 3rd new Catch gains +2 sale value until removal. |
+| Living Hook | 250 Gold | With at least 2 Bait attached, all creature Baits weigh 1 less. |
+| Twinfang Hook | 300 Gold | With at least 1 Bait attached, all creature Catches gain +1 sale value. |
 
-> Temporary playtest active (30 October 2026): all 20 existing Coastal Waters creatures are available at every normal biome depth. Both card depth ranges and tier pools are widened. Original values and rollback instructions are saved in [the playtest log](Playtests/2026-10-30-AllDepthCreatures/README.md). This is a testing override; the permanent depth balance has not been redesigned.
+Weights stop at zero; Bait has zero haul value. Physical attachment counters exclude mode changes, persist across biomes and never refund on removal. Conditional passives update immediately. Equipment draws use normal reshuffling and the hand remains unlimited. Four is the normal opening draw; Tideglass makes it five. Playing Techniques has no general automatic refill. Journal rewards are still display-only. [Complete ordering and rules](Equipment%20Passive%20Rules.md), [integration evidence](Validation/EquipmentPassives/README.md).
 
 ## Approved creature timing flow (29 October 2026)
 

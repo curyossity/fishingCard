@@ -2,6 +2,7 @@ using System;
 
 public sealed class EffectResolver
 {
+    public Action<CardInstance[]> ResolveExternalPassiveStats { private get; set; }
     /// <summary>
     /// Recalculates every catch from base stats, then applies all persistent stat interactions.
     /// </summary>
@@ -89,6 +90,7 @@ public sealed class EffectResolver
         }
         // Events add to effective weight; clamp their combined contribution only after ongoing interactions settle.
         foreach (CardInstance card in safeCatches) card?.ApplyEventWeightModifiers();
+        ResolveExternalPassiveStats?.Invoke(safeCatches);
     }
 
     /// <summary>

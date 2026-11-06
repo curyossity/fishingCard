@@ -13,7 +13,7 @@ public sealed class FishingRunController : MonoBehaviour
     [SerializeField] private string progressionSaveKey = DefaultProgressionSaveKey;
     private TackleShopRuntime tackleShop;
     private bool debugSaveResetPending;
-    private readonly RunEquipmentRuntime runEquipment = new RunEquipmentRuntime();
+    private readonly EquipmentPassiveRuntime runEquipment = new EquipmentPassiveRuntime();
     public TackleShopRuntime TackleShop { get { EnsureTackleShop(); return tackleShop; } }
     [Header("Start Run Settings")]
     [SerializeField] private bool startRunOnAwake = true;
@@ -187,7 +187,7 @@ public sealed class FishingRunController : MonoBehaviour
     public CardInstance[] LastLostCatches => lastSurfaceResult.LostCatches;
     public int LastGoldAwarded => lastSurfaceResult.GoldAwarded;
     public int TotalGold { get { EnsureTackleShop(); return runRewardRuntime.TotalGold; } }
-    public int NextExpeditionHandSize => startingHandSize + (TackleShop?.GetEquipped(EquipmentSlot.Reel)?.Benefit == EquipmentBenefit.OpeningTechniques ? TackleShop.GetEquipped(EquipmentSlot.Reel).Amount : 0);
+    public int NextExpeditionHandSize => startingHandSize + EquipmentPassiveRuntime.OpeningDrawCount(TackleShop?.EquippedItems);
     public int ProgressionLineCapacityBonus => runProgressionRuntime.CurrentLineCapacityBonus;
     public CardDefinition[] SavedTechniqueDeck => runProgressionRuntime.SavedTechniqueDeck;
     public bool UnlockableTechniqueCardUnlocked => runProgressionRuntime.TechniqueCardUnlocked;
@@ -369,7 +369,7 @@ public sealed class FishingRunController : MonoBehaviour
         selectedSwapTargetId = -1;
         EnsureTackleShop();
         runEquipment.BeginLoadout(tackleShop?.EquippedItems);
-        lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus + runEquipment.CapacityBonus);
+        lineCapacity = Mathf.Max(0, startingLineCapacity + runProgressionRuntime.CurrentLineCapacityBonus);
         currentBiome = startingBiome;
         currentDepth = Mathf.Max(0, startingDepth);
         selectedCatchIndex = -1;
@@ -380,9 +380,10 @@ public sealed class FishingRunController : MonoBehaviour
         catchChainRuntime.Reset();
         techniqueDeckRuntime.Initialize(
             runProgressionRuntime.SavedTechniqueDeck,
-            startingHandSize + runEquipment.OpeningDrawBonus,
+            startingHandSize,
             random,
             LogRuntimeWarning);
+        runEquipment.BeginBiome(techniqueDeckRuntime, random);
         techniqueEffectRuntime.Reset();
         lineLoadRiskRuntime.Reset();
         lastSurfaceResult.Reset();
@@ -675,6 +676,7 @@ public sealed class FishingRunController : MonoBehaviour
         selectedSwapTargetId = -1;
         encounterRuntime.Reset(true);
         biomeApexRuntime.Reset();
+        runEquipment.BeginBiome(techniqueDeckRuntime, random);
         creatureEffectRuntime.BeginBiome(catchChainRuntime.Catches);
         biomeEntryRevealPending = true;
         PrepareCreatureChoice();
@@ -996,6 +998,7 @@ public sealed class FishingRunController : MonoBehaviour
         }
 
         // Completion unlocks input after reactions; only explicit effects draw or recover cards.
+        if (techniqueCompletionPending) runEquipment.CompleteTechnique(techniqueDeckRuntime, random);
         techniqueCompletionPending = false;
 
         if (descendCompletionPending)
@@ -1869,6 +1872,9 @@ public sealed class FishingRunController : MonoBehaviour
         {
             effectResolver = new EffectResolver();
         }
+        runEquipment.BindCapacity(() => lineCapacity);
+        effectResolver.ResolveExternalPassiveStats = runEquipment.ResolvePassiveStats;
+        creatureEffectRuntime.NewAttachmentReactions = runEquipment.RecordBaitAttachment;
         if (eventEffectRuntime == null) eventEffectRuntime = new EventEffectRuntime();
         if (eventPersistenceRuntime == null) eventPersistenceRuntime = new EventPersistenceRuntime();
         eventPersistenceRuntime.Bind(catchChainRuntime, effectResolver);
@@ -1915,6 +1921,7 @@ public sealed class FishingRunController : MonoBehaviour
     private void PrepareEncounterAtCurrentDepth()
     {
         creatureEffectRuntime.BeginEncounter();
+        runEquipment.BeginEncounter();
         int selectionDepth = GetEffectiveEncounterSelectionDepth();
         CardDefinition chosen = creatureEffectRuntime.TakeQueuedEncounter(GetRevealDestination(selectionDepth));
 

@@ -22,57 +22,59 @@ public static class TackleShopChecks
         var catalog = AssetDatabase.LoadAssetAtPath<TackleShopCatalog>(JournalTackleShopSetup.CatalogPath); catalog.Validate();
         string saved = null;
         var shop = new TackleShopRuntime(catalog, 1000, 0, () => saved, json => saved = json);
-        Require(catalog.Items.Select(x => x.Price).SequenceEqual(new[] { 200, 200, 250 }), "Approved prices differ.");
+        Require(catalog.Items.Length == 9 && catalog.Items.Select(x => x.Price).SequenceEqual(new[] { 100, 250, 350, 150, 300, 250, 100, 250, 300 }), "Approved prices differ.");
         string reason;
-        Require(!shop.TryPurchase("driftwood_rod", 199, 0, false, out reason), "Insufficient gold allowed.");
+        Require(shop.EquippedItems.Length == 0 && catalog.Items.All(x => !shop.Owns(x.Id)), "New players received equipment.");
+        foreach (var item in catalog.Items)
+        {
+            var boundary = new TackleShopRuntime(catalog, item.Price - 1, 0, () => null, _ => { });
+            Require(!boundary.TryPurchase(item.Id, item.Price - 1, 0, false, out reason), "Below-price purchase allowed: " + item.Id);
+            boundary = new TackleShopRuntime(catalog, item.Price, 0, () => null, _ => { });
+            Require(boundary.TryPurchase(item.Id, item.Price, 0, false, out reason) && boundary.Gold == 0
+                && boundary.Owns(item.Id) && boundary.EquippedItems.Length == 0 && catalog.Find(item.Id).Price == item.Price,
+                "Exact-price purchase, optional equip or fixed pricing failed: " + item.Id);
+        }
+        Require(!shop.TryPurchase("driftwood_rod", 99, 0, false, out reason), "Insufficient gold allowed.");
         Require(!shop.TryPurchase("driftwood_rod", 1000, 0, true, out reason), "Purchase during expedition allowed.");
         Require(!shop.TryPurchase("unknown", 1000, 0, false, out reason), "Unknown item allowed.");
-        Require(shop.TryPurchase("driftwood_rod", 1000, 0, false, out reason) && shop.Gold == 800 && shop.Owns("driftwood_rod") && shop.EquippedItems.Length == 0, "Purchase or separate equip failed.");
-        Require(!shop.TryPurchase("driftwood_rod", 800, 0, false, out reason) && shop.Gold == 800, "Duplicate purchase deducted gold.");
-        Require(!shop.TryEquip("barbed_hook", 800, 0, false, out reason), "Unowned item equipped.");
-        Require(shop.TryEquip("driftwood_rod", 800, 0, false, out reason), "Owned item could not equip.");
+        Require(shop.TryPurchase("driftwood_rod", 1000, 0, false, out reason) && shop.Gold == 900 && shop.Owns("driftwood_rod") && shop.EquippedItems.Length == 0, "Purchase or separate equip failed.");
+        Require(!shop.TryPurchase("driftwood_rod", 900, 0, false, out reason) && shop.Gold == 900, "Duplicate purchase deducted gold.");
+        Require(!shop.TryEquip("barbed_hook", 900, 0, false, out reason), "Unowned item equipped.");
+        Require(shop.TryEquip("driftwood_rod", 900, 0, false, out reason), "Owned item could not equip.");
         shop = new TackleShopRuntime(catalog, 0, 0, () => saved, json => saved = json);
-        Require(shop.Gold == 800 && shop.IsEquipped("driftwood_rod"), "Wallet/loadout reload failed.");
-        Require(shop.TryPurchase("tideglass_reel", 800, 0, false, out reason) && shop.TryEquip("tideglass_reel", 600, 0, false, out reason) && shop.IsEquipped("driftwood_rod") && shop.IsEquipped("tideglass_reel"), "Category loadout selection failed.");
-        Require(shop.TryEquip("tideglass_reel", 600, 0, false, out reason) && shop.EquippedItems.Length == 2, "Repeated equip duplicated a category.");
-        Require(shop.TryUnequip(EquipmentSlot.Rod, 600, 0, false, out reason) && !shop.IsEquipped("driftwood_rod") && shop.IsEquipped("tideglass_reel"), "Unequip cleared another category.");
+        Require(shop.Gold == 900 && shop.IsEquipped("driftwood_rod"), "Wallet/loadout reload failed.");
+        Require(shop.TryPurchase("tideglass_reel", 900, 0, false, out reason) && shop.TryEquip("tideglass_reel", 750, 0, false, out reason) && shop.IsEquipped("driftwood_rod") && shop.IsEquipped("tideglass_reel"), "Category loadout selection failed.");
+        Require(shop.TryEquip("tideglass_reel", 750, 0, false, out reason) && shop.EquippedItems.Length == 2, "Repeated equip duplicated a category.");
+        Require(shop.TryUnequip(EquipmentSlot.Rod, 750, 0, false, out reason) && !shop.IsEquipped("driftwood_rod") && shop.IsEquipped("tideglass_reel"), "Unequip cleared another category.");
         var migrated = new TackleShopRuntime(catalog, 0, 0, () => "{\"version\":1,\"gold\":123,\"lineCapacityUpgrades\":2,\"owned\":[\"barbed_hook\"],\"equipped\":\"barbed_hook\"}", _ => { });
         Require(migrated.Gold == 123 && migrated.LineCapacityUpgrades == 2 && migrated.GetEquipped(EquipmentSlot.Hook)?.Id == "barbed_hook", "Legacy save migration lost progression.");
-        Require(!shop.TryEquip("driftwood_rod", 600, 0, true, out reason), "Active equipment changed.");
+        Require(!shop.TryEquip("driftwood_rod", 750, 0, true, out reason), "Active equipment changed.");
         Require(shop.SaveWallet(900, 2), "Ordinary gold/upgrade save failed.");
         var reloaded = new TackleShopRuntime(catalog, 0, 0, () => saved, _ => { });
         Require(reloaded.Gold == 900 && reloaded.LineCapacityUpgrades == 2, "Existing capacity purchase persistence failed.");
         bool fail = true;
         var failure = new TackleShopRuntime(catalog, 500, 0, () => null, _ => { if (fail) throw new IOException("Deliberate test failure"); });
         Require(!failure.TryPurchase("barbed_hook", 500, 0, false, out reason) && !failure.Owns("barbed_hook") && failure.Gold == 500, "Failed save partially applied transaction.");
-        fail = false; Require(failure.TryPurchase("barbed_hook", 500, 0, false, out reason) && failure.Gold == 250, "Failed save could not retry.");
+        fail = false; Require(failure.TryPurchase("barbed_hook", 500, 0, false, out reason) && failure.Gold == 400, "Failed save could not retry.");
         bool wrote = false;
         var corrupt = new TackleShopRuntime(catalog, 0, 0, () => "{\"version\":99}", _ => wrote = true);
         Require(!corrupt.TryPurchase("driftwood_rod", 999, 0, false, out reason) && !wrote, "Unsupported save overwritten.");
 
-        var cod = FindCard("creature_coastal_cod"); var chain = new CatchChainRuntime(); var resolver = new EffectResolver(); var equipment = new RunEquipmentRuntime();
-        equipment.BeginRun(catalog.Find("barbed_hook")); chain.BeforeAttachmentEffects += equipment.BeforeAttachment;
-        for (int i = 0; i < 3; i++)
+        string allSaved = null;
+        var all = new TackleShopRuntime(catalog, 10000, 0, () => allSaved, json => allSaved = json);
+        foreach (var item in catalog.Items.Reverse())
         {
-            var preview = chain.CreateResolvedCatchPreview(cod, resolver, CatchAttachmentRole.Catch, equipment.PreviewCatchBonus);
-            Require(preview.CurrentValue == cod.Value + 1 && equipment.RemainingCatchBonuses == 3, "Preview consumed equipment or missed value.");
+            Require(all.TryPurchase(item.Id, all.Gold, 0, false, out reason), "Catalog item purchase failed: " + item.Id);
+            var otherSlots = all.EquippedItems.Where(x => x.Slot != item.Slot).Select(x => x.Id).ToArray();
+            Require(all.TryEquip(item.Id, all.Gold, 0, false, out reason)
+                && otherSlots.All(all.IsEquipped) && all.EquippedItems.Count(x => x.Slot == item.Slot) == 1,
+                "Same-category replacement disturbed the loadout: " + item.Id);
         }
-        var bait = chain.Add(cod, resolver, CatchAttachmentRole.Bait);
-        Require(equipment.RemainingCatchBonuses == 3 && bait.CurrentValue == cod.Value, "Bait consumed a grant.");
-        chain.TryChangeCreatureMode(bait.InstanceId, resolver);
-        Require(equipment.RemainingCatchBonuses == 3 && bait.CurrentValue == cod.Value, "Mode change consumed a grant.");
-        var first = chain.Add(cod, resolver); chain.Add(cod, resolver); chain.Add(cod, resolver); var fourth = chain.Add(cod, resolver);
-        Require(first.CurrentValue == cod.Value + 1 && fourth.CurrentValue == cod.Value && equipment.RemainingCatchBonuses == 0, "First-three Catch boundary failed.");
-        Require(new CardStatBreakdown(first, CreatureStat.Value, 1).Reasons.Any(x => x.Name == "Barbed Hook" && x.Amount == 1), "Equipment attribution missing.");
-        chain.TryChangeCreatureMode(first.InstanceId, resolver); chain.TryChangeCreatureMode(first.InstanceId, resolver);
-        Require(first.CurrentValue == cod.Value + 1, "Awarded bonus lost or repeated after mode changes.");
-        chain.TryReleaseTogether(new[] { first.InstanceId }, resolver); var next = chain.Add(cod, resolver);
-        Require(next.CurrentValue == cod.Value && equipment.RemainingCatchBonuses == 0, "Release refunded equipment charge.");
-        equipment.BeginRun(catalog.Find("barbed_hook")); Require(equipment.RemainingCatchBonuses == 3, "New expedition did not reset charges.");
-        equipment.BeginRun(catalog.Find("driftwood_rod")); Require(equipment.CapacityBonus == 1 && equipment.OpeningDrawBonus == 0, "Rod benefit wrong.");
-        equipment.BeginRun(catalog.Find("tideglass_reel")); Require(equipment.OpeningDrawBonus == 2 && equipment.CapacityBonus == 0, "Reel benefit stacks incorrectly.");
-        equipment.BeginLoadout(catalog.Items);
-        Require(equipment.OpeningDrawBonus == 2 && equipment.CapacityBonus == 1 && equipment.RemainingCatchBonuses == 3, "Three-slot expedition snapshot lost benefits.");
+        all = new TackleShopRuntime(catalog, 0, 0, () => allSaved, _ => { });
+        Require(catalog.Items.All(x => all.Owns(x.Id)) && all.EquippedItems.Length == 3 && all.Gold == 7950,
+            "Nine-item ownership/loadout failed to reload.");
+
+        EquipmentPassiveChecks.Validate(Output + "PassiveEngine/");
         var deck = new TechniqueDeckRuntime(); var techniques = Enumerable.Repeat(FindCard("cut_loose"), 12).ToArray();
         deck.Initialize(techniques, 6, new System.Random(1), null);
         Require(deck.Hand.Length == 6 && deck.DrawTechniques(1, new System.Random(1)) == 1, "Draw above the six-card opening hand failed.");
@@ -103,24 +105,25 @@ public static class TackleShopChecks
     {
         var controller = flow.Controller; flow.Navigate(1); yield return new WaitForSecondsRealtime(.5f);
         Click(flow, "Inspect DRIFTWOOD ROD"); Click(flow, "Purchase or Equip");
-        Require(controller.TotalGold == 1000 && controller.TackleShop.Owns("driftwood_rod") && controller.TackleShop.EquippedItems.Length == 0, "Pointer purchase failed.");
+        Require(controller.TotalGold == 1100 && controller.TackleShop.Owns("driftwood_rod") && controller.TackleShop.EquippedItems.Length == 0, "Pointer purchase failed.");
         Click(flow, "Purchase or Equip"); Require(controller.TackleShop.IsEquipped("driftwood_rod"), "Pointer equip failed.");
         string reason;
-        Require(!controller.TryPurchaseEquipment("driftwood_rod", out reason) && controller.TotalGold == 1000, "Duplicate purchase allowed.");
+        Require(!controller.TryPurchaseEquipment("driftwood_rod", out reason) && controller.TotalGold == 1100, "Duplicate purchase allowed.");
         flow.Navigate(0); Require(flow.TryStartNewRun(), "Rod run did not start.");
         int baseline = (int)Field(controller, "startingLineCapacity").GetValue(controller);
-        Require(controller.LineCapacity == baseline + 1 && controller.TechniqueHand.Length == 4, "Rod start benefit wrong.");
+        Require(controller.LineCapacity == baseline && controller.TechniqueHand.Length == 4, "Rod start benefit wrong.");
         Require(!controller.TryPurchaseEquipment("tideglass_reel", out reason) && !controller.TryEquipEquipment("", out reason), "Active-run shop mutation allowed.");
         Require(controller.TrySurface(), "Rod Surface failed.");
         var modal = UnityEngine.Object.FindAnyObjectByType<JournalResultModal>();
         float deadline = Time.realtimeSinceStartup + 20; while (!modal.IsVisible && Time.realtimeSinceStartup < deadline) yield return null;
         Require(modal.IsVisible, "Rod result missing."); modal.NextRunButton.onClick.Invoke(); flow.Navigate(1); yield return null;
+        flow.GetComponentInChildren<JournalTackleShopView>(true).Filter(2); yield return null;
         Click(flow, "Inspect TIDEGLASS REEL"); Click(flow, "Purchase or Equip"); Click(flow, "Purchase or Equip");
-        Require(controller.TotalGold == 800 && controller.TackleShop.IsEquipped("tideglass_reel"), "Reel purchase/equip failed.");
+        Require(controller.TotalGold == 950 && controller.TackleShop.IsEquipped("tideglass_reel"), "Reel purchase/equip failed.");
         flow.Navigate(0); Require(flow.TryStartNewRun(), "Reel run did not start.");
-        Require(controller.TechniqueHand.Length == 6 && controller.LineCapacity == baseline + 1, "Rod and Reel combined benefits failed.");
+        Require(controller.TechniqueHand.Length == 5 && controller.LineCapacity == baseline, "Rod and Reel combined benefits failed.");
         var liveDeck = (TechniqueDeckRuntime)Field(controller, "techniqueDeckRuntime").GetValue(controller);
-        Require(liveDeck.DrawTechniques(20, new System.Random(1)) == 6 && liveDeck.Hand.Length == 12,
+        Require(liveDeck.DrawTechniques(20, new System.Random(1)) == 7 && liveDeck.Hand.Length == 12,
             "Effect draws above the Reel opening hand were capped or invented cards.");
         controller.GetType().GetMethod("RefreshViews", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(controller, null);
         yield return new WaitForSecondsRealtime(.5f);
@@ -132,19 +135,20 @@ public static class TackleShopChecks
         Require(controller.TrySurface(), "Reel Surface failed.");
         deadline = Time.realtimeSinceStartup + 20; while (!modal.IsVisible && Time.realtimeSinceStartup < deadline) yield return null;
         Require(modal.IsVisible, "Reel result missing."); modal.NextRunButton.onClick.Invoke(); flow.Navigate(1); yield return null;
+        flow.GetComponentInChildren<JournalTackleShopView>(true).Filter(3); yield return null;
         Click(flow, "Inspect BARBED HOOK"); Click(flow, "Purchase or Equip"); Click(flow, "Purchase or Equip");
-        Require(controller.TotalGold == 550 && controller.TackleShop.IsEquipped("barbed_hook"), "Hook purchase/equip failed.");
+        Require(controller.TotalGold == 850 && controller.TackleShop.IsEquipped("barbed_hook"), "Hook purchase/equip failed.");
         flow.Navigate(0); Require(flow.TryStartNewRun(), "Hook run did not start.");
         var chain = (CatchChainRuntime)Field(controller, "catchChainRuntime").GetValue(controller); var resolver = (EffectResolver)Field(controller, "effectResolver").GetValue(controller);
         var cod = FindCard("creature_coastal_cod"); for (int i = 0; i < 4; i++) chain.Add(cod, resolver);
-        Require(chain.Catches.Take(3).All(c => c.CurrentValue == cod.Value + 1) && chain.Catches[3].CurrentValue == cod.Value, "Controller Hook grants failed.");
-        Require(controller.TechniqueHand.Length == 6 && controller.LineCapacity == baseline + 1, "Combined equipment benefits missing.");
+        Require(chain.Catches[0].CurrentValue == cod.Value && chain.Catches[1].CurrentValue == cod.Value && chain.Catches[2].CurrentValue == cod.Value + 2 && chain.Catches[3].CurrentValue == cod.Value, "Controller Hook grants failed.");
+        Require(controller.TechniqueHand.Length == 5 && controller.LineCapacity == baseline, "Combined equipment benefits missing.");
         Require(controller.TrySurface(), "Hook Surface failed.");
         deadline = Time.realtimeSinceStartup + 20; while (!modal.IsVisible && Time.realtimeSinceStartup < deadline) yield return null;
-        Require(modal.IsVisible && controller.LastHaulValue == cod.Value * 4 + 3 && controller.TotalGold == 550 + controller.LastHaulValue, "Hook sale/gold failed.");
+        Require(modal.IsVisible && controller.LastHaulValue == cod.Value * 4 + 2 && controller.TotalGold == 850 + controller.LastHaulValue, "Hook sale/gold failed.");
         var keys = JsonUtility.FromJson<Keys>(File.ReadAllText(Output + "TestKeys.json"));
         var reload = new TackleShopRuntime(controller.TackleShop.Catalog, 0, 0, () => PlayerPrefs.GetString(keys.progression), _ => { });
-        Require(reload.Gold == controller.TotalGold && reload.EquippedItems.Length == 3 && reload.Catalog.Items.All(i => reload.Owns(i.Id)), "Persistent ownership/wallet/loadout failed.");
+        Require(reload.Gold == controller.TotalGold && reload.EquippedItems.Length == 3 && new[] { "driftwood_rod", "tideglass_reel", "barbed_hook" }.All(reload.Owns), "Persistent ownership/wallet/loadout failed.");
         modal.NextRunButton.onClick.Invoke(); flow.Navigate(1);
     }
 

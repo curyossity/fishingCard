@@ -27,7 +27,8 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Start each expedition with +1 Line Capacity.
+  rulesText: Your first 2 creature attachments weigh 1 less while attached. Applies
+    to Catch and Bait.
   rulesTextHighlights: []
   baitRulesText: 
   baitRulesTextHighlights: []
@@ -39,6 +40,24 @@ MonoBehaviour:
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
-  effects: []
+  effects:
+  - effectId: equipment_driftwood_rod_0
+    displayName: Driftwood Rod
+    effectType: 1
+    trigger: 2
+    target: 1
+    effectTone: 1
+    amount: 1
+    requiredTags: []
+    grantedTag: 
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: 
   hasExplicitBaitData: 0
   baitEffects: []

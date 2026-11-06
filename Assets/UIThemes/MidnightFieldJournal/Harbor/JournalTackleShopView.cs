@@ -20,7 +20,7 @@ public sealed class JournalTackleShopView : MonoBehaviour
     [SerializeField] private Graphic[] selectionMarks, filterMarks;
     [SerializeField] private ScrollRect catalogScroll;
     [SerializeField] private TMP_Text catalogCount, equippedCount;
-    private int selected = 1;
+    private int selected;
     private int filter;
     private string notification;
 
@@ -80,7 +80,7 @@ public sealed class JournalTackleShopView : MonoBehaviour
         selected = Mathf.Clamp(selected, 0, items.Length - 1);
         for (int i = 0; i < cardStates.Length; i++)
         {
-            var item = items[i % items.Length]; bool owned = shop.Owns(item.Id);
+            var item = items[i]; bool owned = shop.Owns(item.Id);
             cardStates[i].text = shop.IsEquipped(item.Id) ? "EQUIPPED" : owned ? "OWNED" : item.Price + " GOLD";
             cardStates[i].color = owned ? new Color(.42f, .66f, .53f) : new Color(.81f, .66f, .40f);
             if (i < cardEffects.Length) cardEffects[i].text = item.Description;

@@ -38,7 +38,7 @@ public static class JournalTackleShopDesignSync
         var gold = Label("Gold Balance", shop, "0", new Rect(3300, 110, 270, 70), 48, Pale, false, true); gold.alignment = TextAlignmentOptions.TopRight;
         Label("Gold unit", shop, "GOLD", new Rect(3590, 110, 190, 70), 48, Pale, false, false);
         var catalog = AssetDatabase.LoadAssetAtPath<TackleShopCatalog>(JournalTackleShopSetup.CatalogPath);
-        var items = catalog.Items; var portraits = new[] { "rod", "reel", "hook" }.Select(id => SpriteAt(JournalHarborBuilder.Root + "Art/" + id + ".png")).ToArray();
+        var items = catalog.Items; var portraits = items.Select(item => item.SourceCard.Artwork).ToArray();
         var master = SpriteAt(ArtRoot + "EquipmentCardMaster.png");
         var slotArt = new Image[3]; var slotNames = new TMP_Text[3]; var pluses = new TMP_Text[3];
         for (int i = 0; i < 3; i++)
@@ -71,17 +71,17 @@ public static class JournalTackleShopDesignSync
         grid.constraint = GridLayoutGroup.Constraint.FixedColumnCount; grid.constraintCount = 3; grid.padding = new RectOffset(105, 0, 20, 20);
         var size = content.gameObject.AddComponent<ContentSizeFitter>(); size.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
         scroll.content = content; scroll.viewport = viewport; scroll.horizontal = false; scroll.vertical = true; scroll.scrollSensitivity = 100; scroll.movementType = ScrollRect.MovementType.Clamped;
-        var cards = new GameObject[9]; var states = new TMP_Text[9]; var buttons = new Button[9]; var selections = new Graphic[9];
-        for (int i = 0; i < 9; i++)
+        var cards = new GameObject[items.Length]; var states = new TMP_Text[items.Length]; var buttons = new Button[items.Length]; var selections = new Graphic[items.Length];
+        for (int i = 0; i < items.Length; i++)
         {
-            int index = i % 3; var card = Hit("Inspect " + items[index].DisplayName.ToUpperInvariant() + (i < 3 ? "" : " / placeholder " + i), content, new Rect(0, 0, 500, grid.cellSize.y)); cards[i] = card.gameObject; buttons[i] = card;
+            int index = i; var card = Hit("Inspect " + items[index].DisplayName.ToUpperInvariant(), content, new Rect(0, 0, 500, grid.cellSize.y)); cards[i] = card.gameObject; buttons[i] = card;
             ImageAt("Independent equipment card frame", card.transform, new Rect(0, 0, 500, grid.cellSize.y), master);
             Label("Category", card.transform, items[index].Slot.ToString().ToUpperInvariant(), new Rect(60, 43, 380, 25), 17, Ink, false, true);
             Label("Name", card.transform, items[index].DisplayName, new Rect(32, 69, 436, 48), 30, Ink, false, true);
             var art = ImageAt("Independent equipment portrait", card.transform, new Rect(85, 150, 330, 200), portraits[index]); art.preserveAspect = true;
             states[i] = Label("Price or ownership", card.transform, items[index].Price + " GOLD", new Rect(55, 453, 390, 48), 29, Pale, false, true);
             selections[i] = Outline(card.transform, new Rect(-8, -8, 516, grid.cellSize.y + 16));
-            selections[i].enabled = i == 1;
+            selections[i].enabled = i == 0;
             UnityEventTools.AddIntPersistentListener(card.onClick, view.Select, index);
         }
         for (int i = 0; i < 2; i++)
@@ -93,12 +93,12 @@ public static class JournalTackleShopDesignSync
         Label("Inspection eyebrow", shop, "EQUIPMENT DETAILS", new Rect(2665, 270, 980, 60), 32, new Color32(196, 161, 112, 255), false, true);
         var detail = Place("Enlarged equipment card", shop, new Rect(2600, 420, 1140, 1140f * 1322 / 1190));
         ImageAt("Independent detail frame", detail, new Rect(0, 0, 1140, detail.sizeDelta.y), master);
-        var category = Label("Equipment type", detail, "REEL", new Rect(180, 90, 780, 34), 24, Ink, false, true);
-        var name = Label("Equipment name", detail, "TIDEGLASS REEL", new Rect(140, 133, 860, 80), 55, Ink, false, true);
-        var detailArt = ImageAt("Independent detail artwork", detail, new Rect(215, 280, 710, 520), portraits[1]); detailArt.preserveAspect = true;
+        var category = Label("Equipment type", detail, items[0].Slot.ToString().ToUpperInvariant(), new Rect(180, 90, 780, 34), 24, Ink, false, true);
+        var name = Label("Equipment name", detail, items[0].DisplayName.ToUpperInvariant(), new Rect(140, 133, 860, 80), 55, Ink, false, true);
+        var detailArt = ImageAt("Independent detail artwork", detail, new Rect(215, 280, 710, 520), portraits[0]); detailArt.preserveAspect = true;
         var state = Label("Ownership state", detail, "PERMANENT UNLOCK", new Rect(190, 777, 760, 38), 24, Ink, false, true);
         Label("Effect heading", detail, "EXPEDITION EFFECT", new Rect(190, 941, 760, 48), 28, Pale, false, true);
-        var effect = Label("Effect description", detail, items[1].Description, new Rect(215, 1015, 710, 159), 38, Pale, true, true);
+        var effect = Label("Effect description", detail, items[0].Description, new Rect(215, 1015, 710, 159), 38, Pale, true, true);
         var action = Hit("Purchase or Equip", shop, new Rect(2665, 1790, 980, 120));
         var actionPaper = Solid("Action paper", action.transform, new Rect(0, 0, 980, 120), new Color32(235, 216, 183, 255)); actionPaper.raycastTarget = false;
         var actionLabel = Label("Action label", action.transform, "BUY", new Rect(45, 33, 890, 60), 36, Ink, false, true);

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "items": [
+    { "id": "driftwood_rod", "name": "Driftwood Rod", "slot": "Rod", "price": 100, "description": "Your first 2 creature attachments weigh 1 less while attached. Applies to Catch and Bait.", "effects": [{ "kind": "ReduceFirstAttachmentWeights", "amount": 1, "threshold": 2 }] },
+    { "id": "ironback_rod", "name": "Ironback Rod", "slot": "Rod", "price": 250, "description": "Your heaviest attached creature weighs 2 less. Original weight decides; earliest attachment breaks ties.", "effects": [{ "kind": "ReduceHeaviestWeight", "amount": 2, "threshold": 1 }] },
+    { "id": "stormbent_rod", "name": "Stormbent Rod", "slot": "Rod", "price": 350, "description": "While attached weight exceeds Line Capacity, every creature Catch gains +1 sale value.", "effects": [{ "kind": "CatchValueWhileOverloaded", "amount": 1, "threshold": 1 }] },
+    { "id": "tideglass_reel", "name": "Tideglass Reel", "slot": "Reel", "price": 150, "description": "Draw 1 additional Technique at the start of each biome, including the first.", "effects": [{ "kind": "DrawAtBiomeStart", "amount": 1, "threshold": 1 }] },
+    { "id": "clockwork_reel", "name": "Clockwork Reel", "slot": "Reel", "price": 300, "description": "After a Technique and its reactions finish, draw 1 Technique if your hand is empty. Once per encounter.", "effects": [{ "kind": "DrawAfterEmptyHandTechnique", "amount": 1, "threshold": 1 }] },
+    { "id": "pearlwind_reel", "name": "Pearlwind Reel", "slot": "Reel", "price": 250, "description": "After a new creature Bait's effect resolves, draw 1 Technique, then choose 1 Technique to discard.", "effects": [{ "kind": "FilterAfterBaitAttachment", "amount": 1, "threshold": 1 }] },
+    { "id": "barbed_hook", "name": "Barbed Hook", "slot": "Hook", "price": 100, "description": "Every 3rd new creature Catch gains +2 sale value until it leaves the chain. Count persists across biomes.", "effects": [{ "kind": "ValueEveryNthCatch", "amount": 2, "threshold": 3 }] },
+    { "id": "living_hook", "name": "Living Hook", "slot": "Hook", "price": 250, "description": "While at least 2 creature Baits are attached, all creature Baits weigh 1 less. Minimum weight 0.", "effects": [{ "kind": "ReduceBaitWeightsWithMinimumCount", "amount": 1, "threshold": 2 }] },
+    { "id": "twinfang_hook", "name": "Twinfang Hook", "slot": "Hook", "price": 300, "description": "While at least 1 creature Bait is attached, every creature Catch gains +1 sale value.", "effects": [{ "kind": "CatchValueWithMinimumBaitCount", "amount": 1, "threshold": 1 }] }
+  ]
+}

@@ -27,8 +27,8 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: The first 3 creatures you Catch each expedition gain +1 sale value each
-    while attached.
+  rulesText: Every 3rd new creature Catch gains +2 sale value until it leaves the
+    chain. Count persists across biomes.
   rulesTextHighlights: []
   baitRulesText: 
   baitRulesTextHighlights: []
@@ -41,13 +41,13 @@ MonoBehaviour:
   minimumDepth: 0
   maximumDepth: -1
   effects:
-  - effectId: equipment_barbed_hook
+  - effectId: equipment_barbed_hook_0
     displayName: Barbed Hook
     effectType: 2
-    trigger: 1
+    trigger: 2
     target: 1
     effectTone: 1
-    amount: 1
+    amount: 2
     requiredTags: []
     grantedTag: 
     targetTags: []

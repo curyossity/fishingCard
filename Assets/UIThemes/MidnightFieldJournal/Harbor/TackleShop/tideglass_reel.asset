@@ -27,7 +27,8 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Draw 2 additional Technique cards at the start of each expedition.
+  rulesText: Draw 1 additional Technique at the start of each biome, including the
+    first.
   rulesTextHighlights: []
   baitRulesText: 
   baitRulesTextHighlights: []
@@ -39,6 +40,24 @@ MonoBehaviour:
   biomeIds: []
   minimumDepth: 0
   maximumDepth: -1
-  effects: []
+  effects:
+  - effectId: equipment_tideglass_reel_0
+    displayName: Tideglass Reel
+    effectType: 2
+    trigger: 2
+    target: 1
+    effectTone: 1
+    amount: 1
+    requiredTags: []
+    grantedTag: 
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: 
   hasExplicitBaitData: 0
   baitEffects: []

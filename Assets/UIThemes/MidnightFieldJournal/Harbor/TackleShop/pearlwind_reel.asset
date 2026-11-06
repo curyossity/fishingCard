@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_Name: pearlwind_reel
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  uniqueId: equipment_pearlwind_reel
+  displayName: Pearlwind Reel
+  cardType: 2
+  rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
+  tags: []
+  artwork: {fileID: 21300000, guid: 36841ec9f7224a24583a73cff55f2bc4, type: 3}
+  encounterArtwork: {fileID: 0}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: After a new creature Bait's effect resolves, draw 1 Technique, then
+    choose 1 Technique to discard.
+  rulesTextHighlights: []
+  baitRulesText: 
+  baitRulesTextHighlights: []
+  weight: 0
+  value: 0
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
+  biomeIds: []
+  minimumDepth: 0
+  maximumDepth: -1
+  effects:
+  - effectId: equipment_pearlwind_reel_0
+    displayName: Pearlwind Reel
+    effectType: 2
+    trigger: 2
+    target: 1
+    effectTone: 1
+    amount: 1
+    requiredTags: []
+    grantedTag: 
+    targetTags: []
+    caughtCardTargetMode: 0
+    replacementCard: {fileID: 0}
+    expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: 
+  hasExplicitBaitData: 0
+  baitEffects: []

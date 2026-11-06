@@ -1,5 +1,9 @@
 # Penpot changes awaiting Unity integration
 
+**Equipment pricing revision integrated in Unity.** Source data, catalog and shop labels use the nine approved per-item prices. No additional Penpot asset changes or imports are pending for pricing. [Verification](../../Validation/EquipmentPassives/PricingRevision/README.md).
+
+**4 November 2026 — no additional Penpot import required.** The active R067 shop now contains nine real equipment designs and the approved passive behavior in Unity. Existing category artwork is reused; no new design assets were generated. All earlier completed revisions remain completed. [Gameplay/content integration evidence](../../Validation/EquipmentPassives/README.md).
+
 **2 November 2026 — MFJ-SYNC-013 final verification complete.** Initial/scrolled Unity captures passed at 4K and 1080p; fixed slots, clipping and a clean scene verified; zero console errors. The earlier MCP verification gap is resolved. [Evidence](Sync013/README.md).
 
 **MFJ-SYNC-013 completed — R067 Tackle Shop integrated.** Preferred concept restored to 3840 × 2160 and used in Penpot/Unity; native fields, catalog scrolling and Rod/Reel/Hook loadout active. R061/R063 alternatives are superseded, not pending imports. **0 pending; 48 completed; 19 superseded.** [Integration and validation](Sync013/README.md).
