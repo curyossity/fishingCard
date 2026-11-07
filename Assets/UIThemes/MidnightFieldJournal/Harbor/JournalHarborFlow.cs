@@ -12,6 +12,7 @@ public sealed class JournalHarborFlow : MonoBehaviour
     [SerializeField] private FishingRunController controller;
     [SerializeField] private GameObject runCanvas;
     [SerializeField] private JournalResultModal resultModal;
+    [SerializeField] private SlotTagPreparationView slotPreparation;
 
     public bool HubVisible => hubContent != null && hubContent.activeSelf;
     public int CurrentPage { get; private set; }
@@ -69,6 +70,18 @@ public sealed class JournalHarborFlow : MonoBehaviour
 
     /// <summary>Starts exactly one run through the shared controller; duplicate clicks cannot reset an expedition.</summary>
     public bool TryStartNewRun()
+    {
+        if (!HubVisible || controller == null || controller.RunActive) return false;
+        if (controller.UsesSlotMachine && slotPreparation != null)
+        {
+            slotPreparation.Open(controller, () => TryStartPreparedRun());
+            return false;
+        }
+        return TryStartPreparedRun();
+    }
+
+    /// <summary>Starts after an explicit Harbor tag-preparation confirmation, without reopening the preparation panel.</summary>
+    private bool TryStartPreparedRun()
     {
         if (!HubVisible || controller == null || controller.RunActive) return false;
         runCanvas.SetActive(true);

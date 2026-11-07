@@ -6,7 +6,7 @@ Working title; agreed direction dated 6 November 2026, subject to refinement and
 
 **Discover → Land → Build**, in Unity 2D with illustrated cards as the world.
 
-1. **Discover:** three reels, matching tags and optional lock/respin influence the next creature. Retain this slot-machine direction without adding landing connections. Detailed matching, probabilities, lock/respin limits/costs and fallback still need specification; tag-bar rules do not supply them.
+1. **Discover:** choose four of eight tags in the Harbor; keep those equally likely symbols for the expedition. Three independent reels initially spin, then accept or lock exactly one and respin the other two once (final result). Different symbols allow any eligible biome creature; a pair guarantees its repeated tag and prefers the third; a triple guarantees its tag. Pair/triple rarity chances progressively improve. Roll rarity separately and fall back to the nearest suitable tier, breaking ties toward the lower tier without abandoning the guaranteed tag. Normal creatures are biome-wide, not depth-limited; preserve unlocks and exclude separately gated Apex. Rarity probabilities and preference strength remain tunable. See [slot specification](Slot%20Machine%20Mechanic.md).
 2. **Land:** generate Landing Points to reach the creature's Resistance within limited attempts. Skill determines action quality; the existing rig, creature abilities, Techniques and equipment may enhance it. Every creature encounter can be won or lost.
 3. **Build:** after success, choose Catch or Bait and a permitted insertion position, commit and recalculate synergies. Continue automatically to the next encounter/progression step. New creatures contribute after placement, affecting future encounters.
 

@@ -215,6 +215,7 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private RectTransform encounterPanel;
     [UnityEngine.Serialization.FormerlySerializedAs("rarityTimingView")]
     [SerializeField] private EncounterTimingView encounterTimingView;
+    [SerializeField] private SlotMachineView slotMachineView;
 
     [SerializeField] private RectTransform runControlsPanel;
     [SerializeField] private RectTransform techniqueHand;
@@ -334,6 +335,10 @@ public sealed class FishingRunView : MonoBehaviour
     /// <summary>Forwards hidden timing state without substituting a card or executing encounter rules.</summary>
     public void SetTiming(EncounterTiming timing, Func<long, bool> stop, BiomeDefinition biome, int depth)
     { if (encounterTimingView != null) encounterTimingView.Present(timing, stop, biome, depth); }
+
+    /// <summary>Renders Discover commands independently of the retired tag-timing instrument.</summary>
+    public void SetSlotMachine(FishingRunController controller)
+    { if (slotMachineView != null) slotMachineView.Present(controller); }
 
     /// <summary>Waits for the current timing instrument's exit, with immediate completion when no view is configured.</summary>
     public bool HasCompletedTimingExit(long occurrence)

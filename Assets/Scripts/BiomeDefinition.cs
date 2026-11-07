@@ -85,6 +85,16 @@ public sealed class BiomeDefinition : ScriptableObject
         return tier?.EncounterPool ?? Array.Empty<CardDefinition>();
     }
 
+    /// <summary>Collects normal creatures across every biome tier; depth intervals do not restrict standard Discover.</summary>
+    public CardDefinition[] GetStandardCreaturePool()
+    {
+        var cards = new System.Collections.Generic.List<CardDefinition>();
+        foreach (BiomeDepthTierDefinition tier in depthTiers ?? Array.Empty<BiomeDepthTierDefinition>())
+            foreach (CardDefinition card in tier?.EncounterPool ?? Array.Empty<CardDefinition>())
+                if (card != null && card.CardType == CardType.Creature && !cards.Contains(card)) cards.Add(card);
+        return cards.ToArray();
+    }
+
     /// <summary>
     /// Returns the first depth after all finite tiers, or -1 when no Apex boundary exists.
     /// </summary>

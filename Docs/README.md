@@ -1,6 +1,6 @@
 # Deepwater documentation
 
-Design baseline: 6 November 2026. Deepwater is the working title. This update changes documents only; Unity code, artwork, scenes, prefabs, runtime data and saves have not been migrated.
+Design baseline: 6 November 2026, with the slot specification agreed on 7 November. Deepwater is the working title. The baseline documentation pass did not migrate Unity. The [slot runtime increment](Slot%20Machine%20Runtime.md) now implements Discover in the comparison scene, including the [approved artwork integration](Validation/TackleDiscoverArt/README.md). Landing, Build and the remaining redesign are not implemented by that increment.
 
 ## Active specifications
 
@@ -8,6 +8,7 @@ Design baseline: 6 November 2026. Deepwater is the working title. This update ch
 | --- | --- |
 | [Full GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) | Authoritative mechanics, proposals and open decisions |
 | [Brief](GDD_IMPLEMENTATION_BRIEF.md) | Concise day-to-day rules |
+| [Slot machine](Slot%20Machine%20Mechanic.md) | Agreed preparation, reel, matching, rarity fallback and eligibility rules |
 | [Architecture](Architecture.md) | Intended responsibilities for the agreed design |
 | [Card specification](Card%20Visual%20Specification.md) | Supplied-art boundary and dynamic fields |
 | [UI plan](UI%20Redesign%20Plan.md) | Presentation requirements and unresolved inputs |

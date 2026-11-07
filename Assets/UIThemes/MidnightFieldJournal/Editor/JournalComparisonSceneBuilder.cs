@@ -46,6 +46,7 @@ public static class JournalComparisonSceneBuilder
             Clone(camera.gameObject, target);
             foreach (var light in source.GetRootGameObjects().Where(g => g.GetComponents<Component>().Any(c => c != null && c.GetType().Name == "Light2D"))) Clone(light, target);
             JournalHarborBuilder.Install(target);
+            SlotMachineSetup.Install(target);
             if (!EditorSceneManager.SaveScene(target, ScenePath, false)) throw new InvalidOperationException("Could not save comparison scene.");
         }
         finally { EditorSceneManager.CloseScene(target, true); EditorSceneManager.ClosePreviewScene(source); SceneManager.SetActiveScene(active); }

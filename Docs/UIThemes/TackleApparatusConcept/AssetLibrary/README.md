@@ -2,6 +2,8 @@
 
 Reusable artwork and editable Penpot components for the approved Discover, Landing Challenge and Rig Placement screens. The working game canvas is the original **1920 × 1080**. This is a design handoff; Unity code, scenes, prefabs and existing runtime artwork have not been changed.
 
+Integration update, 7 November 2026: the handoff's Common/Discover sprites and fonts are now installed in the comparison scene. See [Unity artwork validation](../../../Validation/TackleDiscoverArt/README.md). Landing and Placement artwork remain handoff references. The provenance and original-resolution decisions below are preserved.
+
 [Download the current UI kit](../Deepwater-UI-Kit.zip).
 
 **Generation constraint:** the user has explicitly ruled out the separate image API option. Use built-in image generation only; do not switch to a CLI/API workflow.

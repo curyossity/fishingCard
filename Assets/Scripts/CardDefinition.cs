@@ -46,6 +46,8 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private int maximumCaughtValue;
 
     [Header("Encounter Availability")]
+    [Tooltip("Optional permanent unlock key. Standard slot selection excludes this creature until its owner grants the key.")]
+    [SerializeField] private string requiredCreatureUnlockId;
     [SerializeField] private string[] biomeIds = Array.Empty<string>();
     [Min(0)]
     [SerializeField] private int minimumDepth;
@@ -87,6 +89,7 @@ public class CardDefinition : ScriptableObject
     public int MinimumCaughtValue => minimumCaughtValue;
     public int MaximumCaughtValue => maximumCaughtValue;
     public string[] BiomeIds => biomeIds;
+    public string RequiredCreatureUnlockId => requiredCreatureUnlockId;
     public int MinimumDepth => minimumDepth;
     public int MaximumDepth => maximumDepth;
     public CardEffectDefinition[] Effects => effects;

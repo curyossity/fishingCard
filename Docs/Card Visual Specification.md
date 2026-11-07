@@ -56,6 +56,8 @@ Vocabulary review baseline: Fish, Predator, Schooling, Small, Heavy, Anchored, A
 
 ## Compact rig cards
 
+Discover's approved Tackle Apparatus theme is integrated separately under `Assets/UIThemes/TackleApparatus/`. Its reusable ivory/sage blank faces, portrait, clip and live name/role/sale-value fields follow the same separation contract. Catch/Bait face selection follows the stored role. Unprovided portraits remain empty; do not substitute unrelated illustrations. The cabinet has a clipped scrolling list and no three-card cap. Original nautical and Midnight Field Journal resources remain preserved for the other presentations.
+
 Preserve compact geometry and separate rod, ring, clip and medallion siblings. Runtime content includes name, portrait, role-aware sale value, optional approved effect icon and Bait marker. Weight-region treatment awaits design.
 
 Do not add full rules, tag lists, catch-order labels or modifier deltas. Physical layout shows current order; instance identity must survive insertion/removal. Interaction overlays stay outside face information. Scroll/stat feedback is presentation only and does not determine gameplay order.

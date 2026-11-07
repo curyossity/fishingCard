@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-07",
+  "unityVersion": "6000.5.9f1",
+  "scene": "Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity",
+  "passed": true,
+  "rulesAssertions": 67,
+  "liveAcceptanceAssertions": 31,
+  "liveRespinAssertions": 35,
+  "consoleErrors": 0,
+  "consoleWarnings": 0,
+  "metadataErrors": 0,
+  "metadataWarnings": 0,
+  "artworkIntegrated": false,
+  "rarityBalanceFinalized": false,
+  "landingImplemented": false,
+  "rigPlacementImplemented": false,
+  "initialOutcomeCounts": [24, 36, 4],
+  "acceptMatchesRespinDifferentOutcomeCounts": [144, 792, 88],
+  "eligibleStartingBiomeCreatures": 20
+}

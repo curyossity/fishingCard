@@ -421,7 +421,7 @@ public sealed partial class EncounterRuntime
     /// </summary>
     public CardDefinition TakeHookedEncounter()
     {
-        if (hookedEncounter == null)
+        if (hookedEncounter == null || AwaitingLandingChallenge)
         {
             return null;
         }
@@ -490,6 +490,7 @@ public sealed partial class EncounterRuntime
     /// </summary>
     public void Reset(bool preservePendingConcealments = false)
     {
+        ResetSlotMachine();
         RarityTiming.Reset(); timingChains = null; timingChainFollowUp = false;
         if (preservePendingConcealments) TagTiming.Reset(); else TagTiming.ResetRun();
         Trail.Reset();
@@ -621,6 +622,7 @@ public sealed partial class EncounterRuntime
     /// <summary>Rejects new reveals before selection, history, or chain state can change during active consequences.</summary>
     private void EnsureEncounterCanBeRevealed()
     {
+        if (SlotMachine.Active || AwaitingLandingChallenge) throw new InvalidOperationException("Finish Discover and landing before revealing another encounter.");
         if (Timing.Active) throw new InvalidOperationException("Stop the timing marker before revealing another encounter.");
         if (currentEventOccurrence?.State == EventOccurrenceState.Resolving)
             throw new InvalidOperationException("Cannot reveal a new encounter while event consequences are resolving.");
@@ -637,9 +639,9 @@ public sealed partial class EncounterRuntime
     }
 
     /// <summary>Applies one reveal while all nested reveal callbacks keep Technique input closed.</summary>
-    private void ApplyRevealedEncounter(CardDefinition encounter)
+    private void ApplyRevealedEncounter(CardDefinition encounter, bool landingSelection = false)
     {
-        if (encounter != null) EnsureEncounterCanBeRevealed();
+        if (encounter != null && !landingSelection) EnsureEncounterCanBeRevealed();
         EventEncounterOccurrence revealedEvent = null;
         if (encounter != null)
         {

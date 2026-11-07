@@ -12,7 +12,9 @@ Separate authored data, per-expedition runtime state, permanent progression and 
 | --- | --- |
 | Expedition / FishingRunController | Phase transitions, availability, landing outcome, role/placement commitment, automatic continuation and shutdown |
 | Selection / EncounterRuntime | Biome eligibility, approved slot-outcome selection and occurrence identity; no early attachment |
-| Slot-machine runtime | Three reels, tags and lock/respin state; exact rules await design |
+| Slot-machine / TagSlotMachineRuntime, SlotMatch | Three reel faces, exactly-one-lock input, one baseline respin, revision-checked commands, immutable accepted results and tag-only match interpretation |
+| Slot selection / SlotCreatureSelector, SlotSelectionSettings | Distinct unlocked biome-wide normal-creature pools, separate rarity roll, tag-preserving nearest-tier fallback (lower-tier ties) and secondary-tag species weights; immutable expedition tuning from SlotMachineProfile |
+| Harbor preparation / SlotTagPreparationView, FishingRunController | Explicit four-tag preparation, no mid-expedition edits, frozen expedition symbols/tuning and missing-tag eligibility diagnostics |
 | Landing runtime | Fish/zone motion, actions, accuracy, attempts, points, Resistance and terminal outcome |
 | Scoring / EffectResolver boundary | Approved accuracy and rig effects, bonuses/multipliers and source attribution; final math awaits design |
 | Rig / CatchChainRuntime boundary | Ordered membership, stable identity, roles, legal insertion and removal; preserve existing relative order |
@@ -29,7 +31,7 @@ Implement responsibilities within existing owners or focused services as appropr
 ## Required phase flow
 
 1. Initialize every expedition in Shallows with an empty rig using preserved permanent unlock/progression evidence. Never restore previous expedition attachments.
-2. Discover: slot-machine input produces creature-selection tags.
+2. Discover: use the expedition's four chosen symbols, resolve the initial spin or final optional one-lock respin, then select a biome-eligible creature under the approved tag/rarity rules.
 3. Create the creature occurrence and start Land with Resistance, attempts and the existing rig's contributions.
 4. Resolve accepted actions through approved accuracy/scoring rules.
 5. Landing failure immediately ends the expedition. Capture the full accumulated Catch sale value before rig cleanup; never attach the failed creature. Bait contributes zero. Award the full haul value without a failure penalty, then remove all attachments and clear expedition state while preserving the result snapshot and permanent progression.
@@ -63,3 +65,7 @@ Define every effect's trigger, target, scope, duration, source dependency, stack
 Follow [Card Visual Specification](Card%20Visual%20Specification.md) and [UI Redesign Plan](UI%20Redesign%20Plan.md). UI must not infer legality or delay authoritative scoring for animations.
 
 Future checks must cover stale/duplicate input, failed-creature exclusion, correct contribution timing, preserved order, both-role synergies, removal recalculation, full Catch-value payouts on both outcomes without duplicate awards, zero Bait value, value capture before cleanup, complete attachment removal, persistent progression and empty-rig Shallows starts. Scoring/Technique/event checks need finalized rules. Historical test results do not validate redesigned gameplay.
+
+The [slot increment](Slot%20Machine%20Runtime.md) is implemented in the comparison scene with the approved Discover artwork and live native controls. `EncounterRuntime` holds the selected creature behind `AwaitingLandingChallenge`; `FishingRunController.CreatureReadyForLanding` supplies the occurrence-bound handoff. Slot completion does not authorize attachment, role choice, Techniques or legacy Descend/Surface. Landing execution and its success/failure continuation are separate implementation work; the slot increment stops at that handoff.
+
+The installed Tackle Apparatus presentation uses `TackleDiscoverPresentation` for model-driven reel artwork, shared shell, haul and ordered rig; `TackleRigCardView` supplies separate face/portrait/role/value fields, and `TackleButtonFeedback` owns visual input feedback. `TackleDiscoverArtSetup` is the repeatable import/prefab/scene binding path. The separate 1920 × 1080 canvas appears only during Discover and hides at the landing handoff. Comparison-scene and Harbor regeneration retain the binding. It changes presentation only; see [Unity validation](Validation/TackleDiscoverArt/README.md) for captures, covered controls and missing illustration mappings.

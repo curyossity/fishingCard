@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public sealed class FishingRunController : MonoBehaviour
+public sealed partial class FishingRunController : MonoBehaviour
 {
     public event Action<string, FishingRunResult> RunCompleted;
     private string expeditionId;
@@ -138,11 +138,11 @@ public sealed class FishingRunController : MonoBehaviour
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
         && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
 
-    public bool CanDescend => !Timing.Active && CoreActionInputReady
+    public bool CanDescend => !Timing.Active && !SlotMachine.Active && !AwaitingLandingChallenge && CoreActionInputReady
         && (HookedEncounter == null || !HookedEncounter.RequiresAttachmentChoice || SelectedEncounterChoice != EncounterEffectChoice.None)
         && (!biomeApexRuntime.NextWatersPresented
         || currentBiome?.NextBiome?.GetDepthTier(currentBiome.NextBiome.StartingDepth) != null);
-    public bool CanSurface => CoreActionInputReady;
+    public bool CanSurface => !UsesSlotMachine && CoreActionInputReady;
     public bool CanReleaseSelectedCatch => CanReleaseCatch(selectedCatchIndex);
 
     /// <summary>Reports legal Release availability without mutating an attached card or resolving reactions.</summary>
@@ -323,7 +323,7 @@ public sealed class FishingRunController : MonoBehaviour
     /// <summary>Records an explicit role for this encounter occurrence; stale or locked choices cannot authorize Descend.</summary>
     public bool TryChooseEncounterRole(EncounterEffectChoice choice, int expectedEncounterRevision = -1)
     {
-        if (!CoreActionInputReady || HookedEncounter == null
+        if (!CoreActionInputReady || SlotMachine.Active || AwaitingLandingChallenge || HookedEncounter == null
             || (choice != EncounterEffectChoice.Catch && choice != EncounterEffectChoice.Bait)
             || (expectedEncounterRevision >= 0 && expectedEncounterRevision != encounterRuntime.EncounterRevision)) return false;
         selectedEncounterChoice = choice;
@@ -349,6 +349,7 @@ public sealed class FishingRunController : MonoBehaviour
     public void StartRun()
     {
         if (eventActionConfirmationInProgress || eventActionAdvanceInProgress || techniqueEffectInProgress) return;
+        if (!PrepareSlotExpedition()) return;
         EnsureRuntimeObjects();
         ResetEventActionState();
         ResetTechniquePlayState();
@@ -522,6 +523,7 @@ public sealed class FishingRunController : MonoBehaviour
     public bool CanUseTechniqueCard(int handIndex, out string restrictionReason)
     {
         restrictionReason = string.Empty;
+        if (SlotMachine.Active || AwaitingLandingChallenge) { restrictionReason = "Complete Discover and landing first"; return false; }
         if (Timing.Active) { restrictionReason = "Stop the timing marker first"; return false; }
 
         if (fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying)
@@ -1911,6 +1913,11 @@ public sealed class FishingRunController : MonoBehaviour
     /// </summary>
     private void RevealEncounterAtCurrentDepth()
     {
+        if (UsesSlotMachine)
+        {
+            PrepareSlotEncounterAtCurrentDepth();
+            return;
+        }
         encounterRuntime.TimingProfile = rarityTimingProfile;
         encounterRuntime.TagTimingProfile = tagTimingProfile;
         try { PrepareEncounterAtCurrentDepth(); }
@@ -2275,8 +2282,9 @@ public sealed class FishingRunController : MonoBehaviour
                 TrySurface,
                 CurrentEncounterIdentityHidden,
                 hideCurrentHaulValue ? (int?)null : currentHaulValue,
-                CoreActionInputReady && HookedEncounter != null);
+                CoreActionInputReady && !AwaitingLandingChallenge && HookedEncounter != null);
             fishingRunView.SetTiming(runActive ? Timing : null, TryStopEncounterTiming, CurrentBiome, currentDepth);
+            fishingRunView.SetSlotMachine(this);
             fishingRunView.SetEncounterRoleSelection(currentEncounter != null && currentEncounter.RequiresAttachmentChoice
                 ? SelectedEncounterChoice : SelectedEncounterChoice == EncounterEffectChoice.None ? EncounterEffectChoice.Catch : SelectedEncounterChoice);
             if (statFeedback.HasValue) fishingRunView.PresentEncounterStatFeedback(statFeedback.Value);

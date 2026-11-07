@@ -12,7 +12,7 @@ Preserve supplied artwork. Keep runtime text, counters, controls and feedback se
 
 ## Discover
 
-Present three reels, readable tag results/matches and optional lock/respin. Detailed match rules, limits, costs and odds need specification before enabled states can be finalized. The slot machine influences selection; do not add landing bonuses or another tag-timing instrument.
+Provide Harbor preparation for four active tags. Present three reels and clearly distinguish unrestricted discovery, a guaranteed pair tag with a secondary preference, and a triple with a stronger rarity opportunity. Offer Accept or exactly one locked reel plus one respin; the respun result is final. Follow the [slot specification](Slot%20Machine%20Mechanic.md). Exact rarity odds and preference strength remain balancing inputs. The slot machine influences selection; do not add landing bonuses or another tag-timing instrument. The comparison scene now uses the approved Tackle Apparatus Discover artwork, separate native labels, focus/pressed/disabled feedback and a scrollable rig. Supplied Fish/Schooling illustrations are mapped; the other six tags retain native symbol-area text pending matching art.
 
 ## Land
 
@@ -42,6 +42,6 @@ Capacity/overload/line-break indicators, voluntary Surface controls and related 
 
 ## Design inputs and future validation
 
-Finalize slot matching/layout; landing input, grades and feedback; Resistance/Weight presentation; insertion orientation, restrictions and confirmation; Technique/event windows; biome completion and reward presentation.
+Supply missing slot-symbol illustrations and finalize rarity/preference balance; landing input, grades and feedback; Resistance/Weight presentation; insertion orientation, restrictions and confirmation; Technique/event windows; biome completion and reward presentation.
 
 After approval, validate readable targets/text, input focus, stale input rejection, both-role presentation, long-rig insertion/inspection and result transitions. Preserve scaling from existing 1920 × 1080 and candidate 3840 × 2160 references; check 2560 × 1440, 1366 × 768, 1280 × 800 and ultrawide behavior for affected layouts. Existing screenshots do not validate new gameplay.

@@ -34,6 +34,7 @@ public static class JournalHarborBuilder
             throw new InvalidOperationException("Open the clean journal comparison scene before installing the Harbor.");
         BuildPrefab();
         Install(scene);
+        if (UnityEngine.Object.FindAnyObjectByType<FishingRunController>()?.UsesSlotMachine == true) SlotMachineSetup.Install(scene);
         EditorSceneManager.MarkSceneDirty(scene);
         if (!EditorSceneManager.SaveScene(scene)) throw new InvalidOperationException("Could not save the integrated journal scene.");
     }

@@ -43,9 +43,11 @@ Every new expedition starts in the first biome, **Shallows**, with an **empty ri
 
 ### Phase 1 — Discover: slot machine
 
-Use three reels, matching tags and optional lock/respin to influence the tags governing the next creature encounter. The slot machine is the encounter-selection instrument. The agreed tag-matching direction is retained; no extra connection to landing scoring is added.
+Before the expedition, select exactly four of the eight supported tags in the Harbor. These are the three independent reels' equally likely symbols (25% each) throughout the expedition. After the initial spin, accept or lock exactly one reel and respin the other two once. The respun result is final.
 
-Exact reel distributions, match outcomes, lock/respin limits or costs, eligible-pool fallback and rarity interactions are not specified in this design baseline. Do not substitute tag-bar precision, fatigue or rarity-ceiling rules for missing slot-machine rules. A detailed slot specification is needed before implementation.
+Three different symbols permit any eligible biome creature with baseline rarity probabilities. A pair guarantees the repeated tag, prefers the third tag through increased species weight and improves higher-rarity chances modestly. A triple guarantees its tag and supplies a stronger rarity improvement, without guaranteeing Rare or Legendary. Roll rarity separately, then choose a suitable species. Missing rarity tiers fall back to the nearest available tier while preserving the guaranteed tag; equal-distance ties use the lower tier.
+
+Normal creatures are eligible throughout their biome rather than by individual depth. Preserve creature unlock requirements and separate Apex conditions; standard slots exclude Apex. Missing guaranteed-tag coverage must be detected before finalizing an encounter, never bypassed with an unrelated creature. Active symbols do not restrict the entire biome pool. Discover does not grant Landing Points or acquire the creature. See the [complete slot specification](../Slot%20Machine%20Mechanic.md) for probabilities, boundaries and future-extension scope. Exact rarity probabilities and preference strength remain configurable balancing values.
 
 ### Phase 2 — Land: challenge
 
@@ -233,7 +235,7 @@ A focused playtest can evaluate proposed controls, attempt counts or formulas wi
 
 | Area | Decisions still required |
 | --- | --- |
-| Slot machine | Match outcomes, distributions, lock/respin limits/costs, fallback and rarity selection; no extra landing connection. |
+| Slot machine | Exact rarity probability tables and secondary-tag preference strength; no extra landing connection. Rules are specified in the Slot Machine Mechanic supplement. |
 | Landing | Controls, alignment/grade thresholds, movement, attempt rules and challenge end behavior. |
 | Scoring | Accuracy values, Miss rules, formula, multiplier ordering/stacking, rounding and special interactions. |
 | Difficulty | Resistance curves, rarity/characteristic influence and skill/build balance. |

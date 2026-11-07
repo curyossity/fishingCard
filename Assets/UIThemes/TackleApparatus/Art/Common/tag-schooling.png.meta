@@ -1,0 +1,663 @@
+fileFormatVersion: 2
+guid: 80fc9b7619bc42d4c823b2303742388b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1328985110042155711
+    second: tag-schooling_0
+  - first:
+      213: -8643250479545905872
+    second: tag-schooling_1
+  - first:
+      213: -1254390354440230262
+    second: tag-schooling_2
+  - first:
+      213: -4758065988749338152
+    second: tag-schooling_3
+  - first:
+      213: 8012008398269299607
+    second: tag-schooling_4
+  - first:
+      213: -9078686090635475232
+    second: tag-schooling_5
+  - first:
+      213: -6225492245170344890
+    second: tag-schooling_6
+  - first:
+      213: -2758579313960845033
+    second: tag-schooling_7
+  - first:
+      213: 8656867905800405737
+    second: tag-schooling_8
+  - first:
+      213: -5460621942317453873
+    second: tag-schooling_9
+  - first:
+      213: -7644827246161980141
+    second: tag-schooling_10
+  - first:
+      213: 773912439196042145
+    second: tag-schooling_11
+  - first:
+      213: -5807043050251221110
+    second: tag-schooling_12
+  - first:
+      213: -5982581542057884923
+    second: tag-schooling_13
+  - first:
+      213: 6454969878616151067
+    second: tag-schooling_14
+  - first:
+      213: 890079928755159396
+    second: tag-schooling_15
+  - first:
+      213: -4228280909058361804
+    second: tag-schooling_16
+  - first:
+      213: -5221786930925510577
+    second: tag-schooling_17
+  - first:
+      213: 6707644984708703791
+    second: tag-schooling_18
+  - first:
+      213: -8464323555011890872
+    second: tag-schooling_19
+  - first:
+      213: 4462568440222575435
+    second: tag-schooling_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tag-schooling_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 116
+        width: 61
+        height: 95
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 145672c651f7e8de0800000000000000
+      internalID: -1328985110042155711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_1
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 172
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d01f59b710d0880800000000000000
+      internalID: -8643250479545905872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_2
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 192
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ae9e16e92879ee0800000000000000
+      internalID: -1254390354440230262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_3
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 102
+        width: 279
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d95aba4134f7fdb0800000000000000
+      internalID: -4758065988749338152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_4
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 128
+        width: 45
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79bb944503f503f60800000000000000
+      internalID: 8012008398269299607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_5
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 181
+        width: 33
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e6846cf917020280800000000000000
+      internalID: -9078686090635475232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_6
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 174
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64c2cae79cb9a99a0800000000000000
+      internalID: -6225492245170344890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_7
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 120
+        width: 25
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7118f92cabe87b9d0800000000000000
+      internalID: -2758579313960845033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_8
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 174
+        width: 68
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e286b88e7f532870800000000000000
+      internalID: 8656867905800405737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_9
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 190
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcde67b6649f734b0800000000000000
+      internalID: -5460621942317453873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_10
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 184
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3159947af1e18e590800000000000000
+      internalID: -7644827246161980141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 193
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a34989534d7dba00800000000000000
+      internalID: 773912439196042145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_12
+      rect:
+        serializedVersion: 2
+        x: 437
+        y: 146
+        width: 25
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a870062ec1d396fa0800000000000000
+      internalID: -5807043050251221110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_13
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 156
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 503c4d9d8c999fca0800000000000000
+      internalID: -5982581542057884923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_14
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 138
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1413ca97e8a49950800000000000000
+      internalID: 6454969878616151067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_15
+      rect:
+        serializedVersion: 2
+        x: 439
+        y: 128
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4610827baf23a5c00800000000000000
+      internalID: 890079928755159396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_16
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 126
+        width: 14
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436b2056ae02255c0800000000000000
+      internalID: -4228280909058361804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_17
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 116
+        width: 28
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f406869d37c7887b0800000000000000
+      internalID: -5221786930925510577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 244
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f262ef03397561d50800000000000000
+      internalID: 6707644984708703791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_19
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 0
+        width: 243
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8417b87929ea88a80800000000000000
+      internalID: -8464323555011890872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-schooling_20
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4be5594a5a3eed30800000000000000
+      internalID: 4462568440222575435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      tag-schooling_0: -1328985110042155711
+      tag-schooling_1: -8643250479545905872
+      tag-schooling_10: -7644827246161980141
+      tag-schooling_11: 773912439196042145
+      tag-schooling_12: -5807043050251221110
+      tag-schooling_13: -5982581542057884923
+      tag-schooling_14: 6454969878616151067
+      tag-schooling_15: 890079928755159396
+      tag-schooling_16: -4228280909058361804
+      tag-schooling_17: -5221786930925510577
+      tag-schooling_18: 6707644984708703791
+      tag-schooling_19: -8464323555011890872
+      tag-schooling_2: -1254390354440230262
+      tag-schooling_20: 4462568440222575435
+      tag-schooling_3: -4758065988749338152
+      tag-schooling_4: 8012008398269299607
+      tag-schooling_5: -9078686090635475232
+      tag-schooling_6: -6225492245170344890
+      tag-schooling_7: -2758579313960845033
+      tag-schooling_8: 8656867905800405737
+      tag-schooling_9: -5460621942317453873
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

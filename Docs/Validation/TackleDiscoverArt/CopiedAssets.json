@@ -1,0 +1,306 @@
+{
+  "passed": true,
+  "count": 37,
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "assets": [
+    {
+      "name": "rig-card-ivory",
+      "size": [
+        416,
+        326
+      ],
+      "sha256": "8827278ee06a537183144bd2393cdf6ffd684b3393013d360eaf0cb312d1b8c0"
+    },
+    {
+      "name": "desk-background",
+      "size": [
+        1920,
+        1080
+      ],
+      "sha256": "f5b6b274529891639022782df769ead8878ec435309da944eb0a0c0d83c38930"
+    },
+    {
+      "name": "machine-housing",
+      "size": [
+        1598,
+        806
+      ],
+      "sha256": "a5f8dbcc81d8cf8301c09868d13518d5eb372f52b9e608902d1a5ce91a582690"
+    },
+    {
+      "name": "rig-cabinet",
+      "size": [
+        626,
+        1635
+      ],
+      "sha256": "0c6e507b059628e4fdf255cc4c7caa5880050d14b897c48e8b8a9cd4f9587e9c"
+    },
+    {
+      "name": "title-plaque",
+      "size": [
+        592,
+        117
+      ],
+      "sha256": "015b93d96a4a7122cf9a3e1350245d6dd3f2999b66d462c6d4f30f0820778040"
+    },
+    {
+      "name": "haul-plaque",
+      "size": [
+        424,
+        161
+      ],
+      "sha256": "573b2c833bac1edb9ba55a30b42d16ab57e644f017a71cab6d0bb6cde59b8636"
+    },
+    {
+      "name": "message-strip",
+      "size": [
+        603,
+        82
+      ],
+      "sha256": "57f2be0ef5056d8226520a1f57045c12a1c5be67aae7110eb673f246a6dc872f"
+    },
+    {
+      "name": "button-primary",
+      "size": [
+        549,
+        162
+      ],
+      "sha256": "a5c463f8ed6880e47fb6186a372c2c80184074d3b33db0c2af3262003b95ffd4"
+    },
+    {
+      "name": "button-secondary",
+      "size": [
+        521,
+        160
+      ],
+      "sha256": "eab5ba1e46dd87a98252e8b4cd96bfe4a691c5c346adc8f38a19e8f271e84013"
+    },
+    {
+      "name": "readout-glass-wide",
+      "size": [
+        552,
+        163
+      ],
+      "sha256": "538abcb7a104fdb653698e6076fff8f2353be57757be59f38ed8e0730972b08d"
+    },
+    {
+      "name": "keycap",
+      "size": [
+        295,
+        142
+      ],
+      "sha256": "b80de4824959304f96b67c7af29f7d63fe43aa72ab6c1e6e85ced7eb8ab5caa0"
+    },
+    {
+      "name": "status-plaque",
+      "size": [
+        458,
+        132
+      ],
+      "sha256": "0a6111d83655dfc207ebc75e62de2b442b8ceeb85491555f26ae124a344a9714"
+    },
+    {
+      "name": "control-console",
+      "size": [
+        738,
+        198
+      ],
+      "sha256": "76122b01bae4f8654fbfe150673159e22c28652ada07b6da2b7904ac46df9dc5"
+    },
+    {
+      "name": "rig-card-sage",
+      "size": [
+        418,
+        324
+      ],
+      "sha256": "c393cc9074520e0c50e292c20ff5826dee586d9a34dc91e814d1bd15fe7b3af8"
+    },
+    {
+      "name": "portrait-frame",
+      "size": [
+        505,
+        251
+      ],
+      "sha256": "13bef1ef98d8f69852551781f3fad5c03e2d07be2414925d46d7744c2109a4fa"
+    },
+    {
+      "name": "card-clip",
+      "size": [
+        213,
+        132
+      ],
+      "sha256": "05b248e929922e1c10c6f95cd0783b89739a47135cafe2e0a8cf4998d79f9e31"
+    },
+    {
+      "name": "rope-horizontal",
+      "size": [
+        429,
+        92
+      ],
+      "sha256": "0745c8cc8dd737d0456ac33734011bdfdbd66409e2f0b2aa73f33ac3ae341535"
+    },
+    {
+      "name": "rope-vertical",
+      "size": [
+        60,
+        224
+      ],
+      "sha256": "e8d53dd948ad32860188d043379d16bf558d14aaf40f176b5abefe4f34d7f49c"
+    },
+    {
+      "name": "portrait-sardine",
+      "size": [
+        440,
+        173
+      ],
+      "sha256": "d44f24585666c3e8139d04139a3fa17509a8a9d6107e3f6ac7cfc4fe11c17631"
+    },
+    {
+      "name": "portrait-mackerel",
+      "size": [
+        504,
+        229
+      ],
+      "sha256": "82bf559d39e63b89d61f3dddbcb90b9f6c08f1a04ecf150084296778829c47cf"
+    },
+    {
+      "name": "portrait-glass-minnow",
+      "size": [
+        337,
+        153
+      ],
+      "sha256": "9c468788c6917841384d397633c0d596fd94a6bbafc206c0bea2af172e89d9ff"
+    },
+    {
+      "name": "portrait-garfish",
+      "size": [
+        640,
+        123
+      ],
+      "sha256": "a08696c2fa924bc8d4deecbd0dd66172c1fa644d9bc949707020b6cd573c3208"
+    },
+    {
+      "name": "cursor-garfish-right",
+      "size": [
+        536,
+        106
+      ],
+      "sha256": "7f3b4f6e8ce0f7c87ae757d482dee6a1fc4618bdb7267f88ec812cef024af996"
+    },
+    {
+      "name": "tag-schooling",
+      "size": [
+        501,
+        219
+      ],
+      "sha256": "e0f8b8d0cd6e00ed67e4a9156802b867d8e5e8f45749904265371b929e1a0900"
+    },
+    {
+      "name": "lamp-on",
+      "size": [
+        277,
+        280
+      ],
+      "sha256": "855161fee00a88768643df29d22240c874cfbf9d02e7573dbf36cd5e8bc3e26e"
+    },
+    {
+      "name": "lamp-off",
+      "size": [
+        276,
+        280
+      ],
+      "sha256": "fbbac41e758039bc036cf2b9ca31461b05dcccb9bf762ca0537114a389e76670"
+    },
+    {
+      "name": "readout-glass-small",
+      "size": [
+        508,
+        181
+      ],
+      "sha256": "eef47eaed06da9097731b5dd01feb4494f1c5b5b80a1db5b5094f36ef6908ebf"
+    },
+    {
+      "name": "reel-drum",
+      "size": [
+        412,
+        490
+      ],
+      "sha256": "7ccc667b60ed30086637625f54ce9aa0e225eb520d89b8e6eafdb33e65b5c8e4"
+    },
+    {
+      "name": "reel-bezel",
+      "size": [
+        526,
+        487
+      ],
+      "sha256": "5476860f44fbd16b54499e7fff68bafc66811618974e3fb9e53887dbc724b659"
+    },
+    {
+      "name": "lock-lever-locked",
+      "size": [
+        259,
+        313
+      ],
+      "sha256": "3333dc5d7a8e8edc9ef3e78d023f55d64014e2a501963c707f97ce6778f73b67"
+    },
+    {
+      "name": "lock-lever-open",
+      "size": [
+        262,
+        233
+      ],
+      "sha256": "779d2c3bf12b2493d9db558f844ea7f4d78e278d6975cd1e01c7b60c20816a8f"
+    },
+    {
+      "name": "match-lamps-on",
+      "size": [
+        457,
+        116
+      ],
+      "sha256": "b5958db410fa91761f14fcd0be2b8ffe05804a77082badfedfc69ba040d5f803"
+    },
+    {
+      "name": "match-lamps-off",
+      "size": [
+        496,
+        112
+      ],
+      "sha256": "757e20dc5b6148a9daafe276c9c89f133c8821cdc35212b0a5edcef3c0988cc1"
+    },
+    {
+      "name": "focus-corners",
+      "size": [
+        96,
+        64
+      ],
+      "sha256": "4585f02008fb3d246231523537fddff86f53073a1fca6bb85cd6ff6ac5423b4b"
+    },
+    {
+      "name": "arrow-right",
+      "size": [
+        32,
+        18
+      ],
+      "sha256": "f4639e39d40e8b820f6941d2f44e233f1df78a0bb77500d3d311e780d443385f"
+    },
+    {
+      "name": "arrow-left",
+      "size": [
+        32,
+        18
+      ],
+      "sha256": "c27ea5c00f72e358571657966b54e57ba0503060e5740153639ac9c8d9edf973"
+    },
+    {
+      "name": "caret-down",
+      "size": [
+        24,
+        16
+      ],
+      "sha256": "caf13278bcc6f2fbfcc510af70554e11ee1fe416353046a91edb4d99dca676f5"
+    }
+  ]
+}
