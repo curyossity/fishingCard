@@ -63,6 +63,21 @@ public static class SlotMachineSceneChecks
             respinButton.onClick.Invoke();
             assert(controller.SlotMachine.RespinsRemaining == 0 && controller.SlotMachine.GetTag(0) == preserved, "Respin spent the wrong allowance or changed the locked face.");
             assert(!controller.TryRespinSlotMachine(controller.SlotMachine.Revision), "Second respin accepted.");
+            assert(controller.SlotMachine.Active && !controller.AwaitingLandingChallenge && controller.CurrentEncounter == null,
+                "Respin revealed a creature before Accept Tags.");
+            assert(view.gameObject.activeInHierarchy && !respinButton.interactable, "Final reels hidden or respin left enabled.");
+            var accept = (UnityEngine.UI.Button)viewData.FindProperty("acceptButton").objectReferenceValue;
+            assert(accept.interactable, "Final result could not be accepted.");
+            for (int i = 0; i < 3; i++)
+            {
+                var button = (UnityEngine.UI.Button)viewData.FindProperty("lockButtons").GetArrayElementAtIndex(i).objectReferenceValue;
+                var label = (TMP_Text)viewData.FindProperty("reelLabels").GetArrayElementAtIndex(i).objectReferenceValue;
+                assert(!button.interactable && !controller.TrySetSlotReelLocked(controller.SlotMachine.Revision, i, true), "Lock changed after respin.");
+                assert(string.Equals(label.text, controller.SlotMachine.GetTag(i), StringComparison.OrdinalIgnoreCase), "Displayed final reel differs from runtime result.");
+            }
+            assert(!controller.TryAcceptSlotMachine(revision), "Stale initial Accept committed the respun result.");
+            Capture(view.GetComponentInParent<Canvas>(), "FinalRespin1080.png");
+            accept.onClick.Invoke();
         }
         else ((UnityEngine.UI.Button)viewData.FindProperty("acceptButton").objectReferenceValue).onClick.Invoke();
         assert(!controller.SlotMachine.Active && controller.AwaitingLandingChallenge && controller.CurrentEncounter != null,

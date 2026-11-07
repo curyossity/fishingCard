@@ -6,7 +6,7 @@ Agreed design direction, 7 November 2026. Exact rarity probabilities and prefere
 
 Before an expedition, the player chooses exactly four distinct active tags in the Harbor from Fish, Predator, Schooling, Small, Heavy, Anchored, Armored and Elusive. Those four symbols remain active throughout the expedition. Each of three independent reels initially has a 25% chance of each active tag. Active symbols influence discovery; they do not restrict the entire creature pool to creatures with those tags.
 
-Every standard creature encounter begins with an initial spin. The player either accepts that result or locks **exactly one** reel and respins the other two **once**. Both respun reels independently draw from the same four tags. Locking two reels, respinning without a lock and additional respins are unavailable. A lock can be undone before using the respin. The respun result is final and proceeds to creature selection without another confirmation.
+Every standard creature encounter begins with an initial spin. The player either accepts that result or locks **exactly one** reel and respins the other two **once**. Both respun reels independently draw from the same four tags. Locking two reels, respinning without a lock and additional respins are unavailable. A lock can be undone before using the respin. After respinning, show the final result with lock/respin controls disabled. The player may review it for as long as desired; only **Accept Tags** selects and reveals the creature. There is no timed or automatic continuation.
 
 ## Outcomes
 

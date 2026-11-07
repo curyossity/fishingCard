@@ -43,7 +43,7 @@ Every new expedition starts in the first biome, **Shallows**, with an **empty ri
 
 ### Phase 1 — Discover: slot machine
 
-Before the expedition, select exactly four of the eight supported tags in the Harbor. These are the three independent reels' equally likely symbols (25% each) throughout the expedition. After the initial spin, accept or lock exactly one reel and respin the other two once. The respun result is final.
+Before the expedition, select exactly four of the eight supported tags in the Harbor. These are the three independent reels' equally likely symbols (25% each) throughout the expedition. After the initial spin, accept or lock exactly one reel and respin the other two once. The respun result is fixed and stays visible with further lock/respin input disabled. Only Accept Tags reveals the creature, whenever the player is ready; there is no automatic continuation or timeout.
 
 Three different symbols permit any eligible biome creature with baseline rarity probabilities. A pair guarantees the repeated tag, prefers the third tag through increased species weight and improves higher-rarity chances modestly. A triple guarantees its tag and supplies a stronger rarity improvement, without guaranteeing Rare or Legendary. Roll rarity separately, then choose a suitable species. Missing rarity tiers fall back to the nearest available tier while preserving the guaranteed tag; equal-distance ties use the lower tier.
 

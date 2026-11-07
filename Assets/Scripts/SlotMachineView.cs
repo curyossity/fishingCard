@@ -38,6 +38,7 @@ public sealed class SlotMachineView : MonoBehaviour
             heading.text = "ENCOUNTER TAGS";
             resultDescription.text = controller.SlotFailure ?? (match.Kind == SlotMatchKind.ThreeDifferent ? "OPEN WATERS / ANY TAG"
                 : match.GuaranteedTag.ToUpperInvariant() + (match.Kind == SlotMatchKind.Triple ? " TRIPLE" : " MATCH / " + match.PreferredTag.ToUpperInvariant() + " PREFERRED"));
+            if (controller.SlotFailure == null && machine.RespinsRemaining == 0) resultDescription.text = "FINAL / " + resultDescription.text;
             artwork.Present(controller, match);
         }
         long revision = machine.Revision;
@@ -61,5 +62,7 @@ public sealed class SlotMachineView : MonoBehaviour
         respinButton.onClick.AddListener(() => controller.TryRespinSlotMachine(revision));
         acceptButton.GetComponent<TackleButtonFeedback>()?.RefreshAvailability();
         respinButton.GetComponent<TackleButtonFeedback>()?.RefreshAvailability();
+        if (!respinButton.interactable && acceptButton.interactable
+            && UnityEngine.EventSystems.EventSystem.current?.currentSelectedGameObject == respinButton.gameObject) acceptButton.Select();
     }
 }

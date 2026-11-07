@@ -31,7 +31,7 @@ Implement responsibilities within existing owners or focused services as appropr
 ## Required phase flow
 
 1. Initialize every expedition in Shallows with an empty rig using preserved permanent unlock/progression evidence. Never restore previous expedition attachments.
-2. Discover: use the expedition's four chosen symbols, resolve the initial spin or final optional one-lock respin, then select a biome-eligible creature under the approved tag/rarity rules.
+2. Discover: use the expedition's four chosen symbols and resolve the initial spin or optional one-lock respin. Keep the final respin faces visible with further changes disabled until explicit Accept Tags; only then select a biome-eligible creature under the approved tag/rarity rules.
 3. Create the creature occurrence and start Land with Resistance, attempts and the existing rig's contributions.
 4. Resolve accepted actions through approved accuracy/scoring rules.
 5. Landing failure immediately ends the expedition. Capture the full accumulated Catch sale value before rig cleanup; never attach the failed creature. Bait contributes zero. Award the full haul value without a failure penalty, then remove all attachments and clear expedition state while preserving the result snapshot and permanent progression.

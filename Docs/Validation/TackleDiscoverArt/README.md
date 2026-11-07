@@ -1,5 +1,7 @@
 # Discover artwork integration — validated
 
+Current interaction clarification: [respun results remain visible until Accept Tags](../SlotMachineRespinReview/README.md). The original artwork integration checks below are preserved; the latest respin-flow validation is in that report.
+
 The approved 37 Common/Discover sprites, original font sources and font licenses are copied into `Assets/UIThemes/TackleApparatus/`. [CopiedAssets.json](CopiedAssets.json) confirms every sprite's dimensions and SHA-256 match the original handoff. No image was regenerated, upscaled or flattened with runtime text.
 
 `TackleDiscoverArtSetup` installs the full 1920 × 1080 native composition and reusable scrollable rig-card prefab in `Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity`. The slot view forwards its model state to `TackleDiscoverPresentation`, which displays the cabinet, live haul/biome, reels, one lock, match lamps and supplied control artwork. Pointer/keyboard focus, disabled dimming and four-pixel press feedback are separate native UI behavior. Six missing tag illustrations and unprovided creature portraits retain explicit text/empty-portrait fallbacks; unrelated artwork is not substituted.

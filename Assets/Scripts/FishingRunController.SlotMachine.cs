@@ -78,20 +78,19 @@ public sealed partial class FishingRunController
         return true;
     }
 
-    /// <summary>Uses the single optional respin; its result is final and reveals a pending landing encounter immediately.</summary>
+    /// <summary>Uses the single optional respin and leaves its fixed result visible until the player accepts.</summary>
     public bool TryRespinSlotMachine(long revision)
     {
         if (!CoreActionInputReady || slotCommandInProgress || !SlotMachine.HasSpun) return false;
         slotCommandInProgress = true;
         try
         {
-            if (!SlotMachine.TrySpin(revision, random)) return false;
-            return CompleteSlotSelection(SlotMachine.Revision);
+            return SlotMachine.TrySpin(revision, random);
         }
         finally { slotCommandInProgress = false; RefreshViews(); }
     }
 
-    /// <summary>Accepts the first spin without consuming the optional respin.</summary>
+    /// <summary>Accepts either the initial result or the fixed respin result and reveals the creature once.</summary>
     public bool TryAcceptSlotMachine(long revision)
     {
         if (!CoreActionInputReady || slotCommandInProgress) return false;
