@@ -73,7 +73,8 @@ public sealed partial class FishingRunController
     /// <summary>Changes one reel lock while rejecting stale UI, transition input and attempts to lock two reels.</summary>
     public bool TrySetSlotReelLocked(long revision, int reel, bool value)
     {
-        if (!CoreActionInputReady || slotCommandInProgress || !SlotMachine.TrySetLocked(revision, reel, value)) return false;
+        if (!CoreActionInputReady || slotCommandInProgress || fishingRunView != null && fishingRunView.IsSlotMachineAnimating
+            || !SlotMachine.TrySetLocked(revision, reel, value)) return false;
         RefreshViews();
         return true;
     }
@@ -81,7 +82,7 @@ public sealed partial class FishingRunController
     /// <summary>Uses the single optional respin and leaves its fixed result visible until the player accepts.</summary>
     public bool TryRespinSlotMachine(long revision)
     {
-        if (!CoreActionInputReady || slotCommandInProgress || !SlotMachine.HasSpun) return false;
+        if (!CoreActionInputReady || slotCommandInProgress || fishingRunView != null && fishingRunView.IsSlotMachineAnimating || !SlotMachine.HasSpun) return false;
         slotCommandInProgress = true;
         try
         {
@@ -93,7 +94,7 @@ public sealed partial class FishingRunController
     /// <summary>Accepts either the initial result or the fixed respin result and reveals the creature once.</summary>
     public bool TryAcceptSlotMachine(long revision)
     {
-        if (!CoreActionInputReady || slotCommandInProgress) return false;
+        if (!CoreActionInputReady || slotCommandInProgress || fishingRunView != null && fishingRunView.IsSlotMachineAnimating) return false;
         slotCommandInProgress = true;
         try { return CompleteSlotSelection(revision); }
         finally { slotCommandInProgress = false; RefreshViews(); }

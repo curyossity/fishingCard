@@ -32,7 +32,15 @@ The pair's secondary-tag species weight is initially 2 versus 1. All tables and 
 
 **Fishing Cards > Slot Machine > Integrate Approved Discover Art** imports the original approved sprites/fonts and installs the separate Discover canvas. The existing **Install Plain Controls** profile/setup command, comparison-scene regeneration and Harbor regeneration preserve the artwork binding once its prefab exists. Existing tag/rarity timing objects are retained inactive with their controller bindings cleared. Obsolete Descend/Surface controls and capacity meters are hidden. Original artwork files and other card masters are unchanged; this theme uses its own blank rig faces and independent portraits/text.
 
-Set Sail opens tag preparation. Confirming four tags starts the expedition and immediately shows the initial result. Accept reveals a creature; alternatively, lock one reel and respin the other two once. The final reels remain visible with lock/respin disabled and Accept Tags enabled. There is no timeout. Only explicit acceptance selects the creature and starts the landing handoff.
+Set Sail opens tag preparation. Confirming four tags starts the expedition and animates the initial spin. Accept reveals a creature; alternatively, lock one reel and respin the other two once. After the animation settles, the final reels remain visible with lock/respin disabled and Accept Tags enabled. There is no timeout. Only explicit acceptance selects the creature and starts the landing handoff.
+
+### Cylindrical reel presentation
+
+Both initial spin and respin use native 2D cylinder projection. Illustrations and native tag text compress vertically, darken and disappear as they turn around the top/bottom edges. The housing and existing drum shading remain stationary. No text is baked into images and no source artwork or shared font materials are changed. Only the expedition's four symbols appear during motion; animation never calls the gameplay RNG.
+
+`TackleDiscoverPresentation` authors duration and stagger (initially 1.05 seconds plus 0.15 seconds per moving reel). A gentle final settle is included. The locked reel does not move during a respin. Controls and direct controller commands are blocked during motion; match lamps and the result summary appear after all moving reels stop. The resolved result remains until explicit Accept Tags, including when a respin happens to return identical symbols. `SpinRevision` prevents lock-only refreshes from restarting the animation.
+
+**Fishing Cards > Slot Machine > Install Cylindrical Reel Animation** updates the existing Discover prefab without rebuilding approved art or replacing scene overrides. Full art regeneration includes the same composition. Native text remains the fallback for the six tags without supplied illustrations.
 
 The selected creature is **awaiting landing**, not acquired. `AwaitingLandingChallenge` blocks attachment, Catch/Bait choice, Techniques and legacy Descend/Surface; the new creature supplies no rig benefit. Reels are hidden during this handoff. Landing input, Resistance/scoring, success/failure resolution and Build continuation are not implemented by this slot increment. It stops at the occurrence-bound landing handoff and does not fabricate a successful catch. Other event/forced-chain redesigns remain separate work.
 
@@ -41,3 +49,5 @@ The selected creature is **awaiting landing**, not acquired. `AwaitingLandingCha
 `SlotMachineRuleChecks.ValidateRules()` checks deterministic reel state, all initial combinations and the stated respin strategy probabilities, guaranteed/secondary tags, rarity fallback/ties, biome membership, depth independence, Apex exclusion, unlock evidence, reset/stale commands and no pre-landing acquisition.
 
 `SlotMachineSceneChecks.ValidateLive(false)` and `ValidateLive(true)` exercise Harbor preparation, plain controls and the acceptance/respin branches in fresh Play Mode sessions without modifying saved progression. Evidence and actual check counts are recorded under [Validation/SlotMachine](Validation/SlotMachine/README.md). The original tag-timing checks remain historical fixtures, not validation of Discover.
+
+`SlotReelAnimationChecks.Begin()` runs frame-driven animation checks in a fresh comparison Play Mode session. Existing synchronous control fixtures explicitly settle visual motion; they do not replace the frame-driven checks. See [animation evidence](Validation/SlotReelAnimation/README.md).

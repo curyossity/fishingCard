@@ -340,6 +340,8 @@ public sealed class FishingRunView : MonoBehaviour
     public void SetSlotMachine(FishingRunController controller)
     { if (slotMachineView != null) slotMachineView.Present(controller); }
 
+    public bool IsSlotMachineAnimating => slotMachineView != null && slotMachineView.IsAnimating;
+
     /// <summary>Waits for the current timing instrument's exit, with immediate completion when no view is configured.</summary>
     public bool HasCompletedTimingExit(long occurrence)
     { return encounterTimingView == null || encounterTimingView.HasCompletedExit(occurrence); }

@@ -52,6 +52,7 @@ public sealed class TagSlotMachineRuntime
     private int[] totalWeights = Array.Empty<int>();
     public long Occurrence { get; private set; }
     public long Revision { get; private set; }
+    public long SpinRevision { get; private set; }
     public bool Active { get; private set; }
     public bool HasSpun { get; private set; }
     public int RespinsRemaining { get; private set; }
@@ -136,6 +137,7 @@ public sealed class TagSlotMachineRuntime
         if (HasSpun) RespinsRemaining--;
         HasSpun = true;
         Revision++;
+        SpinRevision = Revision;
         return true;
     }
 
@@ -156,6 +158,7 @@ public sealed class TagSlotMachineRuntime
         Occurrence++;
         Revision++;
         Active = HasSpun = false;
+        SpinRevision = 0;
         RespinsRemaining = 0;
         AcceptedResult = null;
         strips = Array.Empty<Symbol[]>();

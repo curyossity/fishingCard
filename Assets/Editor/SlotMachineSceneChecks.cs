@@ -46,6 +46,7 @@ public static class SlotMachineSceneChecks
         assert(!controller.TryPrepareSlotTags(new[] { "Fish", "Predator", "Small", "Heavy" }), "Active symbols changed mid-expedition.");
         var view = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>();
         assert(view != null, "Plain Discover controls missing.");
+        SlotReelAnimationChecks.SettleForControlFixture(view, controller);
         Canvas.ForceUpdateCanvases();
         foreach (TMP_Text text in view.GetComponentsInChildren<TMP_Text>())
             assert(!text.isTextOverflowing, "Discover label overflow: " + text.name);
@@ -61,6 +62,7 @@ public static class SlotMachineSceneChecks
             assert(controller.SlotMachine.IsLocked(0) && respinButton.interactable, "Lock did not enable respin.");
             assert(!controller.TrySetSlotReelLocked(controller.SlotMachine.Revision, 1, true), "Controller allowed two locked reels.");
             respinButton.onClick.Invoke();
+            SlotReelAnimationChecks.SettleForControlFixture(view, controller);
             assert(controller.SlotMachine.RespinsRemaining == 0 && controller.SlotMachine.GetTag(0) == preserved, "Respin spent the wrong allowance or changed the locked face.");
             assert(!controller.TryRespinSlotMachine(controller.SlotMachine.Revision), "Second respin accepted.");
             assert(controller.SlotMachine.Active && !controller.AwaitingLandingChallenge && controller.CurrentEncounter == null,

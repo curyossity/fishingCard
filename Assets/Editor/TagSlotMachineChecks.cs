@@ -40,9 +40,12 @@ public static class TagSlotMachineChecks
         check(machine.RespinsRemaining == 1 && machine.CanAccept, "Initial spin spent a respin.");
         check(!machine.TrySpin(initial, new Tickets()), "Duplicate spin callback accepted.");
         long beforeLock = machine.Revision;
+        check(machine.SpinRevision == beforeLock, "Initial roll did not publish its spin identity.");
         check(machine.TrySetLocked(beforeLock, 0, true), "Settled reel could not be locked.");
+        check(machine.SpinRevision == beforeLock && machine.SpinRevision != machine.Revision, "Lock change masqueraded as a new spin.");
         check(!machine.TryAccept(beforeLock, out _), "Stale acceptance survived a lock change.");
         check(machine.TrySpin(machine.Revision, new Tickets(0, 0)), "Respin rejected.");
+        check(machine.SpinRevision == machine.Revision && machine.SpinRevision != beforeLock, "Respin reused the initial animation identity.");
         check(machine.GetTag(0) == "Fish" && machine.GetTag(1) == "Fish"
             && machine.GetTag(2) == "Fish", "Locked face changed or unlocked reels did not roll.");
         check(machine.RespinsRemaining == 0 && !machine.CanSpin, "Respin limit was ignored.");
@@ -91,6 +94,7 @@ public static class TagSlotMachineChecks
             "Caller mutated the reserved reel definition.");
         check(!machine.CanSpin && machine.CanAccept, "Zero-respin configuration is invalid.");
         machine.Reset();
+        check(machine.SpinRevision == 0, "Reset retained an animation identity.");
         check(!machine.Active && machine.GetTag(0) == null && !machine.IsLocked(0), "Reset retained reel state.");
         return assertions;
     }

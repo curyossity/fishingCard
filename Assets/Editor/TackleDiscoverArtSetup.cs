@@ -191,9 +191,56 @@ public static class TackleDiscoverArtSetup
             Bind(art, "rigCardPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(RigPrefabPath).GetComponent<TackleRigCardView>());
             Bind(art, "emptyRigLabel", Text(viewport, "Empty Rig", "NO CREATURES\nATTACHED", new Rect(15, 280, 285, 150), 34, Cream, false, 24, true));
             view.ApplyModifiedPropertiesWithoutUndo(); art.ApplyModifiedPropertiesWithoutUndo();
+            AddReelAnimation(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }
+    }
+
+    /// <summary>Adds cylinder rendering to the existing prefab without rebuilding its artwork or changing scene overrides.</summary>
+    [MenuItem("Fishing Cards/Slot Machine/Install Cylindrical Reel Animation")]
+    public static void InstallReelAnimation()
+    {
+        if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Exit Play Mode before installing reel animation.");
+        var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+        try { AddReelAnimation(root); PrefabUtility.SaveAsPrefabAsset(root, PrefabPath); }
+        finally { PrefabUtility.UnloadPrefabContents(root); }
+        AssetDatabase.SaveAssets();
+    }
+
+    /// <summary>Retains the original templates and composes three clipped cylinder surfaces around native tag graphics.</summary>
+    private static void AddReelAnimation(GameObject root)
+    {
+        var view = new SerializedObject(root.GetComponent<SlotMachineView>());
+        var art = new SerializedObject(root.GetComponent<TackleDiscoverPresentation>());
+        var reels = art.FindProperty("reels"); reels.arraySize = 3;
+        var stage = root.transform.Find("1920x1080 Stage");
+        for (int i = 0; i < 3; i++)
+        {
+            var existing = stage.Find("Cylindrical Reel " + i);
+            if (existing != null) { reels.GetArrayElementAtIndex(i).objectReferenceValue = existing.GetComponent<TackleReelAnimator>(); continue; }
+            var cylinder = Rect("Cylindrical Reel " + i, stage, new Rect(625 + i * 345, 305, 320, 365));
+            cylinder.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
+            var animator = cylinder.gameObject.AddComponent<TackleReelAnimator>();
+            var icon = (UnityEngine.UI.Image)art.FindProperty("reelSymbols").GetArrayElementAtIndex(i).objectReferenceValue;
+            var fallback = (TMP_Text)art.FindProperty("fallbackSymbols").GetArrayElementAtIndex(i).objectReferenceValue;
+            var label = (TMP_Text)view.FindProperty("reelLabels").GetArrayElementAtIndex(i).objectReferenceValue;
+            MoveReelTemplate(icon.rectTransform, cylinder, new Vector2(0, 55));
+            MoveReelTemplate(fallback.rectTransform, cylinder, new Vector2(0, 55));
+            MoveReelTemplate(label.rectTransform, cylinder, new Vector2(0, -95));
+            animator.Configure(icon, fallback, label);
+            reels.GetArrayElementAtIndex(i).objectReferenceValue = animator;
+        }
+        art.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    /// <summary>Keeps authored dimensions and native font settings while centering each source field on its wheel.</summary>
+    private static void MoveReelTemplate(RectTransform template, RectTransform cylinder, Vector2 position)
+    {
+        template.SetParent(cylinder, false);
+        template.anchorMin = template.anchorMax = template.pivot = new Vector2(.5f, .5f);
+        template.anchoredPosition = position;
+        template.gameObject.SetActive(false);
     }
 
     /// <summary>Creates a stable rectangular hit target with separate artwork, press motion and focus treatment.</summary>

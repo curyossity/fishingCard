@@ -46,6 +46,17 @@ public static class TackleDiscoverArtChecks
             assert(data.FindProperty(name).objectReferenceValue != null, "Missing live field: " + name);
         var presentation = new SerializedObject(prefab.GetComponent<TackleDiscoverPresentation>());
         assert(presentation.FindProperty("tagArtwork").arraySize == 2, "Unavailable tag illustrations were silently substituted.");
+        var reels = presentation.FindProperty("reels");
+        assert(reels.arraySize == 3, "Cylinder animation is not bound to three reels.");
+        for (int i = 0; i < 3; i++)
+        {
+            var reel = reels.GetArrayElementAtIndex(i).objectReferenceValue as TackleReelAnimator;
+            var fields = reel != null ? new SerializedObject(reel) : null;
+            assert(fields != null && reel.GetComponent<UnityEngine.UI.RectMask2D>() != null
+                && fields.FindProperty("symbolTemplate").objectReferenceValue != null
+                && fields.FindProperty("fallbackTemplate").objectReferenceValue != null
+                && fields.FindProperty("labelTemplate").objectReferenceValue != null, "Cylinder templates or clipping are unbound.");
+        }
         assert(presentation.FindProperty("rigCardPrefab").objectReferenceValue != null
             && presentation.FindProperty("rigScroll").objectReferenceValue != null, "Scrollable rig was not bound.");
         foreach (var image in prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true))
@@ -55,10 +66,9 @@ public static class TackleDiscoverArtChecks
     }
 
     /// <summary>Checks real UI raycasts, focus/press/disabled states and long-rig reuse without changing gameplay ownership.</summary>
-    public static int ValidateLiveArtwork()
+    public static int ValidateLiveArtwork(string output = "Docs/Validation/TackleDiscoverArt/")
     {
         if (!Application.isPlaying) throw new InvalidOperationException("Enter a fresh comparison Play Mode session.");
-        const string output = "Docs/Validation/TackleDiscoverArt/";
         int checks = 0;
         Action<bool, string> assert = (value, message) =>
         { if (!value) throw new InvalidOperationException(message); checks++; };
@@ -70,6 +80,7 @@ public static class TackleDiscoverArtChecks
         var preparation = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
         ((UnityEngine.UI.Button)preparation.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         var view = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>();
+        SlotReelAnimationChecks.SettleForControlFixture(view, controller);
         var artwork = view.GetComponent<TackleDiscoverPresentation>();
         var viewData = new SerializedObject(view); var artData = new SerializedObject(artwork);
         var accept = (UnityEngine.UI.Button)viewData.FindProperty("acceptButton").objectReferenceValue;
