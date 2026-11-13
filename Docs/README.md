@@ -1,6 +1,6 @@
 # Deepwater documentation
 
-Design baseline: 6 November 2026, with the slot specification agreed on 7 November and the Landing specification supplied on 13 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements Discover with its approved artwork. The [Landing increment](Landing%20Challenge%20Mechanic.md) adds plain controls, movement, scoring and success/failure boundaries; its artwork is not integrated. Build/placement and the remaining redesign are separate work. Numeric prototype settings and illustrative abilities are not final content.
+Design baseline: 6 November 2026, with the slot specification agreed on 7 November and the Landing specification supplied on 13 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements Discover with its approved artwork. The [Landing increment](Landing%20Challenge%20Mechanic.md) implements movement, scoring and success/failure boundaries with the approved Tackle Apparatus artwork; see [art validation](Validation/TackleLandingArt/README.md). Build/placement and the remaining redesign are separate work. Numeric prototype settings and illustrative abilities are not final content.
 
 ## Active specifications
 

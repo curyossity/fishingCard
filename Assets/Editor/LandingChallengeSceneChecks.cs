@@ -5,19 +5,21 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>Exercises the installed plain Landing loop with temporary authored scoring fixtures and saving disabled.</summary>
+/// <summary>Exercises the installed Landing loop with temporary authored scoring fixtures and saving disabled.</summary>
 public static class LandingChallengeSceneChecks
 {
     public static string Result { get; private set; } = "Not run";
     private static int checks;
+    private static string outputDirectory = "Docs/Validation/LandingChallenge/";
     private static readonly BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
 
     /// <summary>Runs one success or failure branch in a fresh Harbor session, without writing player progression.</summary>
-    public static void Begin(bool succeed)
+    public static void Begin(bool succeed, string output = null)
     {
         if (!Application.isPlaying) throw new InvalidOperationException("Enter a fresh comparison Play Mode session.");
         var controller = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>().Controller;
         controller.SetDebugSaveResetPending(true);
+        outputDirectory = string.IsNullOrWhiteSpace(output) ? "Docs/Validation/LandingChallenge/" : output.TrimEnd('/', '\\') + "/";
         checks = 0; Result = "Running";
         controller.StartCoroutine(Validate(succeed));
     }
@@ -133,7 +135,7 @@ public static class LandingChallengeSceneChecks
     }
     /// <summary>Captures the real native Landing view through the active render pipeline.</summary>
     private static void Capture(LandingChallengeView view, string file)
-    { SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), file, output: "Docs/Validation/LandingChallenge/"); }
+    { SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), file, output: outputDirectory); }
     /// <summary>Stops at the first failed lifecycle, scoring or payout invariant.</summary>
     private static void Check(bool value, string message)
     { if (!value) { Result = "FAILED: " + message; throw new InvalidOperationException(message); } checks++; }

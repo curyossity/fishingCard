@@ -1,0 +1,71 @@
+{
+  "sourceManifest": "Docs/UIThemes/TackleApparatusConcept/AssetLibrary/Manifest.json",
+  "penpotFileId": "3681d377-bc58-8110-8008-e7a38adc2112",
+  "penpotPage": {
+    "id": "38e9e9ec-a6d5-8050-8008-e7b1dd7c6506",
+    "name": "07 - Landing UI Assets"
+  },
+  "resolution": "Original dimensions, no regeneration or upscaling",
+  "assets": [
+    {
+      "name": "timing-track",
+      "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/timing-track.png",
+      "size": [
+        607,
+        152
+      ],
+      "sha256": "0ef29a077751b8ea49126d7f0a0019a53a995e31a960463c212017e4ac983b61",
+      "penpotBoardId": "38e9e9ec-a6d5-8050-8008-e7b5ec50addd"
+    },
+    {
+      "name": "score-readout",
+      "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/score-readout.png",
+      "size": [
+        552,
+        232
+      ],
+      "sha256": "3184931cc97c906df554c6b40f84e519ef826f5d96ed57a9ea5f780692dcd454",
+      "penpotBoardId": "38e9e9ec-a6d5-8050-8008-e7b5ec622aa7"
+    },
+    {
+      "name": "progress-trough",
+      "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/progress-trough.png",
+      "size": [
+        605,
+        85
+      ],
+      "sha256": "4508cd118baeda7a136df8f01ab67811153621f0c59cc9b19643ee2f9b0550ec",
+      "penpotBoardId": "38e9e9ec-a6d5-8050-8008-e7b5ec73117e"
+    },
+    {
+      "name": "landing-zone",
+      "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/landing-zone.png",
+      "size": [
+        160,
+        96
+      ],
+      "sha256": "5019af4b234902b0716fcaa71a93f5310923e1a442483978eef1d43a48e66421",
+      "penpotBoardId": "38e9e9ec-a6d5-8050-8008-e7b714894401"
+    },
+    {
+      "name": "perfect-band",
+      "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/perfect-band.png",
+      "size": [
+        24,
+        96
+      ],
+      "sha256": "14e960591516c826d9c7b9a9dbf957f9e8222fd29ca932b083399d9990cf71cb",
+      "penpotBoardId": "38e9e9ec-a6d5-8050-8008-e7b714abb5dd"
+    },
+    {
+      "name": "score-segment",
+      "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/score-segment.png",
+      "size": [
+        18,
+        9
+      ],
+      "sha256": "1f710ad1cd8b00a5a4398cd82087c6bcefd8ad92451d459c9e3cbab14d3b96ed",
+      "penpotBoardId": "38e9e9ec-a6d5-8050-8008-e7b714d73c28"
+    }
+  ]
+}

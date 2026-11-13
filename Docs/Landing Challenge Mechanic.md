@@ -1,6 +1,6 @@
 # Deepwater — Landing Challenge
 
-Agreed direction supplied 13 November 2026. Focus: Landing motion, strikes, attempts, scoring and terminal outcomes. Numeric defaults are prototype balancing values. Artwork integration, Build/placement, new species abilities, Techniques and equipment redesign are separate work.
+Agreed direction supplied 13 November 2026. Focus: Landing motion, strikes, attempts, scoring and terminal outcomes. Numeric defaults are prototype balancing values. Build/placement, new species abilities, Techniques and equipment redesign are separate work. The approved Landing artwork was integrated on 13 November 2026.
 
 ## Encounter flow
 
@@ -81,21 +81,25 @@ Difficulty should grow primarily through Resistance and player power primarily t
 
 The 40 / 150 / 600 early/middle/late targets and the Lionfish 120 / 125-point example are illustrative. They are not final creature data or a progression curve. For a runnable prototype, the editable default is **base 40 + 10 per progressed depth**; an authored positive creature base replaces the default base. This is explicitly provisional and must be playtested/replaced as encounter pacing is designed. It grants no biome completion rule or expedition endpoint.
 
-## Feedback and plain UI
+## Feedback and presentation
 
 Show the current creature, Resistance/progress, attempts, moving track and committed rig order. Keep the rig immutable during Land. Every strike immediately shows Miss/Good/Perfect, base, attributed bonuses/multipliers and total points. Briefly freeze the two indicators and highlight contributing sources, then resume if the challenge remains active.
 
 Authoritative scoring and terminal decisions happen immediately; feedback never postpones success/failure or permits another strike during the freeze. Keep feedback short and avoid long unskippable sequences. The prototype uses a configurable 0.22-second freeze and a short native contribution highlight.
 
-This phase uses colored rectangles and native text only. No approved Landing concept art, creature artwork or rig-card artwork is integrated. Long rig and contribution lists must scroll without imposing a rig cap. Discover and Land remain separate screens.
+This phase uses the approved independent Tackle Apparatus Penpot exports: shared desk/cabinet/machine, creature panel, scoreboard, timing track, moving Good/Perfect regions, attempt lamps and controls. Runtime labels remain native text. Long rig and contribution lists scroll without a rig cap. Discover and Land remain separate screens. The plain colored rectangles and their generation path have been removed.
+
+The supplied fish body is decorative; paired supplied caret markers and brackets expose the exact configured scoring interval. Body size never changes overlap grading. Four supplied species portraits take priority; other species retain their existing authored creature illustration in the encounter panel. Shared rig cards retain their existing portrait mappings. No new species artwork or abilities are invented.
 
 ## Current implementation boundary
 
-`LandingChallengeRuntime` owns motion/time/attempts/grade/outcome. `LandingScoring` produces immutable attributed score results. `LandingChallengeProfile` supplies frozen expedition tuning. `FishingRunController` owns the Discover handoff, strike legality, success handoff and full-value failure settlement. `LandingChallengeView` renders and forwards input; `LandingChallengeSetup` authors repeatable plain controls.
+`LandingChallengeRuntime` owns motion/time/attempts/grade/outcome. `LandingScoring` produces immutable attributed score results. `LandingChallengeProfile` supplies frozen expedition tuning. `FishingRunController` owns the Discover handoff, strike legality, success handoff and full-value failure settlement. `LandingChallengeView` owns visibility and forwards input; `TackleLandingPresentation` renders state; `TackleLandingArtSetup` imports the original sprites and authors the reusable skinned prefab. `LandingChallengeSetup` retains profile and scene/Harbor wiring.
 
-The current success endpoint is **ready for rig placement**. It intentionally grants no attachment, manual rearrangement, legacy Descend or challenge bypass. Build UI/commitment is not implemented here. Failure has a plain result/Harbor return and preserves permanent state; the existing wallet adapter remains in use without finalizing Gold as the redesigned economy.
+The current success endpoint is **ready for rig placement**. It intentionally grants no attachment, manual rearrangement, legacy Descend or challenge bypass. Build UI/commitment is not implemented here. Failure has a skinned result/Harbor return and preserves permanent state; the existing wallet adapter remains in use without finalizing Gold as the redesigned economy.
 
-See [validation results and plain UI captures](Validation/LandingChallenge/README.md) for rule, live outcome and Discover regression coverage.
+See [original gameplay validation and historical plain UI captures](Validation/LandingChallenge/README.md) for rule, live outcome and Discover regression coverage.
+
+See [current artwork validation and captures](Validation/TackleLandingArt/README.md) for the installed presentation and removal checks.
 
 ## Open balancing and design decisions
 

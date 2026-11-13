@@ -17,6 +17,9 @@ public sealed class TackleRigCardView : MonoBehaviour
     [SerializeField] private Portrait[] portraits = Array.Empty<Portrait>();
     public CardInstance BoundInstance { get; private set; }
 
+    /// <summary>Briefly accents a scoring source without changing its role, value or supplied artwork.</summary>
+    public void SetContributing(bool active) { face.color = active ? new Color32(255, 222, 151, 255) : Color.white; }
+
     /// <summary>Displays role-aware resolved value without exposing concealed numbers or running attachment effects.</summary>
     public void Bind(CardInstance instance)
     {

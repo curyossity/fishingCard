@@ -1,5 +1,7 @@
 # Landing Challenge validation
 
+Historical plain-control validation. The runtime now uses the approved artwork; see [current Landing artwork validation](../TackleLandingArt/README.md).
+
 Validated 13 November 2026 in Unity 6000.5.9f1, using the MidnightFieldJournal comparison scene and its authored plain Landing canvas. See the [mechanic specification](../../Landing%20Challenge%20Mechanic.md).
 
 ## Results

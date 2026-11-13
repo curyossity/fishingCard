@@ -17,7 +17,8 @@ public static class TackleDiscoverArtChecks
         string source = "Docs/UIThemes/TackleApparatusConcept/AssetLibrary/Exports/";
         var files = Directory.GetFiles(root + "Art", "*.png", SearchOption.AllDirectories)
             .Where(path => !path.Replace('\\', '/').StartsWith(TackleReelSymbolSetup.Destination, StringComparison.Ordinal)
-                && !path.Replace('\\', '/').StartsWith(TackleReelSurfaceSetup.ArtRoot, StringComparison.Ordinal)).ToArray();
+                && !path.Replace('\\', '/').StartsWith(TackleReelSurfaceSetup.ArtRoot, StringComparison.Ordinal)
+                && !path.Replace('\\', '/').StartsWith(root + "Art/Landing/", StringComparison.Ordinal)).ToArray();
         assert(files.Length == 37, "Discover asset selection changed unexpectedly.");
         foreach (string file in files)
         {

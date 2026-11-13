@@ -22,7 +22,7 @@ Choose Steady, telegraphed Burst or learnable Erratic movement uniformly once pe
 
 Initial model: `Strike Points = (Accuracy Base + Applicable Rig Bonuses) × Product of Applicable Rig Multipliers`. Prototype bases **0 / 10 / 20** for Miss/Good/Perfect remain configurable. Ordinary bonuses do not score on Miss unless an explicit Miss rule changes that. Capture only committed rig instances and stored-role effects; attribute each bonus/multiplier. Current prototype retains fractional points without finalizing integer rounding. Existing species receive no illustrative abilities automatically.
 
-The [Landing specification](Landing%20Challenge%20Mechanic.md) records the plain implementation, prototype tuning, scoring boundaries and open questions. Success currently supplies a Build handoff without attachment; failure pays full accumulated Catch value and clears the rig. Landing artwork and Build commitment are outside this increment.
+The [Landing specification](Landing%20Challenge%20Mechanic.md) records the implementation, prototype tuning, scoring boundaries and open questions. Success currently supplies a Build handoff without attachment; failure pays full accumulated Catch value and clears the rig. Approved Landing artwork is integrated; Build commitment remains separate work.
 
 Difficulty rises mainly through Resistance. Characteristics/rarity may influence it. Faster fish and smaller zones should not be the primary escalation; widening/slowing upgrades may complement scoring growth.
 
