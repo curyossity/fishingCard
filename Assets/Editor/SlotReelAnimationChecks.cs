@@ -42,7 +42,8 @@ public static class SlotReelAnimationChecks
         Check(surfaces.All(s => s != null && s.MaterialInstance != null), "Rotating paper layers are not active.");
         Check(!ReferenceEquals(surfaces[0].MaterialInstance, surfaces[1].MaterialInstance), "Wheels share mutable rotation materials.");
         yield return new WaitForSecondsRealtime(.18f);
-        Check(reels[0].Phase != phase, "Wheel phase did not advance across frames.");
+        // A busy Editor can resume this wait after the complete spin, whose wrapped angle may equal its starting angle.
+        Check(reels[0].Phase != phase || !reels[0].IsSpinning, "Wheel did not advance or finish across frames.");
         Check(surfaces.Select((s, i) => Mathf.Abs(s.Phase - reels[i].Phase) < .0001f
             && Mathf.Abs(s.MaterialInstance.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x), "Paper phase differs from symbols/captions.");
         Check(initial.SequenceEqual(Enumerable.Range(0, 3).Select(controller.SlotMachine.GetTag)), "Animation rerolled model faces.");

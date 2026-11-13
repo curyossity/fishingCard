@@ -4736,6 +4736,9 @@ MonoBehaviour:
   labelTemplate: {fileID: 1921862608205835833}
   radius: 172
   surface: {fileID: 6133278526898642216}
+  stopOvershootInSymbols: 0.45
+  settleFraction: 0.34
+  elasticPeriod: 0.47
 --- !u!1 &7509278822995975925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4808,6 +4811,9 @@ MonoBehaviour:
   labelTemplate: {fileID: 6067250819476237761}
   radius: 172
   surface: {fileID: 2130822891208359385}
+  stopOvershootInSymbols: 0.45
+  settleFraction: 0.34
+  elasticPeriod: 0.47
 --- !u!1 &7595656206521052411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5265,6 +5271,9 @@ MonoBehaviour:
   labelTemplate: {fileID: 3319267141458203982}
   radius: 172
   surface: {fileID: 7925035873801504562}
+  stopOvershootInSymbols: 0.45
+  settleFraction: 0.34
+  elasticPeriod: 0.47
 --- !u!1 &8409103535503936608
 GameObject:
   m_ObjectHideFlags: 0

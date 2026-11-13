@@ -10,6 +10,10 @@ public sealed class TackleReelAnimator : MonoBehaviour
     [SerializeField] private TMP_Text fallbackTemplate, labelTemplate;
     [SerializeField, Min(1)] private float radius = 172;
     [SerializeField] private TackleReelSurface surface;
+    [Header("Elastic Stop")]
+    [SerializeField, Range(0, .7f)] private float stopOvershootInSymbols = .45f;
+    [SerializeField, Range(.15f, .6f)] private float settleFraction = .34f;
+    [SerializeField, Range(.2f, 1)] private float elasticPeriod = .47f;
     private readonly List<TackleReelFace> faces = new List<TackleReelFace>();
     private string[] tags = Array.Empty<string>();
     private float phase, from, destination, elapsed, duration;
@@ -34,21 +38,34 @@ public sealed class TackleReelAnimator : MonoBehaviour
         Draw();
     }
 
-    /// <summary>Advances with unscaled time; stagger timing is supplied by the Discover presentation.</summary>
+    /// <summary>Decelerates beyond the selected face, then recoils elastically using unscaled time and the existing stagger duration.</summary>
     public void Advance(float delta)
     {
         if (!IsSpinning) return;
         elapsed += Mathf.Max(0, delta);
         float t = Mathf.Clamp01(elapsed / duration);
-        const float settle = .12f;
+        float settle = Mathf.Clamp(settleFraction, .15f, .6f);
+        float overshoot = Mathf.Clamp(stopOvershootInSymbols, 0, .7f) * Mathf.PI * .5f;
         if (t < 1 - settle)
         {
             float travel = t / (1 - settle);
-            phase = Mathf.LerpUnclamped(from, destination + .035f, 1 - Mathf.Pow(1 - travel, 3));
+            phase = Mathf.LerpUnclamped(from, destination + overshoot, 1 - Mathf.Pow(1 - travel, 3));
         }
-        else phase = destination + .035f * Mathf.Pow(1 - (t - 1 + settle) / settle, 2);
+        else phase = destination + overshoot * SpringReturn((t - 1 + settle) / settle);
         if (t >= 1) { phase = Mathf.Repeat(destination, 2 * Mathf.PI); IsSpinning = false; }
         Draw();
+    }
+
+    /// <summary>Returns from a zero-velocity overshoot with a damped elastic recoil and an exact, smooth endpoint.</summary>
+    private float SpringReturn(float progress)
+    {
+        float t = Mathf.Clamp01(progress);
+        const float damping = 6;
+        float frequency = 2 * Mathf.PI / Mathf.Clamp(elasticPeriod, .2f, 1);
+        // The sine term makes the turning point's velocity zero, matching the end of the forward deceleration.
+        float oscillation = Mathf.Exp(-damping * t) * (Mathf.Cos(frequency * t) + damping / frequency * Mathf.Sin(frequency * t));
+        float tail = 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.7f, 1, t));
+        return oscillation * tail;
     }
 
     /// <summary>Retains source templates and reuses generated faces until the active symbol set changes.</summary>
