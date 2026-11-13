@@ -28,7 +28,7 @@ public sealed class DiscoveryJournalProgress
     /// <summary>Records surviving creature tags before run cleanup; broken lines and unresolved results never qualify.</summary>
     public bool Record(string expeditionId, FishingRunResult result, int overloadedTarget)
     {
-        if (string.IsNullOrEmpty(expeditionId) || result == null || !result.HasResult || result.EndedByLineBreak) return false;
+        if (string.IsNullOrEmpty(expeditionId) || result == null || !result.HasResult || result.EndedByLineBreak || result.EndedByLandingFailure) return false;
         int schooling = 0;
         var tags = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var card in result.Haul)

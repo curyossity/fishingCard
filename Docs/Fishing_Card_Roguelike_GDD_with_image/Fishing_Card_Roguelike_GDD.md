@@ -70,19 +70,22 @@ After successful landing:
 
 The new creature begins contributing after successful landing and placement, affecting future encounters. There is no per-encounter choice to surface. No additional manual Descend commitment is required by this loop. Exact role/position previews and confirmation remain UI work.
 
-## 4. Landing challenge — leading concept
+## 4. Landing challenge
 
-The preferred concept is a timing minigame partly inspired by Stardew Valley, with a distinct scoring system. Exact mechanics and controls remain open.
+The 13 November 2026 [Landing Challenge specification](../Landing%20Challenge%20Mechanic.md) defines the current baseline. Its numeric defaults remain prototype tuning; final creature abilities and artwork integration are separate work.
 
-### Proposed interaction
+### Interaction and outcome
 
-- Both the fish and landing zone move.
-- Time an action to strike when fish and zone align.
-- Accuracy determines base points. Candidate grades are **Miss**, **Good** and **Perfect**.
-- Each creature allows limited attempts. **Four attempts is a prototype suggestion only.**
-- Creatures have distinct, learnable movement patterns. Tags and characteristics may influence those patterns.
+- A horizontal track contains an independently moving fish indicator and landing zone. The player controls neither element.
+- Press **Space** or **STRIKE**. Evaluate overlap at the strike timestamp.
+- A smaller centered **Perfect** region has priority over the wider **Good** region. A fish outside Good is a **Miss**. The supplied Miss wording is being clarified; the implementation uses no overlap with Good.
+- Every strike consumes an attempt, including Miss. Initially use **four attempts**, configurable for balancing.
+- Accumulate encounter-local Landing Points. Reach Resistance to succeed immediately, including on the final attempt; exhaust attempts below Resistance to fail immediately and end the expedition.
+- Briefly freeze both indicators for accuracy/scoring feedback. Presentation does not delay authoritative success/failure or allow a duplicate strike.
+- The zone follows a predictable oscillation. For now choose Steady, Burst or Erratic uniformly at random once per encounter. Burst is telegraphed; Erratic follows a learnable closed pattern with pauses. Species-specific behavior assignments are future content work.
+- The current rig remains visible in committed order and cannot be rearranged. Only previously attached members contribute. The encountered creature cannot help land itself.
 
-Grade thresholds, points per grade, Miss behavior, attempt consumption details, early-success presentation and controls are not finalized. Do not infer automatic success, combat health or a separate tension resource.
+Region sizes, motion tuning and the boundary policy remain balancing inputs. The prototype treats touching an interval edge as overlap. No automatic success, traditional combat, health or separate tension resource is introduced.
 
 ### Difficulty progression
 
@@ -96,11 +99,13 @@ Timing determines action quality; the rig transforms that quality into a stronge
 
 ## 5. Landing Points and scoring
 
-An initial design model is:
+The initial model is:
 
-`Landing Points = (Accuracy Base + Rig Bonuses) × Rig Multipliers`
+`Strike Landing Points = (Accuracy Base + Applicable Rig Bonuses) × Product of Applicable Rig Multipliers`
 
-**This is a concept, not a finalized formula.** Accuracy values, flat-bonus eligibility, multiplier order, stacking, rounding, score floors/caps and per-attempt versus per-challenge effects are undecided. In particular, the model does not decide whether a Miss can receive rig bonuses.
+Prototype bases are **Miss 0 / Good 10 / Perfect 20**. Apply eligible flat bonuses before multiplying eligible multipliers. A normal Miss receives no ordinary successful-strike bonuses or multipliers; an explicit Miss scoring ability is required to change that behavior. Retain fractional scores in the current prototype rather than assigning a final integer-rounding policy. Each strike resolves and adds its score once, with source attribution for feedback. Points reset at the next encounter and are not sale value, Gold or permanent progression.
+
+These numbers and the final numeric precision/rounding/special interactions remain open to balancing. Existing creature lists do not gain illustrative scoring abilities automatically. Catch/Bait effects and their positional conditions must be explicitly authored; both roles participate in neighboring/contiguous tag conditions unless excluded.
 
 Possible ability directions include flat bonuses, multipliers, additional attempts and special scoring interactions. Each exact effect needs an approved trigger, target, duration and limits. Additional attempts are a possible ability type, not a universal purchase during landing.
 
@@ -236,8 +241,8 @@ A focused playtest can evaluate proposed controls, attempt counts or formulas wi
 | Area | Decisions still required |
 | --- | --- |
 | Slot machine | Exact rarity probability tables and secondary-tag preference strength; no extra landing connection. Rules are specified in the Slot Machine Mechanic supplement. |
-| Landing | Controls, alignment/grade thresholds, movement, attempt rules and challenge end behavior. |
-| Scoring | Accuracy values, Miss rules, formula, multiplier ordering/stacking, rounding and special interactions. |
+| Landing | Confirm the supplied Miss wording; final zone widths, boundary policy, attempts, movement tuning and feedback balance. Space/button strikes, graded overlap and immediate terminal outcomes are specified. |
+| Scoring | Final base values, numeric precision/rounding/limits and special interactions. Initial flat-before-product model, ordinary Miss-zero rule and source attribution are specified. |
 | Difficulty | Resistance curves, rarity/characteristic influence and skill/build balance. |
 | Rig | Orientation, restriction combinations, no-legal-position handling and effect order. |
 | Creature content | Redesigned Catch/Bait effects, numbers, durations, tags and movement. |

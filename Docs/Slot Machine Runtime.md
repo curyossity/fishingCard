@@ -44,7 +44,7 @@ Both initial spin and respin use 2D cylinder projection. Paper texture, divider 
 
 **Fishing Cards > Slot Machine > Install Cylindrical Reel Animation** updates the existing Discover prefab without rebuilding approved art or replacing scene overrides. Full art regeneration includes the same composition. All eight baseline tags have reel illustrations; [six supplemental symbols](Validation/TackleReelSymbols/README.md) extend the original Fish and Schooling family. Tag captions remain native text. **Install Remaining Reel Symbols** imports and binds those additions without changing selection rules or the existing artwork.
 
-The selected creature is **awaiting landing**, not acquired. `AwaitingLandingChallenge` blocks attachment, Catch/Bait choice, Techniques and legacy Descend/Surface; the new creature supplies no rig benefit. Reels are hidden during this handoff. Landing input, Resistance/scoring, success/failure resolution and Build continuation are not implemented by this slot increment. It stops at the occurrence-bound landing handoff and does not fabricate a successful catch. Other event/forced-chain redesigns remain separate work.
+The selected creature is **awaiting landing**, not acquired. `AwaitingLandingChallenge` blocks attachment, Catch/Bait choice, Techniques and legacy Descend/Surface; the new creature supplies no rig benefit. Reels are hidden during this handoff. The [plain Landing increment](Landing%20Challenge%20Mechanic.md) now consumes it when a Landing profile is configured: success supplies an occurrence-bound Build handoff without attachment; failure ends the expedition and pays the full previous Catch value. Build commitment, Landing artwork and other event/forced-chain redesigns remain separate work.
 
 ## Validation
 

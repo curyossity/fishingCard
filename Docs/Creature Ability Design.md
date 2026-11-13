@@ -31,6 +31,8 @@ Both Catch and Bait can participate in a Schooling group unless final wording ex
 
 ## Authoring checklist
 
+The [Landing increment](Landing%20Challenge%20Mechanic.md) provides separate `landingCatchEffects` / `landingBaitEffects` lists on `CardDefinition`, with no role fallback. They support explicit accuracy filters, flat bonuses, multipliers, neighboring tags and flat amounts per other connected contiguous tagged creature. Runtime captures committed membership/role/effective tags and records source IDs in the score breakdown. Existing species lists remain empty: examples here are not assigned automatically. Miss protection, added attempts, physical accuracy effects and other ability families need separate approved definitions/implementation.
+
 For each role, define:
 
 - Intended build role and thematic basis.

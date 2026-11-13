@@ -82,6 +82,7 @@ public static class SlotMachineSetup
         harborData.ApplyModifiedPropertiesWithoutUndo();
         preparation.gameObject.SetActive(false);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(TackleDiscoverArtSetup.PrefabPath) != null) TackleDiscoverArtSetup.Install(scene);
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath) != null) LandingChallengeSetup.Install(scene);
     }
 
     /// <summary>Creates GUID-stable configuration and serialized controls; leaves existing tuning unchanged.</summary>

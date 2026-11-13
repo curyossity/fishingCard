@@ -138,7 +138,7 @@ public sealed partial class FishingRunController : MonoBehaviour
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
         && !HasPendingCreatureChoice && !descendCompletionPending && !biomeEntryRevealPending;
 
-    public bool CanDescend => !Timing.Active && !SlotMachine.Active && !AwaitingLandingChallenge && CoreActionInputReady
+    public bool CanDescend => !Timing.Active && !SlotMachine.Active && !AwaitingLandingChallenge && !LandingBlocksLegacyActions && CoreActionInputReady
         && (HookedEncounter == null || !HookedEncounter.RequiresAttachmentChoice || SelectedEncounterChoice != EncounterEffectChoice.None)
         && (!biomeApexRuntime.NextWatersPresented
         || currentBiome?.NextBiome?.GetDepthTier(currentBiome.NextBiome.StartingDepth) != null);
@@ -323,7 +323,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     /// <summary>Records an explicit role for this encounter occurrence; stale or locked choices cannot authorize Descend.</summary>
     public bool TryChooseEncounterRole(EncounterEffectChoice choice, int expectedEncounterRevision = -1)
     {
-        if (!CoreActionInputReady || SlotMachine.Active || AwaitingLandingChallenge || HookedEncounter == null
+        if (!CoreActionInputReady || SlotMachine.Active || AwaitingLandingChallenge || LandingBlocksLegacyActions || HookedEncounter == null
             || (choice != EncounterEffectChoice.Catch && choice != EncounterEffectChoice.Bait)
             || (expectedEncounterRevision >= 0 && expectedEncounterRevision != encounterRuntime.EncounterRevision)) return false;
         selectedEncounterChoice = choice;
@@ -350,6 +350,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     {
         if (eventActionConfirmationInProgress || eventActionAdvanceInProgress || techniqueEffectInProgress) return;
         if (!PrepareSlotExpedition()) return;
+        if (!PrepareLandingSettings()) return;
         EnsureRuntimeObjects();
         ResetEventActionState();
         ResetTechniquePlayState();
@@ -357,6 +358,7 @@ public sealed partial class FishingRunController : MonoBehaviour
 
         int seed = useRandomSeed ? Environment.TickCount : randomSeed;
         random = new System.Random(seed);
+        ResetLandingForExpedition(seed);
         runProgressionRuntime.InitializeTechniqueDeck(startingTechniqueDeck);
 
         runActive = true;
@@ -523,7 +525,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     public bool CanUseTechniqueCard(int handIndex, out string restrictionReason)
     {
         restrictionReason = string.Empty;
-        if (SlotMachine.Active || AwaitingLandingChallenge) { restrictionReason = "Complete Discover and landing first"; return false; }
+        if (SlotMachine.Active || AwaitingLandingChallenge || LandingBlocksLegacyActions) { restrictionReason = "Complete Discover, landing and rig placement first"; return false; }
         if (Timing.Active) { restrictionReason = "Stop the timing marker first"; return false; }
 
         if (fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying)
@@ -1999,6 +2001,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     /// <summary>Advances timing independently of the view, then dispatches the delayed reveal once.</summary>
     private void Update()
     {
+        AdvanceLanding();
         if (!runActive || !Timing.Active || fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying) return;
         if (fishingRunView != null && !fishingRunView.HasCompletedTimingEntrance(Timing.Occurrence)) return;
         if (!Timing.Tick(Time.unscaledDeltaTime)) return;
@@ -2126,6 +2129,8 @@ public sealed partial class FishingRunController : MonoBehaviour
     /// <summary>Clears all live event, trail, deck, and creature ownership immediately when the run ends.</summary>
     private void ResetEndedRunRuntimeState()
     {
+        awaitingRigPlacement = false;
+        if (landing.State == LandingChallengeState.Active) landing.Reset();
         ResetEventActionState();
         ResetTechniquePlayState();
         encounterRuntime.Reset();
@@ -2196,6 +2201,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     /// </summary>
     private void RefreshViews()
     {
+        if (fishingRunView != null) fishingRunView.SetLanding(this);
         PrepareCreatureChoice();
         RefreshCreatureChoiceView();
         currentEncounterInformationHidden = CurrentEncounterIdentityHidden || (effectResolver != null
@@ -2282,7 +2288,7 @@ public sealed partial class FishingRunController : MonoBehaviour
                 TrySurface,
                 CurrentEncounterIdentityHidden,
                 hideCurrentHaulValue ? (int?)null : currentHaulValue,
-                CoreActionInputReady && !AwaitingLandingChallenge && HookedEncounter != null);
+                CoreActionInputReady && !AwaitingLandingChallenge && !LandingBlocksLegacyActions && HookedEncounter != null);
             fishingRunView.SetTiming(runActive ? Timing : null, TryStopEncounterTiming, CurrentBiome, currentDepth);
             fishingRunView.SetSlotMachine(this);
             fishingRunView.SetEncounterRoleSelection(currentEncounter != null && currentEncounter.RequiresAttachmentChoice

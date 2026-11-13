@@ -16,13 +16,13 @@ Every expedition starts with an empty rig. Collected creatures are temporary: al
 
 ## Landing and scoring
 
-Leading concept: moving fish and moving landing zone; time a strike when they align. Candidate grades: Miss, Good, Perfect. Creatures have distinct, learnable movement patterns, potentially influenced by tags/characteristics.
+Landing uses a horizontal track with independently moving fish/zone. Strike with **Space** or the UI button. Perfect overlap takes priority over Good; no overlap with Good is treated as Miss (clarification of the supplied wording is pending). The fish indicator has an interval, not a substituted artwork hit box.
 
-Attempts are limited. **Four is only a prototype suggestion.** Controls, grades, points, movement and attempt details remain open.
+Choose Steady, telegraphed Burst or learnable Erratic movement uniformly once per encounter for now. The zone oscillates predictably. Every strike consumes an attempt, including Miss; **four attempts is prototype tuning**. Reaching Resistance succeeds immediately, including on the final attempt; otherwise exhausting attempts fails immediately. Brief feedback freezes both indicators without delaying the outcome or allowing another strike.
 
-Conceptual formula: `Landing Points = (Accuracy Base + Rig Bonuses) × Rig Multipliers`.
+Initial model: `Strike Points = (Accuracy Base + Applicable Rig Bonuses) × Product of Applicable Rig Multipliers`. Prototype bases **0 / 10 / 20** for Miss/Good/Perfect remain configurable. Ordinary bonuses do not score on Miss unless an explicit Miss rule changes that. Capture only committed rig instances and stored-role effects; attribute each bonus/multiplier. Current prototype retains fractional points without finalizing integer rounding. Existing species receive no illustrative abilities automatically.
 
-This is not a final algorithm. Miss bonuses, stacking, rounding, ordering and limits remain undecided. Abilities may offer flat bonuses, multipliers, extra attempts and special scoring interactions. Accuracy must remain meaningful as builds become powerful.
+The [Landing specification](Landing%20Challenge%20Mechanic.md) records the plain implementation, prototype tuning, scoring boundaries and open questions. Success currently supplies a Build handoff without attachment; failure pays full accumulated Catch value and clears the rig. Landing artwork and Build commitment are outside this increment.
 
 Difficulty rises mainly through Resistance. Characteristics/rarity may influence it. Faster fish and smaller zones should not be the primary escalation; widening/slowing upgrades may complement scoring growth.
 

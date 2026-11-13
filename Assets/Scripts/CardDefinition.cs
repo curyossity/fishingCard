@@ -59,6 +59,17 @@ public class CardDefinition : ScriptableObject
     [SerializeField] private bool hasExplicitBaitData;
     [SerializeField] private CardEffectDefinition[] baitEffects = Array.Empty<CardEffectDefinition>();
 
+    [Header("Landing Challenge")]
+    [Tooltip("Optional creature base Resistance; zero uses the expedition's landing profile. Unrelated to Weight.")]
+    [SerializeField, Min(0)] private int landingResistance;
+    [SerializeField] private LandingRigEffectDefinition[] landingCatchEffects = Array.Empty<LandingRigEffectDefinition>();
+    [SerializeField] private LandingRigEffectDefinition[] landingBaitEffects = Array.Empty<LandingRigEffectDefinition>();
+    public int LandingResistance => landingResistance;
+
+    /// <summary>Returns explicitly authored landing effects for the stored role, with no Catch-to-Bait fallback.</summary>
+    public LandingRigEffectDefinition[] GetLandingEffects(CatchAttachmentRole role)
+    { return role == CatchAttachmentRole.Bait ? landingBaitEffects : landingCatchEffects; }
+
     public string UniqueId => uniqueId;
     public string DisplayName => displayName;
     public CardType CardType => cardType;

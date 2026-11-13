@@ -12,6 +12,14 @@ public sealed partial class EncounterRuntime
     private string slotBiome;
     private Func<CardDefinition, bool> slotUnlocked;
 
+    /// <summary>Ends only the current landing gate, without attaching or granting role/placement effects.</summary>
+    public bool TryFinishLanding(int encounterRevision)
+    {
+        if (!AwaitingLandingChallenge || encounterRevision != EncounterRevision || currentEncounter == null) return false;
+        AwaitingLandingChallenge = false;
+        return true;
+    }
+
     /// <summary>Validates four canonical active tags without selecting replacements on the player's behalf.</summary>
     public static bool TryValidateActiveTags(string[] requested, out string[] canonical)
     {

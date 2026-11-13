@@ -21,6 +21,7 @@ public sealed class RunRewardRuntime
     /// </summary>
     public int AwardGold(FishingRunResult result)
     {
+        if (result != null && result.RewardClaimed) return 0;
         if (result == null || !result.HasResult)
         {
             lastGoldAwarded = 0;

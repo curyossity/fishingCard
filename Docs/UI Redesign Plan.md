@@ -1,6 +1,6 @@
 # Deepwater — UI Design Requirements
 
-Design baseline: 6 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) defines mechanics. These are presentation requirements, not a finished layout or art commission. No code, assets, prefabs or scenes change in this pass.
+Design baseline: 6 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) defines mechanics. These are presentation requirements, not a finished layout or art commission. Implementation status is stated in the phase sections below.
 
 [UI Presentation Reference](UI%20Presentation%20Reference.md) preserves resource paths, geometry and assembly details. Existing screenshots/controls are evidence, not the Deepwater interaction contract. Preserve nautical and Midnight Field Journal resources separately.
 
@@ -12,13 +12,13 @@ Preserve supplied artwork. Keep runtime text, counters, controls and feedback se
 
 ## Discover
 
-Provide Harbor preparation for four active tags. Present three reels and clearly distinguish unrestricted discovery, a guaranteed pair tag with a secondary preference, and a triple with a stronger rarity opportunity. Offer Accept or exactly one locked reel plus one respin; the respun result is fixed, remains visible, and reveals a creature only after explicit Accept Tags. Disable locks/respin after that one respin. Follow the [slot specification](Slot%20Machine%20Mechanic.md). Exact rarity odds and preference strength remain balancing inputs. The slot machine influences selection; do not add landing bonuses or another tag-timing instrument. The comparison scene now uses the approved Tackle Apparatus Discover artwork, separate native labels, focus/pressed/disabled feedback and a scrollable rig. Supplied Fish/Schooling illustrations are mapped; the other six tags retain native symbol-area text pending matching art.
+Provide Harbor preparation for four active tags. Present three reels and clearly distinguish unrestricted discovery, a guaranteed pair tag with a secondary preference, and a triple with a stronger rarity opportunity. Offer Accept or exactly one locked reel plus one respin; the respun result is fixed, remains visible, and reveals a creature only after explicit Accept Tags. Disable locks/respin after that one respin. Follow the [slot specification](Slot%20Machine%20Mechanic.md). Exact rarity odds and preference strength remain balancing inputs. The slot machine influences selection; do not add landing bonuses or another tag-timing instrument. The comparison scene now uses the approved Tackle Apparatus Discover artwork, separate native labels, focus/pressed/disabled feedback and a scrollable rig. All eight tag illustrations are mapped, with native captions; the rotating paper/dividers/plaques share their cylindrical motion.
 
 ## Land
 
 Present the creature, Resistance target, accumulated Landing Points, attempts remaining, fish/zone motion and action feedback. Make accuracy and rig amplification understandable.
 
-Moving fish/zone and Miss/Good/Perfect grades are the leading concept, not final controls/thresholds. Do not bake four attempts into art. Input, score breakdown, feedback, success/failure transitions and accessibility details need design. Timing input must not be captured by unrelated rig/card interactions.
+The [Landing specification](Landing%20Challenge%20Mechanic.md) defines Space/UI strikes, Perfect-first overlap, limited attempts and immediate success/failure. The current comparison scene uses a separate plain canvas with colored track rectangles and native text; no Landing artwork is integrated. Show grade, base, attributed bonuses/multipliers and final points, with a brief indicator freeze and source highlight. Rig and contribution lists scroll without a cap. Long-term layout/art/accessibility refinement and final widths/motion/numeric tuning remain open; do not bake four attempts or base points into art. Timing input must not be captured by unrelated rig/card interactions. Landing success currently displays the Build handoff; failure shows full Catch payout, rig cleanup and Harbor return.
 
 ## Build
 
@@ -42,6 +42,6 @@ Capacity/overload/line-break indicators, voluntary Surface controls and related 
 
 ## Design inputs and future validation
 
-Supply missing slot-symbol illustrations and finalize rarity/preference balance; landing input, grades and feedback; Resistance/Weight presentation; insertion orientation, restrictions and confirmation; Technique/event windows; biome completion and reward presentation.
+Finalize rarity/preference balance; landing width/motion/point tuning and skinned feedback; Resistance/Weight presentation; insertion orientation, restrictions and confirmation; Technique/event windows; biome completion and reward presentation.
 
 After approval, validate readable targets/text, input focus, stale input rejection, both-role presentation, long-rig insertion/inspection and result transitions. Preserve scaling from existing 1920 × 1080 and candidate 3840 × 2160 references; check 2560 × 1440, 1366 × 768, 1280 × 800 and ultrawide behavior for affected layouts. Existing screenshots do not validate new gameplay.

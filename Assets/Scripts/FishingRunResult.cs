@@ -15,6 +15,8 @@ public sealed class FishingRunResult
     [SerializeField] private bool wasOverloaded;
     [SerializeField] private bool endedByLineBreak;
     [SerializeField] private bool hasResult;
+    [SerializeField] private bool endedByLandingFailure;
+    [SerializeField] private bool rewardClaimed;
 
     public CardInstance[] Haul => haul;
     public CardInstance[] ReleasedCatches => releasedCatches;
@@ -27,6 +29,15 @@ public sealed class FishingRunResult
     public bool WasOverloaded => wasOverloaded;
     public bool EndedByLineBreak => endedByLineBreak;
     public bool HasResult => hasResult;
+    public bool EndedByLandingFailure => endedByLandingFailure;
+    public bool RewardClaimed => rewardClaimed;
+
+    /// <summary>Snapshots the full role-aware haul before rig cleanup, with no capacity, overload or failed-creature penalty.</summary>
+    public void RecordLandingFailure(CardInstance[] accumulatedHaul, int depth)
+    {
+        Record(accumulatedHaul, Array.Empty<CardInstance>(), Array.Empty<CardInstance>(), depth, 0, 0, false);
+        endedByLandingFailure = true;
+    }
 
     /// <summary>
     /// Records the surviving haul, removal histories, and run values when a run reaches Surface or the line breaks.
@@ -41,6 +52,7 @@ public sealed class FishingRunResult
         bool lineBroke)
     {
         haul = CopyCards(successfulHaul);
+        endedByLandingFailure = false; rewardClaimed = false; goldAwarded = 0;
         releasedCatches = CopyCards(releasedDuringRun);
         lostCatches = CopyCards(lostDuringRun);
         haulValue = CalculateValue(haul);
@@ -58,6 +70,7 @@ public sealed class FishingRunResult
     public void RecordGoldAward(int amount)
     {
         goldAwarded = Mathf.Max(0, amount);
+        rewardClaimed = true;
     }
 
     /// <summary>
@@ -76,6 +89,7 @@ public sealed class FishingRunResult
         wasOverloaded = false;
         endedByLineBreak = false;
         hasResult = false;
+        endedByLandingFailure = rewardClaimed = false;
     }
 
     /// <summary>

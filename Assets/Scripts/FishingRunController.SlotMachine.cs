@@ -14,7 +14,7 @@ public sealed partial class FishingRunController
     public bool UsesSlotMachine => slotMachineProfile != null;
     public TagSlotMachineRuntime SlotMachine => encounterRuntime.SlotMachine;
     public bool AwaitingLandingChallenge => encounterRuntime.AwaitingLandingChallenge;
-    public string SlotFailure => encounterRuntime.SlotFailure ?? slotPreparationFailure;
+    public string SlotFailure => encounterRuntime.SlotFailure ?? slotPreparationFailure ?? landingConfigurationError;
     public IReadOnlyList<string> PreparedSlotTags => Array.AsReadOnly(preparedSlotTags);
     public IReadOnlyList<string> ExpeditionSlotTags => Array.AsReadOnly(expeditionSlotTags);
     public bool HasPreparedSlotTags => EncounterRuntime.TryValidateActiveTags(preparedSlotTags, out _);
@@ -103,8 +103,10 @@ public sealed partial class FishingRunController
     /// <summary>Publishes a landing handoff without catching a creature, spending an attempt or awarding points.</summary>
     private bool CompleteSlotSelection(long revision)
     {
+        if (!PrepareLandingRig()) return false;
         if (!encounterRuntime.CompleteSlotEncounter(revision, random)) return false;
         techniqueEffectRuntime.CompleteEncounterReveal();
+        BeginSelectedLanding();
         CreatureReadyForLanding?.Invoke(CurrentEncounter, CurrentEncounterRevision);
         return true;
     }

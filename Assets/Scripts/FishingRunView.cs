@@ -216,6 +216,8 @@ public sealed class FishingRunView : MonoBehaviour
     [UnityEngine.Serialization.FormerlySerializedAs("rarityTimingView")]
     [SerializeField] private EncounterTimingView encounterTimingView;
     [SerializeField] private SlotMachineView slotMachineView;
+    [SerializeField] private LandingChallengeView landingChallengeView;
+    private bool suppressLegacySurfaceTransition;
 
     [SerializeField] private RectTransform runControlsPanel;
     [SerializeField] private RectTransform techniqueHand;
@@ -342,6 +344,13 @@ public sealed class FishingRunView : MonoBehaviour
 
     public bool IsSlotMachineAnimating => slotMachineView != null && slotMachineView.IsAnimating;
 
+    /// <summary>Displays the plain landing increment and bypasses obsolete ascent presentation for redesigned run endings.</summary>
+    public void SetLanding(FishingRunController controller)
+    {
+        suppressLegacySurfaceTransition = controller != null && controller.UsesLandingChallenge;
+        if (landingChallengeView != null) landingChallengeView.Present(controller);
+    }
+
     /// <summary>Waits for the current timing instrument's exit, with immediate completion when no view is configured.</summary>
     public bool HasCompletedTimingExit(long occurrence)
     { return encounterTimingView == null || encounterTimingView.HasCompletedExit(occurrence); }
@@ -440,7 +449,7 @@ public sealed class FishingRunView : MonoBehaviour
                 hasPresentedEncounter = false;
                 encounterHistory.Clear();
             }
-            else if (encounterHistory.Count > 0)
+            else if (encounterHistory.Count > 0 && !suppressLegacySurfaceTransition)
             {
                 BeginSurfaceTransition();
                 return;

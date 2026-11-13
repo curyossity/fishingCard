@@ -1,6 +1,6 @@
 # Deepwater documentation
 
-Design baseline: 6 November 2026, with the slot specification agreed on 7 November. Deepwater is the working title. The baseline documentation pass did not migrate Unity. The [slot runtime increment](Slot%20Machine%20Runtime.md) now implements Discover in the comparison scene, including the [approved artwork integration](Validation/TackleDiscoverArt/README.md). Landing, Build and the remaining redesign are not implemented by that increment.
+Design baseline: 6 November 2026, with the slot specification agreed on 7 November and the Landing specification supplied on 13 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements Discover with its approved artwork. The [Landing increment](Landing%20Challenge%20Mechanic.md) adds plain controls, movement, scoring and success/failure boundaries; its artwork is not integrated. Build/placement and the remaining redesign are separate work. Numeric prototype settings and illustrative abilities are not final content.
 
 ## Active specifications
 
@@ -9,6 +9,7 @@ Design baseline: 6 November 2026, with the slot specification agreed on 7 Novemb
 | [Full GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) | Authoritative mechanics, proposals and open decisions |
 | [Brief](GDD_IMPLEMENTATION_BRIEF.md) | Concise day-to-day rules |
 | [Slot machine](Slot%20Machine%20Mechanic.md) | Agreed preparation, reel, matching, rarity fallback and eligibility rules |
+| [Landing Challenge](Landing%20Challenge%20Mechanic.md) | Track, strikes, attempts, motion, scoring, failure payout and Build handoff |
 | [Architecture](Architecture.md) | Intended responsibilities for the agreed design |
 | [Card specification](Card%20Visual%20Specification.md) | Supplied-art boundary and dynamic fields |
 | [UI plan](UI%20Redesign%20Plan.md) | Presentation requirements and unresolved inputs |
