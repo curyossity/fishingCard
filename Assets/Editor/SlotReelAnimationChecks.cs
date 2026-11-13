@@ -10,13 +10,14 @@ public static class SlotReelAnimationChecks
 {
     public static string Result { get; private set; } = "Not run";
     private static int checks;
-    private const string Output = "Docs/Validation/SlotReelAnimation/";
+    private static string Output = "Docs/Validation/SlotReelAnimation/";
 
     /// <summary>Starts from the Harbor without modifying saves or supplying a fabricated landing result.</summary>
-    public static void Begin()
+    public static void Begin(string output = "Docs/Validation/SlotReelAnimation/")
     {
         if (!Application.isPlaying) throw new InvalidOperationException("Enter a fresh comparison Play Mode session.");
         Result = "Running"; checks = 0;
+        Output = output;
         UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>().Controller.StartCoroutine(Validate());
     }
 
@@ -37,15 +38,20 @@ public static class SlotReelAnimationChecks
         Check(!controller.TryAcceptSlotMachine(revision), "Accept bypassed initial animation.");
         Check(!controller.TrySetSlotReelLocked(revision, 0, true) && !controller.TryRespinSlotMachine(revision), "Spin input was not gated.");
         float phase = reels[0].Phase;
+        var surfaces = reels.Select(r => r.GetComponentInChildren<TackleReelSurface>()).ToArray();
+        Check(surfaces.All(s => s != null && s.MaterialInstance != null), "Rotating paper layers are not active.");
+        Check(!ReferenceEquals(surfaces[0].MaterialInstance, surfaces[1].MaterialInstance), "Wheels share mutable rotation materials.");
         yield return new WaitForSecondsRealtime(.18f);
         Check(reels[0].Phase != phase, "Wheel phase did not advance across frames.");
+        Check(surfaces.Select((s, i) => Mathf.Abs(s.Phase - reels[i].Phase) < .0001f
+            && Mathf.Abs(s.MaterialInstance.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x), "Paper phase differs from symbols/captions.");
         Check(initial.SequenceEqual(Enumerable.Range(0, 3).Select(controller.SlotMachine.GetTag)), "Animation rerolled model faces.");
         SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), "InitialSpinning.png", output: Output);
         float timeout = Time.realtimeSinceStartup + 5;
         while (view.IsAnimating && Time.realtimeSinceStartup < timeout) yield return null;
         Check(!view.IsAnimating && reels.All(r => !r.IsSpinning), "Initial reels did not settle.");
         Check(controller.CurrentEncounter == null && controller.SlotMachine.Active, "Settling accepted the result automatically.");
-        var face = reels[0].GetComponentsInChildren<TackleReelFace>().Single();
+        var face = reels[0].GetComponentsInChildren<TackleReelFace>().Single(f => f.IsCentered);
         Vector3 cylinderCenter = ((RectTransform)reels[0].transform).rect.center;
         Color32 color = Color.white;
         Vector3 center = face.Project(reels[0].transform, cylinderCenter, ref color);
@@ -55,6 +61,7 @@ public static class SlotReelAnimationChecks
         Check(edgeColor.r < color.r, "Cylinder lighting did not darken its curved edges.");
         Check(controller.TrySetSlotReelLocked(controller.SlotMachine.Revision, 1, true), "Could not lock settled middle reel.");
         float lockedPhase = reels[1].Phase;
+        float lockedPaperPhase = surfaces[1].Phase;
         string lockedTag = controller.SlotMachine.GetTag(1);
         Check(controller.TryRespinSlotMachine(controller.SlotMachine.Revision), "Respin failed.");
         string[] final = Enumerable.Range(0, 3).Select(controller.SlotMachine.GetTag).ToArray();
@@ -62,6 +69,8 @@ public static class SlotReelAnimationChecks
         Check(!controller.TryAcceptSlotMachine(controller.SlotMachine.Revision), "Accept bypassed respin animation.");
         yield return new WaitForSecondsRealtime(.2f);
         Check(reels[1].Phase == lockedPhase && controller.SlotMachine.GetTag(1) == lockedTag, "Locked wheel changed during respin.");
+        Check(surfaces[1].Phase == lockedPaperPhase && surfaces[0].Phase == reels[0].Phase && surfaces[2].Phase == reels[2].Phase,
+            "Locked paper moved or unlocked decorations drifted from their symbols.");
         SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), "LockedRespin.png", output: Output);
         timeout = Time.realtimeSinceStartup + 5;
         while (view.IsAnimating && Time.realtimeSinceStartup < timeout) yield return null;
@@ -74,7 +83,7 @@ public static class SlotReelAnimationChecks
         for (int i = 0; i < 3; i++)
         {
             Check(!((UnityEngine.UI.Button)data.FindProperty("lockButtons").GetArrayElementAtIndex(i).objectReferenceValue).interactable, "Final lock remained enabled.");
-            var label = reels[i].GetComponentsInChildren<TMP_Text>().Last();
+            var label = reels[i].GetComponentsInChildren<TackleReelFace>().Single(f => f.IsCentered).GetComponentsInChildren<TMP_Text>().Last();
             Check(string.Equals(label.text, final[i], StringComparison.OrdinalIgnoreCase), "Visible caption differs from final tag.");
             Check(label.textInfo.meshInfo[0].colors32.Take(label.textInfo.meshInfo[0].vertexCount).Any(c => c.a > 200), "Final caption is transparent.");
         }

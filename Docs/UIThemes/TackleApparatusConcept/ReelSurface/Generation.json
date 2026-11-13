@@ -1,0 +1,7 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "Assets/UIThemes/TackleApparatus/Art/Discover/reel-drum.png",
+  "referenceRole": "paper color and pixel texture only; not an edit target",
+  "output": "C:\\Users\\user\\.codex\\generated_images\\01a1b0dc-e1b2-7972-8110-edc369ccbd6b\\exec-2b63498a-2686-4ea6-b84c-d40e47388fd8.png",
+  "prompt": "Create a square seamless tileable flat parchment-paper texture for the rotating surface of a retro pixel-art fishing slot machine. The supplied image is a STYLE AND COLOR REFERENCE ONLY: match the pale warm cream/golden parchment in its central unshadowed area. Generate only a perfectly flat, evenly lit paper MATERIAL filling the whole square image edge to edge. Fine restrained pixel-cluster mottling, tiny sparse tan flecks and small pale ivory scuffs, about 160 effective pixels across, subtle variation. Muted warm cream/ivory base, low contrast so dark reel symbols remain readable. Seamless repeating top/bottom and left/right. NO wheel shape, rim, border, outlines, edges, divider lines, seams, horizontal rules, plaques, frames, symbols, words, writing, stains in large shapes, vignette, shadows or lighting gradients. The moving material will receive stationary cylinder lighting in Unity. Opaque flat texture, no transparent margin."
+}

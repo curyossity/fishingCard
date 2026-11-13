@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "generator": "built-in image_gen",
+  "entries": [
+    {
+      "tag": "Predator",
+      "file": "tag-predator.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "8c15f43ffda60477a3303c4676a026bc9e3345da049b888e430fe328c754b5f2"
+    },
+    {
+      "tag": "Small",
+      "file": "tag-small.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "c253beb3d3d284fb38e766de0bc51cddca14fade017d8aa675949234fa398073"
+    },
+    {
+      "tag": "Heavy",
+      "file": "tag-heavy.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "ba211108a3ff4a015e1107af410882411356c75ef936e5748f17fee7e99b2cfd"
+    },
+    {
+      "tag": "Anchored",
+      "file": "tag-anchored.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "e5e1019c93505044eac21ff36d9c570e6457a4573bad9b5995f65df6ded62bc9"
+    },
+    {
+      "tag": "Armored",
+      "file": "tag-armored.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "ee51cd7e8aba1896a26c0be18f910da4c6f0a5dfce3d125b1212d05c3fc7fa09",
+      "revision": 2,
+      "generationRecord": "Armored-v2-generation.json"
+    },
+    {
+      "tag": "Elusive",
+      "file": "tag-elusive.png",
+      "width": 1774,
+      "height": 887,
+      "sha256": "def475d806ba9a7862844561bcec09548bd6cf5a99ffac98f5eb24fd69cc3db7"
+    }
+  ]
+}

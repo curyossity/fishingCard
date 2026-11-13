@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 449ba26201f741643b908780e392f8ab
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4330971592429177902
+    second: tag-armored_0
+  - first:
+      213: -1004837583643130306
+    second: tag-armored_1
+  - first:
+      213: 3623432846150347280
+    second: tag-armored_2
+  - first:
+      213: -7124996145447148610
+    second: tag-armored_3
+  - first:
+      213: 2028044000072545654
+    second: tag-armored_4
+  - first:
+      213: -7392805245528565555
+    second: tag-armored_5
+  - first:
+      213: 8275301067312444665
+    second: tag-armored_6
+  - first:
+      213: 6695674228338679363
+    second: tag-armored_7
+  - first:
+      213: -4583861922151942480
+    second: tag-armored_8
+  - first:
+      213: -8688477958643386720
+    second: tag-armored_9
+  - first:
+      213: -5987331726064349405
+    second: tag-armored_10
+  - first:
+      213: 1624869983911343975
+    second: tag-armored_11
+  - first:
+      213: -7538768942463895581
+    second: tag-armored_12
+  - first:
+      213: -6866811985593866839
+    second: tag-armored_13
+  - first:
+      213: 4752785083782212580
+    second: tag-armored_14
+  - first:
+      213: 8008371646401509075
+    second: tag-armored_15
+  - first:
+      213: -372682967681382370
+    second: tag-armored_16
+  - first:
+      213: 3028675065125399238
+    second: tag-armored_17
+  - first:
+      213: 2917855991450905623
+    second: tag-armored_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tag-armored_0
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 515
+        width: 84
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d373fc784c45e3c0800000000000000
+      internalID: -4330971592429177902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 1664
+        height: 871
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e364df1aa891e02f0800000000000000
+      internalID: -1004837583643130306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 437
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a264ec9f4094230800000000000000
+      internalID: 3623432846150347280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_3
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 438
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb3689c61cdee1d90800000000000000
+      internalID: -7124996145447148610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_4
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 416
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 675bf25e54f052c10800000000000000
+      internalID: 2028044000072545654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_5
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 438
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc810a64cca776990800000000000000
+      internalID: -7392805245528565555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 333
+        width: 80
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f4b19ee976c7d270800000000000000
+      internalID: 8275301067312444665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_7
+      rect:
+        serializedVersion: 2
+        x: 1711
+        y: 384
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34e5dd74c30dbec50800000000000000
+      internalID: 6695674228338679363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_8
+      rect:
+        serializedVersion: 2
+        x: 1717
+        y: 370
+        width: 22
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b6b1be3ed9d260c0800000000000000
+      internalID: -4583861922151942480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_9
+      rect:
+        serializedVersion: 2
+        x: 1742
+        y: 354
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6ff3484535c6780800000000000000
+      internalID: -8688477958643386720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_10
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 311
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f02837489b8eca0800000000000000
+      internalID: -5987331726064349405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 41
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 767fa3534a2bc8610800000000000000
+      internalID: 1624869983911343975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_12
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 153
+        width: 7
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e731b4c699e06790800000000000000
+      internalID: -7538768942463895581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_13
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 64
+        width: 27
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a5684b81ee24b0a0800000000000000
+      internalID: -6866811985593866839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_14
+      rect:
+        serializedVersion: 2
+        x: 1709
+        y: 47
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eb2d943ad845f140800000000000000
+      internalID: 4752785083782212580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_15
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 31
+        width: 21
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d6721d0593732f60800000000000000
+      internalID: 8008371646401509075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_16
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 19
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e184381c0d6f3daf0800000000000000
+      internalID: -372682967681382370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_17
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 9
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cae1e4dce3080a20800000000000000
+      internalID: 3028675065125399238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-armored_18
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 13
+        width: 17
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c2d24909e4e7820800000000000000
+      internalID: 2917855991450905623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      tag-armored_0: -4330971592429177902
+      tag-armored_1: -1004837583643130306
+      tag-armored_10: -5987331726064349405
+      tag-armored_11: 1624869983911343975
+      tag-armored_12: -7538768942463895581
+      tag-armored_13: -6866811985593866839
+      tag-armored_14: 4752785083782212580
+      tag-armored_15: 8008371646401509075
+      tag-armored_16: -372682967681382370
+      tag-armored_17: 3028675065125399238
+      tag-armored_18: 2917855991450905623
+      tag-armored_2: 3623432846150347280
+      tag-armored_3: -7124996145447148610
+      tag-armored_4: 2028044000072545654
+      tag-armored_5: -7392805245528565555
+      tag-armored_6: 8275301067312444665
+      tag-armored_7: 6695674228338679363
+      tag-armored_8: -4583861922151942480
+      tag-armored_9: -8688477958643386720
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

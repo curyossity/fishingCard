@@ -8,6 +8,7 @@ public sealed class TackleReelFace : MonoBehaviour
     private TMP_Text fallback, label;
     private UnityEngine.UI.Image symbol;
     private float angle, radius, opacity = 1;
+    public bool IsCentered => Mathf.Abs(Mathf.DeltaAngle(0, angle * Mathf.Rad2Deg)) < .01f;
 
     /// <summary>Binds native graphic companions; no functional text is baked into artwork.</summary>
     public void Initialize(RectTransform surface, UnityEngine.UI.Image illustration, TMP_Text text, TMP_Text caption, float cylinderRadius)
@@ -41,7 +42,7 @@ public sealed class TackleReelFace : MonoBehaviour
         local.y = radius * Mathf.Sin(theta);
         float light = .58f + .42f * Mathf.Max(0, facing);
         color.r = (byte)(color.r * light); color.g = (byte)(color.g * light); color.b = (byte)(color.b * light);
-        color.a = (byte)(color.a * opacity * Mathf.SmoothStep(0, 1, Mathf.InverseLerp(0, .18f, facing)));
+        color.a = (byte)(color.a * opacity * Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.5f, .9f, facing)));
         return graphic.InverseTransformPoint(cylinder.TransformPoint(local + center));
     }
 

@@ -85,6 +85,7 @@ public static class TackleDiscoverArtSetup
         { Copy(Source + "Fonts/" + file, Root + "Fonts/" + file); AssetDatabase.ImportAsset(Root + "Fonts/" + file); }
         displayFont = Font("PressStart2P-Regular", "PressStart2P");
         bodyFont = Font("VT323-Regular", "VT323");
+        TackleReelSymbolSetup.Import();
         BuildRigCard();
         BuildDiscover();
         Copy(Source + "Manifest.json", Root + "SourceManifest.json");
@@ -171,12 +172,7 @@ public static class TackleDiscoverArtSetup
             Bind(art, "openLever", sprites["lock-lever-open"]); Bind(art, "lockedLever", sprites["lock-lever-locked"]);
             Bind(art, "matchOn", sprites["match-lamps-on"]); Bind(art, "matchOff", sprites["match-lamps-off"]);
             Bind(art, "matchLamps", Art(stage, "match-lamps-off", new Rect(864, 670, 197, 50), 0, true));
-            var tagArt = art.FindProperty("tagArtwork"); tagArt.arraySize = 2;
-            for (int i = 0; i < 2; i++)
-            {
-                tagArt.GetArrayElementAtIndex(i).FindPropertyRelative("tag").stringValue = i == 0 ? "Schooling" : "Fish";
-                tagArt.GetArrayElementAtIndex(i).FindPropertyRelative("sprite").objectReferenceValue = sprites[i == 0 ? "tag-schooling" : "portrait-mackerel"];
-            }
+            TackleReelSymbolSetup.Bind(art);
             Bind(view, "respinButton", Button(stage, "Respin", "RESPIN", new Rect(545, 920, 505, 116), "button-secondary", 1.42857143f, 26, Cream));
             var accept = Button(stage, "Accept", "ACCEPT TAGS", new Rect(1120, 920, 600, 116), "button-primary", 1.42857143f, 26, Ink);
             Bind(view, "acceptButton", accept); Bind(art, "initialFocus", accept);
@@ -192,6 +188,7 @@ public static class TackleDiscoverArtSetup
             Bind(art, "emptyRigLabel", Text(viewport, "Empty Rig", "NO CREATURES\nATTACHED", new Rect(15, 280, 285, 150), 34, Cream, false, 24, true));
             view.ApplyModifiedPropertiesWithoutUndo(); art.ApplyModifiedPropertiesWithoutUndo();
             AddReelAnimation(root);
+            TackleReelSurfaceSetup.Configure(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }
@@ -203,7 +200,7 @@ public static class TackleDiscoverArtSetup
     {
         if (EditorApplication.isPlayingOrWillChangePlaymode) throw new InvalidOperationException("Exit Play Mode before installing reel animation.");
         var root = PrefabUtility.LoadPrefabContents(PrefabPath);
-        try { AddReelAnimation(root); PrefabUtility.SaveAsPrefabAsset(root, PrefabPath); }
+        try { AddReelAnimation(root); TackleReelSurfaceSetup.Configure(root); PrefabUtility.SaveAsPrefabAsset(root, PrefabPath); }
         finally { PrefabUtility.UnloadPrefabContents(root); }
         AssetDatabase.SaveAssets();
     }

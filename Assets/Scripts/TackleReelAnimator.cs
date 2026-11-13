@@ -9,10 +9,11 @@ public sealed class TackleReelAnimator : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image symbolTemplate;
     [SerializeField] private TMP_Text fallbackTemplate, labelTemplate;
     [SerializeField, Min(1)] private float radius = 172;
+    [SerializeField] private TackleReelSurface surface;
     private readonly List<TackleReelFace> faces = new List<TackleReelFace>();
     private string[] tags = Array.Empty<string>();
     private float phase, from, destination, elapsed, duration;
-    private int target, startingFace;
+    private int target;
     public bool IsSpinning { get; private set; }
     public float Phase => phase;
 
@@ -24,14 +25,13 @@ public sealed class TackleReelAnimator : MonoBehaviour
     public void Spin(IReadOnlyList<string> activeTags, string result, Func<string, Sprite> illustration, float seconds)
     {
         EnsureFaces(activeTags, illustration);
-        startingFace = target;
         target = Array.FindIndex(tags, tag => string.Equals(tag, result, StringComparison.OrdinalIgnoreCase));
         if (target < 0) throw new InvalidOperationException("The resolved reel tag is outside the expedition symbols.");
         from = phase;
         float end = -target * Mathf.PI * .5f;
         destination = from + Mathf.Repeat(end - from, 2 * Mathf.PI) + 4 * Mathf.PI;
         elapsed = 0; duration = Mathf.Max(.2f, seconds); IsSpinning = true;
-        Draw(false);
+        Draw();
     }
 
     /// <summary>Advances with unscaled time; stagger timing is supplied by the Discover presentation.</summary>
@@ -48,7 +48,7 @@ public sealed class TackleReelAnimator : MonoBehaviour
         }
         else phase = destination + .035f * Mathf.Pow(1 - (t - 1 + settle) / settle, 2);
         if (t >= 1) { phase = Mathf.Repeat(destination, 2 * Mathf.PI); IsSpinning = false; }
-        Draw(!IsSpinning);
+        Draw();
     }
 
     /// <summary>Retains source templates and reuses generated faces until the active symbol set changes.</summary>
@@ -73,16 +73,12 @@ public sealed class TackleReelAnimator : MonoBehaviour
         symbolTemplate.gameObject.SetActive(false); fallbackTemplate.gameObject.SetActive(false); labelTemplate.gameObject.SetActive(false);
     }
 
-    /// <summary>Projects all passing faces while spinning; only the committed face remains after settling.</summary>
-    private void Draw(bool settled)
+    /// <summary>Keeps paper, dividers, plaques and native faces on one continuous cylinder, including its visible neighboring edges.</summary>
+    private void Draw()
     {
+        if (surface != null) surface.ApplyRotation(phase, radius);
         for (int i = 0; i < faces.Count; i++)
-        {
-            // Neighboring faces fade in/out while the reel accelerates/settles, avoiding a silhouette pop at rest.
-            float opacity = i == startingFace ? 1 : Mathf.SmoothStep(0, 1, elapsed / .06f);
-            if (i != target) opacity *= 1 - Mathf.SmoothStep(0, 1, (elapsed / duration - .86f) / .14f);
-            faces[i].SetAngle(phase + i * Mathf.PI * .5f, !settled || i == target, settled ? 1 : opacity);
-        }
+            faces[i].SetAngle(phase + i * Mathf.PI * .5f, true);
     }
 
     /// <summary>Cancels visual work immediately on phase exit without changing the resolved runtime result.</summary>

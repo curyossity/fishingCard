@@ -1,0 +1,11 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "new reference-based generation; not an edit",
+  "references": [
+    "Assets/UIThemes/TackleApparatus/Art/Common/portrait-mackerel.png",
+    "Assets/UIThemes/TackleApparatus/Art/Common/tag-schooling.png"
+  ],
+  "output": "C:\\Users\\user\\.codex\\generated_images\\01a1b0dc-e1b2-7972-8110-edc369ccbd6b\\exec-0fae53ac-edd9-4d9b-847d-a906bb57e0cd.png",
+  "prompt": "Generate a COMPLETELY NEW original ARMORED tag reel icon for a 2D fishing game. The two supplied fish images are STYLE REFERENCES ONLY; do not edit, repair or reference any earlier crab design. Subject: one compact shore crab with a strong, simple, broad domed armored carapace. Front/very slightly overhead view. EXACTLY TWO EYES TOTAL, one on each of two short unmistakable eyestalks above the front rim of its shell. Each eye is a single dark oval with a tiny warm ochre pupil; these are the ONLY eye-like dots on the entire creature. Clearly separate the eyes from the shell. Plain sturdy segmented shell with large simple teal-sage plates and broad ivory edge highlights, absolutely NO circular spots, jewels, dots or face-like markings on shell, claws, joints or legs. Two distinct rounded pincers held wide and LOW at its sides, not above its head. Three short walking legs visible on each side, others hidden naturally. Calm readable anatomy and solid protective shell are the focal point, not a monster. Same handmade retro pixel illustration as the references: visible coarse square pixel clusters, stepped edges, charcoal/dark brown outline, muted teal/navy/sage, silver and warm cream highlights, no extra gold decorations. Approximately 100 effective pixels across creature. Match the Fish/Schooling family rather than a modern cartoon UI icon. NO smooth vectors, glossy 3D, airbrush, glow, scenery, ground, cast shadow, bubbles, fish, text, frame, badge or watermark. A SINGLE crab, full silhouette entirely inside the image. True transparent background. Wide 2:1 canvas; the broad crab occupies about 82% of its width and 72% of height with generous clear transparent padding on ALL sides. Must read cleanly in a 212 by 98 pixel reel window.",
+  "replaces": "Original Armored crab; archived as Archive/tag-armored-v1.png"
+}

@@ -1,0 +1,689 @@
+fileFormatVersion: 2
+guid: 15b2c67f9414dd543b660eb9783f6c59
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5542057174493632606
+    second: tag-elusive_0
+  - first:
+      213: -3454806389565514467
+    second: tag-elusive_1
+  - first:
+      213: -4265585845861203242
+    second: tag-elusive_2
+  - first:
+      213: 1662280526083443569
+    second: tag-elusive_3
+  - first:
+      213: 4964858163028080986
+    second: tag-elusive_4
+  - first:
+      213: -1131298315354990490
+    second: tag-elusive_5
+  - first:
+      213: 7272963546767185931
+    second: tag-elusive_6
+  - first:
+      213: 451391951113257018
+    second: tag-elusive_7
+  - first:
+      213: 4753397103382595047
+    second: tag-elusive_8
+  - first:
+      213: 8551181638813316769
+    second: tag-elusive_9
+  - first:
+      213: -798422779731664840
+    second: tag-elusive_10
+  - first:
+      213: 2207279341203877143
+    second: tag-elusive_11
+  - first:
+      213: 3376277154899895954
+    second: tag-elusive_12
+  - first:
+      213: 6541446684782601571
+    second: tag-elusive_13
+  - first:
+      213: 5211983109888732069
+    second: tag-elusive_14
+  - first:
+      213: 1353188123745729963
+    second: tag-elusive_15
+  - first:
+      213: 3383457433904243817
+    second: tag-elusive_16
+  - first:
+      213: -4913565377292389452
+    second: tag-elusive_17
+  - first:
+      213: 901078557082285671
+    second: tag-elusive_18
+  - first:
+      213: 1398676043210625678
+    second: tag-elusive_19
+  - first:
+      213: 3128899372835377378
+    second: tag-elusive_20
+  - first:
+      213: -4188705343581987791
+    second: tag-elusive_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 0
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tag-elusive_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 49
+        width: 1707
+        height: 765
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e58199a13a759ec40800000000000000
+      internalID: 5542057174493632606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_1
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 662
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d923e94ef0e00d0800000000000000
+      internalID: -3454806389565514467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_2
+      rect:
+        serializedVersion: 2
+        x: 1014
+        y: 683
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d24282f5489dc4c0800000000000000
+      internalID: -4265585845861203242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_3
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 683
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17bc042d45b911710800000000000000
+      internalID: 1662280526083443569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_4
+      rect:
+        serializedVersion: 2
+        x: 1078
+        y: 684
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a59bc7fb138b6e440800000000000000
+      internalID: 4964858163028080986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_5
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 664
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66894421d22dc40f0800000000000000
+      internalID: -1131298315354990490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_6
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 576
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b085c6ddfc1cee460800000000000000
+      internalID: 7272963546767185931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_7
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 549
+        width: 22
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a308394869aa34600800000000000000
+      internalID: 451391951113257018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_8
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 561
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e58d7f1b7577f140800000000000000
+      internalID: 4753397103382595047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_9
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 554
+        width: 63
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a67f47f466eba670800000000000000
+      internalID: 8551181638813316769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_10
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 215
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 830a38946be6be4f0800000000000000
+      internalID: -798422779731664840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_11
+      rect:
+        serializedVersion: 2
+        x: 1524
+        y: 213
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71de38cbdd4d1ae10800000000000000
+      internalID: 2207279341203877143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_12
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 190
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29623112f22fade20800000000000000
+      internalID: 3376277154899895954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_13
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 188
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365af9b0a13e7ca50800000000000000
+      internalID: 6541446684782601571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_14
+      rect:
+        serializedVersion: 2
+        x: 822
+        y: 182
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5abe040360fa45840800000000000000
+      internalID: 5211983109888732069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_15
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 195
+        width: 7
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bad3426dd6d77c210800000000000000
+      internalID: 1353188123745729963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_16
+      rect:
+        serializedVersion: 2
+        x: 1288
+        y: 187
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 964648c1c9474fe20800000000000000
+      internalID: 3383457433904243817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_17
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 187
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b334d192528fcbb0800000000000000
+      internalID: -4913565377292389452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_18
+      rect:
+        serializedVersion: 2
+        x: 1324
+        y: 188
+        width: 12
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7667c9d6c26418c00800000000000000
+      internalID: 901078557082285671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_19
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 180
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e821b676378196310800000000000000
+      internalID: 1398676043210625678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_20
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 177
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e09bc7e6651c6b20800000000000000
+      internalID: 3128899372835377378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tag-elusive_21
+      rect:
+        serializedVersion: 2
+        x: 318
+        y: 138
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13cd307ceaabed5c0800000000000000
+      internalID: -4188705343581987791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      tag-elusive_0: 5542057174493632606
+      tag-elusive_1: -3454806389565514467
+      tag-elusive_10: -798422779731664840
+      tag-elusive_11: 2207279341203877143
+      tag-elusive_12: 3376277154899895954
+      tag-elusive_13: 6541446684782601571
+      tag-elusive_14: 5211983109888732069
+      tag-elusive_15: 1353188123745729963
+      tag-elusive_16: 3383457433904243817
+      tag-elusive_17: -4913565377292389452
+      tag-elusive_18: 901078557082285671
+      tag-elusive_19: 1398676043210625678
+      tag-elusive_2: -4265585845861203242
+      tag-elusive_20: 3128899372835377378
+      tag-elusive_21: -4188705343581987791
+      tag-elusive_3: 1662280526083443569
+      tag-elusive_4: 4964858163028080986
+      tag-elusive_5: -1131298315354990490
+      tag-elusive_6: 7272963546767185931
+      tag-elusive_7: 451391951113257018
+      tag-elusive_8: 4753397103382595047
+      tag-elusive_9: 8551181638813316769
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

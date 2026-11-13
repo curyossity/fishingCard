@@ -15,7 +15,9 @@ public static class TackleDiscoverArtChecks
         { if (!value) throw new InvalidOperationException(message); checks++; };
         string root = TackleDiscoverArtSetup.Root;
         string source = "Docs/UIThemes/TackleApparatusConcept/AssetLibrary/Exports/";
-        var files = Directory.GetFiles(root + "Art", "*.png", SearchOption.AllDirectories);
+        var files = Directory.GetFiles(root + "Art", "*.png", SearchOption.AllDirectories)
+            .Where(path => !path.Replace('\\', '/').StartsWith(TackleReelSymbolSetup.Destination, StringComparison.Ordinal)
+                && !path.Replace('\\', '/').StartsWith(TackleReelSurfaceSetup.ArtRoot, StringComparison.Ordinal)).ToArray();
         assert(files.Length == 37, "Discover asset selection changed unexpectedly.");
         foreach (string file in files)
         {
@@ -45,7 +47,7 @@ public static class TackleDiscoverArtChecks
         foreach (string name in new[] { "respinButton", "acceptButton", "heading", "resultDescription" })
             assert(data.FindProperty(name).objectReferenceValue != null, "Missing live field: " + name);
         var presentation = new SerializedObject(prefab.GetComponent<TackleDiscoverPresentation>());
-        assert(presentation.FindProperty("tagArtwork").arraySize == 2, "Unavailable tag illustrations were silently substituted.");
+        assert(presentation.FindProperty("tagArtwork").arraySize == 8, "All eight reel tags must have illustrations.");
         var reels = presentation.FindProperty("reels");
         assert(reels.arraySize == 3, "Cylinder animation is not bound to three reels.");
         for (int i = 0; i < 3; i++)
