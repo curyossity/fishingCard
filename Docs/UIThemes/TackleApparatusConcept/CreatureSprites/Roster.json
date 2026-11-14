@@ -1,0 +1,134 @@
+[
+  {
+    "id": "creature_cleaner_shrimp",
+    "name": "Cleaner Shrimp",
+    "type": "Creature",
+    "definition": "Assets/Cards/Cleaner Shrimp.asset"
+  },
+  {
+    "id": "creature_clinging_crab",
+    "name": "Clinging Crab",
+    "type": "Creature",
+    "definition": "Assets/Cards/Clinging Crab.asset"
+  },
+  {
+    "id": "creature_coastal_cod",
+    "name": "Cod",
+    "type": "Creature",
+    "definition": "Assets/Cards/Coastal Cod.asset"
+  },
+  {
+    "id": "creature_cuttlefish",
+    "name": "Cuttlefish",
+    "type": "Creature",
+    "definition": "Assets/Cards/Cuttlefish.asset"
+  },
+  {
+    "id": "creature_flounder",
+    "name": "Flounder",
+    "type": "Creature",
+    "definition": "Assets/Cards/Flounder.asset"
+  },
+  {
+    "id": "creature_garfish",
+    "name": "Garfish",
+    "type": "Creature",
+    "definition": "Assets/Cards/Garfish.asset"
+  },
+  {
+    "id": "creature_glass_minnow",
+    "name": "Glass Minnow",
+    "type": "Creature",
+    "definition": "Assets/Cards/Glass Minnow.asset"
+  },
+  {
+    "id": "creature_mackerel",
+    "name": "Mackerel",
+    "type": "Creature",
+    "definition": "Assets/Cards/Golden Mackerel.asset"
+  },
+  {
+    "id": "apex_harbor_leviathan",
+    "name": "Harbor Leviathan",
+    "type": "Apex",
+    "definition": "Assets/Cards/Harbor Leviathan.asset"
+  },
+  {
+    "id": "creature_jellyfish",
+    "name": "Jellyfish",
+    "type": "Creature",
+    "definition": "Assets/Cards/Jellyfish.asset"
+  },
+  {
+    "id": "creature_lionfish",
+    "name": "Lionfish",
+    "type": "Creature",
+    "definition": "Assets/Cards/Lionfish.asset"
+  },
+  {
+    "id": "creature_moonlit_ray",
+    "name": "Moonlit Ray",
+    "type": "Creature",
+    "definition": "Assets/Cards/Moonlit Ray.asset"
+  },
+  {
+    "id": "creature_mussel",
+    "name": "Mussel",
+    "type": "Creature",
+    "definition": "Assets/Cards/Mussel.asset"
+  },
+  {
+    "id": "creature_sardine",
+    "name": "Sardine",
+    "type": "Creature",
+    "definition": "Assets/Cards/Sardine.asset"
+  },
+  {
+    "id": "creature_sea_anemone",
+    "name": "Sea Anemone",
+    "type": "Creature",
+    "definition": "Assets/Cards/Sea Anemone.asset"
+  },
+  {
+    "id": "creature_sea_bass",
+    "name": "Sea Bass",
+    "type": "Creature",
+    "definition": "Assets/Cards/Sea Bass.asset"
+  },
+  {
+    "id": "creature_sea_urchin",
+    "name": "Sea Urchin",
+    "type": "Creature",
+    "definition": "Assets/Cards/Sea Urchin.asset"
+  },
+  {
+    "id": "creature_small_octopus",
+    "name": "Small Octopus",
+    "type": "Creature",
+    "definition": "Assets/Cards/Small Octopus.asset"
+  },
+  {
+    "id": "creature_spiny_lobster",
+    "name": "Spiny Lobster",
+    "type": "Creature",
+    "definition": "Assets/Cards/Spiny Lobster.asset"
+  },
+  {
+    "id": "creature_squid",
+    "name": "Squid",
+    "type": "Creature",
+    "definition": "Assets/Cards/squid.asset"
+  },
+  {
+    "id": "apex_stormjaw_tuna",
+    "name": "Stormjaw Tuna",
+    "type": "Apex",
+    "definition": "Assets/Cards/Stormjaw Tuna.asset"
+  },
+  {
+    "id": "creature_tidepool_eel",
+    "name": "Tidepool Eel",
+    "type": "Creature",
+    "definition": "Assets/Cards/Tidepool Eel.asset"
+  }
+]

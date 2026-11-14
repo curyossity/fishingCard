@@ -22,12 +22,12 @@ MonoBehaviour:
   - Fish
   - Schooling
   - Small
-  artwork: {fileID: -4311028475029301000, guid: 1b8e5a9c2d6f4a70a31c8b4e57d092f1, type: 3}
-  encounterArtwork: {fileID: 3125584908192654000, guid: 1b8e5a9c2d6f4a70a31c8b4e57d092f1, type: 3}
-  artworkLayout: 1
-  encounterArtworkScale: 0.65
-  encounterArtworkRotation: 15
-  encounterArtworkOffset: {x: -15, y: 0}
+  artwork: {fileID: 21300000, guid: c49599ebf2566414c8fe9996937fd61e, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: c49599ebf2566414c8fe9996937fd61e, type: 3}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: 
@@ -40,6 +40,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -69,3 +70,6 @@ MonoBehaviour:
       effects finish, optionally discard one hand technique and draw one replacement.
       Decline or skip with an empty hand. Multiple Minnow Bait copies offer one redraw
       per eligible attachment; never save it.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

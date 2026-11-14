@@ -21,14 +21,14 @@ MonoBehaviour:
   tags:
   - Predator
   - Elusive
-  artwork: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
-  encounterArtwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 73a572ccfb31b3949ac9b7648a47203e, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 73a572ccfb31b3949ac9b7648a47203e, type: 3}
   artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
-  cardFaceArtwork: {fileID: 3466943956296948973, guid: 6203ac7bacb22c14abe91448771598be, type: 3}
-  cardFaceIncludesName: 1
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   rulesText: 'Ink Veil: Hide your next 2 non-Apex creatures until their Catch/Bait
     choices are committed.'
   rulesTextHighlights: []
@@ -39,6 +39,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -91,3 +92,6 @@ MonoBehaviour:
       spent even if declined or reveal effects remove the creature. Grants survive
       source removal and mode changes; multiple grants apply oldest first to consecutive
       eligible encounters.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

@@ -21,9 +21,9 @@ MonoBehaviour:
   tags:
   - Fish
   - Predator
-  artwork: {fileID: -6506108666410769293, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
-  encounterArtwork: {fileID: 3164928710328421175, guid: 4ae9643c6ad5cf740a9eadf013c7bde4, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: b842330d263e93647825ca83f17ff546, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: b842330d263e93647825ca83f17ff546, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -39,6 +39,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -69,3 +70,6 @@ MonoBehaviour:
       including the technique just used. First eligible Release per encounter only,
       even with an empty discard; all Cod Bait copies share this limit. Encounter
       replacements do not reset it. Forced removal and exchanges do not trigger it.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

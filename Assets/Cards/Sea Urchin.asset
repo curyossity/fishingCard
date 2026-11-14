@@ -22,8 +22,8 @@ MonoBehaviour:
   - Small
   - Anchored
   - Armored
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 414669a68369d8540bdbd5e51bf16fe5, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 414669a68369d8540bdbd5e51bf16fe5, type: 3}
   artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
@@ -41,6 +41,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -96,3 +97,6 @@ MonoBehaviour:
       removal or mode changes do not cancel the grant. A declined recovery or missing
       played occurrence still consumes it and never substitutes another copy. One
       recovery per qualifying play; multiple grants cover consecutive plays.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

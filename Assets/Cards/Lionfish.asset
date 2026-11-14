@@ -22,9 +22,9 @@ MonoBehaviour:
   - Fish
   - Predator
   - Armored
-  artwork: {fileID: -4311028475029301000, guid: 2c9f6bad3e704b81b42d9c5f68e1a302, type: 3}
-  encounterArtwork: {fileID: 3125584908192654000, guid: 2c9f6bad3e704b81b42d9c5f68e1a302, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: f15f9cfe07dcb99488990b4c3d820a66, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: f15f9cfe07dcb99488990b4c3d820a66, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -41,6 +41,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -93,3 +94,6 @@ MonoBehaviour:
       Predator. Successful deliberate creature Release triggers other Release effects.
       All Lionfish Bait copies share one release per Predator caught. Decline or
       no target spends this immediate opportunity.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

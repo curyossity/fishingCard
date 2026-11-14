@@ -22,9 +22,9 @@ MonoBehaviour:
   - Fish
   - Small
   - Elusive
-  artwork: {fileID: -4311028475029301003, guid: e63a95dcb7a14b4b917c652f7c09f14d, type: 3}
-  encounterArtwork: {fileID: 3125584908192654003, guid: e63a95dcb7a14b4b917c652f7c09f14d, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: 3fec150211653624fb814d43e8b30481, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 3fec150211653624fb814d43e8b30481, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -47,6 +47,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -73,3 +74,6 @@ MonoBehaviour:
     reminderText: The next Elusive catch after Flounder permanently gains 1 Value.
   hasExplicitBaitData: 0
   baitEffects: []
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

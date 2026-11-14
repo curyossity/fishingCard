@@ -21,9 +21,9 @@ MonoBehaviour:
   tags:
   - Anchored
   - Armored
-  artwork: {fileID: 759678386672775755, guid: 64dad54472d3bde4ca5be151b04256c7, type: 3}
-  encounterArtwork: {fileID: -4829037146183527712, guid: 64dad54472d3bde4ca5be151b04256c7, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: 70b6c19b8d91e9c42922124af1648925, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 70b6c19b8d91e9c42922124af1648925, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -38,6 +38,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -83,3 +84,6 @@ MonoBehaviour:
       boundaryCount: 0
     reminderText: Immediately after attaching as Bait, choose one other legally releasable
       Catch or Bait. Deliberate creature Release; unused release is lost.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

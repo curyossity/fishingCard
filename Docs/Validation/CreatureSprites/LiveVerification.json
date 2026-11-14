@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "creatureViewAssertions": 222,
+  "discoverAssetAssertions": 155,
+  "landingAssetAssertions": 96,
+  "landingRuleAssertions": 64,
+  "liveDiscoverAssertions": 16,
+  "liveLandingAssertions": 46,
+  "metadataFilesChecked": 1638,
+  "metadataErrors": 0,
+  "metadataWarnings": 0,
+  "genericLandingIndicatorPreserved": true,
+  "playerPersistenceDisabledDuringLiveFixtures": true
+}

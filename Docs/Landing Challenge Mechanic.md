@@ -89,7 +89,7 @@ Authoritative scoring and terminal decisions happen immediately; feedback never 
 
 This phase uses the approved independent Tackle Apparatus Penpot exports: shared desk/cabinet/machine, creature panel, scoreboard, timing track, moving Good/Perfect regions, attempt lamps and controls. Runtime labels remain native text. Long rig and contribution lists scroll without a rig cap. Discover and Land remain separate screens. The plain colored rectangles and their generation path have been removed.
 
-The supplied fish body is decorative; paired supplied caret markers and brackets expose the exact configured scoring interval. Body size never changes overlap grading. Four supplied species portraits take priority; other species retain their existing authored creature illustration in the encounter panel. Shared rig cards retain their existing portrait mappings. No new species artwork or abilities are invented.
+The moving indicator is an original generic pixel fish. Its visible width and scoring interval agree. Baseline width is two-thirds of the initial Perfect region: approximately 53 px against 79 px on the 992 px track at 1080p. It replaces the oversized decorative garfish and separate markers. The agreed interval-overlap grading remains in force; full containment has been raised as a separate difficulty option and is not assumed. Four supplied species portraits take priority; other species retain their existing authored creature illustration in the encounter panel. Shared rig cards retain their existing portrait mappings. No new species artwork or abilities are invented.
 
 ## Current implementation boundary
 

@@ -22,9 +22,9 @@ MonoBehaviour:
   - Predator
   - Small
   - Elusive
-  artwork: {fileID: -4311028475029301000, guid: 60d3afe172b44fc5f861d093ac25e746, type: 3}
-  encounterArtwork: {fileID: 3125584908192654000, guid: 60d3afe172b44fc5f861d093ac25e746, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: 2ec917f8b1fe3364eb6c23b8da5b388e, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 2ec917f8b1fe3364eb6c23b8da5b388e, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -40,6 +40,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -92,3 +93,6 @@ MonoBehaviour:
       it survives in Bait; respect activation limits. This is not a Release or a
       new encounter. Pending effects follow their own durations. Decline or no eligible
       pair spends the use; returning to Bait never refreshes it.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

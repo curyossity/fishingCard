@@ -9,7 +9,7 @@ public sealed class LandingChallengeProfile : ScriptableObject
     [SerializeField, Min(1)] private int defaultResistance = 40;
     [SerializeField, Min(0)] private int resistancePerDepth = 10;
     [SerializeField, Min(0)] private float goodPoints = 10, perfectPoints = 20;
-    [SerializeField, Range(.01f, 1)] private float goodWidth = .24f, perfectWidth = .08f, fishWidth = .035f;
+    [SerializeField, Range(.01f, 1)] private float goodWidth = .24f, perfectWidth = .08f, fishWidth = .08f * (2f / 3f);
     [SerializeField, Min(.1f)] private float zonePeriod = 3.4f;
     [SerializeField, Min(.01f)] private float fishSpeed = .26f;
     [SerializeField, Min(.1f)] private float feedbackSeconds = .22f;

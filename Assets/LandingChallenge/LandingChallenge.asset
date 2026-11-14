@@ -19,7 +19,7 @@ MonoBehaviour:
   perfectPoints: 20
   goodWidth: 0.24
   perfectWidth: 0.08
-  fishWidth: 0.035
+  fishWidth: 0.053333335
   zonePeriod: 3.4
   fishSpeed: 0.26
   feedbackSeconds: 0.22

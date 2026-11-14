@@ -21,9 +21,9 @@ MonoBehaviour:
   tags:
   - Fish
   - Predator
-  artwork: {fileID: -4311028475029301000, guid: 5fc29ed061a34eb4e750cf829b14d635, type: 3}
-  encounterArtwork: {fileID: 3125584908192654000, guid: 5fc29ed061a34eb4e750cf829b14d635, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: 5fb9333c4a06d8346af7e27e2cfdea94, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 5fb9333c4a06d8346af7e27e2cfdea94, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -39,6 +39,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -88,3 +89,6 @@ MonoBehaviour:
       before either removal, then release together and resolve Release reactions
       after both leave. The Hooked encounter is not eligible. No technique is required.
       Mode changes, declining, or unused selections cannot refresh or save this activation.'
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

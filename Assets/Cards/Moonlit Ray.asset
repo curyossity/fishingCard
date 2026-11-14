@@ -22,9 +22,9 @@ MonoBehaviour:
   - Fish
   - Predator
   - Elusive
-  artwork: {fileID: -4311028475029301000, guid: 3da07cbe4f814c92c53ead6079f2b413, type: 3}
-  encounterArtwork: {fileID: 3125584908192654000, guid: 3da07cbe4f814c92c53ead6079f2b413, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: 8a0babf77b5153745b6e29faebeef41c, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 8a0babf77b5153745b6e29faebeef41c, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -41,6 +41,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -94,3 +95,6 @@ MonoBehaviour:
       and exchanges do not trigger. With no remaining Catch, skip. Bonuses survive
       source removal and recipient mode changes; Bait has no sale value. Resolve
       immediately, never save.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

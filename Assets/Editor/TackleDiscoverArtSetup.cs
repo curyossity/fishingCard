@@ -86,6 +86,7 @@ public static class TackleDiscoverArtSetup
         displayFont = Font("PressStart2P-Regular", "PressStart2P");
         bodyFont = Font("VT323-Regular", "VT323");
         TackleReelSymbolSetup.Import();
+        CreatureSpriteSetup.Import();
         BuildRigCard();
         BuildDiscover();
         Copy(Source + "Manifest.json", Root + "SourceManifest.json");
@@ -102,20 +103,17 @@ public static class TackleDiscoverArtSetup
             var data = new SerializedObject(view);
             Bind(data, "face", Art(root, "rig-card-ivory", new Rect(0, 0, 315, 244), 1.35135135f));
             Bind(data, "catchFace", sprites["rig-card-ivory"]); Bind(data, "baitFace", sprites["rig-card-sage"]);
-            Bind(data, "portrait", Art(root, "portrait-sardine", new Rect(30, 68, 255, 105), 0, true));
+            var portrait = Art(root, "portrait-sardine", new Rect(30, 68, 255, 105), 0, true);
+            portrait.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(CreatureSpriteSetup.Destination + "creature_sardine.png");
+            CreatureSpriteSetup.CenterPortrait(portrait);
+            Bind(data, "portrait", portrait);
             Art(root, "card-clip", new Rect(130, -20, 55, 34), 0, true);
             Art(root, "rope-vertical", new Rect(147, 242, 20, 40), 0, true);
-            Bind(data, "nameLabel", Text(root, "NameLabel", "", new Rect(20, 25, 275, 32), 21, Cream, false, 12));
+            var name = Text(root, "NameLabel", "", new Rect(52.5f, 25, 210, 32), 21, Cream, false, 12);
+            name.textWrappingMode = TextWrappingModes.NoWrap;
+            Bind(data, "nameLabel", name);
             Bind(data, "roleLabel", Text(root, "RoleLabel", "", new Rect(44, 198, 158, 30), 19, Cream, true));
             Bind(data, "valueLabel", Text(root, "SaleValueLabel", "", new Rect(212, 197, 58, 32), 22, Cream, false, 10));
-            var portraits = data.FindProperty("portraits"); portraits.arraySize = 4;
-            string[] ids = { "creature_sardine", "creature_mackerel", "creature_glass_minnow", "creature_garfish" };
-            string[] names = { "portrait-sardine", "portrait-mackerel", "portrait-glass-minnow", "portrait-garfish" };
-            for (int i = 0; i < 4; i++)
-            {
-                portraits.GetArrayElementAtIndex(i).FindPropertyRelative("creatureId").stringValue = ids[i];
-                portraits.GetArrayElementAtIndex(i).FindPropertyRelative("sprite").objectReferenceValue = sprites[names[i]];
-            }
             data.ApplyModifiedPropertiesWithoutUndo();
             PrefabUtility.SaveAsPrefabAsset(root.gameObject, RigPrefabPath);
         }

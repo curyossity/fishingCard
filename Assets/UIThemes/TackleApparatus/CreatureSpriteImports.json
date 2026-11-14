@@ -1,0 +1,290 @@
+{
+    "sprites": [
+        {
+            "id": "creature_cleaner_shrimp",
+            "sourceSha256": "00b47d9d055fd4505938edbbf65dde3f68170bdb5224e2e1041a200ce634f3f1",
+            "importedSha256": "0a4f44d9cc9fbb64607532f91f173e252c77156e715346430d3ef3e1a2e4cc17",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_cleaner_shrimp.png",
+            "sourceBoundsTopLeft": [
+                206,
+                117,
+                1361,
+                667
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_clinging_crab",
+            "sourceSha256": "13d3c09129ae5d426ef4fd22230b44f418e7c1b66880fbd9ac555b4da3286910",
+            "importedSha256": "36a65dd9323bb286b103871ea42ec84f60b25b93492f5755e91c202c84f6a5b2",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_clinging_crab.png",
+            "sourceBoundsTopLeft": [
+                100,
+                132,
+                1574,
+                693
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_coastal_cod",
+            "sourceSha256": "79d4de6e3acc98d88cbc58b7aeb61f1f366f91ef91d91890f170c300ff297db8",
+            "importedSha256": "f101903724c4c48a1dbd0310c5532624a1cb8a35f7045b2c3b664ce5dd8882c6",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_coastal_cod.png",
+            "sourceBoundsTopLeft": [
+                121,
+                140,
+                1534,
+                615
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_cuttlefish",
+            "sourceSha256": "57d926919316586a1ea19b3fc708850952f9085e9b58043b9a0fce78d0b814b0",
+            "importedSha256": "f7dd1e40759e5a9c1a0752dc835e264cc6b77e37ad2cabd0e19f9b9804c532b1",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_cuttlefish.png",
+            "sourceBoundsTopLeft": [
+                106,
+                171,
+                1556,
+                576
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_flounder",
+            "sourceSha256": "7d7adbbb176bd758fb90df9925e953a94fb51e5594658aa6b754912755e81520",
+            "importedSha256": "76e10d9126356803cb06dae20861fcf3b29bc24aa46953ef3fca3af200135011",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_flounder.png",
+            "sourceBoundsTopLeft": [
+                129,
+                50,
+                1532,
+                787
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_garfish",
+            "sourceSha256": "4443ec8611d87c919916b4ed47adb0d22330a6ae0014a95bad9a5642421a1e1c",
+            "importedSha256": "75d251a3d7cb74d65611485b9dcd78904e95e8a0d07ede2a767fcfa66780f855",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_garfish.png",
+            "sourceBoundsTopLeft": [
+                85,
+                336,
+                1596,
+                239
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_glass_minnow",
+            "sourceSha256": "fb111370eff0ac8ea5c0c7a3afaa6603b9196f34989453bfe39b6ae44d11fc2d",
+            "importedSha256": "249e847b6f3777e2944ea1b3b7e9d5c1e512d17b331cbf86ebe1a0c9cc0157fa",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_glass_minnow.png",
+            "sourceBoundsTopLeft": [
+                222,
+                172,
+                1328,
+                549
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_mackerel",
+            "sourceSha256": "41eff78fdf1e533ba6eecd4be9c1afba5fa92014fa187b2e36f7d5abfb96cdd5",
+            "importedSha256": "2d413382cbff202da293aac23ea47f28bd15b406d687d5af6ecdc9aeedcb2d1d",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_mackerel.png",
+            "sourceBoundsTopLeft": [
+                120,
+                121,
+                1537,
+                641
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "apex_harbor_leviathan",
+            "sourceSha256": "dae4646a3113b1c8ca5fbdbc9381c14e9a256df0a42acb1089dd1ebd8cd7c9e9",
+            "importedSha256": "a32b086c066bbb846ef47be08ec1399bd5c389b2c9d8ef87b28fdad48f5669dc",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/apex_harbor_leviathan.png",
+            "sourceBoundsTopLeft": [
+                71,
+                99,
+                1652,
+                713
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_jellyfish",
+            "sourceSha256": "6c95f3e94d850e19fca44ca4dc8165b3179215807108a4d192f06e5a04255400",
+            "importedSha256": "9552f61ae55bbed84dc2aab347a5414f91f8db85f487949f042271eaac04601a",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_jellyfish.png",
+            "sourceBoundsTopLeft": [
+                530,
+                81,
+                699,
+                745
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_lionfish",
+            "sourceSha256": "7158b2850052ae85d5326e4861eca4836a64349b12e9a4f5abc52824ee96b469",
+            "importedSha256": "a11bd49713a3a66f942a9e60ca3b7327777e0123bb03eb8bfe465978bcb73cef",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_lionfish.png",
+            "sourceBoundsTopLeft": [
+                221,
+                18,
+                1363,
+                851
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_moonlit_ray",
+            "sourceSha256": "06226555edf21d7185f192a0b76165ed7abc7b38e5263d14955d80bc80bf6c1b",
+            "importedSha256": "15d7202221778a591375d598576b33c0860af652d5ba658fb5aceefec421d2a9",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_moonlit_ray.png",
+            "sourceBoundsTopLeft": [
+                270,
+                38,
+                1248,
+                819
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_mussel",
+            "sourceSha256": "ca36fbf21f3c9fd2f38f4abbcea3d7259c390d19d179897cb3ed330b5a12c681",
+            "importedSha256": "0bfb186649a1ed57acbe99bd5b4f0301587fe69ab156abdd1af7b1040c5a7138",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_mussel.png",
+            "sourceBoundsTopLeft": [
+                167,
+                93,
+                1447,
+                691
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_sardine",
+            "sourceSha256": "0d45b01278756091ed910d98feaf8ab737174983f69397298223a2e0d6407ab0",
+            "importedSha256": "2c3e4dc214162ccf80e9625440cf73584060223bf42eef238de0776476202883",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sardine.png",
+            "sourceBoundsTopLeft": [
+                310,
+                188,
+                1156,
+                505
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_sea_anemone",
+            "sourceSha256": "87fa9f74a32d42ec17d4a7a1606922f72a83081c4f2b29b8c461b87e759c0361",
+            "importedSha256": "c7e4b17a5706ddcf9a0bcb78eba5ea561404eb5a8d266f2bcde892de383e3ef8",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_anemone.png",
+            "sourceBoundsTopLeft": [
+                366,
+                58,
+                1042,
+                766
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_sea_bass",
+            "sourceSha256": "79f1f7faba98df52186d4959af43c534f1197619aa3c0bd937f69f74c3b2ee40",
+            "importedSha256": "c29f8dd6592b46085748c3b0c6416e90dd334c0aa70dcfba10e4ffbbe03a1cbf",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_bass.png",
+            "sourceBoundsTopLeft": [
+                115,
+                93,
+                1560,
+                701
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_sea_urchin",
+            "sourceSha256": "e9270bc5f5f61255c1279ea6afe623a0e2eca6c6da6757e8e043e22f5133f40f",
+            "importedSha256": "eac5aa25723ffdd5b491799a6fb14a7850dbf26b16d564da14fe6c01a3de0ef2",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_urchin.png",
+            "sourceBoundsTopLeft": [
+                383,
+                70,
+                1002,
+                722
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_small_octopus",
+            "sourceSha256": "a3091c47504f7318d485c038eeb718aa0f404c1c84faf0ca284273ebe4bcd5ed",
+            "importedSha256": "02376fda05c64e51c416e8e6b086efdfa8def592819ad9c541e136dec2c3a33c",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_small_octopus.png",
+            "sourceBoundsTopLeft": [
+                322,
+                87,
+                1123,
+                726
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_spiny_lobster",
+            "sourceSha256": "b8a5b0fa49d046324f52ce8b75736da263fecbe2b3e1ad8473285fb66bba96ba",
+            "importedSha256": "56c4ee25c05bf2e8ee36b1201ff2e88653d32cc4dd8271b3bfeb6be8daccd49c",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_spiny_lobster.png",
+            "sourceBoundsTopLeft": [
+                172,
+                144,
+                1427,
+                633
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_squid",
+            "sourceSha256": "032a7ed324fef389ba837c8a33ddbcba20d3db90cd1ca3f30cb91277654ed12a",
+            "importedSha256": "eca6dae9a1c6a5d0de1f31266a7318ebc4f8120b80500c11520b405d1e3bffe7",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_squid.png",
+            "sourceBoundsTopLeft": [
+                101,
+                180,
+                1583,
+                509
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "apex_stormjaw_tuna",
+            "sourceSha256": "69eb79b8d5e1c89ead51effc2d7d1f6d5ee7c41b8eee6ba1ffb0fcc2ec83fedb",
+            "importedSha256": "963c2c3b78c72db70a86a59c6d9dadc7de7e0ab6cb0bf13c29270b60e1028a84",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/apex_stormjaw_tuna.png",
+            "sourceBoundsTopLeft": [
+                121,
+                67,
+                1577,
+                740
+            ],
+            "transparentPadding": 4
+        },
+        {
+            "id": "creature_tidepool_eel",
+            "sourceSha256": "607866fb4c0fa66ee8e4092349db15ed87831d0b99940b545b5fd2e5ab617ba9",
+            "importedSha256": "e8eafa335841ab1d0ce73671176e6bdfb983470cdf019495218b9d127f1204cf",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_tidepool_eel.png",
+            "sourceBoundsTopLeft": [
+                79,
+                210,
+                1609,
+                451
+            ],
+            "transparentPadding": 4
+        }
+    ]
+}

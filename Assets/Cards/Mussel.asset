@@ -22,9 +22,9 @@ MonoBehaviour:
   - Small
   - Anchored
   - Armored
-  artwork: {fileID: -4311028475029301000, guid: 4eb18dcf50924da3d64fbe718a03c524, type: 3}
-  encounterArtwork: {fileID: 3125584908192654000, guid: 4eb18dcf50924da3d64fbe718a03c524, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: a4ed4361190f29740838c1bcf99b5e74, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: a4ed4361190f29740838c1bcf99b5e74, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -40,6 +40,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -91,3 +92,6 @@ MonoBehaviour:
       Only Hazard classification qualifies, never Apex. Protection survives biomes
       but expires on leaving Bait mode; returning never restores used or expired
       protection.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

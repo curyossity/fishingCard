@@ -57,7 +57,7 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
     public IReadOnlyList<CompactCatchCardView> Cards => cards;
     public IReadOnlyList<UnityEngine.UI.Image> Links => links;
 
-    /// <summary>Reuses physical views and follows new catches unless the player is inspecting an earlier scroll position.</summary>
+    /// <summary>Reuses ordered views with current creature-definition art; theme resources continue to supply other card types.</summary>
     public override void Refresh(CardInstance[] catches, ActiveCatchEffectRecord[] activeEffects,
         int currentLineLoad, int lineCapacity, int selectedCatchIndex, Action<int> selectCatchAction)
     {
@@ -98,6 +98,11 @@ public sealed class JournalCatchChainPresentation : CatchChainPresentation
             card.SetStatFeedbackPaused(card != animatingCard || waitingForScroll || waitingForPulse);
             theme.TryGetCompactArtwork(instance?.Definition?.UniqueId, out Sprite artwork);
             Rect bounds = theme.GetCompactArtworkBounds(instance?.Definition?.UniqueId);
+            if (instance?.Definition != null && (instance.Definition.CardType == CardType.Creature || instance.Definition.CardType == CardType.ApexEncounter))
+            {
+                artwork = instance.Definition.Artwork;
+                bounds = MidnightFieldJournalTheme.CompactBounds(64, 100, 552, 221);
+            }
             card.SetArtwork(artwork, bounds);
             card.SetState(i == selectedCatchIndex ? CompactCatchCardState.Selected : CompactCatchCardState.Normal);
         }

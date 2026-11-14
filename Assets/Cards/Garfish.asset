@@ -22,12 +22,12 @@ MonoBehaviour:
   - Fish
   - Small
   - Elusive
-  artwork: {fileID: -4311028475029301004, guid: 4d78f812a1eb4e90823d907ca17a6c24, type: 3}
-  encounterArtwork: {fileID: 3125584908192654004, guid: 4d78f812a1eb4e90823d907ca17a6c24, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: 1c452e4dabe610b4280475bbd8b6f60a, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 1c452e4dabe610b4280475bbd8b6f60a, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
-  encounterArtworkRotation: -25
-  encounterArtworkOffset: {x: -14, y: -10}
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: 'Swift: Gain +3 value per other Elusive Catch.'
@@ -39,6 +39,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -87,3 +88,6 @@ MonoBehaviour:
     reminderText: Every other attached Fish creature in either role gains Elusive
       while this Garfish is Bait. Apply before attachment triggers. Ending this effect
       preserves native tags and other active grants.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

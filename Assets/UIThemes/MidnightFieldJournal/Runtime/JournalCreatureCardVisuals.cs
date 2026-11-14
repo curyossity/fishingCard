@@ -19,10 +19,12 @@ public sealed class JournalCreatureCardVisuals : CreatureCardVisualExtension
     [SerializeField] private JournalRoleFade catchGlow, baitGlow;
     private bool metadataVisible;
 
-    /// <summary>Uses central-only portraits without replacing compact-chain sources.</summary>
+    /// <summary>Uses current creature definitions while retaining independent theme artwork for other card types.</summary>
     public override Sprite GetArtwork(CardDefinition card)
     {
         if (theme == null || card == null) return null;
+        if (card.CardType == CardType.Creature || card.CardType == CardType.ApexEncounter)
+            return card.EncounterArtwork != null ? card.EncounterArtwork : card.Artwork;
         var eventEntry = theme.GetCentralEvent(card.UniqueId);
         if (eventEntry != null) return eventEntry.sprite;
         var entry = theme.GetCentralCard(card.UniqueId);

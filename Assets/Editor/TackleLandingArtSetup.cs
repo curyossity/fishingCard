@@ -11,6 +11,7 @@ public static class TackleLandingArtSetup
 {
     private const string Root = TackleDiscoverArtSetup.Root;
     private const string Source = "Docs/UIThemes/TackleApparatusConcept/AssetLibrary/";
+    public const string IndicatorPath = Root + "Art/Landing/Indicators/generic-fish.png";
     private static readonly Color Cream = new Color32(222, 211, 165, 255), Ink = new Color32(55, 59, 44, 255);
     private static Dictionary<string, Sprite> sprites;
     private static TMP_FontAsset displayFont, bodyFont;
@@ -20,6 +21,7 @@ public static class TackleLandingArtSetup
     /// <summary>Copies only approved Landing/shared exports at original size and keeps existing GUIDs and tuning.</summary>
     public static void BuildAssets()
     {
+        CreatureSpriteSetup.Import();
         sprites = new Dictionary<string, Sprite>();
         var manifest = JsonUtility.FromJson<Manifest>(File.ReadAllText(Source + "Manifest.json"));
         foreach (var asset in manifest.assets.Where(a => a.uses.Contains("landing")))
@@ -39,6 +41,7 @@ public static class TackleLandingArtSetup
             var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); settings.spriteMeshType = SpriteMeshType.FullRect;
             importer.SetTextureSettings(settings); importer.SaveAndReimport(); sprites.Add(asset.name, AssetDatabase.LoadAssetAtPath<Sprite>(path));
         }
+        ImportIndicator();
         displayFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(Root + "Fonts/PressStart2P.asset");
         bodyFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(Root + "Fonts/VT323.asset");
         if (displayFont == null || bodyFont == null || AssetDatabase.LoadAssetAtPath<GameObject>(TackleDiscoverArtSetup.RigPrefabPath) == null)
@@ -71,15 +74,11 @@ public static class TackleLandingArtSetup
             Text(stage, "RigTitle", "YOUR RIG", new Rect(70, 105, 290, 42), 23, Cream);
             Bind(data, "creature", Text(stage, "Creature", "", new Rect(700, 229, 950, 50), 27, Cream, 16));
             Art(stage, "portrait-frame", new Rect(630, 295, 455, 225), 1.25f);
-            Bind(data, "portrait", Art(stage, "portrait-garfish", new Rect(654, 334, 407, 112), 0, true));
+            var portrait = Art(stage, "portrait-garfish", new Rect(654, 334, 407, 112), 0, true);
+            portrait.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(CreatureSpriteSetup.Destination + "creature_garfish.png");
+            CreatureSpriteSetup.CenterPortrait(portrait);
+            Bind(data, "portrait", portrait);
             Bind(data, "tags", Text(stage, "CreatureTags", "", new Rect(655, 460, 405, 35), 22, Cream, 15, true));
-            var portraits = data.FindProperty("portraits"); portraits.arraySize = 4;
-            string[] ids = { "sardine", "mackerel", "glass_minnow", "garfish" };
-            for (int i = 0; i < ids.Length; i++)
-            {
-                var entry = portraits.GetArrayElementAtIndex(i); entry.FindPropertyRelative("creatureId").stringValue = "creature_" + ids[i];
-                entry.FindPropertyRelative("sprite").objectReferenceValue = sprites["portrait-" + ids[i].Replace('_', '-')];
-            }
             Art(stage, "score-readout", new Rect(1110, 295, 555, 225), 1.25f);
             Text(stage, "PointsCaption", "LANDING POINTS", new Rect(1135, 318, 245, 34), 21, Cream, 15, true);
             Text(stage, "ResistanceCaption", "RESISTANCE", new Rect(1405, 318, 235, 34), 21, Cream, 15, true);
@@ -97,13 +96,9 @@ public static class TackleLandingArtSetup
             track.gameObject.AddComponent<UnityEngine.UI.RectMask2D>(); Bind(data, "track", track);
             var good = Motion(track, "landing-zone", 103); var perfect = Motion(track, "perfect-band", 103);
             Bind(data, "goodZone", good); Bind(data, "perfectZone", perfect);
-            var fish = Rect("Fish Interval", track, new Rect(0, 0, 35, 103)); fish.anchorMin = fish.anchorMax = fish.pivot = new Vector2(.5f, .5f);
-            // Brackets expose the exact scoring interval; fish body size is decorative and never changes accuracy.
-            var marker = Art(fish, "focus-corners", new Rect(0, 0, 35, 90), 4);
-            marker.rectTransform.anchorMin = Vector2.zero; marker.rectTransform.anchorMax = Vector2.one; marker.rectTransform.offsetMin = marker.rectTransform.offsetMax = Vector2.zero;
-            var body = Art(fish, "cursor-garfish-right", new Rect(0, 0, 240, 48), 0, true).rectTransform;
-            body.anchorMin = body.anchorMax = body.pivot = new Vector2(.5f, .5f); body.anchoredPosition = Vector2.zero;
-            FishPointer(fish, 42, false); FishPointer(fish, -42, true);
+            var marker = Art(track, "generic-fish", new Rect(0, 0, 53, 35));
+            var fish = marker.rectTransform; fish.name = "Fish Indicator";
+            fish.anchorMin = fish.anchorMax = fish.pivot = new Vector2(.5f, .5f); fish.anchoredPosition = Vector2.zero;
             Bind(data, "fish", fish); Bind(data, "fishMarker", marker);
             var lampContent = Rect("Attempt Lamps", stage, new Rect(645, 735, 280, 55)); Bind(data, "lampContent", lampContent);
             var lamp = Art(lampContent, "lamp-off", new Rect(0, 0, 55, 55), 0, true); lamp.gameObject.SetActive(false);
@@ -143,13 +138,22 @@ public static class TackleLandingArtSetup
         var image = Art(track, sprite, new Rect(0, 0, 120, height)); var rect = image.rectTransform;
         rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f); rect.anchoredPosition = Vector2.zero; return rect;
     }
-    /// <summary>Makes the exact scoring interval readable above and below the decorative fish body using supplied pointer artwork.</summary>
-    private static void FishPointer(Transform fish, float y, bool reverse)
+    /// <summary>Imports the original generic pixel marker separately from the preserved Penpot exports.</summary>
+    private static void ImportIndicator()
     {
-        var pointer = Art(fish, "caret-down", new Rect(0, 0, 35, 16)).rectTransform;
-        pointer.anchorMin = new Vector2(0, .5f); pointer.anchorMax = new Vector2(1, .5f); pointer.pivot = new Vector2(.5f, .5f);
-        pointer.sizeDelta = new Vector2(0, 16); pointer.anchoredPosition = new Vector2(0, y);
-        if (reverse) pointer.localRotation = Quaternion.Euler(0, 0, 180);
+        const string original = "Docs/UIThemes/TackleApparatusConcept/LandingIndicator/generic-fish.png";
+        Folder(Root + "Art/Landing/Indicators");
+        if (!File.Exists(IndicatorPath) || !File.ReadAllBytes(IndicatorPath).SequenceEqual(File.ReadAllBytes(original))) File.Copy(original, IndicatorPath, true);
+        AssetDatabase.ImportAsset(IndicatorPath, ImportAssetOptions.ForceSynchronousImport);
+        var importer = (TextureImporter)AssetImporter.GetAtPath(IndicatorPath);
+        importer.textureType = TextureImporterType.Sprite; importer.spriteImportMode = SpriteImportMode.Single;
+        importer.spritePixelsPerUnit = 100; importer.spritePivot = new Vector2(.5f, .5f); importer.spriteBorder = Vector4.zero;
+        importer.filterMode = FilterMode.Point; importer.wrapMode = TextureWrapMode.Clamp;
+        importer.mipmapEnabled = false; importer.isReadable = false; importer.alphaIsTransparency = true;
+        importer.npotScale = TextureImporterNPOTScale.None; importer.textureCompression = TextureImporterCompression.Uncompressed;
+        var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); settings.spriteMeshType = SpriteMeshType.FullRect;
+        importer.SetTextureSettings(settings); importer.SaveAndReimport();
+        sprites.Add("generic-fish", AssetDatabase.LoadAssetAtPath<Sprite>(IndicatorPath));
     }
     /// <summary>Creates clipped scroll content without a visible placeholder background or an artificial item cap.</summary>
     private static UnityEngine.UI.ScrollRect Scroll(Transform parent, string name, Rect bounds, out RectTransform content)

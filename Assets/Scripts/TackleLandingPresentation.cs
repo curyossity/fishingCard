@@ -9,7 +9,6 @@ public sealed class TackleLandingPresentation : MonoBehaviour
 {
     [SerializeField] private TMP_Text phase, haul, creature, tags, points, resistance, attempts, movement, message, grade, breakdown, emptyRig;
     [SerializeField] private UnityEngine.UI.Image portrait, fishMarker;
-    [SerializeField] private TackleRigCardView.Portrait[] portraits = Array.Empty<TackleRigCardView.Portrait>();
     [SerializeField] private RectTransform track, fish, goodZone, perfectZone, progressFill, lampContent, rigContent;
     [SerializeField] private UnityEngine.UI.Image lampTemplate;
     [SerializeField] private Sprite lampOn, lampOff;
@@ -72,21 +71,18 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         foreach (var button in buttons) button.RefreshAvailability();
     }
 
-    /// <summary>Uses a visible scoring marker of exactly the model interval; the larger fish illustration is decorative.</summary>
+    /// <summary>Sizes the generic fish to exactly its scoring interval, preserving the icon's pixel aspect ratio.</summary>
     private void Position(RectTransform rectangle, double center, double width)
     {
-        rectangle.sizeDelta = new Vector2((float)width * track.rect.width, rectangle.sizeDelta.y);
+        float pixels = (float)width * track.rect.width;
+        float height = rectangle == fish ? pixels * fishMarker.sprite.rect.height / fishMarker.sprite.rect.width : rectangle.sizeDelta.y;
+        rectangle.sizeDelta = new Vector2(pixels, height);
         rectangle.anchoredPosition = new Vector2(((float)center - .5f) * track.rect.width, 0);
     }
-    /// <summary>Displays the approved species portrait when supplied, otherwise the creature's actual authored illustration.</summary>
+    /// <summary>Displays the definition's species portrait independently of the generic moving fish marker.</summary>
     private void BindCreature()
     {
-        Sprite image = null;
-        if (selectedCreature != null)
-        {
-            foreach (var entry in portraits) if (entry.creatureId == selectedCreature.UniqueId) { image = entry.sprite; break; }
-            if (image == null) image = selectedCreature.Artwork;
-        }
+        Sprite image = selectedCreature != null ? selectedCreature.EncounterArtwork ?? selectedCreature.Artwork : null;
         portrait.sprite = image; portrait.enabled = image != null;
         tags.text = selectedCreature == null ? "" : string.Join(" / ", selectedCreature.Tags).ToUpperInvariant();
     }

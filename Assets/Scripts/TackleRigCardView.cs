@@ -1,20 +1,12 @@
-using System;
 using TMPro;
 using UnityEngine;
 
 /// <summary>Reusable blank rig face, portrait and live role/value labels in the approved pixel presentation.</summary>
 public sealed class TackleRigCardView : MonoBehaviour
 {
-    [Serializable]
-    public struct Portrait
-    {
-        public string creatureId;
-        public Sprite sprite;
-    }
     [SerializeField] private UnityEngine.UI.Image face, portrait;
     [SerializeField] private Sprite catchFace, baitFace;
     [SerializeField] private TMP_Text nameLabel, roleLabel, valueLabel;
-    [SerializeField] private Portrait[] portraits = Array.Empty<Portrait>();
     public CardInstance BoundInstance { get; private set; }
 
     /// <summary>Briefly accents a scoring source without changing its role, value or supplied artwork.</summary>
@@ -28,9 +20,7 @@ public sealed class TackleRigCardView : MonoBehaviour
         roleLabel.text = instance.IsBait ? "BAIT" : "CATCH";
         valueLabel.text = !instance.IsBait && instance.HidesOwnValueDuringRun ? "?" : instance.HaulValueContribution.ToString();
         face.sprite = instance.IsBait ? baitFace : catchFace;
-        Sprite image = null;
-        foreach (Portrait entry in portraits)
-            if (string.Equals(entry.creatureId, instance.Definition.UniqueId, StringComparison.OrdinalIgnoreCase)) { image = entry.sprite; break; }
+        Sprite image = instance.Definition.Artwork;
         portrait.sprite = image;
         portrait.enabled = image != null;
     }

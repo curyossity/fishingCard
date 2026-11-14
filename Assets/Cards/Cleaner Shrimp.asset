@@ -20,9 +20,9 @@ MonoBehaviour:
   techniqueRole: 
   tags:
   - Small
-  artwork: {fileID: 2157674157209873347, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
-  encounterArtwork: {fileID: 6483912047753102011, guid: 3049ec8a2e148f54baab0aff60183507, type: 3}
-  artworkLayout: 1
+  artwork: {fileID: 21300000, guid: c829f76002875df4bb266662205d0d18, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: c829f76002875df4bb266662205d0d18, type: 3}
+  artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
   encounterArtworkOffset: {x: 0, y: 0}
@@ -38,6 +38,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -85,3 +86,6 @@ MonoBehaviour:
       boundaryCount: 0
     reminderText: At each later biome start, replace one pre-entry creature Catch
       with a weighted creature offer; keep normal Weight, Value, and Catch effects.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

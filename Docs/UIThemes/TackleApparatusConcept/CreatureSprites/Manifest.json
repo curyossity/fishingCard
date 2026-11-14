@@ -1,0 +1,454 @@
+{
+  "date": "2026-11-14",
+  "penpot": {
+    "fileId": "3681d377-bc58-8110-8008-e7a38adc2112",
+    "pageId": "78a1e967-1189-802c-8008-f0ff94cf1483",
+    "pageName": "10 - Creature Sprites",
+    "headerGroupId": "78a1e967-1189-802c-8008-f1026c688eea",
+    "gridGroupId": "78a1e967-1189-802c-8008-f10484466426",
+    "url": "https://design.penpot.app/?screen=workspace&team-id=9e056cfe-f83f-81f8-8008-cc4e858053b7&file-id=3681d377-bc58-8110-8008-e7a38adc2112&page-id=78a1e967-1189-802c-8008-f0ff94cf1483",
+    "layout": {
+      "header": [
+        0,
+        0,
+        1920,
+        340
+      ],
+      "grid": [
+        0,
+        340,
+        1920,
+        1860
+      ]
+    },
+    "sourceImageElementCount": 22,
+    "verifiedAllCreatureLabels": true,
+    "saved": true,
+    "layerInspection": "Imported individual svg-image nodes and separate vector labels; full 22-creature composition reviewed."
+  },
+  "sourceRoster": "Assets/Cards (CardType Creature and ApexEncounter)",
+  "spriteCount": 22,
+  "standardCount": 20,
+  "apexCount": 2,
+  "generationTool": "built-in image_gen",
+  "sprites": [
+    {
+      "id": "creature_cleaner_shrimp",
+      "name": "Cleaner Shrimp",
+      "type": "Creature",
+      "definition": "Assets/Cards/Cleaner Shrimp.asset",
+      "filename": "creature_cleaner_shrimp.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        206,
+        117,
+        1361,
+        667
+      ],
+      "clearMargin": true,
+      "sha256": "00b47d9d055fd4505938edbbf65dde3f68170bdb5224e2e1041a200ce634f3f1"
+    },
+    {
+      "id": "creature_clinging_crab",
+      "name": "Clinging Crab",
+      "type": "Creature",
+      "definition": "Assets/Cards/Clinging Crab.asset",
+      "filename": "creature_clinging_crab.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 254,
+      "bounds": [
+        100,
+        132,
+        1574,
+        693
+      ],
+      "clearMargin": true,
+      "sha256": "13d3c09129ae5d426ef4fd22230b44f418e7c1b66880fbd9ac555b4da3286910"
+    },
+    {
+      "id": "creature_coastal_cod",
+      "name": "Cod",
+      "type": "Creature",
+      "definition": "Assets/Cards/Coastal Cod.asset",
+      "filename": "creature_coastal_cod.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        121,
+        140,
+        1534,
+        615
+      ],
+      "clearMargin": true,
+      "sha256": "79d4de6e3acc98d88cbc58b7aeb61f1f366f91ef91d91890f170c300ff297db8"
+    },
+    {
+      "id": "creature_cuttlefish",
+      "name": "Cuttlefish",
+      "type": "Creature",
+      "definition": "Assets/Cards/Cuttlefish.asset",
+      "filename": "creature_cuttlefish.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        106,
+        171,
+        1556,
+        576
+      ],
+      "clearMargin": true,
+      "sha256": "57d926919316586a1ea19b3fc708850952f9085e9b58043b9a0fce78d0b814b0"
+    },
+    {
+      "id": "creature_flounder",
+      "name": "Flounder",
+      "type": "Creature",
+      "definition": "Assets/Cards/Flounder.asset",
+      "filename": "creature_flounder.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        129,
+        50,
+        1532,
+        787
+      ],
+      "clearMargin": true,
+      "sha256": "7d7adbbb176bd758fb90df9925e953a94fb51e5594658aa6b754912755e81520"
+    },
+    {
+      "id": "creature_garfish",
+      "name": "Garfish",
+      "type": "Creature",
+      "definition": "Assets/Cards/Garfish.asset",
+      "filename": "creature_garfish.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        85,
+        336,
+        1596,
+        239
+      ],
+      "clearMargin": true,
+      "sha256": "4443ec8611d87c919916b4ed47adb0d22330a6ae0014a95bad9a5642421a1e1c"
+    },
+    {
+      "id": "creature_glass_minnow",
+      "name": "Glass Minnow",
+      "type": "Creature",
+      "definition": "Assets/Cards/Glass Minnow.asset",
+      "filename": "creature_glass_minnow.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        222,
+        172,
+        1328,
+        549
+      ],
+      "clearMargin": true,
+      "sha256": "fb111370eff0ac8ea5c0c7a3afaa6603b9196f34989453bfe39b6ae44d11fc2d"
+    },
+    {
+      "id": "creature_mackerel",
+      "name": "Mackerel",
+      "type": "Creature",
+      "definition": "Assets/Cards/Golden Mackerel.asset",
+      "filename": "creature_mackerel.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        120,
+        121,
+        1537,
+        641
+      ],
+      "clearMargin": true,
+      "sha256": "41eff78fdf1e533ba6eecd4be9c1afba5fa92014fa187b2e36f7d5abfb96cdd5"
+    },
+    {
+      "id": "apex_harbor_leviathan",
+      "name": "Harbor Leviathan",
+      "type": "Apex",
+      "definition": "Assets/Cards/Harbor Leviathan.asset",
+      "filename": "apex_harbor_leviathan.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        71,
+        99,
+        1652,
+        713
+      ],
+      "clearMargin": true,
+      "sha256": "dae4646a3113b1c8ca5fbdbc9381c14e9a256df0a42acb1089dd1ebd8cd7c9e9"
+    },
+    {
+      "id": "creature_jellyfish",
+      "name": "Jellyfish",
+      "type": "Creature",
+      "definition": "Assets/Cards/Jellyfish.asset",
+      "filename": "creature_jellyfish.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        530,
+        81,
+        699,
+        745
+      ],
+      "clearMargin": true,
+      "sha256": "6c95f3e94d850e19fca44ca4dc8165b3179215807108a4d192f06e5a04255400"
+    },
+    {
+      "id": "creature_lionfish",
+      "name": "Lionfish",
+      "type": "Creature",
+      "definition": "Assets/Cards/Lionfish.asset",
+      "filename": "creature_lionfish.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        221,
+        18,
+        1363,
+        851
+      ],
+      "clearMargin": true,
+      "sha256": "7158b2850052ae85d5326e4861eca4836a64349b12e9a4f5abc52824ee96b469"
+    },
+    {
+      "id": "creature_moonlit_ray",
+      "name": "Moonlit Ray",
+      "type": "Creature",
+      "definition": "Assets/Cards/Moonlit Ray.asset",
+      "filename": "creature_moonlit_ray.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        270,
+        38,
+        1248,
+        819
+      ],
+      "clearMargin": true,
+      "sha256": "06226555edf21d7185f192a0b76165ed7abc7b38e5263d14955d80bc80bf6c1b"
+    },
+    {
+      "id": "creature_mussel",
+      "name": "Mussel",
+      "type": "Creature",
+      "definition": "Assets/Cards/Mussel.asset",
+      "filename": "creature_mussel.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        167,
+        93,
+        1447,
+        691
+      ],
+      "clearMargin": true,
+      "sha256": "ca36fbf21f3c9fd2f38f4abbcea3d7259c390d19d179897cb3ed330b5a12c681"
+    },
+    {
+      "id": "creature_sardine",
+      "name": "Sardine",
+      "type": "Creature",
+      "definition": "Assets/Cards/Sardine.asset",
+      "filename": "creature_sardine.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        310,
+        188,
+        1156,
+        505
+      ],
+      "clearMargin": true,
+      "sha256": "0d45b01278756091ed910d98feaf8ab737174983f69397298223a2e0d6407ab0"
+    },
+    {
+      "id": "creature_sea_anemone",
+      "name": "Sea Anemone",
+      "type": "Creature",
+      "definition": "Assets/Cards/Sea Anemone.asset",
+      "filename": "creature_sea_anemone.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        366,
+        58,
+        1042,
+        766
+      ],
+      "clearMargin": true,
+      "sha256": "87fa9f74a32d42ec17d4a7a1606922f72a83081c4f2b29b8c461b87e759c0361"
+    },
+    {
+      "id": "creature_sea_bass",
+      "name": "Sea Bass",
+      "type": "Creature",
+      "definition": "Assets/Cards/Sea Bass.asset",
+      "filename": "creature_sea_bass.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        115,
+        93,
+        1560,
+        701
+      ],
+      "clearMargin": true,
+      "sha256": "79f1f7faba98df52186d4959af43c534f1197619aa3c0bd937f69f74c3b2ee40"
+    },
+    {
+      "id": "creature_sea_urchin",
+      "name": "Sea Urchin",
+      "type": "Creature",
+      "definition": "Assets/Cards/Sea Urchin.asset",
+      "filename": "creature_sea_urchin.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        383,
+        70,
+        1002,
+        722
+      ],
+      "clearMargin": true,
+      "sha256": "e9270bc5f5f61255c1279ea6afe623a0e2eca6c6da6757e8e043e22f5133f40f"
+    },
+    {
+      "id": "creature_small_octopus",
+      "name": "Small Octopus",
+      "type": "Creature",
+      "definition": "Assets/Cards/Small Octopus.asset",
+      "filename": "creature_small_octopus.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        322,
+        87,
+        1123,
+        726
+      ],
+      "clearMargin": true,
+      "sha256": "a3091c47504f7318d485c038eeb718aa0f404c1c84faf0ca284273ebe4bcd5ed"
+    },
+    {
+      "id": "creature_spiny_lobster",
+      "name": "Spiny Lobster",
+      "type": "Creature",
+      "definition": "Assets/Cards/Spiny Lobster.asset",
+      "filename": "creature_spiny_lobster.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        172,
+        144,
+        1427,
+        633
+      ],
+      "clearMargin": true,
+      "sha256": "b8a5b0fa49d046324f52ce8b75736da263fecbe2b3e1ad8473285fb66bba96ba"
+    },
+    {
+      "id": "creature_squid",
+      "name": "Squid",
+      "type": "Creature",
+      "definition": "Assets/Cards/squid.asset",
+      "filename": "creature_squid.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        101,
+        180,
+        1583,
+        509
+      ],
+      "clearMargin": true,
+      "sha256": "032a7ed324fef389ba837c8a33ddbcba20d3db90cd1ca3f30cb91277654ed12a"
+    },
+    {
+      "id": "apex_stormjaw_tuna",
+      "name": "Stormjaw Tuna",
+      "type": "Apex",
+      "definition": "Assets/Cards/Stormjaw Tuna.asset",
+      "filename": "apex_stormjaw_tuna.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        121,
+        67,
+        1577,
+        740
+      ],
+      "clearMargin": true,
+      "sha256": "69eb79b8d5e1c89ead51effc2d7d1f6d5ee7c41b8eee6ba1ffb0fcc2ec83fedb"
+    },
+    {
+      "id": "creature_tidepool_eel",
+      "name": "Tidepool Eel",
+      "type": "Creature",
+      "definition": "Assets/Cards/Tidepool Eel.asset",
+      "filename": "creature_tidepool_eel.png",
+      "width": 1774,
+      "height": 887,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        79,
+        210,
+        1609,
+        451
+      ],
+      "clearMargin": true,
+      "sha256": "607866fb4c0fa66ee8e4092349db15ed87831d0b99940b545b5fd2e5ab617ba9"
+    }
+  ]
+}

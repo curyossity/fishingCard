@@ -16,21 +16,38 @@ MonoBehaviour:
   displayName: Stormjaw Tuna
   cardType: 8
   rarity: 3
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Fish
   - Predator
   - Heavy
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 7a89ce0820f009a428f92f35049da4f5, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 7a89ce0820f009a428f92f35049da4f5, type: 3}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   rulesText: A violent Apex catch. While attached, Predators contribute 1 additional
     Line Load and future Predator encounters gain 2 selection weight.
+  rulesTextHighlights: []
+  baitRulesText: 
+  baitRulesTextHighlights: []
   weight: 7
   value: 16
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 21
   maximumDepth: -1
   effects:
   - effectId: stormjaw_predator_strain
+    displayName: 
     effectType: 0
     trigger: 2
     target: 4
@@ -38,11 +55,18 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Predator
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
     reminderText: Predator catches contribute 1 additional Line Load.
   - effectId: stormjaw_attracts_predators
+    displayName: 
     effectType: 3
     trigger: 2
     target: 6
@@ -50,7 +74,18 @@ MonoBehaviour:
     amount: 2
     requiredTags:
     - Predator
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
     reminderText: Future Predator encounters gain 2 selection weight.
+  hasExplicitBaitData: 0
+  baitEffects: []
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

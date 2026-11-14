@@ -22,8 +22,8 @@ MonoBehaviour:
   - Predator
   - Small
   - Anchored
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 7151a23d7a1983f4da21e0600d6f141f, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 7151a23d7a1983f4da21e0600d6f141f, type: 3}
   artworkLayout: 0
   encounterArtworkScale: 1
   encounterArtworkRotation: 0
@@ -40,6 +40,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -91,3 +92,6 @@ MonoBehaviour:
       hand; do not play or draw, and preserve hand size. Requires both piles to contain
       a technique. Shared one swap per Small creature caught; declining spends this
       immediate opportunity.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

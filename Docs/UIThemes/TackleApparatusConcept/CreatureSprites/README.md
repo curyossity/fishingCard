@@ -1,0 +1,17 @@
+# Creature pixel sprite library
+
+Created 14 November 2026. [Open 10 - Creature Sprites in Penpot](https://design.penpot.app/?screen=workspace&team-id=9e056cfe-f83f-81f8-8008-cc4e858053b7&file-id=3681d377-bc58-8110-8008-e7a38adc2112&page-id=78a1e967-1189-802c-8008-f0ff94cf1483).
+
+The page contains new transparent sprites for all 22 current CardDefinition creatures: 20 standard creatures and the two existing Apex creatures. The roster was read from Assets/Cards using CardType Creature (3) and ApexEncounter (8); no species were added or removed. Stable IDs, definition paths, selected PNGs, dimensions and SHA-256 hashes are in Manifest.json and Roster.json.
+
+Sprites match the original Sardine, Mackerel and Glass Minnow rig references: coarse square clusters, charcoal outline, muted maritime colors, cream highlights and readable compact silhouettes. Side-view animals face left; naturally radial/flat creatures use readable front/top views. The header preserves the original three reference sprites, and the grid contains the new set. Apex depictions are new visual interpretations of the existing named creatures, whose definitions had no illustration. No creature abilities, tags or rules were changed.
+
+All generation used the built-in image_gen tool, one asset per call. The complete prompts and generated source paths are preserved in GenerationJobs.json. No CLI/API image workflow was used. The second Small Octopus generation is selected because its eight arms are distinct; the unselected first variant remains in Variants/.
+
+Sprites/ contains exactly 22 selected individual RGBA PNGs. Validation.json records alpha and crop checks: all have transparent background and clear margins around the complete silhouette. Creature-Library-Header.svg and Creature-Sprites-Grid.svg preserve the vector layout, labels, source groups and independent embedded PNG layers used for the Penpot upload. The grid is not a flattened contact-sheet image.
+
+The Penpot connector was unavailable, so the new page and imports were completed through the browser. Its Saved state and the full 22-creature composition were visually checked. The header is at 0,0; the 1920 x 1860 grid begins at 0,340. The original creation pass changed no Unity files. The subsequent approved Unity integration is described below.
+
+The imported parent group exposes individual svg-image layers and separate vector labels. Penpot gives these imported layers generic names; species identities remain in the visible labels, source SVG IDs and Manifest.json. All 22 labels and the complete composition were verified.
+
+Unity integration: `CreatureSpriteSetup` verifies each selected source hash and the complete current creature roster, then imports to `Assets/UIThemes/TackleApparatus/Art/Creatures/`. Source PNGs above remain unchanged. Derived PNGs contain the recorded alpha bounds plus a four-pixel transparent border, with no resampling or recoloring. `Assets/UIThemes/TackleApparatus/CreatureSpriteImports.json` records source/import hashes and crop bounds. Import uses Point filtering, uncompressed RGBA, no mipmaps and no runtime CPU readback. Both illustration fields on each creature definition reference the corresponding sprite; the two Apex creatures receive art without changing their eligibility. Reusable card faces and native fields remain separate. See [validation and native-size review](../../../Validation/CreatureSprites/README.md).

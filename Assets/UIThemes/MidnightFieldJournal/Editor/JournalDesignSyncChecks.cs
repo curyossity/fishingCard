@@ -37,7 +37,7 @@ public static class JournalDesignSyncChecks
                 Require(entry.sprite!=null&&entry.portraitBounds.width>0,"Missing imported portrait "+card.DisplayName);
                 view.SetCard(card,0,9999,false);Canvas.ForceUpdateCanvases();
                 var art=Field<UnityEngine.UI.Image>(view,"creatureArtwork");
-                Require(art.sprite==entry.sprite&&art.enabled&&art.rectTransform.parent.GetComponent<RectTransform>().rect.width>0,"Hidden portrait "+card.DisplayName);
+                Require(art.sprite==(card.EncounterArtwork??card.Artwork)&&art.enabled&&art.rectTransform.parent.GetComponent<RectTransform>().rect.width>0,"Hidden portrait "+card.DisplayName);
                 Require(art.rectTransform.localScale==Vector3.one&&art.rectTransform.anchoredPosition==Vector2.zero,"Old framing leaked");
                 Require(Text(view,"weightText").text=="0"&&Text(view,"valueText").text=="9999","Resolved stat values missing");
                 Require(view.transform.Find("Rarity Footer/Rarity Name").GetComponent<TMP_Text>().text==card.Rarity.ToString().ToUpperInvariant(),"Rarity mismatch");

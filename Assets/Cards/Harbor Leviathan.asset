@@ -16,20 +16,37 @@ MonoBehaviour:
   displayName: Harbor Leviathan
   cardType: 8
   rarity: 3
+  backupTechnique: 0
+  techniqueRole: 
   tags:
   - Predator
   - Heavy
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 055d998481e4b78459647233887483fc, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: 055d998481e4b78459647233887483fc, type: 3}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
   rulesText: A massive but sheltering catch. While attached, every Small catch contributes
     1 less Line Load.
+  rulesTextHighlights: []
+  baitRulesText: 
+  baitRulesTextHighlights: []
   weight: 8
   value: 18
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 21
   maximumDepth: -1
   effects:
   - effectId: leviathan_shelters_small_catches
+    displayName: 
     effectType: 1
     trigger: 2
     target: 4
@@ -37,7 +54,19 @@ MonoBehaviour:
     amount: 1
     requiredTags:
     - Small
+    grantedTag: 
+    targetTags: []
     caughtCardTargetMode: 0
     replacementCard: {fileID: 0}
     expiresAfterUse: 0
-    reminderText: Small catches contribute 1 less Line Load while Harbor Leviathan is attached.
+    hasEventLifetime: 0
+    eventLifetime:
+      boundaryId: 
+      boundaryCount: 0
+    reminderText: Small catches contribute 1 less Line Load while Harbor Leviathan
+      is attached.
+  hasExplicitBaitData: 0
+  baitEffects: []
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

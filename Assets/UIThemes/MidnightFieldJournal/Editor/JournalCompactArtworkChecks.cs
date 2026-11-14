@@ -32,11 +32,11 @@ public static class JournalCompactArtworkChecks
             Require(chain.Cards.Count == roster.Length, "Chain omitted physical cards.");
             for (int i = 0; i < roster.Length; i++)
             {
-                Require(theme.TryGetCompactArtwork(roster[i].UniqueId, out var expected) && expected != null, "Compact art missing: " + roster[i].DisplayName);
+                var expected = roster[i].Artwork;
+                Require(expected != null, "Compact art missing: " + roster[i].DisplayName);
                 var image = chain.Cards[i].transform.Find("Artwork Mask/Runtime Artwork").GetComponent<UnityEngine.UI.Image>();
                 Require(image.enabled && image.sprite == expected && image.preserveAspect && !image.raycastTarget, "Wrong/hidden compact portrait: " + roster[i].DisplayName);
-                if (theme.TryGetArtwork(roster[i].UniqueId, out var original)) Require(expected == original, "Approved compact art was replaced.");
-                else Require(expected == theme.GetCentralCard(roster[i].UniqueId).sprite, "Central illustration identity changed.");
+                Require(expected == roster[i].EncounterArtwork, "Creature artwork is inconsistent between views.");
                 Require(chain.Cards[i].transform.Find("Creature Name").GetComponent<TMP_Text>().text == roster[i].DisplayName, "Pooled name mismatch.");
                 Require(chain.Cards[i].transform.Find("Value Value").GetComponent<TMP_Text>().text == (instances[i].IsBait ? "0" : instances[i].HidesOwnValueDuringRun ? "?" : instances[i].HaulValueContribution.ToString()), "Role/value mask changed.");
             }

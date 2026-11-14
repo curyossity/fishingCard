@@ -31,6 +31,13 @@ public static class TackleLandingArtChecks
         check(art != null && input.FindProperty("artwork").objectReferenceValue == art, "Landing art is not wired.");
         foreach (string name in new[] { "strike", "returnToHarbor" }) check(input.FindProperty(name).objectReferenceValue != null, "Input unbound: " + name);
         var data = new SerializedObject(art);
+        var marker = (UnityEngine.UI.Image)data.FindProperty("fishMarker").objectReferenceValue;
+        check(marker.sprite != null && AssetDatabase.GetAssetPath(marker.sprite) == TackleLandingArtSetup.IndicatorPath,
+            "Generic fish indicator was replaced by a species illustration.");
+        check(marker.transform.childCount == 0 && marker.rectTransform == data.FindProperty("fish").objectReferenceValue,
+            "Decorative fish body or separate hidden scoring marker remains.");
+        check(File.ReadAllBytes(TackleLandingArtSetup.IndicatorPath).SequenceEqual(File.ReadAllBytes("Docs/UIThemes/TackleApparatusConcept/LandingIndicator/generic-fish.png")),
+            "Generic marker differs from its original pixel source.");
         foreach (string field in new[] { "phase", "haul", "creature", "tags", "points", "resistance", "attempts", "movement", "message", "grade", "breakdown", "emptyRig", "portrait", "fishMarker", "track", "fish", "goodZone", "perfectZone", "progressFill", "lampContent", "lampTemplate", "lampOn", "lampOff", "rigContent", "rigCardPrefab", "rigScroll", "scoreScroll" })
             check(data.FindProperty(field).objectReferenceValue != null, "Presentation unbound: " + field);
         var scaler = prefab.GetComponent<UnityEngine.UI.CanvasScaler>();
@@ -67,6 +74,7 @@ public static class TackleLandingArtChecks
         check(!slot.gameObject.activeInHierarchy && art.gameObject.activeInHierarchy, "Discover overlaps Landing.");
         var data = new SerializedObject(art); var model = controller.Landing;
         var track = (RectTransform)data.FindProperty("track").objectReferenceValue;
+        check(Math.Abs(model.FishWidth / model.PerfectWidth - 2.0 / 3) < .00001, "Baseline fish is not two-thirds of the initial Perfect width.");
         foreach (string name in new[] { "fish", "goodZone", "perfectZone" })
         {
             var rect = (RectTransform)data.FindProperty(name).objectReferenceValue;

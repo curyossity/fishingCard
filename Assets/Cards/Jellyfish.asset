@@ -20,12 +20,12 @@ MonoBehaviour:
   techniqueRole: 
   tags:
   - Small
-  artwork: {fileID: -4311028475029301002, guid: 7fe0198a3f1d4b6ba2c75ebd6cf98ed1, type: 3}
-  encounterArtwork: {fileID: 3125584908192654002, guid: 7fe0198a3f1d4b6ba2c75ebd6cf98ed1, type: 3}
-  artworkLayout: 1
-  encounterArtworkScale: 1.25
-  encounterArtworkRotation: -22
-  encounterArtworkOffset: {x: -48, y: -24}
+  artwork: {fileID: 21300000, guid: c8b98d65354711d4092c80f4e9bc0767, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: c8b98d65354711d4092c80f4e9bc0767, type: 3}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
   rulesText: 'Tangle: The next creature attached as Catch gains +1 weight.'
@@ -38,6 +38,7 @@ MonoBehaviour:
   randomizeValueWhenCaught: 0
   minimumCaughtValue: 0
   maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
   biomeIds:
   - Coastal
   minimumDepth: 0
@@ -90,3 +91,6 @@ MonoBehaviour:
       0, while this source is Bait and the target remains attached and Armored. Loss
       of Armored suspends the reduction; regaining it restores it. Freeze targets
       once; no replacements. Multiple Jellyfish reductions stack.
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

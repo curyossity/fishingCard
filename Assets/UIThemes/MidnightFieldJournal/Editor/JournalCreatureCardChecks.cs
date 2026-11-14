@@ -53,6 +53,7 @@ public static class JournalCreatureCardChecks
                 theme.TryGetArtwork(card.UniqueId, out Sprite expected);
                 var central = theme.GetCentralCard(card.UniqueId); if (central != null) expected = central.sprite;
                 var centralEvent = theme.GetCentralEvent(card.UniqueId); if (centralEvent != null) expected = centralEvent.sprite;
+                if (card.CardType == CardType.Creature || card.CardType == CardType.ApexEncounter) expected = card.EncounterArtwork ?? card.Artwork;
                 var art = Field<UnityEngine.UI.Image>(view, "creatureArtwork");
                 Require(art.sprite == expected && art.enabled == (expected != null), "Artwork substituted: " + card.DisplayName);
                 Require(!Field<UnityEngine.UI.Image>(view, "artworkOverflowLayer").enabled, "Old full-card overlay leaked.");
