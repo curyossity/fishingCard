@@ -1,0 +1,1387 @@
+{
+  "date": "2026-11-16",
+  "installedImageCount": 100,
+  "serializedPhaseImageCount": 65,
+  "replaced": [
+    "build-tray",
+    "build-tray-three",
+    "build-rail-card"
+  ],
+  "missingTransparentReplacements": [],
+  "checks": {
+    "build": 81,
+    "discover": 155,
+    "landing": 96,
+    "liveBuild": 33
+  },
+  "independentExportByteChecks": [
+    {
+      "name": "rig-card-ivory",
+      "byteIdentical": true
+    },
+    {
+      "name": "desk-background",
+      "byteIdentical": true
+    },
+    {
+      "name": "machine-housing",
+      "byteIdentical": true
+    },
+    {
+      "name": "rig-cabinet",
+      "byteIdentical": true
+    },
+    {
+      "name": "title-plaque",
+      "byteIdentical": true
+    },
+    {
+      "name": "haul-plaque",
+      "byteIdentical": true
+    },
+    {
+      "name": "message-strip",
+      "byteIdentical": true
+    },
+    {
+      "name": "button-primary",
+      "byteIdentical": true
+    },
+    {
+      "name": "button-secondary",
+      "byteIdentical": true
+    },
+    {
+      "name": "readout-glass-wide",
+      "byteIdentical": true
+    },
+    {
+      "name": "keycap",
+      "byteIdentical": true
+    },
+    {
+      "name": "status-plaque",
+      "byteIdentical": true
+    },
+    {
+      "name": "control-console",
+      "byteIdentical": true
+    },
+    {
+      "name": "rig-card-sage",
+      "byteIdentical": true
+    },
+    {
+      "name": "portrait-frame",
+      "byteIdentical": true
+    },
+    {
+      "name": "card-clip",
+      "byteIdentical": true
+    },
+    {
+      "name": "rope-horizontal",
+      "byteIdentical": true
+    },
+    {
+      "name": "rope-vertical",
+      "byteIdentical": true
+    },
+    {
+      "name": "portrait-sardine",
+      "byteIdentical": true
+    },
+    {
+      "name": "portrait-mackerel",
+      "byteIdentical": true
+    },
+    {
+      "name": "portrait-glass-minnow",
+      "byteIdentical": true
+    },
+    {
+      "name": "portrait-garfish",
+      "byteIdentical": true
+    },
+    {
+      "name": "cursor-garfish-right",
+      "byteIdentical": true
+    },
+    {
+      "name": "tag-schooling",
+      "byteIdentical": true
+    },
+    {
+      "name": "lamp-on",
+      "byteIdentical": true
+    },
+    {
+      "name": "lamp-off",
+      "byteIdentical": true
+    },
+    {
+      "name": "readout-glass-small",
+      "byteIdentical": true
+    },
+    {
+      "name": "reel-drum",
+      "byteIdentical": true
+    },
+    {
+      "name": "reel-bezel",
+      "byteIdentical": true
+    },
+    {
+      "name": "lock-lever-locked",
+      "byteIdentical": true
+    },
+    {
+      "name": "lock-lever-open",
+      "byteIdentical": true
+    },
+    {
+      "name": "match-lamps-on",
+      "byteIdentical": true
+    },
+    {
+      "name": "match-lamps-off",
+      "byteIdentical": true
+    },
+    {
+      "name": "timing-track",
+      "byteIdentical": true
+    },
+    {
+      "name": "score-readout",
+      "byteIdentical": true
+    },
+    {
+      "name": "progress-trough",
+      "byteIdentical": true
+    },
+    {
+      "name": "insertion-rail",
+      "byteIdentical": true
+    },
+    {
+      "name": "role-panel-idle",
+      "byteIdentical": true
+    },
+    {
+      "name": "role-panel-selected",
+      "byteIdentical": true
+    },
+    {
+      "name": "insertion-socket-idle",
+      "byteIdentical": true
+    },
+    {
+      "name": "insertion-socket-selected",
+      "byteIdentical": true
+    },
+    {
+      "name": "focus-corners",
+      "byteIdentical": true
+    },
+    {
+      "name": "arrow-right",
+      "byteIdentical": true
+    },
+    {
+      "name": "arrow-left",
+      "byteIdentical": true
+    },
+    {
+      "name": "caret-down",
+      "byteIdentical": true
+    },
+    {
+      "name": "landing-zone",
+      "byteIdentical": true
+    },
+    {
+      "name": "perfect-band",
+      "byteIdentical": true
+    },
+    {
+      "name": "score-segment",
+      "byteIdentical": true
+    },
+    {
+      "name": "insertion-plus",
+      "byteIdentical": true
+    },
+    {
+      "name": "insertion-blocked",
+      "byteIdentical": true
+    }
+  ],
+  "buildImageSources": {
+    "build-desk": [
+      "Exports/Common/desk-background.png"
+    ],
+    "build-cabinet": [
+      "Exports/Common/rig-cabinet.png"
+    ],
+    "build-title": [
+      "Exports/Common/title-plaque.png"
+    ],
+    "build-haul": [
+      "Exports/Common/haul-plaque.png"
+    ],
+    "build-machine": [
+      "Exports/Common/machine-housing.png"
+    ],
+    "build-console": [
+      "Exports/Common/control-console.png"
+    ],
+    "build-message": [
+      "Exports/Common/message-strip.png"
+    ],
+    "build-portrait": [
+      "Exports/Common/portrait-frame.png"
+    ],
+    "build-effect": [
+      "Exports/Common/status-plaque.png"
+    ],
+    "build-rail-heading": [
+      "Exports/Common/status-plaque.png"
+    ],
+    "build-readout": [
+      "Exports/Common/readout-glass-wide.png"
+    ],
+    "build-place": [
+      "Exports/Common/button-primary.png"
+    ],
+    "build-upgraded": [
+      "Exports/Common/button-secondary.png"
+    ],
+    "build-rig-card": [
+      "Exports/Common/rig-card-ivory.png"
+    ],
+    "build-tray": [
+      "Exports/Placement/insertion-rail.png"
+    ],
+    "build-tray-three": [
+      "Exports/Common/card-clip.png",
+      "Exports/Common/rope-horizontal.png",
+      "Exports/Placement/insertion-rail.png"
+    ],
+    "build-gap-idle": [
+      "Exports/Placement/insertion-plus.png",
+      "Exports/Placement/insertion-socket-idle.png"
+    ],
+    "build-gap-selected": [
+      "Exports/Placement/insertion-plus.png",
+      "Exports/Placement/insertion-socket-selected.png"
+    ],
+    "build-selection-caret": [
+      "Exports/Common/caret-down.png"
+    ],
+    "build-rail-card": [
+      "Exports/Common/rig-card-ivory.png"
+    ]
+  },
+  "images": [
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/arrow-left.png",
+      "width": 32,
+      "height": 18,
+      "clear": 394,
+      "partial": 0,
+      "solid": 182,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "c27ea5c00f72e358571657966b54e57ba0503060e5740153639ac9c8d9edf973"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/arrow-right.png",
+      "width": 32,
+      "height": 18,
+      "clear": 394,
+      "partial": 0,
+      "solid": 182,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "f4639e39d40e8b820f6941d2f44e233f1df78a0bb77500d3d311e780d443385f"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/button-primary.png",
+      "width": 549,
+      "height": 162,
+      "clear": 4123,
+      "partial": 84793,
+      "solid": 22,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "a5c463f8ed6880e47fb6186a372c2c80184074d3b33db0c2af3262003b95ffd4"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/button-secondary.png",
+      "width": 521,
+      "height": 160,
+      "clear": 3305,
+      "partial": 80038,
+      "solid": 17,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "eab5ba1e46dd87a98252e8b4cd96bfe4a691c5c346adc8f38a19e8f271e84013"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/card-clip.png",
+      "width": 213,
+      "height": 132,
+      "clear": 6610,
+      "partial": 21414,
+      "solid": 92,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "05b248e929922e1c10c6f95cd0783b89739a47135cafe2e0a8cf4998d79f9e31"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/caret-down.png",
+      "width": 24,
+      "height": 16,
+      "clear": 144,
+      "partial": 0,
+      "solid": 240,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "caf13278bcc6f2fbfcc510af70554e11ee1fe416353046a91edb4d99dca676f5"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/control-console.png",
+      "width": 738,
+      "height": 198,
+      "clear": 10930,
+      "partial": 134684,
+      "solid": 510,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "76122b01bae4f8654fbfe150673159e22c28652ada07b6da2b7904ac46df9dc5"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/cursor-garfish-right.png",
+      "width": 536,
+      "height": 106,
+      "clear": 23471,
+      "partial": 33329,
+      "solid": 16,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "7f3b4f6e8ce0f7c87ae757d482dee6a1fc4618bdb7267f88ec812cef024af996"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/desk-background.png",
+      "width": 1920,
+      "height": 1080,
+      "clear": 0,
+      "partial": 0,
+      "solid": 2073600,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Intentional full-screen backdrop",
+      "sha256": "f5b6b274529891639022782df769ead8878ec435309da944eb0a0c0d83c38930"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/focus-corners.png",
+      "width": 96,
+      "height": 64,
+      "clear": 5504,
+      "partial": 0,
+      "solid": 640,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "4585f02008fb3d246231523537fddff86f53073a1fca6bb85cd6ff6ac5423b4b"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/haul-plaque.png",
+      "width": 424,
+      "height": 161,
+      "clear": 6280,
+      "partial": 61894,
+      "solid": 90,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "573b2c833bac1edb9ba55a30b42d16ab57e644f017a71cab6d0bb6cde59b8636"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/keycap.png",
+      "width": 295,
+      "height": 142,
+      "clear": 3317,
+      "partial": 38494,
+      "solid": 79,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "b80de4824959304f96b67c7af29f7d63fe43aa72ab6c1e6e85ced7eb8ab5caa0"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/lamp-off.png",
+      "width": 276,
+      "height": 280,
+      "clear": 16922,
+      "partial": 60335,
+      "solid": 23,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "fbbac41e758039bc036cf2b9ca31461b05dcccb9bf762ca0537114a389e76670"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/lamp-on.png",
+      "width": 277,
+      "height": 280,
+      "clear": 17231,
+      "partial": 60280,
+      "solid": 49,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "855161fee00a88768643df29d22240c874cfbf9d02e7573dbf36cd5e8bc3e26e"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/machine-housing.png",
+      "width": 1598,
+      "height": 806,
+      "clear": 127179,
+      "partial": 1160422,
+      "solid": 387,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "a5f8dbcc81d8cf8301c09868d13518d5eb372f52b9e608902d1a5ce91a582690"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/message-strip.png",
+      "width": 603,
+      "height": 82,
+      "clear": 4393,
+      "partial": 44463,
+      "solid": 590,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "57f2be0ef5056d8226520a1f57045c12a1c5be67aae7110eb673f246a6dc872f"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/portrait-frame.png",
+      "width": 505,
+      "height": 251,
+      "clear": 3901,
+      "partial": 122850,
+      "solid": 4,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "13bef1ef98d8f69852551781f3fad5c03e2d07be2414925d46d7744c2109a4fa"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/portrait-garfish.png",
+      "width": 640,
+      "height": 123,
+      "clear": 35204,
+      "partial": 43505,
+      "solid": 11,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "a08696c2fa924bc8d4deecbd0dd66172c1fa644d9bc949707020b6cd573c3208"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/portrait-glass-minnow.png",
+      "width": 337,
+      "height": 153,
+      "clear": 17205,
+      "partial": 34349,
+      "solid": 7,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "9c468788c6917841384d397633c0d596fd94a6bbafc206c0bea2af172e89d9ff"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/portrait-mackerel.png",
+      "width": 504,
+      "height": 229,
+      "clear": 46391,
+      "partial": 68884,
+      "solid": 141,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "82bf559d39e63b89d61f3dddbcb90b9f6c08f1a04ecf150084296778829c47cf"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/portrait-sardine.png",
+      "width": 440,
+      "height": 173,
+      "clear": 28973,
+      "partial": 47023,
+      "solid": 124,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "d44f24585666c3e8139d04139a3fa17509a8a9d6107e3f6ac7cfc4fe11c17631"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/readout-glass-small.png",
+      "width": 508,
+      "height": 181,
+      "clear": 4045,
+      "partial": 87541,
+      "solid": 362,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "eef47eaed06da9097731b5dd01feb4494f1c5b5b80a1db5b5094f36ef6908ebf"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/readout-glass-wide.png",
+      "width": 552,
+      "height": 163,
+      "clear": 4458,
+      "partial": 85495,
+      "solid": 23,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "538abcb7a104fdb653698e6076fff8f2353be57757be59f38ed8e0730972b08d"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/rig-cabinet.png",
+      "width": 626,
+      "height": 1635,
+      "clear": 12427,
+      "partial": 1010215,
+      "solid": 868,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0c6e507b059628e4fdf255cc4c7caa5880050d14b897c48e8b8a9cd4f9587e9c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/rig-card-ivory.png",
+      "width": 416,
+      "height": 326,
+      "clear": 3664,
+      "partial": 131949,
+      "solid": 3,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "8827278ee06a537183144bd2393cdf6ffd684b3393013d360eaf0cb312d1b8c0"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/rig-card-sage.png",
+      "width": 418,
+      "height": 324,
+      "clear": 5058,
+      "partial": 130321,
+      "solid": 53,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "c393cc9074520e0c50e292c20ff5826dee586d9a34dc91e814d1bd15fe7b3af8"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/rope-horizontal.png",
+      "width": 429,
+      "height": 92,
+      "clear": 19574,
+      "partial": 19860,
+      "solid": 34,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0745c8cc8dd737d0456ac33734011bdfdbd66409e2f0b2aa73f33ac3ae341535"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/rope-vertical.png",
+      "width": 60,
+      "height": 224,
+      "clear": 3636,
+      "partial": 9754,
+      "solid": 50,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "e8d53dd948ad32860188d043379d16bf558d14aaf40f176b5abefe4f34d7f49c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/status-plaque.png",
+      "width": 458,
+      "height": 132,
+      "clear": 2037,
+      "partial": 58417,
+      "solid": 2,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0a6111d83655dfc207ebc75e62de2b442b8ceeb85491555f26ae124a344a9714"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/tag-schooling.png",
+      "width": 501,
+      "height": 219,
+      "clear": 56266,
+      "partial": 53397,
+      "solid": 56,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "e0f8b8d0cd6e00ed67e4a9156802b867d8e5e8f45749904265371b929e1a0900"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Common/title-plaque.png",
+      "width": 592,
+      "height": 117,
+      "clear": 3553,
+      "partial": 65699,
+      "solid": 12,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "015b93d96a4a7122cf9a3e1350245d6dd3f2999b66d462c6d4f30f0820778040"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/apex_harbor_leviathan.png",
+      "width": 1660,
+      "height": 721,
+      "clear": 393345,
+      "partial": 802240,
+      "solid": 1275,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "a32b086c066bbb846ef47be08ec1399bd5c389b2c9d8ef87b28fdad48f5669dc"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/apex_stormjaw_tuna.png",
+      "width": 1585,
+      "height": 748,
+      "clear": 571946,
+      "partial": 612740,
+      "solid": 894,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "963c2c3b78c72db70a86a59c6d9dadc7de7e0ab6cb0bf13c29270b60e1028a84"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_cleaner_shrimp.png",
+      "width": 1369,
+      "height": 675,
+      "clear": 498815,
+      "partial": 424208,
+      "solid": 1052,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0a4f44d9cc9fbb64607532f91f173e252c77156e715346430d3ef3e1a2e4cc17"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_clinging_crab.png",
+      "width": 1582,
+      "height": 701,
+      "clear": 340493,
+      "partial": 768489,
+      "solid": 0,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "36a65dd9323bb286b103871ea42ec84f60b25b93492f5755e91c202c84f6a5b2"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_coastal_cod.png",
+      "width": 1542,
+      "height": 623,
+      "clear": 400442,
+      "partial": 557976,
+      "solid": 2248,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "f101903724c4c48a1dbd0310c5532624a1cb8a35f7045b2c3b664ce5dd8882c6"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_cuttlefish.png",
+      "width": 1564,
+      "height": 584,
+      "clear": 279085,
+      "partial": 633544,
+      "solid": 747,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "f7dd1e40759e5a9c1a0752dc835e264cc6b77e37ad2cabd0e19f9b9804c532b1"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_flounder.png",
+      "width": 1540,
+      "height": 795,
+      "clear": 452771,
+      "partial": 769668,
+      "solid": 1861,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "76e10d9126356803cb06dae20861fcf3b29bc24aa46953ef3fca3af200135011"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_garfish.png",
+      "width": 1604,
+      "height": 247,
+      "clear": 198326,
+      "partial": 197248,
+      "solid": 614,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "75d251a3d7cb74d65611485b9dcd78904e95e8a0d07ede2a767fcfa66780f855"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_glass_minnow.png",
+      "width": 1336,
+      "height": 557,
+      "clear": 360173,
+      "partial": 382897,
+      "solid": 1082,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "249e847b6f3777e2944ea1b3b7e9d5c1e512d17b331cbf86ebe1a0c9cc0157fa"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_jellyfish.png",
+      "width": 707,
+      "height": 753,
+      "clear": 196188,
+      "partial": 335168,
+      "solid": 1015,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "9552f61ae55bbed84dc2aab347a5414f91f8db85f487949f042271eaac04601a"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_lionfish.png",
+      "width": 1371,
+      "height": 859,
+      "clear": 477358,
+      "partial": 697862,
+      "solid": 2469,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "a11bd49713a3a66f942a9e60ca3b7327777e0123bb03eb8bfe465978bcb73cef"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_mackerel.png",
+      "width": 1545,
+      "height": 649,
+      "clear": 476371,
+      "partial": 525395,
+      "solid": 939,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2d413382cbff202da293aac23ea47f28bd15b406d687d5af6ecdc9aeedcb2d1d"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_moonlit_ray.png",
+      "width": 1256,
+      "height": 827,
+      "clear": 665936,
+      "partial": 371439,
+      "solid": 1337,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "15d7202221778a591375d598576b33c0860af652d5ba658fb5aceefec421d2a9"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_mussel.png",
+      "width": 1455,
+      "height": 699,
+      "clear": 314559,
+      "partial": 700974,
+      "solid": 1512,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0bfb186649a1ed57acbe99bd5b4f0301587fe69ab156abdd1af7b1040c5a7138"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sardine.png",
+      "width": 1164,
+      "height": 513,
+      "clear": 266145,
+      "partial": 329801,
+      "solid": 1186,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2c3e4dc214162ccf80e9625440cf73584060223bf42eef238de0776476202883"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_anemone.png",
+      "width": 1050,
+      "height": 774,
+      "clear": 279552,
+      "partial": 530972,
+      "solid": 2176,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "c7e4b17a5706ddcf9a0bcb78eba5ea561404eb5a8d266f2bcde892de383e3ef8"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_bass.png",
+      "width": 1568,
+      "height": 709,
+      "clear": 483872,
+      "partial": 625966,
+      "solid": 1874,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "c29f8dd6592b46085748c3b0c6416e90dd334c0aa70dcfba10e4ffbbe03a1cbf"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_urchin.png",
+      "width": 1010,
+      "height": 730,
+      "clear": 265853,
+      "partial": 470157,
+      "solid": 1290,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "eac5aa25723ffdd5b491799a6fb14a7850dbf26b16d564da14fe6c01a3de0ef2"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_small_octopus.png",
+      "width": 1131,
+      "height": 734,
+      "clear": 300172,
+      "partial": 528227,
+      "solid": 1755,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "02376fda05c64e51c416e8e6b086efdfa8def592819ad9c541e136dec2c3a33c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_spiny_lobster.png",
+      "width": 1435,
+      "height": 641,
+      "clear": 436913,
+      "partial": 481281,
+      "solid": 1641,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "56c4ee25c05bf2e8ee36b1201ff2e88653d32cc4dd8271b3bfeb6be8daccd49c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_squid.png",
+      "width": 1591,
+      "height": 517,
+      "clear": 364970,
+      "partial": 456831,
+      "solid": 746,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "eca6dae9a1c6a5d0de1f31266a7318ebc4f8120b80500c11520b405d1e3bffe7"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_tidepool_eel.png",
+      "width": 1617,
+      "height": 459,
+      "clear": 318254,
+      "partial": 422971,
+      "solid": 978,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "e8eafa335841ab1d0ce73671176e6bdfb983470cdf019495218b9d127f1204cf"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/lock-lever-locked.png",
+      "width": 259,
+      "height": 313,
+      "clear": 16384,
+      "partial": 64653,
+      "solid": 30,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "3333dc5d7a8e8edc9ef3e78d023f55d64014e2a501963c707f97ce6778f73b67"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/lock-lever-open.png",
+      "width": 262,
+      "height": 233,
+      "clear": 3730,
+      "partial": 57309,
+      "solid": 7,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "779d2c3bf12b2493d9db558f844ea7f4d78e278d6975cd1e01c7b60c20816a8f"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/match-lamps-off.png",
+      "width": 496,
+      "height": 112,
+      "clear": 11674,
+      "partial": 43738,
+      "solid": 140,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "757e20dc5b6148a9daafe276c9c89f133c8821cdc35212b0a5edcef3c0988cc1"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/match-lamps-on.png",
+      "width": 457,
+      "height": 116,
+      "clear": 5173,
+      "partial": 47747,
+      "solid": 92,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "b5958db410fa91761f14fcd0be2b8ffe05804a77082badfedfc69ba040d5f803"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/reel-bezel.png",
+      "width": 526,
+      "height": 487,
+      "clear": 141280,
+      "partial": 113593,
+      "solid": 1289,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "5476860f44fbd16b54499e7fff68bafc66811618974e3fb9e53887dbc724b659"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/reel-drum.png",
+      "width": 412,
+      "height": 490,
+      "clear": 9844,
+      "partial": 191601,
+      "solid": 435,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "7ccc667b60ed30086637625f54ce9aa0e225eb520d89b8e6eafdb33e65b5c8e4"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/Symbols/tag-anchored.png",
+      "width": 1774,
+      "height": 887,
+      "clear": 1109416,
+      "partial": 461465,
+      "solid": 2657,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "e5e1019c93505044eac21ff36d9c570e6457a4573bad9b5995f65df6ded62bc9"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/Symbols/tag-armored.png",
+      "width": 1774,
+      "height": 887,
+      "clear": 873106,
+      "partial": 699837,
+      "solid": 595,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "ee51cd7e8aba1896a26c0be18f910da4c6f0a5dfce3d125b1212d05c3fc7fa09"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/Symbols/tag-elusive.png",
+      "width": 1774,
+      "height": 887,
+      "clear": 1301530,
+      "partial": 271106,
+      "solid": 902,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "def475d806ba9a7862844561bcec09548bd6cf5a99ffac98f5eb24fd69cc3db7"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/Symbols/tag-heavy.png",
+      "width": 1774,
+      "height": 887,
+      "clear": 997381,
+      "partial": 574529,
+      "solid": 1628,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "ba211108a3ff4a015e1107af410882411356c75ef936e5748f17fee7e99b2cfd"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/Symbols/tag-predator.png",
+      "width": 1774,
+      "height": 887,
+      "clear": 1034240,
+      "partial": 538905,
+      "solid": 393,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "8c15f43ffda60477a3303c4676a026bc9e3345da049b888e430fe328c754b5f2"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Discover/Symbols/tag-small.png",
+      "width": 1774,
+      "height": 887,
+      "clear": 1397143,
+      "partial": 176147,
+      "solid": 248,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "c253beb3d3d284fb38e766de0bc51cddca14fade017d8aa675949234fa398073"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/landing-zone.png",
+      "width": 160,
+      "height": 96,
+      "clear": 0,
+      "partial": 14976,
+      "solid": 384,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Intentional translucent zone fill",
+      "sha256": "5019af4b234902b0716fcaa71a93f5310923e1a442483978eef1d43a48e66421"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/perfect-band.png",
+      "width": 24,
+      "height": 96,
+      "clear": 0,
+      "partial": 2304,
+      "solid": 0,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Intentional translucent Perfect fill",
+      "sha256": "14e960591516c826d9c7b9a9dbf957f9e8222fd29ca932b083399d9990cf71cb"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/progress-trough.png",
+      "width": 605,
+      "height": 85,
+      "clear": 3412,
+      "partial": 47490,
+      "solid": 523,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "4508cd118baeda7a136df8f01ab67811153621f0c59cc9b19643ee2f9b0550ec"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/score-readout.png",
+      "width": 552,
+      "height": 232,
+      "clear": 2565,
+      "partial": 125264,
+      "solid": 235,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "3184931cc97c906df554c6b40f84e519ef826f5d96ed57a9ea5f780692dcd454"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/score-segment.png",
+      "width": 18,
+      "height": 9,
+      "clear": 0,
+      "partial": 0,
+      "solid": 162,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Intentional solid progress fill",
+      "sha256": "1f710ad1cd8b00a5a4398cd82087c6bcefd8ad92451d459c9e3cbab14d3b96ed"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/timing-track.png",
+      "width": 607,
+      "height": 152,
+      "clear": 2062,
+      "partial": 90158,
+      "solid": 44,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0ef29a077751b8ea49126d7f0a0019a53a995e31a960463c212017e4ac983b61"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/Indicators/generic-fish.png",
+      "width": 24,
+      "height": 16,
+      "clear": 156,
+      "partial": 0,
+      "solid": 228,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "84c6196954cc2ddf923bcb1dbeffa362457ac5e1055afc2c01c9bf0d0f50de49"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/insertion-blocked.png",
+      "width": 24,
+      "height": 24,
+      "clear": 172,
+      "partial": 26,
+      "solid": 378,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "27ef49c8999c6d3acd02a7ad69f3b188f03a70da510cab52d97f780af9f718a3"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/insertion-plus.png",
+      "width": 24,
+      "height": 24,
+      "clear": 324,
+      "partial": 0,
+      "solid": 252,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "0bc46fb4a16464635f82ebdd0e594b9c5a01120f690fb2e94999128e1e8a2de5"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/insertion-rail.png",
+      "width": 622,
+      "height": 221,
+      "clear": 11952,
+      "partial": 125490,
+      "solid": 20,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2e56c9aa02591e3a45986f9802216a04bf883df2cde6493ad36a0ce6966850d4"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/insertion-socket-idle.png",
+      "width": 228,
+      "height": 223,
+      "clear": 2747,
+      "partial": 48094,
+      "solid": 3,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "094d5bb63835e9f821f165ad4c3c741202046f51157e66c5bf237a4731dc2c0e"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/insertion-socket-selected.png",
+      "width": 234,
+      "height": 230,
+      "clear": 1409,
+      "partial": 52407,
+      "solid": 4,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "31eb1b1da3ba1a78b5354dfc9cc48022dfc6cf16c5bce95c175ca6e70ef69472"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/role-panel-idle.png",
+      "width": 371,
+      "height": 314,
+      "clear": 4620,
+      "partial": 111587,
+      "solid": 287,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "add9474e197e2fbbde3da291f2abf94b3fa8ad382a694ee2f03d5e680cf7add3"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Placement/role-panel-selected.png",
+      "width": 371,
+      "height": 317,
+      "clear": 3243,
+      "partial": 114359,
+      "solid": 5,
+      "serializedPhaseDependency": false,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "de370a3532f6ea875fd0bf9fe4d1a7cfd7f428c4b6e1ee423b7e596e502f7ba8"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/ReelSurface/reel-paper-flat.png",
+      "width": 1254,
+      "height": 1254,
+      "clear": 0,
+      "partial": 0,
+      "solid": 1572516,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Intentional opaque seamless material",
+      "sha256": "030ee41a857ecfbaa79e60f15453d7c2a97a73cf4d5ae85235dc266861eb55fa"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-cabinet.png",
+      "width": 380,
+      "height": 995,
+      "clear": 5105,
+      "partial": 372662,
+      "solid": 333,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "b15d719d39a40abdfb962f731665345a69da217719e562cfe523195f9adc9f50"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-console.png",
+      "width": 1310,
+      "height": 165,
+      "clear": 9510,
+      "partial": 206629,
+      "solid": 11,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "eba60251bc17fc64909f07d5ceaff2688ad9996ad0fb3531076e219568e2743c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-desk.png",
+      "width": 1920,
+      "height": 1080,
+      "clear": 0,
+      "partial": 0,
+      "solid": 2073600,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Intentional full-screen backdrop",
+      "sha256": "2884cdb3eeed43e3af28710839356f216cc5cbeffb871dc8cea23f63fd08ddfb"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-effect.png",
+      "width": 565,
+      "height": 235,
+      "clear": 1596,
+      "partial": 131178,
+      "solid": 1,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "04d38e4fce545f61e8a9109e447e568b65d210d585d6721ab523baf7669448b9"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-gap-idle.png",
+      "width": 80,
+      "height": 94,
+      "clear": 2391,
+      "partial": 4876,
+      "solid": 253,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2b9a65b337973fab7a158b8752b22b6f05e050326ca81a7540987e4564d2ee01"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-gap-selected.png",
+      "width": 80,
+      "height": 94,
+      "clear": 2239,
+      "partial": 5029,
+      "solid": 252,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "adb2d18f9d6467a642fb252e99777bcbc6d25141e15847dfbdec75d292d3c9e7"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-haul.png",
+      "width": 345,
+      "height": 116,
+      "clear": 3732,
+      "partial": 36223,
+      "solid": 65,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "8624399bab240ca08a91e203087c714fd1941cba1d0688459ab1d2948820b04c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
+      "width": 1310,
+      "height": 657,
+      "clear": 85023,
+      "partial": 775364,
+      "solid": 283,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2245c8ff2b0d4a3730510bde508cb8f9483269e9d17e0c93d8f32782e56b7309"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-message.png",
+      "width": 1140,
+      "height": 54,
+      "clear": 5637,
+      "partial": 54787,
+      "solid": 1136,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "1f62b7a6917e341127e8a8bb41ae9c67c9f54e2d21823074560b147b607b889e"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-place.png",
+      "width": 600,
+      "height": 116,
+      "clear": 2506,
+      "partial": 67081,
+      "solid": 13,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "5b0f1c542319d2049a42ab0b4932f866a9e182bbecbc90c2ebc1a422e62c032e"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-portrait.png",
+      "width": 455,
+      "height": 225,
+      "clear": 2657,
+      "partial": 99716,
+      "solid": 2,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "a3e817b56e40a022eff8cbfe61edfcb87f7c225bb67fd9ba09127bda3af3c808"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-rail-card.png",
+      "width": 221,
+      "height": 190,
+      "clear": 1433,
+      "partial": 40555,
+      "solid": 2,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "10caa44ee7d584ce402bce8542d08ef416a7db63c444d555c6c5859f66c9592c"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-rail-heading.png",
+      "width": 950,
+      "height": 47,
+      "clear": 274,
+      "partial": 44375,
+      "solid": 1,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "6d02ab96e9b11c82e6408fae9d7564d4050f98d147f4362479b833cc71f6a989"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-readout.png",
+      "width": 505,
+      "height": 116,
+      "clear": 2541,
+      "partial": 56024,
+      "solid": 15,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "407aa36bfb1502a8d5e6d426295526b7217acfd49a093fa6d95f205699683856"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-rig-card.png",
+      "width": 315,
+      "height": 244,
+      "clear": 2242,
+      "partial": 74617,
+      "solid": 1,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "87570c92b7f67edb84399bb5a3aca51bc8157c249ea4a7cccf91bd424aba0bda"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-selection-caret.png",
+      "width": 80,
+      "height": 35,
+      "clear": 2425,
+      "partial": 0,
+      "solid": 375,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "8fe34aeb2ead5630b5e7574621ca5135cc069a1f002725898ae883882ac03ca8"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-title.png",
+      "width": 780,
+      "height": 116,
+      "clear": 4023,
+      "partial": 86444,
+      "solid": 13,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "f0c1ba8e911dca115ea1576f6375d389683ab3f8c55a7a85e0854f2f7ce19ba8"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-tray-three.png",
+      "width": 1135,
+      "height": 269,
+      "clear": 8366,
+      "partial": 285105,
+      "solid": 11844,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2e25bb03a45930cfccccae1f24f71b140090696ea2b9ba6418462cc0b05c507a"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-tray.png",
+      "width": 1135,
+      "height": 269,
+      "clear": 8366,
+      "partial": 296932,
+      "solid": 17,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "e6b8a9148a81b8f1f63b9a1811e718553ce79e11032d2abe34da1a644141b7ad"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-upgraded.png",
+      "width": 600,
+      "height": 116,
+      "clear": 2490,
+      "partial": 67090,
+      "solid": 20,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "dfac353f719b6f8e66d8c15d649af5d33e9528f9af961bb13e935e749069fdd7"
+    }
+  ]
+}

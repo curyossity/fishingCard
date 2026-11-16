@@ -39,27 +39,32 @@ for name,bounds,prefix in [
 def image(ident,src,sx,sy,sw,sh,x,y,w,h):
     return dict(kind='image',id=ident,src=str(src),sx=sx,sy=sy,sw=sw,sh=sh,x=x,y=y,w=w,h=h)
 
-tray=copy.deepcopy(next(c for c in commands if c['id']=='page-04-insertion-section'))
-layers=[tray]
-# Clear the old printed cards, role labels, clips and sockets. Retain the approved perimeter.
-layers.append(image('clean-wood',kit/'Exports/Placement/insertion-rail.png',95,67,430,100,588,580,1053,218))
-layers.append(image('clean-top',reference,940,562,70,25,610,562,1010,25))
-scene('build-tray',(550,562,1135,269),layers)
-
-# The approved three-card view retains its original wood and rope pixels. Erase data underneath
-# the independent masters, rather than turning the concept into a printed game-state background.
-three=[tray]
-for x in [697,1001,1305]:
-    three.append(image('clear-card-'+str(x),kit/'Exports/Placement/insertion-rail.png',95,67,430,100,x,601,221,190))
-# Use one continuous wood surface beneath the controls instead of isolated background patches.
-# Keep the original rope above this band and the complete perimeter outside it.
-three.append(image('continuous-control-backing',kit/'Exports/Placement/insertion-rail.png',95,67,430,100,588,629,1053,169))
-scene('build-tray-three',(550,562,1135,269),three)
-
 def transparent_asset(ident,relative,x,y,w,h):
     path=kit/'Exports'/relative
     sw,sh=struct.unpack('>II',path.read_bytes()[16:24])
     return image(ident,path,0,0,sw,sh,x,y,w,h)
+
+def rail_layers():
+    """Fit the transparent page 08 rail without stretching its border over the card area."""
+    path=kit/'Exports/Placement/insertion-rail.png'
+    source_x=[0,93,529,622]
+    source_y=[0,49,172,221]
+    target_x=[550,590,1645,1685]
+    target_y=[562,592,801,831]
+    return [image('rail-'+str(row)+'-'+str(col),path,
+        source_x[col],source_y[row],source_x[col+1]-source_x[col],source_y[row+1]-source_y[row],
+        target_x[col],target_y[row],target_x[col+1]-target_x[col],target_y[row+1]-target_y[row])
+        for row in range(3) for col in range(3)]
+
+scene('build-tray',(550,562,1135,269),rail_layers())
+# The three-card decoration uses independent transparent rope/clip masters at native UI positions.
+# No screen crops, erased creature fields or wood patches belong in these runtime masters.
+three=rail_layers()
+for x in [807,1111]:
+    three.append(transparent_asset('rail-rope-'+str(x),'Common/rope-horizontal.png',x,581,304,48))
+for x in [697,1001,1305]:
+    three.append(transparent_asset('rail-clip-'+str(x),'Common/card-clip.png',x+83,578,55,34))
+scene('build-tray-three',(550,562,1135,269),three)
 
 # Page 08 sockets and the common arrow have real alpha. Never crop controls from a screen.
 # Preserve the existing 80x94 native hit target and the approved visual center.
@@ -70,16 +75,19 @@ for state in ['idle','selected']:
 scene('build-selection-caret',(0,0,80,35),[
     transparent_asset('selected-arrow','Common/caret-down.png',22,8,30,20)])
 
-blank=[image('page-04-original-card',reference,697,601,221,190,697,601,221,190)]
-blank[0]['mask']=[0,12,12,0,207,0,221,13,221,177,208,190,11,190,0,178]
-blank += [c for c in source[1]['commands'] if c['id'] in ['rail-sardine-portrait-paper','rail-sardine-name-well','rail-sardine-footer-well']]
-scene('build-rail-card',(697,601,221,190),blank)
+scene('build-rail-card',(697,601,221,190),[
+    transparent_asset('blank-ivory-card','Common/rig-card-ivory.png',697,601,221,190)])
+
+for exported in scenes:
+    for command in exported['commands']:
+        if command['kind']=='image' and not Path(command['src']).resolve().is_relative_to((kit/'Exports').resolve()):
+            raise ValueError('Runtime artwork must use an independent approved export: '+exported['name'])
 
 (target/'Composition.json').write_text(json.dumps(scenes,indent=2))
 manifest=dict(referenceResolution=[1920,1080],penpotFile='3681d377-bc58-8110-8008-e7a38adc2112',
     penpotPages=['389319c8-6b5a-80a0-8008-f36e5768d320','389319c8-6b5a-80a0-8008-f371b5b35d7e'],
     referenceSha256=hashlib.sha256(reference.read_bytes()).hexdigest(),
     assets=[dict(name=s['name'],width=s['width'],height=s['height'],sha256=hashlib.sha256((target/(s['name']+'.png')).read_bytes()).hexdigest() if (target/(s['name']+'.png')).exists() else None) for s in scenes],
-    notes='Only decorative masters. No creature, level, sale value, effect text or insertion controls are printed into runtime art.')
+    notes='Only independent AssetLibrary exports are sampled; no composed-screen pixels. No creature, level, sale value, effect text or insertion controls are printed into runtime art.')
 (target/'Manifest.json').write_text(json.dumps(manifest,indent=2))
 print(target)

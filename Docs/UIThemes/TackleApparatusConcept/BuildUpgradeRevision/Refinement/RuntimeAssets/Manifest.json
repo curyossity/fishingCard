@@ -98,13 +98,13 @@
       "name": "build-tray",
       "width": 1135,
       "height": 269,
-      "sha256": "ba50f29e479904a016b6790e31a00a957fd591042a06025e7ce5fe2a8151aecf"
+      "sha256": "e6b8a9148a81b8f1f63b9a1811e718553ce79e11032d2abe34da1a644141b7ad"
     },
     {
       "name": "build-tray-three",
       "width": 1135,
       "height": 269,
-      "sha256": "1d930f725bc072fe14bac1f5500bfb07a6822a386a3891139a897c0cf62bd186"
+      "sha256": "2e25bb03a45930cfccccae1f24f71b140090696ea2b9ba6418462cc0b05c507a"
     },
     {
       "name": "build-gap-idle",
@@ -128,8 +128,8 @@
       "name": "build-rail-card",
       "width": 221,
       "height": 190,
-      "sha256": "fdb0e120c871f87a3e2c556ebde9b7df0b122ef44b4e73a95b9c7a6d3d31c8c2"
+      "sha256": "10caa44ee7d584ce402bce8542d08ef416a7db63c444d555c6c5859f66c9592c"
     }
   ],
-  "notes": "Only decorative masters. No creature, level, sale value, effect text or insertion controls are printed into runtime art."
+  "notes": "Only independent AssetLibrary exports are sampled; no composed-screen pixels. No creature, level, sale value, effect text or insertion controls are printed into runtime art."
 }

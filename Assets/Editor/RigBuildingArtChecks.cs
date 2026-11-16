@@ -28,7 +28,7 @@ public static class RigBuildingArtChecks
             Check(importer.filterMode==FilterMode.Point&&!importer.mipmapEnabled&&!importer.isReadable&&importer.textureCompression==TextureImporterCompression.Uncompressed&&importer.npotScale==TextureImporterNPOTScale.None,"Build sprite settings changed: "+path);
         }
         var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath);
-        foreach(var name in new[]{"build-gap-idle","build-gap-selected","build-selection-caret","build-rail-card"})
+        foreach(var name in new[]{"build-gap-idle","build-gap-selected","build-selection-caret","build-rail-card","build-tray","build-tray-three"})
             CheckTransparentSilhouette(RigBuildingSetup.ArtPath+name+".png");
         Check(prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true).Count(i=>i.name=="build-effect")==1,"Creature details must have one frame.");
         foreach(var text in prefab.GetComponentsInChildren<TMP_Text>(true))
