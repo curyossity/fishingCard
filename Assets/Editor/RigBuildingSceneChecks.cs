@@ -86,7 +86,7 @@ public static class RigBuildingSceneChecks
         Check(rail.content.rect.width > rail.viewport.rect.width && rig.content.rect.height > rig.viewport.rect.height, "Long rigs are clipped without scrolling.");
         foreach (var text in build.GetComponentsInChildren<TMP_Text>()) Check(!text.text.Equals("CATCH") && !text.text.Equals("BAIT"), "Catch/Bait remains in Build UI.");
         foreach (var size in new[] { new Vector2Int(1920, 1080), new Vector2Int(1280, 800), new Vector2Int(2560, 1080) })
-            SlotMachineSceneChecks.Capture(build.GetComponent<Canvas>(), "Build-" + size.x + "x" + size.y + ".png", size.x, size.y, Output);
+            RigBuildingArtChecks.Capture(build, "Build-" + size.x + "x" + size.y + ".png", size.x, size.y, Output);
         ((UnityEngine.UI.Button)data.FindProperty("commit").objectReferenceValue).onClick.Invoke(); yield return null;
         Check(controller.SlotMachine.Active && controller.CatchChain.Length == 9, "Long-rig placement failed to continue.");
         int haul = controller.Rig.HaulValue, gold = controller.TotalGold, completions = 0;
@@ -138,7 +138,7 @@ public static class RigBuildingSceneChecks
         typeof(FishingRunController).GetMethod("RefreshViews", Private).Invoke(controller, null);
     }
     /// <summary>Captures the actual Build canvas through the project render pipeline.</summary>
-    private static void Capture(RigBuildingView view, string file) => SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), file, output: Output);
+    private static void Capture(RigBuildingView view, string file) => RigBuildingArtChecks.Capture(view, file, output: Output);
     /// <summary>Retains a readable failure status if a coroutine invariant fails.</summary>
     private static void Check(bool valid, string message)
     {

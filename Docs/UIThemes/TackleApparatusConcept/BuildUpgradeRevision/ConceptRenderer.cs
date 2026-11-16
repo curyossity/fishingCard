@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
 public class ConceptCommand { public string kind,id,src,text,font,color,align; public float x,y,w,h,sx,sy,sw,sh,size; public float[] mask; public bool shadow; }
-public class ConceptScene { public string name,file; public int width,height; public ConceptCommand[] commands; }
+public class ConceptScene { public string name,file; public int width,height; public bool transparent,rasterOnly; public ConceptCommand[] commands; }
 public static class ConceptRenderer {
 static string N(float v){return v.ToString("0.###",CultureInfo.InvariantCulture);}
 static string E(string s){return System.Security.SecurityElement.Escape(s??"");}
@@ -21,7 +21,7 @@ using(var fonts=new PrivateFontCollection()){
 fonts.AddFontFile(Path.Combine(fontsFolder,"PressStart2P-Regular.ttf"));fonts.AddFontFile(Path.Combine(fontsFolder,"VT323-Regular.ttf"));
 foreach(var scene in scenes){var images=new Dictionary<string,Image>();var ids=new Dictionary<string,string>();var defs=new StringBuilder();var content=new StringBuilder();var textReport=new List<object>();
 using(var bitmap=new Bitmap(scene.width,scene.height,PixelFormat.Format32bppArgb))using(var graphics=Graphics.FromImage(bitmap)){
-graphics.Clear(Color.FromArgb(14,17,15));graphics.InterpolationMode=InterpolationMode.NearestNeighbor;graphics.PixelOffsetMode=PixelOffsetMode.Half;graphics.SmoothingMode=SmoothingMode.None;
+graphics.Clear(scene.transparent ? Color.Transparent : Color.FromArgb(14,17,15));graphics.InterpolationMode=InterpolationMode.NearestNeighbor;graphics.PixelOffsetMode=PixelOffsetMode.Half;graphics.SmoothingMode=SmoothingMode.None;
 int counter=0;foreach(var c in scene.commands){counter++;content.Append("<g id=\""+E(c.id)+"-"+counter+"\">");
 if(c.kind=="image"){
 if(!images.ContainsKey(c.src))images[c.src]=Image.FromFile(c.src);
@@ -47,8 +47,10 @@ content.Append("<path d=\""+d+"\" fill=\""+c.color+"\"/>");textReport.Add(new {i
 }}
 content.Append("</g>");}
 bitmap.Save(Path.Combine(folder,scene.file+".png"),ImageFormat.Png);
+if(!scene.rasterOnly){
 File.WriteAllText(Path.Combine(folder,scene.file+".svg"),"<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\""+scene.width+"\" height=\""+scene.height+"\" viewBox=\"0 0 "+scene.width+" "+scene.height+"\"><title>"+E(scene.name)+"</title><defs>"+defs+"</defs>"+content+"</svg>",new UTF8Encoding(false));
 File.WriteAllText(Path.Combine(folder,scene.file+"-Text.json"),json.Serialize(textReport));
+}
 }foreach(var image in images.Values)image.Dispose();
 }}
 }

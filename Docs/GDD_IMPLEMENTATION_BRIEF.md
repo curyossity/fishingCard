@@ -39,6 +39,8 @@ Difficulty rises mainly through Resistance. Characteristics/rarity may influence
 
 Illustrative Sardine multiplier growth and Mackerel contiguous-value bonuses remain test examples, not finalized catalog assignments. The primary-ability schema supports landing, attempts, Miss protection, value and placement restrictions; other effect families require explicit handlers and content.
 
+The approved Penpot Build/Upgrade artwork is integrated as a separate live-data canvas. New placements retain legal-gap selection and confirmation; duplicates show a brief automatic result with their current level, value and effect before Discover becomes visible. No extra upgrade decision or gameplay reward is introduced. See [artwork validation](Validation/TackleBuildArt/README.md).
+
 Vocabulary: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Weight/Heavy remain under review; Weight does not imply Resistance or capacity.
 
 ## Expedition and progression

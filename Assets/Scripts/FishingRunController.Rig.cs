@@ -13,12 +13,15 @@ public sealed partial class FishingRunController
     public CardDefinition PendingRigCreature => pendingRigCreature;
     public string BuildFailure { get; private set; }
     public string RigNotice { get; private set; }
+    public RigAcquisitionReceipt LastRigAcquisition { get; private set; }
+    public bool RigUpgradeFeedbackVisible { get; private set; }
     public event Action<CardDefinition, bool> RigAcquisitionCompleted;
 
     /// <summary>Clears all temporary upgrades and invalidates pending placement commands at expedition boundaries.</summary>
     private void ResetRigExpedition()
     {
         rig.Reset(); pendingRigCreature = null; buildOccurrence++; BuildFailure = RigNotice = null;
+        LastRigAcquisition = null; RigUpgradeFeedbackVisible = false;
     }
 
     /// <summary>Reserves a landed occurrence, automatically upgrading an existing species without showing placement controls.</summary>
@@ -40,11 +43,15 @@ public sealed partial class FishingRunController
         try
         {
             var creature = pendingRigCreature;
+            int previousHaul = rig.HaulValue, previousLevel = rig.FindSpecies(creature.UniqueId)?.Level ?? 0;
+            string biomeName = CurrentBiome?.GetDepthTier(CurrentDepth)?.DisplayName ?? CurrentBiome?.DisplayName ?? "Waters";
             if (!rig.TryAcquire(revision, creature, position, out bool upgraded, out string error))
             { BuildFailure = error; return false; }
             encounterRuntime.TakeHookedEncounter();
             var member = rig.FindSpecies(creature.UniqueId);
             RigNotice = creature.DisplayName + (upgraded ? " UPGRADED" : " PLACED") + " / LV " + member.Level;
+            LastRigAcquisition = new RigAcquisitionReceipt(buildOccurrence, member, rig.Members, previousLevel, previousHaul, rig.HaulValue, biomeName);
+            RigUpgradeFeedbackVisible = upgraded && fishingRunView != null && fishingRunView.HasRigBuildingPresentation;
             pendingRigCreature = null; awaitingRigPlacement = false; BuildFailure = null; buildOccurrence++;
             biomeApexRuntime.RecordCommittedApex(creature);
             ContinueAfterRigAcquisition();
@@ -52,6 +59,13 @@ public sealed partial class FishingRunController
             return true;
         }
         finally { rigResolutionInProgress = false; RefreshViews(); }
+    }
+
+    /// <summary>Dismisses only the completed upgrade's cosmetic display; acquisition and continuation have already resolved.</summary>
+    public bool CompleteRigUpgradeFeedback(long occurrence)
+    {
+        if (!RunActive || !RigUpgradeFeedbackVisible || LastRigAcquisition?.Occurrence != occurrence) return false;
+        RigUpgradeFeedbackVisible = false; RefreshViews(); return true;
     }
 
     /// <summary>Advances one ordinary encounter using existing authored depth/biome ownership, retaining the entire rig.</summary>

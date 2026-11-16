@@ -1,5 +1,7 @@
 # Rig Building / Upgrade validation — 15 November 2026
 
+**Revalidated 16 November 2026:** the saved Build prefab now uses the approved Penpot layout and brief automatic upgrade receipt. The captures in this directory were refreshed against that integration; 100 live loop assertions passed. The counts and descriptions below record the initial implementation baseline. Current artwork checks and example captures are recorded in [Build artwork validation](../TackleBuildArt/README.md).
+
 The third phase is installed in the saved comparison scene as `Assets/UIThemes/TackleApparatus/Prefabs/BuildCanvas.prefab`. `FishingRunView.rigBuildingView` references the scene instance. Successful new-species Landing opens this canvas; committing a gap returns automatically to Discover. A duplicate upgrades its existing member with no placement or extra confirmation.
 
 The initial installation failed because Penpot manifest entries without nine-slice borders deserialize as empty arrays. The importer now accepts null/empty borders as zero, validates four-element borders and stops on malformed nonempty arrays. The working prefab and saved binding are validated explicitly, preventing a fallthrough to the legacy Catch/Bait screen.

@@ -33,7 +33,9 @@ Preserve the separation of resolved numbers from presentation-only animations an
 
 ## Species placement and upgrades
 
-After successful landing, a new species opens the independent Build screen. Show its primary ability, legal insertion gaps and a side-effect-free preview of resulting values. Explicit confirmation commits a new position at Level 1. A duplicate automatically upgrades its existing position and returns to Discover with a short notice; no placement or extra confirmation is needed.
+After successful landing, a new species opens the independent Build screen. Show its primary ability, legal insertion gaps and a side-effect-free preview of resulting values. Explicit confirmation commits a new position at Level 1. A duplicate automatically upgrades its existing position and briefly displays the upgraded result before returning to Discover; no placement or extra confirmation is needed.
+
+The approved Tackle Build presentation uses one brass details frame for level, resolved species sale value and a concise complete ability description. It does not show New Species/Duplicate labels, copy-count explanations, nested role panels or Catch/Bait controls. New placement shows Level 1; upgrade feedback shows the prior and resulting levels, +1, the resulting accumulated value and the resulting effect coefficient. Native text formats the authored current-level effect, rather than repeating Level 1 rules. The Penpot Sardine coefficients remain illustrative content; integration does not assign those abilities to unfinalized creature definitions.
 
 The controller owns phase, landed occurrence and rig revision. Refreshes must not commit, repeat effects or carry selection from another occurrence. Failure cannot open acquisition/placement commitment. Levels and collected copies reset with the expedition.
 

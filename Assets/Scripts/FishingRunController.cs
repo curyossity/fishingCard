@@ -132,7 +132,7 @@ public sealed partial class FishingRunController : MonoBehaviour
         catchChainRuntime, encounterRuntime, techniqueEffectRuntime, effectResolver, eventPersistenceRuntime);
     public bool HasPendingCreatureChoice => PendingCreatureChoice != CreatureEffectChoiceKind.None;
 
-    private bool CoreActionInputReady => runActive && !rigResolutionInProgress && !EventActionInputLocked && !HasPendingTechniqueSelection
+    private bool CoreActionInputReady => runActive && !rigResolutionInProgress && !RigUpgradeFeedbackVisible && !EventActionInputLocked && !HasPendingTechniqueSelection
         && (fishingRunView == null || !fishingRunView.IsEncounterTransitionPlaying)
         && !techniqueEffectInProgress && techniqueDeckRuntime.ResolvingCard == null && string.IsNullOrEmpty(techniquePlayFailure)
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending

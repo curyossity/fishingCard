@@ -1,0 +1,135 @@
+{
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "penpotFile": "3681d377-bc58-8110-8008-e7a38adc2112",
+  "penpotPages": [
+    "389319c8-6b5a-80a0-8008-f36e5768d320",
+    "389319c8-6b5a-80a0-8008-f371b5b35d7e"
+  ],
+  "referenceSha256": "ddd26bb7f9c648f5d6082c17f8fbd86d27c02f5181d01333e38d2ef5c70aa6ed",
+  "assets": [
+    {
+      "name": "build-desk",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "2884cdb3eeed43e3af28710839356f216cc5cbeffb871dc8cea23f63fd08ddfb"
+    },
+    {
+      "name": "build-cabinet",
+      "width": 380,
+      "height": 995,
+      "sha256": "b15d719d39a40abdfb962f731665345a69da217719e562cfe523195f9adc9f50"
+    },
+    {
+      "name": "build-title",
+      "width": 780,
+      "height": 116,
+      "sha256": "f0c1ba8e911dca115ea1576f6375d389683ab3f8c55a7a85e0854f2f7ce19ba8"
+    },
+    {
+      "name": "build-haul",
+      "width": 345,
+      "height": 116,
+      "sha256": "8624399bab240ca08a91e203087c714fd1941cba1d0688459ab1d2948820b04c"
+    },
+    {
+      "name": "build-machine",
+      "width": 1310,
+      "height": 657,
+      "sha256": "2245c8ff2b0d4a3730510bde508cb8f9483269e9d17e0c93d8f32782e56b7309"
+    },
+    {
+      "name": "build-console",
+      "width": 1310,
+      "height": 165,
+      "sha256": "eba60251bc17fc64909f07d5ceaff2688ad9996ad0fb3531076e219568e2743c"
+    },
+    {
+      "name": "build-message",
+      "width": 1140,
+      "height": 54,
+      "sha256": "1f62b7a6917e341127e8a8bb41ae9c67c9f54e2d21823074560b147b607b889e"
+    },
+    {
+      "name": "build-portrait",
+      "width": 455,
+      "height": 225,
+      "sha256": "a3e817b56e40a022eff8cbfe61edfcb87f7c225bb67fd9ba09127bda3af3c808"
+    },
+    {
+      "name": "build-effect",
+      "width": 565,
+      "height": 235,
+      "sha256": "04d38e4fce545f61e8a9109e447e568b65d210d585d6721ab523baf7669448b9"
+    },
+    {
+      "name": "build-rail-heading",
+      "width": 950,
+      "height": 47,
+      "sha256": "6d02ab96e9b11c82e6408fae9d7564d4050f98d147f4362479b833cc71f6a989"
+    },
+    {
+      "name": "build-readout",
+      "width": 505,
+      "height": 116,
+      "sha256": "407aa36bfb1502a8d5e6d426295526b7217acfd49a093fa6d95f205699683856"
+    },
+    {
+      "name": "build-place",
+      "width": 600,
+      "height": 116,
+      "sha256": "5b0f1c542319d2049a42ab0b4932f866a9e182bbecbc90c2ebc1a422e62c032e"
+    },
+    {
+      "name": "build-upgraded",
+      "width": 600,
+      "height": 116,
+      "sha256": "dfac353f719b6f8e66d8c15d649af5d33e9528f9af961bb13e935e749069fdd7"
+    },
+    {
+      "name": "build-rig-card",
+      "width": 315,
+      "height": 244,
+      "sha256": "87570c92b7f67edb84399bb5a3aca51bc8157c249ea4a7cccf91bd424aba0bda"
+    },
+    {
+      "name": "build-tray",
+      "width": 1135,
+      "height": 269,
+      "sha256": "ba50f29e479904a016b6790e31a00a957fd591042a06025e7ce5fe2a8151aecf"
+    },
+    {
+      "name": "build-tray-three",
+      "width": 1135,
+      "height": 269,
+      "sha256": "25da8c5a4522607613bd41916f1ee1bdc272ba881b3751920501de98f6311706"
+    },
+    {
+      "name": "build-gap-idle",
+      "width": 80,
+      "height": 94,
+      "sha256": "cf7d5a37d217c1fdcd1e279db1301afd2b5d07a40f3a20fe2bae31a17b8ea246"
+    },
+    {
+      "name": "build-gap-selected",
+      "width": 80,
+      "height": 94,
+      "sha256": "be72feb1c9b827dd1c98fe612f9be4540e9e11f5291a552fe354e34d38ed384b"
+    },
+    {
+      "name": "build-selection-caret",
+      "width": 80,
+      "height": 35,
+      "sha256": "bb9ab9eb4d72202a474f7c2484fe15bec43a8096c87b3c9f8f2c8a81e4d3ef03"
+    },
+    {
+      "name": "build-rail-card",
+      "width": 221,
+      "height": 190,
+      "sha256": "82377b6879325df31c1fd9b5d3026a9894303d28bd1274a9d3e5a0410d70a8fb"
+    }
+  ],
+  "notes": "Only decorative masters. No creature, level, sale value, effect text or insertion controls are printed into runtime art."
+}
