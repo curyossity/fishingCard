@@ -1,5 +1,5 @@
 """Separate approved decorative artwork from all live species, labels and interactions."""
-import json, copy, hashlib
+import json, copy, hashlib, struct
 from pathlib import Path
 
 folder=Path(__file__).resolve().parent
@@ -48,15 +48,30 @@ scene('build-tray',(550,562,1135,269),layers)
 
 # The approved three-card view retains its original wood and rope pixels. Erase data underneath
 # the independent masters, rather than turning the concept into a printed game-state background.
-three=[tray]+[c for c in source[1]['commands'] if c['id'].startswith('wood-inactive-gap-') or c['id']=='wood-no-insertion-caret']
+three=[tray]
 for x in [697,1001,1305]:
     three.append(image('clear-card-'+str(x),kit/'Exports/Placement/insertion-rail.png',95,67,430,100,x,601,221,190))
+# Use one continuous wood surface beneath the controls instead of isolated background patches.
+# Keep the original rope above this band and the complete perimeter outside it.
+three.append(image('continuous-control-backing',kit/'Exports/Placement/insertion-rail.png',95,67,430,100,588,629,1053,169))
 scene('build-tray-three',(550,562,1135,269),three)
-scene('build-gap-idle',(0,0,80,94),[image('idle-socket',reference,613,659,80,94,0,0,80,94)])
-scene('build-gap-selected',(0,0,80,94),[image('selected-socket',reference,1542,659,80,94,0,0,80,94)])
-scene('build-selection-caret',(0,0,80,35),[image('selected-arrow',reference,1542,629,80,35,0,0,80,35)])
+
+def transparent_asset(ident,relative,x,y,w,h):
+    path=kit/'Exports'/relative
+    sw,sh=struct.unpack('>II',path.read_bytes()[16:24])
+    return image(ident,path,0,0,sw,sh,x,y,w,h)
+
+# Page 08 sockets and the common arrow have real alpha. Never crop controls from a screen.
+# Preserve the existing 80x94 native hit target and the approved visual center.
+for state in ['idle','selected']:
+    scene('build-gap-'+state,(0,0,80,94),[
+        transparent_asset(state+'-socket','Placement/insertion-socket-'+state+'.png',0,0,74,73),
+        transparent_asset('plus','Placement/insertion-plus.png',25,24,24,24)])
+scene('build-selection-caret',(0,0,80,35),[
+    transparent_asset('selected-arrow','Common/caret-down.png',22,8,30,20)])
 
 blank=[image('page-04-original-card',reference,697,601,221,190,697,601,221,190)]
+blank[0]['mask']=[0,12,12,0,207,0,221,13,221,177,208,190,11,190,0,178]
 blank += [c for c in source[1]['commands'] if c['id'] in ['rail-sardine-portrait-paper','rail-sardine-name-well','rail-sardine-footer-well']]
 scene('build-rail-card',(697,601,221,190),blank)
 

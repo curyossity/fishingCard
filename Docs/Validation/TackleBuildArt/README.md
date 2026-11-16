@@ -13,7 +13,9 @@ The saved comparison scene uses the approved Penpot composition from pages 11/12
 
 ## Verification
 
-Final results: 63 Build artwork/binding assertions, 76 rig rules, 64 Landing rules, 71 slot rules, 155 Discover-art checks, 96 Landing-art checks, 33 new artwork/live-flow checks and 100 full-loop checks. Unity metadata validation found zero errors or warnings. Counts are recorded in the adjacent JSON results and the full-loop validation directory.
+Initial integration results: 63 Build artwork/binding assertions, 76 rig rules, 64 Landing rules, 71 slot rules, 155 Discover-art checks, 96 Landing-art checks, 33 new artwork/live-flow checks and 100 full-loop checks. Unity metadata validation found zero errors or warnings. Counts are recorded in the adjacent JSON results and the full-loop validation directory.
+
+The insertion-transparency correction replaces the opaque screen crops with the approved page 08 socket/plus exports and common selection arrow, preserves their dimensions and sprite GUIDs, clears the wood patches beneath the controls and masks the hanging card's outside corners. The primary/upgrade button artwork already has alpha. Updated validation passes **75 asset assertions** (including alpha/corner checks on both insertion states, the arrow and card) and **33 live-flow assertions**. Updated native captures show the corrected controls. `TransparencyVerification.json` records the additional checks; gameplay and hit areas are unchanged.
 
 `RigBuildingArtChecks.ValidateAssets()` checks independent source bytes/import settings, one-frame composition, native bindings, resulting-level text and the unassigned-content boundary. `RigBuildingChecks.ValidateRules()` checks acquisition, upgrades, transactional previews, positional effects, scoring, value, stale commands and overflow.
 

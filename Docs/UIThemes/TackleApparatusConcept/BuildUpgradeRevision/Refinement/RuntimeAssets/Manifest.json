@@ -104,31 +104,31 @@
       "name": "build-tray-three",
       "width": 1135,
       "height": 269,
-      "sha256": "25da8c5a4522607613bd41916f1ee1bdc272ba881b3751920501de98f6311706"
+      "sha256": "1d930f725bc072fe14bac1f5500bfb07a6822a386a3891139a897c0cf62bd186"
     },
     {
       "name": "build-gap-idle",
       "width": 80,
       "height": 94,
-      "sha256": "cf7d5a37d217c1fdcd1e279db1301afd2b5d07a40f3a20fe2bae31a17b8ea246"
+      "sha256": "2b9a65b337973fab7a158b8752b22b6f05e050326ca81a7540987e4564d2ee01"
     },
     {
       "name": "build-gap-selected",
       "width": 80,
       "height": 94,
-      "sha256": "be72feb1c9b827dd1c98fe612f9be4540e9e11f5291a552fe354e34d38ed384b"
+      "sha256": "adb2d18f9d6467a642fb252e99777bcbc6d25141e15847dfbdec75d292d3c9e7"
     },
     {
       "name": "build-selection-caret",
       "width": 80,
       "height": 35,
-      "sha256": "bb9ab9eb4d72202a474f7c2484fe15bec43a8096c87b3c9f8f2c8a81e4d3ef03"
+      "sha256": "8fe34aeb2ead5630b5e7574621ca5135cc069a1f002725898ae883882ac03ca8"
     },
     {
       "name": "build-rail-card",
       "width": 221,
       "height": 190,
-      "sha256": "82377b6879325df31c1fd9b5d3026a9894303d28bd1274a9d3e5a0410d70a8fb"
+      "sha256": "fdb0e120c871f87a3e2c556ebde9b7df0b122ef44b4e73a95b9c7a6d3d31c8c2"
     }
   ],
   "notes": "Only decorative masters. No creature, level, sale value, effect text or insertion controls are printed into runtime art."

@@ -28,6 +28,8 @@ public static class RigBuildingArtChecks
             Check(importer.filterMode==FilterMode.Point&&!importer.mipmapEnabled&&!importer.isReadable&&importer.textureCompression==TextureImporterCompression.Uncompressed&&importer.npotScale==TextureImporterNPOTScale.None,"Build sprite settings changed: "+path);
         }
         var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath);
+        foreach(var name in new[]{"build-gap-idle","build-gap-selected","build-selection-caret","build-rail-card"})
+            CheckTransparentSilhouette(RigBuildingSetup.ArtPath+name+".png");
         Check(prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true).Count(i=>i.name=="build-effect")==1,"Creature details must have one frame.");
         foreach(var text in prefab.GetComponentsInChildren<TMP_Text>(true))
             Check(!text.text.Contains("NEW SPECIES")&&!text.text.Contains("DUPLICATE")&&!text.text.Contains("CATCH")&&!text.text.Contains("BAIT"),"Obsolete Build wording: "+text.text);
@@ -36,6 +38,22 @@ public static class RigBuildingArtChecks
         Check(RigAbilityText.Describe(ability,3,false)=="Successful strikes gain +0.6x per other contiguous Schooling creature.","Level 3 still displays the base effect.");
         Check(RigAbilityText.Describe(new RigAbilitySpec("","",null),1)=="No active ability.","An unassigned creature gained a fabricated effect.");
         return checks;
+    }
+
+    /// <summary>Rejects opaque screen crops without making shipped textures CPU-readable.</summary>
+    private static void CheckTransparentSilhouette(string path)
+    {
+        var texture=new Texture2D(2,2,TextureFormat.RGBA32,false);
+        try
+        {
+            Check(texture.LoadImage(File.ReadAllBytes(path)),"Cannot inspect sprite alpha: "+path);
+            var pixels=texture.GetPixels32();int width=texture.width,height=texture.height;
+            Check(pixels[0].a==0&&pixels[width-1].a==0&&pixels[(height-1)*width].a==0&&pixels[pixels.Length-1].a==0,
+                "Sprite corners retain a cropped background: "+path);
+            Check(pixels.Count(p=>p.a==0)>pixels.Length/200&&pixels.Any(p=>p.a>0),
+                "Sprite must retain both visible artwork and transparent space: "+path);
+        }
+        finally { UnityEngine.Object.DestroyImmediate(texture); }
     }
 
     /// <summary>Starts a fresh runtime-only fixture; source creature definitions and persistent saves remain untouched.</summary>

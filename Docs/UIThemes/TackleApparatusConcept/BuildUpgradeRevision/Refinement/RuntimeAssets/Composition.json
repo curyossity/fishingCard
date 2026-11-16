@@ -1469,71 +1469,6 @@
       },
       {
         "kind": "image",
-        "id": "wood-inactive-gap-613",
-        "x": 63,
-        "y": 97,
-        "w": 80,
-        "h": 94,
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1617,
-        "sy": 659,
-        "sw": 18,
-        "sh": 94
-      },
-      {
-        "kind": "image",
-        "id": "wood-inactive-gap-924",
-        "x": 374,
-        "y": 97,
-        "w": 80,
-        "h": 94,
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1617,
-        "sy": 659,
-        "sw": 18,
-        "sh": 94
-      },
-      {
-        "kind": "image",
-        "id": "wood-inactive-gap-1226",
-        "x": 676,
-        "y": 97,
-        "w": 80,
-        "h": 94,
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1617,
-        "sy": 659,
-        "sw": 18,
-        "sh": 94
-      },
-      {
-        "kind": "image",
-        "id": "wood-inactive-gap-1542",
-        "x": 992,
-        "y": 97,
-        "w": 80,
-        "h": 94,
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1617,
-        "sy": 659,
-        "sw": 18,
-        "sh": 94
-      },
-      {
-        "kind": "image",
-        "id": "wood-no-insertion-caret",
-        "x": 992,
-        "y": 67,
-        "w": 80,
-        "h": 35,
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1617,
-        "sy": 629,
-        "sw": 18,
-        "sh": 35
-      },
-      {
-        "kind": "image",
         "id": "clear-card-697",
         "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Placement\\insertion-rail.png",
         "sx": 95,
@@ -1570,6 +1505,19 @@
         "y": 39,
         "w": 221,
         "h": 190
+      },
+      {
+        "kind": "image",
+        "id": "continuous-control-backing",
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Placement\\insertion-rail.png",
+        "sx": 95,
+        "sy": 67,
+        "sw": 430,
+        "sh": 100,
+        "x": 38,
+        "y": 67,
+        "w": 1053,
+        "h": 169
       }
     ]
   },
@@ -1584,15 +1532,28 @@
       {
         "kind": "image",
         "id": "idle-socket",
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 613,
-        "sy": 659,
-        "sw": 80,
-        "sh": 94,
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Placement\\insertion-socket-idle.png",
+        "sx": 0,
+        "sy": 0,
+        "sw": 228,
+        "sh": 223,
         "x": 0,
         "y": 0,
-        "w": 80,
-        "h": 94
+        "w": 74,
+        "h": 73
+      },
+      {
+        "kind": "image",
+        "id": "plus",
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Placement\\insertion-plus.png",
+        "sx": 0,
+        "sy": 0,
+        "sw": 24,
+        "sh": 24,
+        "x": 25,
+        "y": 24,
+        "w": 24,
+        "h": 24
       }
     ]
   },
@@ -1607,15 +1568,28 @@
       {
         "kind": "image",
         "id": "selected-socket",
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1542,
-        "sy": 659,
-        "sw": 80,
-        "sh": 94,
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Placement\\insertion-socket-selected.png",
+        "sx": 0,
+        "sy": 0,
+        "sw": 234,
+        "sh": 230,
         "x": 0,
         "y": 0,
-        "w": 80,
-        "h": 94
+        "w": 74,
+        "h": 73
+      },
+      {
+        "kind": "image",
+        "id": "plus",
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Placement\\insertion-plus.png",
+        "sx": 0,
+        "sy": 0,
+        "sw": 24,
+        "sh": 24,
+        "x": 25,
+        "y": 24,
+        "w": 24,
+        "h": 24
       }
     ]
   },
@@ -1630,15 +1604,15 @@
       {
         "kind": "image",
         "id": "selected-arrow",
-        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
-        "sx": 1542,
-        "sy": 629,
-        "sw": 80,
-        "sh": 35,
-        "x": 0,
-        "y": 0,
-        "w": 80,
-        "h": 35
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\AssetLibrary\\Exports\\Common\\caret-down.png",
+        "sx": 0,
+        "sy": 0,
+        "sw": 24,
+        "sh": 16,
+        "x": 22,
+        "y": 8,
+        "w": 30,
+        "h": 20
       }
     ]
   },
@@ -1661,7 +1635,25 @@
         "x": 0,
         "y": 0,
         "w": 221,
-        "h": 190
+        "h": 190,
+        "mask": [
+          0,
+          12,
+          12,
+          0,
+          207,
+          0,
+          221,
+          13,
+          221,
+          177,
+          208,
+          190,
+          11,
+          190,
+          0,
+          178
+        ]
       },
       {
         "kind": "image",

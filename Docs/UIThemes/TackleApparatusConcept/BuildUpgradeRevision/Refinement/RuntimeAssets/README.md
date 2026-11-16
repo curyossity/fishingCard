@@ -4,6 +4,8 @@ These are independent decorative exports for the 16 November 2026 Unity integrat
 
 `build-tray-three` retains the original three-card furniture and clears the printed creature fields/control locations. Independent native masters and controls cover those cleared locations. The general `build-tray` uses the same perimeter and approved clean wood for uncapped scrolling rigs, with separate rope and clip elements. The card master contains no name, creature, level, sale value or effect.
 
+Insertion controls use the transparent approved AssetLibrary exports from Penpot page **08 - Rig Placement UI Assets**: `Placement/insertion-socket-idle.png`, `Placement/insertion-socket-selected.png` and `Placement/insertion-plus.png`, with `Common/caret-down.png` for the selection arrow. The exporter composites these on clear canvases at the existing runtime dimensions; it never crops controls from the composed screen. The three-card tray has a continuous wood surface behind the controls, and the hanging card's outer corners are masked to its silhouette. Existing Unity sprite GUIDs, hit areas and layout remain preserved.
+
 From the repository root:
 
 1. Run `python Docs/UIThemes/TackleApparatusConcept/BuildUpgradeRevision/export_runtime_assets.py` to create the extraction commands.
