@@ -33,13 +33,27 @@ public sealed class LandingRigRule
 
     /// <summary>Validates nonnegative finite scoring modifiers before strikes can consume attempts.</summary>
     public LandingRigRule(string label, LandingAccuracyFilter accuracy, float bonus, float multiplier, string adjacentTag = null, string contiguousTag = null)
+        : this(label, accuracy, FiniteAmount(bonus), FiniteAmount(multiplier), adjacentTag, contiguousTag)
+    { }
+
+    /// <summary>Preserves exact level-derived decimal scoring instead of converting it back through binary floating point.</summary>
+    private LandingRigRule(string label, LandingAccuracyFilter accuracy, decimal bonus, decimal multiplier, string adjacentTag = null, string contiguousTag = null)
     {
-        if (float.IsNaN(bonus) || float.IsInfinity(bonus) || bonus < 0 || float.IsNaN(multiplier)
-            || float.IsInfinity(multiplier) || multiplier < 0 || !Enum.IsDefined(typeof(LandingAccuracyFilter), accuracy))
+        if (bonus < 0 || multiplier < 0 || !Enum.IsDefined(typeof(LandingAccuracyFilter), accuracy))
             throw new ArgumentException("Invalid landing scoring ability.");
         Label = string.IsNullOrWhiteSpace(label) ? "Rig effect" : label;
-        Accuracy = accuracy; Bonus = (decimal)bonus; Multiplier = (decimal)multiplier;
+        Accuracy = accuracy; Bonus = bonus; Multiplier = multiplier;
         AdjacentTag = adjacentTag?.Trim(); ContiguousTag = contiguousTag?.Trim();
+    }
+
+    /// <summary>Creates a rule from exact resolved upgrade amounts.</summary>
+    public static LandingRigRule Exact(string label, LandingAccuracyFilter accuracy, decimal bonus, decimal multiplier)
+        => new LandingRigRule(label, accuracy, bonus, multiplier);
+    /// <summary>Preserves validation behavior for existing floating-point authoring.</summary>
+    private static decimal FiniteAmount(float amount)
+    {
+        if (float.IsNaN(amount) || float.IsInfinity(amount)) throw new ArgumentException("Landing amounts must be finite.");
+        try { return (decimal)amount; } catch (OverflowException error) { throw new ArgumentException("Landing amount is too large.", error); }
     }
 
     /// <summary>Checks the exact accuracy window, excluding Miss from ordinary successful-strike bonuses.</summary>
@@ -57,13 +71,14 @@ public sealed class LandingRigMember
     public int Id { get; }
     public string Name { get; }
     public CatchAttachmentRole Role { get; }
+    public int Level { get; }
     public IReadOnlyList<string> Tags { get; }
     public IReadOnlyList<LandingRigRule> Rules { get; }
 
     /// <summary>Copies arrays so later view/definition edits cannot change the encounter's scoring snapshot.</summary>
-    public LandingRigMember(int id, string name, CatchAttachmentRole role, string[] tags, LandingRigRule[] rules)
+    public LandingRigMember(int id, string name, CatchAttachmentRole role, string[] tags, LandingRigRule[] rules, int level = 1)
     {
-        Id = id; Name = name ?? "Creature"; Role = role;
+        Id = id; Name = name ?? "Creature"; Role = role; Level = level;
         Tags = Array.AsReadOnly((string[])(tags ?? Array.Empty<string>()).Clone());
         Rules = Array.AsReadOnly((LandingRigRule[])(rules ?? Array.Empty<LandingRigRule>()).Clone());
     }

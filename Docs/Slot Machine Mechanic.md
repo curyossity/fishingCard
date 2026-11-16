@@ -40,7 +40,7 @@ These follow four equally likely symbols and independent reels. The second colum
 
 ## Encounter handoff
 
-Discover selects and reveals a creature. Land then tests the player's timing and existing rig against its Resistance. Discover does not catch the creature, generate Landing Points or supply new rig benefits. Only successful landing permits Catch/Bait choice and irreversible rig insertion. The new attachment helps future encounters. Failure ends the expedition under the GDD's full accumulated Catch-value payout rule.
+Discover selects and reveals a creature. Land then tests the player's timing and existing rig against its Resistance. Discover does not catch the creature, generate Landing Points or supply new rig benefits. Only successful landing permits a new species to be inserted at a legal position or a duplicate to upgrade its existing member automatically. The acquired/upgraded ability helps future encounters. Failure ends the expedition under the GDD's full accumulated creature-value payout rule.
 
 Keep preparation, reel state, tag matching, rarity selection, eligibility, final selection and presentation separate. Preserve immutable expedition settings and occurrence-safe commands. Equipment, Techniques, creature effects, replacement symbols and biome modifiers are possible future extensions, not enabled baseline mechanics. Avoid unnecessary confirmation steps or delays.
 

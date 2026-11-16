@@ -243,7 +243,7 @@ public abstract class CardCatalogWindow : EditorWindow
         }
         else
         {
-            DrawSection("Catch Effects", cardObject, "effects");
+            if (!IsRigSpecies(cardObject)) DrawSection("Catch Effects", cardObject, "effects");
             DrawCatchFields(cardObject);
         }
         bool cardFieldsChanged = EditorGUI.EndChangeCheck();
@@ -284,9 +284,10 @@ public abstract class CardCatalogWindow : EditorWindow
             "Rarity and tags are encounter metadata. Events display no rarity hooks or tag rail.", MessageType.None);
     }
 
-    /// <summary>Edits stats and Bait data only in the catch catalog.</summary>
+    /// <summary>Edits fixed species sale value; legacy non-species content retains its existing fields.</summary>
     private static void DrawCatchFields(SerializedObject cardObject)
     {
+        if (IsRigSpecies(cardObject)) { DrawSection("Species Sale Value", cardObject, "value", "landingResistance"); return; }
         DrawSection("Catch Stats", cardObject, "weight", "value", "randomizeValueWhenCaught",
             "minimumCaughtValue", "maximumCaughtValue");
         EditorGUILayout.PropertyField(cardObject.FindProperty("hasExplicitBaitData"));
@@ -362,6 +363,11 @@ public abstract class CardCatalogWindow : EditorWindow
     /// <summary>Draws rules copy and its central-card word/phrase emphasis metadata.</summary>
     private void DrawRulesTextSection(SerializedObject cardObject)
     {
+        if (IsRigSpecies(cardObject))
+        {
+            DrawSection("Primary Ability and Level Scaling", cardObject, "primaryAbility");
+            return;
+        }
         EditorGUILayout.Space(6f);
         EditorGUILayout.LabelField(IsEventCatalog ? "Event Rules Text" : "Catch / Bait Rules Text", EditorStyles.boldLabel);
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -380,6 +386,13 @@ public abstract class CardCatalogWindow : EditorWindow
             EditorGUILayout.PropertyField(cardObject.FindProperty("baitRulesTextHighlights"), true);
         }
         EditorGUILayout.EndVertical();
+    }
+
+    /// <summary>Distinguishes current rig creatures from event, treasure and other historical content authoring.</summary>
+    private static bool IsRigSpecies(SerializedObject cardObject)
+    {
+        var type = (CardType)cardObject.FindProperty("cardType").intValue;
+        return type == CardType.Creature || type == CardType.ApexEncounter;
     }
 
     /// <summary>Draws a titled group of serialized card fields.</summary>

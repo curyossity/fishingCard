@@ -101,7 +101,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     private CardInstance[] endedRunPresentationCatches = Array.Empty<CardInstance>();
     private ActiveCatchEffectRecord[] endedRunPresentationEffects = Array.Empty<ActiveCatchEffectRecord>();
     private int endedRunPresentationLoad;
-    private CardInstance[] DisplayedCatches => !runActive && runEndCleanupPending ? endedRunPresentationCatches : catchChainRuntime.Catches;
+    private CardInstance[] DisplayedCatches => !runActive && runEndCleanupPending ? endedRunPresentationCatches : CatchChain;
     private ActiveCatchEffectRecord[] DisplayedCatchEffects => !runActive && runEndCleanupPending ? endedRunPresentationEffects : catchChainRuntime.ActiveEffectRecords;
     private int DisplayedLineLoad => !runActive && runEndCleanupPending ? endedRunPresentationLoad : catchChainRuntime.CurrentLineLoad;
     [SerializeField] private CreatureEffectRuntime creatureEffectRuntime = new CreatureEffectRuntime();
@@ -132,7 +132,7 @@ public sealed partial class FishingRunController : MonoBehaviour
         catchChainRuntime, encounterRuntime, techniqueEffectRuntime, effectResolver, eventPersistenceRuntime);
     public bool HasPendingCreatureChoice => PendingCreatureChoice != CreatureEffectChoiceKind.None;
 
-    private bool CoreActionInputReady => runActive && !EventActionInputLocked && !HasPendingTechniqueSelection
+    private bool CoreActionInputReady => runActive && !rigResolutionInProgress && !EventActionInputLocked && !HasPendingTechniqueSelection
         && (fishingRunView == null || !fishingRunView.IsEncounterTransitionPlaying)
         && !techniqueEffectInProgress && techniqueDeckRuntime.ResolvingCard == null && string.IsNullOrEmpty(techniquePlayFailure)
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
@@ -162,7 +162,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     public CardDefinition HookedEncounter => encounterRuntime.HookedEncounter;
     public HookedEffectRecord[] HookedEffectRecords => encounterRuntime.HookedEffectRecords;
     public ActiveCatchEffectRecord[] ActiveCatchEffectRecords => catchChainRuntime.ActiveEffectRecords;
-    public CardInstance[] CatchChain => catchChainRuntime.Catches;
+    public CardInstance[] CatchChain => UsesLandingChallenge ? rig.Members : catchChainRuntime.Catches;
     public CardDefinition[] TechniqueHand => techniqueDeckRuntime.Hand;
     public CardDefinition[] TechniqueDrawPile => techniqueDeckRuntime.DrawPile;
     public CardDefinition[] TechniqueDiscardPile => techniqueDeckRuntime.DiscardPile;
@@ -174,7 +174,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     public int LastSurfaceLineLoad => lastSurfaceResult.SurfaceLineLoad;
     public bool LastSurfaceWasOverloaded => lastSurfaceResult.WasOverloaded;
     public bool LastRunEndedByLineBreak => lastSurfaceResult.EndedByLineBreak;
-    public int CurrentLineLoad => catchChainRuntime.CurrentLineLoad;
+    public int CurrentLineLoad => UsesLandingChallenge ? 0 : catchChainRuntime.CurrentLineLoad;
     public bool CurrentEncounterInformationHidden => currentEncounterInformationHidden;
     public bool CurrentEncounterIdentityHidden => encounterRuntime.IsCreatureConcealed;
     private bool TechniqueRevealInformationHidden => effectResolver != null
@@ -359,6 +359,7 @@ public sealed partial class FishingRunController : MonoBehaviour
         int seed = useRandomSeed ? Environment.TickCount : randomSeed;
         random = new System.Random(seed);
         ResetLandingForExpedition(seed);
+        ResetRigExpedition();
         runProgressionRuntime.InitializeTechniqueDeck(startingTechniqueDeck);
 
         runActive = true;
@@ -2115,7 +2116,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     private void CaptureEndedRunPresentation()
     {
         endedRunPresentationLoad = catchChainRuntime.CurrentLineLoad;
-        endedRunPresentationCatches = Array.ConvertAll(catchChainRuntime.Catches, card => card?.CreateSnapshot());
+        endedRunPresentationCatches = Array.ConvertAll(CatchChain, card => card?.CreateSnapshot());
         List<ActiveCatchEffectRecord> records = new List<ActiveCatchEffectRecord>();
         foreach (ActiveCatchEffectRecord record in catchChainRuntime.ActiveEffectRecords)
         {
@@ -2130,6 +2131,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     private void ResetEndedRunRuntimeState()
     {
         awaitingRigPlacement = false;
+        ResetRigExpedition();
         if (landing.State == LandingChallengeState.Active) landing.Reset();
         ResetEventActionState();
         ResetTechniquePlayState();
@@ -2183,13 +2185,13 @@ public sealed partial class FishingRunController : MonoBehaviour
     {
         // The Hooked encounter is intentionally excluded because it has not entered the Catch Chain.
         lastSurfaceResult.Record(
-            catchChainRuntime.Catches,
-            catchChainRuntime.ReleasedCatches,
-            catchChainRuntime.LostCatches,
+            UsesLandingChallenge ? rig.CreateHaulSnapshot() : catchChainRuntime.Catches,
+            UsesLandingChallenge ? Array.Empty<CardInstance>() : catchChainRuntime.ReleasedCatches,
+            UsesLandingChallenge ? Array.Empty<CardInstance>() : catchChainRuntime.LostCatches,
             currentDepth,
-            startingLoad,
-            evaluatedCapacity,
-            endedByLineBreak);
+            UsesLandingChallenge ? 0 : startingLoad,
+            UsesLandingChallenge ? 0 : evaluatedCapacity,
+            !UsesLandingChallenge && endedByLineBreak);
         runRewardRuntime.AwardGold(lastSurfaceResult);
         SavePersistentWallet();
         EndActiveRun();

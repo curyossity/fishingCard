@@ -64,7 +64,15 @@ public sealed partial class FishingRunController
         creatureEffectRuntime.BeginEncounter();
         runEquipment.BeginEncounter();
         int depth = GetEffectiveEncounterSelectionDepth();
-        if (TryRevealBiomeApex(depth) || TryPresentNextWaters()) return;
+        if (TryRevealBiomeApex(depth))
+        {
+            if (UsesLandingChallenge && PrepareLandingRig() && encounterRuntime.BeginSpecialLanding(CurrentEncounterRevision))
+            {
+                BeginSelectedLanding(); CreatureReadyForLanding?.Invoke(CurrentEncounter, CurrentEncounterRevision);
+            }
+            return;
+        }
+        if (TryPresentNextWaters()) return;
         if (encounterRuntime.BeginSlotEncounter(currentBiome?.GetStandardCreaturePool(), CurrentBiomeId,
             expeditionSlotTags, expeditionSlotSettings, random, IsSlotCreatureUnlocked)) return;
         Debug.LogWarning(encounterRuntime.SlotFailure, this);

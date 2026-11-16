@@ -19,6 +19,7 @@ public static class TackleDiscoverArtChecks
             .Where(path => !path.Replace('\\', '/').StartsWith(TackleReelSymbolSetup.Destination, StringComparison.Ordinal)
                 && !path.Replace('\\', '/').StartsWith(TackleReelSurfaceSetup.ArtRoot, StringComparison.Ordinal)
                 && !path.Replace('\\', '/').StartsWith(CreatureSpriteSetup.Destination, StringComparison.Ordinal)
+                && !path.Replace('\\', '/').StartsWith(root + "Art/Placement/", StringComparison.Ordinal)
                 && !path.Replace('\\', '/').StartsWith(root + "Art/Landing/", StringComparison.Ordinal)).ToArray();
         assert(files.Length == 37, "Discover asset selection changed unexpectedly.");
         foreach (string file in files)

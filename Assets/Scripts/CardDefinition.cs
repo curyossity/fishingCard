@@ -6,6 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Card", menuName = "Fishing Cards/Card Definition")]
 public class CardDefinition : ScriptableObject
 {
+    [Header("Primary Creature Ability")]
+    [SerializeField] private CreatureAbilityDefinition primaryAbility = new CreatureAbilityDefinition();
+    public CreatureAbilityDefinition PrimaryAbility => primaryAbility ?? new CreatureAbilityDefinition();
     [Header("Identity")]
     [SerializeField] private string uniqueId;
     [SerializeField] private string displayName;

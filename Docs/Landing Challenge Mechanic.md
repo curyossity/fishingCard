@@ -1,14 +1,14 @@
 # Deepwater — Landing Challenge
 
-Agreed direction supplied 13 November 2026. Focus: Landing motion, strikes, attempts, scoring and terminal outcomes. Numeric defaults are prototype balancing values. Build/placement, new species abilities, Techniques and equipment redesign are separate work. The approved Landing artwork was integrated on 13 November 2026.
+Agreed direction supplied 13 November 2026. Focus: Landing motion, strikes, attempts, scoring and terminal outcomes. Numeric defaults are prototype balancing values. Build/Upgrade is specified separately in Rig Building Mechanic.md; species assignments, Techniques and equipment tuning remain open. The approved Landing artwork was integrated on 13 November 2026.
 
 ## Encounter flow
 
 Discover selects and reveals an eligible creature. Land tests that creature against the **already attached rig**. The encountered creature contributes nothing toward landing itself.
 
-Reach the creature's **Resistance** with accumulated **Landing Points** within limited attempts. Success immediately completes Land and supplies a creature/occurrence-bound handoff to Build. Success does not attach a creature, choose a role, apply its abilities or commit a position. Build subsequently chooses Catch/Bait, previews permitted insertion consequences, commits once and preserves existing relative order. The updated rig affects later encounters.
+Reach the creature's **Resistance** with accumulated **Landing Points** within limited attempts. Success immediately completes Land and supplies a creature/occurrence-bound handoff to Build. Success does not grant the encountered creature power toward its own Landing. Build then previews/commits a new species at Level 1 or automatically upgrades an existing species in place, preserving relative order. The updated rig affects later encounters.
 
-Failure immediately ends the expedition. The failed creature is not acquired. Award the full accumulated sale value of all previously attached Catch creatures; Bait contributes zero. Snapshot that value before removing every attachment. Permanent progression is preserved; the next expedition starts with an empty rig. There is no voluntary Surface, capacity check, overload or line-break penalty.
+Failure immediately ends the expedition. The failed creature is not acquired. Award the full accumulated sale value of all previously landed creatures, including duplicates and applicable value bonuses. Snapshot that value before removing every attachment. Permanent progression is preserved; the next expedition starts with an empty rig. There is no voluntary Surface, capacity check, overload or line-break penalty.
 
 ## Track and strikes
 
@@ -59,19 +59,11 @@ A normal Miss receives no ordinary successful-strike bonuses or multipliers and 
 
 ## Rig scoring boundaries
 
-Capture committed rig membership, stable instance identity, effective tags, stored Catch/Bait role and the selected role's approved landing effects when Land begins. Never include the revealed creature or pending role/placement previews. Catch and Bait both participate in adjacency/tag conditions unless an explicit effect excludes them.
+Capture committed species, stable IDs, effective tags, levels and primary abilities. Never include the encountered creature or a placement preview. Each species counts once for adjacency and contiguous groups, regardless of upgrade level or collected copies.
 
-The scoring authoring boundary supports flat bonuses, multipliers, accuracy conditions, neighboring-tag conditions and flat bonuses per other connected contiguous tagged creature. Connected groups stop at the first nonmatching member; a connected-tag source must belong to that tag. A rule's multiplier applies once per eligible source; connected counts scale its flat bonus only. Contributions retain source IDs and names for feedback. Recalculation/preview does not award points.
+`RigRuntime.SnapshotForLanding` resolves current positional conditions and level amounts into immutable source-attributed flat bonuses and multipliers. Flat bonuses resolve before multiplier products. Successful/Good/Perfect/explicit-Miss conditions remain distinct. Extra attempts and protected Misses are captured as encounter-local allowances; a protected Miss does not consume an attempt. Ordinary bonuses still do not score on Miss.
 
-Existing creature definitions have no newly assigned landing effects by default. Do not infer them from Weight, rarity, old overload effects, tags, or example text. Catch and Bait landing lists remain distinct, including explicitly empty Bait lists.
-
-Illustrative examples, **not finalized creature data**:
-
-- Mackerel Catch: +5 sale value per other connected contiguous Schooling creature; Bait: +3 Landing Points per such creature on successful strikes.
-- A Predator's Bait ability could multiply Perfect points by 1.5 while adjacent to another Fish.
-- An Armored creature's Bait ability could protect the first Miss from attempt consumption while adjacent to another Armored creature.
-
-Miss protection, extra attempts, widening regions, slowing fish, altered zone motion, Technique interactions, sale-value effects and placement restrictions may support future builds. They do not become automatic tag abilities. This increment provides the scoring foundation, not final redesigned creature content or all possible future effects.
+The [Rig Building specification](Rig%20Building%20Mechanic.md) owns unique species, upgrades, ability authoring and sale-value derivation. Examples there are not automatically assigned to actual species. Techniques, physical accuracy assistance and other effect families need approved content/handlers.
 
 ## Resistance and difficulty
 
@@ -89,13 +81,13 @@ Authoritative scoring and terminal decisions happen immediately; feedback never 
 
 This phase uses the approved independent Tackle Apparatus Penpot exports: shared desk/cabinet/machine, creature panel, scoreboard, timing track, moving Good/Perfect regions, attempt lamps and controls. Runtime labels remain native text. Long rig and contribution lists scroll without a rig cap. Discover and Land remain separate screens. The plain colored rectangles and their generation path have been removed.
 
-The moving indicator is an original generic pixel fish. Its visible width and scoring interval agree. Baseline width is two-thirds of the initial Perfect region: approximately 53 px against 79 px on the 992 px track at 1080p. It replaces the oversized decorative garfish and separate markers. The agreed interval-overlap grading remains in force; full containment has been raised as a separate difficulty option and is not assumed. Four supplied species portraits take priority; other species retain their existing authored creature illustration in the encounter panel. Shared rig cards retain their existing portrait mappings. No new species artwork or abilities are invented.
+The moving indicator is an original generic pixel fish. Its visible width and scoring interval agree. Baseline width is two-thirds of the initial Perfect region: approximately 53 px against 79 px on the 992 px track at 1080p. It replaces the oversized decorative garfish and separate markers. The agreed interval-overlap grading remains in force; full containment has been raised as a separate difficulty option and is not assumed. All 22 selected creature sprites supply species portraits through the creature definitions. The generic moving indicator remains separate. Shared rig cards display level and resolved accumulated species value.
 
 ## Current implementation boundary
 
 `LandingChallengeRuntime` owns motion/time/attempts/grade/outcome. `LandingScoring` produces immutable attributed score results. `LandingChallengeProfile` supplies frozen expedition tuning. `FishingRunController` owns the Discover handoff, strike legality, success handoff and full-value failure settlement. `LandingChallengeView` owns visibility and forwards input; `TackleLandingPresentation` renders state; `TackleLandingArtSetup` imports the original sprites and authors the reusable skinned prefab. `LandingChallengeSetup` retains profile and scene/Harbor wiring.
 
-The current success endpoint is **ready for rig placement**. It intentionally grants no attachment, manual rearrangement, legacy Descend or challenge bypass. Build UI/commitment is not implemented here. Failure has a skinned result/Harbor return and preserves permanent state; the existing wallet adapter remains in use without finalizing Gold as the redesigned economy.
+The success handoff opens the independent Build screen for a new species or automatically upgrades a duplicate. Legal placement and ordinary automatic continuation are implemented by the rig/controller owners. No manual rearrangement, legacy Descend or challenge bypass is granted. Failure has a skinned result/Harbor return and preserves permanent state; the existing wallet adapter remains in use without finalizing Gold as the redesigned economy.
 
 See [original gameplay validation and historical plain UI captures](Validation/LandingChallenge/README.md) for rule, live outcome and Discover regression coverage.
 
@@ -107,5 +99,5 @@ See [current artwork validation and captures](Validation/TackleLandingArt/README
 - Final attempts, accuracy bases, Resistance data/curve, motion tuning and encounter pacing.
 - Final numeric precision/rounding and exceptional scoring interactions.
 - Redesigned species abilities, effects that change attempts or physical accuracy, Techniques and equipment windows.
-- Build insertion restrictions, preview/commit UI, biome completion and permanent reward grants.
-- Final economy/currency conversion and additional success rewards; full accumulated Catch value on both outcomes is already decided.
+- Final restriction combinations/no-legal-position handling, biome completion and permanent reward grants.
+- Final economy/currency conversion and additional success rewards; full accumulated creature value on both outcomes is already decided.

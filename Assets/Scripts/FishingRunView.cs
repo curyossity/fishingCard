@@ -217,6 +217,7 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private EncounterTimingView encounterTimingView;
     [SerializeField] private SlotMachineView slotMachineView;
     [SerializeField] private LandingChallengeView landingChallengeView;
+    [SerializeField] private RigBuildingView rigBuildingView;
     private bool suppressLegacySurfaceTransition;
 
     [SerializeField] private RectTransform runControlsPanel;
@@ -349,6 +350,7 @@ public sealed class FishingRunView : MonoBehaviour
     {
         suppressLegacySurfaceTransition = controller != null && controller.UsesLandingChallenge;
         if (landingChallengeView != null) landingChallengeView.Present(controller);
+        if (rigBuildingView != null) rigBuildingView.Present(controller);
     }
 
     /// <summary>Waits for the current timing instrument's exit, with immediate completion when no view is configured.</summary>

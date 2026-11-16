@@ -1,76 +1,42 @@
 # Deepwater — Architecture
 
-Design baseline: 6 November 2026. This is the intended responsibility map for the agreed design, not a claim these systems are implemented. Existing class names identify integration boundaries, not completed migrations or required new classes. The existing-code map is preserved in [Architecture Implementation Reference](Architecture%20Implementation%20Reference.md). The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) governs gameplay.
+Current responsibility map: Discover → Land → Build / Upgrade, updated 15 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) governs mechanics; [Architecture Implementation Reference](Architecture%20Implementation%20Reference.md) preserves historical implementation details.
 
-## Principles
+## Ownership
 
-Separate authored data, per-expedition runtime state, permanent progression and presentation. Shared definitions hold no runtime mutations. Runtime owners determine scoring, legal positions, phases and input availability; views display state and forward commands. Use stable instance/encounter identities: array position is not identity or acquisition time. Keep Unity 2D and reusable, data-driven foundations.
-
-## Responsibility map
-
-| Boundary / existing integration point | Intended ownership |
+| Owner | Responsibility |
 | --- | --- |
-| Expedition / FishingRunController | Phase transitions, availability, landing outcome, role/placement commitment, automatic continuation and shutdown |
-| Selection / EncounterRuntime | Biome eligibility, approved slot-outcome selection and occurrence identity; no early attachment |
-| Slot-machine / TagSlotMachineRuntime, SlotMatch | Three reel faces, exactly-one-lock input, one baseline respin, revision-checked commands, immutable accepted results and tag-only match interpretation |
-| Slot selection / SlotCreatureSelector, SlotSelectionSettings | Distinct unlocked biome-wide normal-creature pools, separate rarity roll, tag-preserving nearest-tier fallback (lower-tier ties) and secondary-tag species weights; immutable expedition tuning from SlotMachineProfile |
-| Harbor preparation / SlotTagPreparationView, FishingRunController | Explicit four-tag preparation, no mid-expedition edits, frozen expedition symbols/tuning and missing-tag eligibility diagnostics |
-| Landing / LandingChallengeRuntime, LandingSettings | Encounter identity, absolute clock, analytical fish/zone motion, strike-time interval overlap, feedback freeze, attempts, Resistance, points and immediate terminal outcome |
-| Scoring / LandingScoring, LandingRigMember, LandingRigRule | Immutable committed-rig/role/tag snapshot, explicit accuracy/adjacency/contiguous conditions, flat bonuses before multiplier product, ordinary Miss zero and source-attributed results; prototype numbers remain configurable |
-| Rig / CatchChainRuntime boundary | Ordered membership, stable identity, roles, legal insertion and removal; preserve existing relative order |
-| CreatureEffectRuntime boundary | Selected-role effects, positional/tag dependencies, effect lifetimes and approved reaction sequencing |
-| Technique deck/effect runtimes | Physical card ownership, legal windows, targets and lifetimes under redesigned rules |
-| EquipmentPassiveRuntime boundary | Approved expedition equipment effects and contribution attribution |
-| Progression | Permanent sequential biome unlocks; currency/equipment/achievement ownership only as finalized |
-| Results / FishingRunResult boundary | End reason and resolved haul-value snapshot before rig cleanup; full accumulated Catch-value payout on success or failure, zero Bait value, failed creature excluded |
-| Views | Authoritative state rendering, feedback and input forwarding; no scoring, placement or unlock decisions |
-| Editor authoring | Validate approved definitions, supported effects, biome references and tuning |
+| FishingRunController | Expedition phase, accepted creature occurrence, landing commands/outcomes, placement commitment, automatic duplicate resolution, continuation and exactly-once settlement |
+| EncounterRuntime / slot runtime | Four prepared symbols, three reels, one optional respin, explicit acceptance, eligible biome creature selection and occurrence identity |
+| SlotCreatureSelector / SlotSelectionSettings | Separate rarity roll, tag guarantees, lower-tier nearest-rarity ties, secondary-tag preference and unlock/Apex eligibility |
+| LandingChallengeRuntime / LandingSettings | Absolute-clock motion, accuracy, points, attempts, protected Misses, feedback freeze and immediate success/failure |
+| LandingScoring / LandingRigMember / LandingRigRule | Frozen committed-species/tag/level scoring, flat bonuses before multiplier products, explicit Miss rules and source attribution |
+| RigRuntime | One ordered position per species, levels/copies, legal insertion, pure transactional previews, upgrades, removal, triggers, derived sale values and haul snapshots |
+| CardDefinition / CreatureAbilityDefinition | Identity, sprites, tags, base price and authored primary-ability blueprint; no expedition mutations |
+| CardInstance | Stable runtime member identity, effective tags, temporary level/copies, frozen ability, completed value grants and current sale value |
+| Progression / results | Permanent unlock/reward ownership under approved predicates; resolved full-haul snapshot before temporary rig cleanup |
+| Views | Render authoritative state and forward occurrence/revision-bound commands; never decide score, legal placement or rewards |
+| Editor authoring | Validate definitions and tuning, import approved sprites, create reusable phase prefabs and preserve scene/Harbor bindings |
 
-Implement responsibilities within existing owners or focused services as appropriate to a complete increment. This does not prescribe a speculative class hierarchy.
+## Phase and transaction boundaries
 
-## Required phase flow
+Every expedition begins in Shallows with an empty rig. Discover retains its current four active symbols and one optional lock/respin, keeping the final result visible until Accept Tags. Creature selection creates the Landing occurrence without acquisition.
 
-1. Initialize every expedition in Shallows with an empty rig using preserved permanent unlock/progression evidence. Never restore previous expedition attachments.
-2. Discover: use the expedition's four chosen symbols and resolve the initial spin or optional one-lock respin. Keep the final respin faces visible with further changes disabled until explicit Accept Tags; only then select a biome-eligible creature under the approved tag/rarity rules.
-3. Create the creature occurrence and start Land with Resistance, attempts and the existing rig's contributions.
-4. Resolve accepted actions through approved accuracy/scoring rules.
-5. Landing failure immediately ends the expedition. Capture the full accumulated Catch sale value before rig cleanup; never attach the failed creature. Bait contributes zero. Award the full haul value without a failure penalty, then remove all attachments and clear expedition state while preserving the result snapshot and permanent progression.
-6. Success permits Catch/Bait and position selection. Previews must not activate effects or consume pending grants.
-7. Validate and commit role/position once for that occurrence. New creature contribution starts after placement.
-8. Recalculate positional/ongoing effects and finish reactions before automatic continuation.
-9. Evaluate biome/completion steps under finalized criteria; preserve earned permanent unlocks through failure.
+Land captures only committed members, primary ability levels and effective tags. New acquisitions cannot assist their own challenge. Success reserves the landed species for Build; failure snapshots and pays the full accumulated haul once, excludes the failed creature, then clears every temporary member, level and copy. Permanent progression remains preserved. `FishingRunResult.RewardClaimed` prevents repeated payout.
 
-Successful expedition completion uses the same full accumulated Catch-value payout and attachment cleanup. Additional permanent completion rewards are separate from haul payout. End-of-expedition cleanup must not trigger deliberate Release effects or erase positional/value contributions before the result is captured. Collected creatures never carry over; unlocking creature availability is distinct from retaining runtime instances. The payout owner must prevent duplicate awards from repeated completion callbacks.
+A new species receives a side-effect-free placement preview and one explicit legal-gap commitment. A duplicate automatically upgrades its existing position with no placement prompt. Every landed copy contributes its base sale value. Continuous value effects derive from accumulated species value; acquisition and upgrade triggers are distinct. Existing relative order is preserved. No manual reorder, Catch/Bait, capacity or overload action participates in the redesigned run.
 
-No voluntary Surface action, capacity check or overload-loss branch belongs here. Completion endpoints and event/Technique windows need design before implementation.
+Rig mutations validate on independent candidate snapshots before replacing live state. Stale Build occurrences/rig revisions, invalid authoring, blocked gaps and arithmetic overflow cannot partially acquire a creature. Controller notifications follow authoritative commitment. Previews publish no acquisition effects. Removal is a gameplay-owner operation for explicitly defined effects, not a manual UI action; current removal preserves collected base value/completed grants and recalculates continuous effects.
 
-## Data and state
+`RigBuildingView` owns selection, native navigation and previews; `RigBuildingSetup` authors its separate Tackle canvas and binds it to `FishingRunView`. `TackleRigCardView` displays level and accumulated sale value. The Build canvas hides outside new-species placement. `LandingChallengeView` hides after successful landing; ordinary duplicate upgrades return directly to Discover with a notice. `SlotMachineSetup` retains all three phase bindings during regeneration.
 
-Authored definitions describe identity, art, rarity, tags, sale value, Catch/Bait effects, biome eligibility and approved Resistance/movement tuning. Exact schema follows final design. Weight and Heavy remain under review; do not mechanically rename Weight into Resistance.
-
-Runtime state owns phase, occurrence, reels, challenge motion/attempts/points, ordered instances, roles, modifiers and choices. Two copies can differ. Stable IDs must survive insertion/removal without transferring another copy's effects or animation state. All attachments are temporary and are cleared after end-of-expedition value capture on either outcome. Historical result snapshots do not restore creatures into the next rig.
-
-Permanent state owns completed-biome unlocks. If adopted, rewards require explicit evidence/grant ownership and repeat-grant protection. Currency, equipment ownership and achievements are undecided. Save migration is future implementation work; preserve player data until a migration is designed.
-
-## Rig and effects
-
-The rig owner validates insertion before commit and preserves existing relative order. Resolve adjacency, contiguous groups and positional conditions from current membership/effective tags. Both roles participate unless an approved effect excludes one. Removal triggers recalculation; exact Release access/lifetimes need design.
-
-Only the stored role supplies effects. Catch contributes resolved sale value; Bait contributes zero. Newly attached benefits cannot assist that creature's own landing. No manual reorder API or replacement slot cap is implied.
-
-Define every effect's trigger, target, scope, duration, source dependency, stacking and order. Separate ongoing derived bonuses from completed triggers so recalculation cannot award points/value repeatedly. Exact reaction/scoring order remains open. Illustrative Mackerel/Anchored concepts are not final content.
+Biome completion predicates, final success endpoints, permanent grant tables, no-legal-position resolution and finalized species abilities remain design inputs. Authored special Apex encounters retain eligibility and are routed through Landing; Build does not invent an automatic completion reward or a new gate.
 
 ## Presentation and validation
 
-Follow [Card Visual Specification](Card%20Visual%20Specification.md) and [UI Redesign Plan](UI%20Redesign%20Plan.md). UI must not infer legality or delay authoritative scoring for animations.
+Follow [Card Visual Specification](Card%20Visual%20Specification.md). Keep sprites and reusable faces separate from native information, commands and feedback. `RigBuildingChecks` validates pure rig/scoring/value invariants using disposable definitions. `RigBuildingSceneChecks` exercises real strikes, independent phase visibility, native placement, duplicate upgrades, stale input, scrolling, complete failure payout and a clean next expedition with persistence disabled. See [Build validation](Validation/RigBuilding/README.md).
 
-Future checks must cover stale/duplicate input, failed-creature exclusion, correct contribution timing, preserved order, both-role synergies, removal recalculation, full Catch-value payouts on both outcomes without duplicate awards, zero Bait value, value capture before cleanup, complete attachment removal, persistent progression and empty-rig Shallows starts. Scoring/Technique/event checks need finalized rules. Historical test results do not validate redesigned gameplay.
-
-The [slot increment](Slot%20Machine%20Runtime.md) selects a creature behind `AwaitingLandingChallenge`. With `LandingChallengeProfile` installed, `FishingRunController` starts the [Landing increment](Landing%20Challenge%20Mechanic.md) from that occurrence, using a separate seeded movement stream and frozen tuning/rig data. `LandingChallengeView` owns phase visibility and native input; `TackleLandingPresentation` renders the approved track, live scoreboard, attempt lamps, attributed scoring and shared rig cards. `TackleLandingArtSetup` imports original Penpot exports and replaces the placeholder prefab contents while preserving its GUID. `LandingChallengeSetup` retains profile and scene/Harbor bindings; regeneration installs the artwork and has no plain-controls fallback. Space and the UI button share an occurrence/revision-checked command, with same-frame duplicate protection.
-
-Landing success clears the encounter's landing gate, sets `AwaitingRigPlacement` and publishes `CreatureLanded` exactly once. It does not attach the creature or authorize legacy role/Descend/Technique actions. Failure snapshots the full prior Catch value in `FishingRunResult` with an explicit landing-failure flag, awards through the existing wallet once and clears live owners. `RewardClaimed` prevents repeat payout, and legacy successful-surfacing objectives exclude landing failure. The skinned result/Harbor route bypasses old ascent presentation. Build, final creature abilities and redesigned progression remain separate work. See [Landing artwork validation](Validation/TackleLandingArt/README.md).
-
-The installed Tackle Apparatus presentation uses `TackleDiscoverPresentation` for model-driven reel artwork, shared shell, haul and ordered rig; `TackleRigCardView` supplies separate face/portrait/role/value fields, and `TackleButtonFeedback` owns visual input feedback. `TackleDiscoverArtSetup` is the repeatable import/prefab/scene binding path. The separate 1920 × 1080 canvas appears only during Discover and hides at the landing handoff. Comparison-scene and Harbor regeneration retain the binding. It changes presentation only; see [Unity validation](Validation/TackleDiscoverArt/README.md) for captures, covered controls and missing illustration mappings.
+The installed Tackle Apparatus presentation uses `TackleDiscoverPresentation` for model-driven reel artwork, shared shell, haul and ordered rig; `TackleRigCardView` supplies separate face/portrait/level/value fields, and `TackleButtonFeedback` owns visual input feedback. `TackleDiscoverArtSetup` is the repeatable import/prefab/scene binding path. The separate 1920 × 1080 canvas appears only during Discover and hides at the landing handoff. Comparison-scene and Harbor regeneration retain the binding. It changes presentation only; see [Unity validation](Validation/TackleDiscoverArt/README.md) for captures, covered controls and missing illustration mappings.
 
 Discover animation is presentation-only: `TackleReelAnimator` advances each cylinder toward the already resolved tag, while `TackleReelFace` and `CylindricalReelGraphic` project native TMP glyphs and subdivided sprite geometry onto the same surface. `TagSlotMachineRuntime.SpinRevision` identifies actual rolls independently of lock/accept revisions. `SlotMachineView.IsAnimating`, forwarded by `FishingRunView`, lets the controller reject lock/respin/accept commands during motion. The initial spin animates all reels; a respin leaves its locked reel stationary. Completion restores input and reveals match feedback without accepting a result or consuming gameplay randomness. Hiding the phase cancels visual work and callbacks.
 

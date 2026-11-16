@@ -9,7 +9,7 @@ public enum CatchAttachmentRole
 }
 
 [Serializable]
-public sealed class CardInstance
+public sealed partial class CardInstance
 {
     [SerializeField] private int instanceId;
     [SerializeField] private CardDefinition definition;
@@ -40,21 +40,22 @@ public sealed class CardInstance
     public int InstanceId => instanceId;
     public CardDefinition Definition => definition;
     public int CurrentWeight => currentWeight;
-    public int CurrentValue => currentValue;
-    public int HaulValueContribution => IsBait ? 0 : currentValue;
+    public int CurrentValue => isRigCreature ? rigSaleValue : currentValue;
+    public int HaulValueContribution => isRigCreature ? rigSaleValue : IsBait ? 0 : currentValue;
     public int PermanentWeightModifier => permanentWeightModifier;
     public int PermanentValueModifier => permanentValueModifier;
     public int BaseValue => baseValue;
     public int WeightModifier => definition == null ? 0 : currentWeight - definition.Weight;
     public int ValueModifier => definition == null ? 0 : currentValue - baseValue;
     public CatchAttachmentRole AttachmentRole => attachmentRole;
-    public bool IsBait => attachmentRole == CatchAttachmentRole.Bait;
+    public bool IsBait => !isRigCreature && attachmentRole == CatchAttachmentRole.Bait;
     public AppliedCatchModifier[] AppliedModifiers => appliedModifiers.ToArray();
     public int AttachmentBiomeVisit => attachmentBiomeVisit;
     public CardEffectDefinition[] ActiveEffects
     {
         get
         {
+            if (isRigCreature) return Array.Empty<CardEffectDefinition>();
             CardEffectDefinition[] authored = definition?.GetEffects(attachmentRole) ?? Array.Empty<CardEffectDefinition>();
             if (removedEffectIndices.Length == 0 && removedRoleEffectKeys.Count == 0)
             {
@@ -372,7 +373,9 @@ public sealed class CardInstance
     /// </summary>
     public CardInstance CreateSnapshot()
     {
-        CardInstance snapshot = new CardInstance(instanceId, definition, null, attachmentRole);
+        CardInstance snapshot = isRigCreature
+            ? new CardInstance { instanceId = instanceId, definition = definition, attachmentRole = attachmentRole }
+            : new CardInstance(instanceId, definition, null, attachmentRole);
         snapshot.hasRuntimeTagOverride = hasRuntimeTagOverride;
         snapshot.runtimeBaseTags = (string[])runtimeBaseTags.Clone();
         snapshot.effectiveTags = (string[])effectiveTags.Clone();
@@ -397,6 +400,7 @@ public sealed class CardInstance
         snapshot.removedRoleEffectKeys = new List<string>(removedRoleEffectKeys);
         snapshot.appliedModifiers = new List<AppliedCatchModifier>(appliedModifiers);
         snapshot.resolvedStatContributions = new List<CardStatContribution>(resolvedStatContributions);
+        CopyRigStateTo(snapshot);
         return snapshot;
     }
 

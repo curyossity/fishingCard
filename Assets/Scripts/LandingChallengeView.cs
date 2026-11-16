@@ -29,7 +29,7 @@ public sealed class LandingChallengeView : MonoBehaviour
     {
         controller = owner;
         bool active = owner != null && owner.UsesLandingChallenge
-            && (owner.RunActive && (owner.Landing.State == LandingChallengeState.Active || owner.AwaitingRigPlacement) || owner.LandingFailureVisible);
+            && (owner.RunActive && owner.Landing.State == LandingChallengeState.Active || owner.LandingFailureVisible);
         gameObject.SetActive(active);
         if (active) Render();
     }

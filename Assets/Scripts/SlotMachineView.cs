@@ -42,6 +42,7 @@ public sealed class SlotMachineView : MonoBehaviour
             if (controller.SlotFailure == null && machine.RespinsRemaining == 0) resultDescription.text = "FINAL / " + resultDescription.text;
             artwork.Present(controller, match, () => Present(controller));
             if (IsAnimating) resultDescription.text = "SPINNING...";
+            if (!string.IsNullOrEmpty(controller.RigNotice)) resultDescription.text = controller.RigNotice + "  |  " + resultDescription.text;
         }
         long revision = machine.Revision;
         bool anyLocked = machine.IsLocked(0) || machine.IsLocked(1) || machine.IsLocked(2);

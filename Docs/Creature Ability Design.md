@@ -1,54 +1,31 @@
-﻿# Deepwater — Creature Ability Design
+# Deepwater — Creature Ability Authoring
 
-Design baseline: 6 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) is authoritative. No redesigned creature ability catalog or balance table is finalized.
+Current baseline: Rig Building and Creature Upgrades, 15 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) and [Rig Building specification](Rig%20Building%20Mechanic.md) govern mechanics. The current species ability catalog remains open; illustrative examples are not automatically assigned.
 
-## Role and build principles
+## One primary ability
 
-- Give creatures distinct Catch and Bait effects; activate only the committed role.
-- Catch contributes resolved sale value. Bait has zero sale value and may provide stronger utility or positional support.
-- Integrate positioning into some Catch/Bait effects. Do not add a universal third ability layer or require every creature to be positional.
-- Both roles participate in adjacency and tag synergies unless an effect explicitly excludes a role.
-- Support landing performance, haul value, Technique interactions and varied builds. Do not make every creature simply grant points.
-- Ground abilities in anatomy, behavior or ecology. Allow simple cards and intentionally empty roles.
-- The new creature begins contributing after successful landing and placement, affecting future encounters.
-- All creature attachments are temporary. Every expedition starts with an empty rig; ending on success or failure removes all attachments after capturing their haul value. Both outcomes award full accumulated Catch sale value, with zero Bait value. Expedition cleanup is not a deliberate Release and must not erase resolved value before payout.
+Each species has one `CardDefinition.primaryAbility`: name, description and related data-driven components. Components specify operation, trigger, accuracy filter, positional count, tag filter, whether to count each qualifying position and value recipients. A related benefit/restriction can belong to one ability. No Catch/Bait choice or sale-value sacrifice exists.
 
-## Ordered-rig contract
+`CreatureAbilityDefinition.Snapshot()` validates and freezes the blueprint when a species joins the rig. Its runtime level and copy count live on the member. Amounts currently scale as initial amount plus increment per level after Level 1; those parameters are editable and are not final balancing values. No gameplay level cap is introduced.
 
-Newly acquired creatures may be inserted anywhere permitted. Existing creatures retain relative order and cannot be manually rearranged. Placement is committed. Abilities may restrict future insertion. Positional effects update dynamically after attachment/removal.
+## Positional semantics
 
-Define orientation and terms such as before, after, adjacent and contiguous precisely when finalizing an effect. Position, acquisition age and identity are distinct. Before accepting a restriction, specify its interactions with other restrictions and any no-legal-position state. Do not add a rig-size limit as a substitute for removed capacity.
+Index zero is nearest the Rod. Before/after are directional; adjacency has at most two positions. Contiguous-other counting excludes the source and stops at the first nonmatching position in each direction. A contiguous-tag source must itself carry that tag. A Level 5 neighbor still counts once. A condition may activate once rather than scale per qualifying position.
 
-## Illustrative concepts, not approved card definitions
+## Supported components
 
-**Mackerel Catch:** +5 value per other contiguous Schooling creature connected in either direction.
+- Landing bonus or additive multiplier growth above ×1, conditioned on successful/Good/Perfect/explicit-Miss accuracy.
+- Additional encounter attempts or a count of protected Misses.
+- Whole-unit sale-value bonuses and multipliers applied to self, adjacent, before, after or all matching positions.
+- Continuous before/after insertion restrictions.
+- Explicit self-value grants triggered only by Acquired or only by Upgraded.
 
-**Mackerel Bait:** each other contiguous Schooling creature adds +3 Landing Points to successful strikes.
+All continuous flat value bonuses resolve before multiplier products. They use accumulated base value for all copies. Completed trigger grants are stored separately. Recalculation never repeats a trigger. Landing receives immutable current-level rules and source IDs from already committed members only.
 
-Both Catch and Bait can participate in a Schooling group unless final wording excludes one. Numbers, exact counting, multi-source stacking and scoring timing remain open.
+Unsupported trigger operations, invalid enum values, negative/nonfinite scaling, fractional economy authoring and arithmetic overflow are rejected before mutation. Technique manipulation, physical motion/zone assistance and removal abilities require precise content and supported handlers before assignment; a UI description alone never implements an effect.
 
-**Anchored creature:** might prevent insertion before itself while doubling Catch value before itself. This is a candidate ability, not an automatic Anchored-tag rule. Restriction details and balancing are undecided.
+## Illustrative validation fixtures
 
-## Authoring checklist
+Sardine: +0.2 / +0.3 / +0.4 successful-strike multiplier per other contiguous Schooling position at Levels 1 / 2 / 3. Three neighbors give ×1.6 / ×1.9 / ×2.2. Mackerel: +5 sale value per other connected Schooling position. These numbers are exercised using disposable definitions in `RigBuildingChecks`, not installed as final species data.
 
-The [Landing increment](Landing%20Challenge%20Mechanic.md) provides separate `landingCatchEffects` / `landingBaitEffects` lists on `CardDefinition`, with no role fallback. They support explicit accuracy filters, flat bonuses, multipliers, neighboring tags and flat amounts per other connected contiguous tagged creature. Runtime captures committed membership/role/effective tags and records source IDs in the score breakdown. Existing species lists remain empty: examples here are not assigned automatically. Miss protection, added attempts, physical accuracy effects and other ability families need separate approved definitions/implementation.
-
-For each role, define:
-
-- Intended build role and thematic basis.
-- Trigger, targets, role eligibility, positional scope and use of effective tags.
-- Ongoing versus triggered behavior; duration, source dependency and removal consequences.
-- Stacking across copies, effect order, limits and any required choices.
-- Interaction with attempts, accuracy, scoring or sale value where relevant.
-- Whether it restricts future placement and how restrictions combine.
-- Concise text fitting supplied panels; compact cards do not gain full rules text.
-
-Exact Release, role-change and Technique timing rules remain open. Do not silently carry their existing implementation into new effects. An ability must not bypass a required landing challenge without an explicit design decision.
-
-## Content review scope
-
-All existing creatures require ability review, including Cleaner Shrimp, Clinging Crab, Cod, Garfish, Glass Minnow, Jellyfish, Lionfish, Mackerel, Moonlit Ray, Mussel, Sardine, Sea Anemone, Sea Bass, Sea Urchin, Small Octopus, Spiny Lobster, Squid, Tidepool Eel, Flounder, Cuttlefish and Apex creatures. Names identify content to review; they do not approve old effects, values, availability or biome assignments.
-
-Review weight reduction, capacity/overload, surfacing, encounter bypasses, concealment, role swaps, releases and replacement grants for compatibility. Do not mechanically translate weight bonuses into Landing Points.
-
-Vocabulary starting point: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Weight and Heavy need reevaluation. Resistance is a separate challenge target, not a renamed Weight field. Existing artwork, catalogs, stable IDs and runtime assets remain unchanged in this documentation update.
+The content review must select each real species' primary ability, progression, restrictions, trigger scope and readable description. Existing weight, overload, role-switch and voluntary-surfacing effects do not become primary abilities automatically. Preserve old artwork/provenance records without treating their printed rules as current behavior.

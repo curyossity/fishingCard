@@ -21,23 +21,23 @@ Retain explicitly authored masked-region/full-card-overlay layouts, aspect ratio
 
 ## Dynamic fields and unresolved statistics
 
-Keep type, name, sale value, Catch/Bait rules, rarity hooks and supported tag indicators independent. Only the committed role's effects operate. Explicitly empty roles remain empty and must not mirror the other role as final content.
+Keep type, name, level, accumulated species sale value, primary ability, rarity hooks and supported tag indicators independent. Every collected copy contributes full base sale value; ability effects and upgrades use explicit authored data.
 
-Catch displays resolved sale value; attached Bait displays neutral zero and an explicit `BAIT` marker. Both roles participate in adjacency/tag synergies unless excluded by an ability. Selecting a role alone does not activate attachment effects.
+Rig cards display level and resolved accumulated species value. A species occupies one position regardless of copy count or level. There is no Catch/Bait choice or marker in the active creature loop.
 
 The existing masters include Weight labels and stat regions. **Weight's purpose is undecided.** Existing art does not require a weight mechanic. Do not relabel Weight as Resistance. Resistance must be clearly available during landing, but its final location and Weight-field treatment need a presentation decision. Surrounding challenge UI can provide information without changing the supplied face; no asset edit is authorized now.
 
 Landing Points, attempts, accuracy and rig score contributions belong to runtime challenge UI. Their layout is a dependency in [UI Redesign Plan](UI%20Redesign%20Plan.md), not additional printed card fields.
 
-Preserve the separation of resolved numbers from presentation-only animations and attribution tooltips. Animations never change authoritative values or expose concealed data. Bait-zero stays neutral. Existing numeric pacing is preserved in the reference; it does not finalize animations for new scores.
+Preserve the separation of resolved numbers from presentation-only animations and attribution tooltips. Animations never change authoritative values or expose concealed data. Existing numeric pacing is preserved in the reference; it does not finalize animations for new scores or upgrades.
 
-## Role choice and placement
+## Species placement and upgrades
 
-Catch/Bait choice occurs **after successful landing**. Use the supplied effect panels as mutually exclusive targets in that phase. Require an explicit choice rather than silently committing a default. Preserve restrained theme-approved selection feedback.
+After successful landing, a new species opens the independent Build screen. Show its primary ability, legal insertion gaps and a side-effect-free preview of resulting values. Explicit confirmation commits a new position at Level 1. A duplicate automatically upgrades its existing position and returns to Discover with a short notice; no placement or extra confirmation is needed.
 
-The controller owns phase, occurrence and pending choice. Refreshes must not commit, repeat effects or carry selection from another occurrence. Failure cannot open acquisition/placement commitment.
+The controller owns phase, landed occurrence and rig revision. Refreshes must not commit, repeat effects or carry selection from another occurrence. Failure cannot open acquisition/placement commitment. Levels and collected copies reset with the expedition.
 
-Choose a permitted insertion position and commit. The rig view reflects ordered membership, preserves existing relative order and offers no manual rearrangement. Keep insertion targets/restriction explanations outside face information. Exact preview/confirmation layout remains open. New creature contribution begins after landing and placement.
+Choose a permitted insertion position and commit. The rig view reflects unique ordered species, preserves existing relative order and offers no manual rearrangement. Keep insertion targets/restriction explanations outside face information. Current Tackle Build uses native gap buttons, a projected value readout, horizontal insertion scrolling and the shared vertical rig cabinet. New creature contribution begins after acquisition, affecting future challenges.
 
 ## Rarity hooks and tags
 
@@ -56,11 +56,11 @@ Vocabulary review baseline: Fish, Predator, Schooling, Small, Heavy, Anchored, A
 
 ## Compact rig cards
 
-Discover's approved Tackle Apparatus theme is integrated separately under `Assets/UIThemes/TackleApparatus/`. Its reusable ivory/sage blank faces, portrait, clip and live name/role/sale-value fields follow the same separation contract. Catch/Bait face selection follows the stored role. Unprovided portraits remain empty; do not substitute unrelated illustrations. The cabinet has a clipped scrolling list and no three-card cap. Original nautical and Midnight Field Journal resources remain preserved for the other presentations.
+The approved Tackle Apparatus theme lives under `Assets/UIThemes/TackleApparatus/`. Its blank faces, portrait, clip and live name/level/sale-value fields follow the same separation contract. Original ivory/sage source faces remain preserved; active rig members use their shared face and native level/value fields. Unprovided portraits remain empty; do not substitute unrelated illustrations. The cabinet has a clipped scrolling list and no three-card cap. Original nautical and Midnight Field Journal resources remain preserved for their other presentations and provenance.
 
 The 14 November 2026 creature-art integration replaces species illustrations with the 22 selected sprites from Penpot's **10 - Creature Sprites** page. Creature definitions supply both compact and encounter illustrations; old illustration-specific rotations, offsets and full-card overlays are reset for these standalone sprites. The old precomposed Squid face yields to the reusable face and native information fields. Tackle and Journal creature views consume those definition references, while their frames and non-creature resources remain theme-owned. Transparent source margins may be cropped without resampling; preserve the complete silhouette, aspect ratio and clear border. Rig names fit one line inside the dark nameplate. This does not change creature rules, unlocks or the separate generic Landing marker.
 
-Preserve compact geometry and separate rod, ring, clip and medallion siblings. Runtime content includes name, portrait, role-aware sale value, optional approved effect icon and Bait marker. Weight-region treatment awaits design.
+Preserve compact geometry and separate rod, ring, clip and medallion siblings. Runtime content includes name, portrait, level, accumulated species value and optional approved effect icon. No manual reorder controls or Catch/Bait marker belongs on a rig member. Weight-region treatment on historical masters awaits design.
 
 Do not add full rules, tag lists, catch-order labels or modifier deltas. Physical layout shows current order; instance identity must survive insertion/removal. Interaction overlays stay outside face information. Scroll/stat feedback is presentation only and does not determine gameplay order.
 

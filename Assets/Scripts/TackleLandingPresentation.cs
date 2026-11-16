@@ -52,14 +52,15 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             revision = model.Revision; failed = failure;
             phase.text = biomeName.ToUpperInvariant() + " / LAND";
             creature.text = failure ? "EXPEDITION ENDED" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
-            haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : VisibleHaul(controller.CatchChain));
+            haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : controller.UsesLandingChallenge ? controller.Rig.HaulValue.ToString() : VisibleHaul(controller.CatchChain));
             points.text = Number(model.Points); resistance.text = Number(model.Resistance);
             attempts.text = model.AttemptsRemaining + " ATTEMPTS LEFT";
             for (int i = 0; i < lamps.Count; i++) lamps[i].sprite = i < model.AttemptsRemaining ? lampOn : lampOff;
-            message.text = model.Error ?? (failure ? "Full Catch value paid: " + controller.LastHaulValue + ". Bait: 0. Rig cleared."
+            message.text = model.Error ?? (failure ? "Full haul paid: " + controller.LastHaulValue + ". Rig and upgrades cleared."
                 : controller.AwaitingRigPlacement ? "LANDED! Ready for rig placement."
                 : "Strike when the fish marker and zone align.  SPACE / STRIKE");
-            grade.text = model.LastScore == null ? "READY TO LAND" : model.LastScore.Accuracy.ToString().ToUpperInvariant() + "  +" + Number(model.LastScore.Points);
+            grade.text = model.LastScore == null ? "READY TO LAND" : model.LastScore.Accuracy.ToString().ToUpperInvariant() + "  +" + Number(model.LastScore.Points)
+                + (model.LastMissProtected ? " / PROTECTED" : "");
             breakdown.text = Breakdown(model.LastScore, failure);
             scoreScroll.verticalNormalizedPosition = 1;
             highlightUntil = Time.realtimeSinceStartupAsDouble + .35; highlighted = model.LastScore != null && !failure;
@@ -115,7 +116,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         emptyRig.text = failed ? "RIG CLEARED\n\nPermanent progression preserved" : "NO CREATURES\nATTACHED";
         emptyRig.gameObject.SetActive(rig.Length == 0);
     }
-    /// <summary>Preserves concealed Catch values and zero Bait value in the header.</summary>
+    /// <summary>Retains legacy concealment only for other presentation callers; redesigned runs use the rig owner's full haul.</summary>
     private static string VisibleHaul(CardInstance[] rig)
     {
         int total = 0;

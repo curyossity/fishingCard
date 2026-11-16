@@ -1,6 +1,6 @@
 # Deepwater documentation
 
-Design baseline: 6 November 2026, with the slot specification agreed on 7 November and the Landing specification supplied on 13 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements Discover with its approved artwork. The [Landing increment](Landing%20Challenge%20Mechanic.md) implements movement, scoring and success/failure boundaries with the approved Tackle Apparatus artwork; see [art validation](Validation/TackleLandingArt/README.md). Build/placement and the remaining redesign are separate work. Numeric prototype settings and illustrative abilities are not final content.
+Design baseline: 6 November 2026, with the slot specification agreed on 7 November and the Landing specification supplied on 13 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements Discover with its approved artwork. The [Landing increment](Landing%20Challenge%20Mechanic.md) implements movement, scoring and success/failure boundaries with the approved Tackle Apparatus artwork; see [art validation](Validation/TackleLandingArt/README.md). The [Build/Upgrade increment](Rig%20Building%20Mechanic.md) implements new-species placement, automatic duplicates, levels and sale-value accumulation in its own Tackle screen; see [validation](Validation/RigBuilding/README.md). Species ability assignments and biome completion/reward predicates remain open. Numeric prototype settings and illustrative abilities are not final content.
 
 ## Active specifications
 
@@ -13,7 +13,8 @@ Design baseline: 6 November 2026, with the slot specification agreed on 7 Novemb
 | [Architecture](Architecture.md) | Intended responsibilities for the agreed design |
 | [Card specification](Card%20Visual%20Specification.md) | Supplied-art boundary and dynamic fields |
 | [UI plan](UI%20Redesign%20Plan.md) | Presentation requirements and unresolved inputs |
-| [Creature abilities](Creature%20Ability%20Design.md) | Catch/Bait and positional authoring |
+| [Rig Building](Rig%20Building%20Mechanic.md) | Unique species, placement, levels, duplicate upgrades and sale value |
+| [Creature abilities](Creature%20Ability%20Design.md) | Primary abilities, level scaling and positional authoring |
 | [Equipment](Equipment%20Passive%20Rules.md) | Design scope and progression decisions |
 | [Techniques](Technique%20Card%20Definitions.yaml) | Review status; no redesigned catalog is finalized |
 | [Events](Event%20Rules%20Implementation%20Tasks.md) | Compatibility decisions and technical constraints |

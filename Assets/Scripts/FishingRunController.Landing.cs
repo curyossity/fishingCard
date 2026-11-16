@@ -13,11 +13,12 @@ public sealed partial class FishingRunController
     private string landingConfigurationError;
     private bool landingTerminalHandled, awaitingRigPlacement, landingResultDismissed;
     private int lastLandingInputFrame = -1;
+    private int preparedExtraAttempts, preparedProtectedMisses;
     public LandingChallengeRuntime Landing => landing;
     public bool UsesLandingChallenge => UsesSlotMachine && landingChallengeProfile != null;
     public bool AwaitingRigPlacement => awaitingRigPlacement;
     public bool LandingFailureVisible => !landingResultDismissed && lastSurfaceResult.EndedByLandingFailure;
-    public bool LandingBlocksLegacyActions => UsesLandingChallenge && (awaitingRigPlacement || landing.State == LandingChallengeState.Active);
+    public bool LandingBlocksLegacyActions => UsesLandingChallenge;
     public event Action<CardDefinition, int> CreatureLanded;
 
     /// <summary>Validates and freezes landing tuning before an expedition starts; no shared asset holds runtime state.</summary>
@@ -37,27 +38,18 @@ public sealed partial class FishingRunController
         preparedLandingRig = Array.Empty<LandingRigMember>(); landingConfigurationError = null;
     }
 
-    /// <summary>Starts the selected creature's challenge with a snapshot of only committed rig members and their stored-role effects.</summary>
+    /// <summary>Freezes only committed species and their current-level primary abilities for the next challenge.</summary>
     private bool PrepareLandingRig()
     {
         if (!UsesLandingChallenge) return true;
-        var members = new List<LandingRigMember>();
         try
         {
-            foreach (CardInstance instance in catchChainRuntime.Catches)
-            {
-                if (instance?.Definition == null) continue;
-                var rules = new List<LandingRigRule>();
-                foreach (var effect in instance.Definition.GetLandingEffects(instance.AttachmentRole) ?? Array.Empty<LandingRigEffectDefinition>())
-                    if (effect != null) rules.Add(effect.Snapshot());
-                members.Add(new LandingRigMember(instance.InstanceId, instance.Definition.DisplayName, instance.AttachmentRole, instance.Tags, rules.ToArray()));
-            }
-            preparedLandingRig = members.ToArray();
+            preparedLandingRig = rig.SnapshotForLanding(out preparedExtraAttempts, out preparedProtectedMisses);
             var ids = new HashSet<int>();
             foreach (var member in preparedLandingRig) if (!ids.Add(member.Id)) throw new ArgumentException("Duplicate rig instance identity.");
             foreach (LandingAccuracy accuracy in Enum.GetValues(typeof(LandingAccuracy)))
             {
-                decimal maximumTotal = checked(LandingScoring.Resolve(accuracy, landingSettings, preparedLandingRig).Points * landingSettings.Attempts);
+                decimal maximumTotal = checked(LandingScoring.Resolve(accuracy, landingSettings, preparedLandingRig).Points * checked(landingSettings.Attempts + preparedExtraAttempts));
                 if (maximumTotal < 0) throw new ArgumentException("Landing totals must be nonnegative.");
             }
             landingConfigurationError = null; return true;
@@ -71,7 +63,8 @@ public sealed partial class FishingRunController
     {
         if (!UsesLandingChallenge) return;
         decimal resistance = landingSettings.Resistance(CurrentEncounter.LandingResistance, Math.Max(0, currentDepth - startingDepth));
-        landing.Begin(CurrentEncounterRevision, resistance, landingSettings, preparedLandingRig, landingRandom, Time.realtimeSinceStartupAsDouble);
+        landing.Begin(CurrentEncounterRevision, resistance, landingSettings, preparedLandingRig, landingRandom, Time.realtimeSinceStartupAsDouble,
+            preparedExtraAttempts, preparedProtectedMisses);
         landingTerminalHandled = false; awaitingRigPlacement = false; lastLandingInputFrame = Time.frameCount;
     }
 
@@ -96,6 +89,7 @@ public sealed partial class FishingRunController
             if (!encounterRuntime.TryFinishLanding(CurrentEncounterRevision)) throw new InvalidOperationException("Landing lost its encounter ownership.");
             awaitingRigPlacement = true;
             CreatureLanded?.Invoke(CurrentEncounter, CurrentEncounterRevision);
+            BeginRigAcquisition();
         }
         else if (landing.State == LandingChallengeState.Failed)
         {
@@ -110,7 +104,7 @@ public sealed partial class FishingRunController
     private void CompleteLandingFailure()
     {
         if (!runActive || lastSurfaceResult.EndedByLandingFailure) return;
-        lastSurfaceResult.RecordLandingFailure(catchChainRuntime.Catches, currentDepth);
+        lastSurfaceResult.RecordLandingFailure(rig.CreateHaulSnapshot(), currentDepth);
         runRewardRuntime.AwardGold(lastSurfaceResult);
         SavePersistentWallet();
         EndActiveRun();

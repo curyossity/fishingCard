@@ -12,6 +12,13 @@ public sealed partial class EncounterRuntime
     private string slotBiome;
     private Func<CardDefinition, bool> slotUnlocked;
 
+    /// <summary>Routes an already eligible authored special creature through Landing without applying standard-slot rarity or tag rules.</summary>
+    public bool BeginSpecialLanding(int encounterRevision)
+    {
+        if (encounterRevision != EncounterRevision || currentEncounter?.CardType != CardType.ApexEncounter || HookedEncounter != currentEncounter) return false;
+        AwaitingLandingChallenge = true; return true;
+    }
+
     /// <summary>Ends only the current landing gate, without attaching or granting role/placement effects.</summary>
     public bool TryFinishLanding(int encounterRevision)
     {

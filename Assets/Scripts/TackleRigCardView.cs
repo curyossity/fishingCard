@@ -17,7 +17,7 @@ public sealed class TackleRigCardView : MonoBehaviour
     {
         BoundInstance = instance;
         nameLabel.text = instance.Definition.DisplayName.ToUpperInvariant();
-        roleLabel.text = instance.IsBait ? "BAIT" : "CATCH";
+        roleLabel.text = instance.IsRigCreature ? "LV " + instance.Level : instance.IsBait ? "BAIT" : "CATCH";
         valueLabel.text = !instance.IsBait && instance.HidesOwnValueDuringRun ? "?" : instance.HaulValueContribution.ToString();
         face.sprite = instance.IsBait ? baitFace : catchFace;
         Sprite image = instance.Definition.Artwork;

@@ -22,21 +22,21 @@ The [Landing specification](Landing%20Challenge%20Mechanic.md) defines Space/UI 
 
 ## Build
 
-After success, present explicit Catch/Bait choice and permitted insertion positions. Make committed placement and preservation of existing order clear. Preview supported consequences without applying effects. Explain restrictions outside card faces; no manual reorder control.
+After successful landing of a new species, present its primary ability and every permitted insertion gap. Preview supported consequences without applying effects. One explicit placement commits a Level 1 member while preserving existing relative order. Explain restrictions outside card faces; no manual reorder control. The installed Tackle Build canvas uses native gap buttons, a projected haul readout, a horizontally scrolling rail and the shared vertical rig cabinet.
 
-Require role and legal position before commit. New creature contribution starts after placement. Finish effects/reactions before automatic continuation; no repeated Descend commitment is required by the loop. Resolve no-legal-position gameplay before implementing UI for content that can create it.
+A duplicate automatically upgrades its existing member, adds the copy's base sale value and returns to Discover with a notice. It requires no placement or extra confirmation. New/updated abilities contribute to future Landing Challenges. Finish effects/reactions before automatic continuation; no repeated Descend commitment is required. Resolve no-legal-position gameplay before assigning content that can create it.
 
 ## Rig inspection
 
-Display both roles in current positional order, with Catch sale value and Bait-zero clear. Preserve identity, scroll inspection and separate hardware as rows shift. Make positional interactions inspectable without adding full rules to compact faces; exact highlighting remains open.
+Display unique species in committed order, with level and accumulated species sale value clear. Upgrades count as one position. Preserve identity, scrolling and separate hardware as rows shift. Make positional interactions inspectable without adding full rules to compact faces; exact highlighting remains open.
 
-Release and role-change controls depend on approved access/timing. Do not imply free removal, role switching or rearrangement through drag/drop.
+Removal controls depend on an explicitly defined ability. Do not imply free removal or rearrangement through drag/drop. Catch/Bait choice is absent from the creature loop.
 
 ## Progression and results
 
 Show Shallows with an empty rig as every expedition's start and display permanent sequential unlock state. No creature attachment carries into a new expedition. Completion criteria, progress indicators, available-biome endpoints and transitions await rules.
 
-Both failure and success results show the full accumulated Catch sale value awarded, with Bait contributing zero. Failure immediately ends the expedition, excludes the failed creature and displays no failure deduction from accumulated Catch value. All attachments are removed on either ending; any result display uses historical snapshots, not a persistent creature inventory. Distinguish end reason, haul payout and any additional permanent success rewards. Preserve unlocks/progression when returning to an empty-rig expedition. Currency/Gold conversion, prices, shop flow and exact completion/achievement rewards remain undecided; the full-value payout on both outcomes is decided.
+Both failure and success results show the full accumulated creature sale value, including all copies and applicable bonuses. Failure immediately ends the expedition, excludes the failed creature and deducts no accumulated haul value. All members, levels and copies clear on either ending; result displays use historical snapshots, not a persistent creature inventory. Distinguish end reason, haul payout and additional permanent success rewards. Preserve unlocks/progression when returning to an empty-rig expedition. Currency conversion, prices, shop flow and exact completion/achievement rewards remain undecided; the full-value payout on both outcomes is decided.
 
 Capacity/overload/line-break indicators, voluntary Surface controls and related Journal objectives are not target UI. Preserve their existing artwork. Weight's display is open; Resistance must not inherit its label.
 
@@ -44,4 +44,4 @@ Capacity/overload/line-break indicators, voluntary Surface controls and related 
 
 Finalize rarity/preference balance; landing width/motion/point tuning and skinned feedback; Resistance/Weight presentation; insertion orientation, restrictions and confirmation; Technique/event windows; biome completion and reward presentation.
 
-After approval, validate readable targets/text, input focus, stale input rejection, both-role presentation, long-rig insertion/inspection and result transitions. Preserve scaling from existing 1920 × 1080 and candidate 3840 × 2160 references; check 2560 × 1440, 1366 × 768, 1280 × 800 and ultrawide behavior for affected layouts. Existing screenshots do not validate new gameplay.
+Validate readable targets/text, input focus, stale input rejection, levels/duplicate values, long-rig insertion/inspection and result transitions. Preserve scaling from existing 1920 × 1080 and candidate 3840 × 2160 references; check 2560 × 1440, 1366 × 768, 1280 × 800 and ultrawide behavior for affected layouts. Build/Upgrade live validation and current multi-viewport captures are recorded in [Rig Building validation](Validation/RigBuilding/README.md).

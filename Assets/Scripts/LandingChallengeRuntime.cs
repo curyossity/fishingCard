@@ -10,6 +10,10 @@ public sealed class LandingChallengeRuntime
     private LandingSettings settings;
     private IReadOnlyList<LandingRigMember> rig = Array.Empty<LandingRigMember>();
     private double lastClock, motionTime, fishPhase, feedbackRemaining;
+    private int protectedMisses;
+    public int ProtectedMissesRemaining => protectedMisses;
+    public int InitialAttempts { get; private set; }
+    public bool LastMissProtected { get; private set; }
     public long Occurrence { get; private set; }
     public long Revision { get; private set; }
     public int EncounterRevision { get; private set; }
@@ -30,17 +34,18 @@ public sealed class LandingChallengeRuntime
     public IReadOnlyList<LandingRigMember> Rig => rig;
 
     /// <summary>Starts a fresh occurrence from immutable tuning and only previously attached rig members.</summary>
-    public void Begin(int encounterRevision, decimal resistance, LandingSettings tuning, LandingRigMember[] members, Random random, double clock)
+    public void Begin(int encounterRevision, decimal resistance, LandingSettings tuning, LandingRigMember[] members, Random random, double clock, int extraAttempts = 0, int missProtection = 0)
     {
-        if (tuning == null || random == null || resistance <= 0 || !Finite(clock) || clock < 0)
+        if (tuning == null || random == null || resistance <= 0 || !Finite(clock) || clock < 0 || extraAttempts < 0 || missProtection < 0)
             throw new ArgumentException("Landing requires validated tuning, Resistance, randomness and a finite clock.");
         var snapshot = (LandingRigMember[])(members ?? Array.Empty<LandingRigMember>()).Clone();
         var ids = new HashSet<int>();
         foreach (var member in snapshot)
             if (member == null || !ids.Add(member.Id)) throw new ArgumentException("Rig snapshot requires unique attached instance identities.");
+        int attempts = checked(tuning.Attempts + extraAttempts);
         Reset();
         settings = tuning; rig = Array.AsReadOnly(snapshot); Resistance = resistance;
-        EncounterRevision = encounterRevision; AttemptsRemaining = tuning.Attempts;
+        EncounterRevision = encounterRevision; AttemptsRemaining = InitialAttempts = attempts; protectedMisses = missProtection;
         Pattern = (LandingMovementPattern)random.Next(3); fishPhase = random.NextDouble() * 4;
         lastClock = clock; State = LandingChallengeState.Active; UpdatePositions();
     }
@@ -65,7 +70,9 @@ public sealed class LandingChallengeRuntime
         LandingScore score; decimal total;
         try { score = LandingScoring.Resolve(Grade(FishPosition, FishWidth, ZonePosition, GoodWidth, PerfectWidth), settings, rig); total = checked(Points + score.Points); }
         catch (OverflowException) { Error = "Landing scoring exceeds supported decimal precision. Check authored bonuses and multipliers."; return false; }
-        LastScore = score; Points = total; AttemptsRemaining--; Revision++;
+        LastScore = score; Points = total; LastMissProtected = score.Accuracy == LandingAccuracy.Miss && protectedMisses > 0;
+        if (LastMissProtected) protectedMisses--; else AttemptsRemaining--;
+        Revision++;
         feedbackRemaining = settings.FeedbackSeconds;
         // Success takes precedence on the final attempt; presentation never delays the authoritative outcome.
         if (Points >= Resistance) State = LandingChallengeState.Succeeded;
@@ -86,7 +93,7 @@ public sealed class LandingChallengeRuntime
     {
         Occurrence++; Revision++; State = LandingChallengeState.Inactive;
         settings = null; rig = Array.Empty<LandingRigMember>(); Resistance = Points = 0;
-        AttemptsRemaining = 0; LastScore = null; Error = null;
+        AttemptsRemaining = InitialAttempts = protectedMisses = 0; LastMissProtected = false; LastScore = null; Error = null;
         motionTime = lastClock = feedbackRemaining = fishPhase = 0;
         FishPosition = ZonePosition = .5; IsTelegraphingBurst = false;
     }

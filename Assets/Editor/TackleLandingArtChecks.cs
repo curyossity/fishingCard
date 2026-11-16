@@ -64,10 +64,10 @@ public static class TackleLandingArtChecks
         controller.TryPrepareSlotTags(new[] { "Fish", "Predator", "Schooling", "Small" }); harbor.TryStartNewRun();
         var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
-        var chain = (CatchChainRuntime)typeof(FishingRunController).GetField("catchChainRuntime", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(controller);
         var definitions = AssetDatabase.FindAssets("t:CardDefinition").Select(id => AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(id))).ToArray();
-        string[] species = { "creature_sardine", "creature_mackerel", "creature_glass_minnow", "creature_garfish" };
-        for (int i = 0; i < 8; i++) chain.Add(definitions.First(c => c.UniqueId == species[i % 4]), new EffectResolver(), i % 2 == 0 ? CatchAttachmentRole.Catch : CatchAttachmentRole.Bait);
+        string[] species = { "creature_sardine", "creature_mackerel", "creature_glass_minnow", "creature_garfish", "creature_cleaner_shrimp", "creature_clinging_crab", "creature_coastal_cod", "creature_flounder" };
+        for (int i = 0; i < species.Length; i++)
+            check(controller.Rig.TryAcquire(controller.Rig.Revision, definitions.First(c => c.UniqueId == species[i]), i, out _, out _), "Could not prepare unique-species rig fixture.");
         var slot = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>(); SlotReelAnimationChecks.SettleForControlFixture(slot, controller);
         check(controller.TryAcceptSlotMachine(controller.SlotMachine.Revision), "Could not start Landing.");
         var view = UnityEngine.Object.FindAnyObjectByType<LandingChallengeView>(); var art = view.GetComponent<TackleLandingPresentation>(); art.Present(controller);

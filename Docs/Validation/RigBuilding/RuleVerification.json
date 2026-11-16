@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "rigRuleAssertions": 76,
+  "buildAssetAssertions": 23,
+  "landingRuleAssertions": 64,
+  "slotRuleAssertions": 71,
+  "discoverArtworkAssertions": 155,
+  "landingArtworkAssertions": 96,
+  "primaryAbilitiesAssignedFromIllustrations": false,
+  "buildPrefabSavedAndBound": true
+}

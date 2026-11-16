@@ -71,6 +71,7 @@ public sealed class TackleDiscoverPresentation : MonoBehaviour
         }
         matchLamps.sprite = IsSpinning || match.Kind == SlotMatchKind.ThreeDifferent ? matchOff : matchOn;
         RefreshRig(controller.CatchChain);
+        if (controller.UsesLandingChallenge) haulLabel.text = "HAUL " + controller.Rig.HaulValue;
     }
 
     /// <summary>Advances only presentation; completion refreshes input without selecting or accepting a creature.</summary>
