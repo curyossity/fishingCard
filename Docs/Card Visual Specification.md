@@ -41,6 +41,8 @@ The controller owns phase, landed occurrence and rig revision. Refreshes must no
 
 Choose a permitted insertion position and commit. The rig view reflects unique ordered species, preserves existing relative order and offers no manual rearrangement. Keep insertion targets/restriction explanations outside face information. Current Tackle Build uses native gap buttons, a projected value readout, horizontal insertion scrolling and the shared vertical rig cabinet. New creature contribution begins after acquisition, affecting future challenges.
 
+The integrated Build housing uses Landing's exact creature-frame location/size and right-panel border for its effects section. The Build effects interior has no Landing progress trough. Both frames belong to the reusable whole-machine background; separate frame overlays are removed. Creature art, tags, level, resolved sale value and current-level ability text remain native live fields. The lower rig and common outer silhouette retain their existing pixels.
+
 ## Rarity hooks and tags
 
 Four lower sockets represent rarity only:

@@ -7,7 +7,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>Installs the approved Penpot Build/Upgrade composition with separate artwork, live data and native controls.</summary>
+/// <summary>Installs the Tackle Build/Upgrade composition with a unified housing, live data and native controls.</summary>
 public static class RigBuildingSetup
 {
     public const string PrefabPath = TackleDiscoverArtSetup.Root + "Prefabs/BuildCanvas.prefab";
@@ -76,36 +76,33 @@ public static class RigBuildingSetup
             foreach(var item in new[]{
                 ("build-desk",new Rect(0,0,1920,1080)),("build-cabinet",new Rect(24,44,380,995)),
                 ("build-title",new Rect(570,28,780,116)),("build-haul",new Rect(1430,29,345,116)),
-                ("build-machine",new Rect(490,163,1310,657)),("build-console",new Rect(492,897,1310,165)),
-                ("build-message",new Rect(525,836,1140,54)),("build-portrait",new Rect(630,295,455,225)),
-                ("build-effect",new Rect(1100,285,565,235)),("build-tray",new Rect(550,562,1135,269)),
-                ("build-rail-heading",new Rect(680,521,950,47)),("build-readout",new Rect(545,920,505,116))}) Art(stage,item.Item1,item.Item2);
+                ("build-machine",TackleMachineGeometry.StageBounds),("build-console",new Rect(492,897,1310,165)),
+                ("build-message",new Rect(525,836,1140,54)),
+                ("build-rail-heading",new Rect(680,542,950,47)),("build-readout",new Rect(545,920,505,116))}) Art(stage,item.Item1,item.Item2);
             var data=new SerializedObject(root.GetComponent<RigBuildingView>());
-            Bind(data,"tray",stage.GetComponentsInChildren<UnityEngine.UI.Image>().Single(i=>i.name=="build-tray"));
-            Bind(data,"trayDefault",Sprite("build-tray")); Bind(data,"trayThree",Sprite("build-tray-three"));
             Bind(data,"displayFont",Font(false));
             Bind(data,"heading",Label(stage,"BiomePhase","",new Rect(590,72,740,45),30));
             Bind(data,"haul",Label(stage,"Haul","",new Rect(1450,76,300,40),27,false,Gold));
             Label(stage,"RigHeading","YOUR RIG",new Rect(70,114,290,36),24);
             Bind(data,"creatureName",Label(stage,"LandedCreature","",new Rect(690,223,960,42),28));
-            Bind(data,"tags",Label(stage,"CreatureTags","",new Rect(666,474,383,30),25,true));
-            Bind(data,"levelLabel",Label(stage,"CreatureLevel","",new Rect(1160,322,230,36),24,false,Gold,true));
-            Bind(data,"levelDelta",Label(stage,"LevelIncrease","",new Rect(1354,325,48,32),26,true,Gold));
-            Label(stage,"SaleCaption","SALE",new Rect(1443,326,77,30),25,true);
-            Bind(data,"saleLabel",Label(stage,"SpeciesSaleValue","",new Rect(1526,319,95,42),32,false,Gold));
-            var rulesScroll=Scroll(stage,"AbilityScroll",new Rect(1160,383,455,115),true,out var rulesContent);
-            var description=Label(rulesContent,"PrimaryAbility","",new Rect(0,0,455,115),33,true,null,true);
+            Bind(data,"tags",Label(stage,"CreatureTags","",new Rect(705,493,360,28),20,true));
+            Bind(data,"levelLabel",Label(stage,"CreatureLevel","",new Rect(1150,327,200,36),24,false,Gold,true));
+            Bind(data,"levelDelta",Label(stage,"LevelIncrease","",new Rect(1350,328,48,32),26,true,Gold));
+            Label(stage,"SaleCaption","SALE",new Rect(1420,327,70,30),23,true);
+            Bind(data,"saleLabel",Label(stage,"SpeciesSaleValue","",new Rect(1490,321,108,42),32,false,Gold));
+            var rulesScroll=Scroll(stage,"AbilityScroll",new Rect(1150,380,440,135),true,out var rulesContent);
+            var description=Label(rulesContent,"PrimaryAbility","",new Rect(0,0,440,135),33,true,null,true);
             description.richText=true; description.lineSpacing=20; description.enableAutoSizing=false; description.textWrappingMode=TextWrappingModes.Normal;
             Bind(data,"detailsScroll",rulesScroll);
             Bind(data,"details",description);
-            var portrait=Rect(stage,"CreaturePortrait",new Rect(655,326,405,116)).gameObject.AddComponent<UnityEngine.UI.Image>();
+            var portrait=Rect(stage,"CreaturePortrait",new Rect(680,334,400,116)).gameObject.AddComponent<UnityEngine.UI.Image>();
             CreatureSpriteSetup.CenterPortrait(portrait); portrait.raycastTarget=false; Bind(data,"portrait",portrait);
-            Bind(data,"railHeading",Label(stage,"InsertionHeading","",new Rect(695,535,920,30),20));
+            Bind(data,"railHeading",Label(stage,"InsertionHeading","",new Rect(695,556,920,30),20));
             Bind(data,"previewCaption",Label(stage,"HaulPreviewCaption","",new Rect(565,939,465,32),20));
             Bind(data,"previewLabel",Label(stage,"HaulPreviewValue","",new Rect(565,978,465,42),31));
             Bind(data,"message",Label(stage,"PlacementMessage","",new Rect(550,854,1085,32),25,true));
             var rig=Scroll(stage,"CommittedRig",new Rect(62,189,315,825),true,out var rigContent);
-            var rail=Scroll(stage,"InsertionPositions",new Rect(588,574,1053,223),false,out var railContent);
+            var rail=Scroll(stage,"InsertionPositions",new Rect(625,574,1020,223),false,out var railContent);
             Bind(data,"rigScroll",rig); Bind(data,"rigContent",rigContent); Bind(data,"railScroll",rail); Bind(data,"railContent",railContent);
             Bind(data,"emptyRig",Label(stage,"EmptyRig","EMPTY RIG",new Rect(80,500,280,38),25,true));
             Bind(data,"cardPrefab",AssetDatabase.LoadAssetAtPath<GameObject>(CabinetCardPath).GetComponent<TackleRigCardView>());
@@ -131,6 +128,17 @@ public static class RigBuildingSetup
             data.ApplyModifiedPropertiesWithoutUndo(); PrefabUtility.SaveAsPrefabAsset(root,PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }
+        RetireSupersededArt();
+    }
+
+    /// <summary>Removes superseded tray and frame overlays after the integrated prefab stops referencing them.</summary>
+    private static void RetireSupersededArt()
+    {
+        foreach(string name in new[]{"build-tray","build-tray-three","build-portrait","build-effect"})
+        {
+            string path=ArtPath+name+".png";
+            if(File.Exists(path)&&!AssetDatabase.DeleteAsset(path))throw new InvalidOperationException("Could not retire tray overlay: "+path);
+        }
     }
 
     /// <summary>Builds native-label masters for the cabinet and the original hanging-card insertion tray.</summary>

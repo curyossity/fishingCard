@@ -1,5 +1,7 @@
 # Tackle Apparatus Landing artwork
 
+**Current presentation update, 17 November 2026:** Landing now uses one integrated housing whose outer pixels, alpha and display geometry match Build. Separate interior backgrounds are removed from the prefab; live fields and indicators remain independent. See [current integrated-housing validation](../LandingIntegrated/README.md). The original component-based integration below is historical evidence.
+
 The moving fish was subsequently replaced with a smaller generic icon. See [current indicator validation](../LandingIndicator/README.md); the captures below document the original artwork integration.
 
 Integrated and verified 13 November 2026 in Unity 6000.5.9f1, in the MidnightFieldJournal comparison scene. This replaces the plain Landing presentation while preserving its gameplay profile, scoring, input commands and success/failure boundaries.

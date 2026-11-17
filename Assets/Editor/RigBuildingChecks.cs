@@ -17,7 +17,7 @@ public static class RigBuildingChecks
         var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath);
         Check(prefab != null && prefab.GetComponent<Canvas>().sortingOrder == 85, "Build canvas is missing or incorrectly layered.");
         var data = new SerializedObject(prefab.GetComponent<RigBuildingView>());
-        foreach (string field in new[] { "heading", "haul", "details", "message", "previewLabel", "emptyRig", "cardPrefab", "railCardPrefab", "portrait", "creatureName", "tags", "levelLabel", "levelDelta", "saleLabel", "previewCaption", "railHeading", "upgradeStatus", "rigContent", "railContent", "rigScroll", "railScroll", "detailsScroll", "gapTemplate", "commit", "socketIdle", "socketSelected", "socketBlocked", "tray", "trayDefault", "trayThree", "selectionCaret" })
+        foreach (string field in new[] { "heading", "haul", "details", "message", "previewLabel", "emptyRig", "cardPrefab", "railCardPrefab", "portrait", "creatureName", "tags", "levelLabel", "levelDelta", "saleLabel", "previewCaption", "railHeading", "upgradeStatus", "rigContent", "railContent", "rigScroll", "railScroll", "detailsScroll", "gapTemplate", "commit", "socketIdle", "socketSelected", "socketBlocked", "selectionCaret" })
             Check(data.FindProperty(field).objectReferenceValue != null, "Build field is unbound: " + field);
         var details = (TMPro.TMP_Text)data.FindProperty("details").objectReferenceValue;
         Check(details.color.r > .7f && details.color.g > .7f && details.richText, "Ability text is unreadable on the single dark frame.");

@@ -28,9 +28,11 @@ public static class RigBuildingArtChecks
             Check(importer.filterMode==FilterMode.Point&&!importer.mipmapEnabled&&!importer.isReadable&&importer.textureCompression==TextureImporterCompression.Uncompressed&&importer.npotScale==TextureImporterNPOTScale.None,"Build sprite settings changed: "+path);
         }
         var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath);
-        foreach(var name in new[]{"build-gap-idle","build-gap-selected","build-selection-caret","build-rail-card","build-tray","build-tray-three"})
+        foreach(var name in new[]{"build-gap-idle","build-gap-selected","build-selection-caret","build-rail-card","build-machine"})
             CheckTransparentSilhouette(RigBuildingSetup.ArtPath+name+".png");
-        Check(prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true).Count(i=>i.name=="build-effect")==1,"Creature details must have one frame.");
+        CheckIntegratedHousing(prefab);
+        CheckIntegratedFrames();
+        Check(!prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true).Any(i=>i.name=="build-effect"||i.name=="build-portrait"),"Assembled frame overlays remain on the integrated housing.");
         foreach(var text in prefab.GetComponentsInChildren<TMP_Text>(true))
             Check(!text.text.Contains("NEW SPECIES")&&!text.text.Contains("DUPLICATE")&&!text.text.Contains("CATCH")&&!text.text.Contains("BAIT"),"Obsolete Build wording: "+text.text);
         var ability=new RigAbilitySpec("Schooling","",new[]{new RigAbilityEffect(RigAbilityKind.LandingMultiplier,RigAbilityTrigger.Continuous,LandingAccuracyFilter.Successful,.2f,.2f,RigPositionCount.ContiguousOther,"Schooling")});
@@ -56,6 +58,58 @@ public static class RigBuildingArtChecks
         finally { UnityEngine.Object.DestroyImmediate(texture); }
     }
 
+    /// <summary>Rejects tray overlays and nonuniform housing scaling; the complete authored source must reach Unity byte-for-byte.</summary>
+    private static void CheckIntegratedHousing(GameObject prefab)
+    {
+        const string source="Docs/UIThemes/TackleApparatusConcept/BuildUpgradeRevision/IntegratedMachine/integrated-build-machine-v2.png";
+        var images=prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true);
+        var housing=images.Single(i=>i.name=="build-machine");
+        Check(File.ReadAllBytes(source).SequenceEqual(File.ReadAllBytes(AssetDatabase.GetAssetPath(housing.sprite))),"Integrated housing was cropped, repainted or resampled during export.");
+        Check(housing.rectTransform.sizeDelta==new Vector2(1310,681),"Housing layout no longer matches its authored recess.");
+        Check(Math.Abs(housing.rectTransform.rect.width/housing.rectTransform.rect.height-housing.sprite.rect.width/housing.sprite.rect.height)<.001f,"Housing is stretched nonuniformly.");
+        Check(!images.Any(i=>i.sprite!=null&&AssetDatabase.GetAssetPath(i.sprite).Contains("build-tray")),"A separate tray background still overlays the machine.");
+        Check(!File.Exists(RigBuildingSetup.ArtPath+"build-tray.png")&&!File.Exists(RigBuildingSetup.ArtPath+"build-tray-three.png"),"Retired cropped tray assets remain in runtime art.");
+        var view=new SerializedObject(prefab.GetComponent<RigBuildingView>());
+        var rail=(UnityEngine.UI.ScrollRect)view.FindProperty("railScroll").objectReferenceValue;
+        Check(rail.viewport.rect.width==1020,"Insertion viewport does not fit the built-in wood opening.");
+        var heading=images.Single(i=>i.name=="build-rail-heading").rectTransform;
+        float frameBottom=TackleMachineGeometry.StageBounds.y+502f/904f*TackleMachineGeometry.StageBounds.height;
+        Check(-heading.anchoredPosition.y>=frameBottom,"Insertion heading covers the shared creature/effects frame borders.");
+    }
+
+    /// <summary>Checks native Landing frame borders and placement while keeping the old Build rig/casing pixels and removing only the effects-pane trough.</summary>
+    private static void CheckIntegratedFrames()
+    {
+        const string source="Docs/UIThemes/TackleApparatusConcept/BuildUpgradeRevision/IntegratedMachine/";
+        var paths=new[]{source+"integrated-build-machine-source.png",AssetDatabase.GetAssetPath(AssetDatabase.LoadAssetAtPath<Sprite>(RigBuildingSetup.ArtPath+"build-machine.png")),TackleLandingArtSetup.HousingSource,source+"FramesV2/upper-frame-mask.png",source+"FramesV2/effects-interior-mask.png"};
+        var textures=paths.Select(_=>new Texture2D(2,2,TextureFormat.RGBA32,false)).ToArray();
+        try
+        {
+            for(int i=0;i<paths.Length;i++)textures[i].LoadImage(File.ReadAllBytes(paths[i]));
+            Check(textures.All(t=>t.width==1739&&t.height==904),"The shared frame coordinate grid changed.");
+            var old=textures[0].GetPixels32();var result=textures[1].GetPixels32();var landing=textures[2].GetPixels32();var upper=textures[3].GetPixels32();var fill=textures[4].GetPixels32();
+            int alphaDifferent=0,outsideDifferent=0,portraitDifferent=0,borderDifferent=0,barDifferent=0;
+            var portrait=new RectInt(216,186,614,316);var effects=new RectInt(844,186,670,316);var bar=new RectInt(861,414,634,69);
+            for(int i=0;i<old.Length;i++)
+            {
+                var point=new Vector2Int(i%1739,903-i/1739);
+                bool oldDifferent=result[i].r!=old[i].r||result[i].g!=old[i].g||result[i].b!=old[i].b;
+                bool landDifferent=result[i].r!=landing[i].r||result[i].g!=landing[i].g||result[i].b!=landing[i].b;
+                if(result[i].a!=old[i].a)alphaDifferent++;
+                if(upper[i].a==0&&old[i].a>0&&oldDifferent)outsideDifferent++;
+                if(portrait.Contains(point)&&landDifferent)portraitDifferent++;
+                if(effects.Contains(point)&&fill[i].a==0&&landDifferent)borderDifferent++;
+                if(bar.Contains(point)&&landDifferent)barDifferent++;
+            }
+            Check(alphaDifferent==0&&outsideDifferent==0,"Adding frames changed the Build casing, wooden rig or other protected artwork.");
+            Check(portraitDifferent==0,"Creature frame differs from Landing or moved on the native grid.");
+            Check(borderDifferent==0,"Effects frame border differs from Landing or changed size/position.");
+            Check(barDifferent>0,"The Landing progress trough remains in the Build effects frame.");
+            Check(!File.Exists(RigBuildingSetup.ArtPath+"build-portrait.png")&&!File.Exists(RigBuildingSetup.ArtPath+"build-effect.png"),"Superseded runtime frame sprites remain.");
+        }
+        finally{foreach(var texture in textures)UnityEngine.Object.DestroyImmediate(texture);}
+    }
+
     /// <summary>Starts a fresh runtime-only fixture; source creature definitions and persistent saves remain untouched.</summary>
     public static void Begin()
     {
@@ -65,7 +119,7 @@ public static class RigBuildingArtChecks
         controller.StartCoroutine(Run());
     }
 
-    /// <summary>Captures the exact example rigs after actual Landing success and verifies native controls and guarded automatic continuation.</summary>
+    /// <summary>Captures empty and populated trays after actual Landing success and verifies native controls and guarded automatic continuation.</summary>
     private static IEnumerator Run()
     {
         Directory.CreateDirectory(Output);
@@ -83,6 +137,18 @@ public static class RigBuildingArtChecks
         effect.FindPropertyRelative("count").enumValueIndex=(int)RigPositionCount.ContiguousOther;effect.FindPropertyRelative("tag").stringValue="Schooling";
         effect.FindPropertyRelative("perPosition").boolValue=true;authored.ApplyModifiedPropertiesWithoutUndo();
         CardDefinition mackerel=Load("Mackerel"),glass=Load("Glass Minnow"),bass=Load("Sea Bass");
+        Start(harbor);yield return null;
+        Force(owner,sardine);yield return Accept(owner);yield return Land(owner,true);
+        var empty=UnityEngine.Object.FindAnyObjectByType<RigBuildingView>();
+        Check(owner.Rig.Members.Length==0&&empty!=null,"First landed species did not open an empty insertion tray.");
+        Capture(empty,"EmptyRig-1920x1080.png");
+        var emptyData=new SerializedObject(empty);
+        var emptyRail=(RectTransform)emptyData.FindProperty("railContent").objectReferenceValue;
+        var emptyButtons=emptyRail.GetComponentsInChildren<UnityEngine.UI.Button>().Where(b=>b.gameObject.activeSelf).ToArray();
+        Check(emptyButtons.Length==1,"Empty rig must have one insertion target.");CheckHit(emptyButtons[0]);
+        ((UnityEngine.UI.Button)emptyData.FindProperty("commit").objectReferenceValue).onClick.Invoke();yield return null;
+        yield return Accept(owner);yield return Land(owner,false);yield return null;
+        owner.DismissLandingResult();harbor.ReturnToHarbor();
         Start(harbor);yield return null;
         Acquire(owner,mackerel,0);Acquire(owner,glass,1);Acquire(owner,bass,2);
         Force(owner,sardine);yield return Accept(owner);yield return Land(owner,true);

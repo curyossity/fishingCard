@@ -1,0 +1,15 @@
+# Integrated Landing housing — 17 November 2026
+
+Landing and Build now share the exact same outer machine pixels and silhouette. The complete Landing instrument panel is one sprite; the portrait, text, score fill, moving fish, Good/Perfect zones and variable attempt lamps remain native independent UI.
+
+The fixed master is `Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png`. Built-in image editing created the blank Landing interior using that master and the original Landing concept as references. A targeted follow-up removed baked lamp bezels so the model can supply any supported attempt count. `Generation.json`, `Prompt.txt`, `RefinementPrompt.txt` and `Sources/` preserve provenance. No external image API was used.
+
+`NormalizeLandingHousing.cs` registers only the two generated interior recesses on the original **1739 × 904** pixel grid. It retains every original alpha value and the visible colors of all **720,063 protected pixels** outside those interiors. The generated follow-up has one extra canvas column; only its native interior coordinates are used, with no image resizing. `landing-interior-mask.png` records the permitted regions. `Normalization.json` records input/output hashes, dimensions, polygons and measured differences: **0 alpha differences, 0 protected visible color differences**.
+
+The normalized complete `landing-machine.png` imports byte-for-byte under `Assets/UIThemes/TackleApparatus/Art/Landing/Integrated/`. Both phase builders use `TackleMachineGeometry.StageBounds`: **490,163 / 1310 × 681** on the same 1920 × 1080 Expand canvas. This keeps the outer casing, title plaque, corners, shafts, vent, dial and bolts stationary for a future transition. Transition animation is not part of this artwork increment. Discover retains its existing housing.
+
+Landing no longer overlays separate portrait-frame, score-readout, progress-trough, timing-track or status-plaque backgrounds. The live track is registered inside the authored glass; normalized scoring widths still control both the rendered fish and scoring zones. The generic marker remains two-thirds of the initial Perfect width. Lamps fit the available fascia and follow the actual configured allowance.
+
+To regenerate after an intentional Build-master change, compile `NormalizeLandingHousing.cs` with System.Drawing and System.Web.Extensions, then run it with the repository root. Inspect the resulting interior joins and run the checks before installing. `LandingChallengeSetup.InstallCurrentScene()` imports the normalized complete sprite and retains scene bindings/tuning. Import refuses mismatched base/output hashes. No generation occurs during ordinary imports.
+
+`TackleLandingArtChecks.ValidateAssets()` compares every alpha value and all protected visible outer pixels with Build, rejects old overlay backgrounds, and checks matching dimensions/anchors/scale. Its live checks cover rig scrolling, input targets, dynamic scoring geometry and 1920 × 1080, 1280 × 800 and 2560 × 1080 captures. See [validation](../../../Validation/LandingIntegrated/README.md).

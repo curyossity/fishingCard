@@ -4,7 +4,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-/// <summary>Renders the approved independent Landing artwork, current rig and attributed scoring without resolving gameplay.</summary>
+/// <summary>Renders live Landing indicators, the current rig and attributed scoring inside the integrated housing without resolving gameplay.</summary>
 public sealed class TackleLandingPresentation : MonoBehaviour
 {
     [SerializeField] private TMP_Text phase, haul, creature, tags, points, resistance, attempts, movement, message, grade, breakdown, emptyRig;
@@ -87,11 +87,11 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         portrait.sprite = image; portrait.enabled = image != null;
         tags.text = selectedCreature == null ? "" : string.Join(" / ", selectedCreature.Tags).ToUpperInvariant();
     }
-    /// <summary>Authors no attempt limit in the art: lamps match the current model's configured starting allowance.</summary>
+    /// <summary>Fits the model's variable starting allowance into the integrated fascia without baking an attempt count into its artwork.</summary>
     private void PrepareLamps(int count)
     {
         while (lamps.Count < count) { var lamp = Instantiate(lampTemplate, lampContent); lamp.gameObject.SetActive(true); lamps.Add(lamp); }
-        float step = 280f / Mathf.Max(4, count);
+        float step = lampContent.rect.width / Mathf.Max(4, count);
         for (int i = 0; i < lamps.Count; i++)
         {
             lamps[i].gameObject.SetActive(i < count);

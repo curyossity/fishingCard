@@ -1,0 +1,83 @@
+[
+  {
+    "phase": "Discover",
+    "prefab": "Assets/UIThemes/TackleApparatus/Prefabs/DiscoverCanvas.prefab",
+    "sprite": "Assets/UIThemes/TackleApparatus/Art/Common/machine-housing.png",
+    "position": [
+      490.0,
+      163.0
+    ],
+    "size": [
+      1310.0,
+      657.0
+    ],
+    "scale": [
+      1.0,
+      1.0
+    ],
+    "sourcePixels": [
+      1598.0,
+      806.0
+    ],
+    "preserveAspect": false,
+    "canvasReference": [
+      1920.0,
+      1080.0
+    ],
+    "screenMatch": "Expand"
+  },
+  {
+    "phase": "Landing",
+    "prefab": "Assets/LandingChallenge/LandingControls.prefab",
+    "sprite": "Assets/UIThemes/TackleApparatus/Art/Landing/Integrated/landing-machine.png",
+    "position": [
+      490.0,
+      163.0
+    ],
+    "size": [
+      1310.0,
+      681.0
+    ],
+    "scale": [
+      1.0,
+      1.0
+    ],
+    "sourcePixels": [
+      1739.0,
+      904.0
+    ],
+    "preserveAspect": false,
+    "canvasReference": [
+      1920.0,
+      1080.0
+    ],
+    "screenMatch": "Expand"
+  },
+  {
+    "phase": "Build",
+    "prefab": "Assets/UIThemes/TackleApparatus/Prefabs/BuildCanvas.prefab",
+    "sprite": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
+    "position": [
+      490.0,
+      163.0
+    ],
+    "size": [
+      1310.0,
+      681.0
+    ],
+    "scale": [
+      1.0,
+      1.0
+    ],
+    "sourcePixels": [
+      1739.0,
+      904.0
+    ],
+    "preserveAspect": false,
+    "canvasReference": [
+      1920.0,
+      1080.0
+    ],
+    "screenMatch": "Expand"
+  }
+]

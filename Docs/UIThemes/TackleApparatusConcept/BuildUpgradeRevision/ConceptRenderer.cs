@@ -9,17 +9,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web.Script.Serialization;
-public class ConceptCommand { public string kind,id,src,text,font,color,align; public float x,y,w,h,sx,sy,sw,sh,size; public float[] mask; public bool shadow; }
-public class ConceptScene { public string name,file; public int width,height; public bool transparent,rasterOnly; public ConceptCommand[] commands; }
+public class ConceptCommand { public string kind,id,src,text,font,color,align; public float x,y,w,h,sx,sy,sw,sh,size; public float[] mask,cutout; public bool shadow; }
+public class ConceptScene { public string name,file,copySource; public int width,height; public bool transparent,rasterOnly; public ConceptCommand[] commands; }
 public static class ConceptRenderer {
 static string N(float v){return v.ToString("0.###",CultureInfo.InvariantCulture);}
 static string E(string s){return System.Security.SecurityElement.Escape(s??"");}
 static string PathData(GraphicsPath path){var p=path.PathPoints;var t=path.PathTypes;var s=new StringBuilder();for(int i=0;i<p.Length;){int type=t[i]&7;if(type==0){s.Append("M"+N(p[i].X)+","+N(p[i].Y));if((t[i]&128)!=0)s.Append("Z");i++;}else if(type==1){s.Append("L"+N(p[i].X)+","+N(p[i].Y));if((t[i]&128)!=0)s.Append("Z");i++;}else if(type==3){s.Append("C"+N(p[i].X)+","+N(p[i].Y)+" "+N(p[i+1].X)+","+N(p[i+1].Y)+" "+N(p[i+2].X)+","+N(p[i+2].Y));if((t[i+2]&128)!=0)s.Append("Z");i+=3;}else throw new Exception("Unsupported font path");}return s.ToString();}
+/// <summary>Normalizes approved raster layers with optional silhouette and interior cutout masks.</summary>
 public static void Render(string folder,string fontsFolder){
 var json=new JavaScriptSerializer{MaxJsonLength=100000000};var scenes=json.Deserialize<ConceptScene[]>(File.ReadAllText(Path.Combine(folder,"Composition.json")));
 using(var fonts=new PrivateFontCollection()){
 fonts.AddFontFile(Path.Combine(fontsFolder,"PressStart2P-Regular.ttf"));fonts.AddFontFile(Path.Combine(fontsFolder,"VT323-Regular.ttf"));
 foreach(var scene in scenes){var images=new Dictionary<string,Image>();var ids=new Dictionary<string,string>();var defs=new StringBuilder();var content=new StringBuilder();var textReport=new List<object>();
+if(!string.IsNullOrEmpty(scene.copySource)){File.Copy(scene.copySource,Path.Combine(folder,scene.file+".png"),true);continue;}
 using(var bitmap=new Bitmap(scene.width,scene.height,PixelFormat.Format32bppArgb))using(var graphics=Graphics.FromImage(bitmap)){
 graphics.Clear(scene.transparent ? Color.Transparent : Color.FromArgb(14,17,15));graphics.InterpolationMode=InterpolationMode.NearestNeighbor;graphics.PixelOffsetMode=PixelOffsetMode.Half;graphics.SmoothingMode=SmoothingMode.None;
 int counter=0;foreach(var c in scene.commands){counter++;content.Append("<g id=\""+E(c.id)+"-"+counter+"\">");
@@ -29,6 +31,7 @@ string encoded;
 using(var cropped=new Bitmap((int)c.sw,(int)c.sh,PixelFormat.Format32bppArgb)){
 using(var crop=Graphics.FromImage(cropped)){crop.CompositingMode=CompositingMode.SourceCopy;
 if(c.mask!=null){using(var mask=new GraphicsPath()){var points=new PointF[c.mask.Length/2];for(int i=0;i<points.Length;i++)points[i]=new PointF(c.mask[i*2],c.mask[i*2+1]);mask.AddPolygon(points);crop.SetClip(mask);}}
+if(c.cutout!=null){using(var hole=new GraphicsPath()){var points=new PointF[c.cutout.Length/2];for(int i=0;i<points.Length;i++)points[i]=new PointF(c.cutout[i*2],c.cutout[i*2+1]);hole.AddPolygon(points);crop.SetClip(hole,CombineMode.Exclude);}}
 crop.DrawImage(images[c.src],new Rectangle(0,0,(int)c.sw,(int)c.sh),new Rectangle((int)c.sx,(int)c.sy,(int)c.sw,(int)c.sh),GraphicsUnit.Pixel);}
 graphics.DrawImage(cropped,new RectangleF(c.x,c.y,c.w,c.h),new RectangleF(0,0,c.sw,c.sh),GraphicsUnit.Pixel);
 using(var stream=new MemoryStream()){cropped.Save(stream,ImageFormat.Png);encoded=Convert.ToBase64String(stream.ToArray());}}

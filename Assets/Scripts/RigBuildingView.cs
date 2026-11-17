@@ -13,8 +13,6 @@ public sealed class RigBuildingView : MonoBehaviour
     [SerializeField] private TMP_Text heading, haul, details, message, previewLabel, emptyRig;
     [SerializeField] private TMP_Text creatureName, tags, levelLabel, levelDelta, saleLabel, previewCaption, railHeading;
     [SerializeField] private UnityEngine.UI.Image portrait, ropeTemplate;
-    [SerializeField] private UnityEngine.UI.Image tray;
-    [SerializeField] private Sprite trayDefault, trayThree;
     [SerializeField] private TMP_FontAsset displayFont;
     [SerializeField] private TackleRigCardView cardPrefab, railCardPrefab;
     [SerializeField] private RectTransform rigContent, railContent, selectionCaret;
@@ -117,10 +115,11 @@ public sealed class RigBuildingView : MonoBehaviour
             description = description.Replace("<color=", "<font=\"" + displayFont.name + "\"><size=23><color=").Replace("</color>", "</color></size></font>");
         }
         TackleBuildTypography.SetText(details, description);
-        float rulesHeight = Mathf.Max(115, details.GetPreferredValues(description, 455, float.PositiveInfinity).y);
-        detailsScroll.content.sizeDelta = new Vector2(455, rulesHeight);
-        ((RectTransform)details.transform.parent).sizeDelta = new Vector2(455, rulesHeight);
-        details.rectTransform.sizeDelta = new Vector2(455, rulesHeight);
+        float rulesWidth = detailsScroll.viewport.rect.width;
+        float rulesHeight = Mathf.Max(detailsScroll.viewport.rect.height, details.GetPreferredValues(description, rulesWidth, float.PositiveInfinity).y);
+        detailsScroll.content.sizeDelta = new Vector2(rulesWidth, rulesHeight);
+        ((RectTransform)details.transform.parent).sizeDelta = new Vector2(rulesWidth, rulesHeight);
+        details.rectTransform.sizeDelta = new Vector2(rulesWidth, rulesHeight);
         TackleBuildTypography.SetText(details, description); detailsScroll.verticalNormalizedPosition = 1;
         portrait.sprite = creature.EncounterArtwork ?? creature.Artwork; portrait.enabled = portrait.sprite != null;
         TackleBuildTypography.SetText(previewCaption, upgrading ? "HAUL CHANGE" : "HAUL PREVIEW");
@@ -148,25 +147,24 @@ public sealed class RigBuildingView : MonoBehaviour
         rigContent.sizeDelta = new Vector2(315, Mathf.Max(825, 40 + members.Length * 275));
     }
 
-    /// <summary>Reuses the approved three-card spacing and sagging rope, growing horizontally for longer uncapped rigs.</summary>
+    /// <summary>Fits independent cards, ropes and insertion targets inside the housing's built-in wooden recess, scrolling longer uncapped rigs.</summary>
     private void RefreshRail(CardInstance[] members, CardDefinition creature)
     {
         int count = members.Length;
-        tray.sprite = count == 3 ? trayThree : trayDefault;
-        float width = Mathf.Max(1053, count * 304 + 118), first = (width - (count * 304 - 83)) * .5f - 3;
+        float width = Mathf.Max(railScroll.viewport.rect.width, count * 304 + 106), first = (width - (count * 304 - 83)) * .5f - 3;
         while (railCards.Count < count) railCards.Add(Instantiate(railCardPrefab, railContent));
         while (gaps.Count <= count) gaps.Add(Instantiate(gapTemplate, railContent));
         while (ropes.Count < Mathf.Max(0, count - 1)) { var rope = Instantiate(ropeTemplate, railContent); rope.transform.SetAsFirstSibling(); ropes.Add(rope); }
         for (int i = 0; i < ropes.Count; i++)
         {
-            ropes[i].gameObject.SetActive(count != 3 && i < count - 1);
+            ropes[i].gameObject.SetActive(i < count - 1);
             if (i < count - 1) { ropes[i].rectTransform.anchoredPosition = new Vector2(first + 110 + i * 304, -7); ropes[i].rectTransform.sizeDelta = new Vector2(304, 48); }
         }
         for (int i = 0; i < railCards.Count; i++)
         {
             var card = railCards[i]; card.gameObject.SetActive(i < count); if (i >= count) continue;
             card.Bind(members[i]); ((RectTransform)card.transform).anchoredPosition = new Vector2(first + i * 304, -27);
-            card.SetClipVisible(count != 3);
+            card.SetClipVisible(true);
             card.SetAcquiredHighlight(upgrading && members[i].InstanceId == controller.LastRigAcquisition.Member.InstanceId);
         }
         for (int i = 0; i < gaps.Count; i++)

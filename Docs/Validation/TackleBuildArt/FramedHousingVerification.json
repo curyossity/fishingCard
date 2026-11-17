@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-17",
+  "passed": true,
+  "assetAssertions": 83,
+  "liveAssertions": 40,
+  "fullLoopAssertions": 100,
+  "displayRect": [
+    490,
+    163,
+    1310,
+    681
+  ],
+  "sourcePixels": [
+    1739,
+    904
+  ],
+  "portraitFrameDifferences": 0,
+  "effectsBorderDifferences": 0,
+  "alphaDifferences": 0,
+  "lowerRigAndExteriorDifferences": 0,
+  "barRemoved": true,
+  "assembledFrameOverlaysRemoved": true,
+  "landingSourceUnchanged": true,
+  "metadata": {
+    "filesChecked": 1721,
+    "errors": 0,
+    "warnings": 0
+  },
+  "sourceSha256": "3a794c1ca01768976329582acd0ba6aaa033d3b631dcf9f86ca0e54ccdd6ac04"
+}

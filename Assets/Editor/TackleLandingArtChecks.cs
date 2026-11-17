@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-/// <summary>Validates original Landing imports, placeholder removal and live artwork/input bindings.</summary>
+/// <summary>Validates integrated Landing art, its invariant Build silhouette and live input/scoring geometry.</summary>
 public static class TackleLandingArtChecks
 {
     /// <summary>Checks unchanged exported bytes, sprite settings and complete serialized art references independently of scoring rules.</summary>
@@ -26,6 +26,7 @@ public static class TackleLandingArtChecks
                 && import.textureCompression == TextureImporterCompression.Uncompressed && import.maxTextureSize == 2048, "Incorrect import: " + path);
         }
         var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath);
+        checks+=ValidateSharedHousing(prefab);
         var input = new SerializedObject(prefab.GetComponent<LandingChallengeView>());
         var art = prefab.GetComponent<TackleLandingPresentation>();
         check(art != null && input.FindProperty("artwork").objectReferenceValue == art, "Landing art is not wired.");
@@ -50,6 +51,43 @@ public static class TackleLandingArtChecks
         foreach (var text in prefab.GetComponentsInChildren<TMP_Text>(true))
             check(AssetDatabase.GetAssetPath(text.font).StartsWith(root + "Fonts/", StringComparison.Ordinal), "Default placeholder font remains: " + text.name);
         check(!File.ReadAllText("Assets/Editor/LandingChallengeSetup.cs").Contains("Install Plain Controls"), "Plain generator remains available.");
+        return checks;
+    }
+
+    /// <summary>Compares every alpha value and every protected visible exterior pixel against Build, then checks identical placement and scale.</summary>
+    private static int ValidateSharedHousing(GameObject prefab)
+    {
+        int checks=0;Action<bool,string> check=(ok,error)=>{if(!ok)throw new InvalidOperationException(error);checks++;};
+        var images=prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true);
+        var landing=images.Single(i=>i.name=="landing-machine");
+        var build=AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath).GetComponentsInChildren<UnityEngine.UI.Image>(true).Single(i=>i.name=="build-machine");
+        check(AssetDatabase.GetAssetPath(landing.sprite)==TackleLandingArtSetup.HousingPath,"Landing uses the wrong machine source.");
+        check(File.ReadAllBytes(TackleLandingArtSetup.HousingPath).SequenceEqual(File.ReadAllBytes(TackleLandingArtSetup.HousingSource)),"Landing housing was resampled during import.");
+        check(landing.rectTransform.anchoredPosition==build.rectTransform.anchoredPosition&&landing.rectTransform.sizeDelta==build.rectTransform.sizeDelta&&landing.rectTransform.localScale==build.rectTransform.localScale,"Landing/Build machine anchors or scale differ.");
+        check(landing.rectTransform.sizeDelta==TackleMachineGeometry.StageBounds.size&&landing.type==UnityEngine.UI.Image.Type.Simple,"Machine geometry is sliced or does not use the shared bounds.");
+        foreach(var retired in new[]{"machine-housing","portrait-frame","score-readout","progress-trough","timing-track","status-plaque"})
+            check(!images.Any(i=>i.name==retired),"A separate background still overlays the integrated housing: "+retired);
+        var importer=(TextureImporter)AssetImporter.GetAtPath(TackleLandingArtSetup.HousingPath);
+        check(importer.filterMode==FilterMode.Point&&!importer.mipmapEnabled&&!importer.isReadable&&importer.textureCompression==TextureImporterCompression.Uncompressed&&importer.spriteBorder==Vector4.zero,"Integrated housing import settings are incorrect.");
+        var basis=new Texture2D(2,2,TextureFormat.RGBA32,false);var variant=new Texture2D(2,2,TextureFormat.RGBA32,false);var mask=new Texture2D(2,2,TextureFormat.RGBA32,false);
+        try
+        {
+            basis.LoadImage(File.ReadAllBytes(AssetDatabase.GetAssetPath(build.sprite)));variant.LoadImage(File.ReadAllBytes(TackleLandingArtSetup.HousingSource));
+            mask.LoadImage(File.ReadAllBytes("Docs/UIThemes/TackleApparatusConcept/LandingIntegrated/landing-interior-mask.png"));
+            check(basis.width==variant.width&&basis.height==variant.height&&mask.width==basis.width&&mask.height==basis.height,"Landing/Build native dimensions differ.");
+            var original=basis.GetPixels32();var result=variant.GetPixels32();var editable=mask.GetPixels32();int alphaDifferent=0,outerDifferent=0,protectedPixels=0,interiorDifferent=0;
+            for(int i=0;i<original.Length;i++)
+            {
+                if(original[i].a!=result[i].a)alphaDifferent++;
+                bool different=original[i].r!=result[i].r||original[i].g!=result[i].g||original[i].b!=result[i].b;
+                if(editable[i].a==0){protectedPixels++;if(original[i].a>0&&different)outerDifferent++;}
+                else if(different)interiorDifferent++;
+            }
+            check(alphaDifferent==0,"Landing's silhouette differs from Build.");
+            check(outerDifferent==0&&protectedPixels>700000,"Protected casing or hardware pixels changed.");
+            check(interiorDifferent>0,"The Landing interior was not created.");
+        }
+        finally{UnityEngine.Object.DestroyImmediate(basis);UnityEngine.Object.DestroyImmediate(variant);UnityEngine.Object.DestroyImmediate(mask);}
         return checks;
     }
 
@@ -105,8 +143,21 @@ public static class TackleLandingArtChecks
         foreach (var text in view.GetComponentsInChildren<TMP_Text>())
             if (text.GetComponentInParent<UnityEngine.UI.ScrollRect>() == null) check(!text.isTextOverflowing, "Live text overflow: " + text.name);
         foreach (var size in new[] { new Vector2Int(1920, 1080), new Vector2Int(1280, 800), new Vector2Int(2560, 1080) })
-            SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), "Landing-" + size.x + "x" + size.y + ".png", size.x, size.y, output);
+            Capture(view, "Landing-" + size.x + "x" + size.y + ".png", size.x, size.y, output);
         check(controller.Landing.Points == 0 && controller.Landing.AttemptsRemaining == 4, "Artwork validation consumed a strike.");
         return checks;
+    }
+
+    /// <summary>Captures a disposable native canvas without changing the live view's clipping or camera state.</summary>
+    private static void Capture(LandingChallengeView view,string file,int width,int height,string output)
+    {
+        var copy=UnityEngine.Object.Instantiate(view.gameObject);
+        try
+        {
+            copy.name="Landing capture fixture";copy.GetComponent<LandingChallengeView>().enabled=false;copy.GetComponent<TackleLandingPresentation>().enabled=false;
+            foreach(var image in copy.GetComponentsInChildren<UnityEngine.UI.MaskableGraphic>()){image.RecalculateClipping();image.RecalculateMasking();image.SetAllDirty();}
+            Canvas.ForceUpdateCanvases();SlotMachineSceneChecks.Capture(copy.GetComponent<Canvas>(),file,width,height,output);
+        }
+        finally{UnityEngine.Object.DestroyImmediate(copy);}
     }
 }

@@ -35,12 +35,6 @@
       "sha256": "8624399bab240ca08a91e203087c714fd1941cba1d0688459ab1d2948820b04c"
     },
     {
-      "name": "build-machine",
-      "width": 1310,
-      "height": 657,
-      "sha256": "2245c8ff2b0d4a3730510bde508cb8f9483269e9d17e0c93d8f32782e56b7309"
-    },
-    {
       "name": "build-console",
       "width": 1310,
       "height": 165,
@@ -51,18 +45,6 @@
       "width": 1140,
       "height": 54,
       "sha256": "1f62b7a6917e341127e8a8bb41ae9c67c9f54e2d21823074560b147b607b889e"
-    },
-    {
-      "name": "build-portrait",
-      "width": 455,
-      "height": 225,
-      "sha256": "a3e817b56e40a022eff8cbfe61edfcb87f7c225bb67fd9ba09127bda3af3c808"
-    },
-    {
-      "name": "build-effect",
-      "width": 565,
-      "height": 235,
-      "sha256": "04d38e4fce545f61e8a9109e447e568b65d210d585d6721ab523baf7669448b9"
     },
     {
       "name": "build-rail-heading",
@@ -95,16 +77,10 @@
       "sha256": "87570c92b7f67edb84399bb5a3aca51bc8157c249ea4a7cccf91bd424aba0bda"
     },
     {
-      "name": "build-tray",
-      "width": 1135,
-      "height": 269,
-      "sha256": "e6b8a9148a81b8f1f63b9a1811e718553ce79e11032d2abe34da1a644141b7ad"
-    },
-    {
-      "name": "build-tray-three",
-      "width": 1135,
-      "height": 269,
-      "sha256": "2e25bb03a45930cfccccae1f24f71b140090696ea2b9ba6418462cc0b05c507a"
+      "name": "build-machine",
+      "width": 1739,
+      "height": 904,
+      "sha256": "3a794c1ca01768976329582acd0ba6aaa033d3b631dcf9f86ca0e54ccdd6ac04"
     },
     {
       "name": "build-gap-idle",
@@ -131,5 +107,7 @@
       "sha256": "10caa44ee7d584ce402bce8542d08ef416a7db63c444d555c6c5859f66c9592c"
     }
   ],
-  "notes": "Only independent AssetLibrary exports are sampled; no composed-screen pixels. No creature, level, sale value, effect text or insertion controls are printed into runtime art."
+  "integratedMachineSource": "IntegratedMachine/integrated-build-machine-v2.png",
+  "integratedMachineSha256": "3a794c1ca01768976329582acd0ba6aaa033d3b631dcf9f86ca0e54ccdd6ac04",
+  "notes": "One complete authored machine housing with its built-in wooden recess, copied byte-for-byte; independent AssetLibrary exports for the remaining ornaments. No screenshot crops, stretched wood or separate tray background."
 }

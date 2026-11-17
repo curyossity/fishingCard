@@ -1,0 +1,36 @@
+{
+  "generator": "built-in image_gen",
+  "date": "2026-11-17",
+  "mode": "edit",
+  "source": "C:\\Users\\user\\.codex\\generated_images\\01a1b0dc-e1b2-7972-8110-edc369ccbd6b\\exec-6b33b8bf-e612-4370-b056-79a89031a7fb.png",
+  "sourceSha256": "e235f0a408925a45534dbe9b44ad18151189b4854016cac268493532ec2571ba",
+  "references": [
+    {
+      "path": "References/original-machine-housing.png",
+      "originalPath": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
+      "sha256": "2245c8ff2b0d4a3730510bde508cb8f9483269e9d17e0c93d8f32782e56b7309"
+    },
+    {
+      "path": "../../RigPlacement.png",
+      "role": "Approved page 04 construction/style reference"
+    }
+  ],
+  "purpose": "One blank machine chassis with a genuinely integrated recessed wooden insertion compartment. No screenshot crops, labels or interactive controls.",
+  "sourceSize": [
+    1739,
+    904
+  ],
+  "runtimeRect": [
+    490,
+    163,
+    1310,
+    681
+  ],
+  "railViewport": [
+    625,
+    574,
+    1020,
+    223
+  ],
+  "prompt": "Prompt.txt"
+}

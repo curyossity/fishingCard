@@ -1,0 +1,49 @@
+{
+  "generator": "built-in image_gen",
+  "mode": "edit",
+  "date": "2026-11-17",
+  "base": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
+  "reference": "Docs/UIThemes/TackleApparatusConcept/Landing.png",
+  "generations": [
+    {
+      "path": "Docs\\UIThemes\\TackleApparatusConcept\\LandingIntegrated\\Sources\\landing-generated-v1.png",
+      "generatedSource": "C:\\Users\\user\\.codex\\generated_images\\01a1b0dc-e1b2-7972-8110-edc369ccbd6b\\exec-4b3418a6-7031-4b81-924d-06c36228d2a5.png",
+      "size": [
+        1739,
+        904
+      ],
+      "sha256": "3782bed5e871e6007fde25ec120c8787c552313d5ee93834ea066e0860cea8c2"
+    },
+    {
+      "path": "Docs\\UIThemes\\TackleApparatusConcept\\LandingIntegrated\\Sources\\landing-generated-v2.png",
+      "generatedSource": "C:\\Users\\user\\.codex\\generated_images\\01a1b0dc-e1b2-7972-8110-edc369ccbd6b\\exec-eee76d0f-f271-4c33-9e24-93780a7658aa.png",
+      "size": [
+        1740,
+        904
+      ],
+      "sha256": "2eae14336b807ef8c49a4dde22bd1a3258f730f9e8e167f09b4886d138062a48"
+    }
+  ],
+  "prompts": [
+    "Prompt.txt",
+    "RefinementPrompt.txt"
+  ],
+  "normalization": "Normalization.json",
+  "mask": "landing-interior-mask.png",
+  "output": "landing-machine.png",
+  "outputSha256": "2939c4c93e8c1399c5b1c3e476f4d8188e5df61ba23919bad3bc4dea4ac7d932",
+  "runtimeRect": [
+    490,
+    163,
+    1310,
+    681
+  ],
+  "nativeSize": [
+    1739,
+    904
+  ],
+  "outerPixelSource": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
+  "originalGenerationBase": "Docs/UIThemes/TackleApparatusConcept/BuildUpgradeRevision/IntegratedMachine/integrated-build-machine-source.png",
+  "normalizationBase": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
+  "normalizationNote": "Build v2 changes only the allowed upper interior; renormalization leaves the Landing output byte-identical."
+}

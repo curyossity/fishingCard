@@ -1,0 +1,61 @@
+[
+  {
+    "name": "page04-insertion-rim",
+    "file": "page04-insertion-rim",
+    "width": 1135,
+    "height": 269,
+    "transparent": true,
+    "rasterOnly": true,
+    "commands": [
+      {
+        "kind": "image",
+        "id": "original-recessed-brass-rim",
+        "src": "C:\\Data\\Projects\\Unity\\fishingCards\\Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
+        "sx": 550,
+        "sy": 562,
+        "sw": 1135,
+        "sh": 269,
+        "x": 0,
+        "y": 0,
+        "w": 1135,
+        "h": 269,
+        "mask": [
+          44,
+          0,
+          1103,
+          0,
+          1125,
+          22,
+          1125,
+          236,
+          1104,
+          256,
+          36,
+          256,
+          14,
+          234,
+          14,
+          25
+        ],
+        "cutout": [
+          46,
+          15,
+          1097,
+          15,
+          1108,
+          29,
+          1108,
+          228,
+          1095,
+          241,
+          44,
+          241,
+          31,
+          228,
+          31,
+          31
+        ]
+      }
+    ]
+  }
+]

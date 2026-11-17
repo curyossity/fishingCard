@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-17",
+  "passed": true,
+  "landingAssetAssertions": 105,
+  "landingLiveAssertions": 54,
+  "fullLoopAssertions": 100,
+  "buildAssetAssertions": 80,
+  "sourceSize": [
+    1739,
+    904
+  ],
+  "displayRect": [
+    490,
+    163,
+    1310,
+    681
+  ],
+  "alphaDifferences": 0,
+  "protectedVisibleColorDifferences": 0,
+  "protectedPixels": 720063,
+  "sourceCopiedByteForByte": true,
+  "obsoleteInteriorOverlaysRemoved": true,
+  "metadata": {
+    "filesChecked": 1725,
+    "errors": 0,
+    "warnings": 0
+  },
+  "sourceSha256": "2939c4c93e8c1399c5b1c3e476f4d8188e5df61ba23919bad3bc4dea4ac7d932",
+  "normalizedSource": "Docs/UIThemes/TackleApparatusConcept/LandingIntegrated/Normalization.json"
+}

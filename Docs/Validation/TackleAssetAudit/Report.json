@@ -1,18 +1,29 @@
 {
-  "date": "2026-11-16",
-  "installedImageCount": 100,
-  "serializedPhaseImageCount": 65,
+  "date": "2026-11-17",
+  "installedImageCount": 97,
+  "serializedPhaseImageCount": 58,
   "replaced": [
     "build-tray",
     "build-tray-three",
     "build-rail-card"
   ],
   "missingTransparentReplacements": [],
+  "missingStandalonePenpotSources": [],
+  "retiredApproaches": [
+    "Different page 08 housing used as tray",
+    "Screenshot rim over incompatible machine footer",
+    "Enlarged wood texture region"
+  ],
+  "integratedHousing": "Docs/UIThemes/TackleApparatusConcept/BuildUpgradeRevision/IntegratedMachine/Generation.json",
+  "landingIntegrated": "Docs/UIThemes/TackleApparatusConcept/LandingIntegrated/Generation.json",
+  "buildFrames": "Docs/UIThemes/TackleApparatusConcept/BuildUpgradeRevision/IntegratedMachine/FramesV2/CompositionVerification.json",
   "checks": {
-    "build": 81,
+    "build": 83,
     "discover": 155,
-    "landing": 96,
-    "liveBuild": 33
+    "landing": 105,
+    "liveBuild": 40,
+    "liveLanding": 54,
+    "fullLoop": 100
   },
   "independentExportByteChecks": [
     {
@@ -218,68 +229,54 @@
   ],
   "buildImageSources": {
     "build-desk": [
-      "Exports/Common/desk-background.png"
+      "AssetLibrary/Exports/Common/desk-background.png"
     ],
     "build-cabinet": [
-      "Exports/Common/rig-cabinet.png"
+      "AssetLibrary/Exports/Common/rig-cabinet.png"
     ],
     "build-title": [
-      "Exports/Common/title-plaque.png"
+      "AssetLibrary/Exports/Common/title-plaque.png"
     ],
     "build-haul": [
-      "Exports/Common/haul-plaque.png"
-    ],
-    "build-machine": [
-      "Exports/Common/machine-housing.png"
+      "AssetLibrary/Exports/Common/haul-plaque.png"
     ],
     "build-console": [
-      "Exports/Common/control-console.png"
+      "AssetLibrary/Exports/Common/control-console.png"
     ],
     "build-message": [
-      "Exports/Common/message-strip.png"
-    ],
-    "build-portrait": [
-      "Exports/Common/portrait-frame.png"
-    ],
-    "build-effect": [
-      "Exports/Common/status-plaque.png"
+      "AssetLibrary/Exports/Common/message-strip.png"
     ],
     "build-rail-heading": [
-      "Exports/Common/status-plaque.png"
+      "AssetLibrary/Exports/Common/status-plaque.png"
     ],
     "build-readout": [
-      "Exports/Common/readout-glass-wide.png"
+      "AssetLibrary/Exports/Common/readout-glass-wide.png"
     ],
     "build-place": [
-      "Exports/Common/button-primary.png"
+      "AssetLibrary/Exports/Common/button-primary.png"
     ],
     "build-upgraded": [
-      "Exports/Common/button-secondary.png"
+      "AssetLibrary/Exports/Common/button-secondary.png"
     ],
     "build-rig-card": [
-      "Exports/Common/rig-card-ivory.png"
+      "AssetLibrary/Exports/Common/rig-card-ivory.png"
     ],
-    "build-tray": [
-      "Exports/Placement/insertion-rail.png"
-    ],
-    "build-tray-three": [
-      "Exports/Common/card-clip.png",
-      "Exports/Common/rope-horizontal.png",
-      "Exports/Placement/insertion-rail.png"
+    "build-machine": [
+      "BuildUpgradeRevision/IntegratedMachine/integrated-build-machine-v2.png"
     ],
     "build-gap-idle": [
-      "Exports/Placement/insertion-plus.png",
-      "Exports/Placement/insertion-socket-idle.png"
+      "AssetLibrary/Exports/Placement/insertion-plus.png",
+      "AssetLibrary/Exports/Placement/insertion-socket-idle.png"
     ],
     "build-gap-selected": [
-      "Exports/Placement/insertion-plus.png",
-      "Exports/Placement/insertion-socket-selected.png"
+      "AssetLibrary/Exports/Placement/insertion-plus.png",
+      "AssetLibrary/Exports/Placement/insertion-socket-selected.png"
     ],
     "build-selection-caret": [
-      "Exports/Common/caret-down.png"
+      "AssetLibrary/Exports/Common/caret-down.png"
     ],
     "build-rail-card": [
-      "Exports/Common/rig-card-ivory.png"
+      "AssetLibrary/Exports/Common/rig-card-ivory.png"
     ]
   },
   "images": [
@@ -466,7 +463,7 @@
       "clear": 3901,
       "partial": 122850,
       "solid": 4,
-      "serializedPhaseDependency": true,
+      "serializedPhaseDependency": false,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "13bef1ef98d8f69852551781f3fad5c03e2d07be2414925d46d7744c2109a4fa"
     },
@@ -1027,7 +1024,7 @@
       "clear": 3412,
       "partial": 47490,
       "solid": 523,
-      "serializedPhaseDependency": true,
+      "serializedPhaseDependency": false,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "4508cd118baeda7a136df8f01ab67811153621f0c59cc9b19643ee2f9b0550ec"
     },
@@ -1038,7 +1035,7 @@
       "clear": 2565,
       "partial": 125264,
       "solid": 235,
-      "serializedPhaseDependency": true,
+      "serializedPhaseDependency": false,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "3184931cc97c906df554c6b40f84e519ef826f5d96ed57a9ea5f780692dcd454"
     },
@@ -1060,7 +1057,7 @@
       "clear": 2062,
       "partial": 90158,
       "solid": 44,
-      "serializedPhaseDependency": true,
+      "serializedPhaseDependency": false,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "0ef29a077751b8ea49126d7f0a0019a53a995e31a960463c212017e4ac983b61"
     },
@@ -1074,6 +1071,17 @@
       "serializedPhaseDependency": true,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "84c6196954cc2ddf923bcb1dbeffa362457ac5e1055afc2c01c9bf0d0f50de49"
+    },
+    {
+      "path": "Assets/UIThemes/TackleApparatus/Art/Landing/Integrated/landing-machine.png",
+      "width": 1739,
+      "height": 904,
+      "clear": 159012,
+      "partial": 1411228,
+      "solid": 1816,
+      "serializedPhaseDependency": true,
+      "alphaAssessment": "Has transparent pixels",
+      "sha256": "2939c4c93e8c1399c5b1c3e476f4d8188e5df61ba23919bad3bc4dea4ac7d932"
     },
     {
       "path": "Assets/UIThemes/TackleApparatus/Art/Placement/insertion-blocked.png",
@@ -1197,17 +1205,6 @@
       "sha256": "2884cdb3eeed43e3af28710839356f216cc5cbeffb871dc8cea23f63fd08ddfb"
     },
     {
-      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-effect.png",
-      "width": 565,
-      "height": 235,
-      "clear": 1596,
-      "partial": 131178,
-      "solid": 1,
-      "serializedPhaseDependency": true,
-      "alphaAssessment": "Has transparent pixels",
-      "sha256": "04d38e4fce545f61e8a9109e447e568b65d210d585d6721ab523baf7669448b9"
-    },
-    {
       "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-gap-idle.png",
       "width": 80,
       "height": 94,
@@ -1242,14 +1239,14 @@
     },
     {
       "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-machine.png",
-      "width": 1310,
-      "height": 657,
-      "clear": 85023,
-      "partial": 775364,
-      "solid": 283,
+      "width": 1739,
+      "height": 904,
+      "clear": 159012,
+      "partial": 1411228,
+      "solid": 1816,
       "serializedPhaseDependency": true,
       "alphaAssessment": "Has transparent pixels",
-      "sha256": "2245c8ff2b0d4a3730510bde508cb8f9483269e9d17e0c93d8f32782e56b7309"
+      "sha256": "3a794c1ca01768976329582acd0ba6aaa033d3b631dcf9f86ca0e54ccdd6ac04"
     },
     {
       "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-message.png",
@@ -1272,17 +1269,6 @@
       "serializedPhaseDependency": true,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "5b0f1c542319d2049a42ab0b4932f866a9e182bbecbc90c2ebc1a422e62c032e"
-    },
-    {
-      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-portrait.png",
-      "width": 455,
-      "height": 225,
-      "clear": 2657,
-      "partial": 99716,
-      "solid": 2,
-      "serializedPhaseDependency": true,
-      "alphaAssessment": "Has transparent pixels",
-      "sha256": "a3e817b56e40a022eff8cbfe61edfcb87f7c225bb67fd9ba09127bda3af3c808"
     },
     {
       "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-rail-card.png",
@@ -1349,28 +1335,6 @@
       "serializedPhaseDependency": true,
       "alphaAssessment": "Has transparent pixels",
       "sha256": "f0c1ba8e911dca115ea1576f6375d389683ab3f8c55a7a85e0854f2f7ce19ba8"
-    },
-    {
-      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-tray-three.png",
-      "width": 1135,
-      "height": 269,
-      "clear": 8366,
-      "partial": 285105,
-      "solid": 11844,
-      "serializedPhaseDependency": true,
-      "alphaAssessment": "Has transparent pixels",
-      "sha256": "2e25bb03a45930cfccccae1f24f71b140090696ea2b9ba6418462cc0b05c507a"
-    },
-    {
-      "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-tray.png",
-      "width": 1135,
-      "height": 269,
-      "clear": 8366,
-      "partial": 296932,
-      "solid": 17,
-      "serializedPhaseDependency": true,
-      "alphaAssessment": "Has transparent pixels",
-      "sha256": "e6b8a9148a81b8f1f63b9a1811e718553ce79e11032d2abe34da1a644141b7ad"
     },
     {
       "path": "Assets/UIThemes/TackleApparatus/Art/RigBuilding/build-upgraded.png",

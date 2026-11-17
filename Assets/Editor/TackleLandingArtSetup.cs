@@ -6,17 +6,20 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>Imports original Penpot exports and authors the functional Tackle Landing screen without placeholder artwork.</summary>
+/// <summary>Imports the integrated Landing variant and authors live controls inside its shared machine silhouette.</summary>
 public static class TackleLandingArtSetup
 {
     private const string Root = TackleDiscoverArtSetup.Root;
     private const string Source = "Docs/UIThemes/TackleApparatusConcept/AssetLibrary/";
     public const string IndicatorPath = Root + "Art/Landing/Indicators/generic-fish.png";
+    public const string HousingPath = Root + "Art/Landing/Integrated/landing-machine.png";
+    public const string HousingSource = "Docs/UIThemes/TackleApparatusConcept/LandingIntegrated/landing-machine.png";
     private static readonly Color Cream = new Color32(222, 211, 165, 255), Ink = new Color32(55, 59, 44, 255);
     private static Dictionary<string, Sprite> sprites;
     private static TMP_FontAsset displayFont, bodyFont;
     [Serializable] private sealed class Manifest { public Asset[] assets; }
     [Serializable] private sealed class Asset { public string name, exportPath; public string[] uses; public float[] unityBorderLBRT; public bool alpha; }
+    [Serializable] private sealed class HousingContract { public string baseSha256,outputSha256; }
 
     /// <summary>Copies only approved Landing/shared exports at original size and keeps existing GUIDs and tuning.</summary>
     public static void BuildAssets()
@@ -42,6 +45,7 @@ public static class TackleLandingArtSetup
             importer.SetTextureSettings(settings); importer.SaveAndReimport(); sprites.Add(asset.name, AssetDatabase.LoadAssetAtPath<Sprite>(path));
         }
         ImportIndicator();
+        ImportHousing();
         displayFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(Root + "Fonts/PressStart2P.asset");
         bodyFont = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(Root + "Fonts/VT323.asset");
         if (displayFont == null || bodyFont == null || AssetDatabase.LoadAssetAtPath<GameObject>(TackleDiscoverArtSetup.RigPrefabPath) == null)
@@ -67,45 +71,40 @@ public static class TackleLandingArtSetup
             Bind(input, "artwork", root.GetComponent<TackleLandingPresentation>());
             Art(stage, "desk-background", new Rect(0, 0, 1920, 1080)); Art(stage, "rig-cabinet", new Rect(24, 44, 380, 995));
             Art(stage, "title-plaque", new Rect(570, 28, 780, 116), 1.11111111f); Art(stage, "haul-plaque", new Rect(1430, 29, 345, 116));
-            Art(stage, "machine-housing", new Rect(490, 163, 1310, 657)); Art(stage, "control-console", new Rect(492, 897, 1310, 165), 1.53846154f);
+            Art(stage, "landing-machine", TackleMachineGeometry.StageBounds); Art(stage, "control-console", new Rect(492, 897, 1310, 165), 1.53846154f);
             Art(stage, "message-strip", new Rect(525, 836, 1140, 54), 1.66666667f);
             Bind(data, "phase", Text(stage, "BiomePhase", "", new Rect(590, 65, 740, 47), 28, Cream, 18));
             Bind(data, "haul", Text(stage, "Haul", "", new Rect(1450, 70, 300, 40), 26, new Color32(215, 172, 85, 255), 16));
             Text(stage, "RigTitle", "YOUR RIG", new Rect(70, 105, 290, 42), 23, Cream);
             Bind(data, "creature", Text(stage, "Creature", "", new Rect(700, 229, 950, 50), 27, Cream, 16));
-            Art(stage, "portrait-frame", new Rect(630, 295, 455, 225), 1.25f);
-            var portrait = Art(stage, "portrait-garfish", new Rect(654, 334, 407, 112), 0, true);
+            var portrait = Art(stage, "portrait-garfish", new Rect(680, 334, 400, 116), 0, true);
             portrait.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(CreatureSpriteSetup.Destination + "creature_garfish.png");
             CreatureSpriteSetup.CenterPortrait(portrait);
             Bind(data, "portrait", portrait);
-            Bind(data, "tags", Text(stage, "CreatureTags", "", new Rect(655, 460, 405, 35), 22, Cream, 15, true));
-            Art(stage, "score-readout", new Rect(1110, 295, 555, 225), 1.25f);
-            Text(stage, "PointsCaption", "LANDING POINTS", new Rect(1135, 318, 245, 34), 21, Cream, 15, true);
-            Text(stage, "ResistanceCaption", "RESISTANCE", new Rect(1405, 318, 235, 34), 21, Cream, 15, true);
-            Bind(data, "points", Text(stage, "Points", "0", new Rect(1140, 365, 240, 76), 56, Cream, 20));
-            Text(stage, "Separator", "/", new Rect(1380, 380, 40, 55), 38, Cream);
-            Bind(data, "resistance", Text(stage, "Resistance", "40", new Rect(1420, 365, 220, 76), 56, Cream, 20));
-            Art(stage, "progress-trough", new Rect(1130, 470, 515, 30), 2);
-            var bar = Rect("Progress Clip", stage, new Rect(1147, 480, 481, 9));
+            Bind(data, "tags", Text(stage, "CreatureTags", "", new Rect(705, 484, 360, 28), 20, Cream, 14, true));
+            Text(stage, "PointsCaption", "LANDING POINTS", new Rect(1150, 326, 205, 28), 20, Cream, 14, true);
+            Text(stage, "ResistanceCaption", "RESISTANCE", new Rect(1385, 326, 220, 28), 20, Cream, 14, true);
+            Bind(data, "points", Text(stage, "Points", "0", new Rect(1148, 365, 210, 76), 56, Cream, 20));
+            Text(stage, "Separator", "/", new Rect(1358, 380, 32, 55), 38, Cream);
+            Bind(data, "resistance", Text(stage, "Resistance", "40", new Rect(1390, 365, 215, 76), 56, Cream, 20));
+            var bar = Rect("Progress Clip", stage, new Rect(1160, 496, 436, 10));
             bar.gameObject.AddComponent<UnityEngine.UI.RectMask2D>();
-            var fill = Art(bar, "score-segment", new Rect(0, 0, 481, 9)).rectTransform;
+            var fill = Art(bar, "score-segment", new Rect(0, 0, 436, 10)).rectTransform;
             fill.anchorMin = Vector2.zero; fill.anchorMax = Vector2.one; fill.offsetMin = fill.offsetMax = Vector2.zero;
             Bind(data, "progressFill", fill);
-            Art(stage, "timing-track", new Rect(625, 548, 1040, 155), 1.25f);
-            var track = Rect("Track Interior", stage, new Rect(649, 570, 992, 103));
+            var track = Rect("Track Interior", stage, new Rect(652, 614, 965, 84));
             track.gameObject.AddComponent<UnityEngine.UI.RectMask2D>(); Bind(data, "track", track);
-            var good = Motion(track, "landing-zone", 103); var perfect = Motion(track, "perfect-band", 103);
+            var good = Motion(track, "landing-zone", 84); var perfect = Motion(track, "perfect-band", 84);
             Bind(data, "goodZone", good); Bind(data, "perfectZone", perfect);
             var marker = Art(track, "generic-fish", new Rect(0, 0, 53, 35));
             var fish = marker.rectTransform; fish.name = "Fish Indicator";
             fish.anchorMin = fish.anchorMax = fish.pivot = new Vector2(.5f, .5f); fish.anchoredPosition = Vector2.zero;
             Bind(data, "fish", fish); Bind(data, "fishMarker", marker);
-            var lampContent = Rect("Attempt Lamps", stage, new Rect(645, 735, 280, 55)); Bind(data, "lampContent", lampContent);
+            var lampContent = Rect("Attempt Lamps", stage, new Rect(655, 734, 252, 55)); Bind(data, "lampContent", lampContent);
             var lamp = Art(lampContent, "lamp-off", new Rect(0, 0, 55, 55), 0, true); lamp.gameObject.SetActive(false);
             Bind(data, "lampTemplate", lamp); Bind(data, "lampOn", sprites["lamp-on"]); Bind(data, "lampOff", sprites["lamp-off"]);
-            Art(stage, "status-plaque", new Rect(958, 735, 350, 64), 2); Art(stage, "status-plaque", new Rect(1340, 735, 315, 64), 2);
-            Bind(data, "attempts", Text(stage, "Attempts", "", new Rect(975, 754, 316, 32), 21, Cream, 14));
-            Bind(data, "movement", Text(stage, "Behavior", "", new Rect(1360, 752, 275, 34), 23, new Color32(175, 203, 167, 255), 15));
+            Bind(data, "attempts", Text(stage, "Attempts", "", new Rect(942, 748, 300, 30), 20, Cream, 14));
+            Bind(data, "movement", Text(stage, "Behavior", "", new Rect(1318, 748, 270, 30), 22, new Color32(175, 203, 167, 255), 15));
             Bind(data, "message", Text(stage, "Instruction", "", new Rect(555, 844, 1080, 35), 24, Cream, 17, true));
             Art(stage, "readout-glass-wide", new Rect(545, 920, 505, 116), 1.33333333f);
             Bind(data, "grade", Text(stage, "Grade", "", new Rect(570, 933, 455, 30), 22, Cream, 12));
@@ -154,6 +153,33 @@ public static class TackleLandingArtSetup
         var settings = new TextureImporterSettings(); importer.ReadTextureSettings(settings); settings.spriteMeshType = SpriteMeshType.FullRect;
         importer.SetTextureSettings(settings); importer.SaveAndReimport();
         sprites.Add("generic-fish", AssetDatabase.LoadAssetAtPath<Sprite>(IndicatorPath));
+    }
+
+    /// <summary>Imports the complete normalized Landing housing without cropping, slicing or altering the shared exterior.</summary>
+    private static void ImportHousing()
+    {
+        var contract=JsonUtility.FromJson<HousingContract>(File.ReadAllText("Docs/UIThemes/TackleApparatusConcept/LandingIntegrated/Normalization.json"));
+        if(HashFile(RigBuildingSetup.ArtPath+"build-machine.png")!=contract.baseSha256||HashFile(HousingSource)!=contract.outputSha256)
+            throw new InvalidOperationException("The Landing housing must be normalized against the current Build shell before import.");
+        Folder(Root+"Art/Landing/Integrated");
+        if(!File.Exists(HousingPath)||!File.ReadAllBytes(HousingPath).SequenceEqual(File.ReadAllBytes(HousingSource)))File.Copy(HousingSource,HousingPath,true);
+        AssetDatabase.ImportAsset(HousingPath,ImportAssetOptions.ForceSynchronousImport);
+        var importer=(TextureImporter)AssetImporter.GetAtPath(HousingPath);
+        importer.textureType=TextureImporterType.Sprite;importer.spriteImportMode=SpriteImportMode.Single;importer.spritePixelsPerUnit=100;
+        importer.filterMode=FilterMode.Point;importer.wrapMode=TextureWrapMode.Clamp;importer.mipmapEnabled=false;importer.isReadable=false;
+        importer.sRGBTexture=true;importer.alphaSource=TextureImporterAlphaSource.FromInput;importer.alphaIsTransparency=true;
+        importer.npotScale=TextureImporterNPOTScale.None;importer.maxTextureSize=2048;importer.textureCompression=TextureImporterCompression.Uncompressed;
+        importer.spriteBorder=Vector4.zero;
+        var settings=new TextureImporterSettings();importer.ReadTextureSettings(settings);settings.spriteMeshType=SpriteMeshType.FullRect;
+        importer.SetTextureSettings(settings);importer.SaveAndReimport();
+        sprites.Add("landing-machine",AssetDatabase.LoadAssetAtPath<Sprite>(HousingPath));
+    }
+
+    /// <summary>Checks the immutable normalization inputs so authoring cannot silently import a drifting phase silhouette.</summary>
+    private static string HashFile(string path)
+    {
+        using(var hash=System.Security.Cryptography.SHA256.Create())
+            return BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();
     }
     /// <summary>Creates clipped scroll content without a visible placeholder background or an artificial item cap.</summary>
     private static UnityEngine.UI.ScrollRect Scroll(Transform parent, string name, Rect bounds, out RectTransform content)

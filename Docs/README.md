@@ -4,6 +4,8 @@ Design baseline: 6 November 2026, with the slot specification agreed on 7 Novemb
 
 ## Active specifications
 
+The 17 November artwork update gives Landing and Build integrated machine variants with identical outer pixels and geometry. See [Landing validation](Validation/LandingIntegrated/README.md) and [shared-shell provenance](UIThemes/TackleApparatusConcept/LandingIntegrated/README.md). Discover retains its existing housing; no transition animation is implemented by this artwork update.
+
 | Document | Responsibility |
 | --- | --- |
 | [Full GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) | Authoritative mechanics, proposals and open decisions |

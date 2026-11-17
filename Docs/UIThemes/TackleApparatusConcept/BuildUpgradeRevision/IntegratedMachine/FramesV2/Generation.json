@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-17",
+  "generator": "built-in image_gen",
+  "mode": "edit",
+  "purpose": "Remove only the score progress trough for the Build effects panel; keep both frames identical to Landing.",
+  "referenceSha256": "2939c4c93e8c1399c5b1c3e476f4d8188e5df61ba23919bad3bc4dea4ac7d932",
+  "generatedSource": "C:\\Users\\user\\.codex\\generated_images\\01a1b0dc-e1b2-7972-8110-edc369ccbd6b\\exec-2e6fdcc4-c5b0-4271-bc81-1220bccc5352.png",
+  "generatedSha256": "7c1ffd125c8c8710c16e4bbadbb8c53efbae7f04d3af954c7326f58155394f6d",
+  "prompt": "Prompt.txt",
+  "output": "../integrated-build-machine-v2.png",
+  "outputSha256": "3a794c1ca01768976329582acd0ba6aaa033d3b631dcf9f86ca0e54ccdd6ac04",
+  "composition": "CompositionVerification.json"
+}

@@ -1,0 +1,49 @@
+{
+  "source": "Docs\\UIThemes\\TackleApparatusConcept\\RigPlacement.png",
+  "sourceSha256": "ddd26bb7f9c648f5d6082c17f8fbd86d27c02f5181d01333e38d2ef5c70aa6ed",
+  "pageId": "38e9e9ec-a6d5-8050-8008-e7af29ab88cf",
+  "crop": [
+    550,
+    562,
+    1135,
+    269
+  ],
+  "outerMask": [
+    44,
+    0,
+    1103,
+    0,
+    1125,
+    22,
+    1125,
+    236,
+    1104,
+    256,
+    36,
+    256,
+    14,
+    234,
+    14,
+    25
+  ],
+  "interiorCutout": [
+    46,
+    15,
+    1097,
+    15,
+    1108,
+    29,
+    1108,
+    228,
+    1095,
+    241,
+    44,
+    241,
+    31,
+    228,
+    31,
+    31
+  ],
+  "operation": "Native-size rim isolation; outside casing and the entire interior are transparent.",
+  "sha256": "a4363b2c6972ae78eaabf7d3efb812e5059298539471977076169badbc717912"
+}
