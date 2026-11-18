@@ -1,0 +1,26 @@
+{
+  "checks": 28,
+  "changes": [
+    {
+      "reel": 0,
+      "leftChangedSamples": 182,
+      "rightChangedSamples": 179,
+      "leftPeak": 0.509803951,
+      "rightPeak": 0.964705944
+    },
+    {
+      "reel": 1,
+      "leftChangedSamples": 182,
+      "rightChangedSamples": 179,
+      "leftPeak": 0.75686276,
+      "rightPeak": 0.964705944
+    },
+    {
+      "reel": 2,
+      "leftChangedSamples": 182,
+      "rightChangedSamples": 183,
+      "leftPeak": 0.7921569,
+      "rightPeak": 1.454902
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
-/// <summary>Places every moving wheel graphic behind one curved stencil while retaining the supplied static rim.</summary>
+/// <summary>Clips the moving paper and native faces while exposing separately animated drum bands around the opening.</summary>
 public static class TackleReelApertureSetup
 {
-    private const string ApertureName = "Curved Reel Aperture", RimName = "Fixed Reel Rim";
+    private const string ApertureName = "Curved Reel Aperture", RimName = "Reel Edge Bands";
 
     /// <summary>Traces the inner paper edge of the preserved 412x490 drum, narrowing at its top and bottom.</summary>
     private static Vector2[] Contour()
@@ -28,7 +28,7 @@ public static class TackleReelApertureSetup
         foreach (var reel in root.GetComponentsInChildren<TackleReelAnimator>(true))
         {
             var aperture = reel.transform.Find(ApertureName) as RectTransform;
-            var rim = reel.transform.Find(RimName);
+            var rim = reel.transform.Find(RimName) ?? reel.transform.Find("Fixed Reel Rim");
             var surface = reel.GetComponentInChildren<TackleReelSurface>(true);
             var fields = new SerializedObject(reel);
             if (!enabled)
@@ -39,6 +39,7 @@ public static class TackleReelApertureSetup
                     UnityEngine.Object.DestroyImmediate(aperture.gameObject);
                 }
                 if (rim != null) UnityEngine.Object.DestroyImmediate(rim.gameObject);
+                surface.ConfigureEdges(null);
                 fields.FindProperty("faceContent").objectReferenceValue = null;
                 fields.ApplyModifiedPropertiesWithoutUndo(); continue;
             }
@@ -47,9 +48,11 @@ public static class TackleReelApertureSetup
                 rim = new GameObject(RimName, typeof(RectTransform), typeof(UnityEngine.UI.RawImage)).transform;
                 Stretch((RectTransform)rim, reel.transform);
             }
+            rim.name = RimName;
             rim.SetAsFirstSibling();
             var image = rim.GetComponent<UnityEngine.UI.RawImage>();
             image.texture = surface.GetComponent<UnityEngine.UI.RawImage>().texture; image.raycastTarget = false;
+            surface.ConfigureEdges(image);
             if (aperture == null)
             {
                 aperture = new GameObject(ApertureName, typeof(RectTransform), typeof(ReelApertureMask), typeof(UnityEngine.UI.Mask)).GetComponent<RectTransform>();

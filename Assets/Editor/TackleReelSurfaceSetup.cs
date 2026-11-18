@@ -32,11 +32,13 @@ public static class TackleReelSurfaceSetup
         if (material == null) { material = new Material(shader); AssetDatabase.CreateAsset(material, MaterialPath); }
         material.shader = shader;
         material.SetTexture("_PaperTex", AssetDatabase.LoadAssetAtPath<Texture2D>(paperPath));
-        // Original 412x490 drum texels: only these decorative crops rotate; their surrounding rim never does.
+        // Original drum texels supply reusable decoration; full-size wheels opt into rotating material edge bands at runtime.
         material.SetVector("_PlaqueUV", new Vector4(49f / 412, 85f / 490, 316f / 412, 79f / 490));
         material.SetVector("_DividerUV", new Vector4(34f / 412, 390f / 490, 344f / 412, 10f / 490));
         material.SetVector("_Plaque", new Vector4(123, 26, -95, 0));
         material.SetVector("_Dividers", new Vector4(134, 2.8f, 112, -48));
+        material.SetVector("_EdgeBandUV", new Vector4(.025f,.060f,.944f,.980f));
+        material.SetVector("_DrumTexelSize", new Vector4(1f/412,1f/490,0,0));
         material.SetFloat("_Phase", 0); material.SetFloat("_Radius", 172);
         material.SetVector("_CylinderSize", new Vector4(320, 365, 0, 0));
         EditorUtility.SetDirty(material);
@@ -77,6 +79,7 @@ public static class TackleReelSurfaceSetup
             renderer.Configure(image, material);
             var data = new SerializedObject(reel); data.FindProperty("surface").objectReferenceValue = renderer; data.ApplyModifiedPropertiesWithoutUndo();
         }
+        TackleReelAnimationSetup.Configure(root);
     }
 
     /// <summary>Checks source preservation, complete native-cylinder bindings and a compiled shader in the serialized prefab.</summary>

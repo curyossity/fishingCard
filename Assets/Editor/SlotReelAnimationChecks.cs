@@ -48,6 +48,8 @@ public static class SlotReelAnimationChecks
             && Mathf.Abs(s.MaterialInstance.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x), "Paper phase differs from symbols/captions.");
         Check(surfaces.Select((s,i) => Mathf.Abs(s.GetComponent<UnityEngine.UI.RawImage>().materialForRendering.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x),
             "The stencil-derived paper material stopped following the wheel.");
+        Check(surfaces.Select((s,i) => s.EdgeMaterialInstance == null || Mathf.Abs(s.EdgeMaterialInstance.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x),
+            "A drum edge stopped following its paper and symbols.");
         Check(initial.SequenceEqual(Enumerable.Range(0, 3).Select(controller.SlotMachine.GetTag)), "Animation rerolled model faces.");
         SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), "InitialSpinning.png", output: Output);
         float timeout = Time.realtimeSinceStartup + 5;
@@ -65,6 +67,7 @@ public static class SlotReelAnimationChecks
         Check(controller.TrySetSlotReelLocked(controller.SlotMachine.Revision, 1, true), "Could not lock settled middle reel.");
         float lockedPhase = reels[1].Phase;
         float lockedPaperPhase = surfaces[1].Phase;
+        float lockedEdgePhase = surfaces[1].EdgeMaterialInstance != null ? surfaces[1].EdgeMaterialInstance.GetFloat("_Phase") : 0;
         string lockedTag = controller.SlotMachine.GetTag(1);
         Check(controller.TryRespinSlotMachine(controller.SlotMachine.Revision), "Respin failed.");
         string[] final = Enumerable.Range(0, 3).Select(controller.SlotMachine.GetTag).ToArray();
@@ -74,6 +77,8 @@ public static class SlotReelAnimationChecks
         Check(reels[1].Phase == lockedPhase && controller.SlotMachine.GetTag(1) == lockedTag, "Locked wheel changed during respin.");
         Check(surfaces[1].Phase == lockedPaperPhase && surfaces[0].Phase == reels[0].Phase && surfaces[2].Phase == reels[2].Phase,
             "Locked paper moved or unlocked decorations drifted from their symbols.");
+        Check(surfaces[1].EdgeMaterialInstance == null || surfaces[1].EdgeMaterialInstance.GetFloat("_Phase") == lockedEdgePhase,
+            "The locked drum's edge bands moved during a respin.");
         SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), "LockedRespin.png", output: Output);
         timeout = Time.realtimeSinceStartup + 5;
         while (view.IsAnimating && Time.realtimeSinceStartup < timeout) yield return null;

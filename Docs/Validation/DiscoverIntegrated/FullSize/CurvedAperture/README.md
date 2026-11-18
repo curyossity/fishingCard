@@ -1,5 +1,7 @@
 # Curved reel aperture validation
 
+The [rotating edge-band update](../RotatingEdges/README.md) retains this clipping and animates the drum material around it. This page records the preceding fixed-rim version.
+
 18 November 2026. Each full-size reel now has one curved stencil opening traced from the inner paper edge of the original 412 × 490 drum image. The original rim renders as a fixed background, outside the mask. Moving paper, plaques, dividers, symbols and native captions all render inside the same aperture. No artwork file, reel size, position or timing was changed.
 
 `ReelApertureMask` generates only invisible clipping geometry. `TackleReelApertureSetup` authors the mask, fixed rim and native-face container, and removes those additions when switching back to the preserved compact version. `TackleReelSurface` synchronizes the stencil-derived rendering material with its private animated material; masking cannot freeze the paper while symbols move.

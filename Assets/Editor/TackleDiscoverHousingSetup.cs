@@ -104,6 +104,7 @@ public static class TackleDiscoverHousingSetup
         var lamps = (UnityEngine.UI.Image)art.FindProperty("matchLamps").objectReferenceValue;
         Place(lamps.rectTransform, UsesFullSizeReels ? new Rect(1043,683,197,35) : new Rect(1083,733,114,42)); lamps.preserveAspect = true;
         TackleReelApertureSetup.Configure(root, UsesFullSizeReels);
+        TackleReelAnimationSetup.Configure(root);
     }
 
     /// <summary>Imports the normalized 1739x904 source with its proven shared alpha and protected exterior contract.</summary>

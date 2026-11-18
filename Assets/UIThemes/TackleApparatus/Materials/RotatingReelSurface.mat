@@ -33,7 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AnimateEdges: 0
     - _ColorMask: 15
+    - _EdgeLayer: 0
+    - _EdgeStyle: 0
     - _Phase: 0
     - _Radius: 172
     - _Stencil: 0
@@ -47,6 +50,8 @@ Material:
     - _CylinderSize: {r: 320, g: 365, b: 0, a: 0}
     - _DividerUV: {r: 0.08252427, g: 0.79591835, b: 0.83495146, a: 0.020408163}
     - _Dividers: {r: 134, g: 2.8, b: 112, a: -48}
+    - _DrumTexelSize: {r: 0.0024271845, g: 0.0020408162, b: 0, a: 0}
+    - _EdgeBandUV: {r: 0.025, g: 0.06, b: 0.944, a: 0.98}
     - _Plaque: {r: 123, g: 26, b: -95, a: 0}
     - _PlaqueUV: {r: 0.11893204, g: 0.1734694, b: 0.7669903, a: 0.16122448}
   m_BuildTextureStacks: []

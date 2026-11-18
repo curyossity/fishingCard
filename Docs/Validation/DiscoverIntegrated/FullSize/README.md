@@ -1,6 +1,6 @@
 # Original-size Discover wheels — validation
 
-**Current rendering:** [curved aperture validation and previews](CurvedAperture/README.md) replaces rectangular clipping while retaining the registered positions and original reel size. The parent-folder captures below record the earlier rendering.
+**Current rendering:** the selectable [segmented-band alternative](SegmentedBands/README.md) is active. The previous [continuous edge-wear version](RotatingEdges/README.md) is preserved. Both retain the [curved aperture](CurvedAperture/README.md), registered positions and original reel size. The parent-folder captures below record the earlier rendering.
 
 18 November 2026. The new version is installed and selected in Unity. Earlier original and compact variants remain preserved.
 

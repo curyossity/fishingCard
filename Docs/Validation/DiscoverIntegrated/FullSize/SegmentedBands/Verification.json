@@ -1,0 +1,13 @@
+{
+  "selected": "SegmentedBands",
+  "apertures": 9,
+  "housing": 19,
+  "art": 155,
+  "surface": 12,
+  "gpuMotion": 28,
+  "gpuClipping": 28,
+  "liveAnimation": 40,
+  "controlRaycasts": 4,
+  "previousStyleRetained": true,
+  "regenerationRetainsSelection": true
+}

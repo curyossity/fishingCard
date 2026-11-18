@@ -7,7 +7,7 @@ using UnityEngine;
 /// <summary>Checks actual stencil rendering and native-face ownership independently of the aperture mesh builder.</summary>
 public static class ReelApertureChecks
 {
-    /// <summary>Verifies that each moving layer shares one hidden mask while its original rim stays outside.</summary>
+    /// <summary>Verifies the shared paper mask and the separately bound animated drum-band layer.</summary>
     public static int ValidateAssets()
     {
         int checks = 0;
@@ -22,10 +22,11 @@ public static class ReelApertureChecks
             check(fields.FindProperty("faceContent").objectReferenceValue == aperture.transform &&
                 reel.GetComponentInChildren<TackleReelSurface>(true).transform.parent == aperture.transform,
                 "Paper and native faces do not share the same aperture.");
-            var rim = reel.transform.Find("Fixed Reel Rim");
+            var rim = reel.transform.Find("Reel Edge Bands");
             check(rim != null && rim.parent == reel.transform && !rim.IsChildOf(aperture.transform) &&
-                rim.GetComponent<UnityEngine.UI.RawImage>().texture != null && rim.GetSiblingIndex() < aperture.transform.GetSiblingIndex(),
-                "The fixed supplied rim is not behind the clipped moving layers.");
+                rim.GetComponent<UnityEngine.UI.RawImage>().texture != null && rim.GetSiblingIndex() < aperture.transform.GetSiblingIndex() &&
+                new SerializedObject(reel.GetComponentInChildren<TackleReelSurface>(true)).FindProperty("edgeSurface").objectReferenceValue == rim.GetComponent<UnityEngine.UI.RawImage>(),
+                "The drum-band renderer is not bound behind the clipped moving layers.");
         }
         return checks;
     }
