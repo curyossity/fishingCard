@@ -56,7 +56,7 @@ Four lower sockets represent rarity only:
 
 Inactive sockets stay visibly inactive. Hook count is not independent gameplay state.
 
-Vocabulary review baseline: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Heavy remains under review. Supported supplied icons fill authored tag sockets in vocabulary order; unsupported/unused sockets stay empty. Tag-name tooltips use a separate non-intercepting layer. Do not invent icons or universal abilities from tag artwork.
+The 18 November 2026 vocabulary is Schooling, Predator, Anchored, Armored and Elusive. Each creature has exactly one gameplay tag. Show that tag using its supported supplied icon in an authored tag socket; unused sockets stay empty. Fish, Small and Heavy are retired gameplay tags. Preserve the reusable master and historical icon resources; the new rule does not authorize artwork edits or claim existing views/data have migrated. Tag-name tooltips use a separate non-intercepting layer. Do not invent icons or universal abilities from tag artwork.
 
 ## Compact rig cards
 

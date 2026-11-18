@@ -2,6 +2,8 @@
 
 Implemented 7 November 2026 against the [agreed slot specification](Slot%20Machine%20Mechanic.md). Discover replaces the tag bar in `Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity`. The [approved Discover artwork is integrated](Validation/TackleDiscoverArt/README.md). Existing source scenes and saved progression are preserved.
 
+**Design divergence, 18 November 2026:** this document records existing implementation and validation. The active specification now selects four of five tags, gives each creature one tag and removes pair secondary-tag preference. The runtime's eight-tag vocabulary, secondary-tag fields/weighting and earlier validation below have not been migrated by this documentation change; they are not requirements for the new design.
+
 ## Ownership
 
 - `TagSlotMachineRuntime`: three authoritative faces, one locked reel, spin state, respin budget, monotonic session/revision identities and immutable results. The baseline owner supplies four equal symbols and one optional respin. A respin requires exactly one lock. Every accepted command advances the revision; duplicate/stale commands are rejected.

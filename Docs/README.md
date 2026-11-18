@@ -1,6 +1,8 @@
 # Deepwater documentation
 
-Design baseline: 6 November 2026, with the slot specification agreed on 7 November and the Landing specification supplied on 13 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements Discover with its approved artwork. The [Landing increment](Landing%20Challenge%20Mechanic.md) implements movement, scoring and success/failure boundaries with the approved Tackle Apparatus artwork; see [art validation](Validation/TackleLandingArt/README.md). The [Build/Upgrade increment](Rig%20Building%20Mechanic.md) implements new-species placement, automatic duplicates, levels and sale-value accumulation in its own Tackle screen; see [validation](Validation/RigBuilding/README.md). Its approved Penpot artwork and automatic upgrade display were integrated on 16 November; see [Build artwork validation](Validation/TackleBuildArt/README.md). Species ability assignments and biome completion/reward predicates remain open. Numeric prototype settings and illustrative abilities are not final content.
+Design baseline: 6 November 2026, with the slot specification agreed on 7 November, the Landing specification supplied on 13 November and the five-tag design updated on 18 November. Deepwater is the working title. The [slot runtime](Slot%20Machine%20Runtime.md) implements the earlier Discover rules with approved artwork; it has not migrated to the five-tag design. The [Landing increment](Landing%20Challenge%20Mechanic.md) implements movement, scoring and success/failure boundaries with the approved Tackle Apparatus artwork; see [art validation](Validation/TackleLandingArt/README.md). The [Build/Upgrade increment](Rig%20Building%20Mechanic.md) implements new-species placement, automatic duplicates, levels and sale-value accumulation in its own Tackle screen; see [validation](Validation/RigBuilding/README.md). Its approved Penpot artwork and automatic upgrade display were integrated on 16 November; see [Build artwork validation](Validation/TackleBuildArt/README.md). Biome completion/reward predicates remain open. Numeric prototype settings and historical illustrative abilities are not final content.
+
+The current design gives every creature exactly one tag and one primary ability. Tags are Schooling, Predator, Anchored, Armored and Elusive; Harbor preparation chooses four of five, and a pair's unmatched symbol adds no species preference. This revision changes documentation only. Shared philosophies and mechanics belong in the GDD and supplements; species assignments, individual effects, descriptions, tuning and level progressions belong in editable game content definitions, without a duplicate Markdown roster. Existing definitions still require migration and validation; unresolved content decisions must not be inferred from artwork, historical tests or conversational proposals.
 
 ## Active specifications
 
@@ -16,13 +18,13 @@ The 17 November artwork update gives Landing and Build integrated machine varian
 | [Card specification](Card%20Visual%20Specification.md) | Supplied-art boundary and dynamic fields |
 | [UI plan](UI%20Redesign%20Plan.md) | Presentation requirements and unresolved inputs |
 | [Rig Building](Rig%20Building%20Mechanic.md) | Unique species, placement, levels, duplicate upgrades and sale value |
-| [Creature abilities](Creature%20Ability%20Design.md) | Primary abilities, level scaling and positional authoring |
+| [Creature abilities](Creature%20Ability%20Design.md) | Content ownership, tag identity, shared ability timing, positional authoring and implementation boundaries |
 | [Equipment](Equipment%20Passive%20Rules.md) | Design scope and progression decisions |
 | [Techniques](Technique%20Card%20Definitions.yaml) | Review status; no redesigned catalog is finalized |
 | [Events](Event%20Rules%20Implementation%20Tasks.md) | Compatibility decisions and technical constraints |
 | [Development guidelines](Full%20Game%20Development%20Guidelines.md) | Production quality policy |
 
-The GDD takes precedence over code, serialized content, screenshots and historical approvals. Supplements must not indirectly finalize an open GDD decision. Existing filenames and code identifiers remain stable; the player-facing working title is Deepwater.
+The GDD takes precedence over code, serialized content, screenshots and historical approvals for shared gameplay rules. Editable game definitions own individual species content within those rules. Supplements must not indirectly finalize an open GDD decision. Existing filenames and code identifiers remain stable; the player-facing working title is Deepwater.
 
 ## Reference status
 

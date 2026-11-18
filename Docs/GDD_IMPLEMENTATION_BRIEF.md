@@ -1,12 +1,12 @@
 # Deepwater — Implementation Brief
 
-Working title; agreed direction dated 6 November 2026, subject to refinement and playtesting. The [full GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) is authoritative. This is design, not a claim of implementation. See [document status](README.md).
+Working title; agreed direction dated 6 November 2026, with the five-tag design updated 18 November 2026, subject to refinement and playtesting. The [full GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) is authoritative. This is design, not a claim of implementation. See [document status](README.md).
 
 ## Core loop
 
 **Discover → Land → Build**, in Unity 2D with illustrated cards as the world.
 
-1. **Discover:** choose four of eight tags in the Harbor; keep those equally likely symbols for the expedition. Three independent reels initially spin, then accept or lock exactly one and respin the other two once. Keep the fixed respin result visible until explicit Accept Tags; no further lock/respin or timed continuation is allowed. Different symbols allow any eligible biome creature; a pair guarantees its repeated tag and prefers the third; a triple guarantees its tag. Pair/triple rarity chances progressively improve. Roll rarity separately and fall back to the nearest suitable tier, breaking ties toward the lower tier without abandoning the guaranteed tag. Normal creatures are biome-wide, not depth-limited; preserve unlocks and exclude separately gated Apex. Rarity probabilities and preference strength remain tunable. See [slot specification](Slot%20Machine%20Mechanic.md).
+1. **Discover:** choose four of five tags in the Harbor; keep those equally likely symbols for the expedition. Three independent reels initially spin, then accept or lock exactly one and respin the other two once. Keep the fixed respin result visible until explicit Accept Tags; no further lock/respin or timed continuation is allowed. Different symbols allow any eligible biome creature; a pair guarantees its repeated tag, with no preference from the unmatched symbol; a triple guarantees its tag. Pair/triple rarity chances progressively improve. Roll rarity separately and fall back to the nearest suitable tier, breaking ties toward the lower tier without abandoning the guaranteed tag. Normal creatures are biome-wide, not depth-limited; preserve unlocks and exclude separately gated Apex. Rarity probabilities remain tunable. See [slot specification](Slot%20Machine%20Mechanic.md).
 2. **Land:** generate Landing Points to reach the creature's Resistance within limited attempts. Skill determines action quality; the existing rig, creature abilities, Techniques and equipment may enhance it. Every creature encounter can be won or lost.
 3. **Build / Upgrade:** a new species is previewed and inserted into a permitted gap at Level 1; a duplicate automatically upgrades the existing position. Every landed copy adds full base sale value. Recalculate primary abilities and continue automatically. No Catch/Bait choice or manual rearrangement. See [Rig Building](Rig%20Building%20Mechanic.md).
 
@@ -31,17 +31,19 @@ Difficulty rises mainly through Resistance. Characteristics/rarity may influence
 - Each species occupies at most one ordered position. New species enter at Level 1; duplicates add one level and one collected copy automatically.
 - Choose a legal insertion gap for a new species, preview without mutation, then commit once. Existing members retain relative order; no manual rearrangement.
 - Every copy contributes full base sale value. Value effects modify accumulated species value unless explicitly scoped otherwise.
-- One primary ability per species. Upgrades strengthen its identity; exact species assignments and level caps remain open.
+- Exactly one gameplay tag and one primary ability per species, including Apex. Upgrades strengthen the ability's identity; level scaling and caps require explicit authoring.
 - Count positions, not copies, for adjacency, contiguous groups and tag counts. Before is nearer the Rod; after is nearer the Line Tip.
 - Recalculate continuous effects on insertion, upgrade and authorized removal. Acquired and Upgraded triggers are separate.
 - Only committed current-level abilities assist the next Landing. The encountered creature and previews cannot assist their own acquisition.
 - No rig capacity or replacement slot cap is introduced. No-legal-position handling must be designed before assigning a restriction combination that can cause it.
 
-Illustrative Sardine multiplier growth and Mackerel contiguous-value bonuses remain test examples, not finalized catalog assignments. The primary-ability schema supports landing, attempts, Miss protection, value and placement restrictions; other effect families require explicit handlers and content.
+Species tags, primary abilities, descriptions, tuning and level progressions belong in editable game content definitions, not a duplicate Markdown roster. Shared rules remain governed by the GDD. Historical test examples are not species assignments. The current primary-ability schema supports landing, attempts, Miss protection, value and placement restrictions; other effect families require explicit handlers and content. See [ability authoring](Creature%20Ability%20Design.md) for shared timing, positional and stacking requirements.
 
 The approved Penpot Build/Upgrade artwork is integrated as a separate live-data canvas. New placements retain legal-gap selection and confirmation; duplicates show a brief automatic result with their current level, value and effect before Discover becomes visible. No extra upgrade decision or gameplay reward is introduced. See [artwork validation](Validation/TackleBuildArt/README.md).
 
-Vocabulary: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Weight/Heavy remain under review; Weight does not imply Resistance or capacity.
+Tags describe build identity: **Schooling** — cooperation and shared strength; **Predator** — exploitation and decisive payoff; **Anchored** — structure and foundations; **Armored** — dependability and resilience; **Elusive** — finesse and mastery. Each may affect multiple outcomes; support same-tag, cross-tag and independent abilities. Tags grant no automatic powers. Fish, Small and Heavy are retired gameplay tags. Weight remains undecided and does not imply Resistance or capacity.
+
+The five-tag vocabulary, one-tag content and revised Discover pair rule are documentation changes pending runtime/content migration. Existing serialized tags, artwork and validation results do not establish compliance with the new design.
 
 ## Expedition and progression
 

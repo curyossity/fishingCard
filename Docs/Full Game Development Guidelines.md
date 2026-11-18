@@ -32,6 +32,7 @@ New or changed work should:
 - Keep runtime state out of shared authored assets.
 - Support future multi-biome, progression, save/load, UI scaling, and content expansion where the touched system logically owns those concerns.
 - Use authored data and reusable definitions instead of one-off hardcoding when content variation is expected.
+- Keep species tags, abilities, descriptions, tuning and level progression in editable game definitions; document shared mechanics and authoring contracts without a duplicate Markdown species catalog.
 - Include relevant validation, tests, or Unity-safe verification for the risk of the change.
 - Update documentation when behavior, ownership, data contracts, or visual contracts change.
 
@@ -58,6 +59,6 @@ When modifying a system that still contains MVP-era assumptions, use the opportu
 - Runtime data stored in authored definitions.
 - Effect handling that cannot support richer final-game cards.
 
-An initially unlocked Shallows is a progression rule, not permission for a one-biome architecture. Follow the GDD for sequential unlocks, empty-rig expedition starts and automatic continuation. Success and failure both award full accumulated creature sale value, including duplicate copies and applicable bonuses. Capture value before removing all temporary attachments at expedition end, and preserve permanent unlocks/progression. Do not reintroduce voluntary surfacing, capacity or overload through inherited tasks or debt entries. Equipment, Techniques, additional completion rewards and Weight/Heavy require the decisions recorded in the GDD.
+An initially unlocked Shallows is a progression rule, not permission for a one-biome architecture. Follow the GDD for sequential unlocks, empty-rig expedition starts and automatic continuation. Success and failure both award full accumulated creature sale value, including duplicate copies and applicable bonuses. Capture value before removing all temporary attachments at expedition end, and preserve permanent unlocks/progression. Do not reintroduce voluntary surfacing, capacity or overload through inherited tasks or debt entries. Equipment, Techniques, additional completion rewards and Weight require the decisions recorded in the GDD. Fish, Small and Heavy are retired gameplay tags; historical data and artwork do not reinstate them.
 
 Resolve these issues in the touched area when reasonable, or identify them clearly as remaining production-hardening work.

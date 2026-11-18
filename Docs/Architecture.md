@@ -1,26 +1,28 @@
 # Deepwater — Architecture
 
-Current responsibility map: Discover → Land → Build / Upgrade, updated 15 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) governs mechanics; [Architecture Implementation Reference](Architecture%20Implementation%20Reference.md) preserves historical implementation details.
+Current responsibility map: Discover → Land → Build / Upgrade, updated 18 November 2026 for five-tag content ownership. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) governs mechanics; [Architecture Implementation Reference](Architecture%20Implementation%20Reference.md) preserves historical implementation details. Five-tag preparation, one-tag content and removal of secondary-tag preference are intended rules pending runtime migration.
 
 ## Ownership
 
 | Owner | Responsibility |
 | --- | --- |
 | FishingRunController | Expedition phase, accepted creature occurrence, landing commands/outcomes, placement commitment, automatic duplicate resolution, continuation and exactly-once settlement |
-| EncounterRuntime / slot runtime | Four prepared symbols, three reels, one optional respin, explicit acceptance, eligible biome creature selection and occurrence identity |
-| SlotCreatureSelector / SlotSelectionSettings | Separate rarity roll, tag guarantees, lower-tier nearest-rarity ties, secondary-tag preference and unlock/Apex eligibility |
+| EncounterRuntime / slot runtime | Four prepared symbols chosen from five tags, three reels, one optional respin, explicit acceptance, eligible biome creature selection and occurrence identity |
+| SlotCreatureSelector / SlotSelectionSettings | Separate rarity roll, tag guarantees, lower-tier nearest-rarity ties and unlock/Apex eligibility; no preference from a pair's unmatched symbol |
 | LandingChallengeRuntime / LandingSettings | Absolute-clock motion, accuracy, points, attempts, protected Misses, feedback freeze and immediate success/failure |
 | LandingScoring / LandingRigMember / LandingRigRule | Frozen committed-species/tag/level scoring, flat bonuses before multiplier products, explicit Miss rules and source attribution |
 | RigRuntime | One ordered position per species, levels/copies, legal insertion, pure transactional previews, upgrades, removal, triggers, derived sale values and haul snapshots |
-| CardDefinition / CreatureAbilityDefinition | Identity, sprites, tags, base price and authored primary-ability blueprint; no expedition mutations |
+| CardDefinition / CreatureAbilityDefinition | Species content authority: identity, sprites, exactly one creature tag, base price, one primary-ability blueprint, descriptions, tuning and level progression; no expedition mutations |
 | CardInstance | Stable runtime member identity, effective tags, temporary level/copies, frozen ability, completed value grants and current sale value |
 | Progression / results | Permanent unlock/reward ownership under approved predicates; resolved full-haul snapshot before temporary rig cleanup |
 | Views | Render authoritative state and forward occurrence/revision-bound commands; never decide score, legal placement or rewards |
-| Editor authoring | Validate definitions and tuning, import approved sprites, create reusable phase prefabs and preserve scene/Harbor bindings |
+| Editor authoring | Validate one supported tag and one primary ability per creature, effect-handler support, definitions and tuning; import approved sprites, create reusable phase prefabs and preserve scene/Harbor bindings |
 
 ## Phase and transaction boundaries
 
-Every expedition begins in Shallows with an empty rig. Discover retains its current four active symbols and one optional lock/respin, keeping the final result visible until Accept Tags. Creature selection creates the Landing occurrence without acquisition.
+Every expedition begins in Shallows with an empty rig. Discover prepares four of five tags as active symbols and retains one optional lock/respin, keeping the final result visible until Accept Tags. A pair guarantees its repeated tag without a preference from the unmatched symbol. Creature selection creates the Landing occurrence without acquisition.
+
+The GDD owns tag philosophies and shared mechanics. Editable creature definitions own species tags and primary abilities; Markdown does not duplicate the roster or per-species effect catalog. Views consume authored current-level descriptions and authoritative state. Landing owns encounter-local sequences, trigger limits and strike resolution; the rig owner retains acquisition/upgrade grants and continuous positional/value recalculation. See [Creature Ability Authoring](Creature%20Ability%20Design.md) for shared contracts and unsupported effect families. These responsibilities do not imply the additional handlers already exist.
 
 Land captures only committed members, primary ability levels and effective tags. New acquisitions cannot assist their own challenge. Success reserves the landed species for Build; failure snapshots and pays the full accumulated haul once, excludes the failed creature, then clears every temporary member, level and copy. Permanent progression remains preserved. `FishingRunResult.RewardClaimed` prevents repeated payout.
 
@@ -52,7 +54,7 @@ Discover animation is presentation-only: `TackleReelAnimator` advances each cyli
 
 Full-size Discover reels use a `ReelApertureMask` stencil traced from the preserved drum's inner edge. `TackleReelApertureSetup` places the moving paper plus `TackleReelAnimator`'s native-face content under the same curved aperture. A separately bound outer drum layer rotates its sampled wear/bevel seams with the same phase, while preserving the source alpha, thin socket lip and fixed lighting. `TackleReelSurface` owns both private materials and updates uGUI's cached stencil-derived rendering copy. The wider center and narrower ends clip consistently without changing cylinder geometry, placement or timing. Compact restoration removes the wrapper and clears optional face/edge bindings; archived prefabs remain untouched. `ReelApertureChecks` verifies actual GPU clipping, shared face ownership and rendered phase. `ReelEdgeMotionChecks` compares band pixels at two angles while independently checking that the outer lip remains still; live animation checks cover locked edge phases. See [edge-motion validation](Validation/DiscoverIntegrated/FullSize/RotatingEdges/README.md) and [curved-aperture validation](Validation/DiscoverIntegrated/FullSize/CurvedAperture/README.md).
 
-`TackleReelSymbolSetup` owns supplemental reel-image imports, complete eight-tag artwork mappings and the native-size asset review sheet. Full Discover regeneration calls the same import/binding path. Supplemental originals, generation prompts and hashes remain separate from the original Penpot export manifest. This authoring boundary changes neither creature eligibility nor tag behavior.
+`TackleReelSymbolSetup` owns supplemental reel-image imports, the existing eight-tag artwork mappings and the native-size asset review sheet. Those mappings record current presentation support, not the new five-tag gameplay vocabulary. Full Discover regeneration calls the same import/binding path. Supplemental originals, generation prompts and hashes remain separate from the original Penpot export manifest. This authoring boundary changes neither creature eligibility nor tag behavior.
 
 `TackleReelAnimationSetup` persists the presentation choice between continuous material wear and segmented brass bands. The shared shader retains both branches; `TackleReelSurface` serializes the selected enum and forwards it to both private/stencil-derived layers. Material and housing authoring reapply the project JSON selection. The segmented alternative uses angle-projected joints/rivets with the existing motion, geometry, clipping and locked-reel rules. The earlier style and preview remain available through the Reel Motion menu. See [motion alternatives](Validation/DiscoverIntegrated/FullSize/SegmentedBands/README.md).
 

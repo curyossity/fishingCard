@@ -1,6 +1,6 @@
 # Deepwater — Game Design Document
 
-**Working title:** Deepwater. **Design baseline:** 6 November 2026; Rig Building and Creature Upgrades updated 15 November 2026.
+**Working title:** Deepwater. **Design baseline:** 6 November 2026; Rig Building and Creature Upgrades updated 15 November; five-tag design updated 18 November 2026.
 **Status:** Agreed direction, subject to refinement and playtesting. Confirmed rules, leading concepts and illustrative examples are distinguished below. This is the gameplay source of truth; it does not claim implementation is complete.
 
 ## 1. Core vision
@@ -43,11 +43,11 @@ Every new expedition starts in the first biome, **Shallows**, with an **empty ri
 
 ### Phase 1 — Discover: slot machine
 
-Before the expedition, select exactly four of the eight supported tags in the Harbor. These are the three independent reels' equally likely symbols (25% each) throughout the expedition. After the initial spin, accept or lock exactly one reel and respin the other two once. The respun result is fixed and stays visible with further lock/respin input disabled. Only Accept Tags reveals the creature, whenever the player is ready; there is no automatic continuation or timeout.
+Before the expedition, select exactly four of the five supported tags in the Harbor: Schooling, Predator, Anchored, Armored and Elusive. These are the three independent reels' equally likely symbols (25% each) throughout the expedition. After the initial spin, accept or lock exactly one reel and respin the other two once. The respun result is fixed and stays visible with further lock/respin input disabled. Only Accept Tags reveals the creature, whenever the player is ready; there is no automatic continuation or timeout.
 
-Three different symbols permit any eligible biome creature with baseline rarity probabilities. A pair guarantees the repeated tag, prefers the third tag through increased species weight and improves higher-rarity chances modestly. A triple guarantees its tag and supplies a stronger rarity improvement, without guaranteeing Rare or Legendary. Roll rarity separately, then choose a suitable species. Missing rarity tiers fall back to the nearest available tier while preserving the guaranteed tag; equal-distance ties use the lower tier.
+Three different symbols permit any eligible biome creature with baseline rarity probabilities. A pair guarantees the repeated tag and improves higher-rarity chances modestly; the unmatched symbol supplies no species preference. A triple guarantees its tag and supplies a stronger rarity improvement, without guaranteeing Rare or Legendary. Roll rarity separately, then choose a suitable species. Missing rarity tiers fall back to the nearest available tier while preserving the guaranteed tag; equal-distance ties use the lower tier.
 
-Normal creatures are eligible throughout their biome rather than by individual depth. Preserve creature unlock requirements and separate Apex conditions; standard slots exclude Apex. Missing guaranteed-tag coverage must be detected before finalizing an encounter, never bypassed with an unrelated creature. Active symbols do not restrict the entire biome pool. Discover does not grant Landing Points or acquire the creature. See the [complete slot specification](../Slot%20Machine%20Mechanic.md) for probabilities, boundaries and future-extension scope. Exact rarity probabilities and preference strength remain configurable balancing values.
+Normal creatures are eligible throughout their biome rather than by individual depth. Preserve creature unlock requirements and separate Apex conditions; standard slots exclude Apex. Missing guaranteed-tag coverage must be detected before finalizing an encounter, never bypassed with an unrelated creature. Active symbols do not restrict the entire biome pool. Discover does not grant Landing Points or acquire the creature. See the [complete slot specification](../Slot%20Machine%20Mechanic.md) for probabilities, boundaries and future-extension scope. Exact rarity probabilities remain configurable balancing values. The five-tag selection and removal of secondary-tag preference are design changes pending runtime migration.
 
 ### Phase 2 — Land: challenge
 
@@ -127,7 +127,7 @@ Before means nearer the Rod; after means nearer the Line Tip. Adjacent means imm
 
 Each creature has one primary ability. Its related components may improve Landing Points, multipliers, attempts, accuracy assistance, haul value, Technique interactions or placement constraints. Not every species needs a positional or scoring effect. Upgrades strengthen the same ability's identity; their exact progressions and maximum level remain open.
 
-Illustrative Sardine: successful strikes gain a multiplier starting at ×1, increased by 0.2 / 0.3 / 0.4 per other contiguous Schooling position at Levels 1 / 2 / 3. Three qualifying neighbors yield ×1.6 / ×1.9 / ×2.2. Illustrative Mackerel: +5 sale value per other connected contiguous Schooling position. These are not finalized species assignments.
+Individual species, tag assignments, ability descriptions, effect values and level progressions belong in editable game content definitions. Those definitions are the source of truth for species content within these shared design rules; do not maintain a duplicate roster or ability catalog in Markdown. Historical examples and artwork are not current content assignments. Content proposals do not become installed abilities through a documentation update.
 
 Continuous effects respond to insertion, upgrades, removal and changed positional relationships. Acquired and Upgraded triggers are distinct; an upgrade never repeats unrelated acquisition effects. Previews grant nothing. Sources, recipients, conditions, level scaling, trigger timing and stacking must be explicitly authored.
 
@@ -135,7 +135,19 @@ The current implementation supports a frozen primary-ability blueprint, level-sc
 
 ### Tags and properties
 
-Vocabulary: Fish, Predator, Schooling, Small, Heavy, Anchored, Armored, Elusive. Tags classify species and supply ability conditions; they do not automatically grant universal powers. Weight and Heavy need reevaluation. Do not derive Resistance from Weight or restore weight/capacity failure.
+Every creature species, including Apex species, has exactly one gameplay tag and one primary ability expressing that tag's philosophy. Tags describe build identity rather than a complete biological classification. They supply ability conditions but grant no automatic universal powers. There is no additional lead-theme property.
+
+| Tag | Philosophy | Design boundary |
+| --- | --- | --- |
+| Schooling | Cooperation and shared strength | Relationships and mutual support; may cooperate with other tags rather than requiring only Schooling groups. |
+| Predator | Exploitation and decisive payoff | Capitalize on favorable build or encounter conditions; precision itself belongs primarily to Elusive. |
+| Anchored | Structure and foundations | Placement is the central decision; establish positions that organize and strengthen the rig. |
+| Armored | Dependability and resilience | Reliable performance and recovery; remain useful even when the player makes no mistakes. |
+| Elusive | Finesse and mastery | Timing assistance and rewards for skillful execution; broader than Perfect-score multipliers alone. |
+
+Each philosophy may influence Landing Points, attempts, accuracy assistance or haul value. Outcomes are not exclusive to particular tags. Preserve different conditions and player decisions while supporting same-tag synergies, cross-tag support and independently useful abilities. Do not make every tag depend on collecting more of itself. Adaptability, efficiency and concentrated power remain available across the five philosophies.
+
+Fish, Small and Heavy are retired gameplay tags; their descriptive qualities may still inform creature art and ability flavor. Weight's purpose remains undecided. Do not derive Resistance from Weight or restore weight/capacity failure. The current code, serialized tags and artwork have not been migrated by this design update.
 
 ## 8. Removal
 
@@ -215,13 +227,14 @@ A focused playtest can evaluate proposed controls, attempt counts or formulas wi
 
 | Area | Decisions still required |
 | --- | --- |
-| Slot machine | Exact rarity probability tables and secondary-tag preference strength; no extra landing connection. Rules are specified in the Slot Machine Mechanic supplement. |
+| Slot machine | Exact rarity probability tables; no secondary-tag preference or extra landing connection. Four-of-five preparation and match rules are specified in the Slot Machine Mechanic supplement. |
 | Landing | Confirm the supplied Miss wording; final zone widths, boundary policy, attempts, movement tuning and feedback balance. Space/button strikes, graded overlap and immediate terminal outcomes are specified. |
 | Scoring | Final base values, numeric precision/rounding/limits and special interactions. Initial flat-before-product model, ordinary Miss-zero rule and source attribution are specified. |
 | Difficulty | Resistance curves, rarity/characteristic influence and skill/build balance. |
 | Rig | Orientation, restriction combinations, no-legal-position handling and effect order. |
-| Creature content | Primary abilities, level scaling, numbers, durations, tags and movement. |
-| Weight and Heavy | Whether retained and for what purpose. |
+| Creature content | Complete and validate editable game definitions: one tag per species, primary abilities, level scaling, numbers, durations and movement. Resolve tentative assignments in content authoring, without a duplicate Markdown catalog. |
+| Ability interactions | Per-source and cross-source stacking, assistance bounds and exact level scaling must be authored before affected content is installed; shared timing and positional contracts are specified in Creature Ability Authoring. |
+| Weight | Whether retained and for what purpose; Heavy is retired as a gameplay tag. |
 | Ability-driven removal | Access, timing, targets, costs, triggers, lifetimes and placement consequences. |
 | Techniques | Windows, effects, deck/hand/draw configuration and progression. |
 | Equipment | Category roles, effects, loadout, acquisition and ownership. |

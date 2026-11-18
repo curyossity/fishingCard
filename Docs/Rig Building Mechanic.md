@@ -1,6 +1,6 @@
 # Deepwater — Rig Building and Creature Upgrades
 
-Agreed Phase 3 direction supplied 14 November 2026; implementation updated 15 November. The complete loop is **Discover → Land → Build / Upgrade**. This specification governs rig acquisition, positioning, levels, primary abilities and sale value. Species ability examples and numeric tuning are illustrative, not a finalized catalog.
+Agreed Phase 3 direction supplied 14 November 2026; implementation updated 15 November; shared five-tag rules updated 18 November. The complete loop is **Discover → Land → Build / Upgrade**. This specification governs rig acquisition, positioning, levels, primary abilities and sale value. Individual species content belongs in editable game definitions, not a duplicate Markdown catalog. The five-tag revision is not implemented by this documentation change.
 
 ## Successful acquisition
 
@@ -28,16 +28,18 @@ Current sale value remains in whole units. Fractional economy components are rej
 - **After:** nearer the Line Tip.
 - **Adjacent:** the immediately preceding or following position.
 - **Contiguous group:** an uninterrupted sequence satisfying a tag condition, extending in both directions and stopping at the first nonmatching position.
+- **Center:** equal numbers of occupied positions before and after the source, with at least one on each side for a qualifying center ability.
+- **Line Tip:** the final occupied position.
 
 An upgraded member counts as one position for adjacency, contiguous groups and tag counts. A Level 3 Sardine does not supply three Schooling neighbors. New insertion may break an existing adjacency or group. The rig owner validates placement restrictions at commitment, including after any change that invalidated a preview. No manual reorder API or UI is provided.
 
 ## Primary abilities
 
-Each creature has one `primaryAbility` definition. Related components belong to that ability and share its identity. Components specify operation, accuracy condition, positional count, tag filter, recipients, trigger and level progression. Level amounts currently use an editable initial amount plus an editable increment per additional level. These are authoring capabilities, not fixed species designs.
+Each creature has exactly one gameplay tag and one `primaryAbility` definition expressing that tag's philosophy. The tags are Schooling, Predator, Anchored, Armored and Elusive; see the [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md#tags-and-properties). Related components belong to that ability and share its identity. Components specify operation, accuracy condition, positional count, tag filter, recipients, trigger and level progression. Level amounts currently use an editable initial amount plus an editable increment per additional level. These are authoring capabilities, not fixed species designs.
 
 Supported continuous components: flat Landing Points, successful/Good/Perfect/explicit-Miss multipliers, extra attempts, protected Misses, flat sale value, sale-value multipliers and before/after insertion restrictions. Value recipients can be self, adjacent, before, after or all matching positions. Conditions can count adjacent, contiguous-other, before, after or other matching positions, or activate once when the condition is satisfied.
 
-Multipliers start at ×1. An illustrative Sardine ability with increments 0.2 / 0.3 / 0.4 per other contiguous Schooling position yields ×1.6 / ×1.9 / ×2.2 with three qualifying neighbors. An illustrative Mackerel ability grants +5 sale value per other connected Schooling position. These examples are exercised using disposable test definitions; they are not silently assigned to the current creature catalog.
+Multipliers start at ×1. Disposable validation fixtures exercise contiguous-group bonuses and level scaling; they do not define the species catalog. Editable content owns individual descriptions, values and progression. Follow [Creature Ability Authoring](Creature%20Ability%20Design.md) for shared timing, positional and stacking contracts and the distinction between intended rules and currently supported handlers.
 
 Acquired and Upgraded are separate triggers. The current trigger interpreter supports explicit self sale-value grants. Other triggered interactions, including Technique draws or creature removal, require precise authored definitions and a supported handler before assignment. Recalculating a continuous ability never retriggers acquisition or upgrade grants.
 
