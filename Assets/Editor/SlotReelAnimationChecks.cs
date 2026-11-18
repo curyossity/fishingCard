@@ -46,6 +46,8 @@ public static class SlotReelAnimationChecks
         Check(reels[0].Phase != phase || !reels[0].IsSpinning, "Wheel did not advance or finish across frames.");
         Check(surfaces.Select((s, i) => Mathf.Abs(s.Phase - reels[i].Phase) < .0001f
             && Mathf.Abs(s.MaterialInstance.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x), "Paper phase differs from symbols/captions.");
+        Check(surfaces.Select((s,i) => Mathf.Abs(s.GetComponent<UnityEngine.UI.RawImage>().materialForRendering.GetFloat("_Phase") - reels[i].Phase) < .0001f).All(x => x),
+            "The stencil-derived paper material stopped following the wheel.");
         Check(initial.SequenceEqual(Enumerable.Range(0, 3).Select(controller.SlotMachine.GetTag)), "Animation rerolled model faces.");
         SlotMachineSceneChecks.Capture(view.GetComponent<Canvas>(), "InitialSpinning.png", output: Output);
         float timeout = Time.realtimeSinceStartup + 5;

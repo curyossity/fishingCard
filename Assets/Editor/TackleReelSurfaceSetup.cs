@@ -93,7 +93,7 @@ public static class TackleReelSurfaceSetup
         foreach (var reel in reels)
         {
             var data = new SerializedObject(reel); var renderer = data.FindProperty("surface").objectReferenceValue as TackleReelSurface;
-            check(renderer != null && renderer.transform.parent == reel.transform, "Reel surface is not owned by its cylinder.");
+            check(renderer != null && renderer.GetComponentInParent<TackleReelAnimator>(true) == reel, "Reel surface is not owned by its cylinder.");
             var image = renderer.GetComponent<UnityEngine.UI.RawImage>();
             check(image != null && image.texture != null && image.material.shader == shader && !image.raycastTarget,
                 "Reel surface material, source or input pass-through is invalid.");

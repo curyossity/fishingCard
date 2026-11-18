@@ -64,6 +64,10 @@ public static class TackleDiscoverHousingChecks
                 check(wheel.sizeDelta == previous.sizeDelta && wheel.localScale == previous.localScale,
                     "Full-size wheel dimensions or scale do not match the original: " + i);
             }
+            var middle = (RectTransform)active.transform.Find("1920x1080 Stage/Cylindrical Reel 1");
+            float raisedFasciaTop = TackleMachineGeometry.StageBounds.y + 676f / 904 * TackleMachineGeometry.StageBounds.height;
+            float reelBottom = -middle.anchoredPosition.y + middle.sizeDelta.y * middle.localScale.y;
+            check(raisedFasciaTop - reelBottom >= 8, "The full-size middle reel overlaps the raised lamp fascia.");
         }
         return checks;
     }

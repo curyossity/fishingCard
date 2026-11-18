@@ -10,6 +10,7 @@ public sealed class TackleReelAnimator : MonoBehaviour
     [SerializeField] private TMP_Text fallbackTemplate, labelTemplate;
     [SerializeField, Min(1)] private float radius = 172;
     [SerializeField] private TackleReelSurface surface;
+    [SerializeField] private RectTransform faceContent;
     [Header("Elastic Stop")]
     [SerializeField, Range(0, .7f)] private float stopOvershootInSymbols = .45f;
     [SerializeField, Range(.15f, .6f)] private float settleFraction = .34f;
@@ -80,7 +81,7 @@ public sealed class TackleReelAnimator : MonoBehaviour
         {
             tags[i] = activeTags[i];
             var row = new GameObject("Reel face " + tags[i], typeof(RectTransform), typeof(TackleReelFace));
-            var rect = (RectTransform)row.transform; rect.SetParent(transform, false);
+            var rect = (RectTransform)row.transform; rect.SetParent(faceContent != null ? faceContent : transform, false);
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(.5f, .5f); rect.sizeDelta = new Vector2(320, 365);
             var icon = Instantiate(symbolTemplate, rect); var fallback = Instantiate(fallbackTemplate, rect); var label = Instantiate(labelTemplate, rect);
             icon.sprite = illustration(tags[i]); icon.enabled = icon.sprite != null; icon.gameObject.SetActive(true);

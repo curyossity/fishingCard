@@ -30,6 +30,13 @@ public sealed class TackleReelSurface : MonoBehaviour
         instance.SetFloat(PhaseId, radians); instance.SetFloat(RadiusId, radius);
         Vector2 size = surface.rectTransform.rect.size;
         instance.SetVector(SizeId, new Vector4(size.x, size.y, 0, 0));
+        // uGUI caches a stencil-derived copy; animate that renderer material along with the private base material.
+        var rendered = surface.materialForRendering;
+        if (rendered != instance)
+        {
+            rendered.SetFloat(PhaseId, radians); rendered.SetFloat(RadiusId, radius);
+            rendered.SetVector(SizeId, new Vector4(size.x, size.y, 0, 0));
+        }
     }
 
     /// <summary>Releases only this wheel's runtime material; authored assets remain untouched.</summary>

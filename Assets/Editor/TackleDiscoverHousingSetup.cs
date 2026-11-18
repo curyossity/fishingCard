@@ -16,8 +16,8 @@ public static class TackleDiscoverHousingSetup
     public const string OriginalPrefab = TackleDiscoverArtSetup.Root + "Prefabs/DiscoverCanvas-Original.prefab";
     public const string CompactPrefab = TackleDiscoverArtSetup.Root + "Prefabs/DiscoverCanvas-Compact.prefab";
     private const string SelectionPath = TackleDiscoverArtSetup.Root + "DiscoverHousingSelection.json";
-    // Socket centers measured on the normalized 1739x904 full-size housing, independently of the old machine layout.
-    private static readonly Vector2[] FullSizeSocketCenters = { new Vector2(440,445), new Vector2(860,445), new Vector2(1290,445) };
+    // Native socket columns share a lifted baseline that clears the raised central lamp fascia at full reel size.
+    private static readonly Vector2[] FullSizeSocketCenters = { new Vector2(440,423), new Vector2(860,423), new Vector2(1290,423) };
     [Serializable] private sealed class Selection { public bool unifiedHousing = true, fullSizeReels; }
     [Serializable] private sealed class Contract { public string outputSha256; public int alphaDifferences, protectedVisibleColorDifferences; }
 
@@ -103,6 +103,7 @@ public static class TackleDiscoverHousingSetup
         }
         var lamps = (UnityEngine.UI.Image)art.FindProperty("matchLamps").objectReferenceValue;
         Place(lamps.rectTransform, UsesFullSizeReels ? new Rect(1043,683,197,35) : new Rect(1083,733,114,42)); lamps.preserveAspect = true;
+        TackleReelApertureSetup.Configure(root, UsesFullSizeReels);
     }
 
     /// <summary>Imports the normalized 1739x904 source with its proven shared alpha and protected exterior contract.</summary>
