@@ -1,0 +1,58 @@
+{
+  "nativeHousingSize": [
+    1739,
+    904
+  ],
+  "reels": [
+    {
+      "reel": 0,
+      "stageTopLeft": [
+        661.454834,
+        315.726776
+      ],
+      "stageSize": [
+        320.0,
+        365.0
+      ],
+      "nativeSocketCenter": [
+        439.999969,
+        445.0
+      ]
+    },
+    {
+      "reel": 1,
+      "stageTopLeft": [
+        977.8435,
+        315.726776
+      ],
+      "stageSize": [
+        320.0,
+        365.0
+      ],
+      "nativeSocketCenter": [
+        859.9999,
+        445.0
+      ]
+    },
+    {
+      "reel": 2,
+      "stageTopLeft": [
+        1301.76538,
+        315.726776
+      ],
+      "stageSize": [
+        320.0,
+        365.0
+      ],
+      "nativeSocketCenter": [
+        1290.0,
+        445.0
+      ]
+    }
+  ],
+  "sourceImagesUnchanged": true,
+  "housingChecks": 18,
+  "artChecks": 155,
+  "surfaceChecks": 12,
+  "controlRaycasts": 4
+}

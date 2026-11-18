@@ -187,6 +187,7 @@ public static class TackleDiscoverArtSetup
             view.ApplyModifiedPropertiesWithoutUndo(); art.ApplyModifiedPropertiesWithoutUndo();
             AddReelAnimation(root);
             TackleReelSurfaceSetup.Configure(root);
+            TackleDiscoverHousingSetup.Configure(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }

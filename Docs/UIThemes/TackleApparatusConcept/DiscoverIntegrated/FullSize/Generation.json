@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-18",
+  "mode": "built-in image editing",
+  "tool": "image_gen.imagegen",
+  "prompt": "Prompt.txt",
+  "rawOutput": "Sources/discover-generated.png",
+  "editTarget": "../discover-machine.png",
+  "contextReference": "../../../../Validation/TackleDiscoverArt/Discover-1920x1080.png",
+  "normalizer": "NormalizeFullSizeDiscoverHousing.cs",
+  "normalizedOutput": "discover-machine.png",
+  "runtimeAsset": "Assets/UIThemes/TackleApparatus/Art/Discover/Integrated/discover-machine-full-size.png",
+  "nativePixels": [
+    1739,
+    904
+  ],
+  "stageBounds": [
+    490,
+    163,
+    1310,
+    681
+  ],
+  "wheelDimensions": [
+    320,
+    365
+  ],
+  "wheelScale": 1,
+  "outputSha256": "27813724c5bab6a8fc69d16518ffc963c331aafb0e77836b34a137f3f79604be",
+  "compactPrefab": "Assets/UIThemes/TackleApparatus/Prefabs/DiscoverCanvas-Compact.prefab",
+  "originalPrefab": "Assets/UIThemes/TackleApparatus/Prefabs/DiscoverCanvas-Original.prefab",
+  "nativeSocketCenters": [
+    [
+      440,
+      445
+    ],
+    [
+      860,
+      445
+    ],
+    [
+      1290,
+      445
+    ]
+  ],
+  "placement": "Centers registered to housing artwork; original wheel dimensions and scale retained."
+}

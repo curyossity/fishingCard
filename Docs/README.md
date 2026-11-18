@@ -4,7 +4,7 @@ Design baseline: 6 November 2026, with the slot specification agreed on 7 Novemb
 
 ## Active specifications
 
-The 17 November artwork update gives Landing and Build integrated machine variants with identical outer pixels and geometry. See [Landing validation](Validation/LandingIntegrated/README.md) and [shared-shell provenance](UIThemes/TackleApparatusConcept/LandingIntegrated/README.md). Discover retains its existing housing; no transition animation is implemented by this artwork update.
+The 17 November artwork update gives Landing and Build integrated machine variants with identical outer pixels and geometry. The 18 November Discover variants extend that same outside silhouette to the first phase; the current version restores the original-size wheels in a taller internal bay. Original and compact animated prefabs remain preserved with tested version menus. See [current Discover validation](Validation/DiscoverIntegrated/FullSize/README.md), [compact variant and rollback](Validation/DiscoverIntegrated/README.md), [Landing validation](Validation/LandingIntegrated/README.md) and [shared-shell provenance](UIThemes/TackleApparatusConcept/LandingIntegrated/README.md). No transition animation is implemented by these artwork updates.
 
 | Document | Responsibility |
 | --- | --- |

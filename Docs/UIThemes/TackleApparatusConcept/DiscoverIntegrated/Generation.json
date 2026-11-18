@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-18",
+  "mode": "built-in image editing",
+  "tool": "image_gen.imagegen",
+  "prompt": "Prompt.txt",
+  "editTarget": "../BuildUpgradeRevision/IntegratedMachine/integrated-build-machine-source.png",
+  "contextReference": "../../../Validation/TackleDiscoverArt/Discover-1920x1080.png",
+  "rawOutput": "Sources/discover-generated.png",
+  "normalizer": "NormalizeDiscoverHousing.cs",
+  "normalizedOutput": "discover-machine.png",
+  "runtimeAsset": "Assets/UIThemes/TackleApparatus/Art/Discover/Integrated/discover-machine.png",
+  "nativePixels": [1739, 904],
+  "stageBounds": [490, 163, 1310, 681],
+  "outputSha256": "3d721b4cfc685f090f669b12601976ff95d338c057f4e126e263a27abb168e3f",
+  "originalPrefab": "Assets/UIThemes/TackleApparatus/Prefabs/DiscoverCanvas-Original.prefab"
+}

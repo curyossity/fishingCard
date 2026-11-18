@@ -1,0 +1,27 @@
+{
+  "date": "2026-11-18",
+  "liveAnimationChecks": 37,
+  "liveControlRaycasts": 4,
+  "viewports": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      2560,
+      1080
+    ]
+  ],
+  "originalCompositionMatchesPreEditSnapshot": true,
+  "archiveDifference": "Unity changed only the root object name to match the versioned prefab filename.",
+  "originalPrefabSha256": "423d60cf5bdda459defae9fedaa14c220bda0f760c48c26378747397a1e6daac",
+  "metadataGuidCount": 924,
+  "missingMetadata": [],
+  "duplicateGuids": [],
+  "activeVersion": "Unified",
+  "unityLeftInPlayMode": false
+}

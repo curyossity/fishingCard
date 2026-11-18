@@ -1,0 +1,11 @@
+{
+  "compactChecks": 15,
+  "fullSizeChecks": 18,
+  "artChecks": 155,
+  "surfaceChecks": 12,
+  "activeVersion": "Original Wheel Size",
+  "preservedVersions": [
+    "Original",
+    "Unified Compact"
+  ]
+}
