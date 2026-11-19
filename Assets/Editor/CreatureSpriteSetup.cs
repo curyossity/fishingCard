@@ -16,7 +16,7 @@ public static class CreatureSpriteSetup
     [Serializable] public sealed class Entry
     {
         public string id, name, definition, filename, sha256;
-        public int width, height;
+        public int width, height, alphaCutoff;
         public int[] bounds;
     }
     [Serializable] private sealed class ImportRecord
@@ -24,6 +24,7 @@ public static class CreatureSpriteSetup
         public string id, sourceSha256, importedSha256, assetPath;
         public int[] sourceBoundsTopLeft;
         public int transparentPadding;
+        public int alphaCutoff;
     }
     [Serializable] private sealed class ImportManifest { public ImportRecord[] sprites; }
 
@@ -82,7 +83,7 @@ public static class CreatureSpriteSetup
             if (sprite == null) throw new InvalidOperationException("Creature sprite failed to import: " + entry.id);
             BindDefinition(AssetDatabase.LoadAssetAtPath<CardDefinition>(entry.definition), sprite);
             records[i] = new ImportRecord { id = entry.id, assetPath = path, sourceSha256 = entry.sha256,
-                importedSha256 = Hash(pixels), sourceBoundsTopLeft = entry.bounds, transparentPadding = Padding };
+                importedSha256 = Hash(pixels), sourceBoundsTopLeft = entry.bounds, transparentPadding = Padding, alphaCutoff = entry.alphaCutoff };
         }
         string manifest = TackleDiscoverArtSetup.Root + "CreatureSpriteImports.json";
         File.WriteAllText(manifest, JsonUtility.ToJson(new ImportManifest { sprites = records }, true) + "\n");
@@ -101,7 +102,7 @@ public static class CreatureSpriteSetup
         rect.pivot = center; image.preserveAspect = true;
     }
 
-    /// <summary>Preserves RGBA samples inside the recorded alpha bounds, adding a clear four-pixel border.</summary>
+    /// <summary>Crops recorded bounds with four clear border pixels, preserving visible samples and clearing only explicitly recorded alpha noise.</summary>
     private static byte[] Crop(Entry entry)
     {
         var source = new Texture2D(2, 2, TextureFormat.RGBA32, false);
@@ -116,6 +117,12 @@ public static class CreatureSpriteSetup
             int width = w + Padding * 2, height = h + Padding * 2;
             var input = source.GetPixels32(); var output = new Color32[width * height];
             int bottom = source.height - top - h;
+            if (entry.alphaCutoff < 0 || entry.alphaCutoff > 16) throw new InvalidOperationException("Unsupported sprite alpha cutoff: " + entry.id);
+            // Supplemental generated sources can contain nearly invisible background specks.
+            // Preserve every visible color and all legacy samples; clear only the recorded low-alpha noise.
+            if (entry.alphaCutoff > 0)
+                for (int index = 0; index < input.Length; index++)
+                    if (input[index].a <= entry.alphaCutoff) input[index] = new Color32(0, 0, 0, 0);
             for (int row = 0; row < h; row++)
                 Array.Copy(input, (bottom + row) * source.width + x, output, (row + Padding) * width + Padding, w);
             result = new Texture2D(width, height, TextureFormat.RGBA32, false);

@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-19",
+  "tool": "built-in image_gen",
+  "transparentBackground": true,
+  "penpotPublished": false,
+  "jobs": [
+    {
+      "id": "creature_acorn_barnacle",
+      "name": "Acorn Barnacle",
+      "definition": "Assets/Cards/Acorn Barnacle.asset",
+      "source": "C:/Users/user/.codex/generated_images/01a1f04e-5637-7a62-94af-b535fca8c079/exec-4f6a3b47-36f1-4fb2-b855-05523c20657a.png",
+      "prompt": "Create one standalone production sprite for Deepwater, a nautical 2D creature card game. Subject: ACORN BARNACLE, a single squat conical sessile crustacean shell, recognizable ridged ivory-gray wall plates surrounding a small dark diamond-shaped top opening. Slight three-quarter side/top view. Broad low base, raised central volcano-shaped shell; only the animal, no rock or scenic base. Visual style must match a coarse retro pixel creature library: approximately 72 by 56 logical pixels enlarged into a high resolution transparent PNG; crisp square pixel clusters about 12-16 output pixels wide, stepped charcoal-dark 1-logical-pixel outline, limited muted maritime palette, gray-olive shadows, warm cream and pale sandy highlights with restrained desaturated blue-gray crevices. Light from upper left. Chunky readable silhouette, deliberate blocky highlights, no smooth vector curves, no tiny photographic details, no gradients or glow. Center the complete creature with generous fully transparent padding on all sides. It will be aspect-fit into a 255 by 105 card portrait, so favor a broad compact shape that reads clearly when small. No text, numbers, card frame, labels, water, scenery, shadows outside silhouette, duplicate animals, or cropped edges. Output actual alpha transparency, not a checkerboard or solid background."
+    },
+    {
+      "id": "creature_peacock_worm",
+      "name": "Peacock Worm",
+      "definition": "Assets/Cards/Peacock Worm.asset",
+      "source": "C:/Users/user/.codex/generated_images/01a1f04e-5637-7a62-94af-b535fca8c079/exec-23050b63-ad94-41ed-a6ec-ee4f9e28813b.png",
+      "prompt": "Create one standalone production sprite for Deepwater, a nautical 2D creature card game. Subject: PEACOCK WORM, a marine feather-duster tube worm with a magnificent open semicircular fan crown of feathered radioles emerging from one short curved sandy parchment tube. Broad fan silhouette, fine feathers simplified into crisp stepped pixel clusters; make its feather-duster identity unmistakable, distinct from a sea anemone's thick tentacles. Three-quarter frontal view. Crown in muted rusty coral, dusty mauve, desaturated teal and warm cream, with dark charcoal separators; short ochre-gray tube at lower center. Visual style: coarse retro pixel art, approximately 80 by 64 logical pixels enlarged into a high-resolution transparent PNG, crisp square clusters about 12-16 output pixels wide, stepped charcoal-dark outline, restrained maritime palette, warm cream highlights, upper-left lighting. Match a library of chunky pixel fish, shells and sea anemones with hand-placed-looking blocky highlights. Readable as a small 255 by 105 aspect-fit card portrait. No smooth vector curves, no photographic detail, no gradients, no glow. Show the entire creature with clear fully transparent padding on every side. No rock, scenery, water, text, numbers, card frame, labels, duplicate animals, cast shadow or cropped feathers. Actual alpha transparency, not a checkerboard or solid background."
+    },
+    {
+      "id": "creature_sea_sponge",
+      "name": "Sea Sponge",
+      "definition": "Assets/Cards/Sea Sponge.asset",
+      "source": "C:/Users/user/.codex/generated_images/01a1f04e-5637-7a62-94af-b535fca8c079/exec-c3c36215-5239-4530-9187-02cdc9b14a95.png",
+      "prompt": "Create one standalone production sprite for Deepwater, a nautical 2D creature card game. Subject: SEA SPONGE, one compact living marine sponge formed from a connected cluster of three unequal thick porous tubes rising from a low lobed base. The largest tube slightly left of center, one shorter tube to its right and a small side lobe. Clearly visible dark round openings at tube tops and a few large simplified pores on the body. Three-quarter frontal view, broad squat silhouette. Color: muted warm ochre, sandy gold and desaturated olive shadows, cream-lit upper-left edges, deep charcoal-brown openings. Visual direction: coarse retro pixel art matching a library of chunky fish, mussel shells and sea anemones; approximately 72 by 56 logical pixels enlarged into a high-resolution transparent PNG, hard square pixel clusters about 12-16 output pixels wide, stepped charcoal-dark outline, blocky limited-palette shading, light from upper left. The creature must remain easily readable in a small 255 by 105 aspect-fit card portrait. No smooth vector curves, no realistic photographic surface, no tiny texture, no gradients, no glow, no anthropomorphic face. Complete creature centered with clear fully transparent margins. No rock, seabed, coral branches, scenery, water, text, numbers, labels, card frames, duplicate specimens or cast shadow. Output actual alpha transparency, not a checkerboard or colored background."
+    }
+  ]
+}

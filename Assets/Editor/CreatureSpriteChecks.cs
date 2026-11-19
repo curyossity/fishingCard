@@ -18,9 +18,23 @@ public static class CreatureSpriteChecks
     /// <summary>Verifies selected source identities, lossless crop dimensions, native imports and all species bindings.</summary>
     public static int Validate()
     {
+        return ValidateTo(Output);
+    }
+
+    /// <summary>Writes a fresh validation record without overwriting an earlier artwork review.</summary>
+    public static int ValidateTo(string output)
+    {
         int checks = 0;
         Action<bool, string> check = (ok, message) => { if (!ok) throw new InvalidOperationException(message); checks++; };
         var entries = CreatureSpriteSetup.ReadLibrary();
+        int reviewHeight = Mathf.Max(1280, Mathf.CeilToInt(entries.Length / 6f) * 285 + 200);
+        foreach (string guid in AssetDatabase.FindAssets("t:CardDefinition", new[] { "Assets/Cards" }))
+        {
+            var definition = AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(guid));
+            if (definition.CardType == CardType.Creature)
+                check(entries.Any(e => e.id == definition.UniqueId) && definition.Artwork != null && definition.EncounterArtwork != null,
+                    "Missing standard creature artwork: " + definition.DisplayName);
+        }
         check(Directory.GetFiles(CreatureSpriteSetup.Destination, "*.png").Length == entries.Length, "Unexpected creature sprite or discarded variant imported.");
         Scene preview = EditorSceneManager.NewPreviewScene();
         try
@@ -28,7 +42,7 @@ public static class CreatureSpriteChecks
             var root = new GameObject("Creature sprite review", typeof(RectTransform), typeof(Canvas));
             SceneManager.MoveGameObjectToScene(root, preview);
             var canvas = root.GetComponent<Canvas>(); canvas.renderMode = RenderMode.WorldSpace;
-            ((RectTransform)root.transform).sizeDelta = new Vector2(1920, 1280);
+            ((RectTransform)root.transform).sizeDelta = new Vector2(1920, reviewHeight);
             var landing = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath), root.transform);
             landing.SetActive(false);
             var landingView = landing.GetComponent<TackleLandingPresentation>();
@@ -55,7 +69,9 @@ public static class CreatureSpriteChecks
                     && importer.textureCompression == TextureImporterCompression.Uncompressed && importer.npotScale == TextureImporterNPOTScale.None,
                     "Incorrect pixel import: " + entry.id);
                 var rig = UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(TackleDiscoverArtSetup.RigPrefabPath), root.transform).GetComponent<TackleRigCardView>();
-                rig.Bind(instances[i]);
+                var rigSample = new RigRuntime();
+                check(rigSample.TryAcquire(rigSample.Revision, definition, 0, out _, out _), "Could not prepare current rig artwork: " + entry.id);
+                rig.Bind(rigSample.Members[0]);
                 var rigImage = (Image)typeof(TackleRigCardView).GetField("portrait", Fields).GetValue(rig);
                 check(rigImage.enabled && rigImage.sprite == expected && rigImage.preserveAspect && rigImage.rectTransform.pivot == new Vector2(.5f, .5f), "Rig portrait missing or off-center: " + entry.id);
                 var name = (TMPro.TMP_Text)typeof(TackleRigCardView).GetField("nameLabel", Fields).GetValue(rig);
@@ -63,7 +79,7 @@ public static class CreatureSpriteChecks
                 check(name.textInfo.lineCount == 1 && name.textBounds.size.x <= name.rectTransform.rect.width + 1, "Name exceeds its plate: " + entry.id);
                 var rect = (RectTransform)rig.transform;
                 rect.anchorMin = rect.anchorMax = new Vector2(.5f, .5f); rect.pivot = new Vector2(0, 1);
-                rect.anchoredPosition = new Vector2(-950 + i % 6 * 316, 495 - i / 6 * 285);
+                rect.anchoredPosition = new Vector2(-950 + i % 6 * 316, reviewHeight * .5f - 145 - i / 6 * 285);
                 typeof(TackleLandingPresentation).GetField("selectedCreature", Fields).SetValue(landingView, definition);
                 typeof(TackleLandingPresentation).GetMethod("BindCreature", Fields).Invoke(landingView, null);
                 var landingImage = (Image)typeof(TackleLandingPresentation).GetField("portrait", Fields).GetValue(landingView);
@@ -78,24 +94,25 @@ public static class CreatureSpriteChecks
             check(AssetDatabase.GetAssetPath(marker.sprite) == TackleLandingArtSetup.IndicatorPath, "Generic moving indicator changed.");
             journal.SetActive(false); chain.gameObject.SetActive(false);
             Canvas.ForceUpdateCanvases();
-            Capture(canvas, preview);
+            Capture(canvas, preview, output);
         }
         finally { EditorSceneManager.ClosePreviewScene(preview); }
-        Directory.CreateDirectory(Output);
-        File.WriteAllText(Output + "Verification.json", "{\"passed\":true,\"creatures\":" + entries.Length + ",\"assertions\":" + checks
+        Directory.CreateDirectory(output);
+        File.WriteAllText(output + "Verification.json", "{\"passed\":true,\"creatures\":" + entries.Length + ",\"assertions\":" + checks
             + ",\"views\":[\"Tackle rig\",\"Landing portrait\",\"Journal central\",\"Journal compact\"],\"genericIndicatorPreserved\":true}\n");
         return checks;
     }
 
     /// <summary>Renders the actual rig prefab at its authored size with the project's active render pipeline.</summary>
-    private static void Capture(Canvas canvas, Scene scene)
+    private static void Capture(Canvas canvas, Scene scene, string output)
     {
-        Directory.CreateDirectory(Output);
+        Directory.CreateDirectory(output);
+        int height = Mathf.RoundToInt(((RectTransform)canvas.transform).rect.height);
         var cameraObject = new GameObject("Creature review camera", typeof(Camera)); SceneManager.MoveGameObjectToScene(cameraObject, scene);
         var camera = cameraObject.GetComponent<Camera>(); camera.enabled = false; camera.scene = scene;
-        camera.orthographic = true; camera.orthographicSize = 640; camera.transform.position = new Vector3(0, 0, -1000);
+        camera.orthographic = true; camera.orthographicSize = height * .5f; camera.transform.position = new Vector3(0, 0, -1000);
         camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = new Color32(23, 32, 31, 255); canvas.worldCamera = camera;
-        var target = new RenderTexture(1920, 1280, 24); var previous = RenderTexture.active; Texture2D image = null;
+        var target = new RenderTexture(1920, height, 24); var previous = RenderTexture.active; Texture2D image = null;
         try
         {
             camera.targetTexture = target;
@@ -106,8 +123,8 @@ public static class CreatureSpriteChecks
                 UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, request);
             }
             else camera.Render();
-            RenderTexture.active = target; image = new Texture2D(1920, 1280, TextureFormat.RGBA32, false);
-            image.ReadPixels(new Rect(0, 0, 1920, 1280), 0, 0); image.Apply(); File.WriteAllBytes(Output + "RigRoster.png", image.EncodeToPNG());
+            RenderTexture.active = target; image = new Texture2D(1920, height, TextureFormat.RGBA32, false);
+            image.ReadPixels(new Rect(0, 0, 1920, height), 0, 0); image.Apply(); File.WriteAllBytes(output + "RigRoster.png", image.EncodeToPNG());
         }
         finally
         {

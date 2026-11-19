@@ -10,25 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
-  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
   m_Name: Acorn Barnacle
-  uniqueId: creature_acorn_barnacle
-  displayName: Acorn Barnacle
-  cardType: 3
-  rarity: 0
-  value: 6
-  tags:
-  - Anchored
-  biomeIds:
-  - Coastal
-  maximumDepth: -1
-  artwork: {fileID: 0}
-  encounterArtwork: {fileID: 0}
-  effects: []
-  baitEffects: []
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
   primaryAbility:
-    name: 'Balance Point'
-    description: 'Gain +{amount} {attempts} when exactly at the center of your rig, with creatures on both sides.'
+    name: Balance Point
+    description: Gain +{amount} {attempts} when exactly at the center of your rig,
+      with creatures on both sides.
     effects:
     - kind: 4
       trigger: 0
@@ -36,14 +23,48 @@ MonoBehaviour:
       amount: 1
       amountPerLevel: 1
       count: 7
-      tag:
+      tag: 
       perPosition: 1
       valueTarget: 0
-      targetTag:
+      targetTag: 
       condition: 0
-      encounterTag:
+      encounterTag: 
       triggerLimit: 0
       levelsPerIncrement: 3
       maximumAmount: 3
-  rulesText: ''
-  baitRulesText: ''
+  uniqueId: creature_acorn_barnacle
+  displayName: Acorn Barnacle
+  cardType: 3
+  rarity: 0
+  backupTechnique: 0
+  techniqueRole: 
+  tags:
+  - Anchored
+  artwork: {fileID: 21300000, guid: fc9756a2e6f8f7a498bb256a4f0f803a, type: 3}
+  encounterArtwork: {fileID: 21300000, guid: fc9756a2e6f8f7a498bb256a4f0f803a, type: 3}
+  artworkLayout: 0
+  encounterArtworkScale: 1
+  encounterArtworkRotation: 0
+  encounterArtworkOffset: {x: 0, y: 0}
+  cardFaceArtwork: {fileID: 0}
+  cardFaceIncludesName: 0
+  rulesText: 
+  rulesTextHighlights: []
+  baitRulesText: 
+  baitRulesTextHighlights: []
+  weight: 0
+  value: 6
+  randomizeValueWhenCaught: 0
+  minimumCaughtValue: 0
+  maximumCaughtValue: 0
+  requiredCreatureUnlockId: 
+  biomeIds:
+  - Coastal
+  minimumDepth: 0
+  maximumDepth: -1
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
+  landingResistance: 0
+  landingCatchEffects: []
+  landingBaitEffects: []

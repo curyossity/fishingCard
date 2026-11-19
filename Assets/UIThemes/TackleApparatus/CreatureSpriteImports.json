@@ -11,7 +11,8 @@
                 1361,
                 667
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_clinging_crab",
@@ -24,7 +25,8 @@
                 1574,
                 693
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_coastal_cod",
@@ -37,7 +39,8 @@
                 1534,
                 615
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_cuttlefish",
@@ -50,7 +53,8 @@
                 1556,
                 576
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_flounder",
@@ -63,7 +67,8 @@
                 1532,
                 787
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_garfish",
@@ -76,7 +81,8 @@
                 1596,
                 239
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_glass_minnow",
@@ -89,7 +95,8 @@
                 1328,
                 549
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_mackerel",
@@ -102,7 +109,8 @@
                 1537,
                 641
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "apex_harbor_leviathan",
@@ -115,7 +123,8 @@
                 1652,
                 713
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_jellyfish",
@@ -128,7 +137,8 @@
                 699,
                 745
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_lionfish",
@@ -141,7 +151,8 @@
                 1363,
                 851
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_moonlit_ray",
@@ -154,7 +165,8 @@
                 1248,
                 819
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_mussel",
@@ -167,7 +179,8 @@
                 1447,
                 691
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_sardine",
@@ -180,7 +193,8 @@
                 1156,
                 505
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_sea_anemone",
@@ -193,7 +207,8 @@
                 1042,
                 766
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_sea_bass",
@@ -206,7 +221,8 @@
                 1560,
                 701
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_sea_urchin",
@@ -219,7 +235,8 @@
                 1002,
                 722
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_small_octopus",
@@ -232,7 +249,8 @@
                 1123,
                 726
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_spiny_lobster",
@@ -245,7 +263,8 @@
                 1427,
                 633
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_squid",
@@ -258,7 +277,8 @@
                 1583,
                 509
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "apex_stormjaw_tuna",
@@ -271,7 +291,8 @@
                 1577,
                 740
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
         },
         {
             "id": "creature_tidepool_eel",
@@ -284,7 +305,50 @@
                 1609,
                 451
             ],
-            "transparentPadding": 4
+            "transparentPadding": 4,
+            "alphaCutoff": 0
+        },
+        {
+            "id": "creature_acorn_barnacle",
+            "sourceSha256": "3376347392885f6a36616f3b0795bfb916c1a99f4bb688ba86713692ac6423e3",
+            "importedSha256": "5aaabe87a0ddc3164c6d217fd21120cc65853546731b169c95c56888bc87fcd6",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_acorn_barnacle.png",
+            "sourceBoundsTopLeft": [
+                147,
+                155,
+                1130,
+                847
+            ],
+            "transparentPadding": 4,
+            "alphaCutoff": 16
+        },
+        {
+            "id": "creature_peacock_worm",
+            "sourceSha256": "d009ded86cc4ed6a3dde0af11f55753a8230bb50ef445b1470f7074434cdf9f8",
+            "importedSha256": "4a2cc2208d7f99d5cb501c8d0aed20f28bc6a36258d97acae46fd4fbd5137ca3",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_peacock_worm.png",
+            "sourceBoundsTopLeft": [
+                394,
+                15,
+                1084,
+                778
+            ],
+            "transparentPadding": 4,
+            "alphaCutoff": 16
+        },
+        {
+            "id": "creature_sea_sponge",
+            "sourceSha256": "b06ff46d9616a451db650de52243c96d8c9a0e09fa4247f749aaf4e4ee8e25fd",
+            "importedSha256": "e5e7a575643358e09f038563da2a93d48f52ca3a08b58aa212263b898f273abc",
+            "assetPath": "Assets/UIThemes/TackleApparatus/Art/Creatures/creature_sea_sponge.png",
+            "sourceBoundsTopLeft": [
+                172,
+                86,
+                1069,
+                957
+            ],
+            "transparentPadding": 4,
+            "alphaCutoff": 16
         }
     ]
 }

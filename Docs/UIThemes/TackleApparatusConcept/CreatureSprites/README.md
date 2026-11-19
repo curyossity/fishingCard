@@ -1,5 +1,7 @@
 # Creature pixel sprite library
 
+The 19 November [supplement](Supplement20261119/README.md) adds the three newly introduced standard creatures. The active manifest now registers 25 sprites for 23 standard creatures and two existing Apex creatures. The original Penpot page, roster snapshot and validation below document the 14 November set of 22; the supplemental images have not been published to that page. Existing illustrations remain unchanged.
+
 Created 14 November 2026. [Open 10 - Creature Sprites in Penpot](https://design.penpot.app/?screen=workspace&team-id=9e056cfe-f83f-81f8-8008-cc4e858053b7&file-id=3681d377-bc58-8110-8008-e7a38adc2112&page-id=78a1e967-1189-802c-8008-f0ff94cf1483).
 
 The page contains new transparent sprites for all 22 current CardDefinition creatures: 20 standard creatures and the two existing Apex creatures. The roster was read from Assets/Cards using CardType Creature (3) and ApexEncounter (8); no species were added or removed. Stable IDs, definition paths, selected PNGs, dimensions and SHA-256 hashes are in Manifest.json and Roster.json.

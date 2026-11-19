@@ -449,6 +449,96 @@
       ],
       "clearMargin": true,
       "sha256": "607866fb4c0fa66ee8e4092349db15ed87831d0b99940b545b5fd2e5ab617ba9"
+    },
+    {
+      "id": "creature_acorn_barnacle",
+      "name": "Acorn Barnacle",
+      "definition": "Assets/Cards/Acorn Barnacle.asset",
+      "filename": "creature_acorn_barnacle.png",
+      "width": 1422,
+      "height": 1106,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        147,
+        155,
+        1130,
+        847
+      ],
+      "clearMargin": true,
+      "alphaCutoff": 16,
+      "rawAlphaBounds": [
+        0,
+        68,
+        1341,
+        1097
+      ],
+      "sha256": "3376347392885f6a36616f3b0795bfb916c1a99f4bb688ba86713692ac6423e3",
+      "provenance": "Supplement20261119/GenerationJobs.json"
+    },
+    {
+      "id": "creature_peacock_worm",
+      "name": "Peacock Worm",
+      "definition": "Assets/Cards/Peacock Worm.asset",
+      "filename": "creature_peacock_worm.png",
+      "width": 1953,
+      "height": 805,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        394,
+        15,
+        1084,
+        778
+      ],
+      "clearMargin": true,
+      "alphaCutoff": 16,
+      "rawAlphaBounds": [
+        87,
+        13,
+        1907,
+        805
+      ],
+      "sha256": "d009ded86cc4ed6a3dde0af11f55753a8230bb50ef445b1470f7074434cdf9f8",
+      "provenance": "Supplement20261119/GenerationJobs.json"
+    },
+    {
+      "id": "creature_sea_sponge",
+      "name": "Sea Sponge",
+      "definition": "Assets/Cards/Sea Sponge.asset",
+      "filename": "creature_sea_sponge.png",
+      "width": 1422,
+      "height": 1106,
+      "alphaMin": 0,
+      "alphaMax": 255,
+      "bounds": [
+        172,
+        86,
+        1069,
+        957
+      ],
+      "clearMargin": true,
+      "alphaCutoff": 16,
+      "rawAlphaBounds": [
+        0,
+        60,
+        1406,
+        1106
+      ],
+      "sha256": "b06ff46d9616a451db650de52243c96d8c9a0e09fa4247f749aaf4e4ee8e25fd",
+      "provenance": "Supplement20261119/GenerationJobs.json"
+    }
+  ],
+  "supplements": [
+    {
+      "date": "2026-11-19",
+      "ids": [
+        "creature_acorn_barnacle",
+        "creature_peacock_worm",
+        "creature_sea_sponge"
+      ],
+      "provenance": "Supplement20261119/GenerationJobs.json",
+      "penpotPublished": false
     }
   ]
 }
