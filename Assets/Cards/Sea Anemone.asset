@@ -19,8 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Predator
-  - Small
   - Anchored
   artwork: {fileID: 21300000, guid: 7151a23d7a1983f4da21e0600d6f141f, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 7151a23d7a1983f4da21e0600d6f141f, type: 3}
@@ -30,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Stinging Tentacles: Techniques cannot target this Catch.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Sheltered Exchange: After catching a Small creature, you may swap
-    a technique in hand with one in your discard pile.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 1
   value: 8
@@ -45,53 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: stinging_tentacles
-    displayName: Stinging Tentacles
-    effectType: 36
-    trigger: 2
-    target: 1
-    effectTone: 2
-    amount: 0
-    requiredTags: []
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: While in Catch mode, cannot be selected as a technique's target.
-      Untargeted effects still apply; creature effects may target this card. Restriction
-      ends immediately outside Catch mode.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: sheltered_exchange
-    displayName: Sheltered Exchange
-    effectType: 37
-    trigger: 11
-    target: 0
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Small
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: After a Small creature Catch finishes on-attach effects, optionally
-      choose one technique in hand and one already in discard before moving either.
-      Discard the hand occurrence and return the selected discarded occurrence to
-      hand; do not play or draw, and preserve hand size. Requires both piles to contain
-      a technique. Shared one swap per Small creature caught; declining spends this
-      immediate opportunity.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Firm Foundation'
+    description: 'Successful strikes gain +{amount} Landing Points per distinct tag before this creature.'
+    effects:
+    - kind: 0
+      trigger: 0
+      accuracy: 0
+      amount: 2
+      amountPerLevel: 1
+      count: 9
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

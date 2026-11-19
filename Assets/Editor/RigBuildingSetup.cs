@@ -125,7 +125,7 @@ public static class RigBuildingSetup
             var upgrade=Rect(stage,"UpgradeStatus",new Rect(1120,920,600,116)); Art(upgrade,"build-upgraded",new Rect(0,0,600,116));
             Label(upgrade,"UpgradeLabel","UPGRADED",new Rect(20,25,560,36),25,false,Gold);
             Label(upgrade,"AutomaticContinuation","Next encounter...",new Rect(20,62,560,30),24,true); upgrade.gameObject.SetActive(false); Bind(data,"upgradeStatus",upgrade.gameObject);
-            data.ApplyModifiedPropertiesWithoutUndo(); PrefabUtility.SaveAsPrefabAsset(root,PrefabPath);
+            data.ApplyModifiedPropertiesWithoutUndo(); TackleCardTooltipSetup.ConfigurePhase(root); PrefabUtility.SaveAsPrefabAsset(root,PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }
         RetireSupersededArt();
@@ -164,7 +164,7 @@ public static class RigBuildingSetup
                 var highlight=Art(root,"focus-corners",new Rect(-6,-4,235,198)); highlight.type=UnityEngine.UI.Image.Type.Sliced; highlight.pixelsPerUnitMultiplier=1.8f;
                 highlight.gameObject.SetActive(false); Bind(data,"acquiredHighlight",highlight.gameObject);
             }
-            data.ApplyModifiedPropertiesWithoutUndo(); PrefabUtility.SaveAsPrefabAsset(root.gameObject,rail?RailCardPath:CabinetCardPath);
+            data.ApplyModifiedPropertiesWithoutUndo(); TackleCardTooltipSetup.ConfigureCard(root.gameObject,rail); PrefabUtility.SaveAsPrefabAsset(root.gameObject,rail?RailCardPath:CabinetCardPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root.gameObject); }
     }

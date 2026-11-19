@@ -128,7 +128,7 @@ public sealed class RigBuildingView : MonoBehaviour
         commit.gameObject.SetActive(!upgrading); commit.interactable = valid; upgradeStatus.SetActive(upgrading);
         emptyRig.gameObject.SetActive(members.Length == 0);
         RefreshCabinet(members);
-        RefreshRail(members, creature);
+        RefreshRail(members, creature, valid ? preview : null);
         string placement = selected == 0 ? "Before " + (members.Length > 0 ? members[0].Definition.DisplayName : creature.DisplayName)
             : selected > 0 && selected <= members.Length ? "After " + members[selected - 1].Definition.DisplayName : "Choose a position";
         TackleBuildTypography.SetText(message, upgrading ? creature.DisplayName + " +1 level" : valid ? placement : error ?? "No legal insertion position");
@@ -148,7 +148,7 @@ public sealed class RigBuildingView : MonoBehaviour
     }
 
     /// <summary>Fits independent cards, ropes and insertion targets inside the housing's built-in wooden recess, scrolling longer uncapped rigs.</summary>
-    private void RefreshRail(CardInstance[] members, CardDefinition creature)
+    private void RefreshRail(CardInstance[] members, CardDefinition creature, CardInstance[] preview)
     {
         int count = members.Length;
         float width = Mathf.Max(railScroll.viewport.rect.width, count * 304 + 106), first = (width - (count * 304 - 83)) * .5f - 3;
@@ -163,7 +163,8 @@ public sealed class RigBuildingView : MonoBehaviour
         for (int i = 0; i < railCards.Count; i++)
         {
             var card = railCards[i]; card.gameObject.SetActive(i < count); if (i >= count) continue;
-            card.Bind(members[i]); ((RectTransform)card.transform).anchoredPosition = new Vector2(first + i * 304, -27);
+            var projectedMember = preview == null ? members[i] : preview.First(m => m.InstanceId == members[i].InstanceId);
+            card.Bind(projectedMember, preview != null); ((RectTransform)card.transform).anchoredPosition = new Vector2(first + i * 304, -27);
             card.SetClipVisible(true);
             card.SetAcquiredHighlight(upgrading && members[i].InstanceId == controller.LastRigAcquisition.Member.InstanceId);
         }
@@ -175,12 +176,25 @@ public sealed class RigBuildingView : MonoBehaviour
             ((RectTransform)gap.transform).anchoredPosition = new Vector2(x, -85);
             gap.interactable = legal; gap.GetComponent<UnityEngine.UI.Image>().sprite = !legal ? socketBlocked : i == selected ? socketSelected : socketIdle;
             gap.onClick.RemoveAllListeners(); gap.onClick.AddListener(() => Select(position));
-            gap.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnDown = commit };
+            gap.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnDown = commit,
+                selectOnUp = count > 0 ? railCards[Mathf.Min(i,count-1)].InspectionTarget : null };
             if (i == selected) selectionCaret.anchoredPosition = new Vector2(x, -55);
         }
         selectionCaret.gameObject.SetActive(!upgrading && selected >= 0);
         if (!upgrading && selected >= 0) commit.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnUp = gaps[selected] };
         selectionCaret.SetAsLastSibling(); railContent.sizeDelta = new Vector2(width, 223);
+        for (int i = 0; i < count; i++)
+        {
+            var target = railCards[i].InspectionTarget;
+            if (target != null) target.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
+                selectOnLeft = i > 0 ? railCards[i-1].InspectionTarget : rigCards[i].InspectionTarget,
+                selectOnRight = i+1 < count ? railCards[i+1].InspectionTarget : null,
+                selectOnDown = !upgrading ? gaps[Mathf.Min(i,count)] : null, selectOnUp = rigCards[i].InspectionTarget };
+            target = rigCards[i].InspectionTarget;
+            if (target != null) target.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
+                selectOnUp = i > 0 ? rigCards[i-1].InspectionTarget : null, selectOnDown = i+1 < count ? rigCards[i+1].InspectionTarget : commit,
+                selectOnRight = railCards[i].InspectionTarget };
+        }
     }
 
     /// <summary>Changes the preview only and scrolls the selected native target into view.</summary>
@@ -210,7 +224,7 @@ public sealed class RigBuildingView : MonoBehaviour
     private bool OwnsInputFocus()
     {
         var focused = EventSystem.current?.currentSelectedGameObject;
-        return focused == null || focused.transform.IsChildOf(transform);
+        return focused == null || focused.transform.IsChildOf(transform) && focused.GetComponent<TackleCardTooltipSource>() == null;
     }
     /// <summary>Submits only the landed occurrence and rig revision that produced this preview.</summary>
     private void Commit()

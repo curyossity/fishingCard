@@ -309,54 +309,19 @@ public abstract class CardCatalogWindow : EditorWindow
         }
 
         SerializedProperty tagsProperty = cardObject.FindProperty("tags");
-        int currentMask = 0;
-        for (int tagIndex = 0; tagIndex < CreatureTagVocabulary.All.Length; tagIndex++)
-        {
-            for (int authoredIndex = 0; authoredIndex < tagsProperty.arraySize; authoredIndex++)
-            {
-                if (string.Equals(
-                    tagsProperty.GetArrayElementAtIndex(authoredIndex).stringValue,
-                    CreatureTagVocabulary.All[tagIndex],
-                    StringComparison.OrdinalIgnoreCase))
-                {
-                    currentMask |= 1 << tagIndex;
-                    break;
-                }
-            }
-        }
-
+        int selected = -1;
+        if (tagsProperty.arraySize == 1)
+            selected = Array.IndexOf(CreatureTagVocabulary.All, tagsProperty.GetArrayElementAtIndex(0).stringValue);
         EditorGUILayout.Space(6f);
-        EditorGUILayout.LabelField("Creature Tags", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("Creature Identity", EditorStyles.boldLabel);
         EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-        EditorGUILayout.HelpBox(
-            "Creature and Apex creature cards use the controlled gameplay tag vocabulary. Choose every applicable trait.",
-            MessageType.None);
-        int updatedMask = EditorGUILayout.MaskField("Tags", currentMask, CreatureTagVocabulary.All);
-        if (updatedMask != currentMask)
+        EditorGUILayout.HelpBox("Choose exactly one gameplay tag. The primary ability expresses its philosophy.", MessageType.None);
+        int next = EditorGUILayout.Popup("Tag", selected, CreatureTagVocabulary.All);
+        if (next >= 0 && (next != selected || tagsProperty.arraySize != 1))
         {
-            int selectedCount = 0;
-            for (int i = 0; i < CreatureTagVocabulary.All.Length; i++)
-            {
-                if ((updatedMask & (1 << i)) != 0)
-                {
-                    selectedCount++;
-                }
-            }
-
-            tagsProperty.arraySize = selectedCount;
-            int destinationIndex = 0;
-            for (int i = 0; i < CreatureTagVocabulary.All.Length; i++)
-            {
-                if ((updatedMask & (1 << i)) == 0)
-                {
-                    continue;
-                }
-
-                tagsProperty.GetArrayElementAtIndex(destinationIndex).stringValue = CreatureTagVocabulary.All[i];
-                destinationIndex++;
-            }
+            tagsProperty.arraySize = 1;
+            tagsProperty.GetArrayElementAtIndex(0).stringValue = CreatureTagVocabulary.All[next];
         }
-
         EditorGUILayout.EndVertical();
     }
 

@@ -19,7 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
   - Schooling
   artwork: {fileID: 21300000, guid: 63cff97e2675552419a9b4de25cd3aef, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 63cff97e2675552419a9b4de25cd3aef, type: 3}
@@ -29,11 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Packed Shoal: With 2 other Schooling Catches, this creature weighs
-    0.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'School Call: When attached as Bait, choose your next encounter
-    from 2 Schooling creatures.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 1
   value: 10
@@ -45,56 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: packed_shoal
-    displayName: Packed Shoal
-    effectType: 28
-    trigger: 2
-    target: 1
-    effectTone: 1
-    amount: 2
-    requiredTags:
-    - Schooling
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: This Mackerel has effective weight 0 while at least two other Schooling
-      creatures are attached as Catch. Bait does not count. Recalculate immediately
-      as creatures or effective tags change.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: school_call
-    displayName: School Call
-    effectType: 31
-    trigger: 1
-    target: 6
-    effectTone: 1
-    amount: 2
-    requiredTags:
-    - Schooling
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Once per card on first Bait attachment, offer up to two distinct
-      non-Apex Schooling species eligible at the next biome and depth using normal
-      weights. Choose one or decline immediately. One species is a valid offer; zero
-      uses the normal draw. Reveal at normal time without advancing depth for the
-      choice. A new selection replaces the earlier one and survives source removal.
-      Scheduled Apex cannot be replaced; if the actual destination makes the selected
-      species ineligible, discard it and draw normally. Mode and biome changes never
-      refresh this activation.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Shared Fortune'
+    description: 'Gain +{amount} sale value per other contiguous Schooling creature.'
+    effects:
+    - kind: 2
+      trigger: 0
+      accuracy: 0
+      amount: 5
+      amountPerLevel: 1
+      count: 2
+      tag: Schooling
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

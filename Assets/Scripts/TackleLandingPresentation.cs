@@ -54,6 +54,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             creature.text = failure ? "EXPEDITION ENDED" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
             haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : controller.UsesLandingChallenge ? controller.Rig.HaulValue.ToString() : VisibleHaul(controller.CatchChain));
             points.text = Number(model.Points); resistance.text = Number(model.Resistance);
+            if (model.AttemptsRemaining > lamps.Count) PrepareLamps(model.AttemptsRemaining);
             attempts.text = model.AttemptsRemaining + " ATTEMPTS LEFT";
             for (int i = 0; i < lamps.Count; i++) lamps[i].sprite = i < model.AttemptsRemaining ? lampOn : lampOff;
             message.text = model.Error ?? (failure ? "Full haul paid: " + controller.LastHaulValue + ". Rig and upgrades cleared."
@@ -133,6 +134,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             text.Append('\n').Append(item.Label);
             if (item.Bonus != 0) text.Append(" +").Append(Number(item.Bonus));
             if (item.Multiplier != 1) text.Append(" x").Append(Number(item.Multiplier));
+            if (item.Attempts > 0) text.Append(" +").Append(item.Attempts).Append(" attempts");
         }
         text.Append("\nTOTAL +").Append(Number(score.Points));
         if (failure) text.Append("\nFailed creature not acquired");

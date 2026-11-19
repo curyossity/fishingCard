@@ -8,7 +8,7 @@ public static class TackleReelSymbolSetup
 {
     public const string Source = "Docs/UIThemes/TackleApparatusConcept/ReelSymbols/";
     public const string Destination = TackleDiscoverArtSetup.Root + "Art/Discover/Symbols/";
-    private static readonly string[] Tags = { "Fish", "Predator", "Schooling", "Small", "Heavy", "Anchored", "Armored", "Elusive" };
+    private static readonly string[] Tags = CreatureTagVocabulary.All;
     [Serializable] private sealed class Manifest { public Entry[] entries; }
     [Serializable] private sealed class Entry { public string tag, file, sha256; public int width, height; }
 
@@ -35,7 +35,7 @@ public static class TackleReelSymbolSetup
         }
     }
 
-    /// <summary>Writes all eight tag mappings while retaining the original Fish and Schooling sprites.</summary>
+    /// <summary>Binds the five supported tags while preserving the supplied illustration sources.</summary>
     public static void Bind(SerializedObject presentation)
     {
         var mapping = presentation.FindProperty("tagArtwork"); mapping.arraySize = Tags.Length;

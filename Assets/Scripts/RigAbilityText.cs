@@ -10,6 +10,14 @@ public static class RigAbilityText
     {
         if (ability == null || ability.Effects.Count == 0)
             return string.IsNullOrWhiteSpace(ability?.Description) ? "No active ability." : ability.Description;
+        if (ability.Effects.Count == 1 && ability.Description.Contains("{"))
+        {
+            decimal value = ability.Effects[0].Amount(level);
+            return ability.Description.Replace("{amount}", Highlight(Number(value), richText))
+                .Replace("{multiplier}", Highlight(Number(1 + value), richText))
+                .Replace("{percent}", Highlight(Number(value * 100), richText))
+                .Replace("{attempts}", value == 1 ? "attempt" : "attempts");
+        }
         var lines = new List<string>();
         foreach (var effect in ability.Effects)
         {
@@ -34,9 +42,17 @@ public static class RigAbilityText
                     sentence = "Prevents insertion before this creature" + Condition(effect) + "."; break;
                 case RigAbilityKind.BlockInsertionAfter:
                     sentence = "Prevents insertion after this creature" + Condition(effect) + "."; break;
+                case RigAbilityKind.PerfectBase:
+                    sentence = strikes + " use " + number + "× the Perfect accuracy base."; break;
+                case RigAbilityKind.GoodWidth:
+                    sentence = "Widen Good by " + Number(effect.Amount(level) * 100) + "%."; break;
+                case RigAbilityKind.PerfectWidth:
+                    sentence = "Widen Perfect by " + Number(effect.Amount(level) * 100) + "% within Good."; break;
+                case RigAbilityKind.FishSlowInGood:
+                    sentence = "The fish moves " + Number(effect.Amount(level) * 100) + "% slower while overlapping Good."; break;
                 default: throw new ArgumentOutOfRangeException();
             }
-            if (effect.Trigger != RigAbilityTrigger.Continuous) sentence = "On " + (effect.Trigger == RigAbilityTrigger.Acquired ? "acquisition: " : "upgrade: ") + sentence;
+            if (effect.Trigger != RigAbilityTrigger.Continuous) sentence = "On " + (effect.Trigger == RigAbilityTrigger.Acquired ? "acquisition: " : effect.Trigger == RigAbilityTrigger.Upgraded ? "upgrade: " : "strike: ") + sentence;
             lines.Add(sentence);
         }
         return string.Join("\n", lines);

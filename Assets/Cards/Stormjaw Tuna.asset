@@ -19,9 +19,7 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
   - Predator
-  - Heavy
   artwork: {fileID: 21300000, guid: 7a89ce0820f009a428f92f35049da4f5, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 7a89ce0820f009a428f92f35049da4f5, type: 3}
   artworkLayout: 0
@@ -30,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: A violent Apex catch. While attached, Predators contribute 1 additional
-    Line Load and future Predator encounters gain 2 selection weight.
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 7
   value: 16
@@ -45,47 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 21
   maximumDepth: -1
-  effects:
-  - effectId: stormjaw_predator_strain
-    displayName: 
-    effectType: 0
-    trigger: 2
-    target: 4
-    effectTone: 2
-    amount: 1
-    requiredTags:
-    - Predator
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Predator catches contribute 1 additional Line Load.
-  - effectId: stormjaw_attracts_predators
-    displayName: 
-    effectType: 3
-    trigger: 2
-    target: 6
-    effectTone: 2
-    amount: 2
-    requiredTags:
-    - Predator
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Future Predator encounters gain 2 selection weight.
+  effects: []
   hasExplicitBaitData: 0
   baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Lightning Strike'
+    description: 'Your first Perfect strike each encounter scores ×{multiplier}.'
+    effects:
+    - kind: 1
+      trigger: 0
+      accuracy: 2
+      amount: 0.5
+      amountPerLevel: 0.1
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 2
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

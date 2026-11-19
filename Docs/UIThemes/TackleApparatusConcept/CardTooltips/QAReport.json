@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-19",
+  "svgFiles": 7,
+  "editableTextElements": 129,
+  "localLayout": {
+    "checked": 44,
+    "overflows": [],
+    "fonts": [
+      {
+        "family": "VT323",
+        "status": "loaded"
+      },
+      {
+        "family": "Press Start 2P",
+        "status": "loaded"
+      }
+    ],
+    "titleFont": "\"Press Start 2P\""
+  },
+  "localInteraction": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "source screenshot loaded",
+        "passed": true
+      },
+      {
+        "name": "focus displays immediately",
+        "passed": true
+      },
+      {
+        "name": "Escape dismisses",
+        "passed": true
+      },
+      {
+        "name": "Escape preserves card focus",
+        "passed": true
+      },
+      {
+        "name": "hover delay prevents instant flash",
+        "passed": true
+      },
+      {
+        "name": "hover opens after delay",
+        "passed": true
+      },
+      {
+        "name": "pointer exit dismisses",
+        "passed": true
+      },
+      {
+        "name": "tray reuses its corresponding panel",
+        "passed": true
+      },
+      {
+        "name": "resize dismisses stale positioning",
+        "passed": true
+      },
+      {
+        "name": "tooltip cannot block placement input",
+        "passed": true
+      },
+      {
+        "name": "three independent inspection targets",
+        "passed": true
+      }
+    ]
+  },
+  "contrastRatios": {
+    "body": 12.17,
+    "secondary": 7.82,
+    "coefficient": 8.59,
+    "positiveContext": 10.28
+  },
+  "penpotStatus": "Blocked: HTTP 400 / Server not initialized",
+  "unityIntegration": "Not part of this design pass"
+}

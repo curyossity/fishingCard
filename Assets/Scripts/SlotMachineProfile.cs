@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-/// <summary>Editable provisional rarity and secondary-tag balancing; no live expedition state.</summary>
+/// <summary>Editable provisional rarity balancing; no live expedition state or unmatched-symbol preference.</summary>
 [CreateAssetMenu(menuName = "Fishing Cards/Slot Machine Profile")]
 public sealed class SlotMachineProfile : ScriptableObject
 {
@@ -9,12 +9,11 @@ public sealed class SlotMachineProfile : ScriptableObject
     [SerializeField] private int[] baselineRarityWeights = { 70, 22, 7, 1 };
     [SerializeField] private int[] pairRarityWeights = { 55, 28, 14, 3 };
     [SerializeField] private int[] tripleRarityWeights = { 35, 35, 23, 7 };
-    [Min(2)] [SerializeField] private int secondaryTagWeight = 2;
 
     /// <summary>Freezes authored balancing for one expedition; invalid profiles cannot start a run.</summary>
     public SlotSelectionSettings CreateSettings()
     {
-        return new SlotSelectionSettings(baselineRarityWeights, pairRarityWeights, tripleRarityWeights, secondaryTagWeight);
+        return new SlotSelectionSettings(baselineRarityWeights, pairRarityWeights, tripleRarityWeights);
     }
 }
 
@@ -22,13 +21,10 @@ public sealed class SlotMachineProfile : ScriptableObject
 public sealed class SlotSelectionSettings
 {
     private readonly int[][] rarityWeights;
-    public int SecondaryTagWeight { get; }
 
     /// <summary>Copies positive-support rarity tables and verifies the pair/triple rarity improvements.</summary>
-    public SlotSelectionSettings(int[] baseline, int[] pair, int[] triple, int secondaryWeight)
+    public SlotSelectionSettings(int[] baseline, int[] pair, int[] triple)
     {
-        if (secondaryWeight < 2) throw new ArgumentOutOfRangeException(nameof(secondaryWeight));
-        SecondaryTagWeight = secondaryWeight;
         rarityWeights = new[] { CopyWeights(baseline), CopyWeights(pair), CopyWeights(triple) };
         bool pairImproves = false, tripleImproves = false;
         for (int threshold = 1; threshold < 4; threshold++)
@@ -89,23 +85,19 @@ public readonly struct SlotMatch
 {
     public SlotMatchKind Kind { get; }
     public string GuaranteedTag { get; }
-    public string PreferredTag { get; }
 
-    /// <summary>Finds the repeated tag, preserving the unmatched face as a pair's secondary preference.</summary>
+    /// <summary>Finds the repeated tag without assigning any preference to an unmatched face.</summary>
     public SlotMatch(TagSlotMachineRuntime.Result result)
     {
         if (result == null) throw new ArgumentNullException(nameof(result));
         Kind = SlotMatchKind.ThreeDifferent;
-        GuaranteedTag = PreferredTag = null;
+        GuaranteedTag = null;
         foreach (string tag in result.Tags)
         {
             int count = result.Count(tag);
             if (count < 2) continue;
             Kind = count == 3 ? SlotMatchKind.Triple : SlotMatchKind.Pair;
             GuaranteedTag = tag;
-            if (count == 2)
-                foreach (string other in result.Tags)
-                    if (!string.Equals(tag, other, StringComparison.OrdinalIgnoreCase)) PreferredTag = other;
             break;
         }
     }

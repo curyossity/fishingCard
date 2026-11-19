@@ -18,6 +18,7 @@ public sealed partial class CardInstance
     {
         if (card == null || string.IsNullOrWhiteSpace(card.UniqueId)
             || card.CardType != CardType.Creature && card.CardType != CardType.ApexEncounter) throw new ArgumentException("A rig slot requires an identified creature species.");
+        if (!CreatureTagVocabulary.IsSingleTag(card.Tags)) throw new ArgumentException("Each creature requires exactly one supported gameplay tag.");
         var member = new CardInstance { instanceId = id, definition = card, isRigCreature = true, baseValue = card.Value,
             rigLevel = 1, rigCopies = 1, rigSaleValue = card.Value, currentValue = card.Value, currentWeight = 0,
             rigAbility = card.PrimaryAbility.Snapshot() };

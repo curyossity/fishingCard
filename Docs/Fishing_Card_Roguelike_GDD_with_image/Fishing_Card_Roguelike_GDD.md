@@ -47,7 +47,7 @@ Before the expedition, select exactly four of the five supported tags in the Har
 
 Three different symbols permit any eligible biome creature with baseline rarity probabilities. A pair guarantees the repeated tag and improves higher-rarity chances modestly; the unmatched symbol supplies no species preference. A triple guarantees its tag and supplies a stronger rarity improvement, without guaranteeing Rare or Legendary. Roll rarity separately, then choose a suitable species. Missing rarity tiers fall back to the nearest available tier while preserving the guaranteed tag; equal-distance ties use the lower tier.
 
-Normal creatures are eligible throughout their biome rather than by individual depth. Preserve creature unlock requirements and separate Apex conditions; standard slots exclude Apex. Missing guaranteed-tag coverage must be detected before finalizing an encounter, never bypassed with an unrelated creature. Active symbols do not restrict the entire biome pool. Discover does not grant Landing Points or acquire the creature. See the [complete slot specification](../Slot%20Machine%20Mechanic.md) for probabilities, boundaries and future-extension scope. Exact rarity probabilities remain configurable balancing values. The five-tag selection and removal of secondary-tag preference are design changes pending runtime migration.
+Normal creatures are eligible throughout their biome rather than by individual depth. Preserve creature unlock requirements and separate Apex conditions; standard slots exclude Apex. Missing guaranteed-tag coverage must be detected before finalizing an encounter, never bypassed with an unrelated creature. Active symbols do not restrict the entire biome pool. Discover does not grant Landing Points or acquire the creature. See the [complete slot specification](../Slot%20Machine%20Mechanic.md) for probabilities, boundaries and future-extension scope. Exact rarity probabilities remain configurable balancing values. Five-tag selection and removal of secondary-tag preference were implemented on 19 November 2026; see [current validation](../Validation/FiveTagAbilities/README.md).
 
 ### Phase 2 — Land: challenge
 
@@ -131,7 +131,7 @@ Individual species, tag assignments, ability descriptions, effect values and lev
 
 Continuous effects respond to insertion, upgrades, removal and changed positional relationships. Acquired and Upgraded triggers are distinct; an upgrade never repeats unrelated acquisition effects. Previews grant nothing. Sources, recipients, conditions, level scaling, trigger timing and stacking must be explicitly authored.
 
-The current implementation supports a frozen primary-ability blueprint, level-scaled Landing bonuses/multipliers, extra attempts, protected Misses, value effects and insertion restrictions. It supports explicit self-value grants on acquisition or upgrade. Other trigger types require a supported handler before content assignment. See [creature ability authoring](../Creature%20Ability%20Design.md).
+The current implementation supports a frozen primary-ability blueprint, level-scaled Landing bonuses/multipliers, conditional strike rules and attempt grants, scoring-base substitution, zone/motion assistance, positional value effects and insertion restrictions. It retains protected Misses and explicit self-value grants on acquisition or upgrade. Additional effect families require supported handlers before content assignment. Level coefficients, step intervals, caps and short descriptions are authored in game data. See [creature ability authoring](../Creature%20Ability%20Design.md) for stacking and shared contracts.
 
 ### Tags and properties
 
@@ -147,7 +147,7 @@ Every creature species, including Apex species, has exactly one gameplay tag and
 
 Each philosophy may influence Landing Points, attempts, accuracy assistance or haul value. Outcomes are not exclusive to particular tags. Preserve different conditions and player decisions while supporting same-tag synergies, cross-tag support and independently useful abilities. Do not make every tag depend on collecting more of itself. Adaptability, efficiency and concentrated power remain available across the five philosophies.
 
-Fish, Small and Heavy are retired gameplay tags; their descriptive qualities may still inform creature art and ability flavor. Weight's purpose remains undecided. Do not derive Resistance from Weight or restore weight/capacity failure. The current code, serialized tags and artwork have not been migrated by this design update.
+Fish, Small and Heavy are retired gameplay tags; their descriptive qualities may still inform creature art and ability flavor. Weight's purpose remains undecided. Do not derive Resistance from Weight or restore weight/capacity failure. The five-tag code/content migration is implemented; preserved historical artwork and validation do not define current gameplay.
 
 ## 8. Removal
 
@@ -233,7 +233,7 @@ A focused playtest can evaluate proposed controls, attempt counts or formulas wi
 | Difficulty | Resistance curves, rarity/characteristic influence and skill/build balance. |
 | Rig | Orientation, restriction combinations, no-legal-position handling and effect order. |
 | Creature content | Complete and validate editable game definitions: one tag per species, primary abilities, level scaling, numbers, durations and movement. Resolve tentative assignments in content authoring, without a duplicate Markdown catalog. |
-| Ability interactions | Per-source and cross-source stacking, assistance bounds and exact level scaling must be authored before affected content is installed; shared timing and positional contracts are specified in Creature Ability Authoring. |
+| Ability interactions | Continue balancing authored coefficients, step intervals and assistance caps; current stacking, timing and positional contracts are specified in Creature Ability Authoring. Additional effect families need explicit rules and handlers. |
 | Weight | Whether retained and for what purpose; Heavy is retired as a gameplay tag. |
 | Ability-driven removal | Access, timing, targets, costs, triggers, lifetimes and placement consequences. |
 | Techniques | Windows, effects, deck/hand/draw configuration and progression. |

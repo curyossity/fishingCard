@@ -52,7 +52,7 @@ public static class TackleDiscoverArtChecks
         foreach (string name in new[] { "respinButton", "acceptButton", "heading", "resultDescription" })
             assert(data.FindProperty(name).objectReferenceValue != null, "Missing live field: " + name);
         var presentation = new SerializedObject(prefab.GetComponent<TackleDiscoverPresentation>());
-        assert(presentation.FindProperty("tagArtwork").arraySize == 8, "All eight reel tags must have illustrations.");
+        assert(presentation.FindProperty("tagArtwork").arraySize == CreatureTagVocabulary.All.Length, "All five reel tags must have illustrations.");
         var reels = presentation.FindProperty("reels");
         assert(reels.arraySize == 3, "Cylinder animation is not bound to three reels.");
         for (int i = 0; i < 3; i++)
@@ -82,7 +82,7 @@ public static class TackleDiscoverArtChecks
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>();
         var controller = harbor.Controller;
         assert(!controller.RunActive, "Artwork check requires a fresh Harbor session.");
-        controller.TryPrepareSlotTags(new[] { "Fish", "Predator", "Schooling", "Small" });
+        controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" });
         harbor.TryStartNewRun();
         var preparation = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
         ((UnityEngine.UI.Button)preparation.FindProperty("confirm").objectReferenceValue).onClick.Invoke();

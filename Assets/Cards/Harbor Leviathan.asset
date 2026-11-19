@@ -20,7 +20,6 @@ MonoBehaviour:
   techniqueRole: 
   tags:
   - Predator
-  - Heavy
   artwork: {fileID: 21300000, guid: 055d998481e4b78459647233887483fc, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 055d998481e4b78459647233887483fc, type: 3}
   artworkLayout: 0
@@ -29,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: A massive but sheltering catch. While attached, every Small catch contributes
-    1 less Line Load.
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 8
   value: 18
@@ -44,29 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 21
   maximumDepth: -1
-  effects:
-  - effectId: leviathan_shelters_small_catches
-    displayName: 
-    effectType: 1
-    trigger: 2
-    target: 4
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Small
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Small catches contribute 1 less Line Load while Harbor Leviathan
-      is attached.
+  effects: []
   hasExplicitBaitData: 0
   baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Apex Presence'
+    description: 'Successful strikes gain +{amount} Landing Points per distinct non-Predator tag in your rig.'
+    effects:
+    - kind: 0
+      trigger: 0
+      accuracy: 0
+      amount: 3
+      amountPerLevel: 1
+      count: 10
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

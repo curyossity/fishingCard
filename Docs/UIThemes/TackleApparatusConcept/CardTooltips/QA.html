@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Tooltip text bounds check</title>
+<object id="sheet" data="00-component-sheet.svg" type="image/svg+xml" width="1920" height="1200"></object><pre id="report">Waiting for fonts</pre>
+<script>
+document.getElementById('sheet').addEventListener('load', async function() {
+ const d=this.contentDocument; await d.fonts.ready;
+ const results=[];
+ d.querySelectorAll('g[id^="tooltip-"]').forEach(panel=>{
+  panel.querySelectorAll('text').forEach(t=>{const b=t.getBBox();results.push({panel:panel.id,text:t.textContent,x:b.x,right:b.x+b.width,overflow:b.x<17||b.x+b.width>445})});
+ });
+ document.getElementById('report').textContent=JSON.stringify({checked:results.length,overflows:results.filter(r=>r.overflow),fonts:Array.from(d.fonts).map(f=>({family:f.family,status:f.status})),titleFont:d.defaultView.getComputedStyle(d.querySelector('text')).fontFamily},null,2);
+ document.documentElement.dataset.qa='complete';
+});
+</script></html>

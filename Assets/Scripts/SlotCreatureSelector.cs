@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-/// <summary>Separates tag guarantees, requested rarity, nearest-tier fallback and weighted species selection.</summary>
+/// <summary>Separates tag guarantees, requested rarity, nearest-tier fallback and equal species selection within a tier.</summary>
 public static class SlotCreatureSelector
 {
     public readonly struct Selection
@@ -23,6 +23,8 @@ public static class SlotCreatureSelector
         var ids = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (CardDefinition card in pool ?? Array.Empty<CardDefinition>())
         {
+            if (card != null && card.CardType == CardType.Creature && !CreatureTagVocabulary.IsSingleTag(card.Tags))
+                throw new ArgumentException("Creature " + card.DisplayName + " requires exactly one supported gameplay tag.");
             if (card == null || card.CardType != CardType.Creature || !card.IsAvailableInBiome(biomeId)
                 || (unlocked != null ? !unlocked(card) : !string.IsNullOrWhiteSpace(card.RequiredCreatureUnlockId)) || result.Contains(card)
                 || (int)card.Rarity < 0 || (int)card.Rarity > 3
@@ -56,16 +58,8 @@ public static class SlotCreatureSelector
             { nearest = tier; distance = currentDistance; }
         }
         var candidates = matching.FindAll(card => (int)card.Rarity == nearest);
-        int total = 0;
-        foreach (CardDefinition card in candidates)
-            total = checked(total + (match.PreferredTag != null && HasTag(card, match.PreferredTag) ? settings.SecondaryTagWeight : 1));
-        int ticket = random.Next(total);
-        foreach (CardDefinition card in candidates)
-        {
-            ticket -= match.PreferredTag != null && HasTag(card, match.PreferredTag) ? settings.SecondaryTagWeight : 1;
-            if (ticket < 0) { selection = new Selection(card, requested, match); return true; }
-        }
-        throw new InvalidOperationException("Species weights did not resolve a ticket.");
+        selection = new Selection(candidates[random.Next(candidates.Count)], requested, match);
+        return true;
     }
 
     /// <summary>Matches authored tags without borrowing rig tag modifiers.</summary>

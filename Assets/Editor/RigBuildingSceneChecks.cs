@@ -13,26 +13,28 @@ using UnityEngine.EventSystems;
 public static class RigBuildingSceneChecks
 {
     public const string Output = "Docs/Validation/RigBuilding/";
+    private static string outputDirectory = Output;
     public static string Result { get; private set; } = "Not run";
     private static int checks;
     private const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
 
     /// <summary>Starts the coroutine in a fresh comparison Play session; it never writes player progression.</summary>
-    public static void Begin()
+    public static void Begin(string output = null)
     {
         if (!Application.isPlaying) throw new InvalidOperationException("Enter a fresh comparison Play session.");
         var controller = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>().Controller;
         controller.SetDebugSaveResetPending(true); Application.runInBackground = true;
+        outputDirectory = string.IsNullOrWhiteSpace(output) ? Output : output.TrimEnd('/', '\\') + "/";
         checks = 0; Result = "Running"; controller.StartCoroutine(Run());
     }
 
     /// <summary>Exercises actual strike and button commands, including duplicate upgrades with no extra confirmation.</summary>
     private static IEnumerator Run()
     {
-        Directory.CreateDirectory(Output);
+        Directory.CreateDirectory(outputDirectory);
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>(); var controller = harbor.Controller;
         Check(!controller.RunActive, "Expected fresh Harbor.");
-        controller.TryPrepareSlotTags(new[] { "Fish", "Predator", "Schooling", "Small" }); harbor.TryStartNewRun();
+        controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }); harbor.TryStartNewRun();
         var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         yield return null;
@@ -86,7 +88,7 @@ public static class RigBuildingSceneChecks
         Check(rail.content.rect.width > rail.viewport.rect.width && rig.content.rect.height > rig.viewport.rect.height, "Long rigs are clipped without scrolling.");
         foreach (var text in build.GetComponentsInChildren<TMP_Text>()) Check(!text.text.Equals("CATCH") && !text.text.Equals("BAIT"), "Catch/Bait remains in Build UI.");
         foreach (var size in new[] { new Vector2Int(1920, 1080), new Vector2Int(1280, 800), new Vector2Int(2560, 1080) })
-            RigBuildingArtChecks.Capture(build, "Build-" + size.x + "x" + size.y + ".png", size.x, size.y, Output);
+            RigBuildingArtChecks.Capture(build, "Build-" + size.x + "x" + size.y + ".png", size.x, size.y, outputDirectory);
         ((UnityEngine.UI.Button)data.FindProperty("commit").objectReferenceValue).onClick.Invoke(); yield return null;
         Check(controller.SlotMachine.Active && controller.CatchChain.Length == 9, "Long-rig placement failed to continue.");
         int haul = controller.Rig.HaulValue, gold = controller.TotalGold, completions = 0;
@@ -100,7 +102,7 @@ public static class RigBuildingSceneChecks
         harbor.TryStartNewRun(); ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         Check(controller.RunActive && controller.CatchChain.Length == 0 && controller.Rig.HaulValue == 0 && controller.TotalGold == gold + haul, "Next expedition retained upgrades or lost permanent value.");
         Result = "Passed " + checks + " live Build/Upgrade checks";
-        File.WriteAllText(Output + "LiveVerification.json", "{\"passed\":true,\"assertions\":" + checks + ",\"duplicateUpgradeAutomatic\":true,\"fullFailurePayout\":true,\"nextRunEmpty\":true}\n");
+        File.WriteAllText(outputDirectory + "LiveVerification.json", "{\"passed\":true,\"assertions\":" + checks + ",\"duplicateUpgradeAutomatic\":true,\"fullFailurePayout\":true,\"nextRunEmpty\":true}\n");
         Debug.Log(Result);
     }
 
@@ -138,7 +140,7 @@ public static class RigBuildingSceneChecks
         typeof(FishingRunController).GetMethod("RefreshViews", Private).Invoke(controller, null);
     }
     /// <summary>Captures the actual Build canvas through the project render pipeline.</summary>
-    private static void Capture(RigBuildingView view, string file) => RigBuildingArtChecks.Capture(view, file, output: Output);
+    private static void Capture(RigBuildingView view, string file) => RigBuildingArtChecks.Capture(view, file, output: outputDirectory);
     /// <summary>Retains a readable failure status if a coroutine invariant fails.</summary>
     private static void Check(bool valid, string message)
     {

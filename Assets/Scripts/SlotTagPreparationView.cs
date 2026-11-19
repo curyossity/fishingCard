@@ -22,7 +22,7 @@ public sealed class SlotTagPreparationView : MonoBehaviour
     {
         if (owner == null || owner.RunActive) return;
         controller = owner; start = begin;
-        draft.Clear(); draft.AddRange(owner.PreparedSlotTags);
+        draft.Clear(); draft.AddRange(CreatureTagVocabulary.Normalize(new List<string>(owner.PreparedSlotTags).ToArray()));
         gameObject.SetActive(true);
         if (blockedHarborContent != null && !inputBlocked)
         {
@@ -33,6 +33,8 @@ public sealed class SlotTagPreparationView : MonoBehaviour
         }
         for (int i = 0; i < tagButtons.Length; i++)
         {
+            tagButtons[i].gameObject.SetActive(i < CreatureTagVocabulary.All.Length);
+            if (i >= CreatureTagVocabulary.All.Length) continue;
             string tag = CreatureTagVocabulary.All[i];
             tagButtons[i].onClick.RemoveAllListeners();
             tagButtons[i].onClick.AddListener(() => Toggle(tag));
@@ -76,6 +78,7 @@ public sealed class SlotTagPreparationView : MonoBehaviour
         confirm.interactable = draft.Count == 4;
         for (int i = 0; i < tagButtons.Length; i++)
         {
+            if (i >= CreatureTagVocabulary.All.Length) continue;
             string tag = CreatureTagVocabulary.All[i];
             bool selected = draft.Contains(tag);
             tagLabels[i].text = (selected ? "[x] " : "[ ] ") + tag;

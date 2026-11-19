@@ -1,0 +1,20 @@
+{
+  "status": "Prepared locally; Penpot connector unavailable",
+  "date": "2026-11-19",
+  "referenceResolution": [
+    1920,
+    1080
+  ],
+  "panelWidth": 460,
+  "bodyFont": "VT323",
+  "bodyFontSize": 28,
+  "titleFont": "Press Start 2P",
+  "hoverDelayMs": 180,
+  "hideDelayMs": 80,
+  "sourceCapture": "Docs/Validation/FiveTagAbilities/Build/Build-1920x1080.png",
+  "boards": [
+    "00-component-sheet.svg",
+    "01-left-rig.svg",
+    "02-insertion-preview.svg"
+  ]
+}

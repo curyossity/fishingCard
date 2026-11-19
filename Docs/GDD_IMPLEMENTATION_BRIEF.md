@@ -37,13 +37,13 @@ Difficulty rises mainly through Resistance. Characteristics/rarity may influence
 - Only committed current-level abilities assist the next Landing. The encountered creature and previews cannot assist their own acquisition.
 - No rig capacity or replacement slot cap is introduced. No-legal-position handling must be designed before assigning a restriction combination that can cause it.
 
-Species tags, primary abilities, descriptions, tuning and level progressions belong in editable game content definitions, not a duplicate Markdown roster. Shared rules remain governed by the GDD. Historical test examples are not species assignments. The current primary-ability schema supports landing, attempts, Miss protection, value and placement restrictions; other effect families require explicit handlers and content. See [ability authoring](Creature%20Ability%20Design.md) for shared timing, positional and stacking requirements.
+Species tags, primary abilities, descriptions, tuning and level progressions belong in editable game content definitions, not a duplicate Markdown roster. Shared rules remain governed by the GDD. Historical test examples are not species assignments. The current schema supports conditional scoring, strike sequences, attempt grants, scoring-base substitutions, positional value, zone/motion assistance and placement restrictions. Other effect families require explicit handlers and content. See [ability authoring](Creature%20Ability%20Design.md) for shared timing, stacking, coefficient caps and step-based level scaling.
 
 The approved Penpot Build/Upgrade artwork is integrated as a separate live-data canvas. New placements retain legal-gap selection and confirmation; duplicates show a brief automatic result with their current level, value and effect before Discover becomes visible. No extra upgrade decision or gameplay reward is introduced. See [artwork validation](Validation/TackleBuildArt/README.md).
 
 Tags describe build identity: **Schooling** — cooperation and shared strength; **Predator** — exploitation and decisive payoff; **Anchored** — structure and foundations; **Armored** — dependability and resilience; **Elusive** — finesse and mastery. Each may affect multiple outcomes; support same-tag, cross-tag and independent abilities. Tags grant no automatic powers. Fish, Small and Heavy are retired gameplay tags. Weight remains undecided and does not imply Resistance or capacity.
 
-The five-tag vocabulary, one-tag content and revised Discover pair rule are documentation changes pending runtime/content migration. Existing serialized tags, artwork and validation results do not establish compliance with the new design.
+The five-tag vocabulary, one-tag content and revised Discover pair rule were implemented on 19 November 2026. [Current validation](Validation/FiveTagAbilities/README.md) covers the installed definitions and live phase flow; earlier artwork and tests remain historical evidence. Content tuning is provisional, and new creature portraits still require supplied artwork.
 
 ## Expedition and progression
 

@@ -19,7 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
   - Predator
   artwork: {fileID: 21300000, guid: 5fb9333c4a06d8346af7e27e2cfdea94, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 5fb9333c4a06d8346af7e27e2cfdea94, type: 3}
@@ -29,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Thrashing Catch: When caught, discard 1 technique from your hand.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Shoal Scatter: When attached as Bait, you may release up to 2 other
-    Small creatures.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 2
   value: 16
@@ -44,51 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: thrashing_catch
-    displayName: Thrashing Catch
-    effectType: 38
-    trigger: 1
-    target: 0
-    effectTone: 2
-    amount: 1
-    requiredTags: []
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Immediately after Catch attachment, choose and discard one technique
-      without playing it. Empty hand does nothing.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: shoal_scatter
-    displayName: Shoal Scatter
-    effectType: 39
-    trigger: 1
-    target: 5
-    effectTone: 1
-    amount: 2
-    requiredTags:
-    - Small
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: 'Once per card on first Bait attachment: optionally choose up to
-      two distinct other legal attached Small creatures in either mode. Choose all
-      before either removal, then release together and resolve Release reactions
-      after both leave. The Hooked encounter is not eligible. No technique is required.
-      Mode changes, declining, or unused selections cannot refresh or save this activation.'
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Closing In'
+    description: 'Successful strikes score ×{multiplier} when points already meet half the Resistance.'
+    effects:
+    - kind: 1
+      trigger: 0
+      accuracy: 0
+      amount: 0.4
+      amountPerLevel: 0.1
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 5
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

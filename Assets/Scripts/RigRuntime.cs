@@ -83,15 +83,19 @@ public sealed class RigRuntime
             var member = members[i]; var rules = new List<LandingRigRule>();
             foreach (var effect in member.PrimaryAbility.Effects)
             {
-                if (effect.Trigger != RigAbilityTrigger.Continuous) continue;
+                if (effect.Trigger != RigAbilityTrigger.Continuous && effect.Trigger != RigAbilityTrigger.Strike) continue;
                 decimal amount = checked(effect.Amount(member.Level) * Count(i, effect));
+                if (amount == 0) continue;
                 string label = member.PrimaryAbility.Name + " (Lv " + member.Level + ")";
-                if (effect.Kind == RigAbilityKind.LandingBonus) rules.Add(LandingRigRule.Exact(label, effect.Accuracy, amount, 1));
-                if (effect.Kind == RigAbilityKind.LandingMultiplier) rules.Add(LandingRigRule.Exact(label, effect.Accuracy, 0, checked(1 + amount)));
-                if (effect.Kind == RigAbilityKind.ExtraAttempts) extraAttempts = checked(extraAttempts + (int)amount);
+                if (effect.Kind == RigAbilityKind.LandingBonus || effect.Kind == RigAbilityKind.LandingMultiplier
+                    || effect.Kind == RigAbilityKind.PerfectBase || effect.Kind == RigAbilityKind.GoodWidth
+                    || effect.Kind == RigAbilityKind.PerfectWidth || effect.Kind == RigAbilityKind.FishSlowInGood
+                    || effect.Kind == RigAbilityKind.ExtraAttempts && effect.Trigger == RigAbilityTrigger.Strike)
+                    rules.Add(LandingRigRule.FromAbility(label, effect, amount));
+                if (effect.Kind == RigAbilityKind.ExtraAttempts && effect.Trigger == RigAbilityTrigger.Continuous) extraAttempts = checked(extraAttempts + (int)amount);
                 if (effect.Kind == RigAbilityKind.MissProtection) protectedMisses = checked(protectedMisses + (int)amount);
             }
-            result.Add(new LandingRigMember(member.InstanceId, member.Definition.DisplayName, CatchAttachmentRole.Catch, member.Tags, rules.ToArray(), member.Level));
+            result.Add(new LandingRigMember(member.InstanceId, member.Definition.DisplayName, CatchAttachmentRole.Catch, member.Tags, rules.ToArray(), member.Level, member.Definition.Rarity));
         }
         return result.ToArray();
     }
@@ -147,6 +151,19 @@ public sealed class RigRuntime
     private int Count(int index, RigAbilityEffect effect)
     {
         if (effect.Count == RigPositionCount.Once) return 1;
+        if (effect.Count == RigPositionCount.Center) return index > 0 && index * 2 == members.Count - 1 ? 1 : 0;
+        if (effect.Count == RigPositionCount.LineTip) return index == members.Count - 1 ? 1 : 0;
+        if (effect.Count == RigPositionCount.DifferentNeighbors)
+            return index > 0 && index + 1 < members.Count && !string.Equals(members[index - 1].Tags[0], members[index + 1].Tags[0], StringComparison.OrdinalIgnoreCase) ? 1 : 0;
+        if (effect.Count == RigPositionCount.DistinctTagsBefore || effect.Count == RigPositionCount.DistinctOtherTags)
+        {
+            var tags = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            for (int j = 0; j < members.Count; j++)
+                if (effect.Count == RigPositionCount.DistinctTagsBefore ? j < index : j != index)
+                    foreach (string tag in members[j].Tags)
+                        if (effect.Count != RigPositionCount.DistinctOtherTags || !HasTag(members[index], tag)) tags.Add(tag);
+            return effect.PerPosition ? tags.Count : tags.Count > 0 ? 1 : 0;
+        }
         int count = 0;
         if (effect.Count == RigPositionCount.ContiguousOther)
         {
@@ -164,9 +181,19 @@ public sealed class RigRuntime
     }
 
     /// <summary>Resolves directional value recipients with index zero nearest the Rod.</summary>
-    private static bool Targets(int source, int target, RigAbilityEffect effect) => effect.ValueTarget == RigValueTarget.Self ? source == target
+    private bool Targets(int source, int target, RigAbilityEffect effect)
+    {
+        if (effect.ValueTarget == RigValueTarget.UntilNextSameTag)
+        {
+            if (target <= source) return false;
+            for (int j = source + 1; j <= target; j++)
+                if (HasTag(members[j], members[source].Tags[0])) return false;
+            return true;
+        }
+        return effect.ValueTarget == RigValueTarget.Self ? source == target
         : effect.ValueTarget == RigValueTarget.Adjacent ? Math.Abs(source - target) == 1
         : effect.ValueTarget == RigValueTarget.Before ? target < source : effect.ValueTarget == RigValueTarget.After ? target > source : true;
+    }
     /// <summary>An empty tag filter includes every species without requiring a universal tag.</summary>
     private static bool HasTag(CardInstance member, string tag) => string.IsNullOrWhiteSpace(tag)
         || Array.Exists(member.Tags, t => string.Equals(t, tag, StringComparison.OrdinalIgnoreCase));

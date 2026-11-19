@@ -10,7 +10,9 @@ public sealed class TackleRigCardView : MonoBehaviour
     [SerializeField] private bool alignInkTop;
     [SerializeField] private GameObject acquiredHighlight;
     [SerializeField] private GameObject railClip;
+    [SerializeField] private TackleCardTooltipSource tooltipSource;
     public CardInstance BoundInstance { get; private set; }
+    public UnityEngine.UI.Selectable InspectionTarget => tooltipSource;
 
     /// <summary>Briefly accents a scoring source without changing its role, value or supplied artwork.</summary>
     public void SetContributing(bool active) { face.color = active ? new Color32(255, 222, 151, 255) : Color.white; }
@@ -22,7 +24,7 @@ public sealed class TackleRigCardView : MonoBehaviour
     public void SetClipVisible(bool active) { if (railClip != null) railClip.SetActive(active); }
 
     /// <summary>Displays role-aware resolved value without exposing concealed numbers or running attachment effects.</summary>
-    public void Bind(CardInstance instance)
+    public void Bind(CardInstance instance, bool afterPlacement = false)
     {
         BoundInstance = instance;
         nameLabel.text = instance.Definition.DisplayName.ToUpperInvariant();
@@ -38,5 +40,6 @@ public sealed class TackleRigCardView : MonoBehaviour
         Sprite image = instance.Definition.Artwork;
         portrait.sprite = image;
         portrait.enabled = image != null;
+        if (tooltipSource != null) tooltipSource.Rebind(instance, afterPlacement);
     }
 }

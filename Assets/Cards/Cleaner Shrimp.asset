@@ -19,7 +19,7 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Small
+  - Armored
   artwork: {fileID: 21300000, guid: c829f76002875df4bb266662205d0d18, type: 3}
   encounterArtwork: {fileID: 21300000, guid: c829f76002875df4bb266662205d0d18, type: 3}
   artworkLayout: 0
@@ -28,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Quick Clean: When attached as Catch, remove one negative effect.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Cleaning Station: At later biome starts, swap a Catch for one of
-    two creatures.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 1
   value: 8
@@ -43,49 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: cleaner_shrimp_quick_clean
-    displayName: Quick Clean
-    effectType: 19
-    trigger: 1
-    target: 0
-    effectTone: 1
-    amount: 1
-    requiredTags: []
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 1
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Immediately after attachment as Catch, choose and remove one active
-      negative effect. Completed actions are unchanged; lasting negative stat modifiers
-      can be removed.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: cleaner_shrimp_cleaning_station
-    displayName: Cleaning Station
-    effectType: 20
-    trigger: 10
-    target: 4
-    effectTone: 1
-    amount: 2
-    requiredTags:
-    - Creature
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: At each later biome start, replace one pre-entry creature Catch
-      with a weighted creature offer; keep normal Weight, Value, and Catch effects.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Fresh Start'
+    description: 'Your first Miss grants +{amount} {attempts}, once per encounter.'
+    effects:
+    - kind: 4
+      trigger: 3
+      accuracy: 3
+      amount: 1
+      amountPerLevel: 1
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 10
+      encounterTag:
+      triggerLimit: 1
+      levelsPerIncrement: 3
+      maximumAmount: 3

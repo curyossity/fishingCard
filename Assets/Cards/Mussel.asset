@@ -19,8 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Small
-  - Anchored
   - Armored
   artwork: {fileID: 21300000, guid: a4ed4361190f29740838c1bcf99b5e74, type: 3}
   encounterArtwork: {fileID: 21300000, guid: a4ed4361190f29740838c1bcf99b5e74, type: 3}
@@ -30,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Shell Growth: This Catch gains 2 value each time you catch another
-    Armored creature.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Shelter Shell: Cancel the next Hazard while this remains Bait.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 1
   value: 6
@@ -45,53 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: shell_growth
-    displayName: Shell Growth
-    effectType: 33
-    trigger: 11
-    target: 1
-    effectTone: 1
-    amount: 2
-    requiredTags:
-    - Armored
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: After another Armored creature Catch finishes its on-attach effects,
-      add 2 sale value to every surviving Mussel Catch once. Armored Bait does not
-      count. Bonuses last until this card leaves the chain, including across modes.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: shelter_shell
-    displayName: Shelter Shell
-    effectType: 34
-    trigger: 1
-    target: 1
-    effectTone: 1
-    amount: 1
-    requiredTags: []
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: One protection on first Bait attachment. Before any effects, automatically
-      discard the next revealed Hazard and consume only the oldest protected Mussel's
-      protection. No depth advance or immediate redraw; next Descend proceeds normally.
-      Only Hazard classification qualifies, never Apex. Protection survives biomes
-      but expires on leaving Bait mode; returning never restores used or expired
-      protection.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Reliable Grip'
+    description: 'Good strikes gain +{amount} Landing Points.'
+    effects:
+    - kind: 0
+      trigger: 0
+      accuracy: 1
+      amount: 6
+      amountPerLevel: 2
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

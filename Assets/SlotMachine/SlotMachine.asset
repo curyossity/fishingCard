@@ -15,4 +15,3 @@ MonoBehaviour:
   baselineRarityWeights: 46000000160000000700000001000000
   pairRarityWeights: 370000001c0000000e00000003000000
   tripleRarityWeights: 23000000230000001700000007000000
-  secondaryTagWeight: 2

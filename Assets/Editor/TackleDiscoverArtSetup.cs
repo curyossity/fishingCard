@@ -115,6 +115,7 @@ public static class TackleDiscoverArtSetup
             Bind(data, "roleLabel", Text(root, "RoleLabel", "", new Rect(44, 198, 158, 30), 19, Cream, true));
             Bind(data, "valueLabel", Text(root, "SaleValueLabel", "", new Rect(212, 197, 58, 32), 22, Cream, false, 10));
             data.ApplyModifiedPropertiesWithoutUndo();
+            TackleCardTooltipSetup.ConfigureCard(root.gameObject);
             PrefabUtility.SaveAsPrefabAsset(root.gameObject, RigPrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root.gameObject); }
@@ -188,6 +189,7 @@ public static class TackleDiscoverArtSetup
             AddReelAnimation(root);
             TackleReelSurfaceSetup.Configure(root);
             TackleDiscoverHousingSetup.Configure(root);
+            TackleCardTooltipSetup.ConfigurePhase(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }

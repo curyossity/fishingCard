@@ -1,6 +1,6 @@
 # Deepwater — Slot Machine Mechanic
 
-Agreed design direction, 7 November 2026; five-tag revision, 18 November 2026. Exact rarity probabilities remain balancing values. This specification supplements the [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md). The five-tag revision is documentation only; the existing runtime still uses the previous vocabulary and secondary-tag preference until migrated.
+Agreed design direction, 7 November 2026; five-tag revision, 18 November, implemented 19 November 2026. Exact rarity probabilities remain balancing values. This specification supplements the [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md). See [current validation](Validation/FiveTagAbilities/README.md) for the migrated runtime and native controls.
 
 ## Preparation and reels
 

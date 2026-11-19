@@ -39,15 +39,18 @@ public static class CreatureSpriteSetup
         AssetDatabase.SaveAssets();
     }
 
-    /// <summary>Verifies the complete roster before importing; trims only transparent margins without resampling source pixels.</summary>
+    /// <summary>Verifies supplied-art identities before importing; new species without artwork retain empty illustration fields.</summary>
     public static void Import()
     {
         var entries = ReadLibrary();
         var definitions = AssetDatabase.FindAssets("t:CardDefinition", new[] { "Assets/Cards" })
             .Select(g => AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(g)))
             .Where(c => c.CardType == CardType.Creature || c.CardType == CardType.ApexEncounter).ToArray();
-        if (entries.Length != definitions.Length || entries.Select(e => e.id).Distinct().Count() != entries.Length)
-            throw new InvalidOperationException("Creature sprite roster does not cover the current creature definitions exactly.");
+        if (entries.Select(e => e.id).Distinct().Count() != entries.Length)
+            throw new InvalidOperationException("Creature sprite roster contains duplicate identities.");
+        foreach (var definition in definitions)
+            if (!entries.Any(e => e.id == definition.UniqueId) && (definition.Artwork != null || definition.EncounterArtwork != null))
+                throw new InvalidOperationException("Unregistered creature artwork requires provenance: " + definition.UniqueId);
         foreach (var entry in entries)
         {
             if (entry.filename != entry.id + ".png" || !definitions.Any(c => c.UniqueId == entry.id && AssetDatabase.GetAssetPath(c) == entry.definition))

@@ -90,7 +90,15 @@ public class CardDefinition : ScriptableObject
     public Vector2 EncounterArtworkOffset => encounterArtworkOffset;
     public Sprite CardFaceArtwork => cardFaceArtwork;
     public bool CardFaceIncludesName => cardFaceIncludesName;
-    public string RulesText => rulesText;
+    public string RulesText
+    {
+        get
+        {
+            if (!CreatureTagVocabulary.AppliesTo(cardType)) return rulesText;
+            var ability = PrimaryAbility.Snapshot();
+            return ability.Effects.Count > 0 ? ability.Name + ": " + RigAbilityText.Describe(ability, 1, false) : rulesText;
+        }
+    }
     public CardTextHighlightDefinition[] RulesTextHighlights => rulesTextHighlights;
     public string BaitRulesText => hasExplicitBaitData ? baitRulesText : string.IsNullOrWhiteSpace(baitRulesText) ? rulesText : baitRulesText;
     public CardTextHighlightDefinition[] BaitRulesTextHighlights =>
@@ -278,15 +286,15 @@ public static class CreatureTagVocabulary
 
     public static readonly string[] All =
     {
-        Fish,
-        Predator,
         Schooling,
-        Small,
-        Heavy,
+        Predator,
         Anchored,
         Armored,
         Elusive
     };
+
+    /// <summary>Requires exactly one canonical gameplay identity without silently repairing invalid creature content.</summary>
+    public static bool IsSingleTag(string[] tags) => tags != null && tags.Length == 1 && Array.Exists(All, tag => string.Equals(tag, tags[0], StringComparison.Ordinal));
 
     /// <summary>Reports whether a card type uses the controlled creature-tag vocabulary.</summary>
     public static bool AppliesTo(CardType cardType)

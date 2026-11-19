@@ -13,6 +13,10 @@ public sealed class LandingChallengeProfile : ScriptableObject
     [SerializeField, Min(.1f)] private float zonePeriod = 3.4f;
     [SerializeField, Min(.01f)] private float fishSpeed = .26f;
     [SerializeField, Min(.1f)] private float feedbackSeconds = .22f;
+    [Header("Ability Assistance Limits")]
+    [SerializeField, Range(0, .95f)] private float maximumZoneGrowth = .75f;
+    [SerializeField, Range(.01f, .99f)] private float maximumAssistedGoodWidth = .9f;
+    [SerializeField, Range(0, .95f)] private float maximumFishSlow = .75f;
     [Header("Movement Prototype")]
     [SerializeField, Min(.01f)] private float burstNormalSeconds = 1.8f, burstWarningSeconds = .35f, burstSeconds = .45f;
     [SerializeField, Min(0)] private float warningSpeedMultiplier = .25f, burstSpeedMultiplier = 2.6f;
@@ -25,7 +29,8 @@ public sealed class LandingChallengeProfile : ScriptableObject
         return new LandingSettings(attempts, defaultResistance, resistancePerDepth, goodPoints, perfectPoints,
             goodWidth, perfectWidth, fishWidth, zonePeriod, fishSpeed, feedbackSeconds,
             new LandingMotionSettings(burstNormalSeconds, burstWarningSeconds, burstSeconds, warningSpeedMultiplier,
-                burstSpeedMultiplier, erraticStepSeconds, Array.ConvertAll(erraticPositions, value => (double)value)));
+                burstSpeedMultiplier, erraticStepSeconds, Array.ConvertAll(erraticPositions, value => (double)value)),
+            maximumZoneGrowth, maximumAssistedGoodWidth, maximumFishSlow);
     }
 }
 
@@ -44,10 +49,14 @@ public sealed class LandingSettings
     public double FishSpeed { get; }
     public double FeedbackSeconds { get; }
     public LandingMotionSettings Motion { get; }
+    public double MaximumZoneGrowth { get; }
+    public double MaximumAssistedGoodWidth { get; }
+    public double MaximumFishSlow { get; }
 
     /// <summary>Creates an immutable configuration and validates nested zones, finite motion and nonnegative scoring.</summary>
     public LandingSettings(int attempts, int resistance, int resistancePerDepth, float goodPoints, float perfectPoints,
-        double goodWidth, double perfectWidth, double fishWidth, double zonePeriod, double fishSpeed, double feedbackSeconds, LandingMotionSettings motion = null)
+        double goodWidth, double perfectWidth, double fishWidth, double zonePeriod, double fishSpeed, double feedbackSeconds, LandingMotionSettings motion = null,
+        double maximumZoneGrowth = .75, double maximumAssistedGoodWidth = .9, double maximumFishSlow = .75)
     {
         if (attempts < 1 || resistance < 1 || resistancePerDepth < 0 || !Finite(goodPoints) || !Finite(perfectPoints)
             || goodPoints < 0 || perfectPoints < goodPoints || !Finite(goodWidth) || !Finite(perfectWidth) || !Finite(fishWidth)
@@ -55,11 +64,16 @@ public sealed class LandingSettings
             || !Finite(zonePeriod) || zonePeriod <= 0 || !Finite(fishSpeed) || fishSpeed <= 0
             || !Finite(feedbackSeconds) || feedbackSeconds < 0)
             throw new ArgumentException("Landing tuning requires finite positive movement, nested zones, attempts and Resistance.");
+        if (!Finite(maximumZoneGrowth) || maximumZoneGrowth < 0 || maximumZoneGrowth > .95
+            || !Finite(maximumAssistedGoodWidth) || maximumAssistedGoodWidth <= 0 || maximumAssistedGoodWidth >= 1
+            || !Finite(maximumFishSlow) || maximumFishSlow < 0 || maximumFishSlow > .95)
+            throw new ArgumentException("Ability assistance limits must preserve a bounded zone and positive fish movement.");
         Attempts = attempts; DefaultResistance = resistance; ResistancePerDepth = resistancePerDepth;
         GoodPoints = (decimal)goodPoints; PerfectPoints = (decimal)perfectPoints;
         GoodWidth = goodWidth; PerfectWidth = perfectWidth; FishWidth = fishWidth;
         ZonePeriod = zonePeriod; FishSpeed = fishSpeed; FeedbackSeconds = feedbackSeconds;
         Motion = motion ?? LandingMotionSettings.Prototype();
+        MaximumZoneGrowth = maximumZoneGrowth; MaximumAssistedGoodWidth = maximumAssistedGoodWidth; MaximumFishSlow = maximumFishSlow;
     }
 
     /// <summary>Resolves an optional creature-specific base independently of Weight, using editable prototype depth growth.</summary>

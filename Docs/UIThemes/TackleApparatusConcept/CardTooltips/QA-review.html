@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Local tooltip interaction check</title>
+<iframe id="prototype" src="Review.html" width="1280" height="950"></iframe><pre id="report">Waiting</pre>
+<script>
+const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+document.getElementById('prototype').addEventListener('load',async function(){
+ const w=this.contentWindow,d=this.contentDocument,checks=[];
+ const check=(name,value)=>{checks.push({name,passed:!!value});if(!value)throw Error(name)};
+ try{
+  const source=d.querySelector('[data-tip="rig"]'),tip=d.getElementById('rig');
+  check('source screenshot loaded',d.querySelector('.stage>img').complete&&d.querySelector('.stage>img').naturalWidth===1920);
+  source.focus();check('focus displays immediately',tip.classList.contains('open'));
+  d.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true}));check('Escape dismisses',!tip.classList.contains('open'));
+  check('Escape preserves card focus',d.activeElement===source);
+  source.blur();source.dispatchEvent(new w.Event('pointerenter'));
+  await sleep(150);check('hover delay prevents instant flash',!tip.classList.contains('open'));
+  await sleep(60);check('hover opens after delay',tip.classList.contains('open'));
+  source.dispatchEvent(new w.Event('pointerleave'));await sleep(100);check('pointer exit dismisses',!tip.classList.contains('open'));
+  const tray=d.querySelector('[data-tip="preview"]');tray.focus();check('tray reuses its corresponding panel',d.getElementById('preview').classList.contains('open'));
+  w.dispatchEvent(new w.Event('resize'));check('resize dismisses stale positioning',!d.querySelector('.tip.open'));
+  check('tooltip cannot block placement input',w.getComputedStyle(tip).pointerEvents==='none');
+  check('three independent inspection targets',d.querySelectorAll('.hotspot').length===3);
+  document.getElementById('report').textContent=JSON.stringify({passed:true,checks},null,2);
+ }catch(error){document.getElementById('report').textContent=JSON.stringify({passed:false,error:String(error),checks},null,2)}
+ document.documentElement.dataset.qa='complete';
+});
+</script></html>

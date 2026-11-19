@@ -19,9 +19,7 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
-  - Small
-  - Elusive
+  - Predator
   artwork: {fileID: 21300000, guid: 1c452e4dabe610b4280475bbd8b6f60a, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 1c452e4dabe610b4280475bbd8b6f60a, type: 3}
   artworkLayout: 0
@@ -30,9 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Swift: Gain +3 value per other Elusive Catch.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Slipstream: Your other attached Fish gain Elusive.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 1
   value: 9
@@ -44,50 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: swift
-    displayName: Swift
-    effectType: 22
-    trigger: 2
-    target: 1
-    effectTone: 1
-    amount: 3
-    requiredTags:
-    - Elusive
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Gain 3 sale value for each other attached Elusive creature in Catch
-      mode. Bait does not count; recalculate as eligible creatures or tags change.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: slipstream
-    displayName: Slipstream
-    effectType: 23
-    trigger: 2
-    target: 4
-    effectTone: 1
-    amount: 0
-    requiredTags:
-    - Fish
-    grantedTag: Elusive
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Every other attached Fish creature in either role gains Elusive
-      while this Garfish is Bait. Apply before attachment triggers. Ending this effect
-      preserves native tags and other active grants.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Ambush'
+    description: 'The first successful strike gains +{amount} Landing Points if Perfect.'
+    effects:
+    - kind: 0
+      trigger: 0
+      accuracy: 2
+      amount: 15
+      amountPerLevel: 3
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 1
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

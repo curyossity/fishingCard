@@ -64,7 +64,7 @@ public sealed partial class FishingRunController
         if (!UsesLandingChallenge) return;
         decimal resistance = landingSettings.Resistance(CurrentEncounter.LandingResistance, Math.Max(0, currentDepth - startingDepth));
         landing.Begin(CurrentEncounterRevision, resistance, landingSettings, preparedLandingRig, landingRandom, Time.realtimeSinceStartupAsDouble,
-            preparedExtraAttempts, preparedProtectedMisses);
+            preparedExtraAttempts, preparedProtectedMisses, CurrentEncounter);
         landingTerminalHandled = false; awaitingRigPlacement = false; lastLandingInputFrame = Time.frameCount;
     }
 

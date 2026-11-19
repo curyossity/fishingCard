@@ -2,7 +2,7 @@
 
 Design baseline: 6 November 2026. This defines the supplied-art and information boundary for future Deepwater presentation. It does not authorize code, prefab, scene or artwork changes in this documentation pass. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) governs mechanics.
 
-Detailed existing geometry, numeric animation and visual provenance are preserved in [Card Presentation Reference](Card%20Presentation%20Reference.md). Existing views have not been migrated. Gameplay instructions in implementation/artwork records yield to the GDD.
+Detailed existing geometry, numeric animation and visual provenance are preserved in [Card Presentation Reference](Card%20Presentation%20Reference.md). The current phase views consume native live fields; historical records do not define current gameplay. Gameplay instructions in implementation/artwork records yield to the GDD.
 
 ## Supplied-art boundary
 
@@ -56,9 +56,11 @@ Four lower sockets represent rarity only:
 
 Inactive sockets stay visibly inactive. Hook count is not independent gameplay state.
 
-The 18 November 2026 vocabulary is Schooling, Predator, Anchored, Armored and Elusive. Each creature has exactly one gameplay tag. Show that tag using its supported supplied icon in an authored tag socket; unused sockets stay empty. Fish, Small and Heavy are retired gameplay tags. Preserve the reusable master and historical icon resources; the new rule does not authorize artwork edits or claim existing views/data have migrated. Tag-name tooltips use a separate non-intercepting layer. Do not invent icons or universal abilities from tag artwork.
+The 18 November 2026 vocabulary is Schooling, Predator, Anchored, Armored and Elusive. Each creature has exactly one gameplay tag. Show that tag using its supported supplied icon in an authored tag socket; unused sockets stay empty. Fish, Small and Heavy are retired gameplay tags. Preserve the reusable master and historical icon resources; the 19 November implementation migrates gameplay tags and supplied-icon mappings without artwork edits. Tag-name tooltips use a separate non-intercepting layer. Do not invent icons or universal abilities from tag artwork.
 
 ## Compact rig cards
+
+Tackle compact cards support an external hover/focus tooltip with creature name, rarity, one tag, current level, resolved accumulated sale value, ability name and current-level rules. Coefficients use the shared brass accent. A native 460-reference-pixel panel wraps at the authored font size, opens beside cabinet cards or above insertion-tray cards, and clamps to the canvas safe area. It remains outside clipping masks and does not intercept input. Tray details explicitly label selected-placement preview values. The face retains its existing fields and artwork. Pointer inspection is delayed; keyboard/gamepad focus shows details immediately. Scrolling, source recycling, dismissal and phase exit clear inspection.
 
 The approved Tackle Apparatus theme lives under `Assets/UIThemes/TackleApparatus/`. Its blank faces, portrait, clip and live name/level/sale-value fields follow the same separation contract. Original ivory/sage source faces remain preserved; active rig members use their shared face and native level/value fields. Unprovided portraits remain empty; do not substitute unrelated illustrations. The cabinet has a clipped scrolling list and no three-card cap. Original nautical and Midnight Field Journal resources remain preserved for their other presentations and provenance.
 

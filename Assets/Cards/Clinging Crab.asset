@@ -19,7 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Anchored
   - Armored
   artwork: {fileID: 21300000, guid: 70b6c19b8d91e9c42922124af1648925, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 70b6c19b8d91e9c42922124af1648925, type: 3}
@@ -29,9 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Iron Grip: Cannot be deliberately released.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Claw Cut: Instantly release another card from the Catch Chain.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 2
   value: 14
@@ -43,47 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: iron_grip
-    displayName: Iron Grip
-    effectType: 17
-    trigger: 2
-    target: 1
-    effectTone: 2
-    amount: 1
-    requiredTags: []
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Techniques and abilities cannot deliberately release this Crab.
-      Forced removal and exchanges can still remove it.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: claw_cut
-    displayName: Claw Cut
-    effectType: 8
-    trigger: 1
-    target: 5
-    effectTone: 1
-    amount: 1
-    requiredTags: []
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Immediately after attaching as Bait, choose one other legally releasable
-      Catch or Bait. Deliberate creature Release; unused release is lost.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Sure Grip'
+    description: 'Your first Good each encounter uses {amount}× the Perfect accuracy base.'
+    effects:
+    - kind: 8
+      trigger: 0
+      accuracy: 1
+      amount: 1
+      amountPerLevel: 0.1
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 9
+      encounterTag:
+      triggerLimit: 1
+      levelsPerIncrement: 1
+      maximumAmount: 0

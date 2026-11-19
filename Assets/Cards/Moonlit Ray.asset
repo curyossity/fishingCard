@@ -19,8 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
-  - Predator
   - Elusive
   artwork: {fileID: 21300000, guid: 8a0babf77b5153745b6e29faebeef41c, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 8a0babf77b5153745b6e29faebeef41c, type: 3}
@@ -30,11 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Graceful Glide: This Catch weighs 1 less while any Elusive Bait is
-    attached.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Moonlit Reflection: After releasing an Elusive Catch, add its value
-    to another Catch.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 3
   value: 24
@@ -46,55 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: graceful_glide
-    displayName: Graceful Glide
-    effectType: 29
-    trigger: 2
-    target: 1
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Elusive
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Reduce effective weight by 1, minimum 0, while at least one Elusive
-      creature is attached as Bait. Extra qualifying Bait does not increase the reduction.
-      Recalculate immediately on changes to creatures, modes or tags.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: moonlit_reflection
-    displayName: Moonlit Reflection
-    effectType: 32
-    trigger: 6
-    target: 5
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Elusive
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Capture each deliberately released Elusive Catch sale value including
-      modifiers immediately before removal. After the entire release action, choose
-      one remaining Catch per release and grant that value as a lasting bonus. All
-      Moonlit Ray Bait copies share one transfer per released Catch. Forced removal
-      and exchanges do not trigger. With no remaining Catch, skip. Bonuses survive
-      source removal and recipient mode changes; Bait has no sale value. Resolve
-      immediately, never save.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Graceful Glide'
+    description: 'Widen the Good region by {percent}%, without changing Perfect.'
+    effects:
+    - kind: 9
+      trigger: 0
+      accuracy: 0
+      amount: 0.15
+      amountPerLevel: 0.02
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0.75

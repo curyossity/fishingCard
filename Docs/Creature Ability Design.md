@@ -1,6 +1,6 @@
 # Deepwater — Creature Ability Authoring
 
-Current baseline: Rig Building and Creature Upgrades, 15 November 2026; five-tag authoring rules updated 18 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) and [Rig Building specification](Rig%20Building%20Mechanic.md) govern mechanics. This document specifies shared authoring contracts, not a species catalog. The five-tag content and additional effect handlers have not been installed by this documentation update.
+Current baseline: Rig Building and Creature Upgrades, 15 November 2026; five-tag authoring rules updated 18 November and implemented 19 November 2026. The [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md) and [Rig Building specification](Rig%20Building%20Mechanic.md) govern mechanics. This document specifies shared authoring contracts, not a species catalog. See [current validation](Validation/FiveTagAbilities/README.md).
 
 ## Content authority and tag identity
 
@@ -14,7 +14,7 @@ Abilities may share outcomes while using different conditions and decisions. Sup
 
 Each species has one `CardDefinition.primaryAbility`: name, description and related data-driven components. Components specify operation, trigger, accuracy filter, positional count, tag filter, whether to count each qualifying position and value recipients. A related benefit/restriction can belong to one ability. No Catch/Bait choice or sale-value sacrifice exists.
 
-`CreatureAbilityDefinition.Snapshot()` validates and freezes the blueprint when a species joins the rig. Its runtime level and copy count live on the member. Amounts currently scale as initial amount plus increment per level after Level 1; those parameters are editable and are not final balancing values. No gameplay level cap is introduced.
+`CreatureAbilityDefinition.Snapshot()` validates and freezes the blueprint when a species joins the rig. Its runtime level and copy count live on the member. Amounts use `initial + increment × floor((level - 1) / levelsPerIncrement)`, with an optional authored maximum amount. A missing serialized interval defaults to one for existing definitions. These parameters are editable tuning; an effect's coefficient cap is not a creature level cap. Encounter/card descriptions resolve amount, multiplier, percentage and attempt-pluralization tokens from the same current-level data as gameplay.
 
 ## Positional semantics
 
@@ -32,7 +32,9 @@ The Line Tip is the final occupied position. Exactly at the center means equal n
 - Resolve strike-triggered attempt grants once before checking exhaustion. Reaching Resistance still succeeds immediately; an extra attempt cannot revive an already failed encounter or extend a successful one.
 - Acquired and Upgraded are separate events. Continuous recalculation cannot repeat a grant, and expedition cleanup cannot fire gameplay removal triggers.
 
-Every effect must specify its trigger, recipients, condition, duration, limits and level progression. Author whether multiple components/sources stack, how overlapping recipients are handled and how assistance is bounded before installing affected content. General multi-source stacking, final level scaling and zone/motion assistance limits remain unresolved; these guidelines do not silently choose additive, multiplicative or strongest-only policies. Zone assistance must preserve a centered Perfect region contained within Good. Movement assistance must preserve learnable movement and the value of timing.
+Every effect must specify its trigger, recipients, condition, duration, limits and level progression. Flat score bonuses add before eligible multiplier products. Multiple scoring-base substitutions use the strongest replacement, without changing the actual accuracy grade. Attempt grants add across qualifying sources, with a separate per-rule encounter limit; strike attempt grants require a finite limit. Value bonuses add before value multiplier products. Continuous value derivation never compounds on its prior result.
+
+Good/Perfect width-growth contributions add within each family and respect the Landing profile's maximum growth. Perfect stays centered and contained within Good. Good assistance respects an authored maximum width without shrinking a larger authored baseline. Fish slowing uses the strongest active source, bounded by the profile's maximum slowing; movement remains positive. Conditional slowing advances on a fixed simulation grid independent of render cadence, while the zone keeps its original clock. Assistance caps and level coefficients are initial balancing values stored in game data, not finalized balance.
 
 ## Current implementation support
 
@@ -41,13 +43,17 @@ Every effect must specify its trigger, recipients, condition, duration, limits a
 - Whole-unit sale-value bonuses and multipliers applied to self, adjacent, before, after or all matching positions.
 - Continuous before/after insertion restrictions.
 - Explicit self-value grants triggered only by Acquired or only by Upgraded.
+- First-success/Good/Perfect/Miss conditions, previous-strike sequences, half-Resistance and final-attempt conditions, and encountered-tag/rarity filters.
+- Per-rule limited strike-triggered attempts and scoring-base substitution, with source attribution retained for feedback.
+- Center, Line Tip, different-neighbor and distinct-tag conditions; bounded downstream value recipients stop before the next member sharing the source tag.
+- Good/Perfect width assistance and fish slowing while overlapping Good.
 
 All continuous flat value bonuses resolve before multiplier products. They use accumulated base value for all copies. Completed trigger grants are stored separately. Recalculation never repeats a trigger. Landing receives immutable current-level rules and source IDs from already committed members only.
 
-Unsupported trigger operations, invalid enum values, negative/nonfinite scaling, fractional economy authoring and arithmetic overflow are rejected before mutation. Technique manipulation, physical motion/zone assistance and removal abilities require precise content and supported handlers before assignment; a UI description alone never implements an effect.
+Unsupported trigger operations, invalid enum values, negative/nonfinite scaling, unsupported fractional economy authoring and arithmetic overflow are rejected before mutation. Technique manipulation and removal abilities still require precise content and supported handlers before assignment; a UI description alone never implements an effect.
 
 ## Existing validation fixtures
 
-`RigBuildingChecks` exercises level-scaled contiguous-group multipliers and sale-value bonuses using disposable definitions. Preserve the test evidence without interpreting its historical species labels or numeric fixtures as current catalog assignments. Encounter-sequence triggers, conditional attempt grants, scoring-base substitutions, distinct-tag/center/bounded-segment conditions and movement/zone assistance require supported handlers and appropriate validation before content assignment; the component list above does not claim these are already implemented.
+`RigBuildingChecks` exercises level-scaled contiguous-group multipliers and sale-value bonuses using disposable definitions. Preserve the test evidence without interpreting its historical species labels or numeric fixtures as current catalog assignments. `FiveTagAbilityChecks` validates installed content, all supported condition families, encounter resets, terminal attempt grants, transactional previews and assistance bounds/determinism. [Current evidence](Validation/FiveTagAbilities/README.md) is separate from historical captures.
 
 The content review must select each real species' primary ability, progression, restrictions, trigger scope and readable description. Existing weight, overload, role-switch and voluntary-surfacing effects do not become primary abilities automatically. Preserve old artwork/provenance records without treating their printed rules as current behavior.

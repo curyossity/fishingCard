@@ -19,8 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
-  - Small
   - Elusive
   artwork: {fileID: 21300000, guid: 3fec150211653624fb814d43e8b30481, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 3fec150211653624fb814d43e8b30481, type: 3}
@@ -30,17 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: Next Elusive catch gains +1 Value
-  rulesTextHighlights:
-  - text: Elusive
-    color: {r: 0.35942525, g: 0.32549018, b: 0.8117647, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  - text: +1
-    color: {r: 0, g: 0.14509805, b: 0.15294118, a: 1}
-    sizePercent: 120
-    matchWholeWord: 1
-  baitRulesText: 
+  rulesText: ''
+  rulesTextHighlights: []
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 3
   value: 12
@@ -52,28 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: flounder_next_elusive_value
-    displayName: 
-    effectType: 2
-    trigger: 7
-    target: 5
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Elusive
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 1
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 1
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: The next Elusive catch after Flounder permanently gains 1 Value.
+  effects: []
   hasExplicitBaitData: 0
   baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Hidden Opening'
+    description: 'Widen the Perfect region by {percent}%, contained within Good.'
+    effects:
+    - kind: 10
+      trigger: 0
+      accuracy: 0
+      amount: 0.2
+      amountPerLevel: 0.02
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0.75

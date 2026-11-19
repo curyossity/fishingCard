@@ -195,7 +195,7 @@ public static class RigBuildingArtChecks
     /// <summary>Uses the real Harbor preparation and confirmation controls.</summary>
     private static void Start(JournalHarborFlow harbor)
     {
-        harbor.Controller.TryPrepareSlotTags(new[]{"Fish","Predator","Schooling","Small"});harbor.TryStartNewRun();
+        harbor.Controller.TryPrepareSlotTags(new[]{"Armored","Predator","Schooling","Anchored"});harbor.TryStartNewRun();
         var prep=new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
     }
     /// <summary>Reads the real named species definition without changing authoring.</summary>

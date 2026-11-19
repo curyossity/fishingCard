@@ -23,6 +23,9 @@ MonoBehaviour:
   zonePeriod: 3.4
   fishSpeed: 0.26
   feedbackSeconds: 0.22
+  maximumZoneGrowth: 0.75
+  maximumAssistedGoodWidth: 0.9
+  maximumFishSlow: 0.75
   burstNormalSeconds: 1.8
   burstWarningSeconds: 0.35
   burstSeconds: 0.45

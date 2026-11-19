@@ -19,8 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Fish
-  - Predator
   - Elusive
   artwork: {fileID: 21300000, guid: 81fe43d0e15edfa4490425d972199897, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 81fe43d0e15edfa4490425d972199897, type: 3}
@@ -30,10 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Slippery Exit: When caught, you may release another Elusive Bait.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Escape Current: After releasing another Elusive creature, draw
-    1 technique.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 2
   value: 14
@@ -45,55 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: slippery_exit
-    displayName: Slippery Exit
-    effectType: 48
-    trigger: 1
-    target: 5
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Elusive
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Immediately on Catch attachment, optionally deliberately release
-      one other attached Elusive creature in Bait mode subject to normal restrictions.
-      Resolve Release reactions normally. Declining or no legal target does not save
-      this choice.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: escape_current
-    displayName: Escape Current
-    effectType: 49
-    trigger: 6
-    target: 0
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Elusive
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: After the whole deliberate Release action, while an eligible Eel
-      remains Bait, draw one technique per other Elusive creature released from either
-      mode, checking Elusive before removal. Multiple Eels share one draw per released
-      creature. Before drawing, optionally discard to make room in the four-card
-      hand; draw only as many as fit. Forced removal and exchanges do not qualify;
-      draws cannot be saved.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Narrow Escape'
+    description: 'Perfect strikes on the final available attempt gain +{amount} Landing Points.'
+    effects:
+    - kind: 0
+      trigger: 0
+      accuracy: 2
+      amount: 20
+      amountPerLevel: 4
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 6
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

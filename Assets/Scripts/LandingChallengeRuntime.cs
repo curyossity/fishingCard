@@ -11,6 +11,13 @@ public sealed class LandingChallengeRuntime
     private IReadOnlyList<LandingRigMember> rig = Array.Empty<LandingRigMember>();
     private double lastClock, motionTime, fishPhase, feedbackRemaining;
     private int protectedMisses;
+    private readonly Dictionary<LandingRigRule, int> triggerUses = new Dictionary<LandingRigRule, int>();
+    private LandingAccuracy? previousAccuracy;
+    private int successfulStrikes, goodStrikes, perfectStrikes, misses;
+    private CardRarity encounterRarity;
+    private string encounterTag;
+    private double goodWidth, perfectWidth, fishSlow, fishMotionTime, integratedTime;
+    private const double IntegrationStep = 1.0 / 240.0;
     public int ProtectedMissesRemaining => protectedMisses;
     public int InitialAttempts { get; private set; }
     public bool LastMissProtected { get; private set; }
@@ -27,14 +34,14 @@ public sealed class LandingChallengeRuntime
     public double FishPosition { get; private set; }
     public double ZonePosition { get; private set; }
     public double FishWidth => settings?.FishWidth ?? 0;
-    public double GoodWidth => settings?.GoodWidth ?? 0;
-    public double PerfectWidth => settings?.PerfectWidth ?? 0;
+    public double GoodWidth => goodWidth;
+    public double PerfectWidth => perfectWidth;
     public bool IsTelegraphingBurst { get; private set; }
     public bool CanStrike => State == LandingChallengeState.Active && feedbackRemaining <= 0 && Error == null;
     public IReadOnlyList<LandingRigMember> Rig => rig;
 
     /// <summary>Starts a fresh occurrence from immutable tuning and only previously attached rig members.</summary>
-    public void Begin(int encounterRevision, decimal resistance, LandingSettings tuning, LandingRigMember[] members, Random random, double clock, int extraAttempts = 0, int missProtection = 0)
+    public void Begin(int encounterRevision, decimal resistance, LandingSettings tuning, LandingRigMember[] members, Random random, double clock, int extraAttempts = 0, int missProtection = 0, CardDefinition encounter = null)
     {
         if (tuning == null || random == null || resistance <= 0 || !Finite(clock) || clock < 0 || extraAttempts < 0 || missProtection < 0)
             throw new ArgumentException("Landing requires validated tuning, Resistance, randomness and a finite clock.");
@@ -45,6 +52,20 @@ public sealed class LandingChallengeRuntime
         int attempts = checked(tuning.Attempts + extraAttempts);
         Reset();
         settings = tuning; rig = Array.AsReadOnly(snapshot); Resistance = resistance;
+        encounterRarity = encounter?.Rarity ?? CardRarity.Common;
+        encounterTag = encounter?.Tags != null && encounter.Tags.Length == 1 ? encounter.Tags[0] : null;
+        double goodGrowth = 0, perfectGrowth = 0;
+        foreach (var member in rig)
+            foreach (var rule in member.Rules)
+            {
+                if (rule.Ability == null) continue;
+                if (rule.Ability.Kind == RigAbilityKind.GoodWidth) goodGrowth += (double)rule.Amount;
+                if (rule.Ability.Kind == RigAbilityKind.PerfectWidth) perfectGrowth += (double)rule.Amount;
+                if (rule.Ability.Kind == RigAbilityKind.FishSlowInGood) fishSlow = Math.Max(fishSlow, (double)rule.Amount);
+            }
+        fishSlow = Math.Min(tuning.MaximumFishSlow, fishSlow);
+        goodWidth = Math.Min(Math.Max(tuning.MaximumAssistedGoodWidth, tuning.GoodWidth), tuning.GoodWidth * (1 + Math.Min(tuning.MaximumZoneGrowth, goodGrowth)));
+        perfectWidth = Math.Min(goodWidth, tuning.PerfectWidth * (1 + Math.Min(tuning.MaximumZoneGrowth, perfectGrowth)));
         EncounterRevision = encounterRevision; AttemptsRemaining = InitialAttempts = attempts; protectedMisses = missProtection;
         Pattern = (LandingMovementPattern)random.Next(3); fishPhase = random.NextDouble() * 4;
         lastClock = clock; State = LandingChallengeState.Active; UpdatePositions();
@@ -57,7 +78,7 @@ public sealed class LandingChallengeRuntime
         double delta = clock - lastClock; lastClock = clock;
         double frozen = Math.Min(delta, feedbackRemaining);
         feedbackRemaining -= frozen; motionTime += delta - frozen;
-        UpdatePositions();
+        UpdateAssistedPositions();
     }
 
     /// <summary>Evaluates exact strike-time overlap, computes the complete score, then consumes one attempt and resolves a terminal outcome.</summary>
@@ -67,11 +88,42 @@ public sealed class LandingChallengeRuntime
             || !Finite(clock) || clock < lastClock || Error != null) return false;
         AdvanceTo(clock);
         if (!CanStrike) return false;
-        LandingScore score; decimal total;
-        try { score = LandingScoring.Resolve(Grade(FishPosition, FishWidth, ZonePosition, GoodWidth, PerfectWidth), settings, rig); total = checked(Points + score.Points); }
+        LandingScore score; decimal total; int granted = 0;
+        var used = new List<LandingRigRule>();
+        var attemptContributions = new List<LandingContribution>();
+        var context = new LandingStrikeContext { Points = Points, Resistance = Resistance, Attempts = AttemptsRemaining,
+            Successes = successfulStrikes, Goods = goodStrikes, Perfects = perfectStrikes, Misses = misses,
+            Previous = previousAccuracy, EncounterRarity = encounterRarity, EncounterTag = encounterTag, Uses = triggerUses };
+        try
+        {
+            var accuracy = Grade(FishPosition, FishWidth, ZonePosition, GoodWidth, PerfectWidth);
+            score = LandingScoring.Resolve(accuracy, settings, rig, context); total = checked(Points + score.Points);
+            foreach (var member in rig)
+                foreach (var rule in member.Rules)
+                    if (rule.Ability != null && rule.IsEligible(accuracy, member, context))
+                    {
+                        if (rule.Ability.Trigger == RigAbilityTrigger.Strike && rule.Ability.Kind == RigAbilityKind.ExtraAttempts)
+                        {
+                            granted = checked(granted + (int)rule.Amount);
+                            attemptContributions.Add(new LandingContribution(member.Id, member.Name + ": " + rule.Label, 0, 1, (int)rule.Amount));
+                        }
+                        if (rule.Ability.TriggerLimit > 0) used.Add(rule);
+                    }
+            _ = checked(AttemptsRemaining + granted);
+            if (attemptContributions.Count > 0)
+            {
+                var contributions = new List<LandingContribution>(score.Contributions); contributions.AddRange(attemptContributions);
+                score = new LandingScore(score.Accuracy, score.Base, score.Bonuses, score.Multiplier, contributions.ToArray());
+            }
+        }
         catch (OverflowException) { Error = "Landing scoring exceeds supported decimal precision. Check authored bonuses and multipliers."; return false; }
         LastScore = score; Points = total; LastMissProtected = score.Accuracy == LandingAccuracy.Miss && protectedMisses > 0;
         if (LastMissProtected) protectedMisses--; else AttemptsRemaining--;
+        AttemptsRemaining += granted;
+        foreach (var rule in used) triggerUses[rule] = triggerUses.TryGetValue(rule, out int uses) ? uses + 1 : 1;
+        if (score.Accuracy == LandingAccuracy.Miss) misses++;
+        else { successfulStrikes++; if (score.Accuracy == LandingAccuracy.Good) goodStrikes++; else perfectStrikes++; }
+        previousAccuracy = score.Accuracy;
         Revision++;
         feedbackRemaining = settings.FeedbackSeconds;
         // Success takes precedence on the final attempt; presentation never delays the authoritative outcome.
@@ -96,14 +148,40 @@ public sealed class LandingChallengeRuntime
         AttemptsRemaining = InitialAttempts = protectedMisses = 0; LastMissProtected = false; LastScore = null; Error = null;
         motionTime = lastClock = feedbackRemaining = fishPhase = 0;
         FishPosition = ZonePosition = .5; IsTelegraphingBurst = false;
+        triggerUses.Clear(); previousAccuracy = null; successfulStrikes = goodStrikes = perfectStrikes = misses = 0;
+        encounterTag = null; encounterRarity = CardRarity.Common;
+        goodWidth = perfectWidth = fishSlow = fishMotionTime = integratedTime = 0;
+    }
+
+    /// <summary>Integrates conditional slowing on a fixed clock grid so results do not depend on render-frame subdivision.</summary>
+    private void UpdateAssistedPositions()
+    {
+        if (fishSlow <= 0) { UpdatePositions(); return; }
+        double target = motionTime;
+        while (integratedTime + IntegrationStep <= target)
+        {
+            SamplePositions(integratedTime, fishMotionTime);
+            bool inGood = Math.Abs(FishPosition - ZonePosition) <= (FishWidth + GoodWidth) * .5;
+            fishMotionTime += IntegrationStep * (inGood ? 1 - fishSlow : 1);
+            integratedTime += IntegrationStep;
+        }
+        SamplePositions(integratedTime, fishMotionTime);
+        bool overlap = Math.Abs(FishPosition - ZonePosition) <= (FishWidth + GoodWidth) * .5;
+        SamplePositions(target, fishMotionTime + (target - integratedTime) * (overlap ? 1 - fishSlow : 1));
     }
 
     /// <summary>Samples deterministic learnable motion; random selection and phase occur only once at encounter start.</summary>
     private void UpdatePositions()
     {
-        ZonePosition = settings.GoodWidth * .5 + (1 - settings.GoodWidth)
-            * (.5 + .5 * Math.Sin(motionTime * 2 * Math.PI / settings.ZonePeriod));
-        double t = motionTime + fishPhase;
+        SamplePositions(motionTime, motionTime);
+    }
+
+    /// <summary>Samples separate fish and zone clocks while preserving each authored learnable movement pattern.</summary>
+    private void SamplePositions(double zoneTime, double fishTime)
+    {
+        ZonePosition = GoodWidth * .5 + (1 - GoodWidth)
+            * (.5 + .5 * Math.Sin(zoneTime * 2 * Math.PI / settings.ZonePeriod));
+        double t = fishTime + fishPhase;
         double position;
         IsTelegraphingBurst = false;
         if (Pattern == LandingMovementPattern.Steady) position = Reflect(t * settings.FishSpeed);

@@ -36,9 +36,9 @@ public static class RigBuildingChecks
         checks = 0;
         try
         {
-            var sardine = Fixture("Sardine", 5, "Fish", "Schooling");
-            var a = Fixture("School A", 3, "Fish", "Schooling"); var b = Fixture("School B", 4, "Schooling");
-            var c = Fixture("School C", 6, "Schooling"); var cod = Fixture("Cod", 12, "Fish");
+            var sardine = Fixture("Sardine", 5, "Schooling");
+            var a = Fixture("School A", 3, "Schooling"); var b = Fixture("School B", 4, "Schooling");
+            var c = Fixture("School C", 6, "Schooling"); var cod = Fixture("Cod", 12, "Armored");
             Effect(sardine, RigAbilityKind.LandingMultiplier, .2f, .1f, RigPositionCount.ContiguousOther, "Schooling");
             var rig = new RigRuntime(); Acquire(rig, sardine, 0); Acquire(rig, a, 1); Acquire(rig, b, 2); Acquire(rig, c, 3);
             var ids = rig.Members.Select(m => m.InstanceId).ToArray();
@@ -82,8 +82,8 @@ public static class RigBuildingChecks
             Check(!rig.TryAcquire(rig.Revision, cod, 0, out _, out _) && rig.Members.Length == 2, "Blocked placement mutated the rig.");
             Acquire(rig, anchored, -1); Check(rig.Members[1].Level == 2, "Restriction incorrectly blocked an automatic duplicate upgrade.");
 
-            var acquired = Fixture("Acquired grant", 5, "Fish"); Effect(acquired, RigAbilityKind.ValueBonus, 3, trigger: RigAbilityTrigger.Acquired);
-            var upgraded = Fixture("Upgrade grant", 4, "Fish"); Effect(upgraded, RigAbilityKind.ValueBonus, 7, trigger: RigAbilityTrigger.Upgraded);
+            var acquired = Fixture("Acquired grant", 5, "Armored"); Effect(acquired, RigAbilityKind.ValueBonus, 3, trigger: RigAbilityTrigger.Acquired);
+            var upgraded = Fixture("Upgrade grant", 4, "Armored"); Effect(upgraded, RigAbilityKind.ValueBonus, 7, trigger: RigAbilityTrigger.Upgraded);
             rig.Reset(); Acquire(rig, acquired, 0); Acquire(rig, acquired, -1);
             Check(rig.Members[0].CurrentValue == 13, "Upgrade retriggered acquisition effects.");
             Acquire(rig, upgraded, 1); Check(rig.Members[1].CurrentValue == 4, "Initial acquisition triggered an upgrade effect.");
@@ -91,10 +91,10 @@ public static class RigBuildingChecks
             value = rig.HaulValue; rig.TryPreview(cod, 1, out _, out _, out _); rig.TryPreview(cod, 1, out _, out _, out _);
             Check(rig.HaulValue == value, "Preview triggered a live value grant.");
 
-            var huge = Fixture("Huge", int.MaxValue, "Fish"); rig.Reset(); Acquire(rig, huge, 0); revision = rig.Revision;
+            var huge = Fixture("Huge", int.MaxValue, "Armored"); rig.Reset(); Acquire(rig, huge, 0); revision = rig.Revision;
             Check(!rig.TryAcquire(revision, huge, -1, out _, out _) && rig.Revision == revision && rig.Members[0].Level == 1, "Overflow partially applied an upgrade.");
             Check(sardine.Value == 5 && sardine.PrimaryAbility.Snapshot().Effects[0].BaseAmount == .2m, "Runtime changed shared species data.");
-            var attempts = Fixture("Extra attempts", 1, "Fish"); Effect(attempts, RigAbilityKind.ExtraAttempts, 1, 1);
+            var attempts = Fixture("Extra attempts", 1, "Armored"); Effect(attempts, RigAbilityKind.ExtraAttempts, 1, 1);
             var guard = Fixture("Miss protection", 1, "Armored"); Effect(guard, RigAbilityKind.MissProtection, 1);
             rig.Reset(); Acquire(rig, attempts, 0); Acquire(rig, guard, 1); Acquire(rig, attempts, -1);
             var landingRig = rig.SnapshotForLanding(out int extra, out int protection);

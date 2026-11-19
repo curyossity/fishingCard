@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Schooling
+  m_text: Anchored
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -501,21 +501,16 @@ MonoBehaviour:
   - {fileID: 8381784329952551654}
   - {fileID: 2980483396916676384}
   - {fileID: 5778737726577065415}
-  - {fileID: 1376287673282418920}
-  - {fileID: 8425285923346965778}
-  - {fileID: 5006379975168628929}
   tagLabels:
   - {fileID: 2054490877647581618}
   - {fileID: 2324392996475386366}
   - {fileID: 2507842906467431205}
   - {fileID: 5258903122872742507}
   - {fileID: 5182227194011250460}
-  - {fileID: 1641851540603045714}
-  - {fileID: 3124471825225879478}
-  - {fileID: 1116762812286908516}
   status: {fileID: 3028100049005409169}
   confirm: {fileID: 2897037125330897921}
   cancel: {fileID: 4251802254833627818}
+  blockedHarborContent: {fileID: 0}
 --- !u!1 &2738134905067362087
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +524,7 @@ GameObject:
   - component: {fileID: 5337809398780476414}
   - component: {fileID: 9213408892222007696}
   m_Layer: 0
-  m_Name: Fish
+  m_Name: Schooling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -655,7 +650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5830983193260283462
 RectTransform:
   m_ObjectHideFlags: 0
@@ -771,7 +766,7 @@ GameObject:
   - component: {fileID: 9082161311273221599}
   - component: {fileID: 5778737726577065415}
   m_Layer: 0
-  m_Name: Heavy
+  m_Name: Elusive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,7 +939,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Small
+  m_text: Armored
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1218,7 +1213,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fish
+  m_text: Schooling
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1355,7 +1350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Heavy
+  m_text: Elusive
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1440,7 +1435,7 @@ GameObject:
   - component: {fileID: 7623852648817012282}
   - component: {fileID: 8381784329952551654}
   m_Layer: 0
-  m_Name: Schooling
+  m_Name: Anchored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1566,7 +1561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5443123623126293114
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1682,7 +1677,7 @@ GameObject:
   - component: {fileID: 5181845926460825458}
   - component: {fileID: 2980483396916676384}
   m_Layer: 0
-  m_Name: Small
+  m_Name: Armored
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2203,7 +2198,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5433453594380609384
 RectTransform:
   m_ObjectHideFlags: 0

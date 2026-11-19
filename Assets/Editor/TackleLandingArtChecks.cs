@@ -99,7 +99,7 @@ public static class TackleLandingArtChecks
         Action<bool, string> check = (ok, error) => { if (!ok) throw new InvalidOperationException(error); checks++; };
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>(); var controller = harbor.Controller;
         controller.SetDebugSaveResetPending(true); check(!controller.RunActive, "Expected fresh Harbor.");
-        controller.TryPrepareSlotTags(new[] { "Fish", "Predator", "Schooling", "Small" }); harbor.TryStartNewRun();
+        controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }); harbor.TryStartNewRun();
         var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         var definitions = AssetDatabase.FindAssets("t:CardDefinition").Select(id => AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(id))).ToArray();

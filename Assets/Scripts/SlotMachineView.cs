@@ -33,12 +33,12 @@ public sealed class SlotMachineView : MonoBehaviour
             : match.Kind == SlotMatchKind.Pair ? "DISCOVER — PAIR" : "DISCOVER — THREE DIFFERENT");
         resultDescription.text = match.Kind == SlotMatchKind.ThreeDifferent ? "Any eligible biome creature · baseline rarity"
             : match.GuaranteedTag + " guaranteed · " + (match.Kind == SlotMatchKind.Pair
-                ? match.PreferredTag + " preferred · modest rarity bonus" : "stronger rarity bonus");
+                ? "modest rarity bonus" : "stronger rarity bonus");
         if (artwork != null)
         {
             heading.text = "ENCOUNTER TAGS";
             resultDescription.text = controller.SlotFailure ?? (match.Kind == SlotMatchKind.ThreeDifferent ? "OPEN WATERS / ANY TAG"
-                : match.GuaranteedTag.ToUpperInvariant() + (match.Kind == SlotMatchKind.Triple ? " TRIPLE" : " MATCH / " + match.PreferredTag.ToUpperInvariant() + " PREFERRED"));
+                : match.GuaranteedTag.ToUpperInvariant() + (match.Kind == SlotMatchKind.Triple ? " TRIPLE" : " MATCH"));
             if (controller.SlotFailure == null && machine.RespinsRemaining == 0) resultDescription.text = "FINAL / " + resultDescription.text;
             artwork.Present(controller, match, () => Present(controller));
             if (IsAnimating) resultDescription.text = "SPINNING...";

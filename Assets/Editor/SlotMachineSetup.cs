@@ -12,7 +12,7 @@ public static class SlotMachineSetup
     public const string Root = "Assets/SlotMachine/";
     public const string ProfilePath = Root + "SlotMachine.asset";
     private const string DiscoverPath = Root + "DiscoverControls.prefab";
-    private const string PreparationPath = Root + "TagPreparation.prefab";
+    public const string PreparationPath = Root + "TagPreparation.prefab";
 
     /// <summary>Installs the logical Discover increment into the existing comparison scene.</summary>
     [MenuItem("Fishing Cards/Slot Machine/Install Plain Controls")]
@@ -139,7 +139,7 @@ public static class SlotMachineSetup
         finally { UnityEngine.Object.DestroyImmediate(root.gameObject); }
     }
 
-    /// <summary>Authors a Harbor modal with the eight explicit tags and a four-tag confirmation gate.</summary>
+    /// <summary>Authors the five gameplay identities with a four-tag confirmation gate.</summary>
     private static void BuildPreparation()
     {
         var root = Panel("Active Tag Preparation", 1500, 1100);
@@ -149,9 +149,9 @@ public static class SlotMachineSetup
             var data = new SerializedObject(view);
             Bind(data, "status", Label(root, "Status", "Choose 4 active tags", 0, 440, 1400, 100, 48));
             Label(root, "Instruction", "These four symbols remain active throughout the expedition.", 0, 330, 1400, 90, 30);
-            var buttons = data.FindProperty("tagButtons"); buttons.arraySize = 8;
-            var labels = data.FindProperty("tagLabels"); labels.arraySize = 8;
-            for (int i = 0; i < 8; i++)
+            var buttons = data.FindProperty("tagButtons"); buttons.arraySize = CreatureTagVocabulary.All.Length;
+            var labels = data.FindProperty("tagLabels"); labels.arraySize = CreatureTagVocabulary.All.Length;
+            for (int i = 0; i < CreatureTagVocabulary.All.Length; i++)
             {
                 var button = Button(root, CreatureTagVocabulary.All[i], CreatureTagVocabulary.All[i],
                     i % 2 == 0 ? -350 : 350, 180 - i / 2 * 145, 620, 110);

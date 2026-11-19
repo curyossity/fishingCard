@@ -30,6 +30,8 @@ public sealed class LandingRigRule
     public decimal Multiplier { get; }
     public string AdjacentTag { get; }
     public string ContiguousTag { get; }
+    public RigAbilityEffect Ability { get; private set; }
+    public decimal Amount { get; private set; }
 
     /// <summary>Validates nonnegative finite scoring modifiers before strikes can consume attempts.</summary>
     public LandingRigRule(string label, LandingAccuracyFilter accuracy, float bonus, float multiplier, string adjacentTag = null, string contiguousTag = null)
@@ -49,6 +51,37 @@ public sealed class LandingRigRule
     /// <summary>Creates a rule from exact resolved upgrade amounts.</summary>
     public static LandingRigRule Exact(string label, LandingAccuracyFilter accuracy, decimal bonus, decimal multiplier)
         => new LandingRigRule(label, accuracy, bonus, multiplier);
+    /// <summary>Freezes a resolved data-driven effect while retaining its encounter conditions and trigger limits.</summary>
+    public static LandingRigRule FromAbility(string label, RigAbilityEffect effect, decimal amount)
+    {
+        var rule = Exact(label, effect.Accuracy, effect.Kind == RigAbilityKind.LandingBonus ? amount : 0,
+            effect.Kind == RigAbilityKind.LandingMultiplier ? checked(1 + amount) : 1);
+        rule.Ability = effect; rule.Amount = amount; return rule;
+    }
+
+    /// <summary>Tests encounter conditions against pre-strike state without consuming a once-only trigger.</summary>
+    public bool IsEligible(LandingAccuracy accuracy, LandingRigMember source, LandingStrikeContext context)
+    {
+        if (!Matches(accuracy)) return false;
+        if (Ability == null) return true;
+        if (context == null) return Ability.Condition == RigStrikeCondition.Always && Ability.TriggerLimit == 0;
+        if (Ability.TriggerLimit > 0 && context.Uses.TryGetValue(this, out int uses) && uses >= Ability.TriggerLimit) return false;
+        switch (Ability.Condition)
+        {
+            case RigStrikeCondition.FirstSuccessful: return context.Successes == 0;
+            case RigStrikeCondition.FirstPerfect: return context.Perfects == 0;
+            case RigStrikeCondition.PreviousPerfect: return context.Previous == LandingAccuracy.Perfect;
+            case RigStrikeCondition.PreviousMiss: return context.Previous == LandingAccuracy.Miss;
+            case RigStrikeCondition.HalfResistance: return context.Points >= context.Resistance / 2;
+            case RigStrikeCondition.FinalAttempt: return context.Attempts == 1;
+            case RigStrikeCondition.HigherRarity: return context.EncounterRarity > source.Rarity;
+            case RigStrikeCondition.EncounterTag: return string.Equals(Ability.EncounterTag, context.EncounterTag, StringComparison.OrdinalIgnoreCase);
+            case RigStrikeCondition.FirstGood: return context.Goods == 0;
+            case RigStrikeCondition.FirstMiss: return context.Misses == 0;
+            case RigStrikeCondition.TwoSuccessful: return context.Previous != null && context.Previous != LandingAccuracy.Miss;
+            default: return true;
+        }
+    }
     /// <summary>Preserves validation behavior for existing floating-point authoring.</summary>
     private static decimal FiniteAmount(float amount)
     {
@@ -72,13 +105,14 @@ public sealed class LandingRigMember
     public string Name { get; }
     public CatchAttachmentRole Role { get; }
     public int Level { get; }
+    public CardRarity Rarity { get; }
     public IReadOnlyList<string> Tags { get; }
     public IReadOnlyList<LandingRigRule> Rules { get; }
 
     /// <summary>Copies arrays so later view/definition edits cannot change the encounter's scoring snapshot.</summary>
-    public LandingRigMember(int id, string name, CatchAttachmentRole role, string[] tags, LandingRigRule[] rules, int level = 1)
+    public LandingRigMember(int id, string name, CatchAttachmentRole role, string[] tags, LandingRigRule[] rules, int level = 1, CardRarity rarity = CardRarity.Common)
     {
-        Id = id; Name = name ?? "Creature"; Role = role; Level = level;
+        Id = id; Name = name ?? "Creature"; Role = role; Level = level; Rarity = rarity;
         Tags = Array.AsReadOnly((string[])(tags ?? Array.Empty<string>()).Clone());
         Rules = Array.AsReadOnly((LandingRigRule[])(rules ?? Array.Empty<LandingRigRule>()).Clone());
     }
@@ -91,6 +125,17 @@ public sealed class LandingRigMember
     }
 }
 
+/// <summary>Read-only pre-strike conditions; the challenge commits history and trigger usage only after complete validation.</summary>
+public sealed class LandingStrikeContext
+{
+    public decimal Points, Resistance;
+    public int Attempts, Successes, Goods, Perfects, Misses;
+    public LandingAccuracy? Previous;
+    public CardRarity EncounterRarity;
+    public string EncounterTag;
+    public IReadOnlyDictionary<LandingRigRule, int> Uses = new Dictionary<LandingRigRule, int>();
+}
+
 /// <summary>Attribution from one committed creature, retained with the strike for quick feedback and card highlighting.</summary>
 public sealed class LandingContribution
 {
@@ -98,9 +143,10 @@ public sealed class LandingContribution
     public string Label { get; }
     public decimal Bonus { get; }
     public decimal Multiplier { get; }
+    public int Attempts { get; }
     /// <summary>Records a resolved contribution without retaining a live rig instance or rerunning its effect.</summary>
-    public LandingContribution(int sourceId, string label, decimal bonus, decimal multiplier)
-    { SourceId = sourceId; Label = label; Bonus = bonus; Multiplier = multiplier; }
+    public LandingContribution(int sourceId, string label, decimal bonus, decimal multiplier, int attempts = 0)
+    { SourceId = sourceId; Label = label; Bonus = bonus; Multiplier = multiplier; Attempts = attempts; }
 }
 
 /// <summary>Immutable strike result; scoring resolves before presentation and is never repeated by animation.</summary>
@@ -125,17 +171,20 @@ public sealed class LandingScore
 public static class LandingScoring
 {
     /// <summary>Applies flat bonuses first and multiplies eligible multipliers in committed rig/effect order.</summary>
-    public static LandingScore Resolve(LandingAccuracy accuracy, LandingSettings settings, IReadOnlyList<LandingRigMember> rig)
+    public static LandingScore Resolve(LandingAccuracy accuracy, LandingSettings settings, IReadOnlyList<LandingRigMember> rig, LandingStrikeContext context = null)
     {
         decimal basis = accuracy == LandingAccuracy.Perfect ? settings.PerfectPoints : accuracy == LandingAccuracy.Good ? settings.GoodPoints : 0;
         decimal bonus = 0, multiplier = 1;
+        decimal substitutedBase = basis;
         var contributions = new List<LandingContribution>();
         for (int i = 0; i < rig.Count; i++)
         {
             LandingRigMember member = rig[i];
             foreach (var rule in member.Rules)
             {
-                if (!rule.Matches(accuracy)) continue;
+                if (!rule.IsEligible(accuracy, member, context)) continue;
+                if (rule.Ability != null && rule.Ability.Kind != RigAbilityKind.LandingBonus && rule.Ability.Kind != RigAbilityKind.LandingMultiplier
+                    && rule.Ability.Kind != RigAbilityKind.PerfectBase) continue;
                 if (!string.IsNullOrWhiteSpace(rule.AdjacentTag)
                     && !(i > 0 && rig[i - 1].HasTag(rule.AdjacentTag))
                     && !(i + 1 < rig.Count && rig[i + 1].HasTag(rule.AdjacentTag))) continue;
@@ -151,6 +200,11 @@ public static class LandingScoring
                     if (count == 0) continue;
                 }
                 decimal amount = checked(rule.Bonus * count);
+                if (rule.Ability?.Kind == RigAbilityKind.PerfectBase)
+                {
+                    decimal nextBase = Math.Max(substitutedBase, checked(settings.PerfectPoints * rule.Amount));
+                    amount = checked(nextBase - substitutedBase); substitutedBase = nextBase;
+                }
                 bonus = checked(bonus + amount); multiplier = checked(multiplier * rule.Multiplier);
                 if (amount != 0 || rule.Multiplier != 1)
                     contributions.Add(new LandingContribution(member.Id, member.Name + ": " + rule.Label, amount, rule.Multiplier));

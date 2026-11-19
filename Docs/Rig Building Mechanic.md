@@ -1,6 +1,6 @@
 # Deepwater — Rig Building and Creature Upgrades
 
-Agreed Phase 3 direction supplied 14 November 2026; implementation updated 15 November; shared five-tag rules updated 18 November. The complete loop is **Discover → Land → Build / Upgrade**. This specification governs rig acquisition, positioning, levels, primary abilities and sale value. Individual species content belongs in editable game definitions, not a duplicate Markdown catalog. The five-tag revision is not implemented by this documentation change.
+Agreed Phase 3 direction supplied 14 November 2026; implementation updated 15 November; five-tag rules implemented 19 November. The complete loop is **Discover → Land → Build / Upgrade**. This specification governs rig acquisition, positioning, levels, primary abilities and sale value. Individual species content belongs in editable game definitions, not a duplicate Markdown catalog. See [current validation](Validation/FiveTagAbilities/README.md).
 
 ## Successful acquisition
 
@@ -35,7 +35,7 @@ An upgraded member counts as one position for adjacency, contiguous groups and t
 
 ## Primary abilities
 
-Each creature has exactly one gameplay tag and one `primaryAbility` definition expressing that tag's philosophy. The tags are Schooling, Predator, Anchored, Armored and Elusive; see the [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md#tags-and-properties). Related components belong to that ability and share its identity. Components specify operation, accuracy condition, positional count, tag filter, recipients, trigger and level progression. Level amounts currently use an editable initial amount plus an editable increment per additional level. These are authoring capabilities, not fixed species designs.
+Each creature has exactly one gameplay tag and one `primaryAbility` definition expressing that tag's philosophy. The tags are Schooling, Predator, Anchored, Armored and Elusive; see the [GDD](Fishing_Card_Roguelike_GDD_with_image/Fishing_Card_Roguelike_GDD.md#tags-and-properties). Related components belong to that ability and share its identity. Components specify operation, accuracy/encounter condition, positional count, tag filter, recipients, trigger, limits and level progression. Level amounts use an editable initial amount, increment, levels-per-increment interval and optional coefficient cap. These are authoring capabilities, not fixed species designs.
 
 Supported continuous components: flat Landing Points, successful/Good/Perfect/explicit-Miss multipliers, extra attempts, protected Misses, flat sale value, sale-value multipliers and before/after insertion restrictions. Value recipients can be self, adjacent, before, after or all matching positions. Conditions can count adjacent, contiguous-other, before, after or other matching positions, or activate once when the condition is satisfied.
 

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a77c2e23cb2481bbaf8c4f9ae2bb3bf, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::CardDefinition
+  m_Name: Acorn Barnacle
+  uniqueId: creature_acorn_barnacle
+  displayName: Acorn Barnacle
+  cardType: 3
+  rarity: 0
+  value: 6
+  tags:
+  - Anchored
+  biomeIds:
+  - Coastal
+  maximumDepth: -1
+  artwork: {fileID: 0}
+  encounterArtwork: {fileID: 0}
+  effects: []
+  baitEffects: []
+  primaryAbility:
+    name: 'Balance Point'
+    description: 'Gain +{amount} {attempts} when exactly at the center of your rig, with creatures on both sides.'
+    effects:
+    - kind: 4
+      trigger: 0
+      accuracy: 0
+      amount: 1
+      amountPerLevel: 1
+      count: 7
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 0
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 3
+      maximumAmount: 3
+  rulesText: ''
+  baitRulesText: ''

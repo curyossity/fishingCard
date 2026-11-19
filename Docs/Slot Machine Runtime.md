@@ -2,14 +2,14 @@
 
 Implemented 7 November 2026 against the [agreed slot specification](Slot%20Machine%20Mechanic.md). Discover replaces the tag bar in `Assets/UIThemes/MidnightFieldJournal/Scenes/MidnightFieldJournalComparison.unity`. The [approved Discover artwork is integrated](Validation/TackleDiscoverArt/README.md). Existing source scenes and saved progression are preserved.
 
-**Design divergence, 18 November 2026:** this document records existing implementation and validation. The active specification now selects four of five tags, gives each creature one tag and removes pair secondary-tag preference. The runtime's eight-tag vocabulary, secondary-tag fields/weighting and earlier validation below have not been migrated by this documentation change; they are not requirements for the new design.
+**Five-tag migration, 19 November 2026:** the runtime selects four of five tags, validates one tag per creature and removes pair secondary-tag preference. Saved Harbor controls and Discover mappings use the five supported identities. [Current validation](Validation/FiveTagAbilities/README.md) records the migration separately from earlier artwork and eight-tag evidence.
 
 ## Ownership
 
 - `TagSlotMachineRuntime`: three authoritative faces, one locked reel, spin state, respin budget, monotonic session/revision identities and immutable results. The baseline owner supplies four equal symbols and one optional respin. A respin requires exactly one lock. Every accepted command advances the revision; duplicate/stale commands are rejected.
-- `SlotMatch`: pure three-different/pair/triple classification with mandatory and secondary tags.
-- `SlotMachineProfile`: authored rarity weights and secondary-tag preference strength. `SlotSelectionSettings` copies these into an immutable expedition snapshot and validates progressively improved higher-rarity probabilities.
-- `SlotCreatureSelector`: distinct eligible normal creatures, separate rarity roll, nearest-tier fallback inside the guaranteed tag (lower-tier ties), then weighted species selection. Secondary preference applies within the resolved tier and never excludes candidates lacking the secondary tag.
+- `SlotMatch`: pure three-different/pair/triple classification and the guaranteed repeated tag; no secondary preference.
+- `SlotMachineProfile`: authored rarity weights. `SlotSelectionSettings` copies these into an immutable expedition snapshot and validates progressively improved higher-rarity probabilities.
+- `SlotCreatureSelector`: distinct eligible normal creatures with exactly one supported tag, separate rarity roll, nearest-tier fallback inside the guaranteed tag (lower-tier ties), then equal species selection within the resolved tier.
 - `BiomeDefinition.GetStandardCreaturePool()`: union of normal creatures from all authored biome tiers. Standard Discover ignores individual normal-creature depth restrictions. Apex remains outside the pool and retains its existing separate conditions.
 - `CardDefinition.RequiredCreatureUnlockId`: optional unlock evidence requirement. Without evidence, a required creature unlock is denied. `FishingRunController.CreatureUnlockIsGranted` is the progression integration boundary; this increment invents no unlock reward table or save system.
 - `EncounterRuntime`: holds the candidate snapshot, rechecks eligibility at commitment, reveals once and owns the pending landing gate. It validates coverage of the four selected tags before starting Discover. Missing coverage produces an explicit error rather than changing symbols or dropping the guarantee.
@@ -28,7 +28,7 @@ Rarity is rolled independently of the number of species in each tier. Nonmatchin
 | Pair | 55 | 28 | 14 | 3 |
 | Triple | 35 | 35 | 23 | 7 |
 
-The pair's secondary-tag species weight is initially 2 versus 1. All tables and that multiplier are editable independently of reel/match logic. Values are frozen when an expedition starts. No equipment, Technique, creature or biome modifier changes the baseline reels.
+Rarity tables are editable independently of reel/match logic and frozen when an expedition starts. A pair's unmatched symbol has no effect on species weights. No equipment, Technique, creature or biome modifier changes the baseline reels.
 
 ## Installation and boundary
 
@@ -44,13 +44,13 @@ Both initial spin and respin use 2D cylinder projection. Paper texture, divider 
 
 `TackleDiscoverPresentation` authors duration and stagger (initially 1.05 seconds plus 0.15 seconds per moving reel). Each moving reel decelerates past the selected position and snaps back with a damped elastic recoil. `TackleReelAnimator` authors overshoot (initially 0.45 of a symbol, or 40.5°), settling fraction (34% of the existing duration) and elastic period (0.47). A smaller return bounce dies away to the exact selected position. Forward travel and recoil meet at zero velocity; the endpoint is exact and uses unscaled time. This applies the user's elastic-easing reference to the stop only, without adding a JavaScript dependency or changing the total spin duration. The locked reel does not move during a respin. Controls and direct controller commands are blocked through the recoil; match lamps and the result summary appear after all moving reels stop. The resolved result remains until explicit Accept Tags, including when a respin happens to return identical symbols. `SpinRevision` prevents lock-only refreshes from restarting the animation.
 
-**Fishing Cards > Slot Machine > Install Cylindrical Reel Animation** updates the existing Discover prefab without rebuilding approved art or replacing scene overrides. Full art regeneration includes the same composition. All eight baseline tags have reel illustrations; [six supplemental symbols](Validation/TackleReelSymbols/README.md) extend the original Fish and Schooling family. Tag captions remain native text. **Install Remaining Reel Symbols** imports and binds those additions without changing selection rules or the existing artwork.
+**Fishing Cards > Slot Machine > Install Cylindrical Reel Animation** updates the existing Discover prefab without rebuilding approved art or replacing scene overrides. Full art regeneration includes the same composition. The five gameplay tags have supplied reel illustrations; historical Fish, Small and Heavy images remain preserved. The [six supplemental symbols](Validation/TackleReelSymbols/README.md) record original artwork provenance. Tag captions remain native text. **Install Remaining Reel Symbols** imports preserved sources and binds the five supported tags. **Install Five Tag Presentation** updates existing preparation controls and mappings without replacing machine artwork.
 
 The selected creature is **awaiting landing**, not acquired. `AwaitingLandingChallenge` blocks attachment, Catch/Bait choice, Techniques and legacy Descend/Surface; the new creature supplies no rig benefit. Reels are hidden during this handoff. The [plain Landing increment](Landing%20Challenge%20Mechanic.md) now consumes it when a Landing profile is configured: success supplies an occurrence-bound Build handoff without attachment; failure ends the expedition and pays the full previous Catch value. Build commitment, Landing artwork and other event/forced-chain redesigns remain separate work.
 
 ## Validation
 
-`SlotMachineRuleChecks.ValidateRules()` checks deterministic reel state, all initial combinations and the stated respin strategy probabilities, guaranteed/secondary tags, rarity fallback/ties, biome membership, depth independence, Apex exclusion, unlock evidence, reset/stale commands and no pre-landing acquisition.
+`SlotMachineRuleChecks.ValidateRules()` checks deterministic reel state, all initial combinations and the stated respin strategy probabilities, guaranteed tags, equal pair-candidate selection, rarity fallback/ties, biome membership, depth independence, Apex exclusion, unlock evidence, reset/stale commands and no pre-landing acquisition.
 
 `SlotMachineSceneChecks.ValidateLive(false)` and `ValidateLive(true)` exercise Harbor preparation, plain controls and the acceptance/respin branches in fresh Play Mode sessions without modifying saved progression. Evidence and actual check counts are recorded under [Validation/SlotMachine](Validation/SlotMachine/README.md). The original tag-timing checks remain historical fixtures, not validation of Discover.
 

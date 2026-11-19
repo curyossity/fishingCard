@@ -19,9 +19,11 @@ public static class SlotMachineRuleChecks
         {
             SlotSelectionSettings settings = profile.CreateSettings();
             CardDefinition predator = Card(cards, "predator", CardRarity.Common, "Predator");
-            CardDefinition both = Card(cards, "both", CardRarity.Common, "Predator", "Schooling");
-            CardDefinition fish = Card(cards, "fish", CardRarity.Rare, "Fish", "Small");
+            CardDefinition both = Card(cards, "both", CardRarity.Common, "Predator");
+            CardDefinition fish = Card(cards, "fish", CardRarity.Rare, "Armored");
             CardDefinition high = Card(cards, "high", CardRarity.Rare, "Predator");
+            CardDefinition school = Card(cards, "school", CardRarity.Common, "Schooling");
+            CardDefinition anchor = Card(cards, "anchor", CardRarity.Common, "Anchored");
             CardDefinition apex = Card(cards, "apex", CardRarity.Legendary, "Predator");
             Set(apex, "cardType", CardType.ApexEncounter);
             CardDefinition foreign = Card(cards, "foreign", CardRarity.Common, "Predator");
@@ -29,18 +31,18 @@ public static class SlotMachineRuleChecks
             CardDefinition locked = Card(cards, "locked", CardRarity.Legendary, "Predator");
             Set(locked, "requiredCreatureUnlockId", "unlock_locked");
             Set(predator, "minimumDepth", 999);
-            CardDefinition[] pool = { predator, both, fish, high, apex, foreign, locked, predator };
+            CardDefinition[] pool = { predator, both, fish, high, apex, foreign, locked, predator, school, anchor };
             CardDefinition[] eligible = SlotCreatureSelector.EligiblePool(pool, "test", null);
-            Assert(eligible.Length == 4 && Array.IndexOf(eligible, predator) >= 0,
+            Assert(eligible.Length == 6 && Array.IndexOf(eligible, predator) >= 0,
                 "Biome/unlock/Apex filtering or normal-creature depth independence failed.");
-            Assert(SlotCreatureSelector.EligiblePool(pool, "test", c => c != locked).Length == 4, "Unlock callback ignored.");
-            Assert(SlotCreatureSelector.EligiblePool(pool, "test", c => true).Length == 5, "Granted creature unlock rejected.");
+            Assert(SlotCreatureSelector.EligiblePool(pool, "test", c => c != locked).Length == 6, "Unlock callback ignored.");
+            Assert(SlotCreatureSelector.EligiblePool(pool, "test", c => true).Length == 7, "Granted creature unlock rejected.");
             var pair = Match("Predator", "Schooling", "Predator");
-            Assert(pair.Kind == SlotMatchKind.Pair && pair.GuaranteedTag == "Predator" && pair.PreferredTag == "Schooling", "Pair interpretation failed.");
-            for (int ticket = 0; ticket < 3; ticket++)
+            Assert(pair.Kind == SlotMatchKind.Pair && pair.GuaranteedTag == "Predator", "Pair interpretation failed.");
+            for (int ticket = 0; ticket < 2; ticket++)
             {
                 Assert(SlotCreatureSelector.TrySelect(eligible, pair, settings, new Tickets(0, ticket), out var s, out _), "Pair selection failed.");
-                Assert(s.Creature == (ticket == 0 ? predator : both), "Secondary preference weights are wrong.");
+                Assert(s.Creature == (ticket == 0 ? predator : both), "Pair candidates are not selected equally.");
             }
             // Requested Uncommon is equally far from Common/Rare. The documented tie goes downward.
             Assert(SlotCreatureSelector.TrySelect(eligible, pair, settings, new Tickets(55, 0), out var tied, out _)
@@ -57,9 +59,9 @@ public static class SlotMachineRuleChecks
                 && commonTriple.ResolvedRarity == CardRarity.Common, "Triple incorrectly guaranteed a rare creature.");
             Assert(!SlotCreatureSelector.TrySelect(new[] { fish }, triple, settings, new Tickets(), out _, out var error)
                 && error != null, "Empty guaranteed-tag pool silently fell back.");
-            Assert(!EncounterRuntime.TryValidateActiveTags(new[] { "Fish", "Fish", "Small", "Predator" }, out _), "Duplicate active tags accepted.");
-            Assert(!EncounterRuntime.TryValidateActiveTags(new[] { "Fish", "Predator", "Small", "Unknown" }, out _), "Unknown active tag accepted.");
-            string[] active = { "Fish", "Predator", "Schooling", "Small" };
+            Assert(!EncounterRuntime.TryValidateActiveTags(new[] { "Armored", "Armored", "Anchored", "Predator" }, out _), "Duplicate active tags accepted.");
+            Assert(!EncounterRuntime.TryValidateActiveTags(new[] { "Armored", "Predator", "Anchored", "Unknown" }, out _), "Unknown active tag accepted.");
+            string[] active = { "Armored", "Predator", "Schooling", "Anchored" };
             var runtime = new EncounterRuntime();
             int reveals = 0;
             runtime.CreatureRevealed += (card, revision) =>
@@ -72,7 +74,7 @@ public static class SlotMachineRuleChecks
             Assert(runtime.CurrentEncounter == null && reveals == 0, "Creature revealed before accepting.");
             Assert(runtime.SlotMachine.RespinsRemaining == 1, "Baseline did not allow exactly one respin.");
             Assert(runtime.CompleteSlotEncounter(old, new Tickets(0, 0)), "Accepted result did not reveal.");
-            Assert(runtime.CurrentEncounter == fish && reveals == 1 && runtime.AwaitingLandingChallenge, "Landing handoff failed.");
+            Assert(runtime.CurrentEncounter == school && reveals == 1 && runtime.AwaitingLandingChallenge, "Landing handoff failed.");
             Assert(!runtime.CompleteSlotEncounter(old, new Tickets()) && reveals == 1, "Duplicate acceptance revealed again.");
             Assert(runtime.TakeHookedEncounter() == null, "Slot completion automatically caught a creature.");
             runtime.Reset(true);
@@ -93,7 +95,7 @@ public static class SlotMachineRuleChecks
     private static void CheckProbabilities()
     {
         int[] initial = new int[3], final = new int[3];
-        string[] names = { "Fish", "Predator", "Schooling", "Small" };
+        string[] names = { "Armored", "Predator", "Schooling", "Anchored" };
         for (int a = 0; a < 4; a++) for (int b = 0; b < 4; b++) for (int c = 0; c < 4; c++)
         {
             var match = Match(names[a], names[b], names[c]);

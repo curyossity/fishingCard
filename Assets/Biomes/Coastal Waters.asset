@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BiomeDefinition
   biomeId: Coastal
   displayName: Coastal Waters
-  coreIdentity: Schools + small catches + predator attraction.
-  strategicTension: Build an efficient school of low-load catches while deciding
-    whether their growing value is worth attracting heavier predators.
+  coreIdentity: Coastal creatures with five distinct build identities.
+  strategicTension: Balance cooperation, positioning, resilience, opportunity and timing.
   signatureTags:
   - Schooling
-  - Small
   - Predator
+  - Anchored
+  - Armored
+  - Elusive
   depthTiers:
   - tierId: shallows
     displayName: Shallows
@@ -29,6 +30,9 @@ MonoBehaviour:
     designIntent: Introduce small catches, low Line Load pressure, and simple schooling
       or support interactions.
     encounterPool:
+    - {fileID: 11400000, guid: 53f70c9883db4bca8f00b4fe9acf54c5, type: 2}
+    - {fileID: 11400000, guid: 0042c48a579e4d4a8f75de3f621da8e7, type: 2}
+    - {fileID: 11400000, guid: 505e81d860c7420094beb2c91c277744, type: 2}
     - {fileID: 11400000, guid: 18d3ad07711f49909de0ac7dcc6d0e7d, type: 2}
     - {fileID: 11400000, guid: eb8211d2ef79f714892c9883e5c2241d, type: 2}
     - {fileID: 11400000, guid: 44f81e4b09c54cbbbb2fe4fc915881ce, type: 2}

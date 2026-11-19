@@ -19,8 +19,6 @@ MonoBehaviour:
   backupTechnique: 0
   techniqueRole: 
   tags:
-  - Small
-  - Anchored
   - Armored
   artwork: {fileID: 21300000, guid: 414669a68369d8540bdbd5e51bf16fe5, type: 3}
   encounterArtwork: {fileID: 21300000, guid: 414669a68369d8540bdbd5e51bf16fe5, type: 3}
@@ -30,11 +28,9 @@ MonoBehaviour:
   encounterArtworkOffset: {x: 0, y: 0}
   cardFaceArtwork: {fileID: 0}
   cardFaceIncludesName: 0
-  rulesText: 'Bristling Spines: This Catch weighs 1 more while you have a Predator
-    attached.'
+  rulesText: ''
   rulesTextHighlights: []
-  baitRulesText: 'Spiny Grip: Your next technique targeting an attached Armored creature
-    returns to hand.'
+  baitRulesText: ''
   baitRulesTextHighlights: []
   weight: 1
   value: 9
@@ -46,57 +42,28 @@ MonoBehaviour:
   - Coastal
   minimumDepth: 0
   maximumDepth: -1
-  effects:
-  - effectId: bristling_spines
-    displayName: Bristling Spines
-    effectType: 40
-    trigger: 2
-    target: 1
-    effectTone: 2
-    amount: 1
-    requiredTags:
-    - Predator
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Add exactly 1 effective weight while any Predator creature is attached
-      in Catch or Bait mode. More Predators do not increase the penalty. Recalculate
-      immediately on creature, role, or effective tag changes.
-  hasExplicitBaitData: 1
-  baitEffects:
-  - effectId: spiny_grip
-    displayName: Spiny Grip
-    effectType: 41
-    trigger: 1
-    target: 0
-    effectTone: 1
-    amount: 1
-    requiredTags:
-    - Armored
-    grantedTag: 
-    targetTags: []
-    caughtCardTargetMode: 0
-    replacementCard: {fileID: 0}
-    expiresAfterUse: 0
-    hasEventLifetime: 0
-    eventLifetime:
-      boundaryId: 
-      boundaryCount: 0
-    reminderText: Once per card on first Bait attachment, grant one independent pending
-      recovery. The next technique played with an attached Armored creature selected
-      as a target consumes the oldest recovery. Check eligibility at play time. After
-      the technique and every triggered effect finish, return that exact played discard
-      occurrence, even if the target left. If full, optionally discard one hand technique
-      or decline. No selected target and Hooked-only targeting do not qualify. Source
-      removal or mode changes do not cancel the grant. A declined recovery or missing
-      played occurrence still consumes it and never substitutes another copy. One
-      recovery per qualifying play; multiple grants cover consecutive plays.
+  effects: []
+  hasExplicitBaitData: 0
+  baitEffects: []
   landingResistance: 0
   landingCatchEffects: []
   landingBaitEffects: []
+  primaryAbility:
+    name: 'Hold Fast'
+    description: 'Successful strikes immediately following a Miss gain +{amount} Landing Points.'
+    effects:
+    - kind: 0
+      trigger: 0
+      accuracy: 0
+      amount: 12
+      amountPerLevel: 2
+      count: 0
+      tag:
+      perPosition: 1
+      valueTarget: 0
+      targetTag:
+      condition: 4
+      encounterTag:
+      triggerLimit: 0
+      levelsPerIncrement: 1
+      maximumAmount: 0

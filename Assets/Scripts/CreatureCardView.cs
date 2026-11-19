@@ -1209,6 +1209,11 @@ public sealed class CreatureCardView : MonoBehaviour, ICreatureStatInspectionSou
     /// <summary>Reads the authored ability heading while keeping effectless roles blank.</summary>
     private static string AbilityName(CardDefinition card, CatchAttachmentRole role)
     {
+        if (role == CatchAttachmentRole.Catch && CreatureTagVocabulary.AppliesTo(card.CardType))
+        {
+            var ability = card.PrimaryAbility.Snapshot();
+            if (ability.Effects.Count > 0) return ability.Name;
+        }
         string name = string.Empty;
         foreach (CardEffectDefinition effect in card.GetEffects(role))
         {

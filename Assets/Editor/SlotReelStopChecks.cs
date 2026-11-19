@@ -24,7 +24,7 @@ public static class SlotReelStopChecks
             for (int i = 0; i < mappings.arraySize; i++)
                 sprites.Add(mappings.GetArrayElementAtIndex(i).FindPropertyRelative("tag").stringValue,
                     (Sprite)mappings.GetArrayElementAtIndex(i).FindPropertyRelative("sprite").objectReferenceValue);
-            var tags = new[] { "Fish", "Predator", "Schooling", "Small" };
+            var tags = new[] { "Armored", "Predator", "Schooling", "Anchored" };
             var reels = root.GetComponentsInChildren<TackleReelAnimator>();
             var reel = reels[0];
             var tuning = new SerializedObject(reel);

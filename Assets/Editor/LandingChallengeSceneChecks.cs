@@ -29,7 +29,7 @@ public static class LandingChallengeSceneChecks
     {
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>(); var controller = harbor.Controller;
         Check(!controller.RunActive && harbor.HubVisible, "Expected fresh Harbor.");
-        Check(controller.TryPrepareSlotTags(new[] { "Fish", "Predator", "Schooling", "Small" }), "Could not prepare tags.");
+        Check(controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }), "Could not prepare tags.");
         harbor.TryStartNewRun();
         var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
