@@ -10,12 +10,14 @@ public sealed class RigAcquisitionReceipt
     public int PreviousHaul { get; }
     public int Haul { get; }
     public string BiomeName { get; }
+    public CardInstance[] PreviousMembers { get; }
 
     /// <summary>Copies the acquired rig so refreshes and later encounters cannot change the displayed result.</summary>
-    public RigAcquisitionReceipt(long occurrence, CardInstance member, CardInstance[] members, int previousLevel, int previousHaul, int haul, string biomeName)
+    public RigAcquisitionReceipt(long occurrence, CardInstance member, CardInstance[] members, int previousLevel, int previousHaul, int haul, string biomeName, CardInstance[] previousMembers = null)
     {
         Occurrence = occurrence; Member = member.CreateSnapshot(); PreviousLevel = previousLevel;
         PreviousHaul = previousHaul; Haul = haul; BiomeName = biomeName;
         Members = Array.ConvertAll(members, item => item.CreateSnapshot());
+        PreviousMembers = Array.ConvertAll(previousMembers ?? Array.Empty<CardInstance>(), item => item.CreateSnapshot());
     }
 }

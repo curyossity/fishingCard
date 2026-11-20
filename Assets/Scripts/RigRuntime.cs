@@ -15,6 +15,24 @@ public sealed class RigRuntime
     /// <summary>Finds species by stable identity rather than asset reference, tag, display name or position.</summary>
     public CardInstance FindSpecies(string id) => members.Find(m => string.Equals(m.Definition.UniqueId, id, StringComparison.OrdinalIgnoreCase));
 
+    /// <summary>Projects current positional amounts using the same counts as gameplay, including zero/inactive components.</summary>
+    public static RigEffectProjection[] ProjectEffects(CardInstance[] snapshot)
+    {
+        var rig=new RigRuntime { members=(snapshot??Array.Empty<CardInstance>()).ToList() };var result=new List<RigEffectProjection>();
+        for(int source=0;source<rig.members.Count;source++)
+        {
+            var member=rig.members[source];
+            for(int index=0;index<member.PrimaryAbility.Effects.Count;index++)
+            {
+                var effect=member.PrimaryAbility.Effects[index];
+                if(effect.Trigger!=RigAbilityTrigger.Continuous&&effect.Trigger!=RigAbilityTrigger.Strike)continue;
+                int positions=rig.Count(source,effect);
+                result.Add(new RigEffectProjection(member.InstanceId,index,positions,effect,checked(effect.Amount(member.Level)*positions)));
+            }
+        }
+        return result.ToArray();
+    }
+
     /// <summary>Inspects positional dependencies and continuous value recipients in an independent committed or preview snapshot.</summary>
     public static RigAbilityLinks InspectAbility(CardInstance[] snapshot, int instanceId)
     {

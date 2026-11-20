@@ -21,6 +21,8 @@ public sealed class RigBuildingView : MonoBehaviour
     [SerializeField] private GameObject upgradeStatus;
     [SerializeField] private LandingStrikeFeedback strikeFeedback;
     [SerializeField] private RigCombinationPreview combinations;
+    [SerializeField] private RigBuildPresentation buildFeedback;
+    [SerializeField] private TMP_Text acquisitionStatus;
     [SerializeField] private Sprite socketIdle, socketSelected, socketBlocked;
     [SerializeField, Min(.1f)] private float upgradeFeedbackSeconds = 1.8f;
     private readonly List<TackleRigCardView> rigCards = new List<TackleRigCardView>(), railCards = new List<TackleRigCardView>();
@@ -30,6 +32,9 @@ public sealed class RigBuildingView : MonoBehaviour
     private long occurrence = -1, revision = -1;
     private int selected = -1;
     private bool upgrading;
+    private bool placing, hasRailLayout;
+    private Vector2 ghostDestination;
+    private bool ShowingReceipt => upgrading || placing;
     private Coroutine feedback;
     private readonly InputAction move = new InputAction("Build position", InputActionType.Value, expectedControlType: "Axis");
     private readonly InputAction submit = new InputAction("Build commit", InputActionType.Button, "<Keyboard>/enter");
@@ -50,8 +55,9 @@ public sealed class RigBuildingView : MonoBehaviour
         move.Disable(); submit.Disable();
         if (feedback != null) { StopCoroutine(feedback); feedback = null; }
         long shown = occurrence; occurrence = revision = -1;
-        if (upgrading && controller != null) controller.CompleteRigUpgradeFeedback(shown);
-        upgrading = false;
+        if (ShowingReceipt && controller != null) controller.CompleteRigAcquisitionFeedback(shown);
+        upgrading = placing = hasRailLayout = false;
+        if(buildFeedback!=null)buildFeedback.Finish();
     }
     /// <summary>Releases the native input actions owned by this view.</summary>
     private void OnDestroy() { move.performed -= Move; submit.performed -= Submit; move.Dispose(); submit.Dispose(); }
@@ -61,21 +67,26 @@ public sealed class RigBuildingView : MonoBehaviour
     {
         controller = owner;
         bool upgrade = owner != null && owner.RigUpgradeFeedbackVisible && owner.LastRigAcquisition != null;
-        bool visible = owner != null && owner.RunActive && !owner.LandingFeedbackPending && (upgrade || owner.AwaitingRigPlacement && owner.PendingRigCreature != null);
+        bool placement = owner != null && owner.RigPlacementFeedbackVisible && owner.LastRigAcquisition != null;
+        bool visible = owner != null && owner.RunActive && !owner.LandingFeedbackPending && (upgrade || placement || owner.AwaitingRigPlacement && owner.PendingRigCreature != null);
         gameObject.SetActive(visible);
         if (!visible) return;
-        long id = upgrade ? owner.LastRigAcquisition.Occurrence : owner.BuildOccurrence;
-        if (occurrence != id || revision != owner.Rig.Revision || upgrading != upgrade)
+        long id = upgrade || placement ? owner.LastRigAcquisition.Occurrence : owner.BuildOccurrence;
+        if (occurrence != id || revision != owner.Rig.Revision || upgrading != upgrade || placing != placement)
         {
-            occurrence = id; revision = owner.Rig.Revision; upgrading = upgrade; selected = -1;
-            if (!upgrade)
+            occurrence = id; revision = owner.Rig.Revision; upgrading = upgrade; placing = placement; selected = -1;
+            if (!ShowingReceipt)
                 for (int i = owner.Rig.Members.Length; i >= 0; i--)
                     if (owner.Rig.CanInsert(owner.PendingRigCreature, i, out _)) { selected = i; break; }
             Refresh();
-            rigScroll.verticalNormalizedPosition = 1; railScroll.horizontalNormalizedPosition = !upgrade && selected == owner.Rig.Members.Length ? 1 : 0;
-            if (upgrade)
+            rigScroll.verticalNormalizedPosition = 1;
+            if(!ShowingReceipt)railScroll.horizontalNormalizedPosition = selected == owner.Rig.Members.Length ? 1 : 0;
+            if (ShowingReceipt)
             {
                 if (EventSystem.current != null) EventSystem.current.SetSelectedGameObject(null);
+                var target=railCards.First(c=>c.BoundInstance.InstanceId==owner.LastRigAcquisition.Member.InstanceId);
+                Canvas.ForceUpdateCanvases();RevealPosition(((RectTransform)target.transform).anchoredPosition.x,((RectTransform)target.transform).rect.width);
+                if(buildFeedback!=null)buildFeedback.BeginReceipt(owner.LastRigAcquisition,target,railCardPrefab,portrait.rectTransform,ropes);
                 feedback = StartCoroutine(CompleteFeedback(id));
             }
             else if (EventSystem.current != null && selected >= 0) gaps[selected].Select();
@@ -86,24 +97,25 @@ public sealed class RigBuildingView : MonoBehaviour
     /// <summary>Leaves upgrade acquisition automatic and advances its cosmetic feedback on an unscaled clock.</summary>
     private IEnumerator CompleteFeedback(long id)
     {
-        yield return new WaitForSecondsRealtime(upgradeFeedbackSeconds);
+        yield return new WaitForSecondsRealtime(upgrading ? upgradeFeedbackSeconds : .68f);
         feedback = null;
-        if (controller != null) controller.CompleteRigUpgradeFeedback(id);
+        if(buildFeedback!=null)buildFeedback.Finish();
+        if (controller != null) controller.CompleteRigAcquisitionFeedback(id);
     }
 
     /// <summary>Uses actual projected sale values and current-level effects, never the example values printed in a mockup.</summary>
     private void Refresh()
     {
         var receipt = controller.LastRigAcquisition;
-        var creature = upgrading ? receipt.Member.Definition : controller.PendingRigCreature;
-        var members = upgrading ? receipt.Members : controller.Rig.Members;
+        var creature = ShowingReceipt ? receipt.Member.Definition : controller.PendingRigCreature;
+        var members = ShowingReceipt ? receipt.Members : controller.Rig.Members;
         int projected = controller.Rig.HaulValue; string error = null; CardInstance[] preview = Array.Empty<CardInstance>();
-        bool valid = !upgrading && selected >= 0 && controller.Rig.TryPreview(creature, selected, out preview, out projected, out error);
-        var displayed = upgrading ? receipt.Member : valid ? preview.First(m => string.Equals(m.Definition.UniqueId, creature.UniqueId, StringComparison.OrdinalIgnoreCase)) : CardInstance.CreateRigCreature(-1, creature);
-        string biome = upgrading ? receipt.BiomeName : controller.CurrentBiome?.GetDepthTier(controller.CurrentDepth)?.DisplayName ?? controller.CurrentBiome?.DisplayName ?? "Waters";
+        bool valid = !ShowingReceipt && selected >= 0 && controller.Rig.TryPreview(creature, selected, out preview, out projected, out error);
+        var displayed = ShowingReceipt ? receipt.Member : valid ? preview.First(m => string.Equals(m.Definition.UniqueId, creature.UniqueId, StringComparison.OrdinalIgnoreCase)) : CardInstance.CreateRigCreature(-1, creature);
+        string biome = ShowingReceipt ? receipt.BiomeName : controller.CurrentBiome?.GetDepthTier(controller.CurrentDepth)?.DisplayName ?? controller.CurrentBiome?.DisplayName ?? "Waters";
         TackleBuildTypography.SetText(heading, biome.ToUpperInvariant() + " / BUILD");
-        TackleBuildTypography.SetText(haul, "HAUL " + (upgrading ? receipt.Haul : controller.Rig.HaulValue));
-        TackleBuildTypography.SetText(creatureName, creature.DisplayName.ToUpperInvariant() + " LANDED");
+        TackleBuildTypography.SetText(haul, "HAUL " + (ShowingReceipt ? receipt.Haul : controller.Rig.HaulValue));
+        TackleBuildTypography.SetText(creatureName, creature.DisplayName.ToUpperInvariant() + (upgrading ? " UPGRADED" : placing ? " ATTACHED" : " LANDED"));
         TackleBuildTypography.SetText(tags, string.Join(" / ", creature.Tags).ToUpperInvariant());
         TackleBuildTypography.SetText(levelLabel, upgrading ? "LV " + receipt.PreviousLevel + " > " + displayed.Level : "LV 1");
         TackleBuildTypography.SetText(levelDelta, upgrading ? "+1" : "");
@@ -124,15 +136,19 @@ public sealed class RigBuildingView : MonoBehaviour
         details.rectTransform.sizeDelta = new Vector2(rulesWidth, rulesHeight);
         TackleBuildTypography.SetText(details, description); detailsScroll.verticalNormalizedPosition = 1;
         portrait.sprite = creature.EncounterArtwork ?? creature.Artwork; portrait.enabled = portrait.sprite != null;
-        TackleBuildTypography.SetText(previewCaption, upgrading ? "HAUL CHANGE" : "HAUL PREVIEW");
-        TackleBuildTypography.SetText(previewLabel, upgrading ? receipt.PreviousHaul + " > " + receipt.Haul : controller.Rig.HaulValue + " > " + projected);
-        TackleBuildTypography.SetText(railHeading, upgrading ? "YOUR RIG" : "CHOOSE INSERTION POINT");
-        commit.gameObject.SetActive(!upgrading); commit.interactable = valid; upgradeStatus.SetActive(upgrading);
+        TackleBuildTypography.SetText(previewCaption, ShowingReceipt ? "HAUL CHANGE" : "HAUL PREVIEW");
+        TackleBuildTypography.SetText(previewLabel, ShowingReceipt ? receipt.PreviousHaul + " > " + receipt.Haul : controller.Rig.HaulValue + " > " + projected);
+        TackleBuildTypography.SetText(railHeading, ShowingReceipt ? "YOUR RIG" : "CHOOSE INSERTION POINT");
+        commit.gameObject.SetActive(!ShowingReceipt); commit.interactable = valid; upgradeStatus.SetActive(ShowingReceipt);
+        if(acquisitionStatus!=null)TackleBuildTypography.SetText(acquisitionStatus,upgrading?"UPGRADED":"ATTACHED");
+        message.gameObject.SetActive(!ShowingReceipt);
         emptyRig.gameObject.SetActive(members.Length == 0);
         RefreshCabinet(members);
         RefreshRail(members, creature, valid ? preview : null);
-        if (combinations != null) combinations.Bind(members, valid ? preview : members, railCards, portrait.rectTransform,
-            !upgrading && valid ? displayed.InstanceId : -1);
+        var before=ShowingReceipt?receipt.PreviousMembers:members;var after=valid?preview:members;
+        if(buildFeedback!=null)buildFeedback.ShowChanges(railCards,RigBuildChange.Compare(before,after));
+        var pendingFace=buildFeedback!=null&&buildFeedback.Ghost!=null&&buildFeedback.Ghost.gameObject.activeSelf?((TackleCardTooltipSource)buildFeedback.Ghost.InspectionTarget).FaceBounds:portrait.rectTransform;
+        if (combinations != null) combinations.Bind(before, after, railCards, pendingFace, !ShowingReceipt && valid ? displayed.InstanceId : -1);
         if (strikeFeedback != null) strikeFeedback.Present(controller.LastLandingStrike, rigCards, false);
         string placement = selected == 0 ? "Before " + (members.Length > 0 ? members[0].Definition.DisplayName : creature.DisplayName)
             : selected > 0 && selected <= members.Length ? "After " + members[selected - 1].Definition.DisplayName : "Choose a position";
@@ -155,28 +171,38 @@ public sealed class RigBuildingView : MonoBehaviour
     /// <summary>Fits independent cards, ropes and insertion targets inside the housing's built-in wooden recess, scrolling longer uncapped rigs.</summary>
     private void RefreshRail(CardInstance[] members, CardDefinition creature, CardInstance[] preview)
     {
-        int count = members.Length;
-        float width = Mathf.Max(railScroll.viewport.rect.width, count * 304 + 106), first = (width - (count * 304 - 83)) * .5f - 3;
+        int count = members.Length;bool hasGhost=buildFeedback!=null&&preview!=null&&!ShowingReceipt;
+        int displayedCount=count+(hasGhost?1:0);
+        float width = Mathf.Max(railScroll.viewport.rect.width, displayedCount * 304 + 106), first = (width - (displayedCount * 304 - 83)) * .5f - 3;
         while (railCards.Count < count) railCards.Add(Instantiate(railCardPrefab, railContent));
         while (gaps.Count <= count) gaps.Add(Instantiate(gapTemplate, railContent));
-        while (ropes.Count < Mathf.Max(0, count - 1)) { var rope = Instantiate(ropeTemplate, railContent); rope.transform.SetAsFirstSibling(); ropes.Add(rope); }
+        while (ropes.Count < Mathf.Max(0, displayedCount - 1)) { var rope = Instantiate(ropeTemplate, railContent); rope.transform.SetAsFirstSibling(); ropes.Add(rope); }
         for (int i = 0; i < ropes.Count; i++)
         {
-            ropes[i].gameObject.SetActive(i < count - 1);
-            if (i < count - 1) { ropes[i].rectTransform.anchoredPosition = new Vector2(first + 110 + i * 304, -7); ropes[i].rectTransform.sizeDelta = new Vector2(304, 48); }
+            ropes[i].gameObject.SetActive(i < displayedCount - 1);
+            if (i < displayedCount - 1) { ropes[i].rectTransform.anchoredPosition = new Vector2(first + 110 + i * 304, -7); ropes[i].rectTransform.sizeDelta = new Vector2(304, 48); }
         }
         for (int i = 0; i < railCards.Count; i++)
         {
             var card = railCards[i]; card.gameObject.SetActive(i < count); if (i >= count) continue;
             var projectedMember = preview == null ? members[i] : preview.First(m => m.InstanceId == members[i].InstanceId);
-            card.Bind(projectedMember, preview != null); ((RectTransform)card.transform).anchoredPosition = new Vector2(first + i * 304, -27);
+            card.Bind(projectedMember, preview != null);
+            var targetPosition=new Vector2(first+(i+(hasGhost&&i>=selected?1:0))*304,-27);
+            if(buildFeedback!=null)buildFeedback.Place((RectTransform)card.transform,targetPosition,hasRailLayout&&!ShowingReceipt);else ((RectTransform)card.transform).anchoredPosition=targetPosition;
             card.SetClipVisible(true);
-            card.SetAcquiredHighlight(upgrading && members[i].InstanceId == controller.LastRigAcquisition.Member.InstanceId);
+            card.SetAcquiredHighlight(false);
         }
+        if(hasGhost)
+        {
+            var pending=preview.First(m=>m.Definition.UniqueId==creature.UniqueId);var ghost=buildFeedback.ShowGhost(railCardPrefab,railContent,pending);
+            ghostDestination=new Vector2(first+selected*304,-27);buildFeedback.Place((RectTransform)ghost.transform,ghostDestination,hasRailLayout);
+        }
+        else if(buildFeedback!=null)buildFeedback.HideGhost();
         for (int i = 0; i < gaps.Count; i++)
         {
-            var gap = gaps[i]; gap.gameObject.SetActive(!upgrading && i <= count); if (upgrading || i > count) continue;
-            int position = i; float x = count == 0 ? (width - 70) * .5f : i == 0 ? first - 84 : i == count ? first + (count - 1) * 304 + 238 : first + (i - 1) * 304 + 227;
+            var gap = gaps[i]; gap.gameObject.SetActive(!ShowingReceipt && i <= count); if (ShowingReceipt || i > count) continue;
+            int position = i; float x = count == 0&&!hasGhost ? (width - 70) * .5f : hasGhost&&i==selected ? first+i*304-84
+                : i==count ? first+(displayedCount-1)*304+238 : first+(i+(hasGhost&&i>selected?1:0))*304-84;
             bool legal = controller.Rig.CanInsert(creature, i, out _);
             ((RectTransform)gap.transform).anchoredPosition = new Vector2(x, -85);
             gap.interactable = legal; gap.GetComponent<UnityEngine.UI.Image>().sprite = !legal ? socketBlocked : i == selected ? socketSelected : socketIdle;
@@ -185,16 +211,17 @@ public sealed class RigBuildingView : MonoBehaviour
                 selectOnUp = count > 0 ? railCards[Mathf.Min(i,count-1)].InspectionTarget : null };
             if (i == selected) selectionCaret.anchoredPosition = new Vector2(x, -55);
         }
-        selectionCaret.gameObject.SetActive(!upgrading && selected >= 0);
-        if (!upgrading && selected >= 0) commit.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnUp = gaps[selected] };
+        selectionCaret.gameObject.SetActive(!ShowingReceipt && selected >= 0);
+        if (!ShowingReceipt && selected >= 0) commit.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnUp = gaps[selected] };
         selectionCaret.SetAsLastSibling(); railContent.sizeDelta = new Vector2(width, 223);
+        hasRailLayout=true;
         for (int i = 0; i < count; i++)
         {
             var target = railCards[i].InspectionTarget;
             if (target != null) target.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
                 selectOnLeft = i > 0 ? railCards[i-1].InspectionTarget : rigCards[i].InspectionTarget,
                 selectOnRight = i+1 < count ? railCards[i+1].InspectionTarget : null,
-                selectOnDown = !upgrading ? gaps[Mathf.Min(i,count)] : null, selectOnUp = rigCards[i].InspectionTarget };
+                selectOnDown = !ShowingReceipt ? gaps[Mathf.Min(i,count)] : null, selectOnUp = rigCards[i].InspectionTarget };
             target = rigCards[i].InspectionTarget;
             if (target != null) target.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
                 selectOnUp = i > 0 ? rigCards[i-1].InspectionTarget : null, selectOnDown = i+1 < count ? rigCards[i+1].InspectionTarget : commit,
@@ -205,17 +232,28 @@ public sealed class RigBuildingView : MonoBehaviour
     /// <summary>Changes the preview only and scrolls the selected native target into view.</summary>
     private void Select(int position)
     {
-        if (upgrading) return;
+        if (ShowingReceipt) return;
         selected = position; Refresh(); Canvas.ForceUpdateCanvases();
-        var rect = (RectTransform)gaps[position].transform; float left = -railContent.anchoredPosition.x;
-        if (rect.anchoredPosition.x < left) left = rect.anchoredPosition.x;
-        else if (rect.anchoredPosition.x + rect.rect.width > left + railScroll.viewport.rect.width) left = rect.anchoredPosition.x + rect.rect.width - railScroll.viewport.rect.width;
+        var rect = (RectTransform)gaps[position].transform;
+        if(buildFeedback!=null&&buildFeedback.Ghost!=null)
+        {
+            float start=ghostDestination.x-(position>0?304:84),end=ghostDestination.x+221+(position<controller.Rig.Members.Length?304:0);
+            RevealPosition(start,end-start);
+        }
+        else RevealPosition(rect.anchoredPosition.x,rect.rect.width);
+    }
+    /// <summary>Reveals the selected candidate and its insertion socket without scrolling the committed cabinet.</summary>
+    private void RevealPosition(float x,float width)
+    {
+        float left=-railContent.anchoredPosition.x;
+        if(x<left)left=x;
+        else if(x+width>left+railScroll.viewport.rect.width)left=x+width-railScroll.viewport.rect.width;
         railContent.anchoredPosition = new Vector2(-Mathf.Clamp(left, 0, Mathf.Max(0, railContent.rect.width - railScroll.viewport.rect.width)), 0);
     }
     /// <summary>Cycles only legal gaps, preserving the committed members' relative order.</summary>
     private void Move(InputAction.CallbackContext context)
     {
-        if (controller == null || upgrading || !gameObject.activeInHierarchy || !OwnsInputFocus()) return;
+        if (controller == null || ShowingReceipt || !gameObject.activeInHierarchy || !OwnsInputFocus()) return;
         int step = context.ReadValue<float>() > 0 ? 1 : -1, length = controller.Rig.Members.Length + 1;
         for (int offset = 1; offset <= length; offset++)
         {
@@ -224,7 +262,7 @@ public sealed class RigBuildingView : MonoBehaviour
         }
     }
     /// <summary>Shares the guarded placement command with pointer/touch controls.</summary>
-    private void Submit(InputAction.CallbackContext context) { if (!upgrading && gameObject.activeInHierarchy && OwnsInputFocus()) Commit(); }
+    private void Submit(InputAction.CallbackContext context) { if (!ShowingReceipt && gameObject.activeInHierarchy && OwnsInputFocus()) Commit(); }
     /// <summary>Leaves settings and unrelated native surfaces in control of keyboard focus.</summary>
     private bool OwnsInputFocus()
     {
@@ -234,7 +272,7 @@ public sealed class RigBuildingView : MonoBehaviour
     /// <summary>Submits only the landed occurrence and rig revision that produced this preview.</summary>
     private void Commit()
     {
-        if (controller == null || upgrading || !commit.interactable) return;
+        if (controller == null || ShowingReceipt || !commit.interactable) return;
         controller.TryCommitRigPlacement(occurrence, revision, selected);
     }
 }

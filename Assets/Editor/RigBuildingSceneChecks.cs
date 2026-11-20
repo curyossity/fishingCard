@@ -57,6 +57,8 @@ public static class RigBuildingSceneChecks
         long occurrence = controller.BuildOccurrence, revision = controller.Rig.Revision;
         commit.onClick.Invoke(); yield return null;
         Check(controller.CatchChain.Length == 1 && controller.CatchChain[0].Definition == first && controller.CatchChain[0].Level == 1, "Placement failed.");
+        Check(controller.RigPlacementFeedbackVisible&&build.gameObject.activeInHierarchy&&!controller.TryAcceptSlotMachine(controller.SlotMachine.Revision),"Placement feedback is absent or fails to gate the next encounter.");
+        yield return WaitAcquisitionFeedback(controller);
         Check(controller.SlotMachine.Active && !controller.AwaitingRigPlacement && !build.gameObject.activeInHierarchy, "Placement did not automatically continue to Discover.");
         Check(!controller.TryCommitRigPlacement(occurrence, revision, 0) && controller.Rig.HaulValue == first.Value, "Stale placement acquired twice.");
 
@@ -136,12 +138,18 @@ public static class RigBuildingSceneChecks
     {
         var encounter = (EncounterRuntime)typeof(FishingRunController).GetField("encounterRuntime", Private).GetValue(controller);
         typeof(EncounterRuntime).GetField("slotCandidates", Private).SetValue(encounter, new[] { creature });
-        IReadOnlyList<TagSlotMachineRuntime.Symbol> symbols = new[] { new TagSlotMachineRuntime.Symbol(creature.Tags[0], 1) };
-        controller.SlotMachine.Begin(new[] { symbols, symbols, symbols }, 1); controller.SlotMachine.TrySpin(controller.SlotMachine.Revision, new System.Random(1));
+        // A no-match may select an unprepared creature tag; forcing that duplicate must still use legal reel symbols.
+        bool prepared = controller.ExpeditionSlotTags.Contains(creature.Tags[0]);
+        var reels = Enumerable.Range(0, 3).Select(i => (IReadOnlyList<TagSlotMachineRuntime.Symbol>)
+            new[] { new TagSlotMachineRuntime.Symbol(prepared ? creature.Tags[0] : controller.ExpeditionSlotTags[i], 1) }).ToArray();
+        controller.SlotMachine.Begin(reels, 1); controller.SlotMachine.TrySpin(controller.SlotMachine.Revision, new System.Random(1));
         typeof(FishingRunController).GetMethod("RefreshViews", Private).Invoke(controller, null);
     }
     /// <summary>Captures the actual Build canvas through the project render pipeline.</summary>
     private static void Capture(RigBuildingView view, string file) => RigBuildingArtChecks.Capture(view, file, output: outputDirectory);
+    /// <summary>Waits for committed acquisition feedback without guessing its duration or replaying a command.</summary>
+    public static IEnumerator WaitAcquisitionFeedback(FishingRunController owner)
+    {double until=Time.realtimeSinceStartupAsDouble+5;while(owner.RigAcquisitionFeedbackVisible&&Time.realtimeSinceStartupAsDouble<until)yield return null;Check(!owner.RigAcquisitionFeedbackVisible,"Acquisition feedback did not release its bounded gate.");}
     /// <summary>Retains a readable failure status if a coroutine invariant fails.</summary>
     private static void Check(bool valid, string message)
     {

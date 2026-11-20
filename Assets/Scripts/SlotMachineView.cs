@@ -18,7 +18,7 @@ public sealed class SlotMachineView : MonoBehaviour
     /// <summary>Displays only Discover or its landing handoff; never interprets an outcome as a caught creature.</summary>
     public void Present(FishingRunController controller)
     {
-        bool active = controller != null && controller.UsesSlotMachine && controller.RunActive && !controller.LandingFeedbackPending && !controller.RigUpgradeFeedbackVisible
+        bool active = controller != null && controller.UsesSlotMachine && controller.RunActive && !controller.LandingFeedbackPending && !controller.RigAcquisitionFeedbackVisible
             && (controller.SlotMachine.Active || artwork == null && controller.AwaitingLandingChallenge || controller.SlotFailure != null);
         gameObject.SetActive(active);
         if (!active) return;

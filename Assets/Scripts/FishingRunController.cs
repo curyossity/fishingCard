@@ -132,7 +132,7 @@ public sealed partial class FishingRunController : MonoBehaviour
         catchChainRuntime, encounterRuntime, techniqueEffectRuntime, effectResolver, eventPersistenceRuntime);
     public bool HasPendingCreatureChoice => PendingCreatureChoice != CreatureEffectChoiceKind.None;
 
-    private bool CoreActionInputReady => runActive && !LandingFeedbackPending && !rigResolutionInProgress && !RigUpgradeFeedbackVisible && !EventActionInputLocked && !HasPendingTechniqueSelection
+    private bool CoreActionInputReady => runActive && !LandingFeedbackPending && !rigResolutionInProgress && !RigAcquisitionFeedbackVisible && !EventActionInputLocked && !HasPendingTechniqueSelection
         && (fishingRunView == null || !fishingRunView.IsEncounterTransitionPlaying)
         && !techniqueEffectInProgress && techniqueDeckRuntime.ResolvingCard == null && string.IsNullOrEmpty(techniquePlayFailure)
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
@@ -2003,6 +2003,7 @@ public sealed partial class FishingRunController : MonoBehaviour
     /// <summary>Advances timing independently of the view, then dispatches the delayed reveal once.</summary>
     private void Update()
     {
+        AdvanceRigFeedback();
         AdvanceLanding();
         if (!runActive || !Timing.Active || fishingRunView != null && fishingRunView.IsEncounterTransitionPlaying) return;
         if (fishingRunView != null && !fishingRunView.HasCompletedTimingEntrance(Timing.Occurrence)) return;

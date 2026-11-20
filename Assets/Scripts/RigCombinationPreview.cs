@@ -59,7 +59,9 @@ public sealed class RigCombinationPreview : MonoBehaviour
                 if (after.RecipientIds.Count > 0) text += "\n<color=#6FE8AC>Affected by this ability: " + Names(after.RecipientIds) + "</color>";
                 if (disconnected.Count > 0) text += "\n<color=#F48A76>Disconnected by insertion: " + Names(disconnected) + "</color>";
                 if (connected.Count == 0 && disconnected.Count == 0) text += "\nNo creature links in this position.";
-                text += "\nPositional links; strike conditions still apply.";
+                var change=RigBuildChange.Compare(committed,projected).FirstOrDefault(c=>c.SourceId==id);
+                if(change!=null)text+="\n\nPLACEMENT CHANGE\n"+change.Description;
+                text += "\nConditions and shared assistance limits still apply.";
                 explanation = text;
             }
         }

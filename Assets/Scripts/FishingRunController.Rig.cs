@@ -15,13 +15,16 @@ public sealed partial class FishingRunController
     public string RigNotice { get; private set; }
     public RigAcquisitionReceipt LastRigAcquisition { get; private set; }
     public bool RigUpgradeFeedbackVisible { get; private set; }
+    public bool RigPlacementFeedbackVisible { get; private set; }
+    public bool RigAcquisitionFeedbackVisible => RigUpgradeFeedbackVisible || RigPlacementFeedbackVisible;
+    private double rigFeedbackUntil;
     public event Action<CardDefinition, bool> RigAcquisitionCompleted;
 
     /// <summary>Clears all temporary upgrades and invalidates pending placement commands at expedition boundaries.</summary>
     private void ResetRigExpedition()
     {
         rig.Reset(); pendingRigCreature = null; buildOccurrence++; BuildFailure = RigNotice = null;
-        LastRigAcquisition = null; RigUpgradeFeedbackVisible = false;
+        LastRigAcquisition = null; RigUpgradeFeedbackVisible = RigPlacementFeedbackVisible = false; rigFeedbackUntil = 0;
     }
 
     /// <summary>Reserves a landed occurrence, automatically upgrading an existing species without showing placement controls.</summary>
@@ -44,14 +47,17 @@ public sealed partial class FishingRunController
         {
             var creature = pendingRigCreature;
             int previousHaul = rig.HaulValue, previousLevel = rig.FindSpecies(creature.UniqueId)?.Level ?? 0;
+            var previousMembers = Array.ConvertAll(rig.Members, item => item.CreateSnapshot());
             string biomeName = CurrentBiome?.GetDepthTier(CurrentDepth)?.DisplayName ?? CurrentBiome?.DisplayName ?? "Waters";
             if (!rig.TryAcquire(revision, creature, position, out bool upgraded, out string error))
             { BuildFailure = error; return false; }
             encounterRuntime.TakeHookedEncounter();
             var member = rig.FindSpecies(creature.UniqueId);
             RigNotice = creature.DisplayName + (upgraded ? " UPGRADED" : " PLACED") + " / LV " + member.Level;
-            LastRigAcquisition = new RigAcquisitionReceipt(buildOccurrence, member, rig.Members, previousLevel, previousHaul, rig.HaulValue, biomeName);
+            LastRigAcquisition = new RigAcquisitionReceipt(buildOccurrence, member, rig.Members, previousLevel, previousHaul, rig.HaulValue, biomeName, previousMembers);
             RigUpgradeFeedbackVisible = upgraded && fishingRunView != null && fishingRunView.HasRigBuildingPresentation;
+            RigPlacementFeedbackVisible = !upgraded && fishingRunView != null && fishingRunView.HasRigBuildingPresentation;
+            rigFeedbackUntil = Time.realtimeSinceStartupAsDouble + 4;
             pendingRigCreature = null; awaitingRigPlacement = false; BuildFailure = null; buildOccurrence++;
             biomeApexRuntime.RecordCommittedApex(creature);
             ContinueAfterRigAcquisition();
@@ -65,7 +71,20 @@ public sealed partial class FishingRunController
     public bool CompleteRigUpgradeFeedback(long occurrence)
     {
         if (!RunActive || !RigUpgradeFeedbackVisible || LastRigAcquisition?.Occurrence != occurrence) return false;
-        RigUpgradeFeedbackVisible = false; RefreshViews(); return true;
+        return CompleteRigAcquisitionFeedback(occurrence);
+    }
+
+    /// <summary>Releases only the matching committed receipt; animation never acquires or continues a second time.</summary>
+    public bool CompleteRigAcquisitionFeedback(long occurrence)
+    {
+        if(!RunActive||!RigAcquisitionFeedbackVisible||LastRigAcquisition?.Occurrence!=occurrence)return false;
+        RigUpgradeFeedbackVisible=RigPlacementFeedbackVisible=false;rigFeedbackUntil=0;RefreshViews();return true;
+    }
+    /// <summary>Bounds interrupted presentation so a disabled view cannot retain the action gate indefinitely.</summary>
+    private void AdvanceRigFeedback()
+    {
+        if(RigAcquisitionFeedbackVisible&&(Time.realtimeSinceStartupAsDouble>=rigFeedbackUntil||fishingRunView==null||!fishingRunView.HasRigBuildingPresentation))
+            CompleteRigAcquisitionFeedback(LastRigAcquisition.Occurrence);
     }
 
     /// <summary>Advances one ordinary encounter using existing authored depth/biome ownership, retaining the entire rig.</summary>

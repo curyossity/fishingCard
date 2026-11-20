@@ -91,6 +91,7 @@ public static class RigCombinationPreviewChecks
         source.OnPointerEnter(pointer); yield return new WaitForEndOfFrame(); Check(view.InspectedId > 0, "Same-source reentry failed.");
         Check(!view.GetComponentsInChildren<RigRelationshipGlow>(true).Any(i => i.raycastTarget), "Glow intercepts controls.");
         ((UnityEngine.UI.Button)data.FindProperty("commit").objectReferenceValue).onClick.Invoke(); yield return null;
+        yield return RigBuildingSceneChecks.WaitAcquisitionFeedback(owner);
         Check(!build.gameObject.activeInHierarchy && view.InspectedId == -1 && owner.Rig.Members.Length == 4, "Placement did not clean up and continue.");
         Result = "Passed " + checks + " live combination-preview checks";
         File.WriteAllText(Output + "LiveVerification.json", "{\"passed\":true,\"assertions\":" + checks + "}\n");
