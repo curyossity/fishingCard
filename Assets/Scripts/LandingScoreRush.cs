@@ -9,9 +9,10 @@ using UnityEngine;
 public sealed class LandingScoreRush : MonoBehaviour
 {
     [SerializeField] private CanvasGroup readout;
-    [SerializeField] private TMP_Text value, operation, sourceName, caption;
+    [SerializeField] private TMP_Text value, operation, caption;
     [SerializeField] private TMP_Text[] coveredLabels;
-    [SerializeField] private UnityEngine.UI.Image sourcePortrait, glow;
+    [SerializeField] private UnityEngine.UI.Image glow;
+    [SerializeField] private LandingScoringPortrait scoringPortrait;
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
@@ -70,6 +71,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (ReferenceEquals(receipt, strike)) return;
         Finish(); receipt = strike; cards = rigCards ?? Array.Empty<TackleRigCardView>();
         if (strike?.Score == null || !animate) return;
+        scoringPortrait.CaptureEncounter();
         sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble;
         soundEvents.Clear(); soundCursor = 0;
         for (int i = 0; i < sequence.Steps.Count; i++)
@@ -103,10 +105,8 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (index != lastStep)
         {
             RestoreKick(); lastStep = index;
-            var member = receipt.Members.FirstOrDefault(m => m.InstanceId == step.SourceId);
-            int sourceCount = step.SourceIds.Distinct().Count();
-            sourceName.text = sourceCount > 1 ? sourceCount + " CREATURES" : member?.Definition.DisplayName.ToUpperInvariant() ?? "ACCURACY BASE";
-            sourcePortrait.sprite = member?.Definition.Artwork; sourcePortrait.enabled = sourcePortrait.sprite != null;
+            if (index == 0) scoringPortrait.RestoreEncounter();
+            else scoringPortrait.ShowContributors(receipt.Members.Where(m => step.SourceIds.Contains(m.InstanceId)).ToArray());
             operation.text = index == 0 ? "" : (step.Multiply ? "×" : "+") + Format(step.Amount);
             operation.color = step.Multiply ? new Color32(167, 220, 194, 255) : new Color32(240, 205, 133, 255);
             kicked = cards.FirstOrDefault(c => c.BoundInstance?.InstanceId == step.SourceId);
@@ -122,7 +122,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         {
             lastImpact = arrived;
         }
-        if (payout && !paid) { paid = true; RestoreKick(); }
+        if (payout && !paid) { paid = true; RestoreKick(); scoringPortrait.RestoreEncounter(); }
         float payoutAge = elapsed - sequence.PayoutAt;
         float transfer = payout ? Mathf.Clamp01(payoutAge / (.27f + sequence.Intensity * .12f)) : 0;
         float eased = 1 - Mathf.Pow(1 - transfer, 3);
@@ -130,7 +130,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         DisplayedStrike = payout ? receipt.Score.Points : sequence.ValueAt(elapsed);
         value.text = Format(DisplayedStrike);
         caption.text = payout ? (receipt.Score.Points == 0 ? "MISS" : "LANDING POINTS") : receipt.Score.Accuracy.ToString().ToUpperInvariant();
-        if (payout) { operation.text = "+" + Format(receipt.Score.Points); sourceName.text = receipt.ProtectedMiss ? "MISS PROTECTED" : receipt.Score.Accuracy.ToString().ToUpperInvariant(); sourcePortrait.enabled = false; }
+        if (payout) operation.text = "+" + Format(receipt.Score.Points);
         readout.alpha = payout ? 1 - Mathf.Clamp01((payoutAge - .3f) / .24f) : 1;
         float impactAge = elapsed - sequence.Steps[arrived].ImpactAt;
         float bump = impactAge < 0 ? 0 : Mathf.Exp(-impactAge * 18) * Mathf.Sin(impactAge * 34);
@@ -140,7 +140,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         float impact = payout ? Mathf.Exp(-Mathf.Max(0, payoutAge) * 12) * Mathf.Sin(payoutAge * 40) : 0;
         float punch = ReducedMotion ? 0 : bump * (sequence.Steps[arrived].Multiply ? .13f : .065f) + impact * sequence.Intensity * .10f;
         value.rectTransform.localScale = new Vector3(1 + punch, 1 + punch * .65f, 1);
-        sourcePortrait.rectTransform.localScale = Vector3.one * (1 + (ReducedMotion ? 0 : preparation * .12f));
+        scoringPortrait.SetPulse(ReducedMotion ? 0 : preparation);
         totalLabel.localScale = totalRest * (1 + (ReducedMotion ? 0 : impact * .12f));
         machine.anchoredPosition = machineRest + (ReducedMotion || sequence.Tier == 0 ? Vector2.zero : Vector2.up * impact * sequence.Intensity * 4);
         glow.color = new Color(1, .69f, .26f, ReducedMotion ? .015f : .015f + Mathf.Max(0, bump) * .035f + Mathf.Abs(impact) * .04f);
@@ -150,7 +150,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         }
         Vector3 destination = value.rectTransform.TransformPoint(value.rectTransform.rect.center);
         if (ReducedMotion) RestoreMotion();
-        Vector3 origin = sourcePortrait.rectTransform.TransformPoint(sourcePortrait.rectTransform.rect.center);
+        Vector3 origin = scoringPortrait.ProjectileOrigin;
         float travel = Mathf.Clamp01((elapsed - step.LaunchAt) / Math.Max(.001f, step.ImpactAt - step.LaunchAt));
         particles.Render(origin, destination, ReducedMotion || index == 0 || payout ? 0 : travel,
             ReducedMotion || !payout || sequence.Tier == 0 ? 0 : Mathf.Clamp01(payoutAge / .55f), sequence.Intensity,
@@ -166,7 +166,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     /// <summary>Restores a kicked card before moving to another source or leaving the phase.</summary>
     private void RestoreKick() { if (kicked != null) { kicked.transform.localScale = kickScale; kicked.transform.localRotation = kickRotation; } kicked = null; }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
-    private void RestoreMotion() { RestoreKick(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (sourcePortrait != null) sourcePortrait.rectTransform.localScale = Vector3.one; }
+    private void RestoreMotion() { RestoreKick(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
     /// <summary>Cancels pending voices without affecting any other game sound.</summary>
     private void StopVoices() { if (voices != null) foreach (var source in voices) if (source != null) source.Stop(); }
     /// <summary>Leaves no light, transform or sound behind when a score finishes or is interrupted.</summary>
@@ -174,6 +174,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     {
         running = false; if (receipt != null) DisplayedTotal = receipt.PointsAfter;
         RestoreMotion(); StopVoices();
+        if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }
         if (readout != null) readout.gameObject.SetActive(false);
         if (coveredLabels != null) foreach (var label in coveredLabels) if (label != null) label.gameObject.SetActive(true);

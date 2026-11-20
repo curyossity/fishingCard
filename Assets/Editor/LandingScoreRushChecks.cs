@@ -65,9 +65,13 @@ public static class LandingScoreRushChecks
     {
         checks=0; var root=AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath);
         var host=root.GetComponent<LandingScoreRush>(); Check(host!=null,"Missing score-rush component.");var data=new SerializedObject(host);
-        foreach(string field in new[]{"readout","value","operation","sourceName","caption","sourcePortrait","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
+        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
             Check(data.FindProperty(field).objectReferenceValue!=null,"Missing score rush binding: "+field);
         var group=(CanvasGroup)data.FindProperty("readout").objectReferenceValue;
+        var portraitOwner=new SerializedObject((LandingScoringPortrait)data.FindProperty("scoringPortrait").objectReferenceValue);
+        foreach(string field in new[]{"portrait","creatureName","tags"}) Check(portraitOwner.FindProperty(field).objectReferenceValue!=null,"Missing main-slot binding: "+field);
+        Check(portraitOwner.FindProperty("portrait").objectReferenceValue==new SerializedObject(root.GetComponent<TackleLandingPresentation>()).FindProperty("portrait").objectReferenceValue,"Contributors do not use the encounter portrait slot.");
+        var oldIcon=group.transform.Find("Active source");Check(oldIcon==null||!oldIcon.gameObject.activeSelf,"The old score icon is still visible.");
         Check(!group.blocksRaycasts&&!group.interactable&&!group.gameObject.activeSelf,"Transient readout starts visible or blocks input.");
         Check(!((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).raycastTarget,"Trails block input.");
         Check(((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).GetComponent<CanvasRenderer>()!=null,"Trails have no native canvas renderer.");
@@ -115,8 +119,18 @@ public static class LandingScoreRushChecks
         Check(!owner.TryStrikeLanding(owner.Landing.Occurrence,revision),"Duplicate strike accepted during animation.");
         Check(!owner.TryCommitRigPlacement(owner.BuildOccurrence,owner.Rig.Revision,0),"Placement accepted during count-up.");
         var cards=landing.GetComponentsInChildren<TackleRigCardView>();
+        var scoringPortrait=landing.GetComponent<LandingScoringPortrait>();var portraitData=new SerializedObject(scoringPortrait);
+        var mainPortrait=(UnityEngine.UI.Image)portraitData.FindProperty("portrait").objectReferenceValue;
+        var mainName=(TMP_Text)portraitData.FindProperty("creatureName").objectReferenceValue;
+        var mainTags=(TMP_Text)portraitData.FindProperty("tags").objectReferenceValue;
+        Sprite targetPortrait=mainPortrait.sprite;string targetName=mainName.text,targetTags=mainTags.text;
         typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[1].ImpactAt+.015f});
-        Check(((TMP_Text)data.FindProperty("sourceName").objectReferenceValue).text.Length>0,"Named source cue missing.");
+        var firstSource=receipt.Members.Single(m=>m.InstanceId==rush.Sequence.Steps[1].SourceId);
+        Check(scoringPortrait.IsShowingContributors&&mainPortrait.sprite==(firstSource.Definition.EncounterArtwork??firstSource.Definition.Artwork)&&mainName.text==firstSource.Definition.DisplayName.ToUpperInvariant(),"Contributor did not replace the encounter portrait and name.");
+        Check(mainTags.text.StartsWith("RIG EFFECT"),"Contributor is not distinguished from the encounter target.");
+        typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.PayoutAt});
+        Check(!scoringPortrait.IsShowingContributors&&mainPortrait.sprite==targetPortrait&&mainName.text==targetName&&mainTags.text==targetTags,"Payout did not restore the original encounter identity.");
+        typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[1].ImpactAt+.015f});
         Check(((CanvasGroup)data.FindProperty("readout").objectReferenceValue).alpha>0,"Growing readout is invisible.");
         Check(landing.GetComponentsInChildren<AudioSource>().Any(s=>s.isPlaying),"Musical step did not start a routed audio voice.");
         foreach(var size in new[]{new Vector2Int(1920,1080),new Vector2Int(1280,800),new Vector2Int(2560,1080)})
@@ -125,13 +139,14 @@ public static class LandingScoreRushChecks
         Check(outside!=null,"Fixture lacks an offscreen source.");
         int outsideIndex=Array.FindIndex(rush.Sequence.Steps.ToArray(),s=>s.SourceId==outside.SourceId);
         typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[outsideIndex].Time+.1f});
-        Check(((UnityEngine.UI.Image)data.FindProperty("sourcePortrait").objectReferenceValue).enabled,"Offscreen source portrait missing.");
+        Check(scoringPortrait.IsShowingContributors&&mainPortrait.enabled,"Offscreen contributor did not appear in the main slot.");
         Capture(landing,"Offscreen-Source.png",1920,1080);
         reduced.SetIsOnWithoutNotify(true);rush.Tick();
         Check(rush.ReducedMotion,"Reduced-motion choice was ignored.");
         Check(owner.Landing.Points==points&&owner.Landing.Revision==revision&&owner.Landing.AttemptsRemaining==attempts,"Presentation reran scoring or attempts.");
         owner.CompleteLandingFeedback();yield return null;
         Check(!rush.IsPlaying,"Skip left animation running.");
+        Check(!scoringPortrait.IsShowingContributors&&mainPortrait.sprite==targetPortrait&&mainName.text==targetName&&mainTags.text==targetTags,"Skip left a contributor in the encounter slot.");
         Check(landing.GetComponentsInChildren<AudioSource>().All(s=>!s.isPlaying),"Skip left audio playing.");
         Check(cards.All(c=>c.transform.localScale==Vector3.one&&c.transform.localRotation==Quaternion.identity),"Card transforms did not return to rest.");
         if(owner.Landing.State==LandingChallengeState.Active)yield return Land(owner,true);
@@ -166,6 +181,13 @@ public static class LandingScoreRushChecks
         Check(owner.TotalGold==gold+haul&&!owner.LandingFeedbackPending,"Feedback repeated settlement or failed to finish.");
         Check(!landing.GetComponentsInChildren<LandingActivationView>().Any()&&!rush.IsPlaying,"Finished feedback retained transient effects.");
         Capture(landing,"Failure-Settled.png",1920,1080);
+        Sprite finalTarget=mainPortrait.sprite;string finalTargetName=mainName.text;
+        scoringPortrait.CaptureEncounter();scoringPortrait.ShowContributors(receipt.Members.Take(2).ToArray());
+        Check(!mainPortrait.enabled&&mainPortrait.GetComponentsInChildren<UnityEngine.UI.Image>().Count(i=>i!=mainPortrait&&i.gameObject.activeSelf)==2,"Grouped beat did not show every contributor in the main slot.");
+        Check(mainPortrait.GetComponentsInChildren<UnityEngine.UI.Image>().Where(i=>i!=mainPortrait).All(i=>!i.raycastTarget),"Grouped portraits intercept input.");
+        scoringPortrait.enabled=false;
+        Check(!scoringPortrait.IsShowingContributors&&mainPortrait.sprite==finalTarget&&mainName.text==finalTargetName,"Disabling portrait presentation did not restore the encounter.");
+        scoringPortrait.enabled=true;
         Result="Passed "+checks+" live score-rush checks";File.WriteAllText(Output+"LiveVerification.json","{\"passed\":true,\"assertions\":"+checks+"}");Debug.Log(Result);
     }
     /// <summary>Waits for a robust observed alignment and uses the guarded real strike command.</summary>

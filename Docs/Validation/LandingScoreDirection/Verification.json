@@ -1,10 +1,10 @@
 {
   "passed": true,
   "scheduleAndRulesAssertions": 20,
-  "uiAndAudioAssetAssertions": 36,
-  "liveScoreRushAssertions": 136,
+  "uiAndAudioAssetAssertions": 40,
+  "liveScoreRushAssertions": 142,
   "unityConsoleErrorsAndWarnings": 0,
-  "projectIntegrityFiles": 1853,
+  "projectIntegrityFiles": 1855,
   "projectIntegrityErrorsAndWarnings": 0,
   "preview": {
     "framesPerSecond": 24,

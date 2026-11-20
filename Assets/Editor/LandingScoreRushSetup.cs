@@ -50,12 +50,6 @@ public static class LandingScoreRushSetup
         number.enableAutoSizing = true; number.fontSizeMin = 24; number.fontSizeMax = 72; Bind(data, "value", number);
         Bind(data, "caption", Text(popup, "Strike caption", new Rect(8, 4, 442, 24), 23));
         Bind(data, "operation", Text(popup, "Current operation", new Rect(8, 104, 442, 26), 27));
-        // The source plate stays above the timing glass and below the existing source/assistance displays.
-        var plate = Rect(popup, "Active source", new Rect(-30, 163, 518, 26));
-        var portrait = Rect(plate, "Source portrait", new Rect(22, -3, 38, 30)).gameObject.AddComponent<UnityEngine.UI.Image>();
-        portrait.preserveAspect = true; portrait.raycastTarget = false; Bind(data, "sourcePortrait", portrait);
-        var label = Text(plate, "Source name", new Rect(64, 0, 430, 26), 25);
-        label.enableAutoSizing = true; label.fontSizeMin = 18; label.fontSizeMax = 25; Bind(data, "sourceName", label);
         var particles = Rect(stage, "Score light trails", new Rect(0, 0, 1920, 1080)).gameObject.AddComponent<LandingRushGraphic>();
         particles.raycastTarget = false; Bind(data, "particles", particles);
         Bind(data, "soundToggle", Toggle(stage, "Sound", "SOUND", new Rect(1385, 156, 150, 40)));
@@ -75,22 +69,24 @@ public static class LandingScoreRushSetup
         data.ApplyModifiedPropertiesWithoutUndo(); TuneReadout(data, stage); popup.gameObject.SetActive(false);
     }
 
-    /// <summary>Keeps the active source inside the glass readout and removes duplicate captions during its count-up.</summary>
+    /// <summary>Uses the encounter portrait for contributors and retains the score well solely for numeric feedback.</summary>
     private static void TuneReadout(SerializedObject data, Transform stage)
     {
         var particles = (LandingRushGraphic)data.FindProperty("particles").objectReferenceValue;
         if (particles.GetComponent<CanvasRenderer>() == null) particles.gameObject.AddComponent<CanvasRenderer>();
-        var source = (TMP_Text)data.FindProperty("sourceName").objectReferenceValue;
-        var plate = (RectTransform)source.transform.parent;
-        plate.anchoredPosition = new Vector2(0, -104); plate.sizeDelta = new Vector2(458, 26);
-        source.rectTransform.anchoredPosition = new Vector2(208, 0); source.rectTransform.sizeDelta = new Vector2(240, 26);
-        source.fontSizeMax = 24;
-        var portrait = (UnityEngine.UI.Image)data.FindProperty("sourcePortrait").objectReferenceValue;
-        portrait.rectTransform.pivot = new Vector2(.5f,.5f);
-        portrait.rectTransform.anchoredPosition = new Vector2(185.5f, -13); portrait.rectTransform.sizeDelta = new Vector2(56, 40);
-        source.rectTransform.anchoredPosition = new Vector2(222, 0); source.rectTransform.sizeDelta = new Vector2(226, 26);
+        var readout = ((CanvasGroup)data.FindProperty("readout").objectReferenceValue).transform;
+        var previousSource = readout.Find("Active source");
+        if (previousSource != null) previousSource.gameObject.SetActive(false);
+        var host = (LandingScoreRush)data.targetObject;
+        var portraitView = host.GetComponent<LandingScoringPortrait>();
+        if (portraitView == null) portraitView = host.gameObject.AddComponent<LandingScoringPortrait>();
+        var presentation = new SerializedObject(host.GetComponent<TackleLandingPresentation>());
+        var portraitData = new SerializedObject(portraitView);
+        foreach (string field in new[] { "portrait", "tags" }) Bind(portraitData, field, presentation.FindProperty(field).objectReferenceValue);
+        Bind(portraitData, "creatureName", presentation.FindProperty("creature").objectReferenceValue);
+        portraitData.ApplyModifiedPropertiesWithoutUndo(); Bind(data, "scoringPortrait", portraitView);
         var operation = (TMP_Text)data.FindProperty("operation").objectReferenceValue;
-        operation.rectTransform.sizeDelta = new Vector2(155, 26);
+        operation.rectTransform.anchoredPosition = new Vector2(8, -104); operation.rectTransform.sizeDelta = new Vector2(442, 26);
         var labels = data.FindProperty("coveredLabels"); labels.arraySize = 2;
         labels.GetArrayElementAtIndex(0).objectReferenceValue = stage.Find("PointsCaption").GetComponent<TMP_Text>();
         labels.GetArrayElementAtIndex(1).objectReferenceValue = stage.Find("ResistanceCaption").GetComponent<TMP_Text>();

@@ -3089,6 +3089,7 @@ GameObject:
   - component: {fileID: 1260428312624622893}
   - component: {fileID: 1144445149164775178}
   - component: {fileID: 7338507862454487261}
+  - component: {fileID: 4437451996161508455}
   m_Layer: 0
   m_Name: LandingControls
   m_TagString: Untagged
@@ -3367,13 +3368,12 @@ MonoBehaviour:
   readout: {fileID: 4989686646519244661}
   value: {fileID: 625484257045035317}
   operation: {fileID: 241865260131139403}
-  sourceName: {fileID: 2763793884429982604}
   caption: {fileID: 376068215425519003}
   coveredLabels:
   - {fileID: 8556105569043118282}
   - {fileID: 9161261533319397814}
-  sourcePortrait: {fileID: 7066238224535344079}
   glow: {fileID: 1364748774413364639}
+  scoringPortrait: {fileID: 4437451996161508455}
   machine: {fileID: 7624238351917015343}
   totalLabel: {fileID: 2093608740957691642}
   particles: {fileID: 286347271709428463}
@@ -3395,6 +3395,21 @@ MonoBehaviour:
   soundToggle: {fileID: 9129800966154768447}
   reducedMotionToggle: {fileID: 5720527384821901247}
   soundVolume: 0.55
+--- !u!114 &4437451996161508455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3418265154356481401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb0e8177480cca4fa46d87bef3a67c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LandingScoringPortrait
+  portrait: {fileID: 8402842488912251316}
+  creatureName: {fileID: 1625747745754536958}
+  tags: {fileID: 5957023145842049956}
 --- !u!1 &3511231870586050753
 GameObject:
   m_ObjectHideFlags: 0
@@ -6112,7 +6127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8292278531082001325
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8096,7 +8111,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 8, y: -104}
-  m_SizeDelta: {x: 155, y: 26}
+  m_SizeDelta: {x: 442, y: 26}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2884685226352686012
 CanvasRenderer:
