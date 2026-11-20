@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "assetAndPcmAssertions": 36,
+  "liveAudioAssertions": 21,
+  "existingReelRegressionAssertions": 40,
+  "totalAssertions": 97,
+  "projectIntegrityFiles": 1880,
+  "projectIntegrityErrorsAndWarnings": 0,
+  "unityConsoleErrors": 0,
+  "phaseThreeChangesImplemented": false
+}

@@ -21,7 +21,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private AudioClip windup;
     [SerializeField] private UnityEngine.UI.Toggle soundToggle, reducedMotionToggle;
     [SerializeField, Range(0, 1)] private float soundVolume = .55f;
-    private const string SoundKey = "Deepwater.Landing.Sound", MotionKey = "Deepwater.Landing.ReducedMotion";
+    private const string MotionKey = "Deepwater.Landing.ReducedMotion";
     private LandingStrikeReceipt receipt;
     private LandingScoreSequence sequence;
     private IReadOnlyList<TackleRigCardView> cards = Array.Empty<TackleRigCardView>();
@@ -54,12 +54,14 @@ public sealed class LandingScoreRush : MonoBehaviour
     private void Awake()
     {
         machineRest = machine.anchoredPosition; totalRest = totalLabel.localScale;
-        soundToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(SoundKey, 1) != 0);
+        soundToggle.SetIsOnWithoutNotify(GameAudioPreferences.SoundEnabled);
         reducedMotionToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(MotionKey, 0) != 0);
         soundToggle.onValueChanged.AddListener(SetSound); reducedMotionToggle.onValueChanged.AddListener(SetReducedMotion);
     }
+    /// <summary>Reflects a sound preference changed in Discover since Landing last appeared.</summary>
+    private void OnEnable() { if (soundToggle != null) soundToggle.SetIsOnWithoutNotify(GameAudioPreferences.SoundEnabled); }
     /// <summary>Persists a deliberate sound choice, stopping tails immediately when muted.</summary>
-    private void SetSound(bool active) { PlayerPrefs.SetInt(SoundKey, active ? 1 : 0); PlayerPrefs.Save(); if (!active) StopVoices(); }
+    private void SetSound(bool active) { GameAudioPreferences.SetSoundEnabled(active); if (!active) StopVoices(); }
     /// <summary>Persists reduced motion and immediately restores moved visuals.</summary>
     private void SetReducedMotion(bool active) { PlayerPrefs.SetInt(MotionKey, active ? 1 : 0); PlayerPrefs.Save(); if (active) RestoreMotion(); }
     /// <summary>Stops owned sound and restores every transformed visual when the phase disappears.</summary>

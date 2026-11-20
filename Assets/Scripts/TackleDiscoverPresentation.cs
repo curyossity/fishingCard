@@ -24,6 +24,7 @@ public sealed class TackleDiscoverPresentation : MonoBehaviour
     [SerializeField] private UnityEngine.UI.ScrollRect rigScroll;
     [SerializeField] private UnityEngine.UI.Button initialFocus;
     [SerializeField] private TackleReelAnimator[] reels = Array.Empty<TackleReelAnimator>();
+    [SerializeField] private TackleSlotAudio slotAudio;
     [SerializeField, Min(.2f)] private float spinDuration = 1.05f;
     [SerializeField, Min(0)] private float stopStagger = .15f;
     private long shownSpin = -1;
@@ -55,7 +56,9 @@ public sealed class TackleDiscoverPresentation : MonoBehaviour
             for (int i = 0; i < reels.Length; i++)
                 if (!machine.IsLocked(i)) reels[i].Spin(controller.ExpeditionSlotTags, machine.GetTag(i), FindSymbol, spinDuration + stopStagger * moving++);
             wasSpinning = IsSpinning;
+            if (wasSpinning && slotAudio != null) slotAudio.BeginSpin(reels, match.Kind);
         }
+        if (slotAudio != null) slotAudio.RefreshLocks(machine);
         string biome = controller.CurrentBiome?.GetDepthTier(controller.CurrentDepth)?.DisplayName
             ?? controller.CurrentBiome?.DisplayName ?? "Uncharted waters";
         biomeLabel.text = biome.ToUpperInvariant() + " / DISCOVER";
@@ -79,6 +82,7 @@ public sealed class TackleDiscoverPresentation : MonoBehaviour
     {
         if (!wasSpinning) return;
         foreach (var reel in reels) reel.Advance(Time.unscaledDeltaTime);
+        if (slotAudio != null) slotAudio.Tick(reels);
         if (IsSpinning) return;
         wasSpinning = false;
         onSettled?.Invoke();
@@ -94,7 +98,7 @@ public sealed class TackleDiscoverPresentation : MonoBehaviour
     }
 
     /// <summary>Invalidates visual work at phase exit so later encounters never inherit an animation callback.</summary>
-    private void OnDisable() { shownSpin = -1; wasSpinning = false; onSettled = null; }
+    private void OnDisable() { if (slotAudio != null) slotAudio.Cancel(); shownSpin = -1; wasSpinning = false; onSettled = null; }
 
     /// <summary>Reuses physical rig-card views by instance identity and keeps longer rigs scrollable without a card cap.</summary>
     private void RefreshRig(CardInstance[] rig)

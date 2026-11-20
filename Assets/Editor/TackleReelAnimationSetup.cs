@@ -43,5 +43,6 @@ public static class TackleReelAnimationSetup
             var data = new SerializedObject(surface); data.FindProperty("edgeAnimation").enumValueIndex=(int)style;
             data.ApplyModifiedPropertiesWithoutUndo();
         }
+        TackleSlotAudioSetup.Configure(root);
     }
 }
