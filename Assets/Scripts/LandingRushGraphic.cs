@@ -28,11 +28,13 @@ public sealed class LandingRushGraphic : MaskableGraphic
             for (int i = 1; i <= 22; i++)
             {
                 float t = Mathf.Lerp(Mathf.Max(0, phase - .34f), phase, i / 22f);
-                Vector2 next = Curve(t); float alpha = i / 22f * Mathf.Sin(phase * Mathf.PI);
-                tint.a = alpha * .16f; Line(mesh, previous, next, 8 + intensity * 5, tint);
-                tint.a = alpha; Line(mesh, previous, next, multiply ? 4 : 2.5f, tint); previous = next;
+                // Keep the leading light readable against both the pale portrait and the dark score glass.
+                Vector2 next = Curve(t); float alpha = i / 22f * Mathf.Lerp(.65f, 1, Mathf.Sin(phase * Mathf.PI));
+                tint.a = alpha * .22f; Line(mesh, previous, next, 10 + intensity * 6, tint);
+                tint.a = alpha; Line(mesh, previous, next, multiply ? 5 : 3.5f, tint); previous = next;
             }
-            Diamond(mesh, Curve(phase), 5 + intensity * 4, new Color(1, .94f, .7f, Mathf.Sin(phase * Mathf.PI)));
+            Diamond(mesh, Curve(phase), 7 + intensity * 4, new Color(1, .95f, .76f, Mathf.Lerp(.8f, 1, Mathf.Sin(phase * Mathf.PI))));
+            Diamond(mesh, Curve(phase), 3, new Color(1, 1, .94f, 1));
         }
         if (impact > 0 && impact < 1)
         {
