@@ -36,6 +36,9 @@ public sealed class LandingChallengeRuntime
     public double FishWidth => settings?.FishWidth ?? 0;
     public double GoodWidth => goodWidth;
     public double PerfectWidth => perfectWidth;
+    public double GoodZoneGrowth => settings == null ? 0 : goodWidth / settings.GoodWidth - 1;
+    public double PerfectZoneGrowth => settings == null ? 0 : perfectWidth / settings.PerfectWidth - 1;
+    public double FishSlowFraction => fishSlow;
     public bool IsTelegraphingBurst { get; private set; }
     public bool CanStrike => State == LandingChallengeState.Active && feedbackRemaining <= 0 && Error == null;
     public IReadOnlyList<LandingRigMember> Rig => rig;
@@ -81,6 +84,14 @@ public sealed class LandingChallengeRuntime
         UpdateAssistedPositions();
     }
 
+    /// <summary>Excludes an explicitly owned presentation interval from motion without changing scoring or outcome.</summary>
+    public void HoldPresentationClock(double clock)
+    {
+        if (!Finite(clock) || clock < lastClock) return;
+        lastClock = clock;
+        feedbackRemaining = 0;
+    }
+
     /// <summary>Evaluates exact strike-time overlap, computes the complete score, then consumes one attempt and resolves a terminal outcome.</summary>
     public bool TryStrike(long occurrence, long revision, double clock)
     {
@@ -105,7 +116,7 @@ public sealed class LandingChallengeRuntime
                         if (rule.Ability.Trigger == RigAbilityTrigger.Strike && rule.Ability.Kind == RigAbilityKind.ExtraAttempts)
                         {
                             granted = checked(granted + (int)rule.Amount);
-                            attemptContributions.Add(new LandingContribution(member.Id, member.Name + ": " + rule.Label, 0, 1, (int)rule.Amount));
+                            attemptContributions.Add(new LandingContribution(member.Id, member.Name + ": " + rule.Label, 0, 1, (int)rule.Amount, rule.Explanation, rule.SupportingIds));
                         }
                         if (rule.Ability.TriggerLimit > 0) used.Add(rule);
                     }

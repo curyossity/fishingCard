@@ -14,7 +14,10 @@ public sealed partial class FishingRunController
     private bool landingTerminalHandled, awaitingRigPlacement, landingResultDismissed;
     private int lastLandingInputFrame = -1;
     private int preparedExtraAttempts, preparedProtectedMisses;
+    private double landingFeedbackUntil;
+    public bool LandingFeedbackPending { get; private set; }
     public LandingChallengeRuntime Landing => landing;
+    public LandingStrikeReceipt LastLandingStrike { get; private set; }
     public bool UsesLandingChallenge => UsesSlotMachine && landingChallengeProfile != null;
     public bool AwaitingRigPlacement => awaitingRigPlacement;
     public bool LandingFailureVisible => !landingResultDismissed && lastSurfaceResult.EndedByLandingFailure;
@@ -35,6 +38,7 @@ public sealed partial class FishingRunController
     {
         landing.Reset(); awaitingRigPlacement = false; landingTerminalHandled = false; landingResultDismissed = false;
         lastLandingInputFrame = -1; landingRandom = new System.Random(unchecked(seed ^ 0x46a32d17));
+        LandingFeedbackPending = false; landingFeedbackUntil = 0;
         preparedLandingRig = Array.Empty<LandingRigMember>(); landingConfigurationError = null;
     }
 
@@ -71,6 +75,13 @@ public sealed partial class FishingRunController
     /// <summary>Samples the authoritative clock independently of view frame order; a strike briefly freezes both moving elements.</summary>
     private void AdvanceLanding()
     {
+        if (LandingFeedbackPending)
+        {
+            double now = Time.realtimeSinceStartupAsDouble;
+            landing.HoldPresentationClock(now);
+            if (now < landingFeedbackUntil && fishingRunView != null && fishingRunView.HasLandingRushPresentation) return;
+            CompleteLandingFeedback();
+        }
         if (runActive && UsesLandingChallenge && !awaitingRigPlacement && landing.State == LandingChallengeState.Active)
             landing.AdvanceTo(Time.realtimeSinceStartupAsDouble);
     }
@@ -82,6 +93,9 @@ public sealed partial class FishingRunController
             || lastLandingInputFrame == Time.frameCount || !encounterRuntime.AwaitingLandingChallenge
             || landing.EncounterRevision != CurrentEncounterRevision) return false;
         if (!landing.TryStrike(occurrence, revision, Time.realtimeSinceStartupAsDouble)) return false;
+        LastLandingStrike = new LandingStrikeReceipt(landing, CatchChain);
+        LandingFeedbackPending = fishingRunView != null && fishingRunView.HasLandingRushPresentation;
+        if (LandingFeedbackPending) landingFeedbackUntil = Time.realtimeSinceStartupAsDouble + new LandingScoreSequence(LastLandingStrike.Score).Duration;
         lastLandingInputFrame = Time.frameCount;
         if (landing.State == LandingChallengeState.Succeeded)
         {
@@ -100,6 +114,17 @@ public sealed partial class FishingRunController
         return true;
     }
 
+    /// <summary>Finishes only the cosmetic hold; terminal score and failure settlement have already resolved.</summary>
+    public void CompleteLandingFeedback()
+    {
+        if (!LandingFeedbackPending) return;
+        LandingFeedbackPending = false;
+        lastLandingInputFrame = Time.frameCount;
+        if (runActive && awaitingRigPlacement && pendingRigCreature != null && rig.FindSpecies(pendingRigCreature.UniqueId) != null)
+            TryCommitRigPlacement(buildOccurrence, rig.Revision, -1);
+        RefreshViews();
+    }
+
     /// <summary>Snapshots and pays the full prior Catch haul once, excluding the failed creature and every Bait sale value.</summary>
     private void CompleteLandingFailure()
     {
@@ -114,7 +139,7 @@ public sealed partial class FishingRunController
     /// <summary>Closes only the completed landing result; it does not abandon an active expedition or grant a new creature.</summary>
     public void DismissLandingResult()
     {
-        if (runActive || !LandingFailureVisible) return;
+        if (runActive || !LandingFailureVisible || LandingFeedbackPending) return;
         landingResultDismissed = true; RefreshViews();
     }
 }

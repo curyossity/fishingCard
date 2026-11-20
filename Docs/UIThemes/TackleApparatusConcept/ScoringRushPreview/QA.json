@@ -1,0 +1,32 @@
+{
+  "mode": "big",
+  "sound": false,
+  "playing": false,
+  "time": 1.4,
+  "failures": [],
+  "images": 6,
+  "score": 600,
+  "fonts": true,
+  "big": 600,
+  "ordinary": 33.8,
+  "ordinaryInteraction": true,
+  "replayInteraction": true,
+  "controls": [
+    {
+      "label": "Play with sound",
+      "width": 154,
+      "height": 44
+    },
+    {
+      "label": "Replay big hit",
+      "width": 146,
+      "height": 44
+    },
+    {
+      "label": "Ordinary hit",
+      "width": 130,
+      "height": 44
+    }
+  ],
+  "overflow": false
+}

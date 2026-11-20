@@ -13,10 +13,12 @@ public sealed class LandingChallengeView : MonoBehaviour
     private FishingRunController controller;
     private bool shownFailure;
     private long shownOccurrence = -1;
+    private TMP_Text strikeCaption;
     public UnityEngine.Events.UnityEvent ReturnedToHarbor => returnedToHarbor;
+    public bool HasRushPresentation => artwork != null && artwork.HasRushPresentation;
 
     /// <summary>Binds both native controls to the same guarded controller command.</summary>
-    private void Awake() { strike.onClick.AddListener(Strike); returnToHarbor.onClick.AddListener(Return); strikeInput.performed += OnStrikeInput; }
+    private void Awake() { strike.onClick.AddListener(Strike); returnToHarbor.onClick.AddListener(Return); strikeInput.performed += OnStrikeInput; strikeCaption = strike.GetComponentInChildren<TMP_Text>(); }
     /// <summary>Enables only this phase's keyboard action.</summary>
     private void OnEnable() { strikeInput.Enable(); }
     /// <summary>Releases input and presentation identity on phase exit.</summary>
@@ -29,7 +31,7 @@ public sealed class LandingChallengeView : MonoBehaviour
     {
         controller = owner;
         bool active = owner != null && owner.UsesLandingChallenge
-            && (owner.RunActive && owner.Landing.State == LandingChallengeState.Active || owner.LandingFailureVisible);
+            && (owner.LandingFeedbackPending || owner.RunActive && owner.Landing.State == LandingChallengeState.Active || owner.LandingFailureVisible);
         gameObject.SetActive(active);
         if (active) Render();
     }
@@ -40,11 +42,13 @@ public sealed class LandingChallengeView : MonoBehaviour
     {
         bool failure = controller.LandingFailureVisible;
         bool fresh = shownOccurrence != controller.Landing.Occurrence;
-        strike.gameObject.SetActive(!failure && !controller.AwaitingRigPlacement);
-        strike.interactable = controller.RunActive && controller.Landing.CanStrike;
-        returnToHarbor.gameObject.SetActive(failure);
+        strike.gameObject.SetActive(controller.LandingFeedbackPending || !failure && !controller.AwaitingRigPlacement);
+        strike.interactable = controller.LandingFeedbackPending || controller.RunActive && controller.Landing.CanStrike;
+        if (strikeCaption != null) strikeCaption.text = controller.LandingFeedbackPending ? "FINISH" : "STRIKE";
+        returnToHarbor.gameObject.SetActive(failure && !controller.LandingFeedbackPending);
+        returnToHarbor.interactable = !controller.LandingFeedbackPending;
         artwork.Present(controller);
-        if ((fresh || failure && !shownFailure) && EventSystem.current != null) (failure ? returnToHarbor : strike).Select();
+        if ((fresh || failure && !shownFailure) && EventSystem.current != null) (failure && !controller.LandingFeedbackPending ? returnToHarbor : strike).Select();
         shownOccurrence = controller.Landing.Occurrence; shownFailure = failure;
     }
     /// <summary>Leaves unrelated menus and text inputs in control of their keyboard focus.</summary>
@@ -55,7 +59,12 @@ public sealed class LandingChallengeView : MonoBehaviour
         Strike();
     }
     /// <summary>Forwards keyboard/button input with occurrence and revision checks shared by both paths.</summary>
-    private void Strike() { if (controller != null) controller.TryStrikeLanding(controller.Landing.Occurrence, controller.Landing.Revision); }
+    private void Strike()
+    {
+        if (controller == null) return;
+        if (controller.LandingFeedbackPending) controller.CompleteLandingFeedback();
+        else controller.TryStrikeLanding(controller.Landing.Occurrence, controller.Landing.Revision);
+    }
     /// <summary>Dismisses only an ended expedition before using the authored Harbor route.</summary>
     private void Return() { if (controller == null || !controller.LandingFailureVisible) return; controller.DismissLandingResult(); returnedToHarbor.Invoke(); }
 }

@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "assertions": 55,
+  "fixture": "TackleCardTooltipChecks.Begin",
+  "feature": "Existing creature tooltip regression with Landing strike feedback installed"
+}

@@ -1,0 +1,179 @@
+<style>
+@font-face{font-family:DeepPixel;src:url(__PIXEL_FONT__)}
+@font-face{font-family:DeepBody;src:url(__BODY_FONT__)}
+#deepwater-rush{--dw-ink:#f3e6bc;--dw-gold:#e9bc63;--dw-dark:#14201e;--dw-muted:#b9b69c;color:var(--dw-ink);font-family:DeepBody,monospace;width:100%}
+#deepwater-rush .dw-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 14px;background:var(--dw-dark)}
+#deepwater-rush button{font:20px DeepBody,monospace;min-height:44px;padding:8px 16px;color:var(--dw-ink);background:#253730;border:1px solid #756342;border-radius:3px}
+#deepwater-rush button.dw-primary{background:#e9bc63;color:#202419;border-color:#e9bc63}
+#deepwater-rush button:disabled{opacity:.55}
+#deepwater-rush .dw-status{margin-left:auto;font-size:18px;color:var(--dw-muted)}
+#deepwater-rush canvas{width:100%;height:auto;display:block;aspect-ratio:16/9;background:#111715}
+#deepwater-rush .dw-foot{font-size:17px;padding:8px 14px;background:var(--dw-dark);color:var(--dw-muted)}
+@media(max-width:540px){#deepwater-rush .dw-controls{gap:7px;padding:8px}#deepwater-rush button{font-size:17px;padding:6px 10px}#deepwater-rush .dw-status{margin-left:0;width:100%}#deepwater-rush .dw-foot{font-size:16px}}
+</style>
+<div id="deepwater-rush" aria-label="Deepwater scoring animation concept">
+  <div class="dw-controls">
+    <button class="dw-primary" type="button" data-action="sound">Play with sound</button>
+    <button type="button" data-action="replay">Replay big hit</button>
+    <button type="button" data-action="ordinary">Ordinary hit</button>
+    <span class="dw-status" aria-live="polite">Loading preview…</span>
+  </div>
+  <canvas width="1920" height="1080" role="img" aria-label="Animated fishing machine: creatures activate in sequence, a Perfect base score of 20 grows through bonuses and multipliers to 600, then surges into the Landing Points meter."></canvas>
+  <div class="dw-foot">Animation and sound study · illustrative combo values</div>
+  <script type="application/json" id="deepwater-rush-assets">__ASSETS__</script>
+</div>
+<script>
+(() => {
+  const root=document.getElementById('deepwater-rush');
+  const canvas=root.querySelector('canvas'), ctx=canvas.getContext('2d');
+  const status=root.querySelector('.dw-status');
+  const packed=JSON.parse(document.getElementById('deepwater-rush-assets').textContent);
+  const images={};
+  const settings={speed:1,impact:1,volume:.55};
+  let audio=null, master=null, frame=0, start=0, playing=false, sound=false, mode='big', time=0, lastEvent=-1;
+  const voices=new Set();
+  const failures=[];
+  const gold='#e9bc63', cream='#fff0bc', sea='#9dedd4';
+  const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+  const ease=x=>1-Math.pow(1-clamp(x),3);
+  const pulse=(t,at,d=.35)=>{const u=(t-at)/d;return u<0||u>1?0:Math.sin(u*Math.PI)*Math.exp(-u*1.1);};
+  const seq=()=>mode==='big'?[{t:.16,v:20,label:'PERFECT',card:-1},{t:.46,v:50,label:'+30',card:0},{t:.87,v:150,label:'×3',card:1},{t:1.25,v:600,label:'×4',card:2}]:[{t:.12,v:20,label:'PERFECT',card:-1},{t:.32,v:26,label:'+6',card:0},{t:.55,v:33.8,label:'×1.3',card:1}];
+  const payout=()=>mode==='big'?1.82:.88;
+  const duration=()=>mode==='big'?3.1:1.8;
+  const final=()=>mode==='big'?600:33.8;
+  const number=n=>Number.isInteger(n)?n.toLocaleString('en-US'):n.toFixed(1);
+  const roundRect=(x,y,w,h,r=8)=>{ctx.beginPath();ctx.roundRect(x,y,w,h,r);};
+  function label(text,x,y,size=30,color=cream,align='center',font='DeepBody'){
+    ctx.fillStyle=color;ctx.font=`${size}px ${font},monospace`;ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(text,x,y);
+  }
+  function imageFit(image,x,y,w,h){const s=Math.min(w/image.width,h/image.height);ctx.drawImage(image,x+(w-image.width*s)/2,y+(h-image.height*s)/2,image.width*s,image.height*s);}
+  function glow(x,y,r,amount,color='255,194,82'){
+    if(amount<=0)return;const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(${color},${amount})`);g.addColorStop(1,`rgba(${color},0)`);ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2);
+  }
+  function audioReady(){
+    if(!audio){audio=new (window.AudioContext||window.webkitAudioContext)();master=audio.createGain();master.gain.value=settings.volume*.32;master.connect(audio.destination);}
+    master.gain.value=settings.volume*.32;return audio.resume();
+  }
+  function tone(freq,at,length=.16,type='triangle',gain=.4,end=null){
+    if(!sound||!audio)return;const now=audio.currentTime+at,o=audio.createOscillator(),g=audio.createGain();
+    o.type=type;o.frequency.setValueAtTime(freq,now);if(end)o.frequency.exponentialRampToValueAtTime(end,now+length);
+    g.gain.setValueAtTime(.001,now);g.gain.exponentialRampToValueAtTime(gain,now+.006);g.gain.exponentialRampToValueAtTime(.001,now+length);
+    o.connect(g);g.connect(master);voices.add(o);o.onended=()=>voices.delete(o);o.start(now);o.stop(now+length+.02);
+  }
+  function strikeSound(index){
+    if(!sound)return;
+    if(index===0){tone(110,0,.12,'sine',.8,48);tone(783.99,.01,.12,'triangle',.45);tone(1174.66,.025,.09,'sine',.18);return;}
+    if(index===1){tone(659.25,0,.13,'triangle',.6);tone(1318.5,.02,.17,'sine',.25);tone(150,0,.05,'square',.12,65);}
+    else {const f=index===2?783.99:1046.5;tone(90,0,.16,'sine',.85,45);tone(f,0,.2,'triangle',.65);tone(f*1.5,.035,.28,'sine',.25);tone(f/2,.01,.1,'triangle',.28);}
+  }
+  function releaseSound(){
+    if(!sound)return;
+    tone(66,0,.38,'sine',mode==='big'?1.1:.35,32);
+    [523.25,659.25,783.99,1046.5].forEach((f,i)=>tone(f,i*.022,mode==='big'?.8:.34,'triangle',mode==='big'?.32:.13));
+    if(mode==='big')for(let i=0;i<9;i++)tone([1318.5,1567.98,2093][i%3],.1+i*.044,.09,'sine',.14*(1-i/12));
+  }
+  function scheduleAudio(t){
+    const events=seq();for(let i=lastEvent+1;i<events.length;i++){if(t<events[i].t)break;strikeSound(i);lastEvent=i;}
+    if(t>=payout()&&lastEvent===events.length-1){releaseSound();lastEvent=events.length;}
+    if(mode==='big'&&t>=1.58&&lastEvent===events.length-1&&!root.dataset.wind){tone(180,0,.23,'sine',.28,440);root.dataset.wind='1';}
+  }
+  function draw(t){
+    time=t;const big=mode==='big', events=seq(), motion=matchMedia('(prefers-reduced-motion: reduce)').matches?0:settings.impact, impact=big?motion:motion*.25, out=payout();
+    ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,1920,1080);ctx.imageSmoothingEnabled=true;ctx.drawImage(images.backdrop,0,0,1920,1080);
+    // Existing decorative artwork remains a reference layer; only live fields and effects are drawn over it.
+    const well=ctx.createLinearGradient(0,352,0,475);well.addColorStop(0,'#2a271f');well.addColorStop(1,'#25231d');ctx.fillStyle=well;ctx.fillRect(1147,356,458,126);
+    ctx.fillStyle='#342d21';ctx.fillRect(721,484,327,33);label('PREDATOR',885,501,26,'#d3c89d');
+    const total=final(), transfer=ease((t-out)/.42), accumulated=t>=out?total*transfer:0;
+    label(number(t>=out+.42?total:Math.floor(accumulated)),1250,405,48,'#e8d995','center','DeepPixel');label('/',1374,405,35,'#d7c78d','center','DeepPixel');label('800',1498,405,44,'#e8d995','center','DeepPixel');
+    ctx.fillStyle='#153128';ctx.fillRect(1161,497,435,10);ctx.fillStyle=sea;ctx.fillRect(1161,497,435*accumulated/800,10);
+    ctx.fillStyle='#172b24';ctx.fillRect(653,615,963,82);
+    const ready=t===0||t>duration(), fishX=ready?1148+Math.sin(Math.min(t,4)*1.5)*180:1145;
+    ctx.fillStyle='#506b52';ctx.fillRect(1040,615,238,82);ctx.fillStyle='#c7ad58';ctx.globalAlpha=.67;ctx.fillRect(1116,615,82,82);ctx.globalAlpha=1;
+    ctx.strokeStyle='#b9cfad';ctx.lineWidth=3;ctx.strokeRect(1040,615,238,82);
+    imageFit(images.fish,fishX-28,638,56,35);
+    for(let x=655;x<1600;x+=35){ctx.fillStyle='#c6bd89';ctx.fillRect(x,686,2,13);}
+    const kick=pulse(t,out,.36)*impact, jolt=Math.sin((t-out)*110)*kick*4;
+    canvas.style.transform=kick>0?`translate(${jolt*.6}px,${Math.cos((t-out)*83)*kick*1.3}px)`:'none';
+    ctx.save();ctx.translate(jolt,Math.cos((t-out)*83)*kick*2);
+    const species=['SARDINE','CUTTLEFISH','STORMJAW TUNA'], portraits=[images.sardine,images.cuttlefish,images.tuna];
+    for(let i=0;i<3;i++){
+      const activation=events.filter(e=>e.card===i).reduce((a,e)=>Math.max(a,pulse(t,e.t,.38)),0), y=210+i*275;
+      const tilt=Math.sin((t-(events.find(e=>e.card===i)?.t||0))*32)*activation*.045*motion;
+      ctx.save();ctx.translate(219.5,y+122);ctx.rotate(tilt);ctx.scale(1+activation*.055*motion,1+activation*.055*motion);ctx.translate(-157.5,-122);
+      ctx.drawImage(images.card,0,0,315,244);label(species[i],157,38,i===2?16:20,'#ded3a5','center','DeepPixel');
+      imageFit(portraits[i],30,70,255,105);label('LV '+[8,9,12][i],48,214,23,'#ded3a5','left');label([35,42,70][i],250,214,26,'#ded3a5');
+      if(activation>0){ctx.shadowColor=gold;ctx.shadowBlur=activation*28;ctx.strokeStyle=`rgba(255,218,127,${activation})`;ctx.lineWidth=3;ctx.strokeRect(1,1,313,242);ctx.shadowBlur=0;}
+      ctx.restore();
+      const ev=events.find(e=>e.card===i);if(ev&&t>ev.t&&t<ev.t+.48){const a=1-clamp((t-ev.t)/.48);glow(340,y+90,100,activation*.2);label(ev.label,367,y+72-35*(1-a)*motion,51,gold,'right','DeepPixel');}
+      if(ev&&motion>0&&t>=ev.t&&t<ev.t+.25){const u=clamp((t-ev.t)/.25),x=370+u*742,yy=(y+90)*(1-u)+425*u-Math.sin(u*Math.PI)*85;glow(x,yy,35,.75);ctx.fillStyle=cream;ctx.fillRect(x-4,yy-4,8,8);}
+    }
+    const active=events.filter(e=>t>=e.t).length-1;
+    const stage=active>=0?events[active]:null, previous=active>0?events[active-1].v:0;
+    const val=stage?previous+(stage.v-previous)*ease((t-stage.t)/.16):0;
+    const hitPulse=events.reduce((a,e)=>Math.max(a,pulse(t,e.t,.3)),0);
+    const isScore=t>.09&&t<out+.62;
+    if(isScore){
+      const fade=t>out+.28?1-clamp((t-out-.28)/.36):ease(t/.1);
+      ctx.globalAlpha=fade;
+      const dark=ctx.createRadialGradient(1125,410,10,1125,410,430);dark.addColorStop(0,'rgba(10,18,17,.98)');dark.addColorStop(.75,'rgba(10,18,17,.94)');dark.addColorStop(1,'rgba(10,18,17,0)');ctx.fillStyle=dark;ctx.fillRect(645,205,1000,370);
+      const energy=clamp((val-20)/580);glow(1120,417,330,.16+energy*.26);
+      for(let i=0;i<12;i++){
+        const lit=clamp((val/600)*12-i);ctx.fillStyle=`rgba(246,193,79,${.12+lit*.85})`;ctx.shadowColor=gold;ctx.shadowBlur=lit*14;ctx.fillRect(828+i*50,302,29,8);
+      }ctx.shadowBlur=0;
+      label(t<.43?'PERFECT':'LANDING POINTS',1120,345,30,sea,'center','DeepPixel');
+      const scale=1+hitPulse*(big?.17:.07)*motion+kick*.18;
+      ctx.save();ctx.translate(1120,429);ctx.scale(scale,scale);ctx.shadowColor=big&&val>100?'#f1a545':'#77bcad';ctx.shadowBlur=big?12+energy*24:5;
+      label(number(stage&&t>=stage.t+.16?stage.v:Math.floor(val)),0,0,118+(big?energy*14:0),cream,'center','DeepPixel');ctx.restore();
+      if(stage&&active>0){const k=clamp((t-stage.t)/.3);ctx.globalAlpha=fade*(1-k);label(stage.label,1430,407-k*32*motion,58,gold,'center','DeepPixel');ctx.globalAlpha=fade;}
+      if(big&&t>1.55&&t<out){label('20 BASE  →  600 TOTAL',1120,520,31,gold);}
+      ctx.globalAlpha=1;
+    }
+    if(t>=out&&t<out+.65){
+      const u=(t-out)/.65;glow(1260,432,450,(1-u)*.33*impact);
+      for(let i=0;i<(motion>0?(big?48:9):0);i++){
+        const angle=(i*2.39996),v=110+(i%7)*35, x=1120+Math.cos(angle)*u*v*2.1, y=420+Math.sin(angle)*u*v*.85+u*u*100;
+        ctx.globalAlpha=(1-u)*.85;ctx.fillStyle=i%3===0?sea:gold;const s=i%4+2;ctx.fillRect(x,y,s*2,s*2);
+      }ctx.globalAlpha=1;
+      ctx.save();ctx.translate(1285,548);ctx.scale(1+kick*.15,1+kick*.15);label('+'+number(total),0,0,big?69:48,cream,'center','DeepPixel');ctx.restore();
+      const barGlow=1-clamp((t-out)/.55);ctx.shadowColor=sea;ctx.shadowBlur=25*barGlow;ctx.fillStyle=cream;ctx.fillRect(1161+435*accumulated/800-3,495,6,14);ctx.shadowBlur=0;
+    }
+    ctx.restore();
+    // A quiet settled readout preserves the explanation after the moment of impact.
+    ctx.fillStyle='#192d29';roundRect(566,936,460,81,7);ctx.fill();
+    label(t>out?('PERFECT +'+number(total)):'READY TO STRIKE',795,951,23,'#e8d995','center','DeepPixel');
+    label(t>out?(big?'20 → 50 → 150 → 600':'20 → 26 → 33.8'):'Your rig powers the hit',795,992,28,sea);
+    if(t>out+.6)label(big?'20 BASE → 600 TOTAL':'20 BASE → 33.8 TOTAL',1120,553,28,gold);
+    if(t>out&&big){for(let i=0;i<9;i++){const a=(1-clamp((t-out)/.45))*.22;if(a>0){ctx.fillStyle=`rgba(255,224,144,${a})`;ctx.fillRect(494+i*145,180,20,5);}}}
+  }
+  function persist(){if(window.openai?.setWidgetState)window.openai.setWidgetState({modelContent:{preview:mode,soundEnabled:sound},privateContent:{speed:settings.speed,impact:settings.impact}}).catch(()=>{});}
+  function tick(now){const t=(now-start)/1000*settings.speed;scheduleAudio(t);draw(t);if(t<duration()+.3)frame=requestAnimationFrame(tick);else{playing=false;status.textContent=mode==='big'?'20 base → 600 total':'20 base → 33.8 total';root.dataset.state='complete';}}
+  async function play(withSound,big=true,remember=true){
+    cancelAnimationFrame(frame);for(const voice of voices){try{voice.stop();}catch(_){}}voices.clear();mode=big?'big':'ordinary';sound=withSound;
+    if(withSound){try{await audioReady();}catch(e){sound=false;failures.push(String(e));}}
+    lastEvent=-1;root.dataset.wind='';playing=true;root.dataset.state='playing';status.textContent=sound?'Sound on':'Silent preview';start=performance.now();frame=requestAnimationFrame(tick);if(remember)persist();
+  }
+  root.querySelector('[data-action="sound"]').addEventListener('click',()=>play(true,true));
+  root.querySelector('[data-action="replay"]').addEventListener('click',()=>play(sound,true));
+  root.querySelector('[data-action="ordinary"]').addEventListener('click',()=>play(sound,false));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelAnimationFrame(frame);playing=false;if(audio)audio.suspend();}});
+  const saved=window.openai?.widgetState;
+  if(saved?.privateContent){settings.speed=clamp(Number(saved.privateContent.speed??1),.5,1.5);settings.impact=clamp(Number(saved.privateContent.impact??1),0,1);}
+  window.addEventListener('openai:set_globals',event=>{const s=event.detail?.globals?.widgetState?.privateContent;if(s){settings.speed=clamp(Number(s.speed??1),.5,1.5);settings.impact=clamp(Number(s.impact??1),0,1);}});
+  Promise.all([document.fonts.load('16px DeepPixel'),document.fonts.load('16px DeepBody'),...Object.entries(packed).map(([key,src])=>new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>{images[key]=image;resolve();};image.onerror=()=>reject(new Error('Image '+key+' failed'));image.src=src;}))]).then(()=>{
+    root.dataset.ready='true';draw(0);status.textContent='Ready';
+    root.__demo={play,draw,times:()=>seq(),getState:()=>({mode,sound,playing,time,audioState:audio?.state??'off',failures,images:Object.keys(images).length,score:final(),fonts:document.fonts.check('16px DeepPixel')&&document.fonts.check('16px DeepBody')})};
+    if(globalThis.Tweak){const tweak=new Tweak({container:root,onChange:()=>{if(master)master.gain.value=settings.volume*.32;draw(time);persist();}});tweak.addSlider(settings,'speed',{label:'Playback speed',min:.5,max:1.5,step:.1});tweak.addSlider(settings,'impact',{label:'Impact strength',min:0,max:1,step:.1});tweak.addSlider(settings,'volume',{label:'Sound level',min:0,max:1,step:.1});}
+    const hash=location.hash;
+    if(hash.startsWith('#frame=')){draw(Number(hash.slice(7)));status.textContent='Paused preview frame';}
+    else if(hash==='#qa'){
+      root.querySelector('[data-action="ordinary"]').click();const ordinaryInteraction=mode==='ordinary';cancelAnimationFrame(frame);draw(1.4);const ordinary=final();
+      root.querySelector('[data-action="replay"]').click();const replayInteraction=mode==='big';cancelAnimationFrame(frame);draw(2.5);const big=final();playing=false;draw(1.4);
+      const controls=[...root.querySelectorAll('button')].map(b=>({label:b.textContent,width:b.getBoundingClientRect().width,height:b.getBoundingClientRect().height}));
+      const report={...root.__demo.getState(),big,ordinary,ordinaryInteraction,replayInteraction,controls,overflow:root.scrollWidth>root.clientWidth};
+      const pre=document.createElement('pre');pre.id='preview-qa';pre.textContent=JSON.stringify(report);root.append(pre);
+    }else if(hash==='#qa-audio'){
+      root.querySelector('[data-action="sound"]').click();setTimeout(()=>{const pre=document.createElement('pre');pre.id='preview-qa';pre.textContent=JSON.stringify(root.__demo.getState());root.append(pre);},700);
+    }else if(!matchMedia('(prefers-reduced-motion: reduce)').matches)play(false,true,false);
+  }).catch(error=>{status.textContent='Preview could not load';failures.push(String(error));});
+})();
+</script>

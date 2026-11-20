@@ -72,6 +72,10 @@ Do not add full rules, tag lists, catch-order labels or modifier deltas. Physica
 
 ## Hidden runtime state and events
 
+Landing strike feedback is an external presentation layer. A contributing source receives a brief brass outline and an outside-face amount badge; inspection uses a strong source outline and softer positional-enabler outlines. The timing track remains unobscured by contribution explanations. Source portraits and exact operations persist in the Last Hit display until the next strike. Additions precede multipliers; extra attempts are labeled beside attempts, and continuous zone/motion assistance has a separate display. Long source lists scroll without automatically moving the rig. The winning-hit receipt remains available during Build and automatic upgrade feedback without replaying its celebration.
+
+The approved score-rush presentation temporarily replaces the score well with a growing strike value and operation, then transfers resolved points into accumulated progress. Source cards kick and return to their authored transforms; named portraits represent offscreen contributors. Light trails, musical steps and a brief machine impact scale with actual amplification. Exact decimal attribution remains inspectable; only the animated large-number display is abbreviated. Sound and reduced-motion controls sit above the machine. The controller briefly holds motion and phase handoff during this bounded count-up; Space/Finish ends it early without scoring a second strike. Scoring, terminal outcomes and failure payout resolve immediately. These cues add no printed card fields or required confirmation.
+
 Do not print lifecycle, selected-for-Release, hidden-state, modifier-state, positive/negative modifier or base-versus-modified badges on faces. Approved tooltips and external interaction feedback remain separate. Text must fit authored regions at supported resolutions.
 
 Event masters show name, type, art and one rules panel; no Catch/Bait interaction, creature stats, rarity hooks or compact rig attachment. Event timing/content need review; old Descend/Surface timing does not define them.

@@ -32,6 +32,8 @@ public sealed class LandingRigRule
     public string ContiguousTag { get; }
     public RigAbilityEffect Ability { get; private set; }
     public decimal Amount { get; private set; }
+    public string Explanation { get; private set; } = "";
+    public IReadOnlyList<int> SupportingIds { get; private set; } = Array.AsReadOnly(Array.Empty<int>());
 
     /// <summary>Validates nonnegative finite scoring modifiers before strikes can consume attempts.</summary>
     public LandingRigRule(string label, LandingAccuracyFilter accuracy, float bonus, float multiplier, string adjacentTag = null, string contiguousTag = null)
@@ -52,11 +54,12 @@ public sealed class LandingRigRule
     public static LandingRigRule Exact(string label, LandingAccuracyFilter accuracy, decimal bonus, decimal multiplier)
         => new LandingRigRule(label, accuracy, bonus, multiplier);
     /// <summary>Freezes a resolved data-driven effect while retaining its encounter conditions and trigger limits.</summary>
-    public static LandingRigRule FromAbility(string label, RigAbilityEffect effect, decimal amount)
+    public static LandingRigRule FromAbility(string label, RigAbilityEffect effect, decimal amount, string explanation = null, int[] supportingIds = null)
     {
         var rule = Exact(label, effect.Accuracy, effect.Kind == RigAbilityKind.LandingBonus ? amount : 0,
             effect.Kind == RigAbilityKind.LandingMultiplier ? checked(1 + amount) : 1);
-        rule.Ability = effect; rule.Amount = amount; return rule;
+        rule.Ability = effect; rule.Amount = amount; rule.Explanation = explanation ?? "";
+        rule.SupportingIds = Array.AsReadOnly((int[])(supportingIds ?? Array.Empty<int>()).Clone()); return rule;
     }
 
     /// <summary>Tests encounter conditions against pre-strike state without consuming a once-only trigger.</summary>
@@ -144,9 +147,16 @@ public sealed class LandingContribution
     public decimal Bonus { get; }
     public decimal Multiplier { get; }
     public int Attempts { get; }
+    public string Explanation { get; }
+    public IReadOnlyList<int> SupportingIds { get; }
     /// <summary>Records a resolved contribution without retaining a live rig instance or rerunning its effect.</summary>
-    public LandingContribution(int sourceId, string label, decimal bonus, decimal multiplier, int attempts = 0)
-    { SourceId = sourceId; Label = label; Bonus = bonus; Multiplier = multiplier; Attempts = attempts; }
+    public LandingContribution(int sourceId, string label, decimal bonus, decimal multiplier, int attempts = 0, string explanation = null, IReadOnlyList<int> supportingIds = null)
+    {
+        SourceId = sourceId; Label = label; Bonus = bonus; Multiplier = multiplier; Attempts = attempts;
+        Explanation = string.IsNullOrWhiteSpace(explanation) ? label : explanation;
+        var ids = new int[supportingIds?.Count ?? 0]; for (int i = 0; i < ids.Length; i++) ids[i] = supportingIds[i];
+        SupportingIds = Array.AsReadOnly(ids);
+    }
 }
 
 /// <summary>Immutable strike result; scoring resolves before presentation and is never repeated by animation.</summary>
@@ -207,7 +217,7 @@ public static class LandingScoring
                 }
                 bonus = checked(bonus + amount); multiplier = checked(multiplier * rule.Multiplier);
                 if (amount != 0 || rule.Multiplier != 1)
-                    contributions.Add(new LandingContribution(member.Id, member.Name + ": " + rule.Label, amount, rule.Multiplier));
+                    contributions.Add(new LandingContribution(member.Id, member.Name + ": " + rule.Label, amount, rule.Multiplier, 0, rule.Explanation, rule.SupportingIds));
             }
         }
         return new LandingScore(accuracy, basis, bonus, multiplier, contributions.ToArray());

@@ -127,6 +127,7 @@ public static class TackleLandingArtSetup
             Bind(data, "emptyRig", Text(stage, "EmptyRig", "", new Rect(80, 225, 280, 150), 21, Cream, 15, true));
             input.ApplyModifiedPropertiesWithoutUndo(); data.ApplyModifiedPropertiesWithoutUndo();
             TackleCardTooltipSetup.ConfigurePhase(root);
+            LandingStrikeFeedbackSetup.Configure(root);
             PrefabUtility.SaveAsPrefabAsset(root, LandingChallengeSetup.PrefabPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }

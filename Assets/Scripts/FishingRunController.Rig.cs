@@ -29,7 +29,7 @@ public sealed partial class FishingRunController
     {
         pendingRigCreature = CurrentEncounter; pendingRigEncounterRevision = CurrentEncounterRevision;
         buildOccurrence++; BuildFailure = null;
-        if (rig.FindSpecies(pendingRigCreature.UniqueId) != null)
+        if (!LandingFeedbackPending && rig.FindSpecies(pendingRigCreature.UniqueId) != null)
             TryCommitRigPlacement(buildOccurrence, rig.Revision, -1);
     }
 

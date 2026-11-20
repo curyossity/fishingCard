@@ -46,7 +46,20 @@ public static class TackleLandingArtChecks
         foreach (var image in prefab.GetComponentsInChildren<UnityEngine.UI.Image>(true))
         {
             if (image.sprite != null) check(AssetDatabase.GetAssetPath(image.sprite).StartsWith(root, StringComparison.Ordinal), "Unexpected placeholder/theme image: " + image.name);
-            else check(image.gameObject == prefab || image.color.a == 0, "Visible unsourced rectangle: " + image.name);
+            else
+            {
+                var rush = prefab.GetComponent<LandingScoreRush>();
+                var rushData = rush == null ? null : new SerializedObject(rush);
+                var readout = rushData?.FindProperty("readout").objectReferenceValue as CanvasGroup;
+                bool transient = readout != null && image.transform.IsChildOf(readout.transform);
+                var sound = rushData?.FindProperty("soundToggle").objectReferenceValue as UnityEngine.UI.Toggle;
+                var motion = rushData?.FindProperty("reducedMotionToggle").objectReferenceValue as UnityEngine.UI.Toggle;
+                bool nativePreference = sound != null && image.transform.IsChildOf(sound.transform) || motion != null && image.transform.IsChildOf(motion.transform);
+                var tooltip = prefab.GetComponent<TackleCardTooltip>();
+                var overlay = tooltip == null ? null : new SerializedObject(tooltip).FindProperty("overlay").objectReferenceValue as RectTransform;
+                bool inspection = overlay != null && image.transform.IsChildOf(overlay);
+                check(image.gameObject == prefab || image.color.a == 0 || transient || nativePreference || inspection, "Visible unsourced rectangle: " + image.name);
+            }
         }
         foreach (var text in prefab.GetComponentsInChildren<TMP_Text>(true))
             check(AssetDatabase.GetAssetPath(text.font).StartsWith(root + "Fonts/", StringComparison.Ordinal), "Default placeholder font remains: " + text.name);

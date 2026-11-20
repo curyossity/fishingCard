@@ -84,14 +84,18 @@ public sealed class RigRuntime
             foreach (var effect in member.PrimaryAbility.Effects)
             {
                 if (effect.Trigger != RigAbilityTrigger.Continuous && effect.Trigger != RigAbilityTrigger.Strike) continue;
-                decimal amount = checked(effect.Amount(member.Level) * Count(i, effect));
+                int positions = Count(i, effect);
+                decimal amount = checked(effect.Amount(member.Level) * positions);
                 if (amount == 0) continue;
                 string label = member.PrimaryAbility.Name + " (Lv " + member.Level + ")";
                 if (effect.Kind == RigAbilityKind.LandingBonus || effect.Kind == RigAbilityKind.LandingMultiplier
                     || effect.Kind == RigAbilityKind.PerfectBase || effect.Kind == RigAbilityKind.GoodWidth
                     || effect.Kind == RigAbilityKind.PerfectWidth || effect.Kind == RigAbilityKind.FishSlowInGood
-                    || effect.Kind == RigAbilityKind.ExtraAttempts && effect.Trigger == RigAbilityTrigger.Strike)
-                    rules.Add(LandingRigRule.FromAbility(label, effect, amount));
+                    || effect.Kind == RigAbilityKind.ExtraAttempts || effect.Kind == RigAbilityKind.MissProtection)
+                    rules.Add(LandingRigRule.FromAbility(label, effect, amount,
+                        RigAbilityText.Describe(member.PrimaryAbility, member.Level, false)
+                        + (effect.PerPosition && effect.Count != RigPositionCount.Once && effect.Count != RigPositionCount.Center && effect.Count != RigPositionCount.LineTip && effect.Count != RigPositionCount.DifferentNeighbors
+                            ? "\nCounted " + positions + (effect.Count == RigPositionCount.DistinctTagsBefore || effect.Count == RigPositionCount.DistinctOtherTags ? " different tags." : " matching creatures.") : ""), SupportingMembers(i, effect)));
                 if (effect.Kind == RigAbilityKind.ExtraAttempts && effect.Trigger == RigAbilityTrigger.Continuous) extraAttempts = checked(extraAttempts + (int)amount);
                 if (effect.Kind == RigAbilityKind.MissProtection) protectedMisses = checked(protectedMisses + (int)amount);
             }
@@ -178,6 +182,29 @@ public sealed class RigRuntime
             if (location && HasTag(members[j], effect.Tag)) count++;
         }
         return effect.PerPosition ? count : count > 0 ? 1 : 0;
+    }
+
+    /// <summary>Freezes positional enablers beside their resolved count; views never reconstruct rig conditions.</summary>
+    private int[] SupportingMembers(int index, RigAbilityEffect effect)
+    {
+        var result = new List<int>();
+        if (effect.Count == RigPositionCount.Once || effect.Count == RigPositionCount.Center || effect.Count == RigPositionCount.LineTip) return result.ToArray();
+        if (effect.Count == RigPositionCount.ContiguousOther)
+        {
+            if (!HasTag(members[index], effect.Tag)) return result.ToArray();
+            for (int j = index - 1; j >= 0 && HasTag(members[j], effect.Tag); j--) result.Add(members[j].InstanceId);
+            for (int j = index + 1; j < members.Count && HasTag(members[j], effect.Tag); j++) result.Add(members[j].InstanceId);
+            return result.ToArray();
+        }
+        for (int j = 0; j < members.Count; j++)
+        {
+            bool matches = effect.Count == RigPositionCount.Adjacent || effect.Count == RigPositionCount.DifferentNeighbors ? Math.Abs(j - index) == 1
+                : effect.Count == RigPositionCount.Before || effect.Count == RigPositionCount.DistinctTagsBefore ? j < index
+                : effect.Count == RigPositionCount.After ? j > index : j != index;
+            if (matches && HasTag(members[j], effect.Tag)
+                && (effect.Count != RigPositionCount.DistinctOtherTags || !members[j].Tags.Any(tag => HasTag(members[index], tag)))) result.Add(members[j].InstanceId);
+        }
+        return result.ToArray();
     }
 
     /// <summary>Resolves directional value recipients with index zero nearest the Rod.</summary>

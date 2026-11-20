@@ -112,12 +112,13 @@ public static class RigBuildingSceneChecks
         var model = controller.Landing; double deadline = Time.realtimeSinceStartupAsDouble + 90;
         while (model.State == LandingChallengeState.Active && Time.realtimeSinceStartupAsDouble < deadline)
         {
-            model.AdvanceTo(Time.realtimeSinceStartupAsDouble);
+            if (!controller.LandingFeedbackPending) model.AdvanceTo(Time.realtimeSinceStartupAsDouble);
             double distance = Math.Abs(model.FishPosition - model.ZonePosition);
             bool aligned = succeed ? distance < model.PerfectWidth * .15 : distance > (model.GoodWidth + model.FishWidth) * .5 + .05;
             if (model.CanStrike && aligned) controller.TryStrikeLanding(model.Occurrence, model.Revision);
             yield return null;
         }
+        while (controller.LandingFeedbackPending && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
         Check(succeed ? controller.AwaitingRigPlacement || controller.SlotMachine.Active : controller.LandingFailureVisible, "Landing fixture did not reach its expected outcome.");
     }
     /// <summary>Accepts through the real Discover command after completing only its cosmetic reel animation.</summary>

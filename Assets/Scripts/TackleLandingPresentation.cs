@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -15,16 +16,19 @@ public sealed class TackleLandingPresentation : MonoBehaviour
     [SerializeField] private TackleRigCardView rigCardPrefab;
     [SerializeField] private UnityEngine.UI.ScrollRect rigScroll, scoreScroll;
     [SerializeField] private TackleButtonFeedback[] buttons;
+    [SerializeField] private LandingStrikeFeedback strikeFeedback;
+    [SerializeField] private LandingScoreRush scoreRush;
     private readonly List<TackleRigCardView> cards = new List<TackleRigCardView>();
     private readonly List<UnityEngine.UI.Image> lamps = new List<UnityEngine.UI.Image>();
     private long occurrence = -1, revision = -1;
-    private double highlightUntil;
-    private bool highlighted, failed;
+    private bool failed;
+    private bool feedbackPending;
     private CardDefinition selectedCreature;
     private string biomeName;
+    public bool HasRushPresentation => scoreRush != null && scoreRush.enabled;
 
     /// <summary>Resets only visual identities so future encounters cannot reuse stale labels or highlights.</summary>
-    private void OnDisable() { occurrence = revision = -1; selectedCreature = null; highlighted = false; }
+    private void OnDisable() { occurrence = revision = -1; selectedCreature = null; }
 
     /// <summary>Projects normalized model coordinates into the supplied track and refreshes labels once per accepted strike.</summary>
     public void Present(FishingRunController controller)
@@ -39,17 +43,17 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             occurrence = model.Occurrence; revision = -1; failed = false;
             PrepareLamps(model.AttemptsRemaining);
             BindCreature();
+            if (strikeFeedback != null) strikeFeedback.BindAssistance(model, controller.CatchChain);
             rigScroll.verticalNormalizedPosition = 1;
         }
         Position(fish, model.FishPosition, model.FishWidth);
         Position(goodZone, model.ZonePosition, model.GoodWidth);
         Position(perfectZone, model.ZonePosition, model.PerfectWidth);
         fishMarker.color = model.IsTelegraphingBurst ? new Color32(255, 169, 76, 255) : Color.white;
-        progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(model.Points / model.Resistance)) : 0, 1);
         movement.text = model.IsTelegraphingBurst ? "BURST SOON" : model.Pattern.ToString().ToUpperInvariant();
-        if (revision != model.Revision || failed != failure)
+        if (revision != model.Revision || failed != failure || feedbackPending != controller.LandingFeedbackPending)
         {
-            revision = model.Revision; failed = failure;
+            revision = model.Revision; failed = failure; feedbackPending = controller.LandingFeedbackPending;
             phase.text = biomeName.ToUpperInvariant() + " / LAND";
             creature.text = failure ? "EXPEDITION ENDED" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
             haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : controller.UsesLandingChallenge ? controller.Rig.HaulValue.ToString() : VisibleHaul(controller.CatchChain));
@@ -64,12 +68,17 @@ public sealed class TackleLandingPresentation : MonoBehaviour
                 + (model.LastMissProtected ? " / PROTECTED" : "");
             breakdown.text = Breakdown(model.LastScore, failure);
             scoreScroll.verticalNormalizedPosition = 1;
-            highlightUntil = Time.realtimeSinceStartupAsDouble + .35; highlighted = model.LastScore != null && !failure;
-            RefreshRig(controller.CatchChain, model.LastScore, highlighted);
+            var receipt = controller.LastLandingStrike?.Occurrence == model.Occurrence ? controller.LastLandingStrike : null;
+            RefreshRig(feedbackPending && receipt != null ? receipt.Members.ToArray() : controller.CatchChain, model.LastScore, false);
+            if (strikeFeedback != null) strikeFeedback.Present(receipt, cards, true, HasRushPresentation);
+            if (scoreRush != null) { scoreRush.Present(receipt, cards, feedbackPending); if (!feedbackPending) scoreRush.Finish(); }
         }
-        if (highlighted && Time.realtimeSinceStartupAsDouble >= highlightUntil)
-        { highlighted = false; foreach (var card in cards) card.SetContributing(false); }
+        if (scoreRush != null) scoreRush.Tick();
+        decimal displayed = feedbackPending && scoreRush != null ? scoreRush.DisplayedTotal : model.Points;
+        points.text = feedbackPending ? LandingScoreRush.Format(displayed) : Number(displayed);
+        progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(displayed / model.Resistance)) : 0, 1);
         if (model.Error != null) message.text = model.Error;
+        else if (feedbackPending) message.text = "RIG ACTIVATING  ·  SPACE / FINISH TO COMPLETE";
         foreach (var button in buttons) button.RefreshAvailability();
     }
 

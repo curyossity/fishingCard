@@ -19,6 +19,7 @@ public sealed class RigBuildingView : MonoBehaviour
     [SerializeField] private UnityEngine.UI.ScrollRect rigScroll, railScroll, detailsScroll;
     [SerializeField] private UnityEngine.UI.Button gapTemplate, commit;
     [SerializeField] private GameObject upgradeStatus;
+    [SerializeField] private LandingStrikeFeedback strikeFeedback;
     [SerializeField] private Sprite socketIdle, socketSelected, socketBlocked;
     [SerializeField, Min(.1f)] private float upgradeFeedbackSeconds = 1.8f;
     private readonly List<TackleRigCardView> rigCards = new List<TackleRigCardView>(), railCards = new List<TackleRigCardView>();
@@ -59,7 +60,7 @@ public sealed class RigBuildingView : MonoBehaviour
     {
         controller = owner;
         bool upgrade = owner != null && owner.RigUpgradeFeedbackVisible && owner.LastRigAcquisition != null;
-        bool visible = owner != null && owner.RunActive && (upgrade || owner.AwaitingRigPlacement && owner.PendingRigCreature != null);
+        bool visible = owner != null && owner.RunActive && !owner.LandingFeedbackPending && (upgrade || owner.AwaitingRigPlacement && owner.PendingRigCreature != null);
         gameObject.SetActive(visible);
         if (!visible) return;
         long id = upgrade ? owner.LastRigAcquisition.Occurrence : owner.BuildOccurrence;
@@ -129,6 +130,7 @@ public sealed class RigBuildingView : MonoBehaviour
         emptyRig.gameObject.SetActive(members.Length == 0);
         RefreshCabinet(members);
         RefreshRail(members, creature, valid ? preview : null);
+        if (strikeFeedback != null) strikeFeedback.Present(controller.LastLandingStrike, rigCards, false);
         string placement = selected == 0 ? "Before " + (members.Length > 0 ? members[0].Definition.DisplayName : creature.DisplayName)
             : selected > 0 && selected <= members.Length ? "After " + members[selected - 1].Definition.DisplayName : "Choose a position";
         TackleBuildTypography.SetText(message, upgrading ? creature.DisplayName + " +1 level" : valid ? placement : error ?? "No legal insertion position");
@@ -224,7 +226,7 @@ public sealed class RigBuildingView : MonoBehaviour
     private bool OwnsInputFocus()
     {
         var focused = EventSystem.current?.currentSelectedGameObject;
-        return focused == null || focused.transform.IsChildOf(transform) && focused.GetComponent<TackleCardTooltipSource>() == null;
+        return focused == null || focused.transform.IsChildOf(transform) && focused.GetComponent<TackleCardTooltipSource>() == null && focused.GetComponent<LandingContributionView>() == null;
     }
     /// <summary>Submits only the landed occurrence and rig revision that produced this preview.</summary>
     private void Commit()
