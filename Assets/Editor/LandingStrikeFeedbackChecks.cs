@@ -88,7 +88,8 @@ public static class LandingStrikeFeedbackChecks
         foreach(var size in new[]{new Vector2Int(1280,800),new Vector2Int(1920,1080),new Vector2Int(2560,1080)})Capture(landing.gameObject,"Strike-"+size.x+"x"+size.y+".png",size.x,size.y);
         Check(owner.Landing.Points==points&&owner.Landing.AttemptsRemaining==attempts&&owner.Landing.Revision==revision,"Feedback changed gameplay state.");
         CheckButton((UnityEngine.UI.Button)new SerializedObject(landing.GetComponent<LandingChallengeView>()).FindProperty("strike").objectReferenceValue);
-        yield return new WaitForSecondsRealtime(.5f);
+        double feedbackUntil=Time.realtimeSinceStartupAsDouble+4;
+        while(owner.LandingFeedbackPending&&Time.realtimeSinceStartupAsDouble<feedbackUntil)yield return null;
         Check(!landing.GetComponentsInChildren<LandingActivationView>().Any(),"Activation did not return to rest.");
         yield return Strike(owner,LandingAccuracy.Miss);
         Check(owner.Landing.LastScore.Contributions.Any(c=>c.Attempts>0),"Recovery grant was not attributed.");

@@ -18,6 +18,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
     [SerializeField] private TackleButtonFeedback[] buttons;
     [SerializeField] private LandingStrikeFeedback strikeFeedback;
     [SerializeField] private LandingScoreRush scoreRush;
+    [SerializeField] private LandingEffectFeedback effectFeedback;
     private readonly List<TackleRigCardView> cards = new List<TackleRigCardView>();
     private readonly List<UnityEngine.UI.Image> lamps = new List<UnityEngine.UI.Image>();
     private long occurrence = -1, revision = -1;
@@ -44,6 +45,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             PrepareLamps(model.AttemptsRemaining);
             BindCreature();
             if (strikeFeedback != null) strikeFeedback.BindAssistance(model, controller.CatchChain);
+            if (effectFeedback != null) effectFeedback.Bind(model, controller.CatchChain, lamps);
             rigScroll.verticalNormalizedPosition = 1;
         }
         Position(fish, model.FishPosition, model.FishWidth);
@@ -72,6 +74,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             RefreshRig(feedbackPending && receipt != null ? receipt.Members.ToArray() : controller.CatchChain, model.LastScore, false);
             if (strikeFeedback != null) strikeFeedback.Present(receipt, cards, true, HasRushPresentation);
             if (scoreRush != null) { scoreRush.Present(receipt, cards, feedbackPending); if (!feedbackPending) scoreRush.Finish(); }
+            if (effectFeedback != null) { effectFeedback.Present(receipt); if (!feedbackPending) effectFeedback.FinishStrike(); }
         }
         if (scoreRush != null) scoreRush.Tick();
         decimal displayed = feedbackPending && scoreRush != null ? scoreRush.DisplayedTotal : model.Points;

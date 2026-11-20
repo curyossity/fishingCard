@@ -31,6 +31,7 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     private int scoreSource = -1;
     private float scorePulse;
     private readonly HashSet<int> supporting = new HashSet<int>();
+    private readonly HashSet<int> scoreSupport = new HashSet<int>();
     public LandingStrikeReceipt Shown => shown;
     public int ContributorCount => chipViews.Count(v => v.gameObject.activeSelf);
     private sealed class HitItem
@@ -116,9 +117,10 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
         {
             var item = items[i]; var view = Pool(chipViews, chipPrefab, chips, i);
             view.Bind(this, item.Member, item.Title, item.Amount, item.Reason, item.Context, item.Support);
-            view.Anchor.anchoredPosition = new Vector2(i * 132, 0);
+            view.Anchor.anchoredPosition = new Vector2(i * (sequencedScore ? 178 : 132), 0);
+            if (sequencedScore) view.SetSequenceState(-1);
         }
-        HideUnused(chipViews, items.Count); chips.sizeDelta = new Vector2(Mathf.Max(1, items.Count * 132), 34);
+        HideUnused(chipViews, items.Count); chips.sizeDelta = new Vector2(Mathf.Max(1, items.Count * (sequencedScore ? 178 : 132)), sequencedScore ? 52 : 34);
         if (chipScroll != null) chipScroll.horizontalNormalizedPosition = 0;
         attemptFeedback.text = string.Join(" / ", score.Contributions.Where(c => c.Attempts > 0).Select(c => "+" + c.Attempts + " attempt · " + Name(c.SourceId)))
             + (receipt.ProtectedMiss ? "  MISS PROTECTED" : "");
@@ -142,6 +144,16 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     /// <summary>Synchronizes only the transient source outline with the score sequence's current operation.</summary>
     public void SetScoreActivation(int sourceId, float strength)
     { scoreSource = sourceId; scorePulse = strength; RenderPulses(); }
+    /// <summary>Separates positional enablers from the creature that actually adds or multiplies points.</summary>
+    public void SetScoreSupport(int sourceId, IReadOnlyList<int> ids)
+    { scoreSupport.Clear(); if (ids != null) foreach (int id in ids) if (id != sourceId) scoreSupport.Add(id); }
+    /// <summary>Leaves a readable pending/current/completed trace, without automatically scrolling the rig or source strip.</summary>
+    public void SetSequenceProgress(int active, int completed, bool settled)
+    {
+        if (!sequencedScore || shown?.Score == null) return;
+        for (int i = 0; i < items.Count; i++) chipViews[i].SetSequenceState(settled || i < active && i <= completed ? 1 : i == active ? 0 : -1);
+        equation.text = settled ? shown.Score.Accuracy.ToString().ToUpperInvariant() + " +" + Number(shown.Score.Points) : shown.Score.Accuracy.ToString().ToUpperInvariant() + " · SCORING";
+    }
     /// <summary>Advances only the short presentation envelope, independent of challenge clocks and input.</summary>
     private void LateUpdate() { if (animate || inspected >= 0) RenderPulses(); }
     /// <summary>Keeps total activation time bounded even for very long rigs.</summary>
@@ -157,7 +169,7 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
             float strength = animate && contributes && time >= 0 && time < pulseSeconds ? Mathf.Sin(Mathf.PI * time / pulseSeconds) : 0;
             if (sequencedScore && !attemptSources.Contains(id)) strength = 0;
             if (id == scoreSource) strength = Mathf.Max(strength, scorePulse);
-            activations[i].Render(strength, badge, attemptSources.Contains(id), inspected == id, supporting.Contains(id));
+            activations[i].Render(strength, badge, attemptSources.Contains(id), inspected == id, supporting.Contains(id) || scoreSupport.Contains(id) && scorePulse > 0, !(sequencedScore && id == scoreSource));
         }
         if (elapsed >= pulseSeconds + maximumStagger) animate = false;
     }
@@ -166,6 +178,7 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     {
         animate = false; badges.Clear(); attemptSources.Clear(); inspected = -1; supporting.Clear();
         scoreSource = -1; scorePulse = 0;
+        scoreSupport.Clear();
         if (attemptCount != null) attemptCount.rectTransform.anchoredPosition = attemptRest;
         HideUnused(rowViews, 0); HideUnused(chipViews, 0); if (equation != null) equation.text = "LAST HIT · awaiting first hit"; if (attemptFeedback != null) attemptFeedback.text = "";
         foreach (var view in activations) view.gameObject.SetActive(false);

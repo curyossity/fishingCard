@@ -10,6 +10,7 @@ public sealed class LandingContributionView : UnityEngine.UI.Selectable
     [SerializeField] private bool includeName;
     private LandingStrikeFeedback owner;
     private TackleCardTooltip tooltip;
+    private int sequenceState = int.MinValue;
     public string Title { get; private set; }
     public string Subtitle { get; private set; }
     public string Amount { get; private set; }
@@ -29,6 +30,20 @@ public sealed class LandingContributionView : UnityEngine.UI.Selectable
         portrait.sprite = member?.Definition.Artwork; portrait.enabled = portrait.sprite != null;
         caption.text = includeName ? Title + "  " + amount : amount.Replace(" points", "");
         gameObject.SetActive(true);
+        sequenceState = int.MinValue;
+    }
+    /// <summary>Uses a larger portrait and three explicit visual states for the live activation history.</summary>
+    public void SetSequenceState(int state)
+    {
+        if (sequenceState == state) return;
+        sequenceState = state;
+        Anchor.sizeDelta = new Vector2(172, 52);
+        portrait.rectTransform.anchoredPosition = new Vector2(9, -6); portrait.rectTransform.sizeDelta = new Vector2(40, 40);
+        caption.rectTransform.anchoredPosition = new Vector2(56, -7); caption.rectTransform.sizeDelta = new Vector2(106, 38);
+        caption.enableAutoSizing = true; caption.fontSizeMin = 20; caption.fontSizeMax = 28;
+        portrait.color = state < 0 ? new Color(1, 1, 1, .35f) : Color.white;
+        caption.color = state < 0 ? new Color32(143, 154, 145, 255) : state == 0 ? new Color32(255, 222, 144, 255) : new Color32(224, 233, 207, 255);
+        targetGraphic.color = state < 0 ? new Color(.5f, .55f, .5f, .7f) : state == 0 ? Color.white : new Color(.72f, .85f, .75f, 1);
     }
     /// <summary>Connects inspection with subtle support highlights on currently visible rig cards.</summary>
     public void SetInspection(bool active) { if (owner != null) owner.Inspect(active ? SourceId : -1, active ? SupportingIds : null); }

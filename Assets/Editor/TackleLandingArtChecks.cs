@@ -58,7 +58,12 @@ public static class TackleLandingArtChecks
                 var tooltip = prefab.GetComponent<TackleCardTooltip>();
                 var overlay = tooltip == null ? null : new SerializedObject(tooltip).FindProperty("overlay").objectReferenceValue as RectTransform;
                 bool inspection = overlay != null && image.transform.IsChildOf(overlay);
-                check(image.gameObject == prefab || image.color.a == 0 || transient || nativePreference || inspection, "Visible unsourced rectangle: " + image.name);
+                var effects = prefab.GetComponent<LandingEffectFeedback>();
+                var effectData = effects == null ? null : new SerializedObject(effects);
+                var recovery = effectData?.FindProperty("recovery").objectReferenceValue as CanvasGroup;
+                bool effectCue = recovery != null && image.transform.IsChildOf(recovery.transform)
+                    || effectData?.FindProperty("slowPortrait").objectReferenceValue == image;
+                check(image.gameObject == prefab || image.color.a == 0 || transient || nativePreference || inspection || effectCue, "Visible unsourced rectangle: " + image.name);
             }
         }
         foreach (var text in prefab.GetComponentsInChildren<TMP_Text>(true))

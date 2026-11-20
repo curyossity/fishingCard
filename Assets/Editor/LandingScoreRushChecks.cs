@@ -113,6 +113,7 @@ public static class LandingScoreRushChecks
         typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[1].Time+.08f});
         Check(((TMP_Text)data.FindProperty("sourceName").objectReferenceValue).text.Length>0,"Named source cue missing.");
         Check(((CanvasGroup)data.FindProperty("readout").objectReferenceValue).alpha>0,"Growing readout is invisible.");
+        typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[1].ImpactAt+.025f});
         Check(landing.GetComponentsInChildren<AudioSource>().Any(s=>s.isPlaying),"Musical step did not start a routed audio voice.");
         foreach(var size in new[]{new Vector2Int(1920,1080),new Vector2Int(1280,800),new Vector2Int(2560,1080)})
             Capture(landing,"Combo-"+size.x+"x"+size.y+".png",size.x,size.y);
