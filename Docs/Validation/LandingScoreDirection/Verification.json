@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "scheduleAndRulesAssertions": 20,
+  "uiAndAudioAssetAssertions": 36,
+  "liveScoreRushAssertions": 136,
+  "unityConsoleErrorsAndWarnings": 0,
+  "projectIntegrityFiles": 1853,
+  "projectIntegrityErrorsAndWarnings": 0,
+  "preview": {
+    "framesPerSecond": 24,
+    "ordinary": {"points": 20, "frames": 21},
+    "strong": {"points": 127.68, "frames": 55},
+    "exceptional": {"points": 1016.4, "frames": 63},
+    "nativeFramesAndPcmValidated": true,
+    "javascriptSyntaxValidated": true,
+    "subjectiveListeningApproved": false
+  }
+}

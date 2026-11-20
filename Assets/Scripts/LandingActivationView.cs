@@ -19,7 +19,7 @@ public sealed class LandingActivationView : MonoBehaviour
         badge.enableAutoSizing = true; badge.fontSizeMin = 18; badge.fontSizeMax = 25; badge.overflowMode = TextOverflowModes.Ellipsis;
     }
     /// <summary>Places a pulse or softer support outline only when the entire source face is visible.</summary>
-    public void Render(float pulse, string amount, bool attempt, bool inspected, bool supporting)
+    public void Render(float pulse, string amount, bool attempt, bool inspected, bool supporting, bool showBadge = true)
     {
         bool active = face != null && face.gameObject.activeInHierarchy && (pulse > 0 || inspected || supporting);
         if (active && viewport != null)
@@ -33,7 +33,7 @@ public sealed class LandingActivationView : MonoBehaviour
         Vector2 min = layer.InverseTransformPoint(corners[0]), max = layer.InverseTransformPoint(corners[2]);
         rectangle.anchoredPosition = new Vector2(min.x - 3, max.y + 3); rectangle.sizeDelta = max - min + Vector2.one * 6;
         outline.alpha = inspected ? 1 : supporting ? .35f : pulse;
-        badge.text = amount; badge.gameObject.SetActive(pulse > 0 && !string.IsNullOrEmpty(amount));
+        badge.text = amount; badge.gameObject.SetActive(showBadge && pulse > 0 && !string.IsNullOrEmpty(amount));
         badgeBackground.gameObject.SetActive(badge.gameObject.activeSelf);
         badgeBackground.color = attempt ? new Color32(33, 71, 71, 255) : new Color32(36, 29, 17, 255);
         badge.color = attempt ? new Color32(155, 221, 214, 255) : new Color32(233, 188, 99, 255);

@@ -15,6 +15,28 @@ public sealed class RigRuntime
     /// <summary>Finds species by stable identity rather than asset reference, tag, display name or position.</summary>
     public CardInstance FindSpecies(string id) => members.Find(m => string.Equals(m.Definition.UniqueId, id, StringComparison.OrdinalIgnoreCase));
 
+    /// <summary>Inspects positional dependencies and continuous value recipients in an independent committed or preview snapshot.</summary>
+    public static RigAbilityLinks InspectAbility(CardInstance[] snapshot, int instanceId)
+    {
+        var rig = new RigRuntime { members = (snapshot ?? Array.Empty<CardInstance>()).ToList() };
+        int index = rig.members.FindIndex(m => m.InstanceId == instanceId);
+        var supports = new HashSet<int>(); var recipients = new HashSet<int>();
+        if (index >= 0)
+            foreach (var effect in rig.members[index].PrimaryAbility.Effects)
+            {
+                // Completed acquisition grants cannot be strengthened by a future insertion.
+                if (effect.Trigger != RigAbilityTrigger.Continuous && effect.Trigger != RigAbilityTrigger.Strike
+                    || rig.Count(index, effect) == 0 || effect.Amount(rig.members[index].Level) == 0) continue;
+                supports.UnionWith(rig.SupportingMembers(index, effect));
+                if (effect.Trigger == RigAbilityTrigger.Continuous
+                    && (effect.Kind == RigAbilityKind.ValueBonus || effect.Kind == RigAbilityKind.ValueMultiplier))
+                    for (int target = 0; target < rig.members.Count; target++)
+                        if (target != index && rig.Targets(index, target, effect) && HasTag(rig.members[target], effect.TargetTag))
+                            recipients.Add(rig.members[target].InstanceId);
+            }
+        return new RigAbilityLinks(supports, recipients);
+    }
+
     /// <summary>Reports valid gaps, including continuous insertion restrictions, without changing the rig.</summary>
     public bool CanInsert(CardDefinition creature, int position, out string reason)
     {

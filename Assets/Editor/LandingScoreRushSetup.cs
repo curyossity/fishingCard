@@ -86,13 +86,16 @@ public static class LandingScoreRushSetup
         source.rectTransform.anchoredPosition = new Vector2(208, 0); source.rectTransform.sizeDelta = new Vector2(240, 26);
         source.fontSizeMax = 24;
         var portrait = (UnityEngine.UI.Image)data.FindProperty("sourcePortrait").objectReferenceValue;
-        portrait.rectTransform.anchoredPosition = new Vector2(169, 0); portrait.rectTransform.sizeDelta = new Vector2(33, 26);
+        portrait.rectTransform.pivot = new Vector2(.5f,.5f);
+        portrait.rectTransform.anchoredPosition = new Vector2(185.5f, -13); portrait.rectTransform.sizeDelta = new Vector2(56, 40);
+        source.rectTransform.anchoredPosition = new Vector2(222, 0); source.rectTransform.sizeDelta = new Vector2(226, 26);
         var operation = (TMP_Text)data.FindProperty("operation").objectReferenceValue;
         operation.rectTransform.sizeDelta = new Vector2(155, 26);
         var labels = data.FindProperty("coveredLabels"); labels.arraySize = 2;
         labels.GetArrayElementAtIndex(0).objectReferenceValue = stage.Find("PointsCaption").GetComponent<TMP_Text>();
         labels.GetArrayElementAtIndex(1).objectReferenceValue = stage.Find("ResistanceCaption").GetComponent<TMP_Text>();
         data.ApplyModifiedPropertiesWithoutUndo();
+        LandingMechanicalAudioSetup.Configure(data);
     }
 
     /// <summary>Creates deterministic original PCM cues once and routes them through a dedicated authored mixer.</summary>

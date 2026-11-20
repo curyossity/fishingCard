@@ -29,7 +29,7 @@ public static class LandingScoreRushChecks
         Check(sequence.Steps[1].SourceId == 1 && sequence.Steps[2].SourceId == 2, "Multipliers ran before bonuses.");
         Check(sequence.Steps.Count == 4, "Attempt recovery became a scoring operation.");
         Check(sequence.StepAt(.01f) == 0 && sequence.StepAt(99) == 3, "Sequence time lookup failed.");
-        Check(sequence.Duration < 3.1f && sequence.PayoutAt < sequence.Duration, "Combo feedback is not bounded.");
+        Check(sequence.Duration < 4.8f && sequence.PayoutAt < sequence.Duration, "Combo feedback is not bounded.");
         var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect,20,6,1.3m,new[] {new LandingContribution(1,"Add",6,1),new LandingContribution(2,"Multiply",0,1.3m)}));
         Check(ordinary.Steps.Last().Value == 33.8m, "Fractional score lost precision.");
         Check(ordinary.Duration < sequence.Duration && ordinary.Intensity < sequence.Intensity, "Ordinary hits do not feel distinct.");
@@ -37,7 +37,12 @@ public static class LandingScoreRushChecks
         Check(miss.Steps.Count == 1 && miss.Intensity == 0 && miss.Duration < 1, "An ordinary Miss earned a score celebration.");
         var many = Enumerable.Range(0, 150).Select(i => new LandingContribution(i,"Add",1,1)).ToArray();
         var longSequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Good,10,150,1,many));
-        Check(longSequence.Steps.Count == 151 && longSequence.Steps.Last().Value == 160 && longSequence.Duration < 3.1f, "Long rigs truncate contributions or extend feedback indefinitely.");
+        Check(longSequence.OperationCount == 150 && longSequence.Steps.Skip(1).Sum(s=>s.SourceIds.Count)==150 && longSequence.Steps.Last().Value == 160 && longSequence.Duration < 4.8f, "Long rigs truncate contributions or extend feedback indefinitely.");
+        foreach (var step in sequence.Steps.Skip(1))
+        {
+            Check(step.Time < step.LaunchAt && step.LaunchAt < step.ImpactAt && step.ImpactAt < step.EndAt, "Missing anticipation, flight or recovery.");
+            Check(sequence.ValueAt(step.ImpactAt-.0001f) != step.Value && sequence.ValueAt(step.ImpactAt)==step.Value,"Score did not change exactly on impact.");
+        }
         var decimalItems = Enumerable.Range(0,12).Select(i=>new LandingContribution(i,"Fraction",.03m,1.07m)).ToArray();
         decimal product = 1; foreach(var item in decimalItems) product *= item.Multiplier;
         var precise = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect,20,.36m,product,decimalItems));
@@ -110,7 +115,7 @@ public static class LandingScoreRushChecks
         Check(!owner.TryStrikeLanding(owner.Landing.Occurrence,revision),"Duplicate strike accepted during animation.");
         Check(!owner.TryCommitRigPlacement(owner.BuildOccurrence,owner.Rig.Revision,0),"Placement accepted during count-up.");
         var cards=landing.GetComponentsInChildren<TackleRigCardView>();
-        typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[1].Time+.08f});
+        typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.Steps[1].ImpactAt+.015f});
         Check(((TMP_Text)data.FindProperty("sourceName").objectReferenceValue).text.Length>0,"Named source cue missing.");
         Check(((CanvasGroup)data.FindProperty("readout").objectReferenceValue).alpha>0,"Growing readout is invisible.");
         Check(landing.GetComponentsInChildren<AudioSource>().Any(s=>s.isPlaying),"Musical step did not start a routed audio voice.");

@@ -3385,12 +3385,13 @@ MonoBehaviour:
   - {fileID: 2072902138943259107}
   - {fileID: 3139811045464978795}
   - {fileID: 5589658311793359773}
-  hit: {fileID: 8300000, guid: 52f149014b7d9a34589838ab6232a5ab, type: 3}
-  addition: {fileID: 8300000, guid: 5c0d07a87aeefb04898953b9c348c6aa, type: 3}
-  multiplier: {fileID: 8300000, guid: 5815cdd115749e248be5dbae148f5980, type: 3}
-  payoutSmall: {fileID: 8300000, guid: 834dddcc8cf573240a4408f3f9b2c0c8, type: 3}
-  payoutBig: {fileID: 8300000, guid: cfd420fc36869344497c2fac8a5bdbd7, type: 3}
-  miss: {fileID: 8300000, guid: 468752bb5910ed347ac0a7c8f7110308, type: 3}
+  hit: {fileID: 8300000, guid: 1b9e4158687c6f049a8c320d47b008d2, type: 3}
+  addition: {fileID: 8300000, guid: 42e5aaa55f619fe43af9fd7c38f0e9e0, type: 3}
+  multiplier: {fileID: 8300000, guid: 628dca2780a84754898d55286bbcf4f1, type: 3}
+  payoutSmall: {fileID: 8300000, guid: 7ba65853e45932641bde33b0bb019132, type: 3}
+  payoutBig: {fileID: 8300000, guid: eccc7e7f88564b141beb50ea77ffb15e, type: 3}
+  miss: {fileID: 8300000, guid: 47fcc55906dd9f24f9ba2d88056648ac, type: 3}
+  windup: {fileID: 8300000, guid: cf95838bead9bba48b336acafe1aacab, type: 3}
   soundToggle: {fileID: 9129800966154768447}
   reducedMotionToggle: {fileID: 5720527384821901247}
   soundVolume: 0.55
@@ -7549,8 +7550,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 208, y: 0}
-  m_SizeDelta: {x: 240, y: 26}
+  m_AnchoredPosition: {x: 222, y: 0}
+  m_SizeDelta: {x: 226, y: 26}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &5659809621282610531
 CanvasRenderer:
@@ -8717,9 +8718,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 169, y: 0}
-  m_SizeDelta: {x: 33, y: 26}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 185.5, y: -13}
+  m_SizeDelta: {x: 56, y: 40}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6085531150652007923
 CanvasRenderer:
   m_ObjectHideFlags: 0

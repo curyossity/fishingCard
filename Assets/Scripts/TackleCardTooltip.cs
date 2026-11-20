@@ -15,6 +15,7 @@ public sealed class TackleCardTooltip : MonoBehaviour
     private double showAt, hideAt = double.PositiveInfinity;
     private Vector2 sourcePosition;
     private bool buildPhase;
+    private string relationshipContext;
     private readonly Vector3[] corners = new Vector3[4];
     private readonly InputAction dismiss = new InputAction("Dismiss creature details", InputActionType.Button, "<Keyboard>/escape");
     public bool IsVisible => panel != null && panel.gameObject.activeSelf;
@@ -50,6 +51,7 @@ public sealed class TackleCardTooltip : MonoBehaviour
     {
         if (detailSource != null) detailSource.SetInspection(false);
         detailSource = null;
+        relationshipContext = null;
         source = null; hideAt = double.PositiveInfinity;
         if (panel != null) panel.gameObject.SetActive(false);
         if (outline != null) outline.gameObject.SetActive(false);
@@ -90,7 +92,16 @@ public sealed class TackleCardTooltip : MonoBehaviour
             : plain.IndexOf("contiguous", StringComparison.OrdinalIgnoreCase) >= 0 ? "Contiguous: a connected group. Another tag breaks the group."
             : plain.IndexOf("consecutive", StringComparison.OrdinalIgnoreCase) >= 0 ? "Consecutive: back-to-back strikes in this encounter."
             : "";
+        context.richText = true;
+        if (!string.IsNullOrEmpty(relationshipContext)) context.text += "\n\n" + relationshipContext;
         LayoutAndShow();
+    }
+    /// <summary>Adds model-derived insertion relationships to the inspected card without owning their evaluation.</summary>
+    public void SetRelationshipContext(TackleCardTooltipSource owner, string text)
+    {
+        if (source != owner || relationshipContext == text) return;
+        relationshipContext = text;
+        if (IsVisible) Show();
     }
     /// <summary>Fits either creature rules or a resolved contribution inside the shared native frame.</summary>
     private void LayoutAndShow()
@@ -101,7 +112,7 @@ public sealed class TackleCardTooltip : MonoBehaviour
         if (!string.IsNullOrEmpty(context.text)) y = Place(context, y, 0);
         context.gameObject.SetActive(!string.IsNullOrEmpty(context.text));
         panel.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, y + 24);
-        panel.gameObject.SetActive(true); outline.gameObject.SetActive(detailSource == null);
+        panel.gameObject.SetActive(true); outline.gameObject.SetActive(detailSource == null && string.IsNullOrEmpty(relationshipContext));
         Position();
     }
     /// <summary>Wraps at the authored font size and grows the panel rather than shrinking rules.</summary>

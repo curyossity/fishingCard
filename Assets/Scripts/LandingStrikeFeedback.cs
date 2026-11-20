@@ -31,6 +31,8 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     private int scoreSource = -1;
     private float scorePulse;
     private readonly HashSet<int> supporting = new HashSet<int>();
+    private readonly HashSet<int> scoreSources = new HashSet<int>();
+    private bool scoringFocus;
     public LandingStrikeReceipt Shown => shown;
     public int ContributorCount => chipViews.Count(v => v.gameObject.activeSelf);
     private sealed class HitItem
@@ -141,7 +143,18 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     { inspected = sourceId; supporting.Clear(); if (support != null) foreach (int id in support) supporting.Add(id); RenderPulses(); }
     /// <summary>Synchronizes only the transient source outline with the score sequence's current operation.</summary>
     public void SetScoreActivation(int sourceId, float strength)
-    { scoreSource = sourceId; scorePulse = strength; RenderPulses(); }
+    { scoreSources.Clear(); scoreSource = sourceId; scorePulse = strength; RenderPulses(); }
+    /// <summary>Acknowledges all members of a grouped beat without inventing extra scoring triggers.</summary>
+    public void SetScoreSources(IReadOnlyList<int> sources, float strength)
+    { scoreSource = -1; scoreSources.Clear(); if (sources != null) foreach (int id in sources) scoreSources.Add(id); scorePulse = strength; RenderPulses(); }
+    /// <summary>Keeps the final total out of the secondary panel until the primary score has delivered it.</summary>
+    public void SetScoringFocus(bool active)
+    {
+        if (scoringFocus == active) return; scoringFocus = active;
+        if (equation != null && shown?.Score != null) equation.text = active ? shown.Score.Accuracy.ToString().ToUpperInvariant() + " · SCORING"
+            : compactSummary ? "LAST HIT +" + Number(shown.Score.Points) : shown.Score.Accuracy.ToString().ToUpperInvariant() + " +" + Number(shown.Score.Points);
+        foreach (var view in chipViews) foreach (var graphic in view.GetComponentsInChildren<UnityEngine.UI.Graphic>()) graphic.canvasRenderer.SetAlpha(active ? .4f : 1);
+    }
     /// <summary>Advances only the short presentation envelope, independent of challenge clocks and input.</summary>
     private void LateUpdate() { if (animate || inspected >= 0) RenderPulses(); }
     /// <summary>Keeps total activation time bounded even for very long rigs.</summary>
@@ -156,8 +169,8 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
             float time = (float)elapsed - (contributes ? maximumStagger * order++ / Math.Max(1, total - 1) : 0);
             float strength = animate && contributes && time >= 0 && time < pulseSeconds ? Mathf.Sin(Mathf.PI * time / pulseSeconds) : 0;
             if (sequencedScore && !attemptSources.Contains(id)) strength = 0;
-            if (id == scoreSource) strength = Mathf.Max(strength, scorePulse);
-            activations[i].Render(strength, badge, attemptSources.Contains(id), inspected == id, supporting.Contains(id));
+            if (id == scoreSource || scoreSources.Contains(id)) strength = Mathf.Max(strength, scorePulse);
+            activations[i].Render(strength, badge, attemptSources.Contains(id), inspected == id, supporting.Contains(id), !sequencedScore || attemptSources.Contains(id));
         }
         if (elapsed >= pulseSeconds + maximumStagger) animate = false;
     }
@@ -165,7 +178,7 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     private void Clear()
     {
         animate = false; badges.Clear(); attemptSources.Clear(); inspected = -1; supporting.Clear();
-        scoreSource = -1; scorePulse = 0;
+        scoreSource = -1; scorePulse = 0; scoreSources.Clear(); scoringFocus = false;
         if (attemptCount != null) attemptCount.rectTransform.anchoredPosition = attemptRest;
         HideUnused(rowViews, 0); HideUnused(chipViews, 0); if (equation != null) equation.text = "LAST HIT · awaiting first hit"; if (attemptFeedback != null) attemptFeedback.text = "";
         foreach (var view in activations) view.gameObject.SetActive(false);

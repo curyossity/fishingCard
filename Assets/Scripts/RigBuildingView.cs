@@ -20,6 +20,7 @@ public sealed class RigBuildingView : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Button gapTemplate, commit;
     [SerializeField] private GameObject upgradeStatus;
     [SerializeField] private LandingStrikeFeedback strikeFeedback;
+    [SerializeField] private RigCombinationPreview combinations;
     [SerializeField] private Sprite socketIdle, socketSelected, socketBlocked;
     [SerializeField, Min(.1f)] private float upgradeFeedbackSeconds = 1.8f;
     private readonly List<TackleRigCardView> rigCards = new List<TackleRigCardView>(), railCards = new List<TackleRigCardView>();
@@ -130,6 +131,8 @@ public sealed class RigBuildingView : MonoBehaviour
         emptyRig.gameObject.SetActive(members.Length == 0);
         RefreshCabinet(members);
         RefreshRail(members, creature, valid ? preview : null);
+        if (combinations != null) combinations.Bind(members, valid ? preview : members, railCards, portrait.rectTransform,
+            !upgrading && valid ? displayed.InstanceId : -1);
         if (strikeFeedback != null) strikeFeedback.Present(controller.LastLandingStrike, rigCards, false);
         string placement = selected == 0 ? "Before " + (members.Length > 0 ? members[0].Definition.DisplayName : creature.DisplayName)
             : selected > 0 && selected <= members.Length ? "After " + members[selected - 1].Definition.DisplayName : "Choose a position";

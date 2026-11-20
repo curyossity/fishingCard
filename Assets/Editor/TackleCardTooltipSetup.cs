@@ -49,7 +49,7 @@ public static class TackleCardTooltipSetup
     /// <summary>Adds one overlay beyond clipping masks, leaving the phase's existing controls and layout intact.</summary>
     public static void ConfigurePhase(GameObject root)
     {
-        if (root.GetComponent<TackleCardTooltip>() != null) return;
+        if (root.GetComponent<TackleCardTooltip>() != null) { RigCombinationPreviewSetup.Configure(root); return; }
         if (AssetDatabase.LoadAssetAtPath<GameObject>(OverlayPath) == null) BuildOverlay();
         var overlay = (GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(OverlayPath));
         overlay.transform.SetParent(root.transform, false);
@@ -62,6 +62,7 @@ public static class TackleCardTooltipSetup
         foreach (string name in new[] { "title", "rarity", "metadata", "abilityName", "rules", "context" })
             Bind(data, name, overlay.transform.Find("Panel/" + name).GetComponent<TMP_Text>());
         data.ApplyModifiedPropertiesWithoutUndo();
+        RigCombinationPreviewSetup.Configure(root);
     }
 
     /// <summary>Builds reusable editable geometry and native text from the reviewed 460-pixel SVG design.</summary>
