@@ -84,7 +84,7 @@ public static class TackleDiscoverArtChecks
         assert(!controller.RunActive, "Artwork check requires a fresh Harbor session.");
         controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" });
         harbor.TryStartNewRun();
-        var preparation = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var preparation = new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)preparation.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         var view = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>();
         SlotReelAnimationChecks.SettleForControlFixture(view, controller);

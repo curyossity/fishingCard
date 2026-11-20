@@ -1256,20 +1256,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1788590450656202130, guid: 4e9d0d494ee329f46a77a82966a2883b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1081205876}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1069887420480661113, guid: 4e9d0d494ee329f46a77a82966a2883b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 263176411}
   m_SourcePrefab: {fileID: 100100000, guid: 4e9d0d494ee329f46a77a82966a2883b, type: 3}
---- !u!224 &936634471 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1788590450656202130, guid: 4e9d0d494ee329f46a77a82966a2883b, type: 3}
-  m_PrefabInstance: {fileID: 683787782}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &936634473 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3034493411374229808, guid: 4e9d0d494ee329f46a77a82966a2883b, type: 3}
@@ -1599,7 +1591,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 936634471}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
       propertyPath: m_Pivot.x
@@ -1632,6 +1624,18 @@ PrefabInstance:
     - target: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
       propertyPath: m_SizeDelta.y
       value: 1100
+      objectReference: {fileID: 0}
+    - target: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1709,11 +1713,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84abcdbdeed8b0243a98b17127f4e2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlotTagPreparationView
---- !u!224 &1081205876 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 64763528167675722, guid: 69b9149288287164096b168a93e3fb7e, type: 3}
-  m_PrefabInstance: {fileID: 1081205874}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1573190060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2268,3 +2267,4 @@ SceneRoots:
   - {fileID: 1573190060}
   - {fileID: 1880255377}
   - {fileID: 1843599768}
+  - {fileID: 1081205874}

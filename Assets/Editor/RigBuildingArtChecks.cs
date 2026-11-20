@@ -196,7 +196,7 @@ public static class RigBuildingArtChecks
     private static void Start(JournalHarborFlow harbor)
     {
         harbor.Controller.TryPrepareSlotTags(new[]{"Armored","Predator","Schooling","Anchored"});harbor.TryStartNewRun();
-        var prep=new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
+        var prep=new SerializedObject(harbor.SlotPreparation);((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
     }
     /// <summary>Reads the real named species definition without changing authoring.</summary>
     private static CardDefinition Load(string name)=>AssetDatabase.FindAssets("t:CardDefinition",new[]{"Assets/Cards"}).Select(g=>AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(g))).Single(c=>c.DisplayName==name);

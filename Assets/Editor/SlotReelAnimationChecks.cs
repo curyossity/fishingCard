@@ -28,7 +28,7 @@ public static class SlotReelAnimationChecks
         Check(!controller.RunActive, "Expected a fresh Harbor.");
         Check(controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }), "Could not prepare four tags.");
         harbor.TryStartNewRun();
-        var preparation = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var preparation = new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)preparation.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         var view = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>();
         var reels = view.GetComponentsInChildren<TackleReelAnimator>();

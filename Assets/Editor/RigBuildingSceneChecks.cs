@@ -35,7 +35,7 @@ public static class RigBuildingSceneChecks
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>(); var controller = harbor.Controller;
         Check(!controller.RunActive, "Expected fresh Harbor.");
         controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }); harbor.TryStartNewRun();
-        var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var prep = new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         yield return null;
         yield return Accept(controller);

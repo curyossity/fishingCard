@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>Authors plain reusable controls for Discover and Harbor preparation without importing or changing artwork.</summary>
+/// <summary>Authors Discover controls and binds the independent Tackle preparation screen to the Harbor flow.</summary>
 public static class SlotMachineSetup
 {
     public const string Root = "Assets/SlotMachine/";
@@ -67,20 +67,7 @@ public static class SlotMachineSetup
         }
         foreach (LineLoadMeterView meter in view.GetComponentsInChildren<LineLoadMeterView>(true)) meter.gameObject.SetActive(false);
         slot.gameObject.SetActive(false);
-        var preparation = harbor.GetComponentInChildren<SlotTagPreparationView>(true);
-        if (preparation == null)
-            preparation = ((GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(PreparationPath), harbor.transform))
-                .GetComponent<SlotTagPreparationView>();
-        var harborData = new SerializedObject(harbor);
-        harborData.FindProperty("slotPreparation").objectReferenceValue = preparation;
-        var hubContent = harborData.FindProperty("hubContent").objectReferenceValue as GameObject;
-        var blocker = hubContent.GetComponent<CanvasGroup>();
-        if (blocker == null) blocker = hubContent.AddComponent<CanvasGroup>();
-        var preparationData = new SerializedObject(preparation);
-        Bind(preparationData, "blockedHarborContent", blocker);
-        preparationData.ApplyModifiedPropertiesWithoutUndo();
-        harborData.ApplyModifiedPropertiesWithoutUndo();
-        preparation.gameObject.SetActive(false);
+        TackleTagPreparationSetup.Install(scene);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(TackleDiscoverArtSetup.PrefabPath) != null) TackleDiscoverArtSetup.Install(scene);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath) != null) LandingChallengeSetup.Install(scene);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath) != null) RigBuildingSetup.Install(scene);
@@ -93,7 +80,8 @@ public static class SlotMachineSetup
         if (AssetDatabase.LoadAssetAtPath<SlotMachineProfile>(ProfilePath) == null)
             AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<SlotMachineProfile>(), ProfilePath);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(DiscoverPath) == null) BuildDiscover();
-        if (AssetDatabase.LoadAssetAtPath<GameObject>(PreparationPath) == null) BuildPreparation();
+        var preparation = AssetDatabase.LoadAssetAtPath<GameObject>(PreparationPath);
+        if (preparation == null || preparation.GetComponent<TackleTagPreparationPresentation>() == null) TackleTagPreparationSetup.BuildPrefab();
         var existing = PrefabUtility.LoadPrefabContents(DiscoverPath);
         try
         {
@@ -135,33 +123,6 @@ public static class SlotMachineSetup
             Bind(data, "respinButton", Button(content, "Respin", "RESPIN", 260, -190, 420, 75));
             data.ApplyModifiedPropertiesWithoutUndo();
             PrefabUtility.SaveAsPrefabAsset(root.gameObject, DiscoverPath);
-        }
-        finally { UnityEngine.Object.DestroyImmediate(root.gameObject); }
-    }
-
-    /// <summary>Authors the five gameplay identities with a four-tag confirmation gate.</summary>
-    private static void BuildPreparation()
-    {
-        var root = Panel("Active Tag Preparation", 1500, 1100);
-        try
-        {
-            var view = root.gameObject.AddComponent<SlotTagPreparationView>();
-            var data = new SerializedObject(view);
-            Bind(data, "status", Label(root, "Status", "Choose 4 active tags", 0, 440, 1400, 100, 48));
-            Label(root, "Instruction", "These four symbols remain active throughout the expedition.", 0, 330, 1400, 90, 30);
-            var buttons = data.FindProperty("tagButtons"); buttons.arraySize = CreatureTagVocabulary.All.Length;
-            var labels = data.FindProperty("tagLabels"); labels.arraySize = CreatureTagVocabulary.All.Length;
-            for (int i = 0; i < CreatureTagVocabulary.All.Length; i++)
-            {
-                var button = Button(root, CreatureTagVocabulary.All[i], CreatureTagVocabulary.All[i],
-                    i % 2 == 0 ? -350 : 350, 180 - i / 2 * 145, 620, 110);
-                buttons.GetArrayElementAtIndex(i).objectReferenceValue = button;
-                labels.GetArrayElementAtIndex(i).objectReferenceValue = button.GetComponentInChildren<TMP_Text>();
-            }
-            Bind(data, "confirm", Button(root, "Confirm", "SET SAIL", 350, -420, 620, 100));
-            Bind(data, "cancel", Button(root, "Cancel", "BACK", -350, -420, 620, 100));
-            data.ApplyModifiedPropertiesWithoutUndo();
-            PrefabUtility.SaveAsPrefabAsset(root.gameObject, PreparationPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root.gameObject); }
     }

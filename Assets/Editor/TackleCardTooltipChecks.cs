@@ -59,7 +59,7 @@ public static class TackleCardTooltipChecks
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>(); var owner = harbor.Controller;
         Check(!owner.RunActive, "Expected a fresh Harbor.");
         owner.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }); harbor.TryStartNewRun();
-        var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var prep = new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke(); yield return null;
         var sardine = Card("Sardine");
         foreach (string name in new[] { "Cleaner Shrimp", "Sardine", "Glass Minnow", "Cod" }) Acquire(owner.Rig, Card(name));

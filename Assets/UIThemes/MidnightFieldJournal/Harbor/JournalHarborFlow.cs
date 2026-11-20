@@ -17,6 +17,7 @@ public sealed class JournalHarborFlow : MonoBehaviour
     public bool HubVisible => hubContent != null && hubContent.activeSelf;
     public int CurrentPage { get; private set; }
     public FishingRunController Controller => controller;
+    public SlotTagPreparationView SlotPreparation => slotPreparation;
 
     /// <summary>Opens the Harbor before a run and opts the result modal into the hub return route.</summary>
     private void Awake()

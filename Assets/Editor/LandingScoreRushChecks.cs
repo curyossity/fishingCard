@@ -94,7 +94,7 @@ public static class LandingScoreRushChecks
     {
         Directory.CreateDirectory(Output);var harbor=UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>();var owner=harbor.Controller;
         owner.TryPrepareSlotTags(new[]{"Armored","Predator","Schooling","Anchored"});harbor.TryStartNewRun();
-        var prep=new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var prep=new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();yield return null;
         foreach(string name in new[]{"Sardine","Glass Minnow","Mackerel","Cuttlefish","Peacock Worm","Squid","Cleaner Shrimp","Sea Sponge","Moonlit Ray","Flounder"})
             Check(owner.Rig.TryAcquire(owner.Rig.Revision,Card(name),owner.Rig.Members.Length,out _,out _),"Could not seed source fixture.");

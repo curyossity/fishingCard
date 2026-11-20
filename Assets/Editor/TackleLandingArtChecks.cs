@@ -113,7 +113,7 @@ public static class TackleLandingArtChecks
         var harbor = UnityEngine.Object.FindAnyObjectByType<JournalHarborFlow>(); var controller = harbor.Controller;
         controller.SetDebugSaveResetPending(true); check(!controller.RunActive, "Expected fresh Harbor.");
         controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }); harbor.TryStartNewRun();
-        var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var prep = new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         var definitions = AssetDatabase.FindAssets("t:CardDefinition").Select(id => AssetDatabase.LoadAssetAtPath<CardDefinition>(AssetDatabase.GUIDToAssetPath(id))).ToArray();
         string[] species = { "creature_sardine", "creature_mackerel", "creature_glass_minnow", "creature_garfish", "creature_cleaner_shrimp", "creature_clinging_crab", "creature_coastal_cod", "creature_flounder" };

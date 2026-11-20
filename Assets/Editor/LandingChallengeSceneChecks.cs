@@ -31,7 +31,7 @@ public static class LandingChallengeSceneChecks
         Check(!controller.RunActive && harbor.HubVisible, "Expected fresh Harbor.");
         Check(controller.TryPrepareSlotTags(new[] { "Armored", "Predator", "Schooling", "Anchored" }), "Could not prepare tags.");
         harbor.TryStartNewRun();
-        var prep = new SerializedObject(harbor.GetComponentInChildren<SlotTagPreparationView>(true));
+        var prep = new SerializedObject(harbor.SlotPreparation);
         ((UnityEngine.UI.Button)prep.FindProperty("confirm").objectReferenceValue).onClick.Invoke();
         var chain = (CatchChainRuntime)typeof(FishingRunController).GetField("catchChainRuntime", Private).GetValue(controller);
         var resolver = new EffectResolver();

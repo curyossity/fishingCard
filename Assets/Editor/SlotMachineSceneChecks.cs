@@ -22,7 +22,7 @@ public static class SlotMachineSceneChecks
         controller.StartRun();
         assert(!controller.RunActive, "Run started without four player-selected tags.");
         assert(!harbor.TryStartNewRun(), "Set Sail skipped tag preparation.");
-        var preparation = harbor.GetComponentInChildren<SlotTagPreparationView>(true);
+        var preparation = harbor.SlotPreparation;
         assert(preparation.gameObject.activeInHierarchy, "Tag preparation did not open.");
         var hud = UnityEngine.Object.FindAnyObjectByType<JournalGameplayHud>(FindObjectsInactive.Include);
         var data = new SerializedObject(preparation);
@@ -33,7 +33,7 @@ public static class SlotMachineSceneChecks
         assert(confirm.interactable, "Exactly four tags did not enable Set Sail.");
         assert(!((UnityEngine.UI.Button)data.FindProperty("tagButtons").GetArrayElementAtIndex(4).objectReferenceValue).interactable,
             "A fifth tag remained selectable.");
-        Capture(harbor.GetComponent<Canvas>(), "Preparation1080.png");
+        Capture(preparation.GetComponent<Canvas>(), "Preparation1080.png");
         confirm.onClick.Invoke();
         assert(controller.RunActive && !harbor.HubVisible && controller.SlotMachine.Active, "Confirmed preparation did not enter Discover.");
         assert(controller.ExpeditionSlotTags.Count == 4 && controller.SlotMachine.RespinsRemaining == 1, "Frozen loadout or single respin missing.");
