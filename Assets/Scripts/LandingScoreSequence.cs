@@ -87,5 +87,5 @@ public sealed class LandingScoreSequence
         return index;
     }
     /// <summary>Uses a bounded pentatonic rise rather than continuously pitching mechanical samples into squeaks.</summary>
-    public static float NotePitch(int index) => (float)Math.Pow(2, new[] { 0, 2, 4, 7, 9, 12, 14, 16, 19 }[Math.Min(8, Math.Max(0, index))] / 24.0);
+    public static float NotePitch(int index) => (float)Math.Pow(2, new[] { 0, 3, 5, 7, 10, 12 }[Math.Min(5, Math.Max(0, index))] / 12.0);
 }

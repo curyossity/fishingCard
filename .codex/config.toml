@@ -1,0 +1,6 @@
+[mcp_servers.deepwater-earshot-local]
+command = 'C:\Data\Projects\Unity\fishingCards\.local-tools\earshot\venv\Scripts\python.exe'
+args = ['C:\Data\Projects\Unity\fishingCards\Tools\Audio\earshot_local.py', 'mcp']
+startup_timeout_sec = 60
+tool_timeout_sec = 300
+disabled_tools = ['llm_critique']

@@ -24,3 +24,11 @@ Use `Docs/Architecture.md` as the living responsibility map for code structure. 
 Use `Docs/Card Visual Specification.md` as the source of truth for constructing and rendering creature/catch card faces. Follow its supplied-art boundary, dynamic-field contract, rarity-hook rules, and restrictions on visible runtime state unless the user explicitly changes the card design.
 
 Treat `Docs/MVP Workplan.md` and `Docs/MVP Technical Debt.md` as historical context only. Existing entries in `Docs/MVP Technical Debt.md` are production-hardening backlog items, not permission to add more MVP shortcuts. If new debt is unavoidable, call it out explicitly to the user before relying on it and prefer resolving the underlying issue in the same change.
+
+## Audio skill preference
+
+Use `team-audio` as the primary skill for game sound and music work, including sonic direction, reference research, sound selection, effect specifications and integration review. It is installed at `C:/Users/user/.codex/skills/team-audio/SKILL.md` as a Codex adaptation of Donchitos/Claude-Code-Game-Studios. Use the existing `audio-design` skill as supporting guidance for mixing, buses, loudness, variation and synchronization.
+
+Start from the game's intended feeling and approved sound palette before selecting or generating sounds. Preserve the user's accepted and rejected examples. Distinguish actual listening from developer descriptions, signal measurements and timing checks; installing an audio skill does not add hearing capability.
+
+Use only free local audio tools and models. Never supply, retrieve or forward an API key, even when one is already available. Do not enable paid or hosted audio services, Gemini critique or audio uploads. Earshot must run through `Tools/Audio/earshot_local.py`, which strips inherited credentials, disables hosted critique and keeps normal operation offline. Model installation uses public unauthenticated downloads only. Keep `team-audio` primary and Earshot as its local generation/analysis tool.

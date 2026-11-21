@@ -1,0 +1,78 @@
+{
+  "sourcePage": "https://opengameart.org/node/12742",
+  "archiveSha256": "f36250766ac5bc378c13708ddf12a23a8e54a3251f8d482c7536e51b5dbafa18",
+  "recordings": [
+    {
+      "file": "card-place-1.ogg",
+      "voice": "card_1",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-place-1.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "d8f26c33a665dcbdcc6f632f6050bc9dd548feb0d4942d4547615926d3926810"
+    },
+    {
+      "file": "card-place-2.ogg",
+      "voice": "card_2",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-place-2.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "903d5050718595e87864dd755643b476ab1a5533080dcc2dddc72570d33ba9f8"
+    },
+    {
+      "file": "card-place-3.ogg",
+      "voice": "card_3",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-place-3.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "1d988631a6e5201ed1bb0d728f2e43a3ec79401258426858793598044ac95841"
+    },
+    {
+      "file": "card-place-4.ogg",
+      "voice": "card_4",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-place-4.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "18e3ba713b7259605fd27cdc048085ed56cf86b32403f070b6cb125019f77183"
+    },
+    {
+      "file": "card-slide-1.ogg",
+      "voice": "slide_1",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-slide-1.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "006cf9822d15d7063f8899e56041f41646df30adb6fbd8b974ee5d5420012690"
+    },
+    {
+      "file": "card-slide-2.ogg",
+      "voice": "slide_2",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-slide-2.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "e674a1679ec87b507047fe012d068ad2c412125f56186f0e732684705c2a6888"
+    },
+    {
+      "file": "card-slide-3.ogg",
+      "voice": "slide_3",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-slide-3.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "af2ab62656cb3df73316ce5771b8ee1111a840962b21607e3202151e7413c52c"
+    },
+    {
+      "file": "card-shuffle.ogg",
+      "voice": "shuffle",
+      "url": "https://opengameart.org/sites/default/files/kenney_casino-audio.zip",
+      "archiveMember": "Audio/card-shuffle.ogg",
+      "author": "Kenney.nl",
+      "license": "CC0-1.0",
+      "sha256": "96c84883a30845ede723a4cf2e8369e9837e7dd4e0d4eb0212b0a7ed21b0f544"
+    }
+  ]
+}

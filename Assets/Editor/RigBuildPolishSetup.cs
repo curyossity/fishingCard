@@ -27,10 +27,6 @@ public static class RigBuildPolishSetup
         var shadow=label.GetComponent<UnityEngine.UI.Outline>();if(shadow==null)shadow=label.gameObject.AddComponent<UnityEngine.UI.Outline>();shadow.effectColor=new Color(0,0,0,.9f);shadow.effectDistance=new Vector2(1,-1);
         var receipt=Text(stage,"Acquisition effect change",new Rect(550,846,1085,44));receipt.textWrappingMode=TextWrappingModes.Normal;receipt.enableAutoSizing=true;receipt.fontSizeMin=18;receipt.fontSizeMax=22;receipt.gameObject.SetActive(false);Bind(data,"receiptChange",receipt);
         Bind(data,"levelLabel",viewData.FindProperty("levelLabel").objectReferenceValue);
-        var source=host.GetComponent<AudioSource>();if(source==null)source=host.gameObject.AddComponent<AudioSource>();source.playOnAwake=false;source.spatialBlend=0;
-        var mixer=AssetDatabase.LoadAssetAtPath<UnityEngine.Audio.AudioMixer>(LandingScoreRushSetup.MixerPath);source.outputAudioMixerGroup=mixer.FindMatchingGroups("Master")[0];Bind(data,"voice",source);
-        Bind(data,"clipSnap",AssetDatabase.LoadAssetAtPath<AudioClip>(TackleSlotAudioSetup.AudioPath+"latch.wav"));
-        Bind(data,"upgradeSound",AssetDatabase.LoadAssetAtPath<AudioClip>(LandingMechanicalAudioSetup.Path+"payoutSmall.wav"));
         var feedback=root.GetComponent<LandingStrikeFeedback>();
         if(feedback!=null)
         {
@@ -42,6 +38,7 @@ public static class RigBuildPolishSetup
         }
         data.ApplyModifiedPropertiesWithoutUndo();Bind(viewData,"buildFeedback",host);
         var status=(GameObject)viewData.FindProperty("upgradeStatus").objectReferenceValue;Bind(viewData,"acquisitionStatus",status.transform.Find("UpgradeLabel").GetComponent<TMP_Text>());viewData.ApplyModifiedPropertiesWithoutUndo();
+        DeepwaterAudioSetup.ConfigureBuild(root);
     }
     /// <summary>Creates or reuses a non-intercepting native label in reference-stage coordinates.</summary>
     private static TMP_Text Text(Transform parent,string name,Rect bounds)

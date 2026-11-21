@@ -8,6 +8,7 @@ using UnityEngine;
 /// <summary>Renders live Landing indicators, the current rig and attributed scoring inside the integrated housing without resolving gameplay.</summary>
 public sealed class TackleLandingPresentation : MonoBehaviour
 {
+    [SerializeField] private DeepwaterSoundPlayer sound;
     [SerializeField] private TMP_Text phase, haul, creature, tags, points, resistance, attempts, movement, message, grade, breakdown, emptyRig;
     [SerializeField] private UnityEngine.UI.Image portrait, fishMarker;
     [SerializeField] private RectTransform track, fish, goodZone, perfectZone, progressFill, lampContent, rigContent;
@@ -22,6 +23,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
     private readonly List<UnityEngine.UI.Image> lamps = new List<UnityEngine.UI.Image>();
     private long occurrence = -1, revision = -1;
     private bool failed;
+    private bool failureSounded;
     private bool feedbackPending;
     private CardDefinition selectedCreature;
     private string biomeName;
@@ -40,11 +42,12 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         {
             selectedCreature = controller.CurrentEncounter;
             biomeName = controller.CurrentBiome?.GetDepthTier(controller.CurrentDepth)?.DisplayName ?? controller.CurrentBiome?.DisplayName ?? "Waters";
-            occurrence = model.Occurrence; revision = -1; failed = false;
+            occurrence = model.Occurrence; revision = -1; failed = false; failureSounded = false;
             PrepareLamps(model.AttemptsRemaining);
             BindCreature();
             if (strikeFeedback != null) strikeFeedback.BindAssistance(model, controller.CatchChain);
             rigScroll.verticalNormalizedPosition = 1;
+            if (!failure && sound != null) sound.Play(DeepwaterSoundCue.Reveal);
         }
         Position(fish, model.FishPosition, model.FishWidth);
         Position(goodZone, model.ZonePosition, model.GoodWidth);
@@ -74,6 +77,11 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             if (scoreRush != null) { scoreRush.Present(receipt, cards, feedbackPending); if (!feedbackPending) scoreRush.Finish(); }
         }
         if (scoreRush != null) scoreRush.Tick();
+        if (failure && !controller.LandingFeedbackPending && !failureSounded)
+        {
+            failureSounded = true;
+            if(sound!=null)sound.Play(DeepwaterSoundCue.Failure);
+        }
         decimal displayed = feedbackPending && scoreRush != null ? scoreRush.DisplayedTotal : model.Points;
         points.text = feedbackPending ? LandingScoreRush.Format(displayed) : Number(displayed);
         progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(displayed / model.Resistance)) : 0, 1);

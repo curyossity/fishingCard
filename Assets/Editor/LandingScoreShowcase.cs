@@ -95,17 +95,18 @@ public static class LandingScoreShowcase
         return "{name:'"+new[]{"Ordinary","Strong combo","Exceptional combo"}[sequence.Tier]+"',score:'"+model.LastScore.Points.ToString(System.Globalization.CultureInfo.InvariantCulture)+"',frames:["+string.Join(",",images)+"],audio:'data:audio/wav;base64,"+Convert.ToBase64String(sound)+"'}";
     }
     /// <summary>Mixes the runtime event list at its authored pitches and gain; output is a staged review, not a loopback recording.</summary>
-    private static byte[] Mix(LandingScoreRush.SoundEvent[] events,float duration)
+    public static byte[] Mix(LandingScoreRush.SoundEvent[] events,float duration)
     {
-        const int rate=44100;var mix=new float[Mathf.CeilToInt((duration+.5f)*rate)];
+        const int rate=48000;var mix=new float[Mathf.CeilToInt((duration+.5f)*rate)];
         foreach(var cue in events)
         {
             var samples=new float[cue.Clip.samples];cue.Clip.GetData(samples,0);
-            for(int i=0;i<samples.Length/cue.Pitch;i++)
+            float stride=cue.Pitch*cue.Clip.frequency/rate;
+            for(int i=0;i<samples.Length/stride;i++)
             {
                 int destination=(int)(cue.Time*rate)+i;if(destination>=mix.Length)break;
-                float position=i*cue.Pitch;int a=(int)position;
-                mix[destination]+=Mathf.Lerp(samples[a],samples[Math.Min(a+1,samples.Length-1)],position-a)*cue.Gain*.55f;
+                float position=i*stride;int a=(int)position;
+                mix[destination]+=Mathf.Lerp(samples[a],samples[Math.Min(a+1,samples.Length-1)],position-a)*cue.Gain;
             }
         }
         using(var stream=new MemoryStream())using(var writer=new BinaryWriter(stream))

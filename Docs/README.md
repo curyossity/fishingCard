@@ -23,6 +23,7 @@ The 17 November artwork update gives Landing and Build integrated machine varian
 | [Techniques](Technique%20Card%20Definitions.yaml) | Review status; no redesigned catalog is finalized |
 | [Events](Event%20Rules%20Implementation%20Tasks.md) | Compatibility decisions and technical constraints |
 | [Development guidelines](Full%20Game%20Development%20Guidelines.md) | Production quality policy |
+| [Sound style](Sound%20Style.md) | Selected Charged Cabinet effects palette, timing, event vocabulary, mix hierarchy and authoring contracts |
 
 The GDD takes precedence over code, serialized content, screenshots and historical approvals for shared gameplay rules. Editable game definitions own individual species content within those rules. Supplements must not indirectly finalize an open GDD decision. Existing filenames and code identifiers remain stable; the player-facing working title is Deepwater.
 

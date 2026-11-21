@@ -1,0 +1,13 @@
+{
+    "duration": 0.6399999856948853,
+    "note": "Frozen runtime cue schedule and rendered mix; not a device loopback recording.",
+    "events": [
+        {
+            "t": 0.0,
+            "pitch": 1.0,
+            "gain": 0.19952623546123506,
+            "kind": "Miss",
+            "file": "Assets/Audio/Deepwater/Miss_1.wav"
+        }
+    ]
+}

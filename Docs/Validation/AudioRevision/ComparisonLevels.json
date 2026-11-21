@@ -1,0 +1,65 @@
+{
+  "current": {
+    "raw": {
+      "lufs": -24.81,
+      "truePeak": -10.38
+    },
+    "comparisonTrimDb": 0.00999999999999801,
+    "final": {
+      "Ordinary": {
+        "lufs": -26.66,
+        "truePeak": -12.6
+      },
+      "Strong": {
+        "lufs": -25.88,
+        "truePeak": -11.06
+      },
+      "Exceptional": {
+        "lufs": -24.79,
+        "truePeak": -10.37
+      }
+    }
+  },
+  "charged": {
+    "raw": {
+      "lufs": -32.34,
+      "truePeak": -13.98
+    },
+    "comparisonTrimDb": 7.540000000000003,
+    "final": {
+      "Ordinary": {
+        "lufs": -29.5,
+        "truePeak": -9.12
+      },
+      "Strong": {
+        "lufs": -25.3,
+        "truePeak": -8.91
+      },
+      "Exceptional": {
+        "lufs": -24.79,
+        "truePeak": -6.44
+      }
+    }
+  },
+  "playful": {
+    "raw": {
+      "lufs": -30.3,
+      "truePeak": -13.17
+    },
+    "comparisonTrimDb": 5.5,
+    "final": {
+      "Ordinary": {
+        "lufs": -28.66,
+        "truePeak": -9.2
+      },
+      "Strong": {
+        "lufs": -25.87,
+        "truePeak": -9.2
+      },
+      "Exceptional": {
+        "lufs": -24.8,
+        "truePeak": -7.67
+      }
+    }
+  }
+}

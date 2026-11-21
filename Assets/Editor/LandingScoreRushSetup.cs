@@ -91,7 +91,7 @@ public static class LandingScoreRushSetup
         labels.GetArrayElementAtIndex(0).objectReferenceValue = stage.Find("PointsCaption").GetComponent<TMP_Text>();
         labels.GetArrayElementAtIndex(1).objectReferenceValue = stage.Find("ResistanceCaption").GetComponent<TMP_Text>();
         data.ApplyModifiedPropertiesWithoutUndo();
-        LandingMechanicalAudioSetup.Configure(data);
+        DeepwaterAudioSetup.ConfigureLanding(host.gameObject);
     }
 
     /// <summary>Creates deterministic original PCM cues once and routes them through a dedicated authored mixer.</summary>

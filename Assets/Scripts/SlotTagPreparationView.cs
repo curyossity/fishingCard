@@ -12,6 +12,7 @@ public sealed class SlotTagPreparationView : MonoBehaviour, UnityEngine.EventSys
     [SerializeField] private UnityEngine.UI.Button confirm, cancel;
     [SerializeField] private CanvasGroup blockedHarborContent;
     [SerializeField] private TackleTagPreparationPresentation artwork;
+    [SerializeField] private DeepwaterSoundPlayer sound;
     private bool previousInteractable, previousRaycasts;
     private bool inputBlocked;
     private readonly List<string> draft = new List<string>();
@@ -72,8 +73,8 @@ public sealed class SlotTagPreparationView : MonoBehaviour, UnityEngine.EventSys
     /// <summary>Updates only a local four-tag preparation draft.</summary>
     private void Toggle(string tag)
     {
-        if (draft.Contains(tag)) draft.Remove(tag);
-        else if (draft.Count < 4) draft.Add(tag);
+        if (draft.Contains(tag)) { draft.Remove(tag); if(sound!=null)sound.Play(DeepwaterSoundCue.TagDeselect); }
+        else if (draft.Count < 4) { draft.Add(tag); if(sound!=null)sound.Play(DeepwaterSoundCue.TagSelect); }
         Refresh();
     }
 

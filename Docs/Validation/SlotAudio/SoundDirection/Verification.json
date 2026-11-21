@@ -1,0 +1,121 @@
+{
+  "status": "review-only; not installed; not auditioned by agent",
+  "material": "original procedural synthesis; no reference-game recordings",
+  "previews": [
+    {
+      "file": "Ordinary.wav",
+      "duration": 2.3,
+      "samplePeakDbfs": -9.32,
+      "rmsDbfs": -26.06,
+      "events": [
+        {
+          "at": 0,
+          "event": "launch"
+        },
+        {
+          "at": 1.05,
+          "event": "reel-stop",
+          "wheel": 0
+        },
+        {
+          "at": 1.2,
+          "event": "reel-stop",
+          "wheel": 1
+        },
+        {
+          "at": 1.35,
+          "event": "reel-stop",
+          "wheel": 2
+        }
+      ]
+    },
+    {
+      "file": "Pair.wav",
+      "duration": 2.3,
+      "samplePeakDbfs": -9.32,
+      "rmsDbfs": -24.77,
+      "events": [
+        {
+          "at": 0,
+          "event": "launch"
+        },
+        {
+          "at": 1.05,
+          "event": "reel-stop",
+          "wheel": 0
+        },
+        {
+          "at": 1.2,
+          "event": "reel-stop",
+          "wheel": 1
+        },
+        {
+          "at": 1.35,
+          "event": "reel-stop",
+          "wheel": 2
+        },
+        {
+          "at": 1.405,
+          "event": "pair-accent"
+        }
+      ]
+    },
+    {
+      "file": "Triple.wav",
+      "duration": 2.3,
+      "samplePeakDbfs": -6.46,
+      "rmsDbfs": -23.1,
+      "events": [
+        {
+          "at": 0,
+          "event": "launch"
+        },
+        {
+          "at": 1.05,
+          "event": "reel-stop",
+          "wheel": 0
+        },
+        {
+          "at": 1.2,
+          "event": "reel-stop",
+          "wheel": 1
+        },
+        {
+          "at": 1.35,
+          "event": "reel-stop",
+          "wheel": 2
+        },
+        {
+          "at": 1.405,
+          "event": "triple-accent"
+        }
+      ]
+    },
+    {
+      "file": "Locked-Respin.wav",
+      "duration": 2.3,
+      "samplePeakDbfs": -9.58,
+      "rmsDbfs": -25.63,
+      "events": [
+        {
+          "at": 0,
+          "event": "launch"
+        },
+        {
+          "at": 1.05,
+          "event": "reel-stop",
+          "wheel": 0
+        },
+        {
+          "at": 1.2,
+          "event": "reel-stop",
+          "wheel": 2
+        },
+        {
+          "at": 1.255,
+          "event": "pair-accent"
+        }
+      ]
+    }
+  ]
+}

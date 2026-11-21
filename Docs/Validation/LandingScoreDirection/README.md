@@ -1,5 +1,7 @@
 # Scoring direction: anticipation, chain and release
 
+The visual presentation remains documented here. Its original sound set is superseded by the selected [Charged Cabinet direction](../ChargedCabinet/README.md) and [Sound Style](../../Sound%20Style.md).
+
 Implemented 20 November 2026, using game-feel, audio-design, uGUI and Unity C# skills. This change applies to the restored master scoring presentation and preserves the independent insertion-tray glow work.
 
 ## Delivered

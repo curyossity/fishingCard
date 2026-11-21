@@ -1,1 +1,29 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Deepwater — Slot sounds</title><style>body{background:#111b17;color:#e9dcb1;font:16px system-ui;max-width:700px;margin:40px auto;padding:20px}h1{font-size:24px}section{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #435044;padding:12px 0}audio{max-width:65%}p{line-height:1.5}</style><h1>Deepwater — Slot sounds</h1><p>Individual cues. In-game playback mixes these at quieter levels and synchronizes them with the reels.</p><main></main><script>const cues={start:'Launch clack',roll:'Rolling texture',tick:'Reel tick',stop:'Reel stop',latch:'Lock',unlatch:'Unlock',pair:'Pair result',triple:'Triple result'};for(const [file,title] of Object.entries(cues)){const row=document.createElement('section'),label=document.createElement('span'),audio=document.createElement('audio');label.textContent=title;audio.controls=true;audio.preload='none';audio.src='../../../Assets/UIThemes/TackleApparatus/Audio/Discover/'+file+'.wav';row.append(label,audio);document.querySelector('main').append(row);audio.onplay=()=>document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause()})}</script></html>
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deepwater — Slot sounds</title>
+<style>
+body{background:#111b17;color:#e9dcb1;font:16px system-ui;max-width:700px;margin:40px auto;padding:20px}
+h1{font-size:24px}section{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #435044;padding:12px 0}
+audio{max-width:65%}p{line-height:1.5}select{padding:8px;background:#21352c;color:#e9dcb1;border:1px solid #61705e;font:inherit}
+</style>
+<h1>Deepwater — Slot sounds</h1>
+<p>Individual cues. In-game playback mixes these at quieter levels and synchronizes them with the reels.</p>
+<label for="set">Sound set </label>
+<select id="set"><option value="Foley/">Current — recorded mechanisms</option><option value="">Previous — synthesized</option></select>
+<main></main>
+<p>Recorded sources: <a href="RecordedFoley/README.md">credits and edit details</a>.</p>
+<script>
+const cues={start:'Launch clack',roll:'Rolling texture',tick:'Reel tick',stop:'Reel stop',latch:'Lock',unlatch:'Unlock',pair:'Pair result',triple:'Triple result'};
+const base='../../../Assets/UIThemes/TackleApparatus/Audio/Discover/';
+const selector=document.querySelector('#set');
+for(const [file,title] of Object.entries(cues)){
+  const row=document.createElement('section'),label=document.createElement('span'),audio=document.createElement('audio');
+  label.textContent=title;audio.controls=true;audio.preload='none';audio.dataset.cue=file;audio.src=base+selector.value+file+'.wav';
+  row.append(label,audio);document.querySelector('main').append(row);
+  audio.onplay=()=>document.querySelectorAll('audio').forEach(other=>{if(other!==audio)other.pause()});
+}
+selector.onchange=()=>document.querySelectorAll('audio').forEach(audio=>{audio.pause();audio.src=base+selector.value+audio.dataset.cue+'.wav';audio.load()});
+</script>
+</html>

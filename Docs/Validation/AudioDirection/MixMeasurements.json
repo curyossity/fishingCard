@@ -1,0 +1,89 @@
+{
+  "note": "Meter readings of final unnormalized review mixes; no claim of human listening or device-loopback capture.",
+  "measurements": [
+    {
+      "name": "RuntimeMiss",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "1.140 s, -43.1 LUFS integrated, true peak -23.5 dBTP, noise floor -200.0 dBFS, brightness 0.8 kHz, bandwidth 10.2 kHz, attack 104 ms, decay 33 ms. 88.0% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"1.140 s, -43.1 LUFS integrated, true peak -23.5 dBTP, noise floor -200.0 dBFS, brightness 0.8 kHz, bandwidth 10.2 kHz, attack 104 ms, decay 33 ms. 88.0% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 1.14, \"peak_dbfs\": -23.5, \"true_peak_dbtp\": -23.5, \"rms_dbfs\": -48.6, \"lufs\": -43.1, \"clipped_samples\": 0, \"dc\": -0.0, \"noise_floor_dbfs\": -200.0, \"dynamic_range_db\": 164.1, \"digital_silence_frac\": 0.88, \"side_to_mid_db\": null, \"correlation\": 1.0, \"attack_at\": 0.001, \"peak_at\": 0.102, \"attack_ms\": 104.0, \"decay_ms\": 33.0, \"centroid_hz\": 863, \"rolloff95_hz\": 3926, \"bands_db\": {\"sub\": -24.8, \"low\": -1.8, \"lowmid\": -11.3, \"mid\": -6.8, \"presence\": -13.3, \"air\": -30.2, \"top\": -66.3}, \"bandwidth_hz\": 10240, \"flatness\": 0.0001, \"brightness_hz\": 812, \"tonal_peak_ratio_db\": 87.3}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "name": "RuntimeOrdinary",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "1.140 s, -27.6 LUFS integrated, true peak -14.8 dBTP, noise floor -200.0 dBFS, brightness 0.6 kHz, bandwidth 4.1 kHz, attack 98 ms, decay 391 ms. 56.2% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"1.140 s, -27.6 LUFS integrated, true peak -14.8 dBTP, noise floor -200.0 dBFS, brightness 0.6 kHz, bandwidth 4.1 kHz, attack 98 ms, decay 391 ms. 56.2% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 1.14, \"peak_dbfs\": -14.8, \"true_peak_dbtp\": -14.8, \"rms_dbfs\": -31.9, \"lufs\": -27.6, \"clipped_samples\": 0, \"dc\": -0.0, \"noise_floor_dbfs\": -200.0, \"dynamic_range_db\": 179.7, \"digital_silence_frac\": 0.562, \"side_to_mid_db\": null, \"correlation\": 1.0, \"attack_at\": 0.011, \"peak_at\": 0.112, \"attack_ms\": 98.0, \"decay_ms\": 391.0, \"centroid_hz\": 244, \"rolloff95_hz\": 871, \"bands_db\": {\"sub\": -63.2, \"low\": -2.1, \"lowmid\": -4.2, \"mid\": -22.6, \"presence\": -54.1, \"air\": -69.3, \"top\": -76.4}, \"bandwidth_hz\": 4063, \"flatness\": 0.0, \"brightness_hz\": 571, \"tonal_peak_ratio_db\": 101.1}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "name": "RuntimeStrong",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "2.561 s, -25.9 LUFS integrated, true peak -11.1 dBTP, noise floor -200.0 dBFS, brightness 0.8 kHz, bandwidth 8.1 kHz, attack 79 ms, decay 247 ms. 32.4% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"2.561 s, -25.9 LUFS integrated, true peak -11.1 dBTP, noise floor -200.0 dBFS, brightness 0.8 kHz, bandwidth 8.1 kHz, attack 79 ms, decay 247 ms. 32.4% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 2.561, \"peak_dbfs\": -11.1, \"true_peak_dbtp\": -11.1, \"rms_dbfs\": -29.2, \"lufs\": -25.9, \"clipped_samples\": 0, \"dc\": 0.0, \"noise_floor_dbfs\": -200.0, \"dynamic_range_db\": 181.1, \"digital_silence_frac\": 0.3237, \"side_to_mid_db\": null, \"correlation\": 1.0, \"attack_at\": 0.013, \"peak_at\": 0.811, \"attack_ms\": 79.0, \"decay_ms\": 247.0, \"centroid_hz\": 424, \"rolloff95_hz\": 875, \"bands_db\": {\"sub\": -23.7, \"low\": -8.1, \"lowmid\": -0.9, \"mid\": -15.1, \"presence\": -36.2, \"air\": -49.7, \"top\": -72.6}, \"bandwidth_hz\": 8127, \"flatness\": 0.0, \"brightness_hz\": 778, \"tonal_peak_ratio_db\": 81.3}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "name": "RuntimeExceptional",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "2.895 s, -24.8 LUFS integrated, true peak -10.4 dBTP, noise floor -200.0 dBFS, brightness 0.8 kHz, bandwidth 8.1 kHz, attack 79 ms, decay 246 ms. 29.9% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"2.895 s, -24.8 LUFS integrated, true peak -10.4 dBTP, noise floor -200.0 dBFS, brightness 0.8 kHz, bandwidth 8.1 kHz, attack 79 ms, decay 246 ms. 29.9% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 2.895, \"peak_dbfs\": -10.4, \"true_peak_dbtp\": -10.4, \"rms_dbfs\": -27.9, \"lufs\": -24.8, \"clipped_samples\": 0, \"dc\": 0.0, \"noise_floor_dbfs\": -200.0, \"dynamic_range_db\": 181.7, \"digital_silence_frac\": 0.2988, \"side_to_mid_db\": null, \"correlation\": 1.0, \"attack_at\": 0.013, \"peak_at\": 0.811, \"attack_ms\": 79.0, \"decay_ms\": 246.0, \"centroid_hz\": 455, \"rolloff95_hz\": 877, \"bands_db\": {\"sub\": -20.6, \"low\": -8.3, \"lowmid\": -0.9, \"mid\": -15.2, \"presence\": -32.7, \"air\": -52.2, \"top\": -74.8}, \"bandwidth_hz\": 8127, \"flatness\": 0.0, \"brightness_hz\": 804, \"tonal_peak_ratio_db\": 86.7}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "name": "DiscoverOrdinary",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "1.950 s, -30.6 LUFS integrated, true peak -16.8 dBTP, noise floor -200.0 dBFS, brightness 2.0 kHz, bandwidth 16.3 kHz, attack 14 ms, decay 233 ms. 21.8% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"1.950 s, -30.6 LUFS integrated, true peak -16.8 dBTP, noise floor -200.0 dBFS, brightness 2.0 kHz, bandwidth 16.3 kHz, attack 14 ms, decay 233 ms. 21.8% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 1.95, \"peak_dbfs\": -16.8, \"true_peak_dbtp\": -16.8, \"rms_dbfs\": -34.7, \"lufs\": -30.6, \"clipped_samples\": 0, \"dc\": -1e-05, \"noise_floor_dbfs\": -200.0, \"dynamic_range_db\": 174.8, \"digital_silence_frac\": 0.2184, \"side_to_mid_db\": -23.4, \"correlation\": 0.991, \"attack_at\": 0.003, \"peak_at\": 0.071, \"attack_ms\": 14.0, \"decay_ms\": 233.0, \"centroid_hz\": 1475, \"rolloff95_hz\": 5686, \"bands_db\": {\"sub\": -18.1, \"low\": -10.4, \"lowmid\": -2.3, \"mid\": -8.8, \"presence\": -7.8, \"air\": -22.9, \"top\": -54.9}, \"bandwidth_hz\": 16254, \"flatness\": 0.001, \"brightness_hz\": 2007, \"tonal_peak_ratio_db\": 59.2}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "name": "DiscoverTriple",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "2.100 s, -29.4 LUFS integrated, true peak -16.8 dBTP, noise floor -68.9 dBFS, brightness 1.6 kHz, bandwidth 12.9 kHz, attack 14 ms, decay 233 ms. 8.4% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"2.100 s, -29.4 LUFS integrated, true peak -16.8 dBTP, noise floor -68.9 dBFS, brightness 1.6 kHz, bandwidth 12.9 kHz, attack 14 ms, decay 233 ms. 8.4% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 2.1, \"peak_dbfs\": -16.8, \"true_peak_dbtp\": -16.8, \"rms_dbfs\": -33.1, \"lufs\": -29.4, \"clipped_samples\": 0, \"dc\": -2e-05, \"noise_floor_dbfs\": -68.9, \"dynamic_range_db\": 43.7, \"digital_silence_frac\": 0.0837, \"side_to_mid_db\": -25.3, \"correlation\": 0.994, \"attack_at\": 0.003, \"peak_at\": 0.071, \"attack_ms\": 14.0, \"decay_ms\": 233.0, \"centroid_hz\": 487, \"rolloff95_hz\": 1222, \"bands_db\": {\"sub\": -21.3, \"low\": -6.2, \"lowmid\": -1.6, \"mid\": -12.4, \"presence\": -20.5, \"air\": -36.6, \"top\": -68.8}, \"bandwidth_hz\": 12901, \"flatness\": 0.0001, \"brightness_hz\": 1646, \"tonal_peak_ratio_db\": 71.3}"
+          }
+        ],
+        "isError": false
+      }
+    },
+    {
+      "name": "BuildAndUpgrade",
+      "result": {
+        "content": [
+          {
+            "type": "text",
+            "text": "2.800 s, -33.6 LUFS integrated, true peak -18.7 dBTP, noise floor -200.0 dBFS, brightness 1.2 kHz, bandwidth 10.2 kHz, attack 17 ms, decay 503 ms. 59.5% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\n\nJSON: {\"summary\": \"2.800 s, -33.6 LUFS integrated, true peak -18.7 dBTP, noise floor -200.0 dBFS, brightness 1.2 kHz, bandwidth 10.2 kHz, attack 17 ms, decay 503 ms. 59.5% exact digital zeros (usually edit, fade or gate padding; weak evidence on its own: use realness to judge real vs synthesized).\", \"duration\": 2.8, \"peak_dbfs\": -18.7, \"true_peak_dbtp\": -18.7, \"rms_dbfs\": -39.3, \"lufs\": -33.6, \"clipped_samples\": 0, \"dc\": -1e-05, \"noise_floor_dbfs\": -200.0, \"dynamic_range_db\": 173.2, \"digital_silence_frac\": 0.5946, \"side_to_mid_db\": null, \"correlation\": 1.0, \"attack_at\": 0.0, \"peak_at\": 2.014, \"attack_ms\": 17.0, \"decay_ms\": 503.0, \"centroid_hz\": 477, \"rolloff95_hz\": 1052, \"bands_db\": {\"sub\": -28.5, \"low\": -6.7, \"lowmid\": -1.4, \"mid\": -13.1, \"presence\": -23.1, \"air\": -37.0, \"top\": -71.6}, \"bandwidth_hz\": 10240, \"flatness\": 0.0001, \"brightness_hz\": 1175, \"tonal_peak_ratio_db\": 71.2}"
+          }
+        ],
+        "isError": false
+      }
+    }
+  ]
+}

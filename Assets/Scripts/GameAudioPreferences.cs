@@ -5,6 +5,11 @@ public static class GameAudioPreferences
 {
     private const string SoundKey = "Deepwater.Landing.Sound";
     public static bool SoundEnabled => PlayerPrefs.GetInt(SoundKey, 1) != 0;
+    public static event System.Action<bool> SoundChanged;
     /// <summary>Persists only an explicit sound-setting change.</summary>
-    public static void SetSoundEnabled(bool value) { PlayerPrefs.SetInt(SoundKey, value ? 1 : 0); PlayerPrefs.Save(); }
+    public static void SetSoundEnabled(bool value)
+    {
+        if (SoundEnabled == value) return;
+        PlayerPrefs.SetInt(SoundKey, value ? 1 : 0); PlayerPrefs.Save(); SoundChanged?.Invoke(value);
+    }
 }

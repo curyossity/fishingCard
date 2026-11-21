@@ -1,0 +1,27 @@
+{
+    "duration": 0.6399999856948853,
+    "note": "Frozen runtime cue schedule and rendered mix; not a device loopback recording.",
+    "events": [
+        {
+            "t": 0.0,
+            "pitch": 1.0,
+            "gain": 0.25118863582611086,
+            "kind": "Strike",
+            "file": "Assets/Audio/Deepwater/Strike_1.wav"
+        },
+        {
+            "t": 0.07599999755620957,
+            "pitch": 1.0,
+            "gain": 0.3162277638912201,
+            "kind": "Good",
+            "file": "Assets/Audio/Deepwater/Good_1.wav"
+        },
+        {
+            "t": 0.2800000011920929,
+            "pitch": 1.0,
+            "gain": 0.25118863582611086,
+            "kind": "PayoutSmall",
+            "file": "Assets/Audio/Deepwater/PayoutSmall_1.wav"
+        }
+    ]
+}

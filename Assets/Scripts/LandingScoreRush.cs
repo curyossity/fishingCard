@@ -8,6 +8,7 @@ using UnityEngine;
 /// <summary>Stages a frozen strike into a growing readout, source kicks, musical steps and a progress payout.</summary>
 public sealed class LandingScoreRush : MonoBehaviour
 {
+    [SerializeField] private DeepwaterSoundPlayer sound;
     [SerializeField] private CanvasGroup readout;
     [SerializeField] private TMP_Text value, operation, caption;
     [SerializeField] private TMP_Text[] coveredLabels;
@@ -16,17 +17,17 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
-    [SerializeField] private AudioSource[] voices;
-    [SerializeField] private AudioClip hit, addition, multiplier, payoutSmall, payoutBig, miss;
-    [SerializeField] private AudioClip windup;
+    // Serialized aliases retain older prefab/review compatibility; SoundEvents select active takes from the library.
+    [SerializeField, HideInInspector] private AudioSource[] voices;
+    [SerializeField, HideInInspector] private AudioClip hit, addition, multiplier, payoutSmall, payoutBig, miss;
+    [SerializeField, HideInInspector] private AudioClip windup;
     [SerializeField] private UnityEngine.UI.Toggle soundToggle, reducedMotionToggle;
-    [SerializeField, Range(0, 1)] private float soundVolume = .55f;
     private const string MotionKey = "Deepwater.Landing.ReducedMotion";
     private LandingStrikeReceipt receipt;
     private LandingScoreSequence sequence;
     private IReadOnlyList<TackleRigCardView> cards = Array.Empty<TackleRigCardView>();
-    private double started;
-    private int lastStep = -1, lastImpact = -1, voice;
+    private double started, dspStarted;
+    private int lastStep = -1, lastImpact = -1;
     private bool paid, running;
     private Vector2 machineRest;
     private Vector3 totalRest;
@@ -37,8 +38,9 @@ public sealed class LandingScoreRush : MonoBehaviour
     {
         public readonly float Time, Pitch, Gain;
         public readonly AudioClip Clip;
+        public readonly DeepwaterSoundCue Cue;
         /// <summary>Freezes one sound's timing and mix for runtime playback and reproducible review exports.</summary>
-        public SoundEvent(float time, AudioClip clip, float pitch, float gain) { Time = time; Clip = clip; Pitch = pitch; Gain = gain; }
+        public SoundEvent(float time, AudioClip clip, float pitch, float gain, DeepwaterSoundCue cue = DeepwaterSoundCue.Addition) { Time = time; Clip = clip; Pitch = pitch; Gain = gain; Cue = cue; }
     }
     private readonly List<SoundEvent> soundEvents = new List<SoundEvent>();
     private int soundCursor;
@@ -73,17 +75,27 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (ReferenceEquals(receipt, strike)) return;
         Finish(); receipt = strike; cards = rigCards ?? Array.Empty<TackleRigCardView>();
         if (strike?.Score == null || !animate) return;
+        sound.StopAll();
         scoringPortrait.CaptureEncounter();
-        sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble;
+        sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble; dspStarted = AudioSettings.dspTime;
         soundEvents.Clear(); soundCursor = 0;
+        bool missed = strike.Score.Accuracy == LandingAccuracy.Miss;
+        AddSound(0, missed ? DeepwaterSoundCue.Miss : DeepwaterSoundCue.Strike);
         for (int i = 0; i < sequence.Steps.Count; i++)
         {
             var item = sequence.Steps[i];
-            if (i > 0 && item.Multiply) soundEvents.Add(new SoundEvent(item.LaunchAt, windup, 1, .24f));
-            soundEvents.Add(new SoundEvent(item.ImpactAt, i == 0 ? (strike.Score.Points == 0 ? miss : hit) : item.Multiply ? multiplier : addition,
-                LandingScoreSequence.NotePitch(i), i == 0 ? .6f : .48f + sequence.Intensity * .18f));
+            if (i == 0)
+            {
+                if (!missed) AddSound(item.ImpactAt, strike.Score.Accuracy == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good);
+                continue;
+            }
+            float flight = item.ImpactAt - item.LaunchAt;
+            float travelPitch = Mathf.Clamp(sound.Library.Find(DeepwaterSoundCue.Travel).Takes[0].length / flight, .5f, 2);
+            AddSound(item.LaunchAt, DeepwaterSoundCue.Travel, travelPitch);
+            var impactCue = item.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition;
+            AddSound(item.ImpactAt, impactCue, LandingScoreSequence.NotePitch(i - 1), sequence.Intensity * sound.CueIntensityGainDb(impactCue));
         }
-        soundEvents.Add(new SoundEvent(sequence.PayoutAt, strike.Score.Points == 0 ? miss : sequence.Tier == 2 ? payoutBig : payoutSmall, 1, .65f + sequence.Intensity * .20f));
+        if (strike.Score.Points > 0) AddSound(sequence.PayoutAt, sequence.Tier == 2 ? DeepwaterSoundCue.PayoutBig : sequence.Tier == 1 ? DeepwaterSoundCue.PayoutMedium : DeepwaterSoundCue.PayoutSmall);
         soundEvents.Sort((a,b) => a.Time.CompareTo(b.Time));
         lastStep = lastImpact = -1; paid = false; running = true; DisplayedTotal = strike.PointsBefore;
         readout.gameObject.SetActive(true); readout.alpha = 1;
@@ -117,8 +129,13 @@ public sealed class LandingScoreRush : MonoBehaviour
                 kickScale = kicked.transform.localScale; kickRotation = kicked.transform.localRotation;
             }
         }
-        while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= elapsed)
-        { var sound = soundEvents[soundCursor++]; if (elapsed - sound.Time < .2f) Play(sound.Clip, sound.Pitch, sound.Gain); }
+        // Small look-ahead uses the audio clock for arrivals; a stalled frame never sprays overdue notes.
+        while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= elapsed + .10f)
+        {
+            var cue = soundEvents[soundCursor++];
+            if (elapsed - cue.Time < .08f && soundToggle.isOn)
+                sound.PlayFrozen(cue.Cue, cue.Clip, cue.Pitch, cue.Gain, dspStarted + cue.Time);
+        }
         int arrived = sequence.ImpactStepAt(elapsed);
         if (elapsed >= sequence.Steps[arrived].ImpactAt && arrived != lastImpact)
         {
@@ -158,24 +175,22 @@ public sealed class LandingScoreRush : MonoBehaviour
             ReducedMotion || !payout || sequence.Tier == 0 ? 0 : Mathf.Clamp01(payoutAge / .55f), sequence.Intensity,
             step.Multiply, ReducedMotion || impactAge < 0 || payout ? 0 : Mathf.Clamp01(impactAge / .18f));
     }
-    /// <summary>Uses pooled 2D voices routed to the authored feedback mixer, with bounded pitch and gain.</summary>
-    private void Play(AudioClip clip, float pitch, float gain)
+    /// <summary>Freezes the authored take and gain so runtime and review exports share one exact audio schedule.</summary>
+    private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
     {
-        if (!soundToggle.isOn || clip == null || voices.Length == 0) return;
-        var source = voices[voice++ % voices.Length]; source.Stop(); source.pitch = pitch; source.volume = soundVolume * gain;
-        source.clip = clip; source.Play();
+        soundEvents.Add(new SoundEvent(at, sound.Select(cue), sound.CuePitch(cue, pitch), sound.CueGain(cue, decibels), cue));
     }
     /// <summary>Restores a kicked card before moving to another source or leaving the phase.</summary>
     private void RestoreKick() { if (kicked != null) { kicked.transform.localScale = kickScale; kicked.transform.localRotation = kickRotation; } kicked = null; }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
     private void RestoreMotion() { RestoreKick(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
     /// <summary>Cancels pending voices without affecting any other game sound.</summary>
-    private void StopVoices() { if (voices != null) foreach (var source in voices) if (source != null) source.Stop(); }
+    private void StopVoices() { if (sound != null) sound.StopAll(); }
     /// <summary>Leaves no light, transform or sound behind when a score finishes or is interrupted.</summary>
     public void Finish()
     {
-        running = false; if (receipt != null) DisplayedTotal = receipt.PointsAfter;
-        RestoreMotion(); StopVoices();
+        bool wasRunning = running; running = false; if (receipt != null) DisplayedTotal = receipt.PointsAfter;
+        RestoreMotion(); if (wasRunning) StopVoices();
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }
         if (readout != null) readout.gameObject.SetActive(false);

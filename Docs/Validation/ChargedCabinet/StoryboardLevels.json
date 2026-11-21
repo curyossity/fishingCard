@@ -1,0 +1,14 @@
+{
+  "DiscoverOrdinary": {
+    "lufs": -27.65,
+    "truePeak": -10.8
+  },
+  "DiscoverTriple": {
+    "lufs": -25.68,
+    "truePeak": -9.37
+  },
+  "BuildAndUpgrade": {
+    "lufs": -31.06,
+    "truePeak": -10.22
+  }
+}

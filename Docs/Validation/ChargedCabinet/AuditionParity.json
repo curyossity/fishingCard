@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "direction": "charged",
+  "takes": 42,
+  "maximumEffectiveSampleError": 2.2540969322425858e-05,
+  "mixes": [
+    {
+      "tier": "Strong",
+      "installed": {
+        "lufs": -25.34,
+        "truePeak": -8.97
+      },
+      "audition": {
+        "lufs": -25.3,
+        "truePeak": -8.91
+      },
+      "loudnessDifferenceLu": -0.03999999999999915
+    },
+    {
+      "tier": "Exceptional",
+      "installed": {
+        "lufs": -24.97,
+        "truePeak": -6.45
+      },
+      "audition": {
+        "lufs": -24.79,
+        "truePeak": -6.44
+      },
+      "loudnessDifferenceLu": -0.17999999999999972
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "note": "Authored sound storyboard; actual runtime schedules are exported separately by Unity checks.",
+  "events": [
+    {
+      "time": 0,
+      "cue": "Strike",
+      "pitch": 1,
+      "gainDb": -12,
+      "pan": 0
+    },
+    {
+      "time": 0.076,
+      "cue": "Perfect",
+      "pitch": 1,
+      "gainDb": -8,
+      "pan": 0
+    },
+    {
+      "time": 0.267,
+      "cue": "Travel",
+      "pitch": 1,
+      "gainDb": -22,
+      "pan": -0.1
+    },
+    {
+      "time": 0.4004,
+      "cue": "Addition",
+      "pitch": 1.0,
+      "gainDb": -10,
+      "pan": 0
+    },
+    {
+      "time": 0.5569999999999999,
+      "cue": "Travel",
+      "pitch": 1,
+      "gainDb": -22,
+      "pan": -0.1
+    },
+    {
+      "time": 0.6903999999999999,
+      "cue": "Addition",
+      "pitch": 1.189207115002721,
+      "gainDb": -10,
+      "pan": 0
+    },
+    {
+      "time": 0.847,
+      "cue": "Travel",
+      "pitch": 1,
+      "gainDb": -22,
+      "pan": -0.1
+    },
+    {
+      "time": 0.9803999999999999,
+      "cue": "Addition",
+      "pitch": 1.3348398541700344,
+      "gainDb": -10,
+      "pan": 0
+    },
+    {
+      "time": 1.161,
+      "cue": "Travel",
+      "pitch": 1,
+      "gainDb": -22,
+      "pan": -0.1
+    },
+    {
+      "time": 1.3312,
+      "cue": "Multiplier",
+      "pitch": 1.4983070768766815,
+      "gainDb": -8,
+      "pan": 0
+    },
+    {
+      "time": 1.531,
+      "cue": "Travel",
+      "pitch": 1,
+      "gainDb": -22,
+      "pan": -0.1
+    },
+    {
+      "time": 1.7012,
+      "cue": "Multiplier",
+      "pitch": 1.7817974362806785,
+      "gainDb": -8,
+      "pan": 0
+    },
+    {
+      "time": 1.901,
+      "cue": "Travel",
+      "pitch": 1,
+      "gainDb": -22,
+      "pan": -0.1
+    },
+    {
+      "time": 2.0712,
+      "cue": "Multiplier",
+      "pitch": 2.0,
+      "gainDb": -8,
+      "pan": 0
+    },
+    {
+      "time": 2.45,
+      "cue": "PayoutBig",
+      "pitch": 1,
+      "gainDb": -6,
+      "pan": 0
+    }
+  ]
+}

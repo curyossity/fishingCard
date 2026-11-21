@@ -1,5 +1,7 @@
 # Discover slot-machine audio
 
+Superseded by the selected [Charged Cabinet direction](../ChargedCabinet/README.md) and [active sound style](../../Sound%20Style.md). The original synthesized set, [recorded ratchet/wood/metal/bell edits](RecordedFoley/README.md) and [rejected acoustic set](../AudioDirection/README.md) are historical audition records.
+
 Implemented 20 November 2026 using audio-design, game-feel and Unity C# guidance. Build/Upgrade improvements were reviewed as proposals only; this change installs no phase-three behavior.
 
 ## Delivered

@@ -1,0 +1,73 @@
+{
+  "assetChecks": 36,
+  "liveAudioChecks": 21,
+  "unityErrors": 0,
+  "cues": {
+    "latch": {
+      "duration": 0.24,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -23.15,
+      "sha256": "2223c555370b1f09a89aaae11667572dc3b87ebb5f4dd0146fc1d5f610c3c8d1",
+      "zeroBoundarySamples": true
+    },
+    "pair": {
+      "duration": 0.34,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -20.08,
+      "sha256": "9c049c52855d2b1a93135c02bf0c75773ee41e87bbe0f55a467c1635191d0a58",
+      "zeroBoundarySamples": true
+    },
+    "roll": {
+      "duration": 0.6,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -26.27,
+      "sha256": "2f6883c2a0e15502c6b9df97ada4593c4ba87532306727bc83427a4c4c25fb6c",
+      "zeroBoundarySamples": true
+    },
+    "start": {
+      "duration": 0.24,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -20.6,
+      "sha256": "1c329f63590863771ca8a4eb837c373b876085952391546f2d1b86596cf91b05",
+      "zeroBoundarySamples": true
+    },
+    "stop": {
+      "duration": 0.24,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -21.29,
+      "sha256": "d0b11dcc35acca03305127ad4a77fd283e309c95cf964fed27ffc6d36b39495e",
+      "zeroBoundarySamples": true
+    },
+    "tick": {
+      "duration": 0.055,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -29.22,
+      "sha256": "1f4cab98e9ca1a18a7dec34353c91396aa45b57605c50266398a0ab752fb3b1e",
+      "zeroBoundarySamples": true
+    },
+    "triple": {
+      "duration": 0.52,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -20.64,
+      "sha256": "067433c3912e81200c7659c8ad31e5d38e61b40613f3ea0779da42ef2af8dc8d",
+      "zeroBoundarySamples": true
+    },
+    "unlatch": {
+      "duration": 0.24,
+      "samplePeakDbfs": -4.15,
+      "rmsDbfs": -23.09,
+      "sha256": "9d496e1e50f0642cf68e988a27c84a0e9c7749f08f96eb5e3430716e8c6f49a9",
+      "zeroBoundarySamples": true
+    }
+  },
+  "sources": {
+    "impactBell_heavy_000.ogg": "94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f",
+    "impactMetal_light_002.ogg": "25a96f90a9a1f88a531e824e126f0519504625e5635e65a72e4f31611428db29",
+    "impactMetal_medium_001.ogg": "e8a9eaba7c4d27422e4eeb3e6c7100d5d7dc0f83e005efc98c960adcc5265337",
+    "impactWood_light_000.ogg": "eb45e35b4bed784d3f120de4afec4b0d6ac09d9e143cce8cfcb7d739e1b1f3c3",
+    "impactWood_medium_001.ogg": "15271dbe8e2872dbb0ff1aeb7b12b2d2b92b7c1951c88532b9ab9158c36dfc73",
+    "romulofs-ratchet-127533.mp3": "72e6c6e7e14fd1f44d87970538cdeca6586a84e4fd49892149ec5ef99eaa6b78",
+    "rotteveel-fast-ratchet-591529.mp3": "f48e30564911c14252dd112e2f73924317af1b769b6a79100b566c8a528610f0"
+  },
+  "legacyCuesUnchanged": true
+}

@@ -1,0 +1,281 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d718047d2820e24c821915810c80ebf, type: 3}
+  m_Name: DeepwaterSoundLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::DeepwaterSoundLibrary
+  cues:
+  - Cue: 0
+    Takes:
+    - {fileID: 8300000, guid: ddaf5f848f1e079448fc99bf3aa1223c, type: 3}
+    - {fileID: 8300000, guid: 8e85708a356edcd419978447a55f8e47, type: 3}
+    - {fileID: 8300000, guid: fbee0a156ce48ca4d8a370c0995e7190, type: 3}
+    GainDb: -12.267831
+    Bus: 0
+    Priority: 180
+    Cooldown: 0.07
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 1
+    Takes:
+    - {fileID: 8300000, guid: cd690d9ec44cd6445be1db4cb5fe1f06, type: 3}
+    - {fileID: 8300000, guid: cfef2e847575ff64eb69b67cb793596f, type: 3}
+    - {fileID: 8300000, guid: c69affc0699a1e24d8ca4a3f447fdf25, type: 3}
+    GainDb: -13.311658
+    Bus: 0
+    Priority: 180
+    Cooldown: 0.07
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 2
+    Takes:
+    - {fileID: 8300000, guid: 48e142e7627220d4bbb677629350fd03, type: 3}
+    - {fileID: 8300000, guid: c127f3a3c4feb894f8865e12e2b1ec20, type: 3}
+    - {fileID: 8300000, guid: 77d4d5f5f1f0ef649a5a9111128be3a4, type: 3}
+    GainDb: -12.333032
+    Bus: 0
+    Priority: 180
+    Cooldown: 0.075
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 5
+    Takes:
+    - {fileID: 8300000, guid: 4f52d602436fec84e94c6cdc746f0ae9, type: 3}
+    - {fileID: 8300000, guid: 184875aea7d0ca14382ea6b46bf7e989, type: 3}
+    - {fileID: 8300000, guid: a27c6518848ad3245926fceeac7564b7, type: 3}
+    GainDb: -23
+    Bus: 1
+    Priority: 220
+    Cooldown: 0.045
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 18
+    Takes:
+    - {fileID: 8300000, guid: 700a993703e5eb24b80ac123ca8ad867, type: 3}
+    - {fileID: 8300000, guid: bcdd74ff4286ffb49825d4c28828984f, type: 3}
+    - {fileID: 8300000, guid: 3c66fc968ff67d5489a40f946f85816f, type: 3}
+    GainDb: -7.36151
+    Bus: 2
+    Priority: 90
+    Cooldown: 0
+    PitchGrowth: 0.28
+    IntensityGainDb: 0
+  - Cue: 19
+    Takes:
+    - {fileID: 8300000, guid: 2a5845c731f1563438b2fe7d0c30c351, type: 3}
+    - {fileID: 8300000, guid: aa6e1268c8418284ba85474dcf00be25, type: 3}
+    - {fileID: 8300000, guid: a3591c531e9cff54bab8c5f749b80262, type: 3}
+    GainDb: -5.0534167
+    Bus: 2
+    Priority: 65
+    Cooldown: 0
+    PitchGrowth: 0.28
+    IntensityGainDb: 0
+  - Cue: 26
+    Takes:
+    - {fileID: 8300000, guid: 8730e86069b4cd44db295f2ca7dcd5e1, type: 3}
+    - {fileID: 8300000, guid: 856fc746dc1073248b407cb4ca80b09f, type: 3}
+    - {fileID: 8300000, guid: f27bc177361ebc44ab900047b9b6f30f, type: 3}
+    GainDb: -8.24277
+    Bus: 2
+    Priority: 70
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 3
+    Takes:
+    - {fileID: 8300000, guid: 58b991b3fc9c28e43af3274ac6a899eb, type: 3}
+    GainDb: -7.0196342
+    Bus: 1
+    Priority: 110
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 4
+    Takes:
+    - {fileID: 8300000, guid: 6775c9cf0a4767647841960bbc953ac3, type: 3}
+    GainDb: -23.075266
+    Bus: 1
+    Priority: 240
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 6
+    Takes:
+    - {fileID: 8300000, guid: a25c17f595967964192d8ac272371cb1, type: 3}
+    GainDb: -8.976847
+    Bus: 1
+    Priority: 100
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 7
+    Takes:
+    - {fileID: 8300000, guid: 718455fad3fdc1141a1454ca6725fafe, type: 3}
+    GainDb: -8.27188
+    Bus: 1
+    Priority: 100
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 8
+    Takes:
+    - {fileID: 8300000, guid: fe887f3d825bd1f43863f948d3516f46, type: 3}
+    GainDb: -8.212954
+    Bus: 1
+    Priority: 100
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 9
+    Takes:
+    - {fileID: 8300000, guid: 606be25cbb73bde43a366ab8ba7a3710, type: 3}
+    GainDb: -10.31133
+    Bus: 0
+    Priority: 160
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 10
+    Takes:
+    - {fileID: 8300000, guid: cde70af70b0d6194f981dffdb1bd0279, type: 3}
+    GainDb: -15
+    Bus: 0
+    Priority: 160
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 11
+    Takes:
+    - {fileID: 8300000, guid: 30876f474acd5924ebc8f716ed2e24c2, type: 3}
+    GainDb: -11.175225
+    Bus: 2
+    Priority: 80
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 12
+    Takes:
+    - {fileID: 8300000, guid: beacbd693a9499540afae540e0fcfe4f, type: 3}
+    GainDb: -5.626916
+    Bus: 2
+    Priority: 60
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 13
+    Takes:
+    - {fileID: 8300000, guid: f37e53b89cc1ffb4f93b18f48ddaa54f, type: 3}
+    GainDb: -12.270816
+    Bus: 0
+    Priority: 160
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 14
+    Takes:
+    - {fileID: 8300000, guid: 498f6bb9e9e727c4cbf417537dde803d, type: 3}
+    GainDb: -9.917175
+    Bus: 1
+    Priority: 100
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 15
+    Takes:
+    - {fileID: 8300000, guid: ace07b777290bd846bb095be5c9bfe91, type: 3}
+    GainDb: -10
+    Bus: 2
+    Priority: 80
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 16
+    Takes:
+    - {fileID: 8300000, guid: d9500a4ab3a314a469e98ea4e93c1c66, type: 3}
+    GainDb: -5.380494
+    Bus: 2
+    Priority: 65
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 17
+    Takes:
+    - {fileID: 8300000, guid: 0c95648b49a14fb46812c43143068d30, type: 3}
+    GainDb: -14
+    Bus: 1
+    Priority: 120
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 20
+    Takes:
+    - {fileID: 8300000, guid: cc12853557736c946a50090dddc0e2db, type: 3}
+    GainDb: -15.854352
+    Bus: 1
+    Priority: 200
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 21
+    Takes:
+    - {fileID: 8300000, guid: 72d001eb544b6ca4dbb5324b5872088a, type: 3}
+    GainDb: -12
+    Bus: 2
+    Priority: 60
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 22
+    Takes:
+    - {fileID: 8300000, guid: 7acf44294575a7943b2f681e5938a96c, type: 3}
+    GainDb: -5.626916
+    Bus: 2
+    Priority: 45
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 23
+    Takes:
+    - {fileID: 8300000, guid: 90458d71ab3c35d4f8ff28fef0fb5169, type: 3}
+    GainDb: -2.626916
+    Bus: 2
+    Priority: 35
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 24
+    Takes:
+    - {fileID: 8300000, guid: 60e52833914edba49b3211f9a75b4dfa, type: 3}
+    GainDb: -12.423852
+    Bus: 2
+    Priority: 50
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 25
+    Takes:
+    - {fileID: 8300000, guid: 70dbd06abc46fa043a73ae758fa43641, type: 3}
+    GainDb: -17.365526
+    Bus: 1
+    Priority: 200
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+  - Cue: 27
+    Takes:
+    - {fileID: 8300000, guid: 1b145e0988858014e841d610a63febd8, type: 3}
+    GainDb: -6.460535
+    Bus: 2
+    Priority: 50
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0

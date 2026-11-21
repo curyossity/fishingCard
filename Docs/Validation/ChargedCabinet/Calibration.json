@@ -1,0 +1,300 @@
+{
+  "passed": true,
+  "auditionTrimDb": 7.540000000000003,
+  "cues": [
+    {
+      "cue": "TagSelect",
+      "take": "TagSelect_1.wav",
+      "pcmGainDb": 5.807830956539249,
+      "voiceGainDb": -12.267830956539246,
+      "effectiveSampleError": 7.428486683902567e-06
+    },
+    {
+      "cue": "TagDeselect",
+      "take": "TagDeselect_1.wav",
+      "pcmGainDb": 5.8516581884211325,
+      "voiceGainDb": -13.31165818842113,
+      "effectiveSampleError": 6.580467252960398e-06
+    },
+    {
+      "cue": "Preview",
+      "take": "Preview_1.wav",
+      "pcmGainDb": 3.8730315612082133,
+      "voiceGainDb": -12.33303156120821,
+      "effectiveSampleError": 7.3690412006317905e-06
+    },
+    {
+      "cue": "SlotTick",
+      "take": "SlotTick_1.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -23.0,
+      "effectiveSampleError": 2.159365085966508e-06
+    },
+    {
+      "cue": "Addition",
+      "take": "Addition_1.wav",
+      "pcmGainDb": 4.901509957165704,
+      "voiceGainDb": -7.361509957165701,
+      "effectiveSampleError": 1.3074382160138676e-05
+    },
+    {
+      "cue": "Multiplier",
+      "take": "Multiplier_1.wav",
+      "pcmGainDb": 4.593416577785612,
+      "voiceGainDb": -5.053416577785609,
+      "effectiveSampleError": 1.7048914669562506e-05
+    },
+    {
+      "cue": "Attach",
+      "take": "Attach_1.wav",
+      "pcmGainDb": 5.782770435754955,
+      "voiceGainDb": -8.242770435754952,
+      "effectiveSampleError": 1.1807861283838483e-05
+    },
+    {
+      "cue": "TagSelect",
+      "take": "TagSelect_2.wav",
+      "pcmGainDb": 4.7039309781683745,
+      "voiceGainDb": -11.163930978168372,
+      "effectiveSampleError": 8.439367155116916e-06
+    },
+    {
+      "cue": "TagDeselect",
+      "take": "TagDeselect_2.wav",
+      "pcmGainDb": 5.8516581884211325,
+      "voiceGainDb": -13.31165818842113,
+      "effectiveSampleError": 6.580467252960398e-06
+    },
+    {
+      "cue": "Preview",
+      "take": "Preview_2.wav",
+      "pcmGainDb": 4.153522013075354,
+      "voiceGainDb": -12.61352201307535,
+      "effectiveSampleError": 7.142590675034838e-06
+    },
+    {
+      "cue": "SlotTick",
+      "take": "SlotTick_2.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -23.0,
+      "effectiveSampleError": 2.158020362811794e-06
+    },
+    {
+      "cue": "Addition",
+      "take": "Addition_2.wav",
+      "pcmGainDb": 2.898928032917309,
+      "voiceGainDb": -5.358928032917307,
+      "effectiveSampleError": 1.6464718688075086e-05
+    },
+    {
+      "cue": "Multiplier",
+      "take": "Multiplier_2.wav",
+      "pcmGainDb": 4.593416577785612,
+      "voiceGainDb": -5.053416577785609,
+      "effectiveSampleError": 1.7048914669562506e-05
+    },
+    {
+      "cue": "Attach",
+      "take": "Attach_2.wav",
+      "pcmGainDb": 4.950514727442734,
+      "voiceGainDb": -7.410514727442731,
+      "effectiveSampleError": 1.3002037647230624e-05
+    },
+    {
+      "cue": "TagSelect",
+      "take": "TagSelect_3.wav",
+      "pcmGainDb": 5.637875501693488,
+      "voiceGainDb": -12.097875501693485,
+      "effectiveSampleError": 7.578145145042958e-06
+    },
+    {
+      "cue": "TagDeselect",
+      "take": "TagDeselect_3.wav",
+      "pcmGainDb": 5.8516581884211325,
+      "voiceGainDb": -13.31165818842113,
+      "effectiveSampleError": 6.586607140091072e-06
+    },
+    {
+      "cue": "Preview",
+      "take": "Preview_3.wav",
+      "pcmGainDb": 3.029641905823554,
+      "voiceGainDb": -11.489641905823552,
+      "effectiveSampleError": 8.127631531066291e-06
+    },
+    {
+      "cue": "SlotTick",
+      "take": "SlotTick_3.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -23.0,
+      "effectiveSampleError": 2.158020362811794e-06
+    },
+    {
+      "cue": "Addition",
+      "take": "Addition_3.wav",
+      "pcmGainDb": 3.1474405585868794,
+      "voiceGainDb": -5.607440558586877,
+      "effectiveSampleError": 1.5997606436146325e-05
+    },
+    {
+      "cue": "Multiplier",
+      "take": "Multiplier_3.wav",
+      "pcmGainDb": 4.593416577785612,
+      "voiceGainDb": -5.053416577785609,
+      "effectiveSampleError": 1.7048914669562506e-05
+    },
+    {
+      "cue": "Attach",
+      "take": "Attach_3.wav",
+      "pcmGainDb": 5.712823059226335,
+      "voiceGainDb": -8.172823059226332,
+      "effectiveSampleError": 1.1906241388810745e-05
+    },
+    {
+      "cue": "SlotStart",
+      "take": "SlotStart_1.wav",
+      "pcmGainDb": 5.559634394498759,
+      "voiceGainDb": -7.019634394498756,
+      "effectiveSampleError": 1.3597137249479752e-05
+    },
+    {
+      "cue": "SlotRoll",
+      "take": "SlotRoll_1.wav",
+      "pcmGainDb": 4.615266110853946,
+      "voiceGainDb": -23.075266110853942,
+      "effectiveSampleError": 2.1408530411441e-06
+    },
+    {
+      "cue": "SlotStop1",
+      "take": "SlotStop1_1.wav",
+      "pcmGainDb": 6.516846707467549,
+      "voiceGainDb": -8.976846707467546,
+      "effectiveSampleError": 1.0852731007645472e-05
+    },
+    {
+      "cue": "SlotStop2",
+      "take": "SlotStop2_1.wav",
+      "pcmGainDb": 5.811879756145522,
+      "voiceGainDb": -8.27187975614552,
+      "effectiveSampleError": 1.1773955283372883e-05
+    },
+    {
+      "cue": "SlotStop3",
+      "take": "SlotStop3_1.wav",
+      "pcmGainDb": 5.752953834910889,
+      "voiceGainDb": -8.212953834910886,
+      "effectiveSampleError": 1.1849303903063713e-05
+    },
+    {
+      "cue": "SlotLock",
+      "take": "SlotLock_1.wav",
+      "pcmGainDb": 4.851329687398563,
+      "voiceGainDb": -10.31132968739856,
+      "effectiveSampleError": 9.302493375641652e-06
+    },
+    {
+      "cue": "SlotUnlock",
+      "take": "SlotUnlock_1.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -15.0,
+      "effectiveSampleError": 5.425478971251424e-06
+    },
+    {
+      "cue": "Pair",
+      "take": "Pair_1.wav",
+      "pcmGainDb": 5.7152256841934035,
+      "voiceGainDb": -11.1752256841934,
+      "effectiveSampleError": 8.423650318696053e-06
+    },
+    {
+      "cue": "Triple",
+      "take": "Triple_1.wav",
+      "pcmGainDb": 4.166915831670871,
+      "voiceGainDb": -5.6269158316708685,
+      "effectiveSampleError": 1.595778420774522e-05
+    },
+    {
+      "cue": "Reveal",
+      "take": "Reveal_1.wav",
+      "pcmGainDb": 4.8108157192496215,
+      "voiceGainDb": -12.270815719249619,
+      "effectiveSampleError": 7.430172308572902e-06
+    },
+    {
+      "cue": "Strike",
+      "take": "Strike_1.wav",
+      "pcmGainDb": 5.457174826114917,
+      "voiceGainDb": -9.917174826114914,
+      "effectiveSampleError": 9.740952619241572e-06
+    },
+    {
+      "cue": "Good",
+      "take": "Good_1.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -10.0,
+      "effectiveSampleError": 9.646986907564659e-06
+    },
+    {
+      "cue": "Perfect",
+      "take": "Perfect_1.wav",
+      "pcmGainDb": 4.9204939198832545,
+      "voiceGainDb": -5.380493919883252,
+      "effectiveSampleError": 1.6421642373150303e-05
+    },
+    {
+      "cue": "Miss",
+      "take": "Miss_1.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -14.0,
+      "effectiveSampleError": 6.083697584393505e-06
+    },
+    {
+      "cue": "Travel",
+      "take": "Travel_1.wav",
+      "pcmGainDb": 2.394351688744869,
+      "voiceGainDb": -15.854351688744867,
+      "effectiveSampleError": 4.917695679565286e-06
+    },
+    {
+      "cue": "PayoutSmall",
+      "take": "PayoutSmall_1.wav",
+      "pcmGainDb": 7.540000000000003,
+      "voiceGainDb": -12.0,
+      "effectiveSampleError": 7.663692744453582e-06
+    },
+    {
+      "cue": "PayoutMedium",
+      "take": "PayoutMedium_1.wav",
+      "pcmGainDb": 4.166915831670871,
+      "voiceGainDb": -5.6269158316708685,
+      "effectiveSampleError": 1.595778420774522e-05
+    },
+    {
+      "cue": "PayoutBig",
+      "take": "PayoutBig_1.wav",
+      "pcmGainDb": 4.166915831670871,
+      "voiceGainDb": -2.6269158316708685,
+      "effectiveSampleError": 2.2540969322425858e-05
+    },
+    {
+      "cue": "Failure",
+      "take": "Failure_1.wav",
+      "pcmGainDb": 5.963851977626973,
+      "voiceGainDb": -12.42385197762697,
+      "effectiveSampleError": 7.2989633628922634e-06
+    },
+    {
+      "cue": "BuildTravel",
+      "take": "BuildTravel_1.wav",
+      "pcmGainDb": 5.905526874155473,
+      "voiceGainDb": -17.36552687415547,
+      "effectiveSampleError": 4.132134793541082e-06
+    },
+    {
+      "cue": "Upgrade",
+      "take": "Upgrade_1.wav",
+      "pcmGainDb": 5.000535232839358,
+      "voiceGainDb": -6.460535232839355,
+      "effectiveSampleError": 1.4499528847244925e-05
+    }
+  ]
+}

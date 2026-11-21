@@ -89,7 +89,7 @@ public sealed class RigBuildingView : MonoBehaviour
                 if(buildFeedback!=null)buildFeedback.BeginReceipt(owner.LastRigAcquisition,target,railCardPrefab,portrait.rectTransform,ropes);
                 feedback = StartCoroutine(CompleteFeedback(id));
             }
-            else if (EventSystem.current != null && selected >= 0) gaps[selected].Select();
+            else if (EventSystem.current != null && selected >= 0) GapFocus(selected).Select();
         }
         if (!string.IsNullOrEmpty(owner.BuildFailure)) TackleBuildTypography.SetText(message, owner.BuildFailure);
     }
@@ -205,14 +205,19 @@ public sealed class RigBuildingView : MonoBehaviour
                 : i==count ? first+(displayedCount-1)*304+238 : first+(i+(hasGhost&&i>selected?1:0))*304-84;
             bool legal = controller.Rig.CanInsert(creature, i, out _);
             ((RectTransform)gap.transform).anchoredPosition = new Vector2(x, -85);
-            gap.interactable = legal; gap.GetComponent<UnityEngine.UI.Image>().sprite = !legal ? socketBlocked : i == selected ? socketSelected : socketIdle;
+            bool occupied = hasGhost && i == selected;
+            gap.interactable = legal && !occupied;
+            var socket = gap.GetComponent<UnityEngine.UI.Image>();
+            socket.enabled = !occupied;
+            socket.sprite = !legal ? socketBlocked : i == selected ? socketSelected : socketIdle;
             gap.onClick.RemoveAllListeners(); gap.onClick.AddListener(() => Select(position));
             gap.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnDown = commit,
                 selectOnUp = count > 0 ? railCards[Mathf.Min(i,count-1)].InspectionTarget : null };
             if (i == selected) selectionCaret.anchoredPosition = new Vector2(x, -55);
         }
-        selectionCaret.gameObject.SetActive(!ShowingReceipt && selected >= 0);
-        if (!ShowingReceipt && selected >= 0) commit.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit, selectOnUp = gaps[selected] };
+        selectionCaret.gameObject.SetActive(!ShowingReceipt && selected >= 0 && !hasGhost);
+        if (!ShowingReceipt && selected >= 0) commit.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
+            selectOnUp = gaps.Take(count + 1).Where(gap => gap.IsInteractable()).OrderBy(gap => Mathf.Abs(gaps.IndexOf(gap) - selected)).FirstOrDefault() };
         selectionCaret.SetAsLastSibling(); railContent.sizeDelta = new Vector2(width, 223);
         hasRailLayout=true;
         for (int i = 0; i < count; i++)
@@ -221,7 +226,7 @@ public sealed class RigBuildingView : MonoBehaviour
             if (target != null) target.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
                 selectOnLeft = i > 0 ? railCards[i-1].InspectionTarget : rigCards[i].InspectionTarget,
                 selectOnRight = i+1 < count ? railCards[i+1].InspectionTarget : null,
-                selectOnDown = !ShowingReceipt ? gaps[Mathf.Min(i,count)] : null, selectOnUp = rigCards[i].InspectionTarget };
+                selectOnDown = !ShowingReceipt ? GapFocus(Mathf.Min(i,count)) : null, selectOnUp = rigCards[i].InspectionTarget };
             target = rigCards[i].InspectionTarget;
             if (target != null) target.navigation = new UnityEngine.UI.Navigation { mode = UnityEngine.UI.Navigation.Mode.Explicit,
                 selectOnUp = i > 0 ? rigCards[i-1].InspectionTarget : null, selectOnDown = i+1 < count ? rigCards[i+1].InspectionTarget : commit,
@@ -233,6 +238,8 @@ public sealed class RigBuildingView : MonoBehaviour
     private void Select(int position)
     {
         if (ShowingReceipt) return;
+        if (selected != position && buildFeedback != null) buildFeedback.PreviewChanged();
+        bool moveFocus = EventSystem.current != null && EventSystem.current.currentSelectedGameObject == gaps[position].gameObject;
         selected = position; Refresh(); Canvas.ForceUpdateCanvases();
         var rect = (RectTransform)gaps[position].transform;
         if(buildFeedback!=null&&buildFeedback.Ghost!=null)
@@ -241,7 +248,10 @@ public sealed class RigBuildingView : MonoBehaviour
             RevealPosition(start,end-start);
         }
         else RevealPosition(rect.anchoredPosition.x,rect.rect.width);
+        if (moveFocus) GapFocus(position).Select();
     }
+    /// <summary>Keeps native focus on a visible command when the ghost occupies and hides its insertion socket.</summary>
+    private UnityEngine.UI.Selectable GapFocus(int position) => gaps[position].IsInteractable() ? gaps[position] : commit;
     /// <summary>Reveals the selected candidate and its insertion socket without scrolling the committed cabinet.</summary>
     private void RevealPosition(float x,float width)
     {
@@ -258,7 +268,7 @@ public sealed class RigBuildingView : MonoBehaviour
         for (int offset = 1; offset <= length; offset++)
         {
             int next = (selected + step * offset + length * 2) % length;
-            if (controller.Rig.CanInsert(controller.PendingRigCreature, next, out _)) { Select(next); gaps[next].Select(); break; }
+            if (controller.Rig.CanInsert(controller.PendingRigCreature, next, out _)) { Select(next); GapFocus(next).Select(); break; }
         }
     }
     /// <summary>Shares the guarded placement command with pointer/touch controls.</summary>

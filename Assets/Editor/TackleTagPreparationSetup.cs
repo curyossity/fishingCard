@@ -110,6 +110,7 @@ public static class TackleTagPreparationSetup
             Bind(art, "selectedFace", Sprite("rig-card-ivory")); Bind(art, "unselectedFace", Sprite("rig-card-sage"));
             Bind(art, "lampOn", Sprite("lamp-on")); Bind(art, "lampOff", Sprite("lamp-off"));
             view.ApplyModifiedPropertiesWithoutUndo(); art.ApplyModifiedPropertiesWithoutUndo();
+            DeepwaterAudioSetup.ConfigurePreparation(root);
             PrefabUtility.SaveAsPrefabAsset(root, SlotMachineSetup.PreparationPath);
         }
         finally { UnityEngine.Object.DestroyImmediate(root); }

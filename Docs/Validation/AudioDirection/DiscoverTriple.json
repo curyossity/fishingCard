@@ -1,0 +1,82 @@
+{
+  "note": "Authored sound storyboard; actual runtime schedules are exported separately by Unity checks.",
+  "events": [
+    {
+      "time": 0,
+      "cue": "SlotStart",
+      "pitch": 1,
+      "gainDb": -9,
+      "pan": 0
+    },
+    {
+      "time": 0.02,
+      "cue": "SlotRoll",
+      "pitch": 1,
+      "gainDb": -27,
+      "pan": 0
+    },
+    {
+      "time": 0.12,
+      "cue": "SlotTick",
+      "pitch": 1,
+      "gainDb": -25,
+      "pan": 0.12
+    },
+    {
+      "time": 0.26,
+      "cue": "SlotTick",
+      "pitch": 1,
+      "gainDb": -25,
+      "pan": -0.12
+    },
+    {
+      "time": 0.4,
+      "cue": "SlotTick",
+      "pitch": 1,
+      "gainDb": -25,
+      "pan": 0.12
+    },
+    {
+      "time": 0.54,
+      "cue": "SlotTick",
+      "pitch": 1,
+      "gainDb": -25,
+      "pan": -0.12
+    },
+    {
+      "time": 0.68,
+      "cue": "SlotTick",
+      "pitch": 1,
+      "gainDb": -25,
+      "pan": 0.12
+    },
+    {
+      "time": 1.05,
+      "cue": "SlotStop1",
+      "pitch": 1,
+      "gainDb": -10,
+      "pan": -0.16
+    },
+    {
+      "time": 1.2,
+      "cue": "SlotStop2",
+      "pitch": 1,
+      "gainDb": -10,
+      "pan": 0.0
+    },
+    {
+      "time": 1.35,
+      "cue": "SlotStop3",
+      "pitch": 1,
+      "gainDb": -10,
+      "pan": 0.16
+    },
+    {
+      "time": 1.44,
+      "cue": "Triple",
+      "pitch": 1,
+      "gainDb": -9,
+      "pan": 0
+    }
+  ]
+}

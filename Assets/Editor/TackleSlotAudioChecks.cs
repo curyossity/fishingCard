@@ -24,7 +24,7 @@ public static class TackleSlotAudioChecks
         {
             var clip=(AudioClip)data.FindProperty(cue).objectReferenceValue;var pcm=new float[clip.samples];clip.GetData(pcm,0);
             Check(pcm.Any(v=>Mathf.Abs(v)>.01f)&&pcm.All(v=>Mathf.Abs(v)<=.66f),"Silent/clipped slot cue: "+cue);
-            Check(Mathf.Abs(pcm[0])<.001f&&Mathf.Abs(pcm.Last())<.01f,"Cue edges can click: "+cue);
+            Check(cue=="roll"?Mathf.Abs(pcm[0]-pcm.Last())<.001f:Mathf.Abs(pcm[0])<.001f&&Mathf.Abs(pcm.Last())<.01f,"Cue edges can click: "+cue);
         }
         return checks;
     }

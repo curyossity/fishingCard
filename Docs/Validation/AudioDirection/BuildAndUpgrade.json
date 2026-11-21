@@ -1,0 +1,40 @@
+{
+  "note": "Authored sound storyboard; actual runtime schedules are exported separately by Unity checks.",
+  "events": [
+    {
+      "time": 0,
+      "cue": "Preview",
+      "pitch": 1,
+      "gainDb": -16,
+      "pan": 0
+    },
+    {
+      "time": 0.4,
+      "cue": "Preview",
+      "pitch": 1,
+      "gainDb": -16,
+      "pan": 0
+    },
+    {
+      "time": 0.85,
+      "cue": "BuildTravel",
+      "pitch": 1,
+      "gainDb": -19,
+      "pan": 0
+    },
+    {
+      "time": 1.17,
+      "cue": "Attach",
+      "pitch": 1,
+      "gainDb": -9,
+      "pan": 0
+    },
+    {
+      "time": 2,
+      "cue": "Upgrade",
+      "pitch": 1,
+      "gainDb": -9,
+      "pan": 0
+    }
+  ]
+}

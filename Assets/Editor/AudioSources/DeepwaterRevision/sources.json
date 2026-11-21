@@ -1,0 +1,66 @@
+{
+  "earshotRevision": "7a7f7c5c70d4a763a1eca4b3666af7c77e313f97",
+  "method": "Guarded local Earshot MCP make; default seed 0; switch/push n=3. No hosted calls, uploads or API keys.",
+  "sources": [
+    {
+      "file": "button_1.wav",
+      "catalogueId": "switch/push",
+      "sha256": "98d6ffabc561d7bd63fe6ca0bcda2e94a52671d78e40861833aab22c511a78df"
+    },
+    {
+      "file": "button_2.wav",
+      "catalogueId": "switch/push",
+      "sha256": "a07bb7275acd028db0e2bc9f485b0f67e58279fbcd8b04f379f5a317205dfec9"
+    },
+    {
+      "file": "button_3.wav",
+      "catalogueId": "switch/push",
+      "sha256": "fe8bbddf2f18204af6876b7da9271cd732e126c03f202bf1d459c64488fba102"
+    },
+    {
+      "file": "flare.wav",
+      "catalogueId": "shine/match",
+      "sha256": "5fefbff5ec7635f4a58f63e4b6b404fe800d6e768e03927d0b2090f36155071e"
+    },
+    {
+      "file": "glint.wav",
+      "catalogueId": "note/glass_pluck",
+      "sha256": "89f531f6d43d7f5d98728845e5dfedcfa02bedafa9a22dae464f5124cb114ce7"
+    },
+    {
+      "file": "impact.wav",
+      "catalogueId": "kick/punch",
+      "sha256": "8172259432ffa2fce60fa0c3ba2bda6609e8ace71128dbfeecd690d4448e45a2"
+    },
+    {
+      "file": "pinball.wav",
+      "catalogueId": "pinball/play",
+      "sha256": "698dce50482907865032317a33e35146605d0000576bb1bc04dc99c95f06f1c0"
+    },
+    {
+      "file": "pulse.wav",
+      "catalogueId": "note/pluck_bass",
+      "sha256": "3d0b8c1fb2c9db84dffb8ae4a29ec5e0b6ccd0e0330cb5c8863017584a5afe23"
+    },
+    {
+      "file": "ring.wav",
+      "catalogueId": "coin/flip",
+      "sha256": "f1e8b9b1e93ec1f607206b5622a73f4dc954cff00bb6edda64cb8df1fe373843"
+    },
+    {
+      "file": "spring.wav",
+      "catalogueId": "jump/spring",
+      "sha256": "ff606d64bec186d5ef3c3ab1e24017e1ac72a03ad0c2cd96e3d763477925b10a"
+    },
+    {
+      "file": "travel.wav",
+      "catalogueId": "whoosh/fast",
+      "sha256": "b53ee0c8a8f5618d929a9117bf828b3d9f044eded80a324ec3e2da735854dad1"
+    },
+    {
+      "file": "weight.wav",
+      "catalogueId": "slam/title",
+      "sha256": "4a2171190e3c053acfd5c25acf46011fe96aa5c70db315ad7c58da8ed9964784"
+    }
+  ]
+}
