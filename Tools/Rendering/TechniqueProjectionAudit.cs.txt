@@ -1,0 +1,68 @@
+// Unity MCP method body: exercises a private hand prefab without binding a player controller.
+if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
+var pipeline = UnityEngine.Rendering.RenderPipelineManager.currentPipeline;
+if (pipeline == null) throw new System.InvalidOperationException("Wait for Unity's normal pipeline initialization.");
+int checks = 0;
+System.Action<bool, string> require = (condition, message) => { checks++; if (!condition) throw new System.InvalidOperationException(message); };
+var errors = new System.Collections.Generic.List<string>();
+UnityEngine.Application.LogCallback capture = (message, stack, type) => { if (type == UnityEngine.LogType.Error || type == UnityEngine.LogType.Exception || type == UnityEngine.LogType.Assert) errors.Add(message); };
+UnityEngine.Application.logMessageReceived += capture;
+var root = new UnityEngine.GameObject("Isolated technique projection audit", typeof(UnityEngine.RectTransform), typeof(UnityEngine.Canvas));
+root.SetActive(false);
+root.GetComponent<UnityEngine.Canvas>().renderMode = UnityEngine.RenderMode.ScreenSpaceOverlay;
+root.GetComponent<UnityEngine.Canvas>().enabled = false;
+JournalTechniqueHandPresentation hand = null;
+try
+{
+    var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>("Assets/UIThemes/MidnightFieldJournal/Prefabs/TechniqueHand.prefab");
+    var obj = UnityEngine.Object.Instantiate(prefab, root.transform);
+    obj.GetComponent<TechniqueHandView>().enabled = false;
+    var rect = obj.GetComponent<UnityEngine.RectTransform>();
+    rect.anchorMin = rect.anchorMax = new UnityEngine.Vector2(.5f, .5f);
+    rect.sizeDelta = new UnityEngine.Vector2(2500, 866);
+    hand = obj.GetComponent<JournalTechniqueHandPresentation>();
+    root.SetActive(true);
+    var cards = System.Array.ConvertAll(new[] { "Cut Loose", "Slip Past", "Steady Line", "Prize Hook" }, name => UnityEditor.AssetDatabase.LoadAssetAtPath<CardDefinition>("Assets/Cards/" + name + ".asset"));
+    hand.Refresh(cards, new[] { true, true, true, true }, new[] { "", "", "", "" }, 8, 0, index => true, 1);
+    hand.RenderNow();
+    require(hand.Target != null && hand.Target.IsCreated(), "Render target was not created.");
+    require(hand.Cards.Count == 4, "Expected four independent cards.");
+    long before = hand.RenderedFrameCount;
+    for (int i = 0; i < 10; i++) hand.RenderNow();
+    require(hand.RenderedFrameCount == before, "Unchanged hand rendered repeatedly.");
+    hand.Poses[1].OnPointerEnter(null); hand.RenderNow();
+    require(hand.RenderedFrameCount == before + 1, "Inspection did not render.");
+    hand.Poses[1].OnPointerExit(null); hand.RenderNow();
+    var oldTarget = hand.Target;
+    rect.sizeDelta = new UnityEngine.Vector2(1800, 866); hand.RenderNow();
+    require(hand.Target != oldTarget && hand.Target.width == 1800, "Resize did not replace the target.");
+    obj.SetActive(false);
+    require(hand.Target == null && hand.ProjectionCamera == null, "Disable retained GPU/camera ownership.");
+    obj.SetActive(true); hand.RenderNow();
+    require(hand.Cards.Count == 4 && hand.Target != null, "Re-enable did not restore the hand.");
+    require(!hand.ProjectionCamera.enabled, "Offscreen camera entered the normal camera loop.");
+    require(UnityEngine.Rendering.RenderPipelineManager.currentPipeline == pipeline, "Hand rendering replaced the active pipeline.");
+    var previous = UnityEngine.RenderTexture.active;
+    var resolved = UnityEngine.RenderTexture.GetTemporary(900, 433, 0, UnityEngine.RenderTextureFormat.ARGB32);
+    var image = new UnityEngine.Texture2D(900, 433, UnityEngine.TextureFormat.RGBA32, false);
+    try
+    {
+        UnityEngine.Graphics.Blit(hand.Target, resolved); UnityEngine.RenderTexture.active = resolved;
+        image.ReadPixels(new UnityEngine.Rect(0, 0, 900, 433), 0, 0); image.Apply();
+        int opaque = 0; foreach (var pixel in image.GetPixels32()) if (pixel.a > 32) opaque++;
+        require(opaque > 900 * 433 / 20, "The rendered hand is empty/transparent.");
+        System.IO.Directory.CreateDirectory("Docs/Validation/TechniqueProjectionStartup");
+        System.IO.File.WriteAllBytes("Docs/Validation/TechniqueProjectionStartup/Hand.png", image.EncodeToPNG());
+    }
+    finally { UnityEngine.RenderTexture.active = previous; UnityEngine.RenderTexture.ReleaseTemporary(resolved); UnityEngine.Object.Destroy(image); }
+    require(errors.Count == 0, "Rendering logged errors: " + string.Join("; ", errors.ToArray()));
+    System.IO.File.WriteAllText("Docs/Validation/TechniqueProjectionStartup/Verification.json", "{\"passed\":true,\"assertions\":" + checks + ",\"newErrors\":" + errors.Count + "}\n");
+    return "Passed " + checks + " isolated projection checks; no new errors.";
+}
+finally
+{
+    root.SetActive(false);
+    if (hand != null) hand.ReleaseResources();
+    UnityEngine.Object.Destroy(root);
+    UnityEngine.Application.logMessageReceived -= capture;
+}

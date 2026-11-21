@@ -1,0 +1,106 @@
+// Execute this method body through Unity MCP while the current Play session continues.
+// The cloned cabinet has no input, no visible canvas and muted test voices; the player's run is untouched.
+if (!UnityEditor.EditorApplication.isPlaying) throw new System.InvalidOperationException("Enter Play mode for the isolated timing audit.");
+if (!GameAudioPreferences.SoundEnabled) throw new System.InvalidOperationException("Enable sound before the timing audit; the audit does not change the player's preference.");
+string output = "Docs/Validation/SlotAudioSync/";
+System.IO.Directory.CreateDirectory(output);
+UnityEditor.SessionState.SetString("Deepwater.SlotAudioSync.Result", "Running");
+var root = UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(TackleDiscoverArtSetup.PrefabPath));
+root.name = "Isolated slot audio timing audit";
+root.SetActive(true);
+root.GetComponent<UnityEngine.Canvas>().enabled = false;
+var input = root.GetComponent<SlotMachineView>(); if (input != null) input.enabled = false;
+var presenter = root.GetComponent<TackleDiscoverPresentation>(); presenter.enabled = false; presenter.StopAllCoroutines();
+var group = root.GetComponent<UnityEngine.CanvasGroup>(); if (group == null) group = root.AddComponent<UnityEngine.CanvasGroup>();
+group.blocksRaycasts = false; group.interactable = false;
+foreach (var source in root.GetComponentsInChildren<UnityEngine.AudioSource>(true)) source.mute = true;
+var reels = root.GetComponentsInChildren<TackleReelAnimator>(true);
+var audio = root.GetComponent<TackleSlotAudio>(); var player = root.GetComponent<DeepwaterSoundPlayer>();
+var tags = new[] { "Armored", "Predator", "Schooling", "Anchored" };
+var previousPhase = new float[3]; var previousDsp = new double[3]; var beforePreviousDsp = new double[3];
+var reversed = new bool[3];
+var timing = new System.Text.StringBuilder(); var frames = new System.Text.StringBuilder("stage,frame,dsp,reel,phase,braked,secondsToSettle,stopDsp\n");
+var culture = System.Globalization.CultureInfo.InvariantCulture;
+int checks = 0, stage = 0, lastFrame = -1, quietCount = -1, warmFrames = 8; bool quietRecoveryObserved = false, started = false;
+double until = UnityEngine.Time.realtimeSinceStartupAsDouble + 12;
+System.Action<bool, string> check = (valid, message) => { if (!valid) throw new System.InvalidOperationException(message); checks++; };
+System.Action<bool> spin = locked => {
+    for (int i = 0; i < 3; i++)
+    {
+        if (!(locked && i == 1)) reels[i].Spin(tags, "Schooling", tag => null, 1.05f + .15f * (locked && i == 2 ? 1 : i));
+        previousPhase[i] = reels[i].Phase; previousDsp[i] = beforePreviousDsp[i] = UnityEngine.AudioSettings.dspTime; reversed[i] = false;
+    }
+    quietCount = -1; quietRecoveryObserved = false;
+    audio.BeginSpin(reels, SlotMatchKind.Triple);
+};
+// Warm material/font creation before the measured spin; dynamic script compilation can create a one-off long frame.
+foreach (var reel in reels) { reel.Spin(tags, "Schooling", tag => null, 1.05f); reel.Advance(2); }
+UnityEditor.EditorApplication.CallbackFunction audit = null;
+audit = () => {
+    try
+    {
+        if (!UnityEditor.EditorApplication.isPlaying || root == null) throw new System.InvalidOperationException("Timing audit interrupted by Play exit.");
+        if (UnityEditor.EditorApplication.isPaused || lastFrame == UnityEngine.Time.frameCount) return;
+        if (UnityEngine.Time.realtimeSinceStartupAsDouble > until) throw new System.InvalidOperationException("Timing audit exceeded its deadline.");
+        lastFrame = UnityEngine.Time.frameCount;
+        if (warmFrames > 0) { warmFrames = UnityEngine.Time.unscaledDeltaTime < .05f ? warmFrames - 1 : 8; return; }
+        if (!started) { spin(false); started = true; return; }
+        foreach (var reel in reels) reel.Advance(UnityEngine.Time.unscaledDeltaTime);
+        audio.Tick(reels);
+        double now = UnityEngine.AudioSettings.dspTime;
+        bool recovering = reels.All(r => r.HasBrakeContact) && reels.Any(r => r.IsSpinning);
+        float remaining = reels.Max(r => r.IsSpinning ? r.SecondsToSettlement : 0);
+        for (int i = 0; i < 3; i++)
+        {
+            frames.Append(stage).Append(',').Append(lastFrame).Append(',').Append(now.ToString("R",culture)).Append(',').Append(i).Append(',').Append(reels[i].Phase.ToString("R",culture)).Append(',').Append(reels[i].HasBrakeContact).Append(',').Append(reels[i].SecondsToSettlement.ToString("R",culture)).Append(',').Append(audio.StopDspTime(i).ToString("R",culture)).Append('\n');
+            if (!(stage == 1 && i == 1) && !reversed[i] && reels[i].IsSpinning && reels[i].Phase < previousPhase[i] - .00001f)
+            {
+                reversed[i] = true; double due = audio.StopDspTime(i);
+                check(!double.IsNaN(due), "A visible brake/recoil had no scheduled contact.");
+                // The first decreasing sample brackets the visible turning point independently of the brake flag.
+                check(due >= beforePreviousDsp[i] - .025 && due <= now + .025, "Contact deadline is outside the visible direction-reversal bracket.");
+                timing.Append("{\"stage\":").Append(stage).Append(",\"reel\":").Append(i).Append(",\"contactDsp\":").Append(due.ToString("R",culture)).Append(",\"turnBracketStart\":").Append(beforePreviousDsp[i].ToString("R",culture)).Append(",\"turnBracketEnd\":").Append(now.ToString("R",culture)).Append("},");
+            }
+            beforePreviousDsp[i] = previousDsp[i]; previousDsp[i] = now; previousPhase[i] = reels[i].Phase;
+        }
+        if (recovering && remaining > .15f && !audio.IsRolling) quietRecoveryObserved = true;
+        if (recovering && remaining > .08f)
+        {
+            if (quietCount < 0) quietCount = player.PlayedCount;
+            else check(player.PlayedCount == quietCount, "Elastic recovery emitted a stray tick or repeated contact.");
+        }
+        if (reels.Any(r => r.IsSpinning)) return;
+        check(!audio.IsRolling && quietRecoveryObserved, "The rolling bed did not end during quiet elastic recovery.");
+        check(audio.Stops == (stage == 0 ? 3 : 5), "A visible brake contact was omitted or repeated.");
+        check(audio.Matches == stage + 1, "Settled result was omitted or repeated.");
+        check(!double.IsNaN(audio.MatchDspTime) && audio.MatchDspTime <= now + .025 && audio.MatchDspTime >= beforePreviousDsp[2] - .03, "Match cue is delayed beyond the visible settlement.");
+        if (stage == 0) { stage = 1; spin(true); return; }
+        check(double.IsNaN(audio.StopDspTime(1)), "The stationary locked reel scheduled a contact.");
+        // A stalled frame must not produce a burst of overdue contacts when updates resume.
+        for (int i = 0; i < 3; i++) reels[i].Spin(tags, "Schooling", tag => null, 1.05f + .15f * i);
+        audio.BeginSpin(reels, SlotMatchKind.ThreeDifferent); int playedBeforeHitch = player.PlayedCount;
+        foreach (var reel in reels) reel.Advance(1.1f); audio.Tick(reels);
+        check(player.PlayedCount == playedBeforeHitch && Enumerable.Range(0,3).All(i => double.IsNaN(audio.StopDspTime(i))), "A hitch replayed old contact sounds.");
+        // Cancelling shortly before a contact also stops voices already scheduled on the audio clock.
+        for (int i = 0; i < 3; i++) reels[i].Spin(tags, "Schooling", tag => null, 1.05f + .15f * i);
+        audio.BeginSpin(reels, SlotMatchKind.Triple); foreach (var reel in reels) reel.Advance(.65f); audio.Tick(reels);
+        check(!double.IsNaN(audio.StopDspTime(0)), "Contact look-ahead was not scheduled before braking.");
+        audio.Cancel();
+        check(root.GetComponentsInChildren<UnityEngine.AudioSource>(true).All(s => !s.isPlaying), "Cancellation retained scheduled reel voices.");
+        var rows = timing.ToString().TrimEnd(',');
+        System.IO.File.WriteAllText(output + "TimingVerification.json", "{\"passed\":true,\"assertions\":"+checks+",\"contacts\":["+rows+"]}");
+        System.IO.File.WriteAllText(output + "FrameTrace.csv", frames.ToString());
+        UnityEditor.SessionState.SetString("Deepwater.SlotAudioSync.Result", "Passed " + checks + " isolated timing checks");
+        UnityEditor.EditorApplication.update -= audit; UnityEngine.Object.Destroy(root);
+    }
+    catch (System.Exception exception)
+    {
+        UnityEditor.EditorApplication.update -= audit;
+        UnityEditor.SessionState.SetString("Deepwater.SlotAudioSync.Result", "FAILED: " + exception.Message);
+        System.IO.File.WriteAllText(output + "FrameTrace.csv", frames.ToString());
+        if (root != null) UnityEngine.Object.Destroy(root);
+        UnityEngine.Debug.LogException(exception);
+    }
+};
+UnityEditor.EditorApplication.update += audit;
+return "Started isolated reel/audio timing audit without changing the player's run.";

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 /// <summary>Renders individual real hand slots through an isolated perspective camera into the HUD.</summary>
 public sealed class JournalTechniqueHandPresentation : TechniqueHandPresentation
@@ -104,10 +106,14 @@ public sealed class JournalTechniqueHandPresentation : TechniqueHandPresentation
     /// <summary>Refreshes the render target at output-pixel resolution, including focused cards.</summary>
     private void LateUpdate() { RenderNow(); }
 
-    /// <summary>Renders the actual card meshes; also supports isolated Editor validation.</summary>
+    /// <summary>Renders card meshes after pipeline initialization; retains dirty work for the next frame while startup is incomplete.</summary>
     public void RenderNow()
     {
         if (surface == null || projectionCamera == null) return;
+        // Refresh can run from OnEnable during scene/domain loading. Let Unity initialize
+        // SRP normally rather than recursively creating it through this offscreen camera.
+        bool usesSrp = GraphicsSettings.currentRenderPipeline != null;
+        if (usesSrp && RenderPipelineManager.currentPipeline == null) return;
         Canvas parent = surface.canvas;
         float scale = parent == null ? 1 : parent.scaleFactor;
         int width = Mathf.Clamp(Mathf.CeilToInt(surface.rectTransform.rect.width * scale), 256, maxRenderWidth);
@@ -122,7 +128,15 @@ public sealed class JournalTechniqueHandPresentation : TechniqueHandPresentation
         if (!renderDirty) return;
         projectionCamera.aspect = width / (float)height;
         projectionCamera.transform.localPosition = new Vector3(0, 0, -cameraDistance * Mathf.Max(1, (2500f / 866f) / projectionCamera.aspect));
-        Canvas.ForceUpdateCanvases(); projectionCamera.Render(); RenderedFrameCount++;
+        Canvas.ForceUpdateCanvases();
+        if (usesSrp)
+        {
+            var request = new UniversalRenderPipeline.SingleCameraRequest { destination = target };
+            if (!RenderPipeline.SupportsRenderRequest(projectionCamera, request)) return;
+            RenderPipeline.SubmitRenderRequest(projectionCamera, request);
+        }
+        else projectionCamera.Render();
+        RenderedFrameCount++;
         renderDirty = false;
     }
 

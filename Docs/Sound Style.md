@@ -21,11 +21,11 @@ Times below are file durations, not gameplay delays. Immediate cues are requeste
 | Tag select / deselect | 105 / 100 ms damped contact or card acknowledgment for an actual draft change. Three takes; 70 ms retrigger guard. |
 | Insertion preview | 100 ms paper/contact when the chosen legal insertion position changes. Three takes; 75 ms guard. Hover and repeated layout stay silent. |
 | Spin start | 230 ms sprung contact with low support, once per spin revision; no second generic click. |
-| Reel motion | Quiet 900 ms circular pressure/friction texture, with a 40 ms gain attack and a quieter last moving reel. |
+| Reel motion | Quiet 900 ms circular pressure/friction texture. Pitch and gain follow actual forward-velocity fraction, with a 40 ms gain slew; the bed ends during elastic recovery. |
 | Symbol crossing | 45 ms muted contact at a real boundary. Three takes, global 45 ms cooldown and per-reel throttling; no catch-up burst. |
-| Reel stops | 150 ms cabinet contact at complete visual settlement, varied slightly by reel. A locked reel stays silent during respin. |
+| Reel stops | 150 ms cabinet contact at the visible brake/catch that begins recoil, varied slightly by reel. DSP scheduling looks up to 60 ms ahead. A locked reel stays silent; elastic rebound creates no extra ticks. |
 | Lock / unlock | 120 / 110 ms contact for an accepted change. Initial synchronization and stale commands stay silent. |
-| Pair / triple | 230 / 440 ms acknowledgment or fuller release, 90 ms after the final reel settles. No match cue for three different symbols. |
+| Pair / triple | 230 / 440 ms acknowledgment or fuller release at final settlement, aligned with the result lamps. No artificial post-settlement delay and no match cue for three different symbols. |
 | Encounter reveal | 200 ms card/air transition, once per new Landing occurrence. |
 | Accepted strike | 80 ms firm contact at time zero. Rejected input and Finish add no strike cue. |
 | Good / Perfect | 160 / 210 ms weight/contact versus a clearer electrical accent at the base-points impact, normally 76 ms after strike. |

@@ -21,6 +21,17 @@ public sealed class TackleReelAnimator : MonoBehaviour
     private int target;
     public bool IsSpinning { get; private set; }
     public float Phase => phase;
+    public float SecondsToBrakeContact => duration * (1 - Mathf.Clamp(settleFraction, .15f, .6f)) - elapsed;
+    public float SecondsToSettlement => duration - elapsed;
+    public bool HasBrakeContact => duration > 0 && SecondsToBrakeContact <= 0;
+    public float ForwardVelocityFraction
+    {
+        get
+        {
+            float travel = duration * (1 - Mathf.Clamp(settleFraction, .15f, .6f));
+            return IsSpinning && travel > 0 ? Mathf.Pow(1 - Mathf.Clamp01(elapsed / travel), 2) : 0;
+        }
+    }
 
     /// <summary>Authors the reel's native templates without replacing existing source artwork.</summary>
     public void Configure(UnityEngine.UI.Image symbol, TMP_Text fallback, TMP_Text label)

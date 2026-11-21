@@ -1,0 +1,61 @@
+// Isolated audio-clock mute race test. No global sound preference or player-run mutation.
+if (!UnityEditor.EditorApplication.isPlaying || !GameAudioPreferences.SoundEnabled) throw new System.InvalidOperationException("Use Play mode with sound enabled.");
+string output = "Docs/Validation/SlotAudioSync/";
+var root = UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(TackleDiscoverArtSetup.PrefabPath));
+root.SetActive(true); root.GetComponent<UnityEngine.Canvas>().enabled = false;
+root.GetComponent<SlotMachineView>().enabled = false;
+var presenter = root.GetComponent<TackleDiscoverPresentation>(); presenter.enabled = false; presenter.StopAllCoroutines();
+foreach (var source in root.GetComponentsInChildren<UnityEngine.AudioSource>(true)) source.mute = true;
+var reels = root.GetComponentsInChildren<TackleReelAnimator>(true);
+var audio = root.GetComponent<TackleSlotAudio>(); var player = root.GetComponent<DeepwaterSoundPlayer>();
+var mute = typeof(TackleSlotAudio).GetMethod("OnSoundChanged",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+var tags = new[] { "Armored", "Predator", "Schooling", "Anchored" };
+int warm = 8, lastFrame = -1, stage = 0, checks = 0; double due = double.NaN, until = UnityEngine.Time.realtimeSinceStartupAsDouble + 10;
+System.Action<bool,string> check = (valid,message) => { if(!valid)throw new System.InvalidOperationException(message); checks++; };
+System.Action<float> prepare = elapsed => {
+    for(int i=0;i<3;i++) reels[i].Spin(tags,"Schooling",tag=>null,1.05f+i*.15f);
+    audio.BeginSpin(reels,SlotMatchKind.Triple);
+    foreach(var reel in reels)reel.Advance(elapsed);
+    audio.Tick(reels);
+};
+foreach(var reel in reels){reel.Spin(tags,"Schooling",tag=>null,1.05f);reel.Advance(2);}
+UnityEditor.SessionState.SetString("Deepwater.SlotAudioMute.Result","Running");
+UnityEditor.EditorApplication.CallbackFunction audit = null;
+audit = () => {
+    try
+    {
+        if(!UnityEditor.EditorApplication.isPlaying||root==null)throw new System.InvalidOperationException("Mute audit interrupted.");
+        if(UnityEditor.EditorApplication.isPaused||lastFrame==UnityEngine.Time.frameCount)return;
+        lastFrame=UnityEngine.Time.frameCount;
+        if(UnityEngine.Time.realtimeSinceStartupAsDouble>until)throw new System.InvalidOperationException("Mute audit timed out.");
+        if(warm>0){warm=UnityEngine.Time.unscaledDeltaTime<.05f?warm-1:8;return;}
+        if(stage==0)
+        {
+            prepare(.65f);check(!double.IsNaN(audio.StopDspTime(0)),"No pending contact to test.");
+            mute.Invoke(audio,new object[]{false});check(double.IsNaN(audio.StopDspTime(0)),"Mute retained a future contact request.");
+            check(root.GetComponentsInChildren<UnityEngine.AudioSource>(true).All(s=>!s.isPlaying),"Mute did not cancel scheduled voices.");
+            audio.Tick(reels);due=audio.StopDspTime(0);check(!double.IsNaN(due),"Rapid unmute could not restore a still-future contact.");stage=1;return;
+        }
+        if(UnityEngine.AudioSettings.dspTime<due+.01)return;
+        if(stage==1)
+        {
+            mute.Invoke(audio,new object[]{false});check(audio.StopDspTime(0)==due,"Mute forgot a consumed contact while visuals were between frames.");
+            int before=player.PlayedCount;audio.Tick(reels);check(player.PlayedCount==before,"Rapid unmute replayed an already consumed contact.");
+            prepare(1.31f);check(!double.IsNaN(audio.MatchDspTime),"No pending result to test.");
+            mute.Invoke(audio,new object[]{false});check(double.IsNaN(audio.MatchDspTime),"Mute retained a future result request.");
+            audio.Tick(reels);due=audio.MatchDspTime;check(!double.IsNaN(due),"Rapid unmute could not restore a still-future result.");stage=2;return;
+        }
+        mute.Invoke(audio,new object[]{false});check(audio.MatchDspTime==due,"Mute forgot a consumed result before the visual update.");
+        int played=player.PlayedCount;audio.Tick(reels);check(player.PlayedCount==played,"Rapid unmute replayed a consumed result.");
+        UnityEditor.EditorApplication.update-=audit;UnityEngine.Object.Destroy(root);
+        UnityEditor.SessionState.SetString("Deepwater.SlotAudioMute.Result","Passed "+checks+" mute race checks");
+        System.IO.File.WriteAllText(output+"MuteVerification.json","{\"passed\":true,\"assertions\":"+checks+"}");
+    }
+    catch(System.Exception exception)
+    {
+        UnityEditor.EditorApplication.update-=audit;if(root!=null)UnityEngine.Object.Destroy(root);
+        UnityEditor.SessionState.SetString("Deepwater.SlotAudioMute.Result","FAILED: "+exception.Message);UnityEngine.Debug.LogException(exception);
+    }
+};
+UnityEditor.EditorApplication.update+=audit;
+return "Started isolated mute/deadline race audit.";

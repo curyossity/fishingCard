@@ -51,28 +51,28 @@
       "pan": 0.12
     },
     {
-      "time": 1.05,
+      "time": 0.693,
       "cue": "SlotStop1",
       "pitch": 1,
       "gainDb": -10,
       "pan": -0.16
     },
     {
-      "time": 1.2,
+      "time": 0.7919999999999999,
       "cue": "SlotStop2",
       "pitch": 1,
       "gainDb": -10,
       "pan": 0.0
     },
     {
-      "time": 1.35,
+      "time": 0.8909999999999999,
       "cue": "SlotStop3",
       "pitch": 1,
       "gainDb": -10,
       "pan": 0.16
     },
     {
-      "time": 1.44,
+      "time": 1.35,
       "cue": "Triple",
       "pitch": 1,
       "gainDb": -9,

@@ -1,5 +1,7 @@
 # Charged Cabinet — selected and integrated
 
+The subsequent [slot timing correction](../SlotAudioSync/README.md) moves contacts to the visible brake/catch, follows reel velocity and aligns match sounds with the result lamps. It preserves this selected sound palette and all scoring calibration.
+
 21 November 2026. The user selected **A — Charged Cabinet** in the native-animation comparison. The calibrated 28-cue / 42-take family is now installed across Discover, Landing, Build/Upgrade and Harbor tag preparation. [Listen to the installed mix](Listen.html), [review the selected comparison](../AudioRevision/Compare.html), or [read the active sound style](../../Sound%20Style.md).
 
 ## Delivered behavior
@@ -7,7 +9,7 @@
 - Substantial sprung contacts, quiet pressure/friction under reel motion, damped electrical scoring pulses, firmer multiplier impacts and compact score releases replace the rejected harp-led family.
 - The chosen audition's **+7.54 dB calibration** is preserved through bounded PCM gain and per-cue faders. No source needs gain above one; the mixer does not add that trim again.
 - Addition and multiplier pitch retains **28% of the scheduled pitch excursion**, reaching at most 1.28. The previous additional intensity gain is disabled for this family, matching the selected audition.
-- Existing event ownership, real reel-boundary ticks/stops, 90 ms match pocket, impact timing, priority protection, immediate mute, same-frame unmute/remute, skip and phase cleanup remain in place. No gameplay calculation, randomness, artwork or interaction rule changed.
+- Existing event ownership, reel-boundary ticks, impact timing, priority protection, immediate mute, same-frame unmute/remute, skip and phase cleanup remain in place. Discover contacts now meet the visible brake and match cues meet settlement, as recorded in the timing correction above. No gameplay calculation, randomness, artwork or interaction rule changed.
 
 ## Audition agreement
 
