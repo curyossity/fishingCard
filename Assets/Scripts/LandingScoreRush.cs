@@ -17,6 +17,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
+    [SerializeField] private LandingStrikeContact strikeContact;
     // Serialized aliases retain older prefab/review compatibility; SoundEvents select active takes from the library.
     [SerializeField, HideInInspector] private AudioSource[] voices;
     [SerializeField, HideInInspector] private AudioClip hit, addition, multiplier, payoutSmall, payoutBig, miss;
@@ -78,6 +79,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         sound.StopAll();
         scoringPortrait.CaptureEncounter();
         sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble; dspStarted = AudioSettings.dspTime;
+        if (strikeContact != null) strikeContact.Begin(strike, sequence.Steps[0].ImpactAt);
         soundEvents.Clear(); soundCursor = 0;
         bool missed = strike.Score.Accuracy == LandingAccuracy.Miss;
         AddSound(0, missed ? DeepwaterSoundCue.Miss : DeepwaterSoundCue.Strike);
@@ -115,6 +117,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     {
         int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
         float age = Mathf.Max(0, elapsed - step.Time);
+        if (strikeContact != null) strikeContact.Render(elapsed, ReducedMotion);
         bool payout = elapsed >= sequence.PayoutAt;
         if (index != lastStep)
         {
@@ -161,7 +164,8 @@ public sealed class LandingScoreRush : MonoBehaviour
         value.rectTransform.localScale = new Vector3(1 + punch, 1 + punch * .65f, 1);
         scoringPortrait.SetPulse(ReducedMotion ? 0 : preparation);
         totalLabel.localScale = totalRest * (1 + (ReducedMotion ? 0 : impact * .12f));
-        machine.anchoredPosition = machineRest + (ReducedMotion || sequence.Tier == 0 ? Vector2.zero : Vector2.up * impact * sequence.Intensity * 4);
+        machine.anchoredPosition = machineRest + (strikeContact != null ? strikeContact.RecoilOffset : Vector2.zero)
+            + (ReducedMotion || sequence.Tier == 0 ? Vector2.zero : Vector2.up * impact * sequence.Intensity * 4);
         glow.color = new Color(1, .69f, .26f, ReducedMotion ? .015f : .015f + Mathf.Max(0, bump) * .035f + Mathf.Abs(impact) * .04f);
         if (kicked != null && !payout && !ReducedMotion)
         {
@@ -190,6 +194,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     public void Finish()
     {
         bool wasRunning = running; running = false; if (receipt != null) DisplayedTotal = receipt.PointsAfter;
+        if (strikeContact != null) strikeContact.Clear();
         RestoreMotion(); if (wasRunning) StopVoices();
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }

@@ -11,6 +11,8 @@ public sealed class TackleButtonFeedback : MonoBehaviour, IPointerEnterHandler, 
     private UnityEngine.UI.Button button;
     private Vector2 origin;
     private bool hovered, selected;
+    private bool pressed;
+    private float actionPress;
     private CanvasGroup visualGroup;
 
     /// <summary>Caches the input surface and its resting visual offset once.</summary>
@@ -21,7 +23,7 @@ public sealed class TackleButtonFeedback : MonoBehaviour, IPointerEnterHandler, 
         if (button == null) button = GetComponent<UnityEngine.UI.Button>();
         if (visualGroup == null) visualGroup = visual.GetComponent<CanvasGroup>();
         visualGroup.alpha = button.IsInteractable() ? 1 : .4f;
-        if (!button.IsInteractable()) visual.anchoredPosition = origin;
+        if (!button.IsInteractable()) { pressed = false; actionPress = 0; RenderFace(); }
         RefreshFocus();
     }
     /// <summary>Highlights an available pointer target.</summary>
@@ -29,15 +31,19 @@ public sealed class TackleButtonFeedback : MonoBehaviour, IPointerEnterHandler, 
     /// <summary>Clears pointer-only focus when leaving the rectangular hit area.</summary>
     public void OnPointerExit(PointerEventData data) { hovered = false; RefreshFocus(); }
     /// <summary>Offsets the visual face by the approved four pixels while preserving its hit area.</summary>
-    public void OnPointerDown(PointerEventData data) { if (button.IsInteractable()) visual.anchoredPosition = origin + Vector2.down * 4; }
+    public void OnPointerDown(PointerEventData data) { if (button.IsInteractable() && data.button == PointerEventData.InputButton.Left) { pressed = true; RenderFace(); } }
     /// <summary>Restores the resting position on release.</summary>
-    public void OnPointerUp(PointerEventData data) { visual.anchoredPosition = origin; }
+    public void OnPointerUp(PointerEventData data) { if (data.button == PointerEventData.InputButton.Left) { pressed = false; RenderFace(); } }
+    /// <summary>Gives accepted pointer, keyboard and submit commands the same bounded visual press without moving their hit area.</summary>
+    public void SetActionPress(float strength) { actionPress = Mathf.Clamp01(strength); RenderFace(); }
+    /// <summary>Combines held pointer feedback and accepted-command recoil under one transform owner.</summary>
+    private void RenderFace() { if (visual != null) visual.anchoredPosition = origin + Vector2.down * (4 * Mathf.Max(pressed ? 1 : 0, actionPress)); }
     /// <summary>Displays keyboard/gamepad focus independently of hover.</summary>
     public void OnSelect(BaseEventData data) { selected = true; RefreshFocus(); }
     /// <summary>Releases keyboard/gamepad focus without clearing hover.</summary>
     public void OnDeselect(BaseEventData data) { selected = false; RefreshFocus(); }
     /// <summary>Resets motion and focus on phase exit.</summary>
-    private void OnDisable() { hovered = selected = false; if (visual != null) visual.anchoredPosition = origin; if (focusCorners != null) focusCorners.SetActive(false); }
+    private void OnDisable() { hovered = selected = pressed = false; actionPress = 0; RenderFace(); if (focusCorners != null) focusCorners.SetActive(false); }
     /// <summary>Shows focus only for an interactable command.</summary>
     private void RefreshFocus() { focusCorners.SetActive(button != null && button.IsInteractable() && (hovered || selected)); }
 }

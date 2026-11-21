@@ -91,7 +91,40 @@ public static class LandingScoreRushSetup
         labels.GetArrayElementAtIndex(0).objectReferenceValue = stage.Find("PointsCaption").GetComponent<TMP_Text>();
         labels.GetArrayElementAtIndex(1).objectReferenceValue = stage.Find("ResistanceCaption").GetComponent<TMP_Text>();
         data.ApplyModifiedPropertiesWithoutUndo();
+        ConfigureStrikeContact(host, data);
         DeepwaterAudioSetup.ConfigureLanding(host.gameObject);
+    }
+
+    /// <summary>Retains the non-interacting timing-track contact and accepted-button binding through full Landing regeneration.</summary>
+    private static void ConfigureStrikeContact(LandingScoreRush host, SerializedObject data)
+    {
+        var presentation = new SerializedObject(host.GetComponent<TackleLandingPresentation>());
+        var track = (RectTransform)presentation.FindProperty("track").objectReferenceValue;
+        var child = track.Find("Strike Contact");
+        if (child == null) child = new GameObject("Strike Contact", typeof(RectTransform), typeof(CanvasRenderer), typeof(LandingStrikeContact)).transform;
+        var rect = (RectTransform)child; rect.SetParent(track, false); rect.SetAsLastSibling();
+        rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero;
+        var contact = rect.GetComponent<LandingStrikeContact>(); contact.raycastTarget = false;
+        var input = new SerializedObject(host.GetComponent<LandingChallengeView>());
+        var button = (UnityEngine.UI.Button)input.FindProperty("strike").objectReferenceValue;
+        var contactData = new SerializedObject(contact); Bind(contactData, "strikeButton", button.GetComponent<TackleButtonFeedback>());
+        var stampRect = track.parent.Find("Strike Quality Stamp") as RectTransform;
+        if (stampRect == null) stampRect = Rect(track.parent, "Strike Quality Stamp", new Rect(0, 0, 260, 44));
+        stampRect.SetAsLastSibling(); stampRect.pivot = new Vector2(.5f, .5f);
+        var stamp = stampRect.GetComponent<CanvasGroup>(); if (stamp == null) stamp = stampRect.gameObject.AddComponent<CanvasGroup>();
+        stamp.alpha = 0; stamp.blocksRaycasts = false; stamp.interactable = false;
+        foreach (string name in new[] { "Shadow", "Face" })
+        {
+            var label = stampRect.Find(name)?.GetComponent<TMP_Text>();
+            if (label == null) label = Text(stampRect, name, new Rect(name == "Shadow" ? 3 : 0, name == "Shadow" ? 3 : 0, 260, 44), 29);
+            label.font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(TackleDiscoverArtSetup.Root + "Fonts/PressStart2P.asset");
+            label.fontSize = 29; label.text = ""; label.raycastTarget = false;
+            label.color = name == "Shadow" ? new Color32(12, 20, 17, 255) : Cream;
+            Bind(contactData, name == "Shadow" ? "stampShadow" : "stampFace", label);
+        }
+        Bind(contactData, "stamp", stamp);
+        contactData.ApplyModifiedPropertiesWithoutUndo();
+        Bind(data, "strikeContact", contact); data.ApplyModifiedPropertiesWithoutUndo();
     }
 
     /// <summary>Creates deterministic original PCM cues once and routes them through a dedicated authored mixer.</summary>

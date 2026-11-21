@@ -1,0 +1,144 @@
+// Unity MCP method body: isolated actual Landing prefab, real accepted model strikes, no player-controller commands.
+if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
+string output = "Docs/Validation/StrikeContact/";
+bool captureMotion = false; // Set true for a 30 fps Perfect review export in Temp/StrikeContactReview.
+System.IO.Directory.CreateDirectory(output);
+var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+int checks = 0;
+System.Action<bool, string> check = (ok, reason) => { checks++; if (!ok) throw new System.InvalidOperationException(reason); };
+var guard = new UnityEngine.GameObject("Isolated strike contact audit"); guard.SetActive(false);
+var root = UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(LandingChallengeSetup.PrefabPath), guard.transform);
+root.SetActive(true);
+root.GetComponent<LandingChallengeView>().enabled = false;
+root.GetComponent<TackleLandingPresentation>().enabled = false;
+foreach (var raycaster in root.GetComponentsInChildren<UnityEngine.UI.GraphicRaycaster>(true)) raycaster.enabled = false;
+var group = root.AddComponent<UnityEngine.CanvasGroup>(); group.blocksRaycasts = false; group.interactable = false;
+var canvas = root.GetComponent<UnityEngine.Canvas>(); canvas.enabled = false;
+foreach (var source in root.GetComponentsInChildren<UnityEngine.AudioSource>(true)) source.mute = true;
+guard.SetActive(true);
+var rush = root.GetComponent<LandingScoreRush>();
+var rushData = new UnityEditor.SerializedObject(rush);
+var contact = (LandingStrikeContact)rushData.FindProperty("strikeContact").objectReferenceValue;
+var contactData = new UnityEditor.SerializedObject(contact);
+var stamp = (UnityEngine.CanvasGroup)contactData.FindProperty("stamp").objectReferenceValue;
+var stampFace = (TMPro.TMP_Text)contactData.FindProperty("stampFace").objectReferenceValue;
+var motion = (UnityEngine.UI.Toggle)rushData.FindProperty("reducedMotionToggle").objectReferenceValue;
+motion.SetIsOnWithoutNotify(false);
+var presentation = new UnityEditor.SerializedObject(root.GetComponent<TackleLandingPresentation>());
+var track = (UnityEngine.RectTransform)presentation.FindProperty("track").objectReferenceValue;
+var fish = (UnityEngine.RectTransform)presentation.FindProperty("fish").objectReferenceValue;
+var good = (UnityEngine.RectTransform)presentation.FindProperty("goodZone").objectReferenceValue;
+var perfect = (UnityEngine.RectTransform)presentation.FindProperty("perfectZone").objectReferenceValue;
+var machine = (UnityEngine.RectTransform)rushData.FindProperty("machine").objectReferenceValue;
+var input = new UnityEditor.SerializedObject(root.GetComponent<LandingChallengeView>());
+var button = (UnityEngine.UI.Button)input.FindProperty("strike").objectReferenceValue;
+var feedback = button.GetComponent<TackleButtonFeedback>();
+var face = (UnityEngine.RectTransform)new UnityEditor.SerializedObject(feedback).FindProperty("visual").objectReferenceValue;
+UnityEngine.Vector2 machineRest = machine.anchoredPosition, faceRest = face.anchoredPosition, buttonRest = ((UnityEngine.RectTransform)button.transform).anchoredPosition;
+System.Action<float> sample = time => typeof(LandingScoreRush).GetMethod("Render", hidden).Invoke(rush, new object[] { time });
+System.Func<UnityEngine.Mesh> mesh = () => {
+    var vertices = new UnityEngine.UI.VertexHelper(); var result = new UnityEngine.Mesh();
+    try { typeof(LandingStrikeContact).GetMethod("OnPopulateMesh", hidden | System.Reflection.BindingFlags.DeclaredOnly).Invoke(contact, new object[] { vertices }); vertices.FillMesh(result); return result; }
+    finally { vertices.Dispose(); }
+};
+System.Action<string> capture = name => {
+    var cameraObject = new UnityEngine.GameObject("Private strike capture", typeof(UnityEngine.Camera));
+    var camera = cameraObject.GetComponent<UnityEngine.Camera>(); camera.enabled = false;
+    camera.transform.position = new UnityEngine.Vector3(0, 0, -1000); camera.orthographic = true; camera.orthographicSize = 1080;
+    var target = new UnityEngine.RenderTexture(1920, 1080, 24);
+    var previous = UnityEngine.RenderTexture.active; UnityEngine.Texture2D image = null;
+    var oldMode = canvas.renderMode; var oldCamera = canvas.worldCamera; float oldPlane = canvas.planeDistance;
+    try {
+        canvas.enabled = true; canvas.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera; canvas.worldCamera = camera; canvas.planeDistance = 100;
+        camera.targetTexture = target; UnityEngine.Canvas.ForceUpdateCanvases();
+        var bounds = contact.rectTransform.rect;
+        float stampX = UnityEngine.Mathf.Clamp(UnityEngine.Mathf.Lerp(bounds.xMin, bounds.xMax, contact.StrikePosition), bounds.xMin + 130, bounds.xMax - 130);
+        float expectedX = contact.rectTransform.TransformPoint(new UnityEngine.Vector3(stampX, 0)).x;
+        if (!name.StartsWith("Frame-"))
+        {
+            check(UnityEngine.Mathf.Abs(stamp.transform.position.x - expectedX) < 2, "Quality stamp drifted when the capture canvas changed size.");
+            stampFace.ForceMeshUpdate(true, true);
+            check(!stampFace.isTextOverflowing && stamp.alpha > 0 && !stamp.blocksRaycasts, "Quality stamp is clipped, invisible or intercepting input.");
+        }
+        var request = new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target };
+        check(UnityEngine.Rendering.RenderPipeline.SupportsRenderRequest(camera, request), "Capture request unsupported.");
+        UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, request);
+        UnityEngine.RenderTexture.active = target; image = new UnityEngine.Texture2D(1920, 1080, UnityEngine.TextureFormat.RGBA32, false);
+        image.ReadPixels(new UnityEngine.Rect(0, 0, 1920, 1080), 0, 0); image.Apply();
+        string folder = name.StartsWith("Frame-") ? "Temp/StrikeContactReview/" : output;
+        System.IO.Directory.CreateDirectory(folder);
+        System.IO.File.WriteAllBytes(folder + name + ".png", image.EncodeToPNG());
+    }
+    finally {
+        canvas.enabled = false; canvas.renderMode = oldMode; canvas.worldCamera = oldCamera; canvas.planeDistance = oldPlane;
+        camera.targetTexture = null; UnityEngine.RenderTexture.active = previous; target.Release();
+        UnityEngine.Object.Destroy(target); if (image != null) UnityEngine.Object.Destroy(image); UnityEngine.Object.Destroy(cameraObject);
+    }
+};
+try
+{
+    check(contact != null && !contact.raycastTarget && contact.transform.parent == track, "Contact intercepts input or is outside the track.");
+    int perfectVertices = 0, goodVertices = 0;
+    foreach (var accuracy in new[] { LandingAccuracy.Perfect, LandingAccuracy.Good, LandingAccuracy.Miss })
+    {
+        var model = new LandingChallengeRuntime(); double clock = 0;
+        model.Begin(1, 100000, LandingChallengeChecks.Settings(), new LandingRigMember[0], new System.Random(1), clock);
+        LandingChallengeChecks.Strike(model, accuracy, ref clock);
+        var receipt = new LandingStrikeReceipt(model, new CardInstance[0]);
+        double frozen = model.FishPosition, zone = model.ZonePosition;
+        model.AdvanceTo(clock + 1.3);
+        check(receipt.FishPosition == frozen && model.FishPosition != frozen, "Receipt did not freeze the accepted strike position.");
+        fish.anchoredPosition = new UnityEngine.Vector2(((float)frozen - .5f) * track.rect.width, 0);
+        good.anchoredPosition = perfect.anchoredPosition = new UnityEngine.Vector2(((float)zone - .5f) * track.rect.width, 0);
+        good.sizeDelta = new UnityEngine.Vector2((float)model.GoodWidth * track.rect.width, good.sizeDelta.y);
+        perfect.sizeDelta = new UnityEngine.Vector2((float)model.PerfectWidth * track.rect.width, perfect.sizeDelta.y);
+        var points = model.Points; int attempts = model.AttemptsRemaining; long revision = model.Revision;
+        var fishRest = fish.anchoredPosition; var goodRest = good.anchoredPosition; var perfectRest = perfect.anchoredPosition;
+        rush.Present(receipt, new TackleRigCardView[0], true);
+        check(contact.IsContactActive && UnityEngine.Mathf.Abs(contact.StrikePosition - (float)frozen) < .000001f, "Contact is detached from accepted receipt.");
+        check(stampFace.text == accuracy.ToString().ToUpperInvariant(), "Stamp does not match the resolved accuracy.");
+        check(face.anchoredPosition.y < faceRest.y && ((UnityEngine.RectTransform)button.transform).anchoredPosition == buttonRest, "Accepted keyboard/submit feedback did not press only the face.");
+        check(UnityEngine.Mathf.Abs(contact.ContactAt - (accuracy == LandingAccuracy.Miss ? 0 : rush.Sequence.Steps[0].ImpactAt)) < .000001f, "Contact and accuracy cue have different deadlines.");
+        sample(contact.ContactAt + .025f);
+        var visible = mesh();
+        check(visible.vertexCount > 0, "Contact mesh is empty.");
+        if (accuracy == LandingAccuracy.Perfect) perfectVertices = visible.vertexCount;
+        if (accuracy == LandingAccuracy.Good) goodVertices = visible.vertexCount;
+        if (accuracy == LandingAccuracy.Miss) check(visible.vertexCount < goodVertices, "Miss is as emphatic as a successful strike.");
+        UnityEngine.Object.Destroy(visible);
+        check(fish.anchoredPosition == fishRest && good.anchoredPosition == goodRest && perfect.anchoredPosition == perfectRest, "Contact moved an aiming indicator.");
+        capture(accuracy.ToString());
+        if (captureMotion && accuracy == LandingAccuracy.Perfect)
+        {
+            for (int frame = 0; frame < 32; frame++) { sample(frame / 30f); capture("Frame-Perfect-" + frame.ToString("D3")); }
+            contact.Begin(receipt, rush.Sequence.Steps[0].ImpactAt);
+        }
+        check(model.Points == points && model.AttemptsRemaining == attempts && model.Revision == revision, "Feedback changed gameplay state.");
+        if (accuracy != LandingAccuracy.Miss)
+        {
+            motion.SetIsOnWithoutNotify(true); sample(contact.ContactAt + .025f);
+            var stillA = mesh(); sample(contact.ContactAt + .075f); var stillB = mesh();
+            check(contact.RecoilOffset == UnityEngine.Vector2.zero && machine.anchoredPosition == machineRest && face.anchoredPosition == faceRest, "Reduced motion retained recoil or button motion.");
+            check(stamp.transform.localScale == UnityEngine.Vector3.one, "Reduced motion retained stamped scaling.");
+            check(System.Linq.Enumerable.SequenceEqual(stillA.vertices, stillB.vertices), "Reduced-motion contact travels or expands.");
+            UnityEngine.Object.Destroy(stillA); UnityEngine.Object.Destroy(stillB);
+            motion.SetIsOnWithoutNotify(false);
+        }
+        sample(.7f); check(!contact.IsContactActive && face.anchoredPosition == faceRest, "Contact or button did not settle.");
+        rush.Present(receipt, new TackleRigCardView[0], true); check(!contact.IsContactActive, "Repeated receipt replayed contact.");
+        rush.Finish();
+        check(machine.anchoredPosition == machineRest && face.anchoredPosition == faceRest && !contact.IsContactActive && stamp.alpha == 0, "Skip retained motion or light.");
+        rush.Present(new LandingStrikeReceipt(model, new CardInstance[0]), new TackleRigCardView[0], true); sample(.02f);
+        root.SetActive(false);
+        check(!contact.IsContactActive && machine.anchoredPosition == machineRest && face.anchoredPosition == faceRest, "Phase exit retained contact or motion.");
+        root.SetActive(true);
+    }
+    check(perfectVertices > goodVertices, "Perfect and Good lack a non-color distinction.");
+    var pointer = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current) { button = UnityEngine.EventSystems.PointerEventData.InputButton.Left };
+    feedback.SetActionPress(.6f); feedback.OnPointerDown(pointer); feedback.OnPointerUp(pointer);
+    check(face.anchoredPosition.y < faceRest.y, "Pointer release erased an in-flight accepted-command press.");
+    feedback.SetActionPress(0); check(face.anchoredPosition == faceRest, "Button press did not restore.");
+    System.IO.File.WriteAllText(output + "Verification.json", "{\"passed\":true,\"assertions\":" + checks + ",\"scope\":\"Isolated real Landing prefab, all grades, immutable receipt position, reduced motion, duplicate receipt, skip and indicator preservation\"}\n");
+    return "Passed " + checks + " strike-contact checks.";
+}
+finally { rush.Finish(); guard.SetActive(false); UnityEngine.Object.Destroy(guard); }
