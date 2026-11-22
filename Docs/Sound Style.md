@@ -12,6 +12,8 @@ The previous harp/pizzicato identity was rejected for failing to match Deepwater
 
 The scoring phrase is **contact → approach → impact → compact release**. Additions have a concise contact/pulse identity; multipliers add a firmer attack and electrical body; large payouts add a dense, brief spray of score sparks. There is no long success song or literal coin payout. Landing Points remain distinct from haul value.
 
+The 22 November modifier-impact pass varies preparation and delivery duration by actual gained points. Existing Travel cues fit each flight and the existing Addition/Multiplier cues meet the frozen impact deadline. This changes timing, not the selected takes' identity, mix calibration, pitch-growth limits or intensity-gain policy. [Native comparison and timing validation](Validation/ModifierImpact/README.md) cover the revised phrase.
+
 ## Cue vocabulary
 
 Times below are file durations, not gameplay delays. Immediate cues are requested in the accepted action's frame; hardware latency remains device-dependent.

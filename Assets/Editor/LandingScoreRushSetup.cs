@@ -86,7 +86,12 @@ public static class LandingScoreRushSetup
         Bind(portraitData, "creatureName", presentation.FindProperty("creature").objectReferenceValue);
         portraitData.ApplyModifiedPropertiesWithoutUndo(); Bind(data, "scoringPortrait", portraitView);
         var operation = (TMP_Text)data.FindProperty("operation").objectReferenceValue;
-        operation.rectTransform.anchoredPosition = new Vector2(8, -104); operation.rectTransform.sizeDelta = new Vector2(442, 26);
+        operation.rectTransform.pivot = new Vector2(.5f, .5f);
+        operation.rectTransform.anchoredPosition = new Vector2(229, -117); operation.rectTransform.sizeDelta = new Vector2(442, 26);
+        // Reserve horizontal expansion room while keeping the number and its projectile destination centered in the glass.
+        var value = (TMP_Text)data.FindProperty("value").objectReferenceValue;
+        value.rectTransform.pivot = new Vector2(.5f, .5f);
+        value.rectTransform.anchoredPosition = new Vector2(229, -67); value.rectTransform.sizeDelta = new Vector2(360, 78);
         var labels = data.FindProperty("coveredLabels"); labels.arraySize = 2;
         labels.GetArrayElementAtIndex(0).objectReferenceValue = stage.Find("PointsCaption").GetComponent<TMP_Text>();
         labels.GetArrayElementAtIndex(1).objectReferenceValue = stage.Find("ResistanceCaption").GetComponent<TMP_Text>();

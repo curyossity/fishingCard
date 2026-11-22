@@ -1,0 +1,142 @@
+// Unity MCP method body. Actual prefab and current species abilities; no player controller or save mutation.
+if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
+int previewLevel = 30; bool exportFrames = true;
+string output = "Docs/Validation/ModifierImpact/", frames = "Temp/ModifierImpactReview/Level-" + previewLevel + "/";
+System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
+var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+var culture = System.Globalization.CultureInfo.InvariantCulture;
+int checks = 0;
+System.Action<bool, string> check = (condition, message) => { checks++; if (!condition) throw new System.InvalidOperationException(message); };
+var definitions = new System.Collections.Generic.Dictionary<string, CardDefinition>();
+foreach (string guid in UnityEditor.AssetDatabase.FindAssets("t:CardDefinition", new[] { "Assets/Cards" })) {
+    var definition = UnityEditor.AssetDatabase.LoadAssetAtPath<CardDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid)); definitions[definition.DisplayName] = definition;
+}
+var rig = new RigRuntime();
+foreach (string name in new[] { "Sardine", "Glass Minnow", "Mackerel", "Cuttlefish", "Stormjaw Tuna" })
+    for (int i = 0; i < ((name == "Sardine" || name == "Cuttlefish" || name == "Stormjaw Tuna") ? previewLevel : 1); i++) {
+        bool upgraded; string error; if (!rig.TryAcquire(rig.Revision, definitions[name], rig.Members.Length, out upgraded, out error)) throw new System.InvalidOperationException(error);
+    }
+int extra, protect; var model = new LandingChallengeRuntime(); double clock = 0;
+model.Begin(1, 2000, LandingChallengeChecks.Settings(), rig.SnapshotForLanding(out extra, out protect), new System.Random(12), clock, extra, protect);
+LandingChallengeChecks.Strike(model, LandingAccuracy.Perfect, ref clock);
+var receipt = new LandingStrikeReceipt(model, rig.Members);
+var guard = new UnityEngine.GameObject("Isolated modifier impact audit"); guard.SetActive(false);
+var root = UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(LandingChallengeSetup.PrefabPath), guard.transform); root.SetActive(true);
+root.GetComponent<LandingChallengeView>().enabled = false; root.GetComponent<TackleLandingPresentation>().enabled = false;
+foreach (var raycaster in root.GetComponentsInChildren<UnityEngine.UI.GraphicRaycaster>(true)) raycaster.enabled = false;
+var group = root.AddComponent<UnityEngine.CanvasGroup>(); group.interactable = false; group.blocksRaycasts = false;
+var canvas = root.GetComponent<UnityEngine.Canvas>(); canvas.enabled = false;
+foreach (var source in root.GetComponentsInChildren<UnityEngine.AudioSource>(true)) source.mute = true;
+guard.SetActive(true);
+var rush = root.GetComponent<LandingScoreRush>(); var data = new UnityEditor.SerializedObject(rush);
+var view = root.GetComponent<TackleLandingPresentation>(); var viewData = new UnityEditor.SerializedObject(view);
+var motion = (UnityEngine.UI.Toggle)data.FindProperty("reducedMotionToggle").objectReferenceValue; motion.SetIsOnWithoutNotify(false);
+((UnityEngine.UI.Toggle)data.FindProperty("soundToggle").objectReferenceValue).SetIsOnWithoutNotify(false);
+typeof(TackleLandingPresentation).GetMethod("RefreshRig", hidden).Invoke(view, new object[] { rig.Members, null, false });
+var cards = (System.Collections.Generic.List<TackleRigCardView>)typeof(TackleLandingPresentation).GetField("cards", hidden).GetValue(view);
+foreach (var pair in new[] { new[] { "phase", "SHALLOWS / LAND" }, new[] { "haul", "HAUL " + rig.HaulValue }, new[] { "creature", "SARDINE" }, new[] { "tags", "SCHOOLING" }, new[] { "resistance", "2000" }, new[] { "movement", model.Pattern.ToString().ToUpperInvariant() }, new[] { "message", "RIG ACTIVATING  /  SPACE TO FINISH" } })
+    ((TMPro.TMP_Text)viewData.FindProperty(pair[0]).objectReferenceValue).text = pair[1];
+var portrait = (UnityEngine.UI.Image)viewData.FindProperty("portrait").objectReferenceValue;
+portrait.sprite = definitions["Sardine"].EncounterArtwork ?? definitions["Sardine"].Artwork;
+var track = (UnityEngine.RectTransform)viewData.FindProperty("track").objectReferenceValue;
+foreach (string field in new[] { "fish", "goodZone", "perfectZone" }) {
+    var rect = (UnityEngine.RectTransform)viewData.FindProperty(field).objectReferenceValue;
+    rect.anchoredPosition = new UnityEngine.Vector2(((float)(field == "fish" ? model.FishPosition : model.ZonePosition) - .5f) * track.rect.width, 0);
+    double width = field == "fish" ? model.FishWidth : field == "goodZone" ? model.GoodWidth : model.PerfectWidth;
+    rect.sizeDelta = new UnityEngine.Vector2((float)width * track.rect.width, rect.sizeDelta.y);
+}
+typeof(TackleLandingPresentation).GetMethod("PrepareLamps", hidden).Invoke(view, new object[] { model.InitialAttempts });
+var lamps = (System.Collections.Generic.List<UnityEngine.UI.Image>)typeof(TackleLandingPresentation).GetField("lamps", hidden).GetValue(view);
+for (int i = 0; i < lamps.Count; i++) lamps[i].sprite = (UnityEngine.Sprite)viewData.FindProperty(i < model.AttemptsRemaining ? "lampOn" : "lampOff").objectReferenceValue;
+((TMPro.TMP_Text)viewData.FindProperty("attempts").objectReferenceValue).text = model.AttemptsRemaining + " ATTEMPTS LEFT";
+var feedback = root.GetComponent<LandingStrikeFeedback>(); feedback.Present(receipt, cards, true, true);
+var number = (TMPro.TMP_Text)data.FindProperty("value").objectReferenceValue;
+var operation = (TMPro.TMP_Text)data.FindProperty("operation").objectReferenceValue;
+var particles = (LandingRushGraphic)data.FindProperty("particles").objectReferenceValue;
+var machine = (UnityEngine.RectTransform)data.FindProperty("machine").objectReferenceValue;
+var scoringPortrait = root.GetComponent<LandingScoringPortrait>();
+var machineRest = machine.anchoredPosition; var portraitRest = portrait.rectTransform.localScale; var operationRest = operation.rectTransform.localScale;
+var fish = (UnityEngine.RectTransform)viewData.FindProperty("fish").objectReferenceValue; var fishRest = fish.anchoredPosition;
+var cardScales = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(cards, card => card.transform.localScale));
+System.Action<float> sample = time => {
+    typeof(LandingScoreRush).GetMethod("Render", hidden).Invoke(rush, new object[] { time });
+    ((TMPro.TMP_Text)viewData.FindProperty("points").objectReferenceValue).text = LandingScoreRush.Format(rush.DisplayedTotal);
+    ((UnityEngine.RectTransform)viewData.FindProperty("progressFill").objectReferenceValue).anchorMax = new UnityEngine.Vector2(UnityEngine.Mathf.Clamp01((float)(rush.DisplayedTotal / model.Resistance)), 1);
+};
+System.Func<int> vertexCount = () => {
+    var helper = new UnityEngine.UI.VertexHelper(); try { typeof(LandingRushGraphic).GetMethod("OnPopulateMesh", hidden | System.Reflection.BindingFlags.DeclaredOnly).Invoke(particles, new object[] { helper }); return helper.currentVertCount; }
+    finally { helper.Dispose(); }
+};
+var cameraObject = new UnityEngine.GameObject("Private modifier capture", typeof(UnityEngine.Camera));
+var camera = cameraObject.GetComponent<UnityEngine.Camera>(); camera.enabled = false; camera.orthographic = true; camera.orthographicSize = 1080; camera.transform.position = new UnityEngine.Vector3(0, 0, -1000);
+var target = new UnityEngine.RenderTexture(1920, 1080, 24); var previous = UnityEngine.RenderTexture.active;
+var image = new UnityEngine.Texture2D(1920, 1080, UnityEngine.TextureFormat.RGBA32, false);
+System.Action<string> capture = file => {
+    canvas.enabled = true; canvas.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera; canvas.worldCamera = camera; canvas.planeDistance = 100; camera.targetTexture = target;
+    UnityEngine.Canvas.ForceUpdateCanvases();
+    UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+    UnityEngine.RenderTexture.active = target; image.ReadPixels(new UnityEngine.Rect(0, 0, 1920, 1080), 0, 0); image.Apply(); System.IO.File.WriteAllBytes(file, image.EncodeToPNG()); canvas.enabled = false;
+};
+try
+{
+    rush.Present(receipt, cards, true); var sequence = rush.Sequence;
+    check(!particles.raycastTarget, "Modifier geometry intercepts input.");
+    check(sequence.Duration < 4.8f, "Weighted sequence exceeds its bound.");
+    float smallestStrength = 2, largestStrength = -1, smallPunch = 0, largePunch = 0;
+    foreach (var step in System.Linq.Enumerable.Skip(sequence.Steps, 1))
+    {
+        sample((step.Time + step.LaunchAt) * .5f);
+        check(rush.DisplayedStrike == step.PreviousValue, "Preparation exposed future points.");
+        check(operation.text == (step.Multiply ? "\u00d7" : "+") + LandingScoreRush.Format(step.Amount), "Canonical operation is not readable during preparation.");
+        if (step.Multiply && step.Strength >= .35f) check(portrait.rectTransform.localScale.x < portraitRest.x, "Major multiplier did not compress before release.");
+        sample((step.LaunchAt + step.ImpactAt) * .5f);
+        check(vertexCount() > 0 && rush.DisplayedStrike == step.PreviousValue, "Flight is invisible or changes points early.");
+        sample(step.ImpactAt - .0001f); check(rush.DisplayedStrike == step.PreviousValue, "Points arrived ahead of contact.");
+        sample(step.ImpactAt); check(rush.DisplayedStrike == step.Value, "Impact did not deliver exact points.");
+        sample(step.ImpactAt + .025f);
+        number.ForceMeshUpdate(true, true);
+        check(number.textBounds.size.x * number.rectTransform.localScale.x <= 442.5f, "Number impact escapes the score glass.");
+        check(number.rectTransform.pivot == new UnityEngine.Vector2(.5f, .5f) && operation.rectTransform.pivot == number.rectTransform.pivot, "Score response pivots drift away from the glass center.");
+        float punch = number.rectTransform.localScale.x - 1;
+        if (step.Strength < smallestStrength) { smallestStrength = step.Strength; smallPunch = punch; }
+        if (step.Strength > largestStrength) { largestStrength = step.Strength; largePunch = punch; }
+        check(System.Linq.Enumerable.Any(rush.SoundEvents, cue => cue.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition) && UnityEngine.Mathf.Abs(cue.Time - step.ImpactAt) < .00001f), "Impact sound is not aligned with delivery.");
+        check(System.Linq.Enumerable.Any(rush.SoundEvents, cue => cue.Cue == DeepwaterSoundCue.Travel && UnityEngine.Mathf.Abs(cue.Time - step.LaunchAt) < .00001f), "Launch sound is not aligned with flight.");
+    }
+    check(largePunch > smallPunch, "Major gains do not respond more strongly than small gains.");
+    check(fish.anchoredPosition == fishRest && model.Points == receipt.PointsAfter && model.AttemptsRemaining > 0, "Visual sampling changed aiming or gameplay.");
+    var last = sequence.Steps[sequence.Steps.Count - 1];
+    motion.SetIsOnWithoutNotify(true); sample((last.LaunchAt + last.ImpactAt) * .5f);
+    check(vertexCount() == 0 && number.rectTransform.localScale == UnityEngine.Vector3.one && operation.rectTransform.localScale == operationRest && machine.anchoredPosition == machineRest && portrait.rectTransform.localScale == portraitRest, "Reduced motion retains charge, flight, recoil or scale.");
+    motion.SetIsOnWithoutNotify(false); rush.Finish();
+    check(!rush.IsPlaying && !scoringPortrait.IsShowingContributors && portrait.rectTransform.localScale == portraitRest && operation.rectTransform.localScale == operationRest, "Skip retained a contributor or transformed readout.");
+    for (int i = 0; i < cards.Count; i++) check(cards[i].transform.localScale == cardScales[i], "Skip retained rig-card motion.");
+    var previewReceipt = new LandingStrikeReceipt(model, rig.Members); feedback.Present(previewReceipt, cards, true, true); rush.Present(previewReceipt, cards, true);
+    var events = System.Linq.Enumerable.ToArray(rush.SoundEvents);
+    if (exportFrames)
+    {
+        bool finished = false; int frameCount = UnityEngine.Mathf.CeilToInt((sequence.Duration + .3f) * 30);
+        for (int frame = 0; frame < frameCount; frame++) {
+            float t = frame / 30f;
+            if (t >= sequence.Duration) { if (!finished) { rush.Finish(); finished = true; } }
+            else sample(t);
+            capture(frames + "Frame-" + frame.ToString("D3") + ".png");
+        }
+        System.IO.File.WriteAllBytes(output + "Level-" + previewLevel + ".wav", LandingScoreShowcase.Mix(events, sequence.Duration + .3f));
+    }
+    rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true);
+    sample((last.Time + last.LaunchAt) * .5f); root.SetActive(false);
+    check(!rush.IsPlaying && machine.anchoredPosition == machineRest && number.rectTransform.localScale == UnityEngine.Vector3.one && operation.rectTransform.localScale == operationRest && !scoringPortrait.IsShowingContributors, "Phase exit retained a prepared modifier or transformed score.");
+    var details = new System.Text.StringBuilder();
+    foreach (var step in System.Linq.Enumerable.Skip(sequence.Steps, 1)) {
+        if (details.Length > 0) details.Append(",");
+        details.Append("{\"gain\":\"").Append(step.Gain.ToString(culture)).Append("\",\"strength\":").Append(step.Strength.ToString(culture))
+            .Append(",\"launch\":").Append(step.LaunchAt.ToString(culture)).Append(",\"impact\":").Append(step.ImpactAt.ToString(culture)).Append(",\"multiply\":").Append(step.Multiply ? "true" : "false").Append("}");
+    }
+    System.IO.File.WriteAllText(output + "Level-" + previewLevel + ".json", "{\"passed\":true,\"checks\":" + checks + ",\"level\":" + previewLevel + ",\"points\":\"" + model.Points.ToString(culture) + "\",\"duration\":" + sequence.Duration.ToString(culture) + ",\"operations\":[" + details + "]}\n");
+    return "Passed " + checks + " modifier checks at level " + previewLevel + "; score " + model.Points + "; frames " + frames;
+}
+finally {
+    rush.Finish(); guard.SetActive(false); UnityEngine.RenderTexture.active = previous; camera.targetTexture = null; target.Release();
+    UnityEngine.Object.Destroy(target); UnityEngine.Object.Destroy(image); UnityEngine.Object.Destroy(cameraObject); UnityEngine.Object.Destroy(guard);
+}

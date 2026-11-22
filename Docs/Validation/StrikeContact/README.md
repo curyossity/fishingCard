@@ -5,7 +5,7 @@
 | Phase | Scope | Status |
 | --- | --- | --- |
 | 1 | Immediate strike contact and grade distinction | Implemented and validated |
-| 2 | Weight individual score operations by their actual contribution | Proposed; not implemented |
+| 2 | Weight individual score operations by their actual contribution | Implemented; see [modifier impact](../ModifierImpact/README.md) |
 | 3 | Distinct climax when accumulated points cross Resistance | Proposed; not implemented |
 | 4 | Clearer supporter-to-source-to-score choreography | Proposed; not implemented |
 | 5 | Continuity from encounter to acquired card and clearer upgrade improvement | Proposed; not implemented |

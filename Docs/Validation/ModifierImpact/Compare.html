@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deepwater — Modifier impact</title>
+<style>
+body{margin:0;background:#101a19;color:#f4e7bd;font:16px/1.5 system-ui,sans-serif}main{max-width:1500px;margin:auto;padding:28px}h1{font-size:26px;margin:0 0 8px}p{color:#c4cbbf;max-width:900px}.clips{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:22px}section{padding:16px;background:#1e2925;border:1px solid #8d7448;border-radius:6px}h2{font-size:19px;margin:0 0 12px}video{width:100%;display:block;background:#070c0b}button{background:#edcf80;color:#211d13;border:0;border-radius:4px;padding:12px 18px;font:inherit;cursor:pointer;margin:12px 0 22px}.note{font-size:14px}a{color:#edcf80}
+</style>
+<main>
+<h1>Deepwater · Phase 2: modifier impact</h1>
+<p>Actual Unity sequences using the same current creature definitions at different upgrade levels. Small gains resolve quickly; major gains gather, launch and land with more weight. The strike ribbon remains the phase 1 treatment.</p>
+<button id="compare">Replay both · muted comparison</button>
+<div class="clips">
+<section><h2>Small gains · 50.7 points</h2><video controls playsinline preload="metadata" src="Level-1.mp4"></video><p class="note">Level-one rig. Compact deliveries and restrained impacts.</p></section>
+<section><h2>Major gains · 1,016.4 points</h2><video controls playsinline preload="metadata" src="Level-30.mp4"></video><p class="note">Upgraded rig. The final ×4.4 operation delivers 785.4 points with a longer preparation and stronger response.</p></section>
+</div>
+<p class="note">Use an individual video's controls to hear its synchronized cues. These are sampled native UI animations with audio mixed from their frozen runtime event lists, not device loopback recordings. The rigs are isolated validation fixtures; no species tuning or saves were changed.</p>
+</main>
+<script>document.querySelector('#compare').onclick=()=>{for(const video of document.querySelectorAll('video')){video.pause();video.currentTime=0;video.muted=true;video.play().catch(()=>{});}};</script>
+</html>

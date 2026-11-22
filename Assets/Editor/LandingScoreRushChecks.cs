@@ -57,7 +57,39 @@ public static class LandingScoreRushChecks
         Check(model.Points == points && model.AttemptsRemaining == attempts && model.Revision == revision,"Presentation changed gameplay state.");
         model.AdvanceTo(clock + 2.4);
         Check(model.FishPosition != fish || model.ZonePosition != zone,"Motion did not resume after the hold.");
+        ValidateModifierStrength();
         return checks;
+    }
+
+    /// <summary>Checks gain-based visual hierarchy, exact delivery and the readable long-rig time budget.</summary>
+    private static void ValidateModifierStrength()
+    {
+        var small = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 2, 1,
+            new[] { new LandingContribution(1, "Small addition", 2, 1) }));
+        var large = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 100, 1,
+            new[] { new LandingContribution(1, "Large addition", 100, 1) }));
+        Check(small.Steps[1].Strength < .1f && large.Steps[1].Strength > .4f, "Small and major bonuses share the same visual intensity.");
+        Check(small.Steps[1].EndAt < large.Steps[1].EndAt, "Small bonuses do not resolve faster.");
+        var tinyMultiplier = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 1.01m,
+            new[] { new LandingContribution(1, "Tiny multiplier", 0, 1.01m) }));
+        var earlyMultiplier = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 2,
+            new[] { new LandingContribution(1, "Early multiplier", 0, 2) }));
+        var lateMultiplier = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 100, 2,
+            new[] { new LandingContribution(1, "Foundation", 100, 1), new LandingContribution(2, "Late multiplier", 0, 2) }));
+        var late = lateMultiplier.Steps.Last();
+        Check(tinyMultiplier.Steps[1].Strength < small.Steps[1].Strength, "A nominal multiplier fakes a major gain.");
+        Check(late.Strength > earlyMultiplier.Steps[1].Strength, "The same factor ignores its actual delivered points.");
+        Check(late.LaunchAt - late.Time > tinyMultiplier.Steps[1].LaunchAt - tinyMultiplier.Steps[1].Time, "A major multiplier lacks additional preparation.");
+        Check(late.PreviousValue == 120 && late.Gain == 120 && late.Value == 240, "Operation metadata changed canonical arithmetic.");
+        Check(lateMultiplier.ValueAt(late.ImpactAt - .0001f) == 120 && lateMultiplier.ValueAt(late.ImpactAt) == 240, "Weighted timing exposes multiplier points before arrival.");
+        Check(Math.Abs(small.Steps[0].ImpactAt - .076f) < .000001f && small.Steps[1].Time == .18f, "Modifier tuning changed phase-one contact timing.");
+        var mixed = Enumerable.Range(0, 150).Select(i => new LandingContribution(i, "Grouped", 1, 1.02m)).ToArray();
+        decimal product = 1; foreach (var item in mixed) product *= item.Multiplier;
+        var longSequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 150, product, mixed));
+        Check(longSequence.Duration < 4.8f && longSequence.Steps.Last().Value == longSequence.Score.Points, "Mixed long rigs break the bounded exact sequence.");
+        Check(longSequence.Steps.Skip(1).Sum(s => s.SourceIds.Count) == 300, "Grouped delivery drops an operation/source identity.");
+        Check(longSequence.Steps.Skip(1).All(s => s.EndAt - s.Time >= .18999f), "Tempo compression makes grouped operations unreadable.");
+        Check(longSequence.Steps.Skip(1).All(s => s.Strength >= 0 && s.Strength <= 1 && s.Time < s.LaunchAt && s.LaunchAt < s.ImpactAt && s.ImpactAt < s.EndAt), "Weighted steps have invalid strength or event order.");
     }
 
     /// <summary>Verifies serialized UI, audio routing and non-intercepting feedback on the actual saved prefab.</summary>

@@ -1,0 +1,8 @@
+{
+  "method": "Free local FFmpeg ebur128=peak=true, authored mono WAV exports from frozen runtime SoundEvents",
+  "Level-1": { "integratedLufs": -28.9, "truePeakDbtp": -9.0 },
+  "Level-30": { "integratedLufs": -28.0, "truePeakDbtp": -6.4 },
+  "samplesAndGainsChanged": false,
+  "humanListeningClaimed": false,
+  "deviceLoopback": false
+}

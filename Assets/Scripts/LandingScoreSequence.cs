@@ -9,15 +9,20 @@ public sealed class LandingScoreSequence
     {
         public readonly int SourceId;
         public readonly decimal Value, Amount;
+        public readonly decimal PreviousValue, Gain;
+        public readonly float Strength;
         public readonly bool Multiply;
         public readonly float Time;
         public readonly float LaunchAt, ImpactAt, EndAt;
         public readonly IReadOnlyList<int> SourceIds;
-        /// <summary>Records an exact operation and the time at which its presentation begins.</summary>
-        public Step(int sourceId, decimal value, decimal amount, bool multiply, float time, float span = .3f, int[] sources = null)
+        /// <summary>Freezes an exact operation, delivered gain and strength-dependent presentation deadlines.</summary>
+        public Step(int sourceId, decimal value, decimal amount, bool multiply, float time, float span = .3f, int[] sources = null, decimal previousValue = 0, float strength = 0)
         {
             SourceId = sourceId; Value = value; Amount = amount; Multiply = multiply; Time = time;
-            LaunchAt = time + span * .30f; ImpactAt = time + span * .76f; EndAt = time + span;
+            PreviousValue = previousValue; Gain = value - previousValue; Strength = strength;
+            // The accuracy beat retains its accepted contact timing; modifiers prepare in proportion to their real gain.
+            float preparation = sourceId < 0 ? .30f : multiply ? .25f + .19f * strength : .16f + .12f * strength;
+            LaunchAt = time + span * preparation; ImpactAt = time + span * (sourceId < 0 || multiply ? .76f : .72f); EndAt = time + span;
             SourceIds = Array.AsReadOnly(sources ?? new[] { sourceId });
         }
     }
@@ -30,7 +35,7 @@ public sealed class LandingScoreSequence
     public int OperationCount { get; }
     public int Tier => Intensity >= .75f ? 2 : Intensity >= .3f ? 1 : 0;
 
-    /// <summary>Schedules every addition before every multiplier, with a bounded duration even for a large rig.</summary>
+    /// <summary>Schedules canonical additions before multipliers with gain-based emphasis and bounded grouped pacing.</summary>
     public LandingScoreSequence(LandingScore score)
     {
         Score = score ?? throw new ArgumentNullException(nameof(score));
@@ -48,8 +53,10 @@ public sealed class LandingScoreSequence
         {
             var group = additions.Skip(offset).Take(batchSize).ToArray(); decimal amount = 0;
             foreach (var item in group) { subtotal = checked(subtotal + item.Bonus); amount += item.Bonus; }
-            float span = Math.Max(.18f, .34f - steps.Count * .025f);
-            steps.Add(new Step(group[0].SourceId, subtotal, amount, false, time, span, group.Select(c => c.SourceId).ToArray()));
+            decimal previous = steps[steps.Count - 1].Value;
+            float strength = StrengthFor(previous, subtotal, score.Base);
+            float span = Math.Max(.19f, .23f + strength * .18f - (steps.Count - 1) * .009f);
+            steps.Add(new Step(group[0].SourceId, subtotal, amount, false, time, span, group.Select(c => c.SourceId).ToArray(), previous, strength));
             time += span;
         }
         for (int offset = 0; offset < multipliers.Length; offset += batchSize)
@@ -61,13 +68,36 @@ public sealed class LandingScoreSequence
                 amount = amount > 1 && item.Multiplier > 1 && amount > decimal.MaxValue / item.Multiplier ? decimal.MaxValue : amount * item.Multiplier;
             }
             decimal value = product > 1 && subtotal > decimal.MaxValue / product ? decimal.MaxValue : subtotal * product;
-            float span = .32f + (offset == 0 ? .08f : 0) + (offset + batchSize >= multipliers.Length ? Intensity * .14f : 0);
-            steps.Add(new Step(group[0].SourceId, value, amount, true, time, span, group.Select(c => c.SourceId).ToArray()));
+            decimal previous = steps[steps.Count - 1].Value;
+            float strength = StrengthFor(previous, value, score.Base);
+            float span = .28f + strength * .25f;
+            steps.Add(new Step(group[0].SourceId, value, amount, true, time, span, group.Select(c => c.SourceId).ToArray(), previous, strength));
+            time += span;
+        }
+        // Compress only time above the readable per-beat floor, retaining arithmetic and every grouped identity.
+        const float minimumSpan = .19f, modifierBudget = 3.25f;
+        float extra = steps.Skip(1).Sum(s => Math.Max(0, s.EndAt - s.Time - minimumSpan));
+        float available = Math.Max(0, modifierBudget - (steps.Count - 1) * minimumSpan);
+        float tempo = extra > available ? available / extra : 1;
+        time = .18f;
+        for (int i = 1; i < steps.Count; i++)
+        {
+            var step = steps[i]; float span = minimumSpan + (step.EndAt - step.Time - minimumSpan) * tempo;
+            steps[i] = new Step(step.SourceId, step.Value, step.Amount, step.Multiply, time, span, step.SourceIds.ToArray(), step.PreviousValue, step.Strength);
             time += span;
         }
         Steps = steps.AsReadOnly();
         PayoutAt = time + .10f + Intensity * .24f;
         Duration = PayoutAt + .36f + Intensity * .34f;
+    }
+
+    /// <summary>Balances relative growth and points gained against the accuracy base, so nominally small multipliers cannot fake a huge impact.</summary>
+    private static float StrengthFor(decimal before, decimal after, decimal basis)
+    {
+        double gain = Math.Max(0, (double)(after - before));
+        double relative = Math.Min(1, Math.Log10(1 + gain / Math.Max(1, (double)before)) / Math.Log10(11));
+        double absolute = Math.Min(1, Math.Log10(1 + gain / Math.Max(1, (double)basis)) / Math.Log10(51));
+        return (float)(relative * .4 + absolute * .6);
     }
 
     /// <summary>Finds the current operation without consuming animation state or changing the score.</summary>

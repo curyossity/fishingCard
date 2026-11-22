@@ -32,6 +32,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     private bool paid, running;
     private Vector2 machineRest;
     private Vector3 totalRest;
+    private Vector3 operationRest = Vector3.one;
     private TackleRigCardView kicked;
     private Vector3 kickScale;
     private Quaternion kickRotation;
@@ -56,7 +57,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     /// <summary>Loads only user presentation preferences and retains authored transform baselines.</summary>
     private void Awake()
     {
-        machineRest = machine.anchoredPosition; totalRest = totalLabel.localScale;
+        machineRest = machine.anchoredPosition; totalRest = totalLabel.localScale; operationRest = operation.rectTransform.localScale;
         soundToggle.SetIsOnWithoutNotify(GameAudioPreferences.SoundEnabled);
         reducedMotionToggle.SetIsOnWithoutNotify(PlayerPrefs.GetInt(MotionKey, 0) != 0);
         soundToggle.onValueChanged.AddListener(SetSound); reducedMotionToggle.onValueChanged.AddListener(SetReducedMotion);
@@ -112,7 +113,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         Render(elapsed);
         if (elapsed >= sequence.Duration) Finish();
     }
-    /// <summary>Draws one presentation frame and emits at most one note for newly reached operations.</summary>
+    /// <summary>Samples source preparation, delivered values and weighted impacts together, scheduling only current sound events.</summary>
     private void Render(float elapsed)
     {
         int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
@@ -155,17 +156,26 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (payout) operation.text = "+" + Format(receipt.Score.Points);
         readout.alpha = payout ? 1 - Mathf.Clamp01((payoutAge - .3f) / .24f) : 1;
         float impactAge = elapsed - sequence.Steps[arrived].ImpactAt;
-        float bump = impactAge < 0 ? 0 : Mathf.Exp(-impactAge * 18) * Mathf.Sin(impactAge * 34);
-        float preparation = Mathf.Sin(Mathf.Clamp01(age / Math.Max(.001f, step.ImpactAt - step.Time)) * Mathf.PI);
-        feedback.SetScoreSources(payout || index == 0 ? null : step.SourceIds, preparation * .5f);
+        var arrivedStep = sequence.Steps[arrived];
+        float bump = impactAge < 0 ? 0 : Mathf.Exp(-impactAge * (arrived == 0 ? 18 : 14)) * Mathf.Sin(impactAge * (arrived == 0 ? 34 : 32));
+        float charge = index == 0 || elapsed >= step.LaunchAt ? 0 : Mathf.Sin(Mathf.Clamp01(age / Math.Max(.001f, step.LaunchAt - step.Time)) * Mathf.PI * .5f);
+        float release = index == 0 || elapsed < step.LaunchAt ? 0 : Mathf.Exp(-(elapsed - step.LaunchAt) * 24);
+        float preparation = index == 0 ? 0 : Math.Max(charge, release) * (.3f + step.Strength * .7f);
+        feedback.SetScoreSources(payout || index == 0 ? null : step.SourceIds, preparation * .6f);
         feedback.SetScoringFocus(!payout);
         float impact = payout ? Mathf.Exp(-Mathf.Max(0, payoutAge) * 12) * Mathf.Sin(payoutAge * 40) : 0;
-        float punch = ReducedMotion ? 0 : bump * (sequence.Steps[arrived].Multiply ? .13f : .065f) + impact * sequence.Intensity * .10f;
-        value.rectTransform.localScale = new Vector3(1 + punch, 1 + punch * .65f, 1);
-        scoringPortrait.SetPulse(ReducedMotion ? 0 : preparation);
+        float amplitude = arrived == 0 ? .065f : (.045f + arrivedStep.Strength * .275f) * (arrivedStep.Multiply ? 1.12f : 1);
+        float pullback = step.Multiply && step.Strength >= .35f ? charge * step.Strength * .035f : 0;
+        float punch = ReducedMotion ? 0 : bump * amplitude - pullback + impact * sequence.Intensity * .10f;
+        value.rectTransform.localScale = new Vector3(1 + punch, 1 + punch * (arrived == 0 ? .65f : .35f), 1);
+        float sourcePulse = step.Multiply && step.Strength >= .35f && charge > 0 ? -charge * step.Strength * .65f : preparation;
+        scoringPortrait.SetPulse(ReducedMotion || payout ? 0 : sourcePulse);
+        float operationImpact = arrived == index && index > 0 ? Mathf.Max(0, bump) * (.04f + step.Strength * .24f) : 0;
+        operation.rectTransform.localScale = operationRest * (1 + (ReducedMotion || payout ? 0 : charge * step.Strength * (step.Multiply ? .12f : .04f) + operationImpact));
         totalLabel.localScale = totalRest * (1 + (ReducedMotion ? 0 : impact * .12f));
         machine.anchoredPosition = machineRest + (strikeContact != null ? strikeContact.RecoilOffset : Vector2.zero)
-            + (ReducedMotion || sequence.Tier == 0 ? Vector2.zero : Vector2.up * impact * sequence.Intensity * 4);
+            + (ReducedMotion || sequence.Tier == 0 ? Vector2.zero : Vector2.up * impact * sequence.Intensity * 4)
+            + (ReducedMotion || payout || arrived == 0 ? Vector2.zero : Vector2.up * bump * Mathf.Max(0, arrivedStep.Strength - .5f) * 7);
         glow.color = new Color(1, .69f, .26f, ReducedMotion ? .015f : .015f + Mathf.Max(0, bump) * .035f + Mathf.Abs(impact) * .04f);
         if (kicked != null && !payout && !ReducedMotion)
         {
@@ -175,9 +185,11 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (ReducedMotion) RestoreMotion();
         Vector3 origin = scoringPortrait.ProjectileOrigin;
         float travel = Mathf.Clamp01((elapsed - step.LaunchAt) / Math.Max(.001f, step.ImpactAt - step.LaunchAt));
+        travel = Mathf.Lerp(travel, travel * travel, step.Strength * .7f);
         particles.Render(origin, destination, ReducedMotion || index == 0 || payout ? 0 : travel,
-            ReducedMotion || !payout || sequence.Tier == 0 ? 0 : Mathf.Clamp01(payoutAge / .55f), sequence.Intensity,
-            step.Multiply, ReducedMotion || impactAge < 0 || payout ? 0 : Mathf.Clamp01(impactAge / .18f));
+            ReducedMotion || !payout || sequence.Tier == 0 ? 0 : Mathf.Clamp01(payoutAge / .55f), payout ? sequence.Intensity : step.Strength,
+            step.Multiply, ReducedMotion || impactAge < 0 || payout || arrived == 0 ? 0 : Mathf.Clamp01(impactAge / (.12f + arrivedStep.Strength * .14f)),
+            ReducedMotion || payout ? 0 : charge * step.Strength, arrivedStep.Strength, arrivedStep.Multiply);
     }
     /// <summary>Freezes the authored take and gain so runtime and review exports share one exact audio schedule.</summary>
     private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
@@ -187,7 +199,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     /// <summary>Restores a kicked card before moving to another source or leaving the phase.</summary>
     private void RestoreKick() { if (kicked != null) { kicked.transform.localScale = kickScale; kicked.transform.localRotation = kickRotation; } kicked = null; }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
-    private void RestoreMotion() { RestoreKick(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
+    private void RestoreMotion() { RestoreKick(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
     /// <summary>Cancels pending voices without affecting any other game sound.</summary>
     private void StopVoices() { if (sound != null) sound.StopAll(); }
     /// <summary>Leaves no light, transform or sound behind when a score finishes or is interrupted.</summary>
