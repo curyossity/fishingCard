@@ -9,9 +9,12 @@ public sealed class LandingStrikeContact : MaskableGraphic
     [SerializeField] private TackleButtonFeedback strikeButton;
     [SerializeField] private CanvasGroup stamp;
     [SerializeField] private TMP_Text stampFace, stampShadow;
+    [SerializeField] private LandingStrikeCelebration celebration;
     private LandingAccuracy accuracy;
     private float position, contactAt, age;
     private bool active, reduced;
+    private string quality;
+    private decimal shownPoints;
     public bool IsContactActive => active;
     public float StrikePosition => position;
     public float ContactAt => contactAt;
@@ -24,18 +27,25 @@ public sealed class LandingStrikeContact : MaskableGraphic
         if (receipt?.Score == null) return;
         accuracy = receipt.Score.Accuracy; position = Mathf.Clamp01((float)receipt.FishPosition);
         contactAt = accuracy == LandingAccuracy.Miss ? 0 : accuracyAt;
-        string quality = accuracy.ToString().ToUpperInvariant();
-        if (stampFace != null) { stampFace.text = quality; stampFace.color = Tint(); }
+        quality = accuracy.ToString().ToUpperInvariant(); shownPoints = decimal.MinValue;
+        if (stampFace != null) { stampFace.text = quality; stampFace.color = accuracy == LandingAccuracy.Miss ? (Color)new Color32(225, 218, 196, 255) : new Color32(53, 37, 17, 255); }
         if (stampShadow != null) stampShadow.text = quality;
         active = true;
     }
 
     /// <summary>Samples the score owner's unscaled clock; reduced motion retains a stationary contact without recoil or button movement.</summary>
-    public void Render(float elapsed, bool reducedMotion)
+    public void Render(float elapsed, bool reducedMotion, decimal deliveredPoints)
     {
         if (!active) return;
         age = Mathf.Max(0, elapsed); reduced = reducedMotion;
-        if (age >= .50f) { Clear(); return; }
+        if (age >= .78f) { Clear(); return; }
+        if (shownPoints != deliveredPoints)
+        {
+            shownPoints = deliveredPoints;
+            string text = quality + (deliveredPoints > 0 ? " +" + LandingScoreRush.Format(deliveredPoints) : "");
+            if (stampFace != null) stampFace.text = text;
+            if (stampShadow != null) stampShadow.text = text;
+        }
         float press = age < .045f ? 1 : 1 - Mathf.Clamp01((age - .045f) / .095f);
         if (strikeButton != null) strikeButton.SetActionPress(reduced ? 0 : press * press);
         float impactAge = age - contactAt;
@@ -52,28 +62,33 @@ public sealed class LandingStrikeContact : MaskableGraphic
         active = false; RecoilOffset = Vector2.zero;
         if (strikeButton != null) strikeButton.SetActionPress(0);
         if (stamp != null) { stamp.alpha = 0; stamp.transform.localScale = Vector3.one; }
+        if (celebration != null) celebration.Clear();
         SetVerticesDirty();
     }
 
     /// <summary>Releases only owned presentation state when the track disappears.</summary>
     protected override void OnDisable() { Clear(); base.OnDisable(); }
 
-    /// <summary>Samples a brief stamped quality label outside the track mask, keeping it aligned to the frozen contact on resize.</summary>
+    /// <summary>Samples the result ribbon above the track, projecting the water origin independently to the frozen hit position.</summary>
     private void RenderStamp(float time)
     {
         if (stamp == null) return;
-        float duration = accuracy == LandingAccuracy.Perfect ? .36f : accuracy == LandingAccuracy.Good ? .29f : .22f;
-        stamp.alpha = time < 0 ? 0 : 1 - Mathf.Clamp01((time - duration + .09f) / .09f);
+        float duration = accuracy == LandingAccuracy.Perfect ? .54f : accuracy == LandingAccuracy.Good ? .46f : .25f;
+        stamp.alpha = time < 0 ? 0 : 1 - Mathf.Clamp01((time - duration + .13f) / .13f);
         Rect bounds = rectTransform.rect;
-        float x = Mathf.Clamp(Mathf.Lerp(bounds.xMin, bounds.xMax, position), bounds.xMin + 130, bounds.xMax - 130);
         float enter = 1 - Mathf.Pow(1 - Mathf.Clamp01(time / .065f), 3);
-        float scale = time < .065f ? Mathf.Lerp(.72f, 1.10f, enter) : 1 + .10f * Mathf.Exp(-(time - .065f) * 28) * Mathf.Cos((time - .065f) * 36);
+        float fullScale = accuracy == LandingAccuracy.Perfect ? 1 : accuracy == LandingAccuracy.Good ? .82f : .68f;
+        float scale = fullScale * (time < .065f ? Mathf.Lerp(.72f, 1.08f, enter) : 1 + .08f * Mathf.Exp(-(time - .065f) * 28) * Mathf.Cos((time - .065f) * 36));
         var stampRect = (RectTransform)stamp.transform;
         var parent = (RectTransform)stampRect.parent;
-        Vector2 local = StampLocalPoint(new Vector3(x, bounds.yMax + 26 - (reduced ? 0 : (1 - enter) * 9)), parent);
+        Vector2 local = StampLocalPoint(new Vector3(bounds.center.x, bounds.yMax + 48 - (reduced ? 0 : (1 - enter) * 9)), parent);
         Vector2 anchor = parent.rect.min + Vector2.Scale(parent.rect.size, stampRect.anchorMin);
         stampRect.anchoredPosition = local - anchor;
-        stamp.transform.localScale = reduced ? Vector3.one : new Vector3(scale, scale * Mathf.Lerp(.82f, 1, enter), 1);
+        Vector3 sizing = reduced ? Vector3.one * fullScale : new Vector3(scale, scale * Mathf.Lerp(.82f, 1, enter), 1);
+        stamp.transform.localScale = sizing;
+        Vector2 hit = StampLocalPoint(new Vector3(Mathf.Lerp(bounds.xMin, bounds.xMax, position), bounds.center.y), parent);
+        Vector2 offset = hit - local;
+        if (celebration != null) celebration.Render(accuracy, time, reduced, new Vector2(offset.x / sizing.x, offset.y / sizing.y));
     }
 
     /// <summary>Projects into the shared stage without world-space inversion, which is undefined while a newly enabled canvas has zero scale.</summary>
@@ -137,6 +152,7 @@ public sealed class LandingStrikeContact : MaskableGraphic
             return;
         }
         float flash = Mathf.Pow(1 - Mathf.Clamp01(t / .085f), 2);
+        if (perfect) tint = new Color(.42f, .90f, 1);
         // A broad reflection makes the whole glass acknowledge impact, while the hot core marks the true position.
         Glow(mesh, center, new Vector2(perfect ? 200 : 130, bounds.height * 1.5f), Alpha(tint, flash * (perfect ? .40f : .26f)));
         Glow(mesh, center, new Vector2(perfect ? 48 : 30, bounds.height), Alpha(tint, flash * .65f));
@@ -153,25 +169,6 @@ public sealed class LandingStrikeContact : MaskableGraphic
             // Reflections run along the upper and lower glass edge rather than across any printed fields.
             for (int edge = -1; edge <= 1; edge += 2)
                 Line(mesh, at + new Vector2(-side * 18, edge * height), at + new Vector2(side * 10, edge * height), 2, Alpha(tint, fade * .6f));
-        }
-        Flecks(mesh, center, tint, perfect, t);
-    }
-
-    /// <summary>Emits a small authored pattern of rectangular flecks without particle objects or gameplay randomness.</summary>
-    private static void Flecks(VertexHelper mesh, Vector2 center, Color tint, bool perfect, float time)
-    {
-        int count = perfect ? 8 : 4;
-        for (int i = 0; i < count; i++)
-        {
-            float life = .13f + (i % 3) * .035f;
-            float p = time / life;
-            if (p >= 1) continue;
-            float side = i % 2 == 0 ? -1 : 1;
-            Vector2 velocity = new Vector2(side * (260 + (i % 4) * 65), (i % 4 < 2 ? 1 : -1) * (95 + i % 3 * 45));
-            Vector2 at = center + velocity * time + Vector2.down * (time * time * 190);
-            float length = (perfect ? 11 : 7) * (1 - p) + 2;
-            Vector2 direction = velocity.normalized;
-            Line(mesh, at - direction * length, at, i % 3 == 0 ? 3 : 2, Alpha(tint, (1 - p) * .95f));
         }
     }
 

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "updated": "2026-11-22",
+  "reference": "User-provided in-game mockup in the conversation: ivory/brass ribbon, cyan-white water impact, droplets, bubbles and gold glints.",
+  "canvas": { "width": 1920, "height": 1080, "units": "reference pixels" },
+  "assets": [
+    { "owner": "LandingStrikeCelebration", "source": "Assets/Scripts/LandingStrikeCelebration.cs", "kind": "Original native UI mesh", "geometry": "630x110 beveled ivory/brass plaque, folded tails, water drops, bubbles, glints", "material": "Existing standard canvas material", "externalMedia": false },
+    { "owner": "LandingStrikeContact", "source": "Assets/Scripts/LandingStrikeContact.cs", "kind": "Original native UI mesh and timing", "geometry": "Clipped track response and independent frozen water origin", "externalMedia": false },
+    { "owner": "LandingScoreRushSetup", "kind": "Native TMP result text", "font": "Existing Tackle PressStart2P font asset", "content": "Resolved accuracy plus only delivered score points" }
+  ],
+  "palette": { "face": "#FFF8DA", "ink": "#352511", "brass": "#ECB33E", "water": "cyan, pale blue and white" },
+  "sourceArtwork": "Existing creature portraits, card faces and cabinet art are preserved.",
+  "provenance": "Manually authored deterministic UI geometry following the supplied visual reference; no third-party media downloaded or new raster textures generated.",
+  "review": "Inspected in the actual Landing prefab at native resolution and through a sampled animation export. User aesthetic acceptance is not inferred from engineering checks."
+}

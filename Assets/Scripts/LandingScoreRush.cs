@@ -117,7 +117,6 @@ public sealed class LandingScoreRush : MonoBehaviour
     {
         int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
         float age = Mathf.Max(0, elapsed - step.Time);
-        if (strikeContact != null) strikeContact.Render(elapsed, ReducedMotion);
         bool payout = elapsed >= sequence.PayoutAt;
         if (index != lastStep)
         {
@@ -150,6 +149,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         float eased = 1 - Mathf.Pow(1 - transfer, 3);
         DisplayedTotal = transfer >= 1 ? receipt.PointsAfter : receipt.PointsBefore + (receipt.PointsAfter - receipt.PointsBefore) * (decimal)eased;
         DisplayedStrike = payout ? receipt.Score.Points : sequence.ValueAt(elapsed);
+        if (strikeContact != null) strikeContact.Render(elapsed, ReducedMotion, DisplayedStrike);
         value.text = Format(DisplayedStrike);
         caption.text = payout ? (receipt.Score.Points == 0 ? "MISS" : "LANDING POINTS") : receipt.Score.Accuracy.ToString().ToUpperInvariant();
         if (payout) operation.text = "+" + Format(receipt.Score.Points);

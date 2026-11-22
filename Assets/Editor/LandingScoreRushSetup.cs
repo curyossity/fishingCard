@@ -111,15 +111,23 @@ public static class LandingScoreRushSetup
         var stampRect = track.parent.Find("Strike Quality Stamp") as RectTransform;
         if (stampRect == null) stampRect = Rect(track.parent, "Strike Quality Stamp", new Rect(0, 0, 260, 44));
         stampRect.SetAsLastSibling(); stampRect.pivot = new Vector2(.5f, .5f);
+        stampRect.sizeDelta = new Vector2(780, 150);
         var stamp = stampRect.GetComponent<CanvasGroup>(); if (stamp == null) stamp = stampRect.gameObject.AddComponent<CanvasGroup>();
         stamp.alpha = 0; stamp.blocksRaycasts = false; stamp.interactable = false;
+        var celebration = stampRect.GetComponent<LandingStrikeCelebration>();
+        if (celebration == null) celebration = stampRect.gameObject.AddComponent<LandingStrikeCelebration>();
+        celebration.raycastTarget = false; Bind(contactData, "celebration", celebration);
         foreach (string name in new[] { "Shadow", "Face" })
         {
             var label = stampRect.Find(name)?.GetComponent<TMP_Text>();
             if (label == null) label = Text(stampRect, name, new Rect(name == "Shadow" ? 3 : 0, name == "Shadow" ? 3 : 0, 260, 44), 29);
             label.font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(TackleDiscoverArtSetup.Root + "Fonts/PressStart2P.asset");
-            label.fontSize = 29; label.text = ""; label.raycastTarget = false;
-            label.color = name == "Shadow" ? new Color32(12, 20, 17, 255) : Cream;
+            label.fontSize = label.fontSizeMax = 42; label.fontSizeMin = 22; label.enableAutoSizing = true;
+            label.text = ""; label.raycastTarget = false;
+            label.rectTransform.anchorMin = label.rectTransform.anchorMax = label.rectTransform.pivot = new Vector2(.5f, .5f);
+            label.rectTransform.anchoredPosition = name == "Shadow" ? new Vector2(2, -2) : Vector2.zero;
+            label.rectTransform.sizeDelta = new Vector2(560, 72);
+            label.color = name == "Shadow" ? new Color32(229, 197, 117, 180) : new Color32(53, 37, 17, 255);
             Bind(contactData, name == "Shadow" ? "stampShadow" : "stampFace", label);
         }
         Bind(contactData, "stamp", stamp);
