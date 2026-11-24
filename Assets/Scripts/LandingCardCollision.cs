@@ -32,7 +32,7 @@ public sealed class LandingCardCollision : MonoBehaviour
         creatureScale = creatureCard.localScale; scoreScale = scoreCard.localScale; faceAlpha = creatureFade.alpha; captured = true;
     }
 
-    /// <summary>Samples a hidden-face handoff, elastic windup, directional stretch and compressed contact without changing score timing or aiming.</summary>
+    /// <summary>Samples a vertical hidden-face handoff, elastic windup, directional stretch and compressed contact without changing score timing or aiming.</summary>
     public void Render(LandingScoreSequence sequence, float elapsed, bool reduced)
     {
         if (!captured) return;
@@ -42,7 +42,7 @@ public sealed class LandingCardCollision : MonoBehaviour
         if (handoff < 1)
         {
             creatureFade.alpha = faceAlpha * LandingCardHandoff.FaceOpacity(handoff, reduced);
-            if (!reduced) creatureCard.localScale = new Vector3(creatureScale.x * Mathf.Max(.015f, Mathf.Abs(Mathf.Cos(handoff * Mathf.PI))), creatureScale.y, creatureScale.z);
+            if (!reduced) creatureCard.localScale = new Vector3(creatureScale.x, creatureScale.y * Mathf.Max(.015f, Mathf.Abs(Mathf.Cos(handoff * Mathf.PI))), creatureScale.z);
             return;
         }
         if (reduced) return;

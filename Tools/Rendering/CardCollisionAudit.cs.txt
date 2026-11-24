@@ -121,7 +121,7 @@ try
             string oldName = previousMember == null ? targetName : previousMember.Definition.DisplayName.ToUpperInvariant();
             sample(step.Time + handoff * .25f);
             check(portrait.sprite == oldSprite && nameLabel.text == oldName, "Outgoing identity swaps before the card is hidden.");
-            check(creatureCard.localScale.x < sourceScale.x && creatureCard.localScale.y == sourceScale.y && collision.ScoreOffset == 0 && collision.ScreenShakeOffset == UnityEngine.Vector2.zero, "Turn distorts height, moves the receiver or adds shake.");
+            check(creatureCard.localScale.x == sourceScale.x && creatureCard.localScale.y < sourceScale.y && collision.ScoreOffset == 0 && collision.ScreenShakeOffset == UnityEngine.Vector2.zero, "Vertical turn changes width, moves the receiver or adds shake.");
             sample(step.Time + handoff * .5f);
             check(portrait.sprite == newSprite && nameLabel.text == incoming.Definition.DisplayName.ToUpperInvariant() && tagLabel.text.StartsWith("RIG EFFECT"), "Hidden swap separates portrait, name and tag identities.");
             check(faceFade.alpha == 0 && nameLabel.alpha == 0 && operation.alpha == 0, "Midpoint swap remains visible.");

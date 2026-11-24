@@ -16,5 +16,7 @@
   "particleEffects": false,
   "integrityFiles": 2154,
   "integrityErrors": 0,
-  "integrityWarnings": 0
+  "integrityWarnings": 0,
+  "handoffDirection": "vertical",
+  "handoffWidthPreserved": true
 }
