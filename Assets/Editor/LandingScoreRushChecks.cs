@@ -59,6 +59,7 @@ public static class LandingScoreRushChecks
         Check(model.FishPosition != fish || model.ZonePosition != zone,"Motion did not resume after the hold.");
         ValidateModifierStrength();
         ValidateBoundaryHandoffs();
+        ValidateStrikeWater();
         return checks;
     }
 
@@ -135,12 +136,34 @@ public static class LandingScoreRushChecks
         }
     }
 
+    /// <summary>Checks cumulative per-strike fill, the half-Resistance threshold and one bounded final drain.</summary>
+    private static void ValidateStrikeWater()
+    {
+        Check(LandingStrikeWater.DamageLevel(25, 100) == .5f && LandingStrikeWater.DamageLevel(50, 100) == 1 && LandingStrikeWater.DamageLevel(51, 100) == 1, "Glass does not fill at half Resistance.");
+        Check(LandingStrikeWater.DamageLevel(decimal.MaxValue, 1) == 1 && LandingStrikeWater.DamageLevel(decimal.MaxValue, decimal.MaxValue) == 1, "Overkill overflows the visual ratio.");
+        Check(LandingStrikeWater.DamageLevel(0, 100) == 0 && LandingStrikeWater.DamageLevel(-1, 100) == 0 && LandingStrikeWater.DamageLevel(20, 0) == 0, "Empty or invalid damage leaves water.");
+        var sequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 10, 2,
+            new[] { new LandingContribution(1, "Add", 10, 1), new LandingContribution(2, "Multiply", 0, 2) }));
+        var first = sequence.Steps[0]; var add = sequence.Steps[1]; var last = sequence.Steps[2];
+        Check(LandingStrikeWater.LevelAt(sequence, 100, first.ImpactAt - .0001f, false) == 0, "Water rises before contact.");
+        Check(Math.Abs(LandingStrikeWater.LevelAt(sequence, 100, add.ImpactAt - .0001f, false) - .4f) < .00001f, "Water anticipates the next contribution.");
+        Check(Math.Abs(LandingStrikeWater.LevelAt(sequence, 100, add.ImpactAt + .075f, false) - .6f) < .00001f, "Running subtotals double-count prior damage.");
+        Check(LandingStrikeWater.LevelAt(sequence, 100, last.ImpactAt + .075f, false) == 1, "Final multiplier does not finish filling the glass.");
+        Check(Math.Abs(LandingStrikeWater.LevelAt(sequence, 100, last.ImpactAt + .08f + LandingStrikeWater.DrainSeconds * .5f, false) - .5f) < .00001f, "Water does not drain over two-thirds of a second.");
+        Check(LandingStrikeWater.LevelAt(sequence, 100, last.ImpactAt + .08f + LandingStrikeWater.DrainSeconds + .001f, false) == 0, "Water persists after the drain.");
+        Check(LandingStrikeWater.LevelAt(sequence, 100, last.ImpactAt, true) == 1, "Reduced motion loses the delivered result.");
+        var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 1, Array.Empty<LandingContribution>()));
+        Check(LandingStrikeWater.LevelAt(ordinary, 20, ordinary.Duration - .0001f, false) == 0, "Ordinary feedback ends before its drain can finish.");
+        var miss = new LandingScoreSequence(new LandingScore(LandingAccuracy.Miss, 0, 0, 1, Array.Empty<LandingContribution>()));
+        Check(LandingStrikeWater.LevelAt(miss, 100, .3f, false) == 0, "An ordinary Miss fills the glass.");
+    }
+
     /// <summary>Verifies serialized UI, audio routing and non-intercepting feedback on the actual saved prefab.</summary>
     public static int ValidateAssets()
     {
         checks=0; var root=AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath);
         var host=root.GetComponent<LandingScoreRush>(); Check(host!=null,"Missing score-rush component.");var data=new SerializedObject(host);
-        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","waterImpact","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
+        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","waterImpact","strikeWater","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
             Check(data.FindProperty(field).objectReferenceValue!=null,"Missing score rush binding: "+field);
         var group=(CanvasGroup)data.FindProperty("readout").objectReferenceValue;
         var portraitOwner=new SerializedObject((LandingScoringPortrait)data.FindProperty("scoringPortrait").objectReferenceValue);
@@ -165,6 +188,10 @@ public static class LandingScoreRushChecks
             Check(sheet != null && sheet.filterMode == FilterMode.Point && sheet.wrapMode == TextureWrapMode.Clamp && sheet.mipmapCount == 1, "Water atlas loses crisp sampling or readiness.");
             Check(sheet.width == water.FindProperty("columns").intValue * 96 && sheet.height == water.FindProperty("rows").intValue * 144, "Water atlas metadata and texture dimensions disagree.");
         }
+        var gauge = (LandingStrikeWater)data.FindProperty("strikeWater").objectReferenceValue;
+        var track = (RectTransform)new SerializedObject(root.GetComponent<TackleLandingPresentation>()).FindProperty("track").objectReferenceValue;
+        Check(gauge.transform.parent == track && gauge.transform.GetSiblingIndex() == 0 && track.GetComponent<UnityEngine.UI.RectMask2D>() != null, "Strike water is not masked underneath the aiming indicators.");
+        Check(!gauge.raycastTarget && gauge.Level == 0, "Strike water intercepts input or starts filled.");
         var voices=data.FindProperty("voices");Check(voices.arraySize>=4,"No bounded audio voice pool.");
         for(int i=0;i<voices.arraySize;i++)
         {

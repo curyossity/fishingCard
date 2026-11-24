@@ -1,6 +1,6 @@
 # Custom water collision and score punch
 
-Active presentation revision, 24 November 2026. [Watch modest and powerful native examples](Compare.html), or inspect the [consecutive motion frames](Motion.png).
+Historical collision-water revision, 24 November 2026. The [current strike-bar water increment](../StrikeWater/README.md) retains this effect and adds the rising/draining timing-glass level. [Watch modest and powerful native examples](Compare.html), or inspect the [consecutive motion frames](Motion.png).
 
 This increment adds an original PixelFX water effect at the physical seam where the machine creature card meets the score card. A short white foam core expands into rounded curved water jets, then shaded droplets and small hollow bubbles. The effect uses three authored strength sheets, selected by the existing contribution-gain strength. A larger operation produces a larger, fuller splash. Only the native score digits punch in scale (roughly 5-14%), settling within 160 ms; the receiver frame and other labels retain their existing shape.
 

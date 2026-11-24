@@ -16,6 +16,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private LandingScoringPortrait scoringPortrait;
     [SerializeField] private LandingCardCollision collision;
     [SerializeField] private LandingWaterImpact waterImpact;
+    [SerializeField] private LandingStrikeWater strikeWater;
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
@@ -151,6 +152,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         machine.anchoredPosition = machineRest; glow.color = Color.clear;
         collision.Render(sequence, elapsed, ReducedMotion);
         waterImpact.Render(sequence, elapsed, ReducedMotion);
+        strikeWater.Render(sequence, receipt.Resistance, elapsed, ReducedMotion);
     }
     /// <summary>Freezes the authored take and gain so runtime and review exports share one exact audio schedule.</summary>
     private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
@@ -169,6 +171,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         RestoreMotion(); if (wasRunning) StopVoices();
         if (collision != null) collision.Clear();
         if (waterImpact != null) waterImpact.Clear();
+        if (strikeWater != null) strikeWater.Clear();
         if (operation != null) operation.alpha = 1;
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }

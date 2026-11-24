@@ -2,7 +2,7 @@
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
 int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/WaterImpact/", frames = "Temp/WaterImpact/Native/Level-" + previewLevel + "/";
+string output = "Docs/Validation/StrikeWater/", frames = "Temp/StrikeWater/Native/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture;
@@ -95,6 +95,7 @@ try
     var tagLabel = (TMPro.TMP_Text)portraitData.FindProperty("tags").objectReferenceValue;
     string targetName = nameLabel.text, targetTags = tagLabel.text;
     var faceFade = (UnityEngine.CanvasGroup)collisionData.FindProperty("creatureFade").objectReferenceValue;
+    var gauge = (LandingStrikeWater)data.FindProperty("strikeWater").objectReferenceValue;
     var water = root.GetComponent<LandingWaterImpact>(); var waterData = new UnityEditor.SerializedObject(water);
     var spray = (UnityEngine.UI.RawImage)waterData.FindProperty("spray").objectReferenceValue;
     System.Func<bool> restored = () => creatureCard.anchoredPosition == sourceRest && scoreCard.anchoredPosition == scoreRest
@@ -107,6 +108,7 @@ try
     check(!machine.GetComponent<UnityEngine.UI.Image>().enabled, "Original housing still duplicates the movable cards.");
     check(creatureCard.localScale == UnityEngine.Vector3.one * .88f && scoreCard.localScale == creatureCard.localScale, "Machine faces were not reduced together.");
     rush.Present(receipt, cards, true); var sequence = rush.Sequence;
+    check(gauge.Level == 0, "A new strike inherits prior encounter water.");
     check(collision.ContactDistance > 90 && collision.ContactDistance < 105, "Cards lack clear, bounded collision travel.");
     check(System.Linq.Enumerable.All(sequence.Steps, s => s.EndAt - s.Time >= .49999f), "A collision is too short to read.");
     check(sequence.Duration < LandingScoreSequence.MaximumDuration, "Rigid collisions exceed the controller feedback bound.");
@@ -153,10 +155,13 @@ try
         check(collision.CreatureLeadingOffset > halfX && halfX > startX, "Dash does not accelerate toward contact.");
         check(rush.DisplayedStrike == (step.SourceId < 0 ? 0 : step.PreviousValue), "Points arrive before the physical collision.");
         check(!spray.enabled && water.NumberScale == 1, "Water or number punch arrives before contact.");
+        check(UnityEngine.Mathf.Abs(gauge.Level - LandingStrikeWater.DamageLevel(step.PreviousValue, receipt.Resistance)) < .0001f, "Water rises early or counts previous attempts.");
         sample(step.ImpactAt);
         check(spray.enabled && water.ActiveFrame == 0 && water.NumberScale > 1 && water.NumberScale <= 1.141f, "Contact lacks a bounded water burst and number punch.");
         check(rush.DisplayedStrike == step.Value && UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset - collision.ContactDistance) < .001f, "Physical contact and exact score delivery are detached.");
         check(creatureCard.localRotation == sourceRotation, "Card hits at a rotated corner instead of its contacting edge.");
+        sample(step.ImpactAt + .075f);
+        check(UnityEngine.Mathf.Abs(gauge.Level - LandingStrikeWater.DamageLevel(step.Value, receipt.Resistance)) < .0001f, "Water double-counts an operation or uses the wrong Resistance.");
         sample(step.ImpactAt + .020f);
         check(UnityEngine.Vector3.Distance(spray.rectTransform.position, collision.ContactPoint) < .001f && !spray.raycastTarget, "Water is detached from contact or intercepts input.");
         check(spray.uvRect.xMin >= 0 && spray.uvRect.yMin >= 0 && spray.uvRect.xMax <= 1 && spray.uvRect.yMax <= 1, "Water atlas samples outside its cell.");
@@ -183,6 +188,22 @@ try
     check(lastStrength <= firstStrength || lastRecoil > firstRecoil, "Major operations have no additional mass.");
     check(model.Points == receipt.PointsAfter && fish.anchoredPosition == fishRest, "Visual collision changed score or aiming geometry.");
     var last = sequence.Steps[sequence.Steps.Count - 1];
+    sample(last.ImpactAt + .08f + LandingStrikeWater.DrainSeconds * .5f);
+    check(UnityEngine.Mathf.Abs(gauge.Level - LandingStrikeWater.DamageLevel(last.Value, receipt.Resistance) * .5f) < .0001f, "Native water misses the midpoint of its final drain.");
+    sample(last.ImpactAt + .075f);
+    var waterMesh = new UnityEngine.UI.VertexHelper();
+    try {
+        typeof(LandingStrikeWater).GetMethod("OnPopulateMesh", hidden | System.Reflection.BindingFlags.DeclaredOnly).Invoke(gauge, new object[] { waterMesh });
+        bool inside = waterMesh.currentVertCount == 640; var vertex = new UnityEngine.UIVertex();
+        for (int v = 0; v < waterMesh.currentVertCount; v++) {
+            waterMesh.PopulateUIVertex(ref vertex, v);
+            var bounds = gauge.rectTransform.rect;
+            inside &= vertex.position.x >= bounds.xMin - .001f && vertex.position.x <= bounds.xMax + .001f && vertex.position.y >= bounds.yMin - .001f && vertex.position.y <= bounds.yMax + .001f;
+        }
+        check(inside, "Water mesh leaves the timing glass.");
+    } finally { waterMesh.Dispose(); }
+    sample(last.ImpactAt + .08f + LandingStrikeWater.DrainSeconds + .001f);
+    check(gauge.Level == 0, "Native water does not finish draining.");
     foreach (float start in new[] { sequence.EntryAt, sequence.ReturnAt }) {
         bool entering = start == sequence.EntryAt;
         float duration = LandingScoreSequence.BoundaryTurnDuration;
@@ -223,14 +244,15 @@ try
     sample(last.ImpactAt + .02f); check(spray.enabled && water.ActiveFrame >= 0, "A replacement receipt cannot restart the bounded water layer.");
     sample(sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration + .01f); check(restored(), "Damped cards or shake never return to rest.");
     motion.SetIsOnWithoutNotify(true); sample(last.ImpactAt + .020f);
+    check(gauge.FlatSurface && UnityEngine.Mathf.Abs(gauge.Level - LandingStrikeWater.DamageLevel(last.Value, receipt.Resistance)) < .0001f, "Reduced-motion water loses the score or keeps waves.");
     check(restored() && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == last.Value, "Reduced motion retains collision/shake or loses exact numbers.");
     motion.SetIsOnWithoutNotify(false);
     foreach (float time in new[] { sequence.EntryAt + LandingScoreSequence.BoundaryTurnDuration * .25f, sequence.EntryAt + LandingScoreSequence.BoundaryTurnDuration * .5f, sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration * .25f, sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration * .5f, last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .25f, last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .5f, last.LaunchAt, last.ImpactAt + .020f }) {
         rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true); sample(time); rush.Finish();
-        check(restored() && !rush.IsPlaying && !scoringPortrait.IsShowingContributors && portrait.sprite == targetSprite, "Skip leaves motion or a stale contributor.");
+        check(gauge.Level == 0 && restored() && !rush.IsPlaying && !scoringPortrait.IsShowingContributors && portrait.sprite == targetSprite, "Skip leaves motion or a stale contributor.");
     }
     rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true); sample(last.ImpactAt + .020f);
-    root.SetActive(false); check(restored() && !rush.IsPlaying, "Phase exit leaves the view shaken."); root.SetActive(true);
+    root.SetActive(false); check(gauge.Level == 0 && restored() && !rush.IsPlaying, "Phase exit leaves the view shaken."); root.SetActive(true);
     rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true);
     var events = System.Linq.Enumerable.ToArray(rush.SoundEvents);
     if (exportFrames) {
@@ -252,6 +274,7 @@ try
         rush.Present(new LandingStrikeReceipt(plain, new CardInstance[0]), cards, true);
         float hitAt = rush.Sequence.Steps[0].ImpactAt;
         sample(hitAt + .020f);
+        check(grade == LandingAccuracy.Miss ? gauge.Level == 0 : gauge.Level > 0, "Ordinary grade receives inappropriate glass water.");
         check(grade == LandingAccuracy.Miss ? !spray.enabled && water.NumberScale == 1 : spray.enabled, "Ordinary grades receive inappropriate water feedback.");
         check(grade == LandingAccuracy.Miss ? restored() : collision.ScoreOffset > 0, "Ordinary grade collision is inappropriate.");
         check(rush.DisplayedStrike == plain.Points && vertexCount() == 0, "Grade effect changes points or emits particles."); rush.Finish();
