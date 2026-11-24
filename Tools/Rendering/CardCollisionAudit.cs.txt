@@ -2,7 +2,7 @@
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
 int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/CardCollision/Elastic/", frames = "Temp/CardCollisionReview/Elastic/Level-" + previewLevel + "/";
+string output = "Docs/Validation/CardCollision/Handoff/", frames = "Temp/CardCollisionReview/Handoff/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture;
@@ -90,8 +90,14 @@ try
     var sourceRotation = creatureCard.localRotation; var scoreRotation = scoreCard.localRotation;
     var sourceScale = creatureCard.localScale; var targetScale = scoreCard.localScale;
     var targetSprite = portrait.sprite;
+    var portraitData = new UnityEditor.SerializedObject(scoringPortrait);
+    var nameLabel = (TMPro.TMP_Text)portraitData.FindProperty("creatureName").objectReferenceValue;
+    var tagLabel = (TMPro.TMP_Text)portraitData.FindProperty("tags").objectReferenceValue;
+    string targetName = nameLabel.text, targetTags = tagLabel.text;
+    var faceFade = (UnityEngine.CanvasGroup)collisionData.FindProperty("creatureFade").objectReferenceValue;
     System.Func<bool> restored = () => creatureCard.anchoredPosition == sourceRest && scoreCard.anchoredPosition == scoreRest
         && creatureCard.localScale == sourceScale && scoreCard.localScale == targetScale
+        && faceFade.alpha == 1 && nameLabel.alpha == 1 && operation.alpha == 1
         && stage.anchoredPosition == stageRest && creatureCard.localRotation == sourceRotation && scoreCard.localRotation == scoreRotation;
     check(portrait.transform.parent == creatureCard && number.transform.IsChildOf(scoreCard), "Card faces and their live fields have different motion owners.");
     check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3 && System.Linq.Enumerable.All(root.GetComponentsInChildren<LandingCollisionGraphic>(true), g => !g.raycastTarget), "Missing or interacting collision graphic.");
@@ -104,7 +110,32 @@ try
     float firstStrength = -1, lastStrength = -1, firstRecoil = 0, lastRecoil = 0;
     foreach (var step in sequence.Steps)
     {
-        sample((step.Time + step.LaunchAt) * .5f);
+        int stepIndex = System.Array.FindIndex(System.Linq.Enumerable.ToArray(sequence.Steps), s => s.Time == step.Time);
+        float handoff = LandingCardHandoff.DurationFor(sequence, stepIndex);
+        if (handoff > 0) {
+            var incoming = System.Linq.Enumerable.Single(receipt.Members, m => m.InstanceId == step.SourceId);
+            var previousStep = sequence.Steps[stepIndex - 1];
+            var previousMember = previousStep.SourceId < 0 ? null : System.Linq.Enumerable.Single(receipt.Members, m => m.InstanceId == previousStep.SourceId);
+            var oldSprite = previousMember == null ? targetSprite : previousMember.Definition.EncounterArtwork ?? previousMember.Definition.Artwork;
+            var newSprite = incoming.Definition.EncounterArtwork ?? incoming.Definition.Artwork;
+            string oldName = previousMember == null ? targetName : previousMember.Definition.DisplayName.ToUpperInvariant();
+            sample(step.Time + handoff * .25f);
+            check(portrait.sprite == oldSprite && nameLabel.text == oldName, "Outgoing identity swaps before the card is hidden.");
+            check(creatureCard.localScale.x < sourceScale.x && creatureCard.localScale.y == sourceScale.y && collision.ScoreOffset == 0 && collision.ScreenShakeOffset == UnityEngine.Vector2.zero, "Turn distorts height, moves the receiver or adds shake.");
+            sample(step.Time + handoff * .5f);
+            check(portrait.sprite == newSprite && nameLabel.text == incoming.Definition.DisplayName.ToUpperInvariant() && tagLabel.text.StartsWith("RIG EFFECT"), "Hidden swap separates portrait, name and tag identities.");
+            check(faceFade.alpha == 0 && nameLabel.alpha == 0 && operation.alpha == 0, "Midpoint swap remains visible.");
+            check(rush.DisplayedStrike == step.PreviousValue, "Handoff delivers points early.");
+            sample(step.Time + handoff);
+            check(faceFade.alpha == 1 && nameLabel.alpha == 1 && portrait.sprite == newSprite, "Incoming face does not finish revealing before launch.");
+            motion.SetIsOnWithoutNotify(true); sample(step.Time + handoff * .25f);
+            check(creatureCard.localScale == sourceScale && creatureCard.anchoredPosition == sourceRest && creatureCard.localRotation == sourceRotation && collision.ScreenShakeOffset == UnityEngine.Vector2.zero, "Reduced-motion handoff still turns or moves.");
+            check(faceFade.alpha > 0 && faceFade.alpha < 1 && nameLabel.alpha == faceFade.alpha && portrait.sprite == oldSprite, "Reduced-motion outgoing fade has inconsistent identities.");
+            sample(step.Time + handoff * .75f);
+            check(faceFade.alpha > 0 && faceFade.alpha < 1 && portrait.sprite == newSprite && creatureCard.localScale == sourceScale, "Reduced-motion incoming fade does not reveal the new creature.");
+            motion.SetIsOnWithoutNotify(false);
+        }
+        sample(step.Time + handoff + (step.LaunchAt - step.Time - handoff) * .5f);
         check(collision.CreatureLeadingOffset < 0, "Source card does not wind backwards.");
         check(rush.DisplayedStrike == (step.SourceId < 0 ? 0 : step.PreviousValue), "Windup exposed future score.");
         sample(step.LaunchAt);
@@ -147,7 +178,7 @@ try
     motion.SetIsOnWithoutNotify(true); sample(last.ImpactAt + .020f);
     check(restored() && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == last.Value, "Reduced motion retains collision/shake or loses exact numbers.");
     motion.SetIsOnWithoutNotify(false);
-    foreach (float time in new[] { last.LaunchAt, last.ImpactAt + .020f }) {
+    foreach (float time in new[] { last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .25f, last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .5f, last.LaunchAt, last.ImpactAt + .020f }) {
         rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true); sample(time); rush.Finish();
         check(restored() && !rush.IsPlaying && !scoringPortrait.IsShowingContributors && portrait.sprite == targetSprite, "Skip leaves motion or a stale contributor.");
     }

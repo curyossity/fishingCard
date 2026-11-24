@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "date": "2026-11-24",
+  "checks": 396,
+  "nativePowerful": 125,
+  "nativeModest": 125,
+  "prefabBindings": 47,
+  "scoreRules": 35,
+  "landingModel": 64,
+  "consoleErrors": 0,
+  "playModeStopped": true,
+  "hiddenIdentitySwap": true,
+  "reducedMotionFade": true,
+  "scorePanelSteadyDuringHandoff": true,
+  "timingUnchanged": true,
+  "particleEffects": false,
+  "integrityFiles": 2154,
+  "integrityErrors": 0,
+  "integrityWarnings": 0
+}

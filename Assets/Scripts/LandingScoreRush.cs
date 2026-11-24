@@ -28,8 +28,8 @@ public sealed class LandingScoreRush : MonoBehaviour
     private LandingStrikeReceipt receipt;
     private LandingScoreSequence sequence;
     private double started, dspStarted;
-    private int lastStep = -1;
-    private bool paid, running;
+    private int shownStep = -1;
+    private bool running;
     private Vector2 machineRest;
     private Vector3 totalRest;
     private Vector3 operationRest = Vector3.one;
@@ -97,7 +97,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         }
         if (strike.Score.Points > 0) AddSound(sequence.PayoutAt, sequence.Tier == 2 ? DeepwaterSoundCue.PayoutBig : sequence.Tier == 1 ? DeepwaterSoundCue.PayoutMedium : DeepwaterSoundCue.PayoutSmall);
         soundEvents.Sort((a,b) => a.Time.CompareTo(b.Time));
-        lastStep = -1; paid = false; running = true; DisplayedTotal = strike.PointsBefore;
+        shownStep = -1; running = true; DisplayedTotal = strike.PointsBefore;
         readout.gameObject.SetActive(true); readout.alpha = 1;
         foreach (var label in coveredLabels) label.gameObject.SetActive(false);
         Render(0);
@@ -113,16 +113,19 @@ public sealed class LandingScoreRush : MonoBehaviour
     /// <summary>Samples canonical score deliveries and rigid-card impacts on one unscaled clock, scheduling only current sound events.</summary>
     private void Render(float elapsed)
     {
-        int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
+        int index = sequence.StepAt(elapsed);
         bool payout = elapsed >= sequence.PayoutAt;
-        if (index != lastStep)
+        int visible = payout ? 0 : LandingCardHandoff.VisibleStep(sequence, index, elapsed);
+        if (visible != shownStep)
         {
-            lastStep = index;
-            if (index == 0) scoringPortrait.RestoreEncounter();
-            else scoringPortrait.ShowContributors(receipt.Members.Where(m => step.SourceIds.Contains(m.InstanceId)).ToArray());
-            operation.text = index == 0 ? "" : (step.Multiply ? "×" : "+") + Format(step.Amount);
-            operation.color = step.Multiply ? new Color32(167, 220, 194, 255) : new Color32(240, 205, 133, 255);
+            shownStep = visible; var face = sequence.Steps[visible];
+            if (visible == 0) scoringPortrait.RestoreEncounter();
+            else scoringPortrait.ShowContributors(receipt.Members.Where(m => face.SourceIds.Contains(m.InstanceId)).ToArray());
+            operation.text = visible == 0 ? "" : (face.Multiply ? "×" : "+") + Format(face.Amount);
+            operation.color = face.Multiply ? new Color32(167, 220, 194, 255) : new Color32(240, 205, 133, 255);
         }
+        float handoffAlpha = payout ? 1 : LandingCardHandoff.CaptionOpacity(LandingCardHandoff.Progress(sequence, index, elapsed));
+        scoringPortrait.SetHandoffOpacity(handoffAlpha); operation.alpha = handoffAlpha;
         // Small look-ahead uses the audio clock for arrivals; a stalled frame never sprays overdue notes.
         while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= elapsed + .10f)
         {
@@ -130,7 +133,6 @@ public sealed class LandingScoreRush : MonoBehaviour
             if (elapsed - cue.Time < .08f && soundToggle.isOn)
                 sound.PlayFrozen(cue.Cue, cue.Clip, cue.Pitch, cue.Gain, dspStarted + cue.Time);
         }
-        if (payout && !paid) { paid = true; scoringPortrait.RestoreEncounter(); }
         float payoutAge = elapsed - sequence.PayoutAt;
         float transfer = payout ? Mathf.Clamp01(payoutAge / (.27f + sequence.Intensity * .12f)) : 0;
         float eased = 1 - Mathf.Pow(1 - transfer, 3);
@@ -141,7 +143,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         caption.text = payout ? (receipt.Score.Points == 0 ? "MISS" : "LANDING POINTS") : receipt.Score.Accuracy.ToString().ToUpperInvariant();
         if (payout) operation.text = "+" + Format(receipt.Score.Points);
         readout.alpha = payout ? 1 - Mathf.Clamp01((payoutAge - .3f) / .24f) : 1;
-        feedback.SetScoreSources(payout || index == 0 ? null : step.SourceIds, 0);
+        feedback.SetScoreSources(payout || visible == 0 ? null : sequence.Steps[visible].SourceIds, 0);
         feedback.SetScoringFocus(!payout);
         value.rectTransform.localScale = Vector3.one;
         scoringPortrait.SetPulse(0); operation.rectTransform.localScale = operationRest; totalLabel.localScale = totalRest;
@@ -164,6 +166,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (strikeContact != null) strikeContact.Clear();
         RestoreMotion(); if (wasRunning) StopVoices();
         if (collision != null) collision.Clear();
+        if (operation != null) operation.alpha = 1;
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }
         if (readout != null) readout.gameObject.SetActive(false);

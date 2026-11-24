@@ -90,6 +90,11 @@ public static class LandingScoreRushChecks
         Check(longSequence.Steps.Skip(1).Sum(s => s.SourceIds.Count) == 300, "Grouped delivery drops an operation/source identity.");
         Check(longSequence.Steps.Skip(1).All(s => s.EndAt - s.Time >= .49999f), "Tempo compression removes collision preparation or recovery.");
         Check(longSequence.Steps.Skip(1).All(s => s.Strength >= 0 && s.Strength <= 1 && s.Time < s.LaunchAt && s.LaunchAt < s.ImpactAt && s.ImpactAt < s.EndAt), "Weighted steps have invalid strength or event order.");
+        var repeat = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 5, 2,
+            new[] { new LandingContribution(4, "Same source", 5, 2) }));
+        Check(LandingCardHandoff.DurationFor(repeat, 0) == 0 && LandingCardHandoff.DurationFor(repeat, 1) > 0, "Initial source handoff is missing or flips the starting encounter.");
+        Check(LandingCardHandoff.DurationFor(repeat, 2) == 0, "Repeated source unnecessarily flips its card.");
+        Check(Enumerable.Range(1, longSequence.Steps.Count - 1).All(i => LandingCardHandoff.DurationFor(longSequence, i) <= .14f && longSequence.Steps[i].Time + LandingCardHandoff.DurationFor(longSequence, i) < longSequence.Steps[i].LaunchAt), "Long-rig handoffs consume dash time.");
     }
 
     /// <summary>Verifies serialized UI, audio routing and non-intercepting feedback on the actual saved prefab.</summary>
@@ -108,7 +113,7 @@ public static class LandingScoreRushChecks
         Check(!((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).raycastTarget,"Trails block input.");
         Check(((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).GetComponent<CanvasRenderer>()!=null,"Trails have no native canvas renderer.");
         var collision = new SerializedObject(root.GetComponent<LandingCardCollision>());
-        foreach (string field in new[] { "creatureCard", "scoreCard", "stage" }) Check(collision.FindProperty(field).objectReferenceValue != null, "Missing collision binding: " + field);
+        foreach (string field in new[] { "creatureCard", "scoreCard", "stage", "creatureFade" }) Check(collision.FindProperty(field).objectReferenceValue != null, "Missing collision binding: " + field);
         Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3, "Missing source-preserving housing/card graphics.");
         Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).All(g => !g.raycastTarget), "Rigid card graphics intercept input.");
         var voices=data.FindProperty("voices");Check(voices.arraySize>=4,"No bounded audio voice pool.");

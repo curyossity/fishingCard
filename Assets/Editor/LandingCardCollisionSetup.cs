@@ -19,6 +19,8 @@ public static class LandingCardCollisionSetup
         Artwork(shell, original.sprite, TackleMachineGeometry.StageBounds, true);
         var creature = Group(stage, "Creature collision card", LandingCollisionGraphic.CreatureRegion, original.sprite, -12);
         var score = Group(stage, "Score collision card", LandingCollisionGraphic.ScoreRegion, original.sprite, 12);
+        var fade = creature.GetComponent<CanvasGroup>(); if (fade == null) fade = creature.gameObject.AddComponent<CanvasGroup>();
+        fade.alpha = 1; fade.interactable = false; fade.blocksRaycasts = false;
         foreach (string field in new[] { "portrait", "tags" }) Move(view.FindProperty(field).objectReferenceValue, creature, LandingCollisionGraphic.CreatureRegion);
         foreach (string field in new[] { "points", "resistance" }) Move(view.FindProperty(field).objectReferenceValue, score, LandingCollisionGraphic.ScoreRegion);
         foreach (string name in new[] { "PointsCaption", "ResistanceCaption", "Separator", "Progress Clip" })
@@ -26,7 +28,8 @@ public static class LandingCardCollisionSetup
         Move(rush.FindProperty("readout").objectReferenceValue, score, LandingCollisionGraphic.ScoreRegion);
         var data = new SerializedObject(owner);
         data.FindProperty("creatureCard").objectReferenceValue = creature; data.FindProperty("scoreCard").objectReferenceValue = score;
-        data.FindProperty("stage").objectReferenceValue = stage; data.ApplyModifiedPropertiesWithoutUndo();
+        data.FindProperty("stage").objectReferenceValue = stage;
+        data.FindProperty("creatureFade").objectReferenceValue = fade; data.ApplyModifiedPropertiesWithoutUndo();
         rush.FindProperty("collision").objectReferenceValue = owner; rush.ApplyModifiedPropertiesWithoutUndo();
     }
 

@@ -3662,6 +3662,7 @@ MonoBehaviour:
   creatureCard: {fileID: 7254549716601998938}
   scoreCard: {fileID: 8949671096410408854}
   stage: {fileID: 6231961137495548497}
+  creatureFade: {fileID: 7772517873594457813}
   pullback: 34
   scoreRecoil: 22
   shake: 10
@@ -6894,6 +6895,7 @@ GameObject:
   - component: {fileID: 7254549716601998938}
   - component: {fileID: 2395933619390706518}
   - component: {fileID: 5703136687971455225}
+  - component: {fileID: 7772517873594457813}
   m_Layer: 0
   m_Name: Creature collision card
   m_TagString: Untagged
@@ -6958,6 +6960,18 @@ MonoBehaviour:
     width: 470
     height: 240
   housing: 0
+--- !u!225 &7772517873594457813
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526433493436423653}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &6674731745041958193
 GameObject:
   m_ObjectHideFlags: 0

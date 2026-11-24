@@ -4,6 +4,7 @@ using UnityEngine;
 public sealed class LandingCardCollision : MonoBehaviour
 {
     [SerializeField] private RectTransform creatureCard, scoreCard, stage;
+    [SerializeField] private CanvasGroup creatureFade;
     [SerializeField, Range(8, 60)] private float pullback = 34;
     [SerializeField, Range(2, 30)] private float scoreRecoil = 22;
     [SerializeField, Range(0, 20)] private float shake = 10;
@@ -14,6 +15,7 @@ public sealed class LandingCardCollision : MonoBehaviour
     private Vector3 creatureScale, scoreScale;
     private Quaternion creatureRotation, scoreRotation;
     private bool captured;
+    private float faceAlpha;
     public Vector2 ScreenShakeOffset { get; private set; }
     public float CreatureOffset => captured ? creatureCard.anchoredPosition.x - creatureRest.x : 0;
     public float ScoreOffset => captured ? scoreCard.anchoredPosition.x - scoreRest.x : 0;
@@ -27,15 +29,23 @@ public sealed class LandingCardCollision : MonoBehaviour
     {
         Clear(); creatureRest = creatureCard.anchoredPosition; scoreRest = scoreCard.anchoredPosition; stageRest = stage.anchoredPosition;
         creatureRotation = creatureCard.localRotation; scoreRotation = scoreCard.localRotation;
-        creatureScale = creatureCard.localScale; scoreScale = scoreCard.localScale; captured = true;
+        creatureScale = creatureCard.localScale; scoreScale = scoreCard.localScale; faceAlpha = creatureFade.alpha; captured = true;
     }
 
-    /// <summary>Samples elastic windup, directional stretch and compressed contact without changing score timing or aiming.</summary>
+    /// <summary>Samples a hidden-face handoff, elastic windup, directional stretch and compressed contact without changing score timing or aiming.</summary>
     public void Render(LandingScoreSequence sequence, float elapsed, bool reduced)
     {
         if (!captured) return;
-        ResetMotion(); if (reduced) return;
-        var step = sequence.Steps[sequence.StepAt(elapsed)];
+        ResetMotion(); int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
+        float handoffDuration = LandingCardHandoff.DurationFor(sequence, index);
+        float handoff = LandingCardHandoff.Progress(sequence, index, elapsed);
+        if (handoff < 1)
+        {
+            creatureFade.alpha = faceAlpha * LandingCardHandoff.FaceOpacity(handoff, reduced);
+            if (!reduced) creatureCard.localScale = new Vector3(creatureScale.x * Mathf.Max(.015f, Mathf.Abs(Mathf.Cos(handoff * Mathf.PI))), creatureScale.y, creatureScale.z);
+            return;
+        }
+        if (reduced) return;
         float strength = step.SourceId < 0 ? (sequence.Score.Base > 0 ? .24f : 0) : step.Strength;
         bool strikes = step.SourceId >= 0 || sequence.Score.Base > 0;
         if (strikes && elapsed >= step.Time && elapsed < step.EndAt)
@@ -44,9 +54,11 @@ public sealed class LandingCardCollision : MonoBehaviour
             float x, width = 1, rotation = 0, back = pullback * weight;
             if (elapsed < step.LaunchAt)
             {
-                float u = Mathf.Clamp01((elapsed - step.Time) / Mathf.Max(.001f, step.LaunchAt - step.Time));
+                float start = step.Time + handoffDuration;
+                float u = Mathf.Clamp01((elapsed - start) / Mathf.Max(.001f, step.LaunchAt - start));
                 float windup = u * u * (3 - 2 * u); x = -back * windup; rotation = windup * (1 + strength);
-                width = 1 - windupSquash * weight * Mathf.SmoothStep(0, 1, Mathf.Clamp01((elapsed - step.LaunchAt + .09f) / .09f));
+                float squashStart = Mathf.Max(start, step.LaunchAt - .09f);
+                width = 1 - windupSquash * weight * Mathf.SmoothStep(0, 1, Mathf.InverseLerp(squashStart, step.LaunchAt, elapsed));
             }
             else if (elapsed < step.ImpactAt)
             {
@@ -103,6 +115,7 @@ public sealed class LandingCardCollision : MonoBehaviour
         creatureCard.anchoredPosition = creatureRest; creatureCard.localRotation = creatureRotation;
         scoreCard.anchoredPosition = scoreRest; scoreCard.localRotation = scoreRotation; stage.anchoredPosition = stageRest;
         creatureCard.localScale = creatureScale; scoreCard.localScale = scoreScale;
+        creatureFade.alpha = faceAlpha;
     }
 
     /// <summary>Restores both cards and the stage on completion, skip, replacement or phase exit.</summary>

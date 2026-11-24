@@ -1,0 +1,13 @@
+# Contributor card handoff
+
+Active presentation revision, 24 November 2026. [Watch the native 60 fps examples](Compare.html). The accepted smaller-card layout, elastic impacts and scoring schedule remain unchanged.
+
+A contributor change adds a 140 ms edge-on turn inside the existing windup. Compressed grouped schedules shorten the handoff to at most 60% of the available preparation time. The outgoing identity stays until the hidden midpoint; portrait, name, tag, operation and source attribution then change together. The incoming face opens fully before the existing squash and dash. Consecutive operations from the same source keep its card in place. The initial accuracy beat and final encounter restoration retain their existing behavior.
+
+The score panel stays steady throughout the turn. Shared reduced motion substitutes a stationary fade. Skip, replacement, completion, independent disable and phase exit restore face opacity, label opacity and all transforms. No new sounds, particles or artwork are added. Contact, numerical delivery and existing impact-sound timestamps remain unchanged; the modest fixture remains 3.227416 seconds and the powerful fixture 4.126624 seconds.
+
+`LandingCardHandoff` supplies shared deterministic progress, identity selection and opacity sampling. `LandingScoreRush` chooses the visible source, `LandingScoringPortrait` owns portrait/text restoration, and `LandingCardCollision` owns the enclosing face projection/fade. The authored source CanvasGroup affects the existing frame, portrait and tag together; the external name band and operation use matching caption opacity.
+
+**396 checks pass:** 125 native checks per fixture, 47 prefab/binding checks, 35 score/schedule checks and 64 Landing/model checks. Native checks cover outgoing identity, hidden midpoint swap, synchronized labels, no early points, a steady receiver, reduced motion, interrupted turns and the existing elastic collision invariants. [Verification.json](Verification.json) and both Level JSON files retain the results. [Consecutive handoff frames](Handoff.png) were visually reviewed. Complete frame sequences (212 modest and 266 powerful) were checked before encoding. Unity reports no errors and the isolated Play session is stopped.
+
+`Tools/Rendering/CardCollisionAudit.cs.txt` retains bounded 60-frame exports under ignored `Temp/CardCollisionReview/Handoff`. Fixtures use current definitions without player-controller commands or save mutation. Preview audio uses the runtime's frozen cue schedule, not device loopback. Project integrity checks cover 2,154 files with zero errors or warnings. All 42 accepted sound files match their manifest hashes.

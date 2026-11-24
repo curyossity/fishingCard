@@ -14,6 +14,7 @@ public sealed class LandingScoringPortrait : MonoBehaviour
     private Vector3 encounterScale;
     private string encounterName, encounterTags;
     private bool captured, encounterEnabled, contributing;
+    private float encounterNameAlpha;
     public bool IsShowingContributors => contributing;
     public Vector3 ProjectileOrigin => portrait.rectTransform.TransformPoint(portrait.rectTransform.rect.center);
 
@@ -22,7 +23,8 @@ public sealed class LandingScoringPortrait : MonoBehaviour
     {
         if (captured) EndEncounter();
         encounterSprite = portrait.sprite; encounterEnabled = portrait.enabled; encounterColor = portrait.color;
-        encounterScale = portrait.rectTransform.localScale; encounterName = creatureName.text; encounterTags = tags.text; captured = true;
+        encounterScale = portrait.rectTransform.localScale; encounterName = creatureName.text; encounterTags = tags.text;
+        encounterNameAlpha = creatureName.alpha; captured = true;
     }
     /// <summary>Shows all identities in a grouped beat without implying that one creature owns the combined operation.</summary>
     public void ShowContributors(IReadOnlyList<CardInstance> members)
@@ -61,6 +63,8 @@ public sealed class LandingScoringPortrait : MonoBehaviour
     }
     /// <summary>Restrains source emphasis to the active illustration without moving the portrait frame.</summary>
     public void SetPulse(float amount) { if (captured) portrait.rectTransform.localScale = encounterScale * (1 + (contributing ? amount * .06f : 0)); }
+    /// <summary>Fades the external name in step with the card face so a hidden swap never displays conflicting identities.</summary>
+    public void SetHandoffOpacity(float alpha) { if (captured) creatureName.alpha = encounterNameAlpha * Mathf.Clamp01(alpha); }
     /// <summary>Returns the original target immediately at payout or when an ordinary strike has no contributors.</summary>
     public void RestoreEncounter()
     {
@@ -68,6 +72,7 @@ public sealed class LandingScoringPortrait : MonoBehaviour
         if (!captured) return;
         portrait.sprite = encounterSprite; portrait.enabled = encounterEnabled; portrait.color = encounterColor;
         portrait.rectTransform.localScale = encounterScale; creatureName.text = encounterName; tags.text = encounterTags;
+        creatureName.alpha = encounterNameAlpha;
     }
     /// <summary>Releases the snapshot after skip, completion or phase exit so a later encounter cannot restore stale art.</summary>
     public void EndEncounter() { RestoreEncounter(); captured = false; }

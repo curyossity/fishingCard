@@ -1,6 +1,6 @@
 # Elastic creature-card collision
 
-Active revision, 24 November 2026. [Watch the native 60 fps examples](Compare.html). The accepted [smaller-card layout and readable pacing](../Readable/README.md) remain unchanged: the modest fixture takes 3.227 seconds and the powerful fixture 4.127 seconds.
+Historical elastic-impact revision, 24 November 2026. The [current handoff revision](../Handoff/README.md) retains these impacts and adds the contributor transition. [Watch the native 60 fps examples](Compare.html). The accepted [smaller-card layout and readable pacing](../Readable/README.md) remain unchanged: the modest fixture takes 3.227 seconds and the powerful fixture 4.127 seconds.
 
 The creature narrows during the final 90 ms of its windup, stretches horizontally through the dash, compresses over the first 25 ms of contact, then settles with one small overshoot. Maximum deformation is 8% windup squash, 12% dash stretch and 12% impact squash, scaled by actual contribution strength. The recovery overshoot is at most 2.5%. Vertical scale compensates inversely to horizontal scale, preserving apparent area instead of inflating or shrinking the card. [Windup](Windup.png), [dash](Dash.png) and [impact](Impact.png) show the poses.
 
