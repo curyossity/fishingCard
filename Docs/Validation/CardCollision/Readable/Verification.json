@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "date": "2026-11-24",
+  "checks": 278,
+  "nativePowerful": 68,
+  "nativeModest": 68,
+  "prefabBindings": 46,
+  "scoreRules": 32,
+  "landingModel": 64,
+  "consoleErrors": 0,
+  "playModeStopped": true,
+  "faceScale": 0.88,
+  "contactTravelPixels": 97.6,
+  "contactHoldMs": [
+    75,
+    105
+  ],
+  "particleEffects": false
+}

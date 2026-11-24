@@ -5,6 +5,7 @@ using System.Linq;
 /// <summary>Pure presentation schedule over an already resolved score; it never evaluates creature rules.</summary>
 public sealed class LandingScoreSequence
 {
+    public const float MaximumDuration = 7.5f;
     public readonly struct Step
     {
         public readonly int SourceId;
@@ -20,9 +21,9 @@ public sealed class LandingScoreSequence
         {
             SourceId = sourceId; Value = value; Amount = amount; Multiply = multiply; Time = time;
             PreviousValue = previousValue; Gain = value - previousValue; Strength = strength;
-            // The accuracy beat retains its accepted contact timing; modifiers prepare in proportion to their real gain.
-            float preparation = sourceId < 0 ? .30f : multiply ? .25f + .19f * strength : .16f + .12f * strength;
-            LaunchAt = time + span * preparation; ImpactAt = time + span * (sourceId < 0 || multiply ? .76f : .72f); EndAt = time + span;
+            // Reserve a short accelerating dash and enough recovery for a complete rigid-card rebound.
+            ImpactAt = time + span * .58f;
+            LaunchAt = ImpactAt - (sourceId < 0 ? .110f : .100f + .030f * strength); EndAt = time + span;
             SourceIds = Array.AsReadOnly(sources ?? new[] { sourceId });
         }
     }
@@ -44,9 +45,10 @@ public sealed class LandingScoreSequence
         var additions = score.Contributions.Where(c => c.Bonus != 0).ToArray();
         var multipliers = score.Contributions.Where(c => c.Multiplier != 1).ToArray();
         OperationCount = additions.Length + multipliers.Length;
-        var steps = new List<Step> { new Step(-1, score.Base, score.Base, false, 0, .10f) };
+        bool scoring = score.Points > 0;
+        var steps = new List<Step> { new Step(-1, score.Base, score.Base, false, 0, scoring ? .52f : .28f) };
         decimal subtotal = score.Base, product = 1;
-        float time = .18f;
+        float time = scoring ? .60f : .34f;
         // Uncapped rigs retain every operation, but present related operations together instead of unreadable rapid flashes.
         int batchSize = Math.Max(1, (int)Math.Ceiling(OperationCount / 8.0));
         for (int offset = 0; offset < additions.Length; offset += batchSize)
@@ -55,7 +57,7 @@ public sealed class LandingScoreSequence
             foreach (var item in group) { subtotal = checked(subtotal + item.Bonus); amount += item.Bonus; }
             decimal previous = steps[steps.Count - 1].Value;
             float strength = StrengthFor(previous, subtotal, score.Base);
-            float span = Math.Max(.19f, .23f + strength * .18f - (steps.Count - 1) * .009f);
+            float span = Math.Max(.50f, .58f + strength * .18f - (steps.Count - 1) * .009f);
             steps.Add(new Step(group[0].SourceId, subtotal, amount, false, time, span, group.Select(c => c.SourceId).ToArray(), previous, strength));
             time += span;
         }
@@ -70,16 +72,16 @@ public sealed class LandingScoreSequence
             decimal value = product > 1 && subtotal > decimal.MaxValue / product ? decimal.MaxValue : subtotal * product;
             decimal previous = steps[steps.Count - 1].Value;
             float strength = StrengthFor(previous, value, score.Base);
-            float span = .28f + strength * .25f;
+            float span = .68f + strength * .22f;
             steps.Add(new Step(group[0].SourceId, value, amount, true, time, span, group.Select(c => c.SourceId).ToArray(), previous, strength));
             time += span;
         }
         // Compress only time above the readable per-beat floor, retaining arithmetic and every grouped identity.
-        const float minimumSpan = .19f, modifierBudget = 3.25f;
+        const float minimumSpan = .50f, modifierBudget = 5.6f;
         float extra = steps.Skip(1).Sum(s => Math.Max(0, s.EndAt - s.Time - minimumSpan));
         float available = Math.Max(0, modifierBudget - (steps.Count - 1) * minimumSpan);
         float tempo = extra > available ? available / extra : 1;
-        time = .18f;
+        time = scoring ? .60f : .34f;
         for (int i = 1; i < steps.Count; i++)
         {
             var step = steps[i]; float span = minimumSpan + (step.EndAt - step.Time - minimumSpan) * tempo;

@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "date": "2026-11-24",
+  "checks": 334,
+  "nativePowerful": 96,
+  "nativeModest": 96,
+  "prefabBindings": 46,
+  "scoreRules": 32,
+  "landingModel": 64,
+  "consoleErrors": 0,
+  "playModeStopped": true,
+  "volumePreserved": true,
+  "leadingEdgePinned": true,
+  "scorePanelRigid": true,
+  "timingUnchanged": true,
+  "particleEffects": false
+}

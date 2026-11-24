@@ -1,0 +1,185 @@
+// Unity MCP method body. Actual prefab and current species abilities; no player controller or save mutation.
+if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
+int previewLevel = 90; bool exportFrames = true;
+int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
+string output = "Docs/Validation/CardCollision/Elastic/", frames = "Temp/CardCollisionReview/Elastic/Level-" + previewLevel + "/";
+System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
+var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
+var culture = System.Globalization.CultureInfo.InvariantCulture;
+int checks = 0;
+System.Action<bool, string> check = (condition, message) => { checks++; if (!condition) throw new System.InvalidOperationException(message); };
+var definitions = new System.Collections.Generic.Dictionary<string, CardDefinition>();
+foreach (string guid in UnityEditor.AssetDatabase.FindAssets("t:CardDefinition", new[] { "Assets/Cards" })) {
+    var definition = UnityEditor.AssetDatabase.LoadAssetAtPath<CardDefinition>(UnityEditor.AssetDatabase.GUIDToAssetPath(guid)); definitions[definition.DisplayName] = definition;
+}
+var rig = new RigRuntime();
+foreach (string name in new[] { "Sardine", "Glass Minnow", "Mackerel", "Cuttlefish", "Stormjaw Tuna" })
+    for (int i = 0; i < ((name == "Sardine" || name == "Cuttlefish" || name == "Stormjaw Tuna") ? previewLevel : 1); i++) {
+        bool upgraded; string error; if (!rig.TryAcquire(rig.Revision, definitions[name], rig.Members.Length, out upgraded, out error)) throw new System.InvalidOperationException(error);
+    }
+int extra, protect; var model = new LandingChallengeRuntime(); double clock = 0;
+model.Begin(1, 2000, LandingChallengeChecks.Settings(), rig.SnapshotForLanding(out extra, out protect), new System.Random(12), clock, extra, protect);
+LandingChallengeChecks.Strike(model, LandingAccuracy.Perfect, ref clock);
+var receipt = new LandingStrikeReceipt(model, rig.Members);
+var guard = new UnityEngine.GameObject("Isolated modifier impact audit"); guard.SetActive(false);
+var root = UnityEngine.Object.Instantiate(UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(LandingChallengeSetup.PrefabPath), guard.transform); root.SetActive(true);
+root.GetComponent<LandingChallengeView>().enabled = false; root.GetComponent<TackleLandingPresentation>().enabled = false;
+foreach (var raycaster in root.GetComponentsInChildren<UnityEngine.UI.GraphicRaycaster>(true)) raycaster.enabled = false;
+var group = root.AddComponent<UnityEngine.CanvasGroup>(); group.interactable = false; group.blocksRaycasts = false;
+var canvas = root.GetComponent<UnityEngine.Canvas>(); canvas.enabled = false;
+foreach (var source in root.GetComponentsInChildren<UnityEngine.AudioSource>(true)) source.mute = true;
+guard.SetActive(true);
+var rush = root.GetComponent<LandingScoreRush>(); var data = new UnityEditor.SerializedObject(rush);
+var view = root.GetComponent<TackleLandingPresentation>(); var viewData = new UnityEditor.SerializedObject(view);
+var motion = (UnityEngine.UI.Toggle)data.FindProperty("reducedMotionToggle").objectReferenceValue; motion.SetIsOnWithoutNotify(false);
+((UnityEngine.UI.Toggle)data.FindProperty("soundToggle").objectReferenceValue).SetIsOnWithoutNotify(false);
+typeof(TackleLandingPresentation).GetMethod("RefreshRig", hidden).Invoke(view, new object[] { rig.Members, null, false });
+var cards = (System.Collections.Generic.List<TackleRigCardView>)typeof(TackleLandingPresentation).GetField("cards", hidden).GetValue(view);
+foreach (var pair in new[] { new[] { "phase", "SHALLOWS / LAND" }, new[] { "haul", "HAUL " + rig.HaulValue }, new[] { "creature", "SARDINE" }, new[] { "tags", "SCHOOLING" }, new[] { "resistance", "2000" }, new[] { "movement", model.Pattern.ToString().ToUpperInvariant() }, new[] { "message", "RIG ACTIVATING  /  SPACE TO FINISH" } })
+    ((TMPro.TMP_Text)viewData.FindProperty(pair[0]).objectReferenceValue).text = pair[1];
+var portrait = (UnityEngine.UI.Image)viewData.FindProperty("portrait").objectReferenceValue;
+portrait.sprite = definitions["Sardine"].EncounterArtwork ?? definitions["Sardine"].Artwork;
+var track = (UnityEngine.RectTransform)viewData.FindProperty("track").objectReferenceValue;
+foreach (string field in new[] { "fish", "goodZone", "perfectZone" }) {
+    var rect = (UnityEngine.RectTransform)viewData.FindProperty(field).objectReferenceValue;
+    rect.anchoredPosition = new UnityEngine.Vector2(((float)(field == "fish" ? model.FishPosition : model.ZonePosition) - .5f) * track.rect.width, 0);
+    double width = field == "fish" ? model.FishWidth : field == "goodZone" ? model.GoodWidth : model.PerfectWidth;
+    rect.sizeDelta = new UnityEngine.Vector2((float)width * track.rect.width, rect.sizeDelta.y);
+}
+typeof(TackleLandingPresentation).GetMethod("PrepareLamps", hidden).Invoke(view, new object[] { model.InitialAttempts });
+var lamps = (System.Collections.Generic.List<UnityEngine.UI.Image>)typeof(TackleLandingPresentation).GetField("lamps", hidden).GetValue(view);
+for (int i = 0; i < lamps.Count; i++) lamps[i].sprite = (UnityEngine.Sprite)viewData.FindProperty(i < model.AttemptsRemaining ? "lampOn" : "lampOff").objectReferenceValue;
+((TMPro.TMP_Text)viewData.FindProperty("attempts").objectReferenceValue).text = model.AttemptsRemaining + " ATTEMPTS LEFT";
+var feedback = root.GetComponent<LandingStrikeFeedback>(); feedback.Present(receipt, cards, true, true);
+var number = (TMPro.TMP_Text)data.FindProperty("value").objectReferenceValue;
+var operation = (TMPro.TMP_Text)data.FindProperty("operation").objectReferenceValue;
+var particles = (LandingRushGraphic)data.FindProperty("particles").objectReferenceValue;
+var machine = (UnityEngine.RectTransform)data.FindProperty("machine").objectReferenceValue;
+var scoringPortrait = root.GetComponent<LandingScoringPortrait>();
+var machineRest = machine.anchoredPosition; var portraitRest = portrait.rectTransform.localScale; var operationRest = operation.rectTransform.localScale;
+var fish = (UnityEngine.RectTransform)viewData.FindProperty("fish").objectReferenceValue; var fishRest = fish.anchoredPosition;
+var cardScales = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(cards, card => card.transform.localScale));
+System.Action<float> sample = time => {
+    typeof(LandingScoreRush).GetMethod("Render", hidden).Invoke(rush, new object[] { time });
+    ((TMPro.TMP_Text)viewData.FindProperty("points").objectReferenceValue).text = LandingScoreRush.Format(rush.DisplayedTotal);
+    ((UnityEngine.RectTransform)viewData.FindProperty("progressFill").objectReferenceValue).anchorMax = new UnityEngine.Vector2(UnityEngine.Mathf.Clamp01((float)(rush.DisplayedTotal / model.Resistance)), 1);
+};
+System.Func<int> vertexCount = () => {
+    var helper = new UnityEngine.UI.VertexHelper(); try { typeof(LandingRushGraphic).GetMethod("OnPopulateMesh", hidden | System.Reflection.BindingFlags.DeclaredOnly).Invoke(particles, new object[] { helper }); return helper.currentVertCount; }
+    finally { helper.Dispose(); }
+};
+var cameraObject = new UnityEngine.GameObject("Private modifier capture", typeof(UnityEngine.Camera));
+var camera = cameraObject.GetComponent<UnityEngine.Camera>(); camera.enabled = false; camera.orthographic = true; camera.orthographicSize = 1080; camera.transform.position = new UnityEngine.Vector3(0, 0, -1000);
+var target = new UnityEngine.RenderTexture(1920, 1080, 24); var previous = UnityEngine.RenderTexture.active;
+var image = new UnityEngine.Texture2D(1920, 1080, UnityEngine.TextureFormat.RGBA32, false);
+System.Action<string> capture = file => {
+    canvas.enabled = true; canvas.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera; canvas.worldCamera = camera; canvas.planeDistance = 100; camera.targetTexture = target;
+    UnityEngine.Canvas.ForceUpdateCanvases();
+    UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(camera, new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest { destination = target });
+    UnityEngine.RenderTexture.active = target; image.ReadPixels(new UnityEngine.Rect(0, 0, 1920, 1080), 0, 0); image.Apply(); System.IO.File.WriteAllBytes(file, image.EncodeToPNG()); canvas.enabled = false;
+};
+try
+{
+    canvas.enabled = true; canvas.renderMode = UnityEngine.RenderMode.ScreenSpaceCamera; canvas.worldCamera = camera; canvas.planeDistance = 100; camera.targetTexture = target;
+    UnityEngine.Canvas.ForceUpdateCanvases(); canvas.enabled = false; fishRest = fish.anchoredPosition;
+    var collision = root.GetComponent<LandingCardCollision>(); var collisionData = new UnityEditor.SerializedObject(collision);
+    var creatureCard = (UnityEngine.RectTransform)collisionData.FindProperty("creatureCard").objectReferenceValue;
+    var scoreCard = (UnityEngine.RectTransform)collisionData.FindProperty("scoreCard").objectReferenceValue;
+    var stage = (UnityEngine.RectTransform)collisionData.FindProperty("stage").objectReferenceValue;
+    var sourceRest = creatureCard.anchoredPosition; var scoreRest = scoreCard.anchoredPosition; var stageRest = stage.anchoredPosition;
+    var sourceRotation = creatureCard.localRotation; var scoreRotation = scoreCard.localRotation;
+    var sourceScale = creatureCard.localScale; var targetScale = scoreCard.localScale;
+    var targetSprite = portrait.sprite;
+    System.Func<bool> restored = () => creatureCard.anchoredPosition == sourceRest && scoreCard.anchoredPosition == scoreRest
+        && creatureCard.localScale == sourceScale && scoreCard.localScale == targetScale
+        && stage.anchoredPosition == stageRest && creatureCard.localRotation == sourceRotation && scoreCard.localRotation == scoreRotation;
+    check(portrait.transform.parent == creatureCard && number.transform.IsChildOf(scoreCard), "Card faces and their live fields have different motion owners.");
+    check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3 && System.Linq.Enumerable.All(root.GetComponentsInChildren<LandingCollisionGraphic>(true), g => !g.raycastTarget), "Missing or interacting collision graphic.");
+    check(!machine.GetComponent<UnityEngine.UI.Image>().enabled, "Original housing still duplicates the movable cards.");
+    check(creatureCard.localScale == UnityEngine.Vector3.one * .88f && scoreCard.localScale == creatureCard.localScale, "Machine faces were not reduced together.");
+    rush.Present(receipt, cards, true); var sequence = rush.Sequence;
+    check(collision.ContactDistance > 90 && collision.ContactDistance < 105, "Cards lack clear, bounded collision travel.");
+    check(System.Linq.Enumerable.All(sequence.Steps, s => s.EndAt - s.Time >= .49999f), "A collision is too short to read.");
+    check(sequence.Duration < LandingScoreSequence.MaximumDuration, "Rigid collisions exceed the controller feedback bound.");
+    float firstStrength = -1, lastStrength = -1, firstRecoil = 0, lastRecoil = 0;
+    foreach (var step in sequence.Steps)
+    {
+        sample((step.Time + step.LaunchAt) * .5f);
+        check(collision.CreatureLeadingOffset < 0, "Source card does not wind backwards.");
+        check(rush.DisplayedStrike == (step.SourceId < 0 ? 0 : step.PreviousValue), "Windup exposed future score.");
+        sample(step.LaunchAt);
+        check(creatureCard.localScale.x < sourceScale.x && creatureCard.localScale.y > sourceScale.y, "Windup does not squeeze horizontally while preserving mass.");
+        check(UnityEngine.Mathf.Abs(creatureCard.localScale.x * creatureCard.localScale.y - sourceScale.x * sourceScale.y) < .00001f, "Windup changes apparent area.");
+        float startX = collision.CreatureLeadingOffset;
+        sample(step.LaunchAt + (step.ImpactAt - step.LaunchAt) * .5f); float halfX = collision.CreatureLeadingOffset;
+        sample(step.LaunchAt + (step.ImpactAt - step.LaunchAt) * .85f);
+        check(creatureCard.localScale.x > sourceScale.x && creatureCard.localScale.y < sourceScale.y, "Dash lacks directional stretch.");
+        check(UnityEngine.Mathf.Abs(creatureCard.localScale.x * creatureCard.localScale.y - sourceScale.x * sourceScale.y) < .00001f, "Dash changes apparent area.");
+        sample(step.ImpactAt - .0001f);
+        check(collision.CreatureLeadingOffset > halfX && halfX > startX, "Dash does not accelerate toward contact.");
+        check(rush.DisplayedStrike == (step.SourceId < 0 ? 0 : step.PreviousValue), "Points arrive before the physical collision.");
+        sample(step.ImpactAt);
+        check(rush.DisplayedStrike == step.Value && UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset - collision.ContactDistance) < .001f, "Physical contact and exact score delivery are detached.");
+        check(creatureCard.localRotation == sourceRotation, "Card hits at a rotated corner instead of its contacting edge.");
+        sample(step.ImpactAt + .020f);
+        check(collision.ScoreOffset > 0 && collision.ScreenShakeOffset.sqrMagnitude > .001f, "Receiver lacks directional mass or camera-view shake.");
+        check(UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset - collision.ScoreOffset - collision.ContactDistance) < .001f, "Source and receiver separate during the contact hold.");
+        check(creatureCard.localScale.x < sourceScale.x && creatureCard.localScale.y > sourceScale.y && scoreCard.localScale == targetScale, "Impact does not compress the source while keeping score digits rigid.");
+        check(UnityEngine.Mathf.Abs(creatureCard.localScale.x * creatureCard.localScale.y - sourceScale.x * sourceScale.y) < .00001f, "Impact changes apparent area.");
+        check(vertexCount() == 0 && !((LandingStrikeContact)data.FindProperty("strikeContact").objectReferenceValue).IsContactActive, "Collision presentation retains projectiles or strike particles.");
+        check(System.Linq.Enumerable.All(cards, c => c.transform.localScale == UnityEngine.Vector3.one && c.transform.localRotation == UnityEngine.Quaternion.identity), "Machine collision moves a rig card.");
+        if (step.SourceId >= 0) {
+            check(scoringPortrait.IsShowingContributors, "Main machine card does not identify its contributor.");
+            check(System.Linq.Enumerable.Any(rush.SoundEvents, cue => cue.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition) && UnityEngine.Mathf.Abs(cue.Time - step.ImpactAt) < .00001f), "Score impact sound misses physical contact.");
+            if (firstStrength < 0) { firstStrength = step.Strength; firstRecoil = collision.ScoreOffset; }
+            lastStrength = step.Strength; lastRecoil = collision.ScoreOffset;
+        }
+        float hold = .075f + (step.SourceId < 0 ? .24f : step.Strength) * .030f;
+        sample(step.ImpactAt + hold + (step.EndAt - step.ImpactAt - hold) * .75f);
+        check(creatureCard.localScale.x > sourceScale.x && creatureCard.localScale.x < sourceScale.x * 1.03f, "Recovery lacks one restrained elastic overshoot.");
+        sample(step.EndAt - .00001f);
+        check(UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset) < .01f, "Source card fails to return before the next creature.");
+    }
+    check(lastStrength <= firstStrength || lastRecoil > firstRecoil, "Major operations have no additional mass.");
+    check(model.Points == receipt.PointsAfter && fish.anchoredPosition == fishRest, "Visual collision changed score or aiming geometry.");
+    var last = sequence.Steps[sequence.Steps.Count - 1];
+    sample(last.ImpactAt + .55f); check(restored(), "Damped cards or shake never return to rest.");
+    motion.SetIsOnWithoutNotify(true); sample(last.ImpactAt + .020f);
+    check(restored() && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == last.Value, "Reduced motion retains collision/shake or loses exact numbers.");
+    motion.SetIsOnWithoutNotify(false);
+    foreach (float time in new[] { last.LaunchAt, last.ImpactAt + .020f }) {
+        rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true); sample(time); rush.Finish();
+        check(restored() && !rush.IsPlaying && !scoringPortrait.IsShowingContributors && portrait.sprite == targetSprite, "Skip leaves motion or a stale contributor.");
+    }
+    rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true); sample(last.ImpactAt + .020f);
+    root.SetActive(false); check(restored() && !rush.IsPlaying, "Phase exit leaves the view shaken."); root.SetActive(true);
+    rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true);
+    var events = System.Linq.Enumerable.ToArray(rush.SoundEvents);
+    if (exportFrames) {
+        bool finished = false; int count = UnityEngine.Mathf.CeilToInt((sequence.Duration + .3f) * 60);
+        for (int frame = exportFrom; frame < count && frame < exportFrom + exportCount; frame++) {
+            float t = frame / 60f;
+            if (t >= sequence.Duration) { if (!finished) { rush.Finish(); finished = true; } } else sample(t);
+            capture(frames + "Frame-" + frame.ToString("D3") + ".png");
+        }
+        System.IO.File.WriteAllBytes(output + "Level-" + previewLevel + ".wav", LandingScoreShowcase.Mix(events, sequence.Duration + .3f));
+    }
+    rush.Finish();
+    foreach (var grade in new[] { LandingAccuracy.Good, LandingAccuracy.Miss }) {
+        var plain = new LandingChallengeRuntime(); double now = 0;
+        plain.Begin(1, 2000, LandingChallengeChecks.Settings(), new LandingRigMember[0], new System.Random(4), now);
+        LandingChallengeChecks.Strike(plain, grade, ref now);
+        rush.Present(new LandingStrikeReceipt(plain, new CardInstance[0]), cards, true);
+        float hitAt = rush.Sequence.Steps[0].ImpactAt;
+        sample(hitAt + .020f);
+        check(grade == LandingAccuracy.Miss ? restored() : collision.ScoreOffset > 0, "Ordinary grade collision is inappropriate.");
+        check(rush.DisplayedStrike == plain.Points && vertexCount() == 0, "Grade effect changes points or emits particles."); rush.Finish();
+    }
+    string report = "{\"passed\":true,\"checks\":" + checks + ",\"level\":" + previewLevel + ",\"points\":\"" + model.Points.ToString(culture) + "\",\"duration\":" + sequence.Duration.ToString(culture) + ",\"fps\":60}";
+    System.IO.File.WriteAllText(output + "Level-" + previewLevel + ".json", report + "\n");
+    return "Passed " + checks + " collision checks at level " + previewLevel + "; " + model.Points + " points; " + sequence.Duration + " seconds.";
+}
+finally {
+    rush.Finish(); guard.SetActive(false); UnityEngine.RenderTexture.active = previous; camera.targetTexture = null; target.Release();
+    UnityEngine.Object.Destroy(target); UnityEngine.Object.Destroy(image); UnityEngine.Object.Destroy(cameraObject); UnityEngine.Object.Destroy(guard);
+}

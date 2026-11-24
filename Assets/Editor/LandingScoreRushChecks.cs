@@ -29,7 +29,7 @@ public static class LandingScoreRushChecks
         Check(sequence.Steps[1].SourceId == 1 && sequence.Steps[2].SourceId == 2, "Multipliers ran before bonuses.");
         Check(sequence.Steps.Count == 4, "Attempt recovery became a scoring operation.");
         Check(sequence.StepAt(.01f) == 0 && sequence.StepAt(99) == 3, "Sequence time lookup failed.");
-        Check(sequence.Duration < 4.8f && sequence.PayoutAt < sequence.Duration, "Combo feedback is not bounded.");
+        Check(sequence.Duration < LandingScoreSequence.MaximumDuration && sequence.PayoutAt < sequence.Duration, "Combo feedback is not bounded.");
         var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect,20,6,1.3m,new[] {new LandingContribution(1,"Add",6,1),new LandingContribution(2,"Multiply",0,1.3m)}));
         Check(ordinary.Steps.Last().Value == 33.8m, "Fractional score lost precision.");
         Check(ordinary.Duration < sequence.Duration && ordinary.Intensity < sequence.Intensity, "Ordinary hits do not feel distinct.");
@@ -37,7 +37,7 @@ public static class LandingScoreRushChecks
         Check(miss.Steps.Count == 1 && miss.Intensity == 0 && miss.Duration < 1, "An ordinary Miss earned a score celebration.");
         var many = Enumerable.Range(0, 150).Select(i => new LandingContribution(i,"Add",1,1)).ToArray();
         var longSequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Good,10,150,1,many));
-        Check(longSequence.OperationCount == 150 && longSequence.Steps.Skip(1).Sum(s=>s.SourceIds.Count)==150 && longSequence.Steps.Last().Value == 160 && longSequence.Duration < 4.8f, "Long rigs truncate contributions or extend feedback indefinitely.");
+        Check(longSequence.OperationCount == 150 && longSequence.Steps.Skip(1).Sum(s=>s.SourceIds.Count)==150 && longSequence.Steps.Last().Value == 160 && longSequence.Duration < LandingScoreSequence.MaximumDuration, "Long rigs truncate contributions or extend feedback indefinitely.");
         foreach (var step in sequence.Steps.Skip(1))
         {
             Check(step.Time < step.LaunchAt && step.LaunchAt < step.ImpactAt && step.ImpactAt < step.EndAt, "Missing anticipation, flight or recovery.");
@@ -82,13 +82,13 @@ public static class LandingScoreRushChecks
         Check(late.LaunchAt - late.Time > tinyMultiplier.Steps[1].LaunchAt - tinyMultiplier.Steps[1].Time, "A major multiplier lacks additional preparation.");
         Check(late.PreviousValue == 120 && late.Gain == 120 && late.Value == 240, "Operation metadata changed canonical arithmetic.");
         Check(lateMultiplier.ValueAt(late.ImpactAt - .0001f) == 120 && lateMultiplier.ValueAt(late.ImpactAt) == 240, "Weighted timing exposes multiplier points before arrival.");
-        Check(Math.Abs(small.Steps[0].ImpactAt - .076f) < .000001f && small.Steps[1].Time == .18f, "Modifier tuning changed phase-one contact timing.");
+        Check(Math.Abs(small.Steps[0].ImpactAt - .3016f) < .000001f && small.Steps[1].Time == .60f, "Card collision lost its accuracy windup or modifier start.");
         var mixed = Enumerable.Range(0, 150).Select(i => new LandingContribution(i, "Grouped", 1, 1.02m)).ToArray();
         decimal product = 1; foreach (var item in mixed) product *= item.Multiplier;
         var longSequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 150, product, mixed));
-        Check(longSequence.Duration < 4.8f && longSequence.Steps.Last().Value == longSequence.Score.Points, "Mixed long rigs break the bounded exact sequence.");
+        Check(longSequence.Duration < LandingScoreSequence.MaximumDuration && longSequence.Steps.Last().Value == longSequence.Score.Points, "Mixed long rigs break the bounded exact sequence.");
         Check(longSequence.Steps.Skip(1).Sum(s => s.SourceIds.Count) == 300, "Grouped delivery drops an operation/source identity.");
-        Check(longSequence.Steps.Skip(1).All(s => s.EndAt - s.Time >= .18999f), "Tempo compression makes grouped operations unreadable.");
+        Check(longSequence.Steps.Skip(1).All(s => s.EndAt - s.Time >= .49999f), "Tempo compression removes collision preparation or recovery.");
         Check(longSequence.Steps.Skip(1).All(s => s.Strength >= 0 && s.Strength <= 1 && s.Time < s.LaunchAt && s.LaunchAt < s.ImpactAt && s.ImpactAt < s.EndAt), "Weighted steps have invalid strength or event order.");
     }
 
@@ -97,7 +97,7 @@ public static class LandingScoreRushChecks
     {
         checks=0; var root=AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath);
         var host=root.GetComponent<LandingScoreRush>(); Check(host!=null,"Missing score-rush component.");var data=new SerializedObject(host);
-        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
+        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
             Check(data.FindProperty(field).objectReferenceValue!=null,"Missing score rush binding: "+field);
         var group=(CanvasGroup)data.FindProperty("readout").objectReferenceValue;
         var portraitOwner=new SerializedObject((LandingScoringPortrait)data.FindProperty("scoringPortrait").objectReferenceValue);
@@ -107,6 +107,10 @@ public static class LandingScoreRushChecks
         Check(!group.blocksRaycasts&&!group.interactable&&!group.gameObject.activeSelf,"Transient readout starts visible or blocks input.");
         Check(!((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).raycastTarget,"Trails block input.");
         Check(((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).GetComponent<CanvasRenderer>()!=null,"Trails have no native canvas renderer.");
+        var collision = new SerializedObject(root.GetComponent<LandingCardCollision>());
+        foreach (string field in new[] { "creatureCard", "scoreCard", "stage" }) Check(collision.FindProperty(field).objectReferenceValue != null, "Missing collision binding: " + field);
+        Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3, "Missing source-preserving housing/card graphics.");
+        Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).All(g => !g.raycastTarget), "Rigid card graphics intercept input.");
         var voices=data.FindProperty("voices");Check(voices.arraySize>=4,"No bounded audio voice pool.");
         for(int i=0;i<voices.arraySize;i++)
         {
@@ -198,7 +202,7 @@ public static class LandingScoreRushChecks
         typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Sequence.PayoutAt+.12f});
         Canvas.ForceUpdateCanvases();
         var sparks=(LandingRushGraphic)data.FindProperty("particles").objectReferenceValue;
-        Check(sparks.canvasRenderer.GetMesh()!=null&&sparks.canvasRenderer.GetMesh().vertexCount>0,"Payout spark mesh did not render.");
+        Check(sparks.canvasRenderer.GetMesh()==null||sparks.canvasRenderer.GetMesh().vertexCount==0,"Collision-only feedback retained payout particles.");
         Capture(landing,"Big-Payout.png",1920,1080);
         yield return WaitFeedback(owner);yield return null;
         Check(owner.Rig.FindSpecies(Card("Sardine").UniqueId).Level==priorLevel+1&&owner.RigUpgradeFeedbackVisible,"Duplicate did not upgrade automatically after the payout.");
@@ -238,7 +242,7 @@ public static class LandingScoreRushChecks
     }
     /// <summary>Waits on the bounded controller gate rather than guessing animation duration.</summary>
     private static IEnumerator WaitFeedback(FishingRunController owner)
-    { double until=Time.realtimeSinceStartupAsDouble+5;while(owner.LandingFeedbackPending&&Time.realtimeSinceStartupAsDouble<until)yield return null;Check(!owner.LandingFeedbackPending,"Feedback gate timed out."); }
+    { double until=Time.realtimeSinceStartupAsDouble+LandingScoreSequence.MaximumDuration+.5;while(owner.LandingFeedbackPending&&Time.realtimeSinceStartupAsDouble<until)yield return null;Check(!owner.LandingFeedbackPending,"Feedback gate timed out."); }
     /// <summary>Uses existing end-to-end fixture logic for the remaining successful attempts.</summary>
     private static IEnumerator Land(FishingRunController owner,bool success)=>(IEnumerator)typeof(RigBuildingSceneChecks).GetMethod("Land",Fixture).Invoke(null,new object[]{owner,success});
     /// <summary>Accepts the real Discover result after its cosmetic reels settle.</summary>

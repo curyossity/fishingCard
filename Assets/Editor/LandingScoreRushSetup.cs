@@ -93,11 +93,12 @@ public static class LandingScoreRushSetup
         value.rectTransform.pivot = new Vector2(.5f, .5f);
         value.rectTransform.anchoredPosition = new Vector2(229, -67); value.rectTransform.sizeDelta = new Vector2(360, 78);
         var labels = data.FindProperty("coveredLabels"); labels.arraySize = 2;
-        labels.GetArrayElementAtIndex(0).objectReferenceValue = stage.Find("PointsCaption").GetComponent<TMP_Text>();
-        labels.GetArrayElementAtIndex(1).objectReferenceValue = stage.Find("ResistanceCaption").GetComponent<TMP_Text>();
+        labels.GetArrayElementAtIndex(0).objectReferenceValue = (stage.Find("PointsCaption") ?? stage.Find("Score collision card/PointsCaption")).GetComponent<TMP_Text>();
+        labels.GetArrayElementAtIndex(1).objectReferenceValue = (stage.Find("ResistanceCaption") ?? stage.Find("Score collision card/ResistanceCaption")).GetComponent<TMP_Text>();
         data.ApplyModifiedPropertiesWithoutUndo();
         ConfigureStrikeContact(host, data);
         DeepwaterAudioSetup.ConfigureLanding(host.gameObject);
+        LandingCardCollisionSetup.Configure(host.gameObject);
     }
 
     /// <summary>Retains the non-interacting timing-track contact and accepted-button binding through full Landing regeneration.</summary>

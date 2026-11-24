@@ -5,7 +5,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-/// <summary>Stages a frozen strike into a growing readout, source kicks, musical steps and a progress payout.</summary>
+/// <summary>Stages a frozen strike into a readable score, weighted card collisions, musical steps and accumulated progress.</summary>
 public sealed class LandingScoreRush : MonoBehaviour
 {
     [SerializeField] private DeepwaterSoundPlayer sound;
@@ -14,6 +14,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private TMP_Text[] coveredLabels;
     [SerializeField] private UnityEngine.UI.Image glow;
     [SerializeField] private LandingScoringPortrait scoringPortrait;
+    [SerializeField] private LandingCardCollision collision;
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
@@ -26,16 +27,12 @@ public sealed class LandingScoreRush : MonoBehaviour
     private const string MotionKey = "Deepwater.Landing.ReducedMotion";
     private LandingStrikeReceipt receipt;
     private LandingScoreSequence sequence;
-    private IReadOnlyList<TackleRigCardView> cards = Array.Empty<TackleRigCardView>();
     private double started, dspStarted;
-    private int lastStep = -1, lastImpact = -1;
+    private int lastStep = -1;
     private bool paid, running;
     private Vector2 machineRest;
     private Vector3 totalRest;
     private Vector3 operationRest = Vector3.one;
-    private TackleRigCardView kicked;
-    private Vector3 kickScale;
-    private Quaternion kickRotation;
     public readonly struct SoundEvent
     {
         public readonly float Time, Pitch, Gain;
@@ -75,12 +72,12 @@ public sealed class LandingScoreRush : MonoBehaviour
     public void Present(LandingStrikeReceipt strike, IReadOnlyList<TackleRigCardView> rigCards, bool animate)
     {
         if (ReferenceEquals(receipt, strike)) return;
-        Finish(); receipt = strike; cards = rigCards ?? Array.Empty<TackleRigCardView>();
+        Finish(); receipt = strike;
         if (strike?.Score == null || !animate) return;
         sound.StopAll();
-        scoringPortrait.CaptureEncounter();
+        scoringPortrait.CaptureEncounter(); collision.Begin();
         sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble; dspStarted = AudioSettings.dspTime;
-        if (strikeContact != null) strikeContact.Begin(strike, sequence.Steps[0].ImpactAt);
+        if (strikeContact != null) strikeContact.Clear();
         soundEvents.Clear(); soundCursor = 0;
         bool missed = strike.Score.Accuracy == LandingAccuracy.Miss;
         AddSound(0, missed ? DeepwaterSoundCue.Miss : DeepwaterSoundCue.Strike);
@@ -100,7 +97,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         }
         if (strike.Score.Points > 0) AddSound(sequence.PayoutAt, sequence.Tier == 2 ? DeepwaterSoundCue.PayoutBig : sequence.Tier == 1 ? DeepwaterSoundCue.PayoutMedium : DeepwaterSoundCue.PayoutSmall);
         soundEvents.Sort((a,b) => a.Time.CompareTo(b.Time));
-        lastStep = lastImpact = -1; paid = false; running = true; DisplayedTotal = strike.PointsBefore;
+        lastStep = -1; paid = false; running = true; DisplayedTotal = strike.PointsBefore;
         readout.gameObject.SetActive(true); readout.alpha = 1;
         foreach (var label in coveredLabels) label.gameObject.SetActive(false);
         Render(0);
@@ -113,24 +110,18 @@ public sealed class LandingScoreRush : MonoBehaviour
         Render(elapsed);
         if (elapsed >= sequence.Duration) Finish();
     }
-    /// <summary>Samples source preparation, delivered values and weighted impacts together, scheduling only current sound events.</summary>
+    /// <summary>Samples canonical score deliveries and rigid-card impacts on one unscaled clock, scheduling only current sound events.</summary>
     private void Render(float elapsed)
     {
         int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
-        float age = Mathf.Max(0, elapsed - step.Time);
         bool payout = elapsed >= sequence.PayoutAt;
         if (index != lastStep)
         {
-            RestoreKick(); lastStep = index;
+            lastStep = index;
             if (index == 0) scoringPortrait.RestoreEncounter();
             else scoringPortrait.ShowContributors(receipt.Members.Where(m => step.SourceIds.Contains(m.InstanceId)).ToArray());
             operation.text = index == 0 ? "" : (step.Multiply ? "×" : "+") + Format(step.Amount);
             operation.color = step.Multiply ? new Color32(167, 220, 194, 255) : new Color32(240, 205, 133, 255);
-            kicked = cards.FirstOrDefault(c => c.BoundInstance?.InstanceId == step.SourceId);
-            if (kicked != null)
-            {
-                kickScale = kicked.transform.localScale; kickRotation = kicked.transform.localRotation;
-            }
         }
         // Small look-ahead uses the audio clock for arrivals; a stalled frame never sprays overdue notes.
         while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= elapsed + .10f)
@@ -139,67 +130,31 @@ public sealed class LandingScoreRush : MonoBehaviour
             if (elapsed - cue.Time < .08f && soundToggle.isOn)
                 sound.PlayFrozen(cue.Cue, cue.Clip, cue.Pitch, cue.Gain, dspStarted + cue.Time);
         }
-        int arrived = sequence.ImpactStepAt(elapsed);
-        if (elapsed >= sequence.Steps[arrived].ImpactAt && arrived != lastImpact)
-        {
-            lastImpact = arrived;
-        }
-        if (payout && !paid) { paid = true; RestoreKick(); scoringPortrait.RestoreEncounter(); }
+        if (payout && !paid) { paid = true; scoringPortrait.RestoreEncounter(); }
         float payoutAge = elapsed - sequence.PayoutAt;
         float transfer = payout ? Mathf.Clamp01(payoutAge / (.27f + sequence.Intensity * .12f)) : 0;
         float eased = 1 - Mathf.Pow(1 - transfer, 3);
         DisplayedTotal = transfer >= 1 ? receipt.PointsAfter : receipt.PointsBefore + (receipt.PointsAfter - receipt.PointsBefore) * (decimal)eased;
         DisplayedStrike = payout ? receipt.Score.Points : sequence.ValueAt(elapsed);
-        if (strikeContact != null) strikeContact.Render(elapsed, ReducedMotion, DisplayedStrike);
+
         value.text = Format(DisplayedStrike);
         caption.text = payout ? (receipt.Score.Points == 0 ? "MISS" : "LANDING POINTS") : receipt.Score.Accuracy.ToString().ToUpperInvariant();
         if (payout) operation.text = "+" + Format(receipt.Score.Points);
         readout.alpha = payout ? 1 - Mathf.Clamp01((payoutAge - .3f) / .24f) : 1;
-        float impactAge = elapsed - sequence.Steps[arrived].ImpactAt;
-        var arrivedStep = sequence.Steps[arrived];
-        float bump = impactAge < 0 ? 0 : Mathf.Exp(-impactAge * (arrived == 0 ? 18 : 14)) * Mathf.Sin(impactAge * (arrived == 0 ? 34 : 32));
-        float charge = index == 0 || elapsed >= step.LaunchAt ? 0 : Mathf.Sin(Mathf.Clamp01(age / Math.Max(.001f, step.LaunchAt - step.Time)) * Mathf.PI * .5f);
-        float release = index == 0 || elapsed < step.LaunchAt ? 0 : Mathf.Exp(-(elapsed - step.LaunchAt) * 24);
-        float preparation = index == 0 ? 0 : Math.Max(charge, release) * (.3f + step.Strength * .7f);
-        feedback.SetScoreSources(payout || index == 0 ? null : step.SourceIds, preparation * .6f);
+        feedback.SetScoreSources(payout || index == 0 ? null : step.SourceIds, 0);
         feedback.SetScoringFocus(!payout);
-        float impact = payout ? Mathf.Exp(-Mathf.Max(0, payoutAge) * 12) * Mathf.Sin(payoutAge * 40) : 0;
-        float amplitude = arrived == 0 ? .065f : (.045f + arrivedStep.Strength * .275f) * (arrivedStep.Multiply ? 1.12f : 1);
-        float pullback = step.Multiply && step.Strength >= .35f ? charge * step.Strength * .035f : 0;
-        float punch = ReducedMotion ? 0 : bump * amplitude - pullback + impact * sequence.Intensity * .10f;
-        value.rectTransform.localScale = new Vector3(1 + punch, 1 + punch * (arrived == 0 ? .65f : .35f), 1);
-        float sourcePulse = step.Multiply && step.Strength >= .35f && charge > 0 ? -charge * step.Strength * .65f : preparation;
-        scoringPortrait.SetPulse(ReducedMotion || payout ? 0 : sourcePulse);
-        float operationImpact = arrived == index && index > 0 ? Mathf.Max(0, bump) * (.04f + step.Strength * .24f) : 0;
-        operation.rectTransform.localScale = operationRest * (1 + (ReducedMotion || payout ? 0 : charge * step.Strength * (step.Multiply ? .12f : .04f) + operationImpact));
-        totalLabel.localScale = totalRest * (1 + (ReducedMotion ? 0 : impact * .12f));
-        machine.anchoredPosition = machineRest + (strikeContact != null ? strikeContact.RecoilOffset : Vector2.zero)
-            + (ReducedMotion || sequence.Tier == 0 ? Vector2.zero : Vector2.up * impact * sequence.Intensity * 4)
-            + (ReducedMotion || payout || arrived == 0 ? Vector2.zero : Vector2.up * bump * Mathf.Max(0, arrivedStep.Strength - .5f) * 7);
-        glow.color = new Color(1, .69f, .26f, ReducedMotion ? .015f : .015f + Mathf.Max(0, bump) * .035f + Mathf.Abs(impact) * .04f);
-        if (kicked != null && !payout && !ReducedMotion)
-        {
-            kicked.transform.localScale = kickScale * (1 + preparation * .025f);
-        }
-        Vector3 destination = value.rectTransform.TransformPoint(value.rectTransform.rect.center);
-        if (ReducedMotion) RestoreMotion();
-        Vector3 origin = scoringPortrait.ProjectileOrigin;
-        float travel = Mathf.Clamp01((elapsed - step.LaunchAt) / Math.Max(.001f, step.ImpactAt - step.LaunchAt));
-        travel = Mathf.Lerp(travel, travel * travel, step.Strength * .7f);
-        particles.Render(origin, destination, ReducedMotion || index == 0 || payout ? 0 : travel,
-            ReducedMotion || !payout || sequence.Tier == 0 ? 0 : Mathf.Clamp01(payoutAge / .55f), payout ? sequence.Intensity : step.Strength,
-            step.Multiply, ReducedMotion || impactAge < 0 || payout || arrived == 0 ? 0 : Mathf.Clamp01(impactAge / (.12f + arrivedStep.Strength * .14f)),
-            ReducedMotion || payout ? 0 : charge * step.Strength, arrivedStep.Strength, arrivedStep.Multiply);
+        value.rectTransform.localScale = Vector3.one;
+        scoringPortrait.SetPulse(0); operation.rectTransform.localScale = operationRest; totalLabel.localScale = totalRest;
+        machine.anchoredPosition = machineRest; glow.color = Color.clear;
+        collision.Render(sequence, elapsed, ReducedMotion);
     }
     /// <summary>Freezes the authored take and gain so runtime and review exports share one exact audio schedule.</summary>
     private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
     {
         soundEvents.Add(new SoundEvent(at, sound.Select(cue), sound.CuePitch(cue, pitch), sound.CueGain(cue, decibels), cue));
     }
-    /// <summary>Restores a kicked card before moving to another source or leaving the phase.</summary>
-    private void RestoreKick() { if (kicked != null) { kicked.transform.localScale = kickScale; kicked.transform.localRotation = kickRotation; } kicked = null; }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
-    private void RestoreMotion() { RestoreKick(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
+    private void RestoreMotion() { if (collision != null) collision.ResetMotion(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
     /// <summary>Cancels pending voices without affecting any other game sound.</summary>
     private void StopVoices() { if (sound != null) sound.StopAll(); }
     /// <summary>Leaves no light, transform or sound behind when a score finishes or is interrupted.</summary>
@@ -208,6 +163,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         bool wasRunning = running; running = false; if (receipt != null) DisplayedTotal = receipt.PointsAfter;
         if (strikeContact != null) strikeContact.Clear();
         RestoreMotion(); if (wasRunning) StopVoices();
+        if (collision != null) collision.Clear();
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }
         if (readout != null) readout.gameObject.SetActive(false);

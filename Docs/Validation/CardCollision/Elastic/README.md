@@ -1,0 +1,13 @@
+# Elastic creature-card collision
+
+Active revision, 24 November 2026. [Watch the native 60 fps examples](Compare.html). The accepted [smaller-card layout and readable pacing](../Readable/README.md) remain unchanged: the modest fixture takes 3.227 seconds and the powerful fixture 4.127 seconds.
+
+The creature narrows during the final 90 ms of its windup, stretches horizontally through the dash, compresses over the first 25 ms of contact, then settles with one small overshoot. Maximum deformation is 8% windup squash, 12% dash stretch and 12% impact squash, scaled by actual contribution strength. The recovery overshoot is at most 2.5%. Vertical scale compensates inversely to horizontal scale, preserving apparent area instead of inflating or shrinking the card. [Windup](Windup.png), [dash](Dash.png) and [impact](Impact.png) show the poses.
+
+`LandingCardCollision` captures both cards' rest scales alongside their positions/rotations. Contact distance uses those rest scales; deformation cannot change the physical delivery deadline. A position correction keeps the source's leading edge on the original trajectory, including the small tilt, so it cannot grow into the receiver early or pull away during the impact squeeze. The receiver's frame and score digits retain rigid scale. Reduced motion and all interruption paths restore both scales immediately.
+
+No score rules, timing, sound assets, particles, supplied artwork or rig-card presentation change. Existing sound events and exact numerical deliveries still meet contact. The editable deformation amounts are serialized on the collision component and retained by normal prefab authoring.
+
+**334 checks pass:** 96 native checks per fixture, 46 prefab/binding checks, 32 score/schedule checks and 64 Landing/model checks. The expanded native audit checks squash/stretch direction, apparent-area preservation, planted contact, a rigid receiver, one bounded overshoot, scale restoration, reduced motion and existing collision invariants. [Verification.json](Verification.json) and both Level JSON files retain the results. Consecutive native motion frames were visually reviewed, and complete frame sequences were verified before encoding. Unity reports no errors; the isolated Play session is stopped.
+
+`Tools/Rendering/CardCollisionAudit.cs.txt` retains bounded 60-frame exports through `exportFrom`/`exportCount`, now under ignored `Temp/CardCollisionReview/Elastic`. Fixtures use current definitions without player-controller commands or save mutation. Preview audio comes from the runtime's frozen cue list, not device loopback.

@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "date": "2026-11-24",
+  "checks": 272,
+  "nativePowerful": 65,
+  "nativeModest": 65,
+  "prefabBindings": 46,
+  "scoreRules": 32,
+  "landingModel": 64,
+  "audioHashesMatched": 42,
+  "consoleErrors": 0,
+  "playModeStopped": true,
+  "pixelfxInstallationPreserved": true,
+  "projectilesAndParticles": false,
+  "integrityFiles": 2152,
+  "integrityErrors": 0,
+  "integrityWarnings": 0,
+  "sourceHousingUnchanged": true
+}
