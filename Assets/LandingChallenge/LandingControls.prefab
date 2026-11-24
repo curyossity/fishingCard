@@ -3298,6 +3298,7 @@ GameObject:
   - component: {fileID: 143922500957947320}
   - component: {fileID: 2997078692905491213}
   - component: {fileID: 8145888432384808069}
+  - component: {fileID: 6200261882536756835}
   m_Layer: 0
   m_Name: LandingControls
   m_TagString: Untagged
@@ -3589,6 +3590,7 @@ MonoBehaviour:
   collision: {fileID: 2997078692905491213}
   waterImpact: {fileID: 8145888432384808069}
   strikeWater: {fileID: 5948724103165927935}
+  impactCamera: {fileID: 6200261882536756835}
   machine: {fileID: 7624238351917015343}
   totalLabel: {fileID: 2093608740957691642}
   particles: {fileID: 286347271709428463}
@@ -3696,6 +3698,22 @@ MonoBehaviour:
   columns: 7
   rows: 4
   fps: 60
+--- !u!114 &6200261882536756835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3418265154356481401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08318c514d43cc84ea89977dc05bfde0, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::LandingImpactCamera
+  stage: {fileID: 6231961137495548497}
+  creatureCard: {fileID: 7254549716601998938}
+  scoreCard: {fileID: 8949671096410408854}
+  maximumZoom: 1.65
 --- !u!1 &3511231870586050753
 GameObject:
   m_ObjectHideFlags: 0

@@ -31,6 +31,12 @@ public static class LandingCardCollisionSetup
         data.FindProperty("stage").objectReferenceValue = stage;
         data.FindProperty("creatureFade").objectReferenceValue = fade; data.ApplyModifiedPropertiesWithoutUndo();
         rush.FindProperty("collision").objectReferenceValue = owner; rush.ApplyModifiedPropertiesWithoutUndo();
+        var camera = root.GetComponent<LandingImpactCamera>(); if (camera == null) camera = root.AddComponent<LandingImpactCamera>();
+        var cameraData = new SerializedObject(camera);
+        cameraData.FindProperty("stage").objectReferenceValue = stage;
+        cameraData.FindProperty("creatureCard").objectReferenceValue = creature; cameraData.FindProperty("scoreCard").objectReferenceValue = score;
+        cameraData.ApplyModifiedPropertiesWithoutUndo();
+        rush.FindProperty("impactCamera").objectReferenceValue = camera; rush.ApplyModifiedPropertiesWithoutUndo();
         LandingWaterImpactSetup.Configure(root);
     }
 

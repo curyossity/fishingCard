@@ -95,7 +95,7 @@ public sealed partial class FishingRunController
         if (!landing.TryStrike(occurrence, revision, Time.realtimeSinceStartupAsDouble)) return false;
         LastLandingStrike = new LandingStrikeReceipt(landing, CatchChain);
         LandingFeedbackPending = fishingRunView != null && fishingRunView.HasLandingRushPresentation;
-        if (LandingFeedbackPending) landingFeedbackUntil = Time.realtimeSinceStartupAsDouble + new LandingScoreSequence(LastLandingStrike.Score).Duration;
+        if (LandingFeedbackPending) landingFeedbackUntil = Time.realtimeSinceStartupAsDouble + new LandingImpactTiming(new LandingScoreSequence(LastLandingStrike.Score)).Duration;
         lastLandingInputFrame = Time.frameCount;
         if (landing.State == LandingChallengeState.Succeeded)
         {

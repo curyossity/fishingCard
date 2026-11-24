@@ -17,6 +17,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private LandingCardCollision collision;
     [SerializeField] private LandingWaterImpact waterImpact;
     [SerializeField] private LandingStrikeWater strikeWater;
+    [SerializeField] private LandingImpactCamera impactCamera;
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
@@ -29,6 +30,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     private const string MotionKey = "Deepwater.Landing.ReducedMotion";
     private LandingStrikeReceipt receipt;
     private LandingScoreSequence sequence;
+    private LandingImpactTiming timing;
     private double started, dspStarted;
     private int shownStep = -1;
     private bool running;
@@ -49,6 +51,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     private static readonly string[] Suffixes = { "M", "B", "T", "Q" };
     public bool IsPlaying => running;
     public LandingScoreSequence Sequence => sequence;
+    public LandingImpactTiming Timing => timing;
     public decimal DisplayedTotal { get; private set; }
     public decimal DisplayedStrike { get; private set; }
     public bool ReducedMotion => reducedMotionToggle != null && reducedMotionToggle.isOn;
@@ -77,8 +80,9 @@ public sealed class LandingScoreRush : MonoBehaviour
         Finish(); receipt = strike;
         if (strike?.Score == null || !animate) return;
         sound.StopAll();
-        scoringPortrait.CaptureEncounter(); collision.Begin(); waterImpact.Begin();
+        scoringPortrait.CaptureEncounter(); collision.Begin(); impactCamera.Begin(collision.ContactDistance); waterImpact.Begin();
         sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble; dspStarted = AudioSettings.dspTime;
+        timing = new LandingImpactTiming(sequence);
         if (strikeContact != null) strikeContact.Clear();
         soundEvents.Clear(); soundCursor = 0;
         bool missed = strike.Score.Accuracy == LandingAccuracy.Miss;
@@ -109,12 +113,13 @@ public sealed class LandingScoreRush : MonoBehaviour
     {
         if (!running) return;
         float elapsed = (float)(Time.realtimeSinceStartupAsDouble - started);
-        Render(elapsed);
-        if (elapsed >= sequence.Duration) Finish();
+        Render(timing.ToSequence(elapsed));
+        if (elapsed >= timing.Duration) Finish();
     }
-    /// <summary>Samples canonical score deliveries and rigid-card impacts on one unscaled clock, scheduling only current sound events.</summary>
+    /// <summary>Samples canonical score motion and the impact camera while scheduling sound against mapped wall deadlines.</summary>
     private void Render(float elapsed)
     {
+        float realElapsed = timing.ToReal(elapsed);
         var handoff = LandingCardHandoff.Sample(sequence, elapsed);
         bool payout = elapsed >= sequence.PayoutAt;
         int visible = handoff.VisibleStep;
@@ -129,10 +134,10 @@ public sealed class LandingScoreRush : MonoBehaviour
         float handoffAlpha = LandingCardHandoff.CaptionOpacity(handoff.Progress);
         scoringPortrait.SetHandoffOpacity(handoffAlpha); operation.alpha = handoffAlpha;
         // Small look-ahead uses the audio clock for arrivals; a stalled frame never sprays overdue notes.
-        while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= elapsed + .10f)
+        while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= realElapsed + .10f)
         {
             var cue = soundEvents[soundCursor++];
-            if (elapsed - cue.Time < .08f && soundToggle.isOn)
+            if (realElapsed - cue.Time < .08f && soundToggle.isOn)
                 sound.PlayFrozen(cue.Cue, cue.Clip, cue.Pitch, cue.Gain, dspStarted + cue.Time);
         }
         float payoutAge = elapsed - sequence.PayoutAt;
@@ -153,14 +158,15 @@ public sealed class LandingScoreRush : MonoBehaviour
         collision.Render(sequence, elapsed, ReducedMotion);
         waterImpact.Render(sequence, elapsed, ReducedMotion);
         strikeWater.Render(sequence, receipt.Resistance, elapsed, ReducedMotion);
+        impactCamera.Render(sequence, timing, elapsed, collision.ScreenShakeOffset, ReducedMotion);
     }
     /// <summary>Freezes the authored take and gain so runtime and review exports share one exact audio schedule.</summary>
     private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
     {
-        soundEvents.Add(new SoundEvent(at, sound.Select(cue), sound.CuePitch(cue, pitch), sound.CueGain(cue, decibels), cue));
+        soundEvents.Add(new SoundEvent(timing.ToReal(at), sound.Select(cue), sound.CuePitch(cue, pitch), sound.CueGain(cue, decibels), cue));
     }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
-    private void RestoreMotion() { if (waterImpact != null) waterImpact.ResetVisuals(); if (collision != null) collision.ResetMotion(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
+    private void RestoreMotion() { if (impactCamera != null) impactCamera.ResetMotion(); if (waterImpact != null) waterImpact.ResetVisuals(); if (collision != null) collision.ResetMotion(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
     /// <summary>Cancels pending voices without affecting any other game sound.</summary>
     private void StopVoices() { if (sound != null) sound.StopAll(); }
     /// <summary>Leaves no light, transform or sound behind when a score finishes or is interrupted.</summary>
@@ -172,6 +178,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (collision != null) collision.Clear();
         if (waterImpact != null) waterImpact.Clear();
         if (strikeWater != null) strikeWater.Clear();
+        if (impactCamera != null) impactCamera.Clear();
         if (operation != null) operation.alpha = 1;
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }

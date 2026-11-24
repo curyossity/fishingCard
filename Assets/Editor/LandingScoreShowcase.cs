@@ -69,11 +69,11 @@ public static class LandingScoreShowcase
         try
         {
             canvas.renderMode=RenderMode.ScreenSpaceCamera;canvas.worldCamera=camera;canvas.planeDistance=100;camera.targetTexture=target;
-            int frames = Mathf.CeilToInt((sequence.Duration + .20f)*24);
+            int frames = Mathf.CeilToInt((rush.Timing.Duration + .20f)*24);
             for (int frame=0;frame<frames;frame++)
             {
                 float time = frame/24f;
-                typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{Mathf.Min(time,sequence.Duration)});
+                typeof(LandingScoreRush).GetMethod("Render",Hidden).Invoke(rush,new object[]{rush.Timing.ToSequence(Mathf.Min(time,rush.Timing.Duration))});
                 ((TMP_Text)viewData.FindProperty("points").objectReferenceValue).text=LandingScoreRush.Format(rush.DisplayedTotal);
                 var progress=(RectTransform)viewData.FindProperty("progressFill").objectReferenceValue;
                 progress.anchorMax=new Vector2((float)(rush.DisplayedTotal/2000),1);
@@ -83,7 +83,7 @@ public static class LandingScoreShowcase
                 else camera.Render();
                 RenderTexture.active=target;texture.ReadPixels(new Rect(0,0,960,540),0,0);texture.Apply();
                 images.Add("'data:image/jpeg;base64,"+Convert.ToBase64String(texture.EncodeToJPG(85))+"'");
-                if(frame==Mathf.RoundToInt(sequence.Steps.Last().ImpactAt*24)) File.WriteAllBytes(Output+"Tier-"+sequence.Tier+".png",texture.EncodeToPNG());
+                if(frame==Mathf.RoundToInt(rush.Timing.ToReal(sequence.Steps.Last().ImpactAt)*24)) File.WriteAllBytes(Output+"Tier-"+sequence.Tier+".png",texture.EncodeToPNG());
             }
         }
         finally
@@ -91,7 +91,7 @@ public static class LandingScoreShowcase
             RenderTexture.active=previous;camera.targetTexture=null;target.Release();
             UnityEngine.Object.DestroyImmediate(target);UnityEngine.Object.DestroyImmediate(texture);UnityEngine.Object.DestroyImmediate(cameraObject);
         }
-        byte[] sound=Mix(events,sequence.Duration+.20f);
+        byte[] sound=Mix(events,rush.Timing.Duration+.20f);
         return "{name:'"+new[]{"Ordinary","Strong combo","Exceptional combo"}[sequence.Tier]+"',score:'"+model.LastScore.Points.ToString(System.Globalization.CultureInfo.InvariantCulture)+"',frames:["+string.Join(",",images)+"],audio:'data:audio/wav;base64,"+Convert.ToBase64String(sound)+"'}";
     }
     /// <summary>Mixes the runtime event list at its authored pitches and gain; output is a staged review, not a loopback recording.</summary>

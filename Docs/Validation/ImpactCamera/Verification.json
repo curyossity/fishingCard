@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "date": "2026-11-24",
+  "primaryChecks": 775,
+  "nativePowerful": 210,
+  "nativeOrdinary": 204,
+  "prefabBindings": 68,
+  "scoreRules": 229,
+  "landingModel": 64,
+  "additionalAspectChecks": 420,
+  "aspects": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1280,
+      800
+    ],
+    [
+      2560,
+      1080
+    ]
+  ],
+  "maximumZoom": 1.65,
+  "contactSpeed": 0.28,
+  "maximumFocusedHits": 1,
+  "finalImpactOnly": true,
+  "noEarlierHitFallback": true,
+  "thresholdStrength": 0.75,
+  "normalDashAndReturn": true,
+  "slowUntilReturn": true,
+  "globalTimeScaleUnchanged": true,
+  "boundedFeedbackDuration": true,
+  "controllerGateMapped": true,
+  "audioDeadlinesMapped": true,
+  "consoleErrors": 0,
+  "playModeStopped": true,
+  "integrityFiles": 2179,
+  "integrityErrors": 0,
+  "integrityWarnings": 0,
+  "acceptedSoundHashes": 42
+}

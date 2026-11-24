@@ -11,7 +11,7 @@ public sealed class LandingCardCollision : MonoBehaviour
     [SerializeField, Range(0, .18f)] private float windupSquash = .08f;
     [SerializeField, Range(0, .18f)] private float dashStretch = .12f;
     [SerializeField, Range(0, .18f)] private float impactSquash = .12f;
-    private Vector2 creatureRest, scoreRest, stageRest;
+    private Vector2 creatureRest, scoreRest;
     private Vector3 creatureScale, scoreScale;
     private Quaternion creatureRotation, scoreRotation;
     private bool captured;
@@ -29,7 +29,7 @@ public sealed class LandingCardCollision : MonoBehaviour
     /// <summary>Captures authored baselines once for this receipt, after the previous presentation has restored its transforms.</summary>
     public void Begin()
     {
-        Clear(); creatureRest = creatureCard.anchoredPosition; scoreRest = scoreCard.anchoredPosition; stageRest = stage.anchoredPosition;
+        Clear(); creatureRest = creatureCard.anchoredPosition; scoreRest = scoreCard.anchoredPosition;
         creatureRotation = creatureCard.localRotation; scoreRotation = scoreCard.localRotation;
         creatureScale = creatureCard.localScale; scoreScale = scoreCard.localScale; faceAlpha = creatureFade.alpha; captured = true;
     }
@@ -93,7 +93,6 @@ public sealed class LandingCardCollision : MonoBehaviour
         // Overlay UI does not move with a world camera: shake its visual stage, leaving normalized aiming coordinates intact.
         float envelope = hitAge > .32f ? 0 : (1 - Mathf.Exp(-hitAge * 170)) * Mathf.Exp(-hitAge * 18) * shake * (.25f + force * .75f);
         ScreenShakeOffset = new Vector2(Mathf.Sin(hitAge * 100), Mathf.Sin(hitAge * 137) * .43f) * envelope;
-        stage.anchoredPosition = stageRest + ScreenShakeOffset;
     }
 
     /// <summary>Preserves apparent area and pins the leading edge to its original trajectory through every shape change.</summary>
@@ -115,14 +114,14 @@ public sealed class LandingCardCollision : MonoBehaviour
     {
         ScreenShakeOffset = Vector2.zero; if (!captured) return;
         creatureCard.anchoredPosition = creatureRest; creatureCard.localRotation = creatureRotation;
-        scoreCard.anchoredPosition = scoreRest; scoreCard.localRotation = scoreRotation; stage.anchoredPosition = stageRest;
+        scoreCard.anchoredPosition = scoreRest; scoreCard.localRotation = scoreRotation;
         creatureCard.localScale = creatureScale; scoreCard.localScale = scoreScale;
         creatureFade.alpha = faceAlpha;
     }
 
-    /// <summary>Restores both cards and the stage on completion, skip, replacement or phase exit.</summary>
+    /// <summary>Restores both cards and clears reported shake on completion, skip, replacement or phase exit.</summary>
     public void Clear() { ResetMotion(); captured = false; }
 
-    /// <summary>Cannot leave the camera view offset when this component is disabled independently.</summary>
+    /// <summary>Restores card poses and clears its shake signal when disabled independently.</summary>
     private void OnDisable() => Clear();
 }

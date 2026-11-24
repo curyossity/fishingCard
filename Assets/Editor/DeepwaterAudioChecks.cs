@@ -72,25 +72,25 @@ public static class DeepwaterAudioChecks
                 var receipt = Receipt(item.Item1, item.Item2); int played = player.PlayedCount; rush.Present(receipt, Array.Empty<TackleRigCardView>(), true);
                 Check(player.PlayedCount > played, "Accepted receipt did not request its initial sound.");
                 var events = rush.SoundEvents.ToArray(); var sequence = rush.Sequence;
-                Check(events.All(e => e.Clip != null && e.Time >= 0 && e.Time < sequence.Duration), "Cue lies outside its bounded receipt.");
+                Check(events.All(e => e.Clip != null && e.Time >= 0 && e.Time < rush.Timing.Duration), "Cue lies outside its bounded receipt.");
                 Check(events.First().Time == 0 && events.First().Cue == (item.Item1 == LandingAccuracy.Miss ? DeepwaterSoundCue.Miss : DeepwaterSoundCue.Strike), "Accepted action lacks immediate contact.");
                 if (item.Item1 == LandingAccuracy.Miss)
                     Check(events.Length == 1 && events[0].Cue == DeepwaterSoundCue.Miss, "Zero-point Miss repeated or celebrated.");
                 else
                 {
-                    Check(events.Count(e => e.Time == sequence.PayoutAt) == 1, "Payout missing or repeated.");
+                    Check(events.Count(e => Math.Abs(e.Time - rush.Timing.ToReal(sequence.PayoutAt)) < .00001f) == 1, "Payout missing or repeated.");
                     Check(events.Any(e => e.Time == sequence.Steps[0].ImpactAt && e.Cue == (item.Item1 == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good)), "Accuracy quality lacks distinct impact sound.");
                     foreach (var step in sequence.Steps.Skip(1))
                     {
-                        Check(events.Count(e => e.Time == step.ImpactAt && e.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition)) == 1, "Rig operation misses or duplicates its exact impact.");
-                        var travel = events.Single(e => e.Time == step.LaunchAt && e.Cue == DeepwaterSoundCue.Travel);
-                        Check(Math.Abs(travel.Time + travel.Clip.length / travel.Pitch - step.ImpactAt) <= .012, "Projectile approach tail does not meet its arrival.");
+                        Check(events.Count(e => Math.Abs(e.Time - rush.Timing.ToReal(step.ImpactAt)) < .00001f && e.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition)) == 1, "Rig operation misses or duplicates its exact impact.");
+                        var travel = events.Single(e => Math.Abs(e.Time - rush.Timing.ToReal(step.LaunchAt)) < .00001f && e.Cue == DeepwaterSoundCue.Travel);
+                        Check(Math.Abs(travel.Time + travel.Clip.length / travel.Pitch - rush.Timing.ToReal(step.ImpactAt)) <= .012, "Projectile approach tail does not meet its arrival.");
                     }
                 }
                 Check(events.All(e => e.Pitch >= .5f && e.Pitch <= 2 && e.Gain <= 1), "Unbounded pitch/gain in score schedule.");
                 foreach (var impact in events.Where(e => e.Cue == DeepwaterSoundCue.Addition || e.Cue == DeepwaterSoundCue.Multiplier))
                 {
-                    int stepIndex = Enumerable.Range(1, sequence.Steps.Count - 1).Single(i => sequence.Steps[i].ImpactAt == impact.Time);
+                    int stepIndex = Enumerable.Range(1, sequence.Steps.Count - 1).Single(i => Math.Abs(rush.Timing.ToReal(sequence.Steps[i].ImpactAt) - impact.Time) < .00001f);
                     Check(Math.Abs(impact.Pitch - player.CuePitch(impact.Cue, LandingScoreSequence.NotePitch(stepIndex - 1))) < .00001f, "Score pitch differs from the selected sound-family treatment.");
                 }
                 Export(item.Item3, rush);
@@ -145,8 +145,8 @@ public static class DeepwaterAudioChecks
     private static void Export(string name, LandingScoreRush rush)
     {
         Directory.CreateDirectory(Output);
-        File.WriteAllBytes(Output + name + ".wav", LandingScoreShowcase.Mix(rush.SoundEvents.ToArray(), rush.Sequence.Duration));
-        var timeline = new ExportTimeline { duration = rush.Sequence.Duration, note = "Frozen runtime cue schedule and rendered mix; not a device loopback recording.",
+        File.WriteAllBytes(Output + name + ".wav", LandingScoreShowcase.Mix(rush.SoundEvents.ToArray(), rush.Timing.Duration));
+        var timeline = new ExportTimeline { duration = rush.Timing.Duration, note = "Frozen runtime cue schedule and rendered mix; not a device loopback recording.",
             events = rush.SoundEvents.Select(e => new ExportEvent { t = e.Time, pitch = e.Pitch, gain = e.Gain, kind = e.Cue.ToString(), file = AssetDatabase.GetAssetPath(e.Clip) }).ToArray() };
         File.WriteAllText(Output + name + ".json", JsonUtility.ToJson(timeline, true));
     }

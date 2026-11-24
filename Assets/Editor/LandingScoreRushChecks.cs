@@ -60,6 +60,7 @@ public static class LandingScoreRushChecks
         ValidateModifierStrength();
         ValidateBoundaryHandoffs();
         ValidateStrikeWater();
+        ValidateImpactTiming();
         return checks;
     }
 
@@ -158,12 +159,46 @@ public static class LandingScoreRushChecks
         Check(LandingStrikeWater.LevelAt(miss, 100, .3f, false) == 0, "An ordinary Miss fills the glass.");
     }
 
+    /// <summary>Checks selective contact-only slow motion, reversible clocks and the shared controller timeout bound.</summary>
+    private static void ValidateImpactTiming()
+    {
+        var score = new LandingScore(LandingAccuracy.Perfect, 20, 200, 50,
+            new[] { new LandingContribution(1, "Add", 200, 1), new LandingContribution(2, "Multiply", 0, 5), new LandingContribution(3, "Multiply", 0, 10) });
+        var sequence = new LandingScoreSequence(score); var timing = new LandingImpactTiming(sequence);
+        Check(timing.FocusCount == 1 && timing.Focuses(sequence.Steps.Count - 1) && !timing.Focuses(1) && !timing.Focuses(2) && timing.Duration > sequence.Duration && timing.Duration < LandingScoreSequence.MaximumDuration, "Major hits lack bounded emphasis.");
+        foreach (int index in Enumerable.Range(0, sequence.Steps.Count))
+        {
+            var hit = sequence.Steps[index]; float hold = LandingImpactTiming.ContactHold(hit);
+            Check(Math.Abs((timing.ToReal(hit.ImpactAt) - timing.ToReal(hit.LaunchAt)) - (hit.ImpactAt - hit.LaunchAt)) < .00001f, "Slow motion changes dash speed.");
+            Check(Math.Abs(timing.ToSequence(timing.ToReal(hit.ImpactAt + hold)) - hit.ImpactAt - hold) < .00001f, "Clock loses the start of return.");
+            Check(Math.Abs((timing.ToReal(hit.EndAt) - timing.ToReal(hit.ImpactAt + hold)) - (hit.EndAt - hit.ImpactAt - hold)) < .00001f, "Slow motion continues into return.");
+            if (timing.Focuses(index))
+                Check(timing.ToReal(hit.ImpactAt + hold) - timing.ToReal(hit.ImpactAt) > hold * 3, "Major contact hold ends immediately instead of lingering.");
+        }
+        Check(Enumerable.Range(0, 301).All(i => Math.Abs(timing.ToSequence(timing.ToReal(sequence.Duration * i / 300f)) - sequence.Duration * i / 300f) < .00001f), "Presentation clocks cannot seek or skip reliably.");
+        var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 2, 1, new[] { new LandingContribution(1, "Small", 2, 1) }));
+        var plain = new LandingImpactTiming(ordinary);
+        Check(plain.FocusCount == 0 && plain.Duration == ordinary.Duration && plain.ToSequence(1) == 1, "Ordinary hits receive cinematic pacing.");
+        var earlyMajor = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 10000, 1.0001m,
+            new[] { new LandingContribution(1, "Large earlier hit", 10000, 1), new LandingContribution(2, "Small final hit", 0, 1.0001m) }));
+        Check(earlyMajor.Steps[1].Strength >= .75f && new LandingImpactTiming(earlyMajor).FocusCount == 0
+            && new LandingImpactTiming(earlyMajor).Duration == earlyMajor.Duration, "An earlier major hit substitutes for a weak final impact.");
+        var singleMajor = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 2000, 1,
+            new[] { new LandingContribution(1, "Only creature", 2000, 1) }));
+        Check(new LandingImpactTiming(singleMajor).Focuses(1), "A single final creature cannot trigger the effect.");
+        var accuracyOnly = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 2000, 0, 1, Array.Empty<LandingContribution>()));
+        Check(new LandingImpactTiming(accuracyOnly).FocusCount == 0, "Accuracy-only damage triggers a creature close-up.");
+        var uneven = new[] { new LandingContribution(20, "Foundation", 1, 1) }.Concat(Enumerable.Range(0, 15).Select(i => new LandingContribution(i, "Multiply", 0, 2))).ToArray();
+        var dense = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 1, 32768, uneven));
+        Check(new LandingImpactTiming(dense).Duration < LandingScoreSequence.MaximumDuration, "Slow motion exceeds the controller gate for dense rigs.");
+    }
+
     /// <summary>Verifies serialized UI, audio routing and non-intercepting feedback on the actual saved prefab.</summary>
     public static int ValidateAssets()
     {
         checks=0; var root=AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath);
         var host=root.GetComponent<LandingScoreRush>(); Check(host!=null,"Missing score-rush component.");var data=new SerializedObject(host);
-        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","waterImpact","strikeWater","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
+        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","waterImpact","strikeWater","impactCamera","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
             Check(data.FindProperty(field).objectReferenceValue!=null,"Missing score rush binding: "+field);
         var group=(CanvasGroup)data.FindProperty("readout").objectReferenceValue;
         var portraitOwner=new SerializedObject((LandingScoringPortrait)data.FindProperty("scoringPortrait").objectReferenceValue);
@@ -197,6 +232,8 @@ public static class LandingScoreRushChecks
         Check(!gauge.ContainsGlassPoint(new Vector2(waterBounds.xMin + 1, waterBounds.yMax - 1))
             && !gauge.ContainsGlassPoint(new Vector2(waterBounds.xMax - 1, waterBounds.yMin + 1))
             && gauge.ContainsGlassPoint(waterBounds.center), "Water uses rectangular frame corners.");
+        var cameraView = new SerializedObject(root.GetComponent<LandingImpactCamera>());
+        foreach (string field in new[] { "stage", "creatureCard", "scoreCard" }) Check(cameraView.FindProperty(field).objectReferenceValue != null, "Missing impact camera binding: " + field);
         var voices=data.FindProperty("voices");Check(voices.arraySize>=4,"No bounded audio voice pool.");
         for(int i=0;i<voices.arraySize;i++)
         {

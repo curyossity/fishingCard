@@ -1,6 +1,6 @@
 # Water contained inside the glass
 
-Active presentation revision, 24 November 2026. [Watch the full-to-empty preview](Compare.html) or inspect the [full-level detail](Detail.png). The initial strike-water version was committed and pushed as `ec2ebcf` before this fix.
+Historical contained-water revision, 24 November 2026. The [current major-impact camera increment](../../ImpactCamera/README.md) retains this clipping and adds selective close-ups and slow contact. [Watch the full-to-empty preview](Compare.html) or inspect the [full-level detail](Detail.png). The initial strike-water version was committed and pushed as `ec2ebcf` before this fix.
 
 The timing track's rectangular mask includes the artwork's angled frame corners. The original rectangular fill could therefore cover those corners at full water. The water now uses an eight-sided glass shape with 18-reference-pixel beveled corners and a four-pixel inset. The aiming track, fish and accuracy-zone bounds are unchanged.
 
