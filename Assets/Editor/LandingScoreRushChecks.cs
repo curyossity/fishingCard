@@ -192,6 +192,11 @@ public static class LandingScoreRushChecks
         var track = (RectTransform)new SerializedObject(root.GetComponent<TackleLandingPresentation>()).FindProperty("track").objectReferenceValue;
         Check(gauge.transform.parent == track && gauge.transform.GetSiblingIndex() == 0 && track.GetComponent<UnityEngine.UI.RectMask2D>() != null, "Strike water is not masked underneath the aiming indicators.");
         Check(!gauge.raycastTarget && gauge.Level == 0, "Strike water intercepts input or starts filled.");
+        var waterBounds = gauge.rectTransform.rect;
+        Check(gauge.rectTransform.offsetMin == Vector2.one * 4 && gauge.rectTransform.offsetMax == Vector2.one * -4, "Water lacks clearance from the glass frame.");
+        Check(!gauge.ContainsGlassPoint(new Vector2(waterBounds.xMin + 1, waterBounds.yMax - 1))
+            && !gauge.ContainsGlassPoint(new Vector2(waterBounds.xMax - 1, waterBounds.yMin + 1))
+            && gauge.ContainsGlassPoint(waterBounds.center), "Water uses rectangular frame corners.");
         var voices=data.FindProperty("voices");Check(voices.arraySize>=4,"No bounded audio voice pool.");
         for(int i=0;i<voices.arraySize;i++)
         {

@@ -12,7 +12,7 @@ public static class LandingStrikeWaterSetup
         var rect = track.Find("Strike water level") as RectTransform;
         if (rect == null) rect = (RectTransform)new GameObject("Strike water level", typeof(RectTransform)).transform;
         rect.SetParent(track, false); rect.SetAsFirstSibling();
-        rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = Vector2.one * 2; rect.offsetMax = Vector2.one * -2;
+        rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = Vector2.one * 4; rect.offsetMax = Vector2.one * -4;
         rect.localScale = Vector3.one;
         var water = rect.GetComponent<LandingStrikeWater>(); if (water == null) water = rect.gameObject.AddComponent<LandingStrikeWater>();
         water.raycastTarget = false;

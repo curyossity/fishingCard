@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "date": "2026-11-24",
+  "checks": 729,
+  "nativePowerful": 196,
+  "nativeWeak": 196,
+  "prefabBindings": 64,
+  "scoreRules": 209,
+  "landingModel": 64,
+  "beveledGlass": true,
+  "inset": 4,
+  "cornerCut": 18,
+  "maxMeshVertices": 656,
+  "pixelsOutsideGlass": 0,
+  "scoringAndTimingUnchanged": true,
+  "consoleErrors": 0,
+  "playModeStopped": true,
+  "integrityFiles": 2175,
+  "integrityErrors": 0,
+  "integrityWarnings": 0
+}

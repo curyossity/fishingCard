@@ -1,6 +1,6 @@
 # Strike-bar water level
 
-Active presentation revision, 24 November 2026. [Watch weak and powerful native examples](Compare.html), or inspect the [fill and drain stages](Stages.png).
+Historical initial-water revision, 24 November 2026. The [current contained-glass fix](Contained/README.md) preserves this behavior and clips the fill away from the beveled frame. [Watch weak and powerful native examples](Compare.html), or inspect the [fill and drain stages](Stages.png).
 
 The timing glass fills from the bottom as each score delivery lands. Its target height is the running total of this strike divided by half the encountered creature's original Resistance, clamped to 0-100%. For example, 25 points against 100 Resistance fills half the glass, while 50 or more fills it completely. Earlier attempts are excluded. Additions use the new running subtotal and multipliers use the resulting total; earlier contributions are not added twice.
 

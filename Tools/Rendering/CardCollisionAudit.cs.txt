@@ -2,7 +2,7 @@
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
 int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/StrikeWater/", frames = "Temp/StrikeWater/Native/Level-" + previewLevel + "/";
+string output = "Docs/Validation/StrikeWater/Contained/", frames = "Temp/StrikeWater/Contained/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture;
@@ -194,11 +194,13 @@ try
     var waterMesh = new UnityEngine.UI.VertexHelper();
     try {
         typeof(LandingStrikeWater).GetMethod("OnPopulateMesh", hidden | System.Reflection.BindingFlags.DeclaredOnly).Invoke(gauge, new object[] { waterMesh });
-        bool inside = waterMesh.currentVertCount == 640; var vertex = new UnityEngine.UIVertex();
+        bool inside = waterMesh.currentVertCount > 0 && waterMesh.currentVertCount <= 656; var vertex = new UnityEngine.UIVertex();
         for (int v = 0; v < waterMesh.currentVertCount; v++) {
             waterMesh.PopulateUIVertex(ref vertex, v);
             var bounds = gauge.rectTransform.rect;
-            inside &= vertex.position.x >= bounds.xMin - .001f && vertex.position.x <= bounds.xMax + .001f && vertex.position.y >= bounds.yMin - .001f && vertex.position.y <= bounds.yMax + .001f;
+            float edge = UnityEngine.Mathf.Max(0, gauge.CornerCut - UnityEngine.Mathf.Min(vertex.position.x - bounds.xMin, bounds.xMax - vertex.position.x));
+            inside &= vertex.position.x >= bounds.xMin - .001f && vertex.position.x <= bounds.xMax + .001f
+                && vertex.position.y >= bounds.yMin + edge - .001f && vertex.position.y <= bounds.yMax - edge + .001f;
         }
         check(inside, "Water mesh leaves the timing glass.");
     } finally { waterMesh.Dispose(); }
@@ -266,6 +268,16 @@ try
     }
     rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true);
     sample(sequence.Steps[sequence.Steps.Count - 1].ImpactAt + .025f); capture(output + "Impact-Level-" + previewLevel + ".png");
+    if (previewLevel == 90) {
+        sample(last.ImpactAt + .075f); capture(output + "Full.png");
+        var b = gauge.rectTransform.rect; float c = gauge.CornerCut;
+        var polygon = new[] { new UnityEngine.Vector2(b.xMin+c,b.yMax), new UnityEngine.Vector2(b.xMax-c,b.yMax), new UnityEngine.Vector2(b.xMax,b.yMax-c), new UnityEngine.Vector2(b.xMax,b.yMin+c), new UnityEngine.Vector2(b.xMax-c,b.yMin), new UnityEngine.Vector2(b.xMin+c,b.yMin), new UnityEngine.Vector2(b.xMin,b.yMin+c), new UnityEngine.Vector2(b.xMin,b.yMax-c) };
+        var screen = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Select(polygon, p => camera.WorldToScreenPoint(gauge.rectTransform.TransformPoint(p))));
+        string points = string.Join(",", System.Linq.Enumerable.Select(screen, p => "[" + p.x.ToString(culture) + "," + (1080-p.y).ToString(culture) + "]"));
+        System.IO.File.WriteAllText(output + "GlassPolygon.json", "[" + points + "]");
+        gauge.enabled = false; capture(output + "WaterOff.png"); gauge.enabled = true;
+        sample(last.ImpactAt + .08f + LandingStrikeWater.DrainSeconds * .5f); capture(output + "Half.png");
+    }
     rush.Finish();
     foreach (var grade in new[] { LandingAccuracy.Good, LandingAccuracy.Miss }) {
         var plain = new LandingChallengeRuntime(); double now = 0;
