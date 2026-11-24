@@ -140,7 +140,7 @@ public static class LandingScoreRushChecks
     {
         checks=0; var root=AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath);
         var host=root.GetComponent<LandingScoreRush>(); Check(host!=null,"Missing score-rush component.");var data=new SerializedObject(host);
-        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
+        foreach(string field in new[]{"readout","value","operation","caption","scoringPortrait","collision","waterImpact","glow","machine","totalLabel","particles","feedback","soundToggle","reducedMotionToggle","hit","addition","multiplier","payoutSmall","payoutBig","miss"})
             Check(data.FindProperty(field).objectReferenceValue!=null,"Missing score rush binding: "+field);
         var group=(CanvasGroup)data.FindProperty("readout").objectReferenceValue;
         var portraitOwner=new SerializedObject((LandingScoringPortrait)data.FindProperty("scoringPortrait").objectReferenceValue);
@@ -154,6 +154,17 @@ public static class LandingScoreRushChecks
         foreach (string field in new[] { "creatureCard", "scoreCard", "stage", "creatureFade" }) Check(collision.FindProperty(field).objectReferenceValue != null, "Missing collision binding: " + field);
         Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3, "Missing source-preserving housing/card graphics.");
         Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).All(g => !g.raycastTarget), "Rigid card graphics intercept input.");
+        var water = new SerializedObject(root.GetComponent<LandingWaterImpact>());
+        foreach (string field in new[] { "spray", "number", "collision" }) Check(water.FindProperty(field).objectReferenceValue != null, "Missing water impact binding: " + field);
+        var spray = (UnityEngine.UI.RawImage)water.FindProperty("spray").objectReferenceValue;
+        Check(!spray.enabled && !spray.raycastTarget && water.FindProperty("number").objectReferenceValue == ((TMP_Text)data.FindProperty("value").objectReferenceValue).rectTransform, "Water starts visible, intercepts input or pulses another number.");
+        var sheets = water.FindProperty("sheets"); Check(sheets.arraySize == 3, "Water lacks its three authored strength tiers.");
+        for (int i = 0; i < sheets.arraySize; i++)
+        {
+            var sheet = (Texture2D)sheets.GetArrayElementAtIndex(i).objectReferenceValue;
+            Check(sheet != null && sheet.filterMode == FilterMode.Point && sheet.wrapMode == TextureWrapMode.Clamp && sheet.mipmapCount == 1, "Water atlas loses crisp sampling or readiness.");
+            Check(sheet.width == water.FindProperty("columns").intValue * 96 && sheet.height == water.FindProperty("rows").intValue * 144, "Water atlas metadata and texture dimensions disagree.");
+        }
         var voices=data.FindProperty("voices");Check(voices.arraySize>=4,"No bounded audio voice pool.");
         for(int i=0;i<voices.arraySize;i++)
         {

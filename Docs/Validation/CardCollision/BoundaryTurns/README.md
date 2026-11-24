@@ -1,6 +1,6 @@
 # Encounter and attacker transitions
 
-Active presentation revision, 24 November 2026. [Watch the native 60 fps examples](Compare.html). The vertical-flip baseline was committed and pushed separately as `22e8331` before this increment.
+Historical boundary-turn revision, 24 November 2026. The [current water-impact increment](../../WaterImpact/README.md) retains these transitions and adds contact water and a score-digit punch. [Watch the native 60 fps examples](Compare.html). The vertical-flip baseline was committed and pushed separately as `22e8331` before this increment.
 
 The machine creature card makes three vertical edge-on turns when the encounter gives way to the first rig contributor, then makes the same three turns after the last contributor finishes rebounding and before the encounter returns. Each boundary lasts 210 ms: three 70 ms turns. The identity changes only at the hidden midpoint of the middle turn, so the frame, portrait, name, tag, operation and source attribution never disagree. [Entry frames](Entry.png) and [return frames](Return.png) show the progression.
 

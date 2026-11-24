@@ -2,7 +2,7 @@
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
 int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/CardCollision/BoundaryTurns/", frames = "Temp/CardCollisionReview/BoundaryFast/Level-" + previewLevel + "/";
+string output = "Docs/Validation/WaterImpact/", frames = "Temp/WaterImpact/Native/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture;
@@ -95,8 +95,11 @@ try
     var tagLabel = (TMPro.TMP_Text)portraitData.FindProperty("tags").objectReferenceValue;
     string targetName = nameLabel.text, targetTags = tagLabel.text;
     var faceFade = (UnityEngine.CanvasGroup)collisionData.FindProperty("creatureFade").objectReferenceValue;
+    var water = root.GetComponent<LandingWaterImpact>(); var waterData = new UnityEditor.SerializedObject(water);
+    var spray = (UnityEngine.UI.RawImage)waterData.FindProperty("spray").objectReferenceValue;
     System.Func<bool> restored = () => creatureCard.anchoredPosition == sourceRest && scoreCard.anchoredPosition == scoreRest
         && creatureCard.localScale == sourceScale && scoreCard.localScale == targetScale
+        && !spray.enabled && water.NumberScale == 1 && number.rectTransform.localScale == UnityEngine.Vector3.one && water.ActiveFrame == -1
         && faceFade.alpha == 1 && nameLabel.alpha == 1 && operation.alpha == 1
         && stage.anchoredPosition == stageRest && creatureCard.localRotation == sourceRotation && scoreCard.localRotation == scoreRotation;
     check(portrait.transform.parent == creatureCard && number.transform.IsChildOf(scoreCard), "Card faces and their live fields have different motion owners.");
@@ -149,15 +152,21 @@ try
         sample(step.ImpactAt - .0001f);
         check(collision.CreatureLeadingOffset > halfX && halfX > startX, "Dash does not accelerate toward contact.");
         check(rush.DisplayedStrike == (step.SourceId < 0 ? 0 : step.PreviousValue), "Points arrive before the physical collision.");
+        check(!spray.enabled && water.NumberScale == 1, "Water or number punch arrives before contact.");
         sample(step.ImpactAt);
+        check(spray.enabled && water.ActiveFrame == 0 && water.NumberScale > 1 && water.NumberScale <= 1.141f, "Contact lacks a bounded water burst and number punch.");
         check(rush.DisplayedStrike == step.Value && UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset - collision.ContactDistance) < .001f, "Physical contact and exact score delivery are detached.");
         check(creatureCard.localRotation == sourceRotation, "Card hits at a rotated corner instead of its contacting edge.");
+        sample(step.ImpactAt + .020f);
+        check(UnityEngine.Vector3.Distance(spray.rectTransform.position, collision.ContactPoint) < .001f && !spray.raycastTarget, "Water is detached from contact or intercepts input.");
+        check(spray.uvRect.xMin >= 0 && spray.uvRect.yMin >= 0 && spray.uvRect.xMax <= 1 && spray.uvRect.yMax <= 1, "Water atlas samples outside its cell.");
+        sample(step.ImpactAt + .18f); check(water.NumberScale == 1, "Score punch fails to settle independently of the spray tail.");
         sample(step.ImpactAt + .020f);
         check(collision.ScoreOffset > 0 && collision.ScreenShakeOffset.sqrMagnitude > .001f, "Receiver lacks directional mass or camera-view shake.");
         check(UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset - collision.ScoreOffset - collision.ContactDistance) < .001f, "Source and receiver separate during the contact hold.");
         check(creatureCard.localScale.x < sourceScale.x && creatureCard.localScale.y > sourceScale.y && scoreCard.localScale == targetScale, "Impact does not compress the source while keeping score digits rigid.");
         check(UnityEngine.Mathf.Abs(creatureCard.localScale.x * creatureCard.localScale.y - sourceScale.x * sourceScale.y) < .00001f, "Impact changes apparent area.");
-        check(vertexCount() == 0 && !((LandingStrikeContact)data.FindProperty("strikeContact").objectReferenceValue).IsContactActive, "Collision presentation retains projectiles or strike particles.");
+        check(vertexCount() == 0 && !((LandingStrikeContact)data.FindProperty("strikeContact").objectReferenceValue).IsContactActive, "Legacy projectile or strike-particle geometry returned.");
         check(System.Linq.Enumerable.All(cards, c => c.transform.localScale == UnityEngine.Vector3.one && c.transform.localRotation == UnityEngine.Quaternion.identity), "Machine collision moves a rig card.");
         if (step.SourceId >= 0) {
             check(scoringPortrait.IsShowingContributors, "Main machine card does not identify its contributor.");
@@ -194,6 +203,7 @@ try
         }
         sample(start + duration * .5f);
         check(portrait.sprite == newSprite && nameLabel.text == newName && nameLabel.alpha == 0 && operation.alpha == 0, "Boundary identity does not swap atomically while hidden.");
+        check(!spray.enabled && water.NumberScale == 1, "Boundary spins retain impact spray or a distorted score.");
         check(entering ? tagLabel.text.StartsWith("RIG EFFECT") : tagLabel.text == targetTags, "Boundary confuses attacker and encounter tags.");
         check(collision.CreatureOffset == 0 && collision.ScoreOffset == 0 && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == sequence.ValueAt(start), "Boundary adds motion, shake or early score.");
         motion.SetIsOnWithoutNotify(true);
@@ -206,6 +216,11 @@ try
         sample(start + duration + .00001f);
         check(portrait.sprite == newSprite && nameLabel.text == newName && faceFade.alpha == 1 && nameLabel.alpha == 1, "Boundary completion leaves the wrong identity or a hidden face.");
     }
+    sample(last.ImpactAt + .12f);
+    check(water.ActiveFrame == 7 && spray.uvRect.y < .75f, "Water does not advance correctly across atlas rows.");
+    water.enabled = false; check(!spray.enabled && water.NumberScale == 1 && number.rectTransform.localScale == UnityEngine.Vector3.one, "Independent disable leaves water or a distorted number."); water.enabled = true;
+    rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true);
+    sample(last.ImpactAt + .02f); check(spray.enabled && water.ActiveFrame >= 0, "A replacement receipt cannot restart the bounded water layer.");
     sample(sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration + .01f); check(restored(), "Damped cards or shake never return to rest.");
     motion.SetIsOnWithoutNotify(true); sample(last.ImpactAt + .020f);
     check(restored() && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == last.Value, "Reduced motion retains collision/shake or loses exact numbers.");
@@ -227,6 +242,8 @@ try
         }
         System.IO.File.WriteAllBytes(output + "Level-" + previewLevel + ".wav", LandingScoreShowcase.Mix(events, sequence.Duration + .3f));
     }
+    rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true);
+    sample(sequence.Steps[sequence.Steps.Count - 1].ImpactAt + .025f); capture(output + "Impact-Level-" + previewLevel + ".png");
     rush.Finish();
     foreach (var grade in new[] { LandingAccuracy.Good, LandingAccuracy.Miss }) {
         var plain = new LandingChallengeRuntime(); double now = 0;
@@ -235,6 +252,7 @@ try
         rush.Present(new LandingStrikeReceipt(plain, new CardInstance[0]), cards, true);
         float hitAt = rush.Sequence.Steps[0].ImpactAt;
         sample(hitAt + .020f);
+        check(grade == LandingAccuracy.Miss ? !spray.enabled && water.NumberScale == 1 : spray.enabled, "Ordinary grades receive inappropriate water feedback.");
         check(grade == LandingAccuracy.Miss ? restored() : collision.ScoreOffset > 0, "Ordinary grade collision is inappropriate.");
         check(rush.DisplayedStrike == plain.Points && vertexCount() == 0, "Grade effect changes points or emits particles."); rush.Finish();
     }

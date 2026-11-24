@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deepwater - Custom water impact</title>
+<style>body{margin:0;background:#111b1b;color:#f1e4c0;font:16px/1.5 system-ui,sans-serif}main{max-width:1500px;margin:auto;padding:28px}h1{font-size:28px;margin:0 0 8px}p{color:#c5c8b7;max-width:1050px}.clips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:22px}section{padding:16px;background:#202e2c;border:1px solid #576861;border-radius:6px}h2{font-size:19px;margin:0 0 12px}video{width:100%;display:block;background:#0d1413}button{background:#e6d49c;color:#182620;border:0;border-radius:4px;padding:12px 18px;font:inherit;cursor:pointer;margin:12px 0 22px}button:focus-visible{outline:3px solid white;outline-offset:4px}.note{font-size:14px}a{color:#e6d49c}</style>
+<main><h1>Deepwater - Contact / foam / droplets / score punch</h1>
+<p>Custom PixelFX water bursts at the touching card edges. Larger contributions create a fuller splash and stronger score punch. Curved water sheets break into droplets and hollow bubbles. Existing flips, collisions and sound timing are preserved.</p>
+<button id="compare">Replay both - muted comparison</button><div class="clips">
+<section><h2>Modest combo - 50.7 points</h2><video controls playsinline loop preload="metadata" poster="Impact-Level-1.png" src="Level-1.mp4"></video><p class="note">3.65 seconds. Compact splash and restrained score punch.</p></section>
+<section><h2>Powerful combo - 12,199.2 points</h2><video controls playsinline loop preload="metadata" poster="Impact-Level-90.png" src="Level-90.mp4"></video><p class="note">4.55 seconds. Fuller water sheets and stronger number reaction; the rig cards stay still.</p></section>
+</div><p class="note">Native Unity frames at 60 fps. Audio follows the frozen runtime cue schedule. Individual controls enable sound. <a href="README.md">Implementation and validation</a> / <a href="Motion.png">Consecutive impact frames</a>.</p></main>
+<script>document.querySelector('#compare').onclick=()=>{for(const v of document.querySelectorAll('video')){v.pause();v.currentTime=0;v.muted=true;v.play().catch(()=>{});}};</script></html>

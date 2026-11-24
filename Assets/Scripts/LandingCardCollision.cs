@@ -19,6 +19,8 @@ public sealed class LandingCardCollision : MonoBehaviour
     public Vector2 ScreenShakeOffset { get; private set; }
     public float CreatureOffset => captured ? creatureCard.anchoredPosition.x - creatureRest.x : 0;
     public float ScoreOffset => captured ? scoreCard.anchoredPosition.x - scoreRest.x : 0;
+    /// <summary>Exposes the moving receiver seam in world space for the independently owned water layer.</summary>
+    public Vector3 ContactPoint => scoreCard.TransformPoint(new Vector3(scoreCard.rect.xMin + 10, scoreCard.rect.center.y, 0));
     public float ContactDistance => scoreRest.x - scoreCard.rect.width * scoreScale.x * .5f
         - creatureRest.x - creatureCard.rect.width * creatureScale.x * .5f + 10 * creatureScale.x;
     public float CreatureLeadingOffset => CreatureOffset + (creatureCard.localScale.x - creatureScale.x) * creatureCard.rect.width * .5f

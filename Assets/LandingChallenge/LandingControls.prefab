@@ -311,6 +311,7 @@ RectTransform:
   - {fileID: 7254549716601998938}
   - {fileID: 8949671096410408854}
   - {fileID: 341677446106226145}
+  - {fileID: 4099729616670779256}
   m_Father: {fileID: 8267259880881561522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -3296,6 +3297,7 @@ GameObject:
   - component: {fileID: 4437451996161508455}
   - component: {fileID: 143922500957947320}
   - component: {fileID: 2997078692905491213}
+  - component: {fileID: 8145888432384808069}
   m_Layer: 0
   m_Name: LandingControls
   m_TagString: Untagged
@@ -3585,6 +3587,7 @@ MonoBehaviour:
   glow: {fileID: 1364748774413364639}
   scoringPortrait: {fileID: 4437451996161508455}
   collision: {fileID: 2997078692905491213}
+  waterImpact: {fileID: 8145888432384808069}
   machine: {fileID: 7624238351917015343}
   totalLabel: {fileID: 2093608740957691642}
   particles: {fileID: 286347271709428463}
@@ -3669,6 +3672,29 @@ MonoBehaviour:
   windupSquash: 0.08
   dashStretch: 0.12
   impactSquash: 0.12
+--- !u!114 &8145888432384808069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3418265154356481401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecc0e4b61f00732408f02b67e54b2562, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::LandingWaterImpact
+  spray: {fileID: 58523319119690080}
+  number: {fileID: 7152571720757735927}
+  collision: {fileID: 2997078692905491213}
+  sheets:
+  - {fileID: 2800000, guid: 36624756c1d48934783d7afb987134da, type: 3}
+  - {fileID: 2800000, guid: f268d4f722891664bb1a6a2cd59af5e2, type: 3}
+  - {fileID: 2800000, guid: afae6783825ad3e40bd2ad38f024d6a8, type: 3}
+  frameCount: 25
+  columns: 7
+  rows: 4
+  fps: 60
 --- !u!1 &3511231870586050753
 GameObject:
   m_ObjectHideFlags: 0
@@ -6635,6 +6661,78 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 828, y: 34}
   m_Pivot: {x: 0, y: 1}
+--- !u!1 &6177216712504165340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099729616670779256}
+  - component: {fileID: 7990167661674335492}
+  - component: {fileID: 58523319119690080}
+  m_Layer: 0
+  m_Name: Water collision spray
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4099729616670779256
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177216712504165340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6231961137495548497}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 192, y: 288}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7990167661674335492
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177216712504165340}
+  m_CullTransparentMesh: 1
+--- !u!114 &58523319119690080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177216712504165340}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &6214419976056309797
 GameObject:
   m_ObjectHideFlags: 0

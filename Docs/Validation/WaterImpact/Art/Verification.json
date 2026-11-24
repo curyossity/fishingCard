@@ -1,0 +1,32 @@
+[
+  {
+    "tier": "Small",
+    "frames": 25,
+    "fps": 60,
+    "peakPixels": 262,
+    "lastFrameEmpty": true,
+    "transparent": true,
+    "unclipped": true,
+    "sha256": "709a9e363180acfa51586efecfac162e5e2b9a3b1acd82971e4fa8db9a94c2c3"
+  },
+  {
+    "tier": "Medium",
+    "frames": 25,
+    "fps": 60,
+    "peakPixels": 808,
+    "lastFrameEmpty": true,
+    "transparent": true,
+    "unclipped": true,
+    "sha256": "e470f7807582dbd3d867c89cbe818f1266809ec677efe95424d4d5b17099cba8"
+  },
+  {
+    "tier": "Large",
+    "frames": 25,
+    "fps": 60,
+    "peakPixels": 1126,
+    "lastFrameEmpty": true,
+    "transparent": true,
+    "unclipped": true,
+    "sha256": "47d867fa37df776ef44663833dc46358031a4f3d91998ded9bd87562e677b5a1"
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "name": "Deepwater water collision",
+  "source": "Tools/PixelFX/card-impact.mjs",
+  "tool": "PixelFX local painter",
+  "license": "MIT - see LICENSE-PixelFX.txt and NOTICE-PixelFX.txt",
+  "originalChoreography": true,
+  "seed": 19,
+  "frameSize": [
+    96,
+    144
+  ],
+  "pivot": [
+    48,
+    72
+  ],
+  "fps": 60,
+  "frames": 25,
+  "duration": 0.4,
+  "pixelScale": 2,
+  "palette": [
+    "#163e48",
+    "#246576",
+    "#4096a6",
+    "#70c4cb",
+    "#b6e5df",
+    "#f6fff0"
+  ],
+  "tiers": [
+    {
+      "name": "Small",
+      "power": 0.2,
+      "file": "Small.png"
+    },
+    {
+      "name": "Medium",
+      "power": 0.58,
+      "file": "Medium.png"
+    },
+    {
+      "name": "Large",
+      "power": 1,
+      "file": "Large.png"
+    }
+  ],
+  "status": "Integrated; native frames reviewed; awaiting player feedback"
+}

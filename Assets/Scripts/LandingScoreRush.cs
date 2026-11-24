@@ -15,6 +15,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image glow;
     [SerializeField] private LandingScoringPortrait scoringPortrait;
     [SerializeField] private LandingCardCollision collision;
+    [SerializeField] private LandingWaterImpact waterImpact;
     [SerializeField] private RectTransform machine, totalLabel;
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
@@ -75,7 +76,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         Finish(); receipt = strike;
         if (strike?.Score == null || !animate) return;
         sound.StopAll();
-        scoringPortrait.CaptureEncounter(); collision.Begin();
+        scoringPortrait.CaptureEncounter(); collision.Begin(); waterImpact.Begin();
         sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble; dspStarted = AudioSettings.dspTime;
         if (strikeContact != null) strikeContact.Clear();
         soundEvents.Clear(); soundCursor = 0;
@@ -149,6 +150,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         scoringPortrait.SetPulse(0); operation.rectTransform.localScale = operationRest; totalLabel.localScale = totalRest;
         machine.anchoredPosition = machineRest; glow.color = Color.clear;
         collision.Render(sequence, elapsed, ReducedMotion);
+        waterImpact.Render(sequence, elapsed, ReducedMotion);
     }
     /// <summary>Freezes the authored take and gain so runtime and review exports share one exact audio schedule.</summary>
     private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
@@ -156,7 +158,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         soundEvents.Add(new SoundEvent(at, sound.Select(cue), sound.CuePitch(cue, pitch), sound.CueGain(cue, decibels), cue));
     }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
-    private void RestoreMotion() { if (collision != null) collision.ResetMotion(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
+    private void RestoreMotion() { if (waterImpact != null) waterImpact.ResetVisuals(); if (collision != null) collision.ResetMotion(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }
     /// <summary>Cancels pending voices without affecting any other game sound.</summary>
     private void StopVoices() { if (sound != null) sound.StopAll(); }
     /// <summary>Leaves no light, transform or sound behind when a score finishes or is interrupted.</summary>
@@ -166,6 +168,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (strikeContact != null) strikeContact.Clear();
         RestoreMotion(); if (wasRunning) StopVoices();
         if (collision != null) collision.Clear();
+        if (waterImpact != null) waterImpact.Clear();
         if (operation != null) operation.alpha = 1;
         if (scoringPortrait != null) scoringPortrait.EndEncounter();
         if (feedback != null) { feedback.SetScoreSources(null, 0); feedback.SetScoringFocus(false); }

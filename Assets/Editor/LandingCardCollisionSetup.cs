@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>Separates supplied card regions into native movable groups and preserves those bindings during Landing regeneration.</summary>
 public static class LandingCardCollisionSetup
 {
-    /// <summary>Reuses the original housing texture and existing live fields; no new effect artwork is imported.</summary>
+    /// <summary>Reuses supplied housing and native fields, then binds the separate authored water-impact layer.</summary>
     public static void Configure(GameObject root)
     {
         Transform stage = root.transform.Find("1920x1080 Stage");
@@ -31,6 +31,7 @@ public static class LandingCardCollisionSetup
         data.FindProperty("stage").objectReferenceValue = stage;
         data.FindProperty("creatureFade").objectReferenceValue = fade; data.ApplyModifiedPropertiesWithoutUndo();
         rush.FindProperty("collision").objectReferenceValue = owner; rush.ApplyModifiedPropertiesWithoutUndo();
+        LandingWaterImpactSetup.Configure(root);
     }
 
     /// <summary>Leaves clear travel space around smaller rigid faces while preserving their internal native-field layout.</summary>
