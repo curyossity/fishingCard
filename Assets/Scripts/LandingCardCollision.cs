@@ -38,11 +38,11 @@ public sealed class LandingCardCollision : MonoBehaviour
         if (!captured) return;
         ResetMotion(); int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
         float handoffDuration = LandingCardHandoff.DurationFor(sequence, index);
-        float handoff = LandingCardHandoff.Progress(sequence, index, elapsed);
-        if (handoff < 1)
+        var handoff = LandingCardHandoff.Sample(sequence, elapsed);
+        if (handoff.Active)
         {
-            creatureFade.alpha = faceAlpha * LandingCardHandoff.FaceOpacity(handoff, reduced);
-            if (!reduced) creatureCard.localScale = new Vector3(creatureScale.x, creatureScale.y * Mathf.Max(.015f, Mathf.Abs(Mathf.Cos(handoff * Mathf.PI))), creatureScale.z);
+            creatureFade.alpha = faceAlpha * LandingCardHandoff.FaceOpacity(reduced ? handoff.Progress : handoff.FacePhase, reduced);
+            if (!reduced) creatureCard.localScale = new Vector3(creatureScale.x, creatureScale.y * Mathf.Max(.015f, Mathf.Abs(Mathf.Cos(handoff.Progress * handoff.Turns * Mathf.PI))), creatureScale.z);
             return;
         }
         if (reduced) return;

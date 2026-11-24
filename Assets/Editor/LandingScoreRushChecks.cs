@@ -58,6 +58,7 @@ public static class LandingScoreRushChecks
         model.AdvanceTo(clock + 2.4);
         Check(model.FishPosition != fish || model.ZonePosition != zone,"Motion did not resume after the hold.");
         ValidateModifierStrength();
+        ValidateBoundaryHandoffs();
         return checks;
     }
 
@@ -82,7 +83,7 @@ public static class LandingScoreRushChecks
         Check(late.LaunchAt - late.Time > tinyMultiplier.Steps[1].LaunchAt - tinyMultiplier.Steps[1].Time, "A major multiplier lacks additional preparation.");
         Check(late.PreviousValue == 120 && late.Gain == 120 && late.Value == 240, "Operation metadata changed canonical arithmetic.");
         Check(lateMultiplier.ValueAt(late.ImpactAt - .0001f) == 120 && lateMultiplier.ValueAt(late.ImpactAt) == 240, "Weighted timing exposes multiplier points before arrival.");
-        Check(Math.Abs(small.Steps[0].ImpactAt - .3016f) < .000001f && small.Steps[1].Time == .60f, "Card collision lost its accuracy windup or modifier start.");
+        Check(Math.Abs(small.Steps[0].ImpactAt - .3016f) < .000001f && small.EntryAt == .60f && Math.Abs(small.Steps[1].Time - small.EntryAt - LandingScoreSequence.BoundaryTurnDuration) < .000001f, "Card collision lost its accuracy windup or entry transition.");
         var mixed = Enumerable.Range(0, 150).Select(i => new LandingContribution(i, "Grouped", 1, 1.02m)).ToArray();
         decimal product = 1; foreach (var item in mixed) product *= item.Multiplier;
         var longSequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 150, product, mixed));
@@ -92,9 +93,46 @@ public static class LandingScoreRushChecks
         Check(longSequence.Steps.Skip(1).All(s => s.Strength >= 0 && s.Strength <= 1 && s.Time < s.LaunchAt && s.LaunchAt < s.ImpactAt && s.ImpactAt < s.EndAt), "Weighted steps have invalid strength or event order.");
         var repeat = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 5, 2,
             new[] { new LandingContribution(4, "Same source", 5, 2) }));
-        Check(LandingCardHandoff.DurationFor(repeat, 0) == 0 && LandingCardHandoff.DurationFor(repeat, 1) > 0, "Initial source handoff is missing or flips the starting encounter.");
+        Check(LandingCardHandoff.DurationFor(repeat, 0) == 0 && LandingCardHandoff.DurationFor(repeat, 1) == 0, "Initial source repeats an ordinary turn after its boundary transition.");
         Check(LandingCardHandoff.DurationFor(repeat, 2) == 0, "Repeated source unnecessarily flips its card.");
         Check(Enumerable.Range(1, longSequence.Steps.Count - 1).All(i => LandingCardHandoff.DurationFor(longSequence, i) <= .14f && longSequence.Steps[i].Time + LandingCardHandoff.DurationFor(longSequence, i) < longSequence.Steps[i].LaunchAt), "Long-rig handoffs consume dash time.");
+    }
+
+    /// <summary>Checks three-turn encounter boundaries, single-turn contributor changes and bounded dense-rig schedules.</summary>
+    private static void ValidateBoundaryHandoffs()
+    {
+        var sequence = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 5, 2,
+            new[] { new LandingContribution(4, "Add", 5, 1), new LandingContribution(8, "Multiply", 0, 2) }));
+        float duration = LandingScoreSequence.BoundaryTurnDuration;
+        foreach (float start in new[] { sequence.EntryAt, sequence.ReturnAt })
+        {
+            int outgoing = start == sequence.EntryAt ? 0 : sequence.Steps.Count - 1;
+            int incoming = start == sequence.EntryAt ? 1 : 0;
+            var before = LandingCardHandoff.Sample(sequence, start + duration * .25f);
+            var middle = LandingCardHandoff.Sample(sequence, start + duration * .5f);
+            var after = LandingCardHandoff.Sample(sequence, start + duration * .75f);
+            Check(before.Active && before.Turns == 3 && before.VisibleStep == outgoing, "Boundary loses its outgoing role or three turns.");
+            Check(middle.Active && middle.VisibleStep == incoming && LandingCardHandoff.FaceOpacity(middle.FacePhase, false) == 0, "Boundary identity swaps outside the hidden middle turn.");
+            Check(after.VisibleStep == incoming && LandingCardHandoff.Sample(sequence, start + duration + .00001f).VisibleStep == incoming, "Boundary reverts its revealed identity.");
+            Check(sequence.ValueAt(start) == sequence.ValueAt(start + duration - .00001f), "A boundary scores points without a collision.");
+        }
+        var between = LandingCardHandoff.Sample(sequence, sequence.Steps[2].Time + .03f);
+        Check(between.Active && between.Turns == 1 && between.VisibleStep == 1, "Ordinary attackers use the encounter transition.");
+        Check(sequence.ReturnAt == sequence.Steps.Last().EndAt && sequence.PayoutAt >= sequence.ReturnAt + duration, "Return truncates the last rebound or overlaps payout.");
+        var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 1, Array.Empty<LandingContribution>()));
+        Check(!ordinary.HasContributors && !LandingCardHandoff.Sample(ordinary, ordinary.EntryAt).Active && ordinary.Duration < 2, "An empty rig receives encounter/attacker turns.");
+        var uneven = new[] { new LandingContribution(20, "Foundation", 1, 1) }
+            .Concat(Enumerable.Range(0, 15).Select(i => new LandingContribution(i, "Multiply", 0, 2))).ToArray();
+        var worst = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 1, 32768, uneven));
+        Check(worst.Steps.Count == 10 && worst.Intensity == 1 && worst.Duration < LandingScoreSequence.MaximumDuration
+            && worst.Steps.Skip(1).All(s => s.EndAt - s.Time >= .49999f), "Nine grouped beats plus both three-turn boundaries exceed the timing budget.");
+        for (int count = 1; count <= 150; count++)
+        {
+            var contributions = Enumerable.Range(0, count).Select(i => new LandingContribution(i, "Dense", 1, 1.01m)).ToArray();
+            decimal product = 1; foreach (var item in contributions) product *= item.Multiplier;
+            var dense = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, count, product, contributions));
+            Check(dense.Duration < LandingScoreSequence.MaximumDuration && dense.Steps.Skip(1).All(s => s.EndAt - s.Time >= .49999f), "Boundary turns exceed the feedback bound or remove readable collisions.");
+        }
     }
 
     /// <summary>Verifies serialized UI, audio routing and non-intercepting feedback on the actual saved prefab.</summary>

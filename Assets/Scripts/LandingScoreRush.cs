@@ -113,9 +113,9 @@ public sealed class LandingScoreRush : MonoBehaviour
     /// <summary>Samples canonical score deliveries and rigid-card impacts on one unscaled clock, scheduling only current sound events.</summary>
     private void Render(float elapsed)
     {
-        int index = sequence.StepAt(elapsed);
+        var handoff = LandingCardHandoff.Sample(sequence, elapsed);
         bool payout = elapsed >= sequence.PayoutAt;
-        int visible = payout ? 0 : LandingCardHandoff.VisibleStep(sequence, index, elapsed);
+        int visible = handoff.VisibleStep;
         if (visible != shownStep)
         {
             shownStep = visible; var face = sequence.Steps[visible];
@@ -124,7 +124,7 @@ public sealed class LandingScoreRush : MonoBehaviour
             operation.text = visible == 0 ? "" : (face.Multiply ? "×" : "+") + Format(face.Amount);
             operation.color = face.Multiply ? new Color32(167, 220, 194, 255) : new Color32(240, 205, 133, 255);
         }
-        float handoffAlpha = payout ? 1 : LandingCardHandoff.CaptionOpacity(LandingCardHandoff.Progress(sequence, index, elapsed));
+        float handoffAlpha = LandingCardHandoff.CaptionOpacity(handoff.Progress);
         scoringPortrait.SetHandoffOpacity(handoffAlpha); operation.alpha = handoffAlpha;
         // Small look-ahead uses the audio clock for arrivals; a stalled frame never sprays overdue notes.
         while (soundCursor < soundEvents.Count && soundEvents[soundCursor].Time <= elapsed + .10f)

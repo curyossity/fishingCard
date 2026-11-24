@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deepwater Â· Encounter and attacker transitions</title>
+<style>
+body{margin:0;background:#111b1b;color:#f1e4c0;font:16px/1.5 system-ui,sans-serif}main{max-width:1500px;margin:auto;padding:28px}h1{font-size:28px;margin:0 0 8px}p{color:#c5c8b7;max-width:1050px}.clips{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:22px}section{padding:16px;background:#202e2c;border:1px solid #576861;border-radius:6px}h2{font-size:19px;margin:0 0 12px}video{width:100%;display:block;background:#0d1413}button{background:#e6d49c;color:#182620;border:0;border-radius:4px;padding:12px 18px;font:inherit;cursor:pointer;margin:12px 0 22px}button:focus-visible{outline:3px solid white;outline-offset:4px}.note{font-size:14px}a{color:#e6d49c}
+</style>
+<main>
+<h1>Deepwater Â· Squash â†’ stretch â†’ impact â†’ settle</h1>
+<p>Three vertical turns mark the switch from the encounter creature to the first rig attacker, and the return after the last rebound. Identity swaps at the hidden middle turn. Between attackers, the accepted single flip remains. Reduced motion uses one stationary fade at each boundary.</p>
+<button id="compare">Replay both Â· muted comparison</button>
+<div class="clips">
+<section><h2>Modest combo Â· 50.7 points</h2><video controls playsinline loop preload="metadata" src="Level-1.mp4"></video><p class="note">3.65-second sequence. Each three-turn boundary lasts 210 ms.</p></section>
+<section><h2>Powerful combo Â· 12,199.2 points</h2><video controls playsinline loop preload="metadata"  src="Level-90.mp4"></video><p class="note">4.55-second sequence with longer windups, contact holds and recovery. Points and the existing impact sounds arrive at contact; the rig cards stay still.</p></section>
+</div>
+<p class="note">Native Unity frames at 60 fps. Audio is mixed from the frozen runtime cue schedule, not recorded device output. Individual controls enable sound. <a href="README.md">Implementation and validation</a>.</p>
+</main>
+<script>document.querySelector('#compare').onclick=()=>{for(const video of document.querySelectorAll('video')){video.pause();video.currentTime=0;video.muted=true;video.play().catch(()=>{});}};</script>
+</html>

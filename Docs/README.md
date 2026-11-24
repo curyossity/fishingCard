@@ -6,7 +6,7 @@ The current design gives every creature exactly one tag and one primary ability.
 
 ## Active specifications
 
-The 24 November [card-collision presentation](Validation/CardCollision/Handoff/README.md) replaces scoring projectiles with a framed creature-card windup/dash, score-card recoil and short visual-stage shake. It includes a hidden-face turn between contributors and a stationary fade for reduced motion. Exact scoring and existing audio remain unchanged, with no particle effects.
+The 24 November [card-collision presentation](Validation/CardCollision/BoundaryTurns/README.md) replaces scoring projectiles with a framed creature-card windup/dash, score-card recoil and short visual-stage shake. Three vertical turns separate the encounter creature from rig scoring at entry and return; contributor changes retain a single turn. Reduced motion uses one stationary fade per transition. Exact scoring and existing sound assets remain unchanged; cue deadlines follow the adjusted sequence, with no particle effects.
 
 The 17 November artwork update gives Landing and Build integrated machine variants with identical outer pixels and geometry. The 18 November Discover variants extend that same outside silhouette to the first phase; the current version restores the original-size wheels in a taller internal bay. Original and compact animated prefabs remain preserved with tested version menus. See [current Discover validation](Validation/DiscoverIntegrated/FullSize/README.md), [compact variant and rollback](Validation/DiscoverIntegrated/README.md), [Landing validation](Validation/LandingIntegrated/README.md) and [shared-shell provenance](UIThemes/TackleApparatusConcept/LandingIntegrated/README.md). No transition animation is implemented by these artwork updates.
 

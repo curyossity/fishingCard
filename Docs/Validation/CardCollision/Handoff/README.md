@@ -1,6 +1,6 @@
 # Contributor card handoff
 
-Active presentation revision, 24 November 2026. [Watch the native 60 fps examples](Compare.html). The accepted smaller-card layout, elastic impacts and scoring schedule remain unchanged.
+Historical single-turn revision, 24 November 2026. The [current boundary-turn revision](../BoundaryTurns/README.md) retains the ordinary contributor transition and adds three turns when entering/leaving rig scoring. [Watch the native 60 fps examples](Compare.html). The accepted smaller-card layout, elastic impacts and scoring schedule remain unchanged.
 
 A contributor change adds a 140 ms vertical edge-on turn inside the existing windup. The face compresses in height toward a horizontal edge, then opens into the next creature; width stays constant during the turn. Compressed grouped schedules shorten the handoff to at most 60% of the available preparation time. The outgoing identity stays until the hidden midpoint; portrait, name, tag, operation and source attribution then change together. The incoming face opens fully before the existing squash and dash. Consecutive operations from the same source keep its card in place. The initial accuracy beat and final encounter restoration retain their existing behavior.
 

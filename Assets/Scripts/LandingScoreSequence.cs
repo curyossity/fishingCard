@@ -6,6 +6,7 @@ using System.Linq;
 public sealed class LandingScoreSequence
 {
     public const float MaximumDuration = 7.5f;
+    public const float BoundaryTurnDuration = .21f;
     public readonly struct Step
     {
         public readonly int SourceId;
@@ -30,6 +31,9 @@ public sealed class LandingScoreSequence
 
     public IReadOnlyList<Step> Steps { get; }
     public float PayoutAt { get; }
+    public float EntryAt { get; }
+    public float ReturnAt { get; }
+    public bool HasContributors => Steps.Count > 1;
     public float Duration { get; }
     public float Intensity { get; }
     public LandingScore Score { get; }
@@ -77,11 +81,14 @@ public sealed class LandingScoreSequence
             time += span;
         }
         // Compress only time above the readable per-beat floor, retaining arithmetic and every grouped identity.
-        const float minimumSpan = .50f, modifierBudget = 5.6f;
+        const float minimumSpan = .50f, modifierBudget = 4.76f;
+        float boundaryTime = steps.Count > 1 ? BoundaryTurnDuration : 0;
+        // Keep collision pacing independent of the encounter transition speed.
         float extra = steps.Skip(1).Sum(s => Math.Max(0, s.EndAt - s.Time - minimumSpan));
         float available = Math.Max(0, modifierBudget - (steps.Count - 1) * minimumSpan);
         float tempo = extra > available ? available / extra : 1;
-        time = scoring ? .60f : .34f;
+        EntryAt = scoring ? .60f : .34f;
+        time = EntryAt + boundaryTime;
         for (int i = 1; i < steps.Count; i++)
         {
             var step = steps[i]; float span = minimumSpan + (step.EndAt - step.Time - minimumSpan) * tempo;
@@ -89,7 +96,8 @@ public sealed class LandingScoreSequence
             time += span;
         }
         Steps = steps.AsReadOnly();
-        PayoutAt = time + .10f + Intensity * .24f;
+        ReturnAt = time;
+        PayoutAt = ReturnAt + boundaryTime + .10f + Intensity * .24f;
         Duration = PayoutAt + .36f + Intensity * .34f;
     }
 

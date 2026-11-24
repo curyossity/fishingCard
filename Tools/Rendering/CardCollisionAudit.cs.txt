@@ -2,7 +2,7 @@
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
 int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/CardCollision/Handoff/", frames = "Temp/CardCollisionReview/Handoff/Level-" + previewLevel + "/";
+string output = "Docs/Validation/CardCollision/BoundaryTurns/", frames = "Temp/CardCollisionReview/BoundaryFast/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture;
@@ -174,11 +174,43 @@ try
     check(lastStrength <= firstStrength || lastRecoil > firstRecoil, "Major operations have no additional mass.");
     check(model.Points == receipt.PointsAfter && fish.anchoredPosition == fishRest, "Visual collision changed score or aiming geometry.");
     var last = sequence.Steps[sequence.Steps.Count - 1];
-    sample(last.ImpactAt + .55f); check(restored(), "Damped cards or shake never return to rest.");
+    foreach (float start in new[] { sequence.EntryAt, sequence.ReturnAt }) {
+        bool entering = start == sequence.EntryAt;
+        float duration = LandingScoreSequence.BoundaryTurnDuration;
+        var edge = sequence.Steps[entering ? 1 : sequence.Steps.Count - 1];
+        var member = System.Linq.Enumerable.Single(receipt.Members, m => m.InstanceId == edge.SourceId);
+        var memberSprite = member.Definition.EncounterArtwork ?? member.Definition.Artwork;
+        string memberName = member.Definition.DisplayName.ToUpperInvariant();
+        var oldSprite = entering ? targetSprite : memberSprite;
+        var newSprite = entering ? memberSprite : targetSprite;
+        string oldName = entering ? targetName : memberName, newName = entering ? memberName : targetName;
+        sample(start + duration * .25f);
+        check(portrait.sprite == oldSprite && nameLabel.text == oldName, "Boundary loses the outgoing role before the hidden middle turn.");
+        for (int turn = 0; turn < 3; turn++) {
+            sample(start + duration * (turn + .5f) / 3);
+            check(creatureCard.localScale.x == sourceScale.x && creatureCard.localScale.y <= sourceScale.y * .016f && faceFade.alpha == 0, "Boundary lacks three hidden vertical edges.");
+            sample(start + duration * (turn + .9f) / 3);
+            check(creatureCard.localScale.y > sourceScale.y * .9f, "Boundary turn does not reopen into a readable face.");
+        }
+        sample(start + duration * .5f);
+        check(portrait.sprite == newSprite && nameLabel.text == newName && nameLabel.alpha == 0 && operation.alpha == 0, "Boundary identity does not swap atomically while hidden.");
+        check(entering ? tagLabel.text.StartsWith("RIG EFFECT") : tagLabel.text == targetTags, "Boundary confuses attacker and encounter tags.");
+        check(collision.CreatureOffset == 0 && collision.ScoreOffset == 0 && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == sequence.ValueAt(start), "Boundary adds motion, shake or early score.");
+        motion.SetIsOnWithoutNotify(true);
+        for (int turn = 0; turn < 3; turn++) {
+            sample(start + duration * (turn + .5f) / 3);
+            check(creatureCard.localScale == sourceScale && creatureCard.localRotation == sourceRotation && collision.ScreenShakeOffset == UnityEngine.Vector2.zero, "Reduced-motion boundary still rotates or shakes.");
+            check(UnityEngine.Mathf.Abs(faceFade.alpha - LandingCardHandoff.CaptionOpacity((turn + .5f) / 3)) < .0001f, "Reduced motion repeats the three-turn flicker instead of one fade.");
+        }
+        motion.SetIsOnWithoutNotify(false);
+        sample(start + duration + .00001f);
+        check(portrait.sprite == newSprite && nameLabel.text == newName && faceFade.alpha == 1 && nameLabel.alpha == 1, "Boundary completion leaves the wrong identity or a hidden face.");
+    }
+    sample(sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration + .01f); check(restored(), "Damped cards or shake never return to rest.");
     motion.SetIsOnWithoutNotify(true); sample(last.ImpactAt + .020f);
     check(restored() && collision.ScreenShakeOffset == UnityEngine.Vector2.zero && rush.DisplayedStrike == last.Value, "Reduced motion retains collision/shake or loses exact numbers.");
     motion.SetIsOnWithoutNotify(false);
-    foreach (float time in new[] { last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .25f, last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .5f, last.LaunchAt, last.ImpactAt + .020f }) {
+    foreach (float time in new[] { sequence.EntryAt + LandingScoreSequence.BoundaryTurnDuration * .25f, sequence.EntryAt + LandingScoreSequence.BoundaryTurnDuration * .5f, sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration * .25f, sequence.ReturnAt + LandingScoreSequence.BoundaryTurnDuration * .5f, last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .25f, last.Time + LandingCardHandoff.DurationFor(sequence, sequence.Steps.Count - 1) * .5f, last.LaunchAt, last.ImpactAt + .020f }) {
         rush.Present(new LandingStrikeReceipt(model, rig.Members), cards, true); sample(time); rush.Finish();
         check(restored() && !rush.IsPlaying && !scoringPortrait.IsShowingContributors && portrait.sprite == targetSprite, "Skip leaves motion or a stale contributor.");
     }
