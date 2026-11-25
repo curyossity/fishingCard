@@ -76,6 +76,8 @@ Do not add full rules, tag lists, catch-order labels or modifier deltas. Physica
 
 ## Hidden runtime state and events
 
+The Landing HUD does not show Sound or Reduced Motion controls above the machine. Existing presentation preferences and their internal bindings remain supported.
+
 Landing point readouts, Resistance and last-hit totals display whole points rounded upward (35.2 and 35.8 both display 36). Fractional multipliers remain fractional. Existing compact large-number suffixes remain available. This changes displayed precision only; scoring, target comparison and detailed arithmetic retain their decimal values.
 
 Landing strike feedback is an external presentation layer. A contributing source receives a brief brass outline and an outside-face amount badge; inspection uses a strong source outline and softer positional-enabler outlines. The timing track remains unobscured by contribution explanations. Source portraits and exact operations persist in the Last Hit display until the next strike. Additions precede multipliers; extra attempts are labeled beside attempts, and continuous zone/motion assistance has a separate display. Long source lists scroll without automatically moving the rig. The winning-hit receipt remains available during Build and automatic upgrade feedback without replaying its celebration.

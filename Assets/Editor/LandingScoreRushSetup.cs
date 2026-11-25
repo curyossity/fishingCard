@@ -72,6 +72,9 @@ public static class LandingScoreRushSetup
     /// <summary>Uses the encounter portrait for contributors and retains the score well solely for numeric feedback.</summary>
     private static void TuneReadout(SerializedObject data, Transform stage)
     {
+        // Keep preference bindings for presentation without exposing controls on the machine HUD.
+        foreach (string field in new[] { "soundToggle", "reducedMotionToggle" })
+            ((UnityEngine.UI.Toggle)data.FindProperty(field).objectReferenceValue).gameObject.SetActive(false);
         var particles = (LandingRushGraphic)data.FindProperty("particles").objectReferenceValue;
         if (particles.GetComponent<CanvasRenderer>() == null) particles.gameObject.AddComponent<CanvasRenderer>();
         var readout = ((CanvasGroup)data.FindProperty("readout").objectReferenceValue).transform;
