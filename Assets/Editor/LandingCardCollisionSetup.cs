@@ -51,12 +51,13 @@ public static class LandingCardCollisionSetup
         Artwork(rect, source, region, false); return rect;
     }
 
-    /// <summary>Serializes one non-intercepting sample of the preserved whole-machine texture.</summary>
+    /// <summary>Binds a fixed shell or independent panel silhouette without changing the existing motion bounds.</summary>
     private static void Artwork(RectTransform rect, Sprite source, Rect area, bool housing)
     {
         var graphic = rect.GetComponent<LandingCollisionGraphic>(); if (graphic == null) graphic = rect.gameObject.AddComponent<LandingCollisionGraphic>();
         graphic.raycastTarget = false;
-        var data = new SerializedObject(graphic); data.FindProperty("source").objectReferenceValue = source;
+        var data = new SerializedObject(graphic); data.FindProperty("source").objectReferenceValue = housing ? source : null;
+        data.FindProperty("panel").objectReferenceValue = housing ? null : LandingPanelArtworkSetup.Get(source, area == LandingCollisionGraphic.ScoreRegion);
         data.FindProperty("region").rectValue = area; data.FindProperty("housing").boolValue = housing; data.ApplyModifiedPropertiesWithoutUndo();
     }
 

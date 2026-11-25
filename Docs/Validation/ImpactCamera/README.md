@@ -1,6 +1,6 @@
 # Major-impact camera and slow contact
 
-Active presentation revision, 24 November 2026. [Watch ordinary and powerful native sequences](Compare.html), or inspect [consecutive impact frames](Motion.png).
+Camera presentation revision, 24 November 2026. The [current separated-panel artwork](../SeparatedPanels/README.md) removes the rectangular card surrounds and extends final-hit slow motion slightly before contact and into the initial rebound. The timings below preserve the preceding camera revision. [Watch ordinary and powerful native sequences](Compare.html), or inspect [consecutive impact frames](Motion.png).
 
 Creature attacks retain their normal-speed windup and accelerating dash. At a selected major contact, the view pushes in over 70 ms to frame both complete cards, up to 1.65x zoom with automatic viewport fitting. Contact compression, recoil and associated visual effects run at 28% presentation speed through the entire compressed hold. Normal speed resumes exactly where the attacking card starts returning. The camera holds its close-up until that point, then eases back over up to 220 ms of the existing return.
 

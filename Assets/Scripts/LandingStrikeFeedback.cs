@@ -101,13 +101,13 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
             string recovery = "+" + contribution.Attempts + " attempt";
             badges[contribution.SourceId] = badges.TryGetValue(contribution.SourceId, out var existing) ? existing + " / " + recovery : recovery;
         }
-        equation.text = compactSummary ? "LAST HIT +" + Number(score.Points) : score.Accuracy.ToString().ToUpperInvariant() + " +" + Number(score.Points);
+        equation.text = compactSummary ? "LAST HIT +" + LandingScoreRush.Format(score.Points) : score.Accuracy.ToString().ToUpperInvariant() + " +" + LandingScoreRush.Format(score.Points);
         int row = 0;
         if (rows != null)
         {
             BindRow(Pool(rowViews, rowPrefab, rows, row++), null, "Accuracy base", Number(score.Base), "The " + score.Accuracy + " accuracy base for this strike.", "", null);
             foreach (var item in items) BindRow(Pool(rowViews, rowPrefab, rows, row++), item.Member, item.Title, item.Amount, item.Reason, item.Context, item.Support);
-            BindRow(Pool(rowViews, rowPrefab, rows, row++), null, "TOTAL", Number(score.Points) + " points", "(" + Number(score.Base) + " + " + Number(score.Bonuses) + ") × " + Number(score.Multiplier) + " = " + Number(score.Points), "Accuracy base plus flat bonuses, then the product of multipliers.", null);
+            BindRow(Pool(rowViews, rowPrefab, rows, row++), null, "TOTAL", LandingScoreRush.Format(score.Points) + " points", "(" + Number(score.Base) + " + " + Number(score.Bonuses) + ") × " + Number(score.Multiplier) + " = " + Number(score.Points), "Accuracy base plus flat bonuses, then the product of multipliers.", null);
             foreach (var recovery in score.Contributions.Where(c => c.Attempts > 0))
                 BindRow(Pool(rowViews, rowPrefab, rows, row++), shown.Members.FirstOrDefault(m => m.InstanceId == recovery.SourceId), recovery.Label,
                     "+" + recovery.Attempts + " attempt", recovery.Explanation, "Recovery is separate from Landing Points.", recovery.SupportingIds.ToArray());
@@ -152,7 +152,7 @@ public sealed class LandingStrikeFeedback : MonoBehaviour
     {
         if (scoringFocus == active) return; scoringFocus = active;
         if (equation != null && shown?.Score != null) equation.text = active ? shown.Score.Accuracy.ToString().ToUpperInvariant() + " · SCORING"
-            : compactSummary ? "LAST HIT +" + Number(shown.Score.Points) : shown.Score.Accuracy.ToString().ToUpperInvariant() + " +" + Number(shown.Score.Points);
+            : compactSummary ? "LAST HIT +" + LandingScoreRush.Format(shown.Score.Points) : shown.Score.Accuracy.ToString().ToUpperInvariant() + " +" + LandingScoreRush.Format(shown.Score.Points);
         foreach (var view in chipViews) foreach (var graphic in view.GetComponentsInChildren<UnityEngine.UI.Graphic>()) graphic.canvasRenderer.SetAlpha(active ? .4f : 1);
     }
     /// <summary>Advances only the short presentation envelope, independent of challenge clocks and input.</summary>

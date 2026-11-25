@@ -95,7 +95,7 @@ public sealed class LandingScoreRush : MonoBehaviour
                 if (!missed) AddSound(item.ImpactAt, strike.Score.Accuracy == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good);
                 continue;
             }
-            float flight = item.ImpactAt - item.LaunchAt;
+            float flight = timing.ToReal(item.ImpactAt) - timing.ToReal(item.LaunchAt);
             float travelPitch = Mathf.Clamp(sound.Library.Find(DeepwaterSoundCue.Travel).Takes[0].length / flight, .5f, 2);
             AddSound(item.LaunchAt, DeepwaterSoundCue.Travel, travelPitch);
             var impactCue = item.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition;
@@ -128,7 +128,7 @@ public sealed class LandingScoreRush : MonoBehaviour
             shownStep = visible; var face = sequence.Steps[visible];
             if (visible == 0) scoringPortrait.RestoreEncounter();
             else scoringPortrait.ShowContributors(receipt.Members.Where(m => face.SourceIds.Contains(m.InstanceId)).ToArray());
-            operation.text = visible == 0 ? "" : (face.Multiply ? "×" : "+") + Format(face.Amount);
+            operation.text = visible == 0 ? "" : (face.Multiply ? "×" + FormatMultiplier(face.Amount) : "+" + Format(face.Amount));
             operation.color = face.Multiply ? new Color32(167, 220, 194, 255) : new Color32(240, 205, 133, 255);
         }
         float handoffAlpha = LandingCardHandoff.CaptionOpacity(handoff.Progress);
@@ -186,8 +186,14 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (coveredLabels != null) foreach (var label in coveredLabels) if (label != null) label.gameObject.SetActive(true);
         if (particles != null) particles.Render(Vector3.zero, Vector3.zero, 0, 0, 0);
     }
-    /// <summary>Abbreviates only the animated display; exact decimal operations remain in the inspectable breakdown.</summary>
-    public static string Format(decimal number)
+    /// <summary>Rounds displayed point totals upward to a whole point without changing the resolved score.</summary>
+    public static string Format(decimal number) => Abbreviate(decimal.Ceiling(number));
+
+    /// <summary>Preserves fractional factors so a multiplier such as 1.2 never displays as 2.</summary>
+    public static string FormatMultiplier(decimal number) => Abbreviate(number);
+
+    /// <summary>Keeps large values readable using the existing compact suffixes.</summary>
+    private static string Abbreviate(decimal number)
     {
         if (number < 1000000) return number.ToString("0.##", CultureInfo.InvariantCulture);
         decimal divisor = 1000000;

@@ -31,7 +31,7 @@ public sealed class LandingImpactCamera : MonoBehaviour
         frame = Rect.MinMaxRect(minimum.x - 35, minimum.y - 25, maximum.x + 35, maximum.y + 25); captured = true;
     }
 
-    /// <summary>Pushes in at contact, holds through slow compression and eases out only as the attacker returns.</summary>
+    /// <summary>Pushes in at contact, holds through slow compression and initial rebound, then eases out at normal-speed recovery.</summary>
     public void Render(LandingScoreSequence sequence, LandingImpactTiming timing, float elapsed, Vector2 shake, bool reduced)
     {
         ResetMotion(); if (!captured || reduced || !isActiveAndEnabled) return;
@@ -39,10 +39,10 @@ public sealed class LandingImpactCamera : MonoBehaviour
         float weight = 0;
         if (timing.Focuses(index) && elapsed >= hit.ImpactAt && elapsed < hit.EndAt)
         {
-            float returnAt = hit.ImpactAt + LandingImpactTiming.ContactHold(hit);
-            weight = elapsed < returnAt
+            float recoveryAt = LandingImpactTiming.SlowEnd(hit);
+            weight = elapsed < recoveryAt
                 ? Mathf.SmoothStep(0, 1, Mathf.Clamp01((timing.ToReal(elapsed) - timing.ToReal(hit.ImpactAt)) / .07f))
-                : 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((elapsed - returnAt) / Mathf.Min(.22f, hit.EndAt - returnAt)));
+                : 1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01((elapsed - recoveryAt) / Mathf.Min(.22f, hit.EndAt - recoveryAt)));
         }
         var viewport = (RectTransform)stage.parent;
         float fit = Mathf.Min(maximumZoom, viewport.rect.width / (frame.width * Mathf.Abs(scale.x) + 120), viewport.rect.height / (frame.height * Mathf.Abs(scale.y) + 100));

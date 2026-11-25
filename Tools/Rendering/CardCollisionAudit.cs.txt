@@ -1,8 +1,8 @@
 // Unity MCP method body. Actual prefab and current species abilities; no player controller or save mutation.
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
-int exportFrom = 0, exportCount = 60; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/ImpactCamera/", frames = "Temp/ImpactCamera/FinalOnly/Level-" + previewLevel + "/";
+int exportFrom = 0, exportCount = 80; // Re-run consecutive batches to avoid MCP capture timeouts.
+string output = "Docs/Validation/SeparatedPanels/", frames = "Temp/SeparatedPanels/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture; float originalTimeScale = UnityEngine.Time.timeScale;
@@ -178,12 +178,19 @@ try
         check(System.Linq.Enumerable.All(cards, c => c.transform.localScale == UnityEngine.Vector3.one && c.transform.localRotation == UnityEngine.Quaternion.identity), "Machine collision moves a rig card.");
         if (step.SourceId >= 0) {
             check(scoringPortrait.IsShowingContributors, "Main machine card does not identify its contributor.");
+            var travel = System.Linq.Enumerable.Single(rush.SoundEvents, cue => cue.Cue == DeepwaterSoundCue.Travel && UnityEngine.Mathf.Abs(cue.Time - timing.ToReal(step.LaunchAt)) < .00001f);
+            check(UnityEngine.Mathf.Abs(travel.Time + travel.Clip.length / travel.Pitch - timing.ToReal(step.ImpactAt)) < .012f, "Approach sound ends before or after physical contact.");
             check(System.Linq.Enumerable.Any(rush.SoundEvents, cue => cue.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition) && UnityEngine.Mathf.Abs(cue.Time - timing.ToReal(step.ImpactAt)) < .00001f), "Score impact sound misses physical contact.");
             if (firstStrength < 0) { firstStrength = step.Strength; firstRecoil = collision.ScoreOffset; }
             lastStrength = step.Strength; lastRecoil = collision.ScoreOffset;
         }
         float hold = .075f + (step.SourceId < 0 ? .24f : step.Strength) * .030f;
         if (timing.Focuses(stepIndex)) {
+            float slowStart = LandingImpactTiming.SlowStart(step), slowEnd = LandingImpactTiming.SlowEnd(step);
+            float approach = (slowStart + step.ImpactAt) * .5f;
+            sample(approach);
+            check(impactView.Zoom == 1 && rush.DisplayedStrike == step.PreviousValue && !spray.enabled
+                && timing.ToReal(step.ImpactAt) - timing.ToReal(slowStart) > (step.ImpactAt - slowStart) * 3, "Slow approach zooms/scores early or retains normal speed.");
             sample(step.ImpactAt + hold * .7f);
             check(impactView.Zoom > 1.4f && stage.localScale.x > 1.4f, "Major contact does not zoom to both cards.");
             bool visible = true;
@@ -196,6 +203,9 @@ try
             check(realReturn - realHit > hold * 3 && rush.DisplayedStrike == step.Value, "Slow hold ends early or delays score delivery.");
             sample(step.ImpactAt + hold);
             check(impactView.Zoom > 1.4f, "Camera releases before the attacker starts returning.");
+            sample((step.ImpactAt + hold + slowEnd) * .5f);
+            check(impactView.Zoom > 1.4f && timing.ToReal(slowEnd) - timing.ToReal(step.ImpactAt + hold) > (slowEnd - step.ImpactAt - hold) * 3,
+                "Camera or slow motion releases before the initial rebound.");
             sample(step.EndAt - .00001f); check(impactView.Zoom == 1, "Camera fails to release before the next source.");
         } else {
             sample(step.ImpactAt + hold * .7f);
@@ -304,6 +314,26 @@ try
         System.IO.File.WriteAllText(output + "GlassPolygon.json", "[" + points + "]");
         gauge.enabled = false; capture(output + "WaterOff.png"); gauge.enabled = true;
         sample(last.ImpactAt + .08f + LandingStrikeWater.DrainSeconds * .5f); capture(output + "Half.png");
+    }
+    if (previewLevel == 90) {
+        sample(0); capture(output + "Rest.png");
+        sample(last.LaunchAt); capture(output + "Windup.png");
+        sample(UnityEngine.Mathf.Lerp(last.LaunchAt,last.ImpactAt,.65f)); capture(output + "Dash.png");
+        sample(last.ImpactAt + .075f); capture(output + "After.png");
+        var graphics = new[] {creatureCard.GetComponent<LandingCollisionGraphic>(),scoreCard.GetComponent<LandingCollisionGraphic>()};
+        var artwork = new LandingPanelArtwork[2];
+        for(int i=0;i<2;i++) {
+            var g=new UnityEditor.SerializedObject(graphics[i]); artwork[i]=(LandingPanelArtwork)g.FindProperty("panel").objectReferenceValue;
+            g.FindProperty("panel").objectReferenceValue=null;
+            g.FindProperty("source").objectReferenceValue=UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Sprite>(TackleLandingArtSetup.HousingPath);
+            g.ApplyModifiedPropertiesWithoutUndo(); graphics[i].SetVerticesDirty(); graphics[i].SetMaterialDirty();
+        }
+        capture(output + "Before.png");
+        for(int i=0;i<2;i++) {
+            var g=new UnityEditor.SerializedObject(graphics[i]);g.FindProperty("panel").objectReferenceValue=artwork[i];
+            g.FindProperty("source").objectReferenceValue=null;g.ApplyModifiedPropertiesWithoutUndo();graphics[i].SetVerticesDirty();graphics[i].SetMaterialDirty();
+        }
+        sample(last.ImpactAt+LandingImpactTiming.ContactHold(last)+.12f);capture(output+"Return.png");
     }
     rush.Finish();
     foreach (var grade in new[] { LandingAccuracy.Good, LandingAccuracy.Miss }) {

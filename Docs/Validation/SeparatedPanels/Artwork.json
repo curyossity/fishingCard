@@ -1,0 +1,40 @@
+{
+  "source": "Assets/UIThemes/TackleApparatus/Art/Landing/Integrated/landing-machine.png",
+  "sourceSha256": "2939c4c93e8c1399c5b1c3e476f4d8188e5df61ba23919bad3bc4dea4ac7d932",
+  "sourceSize": [
+    1739,
+    904
+  ],
+  "provenance": "Existing approved Landing master; no generated or repainted raster artwork. Unity-native sprite slices with independently authored silhouette geometry.",
+  "filter": "Point",
+  "mipmaps": false,
+  "additionalTextureMemoryBytes": 0,
+  "creature": {
+    "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/Separated/creature-panel.asset",
+    "referenceBounds": [
+      650,
+      302,
+      470,
+      240
+    ],
+    "center": [
+      873,
+      422
+    ],
+    "scale": 0.88
+  },
+  "score": {
+    "asset": "Assets/UIThemes/TackleApparatus/Art/Landing/Separated/score-panel.asset",
+    "referenceBounds": [
+      1126,
+      302,
+      510,
+      240
+    ],
+    "center": [
+      1393,
+      422
+    ],
+    "scale": 0.88
+  }
+}

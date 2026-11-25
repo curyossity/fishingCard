@@ -60,14 +60,14 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             phase.text = biomeName.ToUpperInvariant() + " / LAND";
             creature.text = failure ? "EXPEDITION ENDED" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
             haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : controller.UsesLandingChallenge ? controller.Rig.HaulValue.ToString() : VisibleHaul(controller.CatchChain));
-            points.text = Number(model.Points); resistance.text = Number(model.Resistance);
+            points.text = LandingScoreRush.Format(model.Points); resistance.text = LandingScoreRush.Format(model.Resistance);
             if (model.AttemptsRemaining > lamps.Count) PrepareLamps(model.AttemptsRemaining);
             attempts.text = model.AttemptsRemaining + " ATTEMPTS LEFT";
             for (int i = 0; i < lamps.Count; i++) lamps[i].sprite = i < model.AttemptsRemaining ? lampOn : lampOff;
             message.text = model.Error ?? (failure ? "Full haul paid: " + controller.LastHaulValue + ". Rig and upgrades cleared."
                 : controller.AwaitingRigPlacement ? "LANDED! Ready for rig placement."
                 : "Strike when the fish marker and zone align.  SPACE / STRIKE");
-            grade.text = model.LastScore == null ? "READY TO LAND" : model.LastScore.Accuracy.ToString().ToUpperInvariant() + "  +" + Number(model.LastScore.Points)
+            grade.text = model.LastScore == null ? "READY TO LAND" : model.LastScore.Accuracy.ToString().ToUpperInvariant() + "  +" + LandingScoreRush.Format(model.LastScore.Points)
                 + (model.LastMissProtected ? " / PROTECTED" : "");
             breakdown.text = Breakdown(model.LastScore, failure);
             scoreScroll.verticalNormalizedPosition = 1;
@@ -83,7 +83,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             if(sound!=null)sound.Play(DeepwaterSoundCue.Failure);
         }
         decimal displayed = feedbackPending && scoreRush != null ? scoreRush.DisplayedTotal : model.Points;
-        points.text = feedbackPending ? LandingScoreRush.Format(displayed) : Number(displayed);
+        points.text = LandingScoreRush.Format(displayed);
         progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(displayed / model.Resistance)) : 0, 1);
         if (model.Error != null) message.text = model.Error;
         else if (feedbackPending) message.text = "RIG ACTIVATING  ·  SPACE / FINISH TO COMPLETE";
@@ -153,10 +153,10 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             if (item.Multiplier != 1) text.Append(" x").Append(Number(item.Multiplier));
             if (item.Attempts > 0) text.Append(" +").Append(item.Attempts).Append(" attempts");
         }
-        text.Append("\nTOTAL +").Append(Number(score.Points));
+        text.Append("\nTOTAL +").Append(LandingScoreRush.Format(score.Points));
         if (failure) text.Append("\nFailed creature not acquired");
         return text.ToString();
     }
-    /// <summary>Displays exact decimal scores using glyphs in the approved font family.</summary>
+    /// <summary>Retains exact coefficients in the inspectable arithmetic breakdown.</summary>
     private static string Number(decimal value) { return value.ToString("0.############################", System.Globalization.CultureInfo.InvariantCulture); }
 }

@@ -159,7 +159,7 @@ public static class LandingScoreRushChecks
         Check(LandingStrikeWater.LevelAt(miss, 100, .3f, false) == 0, "An ordinary Miss fills the glass.");
     }
 
-    /// <summary>Checks selective contact-only slow motion, reversible clocks and the shared controller timeout bound.</summary>
+    /// <summary>Checks final-only approach/contact/rebound slow motion, reversible clocks and the shared controller timeout bound.</summary>
     private static void ValidateImpactTiming()
     {
         var score = new LandingScore(LandingAccuracy.Perfect, 20, 200, 50,
@@ -169,11 +169,22 @@ public static class LandingScoreRushChecks
         foreach (int index in Enumerable.Range(0, sequence.Steps.Count))
         {
             var hit = sequence.Steps[index]; float hold = LandingImpactTiming.ContactHold(hit);
-            Check(Math.Abs((timing.ToReal(hit.ImpactAt) - timing.ToReal(hit.LaunchAt)) - (hit.ImpactAt - hit.LaunchAt)) < .00001f, "Slow motion changes dash speed.");
             Check(Math.Abs(timing.ToSequence(timing.ToReal(hit.ImpactAt + hold)) - hit.ImpactAt - hold) < .00001f, "Clock loses the start of return.");
-            Check(Math.Abs((timing.ToReal(hit.EndAt) - timing.ToReal(hit.ImpactAt + hold)) - (hit.EndAt - hit.ImpactAt - hold)) < .00001f, "Slow motion continues into return.");
             if (timing.Focuses(index))
+            {
+                float start = LandingImpactTiming.SlowStart(hit), end = LandingImpactTiming.SlowEnd(hit);
+                Check(start > hit.LaunchAt && start < hit.ImpactAt && end > hit.ImpactAt + hold && end < hit.EndAt, "Cinematic window misses approach or initial rebound.");
+                Check(Math.Abs(timing.ToReal(start) - start) < .00001f, "Final-hit slow motion changes an earlier action or its launch.");
+                Check(timing.ToReal(hit.ImpactAt) - timing.ToReal(start) > (hit.ImpactAt - start) * 3, "Approach does not slow before impact.");
                 Check(timing.ToReal(hit.ImpactAt + hold) - timing.ToReal(hit.ImpactAt) > hold * 3, "Major contact hold ends immediately instead of lingering.");
+                Check(timing.ToReal(end) - timing.ToReal(hit.ImpactAt + hold) > (end - hit.ImpactAt - hold) * 3, "Slow motion ends before the first rebound.");
+                Check(Math.Abs((timing.ToReal(hit.EndAt) - timing.ToReal(end)) - (hit.EndAt - end)) < .00001f, "Normal recovery retains cinematic pacing.");
+            }
+            else
+            {
+                Check(Math.Abs((timing.ToReal(hit.ImpactAt) - timing.ToReal(hit.LaunchAt)) - (hit.ImpactAt - hit.LaunchAt)) < .00001f, "An earlier or ordinary dash slows down.");
+                Check(Math.Abs((timing.ToReal(hit.EndAt) - timing.ToReal(hit.ImpactAt + hold)) - (hit.EndAt - hit.ImpactAt - hold)) < .00001f, "An earlier or ordinary return slows down.");
+            }
         }
         Check(Enumerable.Range(0, 301).All(i => Math.Abs(timing.ToSequence(timing.ToReal(sequence.Duration * i / 300f)) - sequence.Duration * i / 300f) < .00001f), "Presentation clocks cannot seek or skip reliably.");
         var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 2, 1, new[] { new LandingContribution(1, "Small", 2, 1) }));
@@ -212,6 +223,7 @@ public static class LandingScoreRushChecks
         foreach (string field in new[] { "creatureCard", "scoreCard", "stage", "creatureFade" }) Check(collision.FindProperty(field).objectReferenceValue != null, "Missing collision binding: " + field);
         Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3, "Missing source-preserving housing/card graphics.");
         Check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).All(g => !g.raycastTarget), "Rigid card graphics intercept input.");
+        ValidatePanelArtwork(root);
         var water = new SerializedObject(root.GetComponent<LandingWaterImpact>());
         foreach (string field in new[] { "spray", "number", "collision" }) Check(water.FindProperty(field).objectReferenceValue != null, "Missing water impact binding: " + field);
         var spray = (UnityEngine.UI.RawImage)water.FindProperty("spray").objectReferenceValue;
@@ -246,6 +258,49 @@ public static class LandingScoreRushChecks
             Check(samples.Any(s=>Mathf.Abs(s)>.01f)&&samples.All(s=>Mathf.Abs(s)<=.86f),"Silent or clipped cue: "+cue);
         }
         return checks;
+    }
+
+    /// <summary>Checks clean movable silhouettes, exact source-pixel registration and unchanged authored collision bounds.</summary>
+    private static void ValidatePanelArtwork(GameObject root)
+    {
+        var stage = root.transform.Find("1920x1080 Stage");
+        var master = AssetDatabase.LoadAssetAtPath<Sprite>(TackleLandingArtSetup.HousingPath);
+        string[] names = { "Creature collision card", "Score collision card" };
+        string[] paths = { LandingPanelArtworkSetup.CreaturePath, LandingPanelArtworkSetup.ScorePath };
+        Rect[] regions = { LandingCollisionGraphic.CreatureRegion, LandingCollisionGraphic.ScoreRegion };
+        for (int i = 0; i < names.Length; i++)
+        {
+            var graphic = stage.Find(names[i]).GetComponent<LandingCollisionGraphic>();
+            var data = new SerializedObject(graphic);
+            var art = (LandingPanelArtwork)data.FindProperty("panel").objectReferenceValue;
+            Check(art != null && AssetDatabase.GetAssetPath(art) == paths[i] && art.Face != null, "A moving panel lacks independent artwork.");
+            Check(data.FindProperty("source").objectReferenceValue == null && art.Face != master && art.Face.texture == master.texture
+                && graphic.mainTexture == master.texture && AssetDatabase.GetAssetPath(art.Face) == paths[i], "Panel artwork duplicates or repaints the source texture.");
+            var rect = graphic.rectTransform;
+            Check(rect.sizeDelta == regions[i].size && rect.localScale == Vector3.one * .88f
+                && rect.anchoredPosition == new Vector2(regions[i].center.x + (i == 0 ? -12 : 12), -regions[i].center.y), "Separating artwork moved or resized a collision panel.");
+            Check(art.VertexCount == 8, "A moving panel retains a rectangular crop.");
+            var mesh = new UnityEngine.UI.VertexHelper();
+            try
+            {
+                typeof(LandingCollisionGraphic).GetMethod("OnPopulateMesh", Hidden | BindingFlags.DeclaredOnly).Invoke(graphic, new object[] { mesh });
+                Check(mesh.currentVertCount == 8 && mesh.currentIndexCount == 18, "Panel renderer does not use its beveled silhouette.");
+                Rect shell = TackleMachineGeometry.StageBounds; var vertex = new UIVertex(); bool registered = true, convex = true;
+                for (int v = 0; v < art.VertexCount; v++)
+                {
+                    Vector2 p = art.Point(v), next = art.Point((v + 1) % art.VertexCount), after = art.Point((v + 2) % art.VertexCount);
+                    Vector2 a = next - p, b = after - next;
+                    convex &= a.x * b.y - a.y * b.x < 0 && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1;
+                    mesh.PopulateUIVertex(ref vertex, v);
+                    Vector2 expected = new Vector2((master.rect.x + (regions[i].x + p.x * regions[i].width - shell.x) / shell.width * master.rect.width) / master.texture.width,
+                        (master.rect.y + (1 - (regions[i].yMax - p.y * regions[i].height - shell.y) / shell.height) * master.rect.height) / master.texture.height);
+                    registered &= ((Vector2)vertex.uv0 - expected).sqrMagnitude < .0000000001f;
+                }
+                Check(convex, "Panel silhouette folds over itself or extends outside the preserved bounds.");
+                Check(registered, "Independent panel artwork drifts from the original source pixels.");
+            }
+            finally { mesh.Dispose(); }
+        }
     }
 
     /// <summary>Starts an isolated run using actual gameplay commands and installed creature abilities.</summary>

@@ -795,6 +795,7 @@ MonoBehaviour:
     width: 1310
     height: 681
   housing: 1
+  panel: {fileID: 0}
 --- !u!1 &867375190119412893
 GameObject:
   m_ObjectHideFlags: 0
@@ -5867,7 +5868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  source: {fileID: 21300000, guid: 6e9ba8ff317141f4aa00533d0cb98fb8, type: 3}
+  source: {fileID: 0}
   region:
     serializedVersion: 2
     x: 1126
@@ -5875,6 +5876,7 @@ MonoBehaviour:
     width: 510
     height: 240
   housing: 0
+  panel: {fileID: 11400000, guid: dca5826fc063a6c4fb6f18379dc5af5e, type: 2}
 --- !u!1 &5341135408481084218
 GameObject:
   m_ObjectHideFlags: 0
@@ -7137,7 +7139,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  source: {fileID: 21300000, guid: 6e9ba8ff317141f4aa00533d0cb98fb8, type: 3}
+  source: {fileID: 0}
   region:
     serializedVersion: 2
     x: 650
@@ -7145,6 +7147,7 @@ MonoBehaviour:
     width: 470
     height: 240
   housing: 0
+  panel: {fileID: 11400000, guid: dd351e7cbc0c38f4dab3eae4e007aa32, type: 2}
 --- !u!225 &7772517873594457813
 CanvasGroup:
   m_ObjectHideFlags: 0

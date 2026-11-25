@@ -1,22 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>Separates the existing housing's two card faces without copying, repainting or replacing supplied pixels.</summary>
+/// <summary>Renders the fixed housing or one independent panel silhouette using preserved source pixels.</summary>
 [RequireComponent(typeof(CanvasRenderer))]
 public sealed class LandingCollisionGraphic : MaskableGraphic
 {
     [SerializeField] private Sprite source;
     [SerializeField] private Rect region;
     [SerializeField] private bool housing;
+    [SerializeField] private LandingPanelArtwork panel;
     public static Rect CreatureRegion => new Rect(650, 302, 470, 240);
     public static Rect ScoreRegion => new Rect(1126, 302, 510, 240);
-    public override Texture mainTexture => source != null ? source.texture : Texture2D.whiteTexture;
+    public override Texture mainTexture => !housing && panel != null && panel.Face != null ? panel.Face.texture
+        : source != null ? source.texture : Texture2D.whiteTexture;
 
     /// <summary>Reconstructs the untouched shell around movable native faces, revealing dark recesses only during travel.</summary>
     protected override void OnPopulateMesh(VertexHelper mesh)
     {
-        mesh.Clear(); if (source == null) return;
-        if (!housing) { Panel(mesh, region, rectTransform.rect, false); return; }
+        mesh.Clear();
+        if (!housing && panel != null) { Face(mesh); return; }
+        if (source == null) return;
+        if (!housing)
+        {
+            Panel(mesh, region, rectTransform.rect, false);
+            return;
+        }
         Rect shell = TackleMachineGeometry.StageBounds, face = CreatureRegion, score = ScoreRegion;
         // Both panels share a continuous dark recess, including the newly visible space between smaller faces.
         Strip(mesh, new Rect(shell.x, shell.y, shell.width, face.y - shell.y));
@@ -24,6 +32,21 @@ public sealed class LandingCollisionGraphic : MaskableGraphic
         Strip(mesh, new Rect(shell.x, face.y, face.x - shell.x, face.height));
         Strip(mesh, new Rect(score.xMax, face.y, shell.xMax - score.xMax, face.height));
         Strip(mesh, new Rect(face.x, face.y, score.xMax - face.x, face.height), true);
+    }
+
+    /// <summary>Leaves the source slice's cabinet pixels undrawn, including at rotated, stretched and zoomed panel edges.</summary>
+    private void Face(VertexHelper mesh)
+    {
+        if (panel.Face == null || panel.VertexCount < 3) return;
+        Rect local = rectTransform.rect, pixels = panel.Face.rect;
+        Texture texture = panel.Face.texture;
+        for (int i = 0; i < panel.VertexCount; i++)
+        {
+            Vector2 point = panel.Point(i);
+            mesh.AddVert(new Vector2(local.xMin + point.x * local.width, local.yMin + point.y * local.height), color,
+                new Vector2((pixels.x + point.x * pixels.width) / texture.width, (pixels.y + point.y * pixels.height) / texture.height));
+        }
+        for (int i = 1; i < panel.VertexCount - 1; i++) mesh.AddTriangle(0, i, i + 1);
     }
 
     /// <summary>Projects a stage rectangle into the original housing's local space.</summary>
