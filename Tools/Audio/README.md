@@ -37,7 +37,8 @@ Run from the repository root in PowerShell:
 & .local-tools/earshot/venv/Scripts/python.exe Tools/Audio/check_earshot.py
 ```
 
-Codex's project `.codex/config.toml` registers the same launcher over local stdio.
+Codex's project `.codex/config.toml` and Claude Code's project `.mcp.json` register the same
+launcher over local stdio as `deepwater-earshot-local`.
 Reload/restart the client's MCP connection or reopen the project to discover it.
 It has 19 local tools, a 60-second startup deadline and a 300-second tool deadline
 for CPU analysis. No login or API key is required.

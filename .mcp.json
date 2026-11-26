@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "deepwater-earshot-local": {
+      "type": "stdio",
+      "command": "C:/Data/Projects/Unity/fishingCards/.local-tools/earshot/venv/Scripts/python.exe",
+      "args": [
+        "C:/Data/Projects/Unity/fishingCards/Tools/Audio/earshot_local.py",
+        "mcp"
+      ],
+      "env": {}
+    }
+  }
+}
