@@ -2,7 +2,7 @@
 if (!UnityEngine.Application.isPlaying) throw new System.InvalidOperationException("Run in Play mode.");
 int previewLevel = 90; bool exportFrames = true;
 int exportFrom = 0, exportCount = 80; // Re-run consecutive batches to avoid MCP capture timeouts.
-string output = "Docs/Validation/SeparatedPanels/", frames = "Temp/SeparatedPanels/Level-" + previewLevel + "/";
+string output = "Docs/Validation/ImpactFlash/", frames = "Temp/ImpactFlash/Level-" + previewLevel + "/";
 System.IO.Directory.CreateDirectory(output); System.IO.Directory.CreateDirectory(frames);
 var hidden = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic;
 var culture = System.Globalization.CultureInfo.InvariantCulture; float originalTimeScale = UnityEngine.Time.timeScale;
@@ -86,6 +86,7 @@ try
     var creatureCard = (UnityEngine.RectTransform)collisionData.FindProperty("creatureCard").objectReferenceValue;
     var scoreCard = (UnityEngine.RectTransform)collisionData.FindProperty("scoreCard").objectReferenceValue;
     var stage = (UnityEngine.RectTransform)collisionData.FindProperty("stage").objectReferenceValue;
+    var flashes = root.GetComponentsInChildren<LandingPanelFlash>(true);
     var sourceRest = creatureCard.anchoredPosition; var scoreRest = scoreCard.anchoredPosition; var stageRest = stage.anchoredPosition;
     var sourceRotation = creatureCard.localRotation; var scoreRotation = scoreCard.localRotation;
     var sourceScale = creatureCard.localScale; var targetScale = scoreCard.localScale;
@@ -103,10 +104,12 @@ try
         && creatureCard.localScale == sourceScale && scoreCard.localScale == targetScale
         && impactView.Zoom == 1 && stage.localScale == UnityEngine.Vector3.one
         && !spray.enabled && water.NumberScale == 1 && number.rectTransform.localScale == UnityEngine.Vector3.one && water.ActiveFrame == -1
+        && System.Linq.Enumerable.All(flashes, f => f.Opacity == 0)
         && faceFade.alpha == 1 && nameLabel.alpha == 1 && operation.alpha == 1
         && stage.anchoredPosition == stageRest && creatureCard.localRotation == sourceRotation && scoreCard.localRotation == scoreRotation;
     check(portrait.transform.parent == creatureCard && number.transform.IsChildOf(scoreCard), "Card faces and their live fields have different motion owners.");
     check(root.GetComponentsInChildren<LandingCollisionGraphic>(true).Length == 3 && System.Linq.Enumerable.All(root.GetComponentsInChildren<LandingCollisionGraphic>(true), g => !g.raycastTarget), "Missing or interacting collision graphic.");
+    check(flashes.Length == 2 && System.Linq.Enumerable.All(flashes, f => !f.raycastTarget && f.Opacity == 0), "Both panels need initially invisible non-intercepting flashes.");
     check(!machine.GetComponent<UnityEngine.UI.Image>().enabled, "Original housing still duplicates the movable cards.");
     check(creatureCard.localScale == UnityEngine.Vector3.one * .88f && scoreCard.localScale == creatureCard.localScale, "Machine faces were not reduced together.");
     rush.Present(receipt, cards, true); var sequence = rush.Sequence; var timing = rush.Timing;
@@ -158,11 +161,17 @@ try
         check(collision.CreatureLeadingOffset > halfX && halfX > startX, "Dash does not accelerate toward contact.");
         check(rush.DisplayedStrike == (step.SourceId < 0 ? 0 : step.PreviousValue), "Points arrive before the physical collision.");
         check(!spray.enabled && water.NumberScale == 1, "Water or number punch arrives before contact.");
+        check(System.Linq.Enumerable.All(flashes, f => f.Opacity == 0), "Card flashes before physical contact.");
         check(UnityEngine.Mathf.Abs(gauge.Level - LandingStrikeWater.DamageLevel(step.PreviousValue, receipt.Resistance)) < .0001f, "Water rises early or counts previous attempts.");
         sample(step.ImpactAt);
         check(spray.enabled && water.ActiveFrame == 0 && water.NumberScale > 1 && water.NumberScale <= 1.141f, "Contact lacks a bounded water burst and number punch.");
         check(rush.DisplayedStrike == step.Value && UnityEngine.Mathf.Abs(collision.CreatureLeadingOffset - collision.ContactDistance) < .001f, "Physical contact and exact score delivery are detached.");
         check(creatureCard.localRotation == sourceRotation, "Card hits at a rotated corner instead of its contacting edge.");
+        check(System.Linq.Enumerable.All(flashes, f => f.Opacity == 1), "Both complete cards do not flash white at contact.");
+        sample(timing.ToSequence(timing.ToReal(step.ImpactAt) + .025f));
+        check(System.Linq.Enumerable.All(flashes, f => f.Opacity > 0 && f.Opacity < 1), "White contact flash does not fade promptly.");
+        sample(timing.ToSequence(timing.ToReal(step.ImpactAt) + .056f));
+        check(System.Linq.Enumerable.All(flashes, f => f.Opacity == 0), "Slow motion stretches the white flash beyond its real-time duration.");
         sample(step.ImpactAt + .075f);
         check(UnityEngine.Mathf.Abs(gauge.Level - LandingStrikeWater.DamageLevel(step.Value, receipt.Resistance)) < .0001f, "Water double-counts an operation or uses the wrong Resistance.");
         sample(step.ImpactAt + .020f);
@@ -317,6 +326,9 @@ try
     }
     if (previewLevel == 90) {
         sample(0); capture(output + "Rest.png");
+        sample(last.ImpactAt); capture(output + "FlashOn.png");
+        sample(timing.ToSequence(timing.ToReal(last.ImpactAt) + .025f)); capture(output + "FlashFade.png");
+        sample(timing.ToSequence(timing.ToReal(last.ImpactAt) + .056f)); capture(output + "FlashOff.png");
         sample(last.LaunchAt); capture(output + "Windup.png");
         sample(UnityEngine.Mathf.Lerp(last.LaunchAt,last.ImpactAt,.65f)); capture(output + "Dash.png");
         sample(last.ImpactAt + .075f); capture(output + "After.png");

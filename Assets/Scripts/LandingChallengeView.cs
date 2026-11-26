@@ -16,6 +16,7 @@ public sealed class LandingChallengeView : MonoBehaviour
     private TMP_Text strikeCaption;
     public UnityEngine.Events.UnityEvent ReturnedToHarbor => returnedToHarbor;
     public bool HasRushPresentation => artwork != null && artwork.HasRushPresentation;
+    public bool HasRevealPresentation => artwork != null && artwork.HasRevealPresentation;
 
     /// <summary>Binds both native controls to the same guarded controller command.</summary>
     private void Awake() { strike.onClick.AddListener(Strike); returnToHarbor.onClick.AddListener(Return); strikeInput.performed += OnStrikeInput; strikeCaption = strike.GetComponentInChildren<TMP_Text>(); }
@@ -43,8 +44,8 @@ public sealed class LandingChallengeView : MonoBehaviour
         bool failure = controller.LandingFailureVisible;
         bool fresh = shownOccurrence != controller.Landing.Occurrence;
         strike.gameObject.SetActive(controller.LandingFeedbackPending || !failure && !controller.AwaitingRigPlacement);
-        strike.interactable = controller.LandingFeedbackPending || controller.RunActive && controller.Landing.CanStrike;
-        if (strikeCaption != null) strikeCaption.text = controller.LandingFeedbackPending ? "FINISH" : "STRIKE";
+        strike.interactable = controller.LandingFeedbackPending || controller.LandingRevealPending || controller.RunActive && controller.Landing.CanStrike;
+        if (strikeCaption != null) strikeCaption.text = controller.LandingFeedbackPending ? "FINISH" : controller.LandingRevealPending ? "SKIP" : "STRIKE";
         returnToHarbor.gameObject.SetActive(failure && !controller.LandingFeedbackPending);
         returnToHarbor.interactable = !controller.LandingFeedbackPending;
         artwork.Present(controller);
@@ -62,7 +63,8 @@ public sealed class LandingChallengeView : MonoBehaviour
     private void Strike()
     {
         if (controller == null) return;
-        if (controller.LandingFeedbackPending) controller.CompleteLandingFeedback();
+        if (controller.LandingRevealPending) controller.CompleteLandingReveal();
+        else if (controller.LandingFeedbackPending) controller.CompleteLandingFeedback();
         else controller.TryStrikeLanding(controller.Landing.Occurrence, controller.Landing.Revision);
     }
     /// <summary>Dismisses only an ended expedition before using the authored Harbor route.</summary>

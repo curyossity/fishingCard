@@ -211,6 +211,7 @@ public static class RigBuildingArtChecks
         while(!(bool)ready.GetValue(owner)&&Time.realtimeSinceStartupAsDouble<deadline)yield return null;
         SlotReelAnimationChecks.SettleForControlFixture(UnityEngine.Object.FindAnyObjectByType<SlotMachineView>(),owner);yield return null;
         Check(owner.TryAcceptSlotMachine(owner.SlotMachine.Revision),"Could not accept Discover.");
+        owner.CompleteLandingReveal(); // Entrance covered by LandingCreatureRevealChecks.
     }
     /// <summary>Performs real perfectly timed or deliberately missed strikes, rather than substituting an outcome.</summary>
     private static IEnumerator Land(FishingRunController owner,bool succeed)

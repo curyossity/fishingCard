@@ -52,6 +52,13 @@ public sealed class LandingImpactCamera : MonoBehaviour
         stage.anchoredPosition = rest + (viewport.rect.center - focus) * weight + shake * Zoom;
     }
 
+    /// <summary>Applies an unzoomed stage offset for non-scoring moments (the creature reveal), capturing the rest pose on first use.</summary>
+    public void RenderOffset(Vector2 offset)
+    {
+        if (!captured) { rest = stage.anchoredPosition; scale = stage.localScale; localRest = stage.localPosition; frame = default; captured = true; }
+        Zoom = 1; stage.localScale = scale; stage.anchoredPosition = rest + offset;
+    }
+
     /// <summary>Restores the authored stage pose immediately, including when reduced motion is enabled mid-shot.</summary>
     public void ResetMotion() { Zoom = 1; if (!captured) return; stage.anchoredPosition = rest; stage.localScale = scale; }
     /// <summary>Releases all camera ownership on skip, replacement, completion and phase exit.</summary>

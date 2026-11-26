@@ -121,6 +121,7 @@ public static class TackleLandingArtChecks
             check(controller.Rig.TryAcquire(controller.Rig.Revision, definitions.First(c => c.UniqueId == species[i]), i, out _, out _), "Could not prepare unique-species rig fixture.");
         var slot = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>(); SlotReelAnimationChecks.SettleForControlFixture(slot, controller);
         check(controller.TryAcceptSlotMachine(controller.SlotMachine.Revision), "Could not start Landing.");
+        controller.CompleteLandingReveal(); // Art checks capture the settled face; the entrance has its own checks.
         var view = UnityEngine.Object.FindAnyObjectByType<LandingChallengeView>(); var art = view.GetComponent<TackleLandingPresentation>(); art.Present(controller);
         check(!slot.gameObject.activeInHierarchy && art.gameObject.activeInHierarchy, "Discover overlaps Landing.");
         var data = new SerializedObject(art); var model = controller.Landing;

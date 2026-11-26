@@ -48,6 +48,8 @@ public static class LandingChallengeSceneChecks
             var slot = UnityEngine.Object.FindAnyObjectByType<SlotMachineView>();
             SlotReelAnimationChecks.SettleForControlFixture(slot, controller);
             Check(controller.TryAcceptSlotMachine(controller.SlotMachine.Revision), "Slot acceptance failed.");
+            // The cosmetic creature entrance is validated by LandingCreatureRevealChecks; skip it to keep these strike timings.
+            controller.CompleteLandingReveal();
             var model = controller.Landing;
             var view = UnityEngine.Object.FindAnyObjectByType<LandingChallengeView>();
             Check(view != null && !slot.gameObject.activeInHierarchy, "Discover and Landing were not separated.");

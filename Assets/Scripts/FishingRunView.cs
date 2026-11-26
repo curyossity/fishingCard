@@ -346,6 +346,8 @@ public sealed class FishingRunView : MonoBehaviour
     public bool IsSlotMachineAnimating => slotMachineView != null && slotMachineView.IsAnimating;
     public bool HasRigBuildingPresentation => rigBuildingView != null;
     public bool HasLandingRushPresentation => isActiveAndEnabled && landingChallengeView != null && landingChallengeView.HasRushPresentation;
+    /// <summary>Lets the controller hold Landing for the creature entrance only when a view can actually show it.</summary>
+    public bool HasLandingRevealPresentation => isActiveAndEnabled && landingChallengeView != null && landingChallengeView.HasRevealPresentation;
 
     /// <summary>Displays the plain landing increment and bypasses obsolete ascent presentation for redesigned run endings.</summary>
     public void SetLanding(FishingRunController controller)

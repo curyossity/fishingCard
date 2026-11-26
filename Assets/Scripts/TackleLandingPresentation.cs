@@ -19,15 +19,17 @@ public sealed class TackleLandingPresentation : MonoBehaviour
     [SerializeField] private TackleButtonFeedback[] buttons;
     [SerializeField] private LandingStrikeFeedback strikeFeedback;
     [SerializeField] private LandingScoreRush scoreRush;
+    [SerializeField] private LandingCreatureReveal reveal;
     private readonly List<TackleRigCardView> cards = new List<TackleRigCardView>();
     private readonly List<UnityEngine.UI.Image> lamps = new List<UnityEngine.UI.Image>();
     private long occurrence = -1, revision = -1;
     private bool failed;
     private bool failureSounded;
-    private bool feedbackPending;
+    private bool feedbackPending, revealPending;
     private CardDefinition selectedCreature;
     private string biomeName;
     public bool HasRushPresentation => scoreRush != null && scoreRush.enabled;
+    public bool HasRevealPresentation => reveal != null && reveal.enabled;
 
     /// <summary>Resets only visual identities so future encounters cannot reuse stale labels or highlights.</summary>
     private void OnDisable() { occurrence = revision = -1; selectedCreature = null; }
@@ -47,16 +49,23 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             BindCreature();
             if (strikeFeedback != null) strikeFeedback.BindAssistance(model, controller.CatchChain);
             rigScroll.verticalNormalizedPosition = 1;
-            if (!failure && sound != null) sound.Play(DeepwaterSoundCue.Reveal);
+            if (reveal != null && reveal.Banner != null) reveal.Banner.Clear();
+            if (!failure && controller.LandingRevealPending && HasRevealPresentation)
+                reveal.Begin(selectedCreature != null ? selectedCreature.Rarity : CardRarity.Common, controller.LandingRevealStartedAt);
+            else if (!failure && sound != null) sound.Play(DeepwaterSoundCue.Reveal);
         }
+        if (reveal != null && reveal.IsPlaying) { if (controller.LandingRevealPending) reveal.Tick(); else reveal.Finish(); }
+        // The banner may linger briefly into play, but a strike's scoring motion or an ended expedition takes the card back.
+        if (reveal != null && reveal.Banner != null && reveal.Banner.IsShowing)
+        { if (controller.LandingFeedbackPending || failure) reveal.Banner.Clear(); else reveal.Banner.Tick(); }
         Position(fish, model.FishPosition, model.FishWidth);
         Position(goodZone, model.ZonePosition, model.GoodWidth);
         Position(perfectZone, model.ZonePosition, model.PerfectWidth);
         fishMarker.color = model.IsTelegraphingBurst ? new Color32(255, 169, 76, 255) : Color.white;
         movement.text = model.IsTelegraphingBurst ? "BURST SOON" : model.Pattern.ToString().ToUpperInvariant();
-        if (revision != model.Revision || failed != failure || feedbackPending != controller.LandingFeedbackPending)
+        if (revision != model.Revision || failed != failure || feedbackPending != controller.LandingFeedbackPending || revealPending != controller.LandingRevealPending)
         {
-            revision = model.Revision; failed = failure; feedbackPending = controller.LandingFeedbackPending;
+            revision = model.Revision; failed = failure; feedbackPending = controller.LandingFeedbackPending; revealPending = controller.LandingRevealPending;
             phase.text = biomeName.ToUpperInvariant() + " / LAND";
             creature.text = failure ? "EXPEDITION ENDED" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
             haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : controller.UsesLandingChallenge ? controller.Rig.HaulValue.ToString() : VisibleHaul(controller.CatchChain));
@@ -87,6 +96,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(displayed / model.Resistance)) : 0, 1);
         if (model.Error != null) message.text = model.Error;
         else if (feedbackPending) message.text = "RIG ACTIVATING  ·  SPACE / FINISH TO COMPLETE";
+        else if (controller.LandingRevealPending && reveal != null && reveal.IsPlaying) message.text = reveal.Caption;
         foreach (var button in buttons) button.RefreshAvailability();
     }
 

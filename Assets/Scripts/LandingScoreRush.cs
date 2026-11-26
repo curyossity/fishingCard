@@ -155,7 +155,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         value.rectTransform.localScale = Vector3.one;
         scoringPortrait.SetPulse(0); operation.rectTransform.localScale = operationRest; totalLabel.localScale = totalRest;
         machine.anchoredPosition = machineRest; glow.color = Color.clear;
-        collision.Render(sequence, elapsed, ReducedMotion);
+        collision.Render(sequence, timing, elapsed, ReducedMotion);
         waterImpact.Render(sequence, elapsed, ReducedMotion);
         strikeWater.Render(sequence, receipt.Resistance, elapsed, ReducedMotion);
         impactCamera.Render(sequence, timing, elapsed, collision.ScreenShakeOffset, ReducedMotion);

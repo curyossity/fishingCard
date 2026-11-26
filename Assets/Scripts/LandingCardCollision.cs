@@ -5,6 +5,8 @@ public sealed class LandingCardCollision : MonoBehaviour
 {
     [SerializeField] private RectTransform creatureCard, scoreCard, stage;
     [SerializeField] private CanvasGroup creatureFade;
+    [SerializeField] private LandingPanelFlash creatureFlash, scoreFlash;
+    [SerializeField, Range(.02f, .1f)] private float flashSeconds = .055f;
     [SerializeField, Range(8, 60)] private float pullback = 34;
     [SerializeField, Range(2, 30)] private float scoreRecoil = 22;
     [SerializeField, Range(0, 20)] private float shake = 10;
@@ -35,7 +37,7 @@ public sealed class LandingCardCollision : MonoBehaviour
     }
 
     /// <summary>Samples a vertical hidden-face handoff, elastic windup, directional stretch and compressed contact without changing score timing or aiming.</summary>
-    public void Render(LandingScoreSequence sequence, float elapsed, bool reduced)
+    public void Render(LandingScoreSequence sequence, LandingImpactTiming timing, float elapsed, bool reduced)
     {
         if (!captured) return;
         ResetMotion(); int index = sequence.StepAt(elapsed); var step = sequence.Steps[index];
@@ -87,6 +89,10 @@ public sealed class LandingCardCollision : MonoBehaviour
         float hitAge = elapsed - hit.ImpactAt;
         float force = arrival == 0 ? (sequence.Score.Base > 0 ? .24f : 0) : hit.Strength;
         if (hitAge < 0 || hitAge > .52f || force <= 0) return;
+        float flashAge = timing.ToReal(elapsed) - timing.ToReal(hit.ImpactAt);
+        float fade = Mathf.Clamp01((flashAge - .012f) / Mathf.Max(.001f, flashSeconds - .012f));
+        float flash = flashAge >= 0 && flashAge < flashSeconds ? (1 - fade) * (1 - fade) : 0;
+        ShowFlash(flash);
         float recoil = Recoil(hitAge, force);
         scoreCard.anchoredPosition = scoreRest + Vector2.right * recoil;
         scoreCard.localRotation = scoreRotation * Quaternion.Euler(0, 0, -recoil * .055f);
@@ -112,11 +118,18 @@ public sealed class LandingCardCollision : MonoBehaviour
     /// <summary>Restores visual baselines immediately when reduced motion is selected, retaining the current receipt snapshot.</summary>
     public void ResetMotion()
     {
-        ScreenShakeOffset = Vector2.zero; if (!captured) return;
+        ShowFlash(0); ScreenShakeOffset = Vector2.zero; if (!captured) return;
         creatureCard.anchoredPosition = creatureRest; creatureCard.localRotation = creatureRotation;
         scoreCard.anchoredPosition = scoreRest; scoreCard.localRotation = scoreRotation;
         creatureCard.localScale = creatureScale; scoreCard.localScale = scoreScale;
         creatureFade.alpha = faceAlpha;
+    }
+
+    /// <summary>Shares one brief white contact pulse across both complete panel silhouettes.</summary>
+    private void ShowFlash(float opacity)
+    {
+        if (creatureFlash != null) creatureFlash.Show(opacity);
+        if (scoreFlash != null) scoreFlash.Show(opacity);
     }
 
     /// <summary>Restores both cards and clears reported shake on completion, skip, replacement or phase exit.</summary>

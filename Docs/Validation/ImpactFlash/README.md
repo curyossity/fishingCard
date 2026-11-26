@@ -1,0 +1,13 @@
+# Brief white panel impacts
+
+Presentation revision, 25 November 2026. The Sound and Reduced Motion HUD controls were committed and pushed first as `b88c874` (Hide landing controls). This increment adds white contact flashes without changing scoring, existing sounds, collision choreography or final-hit camera timing.
+
+[Watch the native animation preview](Compare.html), with normal-speed sound and an optional muted quarter-speed inspection. `Combo.mp4` contains 316 consecutive 1920 by 1080 Unity frames at 60 fps, plus the frozen runtime audio mix. Quarter speed changes playback only; the actual flash still lasts 55 ms.
+
+Both complete machine panels flash white together at positive contact. The peak lasts 12 ms, then a squared fade clears the layer by 55 ms of real time. The shared `LandingImpactTiming` mapping keeps this duration brief during slow motion. `LandingCardCollision` owns the envelope and clears it with motion; two `LandingPanelFlash` children draw the same eight-point silhouettes as their underlying panel assets, above artwork and native fields. The overlays intercept no input and emit no geometry while invisible. Reduced motion, ordinary zero-point misses and handoffs stay clear; replacement, skip, completion and phase exit clear both layers.
+
+Native views: [contact](FlashOn.png), [25 ms fade](FlashFade.png), [56 ms clear](FlashOff.png). These are actual Unity renders of an isolated instance of the current prefab. The complete card art and numbers return before the slow contact hold ends. The white layers do not redraw supplied textures or cover the surrounding cabinet.
+
+**838 checks pass:** 232 powerful native checks, 224 ordinary native checks, 232 score/schedule checks, 86 asset/binding checks and 64 Landing/model checks. Native checks verify neither panel flashes before contact, both peak together, both fade, neither remains white after 56 ms even during slow motion, and all existing reduced-motion/skip/replacement/exit cleanup paths clear the overlays. Asset checks verify invisible initial state, input transparency, topmost ordering and matching silhouette assets. The underlying fixture scores remain 12,199.2 and 50.7 points, with unchanged durations of 4.957330 and 3.647416 seconds. Whole-point UI formatting remains active. Unity reports zero errors, and the isolated Play session is stopped.
+
+`Tools/Rendering/CardCollisionAudit.cs.txt` retains the checks and capture points. Use `exportFrames = false` for pose validation; consecutive batches retain the existing optional full-sequence export. The audit uses no player-controller commands or saves.

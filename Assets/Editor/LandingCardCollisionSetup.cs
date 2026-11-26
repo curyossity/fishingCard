@@ -28,6 +28,8 @@ public static class LandingCardCollisionSetup
         Move(rush.FindProperty("readout").objectReferenceValue, score, LandingCollisionGraphic.ScoreRegion);
         var data = new SerializedObject(owner);
         data.FindProperty("creatureCard").objectReferenceValue = creature; data.FindProperty("scoreCard").objectReferenceValue = score;
+        data.FindProperty("creatureFlash").objectReferenceValue = Flash(creature);
+        data.FindProperty("scoreFlash").objectReferenceValue = Flash(score);
         data.FindProperty("stage").objectReferenceValue = stage;
         data.FindProperty("creatureFade").objectReferenceValue = fade; data.ApplyModifiedPropertiesWithoutUndo();
         rush.FindProperty("collision").objectReferenceValue = owner; rush.ApplyModifiedPropertiesWithoutUndo();
@@ -38,6 +40,19 @@ public static class LandingCardCollisionSetup
         cameraData.ApplyModifiedPropertiesWithoutUndo();
         rush.FindProperty("impactCamera").objectReferenceValue = camera; rush.ApplyModifiedPropertiesWithoutUndo();
         LandingWaterImpactSetup.Configure(root);
+    }
+
+    /// <summary>Places a non-intercepting white silhouette above the panel's artwork and native fields.</summary>
+    private static LandingPanelFlash Flash(RectTransform panel)
+    {
+        var rect = panel.Find("Impact white flash") as RectTransform;
+        if (rect == null) rect = (RectTransform)new GameObject("Impact white flash", typeof(RectTransform), typeof(LandingPanelFlash)).transform;
+        rect.SetParent(panel, false); rect.SetAsLastSibling();
+        rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero;
+        var graphic = rect.GetComponent<LandingPanelFlash>(); graphic.raycastTarget = false; graphic.Show(0);
+        var source = new SerializedObject(panel.GetComponent<LandingCollisionGraphic>());
+        var data = new SerializedObject(graphic); data.FindProperty("panel").objectReferenceValue = source.FindProperty("panel").objectReferenceValue;
+        data.ApplyModifiedPropertiesWithoutUndo(); return graphic;
     }
 
     /// <summary>Leaves clear travel space around smaller rigid faces while preserving their internal native-field layout.</summary>

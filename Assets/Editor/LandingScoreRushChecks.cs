@@ -280,6 +280,12 @@ public static class LandingScoreRushChecks
             Check(rect.sizeDelta == regions[i].size && rect.localScale == Vector3.one * .88f
                 && rect.anchoredPosition == new Vector2(regions[i].center.x + (i == 0 ? -12 : 12), -regions[i].center.y), "Separating artwork moved or resized a collision panel.");
             Check(art.VertexCount == 8, "A moving panel retains a rectangular crop.");
+            var flash = rect.Find("Impact white flash").GetComponent<LandingPanelFlash>();
+            Check(flash != null && !flash.raycastTarget && flash.Opacity == 0 && flash.mainTexture == Texture2D.whiteTexture,
+                "Panel flash starts visible, intercepts input or samples source art.");
+            Check(flash.transform.GetSiblingIndex() == rect.childCount - 1
+                && new SerializedObject(flash).FindProperty("panel").objectReferenceValue == art,
+                "Panel flash does not cover the complete face with its original silhouette.");
             var mesh = new UnityEngine.UI.VertexHelper();
             try
             {

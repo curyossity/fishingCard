@@ -14,8 +14,12 @@ public sealed partial class FishingRunController
     private bool landingTerminalHandled, awaitingRigPlacement, landingResultDismissed;
     private int lastLandingInputFrame = -1;
     private int preparedExtraAttempts, preparedProtectedMisses;
-    private double landingFeedbackUntil;
+    private double landingFeedbackUntil, landingRevealUntil;
     public bool LandingFeedbackPending { get; private set; }
+    /// <summary>True while the encounter creature's entrance plays; motion is held and strikes are rejected.</summary>
+    public bool LandingRevealPending { get; private set; }
+    /// <summary>Real-time start shared by the gate deadline and the reveal presentation, so both end together.</summary>
+    public double LandingRevealStartedAt { get; private set; }
     public LandingChallengeRuntime Landing => landing;
     public LandingStrikeReceipt LastLandingStrike { get; private set; }
     public bool UsesLandingChallenge => UsesSlotMachine && landingChallengeProfile != null;
@@ -39,6 +43,7 @@ public sealed partial class FishingRunController
         landing.Reset(); awaitingRigPlacement = false; landingTerminalHandled = false; landingResultDismissed = false;
         lastLandingInputFrame = -1; landingRandom = new System.Random(unchecked(seed ^ 0x46a32d17));
         LandingFeedbackPending = false; landingFeedbackUntil = 0;
+        LandingRevealPending = false; landingRevealUntil = 0;
         preparedLandingRig = Array.Empty<LandingRigMember>(); landingConfigurationError = null;
     }
 
@@ -70,11 +75,47 @@ public sealed partial class FishingRunController
         landing.Begin(CurrentEncounterRevision, resistance, landingSettings, preparedLandingRig, landingRandom, Time.realtimeSinceStartupAsDouble,
             preparedExtraAttempts, preparedProtectedMisses, CurrentEncounter);
         landingTerminalHandled = false; awaitingRigPlacement = false; lastLandingInputFrame = Time.frameCount;
+        // The entrance is cosmetic: it holds the motion clock and blocks strikes, never delaying or changing an outcome.
+        LandingRevealStartedAt = Time.realtimeSinceStartupAsDouble;
+        LandingRevealPending = fishingRunView != null && fishingRunView.HasLandingRevealPresentation;
+        landingRevealUntil = LandingRevealPending ? LandingRevealStartedAt + LandingRevealTiming.For(CurrentEncounter.Rarity).Duration : 0;
+    }
+
+#if UNITY_EDITOR
+    /// <summary>
+    /// Editor preview only: re-arms the cosmetic entrance gate on the current, unstruck-or-idle Landing so a reveal of any rarity can be
+    /// reviewed without hunting for that creature. Changes no score, attempt, motion setting or encounter identity.
+    /// </summary>
+    public bool PreviewLandingReveal(CardRarity rarity)
+    {
+        if (!UsesLandingChallenge || !runActive || LandingFeedbackPending || awaitingRigPlacement
+            || landing.State != LandingChallengeState.Active) return false;
+        LandingRevealStartedAt = Time.realtimeSinceStartupAsDouble;
+        LandingRevealPending = true;
+        landingRevealUntil = LandingRevealStartedAt + LandingRevealTiming.For(rarity).Duration;
+        return true;
+    }
+#endif
+
+    /// <summary>Ends the cosmetic entrance early (Space/Strike) or at its deadline; the same input frame cannot also strike.</summary>
+    public void CompleteLandingReveal()
+    {
+        if (!LandingRevealPending) return;
+        LandingRevealPending = false;
+        lastLandingInputFrame = Time.frameCount;
+        RefreshViews();
     }
 
     /// <summary>Samples the authoritative clock independently of view frame order; a strike briefly freezes both moving elements.</summary>
     private void AdvanceLanding()
     {
+        if (LandingRevealPending)
+        {
+            double now = Time.realtimeSinceStartupAsDouble;
+            landing.HoldPresentationClock(now);
+            if (now < landingRevealUntil && fishingRunView != null && fishingRunView.HasLandingRevealPresentation) return;
+            CompleteLandingReveal();
+        }
         if (LandingFeedbackPending)
         {
             double now = Time.realtimeSinceStartupAsDouble;
@@ -89,7 +130,7 @@ public sealed partial class FishingRunController
     /// <summary>Commits one occurrence/revision-bound strike, rejecting held keys, duplicate UI submission and input during feedback.</summary>
     public bool TryStrikeLanding(long occurrence, long revision)
     {
-        if (!UsesLandingChallenge || !CoreActionInputReady || awaitingRigPlacement || landingTerminalHandled
+        if (!UsesLandingChallenge || !CoreActionInputReady || LandingRevealPending || awaitingRigPlacement || landingTerminalHandled
             || lastLandingInputFrame == Time.frameCount || !encounterRuntime.AwaitingLandingChallenge
             || landing.EncounterRevision != CurrentEncounterRevision) return false;
         if (!landing.TryStrike(occurrence, revision, Time.realtimeSinceStartupAsDouble)) return false;

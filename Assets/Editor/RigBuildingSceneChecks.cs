@@ -132,6 +132,7 @@ public static class RigBuildingSceneChecks
         SlotReelAnimationChecks.SettleForControlFixture(UnityEngine.Object.FindAnyObjectByType<SlotMachineView>(), controller);
         yield return null;
         Check(controller.TryAcceptSlotMachine(controller.SlotMachine.Revision), "Could not accept Discover.");
+        controller.CompleteLandingReveal(); // Entrance covered by LandingCreatureRevealChecks.
     }
     /// <summary>Constrains only this runtime selector for deterministic duplicate/new-species coverage; no asset or eligibility rule is edited.</summary>
     private static void ForceNextCreature(FishingRunController controller, CardDefinition creature)

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deepwater — White impact flash</title>
+<style>
+body{margin:0;background:#101a19;color:#eee1bf;font:16px/1.5 system-ui,sans-serif}main{max-width:1450px;margin:auto;padding:24px}h1{font-size:28px;margin:0 0 8px}p{max-width:1050px;color:#c6c8b9}video,img{display:block;width:100%;background:#0c1312}section{padding:16px;background:#202e2b;border:1px solid #52655d;border-radius:6px;margin:20px 0}button{background:#e8d299;color:#17241f;border:0;border-radius:4px;padding:11px 16px;font:inherit;cursor:pointer}button:focus-visible{outline:3px solid white;outline-offset:3px}.controls{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 8px}.note{font-size:14px}a{color:#ead39a}.frames{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:16px;margin-top:16px}figure{margin:0}figcaption{padding:8px 0;color:#c6c8b9}summary{cursor:pointer}
+</style>
+<main>
+<h1>White impact flash</h1>
+<p>Both cards flash white at contact, then clear within 55 milliseconds. The final hit keeps its slow approach and close-up, while the flash stays brief.</p>
+<section>
+<video id="combo" controls playsinline loop preload="metadata" poster="Rest.png" src="Combo.mp4"></video>
+<div class="controls"><button id="normal" type="button">Replay at normal speed + sound</button><button id="inspect" type="button">Inspect at ¼ speed · muted</button></div>
+<p class="note" id="mode" aria-live="polite">Normal playback shows the actual in-game timing. Quarter speed is for inspecting the flash.</p>
+</section>
+<details><summary>Inspect the contact frames</summary><div class="frames">
+<figure><img src="FlashOn.png" alt="Both card silhouettes at the white peak."><figcaption>Contact — white peak</figcaption></figure>
+<figure><img src="FlashFade.png" alt="The artwork and score reappear as the white flash fades."><figcaption>25 ms — fading</figcaption></figure>
+<figure><img src="FlashOff.png" alt="The white flash has cleared while the slow-motion impact continues."><figcaption>56 ms — fully clear</figcaption></figure>
+</div></details>
+<p class="note">316 native Unity frames at 60 fps, with audio from the runtime cue schedule. <a href="README.md">Implementation and checks</a> · <a href="Combo.mp4">Open the video directly</a>.</p>
+</main>
+<script>
+const video=document.querySelector('#combo');
+function replay(rate,muted){video.pause();video.currentTime=0;video.playbackRate=rate;video.muted=muted;document.querySelector('#mode').textContent=rate===1?'Normal speed — actual in-game flash and sound timing.':'Quarter-speed inspection — the entire recording is slowed and muted.';video.play().catch(()=>{});}
+document.querySelector('#normal').onclick=()=>replay(1,false);
+document.querySelector('#inspect').onclick=()=>replay(.25,true);
+</script>
+</html>

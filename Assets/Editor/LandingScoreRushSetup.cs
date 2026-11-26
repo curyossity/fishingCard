@@ -103,6 +103,7 @@ public static class LandingScoreRushSetup
         DeepwaterAudioSetup.ConfigureLanding(host.gameObject);
         LandingCardCollisionSetup.Configure(host.gameObject);
         LandingStrikeWaterSetup.Configure(host.gameObject);
+        LandingCreatureRevealSetup.Configure(host.gameObject);
     }
 
     /// <summary>Retains the non-interacting timing-track contact and accepted-button binding through full Landing regeneration.</summary>
