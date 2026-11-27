@@ -37,6 +37,7 @@ public static class LandingCombatCardsSetup
         {
             Configure(root);
             LandingCreatureRevealSetup.Configure(root); LandingOutcomeSetup.Configure(root); LandingDamageFeedbackSetup.Configure(root);
+            LandingDamageNumbersSetup.Configure(root);
             PrefabUtility.SaveAsPrefabAsset(root, LandingChallengeSetup.PrefabPath);
         }
         finally { PrefabUtility.UnloadPrefabContents(root); }
@@ -103,20 +104,32 @@ public static class LandingCombatCardsSetup
         var operation = (TMP_Text)rush.FindProperty("operation").objectReferenceValue;
         Center(operation.rectTransform, new Vector2(200, 28)); Style(operation, bigFont, 18, new Color32(240, 205, 133, 255), 10);
         var source = readout.transform.Find("Active source"); if (source != null) source.gameObject.SetActive(false);
+        // The panel shows only who attacks: the numbers float off the creature card instead (LandingDamageNumbers), so the
+        // readout's own number, effect, grade caption and glow stay hidden. The readout remains the "strike is playing" signal.
+        foreach (Component part in new Component[] { glow, caption, value, operation }) part.gameObject.SetActive(false);
 
         var idle = Child<RectTransform>(left, "Strike idle"); Place(idle, left, new Rect(0, 0, StrikeSize.x, StrikeSize.y));
-        var idleCaption = Text(idle, "Idle caption", Tab, bigFont, 9, Tan, 9, "YOUR STRIKE");
+        var oldCaption = idle.Find("Idle caption"); if (oldCaption != null) UnityEngine.Object.DestroyImmediate(oldCaption.gameObject);
+        Text(left, "Strike caption", Tab, bigFont, 9, Tan, 9, "YOUR STRIKE");
         var hook = Child<Image>(idle, "Hook"); hook.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(HookArt); hook.raycastTarget = false;
         Place(hook.rectTransform, idle, new Rect(Display.x + 92, Display.y + 22, 32, 52));
         var ready = Text(idle, "Ready", new Rect(Display.x + 136, Display.y + 26, 200, 46), bigFont, 32, Cream, 18, "READY");
         var legend = Text(idle, "Legend", new Rect(Display.x, Display.yMax - 34, Display.width, 22), bigFont, 9, Dim, 9, "GOOD · PERFECT");
 
+        // Strike face: the accuracy hit's identity (hook and grade) while the strike's own base rams the creature.
+        var face = Child<RectTransform>(left, "Strike face"); Place(face, left, new Rect(0, 0, StrikeSize.x, StrikeSize.y));
+        var faceHook = Child<Image>(face, "Hook"); faceHook.sprite = hook.sprite; faceHook.raycastTarget = false;
+        Place(faceHook.rectTransform, face, new Rect(Display.x + 72, Display.y + 30, 32, 52));
+        var grade = Text(face, "Grade", new Rect(Display.x + 116, Display.y + 34, 240, 46), bigFont, 30, Cream, 16, "PERFECT");
+        face.gameObject.SetActive(false);
+
         var contributor = Child<Image>(left, "Contributor portrait");
-        Place(contributor.rectTransform, left, new Rect(Display.x + 14, Display.y + 10, 170, 92));
+        Place(contributor.rectTransform, left, new Rect(Display.x + 50, Display.y + 6, Display.width - 100, Display.height - 12));
         contributor.preserveAspect = true; contributor.raycastTarget = false; contributor.enabled = false; contributor.sprite = null;
         var detail = Text((RectTransform)readout.transform, "Contributor detail", new Rect(14, Display.height - 26, Display.width - 28, 20), bigFont, 8, Dim, 8, "");
+        detail.gameObject.SetActive(false);
         var label = Text(left, "Strike label", Slot, bigFont, 10, Tan, 10, LandingStrikePanel.IdleLabel);
-        Order(left, (RectTransform)readout.transform, contributor.transform, idle, label.transform);
+        Order(left, (RectTransform)readout.transform, contributor.transform, idle, face, label.transform);
 
         var portraitOwner = root.GetComponentInChildren<LandingScoringPortrait>(true);
         var scoring = new SerializedObject(portraitOwner);
@@ -133,8 +146,8 @@ public static class LandingCombatCardsSetup
         panelData.FindProperty("ready").objectReferenceValue = ready;
         panelData.FindProperty("hook").objectReferenceValue = hook;
         panelData.FindProperty("readout").objectReferenceValue = readout;
-        panelData.FindProperty("value").objectReferenceValue = value.rectTransform;
-        panelData.FindProperty("operation").objectReferenceValue = operation.rectTransform;
+        panelData.FindProperty("face").objectReferenceValue = face.gameObject;
+        panelData.FindProperty("grade").objectReferenceValue = grade;
         panelData.FindProperty("contributors").objectReferenceValue = portraitOwner;
         panelData.ApplyModifiedPropertiesWithoutUndo();
         view.FindProperty("strikePanel").objectReferenceValue = panel; view.ApplyModifiedPropertiesWithoutUndo();

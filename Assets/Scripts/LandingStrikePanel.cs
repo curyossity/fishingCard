@@ -2,32 +2,29 @@ using TMPro;
 using UnityEngine;
 
 /// <summary>
-/// The player's side of the Landing machine. At rest the Strike gauge shows a hook, READY and the accuracy bases; while a strike's
-/// score plays, the score readout takes the display (grade in the tab, running damage in the window) and each contributing rig
-/// creature appears beside the number with its name in the label slot. The encounter creature lives on the opposite card, so the
-/// two sides never swap identities. Presentation only: values come from the frozen settings and the score presentation.
+/// The player's side of the Landing machine, showing only who is attacking. At rest the Strike gauge shows a hook, READY and the
+/// accuracy bases. During a strike it shows the hook and the grade for the accuracy hit, and each contributing rig creature alone
+/// (portrait, with its name and level in the label slot). The numbers themselves float off the creature card at each ram
+/// (LandingDamageNumbers), and the encounter creature lives on the opposite card, so the two sides never swap identities.
 /// </summary>
 public sealed class LandingStrikePanel : MonoBehaviour
 {
-    [SerializeField] private GameObject idle;
-    [SerializeField] private TMP_Text legend, label, ready;
+    [SerializeField] private GameObject idle, face;
+    [SerializeField] private TMP_Text legend, label, ready, grade;
     [SerializeField] private UnityEngine.UI.Image hook;
     [SerializeField] private CanvasGroup readout;
-    [SerializeField] private RectTransform value, operation;
     [SerializeField] private LandingScoringPortrait contributors;
-    /// <summary>Damage number anchors: centered alone, or shifted right of a contributor portrait.</summary>
-    [SerializeField] private Vector2 valueAlone = new Vector2(0, -6), valueBeside = new Vector2(92, -12), operationBeside = new Vector2(92, 26);
     public const string IdleLabel = "SPACE TO STRIKE", StrikeLabel = "YOUR STRIKE";
 
     private void OnEnable() { if (contributors != null) contributors.Changed += Layout; }
     private void OnDisable() { if (contributors != null) contributors.Changed -= Layout; }
 
-    /// <summary>Places the damage number beside a contributor portrait or centered alone; runs on every contributor swap.</summary>
+    /// <summary>The strike face (hook and grade) gives way to a contributor's portrait the moment one appears.</summary>
     private void Layout()
     {
+        bool striking = readout != null && readout.gameObject.activeSelf;
         bool beside = contributors != null && contributors.IsShowingContributors;
-        if (value != null) value.anchoredPosition = beside ? valueBeside : valueAlone;
-        if (operation != null) { operation.gameObject.SetActive(beside); operation.anchoredPosition = operationBeside; }
+        if (face != null) face.SetActive(striking && !beside);
     }
 
     /// <summary>Names the strike before the score presentation snapshots the panel, so restoring it never reverts to the idle prompt.</summary>
@@ -40,6 +37,12 @@ public sealed class LandingStrikePanel : MonoBehaviour
         if (idle != null) idle.SetActive(!striking);
         bool beside = contributors != null && contributors.IsShowingContributors;
         Layout();
+        if (grade != null && model?.LastScore != null)
+        {
+            var accuracy = model.LastScore.Accuracy;
+            grade.text = accuracy.ToString().ToUpperInvariant();
+            grade.color = accuracy == LandingAccuracy.Perfect ? new Color32(243, 210, 126, 255) : accuracy == LandingAccuracy.Good ? new Color32(242, 230, 200, 255) : new Color32(143, 131, 110, 255);
+        }
         // At rest the gauge mirrors the challenge: ready while it runs, then the line's verdict once it has ended.
         var state = model != null ? model.State : LandingChallengeState.Active;
         bool open = state == LandingChallengeState.Active;

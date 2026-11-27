@@ -215,7 +215,8 @@ public static class LandingScoreRushChecks
         var group=(CanvasGroup)data.FindProperty("readout").objectReferenceValue;
         var portraitOwner=new SerializedObject((LandingScoringPortrait)data.FindProperty("scoringPortrait").objectReferenceValue);
         foreach(string field in new[]{"portrait","creatureName","tags"}) Check(portraitOwner.FindProperty(field).objectReferenceValue!=null,"Missing main-slot binding: "+field);
-        Check(portraitOwner.FindProperty("portrait").objectReferenceValue==new SerializedObject(root.GetComponent<TackleLandingPresentation>()).FindProperty("portrait").objectReferenceValue,"Contributors do not use the encounter portrait slot.");
+        // Contributors appear on the player's Strike panel; the encounter creature keeps its own card.
+        Check(portraitOwner.FindProperty("portrait").objectReferenceValue!=new SerializedObject(root.GetComponent<TackleLandingPresentation>()).FindProperty("portrait").objectReferenceValue,"Contributors still replace the encounter creature's portrait.");
         var oldIcon=group.transform.Find("Active source");Check(oldIcon==null||!oldIcon.gameObject.activeSelf,"The old score icon is still visible.");
         Check(!group.blocksRaycasts&&!group.interactable&&!group.gameObject.activeSelf,"Transient readout starts visible or blocks input.");
         Check(!((LandingRushGraphic)data.FindProperty("particles").objectReferenceValue).raycastTarget,"Trails block input.");
@@ -228,7 +229,9 @@ public static class LandingScoreRushChecks
         var water = new SerializedObject(root.GetComponent<LandingWaterImpact>());
         foreach (string field in new[] { "spray", "number", "collision" }) Check(water.FindProperty(field).objectReferenceValue != null, "Missing water impact binding: " + field);
         var spray = (UnityEngine.UI.RawImage)water.FindProperty("spray").objectReferenceValue;
-        Check(!spray.enabled && !spray.raycastTarget && water.FindProperty("number").objectReferenceValue == ((TMP_Text)data.FindProperty("value").objectReferenceValue).rectTransform, "Water starts visible, intercepts input or pulses another number.");
+        // The digit punch now lands on the DAMAGE counter above the creature card, which shows the strike's running total.
+        var counterValue = (TMP_Text)new SerializedObject(root.GetComponent<LandingDamageNumbers>()).FindProperty("counterValue").objectReferenceValue;
+        Check(!spray.enabled && !spray.raycastTarget && water.FindProperty("number").objectReferenceValue == counterValue.rectTransform, "Water starts visible, intercepts input or pulses another number.");
         var sheets = water.FindProperty("sheets"); Check(sheets.arraySize == 3, "Water lacks its three authored strength tiers.");
         for (int i = 0; i < sheets.arraySize; i++)
         {
@@ -262,52 +265,56 @@ public static class LandingScoreRushChecks
     }
 
     /// <summary>Checks clean movable silhouettes, exact source-pixel registration and unchanged authored collision bounds.</summary>
+    /// <summary>
+    /// Validates the combat-card faces: the left mover is the player's Strike gauge and the right receiver the creature's specimen
+    /// plate, each drawn whole from its own transparent pixel-art frame at true 2x scale, clipped to a convex silhouette that the
+    /// panel flash shares. The machine itself is drawn from the empty-interior variant, so no old panel or flat block shows behind.
+    /// </summary>
     private static void ValidatePanelArtwork(GameObject root)
     {
         var stage = root.transform.Find("1920x1080 Stage");
-        var master = AssetDatabase.LoadAssetAtPath<Sprite>(TackleLandingArtSetup.HousingPath);
         string[] names = { "Creature collision card", "Score collision card" };
-        string[] paths = { LandingPanelArtworkSetup.CreaturePath, LandingPanelArtworkSetup.ScorePath };
-        Rect[] regions = { LandingCollisionGraphic.CreatureRegion, LandingCollisionGraphic.ScoreRegion };
+        string[] paths = { LandingCombatCardsSetup.StrikeAsset, LandingCombatCardsSetup.CreatureAsset };
+        Vector2[] sizes = { LandingCombatCardsSetup.StrikeSize, LandingCombatCardsSetup.CreatureSize };
+        Vector2[] centers = { LandingCombatCardsSetup.StrikeCenter, LandingCombatCardsSetup.CreatureCenter };
         for (int i = 0; i < names.Length; i++)
         {
             var graphic = stage.Find(names[i]).GetComponent<LandingCollisionGraphic>();
             var data = new SerializedObject(graphic);
             var art = (LandingPanelArtwork)data.FindProperty("panel").objectReferenceValue;
-            Check(art != null && AssetDatabase.GetAssetPath(art) == paths[i] && art.Face != null, "A moving panel lacks independent artwork.");
-            Check(data.FindProperty("source").objectReferenceValue == null && art.Face != master && art.Face.texture == master.texture
-                && graphic.mainTexture == master.texture && AssetDatabase.GetAssetPath(art.Face) == paths[i], "Panel artwork duplicates or repaints the source texture.");
+            Check(art != null && AssetDatabase.GetAssetPath(art) == paths[i] && art.Face != null && graphic.mainTexture == art.Face.texture, "A combat card lacks its own frame artwork.");
             var rect = graphic.rectTransform;
-            Check(rect.sizeDelta == regions[i].size && rect.localScale == Vector3.one * .88f
-                && rect.anchoredPosition == new Vector2(regions[i].center.x + (i == 0 ? -12 : 12), -regions[i].center.y), "Separating artwork moved or resized a collision panel.");
-            Check(art.VertexCount == 8, "A moving panel retains a rectangular crop.");
+            Check(rect.sizeDelta == sizes[i] && rect.localScale == Vector3.one && rect.anchoredPosition == new Vector2(centers[i].x, -centers[i].y), "A combat card moved, resized or lost its 2x pixel scale.");
             var flash = rect.Find("Impact white flash").GetComponent<LandingPanelFlash>();
             Check(flash != null && !flash.raycastTarget && flash.Opacity == 0 && flash.mainTexture == Texture2D.whiteTexture,
                 "Panel flash starts visible, intercepts input or samples source art.");
-            Check(flash.transform.GetSiblingIndex() == rect.childCount - 1
-                && new SerializedObject(flash).FindProperty("panel").objectReferenceValue == art,
-                "Panel flash does not cover the complete face with its original silhouette.");
+            Check(flash.transform.GetSiblingIndex() == rect.childCount - 1 && new SerializedObject(flash).FindProperty("panel").objectReferenceValue == art,
+                "Panel flash does not cover the complete face with its silhouette.");
             var mesh = new UnityEngine.UI.VertexHelper();
             try
             {
                 typeof(LandingCollisionGraphic).GetMethod("OnPopulateMesh", Hidden | BindingFlags.DeclaredOnly).Invoke(graphic, new object[] { mesh });
-                Check(mesh.currentVertCount == 8 && mesh.currentIndexCount == 18, "Panel renderer does not use its beveled silhouette.");
-                Rect shell = TackleMachineGeometry.StageBounds; var vertex = new UIVertex(); bool registered = true, convex = true;
+                Check(art.VertexCount >= 8 && mesh.currentVertCount == art.VertexCount && mesh.currentIndexCount == (art.VertexCount - 2) * 3, "Card renderer does not use its silhouette.");
+                var vertex = new UIVertex(); bool registered = true; float sign = 0; bool convex = true;
                 for (int v = 0; v < art.VertexCount; v++)
                 {
                     Vector2 p = art.Point(v), next = art.Point((v + 1) % art.VertexCount), after = art.Point((v + 2) % art.VertexCount);
-                    Vector2 a = next - p, b = after - next;
-                    convex &= a.x * b.y - a.y * b.x < 0 && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1;
+                    Vector2 a = next - p, b = after - next; float cross = a.x * b.y - a.y * b.x;
+                    if (sign == 0) sign = Mathf.Sign(cross);
+                    convex &= cross * sign >= 0 && p.x >= 0 && p.x <= 1 && p.y >= 0 && p.y <= 1;
                     mesh.PopulateUIVertex(ref vertex, v);
-                    Vector2 expected = new Vector2((master.rect.x + (regions[i].x + p.x * regions[i].width - shell.x) / shell.width * master.rect.width) / master.texture.width,
-                        (master.rect.y + (1 - (regions[i].yMax - p.y * regions[i].height - shell.y) / shell.height) * master.rect.height) / master.texture.height);
-                    registered &= ((Vector2)vertex.uv0 - expected).sqrMagnitude < .0000000001f;
+                    registered &= ((Vector2)vertex.uv0 - p).sqrMagnitude < .0000001f;
                 }
-                Check(convex, "Panel silhouette folds over itself or extends outside the preserved bounds.");
-                Check(registered, "Independent panel artwork drifts from the original source pixels.");
+                Check(convex, "Card silhouette folds over itself or leaves its frame.");
+                Check(registered, "Card face drifts from its frame pixels.");
             }
             finally { mesh.Dispose(); }
         }
+        var machine = (RectTransform)new SerializedObject(root.GetComponent<LandingScoreRush>()).FindProperty("machine").objectReferenceValue;
+        var image = machine.GetComponent<UnityEngine.UI.Image>();
+        var housing = machine.Find("Collision housing")?.GetComponent<LandingCollisionGraphic>();
+        Check(image.enabled && AssetDatabase.GetAssetPath(image.sprite) == LandingCombatCardsSetup.EmptyMachine && (housing == null || !housing.enabled),
+            "The machine still draws its old panels or the flat recess block behind the cards.");
     }
 
     /// <summary>Starts an isolated run using actual gameplay commands and installed creature abilities.</summary>

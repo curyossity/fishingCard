@@ -23,6 +23,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private LandingStrikeFeedback feedback;
     [SerializeField] private LandingStrikeContact strikeContact;
     [SerializeField] private LandingDamageFeedback damage;
+    [SerializeField] private LandingDamageNumbers numbers;
     // Serialized aliases retain older prefab/review compatibility; SoundEvents select active takes from the library.
     [SerializeField, HideInInspector] private AudioSource[] voices;
     [SerializeField, HideInInspector] private AudioClip hit, addition, multiplier, payoutSmall, payoutBig, miss;
@@ -86,6 +87,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         scoringPortrait.CaptureEncounter(); collision.Begin(); impactCamera.Begin(collision.ContactDistance); waterImpact.Begin();
         sequence = new LandingScoreSequence(strike.Score); started = Time.realtimeSinceStartupAsDouble; dspStarted = AudioSettings.dspTime;
         timing = new LandingImpactTiming(sequence);
+        if (numbers != null) numbers.Begin(sequence);
         if (strikeContact != null) strikeContact.Clear();
         soundEvents.Clear(); soundCursor = 0;
         bool missed = strike.Score.Accuracy == LandingAccuracy.Miss;
@@ -160,6 +162,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         machine.anchoredPosition = machineRest; glow.color = Color.clear;
         collision.Render(sequence, timing, elapsed, ReducedMotion);
         if (damage != null) damage.Render(sequence, receipt, elapsed, ReducedMotion);
+        if (numbers != null) numbers.Render(sequence, elapsed, ReducedMotion);
         waterImpact.Render(sequence, elapsed, ReducedMotion);
         strikeWater.Render(sequence, receipt.Resistance, elapsed, ReducedMotion);
         impactCamera.Render(sequence, timing, elapsed, collision.ScreenShakeOffset, ReducedMotion);
@@ -181,6 +184,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         RestoreMotion(); if (wasRunning) StopVoices();
         if (collision != null) collision.Clear();
         if (damage != null) damage.Clear();
+        if (numbers != null) numbers.Clear();
         if (waterImpact != null) waterImpact.Clear();
         if (strikeWater != null) strikeWater.Clear();
         if (impactCamera != null) impactCamera.Clear();

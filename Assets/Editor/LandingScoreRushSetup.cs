@@ -107,6 +107,7 @@ public static class LandingScoreRushSetup
         LandingCreatureRevealSetup.Configure(host.gameObject);
         LandingOutcomeSetup.Configure(host.gameObject);
         LandingDamageFeedbackSetup.Configure(host.gameObject);
+        LandingDamageNumbersSetup.Configure(host.gameObject);
     }
 
     /// <summary>Retains the non-interacting timing-track contact and accepted-button binding through full Landing regeneration.</summary>
