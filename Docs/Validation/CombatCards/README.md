@@ -11,6 +11,8 @@
   - Shows the encounter portrait, its tag on the brass name tab, and the **Resistance gauge, which drains**. The number shows what is left, e.g. 29 / 40.
   - The creature entrance, the rarity banner (now across the specimen window, clear of the gauge), the LANDED / ESCAPED beats, the hurt reaction and the damage chip all play on this card.
   - The header keeps the creature's name throughout; contributors no longer replace it.
+- **The machine:** both cards rest directly on the machine's own recess. The original painted panels are erased from the machine art, and the flat placeholder block that used to replace them is gone.
+- **Turns:** every identity change on the Strike panel is now one 0.14 s turn: strike to the first contributor, between contributors, and back to the strike. The old three-turn 0.21 s boundary existed only to tell the creature apart from rig cards on a shared slot.
 - **The ram:** the collision is unchanged (left rams right), so every ram is now the player's side hitting the creature. Previously the first ram was the creature's own card hitting the score.
 
 Art and provenance: [Landing combat cards source](../../UIThemes/TackleApparatusConcept/CombatCards/README.md).

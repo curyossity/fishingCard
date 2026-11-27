@@ -1,8 +1,13 @@
 using UnityEngine;
 
-/// <summary>Samples vertical identity turns, distinguishing encounter/rig boundaries from ordinary contributor changes.</summary>
+/// <summary>
+/// Samples vertical identity turns on the Strike panel. The encounter creature has its own card, so the panel only ever changes
+/// between the player's strike and rig contributors: every change, including entering and leaving rig scoring, is one turn.
+/// </summary>
 public static class LandingCardHandoff
 {
+    /// <summary>Turns for any identity change on the Strike panel.</summary>
+    public const int Turns = 1;
     public readonly struct Frame
     {
         public readonly bool Active;
@@ -21,18 +26,18 @@ public static class LandingCardHandoff
         }
     }
 
-    /// <summary>Uses three turns to enter/leave rig scoring, one between contributors, and none for unchanged identities.</summary>
+    /// <summary>One turn to enter or leave rig scoring and between different contributors; none for unchanged identities.</summary>
     public static Frame Sample(LandingScoreSequence sequence, float elapsed)
     {
         if (sequence.HasContributors)
         {
             if (elapsed >= sequence.EntryAt && elapsed < sequence.Steps[1].Time)
-                return new Frame(sequence.EntryAt, LandingScoreSequence.BoundaryTurnDuration, elapsed, 3, 0, 1);
+                return new Frame(sequence.EntryAt, LandingScoreSequence.BoundaryTurnDuration, elapsed, Turns, 0, 1);
             if (elapsed >= sequence.ReturnAt)
-                return new Frame(sequence.ReturnAt, LandingScoreSequence.BoundaryTurnDuration, elapsed, 3, sequence.Steps.Count - 1, 0);
+                return new Frame(sequence.ReturnAt, LandingScoreSequence.BoundaryTurnDuration, elapsed, Turns, sequence.Steps.Count - 1, 0);
         }
         int index = sequence.StepAt(elapsed);
-        return new Frame(sequence.Steps[index].Time, DurationFor(sequence, index), elapsed, 1, index - 1, index);
+        return new Frame(sequence.Steps[index].Time, DurationFor(sequence, index), elapsed, Turns, index - 1, index);
     }
 
     /// <summary>Skips the separately staged first source and unchanged identities, shortening only compressed grouped windups.</summary>
@@ -42,7 +47,7 @@ public static class LandingCardHandoff
         var incoming = sequence.Steps[index]; var outgoing = sequence.Steps[index - 1];
         bool same = incoming.SourceIds.Count == outgoing.SourceIds.Count;
         for (int i = 0; same && i < incoming.SourceIds.Count; i++) same = incoming.SourceIds[i] == outgoing.SourceIds[i];
-        return same ? 0 : Mathf.Min(.14f, (incoming.LaunchAt - incoming.Time) * .60f);
+        return same ? 0 : Mathf.Min(LandingScoreSequence.BoundaryTurnDuration, (incoming.LaunchAt - incoming.Time) * .60f);
     }
 
     /// <summary>Conceals labels around the swap and fades them with the reduced-motion face.</summary>

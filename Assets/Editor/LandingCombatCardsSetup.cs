@@ -15,6 +15,8 @@ public static class LandingCombatCardsSetup
     public const string Folder = "Assets/UIThemes/TackleApparatus/Art/Landing/Combat/";
     public const string StrikeArt = Folder + "strike-panel.png", CreatureArt = Folder + "creature-card.png", HookArt = Folder + "hook-icon.png", BarArt = Folder + "bar-fill.png";
     public const string StrikeAsset = Folder + "strike-panel.asset", CreatureAsset = Folder + "creature-card.asset";
+    /// <summary>The Landing machine with its two original painted panels erased (Tools/Art/make_empty_landing_machine.py).</summary>
+    public const string EmptyMachine = Folder + "landing-machine-empty.png";
     /// <summary>Card sizes in stage pixels (native art x2) and centers in the shared recess (stage top-left origin).</summary>
     public static readonly Vector2 StrikeSize = new Vector2(452, 220), CreatureSize = new Vector2(428, 232);
     public static readonly Vector2 StrikeCenter = new Vector2(888, 422), CreatureCenter = new Vector2(1408, 422);
@@ -64,6 +66,7 @@ public static class LandingCombatCardsSetup
         var creatureArt = Artwork(CreatureAsset, CreatureArt, 214, 116, new[] { (0f, 12f), (8f, 4f), (67f, 0f), (147f, 0f), (206f, 4f), (214f, 12f), (214f, 108f), (206f, 116f), (8f, 116f), (0f, 108f) });
         Card(left, strikeArt, StrikeSize, StrikeCenter); Card(right, creatureArt, CreatureSize, CreatureCenter);
         CreatureFade(root);
+        Machine(rush);
 
         // Right: the encounter creature, its tag and a draining Resistance gauge.
         var font = ((TMP_Text)view.FindProperty("tags").objectReferenceValue).font;
@@ -138,6 +141,32 @@ public static class LandingCombatCardsSetup
         // The old score panel's captions no longer exist, so nothing is hidden behind the readout.
         rush.FindProperty("coveredLabels").arraySize = 0; rush.ApplyModifiedPropertiesWithoutUndo();
         Flash(left, strikeArt); Flash(right, creatureArt);
+    }
+
+    /// <summary>
+    /// Draws the machine from the empty-interior variant so the combat cards sit directly on the machine's own recess. The
+    /// collision housing (the original art with a flat dark block where its painted panels were) is switched off.
+    /// </summary>
+    static void Machine(SerializedObject rush)
+    {
+        var machine = (RectTransform)rush.FindProperty("machine").objectReferenceValue;
+        var image = machine.GetComponent<Image>();
+        string sourcePath = image.sprite != null ? AssetDatabase.GetAssetPath(image.sprite.texture) : null;
+        var original = sourcePath != null && sourcePath != EmptyMachine ? AssetImporter.GetAtPath(sourcePath) as TextureImporter : null;
+        var importer = AssetImporter.GetAtPath(EmptyMachine) as TextureImporter;
+        if (importer == null) { AssetDatabase.ImportAsset(EmptyMachine, ImportAssetOptions.ForceSynchronousImport); importer = (TextureImporter)AssetImporter.GetAtPath(EmptyMachine); }
+        if (original != null)
+        {
+            // Same import as the original so its pixels register exactly with the stage and the cards.
+            var settings = new TextureImporterSettings(); original.ReadTextureSettings(settings); importer.SetTextureSettings(settings);
+            importer.textureCompression = original.textureCompression; importer.maxTextureSize = original.maxTextureSize;
+            importer.SaveAndReimport();
+        }
+        var empty = AssetDatabase.LoadAssetAtPath<Sprite>(EmptyMachine);
+        if (empty == null) throw new InvalidOperationException("Missing " + EmptyMachine + "; run Tools/Art/make_empty_landing_machine.py.");
+        image.sprite = empty; image.enabled = true;
+        var housing = machine.Find("Collision housing");
+        if (housing != null) { var graphic = housing.GetComponent<LandingCollisionGraphic>(); if (graphic != null) graphic.enabled = false; }
     }
 
     /// <summary>Imports the pixel-art frame crisply and pairs it with its convex silhouette (flash outline and face clip).</summary>

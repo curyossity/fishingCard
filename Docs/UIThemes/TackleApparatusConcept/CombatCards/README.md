@@ -9,6 +9,18 @@ Added 27 November 2026. These two pixel-art frames give the Landing machine a cl
 | `hook-icon.png` | 32 × 52 | Brass hook for the Strike gauge's ready state. |
 | `bar-fill.png` | 12 × 20, 2 px nine-slice border | Red Resistance fill. |
 
+| `landing-machine-empty.png` | 1739 × 904 | The Landing machine with its two original painted panels erased, so the cards sit directly on the machine's own recess. |
+
+### Empty machine interior
+
+[`Tools/Art/make_empty_landing_machine.py`](../../../../Tools/Art/make_empty_landing_machine.py) derives `landing-machine-empty.png` from the untouched `Integrated/landing-machine.png`:
+
+- **The fill:** the old panels sat inside the dark recess with a narrow channel of clean recess around them. The script fills the panel area, including the old panels' drop shadows, with a Coons-patch blend of that channel's colours. This keeps the recess shading, which is darker under the top bevel. It adds quiet 2×2 grain on top.
+- **The corners:** the fill follows the recess's chamfered corners, so the original bevel survives.
+- **Everything else:** every other pixel and every alpha value is copied byte for byte.
+- **Import:** `LandingCombatCardsSetup` imports it with the original's settings and draws the machine from it. It also switches off the old collision housing, which showed a flat dark block where the painted panels were.
+- **Rerun:** `.local-tools/earshot/venv/Scripts/python.exe -I Tools/Art/make_empty_landing_machine.py Assets/UIThemes/TackleApparatus/Art/Landing/Integrated/landing-machine.png Assets/UIThemes/TackleApparatus/Art/Landing/Combat/landing-machine-empty.png`
+
 ## How they were made
 
 - [`Tools/Art/make_combat_cards.py`](../../../../Tools/Art/make_combat_cards.py) draws every frame procedurally on its native pixel grid, then scales it 2× with nearest neighbour.

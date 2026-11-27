@@ -6,7 +6,8 @@ using System.Linq;
 public sealed class LandingScoreSequence
 {
     public const float MaximumDuration = 7.5f;
-    public const float BoundaryTurnDuration = .21f;
+    /// <summary>One Strike-panel turn: entering and leaving rig scoring take the same single turn as a change between contributors.</summary>
+    public const float BoundaryTurnDuration = .14f;
     public readonly struct Step
     {
         public readonly int SourceId;

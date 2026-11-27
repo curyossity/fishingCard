@@ -113,13 +113,14 @@ public static class LandingScoreRushChecks
             var before = LandingCardHandoff.Sample(sequence, start + duration * .25f);
             var middle = LandingCardHandoff.Sample(sequence, start + duration * .5f);
             var after = LandingCardHandoff.Sample(sequence, start + duration * .75f);
-            Check(before.Active && before.Turns == 3 && before.VisibleStep == outgoing, "Boundary loses its outgoing role or three turns.");
+            // The creature has its own card now, so entering/leaving rig scoring is the same single turn as any contributor change.
+            Check(before.Active && before.Turns == 1 && before.VisibleStep == outgoing, "Boundary loses its outgoing role or uses extra turns.");
             Check(middle.Active && middle.VisibleStep == incoming && LandingCardHandoff.FaceOpacity(middle.FacePhase, false) == 0, "Boundary identity swaps outside the hidden middle turn.");
             Check(after.VisibleStep == incoming && LandingCardHandoff.Sample(sequence, start + duration + .00001f).VisibleStep == incoming, "Boundary reverts its revealed identity.");
             Check(sequence.ValueAt(start) == sequence.ValueAt(start + duration - .00001f), "A boundary scores points without a collision.");
         }
         var between = LandingCardHandoff.Sample(sequence, sequence.Steps[2].Time + .03f);
-        Check(between.Active && between.Turns == 1 && between.VisibleStep == 1, "Ordinary attackers use the encounter transition.");
+        Check(between.Active && between.Turns == 1 && between.VisibleStep == 1 && LandingCardHandoff.DurationFor(sequence, 2) <= duration, "Contributor turns differ from the strike-to-rig turn.");
         Check(sequence.ReturnAt == sequence.Steps.Last().EndAt && sequence.PayoutAt >= sequence.ReturnAt + duration, "Return truncates the last rebound or overlaps payout.");
         var ordinary = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 1, Array.Empty<LandingContribution>()));
         Check(!ordinary.HasContributors && !LandingCardHandoff.Sample(ordinary, ordinary.EntryAt).Active && ordinary.Duration < 2, "An empty rig receives encounter/attacker turns.");
