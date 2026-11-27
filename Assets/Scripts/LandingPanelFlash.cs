@@ -10,6 +10,8 @@ public sealed class LandingPanelFlash : MaskableGraphic
 
     /// <summary>Sets the non-intercepting flash; an invisible flash emits no geometry.</summary>
     public void Show(float opacity) => color = new Color(1, 1, 1, Mathf.Clamp01(opacity));
+    /// <summary>Same silhouette in a tint, such as the creature's hurt flash.</summary>
+    public void Show(float opacity, Color tint) => color = new Color(tint.r, tint.g, tint.b, Mathf.Clamp01(opacity));
 
     /// <summary>Follows the original panel outline so deformation and camera zoom retain clean transparent edges.</summary>
     protected override void OnPopulateMesh(VertexHelper mesh)

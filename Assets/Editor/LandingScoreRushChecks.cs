@@ -366,7 +366,8 @@ public static class LandingScoreRushChecks
         Check(owner.Landing.Points==points&&owner.Landing.Revision==revision&&owner.Landing.AttemptsRemaining==attempts,"Presentation reran scoring or attempts.");
         owner.CompleteLandingFeedback();yield return null;
         Check(!rush.IsPlaying,"Skip left animation running.");
-        Check(!scoringPortrait.IsShowingContributors&&mainPortrait.sprite==targetPortrait&&mainName.text==targetName&&mainTags.text==targetTags,"Skip left a contributor in the encounter slot.");
+        // The Strike panel's label returns to its idle prompt once the strike ends; contributors never stay in the slot.
+        Check(!scoringPortrait.IsShowingContributors&&mainPortrait.sprite==targetPortrait&&(mainName.text==targetName||mainName.text==LandingStrikePanel.IdleLabel)&&mainTags.text==targetTags,"Skip left a contributor in the Strike panel.");
         Check(landing.GetComponentsInChildren<AudioSource>().All(s=>!s.isPlaying),"Skip left audio playing.");
         Check(cards.All(c=>c.transform.localScale==Vector3.one&&c.transform.localRotation==Quaternion.identity),"Card transforms did not return to rest.");
         if(owner.Landing.State==LandingChallengeState.Active)yield return Land(owner,true);

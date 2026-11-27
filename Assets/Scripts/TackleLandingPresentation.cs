@@ -21,6 +21,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
     [SerializeField] private LandingScoreRush scoreRush;
     [SerializeField] private LandingCreatureReveal reveal;
     [SerializeField] private LandingOutcome outcome;
+    [SerializeField] private LandingStrikePanel strikePanel;
     private readonly List<TackleRigCardView> cards = new List<TackleRigCardView>();
     private readonly List<UnityEngine.UI.Image> lamps = new List<UnityEngine.UI.Image>();
     private long occurrence = -1, revision = -1, outcomeOccurrence = -1;
@@ -91,6 +92,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             // An escaped creature's haul stays in the column until it has been cashed out, then the cleared rig shows.
             RefreshRig(feedbackPending && receipt != null ? receipt.Members.ToArray() : failure && outcomePending ? controller.LastHaul : controller.CatchChain, model.LastScore, false);
             if (strikeFeedback != null) strikeFeedback.Present(receipt, cards, true, HasRushPresentation);
+            if (strikePanel != null && feedbackPending) strikePanel.BeginStrike();
             if (scoreRush != null) { scoreRush.Present(receipt, cards, feedbackPending); if (!feedbackPending) scoreRush.Finish(); }
         }
         if (scoreRush != null) scoreRush.Tick();
@@ -102,7 +104,11 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         }
         decimal displayed = feedbackPending && scoreRush != null ? scoreRush.DisplayedTotal : model.Points;
         points.text = LandingScoreRush.Format(displayed);
-        progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(displayed / model.Resistance)) : 0, 1);
+        // The creature's Resistance reads as health: the bar and number show what is left, draining as Landing Points land.
+        decimal remaining = Math.Max(0, model.Resistance - displayed);
+        resistance.text = LandingScoreRush.Format(remaining) + " / " + LandingScoreRush.Format(model.Resistance);
+        progressFill.anchorMax = new Vector2(model.Resistance > 0 ? Mathf.Clamp01((float)(remaining / model.Resistance)) : 0, 1);
+        if (strikePanel != null) strikePanel.Refresh(model);
         if (model.Error != null) message.text = model.Error;
         else if (feedbackPending) message.text = "RIG ACTIVATING  ·  SPACE / FINISH TO COMPLETE";
         else if (controller.LandingRevealPending && reveal != null && reveal.IsPlaying) message.text = reveal.Caption;

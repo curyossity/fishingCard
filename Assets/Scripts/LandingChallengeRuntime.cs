@@ -34,6 +34,9 @@ public sealed class LandingChallengeRuntime
     public double FishPosition { get; private set; }
     public double ZonePosition { get; private set; }
     public double FishWidth => settings?.FishWidth ?? 0;
+    /// <summary>Frozen accuracy bases for display (the Strike panel's legend); zero before the first challenge.</summary>
+    public decimal GoodPoints => settings?.GoodPoints ?? 0;
+    public decimal PerfectPoints => settings?.PerfectPoints ?? 0;
     public double GoodWidth => goodWidth;
     public double PerfectWidth => perfectWidth;
     public double GoodZoneGrowth => settings == null ? 0 : goodWidth / settings.GoodWidth - 1;

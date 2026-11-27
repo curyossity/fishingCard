@@ -19,6 +19,8 @@ public sealed class LandingCardCollision : MonoBehaviour
     private bool captured;
     private float faceAlpha;
     public Vector2 ScreenShakeOffset { get; private set; }
+    /// <summary>True while this owner holds the card baselines and resets them every rendered frame.</summary>
+    public bool IsCaptured => captured;
     public float CreatureOffset => captured ? creatureCard.anchoredPosition.x - creatureRest.x : 0;
     public float ScoreOffset => captured ? scoreCard.anchoredPosition.x - scoreRest.x : 0;
     /// <summary>Exposes the moving receiver seam in world space for the independently owned water layer.</summary>

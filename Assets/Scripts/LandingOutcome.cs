@@ -19,6 +19,8 @@ public sealed class LandingOutcome : MonoBehaviour
     [SerializeField] private LandingRarityBanner banner;
     [SerializeField] private CanvasGroup payout;
     [SerializeField] private TMP_Text payoutCaption, payoutValue;
+    /// <summary>Layers that sit behind the creature card and must stay hidden while an escaped creature's card is gone.</summary>
+    [SerializeField] private CanvasGroup[] behindCard = System.Array.Empty<CanvasGroup>();
     private readonly List<TackleRigCardView> cards = new List<TackleRigCardView>();
     private readonly List<CanvasGroup> cardAlpha = new List<CanvasGroup>();
     private readonly List<Vector3> cardScale = new List<Vector3>();
@@ -67,6 +69,7 @@ public sealed class LandingOutcome : MonoBehaviour
             }
         stamped = false; punched = false; landSounded = yankSounded = silent; running = true;
         payoutCaption.text = "HAUL PAID"; DisplayedPayout = 0; payoutValue.text = "0";
+        if (timing.Kind == LandingOutcomeKind.Escaped) Conceal(true);
         if (banner != null) banner.Clear();
         Render(0);
     }
@@ -151,6 +154,8 @@ public sealed class LandingOutcome : MonoBehaviour
 
     private void Play(DeepwaterSoundCue cue, float pitch, float gainDb) { if (sound != null) sound.Play(cue, pitch, gainDb); }
 
+    private void Conceal(bool hidden) { foreach (var layer in behindCard) if (layer != null) layer.alpha = hidden ? 0 : 1; }
+
     /// <summary>
     /// Jumps to the final pose (skip or schedule end): Landed rests stamped in its frame; Escaped leaves the frame empty with the
     /// full payout shown and the rig column cleared. Every transform stays restorable through Clear.
@@ -178,6 +183,7 @@ public sealed class LandingOutcome : MonoBehaviour
     public void Clear()
     {
         running = false;
+        Conceal(false);
 #if UNITY_EDITOR
         frozen = false;
 #endif

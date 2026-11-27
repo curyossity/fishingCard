@@ -16,6 +16,8 @@ public sealed class LandingScoringPortrait : MonoBehaviour
     private bool captured, encounterEnabled, contributing;
     private float encounterNameAlpha;
     public bool IsShowingContributors => contributing;
+    /// <summary>Raised whenever contributors appear or the resting state returns, so dependent layout updates in the same frame.</summary>
+    public event System.Action Changed;
     public Vector3 ProjectileOrigin => portrait.rectTransform.TransformPoint(portrait.rectTransform.rect.center);
 
     /// <summary>Captures the view after the encounter owner has bound the target, including failure or concealed presentation.</summary>
@@ -60,6 +62,7 @@ public sealed class LandingScoringPortrait : MonoBehaviour
                 imageView.gameObject.SetActive(imageView.sprite != null);
             }
         }
+        Changed?.Invoke();
     }
     /// <summary>Restrains source emphasis to the active illustration without moving the portrait frame.</summary>
     public void SetPulse(float amount) { if (captured) portrait.rectTransform.localScale = encounterScale * (1 + (contributing ? amount * .06f : 0)); }
@@ -69,10 +72,13 @@ public sealed class LandingScoringPortrait : MonoBehaviour
     public void RestoreEncounter()
     {
         HideGroup(); contributing = false;
-        if (!captured) return;
-        portrait.sprite = encounterSprite; portrait.enabled = encounterEnabled; portrait.color = encounterColor;
-        portrait.rectTransform.localScale = encounterScale; creatureName.text = encounterName; tags.text = encounterTags;
-        creatureName.alpha = encounterNameAlpha;
+        if (captured)
+        {
+            portrait.sprite = encounterSprite; portrait.enabled = encounterEnabled; portrait.color = encounterColor;
+            portrait.rectTransform.localScale = encounterScale; creatureName.text = encounterName; tags.text = encounterTags;
+            creatureName.alpha = encounterNameAlpha;
+        }
+        Changed?.Invoke();
     }
     /// <summary>Releases the snapshot after skip, completion or phase exit so a later encounter cannot restore stale art.</summary>
     public void EndEncounter() { RestoreEncounter(); captured = false; }

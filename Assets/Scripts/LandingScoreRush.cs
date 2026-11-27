@@ -22,6 +22,7 @@ public sealed class LandingScoreRush : MonoBehaviour
     [SerializeField] private LandingRushGraphic particles;
     [SerializeField] private LandingStrikeFeedback feedback;
     [SerializeField] private LandingStrikeContact strikeContact;
+    [SerializeField] private LandingDamageFeedback damage;
     // Serialized aliases retain older prefab/review compatibility; SoundEvents select active takes from the library.
     [SerializeField, HideInInspector] private AudioSource[] voices;
     [SerializeField, HideInInspector] private AudioClip hit, addition, multiplier, payoutSmall, payoutBig, miss;
@@ -158,6 +159,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         scoringPortrait.SetPulse(0); operation.rectTransform.localScale = operationRest; totalLabel.localScale = totalRest;
         machine.anchoredPosition = machineRest; glow.color = Color.clear;
         collision.Render(sequence, timing, elapsed, ReducedMotion);
+        if (damage != null) damage.Render(sequence, receipt, elapsed, ReducedMotion);
         waterImpact.Render(sequence, elapsed, ReducedMotion);
         strikeWater.Render(sequence, receipt.Resistance, elapsed, ReducedMotion);
         impactCamera.Render(sequence, timing, elapsed, collision.ScreenShakeOffset, ReducedMotion);
@@ -178,6 +180,7 @@ public sealed class LandingScoreRush : MonoBehaviour
         if (strikeContact != null) strikeContact.Clear();
         RestoreMotion(); if (wasRunning) StopVoices();
         if (collision != null) collision.Clear();
+        if (damage != null) damage.Clear();
         if (waterImpact != null) waterImpact.Clear();
         if (strikeWater != null) strikeWater.Clear();
         if (impactCamera != null) impactCamera.Clear();

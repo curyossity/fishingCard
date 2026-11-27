@@ -31,26 +31,36 @@ public static class LandingOutcomeSetup
         var outcome = root.GetComponent<LandingOutcome>(); if (outcome == null) outcome = root.AddComponent<LandingOutcome>();
         var source = new SerializedObject(collision); var viewData = new SerializedObject(view);
         var data = new SerializedObject(outcome);
-        data.FindProperty("creatureCard").objectReferenceValue = source.FindProperty("creatureCard").objectReferenceValue;
-        data.FindProperty("creatureFade").objectReferenceValue = source.FindProperty("creatureFade").objectReferenceValue;
-        data.FindProperty("creatureFlash").objectReferenceValue = source.FindProperty("creatureFlash").objectReferenceValue;
+        // The encounter creature lives on the receiving (right) card.
+        data.FindProperty("creatureCard").objectReferenceValue = LandingCombatCardsSetup.CreatureCard(root);
+        data.FindProperty("creatureFade").objectReferenceValue = LandingCombatCardsSetup.CreatureFade(root);
+        data.FindProperty("creatureFlash").objectReferenceValue = LandingCombatCardsSetup.CreatureFlash(root);
         data.FindProperty("sound").objectReferenceValue = viewData.FindProperty("sound").objectReferenceValue;
         data.FindProperty("impactCamera").objectReferenceValue = camera;
         data.FindProperty("preferences").objectReferenceValue = rush;
-        var payout = Payout(source);
+        var payout = Payout(source, LandingCombatCardsSetup.CreatureCard(root));
         data.FindProperty("payout").objectReferenceValue = payout;
         data.FindProperty("payoutCaption").objectReferenceValue = payout.transform.Find("Caption").GetComponent<TMP_Text>();
         data.FindProperty("payoutValue").objectReferenceValue = payout.transform.Find("Value").GetComponent<TMP_Text>();
-        data.FindProperty("banner").objectReferenceValue = LandingCreatureRevealSetup.Banner(source, rush, BannerName);
+        data.FindProperty("banner").objectReferenceValue = LandingCreatureRevealSetup.Banner(root, rush, BannerName);
+        // Assistance readouts sit in the recess behind the creature card; an escaped creature must not uncover them.
+        var stage = (RectTransform)source.FindProperty("stage").objectReferenceValue;
+        var behind = data.FindProperty("behindCard"); behind.arraySize = 0;
+        foreach (string name in new[] { "Ongoing Assistance", "Assistance Totals" })
+        {
+            var layer = stage.Find(name); if (layer == null) continue;
+            var group = layer.GetComponent<CanvasGroup>(); if (group == null) group = layer.gameObject.AddComponent<CanvasGroup>();
+            group.alpha = 1; group.interactable = layer.GetComponentInChildren<UnityEngine.UI.Selectable>(true) != null; group.blocksRaycasts = true;
+            behind.arraySize++; behind.GetArrayElementAtIndex(behind.arraySize - 1).objectReferenceValue = group;
+        }
         data.ApplyModifiedPropertiesWithoutUndo();
         viewData.FindProperty("outcome").objectReferenceValue = outcome; viewData.ApplyModifiedPropertiesWithoutUndo();
     }
 
     /// <summary>HAUL PAID readout centered in the creature frame, shown only once an escaped creature has left it.</summary>
-    private static CanvasGroup Payout(SerializedObject collision)
+    private static CanvasGroup Payout(SerializedObject collision, RectTransform card)
     {
         var stage = (RectTransform)collision.FindProperty("stage").objectReferenceValue;
-        var card = (RectTransform)collision.FindProperty("creatureCard").objectReferenceValue;
         var rect = stage.Find(PayoutName) as RectTransform;
         if (rect == null) rect = (RectTransform)new GameObject(PayoutName, typeof(RectTransform), typeof(CanvasGroup)).transform;
         rect.SetParent(stage, false); rect.SetAsLastSibling();

@@ -29,32 +29,34 @@ public static class LandingCreatureRevealSetup
         var reveal = root.GetComponent<LandingCreatureReveal>(); if (reveal == null) reveal = root.AddComponent<LandingCreatureReveal>();
         var source = new SerializedObject(collision); var viewData = new SerializedObject(view);
         var data = new SerializedObject(reveal);
-        data.FindProperty("creatureCard").objectReferenceValue = source.FindProperty("creatureCard").objectReferenceValue;
-        data.FindProperty("creatureFade").objectReferenceValue = source.FindProperty("creatureFade").objectReferenceValue;
-        data.FindProperty("creatureFlash").objectReferenceValue = source.FindProperty("creatureFlash").objectReferenceValue;
+        // The encounter creature lives on the receiving (right) card; the left card is the player's Strike gauge.
+        data.FindProperty("creatureCard").objectReferenceValue = LandingCombatCardsSetup.CreatureCard(root);
+        data.FindProperty("creatureFade").objectReferenceValue = LandingCombatCardsSetup.CreatureFade(root);
+        data.FindProperty("creatureFlash").objectReferenceValue = LandingCombatCardsSetup.CreatureFlash(root);
         data.FindProperty("creatureName").objectReferenceValue = viewData.FindProperty("creature").objectReferenceValue;
         data.FindProperty("sound").objectReferenceValue = viewData.FindProperty("sound").objectReferenceValue;
         data.FindProperty("impactCamera").objectReferenceValue = camera;
         data.FindProperty("preferences").objectReferenceValue = rush;
-        data.FindProperty("banner").objectReferenceValue = Banner(source, rush);
+        data.FindProperty("banner").objectReferenceValue = Banner(root, rush);
         data.ApplyModifiedPropertiesWithoutUndo();
         viewData.FindProperty("reveal").objectReferenceValue = reveal; viewData.ApplyModifiedPropertiesWithoutUndo();
     }
 
     /// <summary>
-    /// Places an enamel tag across the lower creature card, above both panels and their flashes, never over the timing track. The
-    /// rarity entrance and the Landing outcome each own one instance (by name) so their lifetimes never interfere.
+    /// Places an enamel tag across the creature card's specimen window, above both cards and their flashes, clear of its Resistance
+    /// gauge and the timing track. The rarity entrance and the Landing outcome each own one instance (by name).
     /// </summary>
-    internal static LandingRarityBanner Banner(SerializedObject collision, LandingScoreRush rush, string layerName = "Rarity banner")
+    internal static LandingRarityBanner Banner(GameObject root, LandingScoreRush rush, string layerName = "Rarity banner")
     {
+        var collision = new SerializedObject(root.GetComponent<LandingCardCollision>());
         var stage = (RectTransform)collision.FindProperty("stage").objectReferenceValue;
-        var card = (RectTransform)collision.FindProperty("creatureCard").objectReferenceValue;
+        var card = LandingCombatCardsSetup.CreatureCard(root);
         var rect = stage.Find(layerName) as RectTransform;
         if (rect == null) rect = (RectTransform)new GameObject(layerName,typeof(RectTransform), typeof(CanvasRenderer), typeof(CanvasGroup), typeof(LandingRarityBanner)).transform;
         rect.SetParent(stage, false); rect.SetAsLastSibling();
         rect.anchorMin = card.anchorMin; rect.anchorMax = card.anchorMax; rect.pivot = new Vector2(.5f, .5f);
         rect.sizeDelta = new Vector2(420, 100); rect.localScale = Vector3.one; rect.localRotation = Quaternion.identity;
-        rect.anchoredPosition = card.anchoredPosition + new Vector2(0, -card.rect.height * card.localScale.y * .2f);
+        rect.anchoredPosition = card.anchoredPosition + new Vector2(0, -card.rect.height * card.localScale.y * .05f);
         var group = rect.GetComponent<CanvasGroup>(); group.alpha = 0; group.blocksRaycasts = false; group.interactable = false;
         var banner = rect.GetComponent<LandingRarityBanner>(); banner.raycastTarget = false;
         var data = new SerializedObject(banner);
