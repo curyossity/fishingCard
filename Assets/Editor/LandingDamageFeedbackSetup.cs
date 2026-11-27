@@ -41,6 +41,11 @@ public static class LandingDamageFeedbackSetup
         chip.rectTransform.anchorMin = Vector2.zero; chip.rectTransform.anchorMax = new Vector2(0, 1); chip.rectTransform.pivot = new Vector2(.5f, .5f);
         chip.rectTransform.offsetMin = chip.rectTransform.offsetMax = Vector2.zero; chip.rectTransform.localScale = Vector3.one;
         chip.raycastTarget = false; chip.color = LandingDamageFeedback.ChipColor; chip.gameObject.SetActive(false);
+        // The remaining-Resistance number and its plate stay readable above the white trail; the panel flash stays on top of all.
+        var resistanceText = ((Component)viewData.FindProperty("resistance").objectReferenceValue).transform;
+        foreach (var layer in new[] { area.parent.Find("Resistance plate"), resistanceText.parent == area.parent ? resistanceText : null })
+            if (layer != null) layer.SetAsLastSibling();
+        var flash = area.parent.GetComponentInChildren<LandingPanelFlash>(true); if (flash != null) flash.transform.SetAsLastSibling();
         var data = new SerializedObject(damage);
         data.FindProperty("collision").objectReferenceValue = collision;
         data.FindProperty("creatureCard").objectReferenceValue = LandingCombatCardsSetup.CreatureCard(root);

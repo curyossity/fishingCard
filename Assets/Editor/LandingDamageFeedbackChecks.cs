@@ -31,8 +31,25 @@ public static class LandingDamageFeedbackChecks
         Check(Mathf.Approximately(span.x, .25f) && Mathf.Approximately(span.y, .75f), "Damage chip does not mark the lost part of the draining bar.");
         Check(LandingDamageFeedback.HurtFlash(.018f, 1, true) < LandingDamageFeedback.HurtFlash(.018f, 1, false), "Reduced motion does not soften the hurt flash.");
         Check(LandingDamageFeedback.Seconds <= .36f, "Reaction outlasts the shortest post-payout feedback tail.");
-        Check(LandingDamageFeedback.Chip(0) == 1 && LandingDamageFeedback.Chip(LandingDamageFeedback.ChipHold) == 1 && LandingDamageFeedback.Chip(-.01f) == 0
-            && LandingDamageFeedback.Chip(LandingDamageFeedback.ChipHold + LandingDamageFeedback.ChipFade) == 0, "Damage chip does not hold, then fade.");
+        // Health trail: red eases down first; the white trail holds on the old value, then eases down after it, never ahead of it.
+        foreach (float intensity in new[] { 0f, .5f, 1f })
+        {
+            bool lags = true; float previousTrail = 0;
+            for (float t = 0; t <= LandingHealthTrail.End(intensity) + .05f; t += 1 / 240f)
+            {
+                float red = LandingHealthTrail.Red(t, intensity), trail = LandingHealthTrail.Trail(t, intensity);
+                lags &= trail <= red + 1e-5f && trail >= previousTrail; previousTrail = trail;
+            }
+            Check(lags && LandingHealthTrail.Red(LandingHealthTrail.RedSeconds(intensity), intensity) == 1 && LandingHealthTrail.Trail(LandingHealthTrail.TrailStart(intensity), intensity) == 0
+                && LandingHealthTrail.Trail(LandingHealthTrail.End(intensity), intensity) == 1, "Health trail does not ease the red down first and then the white after it.");
+        }
+        var trailAtHit = LandingDamageFeedback.Trail(10, 30, 40, .02f, 0);
+        Check(trailAtHit.y == .75f && trailAtHit.x < .75f && trailAtHit.x > .25f, "White trail does not hold the old Resistance while the red drains.");
+        // Control waits for the whole drain on a damaging strike; a zero-point Miss keeps its short tail.
+        var damaging = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 1, Array.Empty<LandingContribution>()));
+        var miss = new LandingScoreSequence(new LandingScore(LandingAccuracy.Miss, 0, 0, 1, Array.Empty<LandingContribution>()));
+        Check(damaging.Duration - damaging.PayoutAt >= LandingHealthTrail.End(damaging.Intensity) && miss.Duration - miss.PayoutAt < LandingHealthTrail.End(0),
+            "Feedback releases control before the health bar settles, or delays a Miss.");
         return checks;
     }
 
@@ -83,15 +100,24 @@ public static class LandingDamageFeedbackChecks
             Check(card.anchoredPosition.x > cardRest.x + 3, "Creature card did not flinch away from the Strike panel.");
             Check(flash.color.r > .9f && flash.color.g < .6f && flash.color.a > .2f, "Creature panel did not take a hurt tint.");
             float from = 1 - (float)(receipt.PointsAfter / receipt.Resistance), to = 1 - (float)(receipt.PointsBefore / receipt.Resistance);
-            Check(chip.gameObject.activeSelf && Mathf.Abs(chip.rectTransform.anchorMin.x - from) < .001f && Mathf.Abs(chip.rectTransform.anchorMax.x - to) < .001f, "Damage chip does not span the Resistance just lost.");
+            float intensity = sequence.Intensity;
+            // Early: the red is draining and the white trail still holds the old Resistance.
+            Check(chip.gameObject.activeSelf && Mathf.Abs(chip.rectTransform.anchorMax.x - to) < .001f && chip.rectTransform.anchorMin.x > from + .001f && chip.rectTransform.anchorMin.x < to - .001f,
+                "White trail does not hold the old Resistance while the red drains.");
+            yield return SeekRush(rush, payout + LandingHealthTrail.TrailStart(intensity) - .02f);
+            Check(chip.gameObject.activeSelf && Mathf.Abs(chip.rectTransform.anchorMin.x - from) < .001f && Mathf.Abs(chip.rectTransform.anchorMax.x - to) < .001f, "Red did not settle on the new Resistance before the trail drains.");
+            yield return SeekRush(rush, payout + LandingHealthTrail.TrailStart(intensity) + LandingHealthTrail.DrainSeconds * .5f);
+            Check(chip.gameObject.activeSelf && chip.rectTransform.anchorMax.x < to - .01f && chip.rectTransform.anchorMax.x > from + .01f && owner.LandingFeedbackPending, "White trail does not ease down while control is still held.");
+            Check(sequence.Duration - payout >= LandingHealthTrail.End(intensity), "Feedback gate can release control before the trail settles.");
             reduced.SetIsOnWithoutNotify(true);
             yield return SeekRush(rush, payout + .04f);
             Check((card.anchoredPosition - cardRest).sqrMagnitude < .01f && card.localRotation == rotationRest && flash.color.a > 0 && chip.gameObject.activeSelf, "Reduced motion moved the card or dropped the tint and chip.");
             reduced.SetIsOnWithoutNotify(false);
-            // The rush ends itself at payout + 0.36 s at the earliest, so every seek stays inside that tail.
-            yield return Film(rush, "Strike", payout - .12f, payout + .35f, severity);
-            yield return SeekRush(rush, payout + .355f);
-            Check(!chip.gameObject.activeSelf && (card.anchoredPosition - cardRest).sqrMagnitude < .01f, "Reaction did not settle before the feedback tail ended.");
+            // The rush ends itself at its sequence duration (after the trail settles), so every seek stays inside that tail.
+            float end = LandingHealthTrail.End(intensity);
+            yield return Film(rush, "Strike", payout - .12f, payout + end + .04f, severity);
+            yield return SeekRush(rush, payout + end + .02f);
+            Check(!chip.gameObject.activeSelf && (card.anchoredPosition - cardRest).sqrMagnitude < .01f, "Reaction or trail did not settle before the feedback tail ended.");
             owner.CompleteLandingFeedback(); yield return null;
             Check(!chip.gameObject.activeSelf && (card.anchoredPosition - cardRest).sqrMagnitude < .01f && card.localScale == scaleRest && flash.color.a == 0, "Skipping left the reaction or chip behind.");
 
@@ -125,7 +151,10 @@ public static class LandingDamageFeedbackChecks
         string frames = "Temp/DamageFeedbackPreview/" + name + "/";
         if (Directory.Exists(frames)) Directory.Delete(frames, true); Directory.CreateDirectory(frames);
         int count = Mathf.CeilToInt((to - from) * 60); float payout = rush.Sequence.PayoutAt;
-        var stills = new[] { payout - .05f, payout + .02f, payout + .06f, payout + .14f, payout + .3f }.Select(t => Mathf.RoundToInt((t - from) * 60)).ToArray();
+        float strength = rush.Sequence.Intensity, trail = LandingHealthTrail.TrailStart(strength);
+        // Before the hit, red draining under the held white trail, red settled, white trail draining, settled.
+        var stills = new[] { payout - .05f, payout + .05f, payout + trail - .03f, payout + trail + LandingHealthTrail.DrainSeconds * .5f, payout + LandingHealthTrail.End(strength) + .02f }
+            .Select(t => Mathf.RoundToInt((t - from) * 60)).ToArray();
         for (int i = 0; i < count; i++)
         {
             yield return SeekRush(rush, from + i / 60f);

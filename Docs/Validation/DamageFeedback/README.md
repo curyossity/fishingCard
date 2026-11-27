@@ -10,10 +10,10 @@ At the score payout, the moment a strike's points transfer into accumulated Land
   - The creature card is knocked away from the Strike panel (8–28 px, to the right), with a short shake, a tilt of up to 5.5° and a brief squash.
   - A red hurt tint flashes over its panel silhouette, reusing the existing contact-flash outline in a tint.
 - **Fish thrash:** the moving fish in the timing glass thrashes sideways while the motion clock is held, then returns exactly to its gameplay position.
-- **Damage chip:**
-  - A bright cream segment marks the part of the draining Resistance bar the strike just took away.
-  - It swells slightly, holds 0.1 s, then fades over 0.24 s while the fill drains underneath it, like a fighting-game health bar.
-  - It sits beside the clipped bar on the creature card, so it travels with the card.
+- **Health trail** (`LandingHealthTrail`):
+  - The red fill eases down from the old Resistance to the new one (0.45–0.63 s, ease-out). A white trail stays on the old value meanwhile, showing how much was lost.
+  - Once the red has settled, the trail holds 0.15 s, then eases down over 0.35 s (ease in-out) until it meets the red. A damaging strike keeps control until the trail settles (`LandingScoreSequence.Duration` = payout + `LandingHealthTrail.Tail`); a Miss keeps its short tail.
+  - It sits beside the clipped bar on the creature card, under the remaining-Resistance plate, so it travels with the card and never hides the number.
 - **Severity:**
   - It follows the share of Resistance the strike dealt: `0.25 + 1.5 × share`, clamped to 1.
   - A finishing blow is lifted to at least 0.85.
@@ -34,16 +34,16 @@ At the score payout, the moment a strike's points transfer into accumulated Land
 
 ## Verification
 
-- **8 timing assertions** (`LandingDamageFeedbackChecks.ValidateTiming`):
+- **12 timing assertions** (`LandingDamageFeedbackChecks.ValidateTiming`):
   - There is no reaction without damage, and severity scales with the share of Resistance, with the finishing-blow lift.
   - Every channel returns to rest, knockback points away from the Strike panel, scaled by severity, and the chip span matches the lost Resistance.
   - Reduced motion softens the tint, and the reaction fits within the post-payout tail.
-  - The chip holds, then fades.
-- **[Live](LiveVerification.json): 12 assertions** in a fresh comparison Play session with persistence disabled. A real Perfect against Cod deals non-finishing damage:
+  - The red eases down first; the trail holds, then eases after it and never ahead of it. Control waits for the trail on damaging strikes but not on a Miss.
+- **[Live](LiveVerification.json): 15 assertions** in a fresh comparison Play session with persistence disabled. A real Perfect against Cod deals non-finishing damage:
   - There is no chip before the payout.
-  - At the payout the creature card is knocked back (away from the Strike panel), takes the hurt tint, and the chip spans exactly the Resistance just lost.
+  - At the payout the creature card is knocked back (away from the Strike panel) and takes the hurt tint. The white trail holds the old Resistance while the red drains, the red settles on the new value, then the trail eases down while control is still held.
   - Reduced motion keeps the card still while keeping the tint and the chip.
   - Everything settles inside the tail, and skipping restores the card, flash and chip.
   - A real Miss produces no reaction.
-- **Previews:** [normal speed](Strike.mp4) and [quarter speed](Strike-QuarterSpeed.mp4), cropped to the machine. Stills `Strike-1…5` run from just before the payout to settling.
+- **Previews:** [normal speed](Strike.mp4) and [quarter speed](Strike-QuarterSpeed.mp4), cropped to the machine. Stills `Strike-1…5` run from just before the payout to settling. They were recorded with the earlier, faster red drain (0.27 s); the red is now 0.45–0.63 s.
 - Not yet verified: human play feel across large late-game hits.

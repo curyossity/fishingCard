@@ -14,7 +14,8 @@ public sealed class LandingDamageFeedback : MonoBehaviour
     [SerializeField] private RectTransform creatureCard, fish;
     [SerializeField] private LandingPanelFlash creatureFlash;
     [SerializeField] private Image chip;
-    public const float Seconds = .36f, ChipHold = .1f, ChipFade = .24f;
+    /// <summary>Length of the hurt reaction (knockback, tint, thrash); the white trail follows LandingHealthTrail instead.</summary>
+    public const float Seconds = .36f;
     public static readonly Color HurtTint = new Color32(255, 112, 92, 255), ChipColor = new Color32(255, 244, 206, 255);
     private Vector3 chipScale = Vector3.one;
     private bool chipCaptured;
@@ -68,12 +69,16 @@ public sealed class LandingDamageFeedback : MonoBehaviour
         return (3 + 7 * severity) * Mathf.Sin(age * 70) * Mathf.Exp(-age * 9) * (1 - age / Seconds);
     }
 
-    /// <summary>Damage chip opacity: full on the hit, held briefly, then fading as the fill absorbs it.</summary>
-    public static float Chip(float age)
+    /// <summary>
+    /// The white damage trail on the draining bar, as remaining-Resistance anchors (x = draining red edge, y = trail edge). The
+    /// red eases from the old value to the new one; the trail holds on the old value, then eases down until it meets the red.
+    /// </summary>
+    public static Vector2 Trail(decimal before, decimal after, decimal resistance, float age, float intensity)
     {
-        if (age < 0) return 0;
-        if (age < ChipHold) return 1;
-        return 1 - Mathf.Clamp01((age - ChipHold) / ChipFade);
+        var span = ChipSpan(before, after, resistance);
+        float red = Mathf.Lerp(span.y, span.x, LandingHealthTrail.Red(age, intensity));
+        float trail = Mathf.Lerp(span.y, span.x, LandingHealthTrail.Trail(age, intensity));
+        return new Vector2(red, trail);
     }
 
     /// <summary>Samples the reaction at a score-sequence time; call after the collision has written its own pose for the frame.</summary>
@@ -82,7 +87,7 @@ public sealed class LandingDamageFeedback : MonoBehaviour
         if (sequence == null || receipt == null) { Clear(); return; }
         float age = elapsed - sequence.PayoutAt;
         float severity = Severity(receipt.PointsBefore, receipt.PointsAfter, receipt.Resistance);
-        RenderChip(receipt, age, severity, reduced);
+        RenderChip(receipt, age, severity, sequence.Intensity, reduced);
         if (severity <= 0 || age < 0 || age > Seconds) return;
         if (creatureFlash != null) creatureFlash.Show(HurtFlash(age, severity, reduced), HurtTint);
         if (reduced || collision == null || !collision.IsCaptured) return;
@@ -101,20 +106,19 @@ public sealed class LandingDamageFeedback : MonoBehaviour
         return new Vector2(Mathf.Clamp01(1 - (float)(after / resistance)), Mathf.Clamp01(1 - (float)(before / resistance)));
     }
 
-    /// <summary>Marks the section of the draining Resistance bar that this strike just took away.</summary>
-    private void RenderChip(LandingStrikeReceipt receipt, float age, float severity, bool reduced)
+    /// <summary>Draws the white trail between the draining red edge and the trail edge; it disappears once they meet.</summary>
+    private void RenderChip(LandingStrikeReceipt receipt, float age, float severity, float intensity, bool reduced)
     {
         if (chip == null) return;
-        float opacity = severity > 0 ? Chip(age) : 0;
-        chip.gameObject.SetActive(opacity > 0);
-        if (opacity <= 0) return;
+        var trail = severity > 0 && age >= 0 ? Trail(receipt.PointsBefore, receipt.PointsAfter, receipt.Resistance, age, intensity) : Vector2.zero;
+        bool visible = trail.y - trail.x > .002f;
+        chip.gameObject.SetActive(visible);
+        if (!visible) return;
         if (!chipCaptured) { chipScale = chip.rectTransform.localScale; chipCaptured = true; }
-        var span = ChipSpan(receipt.PointsBefore, receipt.PointsAfter, receipt.Resistance);
-        float from = span.x, to = span.y;
         var rect = chip.rectTransform;
-        rect.anchorMin = new Vector2(from, 0); rect.anchorMax = new Vector2(Mathf.Max(to, from + .004f), 1);
+        rect.anchorMin = new Vector2(trail.x, 0); rect.anchorMax = new Vector2(trail.y, 1);
         rect.offsetMin = rect.offsetMax = Vector2.zero;
-        chip.color = new Color(ChipColor.r, ChipColor.g, ChipColor.b, opacity);
+        chip.color = ChipColor;
         // A quick vertical swell sells the hit; reduced motion keeps the chip still.
         float swell = reduced || age < 0 ? 1 : 1 + .35f * Mathf.Exp(-age * 20);
         rect.localScale = new Vector3(chipScale.x, chipScale.y * swell, chipScale.z);

@@ -99,7 +99,8 @@ public sealed class LandingScoreSequence
         Steps = steps.AsReadOnly();
         ReturnAt = time;
         PayoutAt = ReturnAt + boundaryTime + .10f + Intensity * .24f;
-        Duration = PayoutAt + .36f + Intensity * .34f;
+        // A damaging strike holds control until the Resistance bar's red drain and white trail have both finished.
+        Duration = PayoutAt + LandingHealthTrail.Tail(Intensity, score.Points > 0);
     }
 
     /// <summary>Balances relative growth and points gained against the accuracy base, so nominally small multipliers cannot fake a huge impact.</summary>

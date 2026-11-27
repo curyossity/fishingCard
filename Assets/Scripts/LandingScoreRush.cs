@@ -144,9 +144,9 @@ public sealed class LandingScoreRush : MonoBehaviour
                 sound.PlayFrozen(cue.Cue, cue.Clip, cue.Pitch, cue.Gain, dspStarted + cue.Time);
         }
         float payoutAge = elapsed - sequence.PayoutAt;
-        float transfer = payout ? Mathf.Clamp01(payoutAge / (.27f + sequence.Intensity * .12f)) : 0;
-        float eased = 1 - Mathf.Pow(1 - transfer, 3);
-        DisplayedTotal = transfer >= 1 ? receipt.PointsAfter : receipt.PointsBefore + (receipt.PointsAfter - receipt.PointsBefore) * (decimal)eased;
+        // The Resistance bar's red fill follows this eased transfer (see LandingHealthTrail).
+        float eased = payout ? LandingHealthTrail.Red(payoutAge, sequence.Intensity) : 0;
+        DisplayedTotal = eased >= 1 ? receipt.PointsAfter : receipt.PointsBefore + (receipt.PointsAfter - receipt.PointsBefore) * (decimal)eased;
         DisplayedStrike = payout ? receipt.Score.Points : sequence.ValueAt(elapsed);
 
         value.text = Format(DisplayedStrike);
