@@ -132,7 +132,7 @@ public sealed partial class FishingRunController : MonoBehaviour
         catchChainRuntime, encounterRuntime, techniqueEffectRuntime, effectResolver, eventPersistenceRuntime);
     public bool HasPendingCreatureChoice => PendingCreatureChoice != CreatureEffectChoiceKind.None;
 
-    private bool CoreActionInputReady => runActive && !LandingFeedbackPending && !rigResolutionInProgress && !RigAcquisitionFeedbackVisible && !EventActionInputLocked && !HasPendingTechniqueSelection
+    private bool CoreActionInputReady => runActive && !LandingFeedbackPending && !LandingOutcomePending && !rigResolutionInProgress && !RigAcquisitionFeedbackVisible && !EventActionInputLocked && !HasPendingTechniqueSelection
         && (fishingRunView == null || !fishingRunView.IsEncounterTransitionPlaying)
         && !techniqueEffectInProgress && techniqueDeckRuntime.ResolvingCard == null && string.IsNullOrEmpty(techniquePlayFailure)
         && !encounterRuntime.IsRevealReactionInProgress && !techniqueCompletionPending
@@ -2205,6 +2205,8 @@ public sealed partial class FishingRunController : MonoBehaviour
     /// </summary>
     private void RefreshViews()
     {
+        // Before any phase view switches, let the Tackle transition capture the outgoing screen.
+        if (fishingRunView != null) fishingRunView.PreparePhaseChange(this);
         if (fishingRunView != null) fishingRunView.SetLanding(this);
         PrepareCreatureChoice();
         RefreshCreatureChoiceView();

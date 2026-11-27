@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Rare and Legendary entrance banner: a tilted enamel tag stamped across the encounter creature's card when its face lands.
-/// It shares the strike ribbon's construction (brass bevel, studs, swallowtails) but uses a dark enamel face so it never reads as
-/// a scoring result. Four studs echo the card faces' rarity hooks. Presentation only; it never changes the encounter.
+/// Tilted enamel tag stamped across the encounter creature's card. Rare and Legendary entrances use it with four studs echoing the
+/// card faces' rarity hooks; the Landing outcome reuses the same construction (brass bevel, studs, swallowtails) as a LANDED (green)
+/// or ESCAPED (rust) stamp without rarity studs. Dark enamel faces keep it from reading as a scoring result. Presentation only.
 /// </summary>
 [RequireComponent(typeof(CanvasRenderer))]
 public sealed class LandingRarityBanner : MaskableGraphic
@@ -15,10 +15,17 @@ public sealed class LandingRarityBanner : MaskableGraphic
     [SerializeField] private LandingScoreRush preferences;
     private CardRarity rarity;
     private double stampedAt;
-    private bool active;
+    private bool active, outcomeStamp;
+    private LandingOutcomeKind outcome;
+    private float outcomeHold;
     private Quaternion restRotation;
     private Vector3 restScale;
+    private Vector2 faceRest, shadowRest;
     private bool captured;
+    /// <summary>Seconds from the stamp until the fold begins for whichever stamp is showing.</summary>
+    private float CurrentHold => outcomeStamp ? outcomeHold : Hold(rarity);
+    public bool IsOutcome => outcomeStamp;
+    public LandingOutcomeKind Outcome => outcome;
     public const float Tilt = -4, StampSeconds = .16f, FoldSeconds = .16f;
     public bool IsShowing => active;
     public CardRarity Rarity => rarity;
@@ -46,20 +53,27 @@ public sealed class LandingRarityBanner : MaskableGraphic
     public static float StampRotation(float age) => Tilt - 6 * (1 - Mathf.SmoothStep(0, 1, Mathf.Clamp01(age / StampSeconds)));
 
     /// <summary>Vertical projection while folding away with the cards' turn language; 1 while held.</summary>
-    public static float Fold(float age, CardRarity value)
+    public static float Fold(float age, CardRarity value) => Fold(age, Hold(value));
+    /// <summary>Fold for an explicit hold; an infinite hold never folds.</summary>
+    public static float Fold(float age, float hold)
     {
-        float u = Mathf.Clamp01((age - Hold(value)) / FoldSeconds);
+        float u = Mathf.Clamp01((age - hold) / FoldSeconds);
         return Mathf.Max(.015f, Mathf.Cos(u * Mathf.PI * .5f));
     }
 
     /// <summary>Whole-banner opacity; reduced motion fades in and out instead of stamping and folding.</summary>
-    public static float Opacity(float age, CardRarity value, bool reduced)
+    public static float Opacity(float age, CardRarity value, bool reduced) => Opacity(age, Hold(value), reduced);
+    /// <summary>Opacity for an explicit hold; an infinite hold stays visible until cleared.</summary>
+    public static float Opacity(float age, float hold, bool reduced)
     {
-        if (age < 0 || age >= Lifetime(value)) return 0;
+        if (age < 0 || age >= hold + FoldSeconds) return 0;
         float fadeIn = Mathf.Clamp01(age / (reduced ? .15f : .04f));
-        float fadeOut = reduced ? 1 - Mathf.Clamp01((age - Hold(value)) / FoldSeconds) : (age > Hold(value) + FoldSeconds * .8f ? 0 : 1);
+        float fadeOut = reduced ? 1 - Mathf.Clamp01((age - hold) / FoldSeconds) : (age > hold + FoldSeconds * .8f ? 0 : 1);
         return fadeIn * fadeOut;
     }
+
+    /// <summary>Single word on an outcome stamp.</summary>
+    public static string Word(LandingOutcomeKind value) => value == LandingOutcomeKind.Landed ? "LANDED" : "ESCAPED";
 
     /// <summary>Legendary glint position across the plate (-1..1), or NaN when no glint is visible.</summary>
     public static float Glint(float age, CardRarity value)
@@ -73,23 +87,42 @@ public sealed class LandingRarityBanner : MaskableGraphic
     public void Stamp(CardRarity value, double at)
     {
         if (!Announces(value)) { Clear(); return; }
-        Capture(); rarity = value; stampedAt = at; active = true;
+        Capture(); rarity = value; stampedAt = at; active = true; outcomeStamp = false;
         face.text = shadow.text = Word(value);
         bool legendary = value == CardRarity.Legendary;
         face.color = legendary ? new Color32(255, 214, 102, 255) : new Color32(255, 248, 218, 255);
         shadow.color = legendary ? new Color32(70, 42, 8, 230) : new Color32(9, 32, 38, 230);
+        face.rectTransform.anchoredPosition = faceRest; shadow.rectTransform.anchoredPosition = shadowRest;
         Tick();
     }
+
+    /// <summary>Stamps a LANDED or ESCAPED tag at an absolute real-time moment; it folds after the given hold (infinite stays until cleared).</summary>
+    public void StampOutcome(LandingOutcomeKind value, double at, float hold)
+    {
+        Capture(); outcome = value; outcomeHold = hold; stampedAt = at; active = true; outcomeStamp = true;
+        face.text = shadow.text = Word(value);
+        bool landed = value == LandingOutcomeKind.Landed;
+        face.color = landed ? new Color32(255, 248, 218, 255) : new Color32(255, 226, 204, 255);
+        shadow.color = landed ? new Color32(8, 34, 20, 230) : new Color32(46, 10, 6, 230);
+        // Without the rarity stud row the word sits in the middle of the plate.
+        face.rectTransform.anchoredPosition = faceRest + Vector2.down * 9; shadow.rectTransform.anchoredPosition = shadowRest + Vector2.down * 9;
+        Tick();
+    }
+
+#if UNITY_EDITOR
+    /// <summary>Editor review only: moves the stamp moment so seeked captures keep the banner on the owner's clock.</summary>
+    public void Rebase(double at) { if (active) stampedAt = at; }
+#endif
 
     /// <summary>Samples the stamp, hold, glint and fold; clears itself after its lifetime.</summary>
     public void Tick()
     {
         if (!active) return;
-        float age = Age;
-        if (age >= Lifetime(rarity)) { Clear(); return; }
+        float age = Age, hold = CurrentHold;
+        if (age >= hold + FoldSeconds) { Clear(); return; }
         bool reduced = Reduced;
-        group.alpha = Opacity(age, rarity, reduced);
-        float scale = reduced ? 1 : StampScale(age), fold = reduced ? 1 : Fold(age, rarity);
+        group.alpha = Opacity(age, hold, reduced);
+        float scale = reduced ? 1 : StampScale(age), fold = reduced ? 1 : Fold(age, hold);
         rectTransform.localScale = new Vector3(restScale.x * scale, restScale.y * scale * fold, restScale.z);
         rectTransform.localRotation = restRotation * Quaternion.Euler(0, 0, reduced ? Tilt : StampRotation(age));
         SetVerticesDirty();
@@ -100,14 +133,20 @@ public sealed class LandingRarityBanner : MaskableGraphic
     {
         active = false;
         if (group != null) group.alpha = 0;
-        if (captured) { rectTransform.localScale = restScale; rectTransform.localRotation = restRotation; }
+        if (captured)
+        {
+            rectTransform.localScale = restScale; rectTransform.localRotation = restRotation;
+            if (face != null) face.rectTransform.anchoredPosition = faceRest;
+            if (shadow != null) shadow.rectTransform.anchoredPosition = shadowRest;
+        }
         SetVerticesDirty();
     }
 
     private void Capture()
     {
         if (captured) return;
-        restScale = rectTransform.localScale; restRotation = rectTransform.localRotation; captured = true;
+        restScale = rectTransform.localScale; restRotation = rectTransform.localRotation;
+        faceRest = face.rectTransform.anchoredPosition; shadowRest = shadow.rectTransform.anchoredPosition; captured = true;
     }
 
     protected override void OnDisable() { Clear(); base.OnDisable(); }
@@ -116,13 +155,14 @@ public sealed class LandingRarityBanner : MaskableGraphic
     protected override void OnPopulateMesh(VertexHelper mesh)
     {
         mesh.Clear(); if (!active) return;
-        bool legendary = rarity == CardRarity.Legendary;
+        bool legendary = !outcomeStamp && rarity == CardRarity.Legendary;
+        bool landed = outcomeStamp && outcome == LandingOutcomeKind.Landed, escaped = outcomeStamp && !landed;
         Color shade = new Color32(20, 14, 10, 220), dark = new Color32(92, 58, 24, 255);
-        Color gold = legendary ? (Color)new Color32(246, 192, 66, 255) : new Color32(214, 160, 62, 255);
-        Color light = legendary ? (Color)new Color32(255, 238, 160, 255) : new Color32(242, 212, 136, 255);
-        Color enamel = legendary ? (Color)new Color32(26, 21, 18, 255) : new Color32(28, 82, 96, 255);
-        Color inner = legendary ? (Color)new Color32(40, 32, 24, 255) : new Color32(22, 64, 76, 255);
-        Color tail = legendary ? (Color)new Color32(54, 40, 26, 255) : new Color32(20, 58, 68, 255);
+        Color gold = legendary ? (Color)new Color32(246, 192, 66, 255) : escaped ? new Color32(168, 116, 52, 255) : new Color32(214, 160, 62, 255);
+        Color light = legendary ? (Color)new Color32(255, 238, 160, 255) : escaped ? new Color32(206, 170, 110, 255) : new Color32(242, 212, 136, 255);
+        Color enamel = legendary ? (Color)new Color32(26, 21, 18, 255) : landed ? new Color32(30, 96, 58, 255) : escaped ? new Color32(124, 38, 26, 255) : new Color32(28, 82, 96, 255);
+        Color inner = legendary ? (Color)new Color32(40, 32, 24, 255) : landed ? new Color32(24, 76, 46, 255) : escaped ? new Color32(98, 30, 20, 255) : new Color32(22, 64, 76, 255);
+        Color tail = legendary ? (Color)new Color32(54, 40, 26, 255) : landed ? new Color32(20, 66, 40, 255) : escaped ? new Color32(86, 26, 18, 255) : new Color32(20, 58, 68, 255);
         for (int side = -1; side <= 1; side += 2)
         {
             Vector2 a = new Vector2(side * 148, 18), b = new Vector2(side * 213, 18), c = new Vector2(side * 198, -8);
@@ -140,8 +180,17 @@ public sealed class LandingRarityBanner : MaskableGraphic
         Plate(mesh, new Vector2(0, 2), new Vector2(326, 80), 7, light);
         Plate(mesh, Vector2.zero, new Vector2(318, 72), 6, gold);
         Plate(mesh, new Vector2(0, 1), new Vector2(306, 62), 4, enamel);
+        Color rule = legendary ? (Color)new Color32(255, 247, 210, 255) : landed ? new Color32(150, 220, 170, 255) : escaped ? new Color32(226, 150, 120, 255) : new Color32(150, 210, 214, 255);
+        if (outcomeStamp)
+        {
+            // Outcome stamps carry no rarity studs: a lower rule balances the centered word instead.
+            Line(mesh, new Vector2(-147, 30), new Vector2(147, 30), 2, rule);
+            Line(mesh, new Vector2(-147, -27), new Vector2(147, -27), 2, inner);
+            foreach (float x in new[] { -154f, 154f }) foreach (float y in new[] { 27f, -27f }) Stud(mesh, new Vector2(x, y), 3.5f, light, dark);
+            return;
+        }
         Plate(mesh, new Vector2(0, -12), new Vector2(298, 30), 3, inner);
-        Line(mesh, new Vector2(-147, 30), new Vector2(147, 30), 2, legendary ? new Color32(255, 247, 210, 255) : new Color32(150, 210, 214, 255));
+        Line(mesh, new Vector2(-147, 30), new Vector2(147, 30), 2, rule);
         foreach (float x in new[] { -154f, 154f }) foreach (float y in new[] { 27f, -27f }) Stud(mesh, new Vector2(x, y), 3.5f, light, dark);
         int lit = rarity == CardRarity.Legendary ? 4 : 3;
         for (int i = 0; i < 4; i++)

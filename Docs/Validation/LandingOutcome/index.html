@@ -1,0 +1,31 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Deepwater Landing outcome and haul count-ups</title>
+<style>
+  body { background: #14181c; color: #e9dcb1; font: 15px system-ui, sans-serif; margin: 24px; }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  p { color: #9aa; margin: 0 0 18px; max-width: 980px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 26px; }
+  h2 { font-size: 16px; margin: 0 0 8px; }
+  video, img { width: 100%; border: 1px solid #3a4148; background: #000; }
+  figcaption { color: #9aa; font-size: 13px; margin-top: 4px; }
+  figure { margin: 0; }
+</style>
+<h1>Landing outcome and haul count-ups</h1>
+<p>Native Unity frames from a real expedition. These videos have no sound: the placeholder cues (existing Travel, Attach, SlotTick and PayoutSmall) play only in the game.
+Both beats can be skipped with Space or SKIP. Failure still pays the full haul under the GDD rules. The expedition ends and the creature is not acquired.</p>
+<h2>Landed: yank, slam, LANDED stamp (then the shutter opens Build)</h2>
+<div class="row">
+  <figure><video src="Landed.mp4" controls loop autoplay muted></video><figcaption>Normal speed</figcaption></figure>
+  <figure><video src="Landed-QuarterSpeed.mp4" controls loop autoplay muted></video><figcaption>Quarter speed</figcaption></figure>
+</div>
+<h2>Escaped: thrash, sink, ESCAPED stamp, haul cash-out</h2>
+<div class="row">
+  <figure><video src="Escaped.mp4" controls loop autoplay muted></video><figcaption>Normal speed</figcaption></figure>
+  <figure><video src="Escaped-QuarterSpeed.mp4" controls loop autoplay muted></video><figcaption>Quarter speed</figcaption></figure>
+</div>
+<h2>Build haul count-up (captured mid-roll)</h2>
+<div class="row">
+  <figure><img src="Build-Placement-Counting.png"><figcaption>New creature attached: HAUL rolling 0 → 7</figcaption></figure>
+  <figure><img src="Build-Upgrade-Counting.png"><figcaption>Duplicate upgraded: HAUL rolling to its new value</figcaption></figure>
+</div>

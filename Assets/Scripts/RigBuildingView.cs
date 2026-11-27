@@ -25,6 +25,12 @@ public sealed class RigBuildingView : MonoBehaviour
     [SerializeField] private TMP_Text acquisitionStatus;
     [SerializeField] private Sprite socketIdle, socketSelected, socketBlocked;
     [SerializeField, Min(.1f)] private float upgradeFeedbackSeconds = 1.8f;
+    /// <summary>Placement receipt length: card flight, then the haul counting up to its new value.</summary>
+    [SerializeField, Min(.1f)] private float placementFeedbackSeconds = 1.05f;
+    /// <summary>Haul count-up: delay after the receipt starts (placement waits for the card to land) and roll length.</summary>
+    public const float PlacementCountAt = .34f, PlacementCountSeconds = .44f, UpgradeCountAt = .15f, UpgradeCountSeconds = .75f;
+    private Coroutine haulCount;
+    private Vector3 haulRestScale = Vector3.one;
     private readonly List<TackleRigCardView> rigCards = new List<TackleRigCardView>(), railCards = new List<TackleRigCardView>();
     private readonly List<UnityEngine.UI.Button> gaps = new List<UnityEngine.UI.Button>();
     private readonly List<UnityEngine.UI.Image> ropes = new List<UnityEngine.UI.Image>();
@@ -54,6 +60,7 @@ public sealed class RigBuildingView : MonoBehaviour
     {
         move.Disable(); submit.Disable();
         if (feedback != null) { StopCoroutine(feedback); feedback = null; }
+        StopHaulCount();
         long shown = occurrence; occurrence = revision = -1;
         if (ShowingReceipt && controller != null) controller.CompleteRigAcquisitionFeedback(shown);
         upgrading = placing = hasRailLayout = false;
@@ -62,13 +69,18 @@ public sealed class RigBuildingView : MonoBehaviour
     /// <summary>Releases the native input actions owned by this view.</summary>
     private void OnDestroy() { move.performed -= Move; submit.performed -= Submit; move.Dispose(); submit.Dispose(); }
 
+    /// <summary>Whether Present would show Build for this state; lets the phase transition act before the switch.</summary>
+    public static bool WouldShow(FishingRunController owner) => owner != null && owner.RunActive && !owner.LandingFeedbackPending && !owner.LandingOutcomePending
+        && ((owner.RigUpgradeFeedbackVisible || owner.RigPlacementFeedbackVisible) && owner.LastRigAcquisition != null
+            || owner.AwaitingRigPlacement && owner.PendingRigCreature != null);
+
     /// <summary>Displays a pending placement or an already committed upgrade without leaking the next Discover screen.</summary>
     public void Present(FishingRunController owner)
     {
         controller = owner;
         bool upgrade = owner != null && owner.RigUpgradeFeedbackVisible && owner.LastRigAcquisition != null;
         bool placement = owner != null && owner.RigPlacementFeedbackVisible && owner.LastRigAcquisition != null;
-        bool visible = owner != null && owner.RunActive && !owner.LandingFeedbackPending && (upgrade || placement || owner.AwaitingRigPlacement && owner.PendingRigCreature != null);
+        bool visible = WouldShow(owner);
         gameObject.SetActive(visible);
         if (!visible) return;
         long id = upgrade || placement ? owner.LastRigAcquisition.Occurrence : owner.BuildOccurrence;
@@ -88,6 +100,7 @@ public sealed class RigBuildingView : MonoBehaviour
                 Canvas.ForceUpdateCanvases();RevealPosition(((RectTransform)target.transform).anchoredPosition.x,((RectTransform)target.transform).rect.width);
                 if(buildFeedback!=null)buildFeedback.BeginReceipt(owner.LastRigAcquisition,target,railCardPrefab,portrait.rectTransform,ropes);
                 feedback = StartCoroutine(CompleteFeedback(id));
+                StopHaulCount(); haulCount = StartCoroutine(CountHaul(owner.LastRigAcquisition, upgrading));
             }
             else if (EventSystem.current != null && selected >= 0) GapFocus(selected).Select();
         }
@@ -97,10 +110,54 @@ public sealed class RigBuildingView : MonoBehaviour
     /// <summary>Leaves upgrade acquisition automatic and advances its cosmetic feedback on an unscaled clock.</summary>
     private IEnumerator CompleteFeedback(long id)
     {
-        yield return new WaitForSecondsRealtime(upgrading ? upgradeFeedbackSeconds : .68f);
+        yield return new WaitForSecondsRealtime(upgrading ? upgradeFeedbackSeconds : placementFeedbackSeconds);
         feedback = null;
+        StopHaulCount();
         if(buildFeedback!=null)buildFeedback.Finish();
         if (controller != null) controller.CompleteRigAcquisitionFeedback(id);
+    }
+
+    /// <summary>
+    /// Rolls the haul plaque and the HAUL CHANGE readout from the receipt's previous haul to its committed haul once the creature
+    /// has attached, ticking as it climbs and punching when it lands. Display only: both values come from the frozen receipt.
+    /// </summary>
+    private IEnumerator CountHaul(RigAcquisitionReceipt receipt, bool upgrade)
+    {
+        bool reduced = buildFeedback != null && buildFeedback.ReducedMotion;
+        float at = upgrade || reduced ? UpgradeCountAt : PlacementCountAt, length = upgrade ? UpgradeCountSeconds : PlacementCountSeconds;
+        haulRestScale = haul.rectTransform.localScale;
+        double started = Time.realtimeSinceStartupAsDouble, lastTick = -1; int shown = receipt.PreviousHaul;
+        ShowHaul(receipt, shown);
+        while (true)
+        {
+            float age = (float)(Time.realtimeSinceStartupAsDouble - started), u = (age - at) / length;
+            int value = TackleHaulCount.Value(receipt.PreviousHaul, receipt.Haul, u);
+            if (value != shown)
+            {
+                shown = value; ShowHaul(receipt, value);
+                if (Time.realtimeSinceStartupAsDouble - lastTick >= .05) { lastTick = Time.realtimeSinceStartupAsDouble; if (buildFeedback != null) buildFeedback.HaulTick(1 + Mathf.Clamp01(u) * .25f); }
+            }
+            float punch = reduced ? 1 : TackleHaulCount.Punch(age - at - length);
+            haul.rectTransform.localScale = haulRestScale * punch;
+            if (u >= 1 && punch == 1) break;
+            yield return null;
+        }
+        haulCount = null;
+    }
+
+    private void ShowHaul(RigAcquisitionReceipt receipt, int value)
+    {
+        TackleBuildTypography.SetText(haul, "HAUL " + value);
+        TackleBuildTypography.SetText(previewLabel, receipt.PreviousHaul + " > " + value);
+    }
+
+    /// <summary>Stops the count-up and leaves the plaque on the committed value at its authored scale.</summary>
+    private void StopHaulCount()
+    {
+        if (haulCount != null) { StopCoroutine(haulCount); haulCount = null; }
+        if (haul != null) haul.rectTransform.localScale = haulRestScale;
+        var receipt = controller != null ? controller.LastRigAcquisition : null;
+        if (receipt != null && ShowingReceipt) ShowHaul(receipt, receipt.Haul);
     }
 
     /// <summary>Uses actual projected sale values and current-level effects, never the example values printed in a mockup.</summary>

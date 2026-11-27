@@ -426,7 +426,8 @@ public static class LandingScoreRushChecks
     }
     /// <summary>Waits on the bounded controller gate rather than guessing animation duration.</summary>
     private static IEnumerator WaitFeedback(FishingRunController owner)
-    { double until=Time.realtimeSinceStartupAsDouble+LandingScoreSequence.MaximumDuration+.5;while(owner.LandingFeedbackPending&&Time.realtimeSinceStartupAsDouble<until)yield return null;Check(!owner.LandingFeedbackPending,"Feedback gate timed out."); }
+    { double until=Time.realtimeSinceStartupAsDouble+LandingScoreSequence.MaximumDuration+.5;while(owner.LandingFeedbackPending&&Time.realtimeSinceStartupAsDouble<until)yield return null;Check(!owner.LandingFeedbackPending,"Feedback gate timed out.");
+      owner.CompleteLandingOutcome(); /* Landed/Escaped beat covered by LandingOutcomeChecks. */ }
     /// <summary>Uses existing end-to-end fixture logic for the remaining successful attempts.</summary>
     private static IEnumerator Land(FishingRunController owner,bool success)=>(IEnumerator)typeof(RigBuildingSceneChecks).GetMethod("Land",Fixture).Invoke(null,new object[]{owner,success});
     /// <summary>Accepts the real Discover result after its cosmetic reels settle.</summary>

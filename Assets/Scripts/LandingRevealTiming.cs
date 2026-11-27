@@ -85,7 +85,7 @@ public readonly struct LandingRevealTiming
     /// <summary>Stage offset: a rising rumble during anticipation, then one decaying impulse at settle. Summed sines, never per-frame noise.</summary>
     public Vector2 StageOffset(float elapsed)
     {
-        if (Shake <= 0) return Vector2.zero;
+        if (Shake <= 0 || elapsed < 0) return Vector2.zero; // Negative time: still waiting behind the phase transition.
         if (elapsed < Anticipation)
         {
             float rise = elapsed / Anticipation; float amount = Shake * .3f * rise * rise;

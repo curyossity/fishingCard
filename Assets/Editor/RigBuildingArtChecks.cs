@@ -223,6 +223,7 @@ public static class RigBuildingArtChecks
             if(model.CanStrike&&(succeed?distance<model.PerfectWidth*.15:distance>(model.GoodWidth+model.FishWidth)*.5+.05)) owner.TryStrikeLanding(model.Occurrence,model.Revision);
             yield return null;
         }
+        owner.CompleteLandingFeedback();owner.CompleteLandingOutcome(); // Score feedback and outcome beat have their own checks.
         Check(succeed?owner.AwaitingRigPlacement||owner.RigUpgradeFeedbackVisible:owner.LandingFailureVisible,"Landing did not reach the expected outcome.");
     }
     /// <summary>Checks the EventSystem's actual top raycast handler for every native insertion target.</summary>
@@ -230,6 +231,7 @@ public static class RigBuildingArtChecks
     {
         Canvas.ForceUpdateCanvases();var rect=(RectTransform)button.transform;
         var pointer=new PointerEventData(EventSystem.current){position=RectTransformUtility.WorldToScreenPoint(null,rect.TransformPoint(rect.rect.center))};
+        TacklePhaseTransitionChecks.Settle(); // At-rest layout check; skip the cosmetic phase transition.
         var hits=new List<RaycastResult>();EventSystem.current.RaycastAll(pointer,hits);
         Check(hits.Count>0&&ExecuteEvents.GetEventHandler<UnityEngine.UI.Button>(hits[0].gameObject)==button.gameObject,"Insertion button is blocked.");
     }

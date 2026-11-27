@@ -41,13 +41,16 @@ public static class LandingCreatureRevealSetup
         viewData.FindProperty("reveal").objectReferenceValue = reveal; viewData.ApplyModifiedPropertiesWithoutUndo();
     }
 
-    /// <summary>Places the Rare/Legendary tag across the lower creature card, above both panels and their flashes, never over the timing track.</summary>
-    private static LandingRarityBanner Banner(SerializedObject collision, LandingScoreRush rush)
+    /// <summary>
+    /// Places an enamel tag across the lower creature card, above both panels and their flashes, never over the timing track. The
+    /// rarity entrance and the Landing outcome each own one instance (by name) so their lifetimes never interfere.
+    /// </summary>
+    internal static LandingRarityBanner Banner(SerializedObject collision, LandingScoreRush rush, string layerName = "Rarity banner")
     {
         var stage = (RectTransform)collision.FindProperty("stage").objectReferenceValue;
         var card = (RectTransform)collision.FindProperty("creatureCard").objectReferenceValue;
-        var rect = stage.Find("Rarity banner") as RectTransform;
-        if (rect == null) rect = (RectTransform)new GameObject("Rarity banner", typeof(RectTransform), typeof(CanvasRenderer), typeof(CanvasGroup), typeof(LandingRarityBanner)).transform;
+        var rect = stage.Find(layerName) as RectTransform;
+        if (rect == null) rect = (RectTransform)new GameObject(layerName,typeof(RectTransform), typeof(CanvasRenderer), typeof(CanvasGroup), typeof(LandingRarityBanner)).transform;
         rect.SetParent(stage, false); rect.SetAsLastSibling();
         rect.anchorMin = card.anchorMin; rect.anchorMax = card.anchorMax; rect.pivot = new Vector2(.5f, .5f);
         rect.sizeDelta = new Vector2(420, 100); rect.localScale = Vector3.one; rect.localRotation = Quaternion.identity;

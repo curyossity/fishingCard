@@ -27,13 +27,14 @@ public sealed partial class FishingRunController
         LastRigAcquisition = null; RigUpgradeFeedbackVisible = RigPlacementFeedbackVisible = false; rigFeedbackUntil = 0;
     }
 
-    /// <summary>Reserves a landed occurrence, automatically upgrading an existing species without showing placement controls.</summary>
+    /// <summary>
+    /// Reserves a landed occurrence. An existing species later upgrades automatically without placement controls, once the
+    /// Landing score feedback and outcome beat have been shown (see ContinueAfterLandingOutcome).
+    /// </summary>
     private void BeginRigAcquisition()
     {
         pendingRigCreature = CurrentEncounter; pendingRigEncounterRevision = CurrentEncounterRevision;
         buildOccurrence++; BuildFailure = null;
-        if (!LandingFeedbackPending && rig.FindSpecies(pendingRigCreature.UniqueId) != null)
-            TryCommitRigPlacement(buildOccurrence, rig.Revision, -1);
     }
 
     /// <summary>Commits a single legal placement or automatic duplicate upgrade, then continues without legacy Descend/overload effects.</summary>

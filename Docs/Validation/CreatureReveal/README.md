@@ -29,7 +29,7 @@
 - [Live](LiveVerification.json): **21 assertions** in a fresh comparison Play session with persistence disabled, using the Rare Squid through real Discover acceptance: entrance starts with the creature's rarity, face hidden at start, skip-only caption, strike rejected without consuming an attempt, fish and zone frozen, no banner before the face lands, Strike button skips without striking, panel/stage/face restored, plain instruction without rarity text, banner shown after the skip, motion resumes, strike accepted afterwards, banner cleared when scoring begins, reduced-motion fade without displacement.
 - Existing checks: score-rush rules/assets (232/86), strike-feedback assets (27), Build art assets (93) and Landing art assets (146) pass after installation. Shared Accept fixtures in `RigBuildingSceneChecks`, `RigBuildingArtChecks`, `LandingChallengeSceneChecks` and `TackleLandingArtChecks` now skip the entrance so their strike timings are unchanged.
 
-Captures from the first version, before the banner (Legendary pacing on the Squid panel): [anticipation](Legendary-Anticipation.png) · [turning](Legendary-Turning.png) · [settle flash and impulse](Legendary-Settle.png) · [landed](Legendary-Landed.png).
+Captures (Legendary pacing and banner on the Squid panel): [anticipation](Legendary-Anticipation.png) · [turning](Legendary-Turning.png) · [settle flash and impulse](Legendary-Settle.png) · [landed](Legendary-Landed.png).
 
 ## Previews
 

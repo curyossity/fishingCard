@@ -20,19 +20,22 @@ public sealed class TackleLandingPresentation : MonoBehaviour
     [SerializeField] private LandingStrikeFeedback strikeFeedback;
     [SerializeField] private LandingScoreRush scoreRush;
     [SerializeField] private LandingCreatureReveal reveal;
+    [SerializeField] private LandingOutcome outcome;
     private readonly List<TackleRigCardView> cards = new List<TackleRigCardView>();
     private readonly List<UnityEngine.UI.Image> lamps = new List<UnityEngine.UI.Image>();
-    private long occurrence = -1, revision = -1;
+    private long occurrence = -1, revision = -1, outcomeOccurrence = -1;
     private bool failed;
     private bool failureSounded;
-    private bool feedbackPending, revealPending;
+    private bool feedbackPending, revealPending, outcomePending;
     private CardDefinition selectedCreature;
     private string biomeName;
     public bool HasRushPresentation => scoreRush != null && scoreRush.enabled;
     public bool HasRevealPresentation => reveal != null && reveal.enabled;
+    public bool HasOutcomePresentation => outcome != null && outcome.enabled;
+    public LandingOutcome Outcome => outcome;
 
     /// <summary>Resets only visual identities so future encounters cannot reuse stale labels or highlights.</summary>
-    private void OnDisable() { occurrence = revision = -1; selectedCreature = null; }
+    private void OnDisable() { occurrence = revision = outcomeOccurrence = -1; selectedCreature = null; }
 
     /// <summary>Projects normalized model coordinates into the supplied track and refreshes labels once per accepted strike.</summary>
     public void Present(FishingRunController controller)
@@ -49,6 +52,7 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             BindCreature();
             if (strikeFeedback != null) strikeFeedback.BindAssistance(model, controller.CatchChain);
             rigScroll.verticalNormalizedPosition = 1;
+            if (outcome != null) outcome.Clear();
             if (reveal != null && reveal.Banner != null) reveal.Banner.Clear();
             if (!failure && controller.LandingRevealPending && HasRevealPresentation)
                 reveal.Begin(selectedCreature != null ? selectedCreature.Rarity : CardRarity.Common, controller.LandingRevealStartedAt);
@@ -63,11 +67,14 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         Position(perfectZone, model.ZonePosition, model.PerfectWidth);
         fishMarker.color = model.IsTelegraphingBurst ? new Color32(255, 169, 76, 255) : Color.white;
         movement.text = model.IsTelegraphingBurst ? "BURST SOON" : model.Pattern.ToString().ToUpperInvariant();
-        if (revision != model.Revision || failed != failure || feedbackPending != controller.LandingFeedbackPending || revealPending != controller.LandingRevealPending)
+        if (revision != model.Revision || failed != failure || feedbackPending != controller.LandingFeedbackPending || revealPending != controller.LandingRevealPending
+            || outcomePending != controller.LandingOutcomePending)
         {
             revision = model.Revision; failed = failure; feedbackPending = controller.LandingFeedbackPending; revealPending = controller.LandingRevealPending;
+            outcomePending = controller.LandingOutcomePending;
             phase.text = biomeName.ToUpperInvariant() + " / LAND";
-            creature.text = failure ? "EXPEDITION ENDED" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
+            // The failing strike's feedback still names the creature; the outcome beat then tells the player it escaped.
+            creature.text = failure && !feedbackPending ? "EXPEDITION OVER" : (selectedCreature?.DisplayName ?? "Landing").ToUpperInvariant();
             haul.text = "HAUL " + (failure ? controller.LastHaulValue.ToString() : controller.UsesLandingChallenge ? controller.Rig.HaulValue.ToString() : VisibleHaul(controller.CatchChain));
             points.text = LandingScoreRush.Format(model.Points); resistance.text = LandingScoreRush.Format(model.Resistance);
             if (model.AttemptsRemaining > lamps.Count) PrepareLamps(model.AttemptsRemaining);
@@ -81,11 +88,13 @@ public sealed class TackleLandingPresentation : MonoBehaviour
             breakdown.text = Breakdown(model.LastScore, failure);
             scoreScroll.verticalNormalizedPosition = 1;
             var receipt = controller.LastLandingStrike?.Occurrence == model.Occurrence ? controller.LastLandingStrike : null;
-            RefreshRig(feedbackPending && receipt != null ? receipt.Members.ToArray() : controller.CatchChain, model.LastScore, false);
+            // An escaped creature's haul stays in the column until it has been cashed out, then the cleared rig shows.
+            RefreshRig(feedbackPending && receipt != null ? receipt.Members.ToArray() : failure && outcomePending ? controller.LastHaul : controller.CatchChain, model.LastScore, false);
             if (strikeFeedback != null) strikeFeedback.Present(receipt, cards, true, HasRushPresentation);
             if (scoreRush != null) { scoreRush.Present(receipt, cards, feedbackPending); if (!feedbackPending) scoreRush.Finish(); }
         }
         if (scoreRush != null) scoreRush.Tick();
+        PresentOutcome(controller, model, failure);
         if (failure && !controller.LandingFeedbackPending && !failureSounded)
         {
             failureSounded = true;
@@ -97,7 +106,23 @@ public sealed class TackleLandingPresentation : MonoBehaviour
         if (model.Error != null) message.text = model.Error;
         else if (feedbackPending) message.text = "RIG ACTIVATING  ·  SPACE / FINISH TO COMPLETE";
         else if (controller.LandingRevealPending && reveal != null && reveal.IsPlaying) message.text = reveal.Caption;
+        else if (outcome != null && outcome.IsPlaying) message.text = outcome.Caption;
         foreach (var button in buttons) button.RefreshAvailability();
+    }
+
+    /// <summary>Starts the Landed/Escaped beat once per ended challenge and keeps the header on its current moment.</summary>
+    private void PresentOutcome(FishingRunController controller, LandingChallengeRuntime model, bool failure)
+    {
+        if (outcome == null) return;
+        if (controller.LandingOutcomePending && outcomeOccurrence != model.Occurrence)
+        {
+            outcomeOccurrence = model.Occurrence;
+            var haul = failure ? controller.LastHaul : Array.Empty<CardInstance>();
+            outcome.Begin(controller.LandingOutcomeTiming, controller.LandingOutcomeStartedAt, selectedCreature?.DisplayName ?? "Creature", cards,
+                haul.Select(card => card.HaulValueContribution).ToArray(), failure ? controller.LastHaulValue : 0, rigScroll);
+        }
+        if (outcome.IsPlaying) { if (controller.LandingOutcomePending) outcome.Tick(); else outcome.Finish(); }
+        if (outcomeOccurrence == model.Occurrence) creature.text = outcome.Header;
     }
 
     /// <summary>Sizes the generic fish to exactly its scoring interval, preserving the icon's pixel aspect ratio.</summary>

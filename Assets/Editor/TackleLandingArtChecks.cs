@@ -146,6 +146,7 @@ public static class TackleLandingArtChecks
         var input = new SerializedObject(view); var button = (UnityEngine.UI.Button)input.FindProperty("strike").objectReferenceValue;
         var eventSystem = EventSystem.current; var pointer = new PointerEventData(eventSystem);
         pointer.position = RectTransformUtility.WorldToScreenPoint(null, ((RectTransform)button.transform).TransformPoint(((RectTransform)button.transform).rect.center));
+        TacklePhaseTransitionChecks.Settle(); // At-rest layout check; skip the cosmetic phase transition.
         var hits = new List<RaycastResult>(); eventSystem.RaycastAll(pointer, hits);
         check(hits.Count > 0 && ExecuteEvents.GetEventHandler<UnityEngine.UI.Button>(hits[0].gameObject) == button.gameObject, "Strike hit target is obstructed.");
         var feedback = button.GetComponent<TackleButtonFeedback>(); var fields = new SerializedObject(feedback);

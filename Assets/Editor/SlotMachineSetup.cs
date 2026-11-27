@@ -71,6 +71,7 @@ public static class SlotMachineSetup
         if (AssetDatabase.LoadAssetAtPath<GameObject>(TackleDiscoverArtSetup.PrefabPath) != null) TackleDiscoverArtSetup.Install(scene);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(LandingChallengeSetup.PrefabPath) != null) LandingChallengeSetup.Install(scene);
         if (AssetDatabase.LoadAssetAtPath<GameObject>(RigBuildingSetup.PrefabPath) != null) RigBuildingSetup.Install(scene);
+        TacklePhaseTransitionSetup.Install(scene);
     }
 
     /// <summary>Creates GUID-stable configuration and serialized controls; leaves existing tuning unchanged.</summary>

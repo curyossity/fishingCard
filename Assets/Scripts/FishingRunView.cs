@@ -218,6 +218,7 @@ public sealed class FishingRunView : MonoBehaviour
     [SerializeField] private SlotMachineView slotMachineView;
     [SerializeField] private LandingChallengeView landingChallengeView;
     [SerializeField] private RigBuildingView rigBuildingView;
+    [SerializeField] private TacklePhaseTransition phaseTransition;
     private bool suppressLegacySurfaceTransition;
 
     [SerializeField] private RectTransform runControlsPanel;
@@ -348,6 +349,37 @@ public sealed class FishingRunView : MonoBehaviour
     public bool HasLandingRushPresentation => isActiveAndEnabled && landingChallengeView != null && landingChallengeView.HasRushPresentation;
     /// <summary>Lets the controller hold Landing for the creature entrance only when a view can actually show it.</summary>
     public bool HasLandingRevealPresentation => isActiveAndEnabled && landingChallengeView != null && landingChallengeView.HasRevealPresentation;
+    /// <summary>Lets the controller hold the Landed/Escaped beat only when a view can actually show it.</summary>
+    public bool HasLandingOutcomePresentation => isActiveAndEnabled && landingChallengeView != null && landingChallengeView.HasOutcomePresentation;
+
+    /// <summary>Seconds an incoming Tackle phase spends behind the phase transition; zero when none is installed.</summary>
+    public float PhaseTransitionLead => phaseTransition != null ? phaseTransition.LeadSeconds : 0;
+    public bool IsPhaseTransitionPlaying => phaseTransition != null && phaseTransition.IsPlaying;
+
+    /// <summary>
+    /// Called before the phase views refresh: when the visible Tackle phase is about to change between Discover, Landing and Build,
+    /// snapshots the outgoing canvas so the transition can play over the switch. Harbor entries and run endings cut as before.
+    /// </summary>
+    public void PreparePhaseChange(FishingRunController controller)
+    {
+        if (phaseTransition == null || controller == null) return;
+        var shown = VisiblePhase(); if (shown == null) return;
+        var next = slotMachineView != null && slotMachineView.WouldShow(controller) && !LandingChallengeView.WouldShow(controller) ? (Component)slotMachineView
+            : LandingChallengeView.WouldShow(controller) ? landingChallengeView
+            : RigBuildingView.WouldShow(controller) ? rigBuildingView : null;
+        if (next == null || next == shown) return;
+        var canvas = shown.GetComponent<Canvas>(); var stage = shown.transform.Find("1920x1080 Stage") as RectTransform;
+        phaseTransition.Begin(canvas, stage);
+    }
+
+    /// <summary>The Tackle phase canvas currently on screen, preferring the topmost when several overlap for a frame.</summary>
+    private Component VisiblePhase()
+    {
+        if (landingChallengeView != null && landingChallengeView.gameObject.activeInHierarchy) return landingChallengeView;
+        if (rigBuildingView != null && rigBuildingView.gameObject.activeInHierarchy) return rigBuildingView;
+        if (slotMachineView != null && slotMachineView.gameObject.activeInHierarchy) return slotMachineView;
+        return null;
+    }
 
     /// <summary>Displays the plain landing increment and bypasses obsolete ascent presentation for redesigned run endings.</summary>
     public void SetLanding(FishingRunController controller)

@@ -52,6 +52,7 @@ public static class RigBuildingSceneChecks
         Check(commit.interactable, "First insertion is not selectable.");
         var pointer = new PointerEventData(EventSystem.current) { position = RectTransformUtility.WorldToScreenPoint(null,
             ((RectTransform)commit.transform).TransformPoint(((RectTransform)commit.transform).rect.center)) };
+        TacklePhaseTransitionChecks.Settle(); // At-rest layout check; skip the cosmetic phase transition.
         var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(pointer, hits);
         Check(hits.Count > 0 && ExecuteEvents.GetEventHandler<UnityEngine.UI.Button>(hits[0].gameObject) == commit.gameObject, "Placement button is blocked.");
         long occurrence = controller.BuildOccurrence, revision = controller.Rig.Revision;
@@ -121,6 +122,7 @@ public static class RigBuildingSceneChecks
             yield return null;
         }
         while (controller.LandingFeedbackPending && Time.realtimeSinceStartupAsDouble < deadline) yield return null;
+        controller.CompleteLandingOutcome(); // Landed/Escaped beat covered by LandingOutcomeChecks.
         Check(succeed ? controller.AwaitingRigPlacement || controller.SlotMachine.Active : controller.LandingFailureVisible, "Landing fixture did not reach its expected outcome.");
     }
     /// <summary>Accepts through the real Discover command after completing only its cosmetic reel animation.</summary>

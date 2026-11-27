@@ -15,11 +15,15 @@ public sealed class SlotMachineView : MonoBehaviour
     [SerializeField] private TackleDiscoverPresentation artwork;
     public bool IsAnimating => isActiveAndEnabled && artwork != null && artwork.IsSpinning;
 
+    /// <summary>Whether Present would show Discover for this state; lets the phase transition act before the switch.</summary>
+    public bool WouldShow(FishingRunController controller) => controller != null && controller.UsesSlotMachine && controller.RunActive
+        && !controller.LandingFeedbackPending && !controller.LandingOutcomePending && !controller.RigAcquisitionFeedbackVisible
+        && (controller.SlotMachine.Active || artwork == null && controller.AwaitingLandingChallenge || controller.SlotFailure != null);
+
     /// <summary>Displays only Discover or its landing handoff; never interprets an outcome as a caught creature.</summary>
     public void Present(FishingRunController controller)
     {
-        bool active = controller != null && controller.UsesSlotMachine && controller.RunActive && !controller.LandingFeedbackPending && !controller.RigAcquisitionFeedbackVisible
-            && (controller.SlotMachine.Active || artwork == null && controller.AwaitingLandingChallenge || controller.SlotFailure != null);
+        bool active = WouldShow(controller);
         gameObject.SetActive(active);
         if (!active) return;
         var machine = controller.SlotMachine;

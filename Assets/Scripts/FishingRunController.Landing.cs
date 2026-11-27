@@ -14,8 +14,16 @@ public sealed partial class FishingRunController
     private bool landingTerminalHandled, awaitingRigPlacement, landingResultDismissed;
     private int lastLandingInputFrame = -1;
     private int preparedExtraAttempts, preparedProtectedMisses;
-    private double landingFeedbackUntil, landingRevealUntil;
+    private double landingFeedbackUntil, landingRevealUntil, landingOutcomeUntil;
     public bool LandingFeedbackPending { get; private set; }
+    /// <summary>True while the Landed/Escaped beat plays after score feedback; Build, auto-upgrade and the Harbor return wait for it.</summary>
+    public bool LandingOutcomePending { get; private set; }
+    /// <summary>Real-time start shared by the outcome gate's deadline and its presentation.</summary>
+    public double LandingOutcomeStartedAt { get; private set; }
+    /// <summary>Which beat closes the current challenge; meaningful only once it has ended.</summary>
+    public LandingOutcomeKind LandingOutcome => landing.State == LandingChallengeState.Succeeded ? LandingOutcomeKind.Landed : LandingOutcomeKind.Escaped;
+    /// <summary>Schedule of the current outcome beat: the escape tally covers every creature in the paid haul.</summary>
+    public LandingOutcomeTiming LandingOutcomeTiming => LandingOutcomeTiming.For(LandingOutcome, lastSurfaceResult.EndedByLandingFailure ? lastSurfaceResult.Haul.Length : 0);
     /// <summary>True while the encounter creature's entrance plays; motion is held and strikes are rejected.</summary>
     public bool LandingRevealPending { get; private set; }
     /// <summary>Real-time start shared by the gate deadline and the reveal presentation, so both end together.</summary>
@@ -44,6 +52,7 @@ public sealed partial class FishingRunController
         lastLandingInputFrame = -1; landingRandom = new System.Random(unchecked(seed ^ 0x46a32d17));
         LandingFeedbackPending = false; landingFeedbackUntil = 0;
         LandingRevealPending = false; landingRevealUntil = 0;
+        LandingOutcomePending = false; landingOutcomeUntil = 0;
         preparedLandingRig = Array.Empty<LandingRigMember>(); landingConfigurationError = null;
     }
 
@@ -75,8 +84,10 @@ public sealed partial class FishingRunController
         landing.Begin(CurrentEncounterRevision, resistance, landingSettings, preparedLandingRig, landingRandom, Time.realtimeSinceStartupAsDouble,
             preparedExtraAttempts, preparedProtectedMisses, CurrentEncounter);
         landingTerminalHandled = false; awaitingRigPlacement = false; lastLandingInputFrame = Time.frameCount;
+        LandingOutcomePending = false; landingOutcomeUntil = 0;
         // The entrance is cosmetic: it holds the motion clock and blocks strikes, never delaying or changing an outcome.
-        LandingRevealStartedAt = Time.realtimeSinceStartupAsDouble;
+        // The entrance starts as the Discover-to-Landing transition locks in, so it is never played behind it.
+        LandingRevealStartedAt = Time.realtimeSinceStartupAsDouble + (fishingRunView != null ? fishingRunView.PhaseTransitionLead : 0);
         LandingRevealPending = fishingRunView != null && fishingRunView.HasLandingRevealPresentation;
         landingRevealUntil = LandingRevealPending ? LandingRevealStartedAt + LandingRevealTiming.For(CurrentEncounter.Rarity).Duration : 0;
     }
@@ -123,6 +134,11 @@ public sealed partial class FishingRunController
             if (now < landingFeedbackUntil && fishingRunView != null && fishingRunView.HasLandingRushPresentation) return;
             CompleteLandingFeedback();
         }
+        if (LandingOutcomePending)
+        {
+            if (Time.realtimeSinceStartupAsDouble < landingOutcomeUntil && fishingRunView != null && fishingRunView.HasLandingOutcomePresentation) return;
+            CompleteLandingOutcome();
+        }
         if (runActive && UsesLandingChallenge && !awaitingRigPlacement && landing.State == LandingChallengeState.Active)
             landing.AdvanceTo(Time.realtimeSinceStartupAsDouble);
     }
@@ -151,6 +167,7 @@ public sealed partial class FishingRunController
             landingTerminalHandled = true;
             CompleteLandingFailure();
         }
+        if (landingTerminalHandled && !LandingFeedbackPending) BeginLandingOutcome();
         RefreshViews();
         return true;
     }
@@ -161,9 +178,43 @@ public sealed partial class FishingRunController
         if (!LandingFeedbackPending) return;
         LandingFeedbackPending = false;
         lastLandingInputFrame = Time.frameCount;
+        if (landingTerminalHandled) BeginLandingOutcome();
+        RefreshViews();
+    }
+
+    /// <summary>
+    /// Starts the cosmetic Landed/Escaped beat once score feedback has finished. The outcome, payout and rig cleanup have already
+    /// resolved; only the duplicate auto-upgrade, Build and the Harbor return wait, bounded by the schedule's own deadline.
+    /// </summary>
+    private void BeginLandingOutcome()
+    {
+        if (LandingOutcomePending) return;
+        LandingOutcomePending = fishingRunView != null && fishingRunView.HasLandingOutcomePresentation;
+        if (!LandingOutcomePending) { ContinueAfterLandingOutcome(); return; }
+        LandingOutcomeStartedAt = Time.realtimeSinceStartupAsDouble;
+        landingOutcomeUntil = LandingOutcomeStartedAt + LandingOutcomeTiming.Duration;
+    }
+
+#if UNITY_EDITOR
+    /// <summary>Editor review only: keeps the outcome gate open while a capture seeks through the beat; CompleteLandingOutcome ends it.</summary>
+    public void HoldLandingOutcomeForReview() { if (LandingOutcomePending) landingOutcomeUntil = double.MaxValue; }
+#endif
+
+    /// <summary>Ends the outcome beat early (Space/Skip) or at its deadline; the same input frame cannot also act on the next screen.</summary>
+    public void CompleteLandingOutcome()
+    {
+        if (!LandingOutcomePending) return;
+        LandingOutcomePending = false;
+        lastLandingInputFrame = Time.frameCount;
+        ContinueAfterLandingOutcome();
+        RefreshViews();
+    }
+
+    /// <summary>A landed duplicate upgrades automatically once its outcome has been shown; a new species opens Build instead.</summary>
+    private void ContinueAfterLandingOutcome()
+    {
         if (runActive && awaitingRigPlacement && pendingRigCreature != null && rig.FindSpecies(pendingRigCreature.UniqueId) != null)
             TryCommitRigPlacement(buildOccurrence, rig.Revision, -1);
-        RefreshViews();
     }
 
     /// <summary>Snapshots and pays the full prior Catch haul once, excluding the failed creature and every Bait sale value.</summary>
@@ -180,7 +231,7 @@ public sealed partial class FishingRunController
     /// <summary>Closes only the completed landing result; it does not abandon an active expedition or grant a new creature.</summary>
     public void DismissLandingResult()
     {
-        if (runActive || !LandingFailureVisible || LandingFeedbackPending) return;
+        if (runActive || !LandingFailureVisible || LandingFeedbackPending || LandingOutcomePending) return;
         landingResultDismissed = true; RefreshViews();
     }
 }

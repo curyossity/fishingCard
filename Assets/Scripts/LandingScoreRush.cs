@@ -55,6 +55,8 @@ public sealed class LandingScoreRush : MonoBehaviour
     public decimal DisplayedTotal { get; private set; }
     public decimal DisplayedStrike { get; private set; }
     public bool ReducedMotion => reducedMotionToggle != null && reducedMotionToggle.isOn;
+    /// <summary>The saved reduced-motion choice, for presentation owners outside Landing (phase transitions).</summary>
+    public static bool ReducedMotionPreferred => PlayerPrefs.GetInt(MotionKey, 0) != 0;
 
     /// <summary>Loads only user presentation preferences and retains authored transform baselines.</summary>
     private void Awake()

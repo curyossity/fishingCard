@@ -108,6 +108,7 @@ public static class LandingChallengeSceneChecks
                 Check(controller.CatchChain.Length == 0 && controller.LastHaul.Length == 2 && !controller.LastRunEndedByLineBreak, "Failure retained live attachments or used line-break loss.");
                 Check(completions == 1 && landed == 0 && controller.LastHaul[1].HaulValueContribution == 0, "Failed creature acquired or Bait paid sale value.");
                 Check(!controller.TryStrikeLanding(occurrence, model.Revision) && controller.TotalGold == initialGold + expectedHaul, "Duplicate terminal command awarded again.");
+                controller.CompleteLandingFeedback(); controller.CompleteLandingOutcome(); // Escape beat covered by LandingOutcomeChecks.
                 Capture(view, "Landing-Failed.png");
                 ((UnityEngine.UI.Button)viewData.FindProperty("returnToHarbor").objectReferenceValue).onClick.Invoke();
                 Check(harbor.HubVisible && !view.gameObject.activeInHierarchy, "Failure could not return to Harbor.");

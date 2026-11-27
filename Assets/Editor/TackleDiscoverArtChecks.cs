@@ -100,6 +100,7 @@ public static class TackleDiscoverArtChecks
             var pointer = new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current)
             { position = RectTransformUtility.WorldToScreenPoint(null, rect.TransformPoint(rect.rect.center)) };
             var hits = new System.Collections.Generic.List<UnityEngine.EventSystems.RaycastResult>();
+            TacklePhaseTransitionChecks.Settle(); // At-rest layout check; skip the cosmetic phase transition.
             UnityEngine.EventSystems.EventSystem.current.RaycastAll(pointer, hits);
             assert(hits.Count > 0 && hits[0].gameObject == button.gameObject, "Artwork intercepts button input: " + button.name);
         }

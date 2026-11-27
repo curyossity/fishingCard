@@ -128,6 +128,7 @@ public static class LandingStrikeFeedbackChecks
     private static void CheckButton(UnityEngine.UI.Button button)
     {
         var rect=(RectTransform)button.transform;var point=RectTransformUtility.WorldToScreenPoint(null,rect.TransformPoint(rect.rect.center));
+        TacklePhaseTransitionChecks.Settle(); // At-rest layout check; skip the cosmetic phase transition.
         var hits=new List<RaycastResult>();EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current){position=point},hits);
         Check(hits.Count>0&&ExecuteEvents.GetEventHandler<UnityEngine.UI.Button>(hits[0].gameObject)==button.gameObject,"Feedback blocks an existing gameplay button.");
     }

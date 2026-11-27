@@ -96,6 +96,7 @@ public static class TackleCardTooltipChecks
         {
             var point = RectTransformUtility.WorldToScreenPoint(null, ((RectTransform)gap.transform).TransformPoint(((RectTransform)gap.transform).rect.center));
             if (!RectTransformUtility.RectangleContainsScreenPoint(railScroll.viewport, point)) continue;
+            TacklePhaseTransitionChecks.Settle(); // At-rest layout check; skip the cosmetic phase transition.
             var hits = new List<RaycastResult>(); EventSystem.current.RaycastAll(new PointerEventData(EventSystem.current) { position = point }, hits);
             Check(hits.Count > 0 && ExecuteEvents.GetEventHandler<UnityEngine.UI.Button>(hits[0].gameObject) == gap.gameObject, "Tooltip intercepted a visible insertion button.");
             visibleGaps++;
