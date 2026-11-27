@@ -162,8 +162,9 @@ public sealed class LandingScoreRush : MonoBehaviour
         machine.anchoredPosition = machineRest; glow.color = Color.clear;
         collision.Render(sequence, timing, elapsed, ReducedMotion);
         if (damage != null) damage.Render(sequence, receipt, elapsed, ReducedMotion);
-        if (numbers != null) numbers.Render(sequence, elapsed, ReducedMotion);
         waterImpact.Render(sequence, elapsed, ReducedMotion);
+        // After the water layer, so the slam owns its own number's scale.
+        if (numbers != null) numbers.Render(sequence, elapsed, ReducedMotion);
         strikeWater.Render(sequence, receipt.Resistance, elapsed, ReducedMotion);
         impactCamera.Render(sequence, timing, elapsed, collision.ScreenShakeOffset, ReducedMotion);
     }

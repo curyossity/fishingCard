@@ -4,14 +4,12 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Authors the floating damage numbers and the DAMAGE counter above the creature card on the Landing prefab. Idempotent; retained
+/// Authors the floating damage numbers and the final damage slam on the creature's portrait on the Landing prefab. Idempotent; retained
 /// by score-rush regeneration after the combat cards are placed, so it measures their final positions.
 /// </summary>
 public static class LandingDamageNumbersSetup
 {
-    public const string LayerName = "Damage numbers", TemplateName = "Floating damage template", CounterName = "Damage counter";
-    /// <summary>Counter center in stage pixels (top-left origin): the dark gap above the creature card, right of its name tab.</summary>
-    public static readonly Vector2 CounterCenter = new Vector2(1534, 294);
+    public const string LayerName = "Damage numbers", TemplateName = "Floating damage template", CounterName = "Damage counter", SlamName = "Damage slam";
     public const string OutlinePath = LandingCombatCardsSetup.Folder + "damage-number-outline.mat";
 
     /// <summary>The pixel font's material with a thick dark outline, shared by every floating number.</summary>
@@ -65,32 +63,27 @@ public static class LandingDamageNumbersSetup
         faceText.fontSharedMaterial = outline;
         template.gameObject.SetActive(false);
 
-        // DAMAGE counter: a small dark plate in the gap between the header and the creature card, holding the running total.
-        var counter = layer.Find(CounterName) as RectTransform;
-        if (counter == null) counter = (RectTransform)new GameObject(CounterName, typeof(RectTransform), typeof(CanvasGroup)).transform;
-        Center(counter, layer, new Vector2(CounterCenter.x - 960, 540 - CounterCenter.y), new Vector2(156, 22));
-        var counterGroup = counter.GetComponent<CanvasGroup>(); counterGroup.alpha = 0; counterGroup.blocksRaycasts = false; counterGroup.interactable = false;
-        var plate = counter.Find("Plate")?.GetComponent<UnityEngine.UI.Image>();
-        if (plate == null) plate = new GameObject("Plate", typeof(RectTransform), typeof(CanvasRenderer), typeof(UnityEngine.UI.Image)).GetComponent<UnityEngine.UI.Image>();
-        Center(plate.rectTransform, counter, Vector2.zero, new Vector2(156, 22));
-        plate.color = new Color32(14, 10, 7, 235); plate.raycastTarget = false; plate.transform.SetAsFirstSibling();
-        var caption = Label(counter, "Caption", font, 9, new Color32(235, 217, 168, 255), new Vector2(-34, 0), new Vector2(70, 20));
-        caption.text = "DAMAGE"; caption.alignment = TextAlignmentOptions.Right;
-        var value = Label(counter, "Value", font, 16, new Color32(255, 214, 102, 255), new Vector2(40, 0), new Vector2(72, 22));
-        value.alignment = TextAlignmentOptions.Left;
-        counter.SetAsLastSibling();
+        // The old running-total counter is replaced by the final slam.
+        var oldCounter = layer.Find(CounterName); if (oldCounter != null) UnityEngine.Object.DestroyImmediate(oldCounter.gameObject);
+        // Final slam: the strike's total, large and outlined, landing on the creature's portrait as the bar starts to drain.
+        var slam = layer.Find(SlamName) as RectTransform;
+        if (slam == null) slam = (RectTransform)new GameObject(SlamName, typeof(RectTransform), typeof(CanvasGroup)).transform;
+        Center(slam, layer, Vector2.zero, new Vector2(360, 100));
+        var slamGroup = slam.GetComponent<CanvasGroup>(); slamGroup.alpha = 0; slamGroup.blocksRaycasts = false; slamGroup.interactable = false;
+        var value = Label(slam, "Value", font, 64, LandingDamageNumbers.SlamColor, Vector2.zero, new Vector2(360, 100));
+        value.fontSharedMaterial = outline;
+        slam.SetAsLastSibling();
 
         var data = new SerializedObject(numbers);
         data.FindProperty("layer").objectReferenceValue = layer;
         data.FindProperty("popupTemplate").objectReferenceValue = template;
-        data.FindProperty("counter").objectReferenceValue = counterGroup;
-        data.FindProperty("counterValue").objectReferenceValue = value;
+        data.FindProperty("slam").objectReferenceValue = slamGroup;
+        data.FindProperty("slamValue").objectReferenceValue = value;
         data.FindProperty("collision").objectReferenceValue = collision;
-        var fill = (RectTransform)new SerializedObject(view).FindProperty("progressFill").objectReferenceValue;
-        data.FindProperty("healthBar").objectReferenceValue = fill.parent;
+        data.FindProperty("slamTarget").objectReferenceValue = ((Component)new SerializedObject(view).FindProperty("portrait").objectReferenceValue).transform;
         data.ApplyModifiedPropertiesWithoutUndo();
         var rushData = new SerializedObject(rush); rushData.FindProperty("numbers").objectReferenceValue = numbers; rushData.ApplyModifiedPropertiesWithoutUndo();
-        // The water impact's digit punch now lands on the running damage total.
+        // The water impact's digit punch targets the slam number; the slam renders after the water layer and owns its scale.
         var water = root.GetComponent<LandingWaterImpact>();
         if (water != null) { var w = new SerializedObject(water); w.FindProperty("number").objectReferenceValue = value.rectTransform; w.ApplyModifiedPropertiesWithoutUndo(); }
     }

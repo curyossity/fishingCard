@@ -229,8 +229,8 @@ public static class LandingScoreRushChecks
         var water = new SerializedObject(root.GetComponent<LandingWaterImpact>());
         foreach (string field in new[] { "spray", "number", "collision" }) Check(water.FindProperty(field).objectReferenceValue != null, "Missing water impact binding: " + field);
         var spray = (UnityEngine.UI.RawImage)water.FindProperty("spray").objectReferenceValue;
-        // The digit punch now lands on the DAMAGE counter above the creature card, which shows the strike's running total.
-        var counterValue = (TMP_Text)new SerializedObject(root.GetComponent<LandingDamageNumbers>()).FindProperty("counterValue").objectReferenceValue;
+        // The digit punch targets the final damage slam on the creature card.
+        var counterValue = (TMP_Text)new SerializedObject(root.GetComponent<LandingDamageNumbers>()).FindProperty("slamValue").objectReferenceValue;
         Check(!spray.enabled && !spray.raycastTarget && water.FindProperty("number").objectReferenceValue == counterValue.rectTransform, "Water starts visible, intercepts input or pulses another number.");
         var sheets = water.FindProperty("sheets"); Check(sheets.arraySize == 3, "Water lacks its three authored strength tiers.");
         for (int i = 0; i < sheets.arraySize; i++)

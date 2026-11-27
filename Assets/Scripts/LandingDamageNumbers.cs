@@ -5,22 +5,27 @@ using UnityEngine;
 /// <summary>
 /// Shows a strike's damage on the creature's side. At every ram, the hit's own effect pops out of the impact point on the creature
 /// card as a floating number (+20 for the accuracy base, +3 for an addition, x2 for a multiplier), coloured by kind, sized by
-/// strength, rising and drifting away before it fades. A DAMAGE counter above the creature card follows the strike's running total
-/// and, at the payout, drops into the Resistance bar just as the bar starts to drain. Presentation only: every value comes from the
-/// frozen score sequence, sampled statelessly from its clock, and nothing here changes points.
+/// strength, rising and drifting away before it fades. At the end the strike's total slams onto the creature's portrait: it drops
+/// in large from above and lands exactly at the payout, the moment the hurt reaction and the Resistance bar drain begin. Floating
+/// numbers still in the air clear as the slam comes down. Presentation only: every value comes from the frozen score sequence,
+/// sampled statelessly from its clock, and nothing here changes points.
 /// </summary>
 public sealed class LandingDamageNumbers : MonoBehaviour
 {
     [SerializeField] private RectTransform layer;
     [SerializeField] private RectTransform popupTemplate;
-    [SerializeField] private CanvasGroup counter;
-    [SerializeField] private TMP_Text counterValue;
+    [SerializeField] private CanvasGroup slam;
+    [SerializeField] private TMP_Text slamValue;
     [SerializeField] private LandingCardCollision collision;
-    [SerializeField] private RectTransform healthBar;
-    public const float Life = .7f, FadeAt = .45f, Rise = 70, FlightSeconds = .16f, MaxPool = 4;
+    [SerializeField] private RectTransform slamTarget;
+    public const float Life = .7f, FadeAt = .45f, Rise = 70, MaxPool = 4;
+    /// <summary>Slam: drop before the payout, the landing punch, the hold on the portrait and the fade while the bar drains.</summary>
+    public const float SlamDrop = .2f, SlamPunch = .14f, SlamHold = .3f, SlamFade = .25f, SlamHeight = 110, SlamStartScale = 2.3f;
     public static readonly Color BaseColor = new Color32(242, 230, 200, 255), AddColor = new Color32(240, 205, 133, 255), MultiplyColor = new Color32(150, 225, 190, 255);
+    /// <summary>Bright gold: stands out against both the parchment and the red hurt flash it lands with.</summary>
+    public static readonly Color SlamColor = new Color32(255, 224, 102, 255);
     private readonly List<(RectTransform root, TMP_Text face, TMP_Text shadow)> pool = new List<(RectTransform, TMP_Text, TMP_Text)>();
-    private Vector2 origin, counterRest, barTarget;
+    private Vector2 origin, slamRest;
     private bool active, restCaptured;
 
     /// <summary>Text of the floating number for a score step: the accuracy base, an addition or a multiplier.</summary>
@@ -57,75 +62,88 @@ public sealed class LandingDamageNumbers : MonoBehaviour
 
     public static float Opacity(float age) => age < 0 || age >= Life ? 0 : age < FadeAt ? 1 : 1 - (age - FadeAt) / (Life - FadeAt);
 
-    /// <summary>Counter flight into the Resistance bar, 0..1 (ease-in), ending exactly at the payout when the bar starts to drain.</summary>
-    public static float Flight(float elapsed, float payoutAt)
+    /// <summary>Floating numbers give way to the slam: full until it starts dropping, gone by the time it lands.</summary>
+    public static float ClearForSlam(float elapsed, float payoutAt) => 1 - Mathf.Clamp01((elapsed - (payoutAt - SlamDrop)) / (SlamDrop * .7f));
+
+    /// <summary>Slam drop progress 0..1 (ease-in, accelerating like a falling weight); exactly 1 at the payout.</summary>
+    public static float SlamFall(float elapsed, float payoutAt)
     {
-        float u = Mathf.Clamp01((elapsed - (payoutAt - FlightSeconds)) / FlightSeconds);
-        return u * u;
+        float u = Mathf.Clamp01((elapsed - (payoutAt - SlamDrop)) / SlamDrop);
+        return u * u * u;
     }
 
-    /// <summary>Captures the rest-pose impact point and counter path for one strike; call after the collision has captured its rest.</summary>
+    /// <summary>Slam scale: large while falling, squashing past full size on impact, then settling on exactly 1.</summary>
+    public static float SlamScale(float elapsed, float payoutAt)
+    {
+        float age = elapsed - payoutAt;
+        if (age < 0) return Mathf.Lerp(SlamStartScale, 1, SlamFall(elapsed, payoutAt));
+        if (age > SlamPunch) return 1;
+        return 1 + .3f * Mathf.Exp(-age * 18) * Mathf.Cos(age * 30) * (1 - age / SlamPunch);
+    }
+
+    /// <summary>Slam opacity: fades in during the drop, holds on the portrait, then fades while the bar drains.</summary>
+    public static float SlamOpacity(float elapsed, float payoutAt)
+    {
+        float start = payoutAt - SlamDrop, end = payoutAt + SlamHold;
+        if (elapsed < start || elapsed >= end + SlamFade) return 0;
+        if (elapsed < start + .06f) return (elapsed - start) / .06f;
+        return elapsed < end ? 1 : 1 - (elapsed - end) / SlamFade;
+    }
+
+    /// <summary>Captures the rest-pose impact point and slam target for one strike; call after the collision has captured its rest.</summary>
     public void Begin(LandingScoreSequence sequence)
     {
         Clear();
         if (layer == null || collision == null) return;
         origin = layer.InverseTransformPoint(collision.ContactPoint) + new Vector3(18, 18);
-        if (!restCaptured && counter != null) { counterRest = ((RectTransform)counter.transform).anchoredPosition; restCaptured = true; }
-        if (healthBar != null && counter != null)
+        if (slam != null && slamTarget != null)
         {
-            var parent = (RectTransform)counter.transform.parent;
-            Vector2 local = parent.InverseTransformPoint(healthBar.TransformPoint(healthBar.rect.center));
-            // Anchored positions are measured from the counter's anchor; convert the bar's local point into that frame.
-            var rect = (RectTransform)counter.transform;
-            barTarget = counterRest + (local - (Vector2)parent.InverseTransformPoint(rect.TransformPoint(rect.rect.center)));
+            var rect = (RectTransform)slam.transform;
+            Vector2 target = layer.InverseTransformPoint(slamTarget.TransformPoint(slamTarget.rect.center));
+            slamRest = target; restCaptured = true; rect.anchoredPosition = target;
         }
         active = true;
     }
 
-    /// <summary>Samples every floating number and the counter at a score-sequence time.</summary>
+    /// <summary>Samples every floating number and the final slam at a score-sequence time.</summary>
     public void Render(LandingScoreSequence sequence, float elapsed, bool reduced)
     {
         if (!active || sequence == null) return;
         int slot = 0;
+        bool slams = sequence.Score.Points > 0;
+        float clear = slams ? ClearForSlam(elapsed, sequence.PayoutAt) : 1;
         for (int i = 0; i < sequence.Steps.Count && slot < MaxPool; i++)
         {
             if (!Shows(sequence, i)) continue;
             float age = elapsed - sequence.Steps[i].ImpactAt;
             if (age < 0 || age >= Life) continue;
+            float alpha = Opacity(age) * clear;
+            if (alpha <= 0) continue;
             var popup = Popup(slot++);
             popup.root.gameObject.SetActive(true);
             popup.face.text = Label(sequence, i); if (popup.shadow != null) popup.shadow.text = popup.face.text;
             popup.face.color = ColorFor(sequence, i);
-            float alpha = Opacity(age);
             popup.face.alpha = alpha; if (popup.shadow != null) popup.shadow.alpha = alpha * .85f;
             float strength = i == 0 ? .3f : sequence.Steps[i].Strength;
             popup.root.anchoredPosition = origin + (reduced ? Vector2.zero : Drift(age, i));
             popup.root.localScale = Vector3.one * (reduced ? 1 + .45f * strength : Pop(age, strength));
         }
         for (int i = slot; i < pool.Count; i++) pool[i].root.gameObject.SetActive(false);
-        RenderCounter(sequence, elapsed, reduced);
+        RenderSlam(sequence, elapsed, reduced, slams);
     }
 
-    /// <summary>Running total above the creature card; at the payout it drops into the Resistance bar.</summary>
-    private void RenderCounter(LandingScoreSequence sequence, float elapsed, bool reduced)
+    /// <summary>The strike's total drops onto the creature's portrait and lands exactly as the bar starts to drain.</summary>
+    private void RenderSlam(LandingScoreSequence sequence, float elapsed, bool reduced, bool slams)
     {
-        if (counter == null) return;
-        int first = Shows(sequence, 0) ? 0 : 1;
-        bool scoring = sequence.Score.Points > 0 && first < sequence.Steps.Count;
-        float start = scoring ? sequence.Steps[first].ImpactAt : float.MaxValue;
-        if (!scoring || elapsed < start || elapsed >= sequence.PayoutAt) { counter.alpha = 0; return; }
-        counterValue.text = LandingScoreRush.Format(sequence.ValueAt(elapsed));
-        float flight = Flight(elapsed, sequence.PayoutAt), fadeIn = Mathf.Clamp01((elapsed - start) / .08f);
-        var rect = (RectTransform)counter.transform;
-        if (reduced)
-        {
-            rect.anchoredPosition = counterRest; rect.localScale = Vector3.one;
-            counter.alpha = fadeIn * (1 - flight);
-            return;
-        }
-        rect.anchoredPosition = Vector2.Lerp(counterRest, barTarget, flight);
-        rect.localScale = Vector3.one * Mathf.Lerp(1, .55f, flight);
-        counter.alpha = fadeIn * Mathf.Lerp(1, .35f, flight);
+        if (slam == null) return;
+        float alpha = slams ? SlamOpacity(elapsed, sequence.PayoutAt) : 0;
+        slam.alpha = alpha;
+        if (alpha <= 0) return;
+        slamValue.text = LandingScoreRush.Format(sequence.Score.Points);
+        var rect = (RectTransform)slam.transform;
+        if (reduced) { rect.anchoredPosition = slamRest; rect.localScale = Vector3.one; return; }
+        rect.anchoredPosition = slamRest + Vector2.up * (SlamHeight * (1 - SlamFall(elapsed, sequence.PayoutAt)));
+        rect.localScale = Vector3.one * SlamScale(elapsed, sequence.PayoutAt);
     }
 
     private (RectTransform root, TMP_Text face, TMP_Text shadow) Popup(int index)
@@ -138,16 +156,16 @@ public sealed class LandingDamageNumbers : MonoBehaviour
         return pool[index];
     }
 
-    /// <summary>Hides every number and returns the counter to its rest pose.</summary>
+    /// <summary>Hides every number and the slam, restoring the slam's rest pose.</summary>
     public void Clear()
     {
         active = false;
         foreach (var popup in pool) if (popup.root != null) popup.root.gameObject.SetActive(false);
-        if (counter != null)
+        if (slam != null)
         {
-            counter.alpha = 0;
-            var rect = (RectTransform)counter.transform;
-            if (restCaptured) rect.anchoredPosition = counterRest;
+            slam.alpha = 0;
+            var rect = (RectTransform)slam.transform;
+            if (restCaptured) rect.anchoredPosition = slamRest;
             rect.localScale = Vector3.one;
         }
     }
