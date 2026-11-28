@@ -24,6 +24,7 @@ MonoBehaviour:
     Cooldown: 0.07
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 1
     Takes:
     - {fileID: 8300000, guid: cd690d9ec44cd6445be1db4cb5fe1f06, type: 3}
@@ -35,6 +36,7 @@ MonoBehaviour:
     Cooldown: 0.07
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 2
     Takes:
     - {fileID: 8300000, guid: 48e142e7627220d4bbb677629350fd03, type: 3}
@@ -46,6 +48,7 @@ MonoBehaviour:
     Cooldown: 0.075
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 5
     Takes:
     - {fileID: 8300000, guid: 4f52d602436fec84e94c6cdc746f0ae9, type: 3}
@@ -57,28 +60,7 @@ MonoBehaviour:
     Cooldown: 0.045
     PitchGrowth: 1
     IntensityGainDb: 0
-  - Cue: 18
-    Takes:
-    - {fileID: 8300000, guid: 700a993703e5eb24b80ac123ca8ad867, type: 3}
-    - {fileID: 8300000, guid: bcdd74ff4286ffb49825d4c28828984f, type: 3}
-    - {fileID: 8300000, guid: 3c66fc968ff67d5489a40f946f85816f, type: 3}
-    GainDb: -7.36151
-    Bus: 2
-    Priority: 90
-    Cooldown: 0
-    PitchGrowth: 0.28
-    IntensityGainDb: 0
-  - Cue: 19
-    Takes:
-    - {fileID: 8300000, guid: 2a5845c731f1563438b2fe7d0c30c351, type: 3}
-    - {fileID: 8300000, guid: aa6e1268c8418284ba85474dcf00be25, type: 3}
-    - {fileID: 8300000, guid: a3591c531e9cff54bab8c5f749b80262, type: 3}
-    GainDb: -5.0534167
-    Bus: 2
-    Priority: 65
-    Cooldown: 0
-    PitchGrowth: 0.28
-    IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 26
     Takes:
     - {fileID: 8300000, guid: 8730e86069b4cd44db295f2ca7dcd5e1, type: 3}
@@ -90,6 +72,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 3
     Takes:
     - {fileID: 8300000, guid: 58b991b3fc9c28e43af3274ac6a899eb, type: 3}
@@ -99,6 +82,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 4
     Takes:
     - {fileID: 8300000, guid: 6775c9cf0a4767647841960bbc953ac3, type: 3}
@@ -108,6 +92,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 6
     Takes:
     - {fileID: 8300000, guid: a25c17f595967964192d8ac272371cb1, type: 3}
@@ -117,6 +102,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 7
     Takes:
     - {fileID: 8300000, guid: 718455fad3fdc1141a1454ca6725fafe, type: 3}
@@ -126,6 +112,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 8
     Takes:
     - {fileID: 8300000, guid: fe887f3d825bd1f43863f948d3516f46, type: 3}
@@ -135,6 +122,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 9
     Takes:
     - {fileID: 8300000, guid: 606be25cbb73bde43a366ab8ba7a3710, type: 3}
@@ -144,6 +132,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 10
     Takes:
     - {fileID: 8300000, guid: cde70af70b0d6194f981dffdb1bd0279, type: 3}
@@ -153,6 +142,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 11
     Takes:
     - {fileID: 8300000, guid: 30876f474acd5924ebc8f716ed2e24c2, type: 3}
@@ -162,6 +152,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 12
     Takes:
     - {fileID: 8300000, guid: beacbd693a9499540afae540e0fcfe4f, type: 3}
@@ -171,6 +162,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 13
     Takes:
     - {fileID: 8300000, guid: f37e53b89cc1ffb4f93b18f48ddaa54f, type: 3}
@@ -180,6 +172,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 14
     Takes:
     - {fileID: 8300000, guid: 498f6bb9e9e727c4cbf417537dde803d, type: 3}
@@ -189,24 +182,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
-  - Cue: 15
-    Takes:
-    - {fileID: 8300000, guid: ace07b777290bd846bb095be5c9bfe91, type: 3}
-    GainDb: -10
-    Bus: 2
-    Priority: 80
-    Cooldown: 0
-    PitchGrowth: 1
-    IntensityGainDb: 0
-  - Cue: 16
-    Takes:
-    - {fileID: 8300000, guid: d9500a4ab3a314a469e98ea4e93c1c66, type: 3}
-    GainDb: -5.380494
-    Bus: 2
-    Priority: 65
-    Cooldown: 0
-    PitchGrowth: 1
-    IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 17
     Takes:
     - {fileID: 8300000, guid: 0c95648b49a14fb46812c43143068d30, type: 3}
@@ -216,6 +192,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 20
     Takes:
     - {fileID: 8300000, guid: cc12853557736c946a50090dddc0e2db, type: 3}
@@ -225,6 +202,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 21
     Takes:
     - {fileID: 8300000, guid: 72d001eb544b6ca4dbb5324b5872088a, type: 3}
@@ -234,6 +212,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 22
     Takes:
     - {fileID: 8300000, guid: 7acf44294575a7943b2f681e5938a96c, type: 3}
@@ -243,6 +222,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 23
     Takes:
     - {fileID: 8300000, guid: 90458d71ab3c35d4f8ff28fef0fb5169, type: 3}
@@ -252,6 +232,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 24
     Takes:
     - {fileID: 8300000, guid: 60e52833914edba49b3211f9a75b4dfa, type: 3}
@@ -261,6 +242,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 25
     Takes:
     - {fileID: 8300000, guid: 70dbd06abc46fa043a73ae758fa43641, type: 3}
@@ -270,6 +252,7 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
   - Cue: 27
     Takes:
     - {fileID: 8300000, guid: 1b145e0988858014e841d610a63febd8, type: 3}
@@ -279,3 +262,104 @@ MonoBehaviour:
     Cooldown: 0
     PitchGrowth: 1
     IntensityGainDb: 0
+    ImpactAt: 0
+  - Cue: 28
+    Takes:
+    - {fileID: 8300000, guid: 009e956027d5c2f48b697a79f359c258, type: 3}
+    GainDb: -10.570848
+    Bus: 1
+    Priority: 210
+    Cooldown: 0.1
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.1832
+  - Cue: 29
+    Takes:
+    - {fileID: 8300000, guid: 6aca7e1c2b1519448a6e5ae40a228cfb, type: 3}
+    GainDb: -17.233221
+    Bus: 1
+    Priority: 210
+    Cooldown: 0.1
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.0148
+  - Cue: 30
+    Takes:
+    - {fileID: 8300000, guid: 985dbee8d721a654ab1e9ea2d8a53f98, type: 3}
+    GainDb: -9.055103
+    Bus: 2
+    Priority: 120
+    Cooldown: 0.08
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.0706
+  - Cue: 31
+    Takes:
+    - {fileID: 8300000, guid: 891f6af2678088d41843b5a74baa2ea0, type: 3}
+    GainDb: -5.851246
+    Bus: 2
+    Priority: 70
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.1285
+  - Cue: 32
+    Takes:
+    - {fileID: 8300000, guid: 59005d44e9453b0418cd51100820504f, type: 3}
+    GainDb: -6.8340864
+    Bus: 2
+    Priority: 60
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.1916
+  - Cue: 33
+    Takes:
+    - {fileID: 8300000, guid: 4c5c05cb09cf0114fb1f48fb9ba17b61, type: 3}
+    GainDb: -20.823633
+    Bus: 1
+    Priority: 200
+    Cooldown: 0.1
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.0168
+  - Cue: 18
+    Takes:
+    - {fileID: 8300000, guid: a32af570e89abed4794bbc7dae5ab4fc, type: 3}
+    GainDb: -9.781356
+    Bus: 2
+    Priority: 90
+    Cooldown: 0
+    PitchGrowth: 0.28
+    IntensityGainDb: 0
+    ImpactAt: 0.0311
+  - Cue: 19
+    Takes:
+    - {fileID: 8300000, guid: d5d28faf0e3a58343b5727a92fd946a2, type: 3}
+    GainDb: -8.62319
+    Bus: 2
+    Priority: 65
+    Cooldown: 0
+    PitchGrowth: 0.28
+    IntensityGainDb: 0
+    ImpactAt: 0.0457
+  - Cue: 15
+    Takes:
+    - {fileID: 8300000, guid: a24caf3f0c548d2499eb92ce3b819df3, type: 3}
+    GainDb: -11.691356
+    Bus: 2
+    Priority: 80
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.0311
+  - Cue: 16
+    Takes:
+    - {fileID: 8300000, guid: 652c0352035b6d44bbafb66f8d6b38cd, type: 3}
+    GainDb: -7.6042876
+    Bus: 2
+    Priority: 65
+    Cooldown: 0
+    PitchGrowth: 1
+    IntensityGainDb: 0
+    ImpactAt: 0.0311

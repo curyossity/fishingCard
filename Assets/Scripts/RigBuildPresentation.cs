@@ -152,8 +152,8 @@ public sealed class RigBuildPresentation : MonoBehaviour
     }
     /// <summary>Acknowledges a deliberate new legal preview; repeated layout and hover refreshes remain silent.</summary>
     public void PreviewChanged(){if(sound!=null)sound.Play(DeepwaterSoundCue.Preview);}
-    /// <summary>One tick of the haul count-up, rising in pitch as the value climbs.</summary>
-    public void HaulTick(float pitch){if(sound!=null)sound.Play(DeepwaterSoundCue.SlotTick,pitch,-4);}
+    /// <summary>One dry card-handling tick of the haul count-up, rising in pitch as the value climbs.</summary>
+    public void HaulTick(float pitch){if(sound!=null)sound.Play(DeepwaterSoundCue.Preview,pitch,-3);}
     /// <summary>Gets or creates a native presentation group without adding an input surface.</summary>
     private static CanvasGroup Group(GameObject root){var group=root.GetComponent<CanvasGroup>();return group!=null?group:root.AddComponent<CanvasGroup>();}
     /// <summary>Keeps the previous strike inspectable while giving placement consequences visual priority.</summary>

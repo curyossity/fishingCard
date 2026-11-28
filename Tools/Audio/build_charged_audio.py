@@ -80,4 +80,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--record-selection", action="store_true")
     args = parser.parse_args()
-    record_selection() if args.record_selection else main()
+    if args.record_selection:
+        record_selection()
+    else:
+        main()
+        # The 28 November Landing revision cues live beside the approved family; rewriting the manifest must keep them.
+        from build_landing_revision_audio import main as landing_revision
+        landing_revision()

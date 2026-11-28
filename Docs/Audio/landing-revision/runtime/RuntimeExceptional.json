@@ -1,0 +1,76 @@
+{
+    "duration": 5.316182613372803,
+    "note": "Frozen runtime cue schedule and rendered mix; not a device loopback recording.",
+    "events": [
+        {
+            "t": 0.0,
+            "pitch": 1.0,
+            "gain": 0.31925758719444277,
+            "kind": "Strike",
+            "file": "Assets/Audio/Deepwater/Strike_1.wav"
+        },
+        {
+            "t": 0.27049997448921206,
+            "pitch": 1.0,
+            "gain": 0.41666364669799807,
+            "kind": "Perfect",
+            "file": "Assets/Audio/Deepwater/RamPerfect_1.wav"
+        },
+        {
+            "t": 1.010503888130188,
+            "pitch": 1.0549308061599732,
+            "gain": 0.16116933524608613,
+            "kind": "Travel",
+            "file": "Assets/Audio/Deepwater/Travel_1.wav"
+        },
+        {
+            "t": 1.0931553840637208,
+            "pitch": 1.0,
+            "gain": 0.3242889940738678,
+            "kind": "Addition",
+            "file": "Assets/Audio/Deepwater/RamAddition_1.wav"
+        },
+        {
+            "t": 1.744987964630127,
+            "pitch": 1.0454950332641602,
+            "gain": 0.16116933524608613,
+            "kind": "Travel",
+            "file": "Assets/Audio/Deepwater/Travel_1.wav"
+        },
+        {
+            "t": 1.816365361213684,
+            "pitch": 1.0529780387878419,
+            "gain": 0.3705446124076843,
+            "kind": "Multiplier",
+            "file": "Assets/Audio/Deepwater/RamMultiplier_1.wav"
+        },
+        {
+            "t": 2.5644469261169435,
+            "pitch": 0.5956048369407654,
+            "gain": 0.16116933524608613,
+            "kind": "Travel",
+            "file": "Assets/Audio/Deepwater/Travel_1.wav"
+        },
+        {
+            "t": 2.724140167236328,
+            "pitch": 1.0937551259994507,
+            "gain": 0.3705446124076843,
+            "kind": "Multiplier",
+            "file": "Assets/Audio/Deepwater/RamMultiplier_1.wav"
+        },
+        {
+            "t": 3.7345824241638185,
+            "pitch": 1.0,
+            "gain": 0.45529794692993166,
+            "kind": "SlamImpact",
+            "file": "Assets/Audio/Deepwater/SlamImpact_1.wav"
+        },
+        {
+            "t": 3.926182508468628,
+            "pitch": 1.0,
+            "gain": 0.739016592502594,
+            "kind": "PayoutBig",
+            "file": "Assets/Audio/Deepwater/PayoutBig_1.wav"
+        }
+    ]
+}

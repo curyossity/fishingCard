@@ -38,12 +38,12 @@ At the score payout, the moment a strike's points transfer into accumulated Land
   - There is no reaction without damage, and severity scales with the share of Resistance, with the finishing-blow lift.
   - Every channel returns to rest, knockback points away from the Strike panel, scaled by severity, and the chip span matches the lost Resistance.
   - Reduced motion softens the tint, and the reaction fits within the post-payout tail.
-  - The red eases down first; the trail holds, then eases after it and never ahead of it. Control waits for the trail on damaging strikes but not on a Miss.
-- **[Live](LiveVerification.json): 15 assertions** in a fresh comparison Play session with persistence disabled. A real Perfect against Cod deals non-finishing damage:
+  - The bar holds for `LandingHealthTrail.Delay` (0.2 s) after the slam; then the red eases down first, and the trail holds, then eases after it and never ahead of it. Control waits for the trail on damaging strikes but not on a Miss.
+- **[Live](LiveVerification.json): 16 assertions** in a fresh comparison Play session with persistence disabled. A real Perfect against Cod deals non-finishing damage:
   - There is no chip before the payout.
-  - At the payout the creature card is knocked back (away from the Strike panel) and takes the hurt tint. The white trail holds the old Resistance while the red drains, the red settles on the new value, then the trail eases down while control is still held.
+  - At the payout the creature card is knocked back (away from the Strike panel) and takes the hurt tint, while the bar still holds. After the hold, the white trail holds the old Resistance while the red drains, the red settles on the new value, then the trail eases down while control is still held.
   - Reduced motion keeps the card still while keeping the tint and the chip.
   - Everything settles inside the tail, and skipping restores the card, flash and chip.
   - A real Miss produces no reaction.
-- **Previews:** [normal speed](Strike.mp4) and [quarter speed](Strike-QuarterSpeed.mp4), cropped to the machine. Stills `Strike-1…5` run from just before the payout to settling. They were recorded with the earlier, faster red drain (0.27 s); the red is now 0.45–0.63 s.
+- **Previews:** [normal speed](Strike.mp4) and [quarter speed](Strike-QuarterSpeed.mp4), cropped to the machine, were recorded with an earlier, faster red drain (0.27 s) and no hold. Stills `Strike-1…5` (28 November 2026) show the current timing, from just before the payout to settling.
 - Not yet verified: human play feel across large late-game hits.

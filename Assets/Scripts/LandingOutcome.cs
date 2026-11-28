@@ -110,9 +110,11 @@ public sealed class LandingOutcome : MonoBehaviour
         if (timing.Kind == LandingOutcomeKind.Landed)
         {
             if (!yankSounded && age >= LandingOutcomeTiming.DipEnd) { yankSounded = true; Play(DeepwaterSoundCue.Travel, 1.1f, -4); }
-            if (!landSounded && age >= LandingOutcomeTiming.LandAt) { landSounded = true; Play(DeepwaterSoundCue.Attach, 1, 0); }
+            // The lock-in's swell leads into the slam: start it early enough that its contact meets LandAt.
+            if (!landSounded && sound != null && age >= LandingOutcomeTiming.LandAt - sound.CueImpactAt(DeepwaterSoundCue.Landed))
+            { landSounded = true; sound.PlayContact(DeepwaterSoundCue.Landed, LandingOutcomeTiming.LandAt - age); }
         }
-        if (!stamped && age >= timing.StampAt) { stamped = true; if (banner != null) banner.StampOutcome(timing.Kind, startedAt + timing.StampAt, timing.StampHold); }
+        if (!stamped && age >= timing.StampAt) { stamped = true; if (banner != null) banner.StampOutcome(timing.Kind, startedAt + timing.StampAt, timing.StampHold); Play(DeepwaterSoundCue.Stamp, 1, 0); }
         if (banner != null) banner.Tick();
         if (timing.Kind == LandingOutcomeKind.Escaped) RenderPayout(age, reduced);
     }
@@ -135,7 +137,7 @@ public sealed class LandingOutcome : MonoBehaviour
         {
             lastActive = active; Reveal(active);
             // Fast tallies tick at most every 50 ms so a long haul rattles rather than buzzes.
-            if (Time.realtimeSinceStartupAsDouble - lastTick >= .05) { lastTick = Time.realtimeSinceStartupAsDouble; Play(DeepwaterSoundCue.SlotTick, Mathf.Min(1.5f, 1 + active * .04f), -2); }
+            if (Time.realtimeSinceStartupAsDouble - lastTick >= .05) { lastTick = Time.realtimeSinceStartupAsDouble; Play(DeepwaterSoundCue.Preview, Mathf.Min(1.5f, 1 + active * .04f), 0); }
         }
         if (!punched && age >= timing.PayoutEnd && timing.Cards > 0) { punched = true; Play(DeepwaterSoundCue.PayoutSmall, .94f, -5); }
     }
@@ -167,8 +169,8 @@ public sealed class LandingOutcome : MonoBehaviour
 #if UNITY_EDITOR
         frozen = false;
 #endif
-        if (!stamped) { stamped = true; if (banner != null) banner.StampOutcome(timing.Kind, Time.realtimeSinceStartupAsDouble - LandingRarityBanner.StampSeconds, timing.StampHold); }
-        if (!landSounded && timing.Kind == LandingOutcomeKind.Landed) { landSounded = true; Play(DeepwaterSoundCue.Attach, 1, 0); }
+        if (!stamped) { stamped = true; if (banner != null) banner.StampOutcome(timing.Kind, Time.realtimeSinceStartupAsDouble - LandingRarityBanner.StampSeconds, timing.StampHold); Play(DeepwaterSoundCue.Stamp, 1, 0); }
+        if (!landSounded && timing.Kind == LandingOutcomeKind.Landed) { landSounded = true; Play(DeepwaterSoundCue.Landed, 1, 0); }
         creatureCard.anchoredPosition = cardPosition; creatureCard.localRotation = cardRotation; creatureCard.localScale = cardRestScale;
         if (creatureFlash != null) creatureFlash.Show(0);
         if (impactCamera != null) impactCamera.Clear();

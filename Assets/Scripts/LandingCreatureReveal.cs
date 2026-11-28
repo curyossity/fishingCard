@@ -17,7 +17,7 @@ public sealed class LandingCreatureReveal : MonoBehaviour
     [SerializeField] private LandingRarityBanner banner;
     private LandingRevealTiming timing;
     private double startedAt;
-    private bool running, sounded, captured, stamped;
+    private bool running, sounded, captured, stamped, silentStamp;
     /// <summary>Rare/Legendary tag; it outlives the reveal briefly, so the Landing presentation keeps ticking it.</summary>
     public LandingRarityBanner Banner => banner;
     private Vector3 cardScale;
@@ -34,7 +34,7 @@ public sealed class LandingCreatureReveal : MonoBehaviour
     {
         if (running) { sounded = true; stamped = true; Finish(); } // Replacement is silent and never stamps the old banner.
         cardScale = creatureCard.localScale; faceAlpha = creatureFade.alpha; nameAlpha = creatureName.alpha; captured = true;
-        timing = LandingRevealTiming.For(rarity); startedAt = revealStartedAt; running = true; sounded = silent; stamped = false;
+        timing = LandingRevealTiming.For(rarity); startedAt = revealStartedAt; running = true; sounded = silent; silentStamp = silent; stamped = false;
         if (banner != null) banner.Clear();
         Render();
     }
@@ -66,7 +66,7 @@ public sealed class LandingCreatureReveal : MonoBehaviour
         }
         if (!sounded && elapsed >= timing.SettleAt) PlaySound();
         // The banner stamps with the face landing, on the same absolute clock so exported frames match live play.
-        if (!stamped && elapsed >= timing.SettleAt) { stamped = true; if (banner != null) banner.Stamp(timing.Rarity, startedAt + timing.SettleAt); }
+        if (!stamped && elapsed >= timing.SettleAt) { stamped = true; if (banner != null) banner.Stamp(timing.Rarity, startedAt + timing.SettleAt); StampSound(); }
     }
 
     /// <summary>One cue per reveal, at the moment the face lands; a skipped reveal still acknowledges the creature once.</summary>
@@ -76,13 +76,16 @@ public sealed class LandingCreatureReveal : MonoBehaviour
         if (sound != null) sound.Play(DeepwaterSoundCue.Reveal, timing.Pitch, timing.GainDb);
     }
 
-    /// <summary>Restores the panel, name, flash and stage exactly on completion, skip, replacement, disable or phase exit.</summary>
+    /// <summary>The Rare/Legendary banner's stamp; routine creatures have no banner and stay quiet.</summary>
+    private void StampSound() { if (sound != null && !silentStamp && banner != null && LandingRarityBanner.Announces(timing.Rarity)) sound.Play(DeepwaterSoundCue.Stamp); }
+
+        /// <summary>Restores the panel, name, flash and stage exactly on completion, skip, replacement, disable or phase exit.</summary>
     public void Finish()
     {
         bool wasRunning = running; running = false;
         if (wasRunning && !sounded) PlaySound();
         // Skipping still announces a Rare/Legendary creature: the banner stamps now instead of at the face landing.
-        if (wasRunning && !stamped) { stamped = true; if (banner != null) banner.Stamp(timing.Rarity, Time.realtimeSinceStartupAsDouble); }
+        if (wasRunning && !stamped) { stamped = true; if (banner != null) banner.Stamp(timing.Rarity, Time.realtimeSinceStartupAsDouble); StampSound(); }
         if (!captured) return;
         creatureCard.localScale = cardScale; creatureFade.alpha = faceAlpha; creatureName.alpha = nameAlpha;
         if (creatureFlash != null) creatureFlash.Show(0);

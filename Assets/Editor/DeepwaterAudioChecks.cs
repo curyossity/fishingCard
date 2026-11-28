@@ -45,6 +45,18 @@ public static class DeepwaterAudioChecks
             var voices = data.FindProperty("voices"); Check(voices.arraySize >= 4 && voices.arraySize <= 8, "Unbounded phase voices: " + path);
             foreach (var source in root.GetComponentsInChildren<AudioSource>(true)) Check(source.outputAudioMixerGroup != null && !source.playOnAwake && source.spatialBlend == 0, "Unrouted, automatic or 3D voice: " + path);
         }
+        // Phase-transition shutter: its own small pool on the same palette, both shutter cues aligned to visible contacts.
+        var transition = AssetDatabase.LoadAssetAtPath<GameObject>(TacklePhaseTransitionSetup.PrefabPath);
+        var shutterPlayer = (DeepwaterSoundPlayer)new SerializedObject(transition.GetComponent<TacklePhaseTransition>()).FindProperty("sound").objectReferenceValue;
+        Check(shutterPlayer != null && shutterPlayer.Library == library && new SerializedObject(shutterPlayer).FindProperty("voices").arraySize == 2, "Shutter has no bounded voice pool on the shared palette.");
+        foreach (var source in transition.GetComponentsInChildren<AudioSource>(true)) Check(!source.playOnAwake && source.spatialBlend == 0, "Unrouted, automatic or 3D shutter voice.");
+        Check(Math.Abs(library.Find(DeepwaterSoundCue.ShutterClose).ImpactAt - TacklePhaseTransition.CloseSeconds) < .02f, "Shutter clunk does not meet the landing.");
+        foreach (var cue in new[] { DeepwaterSoundCue.ShutterClose, DeepwaterSoundCue.ShutterOpen, DeepwaterSoundCue.HealthDrain })
+            Check(library.Find(cue).Bus == DeepwaterSoundBus.Motion && library.Find(cue).Priority > library.Find(DeepwaterSoundCue.SlamImpact).Priority, "Motion cue could steal a score impact: " + cue);
+        Check(library.Find(DeepwaterSoundCue.SlamImpact).GainDb <= library.Find(DeepwaterSoundCue.PayoutBig).GainDb + 6, "Slam impact overpowers the large release.");
+        // Ram contacts carry a measured, short contact time so the schedule can land them on the visible impact.
+        foreach (var cue in new[] { DeepwaterSoundCue.Good, DeepwaterSoundCue.Perfect, DeepwaterSoundCue.Addition, DeepwaterSoundCue.Multiplier })
+            Check(library.Find(cue).ImpactAt > 0 && library.Find(cue).ImpactAt < .1f, "Ram contact has no measured contact time: " + cue);
         Directory.CreateDirectory(Output); File.WriteAllText(Output + "AssetVerification.json", "{\"passed\":true,\"assertions\":" + checks + "}");
         return checks;
     }
@@ -79,10 +91,16 @@ public static class DeepwaterAudioChecks
                 else
                 {
                     Check(events.Count(e => Math.Abs(e.Time - rush.Timing.ToReal(sequence.PayoutAt)) < .00001f) == 1, "Payout missing or repeated.");
-                    Check(events.Any(e => e.Time == sequence.Steps[0].ImpactAt && e.Cue == (item.Item1 == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good)), "Accuracy quality lacks distinct impact sound.");
+                    // The damage slam's contact lands on the payout (the number hitting the creature); the drain follows it.
+                    var slams = events.Where(e => e.Cue == DeepwaterSoundCue.SlamImpact).ToArray();
+                    Check(slams.Length == 1 && Math.Abs(slams[0].Time + player.CueImpactAt(DeepwaterSoundCue.SlamImpact) - rush.Timing.ToReal(sequence.PayoutAt)) <= .012f, "Slam impact misses or repeats its landing on the payout.");
+                    // The Resistance drain is silent until its sound is revised.
+                    Check(events.All(e => e.Cue != DeepwaterSoundCue.HealthDrain), "Disabled health-drain sound is still scheduled.");
+                    // Ram contacts (the Strike card's own and each rig card's) land on their visible impacts.
+                    Check(events.Count(e => Math.Abs(Contact(e, player) - rush.Timing.ToReal(sequence.Steps[0].ImpactAt)) < .002f && e.Cue == (item.Item1 == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good)) == 1, "Accuracy quality lacks distinct impact sound.");
                     foreach (var step in sequence.Steps.Skip(1))
                     {
-                        Check(events.Count(e => Math.Abs(e.Time - rush.Timing.ToReal(step.ImpactAt)) < .00001f && e.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition)) == 1, "Rig operation misses or duplicates its exact impact.");
+                        Check(events.Count(e => Math.Abs(Contact(e, player) - rush.Timing.ToReal(step.ImpactAt)) < .002f && e.Cue == (step.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition)) == 1, "Rig operation misses or duplicates its exact impact.");
                         var travel = events.Single(e => Math.Abs(e.Time - rush.Timing.ToReal(step.LaunchAt)) < .00001f && e.Cue == DeepwaterSoundCue.Travel);
                         Check(Math.Abs(travel.Time + travel.Clip.length / travel.Pitch - rush.Timing.ToReal(step.ImpactAt)) <= .012, "Projectile approach tail does not meet its arrival.");
                     }
@@ -90,7 +108,7 @@ public static class DeepwaterAudioChecks
                 Check(events.All(e => e.Pitch >= .5f && e.Pitch <= 2 && e.Gain <= 1), "Unbounded pitch/gain in score schedule.");
                 foreach (var impact in events.Where(e => e.Cue == DeepwaterSoundCue.Addition || e.Cue == DeepwaterSoundCue.Multiplier))
                 {
-                    int stepIndex = Enumerable.Range(1, sequence.Steps.Count - 1).Single(i => Math.Abs(rush.Timing.ToReal(sequence.Steps[i].ImpactAt) - impact.Time) < .00001f);
+                    int stepIndex = Enumerable.Range(1, sequence.Steps.Count - 1).Single(i => Math.Abs(rush.Timing.ToReal(sequence.Steps[i].ImpactAt) - Contact(impact, player)) < .002f);
                     Check(Math.Abs(impact.Pitch - player.CuePitch(impact.Cue, LandingScoreSequence.NotePitch(stepIndex - 1))) < .00001f, "Score pitch differs from the selected sound-family treatment.");
                 }
                 Export(item.Item3, rush);
@@ -150,6 +168,8 @@ public static class DeepwaterAudioChecks
             events = rush.SoundEvents.Select(e => new ExportEvent { t = e.Time, pitch = e.Pitch, gain = e.Gain, kind = e.Cue.ToString(), file = AssetDatabase.GetAssetPath(e.Clip) }).ToArray() };
         File.WriteAllText(Output + name + ".json", JsonUtility.ToJson(timeline, true));
     }
+    /// <summary>Real time at which a scheduled take's measured contact sounds (its start plus ImpactAt at its playback pitch).</summary>
+    private static float Contact(LandingScoreRush.SoundEvent e, DeepwaterSoundPlayer player) => e.Time + player.CueImpactAt(e.Cue) / e.Pitch;
     /// <summary>Reports a specific failed contract and retains asynchronous test status.</summary>
     private static void Check(bool valid, string message) { if (!valid) { Result = "FAILED: " + message; throw new InvalidOperationException(message); } checks++; }
 }

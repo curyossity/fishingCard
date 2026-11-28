@@ -12,7 +12,7 @@ public static class DeepwaterAudioSetup
     public const string Root = "Assets/Audio/Deepwater/";
     public const string LibraryPath = Root + "DeepwaterSoundLibrary.asset";
     [Serializable] private sealed class Manifest { public int version; public Cue[] cues; }
-    [Serializable] private sealed class Cue { public string cue, file, category; public float gainDb, cooldown, pitchGrowth, intensityGainDb; public int priority; }
+    [Serializable] private sealed class Cue { public string cue, file, category; public float gainDb, cooldown, pitchGrowth, intensityGainDb, impactAt; public int priority; }
 
     /// <summary>Updates only audio assets/components in the four existing phase prefabs; source artwork and scene routes stay intact.</summary>
     [MenuItem("Fishing Cards/Audio/Install Deepwater Sound Direction")]
@@ -24,6 +24,7 @@ public static class DeepwaterAudioSetup
         Edit(LandingChallengeSetup.PrefabPath, ConfigureLanding);
         Edit(RigBuildingSetup.PrefabPath, ConfigureBuild);
         Edit(SlotMachineSetup.PreparationPath, ConfigurePreparation);
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(TacklePhaseTransitionSetup.PrefabPath) != null) Edit(TacklePhaseTransitionSetup.PrefabPath, ConfigureTransition);
         AssetDatabase.SaveAssets();
     }
 
@@ -55,6 +56,7 @@ public static class DeepwaterAudioSetup
             row.FindPropertyRelative("Cooldown").floatValue = first.cooldown;
             row.FindPropertyRelative("PitchGrowth").floatValue = manifest.version >= 3 ? first.pitchGrowth : 1;
             row.FindPropertyRelative("IntensityGainDb").floatValue = manifest.version >= 3 ? first.intensityGainDb : 1.5f;
+            row.FindPropertyRelative("ImpactAt").floatValue = first.impactAt;
             var takes = row.FindPropertyRelative("Takes"); takes.arraySize = groups[i].Count(); int index = 0;
             foreach (var take in groups[i]) takes.GetArrayElementAtIndex(index++).objectReferenceValue = AssetDatabase.LoadAssetAtPath<AudioClip>(take.file);
         }
@@ -104,6 +106,13 @@ public static class DeepwaterAudioSetup
     {
         var host = root.GetComponent<SlotTagPreparationView>(); if (host == null) return;
         var player = ConfigurePlayer(root, 4); var data = new SerializedObject(host); Bind(data, "sound", player); data.ApplyModifiedPropertiesWithoutUndo();
+    }
+
+    /// <summary>Gives the phase-transition shutter its own small voice pool (close and open overlap briefly).</summary>
+    public static void ConfigureTransition(GameObject root)
+    {
+        var host = root.GetComponent<TacklePhaseTransition>(); if (host == null) return;
+        var player = ConfigurePlayer(root, 2); var data = new SerializedObject(host); Bind(data, "sound", player); data.ApplyModifiedPropertiesWithoutUndo();
     }
 
     /// <summary>Reuses existing 2D voices before adding the few required for bounded look-ahead overlap.</summary>

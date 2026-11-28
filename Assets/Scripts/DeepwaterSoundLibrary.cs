@@ -7,7 +7,9 @@ public enum DeepwaterSoundCue
 {
     TagSelect, TagDeselect, Preview, SlotStart, SlotRoll, SlotTick, SlotStop1, SlotStop2, SlotStop3,
     SlotLock, SlotUnlock, Pair, Triple, Reveal, Strike, Good, Perfect, Miss, Addition, Multiplier,
-    Travel, PayoutSmall, PayoutMedium, PayoutBig, Failure, BuildTravel, Attach, Upgrade
+    Travel, PayoutSmall, PayoutMedium, PayoutBig, Failure, BuildTravel, Attach, Upgrade,
+    // Landing revision (28 November 2026). Appended so existing serialized cue indices stay valid.
+    ShutterClose, ShutterOpen, Stamp, Landed, SlamImpact, HealthDrain
 }
 
 /// <summary>Separates quiet decisions, moving apparatus and foreground score resolution in the mix.</summary>
@@ -28,6 +30,8 @@ public sealed class DeepwaterSoundLibrary : ScriptableObject
         [Min(0)] public float Cooldown;
         [Range(0, 1)] public float PitchGrowth = 1;
         [Range(0, 3)] public float IntensityGainDb = 1.5f;
+        /// <summary>Seconds from a take's start to its contact (loudest moment); callers schedule this onto the visible contact.</summary>
+        [Min(0)] public float ImpactAt;
     }
 
     [SerializeField] private Definition[] cues = Array.Empty<Definition>();

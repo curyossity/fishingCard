@@ -1,0 +1,67 @@
+{
+  "selectedOn": "2026-11-28",
+  "selection": "User picks from Docs/Audio/landing-revision audition (round 1) and round2 (ram option 1).",
+  "tool": "Earshot 1.0.0 local recipes (public-domain recording models); no hosted service or key.",
+  "cues": [
+    {
+      "cue": "ShutterClose",
+      "source": "Docs/Audio/landing-revision/audition/ShutterClose_B.wav",
+      "sourceSha256": "1e115d049b476a84b326f8b27f74d0a60a3a061eb5bed37c3f1ff38b74ed7fc5",
+      "auditedGainDb": -13
+    },
+    {
+      "cue": "ShutterOpen",
+      "source": "Docs/Audio/landing-revision/audition/ShutterOpen_B.wav",
+      "sourceSha256": "bcbfdcd6ede6baa0c6a518c187649030a0132b5c96764715b341e00c1d3655c5",
+      "auditedGainDb": -17
+    },
+    {
+      "cue": "Stamp",
+      "source": "Docs/Audio/landing-revision/audition/Stamp_B.wav",
+      "sourceSha256": "8de2a5a488d79a8fb9d7a0b796bb7453b6f2375e567ab0198bfa3d2e7b3a21f6",
+      "auditedGainDb": -11
+    },
+    {
+      "cue": "Landed",
+      "source": "Docs/Audio/landing-revision/audition/Landed_A.wav",
+      "sourceSha256": "9547cb6d3498bfb4146e464a96b592400846986e2e3a4ac6902e641a274465d3",
+      "auditedGainDb": -8
+    },
+    {
+      "cue": "SlamImpact",
+      "source": "Docs/Audio/landing-revision/audition/SlamImpact_A.wav",
+      "sourceSha256": "375f539f202a0c15094c74f23d6d56840235d1fce8bfa631c06f8054c2879fb2",
+      "auditedGainDb": -9
+    },
+    {
+      "cue": "HealthDrain",
+      "source": "Docs/Audio/landing-revision/audition/HealthDrain_A.wav",
+      "sourceSha256": "5c721345703e73b49e15b13e4a9a718ee0b6b471ab40ab405c9062d50971a480",
+      "auditedGainDb": -21
+    },
+    {
+      "cue": "Addition",
+      "source": "Docs/Audio/landing-revision/round2/Addition_1.wav",
+      "sourceSha256": "45399f251440aed69c2b71d8894aedd04824ed7c3410ea0386160c53f9f8afcd",
+      "auditedGainDb": -12.63
+    },
+    {
+      "cue": "Multiplier",
+      "source": "Docs/Audio/landing-revision/round2/Multiplier_1.wav",
+      "sourceSha256": "cb530274ec1de1e1dec63442aee1fd51cf2d7331cf15fec08775d33cb9da4814",
+      "auditedGainDb": -11.2
+    },
+    {
+      "cue": "Good",
+      "source": "Docs/Audio/landing-revision/round2/Addition_1.wav",
+      "sourceSha256": "45399f251440aed69c2b71d8894aedd04824ed7c3410ea0386160c53f9f8afcd",
+      "auditedGainDb": -14.54
+    },
+    {
+      "cue": "Perfect",
+      "source": "Docs/Audio/landing-revision/round2/Perfect_1.wav",
+      "sourceSha256": "12e0124574ded9fece9aad20488cdea09150115964d592006e9b144880298283",
+      "auditedGainDb": -10.46
+    }
+  ]
+}

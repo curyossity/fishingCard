@@ -40,10 +40,10 @@ public static class LandingDamageFeedbackChecks
                 float red = LandingHealthTrail.Red(t, intensity), trail = LandingHealthTrail.Trail(t, intensity);
                 lags &= trail <= red + 1e-5f && trail >= previousTrail; previousTrail = trail;
             }
-            Check(lags && LandingHealthTrail.Red(LandingHealthTrail.RedSeconds(intensity), intensity) == 1 && LandingHealthTrail.Trail(LandingHealthTrail.TrailStart(intensity), intensity) == 0
+            Check(lags && LandingHealthTrail.Red(LandingHealthTrail.Delay, intensity) == 0 && LandingHealthTrail.Red(LandingHealthTrail.RedEnd(intensity), intensity) == 1 && LandingHealthTrail.Trail(LandingHealthTrail.TrailStart(intensity), intensity) == 0
                 && LandingHealthTrail.Trail(LandingHealthTrail.End(intensity), intensity) == 1, "Health trail does not ease the red down first and then the white after it.");
         }
-        var trailAtHit = LandingDamageFeedback.Trail(10, 30, 40, .02f, 0);
+        var trailAtHit = LandingDamageFeedback.Trail(10, 30, 40, LandingHealthTrail.Delay + .02f, 0);
         Check(trailAtHit.y == .75f && trailAtHit.x < .75f && trailAtHit.x > .25f, "White trail does not hold the old Resistance while the red drains.");
         // Control waits for the whole drain on a damaging strike; a zero-point Miss keeps its short tail.
         var damaging = new LandingScoreSequence(new LandingScore(LandingAccuracy.Perfect, 20, 0, 1, Array.Empty<LandingContribution>()));
@@ -101,6 +101,9 @@ public static class LandingDamageFeedbackChecks
             Check(flash.color.r > .9f && flash.color.g < .6f && flash.color.a > .2f, "Creature panel did not take a hurt tint.");
             float from = 1 - (float)(receipt.PointsAfter / receipt.Resistance), to = 1 - (float)(receipt.PointsBefore / receipt.Resistance);
             float intensity = sequence.Intensity;
+            // The slam lands first: the bar holds for a beat before it starts to drain.
+            Check(!chip.gameObject.activeSelf && LandingHealthTrail.Red(.04f, intensity) == 0, "Resistance bar starts draining on the slam instead of a beat after it.");
+            yield return SeekRush(rush, payout + LandingHealthTrail.Delay + .04f);
             // Early: the red is draining and the white trail still holds the old Resistance.
             Check(chip.gameObject.activeSelf && Mathf.Abs(chip.rectTransform.anchorMax.x - to) < .001f && chip.rectTransform.anchorMin.x > from + .001f && chip.rectTransform.anchorMin.x < to - .001f,
                 "White trail does not hold the old Resistance while the red drains.");
@@ -110,7 +113,7 @@ public static class LandingDamageFeedbackChecks
             Check(chip.gameObject.activeSelf && chip.rectTransform.anchorMax.x < to - .01f && chip.rectTransform.anchorMax.x > from + .01f && owner.LandingFeedbackPending, "White trail does not ease down while control is still held.");
             Check(sequence.Duration - payout >= LandingHealthTrail.End(intensity), "Feedback gate can release control before the trail settles.");
             reduced.SetIsOnWithoutNotify(true);
-            yield return SeekRush(rush, payout + .04f);
+            yield return SeekRush(rush, payout + LandingHealthTrail.Delay + .04f);
             Check((card.anchoredPosition - cardRest).sqrMagnitude < .01f && card.localRotation == rotationRest && flash.color.a > 0 && chip.gameObject.activeSelf, "Reduced motion moved the card or dropped the tint and chip.");
             reduced.SetIsOnWithoutNotify(false);
             // The rush ends itself at its sequence duration (after the trail settles), so every seek stays inside that tail.
@@ -153,7 +156,7 @@ public static class LandingDamageFeedbackChecks
         int count = Mathf.CeilToInt((to - from) * 60); float payout = rush.Sequence.PayoutAt;
         float strength = rush.Sequence.Intensity, trail = LandingHealthTrail.TrailStart(strength);
         // Before the hit, red draining under the held white trail, red settled, white trail draining, settled.
-        var stills = new[] { payout - .05f, payout + .05f, payout + trail - .03f, payout + trail + LandingHealthTrail.DrainSeconds * .5f, payout + LandingHealthTrail.End(strength) + .02f }
+        var stills = new[] { payout - .05f, payout + LandingHealthTrail.Delay + .05f, payout + trail - .03f, payout + trail + LandingHealthTrail.DrainSeconds * .5f, payout + LandingHealthTrail.End(strength) + .02f }
             .Select(t => Mathf.RoundToInt((t - from) * 60)).ToArray();
         for (int i = 0; i < count; i++)
         {

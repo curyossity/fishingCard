@@ -1,0 +1,41 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Deepwater Landing sound revision: round 2 audition</title>
+<style>
+  body { background: #14181c; color: #e9dcb1; font: 15px system-ui, sans-serif; margin: 24px; max-width: 1100px; }
+  h1 { font-size: 20px; margin: 0 0 6px; } h2 { font-size: 16px; margin: 26px 0 8px; }
+  p, li { color: #a9b0a8; } .row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+  figure { margin: 0; background: #1c2226; border: 1px solid #343c42; padding: 10px; border-radius: 4px; }
+  figcaption { font-size: 13px; color: #cdbf95; margin-bottom: 6px; } audio { width: 100%; }
+  .note { font-size: 13px; }
+</style>
+<h1>Landing sound revision, round 2: health drain and ram</h1>
+<p>Each phrase is a real Perfect strike: Strike, three rig rams (+, ×, ×), then the total slams down. Every option is level-matched to the sound it would replace,
+and the files are not normalized, so keep your volume fixed while comparing. Pick one drain (1, 2 or 3) and one ram (1, 2 or 3).</p>
+
+<h2>1. Health drain, now 0.2 s after the slam</h2>
+<p class="note">The bar (and its sound) now waits 0.2 s after the slam lands, so the two no longer overlap. "Now" is the current drain at the current timing, for reference.</p>
+<div class="row">
+  <figure><figcaption>Now (sub sweep, overlapping)</figcaption><audio controls src="phrases/Strike-Now.wav"></audio></figure>
+  <figure><figcaption>1: gauge needle notching down (dry dial clicks, slowing and falling)</figcaption><audio controls src="phrases/Drain-1.wav"></audio></figure>
+  <figure><figcaption>2: electric charge sagging (a humming whine sliding down)</figcaption><audio controls src="phrases/Drain-2.wav"></audio></figure>
+  <figure><figcaption>3: pressure leaking out (a soft hiss falling in tone)</figcaption><audio controls src="phrases/Drain-3.wav"></audio></figure>
+</div>
+
+<h2>2. Rig ram (+ addition and × multiplier hits)</h2>
+<p class="note">The whoosh before each hit is unchanged; only the contact differs. The drain is left out here so you can focus on the rams.</p>
+<div class="row">
+  <figure><figcaption>Now (electric pulse)</figcaption><audio controls src="phrases/Ram-Now.wav"></audio></figure>
+  <figure><figcaption>1: card body-check (card slap with a low punch; × adds a crack and boom)</figcaption><audio controls src="phrases/Ram-1.wav"></audio></figure>
+  <figure><figcaption>2: cabinet knock (hollow wooden knock; × is a wooden slam with a small spark)</figcaption><audio controls src="phrases/Ram-2.wav"></audio></figure>
+  <figure><figcaption>3: charged punch (tight punch with a bright zap tail; × deeper with a crackle)</figcaption><audio controls src="phrases/Ram-3.wav"></audio></figure>
+</div>
+
+<h2>Individual candidates</h2>
+<div class="row">
+  <figure><figcaption>Drain 1 / 2 / 3</figcaption><audio controls src="HealthDrain_1.wav"></audio><audio controls src="HealthDrain_2.wav"></audio><audio controls src="HealthDrain_3.wav"></audio></figure>
+  <figure><figcaption>Ram 1: + / ×</figcaption><audio controls src="Addition_1.wav"></audio><audio controls src="Multiplier_1.wav"></audio></figure>
+  <figure><figcaption>Ram 2: + / ×</figcaption><audio controls src="Addition_2.wav"></audio><audio controls src="Multiplier_2.wav"></audio></figure>
+  <figure><figcaption>Ram 3: + / ×</figcaption><audio controls src="Addition_3.wav"></audio><audio controls src="Multiplier_3.wav"></audio></figure>
+</div>
+<p class="note">Made locally with Earshot recipes (public-domain recording models); no hosted service, upload or API key. Claude cannot hear these: they were checked for clipping, timing and level only.</p>

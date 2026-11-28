@@ -97,16 +97,23 @@ public sealed class LandingScoreRush : MonoBehaviour
             var item = sequence.Steps[i];
             if (i == 0)
             {
-                if (!missed) AddSound(item.ImpactAt, strike.Score.Accuracy == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good);
+                // The Strike card's own ram: the same card body-check family as the rig rams, accented on a Perfect.
+                if (!missed) AddContact(item.ImpactAt, strike.Score.Accuracy == LandingAccuracy.Perfect ? DeepwaterSoundCue.Perfect : DeepwaterSoundCue.Good);
                 continue;
             }
             float flight = timing.ToReal(item.ImpactAt) - timing.ToReal(item.LaunchAt);
             float travelPitch = Mathf.Clamp(sound.Library.Find(DeepwaterSoundCue.Travel).Takes[0].length / flight, .5f, 2);
             AddSound(item.LaunchAt, DeepwaterSoundCue.Travel, travelPitch);
             var impactCue = item.Multiply ? DeepwaterSoundCue.Multiplier : DeepwaterSoundCue.Addition;
-            AddSound(item.ImpactAt, impactCue, LandingScoreSequence.NotePitch(i - 1), sequence.Intensity * sound.CueIntensityGainDb(impactCue));
+            AddContact(item.ImpactAt, impactCue, LandingScoreSequence.NotePitch(i - 1), sequence.Intensity * sound.CueIntensityGainDb(impactCue));
         }
-        if (strike.Score.Points > 0) AddSound(sequence.PayoutAt, sequence.Tier == 2 ? DeepwaterSoundCue.PayoutBig : sequence.Tier == 1 ? DeepwaterSoundCue.PayoutMedium : DeepwaterSoundCue.PayoutSmall);
+        if (strike.Score.Points > 0)
+        {
+            AddSound(sequence.PayoutAt, sequence.Tier == 2 ? DeepwaterSoundCue.PayoutBig : sequence.Tier == 1 ? DeepwaterSoundCue.PayoutMedium : DeepwaterSoundCue.PayoutSmall);
+            // The damage slam: its air swell is the number's drop, and its contact meets the payout (hurt reaction, bar drain).
+            AddContact(sequence.PayoutAt, DeepwaterSoundCue.SlamImpact);
+            // The Resistance drain (a beat after the slam, see LandingHealthTrail.Delay) is deliberately silent for now.
+        }
         soundEvents.Sort((a,b) => a.Time.CompareTo(b.Time));
         shownStep = -1; running = true; DisplayedTotal = strike.PointsBefore;
         readout.gameObject.SetActive(true); readout.alpha = 1;
@@ -172,6 +179,13 @@ public sealed class LandingScoreRush : MonoBehaviour
     private void AddSound(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
     {
         soundEvents.Add(new SoundEvent(timing.ToReal(at), sound.Select(cue), sound.CuePitch(cue, pitch), sound.CueGain(cue, decibels), cue));
+    }
+    /// <summary>Like <see cref="AddSound"/>, but starts the take early so its measured contact (ImpactAt, at its playback pitch) meets the visible impact at <paramref name="at"/>.</summary>
+    private void AddContact(float at, DeepwaterSoundCue cue, float pitch = 1, float decibels = 0)
+    {
+        float played = sound.CuePitch(cue, pitch);
+        float start = Mathf.Max(0, timing.ToReal(at) - sound.CueImpactAt(cue) / played);
+        soundEvents.Add(new SoundEvent(start, sound.Select(cue), played, sound.CueGain(cue, decibels), cue));
     }
     /// <summary>Restores all authored motion targets while leaving the settled score intact.</summary>
     private void RestoreMotion() { if (impactCamera != null) impactCamera.ResetMotion(); if (waterImpact != null) waterImpact.ResetVisuals(); if (collision != null) collision.ResetMotion(); if (machine != null) machine.anchoredPosition = machineRest; if (totalLabel != null) totalLabel.localScale = totalRest; if (value != null) value.rectTransform.localScale = Vector3.one; if (operation != null) operation.rectTransform.localScale = operationRest; if (scoringPortrait != null) scoringPortrait.SetPulse(0); }

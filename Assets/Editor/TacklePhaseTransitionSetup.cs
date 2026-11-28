@@ -67,6 +67,7 @@ public static class TacklePhaseTransitionSetup
             data.FindProperty("shutter").objectReferenceValue = shutter;
             data.FindProperty("bodyBounds").rectValue = TraceBody(shutter);
             data.ApplyModifiedPropertiesWithoutUndo();
+            DeepwaterAudioSetup.ConfigureTransition(root);
             PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
         }
         finally

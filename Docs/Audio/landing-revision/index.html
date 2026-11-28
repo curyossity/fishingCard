@@ -1,0 +1,58 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Deepwater Landing sound revision: audition</title>
+<style>
+  body { background: #14181c; color: #e9dcb1; font: 15px system-ui, sans-serif; margin: 24px; max-width: 1100px; }
+  h1 { font-size: 20px; margin: 0 0 6px; } h2 { font-size: 16px; margin: 26px 0 8px; }
+  p, li { color: #a9b0a8; } .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  figure { margin: 0; background: #1c2226; border: 1px solid #343c42; padding: 10px; border-radius: 4px; }
+  figcaption { font-size: 13px; color: #cdbf95; margin-bottom: 6px; } audio { width: 100%; }
+  .note { font-size: 13px; }
+</style>
+<h1>Landing sound revision: in-context audition</h1>
+<p>Each phrase plays the approved Charged Cabinet cues at their in-game levels on the game's real timing, with candidate <b>A</b> or <b>B</b> for the new cues.
+The files keep their true relative levels and are not normalized, so turn your volume up and keep it fixed while comparing. Pick A or B per cue; a mix is fine.</p>
+
+<h2>1. Strike with rig contributors → final slam → health drain</h2>
+<p class="note">Strike, Perfect, three rams (+, ×, ×), then the total slams down with the payout release, and the bar drains. "Current" has no slam layer and no drain.</p>
+<div class="row">
+  <figure><figcaption>Current (for reference)</figcaption><audio controls src="phrases/Strike-Current.wav"></audio></figure>
+  <figure><figcaption>A: air-into-punch slam, sub-sweep drain</figcaption><audio controls src="phrases/Strike-A.wav"></audio></figure>
+  <figure><figcaption>B: swell-into-deep-thud slam, airy-fizz drain</figcaption><audio controls src="phrases/Strike-B.wav"></audio></figure>
+</div>
+
+<h2>2. LANDED (yank, lock-in, stamp)</h2>
+<div class="row">
+  <figure><figcaption>A: clunk, boom and small zap · light stamp</figcaption><audio controls src="phrases/Landed-A.wav"></audio></figure>
+  <figure><figcaption>B: punchy slam with a spark · metal-plate stamp</figcaption><audio controls src="phrases/Landed-B.wav"></audio></figure>
+</div>
+
+<h2>3. ESCAPED (sink, stamp, haul cash-out of 4 cards, HAUL PAID)</h2>
+<p class="note">Cash-out ticks now use the card-handling family instead of the reel tick (same in A and B); only the stamp differs.</p>
+<div class="row">
+  <figure><figcaption>A: light stamp</figcaption><audio controls src="phrases/Escaped-A.wav"></audio></figure>
+  <figure><figcaption>B: metal-plate stamp</figcaption><audio controls src="phrases/Escaped-B.wav"></audio></figure>
+</div>
+
+<h2>4. Phase shutter (close, then open)</h2>
+<div class="row">
+  <figure><figcaption>A: chain-rattle roll into a heavy slam · rising rattle</figcaption><audio controls src="phrases/Shutter-A.wav"></audio></figure>
+  <figure><figcaption>B: slat clatter into a latch thud · winding clatter</figcaption><audio controls src="phrases/Shutter-B.wav"></audio></figure>
+</div>
+
+<h2>5. Rare reveal with banner stamp</h2>
+<div class="row">
+  <figure><figcaption>A: light stamp</figcaption><audio controls src="phrases/Reveal-A.wav"></audio></figure>
+  <figure><figcaption>B: metal-plate stamp</figcaption><audio controls src="phrases/Reveal-B.wav"></audio></figure>
+</div>
+
+<h2>Individual candidates</h2>
+<div class="row">
+  <figure><figcaption>ShutterClose A / B</figcaption><audio controls src="audition/ShutterClose_A.wav"></audio><audio controls src="audition/ShutterClose_B.wav"></audio></figure>
+  <figure><figcaption>ShutterOpen A / B</figcaption><audio controls src="audition/ShutterOpen_A.wav"></audio><audio controls src="audition/ShutterOpen_B.wav"></audio></figure>
+  <figure><figcaption>Stamp A / B</figcaption><audio controls src="audition/Stamp_A.wav"></audio><audio controls src="audition/Stamp_B.wav"></audio></figure>
+  <figure><figcaption>Landed A / B</figcaption><audio controls src="audition/Landed_A.wav"></audio><audio controls src="audition/Landed_B.wav"></audio></figure>
+  <figure><figcaption>SlamImpact A / B</figcaption><audio controls src="audition/SlamImpact_A.wav"></audio><audio controls src="audition/SlamImpact_B.wav"></audio></figure>
+  <figure><figcaption>HealthDrain A / B</figcaption><audio controls src="audition/HealthDrain_A.wav"></audio><audio controls src="audition/HealthDrain_B.wav"></audio></figure>
+</div>
+<p class="note">Made locally with Earshot recipes (public-domain recording models); no hosted service, upload or API key. Claude cannot hear these: they were checked for clipping, timing and level only.</p>

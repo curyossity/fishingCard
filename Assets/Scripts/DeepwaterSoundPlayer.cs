@@ -46,6 +46,23 @@ public sealed class DeepwaterSoundPlayer : MonoBehaviour
         PlayFrozen(cue, Select(cue), CuePitch(cue, pitch), Gain(definition.GainDb + gainDb), now, pan);
     }
 
+    /// <summary>
+    /// Plays an accepted event so the take's contact (its authored ImpactAt) lands `contactIn` seconds from now; a contact already
+    /// closer than the take's lead plays immediately. Used for cues whose approach leads into a visible hit.
+    /// </summary>
+    public void PlayContact(DeepwaterSoundCue cue, float contactIn, float pitch = 1, float gainDb = 0)
+    {
+        var definition = library != null ? library.Find(cue) : null;
+        if (definition == null || !GameAudioPreferences.SoundEnabled || !isActiveAndEnabled) return;
+        double now = AudioSettings.dspTime;
+        if (now < allowedAt[(int)cue]) return;
+        allowedAt[(int)cue] = now + definition.Cooldown;
+        PlayFrozen(cue, Select(cue), CuePitch(cue, pitch), Gain(definition.GainDb + gainDb), now + Math.Max(0, contactIn - definition.ImpactAt));
+    }
+
+    /// <summary>Seconds from the cue's take start to its contact.</summary>
+    public float CueImpactAt(DeepwaterSoundCue cue) { var definition = library != null ? library.Find(cue) : null; return definition != null ? definition.ImpactAt : 0; }
+
     /// <summary>Schedules a frozen score take on the audio clock, protecting important impacts from disposable UI voices.</summary>
     public void PlayFrozen(DeepwaterSoundCue cue, AudioClip clip, float pitch, float gain, double at, float pan = 0)
     {

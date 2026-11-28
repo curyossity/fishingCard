@@ -13,6 +13,7 @@ public sealed class TacklePhaseTransition : MonoBehaviour
     [SerializeField] private RectTransform content, interiorWindow;
     [SerializeField] private RawImage fullSnapshot, blocker;
     [SerializeField] private TackleShutterGraphic shutter;
+    [SerializeField] private DeepwaterSoundPlayer sound;
     /// <summary>Bounding box of the machine body (excluding the external pipes) in 1920x1080 stage pixels, top-left origin. Authored by setup.</summary>
     [SerializeField] private Rect bodyBounds = new Rect(580, 163, 1220, 681);
     public Rect BodyBounds => bodyBounds;
@@ -57,6 +58,7 @@ public sealed class TacklePhaseTransition : MonoBehaviour
         overlay.enabled = true; blocker.gameObject.SetActive(true);
         fullSnapshot.texture = texture; fullSnapshot.color = Color.white; fullSnapshot.gameObject.SetActive(true);
         interiorWindow.gameObject.SetActive(!reduced);
+        PlaySounds();
         Render(0);
         return true;
     }
@@ -81,7 +83,7 @@ public sealed class TacklePhaseTransition : MonoBehaviour
         if (frozen) return;
 #endif
         float age = (float)(Time.realtimeSinceStartupAsDouble - startedAt);
-        if (age >= (reduced ? ReducedDuration : Duration)) { Finish(); return; }
+        if (age >= (reduced ? ReducedDuration : Duration)) { Complete(false); return; }
         Render(age);
     }
 
@@ -98,9 +100,25 @@ public sealed class TacklePhaseTransition : MonoBehaviour
         fullSnapshot.gameObject.SetActive(age < SwapAt);
     }
 
-    /// <summary>Ends immediately, leaving the incoming phase fully visible; safe to call at any time.</summary>
-    public void Finish()
+    /// <summary>
+    /// Shutter sounds on the DSP clock: the roll lands its clunk on the shutter's landing, and the roll back up starts as it
+    /// opens. Reduced motion (a plain crossfade) keeps only a quieter roll up.
+    /// </summary>
+    private void PlaySounds()
     {
+        if (sound == null) return;
+        if (reduced) { sound.PlayContact(DeepwaterSoundCue.ShutterOpen, 0, 1, -6); return; }
+        sound.PlayContact(DeepwaterSoundCue.ShutterClose, CloseSeconds);
+        sound.PlayContact(DeepwaterSoundCue.ShutterOpen, CloseSeconds + SettleSeconds);
+    }
+
+    /// <summary>Ends immediately, leaving the incoming phase fully visible; safe to call at any time. Cuts its pending sounds.</summary>
+    public void Finish() => Complete(true);
+
+    /// <summary>A natural end lets the roll's tail ring out; an interruption silences pending and sounding shutter voices.</summary>
+    private void Complete(bool interrupted)
+    {
+        if (interrupted && playing && sound != null) sound.StopAll();
         playing = false;
 #if UNITY_EDITOR
         frozen = false;

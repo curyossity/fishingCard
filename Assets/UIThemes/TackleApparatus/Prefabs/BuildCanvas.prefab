@@ -166,6 +166,7 @@ MonoBehaviour:
   socketSelected: {fileID: 21300000, guid: 74136cd5dd5d48549a1d07e5040435dd, type: 3}
   socketBlocked: {fileID: 21300000, guid: 903da50c1aed1c74bb610d0838adfb65, type: 3}
   upgradeFeedbackSeconds: 1.8
+  placementFeedbackSeconds: 1.05
 --- !u!222 &5503718590516563770
 CanvasRenderer:
   m_ObjectHideFlags: 0

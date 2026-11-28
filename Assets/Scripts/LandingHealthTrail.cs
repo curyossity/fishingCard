@@ -1,13 +1,17 @@
 using UnityEngine;
 
 /// <summary>
-/// Schedule of the creature's Resistance bar after a strike's points land (ages measured from the score payout). The red fill
-/// eases down from the old Resistance to the new one; a white damage trail stays at the old value, holds briefly, then eases
-/// down until it meets the red. The strike's feedback lasts until the trail has finished, so control never returns while the
-/// bar is still moving. Shared by the score presentation (red), the damage chip (white) and the score sequence (tail length).
+/// Schedule of the creature's Resistance bar after a strike's points land (ages measured from the score payout). The bar
+/// holds for a short beat after the damage slam lands, so the slam and the drain read (and sound) as two events; then the red
+/// fill eases down from the old Resistance to the new one; a white damage trail stays at the old value, holds briefly, then
+/// eases down until it meets the red. The strike's feedback lasts until the trail has finished, so control never returns
+/// while the bar is still moving. Shared by the score presentation (red), the damage chip (white), the drain sound and the
+/// score sequence (tail length).
 /// </summary>
 public static class LandingHealthTrail
 {
+    /// <summary>Beat between the slam's contact and the start of the red drain (and its sound).</summary>
+    public const float Delay = .2f;
     /// <summary>White trail hold after the red has settled, its own drain, and a short settle before control returns.</summary>
     public const float Hold = .15f, DrainSeconds = .35f, Settle = .06f;
     /// <summary>Post-payout tail used before the health trail existed (readout fade, impact recovery); still the minimum.</summary>
@@ -16,15 +20,19 @@ public static class LandingHealthTrail
     /// <summary>Seconds the red fill takes to reach the new Resistance; bigger hits drain a little longer.</summary>
     public static float RedSeconds(float intensity) => .45f + intensity * .18f;
 
-    /// <summary>Red drain progress 0..1 (ease-out): fast at first, settling onto the new value.</summary>
+    /// <summary>Red drain progress 0..1 (ease-out): still for <see cref="Delay"/>, then fast at first, settling onto the new value.</summary>
     public static float Red(float age, float intensity)
     {
+        age -= Delay;
         if (age <= 0) return 0;
         float t = Mathf.Clamp01(age / RedSeconds(intensity));
         return 1 - (1 - t) * (1 - t) * (1 - t);
     }
 
-    public static float TrailStart(float intensity) => RedSeconds(intensity) + Hold;
+    /// <summary>Age at which the red has reached the new Resistance.</summary>
+    public static float RedEnd(float intensity) => Delay + RedSeconds(intensity);
+    /// <summary>Age at which the white trail starts to follow the red.</summary>
+    public static float TrailStart(float intensity) => RedEnd(intensity) + Hold;
     public static float End(float intensity) => TrailStart(intensity) + DrainSeconds;
 
     /// <summary>

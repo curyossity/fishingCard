@@ -4764,9 +4764,9 @@ MonoBehaviour:
   - {fileID: 2072902138943259107}
   - {fileID: 3139811045464978795}
   - {fileID: 5589658311793359773}
-  hit: {fileID: 8300000, guid: ace07b777290bd846bb095be5c9bfe91, type: 3}
-  addition: {fileID: 8300000, guid: 700a993703e5eb24b80ac123ca8ad867, type: 3}
-  multiplier: {fileID: 8300000, guid: 2a5845c731f1563438b2fe7d0c30c351, type: 3}
+  hit: {fileID: 8300000, guid: a24caf3f0c548d2499eb92ce3b819df3, type: 3}
+  addition: {fileID: 8300000, guid: a32af570e89abed4794bbc7dae5ab4fc, type: 3}
+  multiplier: {fileID: 8300000, guid: d5d28faf0e3a58343b5727a92fd946a2, type: 3}
   payoutSmall: {fileID: 8300000, guid: 72d001eb544b6ca4dbb5324b5872088a, type: 3}
   payoutBig: {fileID: 8300000, guid: 90458d71ab3c35d4f8ff28fef0fb5169, type: 3}
   miss: {fileID: 8300000, guid: 0c95648b49a14fb46812c43143068d30, type: 3}
